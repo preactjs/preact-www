@@ -1,0 +1,55 @@
+import { h, Component } from 'preact';
+import { Router } from 'preact-router';
+import config from '../config.json';
+import controllers from './controllers';
+
+
+export default class Routes extends Component {
+	/** Gets fired when the route changes.
+	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
+	 *	@param {string} event.url	The newly routed URL
+	 */
+	handleRoute = e => {
+		let { onChange } = this.props;
+		if (onChange) onChange(e);
+	};
+
+	shouldComponentUpdate() {
+		return false;
+	}
+
+	getNavRoutes(nav) {
+		return nav.reduce( (routes, route) => {
+			if (route.path) {
+				routes.push(this.buildRoute(route));
+			}
+			if (route.routes) {
+				routes = routes.concat(this.getNavRoutes(route.routes));
+			}
+			return routes;
+		}, []);
+	}
+
+	buildRoute(route) {
+		let Ctrl = controllers.default;
+		if (route.controller) {
+			for (let i in controllers) {
+				if (i.toLowerCase()===route.controller.toLowerCase()) {
+					Ctrl = controllers[i];
+				}
+			}
+		}
+		return <Ctrl path={route.path || ''} route={route} />;
+	}
+
+	render({ url, component:C='main', ...props }) {
+		return (
+			<C {...props}>
+				<Router url={url} onChange={this.handleRoute}>
+					{ this.getNavRoutes(config.nav) }
+					<controllers.error route={{ content:'404', title:'404' }} default />
+				</Router>
+			</C>
+		);
+	}
+}

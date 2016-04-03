@@ -1,0 +1,74 @@
+{
+	"title": "Preact: Fast 3kb React alternative with the same ES6 API. Components & Virtual DOM.",
+	"name": "Preact",
+	"nav": [
+		{
+			"path": "/",
+			"name": "Preact",
+			"title": "Home",
+			"class": "home",
+			"content": "index"
+		},
+		{
+			"name": "Guide",
+			"content": "guide",
+			"routes": [
+				{
+					"path": "/guide/getting-started",
+					"name": "Getting Started"
+				},
+				{
+					"path": "/guide/differences-to-react",
+					"name": "Differences to React"
+				},
+				{
+					"path": "/guide/types-of-components",
+					"name": "Types of Components"
+				},
+				{
+					"path": "/guide/lifecycle-methods",
+					"name": "Lifecycle Methods"
+				},
+				{
+					"path": "/guide/forms",
+					"name": "Forms"
+				},
+				{
+					"path": "/guide/linked-state",
+					"name": "Linked State"
+				},
+				{
+					"path": "/guide/external-dom-mutations",
+					"name": "External DOM Mutations"
+				},
+				{
+					"path": "/guide/extending-component",
+					"name": "Extending Component"
+				}
+			]
+		},
+		{
+			"name": "About",
+			"content": "about",
+			"routes": [
+				{
+					"path": "/about/project-goals",
+					"name": "Project Goals"
+				},
+				{
+					"path": "/about/demos-examples",
+					"name": "Demos & Examples"
+				},
+				{
+					"path": "/about/browser-support",
+					"name": "Browser Support"
+				}
+			]
+		},
+		{
+			"path": "/repl",
+			"title": "REPL",
+			"controller": "Repl"
+		}
+	]
+}
