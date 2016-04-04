@@ -7,7 +7,7 @@
     "start": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
     "prestart": "npm run build",
     "build": "NODE_ENV=production webpack",
-    "prebuild": "rm -rf build && mkdir -p build && ncp src/assets build/assets && ncp src/content build/content",
+    "prebuild": "rm -rf build && mkdir -p build && ncp src/assets build/assets && ncp content build/content",
     "test": "npm run -s lint && npm run -s test:karma",
     "test:karma": "karma start test/karma.conf.js --single-run",
     "lint": "eslint {src,test}",

@@ -13,8 +13,12 @@ const ACTIONS = {};
 
 ACTIONS.ping = () => 'pong';
 
+const PREPEND = '(function(h,Component,render,module,exports,regeneratorRuntime,fetch){';
+
 ACTIONS.transform = code => {
-	let out = transform(code, {
+	let mocked = '//' + new Array(PREPEND.length-1).join(' ') + '\n' + code;
+
+	let out = transform(mocked, {
 		sourceMap: true,
 		presets: ['es2015', 'stage-0', 'react'],
 		plugins: [
@@ -24,10 +28,14 @@ ACTIONS.transform = code => {
 
 	// wrap & append sourceMap
 	let transpiled = out && out.code || '';
-	transpiled = `(function(h,Component,render,module,exports,regeneratorRuntime,fetch){\n${transpiled}\n})`;
+	transpiled = `${PREPEND}\n${transpiled}\n})`;
 
 	if (transpiled && out.map) {
-		transpiled += `\n//@ sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.map))))}`;
+		try {
+			transpiled += `\n//@ sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.map))))}`;
+		} catch (e) {
+			console.error(`Source Map generation failed: ${e}`);
+		}
 	}
 
 	return transpiled;

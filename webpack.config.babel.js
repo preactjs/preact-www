@@ -1,3 +1,4 @@
+import fs from 'fs';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -15,15 +16,13 @@ const VENDORS = /\bbabel\-standalone\b/;
 module.exports = {
 	context: `${__dirname}/src`,
 	entry: './index.js',
-	// entry: {
-	// 	app: './index.js',
-	// 	repl: ['babel-standalone']
-	// },
 
 	output: {
 		path: `${__dirname}/build`,
 		publicPath: '/',
-		filename: 'bundle.js'
+		// filename: 'bundle.js'
+		filename: 'bundle.[hash].js',
+		chunkFilename: '[name].[chunkhash].chunk.js'
 	},
 
 	resolve: {
@@ -34,7 +33,7 @@ module.exports = {
 			'node_modules'
 		],
 		alias: {
-			components: `${__dirname}/src/components`,		// used for tests
+			components: `${__dirname}/src/components`,
 			style: `${__dirname}/src/style`,
 			'react': 'preact-compat',
 			'react-dom': 'preact-compat'
@@ -97,8 +96,9 @@ module.exports = {
 	plugins: ([
 		new ProgressBarPlugin(),
 		new webpack.NoErrorsPlugin(),
-		new ExtractTextPlugin('style.css', {
-			allChunks: false,		// leave async chunks using style-loader
+		new ExtractTextPlugin('style.[chunkhash].css', {
+			// leave async chunks using style-loader
+			allChunks: false,
 			disable: ENV!=='production'
 		}),
 		new webpack.DefinePlugin({
@@ -109,7 +109,10 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.html',
-			minify: { collapseWhitespace: true },
+			minify: {
+				collapseWhitespace: true,
+				removeComments: true
+			},
 			title: config.title,
 			config
 		})
@@ -117,8 +120,8 @@ module.exports = {
 		new OfflinePlugin({
 			// updateStrategy: 'hash',
 			caches: {
-				main: ['index.html','bundle.js', 'style.css'],
-				additional: ['*.bundle.js', '*.worker.js'],
+				main: ['index.html','bundle.*.js', 'style.*.css'],
+				additional: ['*.chunk.js', '*.worker.js'],
 				optional: [':rest:']
 			},
 			// rewrite /urls/without/extensions to /index.html
@@ -149,8 +152,14 @@ module.exports = {
 		port: process.env.PORT || 8080,
 		host: '0.0.0.0',
 		publicPath: '/',
-		quiet: true,
+		// quiet: true,
+		compress: true,
 		contentBase: `${__dirname}/src`,
-		historyApiFallback: true
+		historyApiFallback: true,
+		setup(app) {
+			app.use('/content/**', (req, res) => {
+				fs.createReadStream(`content/${req.params[0]}`).pipe(res);
+			});
+		}
 	}
 };

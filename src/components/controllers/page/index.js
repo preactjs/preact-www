@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
-import cx from 'classnames';
 import { bind } from 'decko';
+import cx from 'classnames';
 import ContentRegion from '../../content-region';
+import config from '../../../config';
 import style from './style';
 
 const EMPTY = {};
@@ -15,6 +16,20 @@ export default class Page extends Component {
 		if (getContent(route)!==getContent(this.props.route)) {
 			this.setState({ loading:true });
 		}
+	}
+
+	componentDidMount() {
+		this.setTitle();
+	}
+
+	componentDidUpdate() {
+		this.setTitle();
+	}
+
+	setTitle() {
+		let { props, state } = this,
+			title = state.meta && state.meta.title || props.route.title || '';
+		document.title = `${title} | ${config.title}`;
 	}
 
 	@bind

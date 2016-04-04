@@ -18,7 +18,7 @@ This website is built as a static-app, following the Application Shell pattern.
 
 #### Content
 
-Content is fetched and rendered on the fly from Markdown documents located in `src/content`.
+Content is fetched and rendered on the fly from Markdown documents located in `content/`.
 Documents can contain optional YAML FrontMatter for specifying page metadata or layout information.
 Once fetched, content is parsed using [marked] and rendered to VDOM via [preact-markup].
 
