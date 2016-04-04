@@ -120,15 +120,36 @@ export default class ContentRegion extends Component {
 		}
 	}
 
+	updateToc() {
+		let headings = this.base.querySelectorAll('[id]'),
+			{ onToc } = this.props,
+			toc = this.toc = [];
+		for (let i=0; i<headings.length; i++) {
+			let [,level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
+			if (level) {
+				toc.push({
+					text: headings[i].textContent,
+					id: headings[i].getAttribute('id'),
+					level: Math.round(level)
+				});
+			}
+		}
+		if (onToc) onToc({ toc });
+	}
+
 	componentDidMount() {
 		this.fetch();
 	}
 
-	componentDidUpdate({ name }) {
+	componentDidUpdate({ name }, { content }) {
 		if (name!==this.props.name) this.fetch();
+		if (content!==this.state.content) this.updateToc();
 	}
 
 	render({ name, children, ...props }, { type, content }) {
+		// if (content) {
+		// 	content = content.replace(/(\b|\s)\:[a-z0-9_]+\:(\b|\s)/gi, '$1🕑$2');
+		// }
 		return (
 			<content-region loading={!content} {...props}>
 				{ content && (

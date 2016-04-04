@@ -21,14 +21,14 @@ Let's use an example: a simple `<Link>` component that creates an HTML `<a>` ele
 ```js
 class Link extends Component {
 	render(props, state) {
-		return <a href={ props.href }>{ props.children }</a>;
+		return <a href={props.href}>{ props.children }</a>;
 	}
 }
 ```
 
 We can instantiate/render this component as follows:
 
-```js
+```xml
 <Link href="http://example.com">Some Text</Link>
 ```
 

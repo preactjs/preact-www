@@ -26,24 +26,51 @@ export default class Page extends Component {
 		});
 	}
 
-	render({ route }, { current, loading, meta=EMPTY }) {
+	render({ route }, { current, loading, meta=EMPTY, toc }) {
 		let layout = `${meta.layout || 'default'}Layout`,
 			name = getContent(route);
 		if (name!==current) loading = true;
 		return (
 			<div class={cx(style.page, style[layout])} loading={loading}>
 				{ meta.show_title!==false && (
-					<h1 class={style.title}>{ meta.title || route.title }</h1>
+					<h1 key="title" class={style.title}>{ meta.title || route.title }</h1>
 				) }
-				<div class={style.loading}>
+				{ toc && meta.toc!==false && (
+					<Toc key="toc" items={toc} />
+				) }
+				<div key="loading" class={style.loading}>
 					<progress-spinner />
 				</div>
-				<div class={style.inner}>
+				<div key="content" class={style.inner}>
 					<ContentRegion
 						name={name}
+						onToc={this.linkState('toc', 'toc')}
 						onLoad={this.onLoad}
 					/>
 				</div>
+			</div>
+		);
+	}
+}
+
+
+class Toc extends Component {
+	toggle = e => {
+		this.setState({ open: !this.state.open });
+		return false;
+	};
+
+	open = () => this.setState({open:true});
+
+	render({ items }, { open }) {
+		return (
+			<div class={style.toc} open={open}>
+				<a class={style.toggle} onClick={this.toggle} title="Table of Contents">🔗</a>
+				<nav tabIndex="2" onFocus={this.open}>
+					{ items.map( ({ text, level, id }) => (
+						<a href={'#' + id}>{ text }</a>
+					)) }
+				</nav>
 			</div>
 		);
 	}

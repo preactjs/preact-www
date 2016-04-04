@@ -18,7 +18,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 The `preact` module provides both named and default exports, so you can either import everything under a namespace of your choosing, or just what you need as locals:
 
-#### Named:
+**Named:**
 
 ```js
 import { h, render, Component } from 'preact';
@@ -27,7 +27,7 @@ import { h, render, Component } from 'preact';
 /** @jsx h */
 ```
 
-#### Default:
+**Default:**
 
 ```js
 import preact from 'preact';
@@ -40,8 +40,20 @@ import preact from 'preact';
 >
 > Instead of declaring the `@jsx` pragma in your code, it's best to configure it globally in a `.babelrc`:
 >
-> ```js
+> **For Babel 5 and prior:**
+>
+> ```json
 > { "jsxPragma": "h" }
+> ```
+>
+> **For Babel 6:**
+>
+> ```json
+> {
+>   "plugins": [
+>     ["transform-react-jsx", { "pragma":"h" }]
+>   ]
+> }
 > ```
 
 
@@ -65,7 +77,7 @@ render((
 ), document.body);
 ```
 
-This should seem pretty straightforward if you've used [hyperscript] or one of its many friends.
+This should seem pretty straightforward if you've used [hyperscript] or one of its [many friends](https://github.com/developit/vhtml).
 
 Rendering hyperscript with a virtual DOM is pointless, though. We want to render components and have them updated when data changes - that's where the power of virtual DOM diffing shines. :star2:
 
@@ -162,3 +174,8 @@ render(<Clock />, document.body);
 
 
 Now we have [a ticking clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
+
+
+
+[preact-boilerplate]: https://github.com/developit/preact-boilerplate
+[hyperscript]: https://github.com/dominictarr/hyperscript

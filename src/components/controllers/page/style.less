@@ -47,6 +47,65 @@
 	// 	}
 	// }
 
+	.toc {
+		display: inline-block;
+		position: fixed;
+		right: -5px;
+		top: @header-height + 10px;
+		transform: translateX(100%);
+		opacity: 0.8;
+		z-index: 100;
+		transition: all 250ms ease;
+		outline: none;
+
+		.toggle {
+			position: absolute;
+			left: -45px;
+			top: 10px;
+			width: 48px;
+			height: 40px;
+			background: #FAFAFA;
+			box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+			border: none;
+			border-radius: 3px;
+			font-size: 20px;
+			line-height: 40px;
+			text-align: left;
+			text-indent: 12px;
+			color: #FFF;
+			cursor: pointer;
+			z-index: 1;
+
+			&:hover {
+				background: #FFF;
+			}
+		}
+
+		&[open] {
+			transform: skew(0,0);
+			opacity: 1;
+		}
+
+		nav {
+			position: relative;
+			padding: 20px;
+			background: #fff;
+			box-shadow: 0 2px 7px rgba(0,0,0,0.3);
+			border-radius: 2px;
+			overflow: hidden;
+			z-index: 2;
+
+			a {
+				display: block;
+				border: none;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
 	.loading {
 		position: fixed;
 		display: none;
