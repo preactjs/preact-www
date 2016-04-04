@@ -29,6 +29,10 @@ View documentation.js output online.
 Unofficial fastest TodoMVC implementation.  
 [Github Project](https://github.com/developit/preact-todomvc)
 
+**[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
+Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
+[Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
+
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
 Tiny hacker news client.  
 [Github Project](https://github.com/developit/hn_minimal)
