@@ -3,10 +3,11 @@ import { Link } from 'preact-router';
 import cx from 'classnames';
 import hljs from 'highlight.js/lib/highlight';
 import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
 import xml from 'highlight.js/lib/languages/xml';
 import 'highlight.js/styles/tomorrow-night-eighties.css';
 
-const LANGUAGES = { javascript, xml };
+const LANGUAGES = { javascript, json, xml };
 Object.keys(LANGUAGES).forEach( key => hljs.registerLanguage(key, LANGUAGES[key]) );
 
 export default ({ children, ...props }) => {
