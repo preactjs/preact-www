@@ -58,7 +58,7 @@ export default class CodeEditor extends Component {
 
 	@debounce
 	componentDidMount() {
-		if (this.editor) return;
+		if (this.editor) return this.editor.refresh();
 
 		let { spaces, value, tabSize } = this.props;
 
