@@ -3,4 +3,4 @@ node_js:
   - 4
 script: npm run build
 after_success:
-  - if [[ "${TRAVIS_BRANCH}" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]]; then npm run deploy -s; fi
+  - if [[ "${TRAVIS_BRANCH}" == "master" && "${TRAVIS_PULL_REQUEST}" == "false" ]]; then npm run deploy -s; fi
