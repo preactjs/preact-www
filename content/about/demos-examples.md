@@ -5,8 +5,10 @@ permalink: '/about/demos-examples'
 
 # Demos & Examples
 
+This pages lists a bunch of demos and examples you can use to learn Preact.
 
-> This pages lists a bunch of demos and examples you can use to learn Preact.
+> :information_desk_person: _Built one of your own?
+> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
 ## Full Apps
@@ -58,8 +60,6 @@ How to use Preact entirely without Babel, ES2015 or JSX.
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
 ## Templates
-
-This is a wiki. If you create something interesting, make sure to add it!
 
 :zap: [**JSFiddle Template**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
 
