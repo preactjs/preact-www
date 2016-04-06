@@ -41,6 +41,10 @@ Tiny hacker news client.
 2 command starter project. Preact + Webpack + LESS + CSS Modules.  
 [Github Project](https://github.com/developit/preact-boilerplate)
 
+**[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
+Preact + Redux example project, implementing a simple To-Do list.  
+[Github Project](https://github.com/developit/preact-redux-example)
+
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
 How to use Preact entirely without Babel, ES2015 or JSX.
 
