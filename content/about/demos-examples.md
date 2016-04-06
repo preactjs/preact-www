@@ -13,6 +13,10 @@ This pages lists a bunch of demos and examples you can use to learn Preact.
 
 ## Full Apps
 
+[**Preact Website** _(preactjs.com)_](https://preactjs.com)  
+Of course this website is built with Preact.  
+[Github Project](https://github.com/developit/preact-www)
+
 **[ESBench](http://esbench.com)**  
 Built with Preact & Material Design Lite.
 
