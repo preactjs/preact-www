@@ -37,3 +37,8 @@ A collection of modules built to work wonderfully with Preact.
 ### Testing
 
 - :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX assertion testing _(no DOM, right in Node)_
+
+
+### Utilities
+
+- :white_check_mark: [**preact-shallow-compare**](https://github.com/tkh44/preact-shallow-compare): simplified `shouldComponentUpdate` helper.
