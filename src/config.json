@@ -52,12 +52,16 @@
 			"content": "about",
 			"routes": [
 				{
-					"path": "/about/project-goals",
-					"name": "Project Goals"
+					"path": "/about/libraries-addons",
+					"name": "Libraries & Add-ons"
 				},
 				{
 					"path": "/about/demos-examples",
 					"name": "Demos & Examples"
+				},
+				{
+					"path": "/about/project-goals",
+					"name": "Project Goals"
 				},
 				{
 					"path": "/about/browser-support",
