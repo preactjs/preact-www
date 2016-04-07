@@ -17,12 +17,15 @@ This pages lists a bunch of demos and examples you can use to learn Preact.
 Of course this website is built with Preact.  
 [Github Project](https://github.com/developit/preact-www)
 
-**[ESBench](http://esbench.com)**  
+**[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
 Open-Source peach.cool app.  
 [Github Project](https://github.com/developit/nectarine)
+
+**[Dropfox](https://github.com/developit/dropfox)** :wolf:  
+Desktop app for Dropbox, built with Preact, Electron and Photon.
 
 
 ## Full Demos & Examples
