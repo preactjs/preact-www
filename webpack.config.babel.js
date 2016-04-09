@@ -141,7 +141,7 @@ module.exports = {
 	node: {
 		process: false,
 		Buffer: false,
-		__filname: false,
+		__filename: false,
 		__dirname: false,
 		setImmediate: false
 	},
