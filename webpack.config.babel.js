@@ -113,6 +113,7 @@ module.exports = {
 				collapseWhitespace: true,
 				removeComments: true
 			},
+			favicon: `${__dirname}/src/assets/favicon.ico`,
 			title: config.title,
 			config
 		})
