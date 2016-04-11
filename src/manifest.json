@@ -1,0 +1,14 @@
+{
+	"name": "Preact",
+	"short_name": "Preact",
+	"theme_color": "#673AB8",
+	"background_color": "#f9f9f9",
+	"display": "standalone",
+	"start_url": "/#home=true",
+	"icons": [
+		{
+			"src": "/assets/app-icon-192.png",
+			"sizes": "192x192"
+		}
+	]
+}

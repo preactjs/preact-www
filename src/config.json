@@ -7,6 +7,7 @@
 			"name": "Preact",
 			"title": "Home",
 			"class": "home",
+			"flair": "logo",
 			"content": "index"
 		},
 		{

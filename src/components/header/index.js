@@ -1,8 +1,14 @@
 import { h, Component } from 'preact';
 import { Link } from 'preact-router';
 import cx from 'classnames';
+import Logo from '../logo';
 import style from './style';
 import config from '../../config';
+
+
+const LINK_FLAIR = {
+	logo: () => <Logo inverted />
+};
 
 
 export default class Header extends Component {
@@ -84,8 +90,8 @@ class NavItem extends Component {
 
 		return (
 			<section {...props} open={open}>
-				<NavLink to={to} onClick={this.toggle} />
-				<Nav routes={to.routes} current={current} />
+				<NavLink to={to} onClick={this.toggle} aria-haspopup />
+				<Nav routes={to.routes} current={current} aria-label="submenu" aria-hidden={''+!open} />
 			</section>
 		);
 	}
@@ -96,7 +102,8 @@ class NavItem extends Component {
 const NavLink = ({ to, ...props }) => {
 	let LinkImpl = to.path ? Link : 'a';
 	return (
-		<LinkImpl href={to.path} {...props}>
+		<LinkImpl href={to.path || 'javascript:'} {...props}>
+			{ to.flair && LINK_FLAIR[to.flair] && LINK_FLAIR[to.flair]() }
 			{ to.name || to.title }
 		</LinkImpl>
 	);

@@ -28,6 +28,14 @@
 		&:hover a.anchor {
 			text-decoration: none;
 		}
+
+		// fix anchor target positioning to account for fixed header
+		&:before {
+			content: '';
+			display: block;
+			height: @header-height;
+			margin :-@header-height 0 0;
+		}
 	}
 
 	h1, h2, h3, h4, h5, h6 {

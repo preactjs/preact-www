@@ -6,12 +6,13 @@ toc: false
 ---
 
 <jumbotron>
-	<h1>Preact</h1>
+	<h1><logo width="1.5em" height="1.5em"></logo> Preact</h1>
+
 	<p>Fast 3kb alternative to React with the same ES6 API.</p>
+
 	<p>
 		<a href="/guide/getting-started" class="btn btn-primary btn-lg">Getting Started</a>
 		&nbsp; • &nbsp;
-		<!--<a href="https://github.com/developit/preact" class="btn btn-primary btn-lg">Github Project</a>-->
 		<github-stars user="developit" repo="preact"></github-stars>
 	</p>
 </jumbotron>
