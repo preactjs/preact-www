@@ -28,6 +28,7 @@ A collection of modules built to work wonderfully with Preact.
 - :satellite: [**preact-portal**](https://git.io/preact-portal): Render Preact components into (a) SPACE :milky_way:
 - :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Simple HTML editor component
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Text field that tokenizes input, for things like tags
+- :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Easily render lists with millions of rows ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 
 
 ### GUI Toolkits
