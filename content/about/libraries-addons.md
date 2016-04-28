@@ -44,4 +44,5 @@ A collection of modules built to work wonderfully with Preact.
 
 ### Utilities
 
+- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): create preact components without the class keyword
 - :white_check_mark: [**preact-shallow-compare**](https://github.com/tkh44/preact-shallow-compare): simplified `shouldComponentUpdate` helper.
