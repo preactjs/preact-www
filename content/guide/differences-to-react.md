@@ -5,9 +5,15 @@ permalink: '/guide/differences-to-react'
 
 # Differences to React
 
-Preact itself is not intended to be a reimplementation of React.  There are differences. Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
+Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
 
 The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focussed** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
+
+
+## Version Compatibility
+
+For both Preact and [preact-compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals].  This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
+
 
 ## What's Included?
 
@@ -23,7 +29,9 @@ The reason Preact does not attempt to include every single feature of React is i
     - _Refs provide a way to refer to rendered elements and child components._
 - Virtual DOM Diffing
     - _This is a given - Preact's diff is simple but effective, and **[extremely](http://developit.github.io/js-repaint-perfs/) [fast](https://localvoid.github.io/uibench/)**._
-- `h()`, a more generalized version of `React.createElement` _([read: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
+- `h()`, a more generalized version of `React.createElement`
+    - _This idea was originally called [hyperscript] and has value well beyond the React ecosystem, so Preact promotes the original standard. ([Read: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
+    - _It's also a little more readable: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
 
 ## What's Added?
@@ -57,6 +65,8 @@ There are currently a couple differences between Preact and React that are more 
 - `setState()` is asynchronous because of batching. This is intentional and does not affect the outward-facing API.
 
 
+[Project Goals]: /about/project-goals
+[hyperscript]: https://github.com/dominictarr/hyperscript
 [3.0]: https://github.com/developit/preact/milestones/3.0
 [4.0]: https://github.com/developit/preact/milestones/4.0
 [preact-compat]: https://github.com/developit/preact-compat
