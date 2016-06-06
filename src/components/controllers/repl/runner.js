@@ -1,7 +1,7 @@
 import { h, Component, render } from 'preact';
 import { debounce, memoize } from 'decko';
 import Worker from 'worker!./worker';
-import regeneratorRuntime from 'babel-runtime/regenerator/runtime';
+import regeneratorRuntime from 'babel-runtime/regenerator';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then( r => r.clone() );
