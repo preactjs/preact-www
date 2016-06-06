@@ -51,7 +51,7 @@ Preact actually adds a few convenient features inspired by work in the React com
 
 - [PropType] Validation: Not everyone uses PropTypes, so they aren't part of Preact's core.
     - _**PropTypes are fully supported** in [preact-compat], or you can use them manually._
-- [Children]: Not necessary in Preact.
+- [Children]: Not necessary in Preact, because `props.children` is _always an Array_.
     - _`React.Children` is fully supported in [preact-compat]._
 - Synthetic Events: Preact's browser support target does not require this extra overhead.
     - _A full events implementation would mean more maintenance and performance concerns, and a larger API._
