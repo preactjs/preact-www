@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import { Link } from 'preact-router';
 import cx from 'classnames';
 import Logo from '../logo';
+import Search from './search';
 import style from './style';
 import config from '../../config';
 
@@ -28,6 +29,7 @@ export default class Header extends Component {
 			<header class={cx(style.header, open && style.open)}>
 				<Hamburgler open={open} onClick={this.toggle} />
 				<Nav routes={config.nav} current={url} />
+				<Search />
 			</header>
 		);
 	}

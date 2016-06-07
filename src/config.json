@@ -1,6 +1,10 @@
 {
 	"title": "Preact: Fast 3kb React alternative with the same ES6 API. Components & Virtual DOM.",
 	"name": "Preact",
+	"docsearch": {
+		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
+		"indexName": "preact"
+	},
 	"nav": [
 		{
 			"path": "/",

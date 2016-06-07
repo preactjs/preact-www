@@ -33,6 +33,10 @@
 			height: 100%;
 			overflow: auto;
 			overflow-scrolling: touch;
+
+			nav {
+				margin-right: 0;
+			}
 		}
 	}
 
@@ -46,6 +50,7 @@
 		@media (max-width: @header-mobile-breakpoint) {
 			display: block;
 			// margin-top: @header-height;
+			margin-right: 100px;
 		}
 
 		a {
@@ -285,6 +290,75 @@
 		}
 		.hb3 {
 			transform: translate(2px,1px) rotate(-45deg);
+		}
+	}
+}
+
+
+:global {
+	.aa-dropdown-menu {
+		position: fixed !important;
+		top: 60px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		@media (max-width: @header-mobile-breakpoint) {
+			width: 90% !important;
+		}
+	}
+}
+
+
+.search {
+	display: inline-block;
+	vertical-align: top;
+	height: 56px;
+	overflow: visible;
+	background: #673AB8;
+
+	@media (max-width: @header-mobile-breakpoint) {
+		position: absolute;
+		right: 51px;
+		top: 0;
+
+		.open & {
+			display: none;
+		}
+
+		.searchBox {
+			width: 0;
+
+			&:focus, &:valid {
+				margin-left: 1000px;
+			}
+		}
+	}
+
+	.searchBox {
+		width: 70px;
+		margin: 10px 5px;
+		padding: 8px 4px 8px 32px;
+		// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="#7447c5" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>
+		background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTAgNDkwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzc0NDdjNSIgc3Ryb2tlLXdpZHRoPSIzNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBkPSJtMjgwLDI3OGExNTMsMTUzIDAgMSwwLTIsMmwxNzAsMTcwbS05MS0xMTcgMTEwLDExMC0yNiwyNi0xMTAtMTEwIi8+PC9zdmc+');
+		background-position: 10px center;
+		background-repeat: no-repeat;
+		background-color: darken(#673AB8, 7%) !important;
+		border: 1px solid lighten(#673AB8, 5%);
+		border-bottom-color: lighten(#673AB8, 10%);
+		border-radius: 5px;
+		box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+		color: #673AB8;
+		font-size: 100%;
+		outline: none;
+		will-change: width;
+		transition: width 250ms ease;
+
+		&::-webkit-input-placeholder {
+			color: lighten(#673AB8, 5%);
+		}
+
+		&:focus, &:valid {
+			width: 140px;
+			color: #D1C3EA;
 		}
 	}
 }
