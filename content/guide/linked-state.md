@@ -10,15 +10,13 @@ One area Preact takes a little further than React is in optimizing state changes
 
 ## The Nicer Manual Way
 
-One solution to this is to bind component methods _declaratively_, using ES7 decorators.
-Here is an example using [decko](http://git.io/decko):
+One solution is to declare bound component methods using ES7 class properties ([class instance fields](https://github.com/jeffmo/es-class-fields-and-static-properties)):
 
 ```js
 class Foo extends Component {
-	@bind
-	updateText(e) {
+	updateText = e => {
 		this.setState({ text: e.target.value });
-	}
+	};
 	render({ }, { text }) {
 		return <input value={text} onInput={this.updateText} />;
 	}
@@ -26,6 +24,8 @@ class Foo extends Component {
 ```
 
 While this achieves much better runtime performance, it's still a lot of unnecessary code to wire up state to UI.
+
+> Another solution is to bind component methods _declaratively_, using ES7 decorators, such as [decko's](http://git.io/decko) `@bind`:
 
 
 ## Linked State to the Rescue
