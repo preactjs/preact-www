@@ -14,6 +14,8 @@ The reason Preact does not attempt to include every single feature of React is i
 
 For both Preact and [preact-compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals].  This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
+> Thus, the website and documentation reflect React `0.14.x` and `15.x` when discussing compatibility or making comparisons.
+
 
 ## What's Included?
 
