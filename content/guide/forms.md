@@ -15,7 +15,7 @@ Forms in Preact work much the same as they do in React, except there is no suppo
 
 React's documentation on ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
 
-Generally, you should try to use _Controlled_ Components at all times.  However, when when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
+Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
 
 
 ## Checkboxes & Radio Buttons
