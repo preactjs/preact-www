@@ -40,7 +40,9 @@ const getContent = memoizeProd( name => {
 	let url = `/content/${name.replace(/^\//,'')}`,
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
-	return fetch(url, FETCH_OPTS)
+	// attempt to use prefetched request
+	let fetchPromise = process.env.NODE_ENV==='production' && window['_boostrap_'+url] || fetch(url, FETCH_OPTS);
+	return fetchPromise
 		.then( r => {
 			if (!r.ok) {
 				ext = 'md';
