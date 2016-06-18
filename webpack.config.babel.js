@@ -119,6 +119,8 @@ module.exports = {
 		})
 	]).concat(ENV==='production' ? [
 		new OfflinePlugin({
+			relativePaths: false,
+			publicPath: '/',
 			// updateStrategy: 'hash',
 			caches: {
 				main: ['index.html','bundle.*.js', 'style.*.css'],
@@ -126,7 +128,12 @@ module.exports = {
 				optional: [':rest:']
 			},
 			// rewrite /urls/without/extensions to /index.html
-			rewrites: url => url.replace(/^(https?\:\/\/[^\/]+|\/)[^?.]+(\?.*)?$/, '$1index.html')
+			rewrites(url) {
+				if (url.indexOf('.appcache')<0) {
+					url = url.replace(/^(https?\:\/\/[^\/]+|\/)[^?.]+(\?.*)?$/, '$1index.html');
+				}
+				return url;
+			}
 		}),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin(),
