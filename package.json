@@ -12,7 +12,9 @@
     "test:karma": "karma start test/karma.conf.js --single-run",
     "lint": "eslint {src,test}",
     "predeploy": "npm run -s build",
-    "deploy": "cp build/index.html build/200.html && surge -d preact-www.surge.sh build && surge -d preactjs.com build"
+    "deploy": "cp build/index.html build/200.html && surge -d preact-www.surge.sh build && surge -d preactjs.com build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "preact",
@@ -89,10 +91,12 @@
     "progress-spinner": "^1.1.0",
     "promise-polyfill": "^5.2.1",
     "proptypes": "^0.14.3",
-    "yaml": "^0.3.0"
+    "yaml": "^0.3.0",
+    "snyk": "1.16.0"
   },
   "main": "webpack.config.babel.js",
   "directories": {
     "test": "test"
-  }
+  },
+  "snyk": true
 }
