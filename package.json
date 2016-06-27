@@ -7,7 +7,7 @@
     "start": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
     "prestart": "npm run build",
     "build": "NODE_ENV=production webpack",
-    "prebuild": "rm -rf build && mkdir -p build && ncp src/manifest.json build/manifest.json && ncp src/assets build/assets && ncp content build/content",
+    "prebuild": "snyk protect && rm -rf build && mkdir -p build && ncp src/manifest.json build/manifest.json && ncp src/assets build/assets && ncp content build/content",
     "test": "npm run -s lint && npm run -s test:karma",
     "test:karma": "karma start test/karma.conf.js --single-run",
     "lint": "eslint {src,test}",
@@ -89,10 +89,12 @@
     "progress-spinner": "^1.1.0",
     "promise-polyfill": "^5.2.1",
     "proptypes": "^0.14.3",
-    "yaml": "^0.3.0"
+    "yaml": "^0.3.0",
+    "snyk": "1.16.0"
   },
   "main": "webpack.config.babel.js",
   "directories": {
     "test": "test"
-  }
+  },
+  "snyk": true
 }
