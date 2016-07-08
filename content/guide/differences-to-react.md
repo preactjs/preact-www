@@ -61,10 +61,9 @@ Preact actually adds a few convenient features inspired by work in the React com
 
 ## What's Different?
 
-There are currently a couple differences between Preact and React that are more subtle:
+Preact and React have some more subtle differences:
 
 - `render()` accepts a third argument, which is the root node to _replace_, otherwise it appends. This may change slightly in a future version, perhaps auto-detecting that a replacement render is appropriate by inspecting the root node.
-- `setState()` is asynchronous because of batching. This is intentional and does not affect the outward-facing API.
 
 
 [Project Goals]: /about/project-goals
