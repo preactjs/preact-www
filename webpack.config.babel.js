@@ -5,7 +5,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
+import rreaddir from 'recursive-readdir-sync';
+import minimatch from 'minimatch';
 import config from './src/config.json';
+
+const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).map( s => '/'+s );
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -128,24 +132,32 @@ module.exports = {
 		new OfflinePlugin({
 			relativePaths: false,
 			publicPath: '/',
-			// updateStrategy: 'hash',
+			updateStrategy: 'all',
+			version: 'hash',
+			preferOnline: true,
+			// updateStrategy: 'changed',
 			safeToUseOptionalCaches: true,
 			caches: {
 				main: ['index.html', 'bundle.*.js', 'style.*.css'],
-				additional: ['*.chunk.js', '*.worker.js'],
+				additional: ['*.chunk.js', '*.worker.js', ...CONTENT],
 				optional: [':rest:']
 			},
+			externals: [
+				...CONTENT
+			],
 			ServiceWorker: {
-				navigateFallbackURL: '/'
+				navigateFallbackURL: '/',
+				events: true
 			},
 			AppCache: {
 				FALLBACK: { '/': '/' }
-			},
-			// rewrite /urls/without/extensions to /index.html
-			rewrites(url) {
-				if (!url.match(/\.[a-z0-9]{2,}(\?.*)?$/)) url = '/index.html';
-				return url;
 			}
+			// rewrite /urls/without/extensions to /index.html
+			//, rewrites(url) {
+			// 	// if (!url.match(/\.[a-z0-9]{2,}(\?.*)?$/)) url = '/index.html';
+			// 	if (!url.match(/\.[a-z0-9]{2,}(\?.*)?$/)) url = '/';
+			// 	return url;
+			// }
 		})
 	] : []),
 

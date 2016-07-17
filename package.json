@@ -7,12 +7,13 @@
     "start": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
     "prestart": "npm run build",
     "build": "NODE_ENV=production webpack",
-    "prebuild": "snyk protect && rm -rf build && mkdir -p build && ncp src/manifest.json build/manifest.json && ncp src/assets build/assets && ncp content build/content",
+    "prebuild": "npm run -s protect && rm -rf build && mkdir -p build && ncp src/manifest.json build/manifest.json && ncp src/assets build/assets && ncp content build/content",
     "test": "npm run -s lint && npm run -s test:karma",
     "test:karma": "karma start test/karma.conf.js --single-run",
+    "protect": "[ \"$NODE_ENV\" = \"production\" ] && snyk protect || exit 0",
     "lint": "eslint {src,test}",
     "predeploy": "npm run -s build",
-    "deploy": "cp build/index.html build/200.html && surge -d preact-www.surge.sh build && surge -d preactjs.com build"
+    "deploy": "cp build/index.html build/200.html && surge -d preactjs.com build"
   },
   "keywords": [
     "preact",
@@ -53,6 +54,7 @@
     "karma-webpack": "^1.7.0",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "minimatch": "^3.0.2",
     "mocha": "^2.4.5",
     "ncp": "^2.0.0",
     "offline-plugin": "^3.4.2",
@@ -60,6 +62,7 @@
     "postcss-loader": "^0.9.1",
     "progress-bar-webpack-plugin": "^1.6.0",
     "raw-loader": "^0.5.1",
+    "recursive-readdir-sync": "^1.0.6",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "source-map-loader": "^0.1.5",
