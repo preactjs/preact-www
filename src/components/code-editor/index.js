@@ -1,6 +1,5 @@
 import { h, Component, render } from 'preact';
 import codemirror from 'codemirror';
-import { debounce } from 'decko';
 import js from 'codemirror/mode/jsx/jsx';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/lib/codemirror.css';
@@ -56,10 +55,13 @@ export default class CodeEditor extends Component {
 		}, 5000);
 	}
 
-	@debounce
-	componentDidMount() {
-		if (this.editor) return this.editor.refresh();
+	componentWillUnmount() {
+		let wrapper = this.editor && this.editor.getWrapperElement();
+		if (wrapper) this.base.removeChild(wrapper);
+		this.editor = null;
+	}
 
+	componentDidMount() {
 		let { spaces, value, tabSize } = this.props;
 
 		this.editor = codemirror(this.base, {
