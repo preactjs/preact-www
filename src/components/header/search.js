@@ -15,7 +15,7 @@ export default class Search extends Component {
 				indexName: config.docsearch.indexName,
 				inputSelector: `#${this.id}`,
 				autocompleteOptions: {
-					dropdownMenuContainer: '#app'
+					dropdownMenuContainer: 'body'
 				}
 			});
 		}
