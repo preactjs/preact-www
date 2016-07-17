@@ -1,7 +1,7 @@
-import { h, render } from 'preact';
 import './polyfills';
 import './style';
-import { install } from 'offline-plugin/runtime';
+import { h, render } from 'preact';
+require('offline-plugin/runtime').install();
 
 let root;
 function init() {
@@ -10,7 +10,6 @@ function init() {
 }
 
 init();
-install();
 
 if (process.env.NODE_ENV==='development' && module.hot) {
 	let log = console.log,

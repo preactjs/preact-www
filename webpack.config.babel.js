@@ -118,29 +118,34 @@ module.exports = {
 			config
 		})
 	]).concat(ENV==='production' ? [
-		new OfflinePlugin({
-			relativePaths: false,
-			publicPath: '/',
-			// updateStrategy: 'hash',
-			caches: {
-				main: ['index.html','bundle.*.js', 'style.*.css'],
-				additional: ['*.chunk.js', '*.worker.js'],
-				optional: [':rest:']
-			},
-			// rewrite /urls/without/extensions to /index.html
-			rewrites(url) {
-				if (url.indexOf('.appcache')<0) {
-					url = url.replace(/^(https?\:\/\/[^\/]+|\/)[^?.]+(\?.*)?$/, '$1index.html');
-				}
-				return url;
-			}
-		}),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			mangle: true,
 			compress: { warnings: false },
 			output: { comments:false }
+		}),
+		new OfflinePlugin({
+			relativePaths: false,
+			publicPath: '/',
+			// updateStrategy: 'hash',
+			safeToUseOptionalCaches: true,
+			caches: {
+				main: ['index.html', 'bundle.*.js', 'style.*.css'],
+				additional: ['*.chunk.js', '*.worker.js'],
+				optional: [':rest:']
+			},
+			ServiceWorker: {
+				navigateFallbackURL: '/'
+			},
+			AppCache: {
+				FALLBACK: { '/': '/' }
+			},
+			// rewrite /urls/without/extensions to /index.html
+			rewrites(url) {
+				if (!url.match(/\.[a-z0-9]{2,}(\?.*)?$/)) url = '/index.html';
+				return url;
+			}
 		})
 	] : []),
 
