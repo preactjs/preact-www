@@ -22,7 +22,6 @@ A collection of modules built to work wonderfully with Preact.
 ### Components
 
 - :earth_americas: [**preact-router**](https://git.io/preact-router): URL routing for your components
-- :tulip: [**preact-svg**](https://git.io/preact-svg): Use inline `<svg>` in Preact
 - :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): Render HTML & Custom Elements as JSX & Components
 - :satellite: [**preact-portal**](https://git.io/preact-portal): Render Preact components into (a) SPACE :milky_way:
 - :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Simple HTML editor component
@@ -49,4 +48,5 @@ A collection of modules built to work wonderfully with Preact.
 ### Utilities
 
 - :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): create preact components without the class keyword
+- :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Hyperscript-like syntax for creating elements
 - :white_check_mark: [**preact-shallow-compare**](https://github.com/tkh44/preact-shallow-compare): simplified `shouldComponentUpdate` helper.
