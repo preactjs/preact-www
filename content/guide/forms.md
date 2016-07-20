@@ -42,7 +42,7 @@ class MyForm extends Component {
                     type="checkbox"
                     checked={checked}
                     onClick={::this.toggle} />
-            <label>
+            </label>
         );
     }
 }
