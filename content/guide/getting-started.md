@@ -43,7 +43,7 @@ import preact from 'preact';
 > **For Babel 5 and prior:**
 >
 > ```json
-> { "jsxPragma": "h" }
+> { "jsxPragma": "preact.h" }
 > ```
 >
 > **For Babel 6:**
@@ -51,11 +51,11 @@ import preact from 'preact';
 > ```json
 > {
 >   "plugins": [
->     ["transform-react-jsx", { "pragma":"h" }]
+>     ["transform-react-jsx", { "pragma":"preact.h" }]
 >   ]
 > }
 > ```
-
+If you use named imports then you need to replace `"preact.h"` by `"h"` in order to make it working.
 
 ---
 
