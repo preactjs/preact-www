@@ -106,11 +106,11 @@ class NavLink extends Component {
 
 	render({ to, ...props }, { hovered }) {
 		let LinkImpl = to.path ? Link : 'a';
-		let Flair = to.flair && LINK_FLAIR[to.flair] && LINK_FLAIR[to.flair]
+		let Flair = to.flair && LINK_FLAIR[to.flair]
 		return (
 			<LinkImpl href={to.path || 'javascript:'} {...props} onMouseover={ () => this.setState ({ hovered: true }) }
 			                                                     onMouseout ={ () => this.setState ({ hovered: false }) }>
-				<Flair paused={!hovered} />
+				{ Flair && <Flair paused={!hovered} /> }
 				{ to.name || to.title }
 			</LinkImpl>
 		);
