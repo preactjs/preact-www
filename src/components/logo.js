@@ -11,7 +11,7 @@ export default class Logo extends Component {
 	};
 
 	next = () => {
-		if (!this.mounted || this.timer) return;
+		if (!this.mounted || this.props.paused || this.timer) return;
 		this.timer = (requestAnimationFrame || setTimeout)(this.frame, 15);
 	};
 
@@ -23,6 +23,10 @@ export default class Logo extends Component {
 	componentWillUnmount() {
 		(cancelAnimationFrame || clearTimeout)(this.timer);
 		this.mounted = this.timer = false;
+	}
+
+	componentDidUpdate() {
+		this.next();
 	}
 
 	renderEllipse(fg, deg, offset) {
