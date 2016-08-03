@@ -1,14 +1,14 @@
 import { h, Component } from 'preact';
 import { Link } from 'preact-router';
 import cx from 'classnames';
-import Logo from '../logo';
+import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style';
 import config from '../../config';
 
 
 const LINK_FLAIR = {
-	logo: () => <Logo inverted />
+	logo: InvertedLogo
 };
 
 
@@ -103,9 +103,10 @@ class NavItem extends Component {
 // depending on the type of nav link, use <Link> or <a>
 const NavLink = ({ to, ...props }) => {
 	let LinkImpl = to.path ? Link : 'a';
+	let Flair = to.flair && LINK_FLAIR[to.flair] && LINK_FLAIR[to.flair]
 	return (
 		<LinkImpl href={to.path || 'javascript:'} {...props}>
-			{ to.flair && LINK_FLAIR[to.flair] && LINK_FLAIR[to.flair]() }
+			<Flair />
 			{ to.name || to.title }
 		</LinkImpl>
 	);

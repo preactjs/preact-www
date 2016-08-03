@@ -49,3 +49,9 @@ export default class Logo extends Component {
 		);
 	}
 }
+
+export const InvertedLogo = (props) => {
+	return (
+		<Logo inverted {...props}/>
+	);
+}
