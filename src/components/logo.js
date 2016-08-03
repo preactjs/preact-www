@@ -26,8 +26,10 @@ export default class Logo extends Component {
 	}
 
 	renderEllipse(fg, deg, offset) {
+		let gapLength = Math.sin(offset/500*Math.PI)*30+60;
+		let lineLength = 894 / 2 - gapLength;
 		return (
-			<ellipse cx="0" cy="0" stroke-dasharray={`400 ${Math.sin(offset/500*Math.PI)*30+60}`} stroke-dashoffset={offset*10 + Math.sin(offset/100*Math.PI)*200} stroke-width="16px" rx="75px" ry="196px" fill="none" stroke={fg} transform={`rotate(${deg})`} />
+			<ellipse cx="0" cy="0" stroke-dasharray={`${lineLength} ${gapLength}`} stroke-dashoffset={offset*10 + Math.sin(offset/100*Math.PI)*200} stroke-width="16px" rx="75px" ry="196px" fill="none" stroke={fg} transform={`rotate(${deg})`} />
 		);
 	}
 
