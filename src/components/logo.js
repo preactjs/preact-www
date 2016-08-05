@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import Svg from 'preact-svg';
 
 export default class Logo extends Component {
-	state = { i:0 };
+	state = { i:0, flash:true };
 
 	frame = () => {
 		this.timer = null;
@@ -11,18 +11,31 @@ export default class Logo extends Component {
 	};
 
 	next = () => {
-		if (!this.mounted || this.timer) return;
+		if (!this.mounted || (this.props.paused && !this.state.flash) || this.timer) return;
 		this.timer = (requestAnimationFrame || setTimeout)(this.frame, 15);
 	};
 
 	componentDidMount() {
 		this.mounted = true;
 		this.next();
+
+		// every 10 seconds, spin for 1 second even if paused :)
+		let c = 0;
+		this.flashTimer = setInterval( () => {
+			let i = c++%10;
+			if (i===0) this.setState({ flash:true });
+			if (i===1) this.setState({ flash:false });
+		}, 1000);
 	}
 
 	componentWillUnmount() {
+		clearInterval(this.flashTimer);
 		(cancelAnimationFrame || clearTimeout)(this.timer);
 		this.mounted = this.timer = false;
+	}
+
+	componentDidUpdate() {
+		this.next();
 	}
 
 	renderEllipse(fg, deg, offset) {
@@ -47,3 +60,9 @@ export default class Logo extends Component {
 		);
 	}
 }
+
+export const InvertedLogo = props => {
+	return (
+		<Logo inverted {...props} />
+	);
+};

@@ -1,14 +1,14 @@
 import { h, Component } from 'preact';
 import { Link } from 'preact-router';
 import cx from 'classnames';
-import Logo from '../logo';
+import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style';
 import config from '../../config';
 
 
 const LINK_FLAIR = {
-	logo: () => <Logo inverted />
+	logo: InvertedLogo
 };
 
 
@@ -101,15 +101,30 @@ class NavItem extends Component {
 
 
 // depending on the type of nav link, use <Link> or <a>
-const NavLink = ({ to, ...props }) => {
-	let LinkImpl = to.path ? Link : 'a';
-	return (
-		<LinkImpl href={to.path || 'javascript:'} {...props}>
-			{ to.flair && LINK_FLAIR[to.flair] && LINK_FLAIR[to.flair]() }
-			{ to.name || to.title }
-		</LinkImpl>
-	);
-};
+class NavLink extends Component {
+	state = { hovered: false };
+
+	handleMouseOver = () => this.setState({ hovered: true });
+
+	handleMouseOut = () => this.setState({ hovered: false });
+
+	render({ to, ...props }, { hovered }) {
+		let LinkImpl = to.path ? Link : 'a',
+			Flair = to.flair && LINK_FLAIR[to.flair],
+			touch = navigator.maxTouchPoints>1;
+		return (
+			<LinkImpl
+				href={to.path || 'javascript:'}
+				onMouseover={!touch && this.handleMouseOver}
+				onMouseout ={!touch && this.handleMouseOut}
+				{...props}
+			>
+				{ Flair && <Flair paused={!hovered} /> }
+				{ to.name || to.title }
+			</LinkImpl>
+		);
+	}
+}
 
 
 // get a CSS-addressable identifier for a given route
