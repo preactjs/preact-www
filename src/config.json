@@ -27,6 +27,10 @@
 					"name": "Differences to React"
 				},
 				{
+					"path": "/guide/switching-to-preact",
+					"name": "Switching to Preact"
+				},
+				{
 					"path": "/guide/types-of-components",
 					"name": "Types of Components"
 				},
