@@ -11,7 +11,7 @@ toc: false
 	<p>Fast 3kb alternative to React with the same ES6 API.</p>
 
 	<p>
-		<a href="/guide/getting-started" class="btn btn-primary btn-lg">Getting Started</a>
+		<a href="/guide/getting-started" class="white">Getting Started</a>
 		&nbsp; • &nbsp;
 		<github-stars user="developit" repo="preact"></github-stars>
 	</p>
