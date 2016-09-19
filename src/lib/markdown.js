@@ -23,6 +23,6 @@ export default ({ markdown, postProcess, ...props }) => {
 	let markup = markdownToHtml(markdown);
 	if (postProcess) markup = postProcess(markup);
 	return (
-		<Markup markup={markup} type="html" {...props} />
+		<Markup markup={markup} type="html" trim={false} {...props} />
 	);
 };
