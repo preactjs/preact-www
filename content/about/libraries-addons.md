@@ -27,6 +27,8 @@ A collection of modules built to work wonderfully with Preact.
 - :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Simple HTML editor component
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Text field that tokenizes input, for things like tags
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Easily render lists with millions of rows ([demo](https://jsfiddle.net/developit/qqan9pdo/))
+- :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Small and simple layout library
+
 
 ### Integrations
 
