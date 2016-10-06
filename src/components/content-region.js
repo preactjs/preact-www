@@ -148,7 +148,7 @@ export default class ContentRegion extends Component {
 		if (content!==this.state.content) this.updateToc();
 	}
 
-	render({ name, children, ...props }, { type, content }) {
+	render({ name, children, onLoad, onToc, ...props }, { type, content }) {
 		// if (content) {
 		// 	content = content.replace(/(\b|\s)\:[a-z0-9_]+\:(\b|\s)/gi, '$1🕑$2');
 		// }
