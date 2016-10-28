@@ -3,53 +3,53 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# 如何开始
+# Getting Started
 
-这个指引会示范去搭建一个简单的 "时钟"" 组件。每个主题下更详情的信息，可以在 "指引" 菜单下面对应的页面找到。
+This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
 
-> :information_desk_person: 你 [使用 Preact的时候，不必 ES2015](https://github.com/developit/preact-without-babel)... 但你最好使用. 这个指引假定你已经使用过一些 ES2015 构建，基于babel 和/或 webpack/browserify/gulp/grunt/等等.  如果你还没有，请从 [preact-boilerplate] 或一个 [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010)开始.
+> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-boilerplate] or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 
 ---
 
 
-## Import 引用你所需要的
+## Import what you need
 
-`preact` 模块提供 定义好 (named) 的以及默认 (default) 的模块导出（exports), 因此，你既可以在一个你选定的全名空间下，引用(import)所有的模块，或者只引用你所需要的模块，如下所示
+The `preact` module provides both named and default exports, so you can either import everything under a namespace of your choosing, or just what you need as locals:
 
-**定义好的 (named):**
+**Named:**
 
 ```js
 import { h, render, Component } from 'preact';
 
-// 告诉 Babel 将JSX 转化成 h()的函数调用:
+// Tell Babel to transform JSX into h() calls:
 /** @jsx h */
 ```
 
-**默认的 (default):**
+**Default:**
 
 ```js
 import preact from 'preact';
 
-// 告诉 Babel 将JSX 转化成 preact.h()的函数调用:
+// Tell Babel to transform JSX into preact.h() calls:
 /** @jsx preact.h */
 ```
 
-> 定义好的引用，对于高度结构化的应用比较好，而默认引用，对于想使用库的各个模块来说，则更方便，而且不需要经常去改变。
+> Named imports work well for highly structured applications, whereas the default import is quick and never needs to be updated when using different parts of the library.
 
-### 全局 pragma
+### Global pragma
 
-与其直接在你的代码里去声明 `@jsx` pragma, 不如在 `.babelrc` 中进去全局定义.
+Instead of declaring the `@jsx` pragma in your code, it's best to configure it globally in a `.babelrc`.
 
-**定义好的 (named)::**
->**Babel 5或更早的版本:**
+**Named:**
+>**For Babel 5 and prior:**
 >
 > ```json
 > { "jsxPragma": "h" }
 > ```
 >
-> **Babel 6:**
+> **For Babel 6:**
 >
 > ```json
 > {
@@ -59,14 +59,14 @@ import preact from 'preact';
 > }
 > ```
 
-**默认的 (default):**
->**Babel 5或更早的版本:**
+**Default:**
+>**For Babel 5 and prior:**
 >
 > ```json
 > { "jsxPragma": "preact.h" }
 > ```
 >
-> **Babel 6:**
+> **For Babel 6:**
 >
 > ```json
 > {
@@ -79,11 +79,11 @@ import preact from 'preact';
 ---
 
 
-## 渲染 JSX
+## Rendering JSX
 
-创造性地，Preact提供 一个 `h()` 函数去将你的 JSX 转化成 虚拟DOM elements _([这篇文章阐述了原理](http://jasonformat.com/wtf-is-jsx))_. 它也提供了一个 `render()` 函数，通过虚拟 DOM 去造创 DOM 树。
+Out of the box, Preact provides an `h()` function that turns your JSX into Virtual DOM elements _([here's how](http://jasonformat.com/wtf-is-jsx))_. It also provides a `render()` function that creates a DOM tree from that Virtual DOM.
 
-去渲染一些 JSX，请引用这两个函数，并像如下一样使用：
+To render some JSX, just import those two functions and use them like so:
 
 ```js
 import { h, render } from 'preact';
@@ -96,21 +96,21 @@ render((
 ), document.body);
 ```
 
-如果你有使用 [hyperscript] 或者 它的一些[类似的库]((https://github.com/developit/vhtml))，这个看起来会非常直观。
+This should seem pretty straightforward if you've used [hyperscript] or one of its [many friends](https://github.com/developit/vhtml).
 
-尽管用 虚拟 DOM 去 渲染 hyperscript 并没意义。 我们想去渲染组件及使他们在数据变化的时候进行更新，那正是虚拟 DOM比较的闪光点。:star2:
+Rendering hyperscript with a virtual DOM is pointless, though. We want to render components and have them updated when data changes - that's where the power of virtual DOM diffing shines. :star2:
 
 
 ---
 
 
-## 组件
+## Components
 
-Preact 输出一个通用的 `Component` 类，它能使被继承，用于搭建被封装好的，自我可更新的用户界面片段。 组件支持所有的 React [生命周期方法]， 像 `shouldComponentUpdate()` 和 `componentWillReceiveProps()`。提供特定的对这些方法的实现，是控制组件 _什么时候_ 和 _如何_ 更新的推荐办法。
+Preact exports a generic `Component` class, which can be extended to build encapsulated, self-updating pieces of a User Interface.  Components support all of the standard React [lifecycle methods], like `shouldComponentUpdate()` and `componentWillReceiveProps()`.  Providing specific implementations of these methods is the preferred mechanism for controlling _when_ and _how_ components update.
 
-组件也有 `render()` 方法，但跟 React 不同的是，这个方法将 `(props, state)` 传入，作为参数。这个提供了更人性化的办法，去解构 `props` 和 `state` 参数成为 JSX指定的局部变量。
+Components also have a `render()` method, but unlike React this method is passed `(props, state)` as arguments. This provides an ergonomic means to destructure `props` and `state` into local variables to be referenced from JSX.
 
-让我们来看这个非常简单的 `Clock` 组件，它显示了当前的时间。
+Let's take a look at a very simple `Clock` component, which shows the current time.
 
 ```js
 import { h, render, Component } from 'preact';
@@ -122,11 +122,12 @@ class Clock extends Component {
 	}
 }
 
-// 将一个时钟渲染到 <body>标签:
+// render an instance of Clock into <body>:
 render(<Clock />, document.body);
 ```
 
-太棒了，运行上面代码，会生成下面的HTML DOM结构：
+
+That's great. Running this produces the following HTML DOM structure:
 
 ```html
 <span>10:28:57 PM</span>
@@ -136,22 +137,24 @@ render(<Clock />, document.body);
 ---
 
 
-## 组件生命周期
+## The Component Lifecycle
 
-为了让时钟的每秒都更新，我们需要知道 `<Clock>` 什么时候渲染到 DOM 里面。如果你使用过 HTML5 自定义元素，这个就跟 `attachedCallback` 和 `detachedCallback` 生命周期类似。 Preact会调起下面的生命周期方法，如果它们在一个组件中被定义：
+In order to have the clock's time update every second, we need to know when `<Clock>` gets mounted to the DOM. _If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._ Preact invokes the following lifecycle methods if they are defined for a Component:
 
-| 生命周期方法                  | 什么时候被调用                                    |
+| Lifecycle method            | When it gets called                              |
 |-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | 在一个组件被渲染到 DOM 之前                         |
-| `componentDidMount`         | 在一个组件被渲染到 DOM 之后      					 |
-| `componentWillUnmount`      | 在一个组件在 DOM 中被清除之前                       |
-| `componentDidUnmount`       | 在一个组件在 DOM 中被清除之后                       |
-| `componentWillReceiveProps` | 在新的props被接受之前                              |
-| `shouldComponentUpdate`     | 在 `render()` 之前. 若返回 `false`，则跳过 render   |
-| `componentWillUpdate`       | 在 `render()` 之前                                |
-| `componentDidUpdate`        | 在 `render()` 之后                                |
+| `componentWillMount`        | before the component gets mounted to the DOM     |
+| `componentDidMount`         | after the component gets mounted to the DOM      |
+| `componentWillUnmount`      | prior to removal from the DOM                    |
+| `componentDidUnmount`       | after removal from the DOM                       |
+| `componentWillReceiveProps` | before new props get accepted                    |
+| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
+| `componentWillUpdate`       | before `render()`                                |
+| `componentDidUpdate`        | after `render()`                                 |
 
-所以，我们需要一个秒级的计时器，在组件添加到 DOM的时候，就马上开始，同时在它被清除的时候停止。我们会在 `componentDidMount` 中创造一个计时器，并存储一个引用。同时会在 `componentWillUnmount` 中停止这个计时器。在每次计时器计时的时候，我们会用新的值去更新组件的 `state` 对象。做这个数据更新的时候，框架会自动重新渲染组件。
+
+
+So, we want to have a 1-second timer start once the Component gets added to the DOM, and stop if it is removed. We'll create the timer and store a reference to it in `componentDidMount`, and stop the timer in `componentWillUnmount`. On each timer tick, we'll update the component's `state` object with a new time value. Doing this will automatically re-render the component.
 
 ```js
 import { h, render, Component } from 'preact';
@@ -159,19 +162,19 @@ import { h, render, Component } from 'preact';
 class Clock extends Component {
 	constructor() {
 		super();
-		// 设置初始的时间
+		// set initial time:
 		this.state.time = Date.now();
 	}
 
 	componentDidMount() {
-		// 每秒都更新一下时间
+		// update time every second
 		this.timer = setInterval(() => {
 			this.setState({ time: Date.now() });
 		}, 1000);
 	}
 
 	componentWillUnmount() {
-		// 当不再渲染，停止计时器
+		// stop when not renderable
 		clearInterval(this.timer);
 	}
 
@@ -181,7 +184,7 @@ class Clock extends Component {
 	}
 }
 
-// 将一个时钟对象渲染在<body>标签:
+// render an instance of Clock into <body>:
 render(<Clock />, document.body);
 ```
 
@@ -189,7 +192,7 @@ render(<Clock />, document.body);
 ---
 
 
-现在，我们有了一个[时钟应用](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
+Now we have [a ticking clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
 
 
 
