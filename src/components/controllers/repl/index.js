@@ -1,5 +1,5 @@
 import { h, Component, render } from 'preact';
-import { bind, debounce } from 'decko';
+import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import style from './style';
 
@@ -48,8 +48,7 @@ export default class Repl extends Component {
 		// });
 	}
 
-	@bind
-	share() {
+	share = () => {
 		let { code } = this.state;
 		history.replaceState(null, null, `/repl?code=${encodeURIComponent(code)}`);
 
@@ -67,27 +66,24 @@ export default class Repl extends Component {
 		} catch (err) {
 			console.log(err);
 		}
-	}
+	};
 
-	@bind
-	loadExample() {
+	loadExample = () => {
 		let example = EXAMPLES[this.state.example];
 		if (example && example.code!==this.state.code) {
 			this.setState({ code: example.code });
 		}
-	}
+	};
 
-	@bind
-	onSuccess() {
+	onSuccess = () => {
 		this.setState({ error:null });
-	}
+	};
 
-	@debounce(500)
-	componentDidUpdate() {
+	componentDidUpdate = debounce(500, () => {
 		let { code } = this.state;
 		if (code===codeExample) code = '';
 		localStorage.setItem('preact-www-repl-code', code || '');
-	}
+	})
 
 	componentWillReceiveProps({ code }) {
 		if (code && code!==this.props.code) {

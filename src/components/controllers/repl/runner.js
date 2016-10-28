@@ -35,8 +35,7 @@ export default class Runner extends Component {
 		if (code!==this.props.code) this.run();
 	}
 
-	@debounce(1000)
-	run() {
+	run = debounce(1000, () => {
 		let { code, onSuccess, onError } = this.props;
 
 		code = code.replace(/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*\;\s*(\r|\n)/g, (s, pre, q, lib) => {
@@ -52,7 +51,7 @@ export default class Runner extends Component {
 				for (let i in props) if (props.hasOwnProperty(i)) error[i] = props[i];
 				if (onError) onError({ error });
 			});
-	}
+	});
 
 	execute(transpiled) {
 		let { onError, onSuccess } = this.props,

@@ -1,5 +1,4 @@
 import { h, Component } from 'preact';
-import { bind } from 'decko';
 import cx from 'classnames';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
@@ -32,14 +31,13 @@ export default class Page extends Component {
 		document.title = `${title} | ${config.title}`;
 	}
 
-	@bind
-	onLoad({ meta }) {
+	onLoad = ({ meta }) => {
 		this.setState({
 			current: getContent(this.props.route),
 			meta,
 			loading: false
 		});
-	}
+	};
 
 	render({ route }, { current, loading, meta=EMPTY, toc }) {
 		let layout = `${meta.layout || 'default'}Layout`,
