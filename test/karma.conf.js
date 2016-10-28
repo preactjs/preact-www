@@ -1,3 +1,4 @@
+/* eslint-disable */
 require('babel-register');
 var webpack = require('../webpack.config.babel.js');
 
