@@ -7,7 +7,7 @@ permalink: '/guide/differences-to-react'
 
 Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
 
-The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focussed** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
+The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focused** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
 
 
 ## Version Compatibility
