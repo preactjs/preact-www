@@ -40,7 +40,7 @@
     "css-loader": "^0.25.0",
     "ejs-loader": "^0.3.0",
     "eslint": "^3.1.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
@@ -54,6 +54,7 @@
     "karma-webpack": "^1.7.0",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "loader-utils": "^0.2.16",
     "minimatch": "^3.0.2",
     "mocha": "^3.0.2",
     "ncp": "^2.0.0",
@@ -70,8 +71,8 @@
     "superstatic": "^4.0.3",
     "surge": "^0.18.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.9",
     "worker-loader": "^0.7.1"
   },
   "dependencies": {

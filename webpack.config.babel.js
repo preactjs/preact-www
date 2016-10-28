@@ -13,7 +13,7 @@ const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).map( s =
 
 const ENV = process.env.NODE_ENV || 'development';
 
-const CSS_MAPS = ENV!=='production';
+const CSS_MAPS = false;
 
 const VENDORS = /\bbabel\-standalone\b/;
 
@@ -30,8 +30,8 @@ module.exports = {
 	},
 
 	resolve: {
-		modulesDirectories: [
 		extensions: ['.jsx', '.js', '.json', '.less'],
+		modules: [
 			`${__dirname}/src/lib`,
 			`${__dirname}/node_modules`,
 			'node_modules'
@@ -46,36 +46,46 @@ module.exports = {
 
 	module: {
 		noParse: [VENDORS],
-		preLoaders: [
-			{
-				test: /\.jsx?$/,
-				exclude: [/src\//, VENDORS],
-				loader: 'source-map'
-			}
-		],
 		loaders: [
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				loader: 'babel'
+				loader: 'babel',
+				query: {
+					sourceMaps: true,
+					presets: [
+						['es2015', { loose:true, modules:false }],
+						'stage-0'
+					],
+					plugins: [
+						['transform-decorators-legacy'],
+						['transform-react-jsx', { pragma: 'h' }]
+					]
+				}
 			},
 			{
 				test: /\.(less|css)$/,
 				include: /src\/components\//,
-				loader: ExtractTextPlugin.extract('style', [
-					`css?sourceMap=${CSS_MAPS}&modules&importLoaders=1&localIdentName=[local]${process.env.CSS_MODULES_IDENT || '_[hash:base64:5]'}`,
-					'postcss',
-					`less?sourceMap=${CSS_MAPS}`
-				].join('!'))
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style',
+					loader: [
+						`css?sourceMap=${CSS_MAPS}&modules&importLoaders=1&localIdentName=[local]${process.env.CSS_MODULES_IDENT || '_[hash:base64:5]'}`,
+						'postcss',
+						`less?sourceMap=${CSS_MAPS}`
+					].join('!')
+				})
 			},
 			{
 				test: /\.(less|css)$/,
 				exclude: [/src\/components\//, VENDORS],
-				loader: ExtractTextPlugin.extract('style', [
-					`css?sourceMap=${CSS_MAPS}`,
-					`postcss`,
-					`less?sourceMap=${CSS_MAPS}`
-				].join('!'))
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style',
+					loader: [
+						`css?sourceMap=${CSS_MAPS}`,
+						`postcss`,
+						`less?sourceMap=${CSS_MAPS}`
+					].join('!')
+				})
 			},
 			{
 				test: /\.json$/,
@@ -88,20 +98,28 @@ module.exports = {
 			},
 			{
 				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-				loader: ENV==='production' ? 'file?name=[path][name]_[hash:base64:5].[ext]' : 'url'
+				loader: ENV==='production' ? 'file' : 'url',
+				query: {
+					name: '[path][name]_[hash:base64:5].[ext]'
+				}
 			}
 		]
 	},
 
-	postcss: () => [
-		autoprefixer({ browsers: 'last 2 versions' })
-	],
-
 	plugins: ([
+		new webpack.LoaderOptionsPlugin({
+			minimize: ENV==='production',
+			debug: ENV!=='production',
+			options: {
+				postcss: () => [
+					autoprefixer({ browsers: 'last 2 versions' })
+				]
+			}
+		}),
 		new ProgressBarPlugin(),
 		new webpack.NoErrorsPlugin(),
-		new ExtractTextPlugin('style.[chunkhash].css', {
-			// leave async chunks using style-loader
+		new ExtractTextPlugin({
+			filename: 'style.[chunkhash].css',
 			allChunks: false,
 			disable: ENV!=='production'
 		}),
@@ -109,7 +127,6 @@ module.exports = {
 			process: {},
 			'process.env': {},
 			'process.env.NODE_ENV': JSON.stringify(ENV)
-			// process: JSON.stringify({ env:{ NODE_ENV: ENV } })
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.html',
@@ -123,7 +140,7 @@ module.exports = {
 		})
 	]).concat(ENV==='production' ? [
 		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			mangle: true,
 			compress: {
