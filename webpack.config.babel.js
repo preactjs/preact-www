@@ -30,8 +30,8 @@ module.exports = {
 	},
 
 	resolve: {
+		extensions: ['', '.jsx', '.js', '.json', '.less'],
 		modulesDirectories: [
-		extensions: ['.jsx', '.js', '.json', '.less'],
 			`${__dirname}/src/lib`,
 			`${__dirname}/node_modules`,
 			'node_modules'
