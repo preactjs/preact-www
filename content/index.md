@@ -6,7 +6,9 @@ toc: false
 ---
 
 <jumbotron>
-	<h1><logo width="1.5em" height="1.5em"></logo> Preact</h1>
+	<h1>
+        <logo height="1.5em" title="Preact" text>Preact</logo>
+    </h1>
 
 	<p>Fast 3kb alternative to React with the same ES6 API.</p>
 
