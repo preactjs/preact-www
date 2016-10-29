@@ -10,7 +10,7 @@ export default class Footer extends Component {
 	};
 
 	render({ lang }) {
-		let path = location.pathname.replace(/\/$/,'') || 'index';
+		let path = location.pathname.replace(/\/$/,'') || '/index';
 		if (lang) path = '/' + lang + path;
 		let editUrl = `https://github.com/developit/preact-www/tree/master/content${path}.md`;
 		return (

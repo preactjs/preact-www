@@ -39,7 +39,7 @@ const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f=>f;
 
 // fetch and parse a markdown document
 const getContent = memoizeProd( ([lang, name]) => {
-	let path = lang ? `/content/${lang}` : '/content',
+	let path = lang ? `/content/lang/${lang}` : '/content',
 		url = `${path}/${name.replace(/^\//,'')}`,
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
@@ -48,6 +48,8 @@ const getContent = memoizeProd( ([lang, name]) => {
 	return fetchPromise
 		.then( r => {
 			if (!r.ok) {
+				// @TODO: allow falling back to english? (404 crashes dev server)
+				// if (lang) return fetch(url.replace(/lang\/[^/]+\//,''));
 				ext = 'md';
 				r = fetch(`${path}/${r.status}.md`, FETCH_OPTS);
 			}
