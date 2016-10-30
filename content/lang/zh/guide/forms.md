@@ -3,30 +3,32 @@ name: Forms
 permalink: '/guide/forms'
 ---
 
-# Forms
+# 表单
+
+在Preact中,表单元素的行为表现和他们在React中十分相似,除了不支持一些"静态"(初始值)的 props/attributes。
+**[React 表单文档](https://facebook.github.io/react/docs/forms.html)**
 
 
-Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
+## 受控 & 不受控 组件
 
-**[React Forms Docs](https://facebook.github.io/react/docs/forms.html)**
+React关于["受控"组件](https://facebook.github.io/react/docs/forms.html#controlled-components) 与 ["不受控"组件](https://facebook.github.io/react/docs/forms.html#uncontrolled-components)的文档可以十分有效地帮助理解以下两点:
+1.如何构建具有双向数据流的HTML表单
+2.如何使用从基于组件化的Virtual DOM渲染而来的表单,当然通常Virtual DOM渲染是单项数据流。
 
-
-## Controlled & Uncontrolled Components
-
-React's documentation on ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
-
-Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
+通常说来,你应该再任何时候都尝试使用受控的组件。然而,当构建独立组件,或者包装第三方UI库的时候,需要在非Preact环境下,把你的组件仅仅用作为一个挂载点。再这种情况下,不受控组件十分适合这项工作。
 
 
-## Checkboxes & Radio Buttons
 
-Checkboxes and radio buttons (`<input type="checkbox|radio">`) can initially cause confusion when building controlled forms. This is because in an uncontrolled environment, we would typically allow the browser to "toggle" or "check" a checkbox or radio button for us, listening for a change event and reacting to the new value.  However, this technique does not transition well into a world view where the UI is always updated automatically in response to state and prop changes.
+## 多选框 & 单选框
 
-> **Walk-Through:** Say we listen for a "change" event on a checkbox, which is fired when the checkbox is checked or unchecked by the user.  In our change event handler, we set a value in `state` to the new value received from the checkbox.  Doing so will trigger a re-render of our component, which will re-assign the value of the checkbox to the value from state.  This is unnecessary, because we just asked the DOM for a value but then told it to render again with whatever value we wanted.
+在构建受控表单的时候,多选框与单选框(`<input type="checkbox|radio">`)刚开始会使人困惑。这是因为再不受控的环境下,我们通常允许浏览器去"toggle"或者"check"多选框/单选框,我们监听事件并对新的值做出响应。 但是,这种处理手法不能平滑的转移到一个世界观。在新世界观中, UI总是会响应state与props的变化自动更新。
 
-So, instead of listening for a `change` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_.  Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.  One last step is required:  we want to **override** the browser's default behavior of toggling the checkbox automatically, so we need to call `.preventDefault()` on the event.
+> **提示:** 通常说我们监听一个多选框的"change"事件,事件会在人为选中或者取消选中多选框的时候触发。在"change"事件处理器中, 我们会把`state`中的某个值置为从多选框接收到的新值。这么做将会使我们的组件再次渲染,并使得多选框的值被再次置为state中的值。这并不必要,因为我们刚刚从DOM中获取了一个值，却紧接着让DOM根据任何我们想要的值再渲染一次。
 
-### Checkbox Example
+
+所以我们应该监听'click'事件，来替代监听'change'事件。'click'事件会在任何我们点击多选框或者与多选框相关联的'label'标签的时候被触发。这样多选框就会在布尔值'true'和'false'之间切换。所以点击多选框或者标签,我们就可以翻转任何我们再state中有的值并触发再次渲染，使得多选框显示的值为我们想要的值。
+
+### 多选框样例
 
 ```js
 class MyForm extends Component {
