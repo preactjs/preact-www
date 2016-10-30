@@ -3,17 +3,15 @@ name: External DOM Mutations
 permalink: '/guide/external-dom-mutations'
 ---
 
-# External DOM Mutations
+# 外部DOM修改
 
+## 综述
 
-## Overview
+有时候，需要用到一些第三方库,而这些第三方库需要能够自由的修改DOM，并且再DOM内部持久化状态,或这写第三方库根本就没有组件化。有许多优秀的UI工具或可复用的元素都是处于这种无组件化的状态。在Preact中(React中也类似),使用这些类型的库需要你告诉 Virtual DOM的rendering/diffing算法: 在给定的组件(或者该组件所呈现的DOM)中不要去撤销任何外部DOM的改变。
 
-Sometimes there is a need to work with third-party libraries that expect to be able to freely mutate the DOM, persist state within it, or that have no component boundaries at all.  There are many great UI toolkits or re-usable elements that operate this way.  In Preact (and similarly in React), working with these types of libraries requires that you tell the Virtual DOM rendering/diffing algorithm that it shouldn't try to _undo_ any external DOM mutations performed within a given Component (or the DOM element it represents).
+## 技巧
 
-
-## Technique
-
-This can be as simple as defining a `shouldComponentUpdate()` method on your component, and having it return `false`:
+一般情况下，是在你的组件中定义一个`shouldComponentUpdate()`方法并让他返回值为`fasle`,很简单,是吧:
 
 ```js
 class Block extends Component {
@@ -23,7 +21,7 @@ class Block extends Component {
 }
 ```
 
-... or for shorthand:
+... 或者可以简写为:
 
 ```js
 class Block extends Component {
@@ -32,7 +30,7 @@ class Block extends Component {
 ```
 
 With this lifecycle hook in place and telling Preact not to re-render the Component when changes occur up the VDOM tree, your Component now has a reference to its root DOM element that can be treated as static until the Component is unmounted. As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
-
+把这个生命周期的钩子(指的`shouldComponentUpdate`)到位并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的索引。你可以把这个组件当做一个静态组件，直到被移除。
 ---
 
 ## Example Walk-Through
