@@ -6,7 +6,9 @@ toc: false
 ---
 
 <jumbotron>
-	<h1><logo width="1.5em" height="1.5em"></logo> Preact</h1>
+	<h1>
+        <logo height="1.5em" title="Preact" text>Preact</logo>
+    </h1>
 
 	<p>React 的3kb轻量化方案，具有同样的 ES6 接口。</p>
 

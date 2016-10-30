@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { connect } from '../lib/store';
 import { Link } from 'preact-router';
 import { memoize } from 'decko';
 import yaml from 'yaml';
@@ -35,9 +36,11 @@ const TITLE_REG = /^\s*#\s+(.+)\n+/;
 // only memoize in prod
 const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f=>f;
 
+
 // fetch and parse a markdown document
-const getContent = memoizeProd( name => {
-	let url = `/content/${name.replace(/^\//,'')}`,
+const getContent = memoizeProd( ([lang, name]) => {
+	let path = lang ? `/content/lang/${lang}` : '/content',
+		url = `${path}/${name.replace(/^\//,'')}`,
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
 	// attempt to use prefetched request
@@ -45,8 +48,10 @@ const getContent = memoizeProd( name => {
 	return fetchPromise
 		.then( r => {
 			if (!r.ok) {
+				// @TODO: allow falling back to english? (404 crashes dev server)
+				// if (lang) return fetch(url.replace(/lang\/[^/]+\//,''));
 				ext = 'md';
-				r = fetch(`/content/${r.status}.md`, FETCH_OPTS);
+				r = fetch(`${path}/${r.status}.md`, FETCH_OPTS);
 			}
 			return r;
 		})
@@ -96,13 +101,13 @@ const postProcessMarkdown = content => (
 );
 
 
+@connect( ({ lang }) => ({ lang }) )
 export default class ContentRegion extends Component {
 	fetch() {
-		let n = 'load '+this.props.name;
-		getContent(this.props.name).then( s => {
+		let { name, lang, onLoad } = this.props;
+		getContent([lang, name]).then( s => {
 			this.setState(s);
 			this.applyEmoji();
-			let { onLoad } = this.props;
 			if (onLoad) onLoad(s);
 		});
 	}
@@ -143,8 +148,8 @@ export default class ContentRegion extends Component {
 		this.fetch();
 	}
 
-	componentDidUpdate({ name }, { content }) {
-		if (name!==this.props.name) this.fetch();
+	componentDidUpdate({ name, lang }, { content }) {
+		if (name!==this.props.name || lang!==this.props.lang) this.fetch();
 		if (content!==this.state.content) this.updateToc();
 	}
 

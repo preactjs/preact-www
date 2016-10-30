@@ -126,7 +126,24 @@ module.exports = {
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			mangle: true,
-			compress: { warnings: false },
+			compress: {
+				warnings: false,
+				// unsafe: true,
+				// collapse_vars: true,
+				// evaluate: true,
+				// screw_ie8: true,
+				// loops: true,
+				// keep_fargs: false,
+				// pure_getters: true,
+				// unused: true,
+				// dead_code: true,
+				pure_funcs: [
+					'classCallCheck',
+					'Object.freeze',
+					'invariant',
+					'warning'
+				]
+			},
 			output: { comments:false }
 		}),
 		new OfflinePlugin({

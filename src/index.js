@@ -12,6 +12,8 @@ function init() {
 init();
 
 if (process.env.NODE_ENV==='development' && module.hot) {
+	require('preact/devtools');
+
 	let log = console.log,
 		logs = [];
 	console.log = (t, ...args) => {

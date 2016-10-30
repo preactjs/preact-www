@@ -1,17 +1,18 @@
 import { h, Component } from 'preact';
-import pure from 'pure-component';
+import { Provider } from '../lib/store';
+import createStore from '../store';
+import pure from '../lib/pure-component';
 import Routes from './routes';
 import Header from './header';
 import Footer from './footer';
 
 /*global ga*/
 
+let store = createStore();
+
 @pure
 export default class App extends Component {
-	constructor({ url='/' }) {
-		super();
-		this.state = { url };
-	}
+	state = { url: this.props.url || '/' };
 
 	componentDidUpdate(prevProps, prevState) {
 		let { url } = this.state;
@@ -23,11 +24,13 @@ export default class App extends Component {
 
 	render(_, { url }) {
 		return (
-			<div id="app">
-				<Header url={url} />
-				<Routes onChange={this.linkState('url', 'url')} />
-				<Footer />
-			</div>
+			<Provider store={store}>
+				<div id="app">
+					<Header url={url} />
+					<Routes onChange={this.linkState('url', 'url')} />
+					<Footer />
+				</div>
+			</Provider>
 		);
 	}
 }
