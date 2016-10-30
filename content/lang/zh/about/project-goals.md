@@ -3,23 +3,23 @@ name: Project Goals
 permalink: '/about/project-goals'
 ---
 
-# Preact's Goals
+# 项目目标
+ 
+Preact 实现的几个关键目标:
 
-Preact aims to deliver on a few key goals:
+- **性能:** 快速与高效的渲染
+- **大小:** 小，轻 _(大约 3.5kb)_
+- **效率:** 高效的内存使用 _(对象重复利用, 避免垃圾回收)_
+- **可理解性:** 可以几小时理解框架代码
+- **兼容性:** Preact兼容大部分的React API. preact-compat 实现了更多的react api兼容
 
-- **Performance:** Render quickly & efficiently
-- **Size:** Small size, lightweight _(approximately 3.5kb)_
-- **Efficiency:** Effective memory usage _(recycling, avoiding GC thrash)_
-- **Understandability:** Understanding the codebase should take no more than a few hours
-- **Compatibility:** Preact aims to be _largely compatible_ with the React API. [preact-compat] attempts to achieve as much compatibility with React as possible.
+# 非目标(Non-Goals)
 
-# Non-Goals
+有些React特性在Preact是有意的没有被实现，因为要满足上面列出的主要项目目标，或者因为它们不适合作为Preact的核心功能。
 
-Some React features are intentionally omitted from Preact, either because they are not achievable while meeting the primary project goals listed above or because they don't fit within the scope of Preact's core set of functionality.
-
-- The intentional items under [What's Missing?](/guide/differences-to-react#whats-missing):
-    - PropTypes, which are easily used as a separate library
-    - Children, since Preact always boxes children as an Array
-    - Synthetic Events, since Preact does not attempt to patch issues in older browsers like IE8
+- 如下是没有被实现的功能 [缺少了哪些?](/guide/differences-to-react#whats-missing):
+    - PropTypes, 方便作为一个分开库使用 
+    - Children, 由于Preact总是将子节点作为数组
+    - Synthetic Events, 由于Preact不需要去兼容老板本的浏览器，如IE8
 
 [preact-compat]: https://github.com/developit/preact-compat/

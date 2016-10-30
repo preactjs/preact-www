@@ -5,60 +5,60 @@ permalink: '/about/demos-examples'
 
 # Demos & Examples
 
-This pages lists a bunch of demos and examples you can use to learn Preact.
+此页列出了一些你可以用来学习的demo和例子
 
-> :information_desk_person: _Built one of your own?
+> :information_desk_person: _构建一个你自己的模块?
 > [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
-## Full Apps
+## 完整的app(Full Apps)
 
 [**Preact Website** _(preactjs.com)_](https://preactjs.com)  
-Of course this website is built with Preact.  
+这个网站是基于Preact.
 [Github Project](https://github.com/developit/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
-Built with Preact & Material Design Lite.
+基于Preact & Material Design Lite
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
-Open-Source peach.cool app.  
+一款开源的peach.cool app.  
 [Github Project](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
+Dropbox 的桌面app,基于Preact, Electron and Photon.
 
 
-## Full Demos & Examples
+## 完成的demo & 案例
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
-View documentation.js output online.  
+在线查看documentation.js生成的内容.
 [Github Project](https://github.com/developit/documentation-viewer)
 
 **[TodoMVC](http://developit.github.io/preact-todomvc/)**  
-Unofficial fastest TodoMVC implementation.  
+非官方最快的TodoMVC实现.  
 [Github Project](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
+基于[PouchDB](https://pouchdb.com/)离线版TodoMVC.
 [Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Tiny hacker news client.  
+小型hacker news 客户端.
 [Github Project](https://github.com/developit/hn_minimal)
 
-**[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
+**[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:   
+2条命令开始一个项目. Preact + Webpack + LESS + CSS Modules. 
 [Github Project](https://github.com/developit/preact-boilerplate)
 
 **[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux example project, implementing a simple To-Do list.  
+基于Preact + Redux的项目，实现一个简单的To-Do list.
 [Github Project](https://github.com/developit/preact-redux-example)
 
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-How to use Preact entirely without Babel, ES2015 or JSX.
+怎么在没有Babel, ES2015 or JSX的情况下使用Preact.
 
 
-## Codepens
+## Codepens 上的例子
 
 - [Flickr Browser](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
 - [Animating Text](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
@@ -66,7 +66,7 @@ How to use Preact entirely without Babel, ES2015 or JSX.
 - [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
-## Templates
+## 模版
 
 :zap: [**JSFiddle Template**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
 
