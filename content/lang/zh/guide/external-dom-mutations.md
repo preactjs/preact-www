@@ -30,12 +30,12 @@ class Block extends Component {
 ```
 
 With this lifecycle hook in place and telling Preact not to re-render the Component when changes occur up the VDOM tree, your Component now has a reference to its root DOM element that can be treated as static until the Component is unmounted. As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
-把这个生命周期的钩子(指的`shouldComponentUpdate`)到位并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的索引。你可以把这个组件当做一个静态组件，直到被移除。
+把这个生命周期的钩子(指的`shouldComponentUpdate`)到位并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的索引。你可以把这个组件当做一个静态组件，直到被移除。As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
 ---
 
-## Example Walk-Through
+## 样例演练
 
-Here is an example of "turning off" re-rendering for a Component.  Note that `render()` is still invoked as part of creating and mounting the Component, in order to generate its initial DOM structure.
+以下就是去掉了二次渲染的组件。值得注意的是`render()`方法仍然在组件创建和挂载的过程中被调用用于生成初始的DOM结构。
 
 ```js
 class Example extends Component {
@@ -65,13 +65,14 @@ class Example extends Component {
 ```
 
 
-## Demonstration
+## 示范
 
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
+[![样例](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
 
-[**View this demo on Webpackbin**](http://www.webpackbin.com/V1hyNQbpe)
+[**在Webpackbin中查看样例**](http://www.webpackbin.com/V1hyNQbpe)
 
 
-## Real-World Examples
+## 真实场景中的样例
 
-Alternatively, see this technique in action in [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - it uses a component as a foothold in the DOM, but then disables updates and lets [tags-input](https://github.com/developit/tags-input) take over from there.  A more complex example would be [preact-richtextarea](https://github.com/developit/preact-richtextarea), which uses this technique to avoid re-rendering an editable `<iframe>`.
+作为一种选择, 在后面的链接中查看这种技巧的使用 [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) -
+他使用组件作为DOM的立足点，但是禁止组件更新,而且让[tags-input](https://github.com/developit/tags-input) 来接管这些事情.  一个更复杂的样例[preact-richtextarea](https://github.com/developit/preact-richtextarea), preact-richtextarea使用这个技巧来避免二次渲染一个可编辑的`<iframe>`标签。
