@@ -56,6 +56,7 @@ Preact actually adds a few convenient features inspired by work in the React com
 - [Children]: Not necessary in Preact, because `props.children` is _always an Array_.
     - _`React.Children` is fully supported in [preact-compat]._
 - Synthetic Events: Preact's browser support target does not require this extra overhead.
+    - _Preact uses the browser's native `addEventListener` for event handling. See [GlobalEventHandlers] for a full list of DOM event handlers._
     - _A full events implementation would mean more maintenance and performance concerns, and a larger API._
 
 
@@ -75,6 +76,7 @@ Preact and React have some more subtle differences:
 [Contexts]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#react.children
+[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
 [ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
 [High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Stateless Pure Functional Components]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
