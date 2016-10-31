@@ -29,7 +29,6 @@ class Block extends Component {
 }
 ```
 
-With this lifecycle hook in place and telling Preact not to re-render the Component when changes occur up the VDOM tree, your Component now has a reference to its root DOM element that can be treated as static until the Component is unmounted. As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
 把这个生命周期的钩子(指的`shouldComponentUpdate`)到位并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的索引。你可以把这个组件当做一个静态组件，直到被移除。As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
 ---
 
