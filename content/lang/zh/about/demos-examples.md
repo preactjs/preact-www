@@ -3,9 +3,9 @@ name: Demos & Examples
 permalink: '/about/demos-examples'
 ---
 
-# Demos & Examples
+# 示例
 
-此页列出了一些你可以用来学习的demo和例子
+此页列出了一些你可以用来学习Preact的示例
 
 > :information_desk_person: _构建一个你自己的模块?
 > [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
@@ -28,7 +28,7 @@ permalink: '/about/demos-examples'
 Dropbox 的桌面app,基于Preact, Electron and Photon.
 
 
-## 完成的demo & 案例
+## 完整的示例(Full Demos & Examples)
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
 在线查看documentation.js生成的内容.

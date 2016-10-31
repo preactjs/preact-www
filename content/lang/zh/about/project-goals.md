@@ -3,7 +3,7 @@ name: Project Goals
 permalink: '/about/project-goals'
 ---
 
-# 项目目标
+# Preact的项目目标
  
 Preact 实现的几个关键目标:
 
