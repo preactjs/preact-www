@@ -147,9 +147,10 @@ Preact兼容React的接口，但特意去弃用了部份接口。在这些接口
 如果你的代码严重依赖`createClass()`，你仍然有一个好的选择：Laurence Dorman维护的[standalone `createClass()` implementation](https://github.com/ld0rman/preact-classless-component)能直接用于preact，而它仅仅只有几百字节的大小。除此之外，你可以用Vu Tran的[preact-codemod](https://github.com/vutran/preact-codemod)来实现`createClass()` calls到ES Classes的转换。
 
 
-另一个值得注意的不同点是Preact默认只支持函数Refs。字符串refs在React中被弃用并很快会被移除，因为他们介绍了一个
+另一个值得注意的不同点是Preact默认只支持函数Refs。字符串refs在React中被弃用并很快会被移除，因为他们引入了不少的复杂度但收益却很少。
 
-如果你想继续使用字符串refs,[this tiny linkedRef function](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)提供了一个不过时的版本
+如果你想继续使用字符串refs,[this tiny linkedRef function](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)提供了一个不过时的版本，它仍然像字符串Refs那样通过 this.refs.$$ 调用。
+函数Refs也说明为什么函数Refs现在更被推荐。
 
 
 
@@ -166,25 +167,21 @@ Preact兼容React的接口，但特意去弃用了部份接口。在这些接口
 + render(<App />, document.body);
 ```
 
-值得一提的是Preact的`render()`是无损的，所以组件直接渲染到`<body>`是非常合适的（我们甚至鼓励你这样做）。这可能是因为Preact不使用你传递的参数来控制根节点。`render()`的第二个参数事实上是`父节点`－这意味着这是一个dom元素。如果你想再次从根元素渲染（比如热模块的替换），`render()`会把第三个参数作为元素来替换。 
+值得一提的是Preact的`render()`是无损的，所以组件直接渲染到`<body>`是非常合适的（我们甚至鼓励你这样做）。这可能是因为Preact不使用你传递的参数来控制根节点。`render()`的第二个参数事实上是`父节点`－这意味着这是一个将内容渲染进去的dom元素。如果你想再次从根元素渲染（比如热模块的替换），render()会把第三个参数作为元素来替换。
+
 
 ```js
 // 首次渲染:
 render(<App />, document.body);
 
-// 原地更新:
+// 更新:
 render(<App />, document.body, document.body.lastElementChild);
 ```
-
-<!-- 在上面的例子汇总，我们用最后的子节点来作为我们之前的根节点
-这可以在很多种情况中使用（jsfiddles, codepens等）
-这就是为什么`render()`返回的是根元素：
-
-接下来的例子展示在Webpack的Hot Module Replacement updates中作出响应 -->
+在上面的例子中，我们依赖于最后一个子元素作为我们之前渲染的根节点。尽管这对于大部份情况都可行(jsfiddles, codepens等)，但最好还是对节点有更好的控制。这就是为什么 render() 返回根节点：你将根节点作为第三个参数传进去，让它适当地重新渲染。接下来的例子展示了 Preact 如何应对 webpack 的 hot module replacement（热替换）而进行重新渲染。
 
 
 ```js
-// root holds our app's root DOM Element:
+// root 包裹我们应用的根节点:
 let root;
 
 function init() {
