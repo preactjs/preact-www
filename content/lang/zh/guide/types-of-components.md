@@ -31,7 +31,7 @@ class Link extends Component {
 <Link href="http://example.com">Some Text</Link>
 ```
 
-### Destructure Props & State
+### 解构属性与状态
 
 既然有了ES6 / ES2015，我们能通过[结构赋值](https://github.com/lukehoban/es6features#destructuring)来进一步简化`<Link>` 组件。
 

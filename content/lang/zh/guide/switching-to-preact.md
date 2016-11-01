@@ -141,8 +141,8 @@ npm install --save preact  # or: npm i -S preact
 
 Preact兼容React的接口，但特意去弃用了部份接口。在这些接口中，最值得注意的是`createClass()`。
 
-<!-- 值得理解的是，JavaScript类是内在的。。。。来代表组件的类型，这在管理组件生命周期的细微差别中起到重要
-作用。 -->
+
+值得理解的是，JavaScript类是内置于虚拟DOM的库中去代表组件的类型，这在管理组件生命周期的细微差别中起到重要作用。
 
 如果你的代码严重依赖`createClass()`，你仍然有一个好的选择：Laurence Dorman维护的[standalone `createClass()` implementation](https://github.com/ld0rman/preact-classless-component)能直接用于preact，而它仅仅只有几百字节的大小。除此之外，你可以用Vu Tran的[preact-codemod](https://github.com/vutran/preact-codemod)来实现`createClass()` calls到ES Classes的转换。
 
