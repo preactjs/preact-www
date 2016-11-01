@@ -32,7 +32,7 @@ class Foo extends Component {
 幸运的是，在Preact的Form中,提供了`linkState()`作为解决方案。`linkState()`是`Component`类的一个内置方法。
 Calling `.linkState('text')` returns a handler function that, when passed an Event, uses its associated value to update the named property in your component's state.  Multiple calls to `linkState(name)` with the same `name` are cached, so there is essentially no performance penalty.
 当发生一个事件时，调用`.linkState('text')`将会返回一个处理器函数，这个函数把它相关的值更新到你组件状态内指定的值。
-调用`linkState(name)`时，如果`name`参数相同，那么结果会被缓存起来。所以就必然不存在性能问题。
+多次调用linkState(name)时，如果name参数相同，那么结果会被缓存起来。所以就必然不存在性能问题。
 以下代码就是之前的样例通过**Linked State**重写:
 
 ```js

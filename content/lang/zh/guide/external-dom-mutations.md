@@ -29,13 +29,12 @@ class Block extends Component {
 }
 ```
 
-把这个生命周期的钩子(指的`shouldComponentUpdate`)到位并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的索引。你可以把这个组件当做一个静态组件，直到被移除。As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
+有了这个生命周期的钩子(指的shouldComponentUpdate)，并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的引用。你可以把这个组件当做一个静态组件，直到被移除。因此，任何的组件引用都可以简单通过this.base被调用，并且对应从 render() 函数返回的根 JSX 元素。
 ---
 
 ## 样例演练
 
-以下就是去掉了二次渲染的组件。值得注意的是`render()`方法仍然在组件创建和挂载的过程中被调用用于生成初始的DOM结构。
-
+这是一个“去掉"组件重新渲染的例子。注意render() 作为创建和挂载组件的一部份，为了生成组件初始的 DOM 结构，依然会被调用。
 ```js
 class Example extends Component {
   shouldComponentUpdate() {
