@@ -3,67 +3,68 @@ name: Types of Components
 permalink: '/guide/types-of-components'
 ---
 
-# Types of Components
 
+# 组件种类
 
-There two types of components in Preact:
+Preact中有两种组件：  
+－ 传统的组件：（带有生命周期方法和状态）  
+－ 无状态的函数式组件：本质上是接受`props` 并返回JSX的函数
 
-- Classical Components, with [lifecycle methods] and state
-- Stateless Functional Components, which are functions that accept `props` and return [JSX].
+在两种类型的组件中，我们仍有很多方法来创建组件
 
-Within these two types, there are also a few different ways to implement components.
+## 例子
 
+让我们来看一个例子：一个简单的创建`<a>` 标签的`<Link>`组件：
 
-## Example
-
-Let's use an example: a simple `<Link>` component that creates an HTML `<a>` element:
 
 ```js
 class Link extends Component {
-	render(props, state) {
-		return <a href={props.href}>{ props.children }</a>;
-	}
+    render(props, state) {
+        return <a href={props.href}>{ props.children }</a>;
+    }
 }
 ```
 
-We can instantiate/render this component as follows:
+我们可以像下面展示的那样来渲染这个组件
 
 ```xml
 <Link href="http://example.com">Some Text</Link>
 ```
 
+### 解构属性与状态
 
-### Destructure Props & State
-
-Since this is ES6 / ES2015, we can further simplify our `<Link>` component by mapping keys from `props` (the first argument to `render()`) to local variables using [destructuring](https://github.com/lukehoban/es6features#destructuring):
-
-```js
-class Link extends Component {
-	render({ href, children }) {
-		return <a {...{ href, children }} />;
-	}
-}
-```
-
-If we wanted to copy _all_ of the `props` passed to our `<Link>` component onto the `<a>` element, we can use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
+既然有了ES6 / ES2015，我们能通过[结构赋值](https://github.com/lukehoban/es6features#destructuring)来进一步简化`<Link>` 组件。
 
 ```js
 class Link extends Component {
-	render(props) {
-		return <a {...props} />;
-	}
+    render({ href, children }) {
+        return <a {...{ href, children }} />;
+    }
+}
+```
+
+如果我们想把所有的`props`传递进`<Link>`，我们可以用[延展符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)来实现:
+
+
+```js
+class Link extends Component {
+    render(props) {
+        return <a {...props} />;
+    }
 }
 ```
 
 
-### Stateless Functional Components
+### 无状态的函数式组件
 
-Lastly, we can see that this component does not hold state - we can render the component with the same props and get the same result each time.  When this is the case, it's often best to use a Stateless Functional Component. These are just functions that accept `props` as an argument, and return JSX.
+最后，我们可以看到这个组件没有state 
+－某些情况下，我们希望传递相同的props来渲染组件，并得到相同的结果。无状态的函数式组件往往是最好的选择。无状态的函数式组件只是一种函数，接受`props`参数并返回JSX。
+
 
 ```js
 const Link = ({ children, ...props }) => (
-	<a {...props}>{ children }</a>
+    <a {...props}>{ children }</a>
 );
 ```
 
-> *ES2015 Note:* the above is an Arrow Function, and because we've used parens instead of braces for the function body, the value within the parens is automatically returned. You can read more about this [here](https://github.com/lukehoban/es6features#arrows).
+> *ES2015 Note:* 上面用到了箭头函数,因为我们在函数主体中用括号替代了花括号，括号中的值会被自动返回。你可以在[这里](https://github.com/lukehoban/es6features#arrows)查看更多介绍。

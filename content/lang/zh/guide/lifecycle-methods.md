@@ -3,19 +3,19 @@ name: Lifecycle Methods
 permalink: '/guide/lifecycle-methods'
 ---
 
-# Lifecycle Methods
+# 生命周期方法
 
-> _**Tip:** If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._
+> _**提示:** 如果你已经用过HTML5的自定义标签，你会发现下面的方法跟 `attachedCallback` 和 `detachedCallback`这些生命周期方法相似._
 
-Preact invokes the following lifecycle methods if they are defined for a Component:
+如果你在Component中定义了下面的方法，Preact将会在生命周期中触发它。
 
-| Lifecycle method            | When it gets called                              |
+| 生命周期方法           | 触发时机                        |
 |-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentDidUnmount`       | after removal from the DOM                       |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
+| `componentWillMount`        | 在component插入DOM前调用    |
+| `componentDidMount`         | 在component插入DOM后调用       |
+| `componentWillUnmount`      | 在component移除前调用                   |
+| `componentDidUnmount`       | 在component移除后调用                          |
+| `componentWillReceiveProps` | 在component获取新的props前调用                    |
+| `shouldComponentUpdate`     | 在`render()`返回`false`来跳过渲染前调用 |
+| `componentWillUpdate`       | 在 `render()`  调用之前                              |
+| `componentDidUpdate`        | 在 `render()` 调用之后                            |

@@ -3,40 +3,37 @@ name: Switching to Preact from React
 permalink: '/guide/switching-to-preact
 ---
 
-# Switching to Preact (from React)
 
-There are two different approaches to switch from React to Preact:
 
-1. Install the `preact-compat` alias
-2. Switch your imports to `preact` and remove incompatible code
+# 用Preact替换React
 
-## Easy: `preact-compat` Alias
+有两种途径把React替换成Preact:
 
-Switching to Preact can be as easy as installing and aliasing `preact-compat` in for `react` and `react-dom`.
-This lets you continue writing React/ReactDOM code without any changes to your workflow or codebase.
-`preact-compat` adds somewhere around 2kb to your bundle size, but has the advantage of supporting
-the vast majority of existing React modules you might find on npm.  The `preact-compat` package provides
-all the necessary tweaks on top of Preact's core to make it work just like `react` and `react-dom`, in a single module.
+1.安装 `preact-compat`  
+2.把React的入口替换为`preact`，并解决代码冲突
 
-The process for installation is two steps.
-First, you must install preact and preact-compat (they are separate packages):
+## 简单的 `preact-compat` Alias设置
+
+要想转换成Preact,只需简单的安装，并把`react` 和 `react-dom`的alias设置为`preact-compat`。通过这种方法,你可以在不改变工作流和代码的情况下继续使用React/ReactDOM的语法结构。
+
+`preact-compat` 会让你编译后的代码量增加2kb左右，但是它胜在支持npm仓库中的绝大多数的React模块。另外，`preact-compat`包在Preact的基础上提供必要的适配，让它表现的跟`react`和`react-dom`一样。
+
+安装过程分为两步。第一步，安装preact 和 preact-compat (它们是独立的包):
 
 ```sh
 npm i -S preact preact-compat
 ```
 
-With those dependencies installed, configure your build system to alias React imports so they point to Preact instead.
+安装依赖项后，你需要在构建工具中，通过alias把React的入口指向Preact。
+
+###怎样设置preact-compat的Alias
+
+现在，你已经安装了依赖包。接下来，你需要在构建工具中把所有的imports/requires中的`react` 或 `react-dom`的路径指向到`preact-compat`
 
 
-### How to Alias preact-compat
+#### 通过Webpack设置Alias
 
-Now that you have your dependencies installed, you'll need to configure your build system
-to redirect any imports/requires looking for `react` or `react-dom` with `preact-compat`.
-
-#### Aliasing via Webpack
-
-Simply add the following [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias)
-configuration to your `webpack.config.js`:
+根据[resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias)文档，在`webpack.config.js`中进行配置。
 
 ```json
 {
@@ -49,13 +46,14 @@ configuration to your `webpack.config.js`:
 }
 ```
 
-#### Aliasing via Browserify
+#### 通过Browserify设置Alias
 
-If you're using Browserify, aliases can be defined by adding the [aliasify](https://www.npmjs.com/package/aliasify) transform.
+如果你使用的是Browserify，通过[aliasify](https://www.npmjs.com/package/aliasify)来设置Alias
 
-First, install the transform:  `npm i -D aliasify`
+首先，安装aliasify:  
+`npm i -D aliasify`
 
-Then, in your `package.json`, tell aliasify to redirect react imports to preact-compat:
+然后，在`package.json`,配置aliasify，使得redirect react路径指向preact-compat:
 
 ```json
 {
@@ -68,70 +66,54 @@ Then, in your `package.json`, tell aliasify to redirect react imports to preact-
 }
 ```
 
-#### Aliasing Manually
 
-If you're not using a build system or want to permanently switch to `preact-compat`,
-you can also find & replace all the imports/requires in your codebase much like an alias does:
+#### 手动修改别名
 
+如果你没有使用构建工具，并且想要项目以后都使用`preact-compat`，你可以在代码中的所有imports/requires语句中进行查找替换。
 > **find:**    `(['"])react(-dom)?\1`
 >
 > **replace:** `$1preact-compat$1`
 
-In this case though, you might find it more compelling to switch directly to `preact` itself, rather than relying on `preact-compat`.
-Preact's core is quite fully featured, and many idiomatic React codebases can actually be switched straight to `preact` with little effort.
-That approach is covered in the next section.
-
+在这种情况中,你会发现这比使用`preact-compat`更彻底。Preact的功能非常齐全，很多常用的React代码库能很轻易的转换到`preact`。
+转换途径会在下一部份覆盖到。
 
 ### Build & Test
 
-**You're done!**
-Now when you run your build, all your React imports will be instead importing `preact-compat` and your bundle will be much smaller.
-It's always a good idea to run your test suite and of course load up your app to see how it's working.
+**你已经完成了!**
+现在，你可以运行你的build命令，所有的React入口都会被替换成`preact-compat`，你的bundle文件会大大的变小。当然，你最好进行后续的测试环节，并运行你的项目来确保正常运行。
 
+## 最理想的Preact迁移方案
+你没必在代码中中去用`preact-compat`来完成React到Preact的迁移。Preact的api几乎跟React的api一致。很多React应用的迁移只需要很少甚至不用作改动。
 
----
+一般来说，Preact的迁移流程包含以下步骤：
+### 1. 安装 Preact
 
-
-## Optimal: Switch to Preact
-
-You don't have to use `preact-compat` in your own codebase in order to migrate from React to Preact.
-Preact's API is nearly identical to React's, and many React codebases can be migrated with little or no changes needed.
-
-Generally, the process of switching to Preact involves a few steps:
-
-### 1. Install Preact
-
-This one is simple: you'll need to install the library in order to use it!
+这一步很简单，在使用这个库之前，你必须先安装
 
 ```sh
 npm install --save preact  # or: npm i -S preact
 ```
 
 ### 2. JSX Pragma: transpile to `h()`
+> **背景:**  [JSX] 扩展语法是从React独立出来的语法，[Babel] 和 [Bublé]这些编译器默认会把调用`React.createElement()`来编译JSX。这其中有一些历史原因，但是值得探究的是，这种方式来源于一个已有的技术[Hyperscript]。Preact向它致敬，并试图用使用`h()`来更好理解并简化jsx。
 
-> **Background:** While the [JSX] language extension is independent from React, popular
-> transpilers like [Babel] and [Bublé] default to converting JSX to `React.createElement()` calls.
-> There are historical reasons for this, but it's worth understanding that the function calls JSX
-> transpiles to are actually a pre-existing technology called [Hyperscript]. Preact pays homage
-> to this and attempts to promote a better understanding of the simplicity of JSX by using `h()`
-> as its [JSX Pragma].
+> **长话短说:** 我们需要把`React.createElement()`转换成preact的`h()`
+
+
+在JSX中，`h()`用于生成每一个元素：
+
+> `<div />` 编译成 `h('div')`
 >
-> **TL;DR:** We need to switch `React.createElement()` out for preact's `h()`
-
-In JSX, the "pragma" is the name of a function that handles creating each element:
-
-> `<div />` transpiles to `h('div')`
+> `<Foo />` 编译成 `h(Foo)`
 >
-> `<Foo />` transpiles to `h(Foo)`
->
-> `<a href="/">Hello</a>` to `h('a', { href:'/' }, 'Hello')`
-
-In each example above, `h` is the function name we declared as the JSX Pragma.
+> `<a href="/">Hello</a>` 编译成 `h('a', { href:'/' }, 'Hello')`
 
 
-#### Via Babel
+在上面的每一个例子中，`h`是我们声明的函数来实现JSX语法。
 
-If you're using Babel, you can set the JSX Pragma in your `.babelrc` or `package.json` (whichever you prefer):
+#### 通过 Babel
+
+如果你正在使用Babel，你可以在`.babelrc`或者`package.json`中设置JSX 
 
 ```json
 {
@@ -141,72 +123,65 @@ If you're using Babel, you can set the JSX Pragma in your `.babelrc` or `package
 }
 ```
 
+#### 通过 Comments
 
-#### Via Comments
-
-If you're working in an online editor powered by Babel (such as JSFiddle or Codepen),
-you can set the JSX Pragma by defining a comment near the top of your code:
+如果你使用基于Babel的在线编辑器（比如JSFiddle、Codepen），你可以在代码顶部定义一个comment来设置JSX Pragm。
 
 `/** @jsx h */`
 
 
-#### Via Bublé
+#### 通过 Bublé
 
-[Bublé] ships with JSX support by default.  Just set the `jsx` option:
+[Bublé]默认支持JSX语法，只需要设置`jsx`选项：
 
 `buble({ jsx: 'h' })`
 
 
-### 3. Update any Legacy Code
+### 3. 更新剩下的代码
 
-While Preact strives to be API-compatible with React, portions of the interface are intentionally not included.
-The most noteworthy of these is `createClass()`. Opinions vary wildly on the subject of classes and OOP, but
-it's worth understanding that JavaScript classes are internally in VDOM libraries to represent component types,
-which is important when dealing with the nuances of managing component lifecycles.
-
-If your codebase is heavily reliant on `createClass()`, you still have a great option:
-Laurence Dorman maintains a [standalone `createClass()` implementation](https://github.com/ld0rman/preact-classless-component)
-that works directly with preact and is only a few hundred bytes.
-Alternatively, you can automatically convert your `createClass()` calls to ES Classes using [preact-codemod](https://github.com/vutran/preact-codemod) by Vu Tran.
-
-Another difference worth noting is that Preact only supports Function Refs by default.
-String refs are deprecated in React and will be removed shortly, since they introduce a surprising amount of complexity for little gain.
-If you want to keep using String refs, [this tiny linkedRef function](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)
-offers a future-proofed version that still populates `this.refs.$$` like String Refs did.  The simplicity of this tiny wrapper around
-Function Refs also helps illustrate why Function Refs are now the preferred choice going forward.
+Preact兼容React的接口，但特意去弃用了部份接口。在这些接口中，最值得注意的是`createClass()`。
 
 
-### 4. Simplify Root Render
+值得理解的是，JavaScript类是内置于虚拟DOM的库中去代表组件的类型，这在管理组件生命周期的细微差别中起到重要作用。
 
-Since React 0.13, `render()` has been provided by the `react-dom` module.
-Preact does not use a separate module for DOM rendering, since it is focused solely on being a great DOM renderer.
-So, the last step in converting your codebase to Preact is switching `ReactDOM.render()` to preact's `render()`:
+如果你的代码严重依赖`createClass()`，你仍然有一个好的选择：Laurence Dorman维护的[standalone `createClass()` implementation](https://github.com/ld0rman/preact-classless-component)能直接用于preact，而它仅仅只有几百字节的大小。除此之外，你可以用Vu Tran的[preact-codemod](https://github.com/vutran/preact-codemod)来实现`createClass()` calls到ES Classes的转换。
+
+
+另一个值得注意的不同点是Preact默认只支持函数Refs。字符串refs在React中被弃用并很快会被移除，因为他们引入了不少的复杂度但收益却很少。
+
+如果你想继续使用字符串refs,[this tiny linkedRef function](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)提供了一个不过时的版本，它仍然像字符串Refs那样通过 this.refs.$$ 调用。
+函数Refs也说明为什么函数Refs现在更被推荐。
+
+
+
+
+### 4. 简化Root节点的 Render
+
+自React 0.13版本以来，`render()`由`react-dom`模块提供。Preact没有使用单独的模块来实现dom节点的渲染因为它本身就是一个很好的dom渲染器。
+
+所以，最后一步把`ReactDOM.render()` 转换成preact的`render()`
+
 
 ```diff
 - ReactDOM.render(<App />, document.getElementById('app'));
 + render(<App />, document.body);
 ```
 
-It's also worth noting that Preact's `render()` is non-destructive, so rendering into `<body>` is perfectly fine (encouraged, even).
-This is possible because Preact does not assume it controls the entire root element you pass it.  The second argument to `render()`
-is actually `parent` - meaning it's a DOM element to render _into_.  If you would like to re-render from the root (perhaps for Hot
-Module Replacement), `render()` accepts an element to replace as a third argument:
+值得一提的是Preact的`render()`是无损的，所以组件直接渲染到`<body>`是非常合适的（我们甚至鼓励你这样做）。这可能是因为Preact不使用你传递的参数来控制根节点。`render()`的第二个参数事实上是`父节点`－这意味着这是一个将内容渲染进去的dom元素。如果你想再次从根元素渲染（比如热模块的替换），render()会把第三个参数作为元素来替换。
+
 
 ```js
-// initial render:
+// 首次渲染:
 render(<App />, document.body);
 
-// update in-place:
+// 更新:
 render(<App />, document.body, document.body.lastElementChild);
 ```
+在上面的例子中，我们依赖于最后一个子元素作为我们之前渲染的根节点。尽管这对于大部份情况都可行(jsfiddles, codepens等)，但最好还是对节点有更好的控制。这就是为什么 render() 返回根节点：你将根节点作为第三个参数传进去，让它适当地重新渲染。接下来的例子展示了 Preact 如何应对 webpack 的 hot module replacement（热替换）而进行重新渲染。
 
-In the above example, we're relying on the last child being our previously rendered root.
-While this works in many cases (jsfiddles, codepens, etc), it's best to have more control.
-This is why `render()` returns the root element: you pass it as the third argument to re-render in-place.
-The following example shows how to re-render in response to Webpack's Hot Module Replacement updates:
 
 ```js
-// root holds our app's root DOM Element:
+// root 包裹我们应用的根节点:
 let root;
 
 function init() {
@@ -218,7 +193,9 @@ init();
 if (module.hot) module.hot.accept('./app', init);
 ```
 
-The full technique can be seen in [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
+
+完整的技术可以参考[preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
+
 
 
 [babel]: https://babeljs.io
