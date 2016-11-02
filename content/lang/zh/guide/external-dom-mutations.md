@@ -3,17 +3,15 @@ name: External DOM Mutations
 permalink: '/guide/external-dom-mutations'
 ---
 
-# External DOM Mutations
+# 外部DOM修改
 
+## 综述
 
-## Overview
+有时候，需要用到一些第三方库,而这些第三方库需要能够自由的修改DOM，并且再DOM内部持久化状态,或这写第三方库根本就没有组件化。有许多优秀的UI工具或可复用的元素都是处于这种无组件化的状态。在Preact中(React中也类似),使用这些类型的库需要你告诉 Virtual DOM的rendering/diffing算法: 在给定的组件(或者该组件所呈现的DOM)中不要去撤销任何外部DOM的改变。
 
-Sometimes there is a need to work with third-party libraries that expect to be able to freely mutate the DOM, persist state within it, or that have no component boundaries at all.  There are many great UI toolkits or re-usable elements that operate this way.  In Preact (and similarly in React), working with these types of libraries requires that you tell the Virtual DOM rendering/diffing algorithm that it shouldn't try to _undo_ any external DOM mutations performed within a given Component (or the DOM element it represents).
+## 技巧
 
-
-## Technique
-
-This can be as simple as defining a `shouldComponentUpdate()` method on your component, and having it return `false`:
+一般情况下，是在你的组件中定义一个`shouldComponentUpdate()`方法并让他返回值为`fasle`,很简单,是吧:
 
 ```js
 class Block extends Component {
@@ -23,7 +21,7 @@ class Block extends Component {
 }
 ```
 
-... or for shorthand:
+... 或者可以简写为:
 
 ```js
 class Block extends Component {
@@ -31,14 +29,12 @@ class Block extends Component {
 }
 ```
 
-With this lifecycle hook in place and telling Preact not to re-render the Component when changes occur up the VDOM tree, your Component now has a reference to its root DOM element that can be treated as static until the Component is unmounted. As with any component that reference is simply called `this.base`, and corresponds to the root JSX Element that was returned from `render()`.
-
+有了这个生命周期的钩子(指的shouldComponentUpdate)，并告诉Preact当VDOM tree发生状态改变的时候,不要去再次渲染该组件。这样你的组件就有了一个自身的根DOM元素的引用。你可以把这个组件当做一个静态组件，直到被移除。因此，任何的组件引用都可以简单通过this.base被调用，并且对应从 render() 函数返回的根 JSX 元素。
 ---
 
-## Example Walk-Through
+## 样例演练
 
-Here is an example of "turning off" re-rendering for a Component.  Note that `render()` is still invoked as part of creating and mounting the Component, in order to generate its initial DOM structure.
-
+这是一个“去掉"组件重新渲染的例子。注意render() 作为创建和挂载组件的一部份，为了生成组件初始的 DOM 结构，依然会被调用。
 ```js
 class Example extends Component {
   shouldComponentUpdate() {
@@ -67,13 +63,14 @@ class Example extends Component {
 ```
 
 
-## Demonstration
+## 示范
 
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
+[![样例](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
 
-[**View this demo on Webpackbin**](http://www.webpackbin.com/V1hyNQbpe)
+[**在Webpackbin中查看样例**](http://www.webpackbin.com/V1hyNQbpe)
 
 
-## Real-World Examples
+## 真实场景中的样例
 
-Alternatively, see this technique in action in [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - it uses a component as a foothold in the DOM, but then disables updates and lets [tags-input](https://github.com/developit/tags-input) take over from there.  A more complex example would be [preact-richtextarea](https://github.com/developit/preact-richtextarea), which uses this technique to avoid re-rendering an editable `<iframe>`.
+作为一种选择, 在后面的链接中查看这种技巧的使用 [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) -
+他使用组件作为DOM的立足点，但是禁止组件更新,而且让[tags-input](https://github.com/developit/tags-input) 来接管这些事情.  一个更复杂的样例[preact-richtextarea](https://github.com/developit/preact-richtextarea), preact-richtextarea使用这个技巧来避免二次渲染一个可编辑的`<iframe>`标签。
