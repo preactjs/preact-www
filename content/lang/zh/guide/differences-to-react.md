@@ -3,67 +3,66 @@ name: Differences to React
 permalink: '/guide/differences-to-react'
 ---
 
-# Differences to React
+# 与 React 的不同之处
 
-Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
+Preact 本身并没有去重新实现一遍 React。它有些不同之处。大部份的不同都是很细微的，而且可以完全通过 [preact-compat] 去掉。这是一个轻量级的在 Preact 的基础上，尝试100%去实现 React的接口。
 
-The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focussed** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
-
-
-## Version Compatibility
-
-For both Preact and [preact-compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals].  This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
-
-> Thus, the website and documentation reflect React `0.14.x` and `15.x` when discussing compatibility or making comparisons.
+Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻量** 而 **专注** —— 否则，给 React 项目提交优化方案会更为明智，而 React 本身也已经是一个非常复杂和良好设计的代码库。
 
 
-## What's Included?
+## 版本兼容
+对于 Preact 和 [preact-compat]， 版本兼容通过 _current_ 和 _previous_ 主要的 React发布去衡量。当新的特性被 React 团队公布的时候，若考虑到[项目目标]也非常合理，它们可能会被添加到 Preact 的核心当中。这是一个相对民主的迭代过程，持续通过公开的使用 issues 和 pull request 来进行的讨论和决策。
 
-- [ES6 Class Components]
-    - _classes provide an expressive way to define stateful components_
-- [High-Order Components]  
-    - _components that return other components from `render()`, effectively wrappers_
-- [Stateless Pure Functional Components]  
-    - _functions that receive `props` as arguments and return JSX/VDOM_
-- [Contexts]: Support for `context` was added in Preact [3.0].
-    - _Context is an experimental React feature, but has been adopted by some libraries._
-- [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
-    - _Refs provide a way to refer to rendered elements and child components._
-- Virtual DOM Diffing
-    - _This is a given - Preact's diff is simple but effective, and **[extremely](http://developit.github.io/js-repaint-perfs/) [fast](https://localvoid.github.io/uibench/)**._
-- `h()`, a more generalized version of `React.createElement`
-    - _This idea was originally called [hyperscript] and has value well beyond the React ecosystem, so Preact promotes the original standard. ([Read: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
-    - _It's also a little more readable: `h('a', { href:'/' }, h('span', null, 'Home'))`_
+> 因此，当讨论兼容性和比较的时候，官网和文档会指明 React `0.14.x` 和 `15.x`。
 
 
-## What's Added?
+## 被包含的特性
 
-Preact actually adds a few convenient features inspired by work in the React community:
+- [ES6 类]
+    - _类提供一个丰富表现力的途径去定义具有状态的组件_
+- [高阶组件]  
+    - _组件在 `render()`中返回其它组件，一个高效的封装_
+- [无状态的纯函数式组件]  
+    - _接收 `props`作为参数并返回 JSX/VDOM 的函数_
+- [场景]: 从 Preact [3.0] 起 支持`context`
+    - _`context` 是 React实验性的特性，但许多库都已经采纳了_
+- [Refs]: 从 Preact [4.0] 起支持 函数 refs 引用。字符串 refs 引用在 `preact-compact` 中支持
+    - _Refs 提供一个办法去引用被渲染的元素和子组件_
+- 虚拟 DOM 比较
+    - _这是一个规定的特性 - Preact 的虚拟 DOM 比较 虽简单但高效 而且 **[特别](http://developit.github.io/js-repaint-perfs/) [快](https://localvoid.github.io/uibench/)**._
+- `h()`,一个更为通用的 `React.createElement` 实现版本
+    - _这是一个通常被称作 [hyperscript] 的概念，而且它的价值远比 React 的生态强, 所以 Preact 发扬了它本来的规范. ([请阅读: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
+    - _而且它更可读一些: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
-- `this.props` and `this.state` are passed to `render()` for you  
-    - _You can still reference them manually. This is just cleaner, particularly when [destructuring]_
-- [Linked State] updates state when inputs change automatically
-- Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
-- You can just use `class` for CSS classes. `className` is still supported, but `class` is preferred.
-- Setting `class` to an Object creates a String className containing the keys having truthy values.
-- Component and element recycling/pooling.
+
+## 新增特性
+
+Preact 实际上添加了几个更为便捷的特性，灵感源于 React 的社区
+
+- `this.props` 和 `this.state` 帮你传进了 `render()` 作为参数 
+    - _你仍然可以手动地去引用它们，但这个特性更为简洁，尤其是做 [赋值解构] 的时候_
+- [Linked State] 当 inputs 输入框改变的时候，会自动更新状态state
+- 批量 DOM 更新，, `setTimeout(1)` 进行函数节流 使用 _(也可以使用requestAnimationFrame)_
+- 你可以只用 `class` 作为 CSS 的类。 `className` 也仍然被支持， 但推荐使用 `class`
+- 给一个对象设置 `class` 创建了一个包含可信的键值的字符串类名
+- 组件和元素循环使用/存入池中
 
 
-## What's Missing?
+## 缺少特性
 
-- [PropType] Validation: Not everyone uses PropTypes, so they aren't part of Preact's core.
-    - _**PropTypes are fully supported** in [preact-compat], or you can use them manually._
-- [Children]: Not necessary in Preact, because `props.children` is _always an Array_.
+- [PropType] 验证：并非所有人使用  PropTypes，所以它们并非 Preact的核心
+    - _**PropTypes ** 被 [preact-compat] 完整支持, 或者你可以手动使用它们_
+- [Children]: 在 Preact 中并非必要的 Preact, 因为  `props.children` _总是一个数组_.
     - _`React.Children` is fully supported in [preact-compat]._
-- Synthetic Events: Preact's browser support target does not require this extra overhead.
-    - _A full events implementation would mean more maintenance and performance concerns, and a larger API._
+- Synthetic Events: Preact 的浏览器支持并不需要这个开销
+    - _一个事件的完整实现意味着更多的维护和性能的考虑，以及更庞大的API_
 
 
-## What's Different?
+## 有什么区别？
 
-Preact and React have some more subtle differences:
+Preact 和 React 还有一些细微的差别：
 
-- `render()` accepts a third argument, which is the root node to _replace_, otherwise it appends. This may change slightly in a future version, perhaps auto-detecting that a replacement render is appropriate by inspecting the root node.
+- `render()` 接受第三个参数，这是会被_替换_的根节点，否则，如果没有这个参数，Preact默认追加。这个将来的版本可能会有小的调整，可能会改成默认替换。
 
 
 [Project Goals]: /about/project-goals
