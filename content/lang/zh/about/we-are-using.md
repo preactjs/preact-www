@@ -19,3 +19,10 @@ permalink: '/about/we-are-using'
 		</a>
 	</li>
 </ul>
+
+## 中文文档贡献者
+- [david-zzg](https://github.com/David-zzg)
+- [gzhappysky](http://www.github.com/gzhappysky)
+- [heyli](http://www.github.com/lcxfs1991)
+- [muchen](https://github.com/tao1991123)
+- [zikeng](https://github.com/zikeng)
