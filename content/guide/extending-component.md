@@ -4,25 +4,18 @@ permalink: '/guide/extending-component'
 ---
 
 # Extending Component
-扩展的组件
 
+It is possible that some projects would wish to extend Component with additional functionality.
 
+There are varying opinions on the value of inheritance in JavaScript, but if you wish to build your own "base class" from which all of your components inherit, Preact has you covered.
 
+Perhaps you want to do automatic connection to stores/reducers within a Flux-like architecture. Maybe you want to add property-based mixins to make it feel more like `React.createClass()` _(note: the [`@bind` decorator](https://github.com/developit/decko#bind) is preferable)_.
 
-
-一些项目可能希望继承Component去获得额外的能力，在JavaScript下面有很多不同的继承，但是如果你想封装或者建一些属于你自己的“基类”，而且可以让你的组件去继承，那么Preact能做到这一点。
-
-或者，你想在类 flux 架构中实现对 stores/reducers 的自动连接。又或才你希望添加基于属性的 mixins,使用它更像 React.createClass() (注: 使用 @bind decorator is preferable).
-
-
-
-
-在任何情况下，你只需要用ES6的类继承去扩展Preact的组件类
-
+In any case, just use ES2015 class inheritance to extend Preact's `Component` class:
 
 ```js
 class BoundComponent extends Component {
-    // example: get bound methods绑定方法
+    // example: get bound methods
     binds() {
         let list = this.bind || [],
             binds = this._binds;
@@ -37,7 +30,7 @@ class BoundComponent extends Component {
 }
 ```
 
-Example Usage:实例
+Example Usage:
 
 ```js
 class Link extends BoundComponent {
@@ -58,8 +51,7 @@ render(
 ```
 
 
-
-有很多的可能性在里面，下面是一个支持混合的扩展类
+The possibilities are endless. Here's an extended `Component` class that supports rudimentary mixins:
 
 ```js
 class MixedComponent extends Component {
@@ -72,7 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-
-
-脚注：
-特别要注意的是，继承会把你锁定在父子关系里。 通常当面对可以利用继承来充分解决的编程任务时，会有一种更有效的方式来实现你的需求，并且避免这样的父子关系。
+> **Footnote:** It's worth noting that inheritance can lock you into brittle parent-child relationships. Often when faced with a programming task that can be solved adequately with inheritance, there is a more functional way to achieve the same goal that would avoid creating such a relationship.
