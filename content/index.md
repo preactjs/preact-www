@@ -10,7 +10,7 @@ toc: false
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-	<p>Fast 3kb alternative to React with the same ES6 API.</p>
+	<p>Fast 3kB alternative to React with the same ES6 API.</p>
 
 	<p>
 		<a href="/guide/getting-started" class="white">Getting Started</a>
@@ -23,7 +23,7 @@ toc: false
 
 ## What is Preact?
 
-Preact is an attempt to recreate the core value proposition of React _(or similar libraries like Mithril)_ using as little code as possible, with first-class support for ES2015.  Currently the library is around **3kb** (minified & gzipped).
+Preact is an attempt to recreate the core value proposition of React _(or similar libraries like Mithril)_ using as little code as possible, with first-class support for ES2015.  Currently the library is around **3kB** (minified & gzipped).
 
 Preact retains a large amount of compatibility with React, but only the [stateless functional components] and [ES6 Classes] interfaces.
 As one would expect coming from React, Components are simple building blocks for composing a User Interface.
