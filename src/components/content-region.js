@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import { connect } from '../lib/store';
-import { Link } from 'preact-router';
 import { memoize } from 'decko';
 import yaml from 'yaml';
 import Markdown from 'markdown';
@@ -10,9 +9,12 @@ import widgets from './widgets';
 const COMPONENTS = {
 	...widgets,
 	pre: widgets.CodeBlock,
-	a({ children, ...props }) {
-		let Type = props.target || props.href.match(/\:\/\//) ? 'a' : Link;
-		return <Type {...props}>{ children }</Type>;
+	a(props) {
+		if (!props.target && props.href.match(/:\/\//)) {
+			props.target = '_blank';
+			props.rel = 'noopener noreferrer';
+		}
+		return <a {...props} />;
 	}
 };
 
@@ -87,18 +89,6 @@ const getAllPaths = memoizeProd( () => {
 });
 
 
-const EXTERNAL_LINKS = {
-	jsx: 'http://www.jasonformat.com/wtf-is-jsx/'
-};
-
-const postProcessMarkdown = content => (
-	content.replace(/\[([a-z0-9 _&-]+)\]/gi, (s, link) => {
-		let normalize = str => str.toLowerCase().replace(/[^\w\/]+/g,''),
-			external = EXTERNAL_LINKS[normalize(link)],
-			match = external || getAllPaths().filter( path => path && ~normalize(path).indexOf(normalize(link)) )[0];
-		return match ? `<a href="${match}"${external?' target="_blank"':''}>${link}</a>` : s;
-	})
-);
 
 
 @connect( ({ lang }) => ({ lang }) )
@@ -169,7 +159,7 @@ export default class ContentRegion extends Component {
 
 const Content = ({ type, content, ...props }) => (
 	type==='markdown' ? (
-		<Markdown markdown={content} postProcess={postProcessMarkdown} {...props} />
+		<Markdown markdown={content} {...props} />
 	) : type==='markup' ? (
 		<Markup markup={content} type="html" {...props} />
 	) : null
