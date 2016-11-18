@@ -2,14 +2,12 @@ body .jumbotron {
 	position: relative;
 	display: block;
 	padding: 60px 30px;
-	// background: #222;
 	background: #343A47;
 	box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
 	overflow: hidden;
 	text-align: center;
-	color: #EEE;
 	color: #f2777a;
-	text-shadow: 0 0 2px rgba(0,0,0,0.7);
+	text-shadow: 0 0 1px #000;
 
 	&:first-child {
 		margin-top: -50px !important;
@@ -19,6 +17,11 @@ body .jumbotron {
 		color: #FFF;
 		font-size: 400%;
 		font-weight: 300;
+		padding: 0 !important;
 		text-transform: uppercase;
+
+		svg {
+			max-width: 100%;
+		}
 	}
 }
