@@ -56,6 +56,10 @@
 				{
 					"path": "/guide/extending-component",
 					"name": "Extending Component"
+				},
+				{
+					"path": "/guide/progressive-web-apps",
+					"name": "Progressive Web Apps"
 				}
 			]
 		},
