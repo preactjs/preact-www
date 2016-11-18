@@ -28,7 +28,8 @@ a {
 	outline: none;
 
 	&:hover, &:active, &:focus {
-		border-bottom: 1px dotted #4183C4;
+		text-decoration: underline;
+		color: darken(#4183C4, 15%);
 	}
 }
 
@@ -92,5 +93,72 @@ content-region {
 
 	& > main {
 		padding-top: 56px;
+	}
+}
+
+
+
+main .markup {
+	.home-top {
+		margin: 60px auto;
+		max-width: 984px;
+
+		h1 {
+			font-size: 7.3vw;
+			text-align: center;
+			font-weight: 300;
+			letter-spacing: 0.02em;
+
+			@media (min-width: 1024px) {
+				font-size: 500%;
+			}
+		}
+	}
+
+	.home-section {
+		margin: 60px auto;
+		max-width: 984px;
+		overflow: hidden;
+
+		@media (min-width: 1024px) {
+			font-size: 16px;
+		}
+
+		h2 {
+			font-size: 220%;
+			border-bottom: none;
+			margin-top: 0;
+			letter-spacing: 0.01em;
+			font-weight: 300;
+		}
+
+		h2, p, ul {
+			overflow: hidden;
+			margin-left: 0;
+		}
+
+		img {
+			float: left;
+			margin: 0 15px 0 0;
+			background: #EEE;
+			font-size: 124px;
+			text-align: center;
+			line-height: 250px;
+		}
+
+		&:nth-of-type(2n+1) {
+			img {
+				float: right;
+				margin: 0 0 0 15px;
+			}
+		}
+
+		@media (max-width: 572px) {
+			img {
+				display: block;
+				float: none;
+				margin: 10px auto;
+			}
+		}
 	}
 }
