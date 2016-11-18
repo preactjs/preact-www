@@ -21,7 +21,7 @@ export default class GithubStars extends Component {
 		getRepoInfo(user+'/'+repo).then(this.setStars);
 	}
 
-	render({ user, repo }, { stars }) {
+	render({ user, repo, children }, { stars }) {
 		let url = `https://github.com/${user}/${repo}/`;
 		return (
 			<span class="github-btn">
@@ -29,7 +29,9 @@ export default class GithubStars extends Component {
 					<span class="gh-ico" /> Star
 				</a>
 				{' '}
-				<a class="gh-count" href={url} target="_blank">{stars && Math.round(stars).toLocaleString()}</a>
+				<a class="gh-count" href={url} target="_blank">
+					{stars ? Math.round(stars).toLocaleString() : children || '..'}
+				</a>
 			</span>
 		);
 	}

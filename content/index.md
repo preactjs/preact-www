@@ -15,7 +15,7 @@ toc: false
 	<p>
 		<a href="/guide/getting-started" class="white">Getting Started</a>
 		&nbsp; • &nbsp;
-		<github-stars user="developit" repo="preact"></github-stars>
+		<github-stars user="developit" repo="preact">4,750+</github-stars>
 	</p>
 </jumbotron>
 
