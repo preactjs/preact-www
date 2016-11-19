@@ -23,11 +23,11 @@ toc: false
 
 ## ¿Qué es Preact?
 
-Preact is an attempt to recreate the core value proposition of React _(or similar libraries like Mithril)_ using as little code as possible, with first-class support for ES2015.  Currently the library is around **3kB** (minified & gzipped).
+Preact es un intento de recrear las proposiciones principales de React _(o librerías similares como Mithril)_ usando la menor cantidad de código posible, con soporte de primera clase de ES2015. Actualmente la librería pesa alrededor de **3kB** (minificada y gzippeada)
 
-Preact retains a large amount of compatibility with React, but only the [stateless functional components] and [ES6 Classes] interfaces.
-As one would expect coming from React, Components are simple building blocks for composing a User Interface.
+Preact mantiene una gran parte de compatibilidad con React, pero solo con las interfaces de [componentes funcionales sin estado] y las [clases de ES6].
+Como uno puede esperar viniendo de React, los componentes son simples bloques para componer interfaces de usuario.
 
 
-[Stateless Functional Components]: https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-functional-components
-[ES6 Classes]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
+[Componentes funcionales sin estado]: https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-functional-components
+[Clases de ES6]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes

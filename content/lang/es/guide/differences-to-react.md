@@ -1,84 +1,84 @@
 ---
-name: Differences to React
+name: Diferencias con React
 permalink: '/guide/differences-to-react'
 ---
 
-# Differences to React
+# Diferencias con React
 
-Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
+Preact no pretende ser una reimplementación de React. Existen diferencias. Muchas de estas son triviales, o pueden ser completamente eliminadas utilizando [preact-compat], que es una fina capa sobre preact que intenta mantener 100% compatibilidad con React.
 
-The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focused** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
-
-
-## Version Compatibility
-
-For both Preact and [preact-compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals].  This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
-
-> Thus, the website and documentation reflect React `0.14.x` and `15.x` when discussing compatibility or making comparisons.
+La razón por la que Preact no intenta incluir absolutamente todas las características de React es para mantenerse **pequeño** y **enfocado** - de otro modo tendría más sentido enviar optimizaciones al proyecto React, que es suficientemente complejo y con una estructura de código bien pensada.
 
 
-## What's Included?
+## Compatibilidad de versiones
 
-- [ES6 Class Components]
-    - _classes provide an expressive way to define stateful components_
-- [High-Order Components]  
-    - _components that return other components from `render()`, effectively wrappers_
-- [Stateless Pure Functional Components]  
-    - _functions that receive `props` as arguments and return JSX/VDOM_
-- [Contexts]: Support for `context` was added in Preact [3.0].
-    - _Context is an experimental React feature, but has been adopted by some libraries._
-- [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
-    - _Refs provide a way to refer to rendered elements and child components._
+Tanto para Preact como para [preact-compat], la compatibilidad de versiones es medida contra el _actual_ y _anterior_ release **mayor** de React. Cuando se anuncian nuevas características desde el equipo de React, pueden ser agregadas al núcleo de Preact si tiene sentido dadas las [Metas del Proyecto]. Este es un proceso democrático, evolucionando constantemente la discusión y tomando las decisiones públicamente, usando issues y pull requests.
+
+> Así, el sitio web y la documentación reflejan React `0.14.x` y `0.15.x` cuando se discute compatibilidad o se hacen comparaciones.
+
+
+## Qué está incluido?
+
+- [Componentes de Clases de ES6]
+    - _Las clases proveen una forma expresiva e definir componentes que poseen estado_
+- [Componentes de Alto Orden]  
+    - _Componentes que devuelven otros componentes desde `render()`, efectivamente son wrappers_
+- [Componentes funcionales puros sin estado]  
+    - _funciones que reciven `props` como argumentos y retornan JSX/VDOM_
+- [Contextos]: El soporte para `contexto` fue agregado en Preact [3.0].
+    - _El Contexto es una característica experimental de React, pero fue adoptado por algunas librerías._
+- [Refs]: El soporte de funciones refs fue agregador en Preact [4.0]. Los String refs son soportados por `preact-compat`.
+    - _Los Refs proveen una forma de referirse a elementos dibujados y elementos hijo._
 - Virtual DOM Diffing
-    - _This is a given - Preact's diff is simple but effective, and **[extremely](http://developit.github.io/js-repaint-perfs/) [fast](https://localvoid.github.io/uibench/)**._
-- `h()`, a more generalized version of `React.createElement`
-    - _This idea was originally called [hyperscript] and has value well beyond the React ecosystem, so Preact promotes the original standard. ([Read: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
-    - _It's also a little more readable: `h('a', { href:'/' }, h('span', null, 'Home'))`_
+    - _Esto está dado por sentado - El diff de Preact es simple pero efectivo, y **[extremadamente](http://developit.github.io/js-repaint-perfs/) [rápido](https://localvoid.github.io/uibench/)**._
+- `h()`, Una versión generalizada de `React.createElement`
+    - _Esta idea fue originalmente llamada [hyperscript] y tiene valor más allá del ecosistema de React, por eso Preact promueve el estándar original. ([Leer: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
+    - _Es también más legible: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
 
-## What's Added?
+## Qué fue agregado?
 
-Preact actually adds a few convenient features inspired by work in the React community:
+Preact de hecho agrega algunas características convenientes inspiradas en el trabajo de la comunidad de React:
 
-- `this.props` and `this.state` are passed to `render()` for you  
-    - _You can still reference them manually. This is just cleaner, particularly when [destructuring]_
-- [Linked State] updates state when inputs change automatically
-- Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
-- You can just use `class` for CSS classes. `className` is still supported, but `class` is preferred.
-- Setting `class` to an Object creates a String className containing the keys having truthy values.
-- Component and element recycling/pooling.
-
-
-## What's Missing?
-
-- [PropType] Validation: Not everyone uses PropTypes, so they aren't part of Preact's core.
-    - _**PropTypes are fully supported** in [preact-compat], or you can use them manually._
-- [Children]: Not necessary in Preact, because `props.children` is _always an Array_.
-    - _`React.Children` is fully supported in [preact-compat]._
-- Synthetic Events: Preact's browser support target does not require this extra overhead.
-    - _Preact uses the browser's native `addEventListener` for event handling. See [GlobalEventHandlers] for a full list of DOM event handlers._
-    - _A full events implementation would mean more maintenance and performance concerns, and a larger API._
+- `this.props` y `this.state` son pasados a `render()` por vos  
+    - _Todavía podés referenciarlos manualmente. Es simplemente una forma más clara, particularmente cuando se [desestructura]_
+- [Estado conectado] actualiza el estado automáticamente cuando el input cambia
+- Batching de actualizaciones del DOM, demorado usando `setTimeout(1)` _(también puede usar requestAnimationFrame)_
+- Podés usar `class` para clases de CSS. `className` es soportado, pero `class` es preferido.
+- Usando `class` como un objeto crea un String className conteniendo las claves que tienen valores que evaluan como verdadero.
+- Reciclado y agrupamiento de Componentes y elementos.
 
 
-## What's Different?
+## Qué falta?
 
-Preact and React have some more subtle differences:
+- Validación de [PropType]: No todo el mundo usa PropTypes, entonces no son parte del núcleo de Preact.
+    - _**Las PropTypes son soportadas** en [preact-compat], o también podés usarlas manualmente._
+- [Hijos]: No son necesarios en react, porque `props.children` es _siempre un Array_.
+    - _`React.Children` está totalmente soportado en [preact-compat]._
+- Eventos sintéticos: El soporte de navegadores de Preact no requiere este trabajo extra.
+    - _Preact usa el método nativo `addEventListener` del navegador a la hora de hacer manejo de eventos. Mirá [GlobalEventHandlers] para ver una lista completa de eventos disponibles._
+    - _Una implementación completa de eventos implica más mentenimiento y problemas de performance, además de una superficie de API más grande._
 
-- `render()` accepts a third argument, which is the root node to _replace_, otherwise it appends. This may change slightly in a future version, perhaps auto-detecting that a replacement render is appropriate by inspecting the root node.
+
+## Cuál es la diferencia?
+
+Preact y React tienen algunas otras diferencias más finas:
+
+- `render()` acepta un tercer argumento, que es el elemento raíz a _reemplazar_, de otro modo se agrega al final. Esto puede cambiar ligeramente en una versión futura, quizás auto-detectando que un dibujo de reemplazo es apropiado inspeccionando el nodo raíz.
 
 
-[Project Goals]: /about/project-goals
+[Metas del proyecto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [3.0]: https://github.com/developit/preact/milestones/3.0
 [4.0]: https://github.com/developit/preact/milestones/4.0
 [preact-compat]: https://github.com/developit/preact-compat
 [PropType]: https://github.com/developit/proptypes
-[Contexts]: https://facebook.github.io/react/docs/context.html
+[Contextos]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
-[Children]: https://facebook.github.io/react/docs/top-level-api.html#react.children
+[Hijos]: https://facebook.github.io/react/docs/top-level-api.html#react.children
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
-[ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-[High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
-[Stateless Pure Functional Components]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
-[destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
-[Linked State]: /guide/linked-state
+[Componentes de Clases de ES6]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
+[Componentes de Alto Orden]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
+[Componentes funcionales puros sin estado]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
+[desestructura]: http://www.2ality.com/2015/01/es6-destructuring.html
+[Estado conectado]: /guide/linked-state
