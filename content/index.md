@@ -25,7 +25,7 @@ toc: false
 
 Preact is an attempt to recreate the core value proposition of React _(or similar libraries like Mithril)_ using as little code as possible, with first-class support for ES2015.  Currently the library is around **3kB** (minified & gzipped).
 
-Preact retains a large amount of compatibility with React, but only the [stateless functional components] and [ES6 Classes] interfaces.
+Preact retains a large amount of compatibility with React, but with a focus on the [stateless functional components] and [ES6 Classes] interfaces.
 As one would expect coming from React, Components are simple building blocks for composing a User Interface.
 
 
