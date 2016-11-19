@@ -1,17 +1,17 @@
 ---
-name: Extending Component
+name: Extendiendo Component
 permalink: '/guide/extending-component'
 ---
 
-# Extending Component
+# Extendiendo Component
 
-It is possible that some projects would wish to extend Component with additional functionality.
+Es posible que en algunos proyectos quieras extender Component con funcionalidad adicional.
 
-There are varying opinions on the value of inheritance in JavaScript, but if you wish to build your own "base class" from which all of your components inherit, Preact has you covered.
+Existen variadas opiniones sobre el valor de la herencia en JavaScript, pero si querés construir tu "clase base" de la cual todos tus componentes heredan, Preact te tiene cubierto.
 
-Perhaps you want to do automatic connection to stores/reducers within a Flux-like architecture. Maybe you want to add property-based mixins to make it feel more like `React.createClass()` _(note: the [`@bind` decorator](https://github.com/developit/decko#bind) is preferable)_.
+Quizás quieras automatizar la conexión con stores/reducers como en una arquitectura a la Flux. Quizás querés agregar mixins basados en propiedades para sentirlo más como `React.createClass()` _note(: el [`@bind` decorator](https://github.com/developit/decko#bind) es preferible)_.
 
-In any case, just use ES2015 class inheritance to extend Preact's `Component` class:
+En cualquier caso, solo tenés que usar la herencia de clases de ES2016 para extender la clase `Component` de Preact:
 
 ```js
 class BoundComponent extends Component {
@@ -30,7 +30,7 @@ class BoundComponent extends Component {
 }
 ```
 
-Example Usage:
+Ejemplo de uso:
 
 ```js
 class Link extends BoundComponent {
@@ -51,7 +51,7 @@ render(
 ```
 
 
-The possibilities are endless. Here's an extended `Component` class that supports rudimentary mixins:
+Las posibilidades son ilimitadas. A continuación una versión extendida de la clase `Component` que soporta mixins rudimientarios:
 
 ```js
 class MixedComponent extends Component {
@@ -64,4 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Footnote:** It's worth noting that inheritance can lock you into brittle parent-child relationships. Often when faced with a programming task that can be solved adequately with inheritance, there is a more functional way to achieve the same goal that would avoid creating such a relationship.
+> **Nota al pie:** Vale la pena notar que la herencia puede encerrarte en relaciones padre-hijo frágiles. Usualmente cuando enfrentamos a una tarea de programación que puede ser solucionada adecuadamente con herencia, hay más de una manera funcional de llegar a la misma meta que no incluye crear esta relación.
