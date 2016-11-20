@@ -3,27 +3,25 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Getting Started
+# Primeros pasos
 
-This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
+Esta guía tratará la creación de simple componente de "Reloj". Información más detallada para cada tema especifico puede ser encontrada dentro del menú de Guía.
 
-
-> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-boilerplate] or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
-
+> :information_desk_person: [No es necesario utilizar ES2015 para poder usar Preact](https://github.com/developit/preact-without-babel)... pero deberías hacerlo. Esta guía asume que cuentas con algún tipo de configuración compatible con ES2015 usando Babel y/o webpack/browserify/gulp/grunt/etc. Si no la tienes, comienza con [preact-boilerplate] o un [Template de CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 ---
 
 
-## Import what you need
+## Importa lo que necesitas
 
-The `preact` module provides both named and default exports, so you can either import everything under a namespace of your choosing, or just what you need as locals:
+El modulo de `preact` provee tanto named como default exports, por lo que puedes importar todo bajo un namespace de tu elección o sólo lo que necesitas como variables locales:
 
 **Named:**
 
 ```js
 import { h, render, Component } from 'preact';
 
-// Tell Babel to transform JSX into h() calls:
+// Dile a Babel que tranforme JSX a llamadas de la función h():
 /** @jsx h */
 ```
 
@@ -32,24 +30,24 @@ import { h, render, Component } from 'preact';
 ```js
 import preact from 'preact';
 
-// Tell Babel to transform JSX into preact.h() calls:
+// Dile a Babel que tranforme JSX a llamadas de la función preact.h():
 /** @jsx preact.h */
 ```
 
-> Named imports work well for highly structured applications, whereas the default import is quick and never needs to be updated when using different parts of the library.
+> Los named imports funcionan bien en aplicaciones fuertemente estructuradas, mientras que el default export es más veloz y nunca necesita ser actualizado al utilizar diferentes partes de la librería. 
 
 ### Global pragma
 
-Instead of declaring the `@jsx` pragma in your code, it's best to configure it globally in a `.babelrc`.
+En lugar de declarar el `@jsx` pragma en tu código, es mejor configurarlo globalmente en un archivo `.babelrc`.
 
 **Named:**
->**For Babel 5 and prior:**
+>**Para Babel 5 y versiones anteriores:**
 >
 > ```json
 > { "jsxPragma": "h" }
 > ```
 >
-> **For Babel 6:**
+> **Para Babel 6:**
 >
 > ```json
 > {
@@ -60,13 +58,13 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > ```
 
 **Default:**
->**For Babel 5 and prior:**
+>**Para Babel 5 y versiones anteriores:**
 >
 > ```json
 > { "jsxPragma": "preact.h" }
 > ```
 >
-> **For Babel 6:**
+> **Para Babel 6:**
 >
 > ```json
 > {
@@ -79,11 +77,11 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 ---
 
 
-## Rendering JSX
+## Renderizado de JSX
 
-Out of the box, Preact provides an `h()` function that turns your JSX into Virtual DOM elements _([here's how](http://jasonformat.com/wtf-is-jsx))_. It also provides a `render()` function that creates a DOM tree from that Virtual DOM.
+Por defecto, Preact provee una función `h()` que convierte tu JSX a elementos de Virtual DOM _([así es como lo hace](http://jasonformat.com/wtf-is-jsx))_. También provee una función `render()` que crea un DOM tree a partir de ese Virtual DOM.
 
-To render some JSX, just import those two functions and use them like so:
+Para renderizar JSX solo basta con importar esas dos funciones y utilizarlas de la siguiente manera:
 
 ```js
 import { h, render } from 'preact';
@@ -91,43 +89,44 @@ import { h, render } from 'preact';
 render((
 	<div id="foo">
 		<span>Hello, world!</span>
-		<button onClick={ e => alert("hi!") }>Click Me</button>
+		<button onClick={ e => alert("Hola!") }>Presioname</button>
 	</div>
 ), document.body);
 ```
 
-This should seem pretty straightforward if you've used [hyperscript] or one of its [many friends](https://github.com/developit/vhtml).
 
-Rendering hyperscript with a virtual DOM is pointless, though. We want to render components and have them updated when data changes - that's where the power of virtual DOM diffing shines. :star2:
+Esto debería parecerte bastante sencillo si has utilizado [hyperscript] o alguno de sus [muchos amigos](https://github.com/developit/vhtml).
+
+Sin embargo, renderizar hyperscript con un Virtual DOM no tiene sentido. Queremos renderizar componentes y actualizarlos cuando los datos sean modificados - es ahí donde el poder del diffing de Virtual DOM brilla. :star2: 
 
 
 ---
 
 
-## Components
+## Componentes
 
-Preact exports a generic `Component` class, which can be extended to build encapsulated, self-updating pieces of a User Interface.  Components support all of the standard React [lifecycle methods], like `shouldComponentUpdate()` and `componentWillReceiveProps()`.  Providing specific implementations of these methods is the preferred mechanism for controlling _when_ and _how_ components update.
+Preact exporta una clase generica `Component`, la cual puede ser extendida para construir piezas de una Interfaz de Usuario encapsuladas y auto-actualizables. Estos Componentes soportan todos los [lifecycle methods] de React, como por ejemplo `shouldComponentUpdate()` y `componentWillReceiveProps()`. Proporcionar implementaciones especificas de estos métodos es el mecanismo preferido para controlar _cómo_ y _cuándo_ los componentes son actualizados.
 
-Components also have a `render()` method, but unlike React this method is passed `(props, state)` as arguments. This provides an ergonomic means to destructure `props` and `state` into local variables to be referenced from JSX.
+Los componentes también tienen un método `render()`, pero a diferencia de React este método recibe `(props, state)` como argumentos. Esto provee una manera ergonómica de desestructurar `props`y `state` en variables locales para ser referenciadas por JSX.
 
-Let's take a look at a very simple `Clock` component, which shows the current time.
+Hechemos un vistazo a un simple componente de `Reloj`, el cual muestra la hora actual.
 
 ```js
 import { h, render, Component } from 'preact';
 
-class Clock extends Component {
+class Reloj extends Component {
 	render() {
 		let time = new Date().toLocaleTimeString();
 		return <span>{ time }</span>;
 	}
 }
 
-// render an instance of Clock into <body>:
-render(<Clock />, document.body);
+// renderiza una instancia de Reloj en el <body>:
+render(<Reloj />, document.body);
 ```
 
 
-That's great. Running this produces the following HTML DOM structure:
+Genial! Correr esto produce la siguiente estructura de HTML:
 
 ```html
 <span>10:28:57 PM</span>
@@ -137,62 +136,63 @@ That's great. Running this produces the following HTML DOM structure:
 ---
 
 
-## The Component Lifecycle
+## Ciclo de vida de los Componentes
 
-In order to have the clock's time update every second, we need to know when `<Clock>` gets mounted to the DOM. _If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._ Preact invokes the following lifecycle methods if they are defined for a Component:
-
-| Lifecycle method            | When it gets called                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentDidUnmount`       | after removal from the DOM                       |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
+Para lograr que el tiempo de reloj sea actualizado cada segundo, necesitamos saber cuándo `<Reloj>` es montado en el DOM. _Si ya has utilizado HTML5 Custom Elements, esto es similar a los métodos de ciclo de vida `attachedCallback` y `detachedCallback`._ Preact invoca a los siguientes métodos de ciclo de vida cuando son definidos para un Componente.
 
 
+| Lifecycle method            | Cuándo son llamados                                          |
+|-----------------------------|--------------------------------------------------------------|
+| `componentWillMount`        | previo a que el componente sea montado en el DOM             |
+| `componentDidMount`         | luego de que el componente es montado en el DOM              |
+| `componentWillUnmount`      | previo a la eliminación del componente del DOM               |
+| `componentDidUnmount`       | luego de la eliminación del componente del DOM               |
+| `componentWillReceiveProps` | previo a que nuevas props sean aceptadas                     |
+| `shouldComponentUpdate`     | previo a `render()`. Devuelve `false` para saltear el render |
+| `componentWillUpdate`       | previo a `render()`                                          |
+| `componentDidUpdate`        | luego de `render()`                                          |
 
-So, we want to have a 1-second timer start once the Component gets added to the DOM, and stop if it is removed. We'll create the timer and store a reference to it in `componentDidMount`, and stop the timer in `componentWillUnmount`. On each timer tick, we'll update the component's `state` object with a new time value. Doing this will automatically re-render the component.
+
+
+Entonces, queremos tener un temporizador de 1 segundo que comienza cuando el Componente es agregado al DOM, y finaliza si es removido. Crearemos el temporizador y almacenaremos una referencia a el en `componentDidMount`, y finalizaremos el temporizador en `componentWillUnmount`. Para cada tic del temporizador, actualizaremos el `state` del objeto del componente con un nuevo tiempo. Al hacer esto, el componente será re-renderizado de forma automática.
 
 ```js
 import { h, render, Component } from 'preact';
 
-class Clock extends Component {
+class Reloj extends Component {
 	constructor() {
 		super();
-		// set initial time:
-		this.state.time = Date.now();
+		// configuramos tiempo inicial:
+		this.state.tiempo = Date.now();
 	}
 
 	componentDidMount() {
-		// update time every second
-		this.timer = setInterval(() => {
-			this.setState({ time: Date.now() });
+		// actualizar el tiempo cada un segundo
+		this.temporizador = setInterval(() => {
+			this.setState({ tiempo: Date.now() });
 		}, 1000);
 	}
 
 	componentWillUnmount() {
-		// stop when not renderable
-		clearInterval(this.timer);
+		// finalizar cuando no es renderizable
+		clearInterval(this.temporizador);
 	}
 
 	render(props, state) {
-		let time = new Date(state.time).toLocaleTimeString();
-		return <span>{ time }</span>;
+		let tiempo = new Date(state.tiempo).toLocaleTimeString();
+		return <span>{ tiempo }</span>;
 	}
 }
 
-// render an instance of Clock into <body>:
-render(<Clock />, document.body);
+// renderizamos una instancia de Reloj en <body>:
+render(<Reloj />, document.body);
 ```
 
 
 ---
 
 
-Now we have [a ticking clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
+Ahora sí: tenemos [un reloj](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
 
 
 
