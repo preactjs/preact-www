@@ -3,7 +3,7 @@ name: Project Goals
 permalink: '/about/project-goals'
 ---
 
-# Objetivos del proyecto
+# Metas del proyecto
 
 Preact tiene como objetivo cumplir con los siguientes puntos:
 

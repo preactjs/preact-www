@@ -3,30 +3,29 @@ name: Forms
 permalink: '/guide/forms'
 ---
 
-# Forms
+# Formularios
+
+Los Formularios en Preact funcionan de la misma manera que en React, excepto que no tienen soporte para propiedades y atributos estáticos (valor inicial).
+
+**[Documentación de Formularios en React](https://facebook.github.io/react/docs/forms.html)**
 
 
-Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
+## Componentes Con Control y Sin Control
 
-**[React Forms Docs](https://facebook.github.io/react/docs/forms.html)**
+La documentación de React sobre [Componentes "Con Control"](https://facebook.github.io/react/docs/forms.html#controlled-components) y [Componentes "Sin Control"](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) es muy útil para entender cómo construir el HTML de los formularios, que tienen un flujo de datos bidireccional, y cómo hacer uso de estos en el contexto de un componente que utiliza Virtual DOM para ser renderizado, que generalmente tiene un flujo de datos unidireccional.
 
-
-## Controlled & Uncontrolled Components
-
-React's documentation on ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
-
-Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
+En general, debes intentar utilizar _Componentes "Con Control"_ para todos los casos. Sin embargo, cuando se construyen componentes independientes o componentes que hacen uso de librerías de UI de terceros, puede resultar útil utilizar tu componente para agrupar toda la funcionalidad que no sea de Preact. En estos casos, los _Componentes "Sin Control"_ se adaptan muy bien para llevar a cabo esta tarea.
 
 
-## Checkboxes & Radio Buttons
+## Checkboxes y Radio Buttons
 
-Checkboxes and radio buttons (`<input type="checkbox|radio">`) can initially cause confusion when building controlled forms. This is because in an uncontrolled environment, we would typically allow the browser to "toggle" or "check" a checkbox or radio button for us, listening for a change event and reacting to the new value.  However, this technique does not transition well into a world view where the UI is always updated automatically in response to state and prop changes.
+Los checkboxes y radio buttons (`<input type="checkbox|radio">`) pueden causar confusión al crear formularios. Esto se debe a que normalmente permitimos que el navegador "cambie" o "marque" un checkbox o un radio button por nosotros, escuchando un evento de cambio (por ejemplo "change") y reaccionando ante el nuevo valor. Sin embargo, esta técnica no es la adecuada en un mundo donde la UI siempre es actualizada automaticamente cuando cambia su estado o sus propiedades.
 
-> **Walk-Through:** Say we listen for a "change" event on a checkbox, which is fired when the checkbox is checked or unchecked by the user.  In our change event handler, we set a value in `state` to the new value received from the checkbox.  Doing so will trigger a re-render of our component, which will re-assign the value of the checkbox to the value from state.  This is unnecessary, because we just asked the DOM for a value but then told it to render again with whatever value we wanted.
+> **Paso-a-Paso:** Digamos que escuchamos el evento "change" de un checkbox, el cual se dispara cuando el usuario marca o desmarca dicho control. En nuestra función de callback, establecemos un valor en el `state` utilizando el nuevo valor que recibimos del checkbox. Haciendo esto, vamos a disparar un redibujo de nuestro componente, el cual va a reasignar el valor del checkbox al valor del estado. Esto es innecesario, ya que acabamos de consultar al DOM por un valor, pero luego le indicamos que se redibuje con el mismo valor que acabamos de obtener.
 
-So, instead of listening for a `change` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_.  Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.  One last step is required:  we want to **override** the browser's default behavior of toggling the checkbox automatically, so we need to call `.preventDefault()` on the event.
+Por lo tanto, en vez de escuhar el evento `change`, debemos escuchar el evento `click`, el cual se dispara en cualquier momento que el usuario hace click sobre el checkbox _o el `<label>` asocido_. Los checkboxes solo cambian entre los valores `true` y `false`, por lo tanto, al hacer click en el control o en el label, solamente tendríamos que invertir el valor que tengamos en el `state`, desencadenando un redibujo del componente con el nuevo valor que se tiene que mostrar.
 
-### Checkbox Example
+### Ejemplo de Checkbox
 
 ```js
 class MyForm extends Component {
