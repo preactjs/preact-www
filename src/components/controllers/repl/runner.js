@@ -6,6 +6,8 @@ import regeneratorRuntime from 'babel-runtime/regenerator';
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then( r => r.clone() );
 
+const Empty = () => null;
+
 let count = 0;
 const worker = new Worker();
 worker.call = (method, ...params) => new Promise( (resolve, reject) => {
@@ -57,6 +59,9 @@ export default class Runner extends Component {
 		let { onError, onSuccess } = this.props,
 			module = { exports: {} },
 			fn, vnode;
+
+		this.root = render(<Empty />, this.base, this.root);
+		this.base.innerHTML = '';
 
 		try {
 			fn = eval(transpiled);  // eslint-disable-line
