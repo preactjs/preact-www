@@ -14,11 +14,11 @@ export default ({ children, ...props }) => {
 	let child = children && children[0],
 		isHighlight = child && child.nodeName==='code';
 	if (isHighlight) {
-		let text = child.children[0],
+		let text = child.children[0].replace(/(^\s+|\s+$)/g, ''),
 			lang = (child.attributes.class && child.attributes.class).match(/lang-([a-z]+)/)[1],
 			highlighted = hljs.highlightAuto(text, lang ? [lang] : null),
 			hLang = highlighted.language,
-			repl = hLang==='js' && text.split('\n').length>2;
+			repl = hLang==='js' && text.split('\n').length>2 && props.repl!=='false';
 		return (
 			<pre class={cx('highlight', `highlight-${hLang}`, props.class)}>
 				<code class={`hljs lang-${hLang}`} dangerouslySetInnerHTML={{ __html:highlighted.value }} />
