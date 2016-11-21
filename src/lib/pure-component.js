@@ -7,13 +7,11 @@ export function shouldComponentUpdate(props, state) {
 }
 
 function shallowEqual(obj, obj2) {
-	if (Object.keys(obj).length!==Object.keys(obj2).length) {
-		return false;
-	}
 	for (let i in obj) {
-		if (obj.hasOwnProperty(i) && obj2[i]!==obj[i]) {
-			return false;
-		}
+		if (i=='children' ? (obj[i].length!==obj2[i].length || obj[i][0]!==obj[i][0]) : obj[i]!==obj2[i]) return false;
+	}
+	for (let i in obj2) {
+		if (!(i in obj)) return false;
 	}
 	return true;
 }
