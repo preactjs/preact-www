@@ -1,5 +1,4 @@
 import { h, Component } from 'preact';
-import { Link } from 'preact-router';
 import cx from 'classnames';
 import { InvertedLogo } from '../logo';
 import { connect } from '../../lib/store';
@@ -111,7 +110,7 @@ class NavItem extends Component {
 }
 
 
-// depending on the type of nav link, use <Link> or <a>
+// depending on the type of nav link, use <a>
 class NavLink extends Component {
 	state = { hovered: false };
 
@@ -120,11 +119,10 @@ class NavLink extends Component {
 	handleMouseOut = () => this.setState({ hovered: false });
 
 	render({ to, ...props }, { hovered }) {
-		let LinkImpl = to.path ? Link : 'a',
-			Flair = to.flair && LINK_FLAIR[to.flair],
+		let Flair = to.flair && LINK_FLAIR[to.flair],
 			touch = navigator.maxTouchPoints>1;
 		return (
-			<LinkImpl
+			<a
 				href={to.path || 'javascript:'}
 				onMouseover={!touch && this.handleMouseOver}
 				onMouseout ={!touch && this.handleMouseOut}
@@ -132,7 +130,7 @@ class NavLink extends Component {
 			>
 				{ Flair && <Flair paused={!hovered} /> }
 				{ to.name || to.title }
-			</LinkImpl>
+			</a>
 		);
 	}
 }
