@@ -48,7 +48,7 @@ export default class Routes extends Component {
 		return <Ctrl path={route.path || ''} route={route} />;
 	}
 
-	render({ url, component:C='main', ...props }) {
+	render({ url, component:C='main', onChange, ...props }) {
 		return (
 			<C {...props}>
 				<Router url={url} onChange={this.handleRoute}>
