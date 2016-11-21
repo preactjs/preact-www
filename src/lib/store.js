@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { shouldComponentUpdate } from './pure-component';
 
 
 export default (state={}) => {
@@ -35,7 +36,8 @@ export class Provider extends Component {
 
 
 export const connect = mapToProps => Child => class Wrapper extends Component {
-	update = () => this.setState({});
+	update = state => this.setState(mapToProps(state));
+	shouldComponentUpdate = shouldComponentUpdate;
 	componentWillMount() {
 		this.context.store.subscribe(this.update);
 	}
@@ -43,8 +45,6 @@ export const connect = mapToProps => Child => class Wrapper extends Component {
 		this.context.store.unsubscribe(this.update);
 	}
 	render(props, state, context) {
-		state = context.store.getState();
-		if (mapToProps) state = mapToProps(state);
 		return <Child store={context.store} {...props} {...state} />;
 	}
 };

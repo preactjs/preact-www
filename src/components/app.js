@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import { Provider } from '../lib/store';
 import createStore from '../store';
-import pure from '../lib/pure-component';
 import Routes from './routes';
 import Header from './header';
 import Footer from './footer';
@@ -10,24 +9,21 @@ import Footer from './footer';
 
 let store = createStore();
 
-@pure
 export default class App extends Component {
-	state = { url: this.props.url || '/' };
-
-	componentDidUpdate(prevProps, prevState) {
-		let { url } = this.state;
-		if (url!==prevState.url) {
+	handleUrlChange({ url }) {
+		let prev = store.getState().url || '/';
+		if (url!==prev) {
+			store.setState({ url });
 			ga('send', 'pageview', url);
-			// document.body.scrollTop = 0;
 		}
 	}
 
-	render(_, { url }) {
+	render() {
 		return (
 			<Provider store={store}>
 				<div id="app">
-					<Header url={url} />
-					<Routes onChange={this.linkState('url', 'url')} />
+					<Header />
+					<Routes onChange={this.handleUrlChange} />
 					<Footer />
 				</div>
 			</Provider>
