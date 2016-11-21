@@ -4,6 +4,8 @@ export default function getDefaultLanguage(available={}) {
 		if (langs[i]) {
 			let lang = String(langs[i]).toLowerCase();
 			if (available[lang]) return lang;
+			// Respect order of `navigator.languages` by returning if the fallback language `English` is found
+			if (lang === 'en') return;
 		}
 	}
 }
