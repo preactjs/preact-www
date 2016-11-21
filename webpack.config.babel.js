@@ -139,6 +139,8 @@ module.exports = {
 				// dead_code: true,
 				pure_funcs: [
 					'classCallCheck',
+					'_possibleConstructorReturn',
+					'_classCallCheck',
 					'Object.freeze',
 					'invariant',
 					'warning'
