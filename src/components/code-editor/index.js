@@ -72,11 +72,10 @@ export default class CodeEditor extends Component {
 			indentWithTabs: !spaces,
 			tabSize: tabSize || 2,
 			indentUnit: spaces ? (Math.round(spaces) || 2) : false,
-			showCursorWhenSelecting: true
-		});
-
-		this.editor.addKeyMap({
-			'Cmd-/': 'toggleComment'
+			showCursorWhenSelecting: true,
+			extraKeys: {
+				'Cmd-/': 'toggleComment'
+			}
 		});
 
 		this.editor.on('change', () => {
