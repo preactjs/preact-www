@@ -3,9 +3,9 @@ name: Extendiendo Component
 permalink: '/guide/extending-component'
 ---
 
-# Extendiendo Component
+# Extendiendo `Component`
 
-Es posible que en algunos proyectos quieras extender Component con funcionalidad adicional.
+Es posible que en algunos proyectos quieras extender `Component` con funcionalidad adicional.
 
 Existen variadas opiniones sobre el valor de la herencia en JavaScript, pero si querés construir tu "clase base" de la cual todos tus componentes heredan, Preact te tiene cubierto.
 

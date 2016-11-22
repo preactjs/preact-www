@@ -5,7 +5,7 @@ permalink: '/guide/lifecycle-methods'
 
 # Métodos del ciclo de vida
 
-> _**Nota:** Si has utilizando Custom Elements de HTML5, es similar a los métodos `attachedCallback` y `detachedCallback`._
+> _**Nota:** Si has utilizado Custom Elements de HTML5, es similar a los métodos `attachedCallback` y `detachedCallback`._
 
 Preact invoca los siguientes métodos del ciclo en caso de que estén definidos para un componente:
 

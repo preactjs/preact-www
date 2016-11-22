@@ -23,9 +23,9 @@ toc: false
 
 ## ¿Qué es Preact?
 
-Preact es un intento de recrear las proposiciones principales de React _(o librerías similares como Mithril)_ usando la menor cantidad de código posible, con soporte de primera clase de ES2015. Actualmente la librería pesa alrededor de **3kB** (minificada y gzippeada)
+Preact es un intento de recrear las proposiciones principales de React _(o librerías similares como Mithril)_ usando la menor cantidad de código posible, con soporte de primera clase de ES2015. Actualmente la librería pesa alrededor de **3kB** (minificada y gzippeada).
 
-Preact mantiene una gran parte de compatibilidad con React, pero solo con las interfaces de [componentes funcionales sin estado] y las [clases de ES6].
+Preact mantiene una gran parte de compatibilidad con React, pero solo con las interfaces de [Componentes funcionales sin estado] y las [clases de ES6].
 Como uno puede esperar viniendo de React, los componentes son simples bloques para componer interfaces de usuario.
 
 

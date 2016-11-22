@@ -5,7 +5,7 @@ permalink: '/guide/getting-started'
 
 # Primeros pasos
 
-Esta guía tratará la creación de simple componente de "Reloj". Información más detallada para cada tema especifico puede ser encontrada dentro del menú de Guía.
+En esta guía vamos a ver cómo crear un simple componente de "Reloj". Puedes encontrar información más detallada para cada tema dentro del menú de Guía.
 
 > :information_desk_person: [No es necesario utilizar ES2015 para poder usar Preact](https://github.com/developit/preact-without-babel)... pero deberías hacerlo. Esta guía asume que cuentas con algún tipo de configuración compatible con ES2015 usando Babel y/o webpack/browserify/gulp/grunt/etc. Si no la tienes, comienza con [preact-boilerplate] o un [Template de CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
@@ -14,14 +14,14 @@ Esta guía tratará la creación de simple componente de "Reloj". Información m
 
 ## Importa lo que necesitas
 
-El modulo de `preact` provee tanto named como default exports, por lo que puedes importar todo bajo un namespace de tu elección o sólo lo que necesitas como variables locales:
+El módulo de `preact` provee tanto `named` como `default` exports, por lo que puedes importar todo bajo un namespace o sólo lo que necesitas como variables locales:
 
 **Named:**
 
 ```js
 import { h, render, Component } from 'preact';
 
-// Dile a Babel que tranforme JSX a llamadas de la función h():
+// Indica a Babel tranforme las llamadas de la función h() a JSX:
 /** @jsx h */
 ```
 
@@ -30,11 +30,11 @@ import { h, render, Component } from 'preact';
 ```js
 import preact from 'preact';
 
-// Dile a Babel que tranforme JSX a llamadas de la función preact.h():
+// Indica a Babel tranforme las llamadas de la función preact.h() a JSX:
 /** @jsx preact.h */
 ```
 
-> Los named imports funcionan bien en aplicaciones fuertemente estructuradas, mientras que el default export es más veloz y nunca necesita ser actualizado al utilizar diferentes partes de la librería. 
+> Los `named imports` funcionan bien en aplicaciones fuertemente estructuradas, mientras que el default export es más veloz y nunca necesita ser actualizado al utilizar diferentes partes de la librería.
 
 ### Global pragma
 
@@ -97,7 +97,7 @@ render((
 
 Esto debería parecerte bastante sencillo si has utilizado [hyperscript] o alguno de sus [muchos amigos](https://github.com/developit/vhtml).
 
-Sin embargo, renderizar hyperscript con un Virtual DOM no tiene sentido. Queremos renderizar componentes y actualizarlos cuando los datos sean modificados - es ahí donde el poder del diffing de Virtual DOM brilla. :star2: 
+Sin embargo, renderizar hyperscript con un Virtual DOM no tiene sentido. Queremos renderizar componentes y actualizarlos cuando los datos sean modificados - es ahí donde el poder del diffing de Virtual DOM brilla. :star2:
 
 
 ---

@@ -5,7 +5,7 @@ permalink: '/guide/differences-to-react'
 
 # Diferencias con React
 
-Preact no pretende ser una reimplementación de React. Existen diferencias. Muchas de estas son triviales, o pueden ser completamente eliminadas utilizando [preact-compat], que es una fina capa sobre preact que intenta mantener 100% compatibilidad con React.
+Preact no pretende ser una reimplementación de React. Existen diferencias. Muchas de estas son triviales, o pueden ser completamente eliminadas utilizando [preact-compat], que es una fina capa sobre Preact que intenta mantener 100% compatibilidad con React.
 
 La razón por la que Preact no intenta incluir absolutamente todas las características de React es para mantenerse **pequeño** y **enfocado** - de otro modo tendría más sentido enviar optimizaciones al proyecto React, que es suficientemente complejo y con una estructura de código bien pensada.
 
@@ -17,7 +17,7 @@ Tanto para Preact como para [preact-compat], la compatibilidad de versiones es m
 > Así, el sitio web y la documentación reflejan React `0.14.x` y `0.15.x` cuando se discute compatibilidad o se hacen comparaciones.
 
 
-## Qué está incluido?
+## ¿Qué está incluido?
 
 - [Componentes de Clases de ES6]
     - _Las clases proveen una forma expresiva e definir componentes que poseen estado_
@@ -36,7 +36,7 @@ Tanto para Preact como para [preact-compat], la compatibilidad de versiones es m
     - _Es también más legible: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
 
-## Qué fue agregado?
+## ¿Qué fue agregado?
 
 Preact de hecho agrega algunas características convenientes inspiradas en el trabajo de la comunidad de React:
 
@@ -49,7 +49,7 @@ Preact de hecho agrega algunas características convenientes inspiradas en el tr
 - Reciclado y agrupamiento de Componentes y elementos.
 
 
-## Qué falta?
+## ¿Qué falta?
 
 - Validación de [PropType]: No todo el mundo usa PropTypes, entonces no son parte del núcleo de Preact.
     - _**Las PropTypes son soportadas** en [preact-compat], o también podés usarlas manualmente._
@@ -60,7 +60,7 @@ Preact de hecho agrega algunas características convenientes inspiradas en el tr
     - _Una implementación completa de eventos implica más mentenimiento y problemas de performance, además de una superficie de API más grande._
 
 
-## Cuál es la diferencia?
+## ¿Cuál es la diferencia?
 
 Preact y React tienen algunas otras diferencias más finas:
 
