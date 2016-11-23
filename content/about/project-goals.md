@@ -5,6 +5,8 @@ permalink: '/about/project-goals'
 
 # Preact's Goals
 
+## Goals
+
 Preact aims to deliver on a few key goals:
 
 - **Performance:** Render quickly & efficiently
@@ -13,7 +15,7 @@ Preact aims to deliver on a few key goals:
 - **Understandability:** Understanding the codebase should take no more than a few hours
 - **Compatibility:** Preact aims to be _largely compatible_ with the React API. [preact-compat] attempts to achieve as much compatibility with React as possible.
 
-# Non-Goals
+## Non-Goals
 
 Some React features are intentionally omitted from Preact, either because they are not achievable while meeting the primary project goals listed above or because they don't fit within the scope of Preact's core set of functionality.
 

@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import { connect } from '../lib/store';
-import { Link } from 'preact-router';
 import { memoize } from 'decko';
 import yaml from 'yaml';
 import Markdown from 'markdown';
@@ -10,19 +9,18 @@ import widgets from './widgets';
 const COMPONENTS = {
 	...widgets,
 	pre: widgets.CodeBlock,
-	a({ children, ...props }) {
-		let Type = props.target || props.href.match(/\:\/\//) ? 'a' : Link;
-		return <Type {...props}>{ children }</Type>;
+	a(props) {
+		if (!props.target && props.href.match(/:\/\//)) {
+			props.target = '_blank';
+			props.rel = 'noopener noreferrer';
+		}
+		return <a {...props} />;
 	}
 };
 
 const TYPES = {
 	md: 'markdown',
 	html: 'markup'
-};
-
-const FETCH_OPTS = {
-	cache: 'force-cache'
 };
 
 const EMPTY = {};
@@ -44,14 +42,14 @@ const getContent = memoizeProd( ([lang, name]) => {
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
 	// attempt to use prefetched request
-	let fetchPromise = process.env.NODE_ENV==='production' && window['_boostrap_'+url] || fetch(url, FETCH_OPTS);
+	let fetchPromise = process.env.NODE_ENV==='production' && window['_boostrap_'+url] || fetch(url);
 	return fetchPromise
 		.then( r => {
 			if (!r.ok) {
 				// @TODO: allow falling back to english? (404 crashes dev server)
 				// if (lang) return fetch(url.replace(/lang\/[^/]+\//,''));
 				ext = 'md';
-				r = fetch(`${path}/${r.status}.md`, FETCH_OPTS);
+				r = fetch(`${path}/${r.status}.md`);
 			}
 			return r;
 		})
@@ -87,18 +85,6 @@ const getAllPaths = memoizeProd( () => {
 });
 
 
-const EXTERNAL_LINKS = {
-	jsx: 'http://www.jasonformat.com/wtf-is-jsx/'
-};
-
-const postProcessMarkdown = content => (
-	content.replace(/\[([a-z0-9 _&-]+)\]/gi, (s, link) => {
-		let normalize = str => str.toLowerCase().replace(/[^\w\/]+/g,''),
-			external = EXTERNAL_LINKS[normalize(link)],
-			match = external || getAllPaths().filter( path => path && ~normalize(path).indexOf(normalize(link)) )[0];
-		return match ? `<a href="${match}"${external?' target="_blank"':''}>${link}</a>` : s;
-	})
-);
 
 
 @connect( ({ lang }) => ({ lang }) )
@@ -169,7 +155,7 @@ export default class ContentRegion extends Component {
 
 const Content = ({ type, content, ...props }) => (
 	type==='markdown' ? (
-		<Markdown markdown={content} postProcess={postProcessMarkdown} {...props} />
+		<Markdown markdown={content} {...props} />
 	) : type==='markup' ? (
 		<Markup markup={content} type="html" {...props} />
 	) : null

@@ -3,6 +3,12 @@ import { Router } from 'preact-router';
 import config from '../config.json';
 import controllers from './controllers';
 
+let { pushState } = history;
+history.pushState = (a, b, url) => {
+	pushState.call(history, a, b, url);
+	if (url.indexOf('#')<0) scrollTo(0, 0);
+};
+
 
 export default class Routes extends Component {
 	/** Gets fired when the route changes.
@@ -42,7 +48,7 @@ export default class Routes extends Component {
 		return <Ctrl path={route.path || ''} route={route} />;
 	}
 
-	render({ url, component:C='main', ...props }) {
+	render({ url, component:C='main', onChange, ...props }) {
 		return (
 			<C {...props}>
 				<Router url={url} onChange={this.handleRoute}>

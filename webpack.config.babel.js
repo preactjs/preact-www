@@ -9,7 +9,7 @@ import rreaddir from 'recursive-readdir-sync';
 import minimatch from 'minimatch';
 import config from './src/config.json';
 
-const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).map( s => '/'+s );
+const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).filter(minimatch.filter('!content/lang/**')).map( s => '/'+s );
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -139,6 +139,8 @@ module.exports = {
 				// dead_code: true,
 				pure_funcs: [
 					'classCallCheck',
+					'_possibleConstructorReturn',
+					'_classCallCheck',
 					'Object.freeze',
 					'invariant',
 					'warning'
@@ -150,9 +152,8 @@ module.exports = {
 			relativePaths: false,
 			publicPath: '/',
 			updateStrategy: 'all',
-			version: 'hash',
+			version: '[hash]',
 			preferOnline: true,
-			// updateStrategy: 'changed',
 			safeToUseOptionalCaches: true,
 			caches: {
 				main: ['index.html', 'bundle.*.js', 'style.*.css'],
@@ -169,12 +170,6 @@ module.exports = {
 			AppCache: {
 				FALLBACK: { '/': '/' }
 			}
-			// rewrite /urls/without/extensions to /index.html
-			//, rewrites(url) {
-			// 	// if (!url.match(/\.[a-z0-9]{2,}(\?.*)?$/)) url = '/index.html';
-			// 	if (!url.match(/\.[a-z0-9]{2,}(\?.*)?$/)) url = '/';
-			// 	return url;
-			// }
 		})
 	] : []),
 
@@ -194,7 +189,8 @@ module.exports = {
 		port: process.env.PORT || 8080,
 		host: '0.0.0.0',
 		publicPath: '/',
-		// quiet: true,
+		quiet: true,
+		clientLogLevel: 'error',
 		compress: true,
 		contentBase: `${__dirname}/src`,
 		historyApiFallback: true,

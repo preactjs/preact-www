@@ -14,19 +14,7 @@ init();
 if (process.env.NODE_ENV==='development' && module.hot) {
 	require('preact/devtools');
 
-	let log = console.log,
-		logs = [];
-	console.log = (t, ...args) => {
-		if (typeof t==='string' && t.match(/^\[(HMR|WDS)\]/)) {
-			if (t.match(/(up to date|err)/i)) logs.push(t.replace(/^.*?\]\s*/m,''), ...args);
-		}
-		else {
-			log.call(console, t, ...args);
-		}
-	};
 	module.hot.accept('./components/app', () => requestAnimationFrame( () => {
-		console.log(`%c🚀 ${logs.join(' ')}`, 'color:#888;');
-		logs.length = 0;
 		init();
 	}) );
 }
