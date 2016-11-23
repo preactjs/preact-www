@@ -23,10 +23,6 @@ const TYPES = {
 	html: 'markup'
 };
 
-const FETCH_OPTS = {
-	cache: 'force-cache'
-};
-
 const EMPTY = {};
 
 // Find YAML FrontMatter preceeding a markdown document
@@ -46,14 +42,14 @@ const getContent = memoizeProd( ([lang, name]) => {
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
 	// attempt to use prefetched request
-	let fetchPromise = process.env.NODE_ENV==='production' && window['_boostrap_'+url] || fetch(url, FETCH_OPTS);
+	let fetchPromise = process.env.NODE_ENV==='production' && window['_boostrap_'+url] || fetch(url);
 	return fetchPromise
 		.then( r => {
 			if (!r.ok) {
 				// @TODO: allow falling back to english? (404 crashes dev server)
 				// if (lang) return fetch(url.replace(/lang\/[^/]+\//,''));
 				ext = 'md';
-				r = fetch(`${path}/${r.status}.md`, FETCH_OPTS);
+				r = fetch(`${path}/${r.status}.md`);
 			}
 			return r;
 		})
