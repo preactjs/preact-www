@@ -5,6 +5,8 @@ permalink: '/about/project-goals'
 
 # Metas del proyecto
 
+## Metas
+
 Preact tiene como objetivo cumplir con los siguientes puntos:
 
 - **Performante:** Renderizar rápido y eficientemente
@@ -13,7 +15,7 @@ Preact tiene como objetivo cumplir con los siguientes puntos:
 - **Comprensibilidad:** Entender el código fuente debería llevar muy poco tiempo, a penas unas horas
 - **Compatibilidad:** Preact apunta ser _compatible en gran medida_ con la API React. [preact-compat] intenta lograr la mayor compatibilidad posible con React.
 
-# Funcionalidades excluidas
+## Funcionalidades excluidas
 
 Algunas funcionalidades de React son omitidas intencionalmente en Preact, ya que no cumplen con los puntos mencionados anteriormente, o bien, porque no encajan dentro del alcance del conjunto básico de funciones de Preact.
 

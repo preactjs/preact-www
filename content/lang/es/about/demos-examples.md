@@ -20,6 +20,14 @@ Por supuesto, este sitio está construído con Preact.
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Construido con Preact y Material Design Lite.
 
+[**GuriVR**](https://gurivr.com) :eyeglasses:  
+Natural language based Web VR story creator.  
+_([Github Project](https://github.com/opennewslabs/guri-vr))_
+
+[**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
+The audience participation Progressive Web App from Chrome Dev Summit 2016!  
+([Github Project](https://github.com/jakearchibald/big-web-quiz))
+
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
 Open-Source peach.cool app.  
 [Github Project](https://github.com/developit/nectarine)
