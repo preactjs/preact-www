@@ -11,7 +11,7 @@ export default class Footer extends Component {
 
 	render({ lang }) {
 		let path = location.pathname.replace(/\/$/,'') || '/index';
-		if (lang) path = '/' + lang + path;
+		if (lang) path = `/lang/${lang}${path}`;
 		let editUrl = `https://github.com/developit/preact-www/tree/master/content${path}.md`;
 		return (
 			<footer class={style.footer}>
