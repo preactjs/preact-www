@@ -84,7 +84,7 @@
     "highlight.js": "^9.5.0",
     "isomorphic-fetch": "^2.2.1",
     "marked": "^0.3.5",
-    "preact": "^7.0.3",
+    "preact": "^7.1.0",
     "preact-compat": "^3.0.0",
     "preact-markup": "^1.3.0",
     "preact-router": "^2.0.0",
