@@ -36,6 +36,7 @@ export class Provider extends Component {
 
 
 export const connect = mapToProps => Child => class Wrapper extends Component {
+	state = mapToProps(this.context.store.getState());
 	update = state => this.setState(mapToProps(state));
 	shouldComponentUpdate = shouldComponentUpdate;
 	componentWillMount() {
