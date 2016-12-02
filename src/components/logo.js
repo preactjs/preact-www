@@ -45,7 +45,7 @@ export default class Logo extends Component {
 		);
 	}
 
-	render({ inverted=false, text=false, fg='white', bg='#673ab8', component, ...props }, { i }) {
+	render({ paused, inverted=false, text=false, fg='white', bg='#673ab8', component, ...props }, { i }) {
 		let Root = component || 'div';
 		if (inverted) [bg, fg] = [fg, bg];
 
