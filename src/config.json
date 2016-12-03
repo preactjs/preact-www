@@ -3,7 +3,8 @@
 	"name": "Preact",
 	"languages": {
 		"zh": "Chinese",
-		"es": "Spanish"
+		"es": "Spanish",
+		"pt-br": "Portuguese"
 	},
 	"docsearch": {
 		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
