@@ -25,7 +25,7 @@ toc: false
 
 
 <section class="home-top">
-    <h1>Um novo tipo de biblioteca.</h1>
+    <h1>Uma biblioteca diferente.</h1>
 </section>
 
 
