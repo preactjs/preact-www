@@ -7,8 +7,8 @@ permalink: '/guide/types-of-components'
 
 
 Há 2 tipos de componentes no Preact:
-- Componentes Clássicos, com [métodos do ciclo de vida][lifecycle methods] e estado
-- Componentes Funcionais Sem Estado, que são funções que aceitam `props` e returnam [JSX].
+- Componentes Clássicos, com [métodos do ciclo de vida] e estado
+- Componentes Funcionais Sem Estado, que são funções que aceitam `props` e retornam JSX.
 
 Dentro desses dois tipos, há também algumas maneiras diversas de implementar-se um componente,
 
@@ -67,3 +67,5 @@ const Link = ({ children, ...props }) => (
 ```
 
 > *Nota de ES2015:* o acima é uma _Arrow Function_ , e porque nós utilizamos parênteses ao invés de chaves, o valor dentro dos parênteses é automaticamente retornado. Você pode ler mais sobre isso [aqui](https://github.com/lukehoban/es6features#arrows).
+
+[métodos do ciclo de vida]: /guide/lifecycle-methods
