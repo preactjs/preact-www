@@ -112,23 +112,11 @@ class NavItem extends Component {
 
 // depending on the type of nav link, use <a>
 class NavLink extends Component {
-	state = { hovered: false };
-
-	handleMouseOver = () => this.setState({ hovered: true });
-
-	handleMouseOut = () => this.setState({ hovered: false });
-
 	render({ to, ...props }, { hovered }) {
-		let Flair = to.flair && LINK_FLAIR[to.flair],
-			touch = navigator.maxTouchPoints>1;
+		let Flair = to.flair && LINK_FLAIR[to.flair];
 		return (
-			<a
-				href={to.path || 'javascript:'}
-				onMouseover={!touch && this.handleMouseOver}
-				onMouseout ={!touch && this.handleMouseOut}
-				{...props}
-			>
-				{ Flair && <Flair paused={!hovered} /> }
+			<a href={to.path || 'javascript:'} {...props}>
+				{ Flair && <Flair /> }
 				{ to.name || to.title }
 			</a>
 		);
