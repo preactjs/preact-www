@@ -127,23 +127,20 @@
 				top: 100%;
 				margin: 0;
 				padding: 3px 0;
-				transform: translateX(-50%) perspective(1000px);
+				transform: translateX(-50%) perspective(1000px) translateX(.5px);  // .5 fixes blur issue
 				background: #FFF;
 				border-radius: 0 0 3px 3px;
 				box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 				border: 1px solid #673AB7;
 				border-top: none;
 				animation: menuOpen 150ms ease-out forwards 1;
-				// animation: menuOpen 250ms cubic-bezier(.52,.03,.45,2.32) forwards 1;
 				transform-origin: 50% 0;
-				filter: blur(0);   // fixes blurry layer issue in Chrome
 				z-index: 750;
 
 				@keyframes menuOpen {
 					from {
 						opacity: 0;
-						transform: translateX(-50%) perspective(1000px) rotateX(-45deg);	//  scaleY(.9)
-						filter: blur(0.00001px);
+						transform: translateX(-50%) perspective(1000px) translateX(.5px) rotateX(-45deg);
 					}
 				}
 
