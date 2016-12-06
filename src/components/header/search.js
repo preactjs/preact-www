@@ -54,7 +54,7 @@ export default class Search extends Component {
 	}
 
 	componentWillUnmount() {
-		if (input) input.parentNode.removeChild(input);
+		if (input && input.parentNode) input.parentNode.removeChild(input);
 	}
 
 	render() {
