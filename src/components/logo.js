@@ -56,7 +56,7 @@ export default class Logo extends Component {
 
 	render({ inverted=false, text=false, fg='white', bg='#673ab8', component, ...props }, { i }) {
 		let Root = component || 'div',
-			touch = navigator.maxTouchPoints>1;
+			touch = typeof navigator!=='undefined' && navigator.maxTouchPoints>1;
 		if (inverted) [bg, fg] = [fg, bg];
 
 		return (

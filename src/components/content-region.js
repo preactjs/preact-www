@@ -42,7 +42,7 @@ const getContent = memoizeProd( ([lang, name]) => {
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
 	// attempt to use prefetched request
-	let fetchPromise = process.env.NODE_ENV==='production' && window['_boostrap_'+url] || fetch(url);
+	let fetchPromise = process.env.NODE_ENV==='production' && typeof window!=='undefined' && window['_boostrap_'+url] || fetch(url);
 	return fetchPromise
 		.then( r => {
 			if (!r.ok) {
@@ -139,10 +139,7 @@ export default class ContentRegion extends Component {
 		if (content!==this.state.content) this.updateToc();
 	}
 
-	render({ name, children, onLoad, onToc, ...props }, { type, content }) {
-		// if (content) {
-		// 	content = content.replace(/(\b|\s)\:[a-z0-9_]+\:(\b|\s)/gi, '$1🕑$2');
-		// }
+	render({ store, name, children, onLoad, onToc, ...props }, { type, content }) {
 		return (
 			<content-region loading={!content} {...props}>
 				{ content && (
