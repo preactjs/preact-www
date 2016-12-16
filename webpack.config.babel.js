@@ -25,7 +25,7 @@ module.exports = {
 		path: `${__dirname}/build`,
 		publicPath: '/',
 		// filename: 'bundle.js'
-		filename: 'bundle.[hash].js',
+		filename: 'bundle.js',
 		chunkFilename: '[name].[chunkhash].chunk.js'
 	},
 
@@ -100,8 +100,7 @@ module.exports = {
 	plugins: ([
 		new ProgressBarPlugin(),
 		new webpack.NoErrorsPlugin(),
-		new ExtractTextPlugin('style.[chunkhash].css', {
-			// leave async chunks using style-loader
+		new ExtractTextPlugin('style.css', {
 			allChunks: false,
 			disable: ENV!=='production'
 		}),
@@ -109,7 +108,6 @@ module.exports = {
 			process: {},
 			'process.env': {},
 			'process.env.NODE_ENV': JSON.stringify(ENV)
-			// process: JSON.stringify({ env:{ NODE_ENV: ENV } })
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.html',
@@ -156,7 +154,7 @@ module.exports = {
 			preferOnline: true,
 			safeToUseOptionalCaches: true,
 			caches: {
-				main: ['index.html', 'bundle.*.js', 'style.*.css'],
+				main: ['index.html', 'bundle.js', 'style.css'],
 				additional: ['*.chunk.js', '*.worker.js', ...CONTENT],
 				optional: [':rest:']
 			},
