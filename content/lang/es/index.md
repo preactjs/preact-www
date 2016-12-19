@@ -115,7 +115,7 @@ toc: false
     <h2>Ecosistema compatible</h2>
 
     <p>
-        Los Componentes de Virtual DOM hacen simple compartir elementos reusables - desde notones hasta proveedores de data.
+        Los Componentes de Virtual DOM hacen simple compartir elementos reusables - desde botones hasta proveedores de data.
         El diseño de Preact significa también que tenés miles de Componentes disponibles desde el ecosistema de React.
     </p>
 
