@@ -35,11 +35,11 @@ toc: false
     <h2>更接近于实质</h2>
     
     <p> 
-		Preact在DOM上实现一个可能是最薄的一层虚拟DOM实现。web是一个稳定的平台，我们是时候以一个安全的名义停止实现他了。
+		Preact在DOM上实现一个可能是最薄的一层虚拟DOM实现。web是一个稳定的平台，我们是时候停止以安全的名义重新去实现它（一套新的DOM实现框架）。
     </p>
 
     <p> 
-		Preact也是web平台的一等公民，他将虚拟DOM与DOM本身区别开，注册事件处理，和其它库一起工作.
+		Preact也是web平台的一等公民，他将虚拟DOM与DOM本身区别开，注册真实的事件处理函数，很好地与其它库一起工作。
     </p>
 </section>
 
@@ -54,7 +54,7 @@ toc: false
     </p>
     
     <p> 
-		这将意味可以下载更少的javascript代码，解析和执行 - 为您的代码节省更多的时间，所以你可以构建一个你定义的经验，而不需要受一个框架的控制.
+		这将意味可以下载更少的javascript代码，解析和执行 - 为您的代码节省更多的时间，所以你可以构建一个你定义的体验，而不需要受一个框架的控制.
     </p>
 </section>
 
@@ -65,11 +65,11 @@ toc: false
     <h2>高性能</h2>
     
     <p>
-		Preact是快速的，不仅是因为他的体积，他是最快的虚拟DOM之一,由于一个简单和可预测的diff实现.
+		Preact是快速的，不仅是因为他的体积，因为一个简单和可预测的diff实现，使它成为最快的虚拟DOM框架之一。
     </p>
     
     <p> 
-        他甚至包含额外的性能特性，如<a href="/guide/configuration#debounceRendering">批量自定义更新</a>，可选的<a href="/guide/configuration#syncComponentUpdates">异步渲染</a>，DOM回收和通过链接状态(/guide/linked-state)优化的事件处理。
+        他甚至包含额外的性能特性，如<a href="/guide/configuration#debounceRendering">批量自定义更新</a>，可选的<a href="/guide/configuration#syncComponentUpdates">异步渲染</a>，DOM回收和通过关连状态(/guide/linked-state)优化的事件处理。
     </p>
 </section>
 
@@ -77,7 +77,7 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/portable.svg">
  
-    <h2>轻量 &amp; 可移值</h2>
+    <h2>轻量 &amp; 移植</h2>
     
     <p>
         Preact是轻量的意味着你可以把一个强大的虚拟DOM组件范例带到一个新的地方。
@@ -212,7 +212,7 @@ render(
 
 
 <section class="home-top">
-    <h1>准备潜入?</h1>
+    <h1>准备深入了解</h1>
 </section>
 
 

@@ -45,7 +45,7 @@ Preact是希望快速加载和交互的[渐进式Web应用程序](https://develo
             <h3>构建块和React生态系统很好的一起工作</h3>
           </div>
           <p class="_summary"><p>
-          无论您需要使用React的[服务器端渲染](https://facebook.github.io/react/docs/react-dom-server.html)以快速获取屏幕上的像素，还是使用[React路由](https://github.com/ReactTraining/react-router)进行导航，Preact都可以在生态系统中的许多库中正常工作。
+          无论您需要使用React的[服务器端渲染](https://facebook.github.io/react/docs/react-dom-server.html)以快速获取屏幕上的像素，还是使用[React路由](https://github.com/ReactTraining/react-router)进行导航，Preact都可以在生态系统中与许多的库正常工作。
           </p></p>
         </div>
     </li>
@@ -53,7 +53,7 @@ Preact是希望快速加载和交互的[渐进式Web应用程序](https://develo
 
 ## 这个站点是PWA
 
-事实上，你现在的查看的这个网站是一个渐进式Web应用程序！ 在这里，它可以在5秒内从Nexus 5X到3G的交互
+事实上，你现在的查看的这个网站是一个渐进式Web应用程序！它可以在5秒内，在3G的网络环境下用Nexus 5X进行交互。
 <img src="../assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
 
 静态站点内容存储在（Service Worker）高速缓存存储API中，使重复访问可以即时加载。
@@ -69,7 +69,7 @@ Preact是希望快速加载和交互的[渐进式Web应用程序](https://develo
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">代码拆分</a></strong> 
-            分解您的代码，以便只发送用户需要的页面。根据需要延迟加载其余部分可提高页面加载时间。通过Webpack支持。
+            分解您的代码，以便只发送用户页面需要的代码。根据需要延迟加载其余部分可提高页面加载时间。这点通过webpack支持。
           </p>
         </div>
     </li>
@@ -97,7 +97,7 @@ Preact是希望快速加载和交互的[渐进式Web应用程序](https://develo
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> 允许您审核渐进式Web应用程序的性能和最佳做法，所以你知道你的应用程序执行情况</p>
+          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> 允许你审计（监控）渐进式Web应用程序的性能和最佳实践，因此你能知道你的应用程序的表现情况。</p>
         </div>
     </li>
 </ol>
