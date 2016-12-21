@@ -1,3 +1,4 @@
+try { self.window = self; } catch (err) {}  // fix babel debug reference
 import { transform, availablePresets, availablePlugins } from 'babel-standalone';
 
 // rpc
