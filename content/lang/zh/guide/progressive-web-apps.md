@@ -32,7 +32,7 @@ Preact是希望快速加载和交互的[渐进式Web应用程序](https://develo
             <h3>更快速进行交互</h3>
           </div>
           <p class="_summary"><p>
-          如果你的目标是在5秒内进行交互(https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/)，每个KB都很重要，在您的项目中[切换React到Preact](/guide/switching-to-preact) 可以节省多个KB，并使您能够在一个RTT中获得交互。 这使它非常适合渐进式Web应用程序，尽量减少更多代码的每个传送路程。</p></p>
+          如果你的目标是在[5秒内进行交互](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/)，每个KB都很重要，在您的项目中[切换React到Preact](/guide/switching-to-preact) 可以节省多个KB，并使您能够在一个RTT中获得交互。 这使它非常适合渐进式Web应用程序，尽量减少更多代码的每个传送路程。</p></p>
         </div>
     </li>
 
@@ -79,7 +79,7 @@ Preact是希望快速加载和交互的[渐进式Web应用程序](https://develo
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存</a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。 使用sw-precache(https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits)或offline-plugin(https://github.com/NekR/offline-plugin)完成此操作。
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存</a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。 使用[sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) 或 [offline-plugin](https://github.com/NekR/offline-plugin)完成此操作。
         </div>
     </li>
 
