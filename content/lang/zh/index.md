@@ -69,7 +69,7 @@ toc: false
     </p>
     
     <p> 
-        他甚至包含额外的性能特性，如<a href="/guide/configuration#debounceRendering">批量自定义更新</a>，可选的<a href="/guide/configuration#syncComponentUpdates">异步渲染</a>，DOM回收和通过关连状态(/guide/linked-state)优化的事件处理。
+        他甚至包含额外的性能特性，如<a href="/guide/configuration#debounceRendering">批量自定义更新</a>，可选的<a href="/guide/configuration#syncComponentUpdates">异步渲染</a>，DOM回收和通过[关连状态](/guide/linked-state)优化的事件处理。
     </p>
 </section>
 
