@@ -68,11 +68,11 @@ toc: false
     <h2>Alta Performance</h2>
     
     <p>
-        Preact é rápido, e não só por causa do seu tamanho. É uma das mais bibliotecas Virtual DOM mais rápidas disponívels, graças a uma simples e rápida implementação do algorítimo de comparação. 
+        Preact é rápido, e não só por causa do seu tamanho. É uma das mais bibliotecas Virtual DOM mais rápidas disponíveis, graças a uma simples e rápida implementação do algorítimo de comparação. 
     </p>
     
     <p>
-        Até mesmo inclui recursos extra de performance como  <a href="/guide/configuration#debounceRendering">atualizações em lote customizáveis</a>, <a href="/guide/configuration#syncComponentUpdates">renderização assíncrona</a> opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
+        Até mesmo inclui recursos extra de performance como <a href="/guide/configuration#debounceRendering">atualizações em lote customizáveis</a>, <a href="/guide/configuration#syncComponentUpdates">renderização assíncrona</a> opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
     </p>
 </section>
 
@@ -98,7 +98,7 @@ toc: false
     <h2>Produtividade Instantânea</h2>
     
     <p>
-        O "leve" fica muito mais divertido quando você não tem que sacrificar produtividade para alcancar. Preact te torna produtivo imediatamente. Tem até mesmo alguns recursos bônus:
+        O "leve" fica muito mais divertido quando você não tem que sacrificar produtividade para alcancá-lo. Preact te torna produtivo imediatamente. Tem até mesmo alguns recursos bônus:
     </p>
     
     <ul>
