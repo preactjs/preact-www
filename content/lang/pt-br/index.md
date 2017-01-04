@@ -98,7 +98,7 @@ toc: false
     <h2>Produtividade Instantânea</h2>
     
     <p>
-        O "leve" fica muito mais divertido quando você não tem que sacrificar produtividade para alcancá-lo. Preact te torna produtivo imediatamente. Tem até mesmo alguns recursos bônus:
+        O "leve" fica muito mais divertido quando você não tem que sacrificar produtividade para alcançá-lo. Preact te torna produtivo imediatamente. Tem até mesmo alguns recursos bônus:
     </p>
     
     <ul>
