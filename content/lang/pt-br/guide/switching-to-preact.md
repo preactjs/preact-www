@@ -12,7 +12,7 @@ Há duas abordagens diferentes para mudar do React pro Preact:
 
 ## Fácil: `preact-compat` Alias
 
-A mudança pra Preact pode ser tão fácil quando instalar e criar o _alias_ `preact-compat` para `react` e `react-dom`.
+A mudança pra Preact pode ser tão fácil quanto instalar e criar o _alias_ `preact-compat` para `react` e `react-dom`.
 Isso te permite continuar escrevendo código React/ReactDOM sem mudanças ao seu _workflow_ ou _codebase_. 
 `preact-compat` adiciona algo em torno de 2kb ao tamanho do seu _bundle_, mas tem a vantagem de suportar a vasta maioria
  dos módulos React existentes que você possa encontrar no npm. O pacote `preact-compat` provê todos os _tweaks_ necessários
