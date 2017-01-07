@@ -196,7 +196,7 @@ render(<App />, document.body, document.body.lastElementChild);
 No exemplo acima, estamos confiando em que a última _child_ seja nosso raiz previamente renderizado.
 Enquanto isso funciona em muitos casos (jsfiddles, codepens, etc), é melhor ter mais controle.
 É por isso que `render()` retorna o elemento raiz: você o passa como o terceiro argumento para re-renderizar no mesmo lugar. 
-O exemplo a seguir mostra como re-renderizar em resposta as atualizacões do Hot Module Replacement do Webpack:
+O exemplo a seguir mostra como re-renderizar em resposta as atualizações do Hot Module Replacement do Webpack:
 
 ```js
 // root contem o nosso elemento DOM raiz da aplicação:
