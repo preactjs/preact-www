@@ -90,7 +90,7 @@ Agora quando você rodar sua _build_, todos os seus _imports_ React estarão ao 
 ---
 
 
-## Ótima: Mudar to Preact
+## Ótima: Mudar para o Preact
 
 Você não tem de usar `preact-compat` na sua própria codebase para migrar de React pra Preact.
 A API do Preact é quase identica a do React, e muitas _codebases_ React podem ser migradas com poucas ou nenhuma mudanças sendo necessárias.
@@ -168,7 +168,7 @@ Outra diferença a se notar é que o Preact só funciona _Function Refs_ como pa
 Se você deseja continuar uzando _String refs_ [essa pequena função linkedRef](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)
 oferece uma versão a-prova-de-futuro que ainda popula `this.refs.$$` como String Refs fazia.
 
-A simplicidade desse pequeno wrapper em torno das _Function Refs_ também auxilia ilustrat o porque _Function Refs_ são a maneira recomendada daqui em diante. 
+A simplicidade desse pequeno wrapper em torno das _Function Refs_ também auxilia ilustrar o porque _Function Refs_ são a maneira recomendada daqui em diante. 
 
 ### 4. Simplifique o Render raiz
 Desde o React 0.13, `render()` é provido pelo módulo `react-dom`
@@ -183,7 +183,7 @@ Então, o último passo pra converter sua codebase para Preact é trocar `ReactD
 Também é válido notar que o `render()` do Preact é não destrutivo, então renderizar em `<body` é totalmente okay (até encorajado).
 Isso é possível porque Preact não assume que tem total controle do elemento raiz que você passa. O segundo argumento de `render()`
 é na verdade `parent` - o que significa que é um elemento DOM pra renderizar _em_. Se você gostaria de re-renderizar a partir da 
-raiz (talvez para Hot Module Replacement), `render()` aceita um emento pra substituir como um terceiro argumento: 
+raiz (talvez para Hot Module Replacement), `render()` aceita um elemento pra substituir como um terceiro argumento: 
 
 ```js
 // renderização inicial:
@@ -196,7 +196,7 @@ render(<App />, document.body, document.body.lastElementChild);
 No exemplo acima, estamos confiando em que a última _child_ seja nosso raiz previamente renderizado.
 Enquanto isso funciona em muitos casos (jsfiddles, codepens, etc), é melhor ter mais controle.
 É por isso que `render()` retorna o elemento raiz: você o passa como o terceiro argumento para re-renderizar no mesmo lugar. 
-O exemplo a seguir mostra como re-renderizar em resposta as atualizacoes do Hot Module Replacement do Webpack:
+O exemplo a seguir mostra como re-renderizar em resposta as atualizações do Hot Module Replacement do Webpack:
 
 ```js
 // root contem o nosso elemento DOM raiz da aplicação:
