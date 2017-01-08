@@ -8,7 +8,7 @@ permalink: '/guide/external-dom-mutations'
 
 ## Visão Geral
 
-Algumas vezes há a necessidade de trabalhar com bibliotecas _third-party_ que experam liberdade para mudar livremente o DOM, persistir estado nele ou que não tem qualquer tipo de limites de componentes. Há diversos _toolkits_ de UI ou elementos reutilizáveis que operam dessa maneira. No Preact (e similarmente no React) trabalhar com esse tipo de bibliotecas requer que você diga ao algoritmo de renderização/_diff_ do Virtual DOM de que ele não deve tentar desafazer tais mudanças externas ao DOM realizadas dentro de um Componente (ou o elemento DOM que ele representa).
+Algumas vezes há a necessidade de trabalhar com bibliotecas _third-party_ que esperam liberdade para mudar livremente o DOM, persistir estado nele ou que não tem qualquer tipo de limites de componentes. Há diversos _toolkits_ de UI ou elementos reutilizáveis que operam dessa maneira. No Preact (e similarmente no React) trabalhar com esse tipo de bibliotecas requer que você diga ao algoritmo de renderização/_diff_ do Virtual DOM de que ele não deve tentar desfazer tais mudanças externas ao DOM realizadas dentro de um Componente (ou o elemento DOM que ele representa).
 
 ## Técnica
 
