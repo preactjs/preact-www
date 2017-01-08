@@ -15,7 +15,7 @@ Dentro desses dois tipos, há também algumas maneiras diversas de implementar-s
 
 ## Exemplo
 
-Vamos usar um exmeplo: um componente simples `<Link>` que cria um elemento HTML `<a>`: 
+Vamos usar um exemplo: um componente simples `<Link>` que cria um elemento HTML `<a>`:
 
 ```js
 class Link extends Component {

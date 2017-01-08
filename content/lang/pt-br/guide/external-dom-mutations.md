@@ -1,5 +1,5 @@
 ---
-name: Mutações Externas de DOM 
+name: Mutações Externas de DOM
 permalink: '/guide/external-dom-mutations'
 ---
 
@@ -8,7 +8,7 @@ permalink: '/guide/external-dom-mutations'
 
 ## Visão Geral
 
-Algumas vezes há a necessidade de trabalhar com bibliotecas _third-party_ que experam liberdade para mudar livremente o DOM, persistir estado nele ou que não tem qualquer tipo de limites de componentes. Há diversaos _toolkits_ de UI ou elementos reutilizáveis que operam dessa maneira. No Preact (e similarmente no React) trabalhar com esse tipo de bibliotecas requer que você diga ao algoritmo de renderização/_diff_ do Virtual DOM de que ele não deve tentar desafazer tais mudanças externas ao DOM realizadas dentro de um Componente (ou o elemento DOM que ele representa).
+Algumas vezes há a necessidade de trabalhar com bibliotecas _third-party_ que esperam liberdade para mudar livremente o DOM, persistir estado nele ou que não tem qualquer tipo de limites de componentes. Há diversos _toolkits_ de UI ou elementos reutilizáveis que operam dessa maneira. No Preact (e similarmente no React) trabalhar com esse tipo de bibliotecas requer que você diga ao algoritmo de renderização/_diff_ do Virtual DOM de que ele não deve tentar desfazer tais mudanças externas ao DOM realizadas dentro de um Componente (ou o elemento DOM que ele representa).
 
 ## Técnica
 
@@ -30,7 +30,7 @@ class Block extends Component {
 }
 ```
 
-Com esse gancho no _lifecycle_ adicionado, dizendo ao Preact para não re-renderizar o Componente quando as mudanças ocorrerem na árvore VDOM, teu componente tem agora uma referencia para seu próprio elemento DOM raiz que pode ser tratado como estático até que o componente seja desmontado. Como qualquer componente, essa referência é chamada simplesmente `this,base`, e corresponde ao elemento JSX raiz que foi retornado do `render()`.
+Com esse gancho no _lifecycle_ adicionado, dizendo ao Preact para não re-renderizar o Componente quando as mudanças ocorrerem na árvore VDOM, teu componente tem agora uma referencia para seu próprio elemento DOM raiz que pode ser tratado como estático até que o componente seja desmontado. Como qualquer componente, essa referência é chamada simplesmente `this.base`, e corresponde ao elemento JSX raiz que foi retornado do `render()`.
 
 ---
 
@@ -75,5 +75,5 @@ class Example extends Component {
 
 ## Exemplos do Mundo-Real
 
-Alternativamente, veja essa técnica em ação em [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa um componente âncora no DOM, mas então desabilita as atualizações e deixa que [tags-input](https://github.com/developit/tags-input) tome controle a partir daí. 
+Alternativamente, veja essa técnica em ação em [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa um componente âncora no DOM, mas então desabilita as atualizações e deixa que [tags-input](https://github.com/developit/tags-input) tome controle a partir daí.
 Um exemplo mais complexo seria [preact-richtextarea](https://github.com/developit/preact-richtextarea), que usa essa técnica para evitar a re-renderização de um `<iframe>` editável.

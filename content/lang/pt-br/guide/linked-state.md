@@ -5,7 +5,7 @@ permalink: '/guide/linked-state'
 
 # Estado Associado
 
-Uma área que o Preact leva um pouco mais além do que o React é na otimização de mudanças de estado. Um padrão comum no React ES2015 é utilizar _Arrow functions_ dentro de método render de modo a atualizar o estado em responsta a eventos. Criar funções enclausuradas num escopo em cada renderização é ineficiente e força o _garbage collector_ a fazer mais trabalho que necessário. 
+Uma área que o Preact leva um pouco mais além do que o React é na otimização de mudanças de estado. Um padrão comum no React ES2015 é utilizar _Arrow functions_ dentro de método render de modo a atualizar o estado em responsta a eventos. Criar funções enclausuradas num escopo em cada renderização é ineficiente e força o _garbage collector_ a fazer mais trabalho que necessário.
 
 ## A Maneira Manual Melhor
 Uma solução é declarar métodos de componentes _bound_ usando propriedade de classe ES7 ([campos de instância de classe](https://github.com/jeffmo/es-class-fields-and-static-properties)):
@@ -44,7 +44,7 @@ class Foo extends Component {
 
 Isso é conciso, fácil de compreender e efetivo. Manipula o estado associado pra qualquer tipo de entrada. Um argumento opcional `'path'` pode ser utilizado para prover um caminho (em notação de pontos) para o novo valor de estado para vínculos personalizados (como um vínculo a o valor componente externo).
 
-## Caminhos de Evento Personalizados 
+## Caminhos de Evento Personalizados
 
 Por padrão, `linkState()` irá tentar derivar o valor apropriado a partir de um evento automaticamente. Por exemplo, um elemento `<input>` irá definir o valor de uma propriedade para `event.target.value` ou `event.target.checked` dependendo do tipo do _input_. Para manipuladores de evento customizados, passar valores escalares para o manipulador gerado pelo `linkState()` irá simplesmente usar o valor escalar. Na maioria do tempo, esse comportamento é desejável.
 
@@ -70,7 +70,7 @@ handler = event => {
 
 ### Ilustração: Botões _Radio_ Agrupados
 
-O seguinte códio não funciona como esperado. Se o usuário clicar em "no", `noChecked` se torna `true` mas `uesChecked` mantém-se `true`, visto que `onChance` não é disparado sobre o outro botão _radio_:
+O seguinte código não funciona como esperado. Se o usuário clicar em "no", `noChecked` se torna `true` mas `uesChecked` mantém-se `true`, visto que `onChange` não é disparado sobre o outro botão _radio_:
 
 ```js
 class Foo extends Component {
