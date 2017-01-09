@@ -1,17 +1,18 @@
 import './lib/polyfills';
 import './style';
+import './offline';
 import { h, render } from 'preact';
-require('offline-plugin/runtime').install();
 
-let root;
-function init() {
+let root = document.getElementById('app');
+
+let init = () => {
 	let App = require('./components/app').default;
 	root = render(<App />, document.body, root);
-}
+};
 
 init();
 
-if (process.env.NODE_ENV==='development' && module.hot) {
+if (module.hot) {
 	require('preact/devtools');
 
 	module.hot.accept('./components/app', () => requestAnimationFrame( () => {

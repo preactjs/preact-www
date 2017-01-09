@@ -4,12 +4,17 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
+import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import rreaddir from 'recursive-readdir-sync';
 import minimatch from 'minimatch';
 import config from './src/config.json';
 
-const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).filter(minimatch.filter('!content/lang/**')).map( s => '/'+s );
+let window = require('undom')().defaultView;
+
+const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).filter(minimatch.filter('!content/lang/**')).map( s => '/' );
+
+const PATHS = CONTENT.map( c => c.replace(/(^\/content|(\/index)?\.md$)/g, '') || '/' );
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -17,16 +22,25 @@ const CSS_MAPS = ENV!=='production';
 
 const VENDORS = /\bbabel\-standalone\b/;
 
-module.exports = {
+
+const createConfig = (options={}) => ({
 	context: `${__dirname}/src`,
-	entry: './index.js',
+	// entry: './index.js',
+	entry: {
+		main: options.prerender ? './prerender.js' : './index.js'
+	},
 
 	output: {
 		path: `${__dirname}/build`,
 		publicPath: '/',
 		// filename: 'bundle.js'
-		filename: 'bundle.js',
-		chunkFilename: '[name].[chunkhash].chunk.js'
+		filename: options.prerender ? 'prerender.js' : 'bundle.js',
+		chunkFilename: '[name].[chunkhash].chunk.js',
+
+		...(options.prerender ? {
+			// required for static-site-generator-webpack-plugin:
+			libraryTarget: 'umd'
+		} : {})
 	},
 
 	resolve: {
@@ -44,15 +58,17 @@ module.exports = {
 		}
 	},
 
+	externals: ['fs', 'path'],
+
 	module: {
 		noParse: [VENDORS],
-		preLoaders: [
-			{
-				test: /\.jsx?$/,
-				exclude: [/src\//, VENDORS],
-				loader: 'source-map'
-			}
-		],
+		// preLoaders: [
+		// 	{
+		// 		test: /\.jsx?$/,
+		// 		exclude: [/src\//, VENDORS],
+		// 		loader: 'source-map'
+		// 	}
+		// ],
 		loaders: [
 			{
 				test: /\.jsx?$/,
@@ -63,7 +79,7 @@ module.exports = {
 				test: /\.(less|css)$/,
 				include: /src\/components\//,
 				loader: ExtractTextPlugin.extract('style', [
-					`css?sourceMap=${CSS_MAPS}&modules&importLoaders=1&localIdentName=[local]${process.env.CSS_MODULES_IDENT || '_[hash:base64:5]'}`,
+					`css?sourceMap=${CSS_MAPS}&modules&importLoaders=1`,
 					'postcss',
 					`less?sourceMap=${CSS_MAPS}`
 				].join('!'))
@@ -107,19 +123,35 @@ module.exports = {
 		new webpack.DefinePlugin({
 			process: {},
 			'process.env': {},
-			'process.env.NODE_ENV': JSON.stringify(ENV)
+			'process.env.NODE_ENV': JSON.stringify(ENV),
+			PRERENDER: options.prerender
 		}),
-		new HtmlWebpackPlugin({
-			template: './index.html',
-			minify: {
-				collapseWhitespace: true,
-				removeComments: true
+
+		options.prerender && new StaticSiteGeneratorPlugin('main', PATHS, { }, {
+			window,
+			self: window,
+			navigator: {},
+			history: {},
+			location: {
+				href: '',
+				pathname: '',
+				search: ''
 			},
-			favicon: `${__dirname}/src/assets/favicon.ico`,
-			title: config.title,
-			config
+			localStorage: {}
 		})
-	]).concat(ENV==='production' ? [
+
+
+		// new HtmlWebpackPlugin({
+		// 	template: './index.html',
+		// 	minify: {
+		// 		collapseWhitespace: true,
+		// 		removeComments: true
+		// 	},
+		// 	favicon: `${__dirname}/src/assets/favicon.ico`,
+		// 	title: config.title,
+		// 	config
+		// })
+	]).concat(!options.prerender && ENV==='production' ? [
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
@@ -169,7 +201,7 @@ module.exports = {
 				FALLBACK: { '/': '/' }
 			}
 		})
-	] : []),
+	] : []).filter(Boolean),
 
 	stats: false,
 
@@ -198,4 +230,10 @@ module.exports = {
 			});
 		}
 	}
-};
+});
+
+
+module.exports = [
+	createConfig({ prerender: true }),
+	createConfig()
+];

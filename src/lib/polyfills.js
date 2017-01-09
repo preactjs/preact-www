@@ -1,2 +1,3 @@
 if (!global.Promise) global.Promise = require('promise-polyfill');
-require('isomorphic-fetch');
+if (!global.fetch) global.fetch = require('./fetch-polyfill').default;
+// require('isomorphic-fetch');

@@ -41,6 +41,11 @@ const getContent = memoizeProd( ([lang, name]) => {
 		url = `${path}/${name.replace(/^\//,'')}`,
 		[,ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
+
+	// if (typeof process!=='undefined') {
+	// 	return parseContent(require('fs').readFileSync('.'+url, 'utf-8'), ext);
+	// }
+
 	// attempt to use prefetched request
 	let fetchPromise = process.env.NODE_ENV==='production' && typeof window!=='undefined' && window['_boostrap_'+url] || fetch(url);
 	return fetchPromise
@@ -96,11 +101,26 @@ export default class ContentRegion extends Component {
 			this.applyEmoji();
 			if (onLoad) onLoad(s);
 		});
+
+		// let content = getContent([lang, name]);
+		// console.log(content);
+		// if (content.then) content.then(this.gotContent);
+		// else {
+		// 	Object.assign(this.state, content);
+		// 	this.gotContent(content);
+		// }
 	}
+
+	// gotContent = s => {
+	// 	this.setState(s);
+	// 	this.applyEmoji();
+	// 	if (this.props.onLoad) this.props.onLoad(s);
+	// };
 
 	applyEmoji() {
 		let { content } = this.state;
 		if (!content.match(/([^\\]):[a-z0-9_]+:/gi)) return;
+		// if (typeof document==='undefined' || !content.match(/([^\\]):[a-z0-9_]+:/gi)) return;
 
 		if (!this.emoji) {
 			require(['../lib/gh-emoji'], ({ replace }) => {

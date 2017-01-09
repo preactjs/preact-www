@@ -22,6 +22,11 @@ const markdownToHtml = md => (
 export default ({ markdown, postProcess, ...props }) => {
 	let markup = markdownToHtml(markdown);
 	if (postProcess) markup = postProcess(markup);
+
+	// if (typeof DOMParser==='undefined') return (
+	// 	<div dangerouslySetInnerHTML={{ __html: markup }} />
+	// );
+
 	return (
 		<Markup markup={markup} type="html" trim={false} {...props} />
 	);
