@@ -1,3 +1,4 @@
+import './window';
 import { transform, availablePresets, availablePlugins } from 'babel-standalone';
 
 // rpc

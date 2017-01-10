@@ -65,7 +65,7 @@ Preact actually adds a few convenient features inspired by work in the React com
 Preact and React have some more subtle differences:
 
 - `render()` accepts a third argument, which is the root node to _replace_, otherwise it appends. This may change slightly in a future version, perhaps auto-detecting that a replacement render is appropriate by inspecting the root node.
-
+- Components do not implement `contextTypes` or `childContextTypes`. Children receive all `context` entries drawn from `getChildContext()`.
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript

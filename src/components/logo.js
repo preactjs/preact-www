@@ -1,7 +1,15 @@
 import { h, Component } from 'preact';
 
 export default class Logo extends Component {
-	state = { i:0, flash:true };
+	state = { i:0, flash:true, hover:false };
+
+	hover = () => {
+		this.setState({ hover: true });
+	};
+
+	hoverOut = () => {
+		this.setState({ hover: false });
+	};
 
 	frame = () => {
 		this.timer = null;
@@ -10,7 +18,8 @@ export default class Logo extends Component {
 	};
 
 	next = () => {
-		if (!this.mounted || (this.props.paused && !this.state.flash) || this.timer) return;
+		let { flash, hover } = this.state;
+		if (!this.mounted || !(flash || hover) || this.timer) return;
 		this.timer = (requestAnimationFrame || setTimeout)(this.frame, 15);
 	};
 
@@ -21,7 +30,7 @@ export default class Logo extends Component {
 		// every 10 seconds, spin for 1 second even if paused :)
 		let c = 0;
 		this.flashTimer = setInterval( () => {
-			let i = c++%10;
+			let i = c++%5;
 			if (i===0) this.setState({ flash:true });
 			if (i===1) this.setState({ flash:false });
 		}, 1000);
@@ -45,12 +54,21 @@ export default class Logo extends Component {
 		);
 	}
 
-	render({ paused, inverted=false, text=false, fg='white', bg='#673ab8', component, ...props }, { i }) {
-		let Root = component || 'div';
+	render({ inverted=false, text=false, fg='white', bg='#673ab8', component, ...props }, { i }) {
+		let Root = component || 'div',
+			touch = navigator.maxTouchPoints>1;
 		if (inverted) [bg, fg] = [fg, bg];
 
 		return (
-			<svg width={!text && '34px'} height="34px" viewBox={`-256 -256 ${text?1800:512} 512`} style="display:inline-block; margin:-.25em 0 0; vertical-align:middle;" {...props}>
+			<svg
+				width={!text && '34px'}
+				height="34px"
+				viewBox={`-256 -256 ${text?1800:512} 512`}
+				style="display:inline-block; margin:-.25em 0 0; vertical-align:middle;"
+				onMouseover={!touch && this.hover}
+				onMouseout ={!touch && this.hoverOut}
+				{...props}
+			>
 				<path style={`transition:all 1s ease; transform:rotate(${Math.floor(i/60/10)*60}deg);`} d="M0,-256 221.7025033688164,-128 221.7025033688164,128 0,256 -221.7025033688164,128 -221.7025033688164,-128z" fill={bg} />
 				{ this.renderEllipse(fg, 52, i) }
 				{ this.renderEllipse(fg, -52, -0.7*i) }
