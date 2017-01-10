@@ -1,4 +1,4 @@
-import './polyfills';
+import './lib/polyfills';
 import './style';
 import { h, render } from 'preact';
 require('offline-plugin/runtime').install();

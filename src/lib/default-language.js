@@ -1,4 +1,6 @@
 export default function getDefaultLanguage(available={}) {
+	if (typeof navigator==='undefined') return;
+
 	let langs = [navigator.language].concat(navigator.languages);
 	for (let i=0; i<langs.length; i++) {
 		if (langs[i]) {

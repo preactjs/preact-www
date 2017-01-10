@@ -7,7 +7,7 @@ const githubStars = memoize( repo => fetch('//api.github.com/repos/'+repo)
 );
 
 // make available to homepage REPL demo
-window.githubStars = githubStars;
+if (typeof window!=='undefined') window.githubStars = githubStars;
 
 export default class GithubStars extends Component {
 	state = {

@@ -8,7 +8,7 @@ export default class Search extends Component {
 	id = 'docsearch-input';
 
 	loaded = () => {
-		let { docsearch } = window;
+		let docsearch = typeof window!=='undefined' && window.docsearch;
 		if (docsearch && !docsearchInstance) {
 			docsearchInstance = docsearch({
 				apiKey: config.docsearch.apiKey,
@@ -49,7 +49,7 @@ export default class Search extends Component {
 					script.onload = script.onerror = this.loaded;
 					head.appendChild(script);
 				}
-			}, 500);
+			}, 1000);
 		}
 	}
 
