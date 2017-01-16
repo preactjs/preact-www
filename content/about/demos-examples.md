@@ -61,6 +61,10 @@ Tiny hacker news client.
 2 command starter project. Preact + Webpack + LESS + CSS Modules.  
 [Github Project](https://github.com/developit/preact-boilerplate)
 
+**[Preact Offline Starter](https://preact-starter.now.sh)** :100:  
+Simplified Webpack2 starter for Progressive Web Apps, with offline support.
+[Github Project](https://github.com/lukeed/preact-starter)
+
 **[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
 Preact + Redux example project, implementing a simple To-Do list.  
 [Github Project](https://github.com/developit/preact-redux-example)
