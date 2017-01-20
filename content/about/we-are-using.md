@@ -18,4 +18,10 @@ permalink: '/about/we-are-using'
 			<span style="margin-left: 5px;">Huayang Live</span>
 		</a>
 	</li>
+    <li style="list-style: none;">
+		<a href="//housing.com" target="_blank">
+			<img src="/assets/housing.png" alt="Housing.com" style="height: 22px;vertical-align: middle;"/>
+			<span style="margin-left: 5px;">Housing.com</span>
+		</a>
+	</li>
 </ul>
