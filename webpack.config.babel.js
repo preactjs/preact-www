@@ -147,24 +147,24 @@ module.exports = {
 			output: { comments:false }
 		}),
 		new OfflinePlugin({
-			relativePaths: false,
-			publicPath: '/',
-			updateStrategy: 'all',
 			version: '[hash]',
-			preferOnline: true,
+			responseStrategy: 'network-first',
 			safeToUseOptionalCaches: true,
 			caches: {
 				main: ['index.html', 'bundle.js', 'style.css'],
-				additional: ['*.chunk.js', '*.worker.js', ...CONTENT],
+				additional: ['*.chunk.js', '*.worker.js', ':externals:'],
 				optional: [':rest:']
 			},
 			externals: [
 				...CONTENT
 			],
-			ServiceWorker: {
-				navigateFallbackURL: '/',
-				events: true
-			},
+			cacheMaps: [
+				{
+					match: /.*/,
+					to: '/',
+					requestTypes: ['navigate']
+				}
+			],
 			AppCache: {
 				FALLBACK: { '/': '/' }
 			}

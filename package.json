@@ -57,7 +57,7 @@
     "minimatch": "^3.0.2",
     "mocha": "^3.0.2",
     "ncp": "^2.0.0",
-    "offline-plugin": "^3.4.2",
+    "offline-plugin": "^4.5.2",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss-loader": "^1.1.0",
     "progress-bar-webpack-plugin": "^1.6.0",
