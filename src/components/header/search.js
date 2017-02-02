@@ -49,7 +49,7 @@ export default class Search extends Component {
 					script.onload = script.onerror = this.loaded;
 					head.appendChild(script);
 				}
-			}, 1000);
+			}, 2000);
 		}
 	}
 

@@ -14,7 +14,5 @@ init();
 if (process.env.NODE_ENV==='development' && module.hot) {
 	require('preact/devtools');
 
-	module.hot.accept('./components/app', () => requestAnimationFrame( () => {
-		init();
-	}) );
+	module.hot.accept('./components/app', () => requestAnimationFrame(init));
 }
