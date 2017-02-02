@@ -7,6 +7,7 @@ import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
 import rreaddir from 'recursive-readdir-sync';
 import minimatch from 'minimatch';
+import ssr from './src/ssr';
 import config from './src/config.json';
 
 const CONTENT = rreaddir('content').filter(minimatch.filter('**/*.md')).filter(minimatch.filter('!content/lang/**')).map( s => '/'+s );
@@ -110,14 +111,16 @@ module.exports = {
 			'process.env.NODE_ENV': JSON.stringify(ENV)
 		}),
 		new HtmlWebpackPlugin({
-			template: './index.html',
+			template: `!!ejs-loader!${__dirname}/src/index.html`,
+			inject: false,
 			minify: {
 				collapseWhitespace: true,
 				removeComments: true
 			},
 			favicon: `${__dirname}/src/assets/favicon.ico`,
 			title: config.title,
-			config
+			config,
+			render: () => ssr({ url:'/' })
 		})
 	]).concat(ENV==='production' ? [
 		new webpack.optimize.DedupePlugin(),
