@@ -19,7 +19,7 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
             <h3>Carregue menos scripts</h3>
           </div>
           <p class="_summary">
-            O [tamanho pequeno](/about/project-goals) do Preact é valioso quando você tem um planejamento restrito de performance. Em _hardware_ móvel mediano, carregar grandes quantidades de JS leva a maior tempo de carregamento, interpretação e análise.
+            O [tamanho pequeno](/about/project-goals) do Preact é valioso quando você tem um planejamento restrito de performance. Em _hardware_ móvel mediano, carregar grandes quantidades de JS leva a um maior tempo de carregamento, interpretação e análise.
             Isso pode deixar usuários esperando por bastante tempo até que possam interagir com sua aplicação. Ao reduzir o código de bibliotecas nos seus _bundles_, você carrega mais rápido por enviar menos código aos seus usuários.
             </p>
         </div>
@@ -81,7 +81,7 @@ Mesmo o Preact devendo funcionar bem para seu PWA, ele também pode ser utilizad
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Caching via Service Worker</a></strong> permite que você faça _cache_ offiline de conteúdo estático e dinâmico na sua aplicação, permitindo carregamento instantâneo e interatividade mais rápida em visita repetidas. Utilize [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) ou [offline-plugin](https://github.com/NekR/offline-plugin) pra isso.</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Caching via Service Worker</a></strong> permite que você faça _cache_ offline de conteúdo estático e dinâmico na sua aplicação, permitindo carregamento instantâneo e interatividade mais rápida em visitas repetidas. Utilize [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) ou [offline-plugin](https://github.com/NekR/offline-plugin) pra isso.</p>
         </div>
     </li>
     <li class="list-item">
