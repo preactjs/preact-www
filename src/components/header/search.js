@@ -7,6 +7,22 @@ let docsearchInstance, input;
 export default class Search extends Component {
 	id = 'docsearch-input';
 
+	load = () => this.timer = setTimeout(() => {
+		if (window.docsearch) return;
+
+		let head = document.head || document.querySelector('head');
+
+		let link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = '//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css';
+		head.appendChild(link);
+
+		let script = document.createElement('script');
+		script.src = '//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js';
+		script.onload = script.onerror = this.loaded;
+		head.appendChild(script);
+	}, 2000);
+
 	loaded = () => {
 		let docsearch = typeof window!=='undefined' && window.docsearch;
 		if (docsearch && !docsearchInstance) {
@@ -32,25 +48,17 @@ export default class Search extends Component {
 			input.className = style.searchBox;
 			this.base.appendChild(input);
 
-			setTimeout( () => {
-				if (!window.docsearch) {
-					let head = document.head || document.querySelector('head');
-
-					let link = document.createElement('link');
-					link.rel = 'stylesheet';
-					link.href = '//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css';
-					head.appendChild(link);
-
-					let script = document.createElement('script');
-					script.src = '//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js';
-					script.onload = script.onerror = this.loaded;
-					head.appendChild(script);
-				}
-			}, 2000);
+			if (/loaded|complete/.test(document.readyState)) {
+				this.load();
+			}
+			else {
+				addEventListener('load', this.load);
+			}
 		}
 	}
 
 	componentWillUnmount() {
+		clearTimeout(this.timer);
 		if (input && input.parentNode) input.parentNode.removeChild(input);
 	}
 
