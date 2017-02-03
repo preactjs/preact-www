@@ -1,7 +1,7 @@
 import './lib/polyfills';
 import './style';
+import './pwa';
 import { h, render } from 'preact';
-require('offline-plugin/runtime').install();
 
 let root = document.getElementById('app');
 function init() {

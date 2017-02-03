@@ -131,15 +131,6 @@ module.exports = {
 			mangle: true,
 			compress: {
 				warnings: false,
-				// unsafe: true,
-				// collapse_vars: true,
-				// evaluate: true,
-				// screw_ie8: true,
-				// loops: true,
-				// keep_fargs: false,
-				// pure_getters: true,
-				// unused: true,
-				// dead_code: true,
 				pure_funcs: [
 					'classCallCheck',
 					'_possibleConstructorReturn',
@@ -159,7 +150,7 @@ module.exports = {
 		]),
 		new OfflinePlugin({
 			version: '[hash]',
-			responseStrategy: 'network-first',
+			responseStrategy: 'cache-first',
 			safeToUseOptionalCaches: true,
 			caches: {
 				main: ['index.html', 'bundle.js', 'style.css'],
@@ -176,6 +167,9 @@ module.exports = {
 					requestTypes: ['navigate']
 				}
 			],
+			ServiceWorker: {
+				events: true
+			},
 			AppCache: {
 				FALLBACK: { '/': '/' }
 			}
