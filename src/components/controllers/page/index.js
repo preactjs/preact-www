@@ -77,7 +77,7 @@ class Toc extends Component {
 
 	render({ items }, { open }) {
 		return (
-			<div class={style.toc} open={open}>
+			<div class={cx(style.toc, !(items && items.length>1) && style.disabled)} open={open}>
 				<a class={style.toggle} onClick={this.toggle} title="Table of Contents">🔗</a>
 				<nav tabIndex="0" onFocus={this.open}>
 					{ items.map( ({ text, level, id }) => (
