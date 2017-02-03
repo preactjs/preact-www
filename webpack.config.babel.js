@@ -1,8 +1,10 @@
 import fs from 'fs';
+import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import autoprefixer from 'autoprefixer';
 import rreaddir from 'recursive-readdir-sync';
@@ -149,6 +151,12 @@ module.exports = {
 			},
 			output: { comments:false }
 		}),
+		// ncp src/manifest.json build/manifest.json && ncp src/assets build/assets && ncp content build/content
+		new CopyWebpackPlugin([
+			{ from: 'manifest.json' },
+			{ from: 'assets', to: 'assets' },
+			{ from: path.join(__dirname, 'content'), to: 'content' }
+		]),
 		new OfflinePlugin({
 			version: '[hash]',
 			responseStrategy: 'network-first',
@@ -190,6 +198,7 @@ module.exports = {
 		port: process.env.PORT || 8080,
 		host: '0.0.0.0',
 		publicPath: '/',
+		outputPath: path.join(__dirname, 'build'),
 		quiet: true,
 		clientLogLevel: 'error',
 		compress: true,
