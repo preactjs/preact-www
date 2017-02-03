@@ -30,7 +30,7 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg">
+    <img src="/assets/home/metal.svg" alt="metal">
 
     <h2>Closer to the Metal</h2>
     
@@ -46,7 +46,7 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg">
+    <img src="/assets/home/size.svg" alt="size">
 
     <h2>Small Size</h2>
     
@@ -62,7 +62,7 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg">
+    <img src="/assets/home/performance.svg" alt="performance">
 
     <h2>Big Performance</h2>
     
@@ -77,7 +77,7 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg">
+    <img src="/assets/home/portable.svg" alt="portable">
 
     <h2>Portable &amp; Embeddable</h2>
     
@@ -92,7 +92,7 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg">
+    <img src="/assets/home/productive.svg" alt="productive">
 
     <h2>Instantly Productive</h2>
     
@@ -109,7 +109,7 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/compatible.svg">
+    <img src="/assets/home/compatible.svg" alt="compatible">
 
     <h2>Ecosystem Compatible</h2>
     
