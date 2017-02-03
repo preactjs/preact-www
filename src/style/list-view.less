@@ -1,92 +1,51 @@
-.list-view {
-    display: table;
-    width: 100%;
-    margin: 0;
-}
+body .markup {
+	ol.list-view {
+		display: table;
+		padding: 0 16px 24px;
+	}
 
-@media only screen and (min-width: 793px) {
-    .list-view {
-        padding: 0px 0 24px
-    }
-}
+	.list-item {
+		display: table-row;
+	}
 
-@media only screen and (max-width: 792px) {
-    .list-view {
-        padding: 0px 16px 64px
-    }
-}
+	.list-header {
+		display: table-cell;
+		vertical-align: top;
 
-@media only screen and (max-width: 640px) {
-    .list-view {
-        padding: 32px 0 64px
-    }
-}
+		@media (max-width: 792px) {
+			padding-top: 16px;
+		}
+	}
 
-.list-item {
-    display: table-row;
-}
+	.list-header ._bubble {
+		width: 72px;
+		height: 72px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin-top: 20px;
+		margin-right: 32px;
 
-.list-header {
-    display: table-cell;
-    vertical-align: top;
-}
-
-@media only screen and (max-width: 792px) {
-    .list-header {
-        padding-top:16px
-    }
-}
-
-@media only screen and (max-width: 640px) {
-
-}
-
-.list-header ._bubble {
-    width: 72px;
-    height: 72px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-top: 14px;
-    margin-right: 16px;
-}
-
-@media only screen and (min-width: 793px) {
-    .list-header ._bubble {
-        margin-top:20px;
-        margin-right: 32px
-    }
-}
-
-@media only screen and (max-width: 792px) {
-    .list-header ._bubble {
-        margin-top: 0px;
-        margin-right: 16px;
-        width: 56px;
-        height: 56px
-    }
-}
+		@media (max-width: 792px) {
+			margin-top: 0px;
+			margin-right: 16px;
+			width: 56px;
+			height: 56px;
+		}
+	}
 
 
-.list-detail {
-    width: 100%;
-    padding: 10px 0 39px;
-}
+	.list-detail {
+		display: table-cell;
+		width: 100%;
+		padding: 10px 0 39px;
 
-@media only screen and (min-width: 793px) {
-    .list-detail {
-        display:table-cell
-    }
-}
+		@media (max-width: 792px) {
+			display: table-cell;
+		}
 
-@media only screen and (max-width: 792px) {
-    .list-detail {
-        display:table-cell
-    }
-}
-
-@media only screen and (max-width: 640px) {
-    .list-detail {
-        display:block;
-    }
+		@media (max-width: 640px) {
+			display: block;
+		}
+	}
 }
