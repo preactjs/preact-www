@@ -148,13 +148,13 @@ Para lograr que el tiempo de reloj sea actualizado cada segundo, necesitamos sab
 | `componentWillUnmount`      | previo a la eliminación del componente del DOM               |
 | `componentDidUnmount`       | luego de la eliminación del componente del DOM               |
 | `componentWillReceiveProps` | previo a que nuevas props sean aceptadas                     |
-| `shouldComponentUpdate`     | previo a `render()`. Devuelve `false` para saltear el render |
+| `shouldComponentUpdate`     | previo a `render()`. Devuelve `false` para evitar el render  |
 | `componentWillUpdate`       | previo a `render()`                                          |
 | `componentDidUpdate`        | luego de `render()`                                          |
 
 
 
-Entonces, queremos tener un temporizador de 1 segundo que comienza cuando el Componente es agregado al DOM, y finaliza si es removido. Crearemos el temporizador y almacenaremos una referencia a el en `componentDidMount`, y finalizaremos el temporizador en `componentWillUnmount`. Para cada tic del temporizador, actualizaremos el `state` del objeto del componente con un nuevo tiempo. Al hacer esto, el componente será re-renderizado de forma automática.
+Entonces, queremos tener un temporizador de 1 segundo que comienza cuando el Componente es agregado al DOM, y finaliza si es removido. Crearemos el temporizador y almacenaremos una referencia a él en `componentDidMount`, y finalizaremos el temporizador en `componentWillUnmount`. Para cada tic del temporizador, actualizaremos el `state` del objeto del componente con un nuevo tiempo. Al hacer esto, el componente será re-renderizado de forma automática.
 
 ```js
 import { h, render, Component } from 'preact';

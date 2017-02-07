@@ -7,7 +7,7 @@ permalink: '/guide/differences-to-react'
 
 Preact no pretende ser una reimplementación de React. Existen diferencias. Muchas de estas son triviales, o pueden ser completamente eliminadas utilizando [preact-compat], que es una fina capa sobre Preact que intenta mantener 100% compatibilidad con React.
 
-La razón por la que Preact no intenta incluir absolutamente todas las características de React es para mantenerse **pequeño** y **enfocado** - de otro modo tendría más sentido enviar optimizaciones al proyecto React, que es suficientemente complejo y con una estructura de código bien pensada.
+La razón por la que Preact no intenta incluir absolutamente todas las características de React es para mantenerse **pequeño** y **enfocado** - de otro modo tendría más sentido enviar optimizaciones al proyecto React, que ya es suficientemente complejo y con una estructura de código muy bien diseñada.
 
 
 ## Compatibilidad de versiones
@@ -25,7 +25,7 @@ Tanto para Preact como para [preact-compat], la compatibilidad de versiones es m
     - _Componentes que devuelven otros componentes desde `render()`, efectivamente son wrappers_
 - [Componentes funcionales puros sin estado]  
     - _funciones que reciven `props` como argumentos y retornan JSX/VDOM_
-- [Contextos]: El soporte para `contexto` fue agregado en Preact [3.0].
+- [Contextos]: El soporte para `context` fue agregado en Preact [3.0].
     - _El Contexto es una característica experimental de React, pero fue adoptado por algunas librerías._
 - [Refs]: El soporte de funciones refs fue agregador en Preact [4.0]. Los String refs son soportados por `preact-compat`.
     - _Los Refs proveen una forma de referirse a elementos dibujados y elementos hijo._
@@ -40,12 +40,12 @@ Tanto para Preact como para [preact-compat], la compatibilidad de versiones es m
 
 Preact de hecho agrega algunas características convenientes inspiradas en el trabajo de la comunidad de React:
 
-- `this.props` y `this.state` son pasados a `render()` por vos  
+- `this.props` y `this.state` son pasados a `render()` para tí
     - _Todavía podés referenciarlos manualmente. Es simplemente una forma más clara, particularmente cuando se [desestructura]_
 - [Estado conectado] actualiza el estado automáticamente cuando el input cambia
 - Batching de actualizaciones del DOM, demorado usando `setTimeout(1)` _(también puede usar requestAnimationFrame)_
-- Podés usar `class` para clases de CSS. `className` es soportado, pero `class` es preferido.
-- Usando `class` como un objeto crea un String className conteniendo las claves que tienen valores que evaluan como verdadero.
+- Puedes usar `class` para clases de CSS. `className` es soportado, pero `class` es privilegiado.
+- Usando `class` como un objeto crea un String className conteniendo las claves que tienen valores que evalúan como verdadero.
 - Reciclado y agrupamiento de Componentes y elementos.
 
 
@@ -53,16 +53,16 @@ Preact de hecho agrega algunas características convenientes inspiradas en el tr
 
 - Validación de [PropType]: No todo el mundo usa PropTypes, entonces no son parte del núcleo de Preact.
     - _**Las PropTypes son soportadas** en [preact-compat], o también podés usarlas manualmente._
-- [Hijos]: No son necesarios en react, porque `props.children` es _siempre un Array_.
+- [Children]: No son necesarios en Preact, porque `props.children` es _siempre un Array_.
     - _`React.Children` está totalmente soportado en [preact-compat]._
-- Eventos sintéticos: El soporte de navegadores de Preact no requiere este trabajo extra.
-    - _Preact usa el método nativo `addEventListener` del navegador a la hora de hacer manejo de eventos. Mirá [GlobalEventHandlers] para ver una lista completa de eventos disponibles._
+- Eventos sintéticos: El soporte de navegadores de Preact no requiere esta sobrecarga.
+    - _Preact usa el método nativo `addEventListener` del navegador a la hora de hacer manejo de eventos. Mira [GlobalEventHandlers] para ver una lista completa de eventos disponibles._
     - _Una implementación completa de eventos implica más mentenimiento y problemas de performance, además de una superficie de API más grande._
 
 
 ## ¿Cuál es la diferencia?
 
-Preact y React tienen algunas otras diferencias más finas:
+Preact y React tienen algunas otras diferencias sutiles:
 
 - `render()` acepta un tercer argumento, que es el elemento raíz a _reemplazar_, de otro modo se agrega al final. Esto puede cambiar ligeramente en una versión futura, quizás auto-detectando que un dibujo de reemplazo es apropiado inspeccionando el nodo raíz.
 
@@ -75,10 +75,10 @@ Preact y React tienen algunas otras diferencias más finas:
 [PropType]: https://github.com/developit/proptypes
 [Contextos]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
-[Hijos]: https://facebook.github.io/react/docs/top-level-api.html#react.children
+[Children]: https://facebook.github.io/react/docs/top-level-api.html#react.children
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
 [Componentes de Clases de ES6]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
 [Componentes de Alto Orden]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Componentes funcionales puros sin estado]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
-[desestructura]: http://www.2ality.com/2015/01/es6-destructuring.html
+[destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
 [Estado conectado]: /guide/linked-state

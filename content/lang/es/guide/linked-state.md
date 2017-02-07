@@ -23,7 +23,7 @@ class Foo extends Component {
 }
 ```
 
-Mientras que esto consigue mucha mejor performance en tiempo de ejecución, conlleva mucho código innecesario para conectar el estado a la UI.
+Mientras que esto consigue una mucha mejor performance en tiempo de ejecución, conlleva mucho código innecesario para conectar el estado a la UI.
 
 > Otra solución es asociar métodos del componente _declarativamente_, usando ES7 decorators, como el `@bind` de [decko](http://git.io/decko):
 
@@ -44,7 +44,7 @@ class Foo extends Component {
 }
 ```
 
-Esto es conciso, fácil de comprender y efectivo. Maneja el estado asociado para cualquier tipo de input. Un segundo argumento `'path'` puede ser usado para proveer explicitamente el camino, separado por puntos, al espacio particular del estado que se quiere cambiar.
+Esto es conciso, fácil de comprender y efectivo. Maneja el estado asociado para cualquier tipo de input. Un segundo argumento `'path'` puede ser usado para proveer explícitamente el camino, separado por puntos, al espacio particular del estado que se quiere cambiar.
 
 
 ## Rutas de eventos personalizadas
@@ -92,7 +92,7 @@ class Foo extends Component {
 ```
 
 
-El segundo argumento de `linkState` ayuda en este caso. Te ayuda a proveer una ruta en el objeto del evento que usa como el valor asociado. Revisitando el ejemplo previo, digamosle explicitamente a linkState que obtenga el nuevo valor del estado desde la propiedad `value` en `event.target`:
+El segundo argumento de `linkState` ayuda en este caso. Te ayuda a proveer una ruta en el objeto del evento que usa como el valor asociado. Usando el ejemplo previo, digamosle explicitamente a linkState que obtenga el nuevo valor del estado desde la propiedad `value` en `event.target`:
 
 ```js
 class Foo extends Component {

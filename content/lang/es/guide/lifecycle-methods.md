@@ -16,6 +16,6 @@ Preact invoca los siguientes métodos del ciclo en caso de que estén definidos 
 | `componentWillUnmount`      | antes de remover el componente del DOM                      |
 | `componentDidUnmount`       | después de remover el componente del DOM                    |
 | `componentWillReceiveProps` | antes de recibir nuevas propiedades                         |
-| `shouldComponentUpdate`     | antes de `render()`. Devolver `false` para omitir el render |
+| `shouldComponentUpdate`     | antes de `render()`. Devolver `false` para evitar el render |
 | `componentWillUpdate`       | antes de `render()`                                         |
 | `componentDidUpdate`        | después de `render()`                                       |

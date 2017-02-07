@@ -45,7 +45,7 @@ class Link extends Component {
 }
 ```
 
-Si quisiéramos copiar _todas_ las `props`, que le pasamos a nuestro componente `<Link>` dentro del elemento `<a>` podemos usar [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
+Si quisiéramos copiar _todas_ las `props`, que le pasamos a nuestro componente `<Link>` dentro del elemento `<a>` podemos usar el [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
 
 ```js
 class Link extends Component {

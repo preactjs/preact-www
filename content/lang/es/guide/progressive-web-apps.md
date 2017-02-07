@@ -16,9 +16,9 @@ Preact es una excelente elección para [Progressive Web Apps](https://developers
         </div>
         <div class="list-detail">
           <div class="_title-block">
-            <h3>Cargá menos scripts</h3>
+            <h3>Carga menos scripts</h3>
           </div>
-          <p class="_summary">El [pequeño tamaño](/about/project-goals) de Preact es valioso cuando tu presupuesto de performance de carge es apretado. En promedio el hardware mobile, cargando grandes bundles de JS acarrean una carga, tiempo de parsing y evaluación mayores. Esto puede dejar a los usuarios esperando un largo tiempo antes que puedan interactuar con tu aplicación.  Acortando el código de tu librería en tus bundles, cargás más rápido enviando menos código a tus usuarios. </p>
+          <p class="_summary">El [pequeño tamaño](/about/project-goals) de Preact es valioso cuando tu presupuesto de performance de carga es apretado. En promedio el hardware mobile, cargando grandes bundles de JS acarrean una carga, tiempos de parseo y evaluación mayores. Esto puede dejar a los usuarios esperando un largo tiempo antes que puedan interactuar con tu aplicación.  Acortando el código de tu librería en tus bundles, cargas más rápido enviando menos código a tus usuarios. </p>
         </div>
     </li>
 
@@ -30,7 +30,7 @@ Preact es una excelente elección para [Progressive Web Apps](https://developers
           <div class="_title-block">
             <h3>Tiempo de interacción más rápido</h3>
           </div>
-          <p class="_summary"><p>Si estás buscando ser [interactivo en menos de 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), cada KB importa. [Cambiando React por Preact](/guide/switching-to-preact) en tus proyectos puede acortar multiples KBs y permitirte ser interactivo pronto. Esto es adecuado en una Progressive Web App intentando eliminar todo el código posible que no se necesita en cada ruta.</p></p>
+          <p class="_summary"><p>Si estás buscando ser [interactivo en menos de 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), cada KB importa. [Cambiando React por Preact](/guide/switching-to-preact) en tus proyectos puede acortar múltiples KBs y permitirte ser interactivo pronto. Esto es adecuado en una Progressive Web App intentando eliminar todo el código posible que no se necesita en cada ruta.</p></p>
         </div>
     </li>
 
@@ -53,7 +53,7 @@ De hecho, este sitio en el que estás ahora es una Progressive Web App!. Está s
 
 <img src="../assets/pwa-guide/timeline.jpg" alt="Un Timeline de DevTools tracea el sitio de preactjs.com en un Nexus 5X"/>
 
-El contenido estático del sitio se guarda en un (Service Worker) usando la Cache Storage API, permitiendo la carga instantánea en visitas sucesivas.
+El contenido estático del sitio se guarda en el (Service Worker) usando la Cache Storage API, permitiendo la carga instantánea en visitas sucesivas.
 
 ## Tips de performance
 
@@ -74,7 +74,7 @@ Así como Preact debería funcionar bien con tu PWA, también puede ser usado co
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Caching en Service Worker</a></strong> te permite guardar contenido y recursos dinámicos de tu app offline, permitiendo la carga instantántea e interactividad más rápida en futuras visitas. Realizando esto con [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) o el [offline-plugin](https://github.com/NekR/offline-plugin).</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Caching en Service Worker</a></strong> te permite guardar contenido y recursos dinámicos de tu app offline, permitiendo la carga instantánea e interactividad más rápida en futuras visitas. Realizando esto con [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) o el [offline-plugin](https://github.com/NekR/offline-plugin).</p>
         </div>
     </li>
 
@@ -83,7 +83,7 @@ Así como Preact debería funcionar bien con tu PWA, también puede ser usado co
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> sugiere empujar deliveradamente o pre-cargar recursos al navegador, haciendo la carga de subsiguientes páginas más rápida. Se construye sobre code-splitting is caching de SW. </p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> sugiere empujar deliveradamente o pre-cargar recursos al navegador, haciendo las cargas subsiguientes más rápidas. Se construye sobre code-splitting y SW caching. </p>
         </div>
     </li>
 
