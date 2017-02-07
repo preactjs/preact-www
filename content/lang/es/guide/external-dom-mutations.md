@@ -51,7 +51,7 @@ class Example extends Component {
   }
 
   componentDidMount() {
-    // ahora montado puedes modifucar libremente el DOM:
+    // ahora montado puedes modificar libremente el DOM:
     let thing = document.createElement('maybe-a-custom-element');
     this.base.appendChild(thing);
   }
