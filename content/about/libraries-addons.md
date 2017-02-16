@@ -28,6 +28,7 @@ A collection of modules built to work wonderfully with Preact.
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Text field that tokenizes input, for things like tags
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Easily render lists with millions of rows ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Small and simple layout library
+- :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): A document head manager for Preact
 
 
 ### Integrations
