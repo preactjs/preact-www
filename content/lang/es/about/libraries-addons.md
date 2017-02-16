@@ -14,7 +14,7 @@ Una colección de módulos construidos para trabajar perfectamente con Preact.
 ### Add-Ons
 
 - :raised_hands: [**preact-compat**](https://git.io/preact-compat): utilizar cualquier librería de React con Preact *([full example](http://git.io/preact-compat-example))*
-- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Functional-reactive paradigm for Preact
+- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Paradigma funcional-reactivo para Preact
 - :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Universal rendering.
 
 
@@ -38,8 +38,8 @@ Una colección de módulos construidos para trabajar perfectamente con Preact.
 
 ### GUI Toolkits
 
-- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Use [MDL](https://getmdl.io) as Preact components
-- :rocket: [**preact-photon**](https://git.io/preact-photon): build beautiful desktop UI with [photon](http://photonkit.com)
+- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Usa [MDL](https://getmdl.io) como componente de Preact
+- :rocket: [**preact-photon**](https://git.io/preact-photon): construye hermosas interfaces de escritorio con [photon](http://photonkit.com)
 
 
 ### Testing
@@ -49,6 +49,6 @@ Una colección de módulos construidos para trabajar perfectamente con Preact.
 
 ### Utilidades
 
-- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): create preact components without the class keyword
+- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): crea componentes de preact sin la palabra clave class
 - :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Hyperscript-like syntax for creating elements
-- :white_check_mark: [**shallow-compare**](https://github.com/tkh44/shallow-compare): simplified `shouldComponentUpdate` helper.
+- :white_check_mark: [**shallow-compare**](https://github.com/tkh44/shallow-compare): helper simplificado de `shouldComponentUpdate`.

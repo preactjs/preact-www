@@ -19,11 +19,11 @@ En general, debes intentar utilizar _Componentes "Con Control"_ para todos los c
 
 ## Checkboxes y Radio Buttons
 
-Los checkboxes y radio buttons (`<input type="checkbox|radio">`) pueden causar confusión al crear formularios. Esto se debe a que normalmente permitimos que el navegador "cambie" o "marque" un checkbox o un radio button por nosotros, escuchando un evento de cambio (por ejemplo "change") y reaccionando ante el nuevo valor. Sin embargo, esta técnica no es la adecuada en un mundo donde la UI siempre es actualizada automaticamente cuando cambia su estado o sus propiedades.
+Los checkboxes y radio buttons (`<input type="checkbox|radio">`) pueden causar confusión al crear formularios. Esto se debe a que normalmente permitimos que el navegador "cambie" o "marque" un checkbox o un radio button por nosotros, escuchando un evento de cambio y reaccionando ante el nuevo valor. Sin embargo, esta técnica no es la adecuada en un mundo donde la UI siempre es actualizada automáticamente cuando cambia su estado o sus propiedades.
 
 > **Paso-a-Paso:** Digamos que escuchamos el evento "change" de un checkbox, el cual se dispara cuando el usuario marca o desmarca dicho control. En nuestra función de callback, establecemos un valor en el `state` utilizando el nuevo valor que recibimos del checkbox. Haciendo esto, vamos a disparar un redibujo de nuestro componente, el cual va a reasignar el valor del checkbox al valor del estado. Esto es innecesario, ya que acabamos de consultar al DOM por un valor, pero luego le indicamos que se redibuje con el mismo valor que acabamos de obtener.
 
-Por lo tanto, en vez de escuhar el evento `change`, debemos escuchar el evento `click`, el cual se dispara en cualquier momento que el usuario hace click sobre el checkbox _o el `<label>` asocido_. Los checkboxes solo cambian entre los valores `true` y `false`, por lo tanto, al hacer click en el control o en el label, solamente tendríamos que invertir el valor que tengamos en el `state`, desencadenando un redibujo del componente con el nuevo valor que se tiene que mostrar.
+Por lo tanto, en vez de escuhar un evento `change`, debemos escuchar el evento `click`, el cual se dispara en cualquier momento que el usuario hace click sobre el checkbox _o el `<label>` asociado_. Los checkboxes solo cambian entre los valores `true` y `false`, por lo tanto, al hacer click en el control o en el label, solamente tendríamos que invertir el valor que tengamos en el `state`, desencadenando un redibujo del componente con el nuevo valor que se tiene que mostrar.
 
 ### Ejemplo de Checkbox
 

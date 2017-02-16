@@ -31,33 +31,33 @@ class Block extends Component {
 }
 ```
 
-Con este gancho en el ciclo de vida y diciendole a Preact que no re-dibuje el componente cuando hay cambios en el árbol del VDOM, tu componente ahora tiene una referencia a su elemento de DOM raíz que puede ser tratado como estático hasta que el componente es desmontado. Como con cualquier otro componente, su referencia es llamada `this.base`, y corresponde a la raíz del eleemnto JSX que fue retornado de `render()`.
+Con este gancho en el ciclo de vida y diciendole a Preact que no re-dibuje el componente cuando hay cambios en el árbol del VDOM, tu componente ahora tiene una referencia a su elemento de DOM raíz que puede ser tratado como estático hasta que el componente es desmontado. Como con cualquier otro componente, su referencia es llamada `this.base`, y corresponde a la raíz del elemento JSX que fue retornado de `render()`.
 
 ---
 
 ## Paso a paso de ejemplo
 
-Este es un eje,plo de como "apagar" el redibujo de un componente. Notemos que `render()` sigue siendo invocado como parte de la creación y montado del componente, en orden de generar la estructura inicial del DOM.
+Este es un ejemplo de como "apagar" el redibujo de un componente. Notemos que `render()` sigue siendo invocado como parte de la creación y montado del componente, en orden de generar la estructura inicial del DOM.
 
 ```js
 class Example extends Component {
   shouldComponentUpdate() {
-    // do not re-render via diff:
+    // no re-dibujar vía diff:
     return false;
   }
 
   componentWillReceiveProps(nextProps) {
-    // you can do something with incoming props here if you need
+    // acá puedes hacer algo con las props entrantes si lo necesitas
   }
 
   componentDidMount() {
-    // now mounted, can freely modify the DOM:
+    // ahora montado puedes modificar libremente el DOM:
     let thing = document.createElement('maybe-a-custom-element');
     this.base.appendChild(thing);
   }
 
   componentWillUnmount() {
-    // component is about to be removed from the DOM, perform any cleanup.
+    // el componente será removido del DOM, realiza cualquier limpieza
   }
 
   render() {
@@ -76,4 +76,4 @@ class Example extends Component {
 
 ## Ejemplos de la vida real
 
-Alternativamente, podés ver esta técnica en acción en [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa un componente como un foothold en el DOM, luego lo desactiva y deja que [tags-input](https://github.com/developit/tags-input) tome el rumbo más tarde.  Un ejemplo más complejo es [preact-richtextarea](https://github.com/developit/preact-richtextarea), que usa esta técnica para evitar redibujar un `<iframe>` editable.
+Alternativamente, puedes ver esta técnica en acción en [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa un componente como un foothold en el DOM, luego lo desactiva y deja que [tags-input](https://github.com/developit/tags-input) tome el rumbo más tarde.  Un ejemplo más complejo es [preact-richtextarea](https://github.com/developit/preact-richtextarea), que usa esta técnica para evitar redibujar un `<iframe>` editable.

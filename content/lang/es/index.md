@@ -56,7 +56,7 @@ toc: false
     </p>
 
     <p>
-        Esto significa menos JavaScript para descargar, interpretar y ejecutar - dejando más tiempo para tu código, para que puedas construir una experiencia que vos definas sin tener que pelear para mantener el framework bajo control.
+        Esto significa menos JavaScript para descargar, interpretar y ejecutar - dejando más tiempo para tu código, para que puedas construir una experiencia que tú definas sin tener que pelear para mantener el framework bajo control.
     </p>
 </section>
 
@@ -82,11 +82,11 @@ toc: false
     <h2>Portable y embebible</h2>
 
     <p>
-        La pequeña huella que deja Preact significa que podés tomar el poderoso paradigma del Componente de Virtual DOM a nuevos lugares donde de otra manera no podría entrar.
+        La pequeña huella que deja Preact significa que puedes tomar el poderoso paradigma del Componente de Virtual DOM a nuevos lugares donde de otra manera no podría entrar.
     </p>
 
     <p>
-        Usá Preact para crear partes de una aplicación sin integración compleja. Embebe Preact en un widget y usá las mismas herramientas y técnicas que usarías para crear una app completa.
+        Usa Preact para crear partes de una aplicación sin integración compleja. Embebe Preact en un widget y usa las mismas herramientas y técnicas que usarías para crear una app completa.
     </p>
 </section>
 
@@ -97,7 +97,7 @@ toc: false
     <h2>Productividad instantánea</h2>
 
     <p>
-        La liviandad es mucho más divertida cuando no tenés que sacrificar productividad para llegar a ella.
+        La liviandad es mucho más divertida cuando no tienes que sacrificar productividad para llegar a ella.
         Preact habilita tu productividad desde el comienzo. De hecho tiene algunos bonus:
     </p>
 
@@ -116,7 +116,7 @@ toc: false
 
     <p>
         Los Componentes de Virtual DOM hacen simple compartir elementos reusables - desde botones hasta proveedores de data.
-        El diseño de Preact significa también que tenés miles de Componentes disponibles desde el ecosistema de React.
+        El diseño de Preact significa también que tienes miles de Componentes disponibles desde el ecosistema de React.
     </p>
 
     <p>
@@ -127,7 +127,7 @@ toc: false
 
 
 <section class="home-top">
-    <h1>Miralo en acción.</h1>
+    <h1>Míralo en acción.</h1>
 </section>
 
 
@@ -217,7 +217,7 @@ render(
 
 
 <section class="home-top">
-    <h1>Preparado/a para meterte de lleno?</h1>
+    <h1>¿Preparada/o para meterte de lleno?</h1>
 </section>
 
 
@@ -225,7 +225,7 @@ render(
     <p>
         Tenemos guías separadas basadas en tus conocimientos de React.
         <br>
-        Elegí la guía que funciona mejor para vos!
+        ¡Elige la guía que funciona mejor para ti!
     </p>
     <p>
         <a href="/guide/getting-started" class="home-button">Primeros pasos</a>
