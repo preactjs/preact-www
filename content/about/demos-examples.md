@@ -72,6 +72,9 @@ Preact + Redux example project, implementing a simple To-Do list.
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
 How to use Preact entirely without Babel, ES2015 or JSX.
 
+**[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
+Minimal Preact structure with all the necessary tools to start your project right away.
+
 
 ## Codepens
 
