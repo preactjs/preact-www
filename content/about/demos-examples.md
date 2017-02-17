@@ -38,6 +38,8 @@ Desktop app for Dropbox, built with Preact, Electron and Photon.
 **[Connectivity Index](https://cindex.co)** :iphone:  
 A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
 
+**[Instant Domain Search](https://instantdomainsearch.com)** :mag:  
+Find domain names as fast as you can type. Built with TypeScript and Preact.
 
 ## Full Demos & Examples
 
