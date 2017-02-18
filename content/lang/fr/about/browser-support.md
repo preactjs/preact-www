@@ -1,5 +1,5 @@
 ---
-name: Browser Support
+name: Support des navigateurs
 permalink: '/about/browser-support'
 ---
 
