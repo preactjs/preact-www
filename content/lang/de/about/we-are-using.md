@@ -1,9 +1,9 @@
 ---
-name: We Are Using
+name: Preact im Einsatz
 permalink: '/about/we-are-using'
 ---
 
-## We Are Using
+## Wir nutzen Preact
 
 <ul>
 	<li style="list-style: none;">

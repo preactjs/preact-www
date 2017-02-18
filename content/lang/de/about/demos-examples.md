@@ -1,79 +1,79 @@
 ---
-name: Demos & Examples
+name: Demos & Beispiele
 permalink: '/about/demos-examples'
 ---
 
-# Demos & Examples
+# Demos & Beispiele
 
-This pages lists a bunch of demos and examples you can use to learn Preact.
+Diese Seite stellt eine Menge Demos und Beispiele vor, die zum Einstieg in Preact geeignet sind.
 
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> :information_desk_person: _Gibt's welche zu ergänzen?
+> [Füge sie hinzu!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
-## Full Apps
+## Vollständige Anwendungen
 
-[**Preact Website** _(preactjs.com)_](https://preactjs.com)  
-Of course this website is built with Preact.  
+[**Preact-Website** _(preactjs.com)_](https://preactjs.com)  
+Selbstverständlich mit Preact umgesetzt.  
 [Github Project](https://github.com/developit/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
-Built with Preact & Material Design Lite.
+Mit Preact & Material Design Lite umgesetzt.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:  
-Natural language based Web VR story creator.  
+Web VR Story-Editor mit natürlicher Sprache.  
 _([Github Project](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
-The audience participation Progressive Web App from Chrome Dev Summit 2016!  
+Die Progressive Web App zum Mitmachen des Chrome Dev Summit 2016!  
 ([Github Project](https://github.com/jakearchibald/big-web-quiz))
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
-Open-Source peach.cool app.  
+Open-Source-App für peach.cool.  
 [Github Project](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
+Desktop-App für Dropbox, umgesetzt mit Preact, Electron und Photon.
 
 **[Connectivity Index](https://cindex.co)** :iphone:  
-A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
+Eine Website zum Durchsuchen der Länderdaten des [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html).
 
 
-## Full Demos & Examples
+## Vollständige Demos & Beispiele
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
-View documentation.js output online.  
+Online-Darstellung von documentation.js-Ausgaben.  
 [Github Project](https://github.com/developit/documentation-viewer)
 
 **[TodoMVC](http://developit.github.io/preact-todomvc/)**  
-Unofficial fastest TodoMVC implementation.  
+Inoffizielle, schnellste TodoMVC implementation.  
 [Github Project](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
+TodoMVC mit Offline-Synchronisierung in [PouchDB](https://pouchdb.com/).  
 [Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Tiny hacker news client.  
+Winziger Hacker-News-App.  
 [Github Project](https://github.com/developit/hn_minimal)
 
 **[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
+Startpaket mit Preact + Webpack + LESS + CSS Modules.  
 [Github Project](https://github.com/developit/preact-boilerplate)
 
 **[Preact Offline Starter](https://preact-starter.now.sh)** :100:  
-Simplified Webpack2 starter for Progressive Web Apps, with offline support.  
+Vereinfachtes Webpack2-Startpaket für Progressive Web Apps mit Offline-Unterstützung.  
 [Github Project](https://github.com/lukeed/preact-starter)
 
 **[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux example project, implementing a simple To-Do list.  
+Beispielprojekt mit Preact + Redux, das eine einfache Todo-Liste implementiert.
 [Github Project](https://github.com/developit/preact-redux-example)
 
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-How to use Preact entirely without Babel, ES2015 or JSX.
+Wie man Preact gänzlich ohne Babel, ES2015 oder JSX einsetzen kann.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact structure with all the necessary tools to start your project right away.
+Minimale Preact-Struktur mit allen notwendigen Tools, um ein Projekt schnell frisch aufzusetzen.
 
 
 ## Codepens
@@ -83,6 +83,7 @@ Minimal Preact structure with all the necessary tools to start your project righ
 - [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
 - [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
+
 
 ## Templates
 

@@ -1,27 +1,27 @@
 ---
-name: Project Goals
+name: Ziele des Projekts
 permalink: '/about/project-goals'
 ---
 
-# Preact's Goals
+# Ziele des Projekts
 
-## Goals
+## Ziele
 
-Preact aims to deliver on a few key goals:
+Preact verfolgt einige wenige Kernziele:
 
-- **Performance:** Render quickly & efficiently
-- **Size:** Small size, lightweight _(approximately 3.5kb)_
-- **Efficiency:** Effective memory usage _(recycling, avoiding GC thrash)_
-- **Understandability:** Understanding the codebase should take no more than a few hours
-- **Compatibility:** Preact aims to be _largely compatible_ with the React API. [preact-compat] attempts to achieve as much compatibility with React as possible.
+- **Performance:** Schnelles und effizientes Rendering
+- **Größe:** Geringe Dateigröße und _(ungefähr 3.5kb)_
+- **Effizienz:** Sparsame Speichernutzung _(Recycling, Vermeidung des Bedarfs an Garbage Collection)_
+- **Verständlichkeit:** Die Codebase sollte sich innerhalb weniger Stunden erschließen
+- **Kompatibilität:** Preact zielt darauf ab, _weitestgehend kompatibel_ mit der React-API zu sein. [preact-compat] ist auf höchstmögliche Kompatibilität mit React angelegt.
 
-## Non-Goals
+## Nicht-Ziele
 
-Some React features are intentionally omitted from Preact, either because they are not achievable while meeting the primary project goals listed above or because they don't fit within the scope of Preact's core set of functionality.
+Einige Features von React fehlen in Preact bewusst, weil sie entweder nicht mit den obigen Zielen vereinbar sind oder nicht in den Rahmen der Kernfunktionalitäten von Preact passen.
 
-- The intentional items under [What's Missing?](/guide/differences-to-react#whats-missing):
-    - PropTypes, which are easily used as a separate library
-    - Children, since Preact always boxes children as an Array
-    - Synthetic Events, since Preact does not attempt to patch issues in older browsers like IE8
+- Ganz bewusst ausgelassen in [Was fehlt?](/guide/differences-to-react#whats-missing):
+    - PropTypes, die problemlos als separate Library implementiert werden können
+    - Children, weil diese in Preact immer als Array behandelt werden
+    - Synthetische Events, weil Preact nicht darauf ausgelegt ist, Probleme veralteter Browser wie IE8 zu beheben
 
 [preact-compat]: https://github.com/developit/preact-compat/
