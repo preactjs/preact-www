@@ -1,21 +1,21 @@
 ---
-name: Extending Component
+name: Наследование компонентов
 permalink: '/guide/extending-component'
 ---
 
-# Extending Component
+# Наследование компонентов
 
-It is possible that some projects would wish to extend Component with additional functionality.
+В некотоных проектах может быть удобно расширить функциональность класса Component.
 
-There are varying opinions on the value of inheritance in JavaScript, but if you wish to build your own "base class" from which all of your components inherit, Preact has you covered.
+Нет единого мнения по поводу того, стоит ли использовать наследование классов в JavaScript, но если вы хотите создать собственный "базовый класс", от которого будут наследоваться все ваши компоненты, Preact поддерживает такую схему.
 
-Perhaps you want to do automatic connection to stores/reducers within a Flux-like architecture. Maybe you want to add property-based mixins to make it feel more like `React.createClass()` _(note: the [`@bind` decorator](https://github.com/developit/decko#bind) is preferable)_.
+Может, вы хотите автоматически подключаться к stores и reducers в Flux-like архитектуре. Может, вы хотите добавить property-based миксины, чтобы было более схоже с `React.createClass()` _(впрочем, [декоратор `@bind`](https://github.com/developit/decko#bind) в последнем случае всё же предпочтительнее)_.
 
-In any case, just use ES2015 class inheritance to extend Preact's `Component` class:
+В любом случае, просто используйте обычное наследование классов, чтобы расширить `Component`:
 
 ```js
 class BoundComponent extends Component {
-    // example: get bound methods
+    // пример: получить bound methods
     binds() {
         let list = this.bind || [],
             binds = this._binds;
@@ -30,7 +30,7 @@ class BoundComponent extends Component {
 }
 ```
 
-Example Usage:
+Использование:
 
 ```js
 class Link extends BoundComponent {
@@ -51,7 +51,7 @@ render(
 ```
 
 
-The possibilities are endless. Here's an extended `Component` class that supports rudimentary mixins:
+Возможности безграничны. Например, вот расширенный класс `Component`, который поддерживает произвольные миксины:
 
 ```js
 class MixedComponent extends Component {
@@ -64,4 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Footnote:** It's worth noting that inheritance can lock you into brittle parent-child relationships. Often when faced with a programming task that can be solved adequately with inheritance, there is a more functional way to achieve the same goal that would avoid creating such a relationship.
+> **Примечание:** Стоит заметить, что наследование может ... хрупкие отношения «родитель — ребёнок». Часто задачи, которые можно решить при помощи наследования, можно решить и в более функциональном стиле, чтобы избежать таких отношений.
