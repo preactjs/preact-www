@@ -1,22 +1,22 @@
 ---
-name: Types of Components
+name: Типы компонентов
 permalink: '/guide/types-of-components'
 ---
 
-# Types of Components
+# Типы компонентов
 
 
-There two types of components in Preact:
+В Preact есть два типа компонентов:
 
-- Classical Components, with [lifecycle methods] and state
-- Stateless Functional Components, which are functions that accept `props` and return [JSX].
+- Классические компоненты, с состоянием и методами жизненного цикла
+- Функциональные _stateless_ компоненты, которые являются функциями, которые принимают `props` и возвращают [JSX].
 
-Within these two types, there are also a few different ways to implement components.
+В рамках этих двух типов, есть также несколько различных способов реализации компонентов.
 
 
-## Example
+## Пример
 
-Let's use an example: a simple `<Link>` component that creates an HTML `<a>` element:
+Приведём пример: создадим простой компонент `<Link>`, который создает HTML-элемент `<a>`:
 
 ```js
 class Link extends Component {
@@ -26,16 +26,16 @@ class Link extends Component {
 }
 ```
 
-We can instantiate/render this component as follows:
+Можно создать экземпляр компонента и отрендерить компонент следующим образом:
 
 ```xml
 <Link href="http://example.com">Some Text</Link>
 ```
 
 
-### Destructure Props & State
+### Деструкция параметров `props` и состояния
 
-Since this is ES6 / ES2015, we can further simplify our `<Link>` component by mapping keys from `props` (the first argument to `render()`) to local variables using [destructuring](https://github.com/lukehoban/es6features#destructuring):
+Так как это ES6 / ES2015, можно упростить наш компонент `<Link>` отображением ключей из `props` (первый аргумент функции `render()`) в локальные переменные используя [деструкцию](https://github.com/lukehoban/es6features#destructuring):
 
 ```js
 class Link extends Component {
@@ -45,7 +45,7 @@ class Link extends Component {
 }
 ```
 
-If we wanted to copy _all_ of the `props` passed to our `<Link>` component onto the `<a>` element, we can use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
+Если требуется передать _все_ параметры из `props` компонента `<Link>` в элемент `<a>`, можно использовать [оператор расширения (spread)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
 
 ```js
 class Link extends Component {
@@ -56,9 +56,9 @@ class Link extends Component {
 ```
 
 
-### Stateless Functional Components
+### Функциональные stateless компоненты
 
-Lastly, we can see that this component does not hold state - we can render the component with the same props and get the same result each time.  When this is the case, it's often best to use a Stateless Functional Component. These are just functions that accept `props` as an argument, and return JSX.
+Наконец, рассмотрим компоненты, которые не имеют состояний — можно рендерить компонент с одинаковыми параметрами в `props` и всегда получать одинаковый результат. Если это то, что нужно, то в этом случае лучше использовать _функциональный stateless компонент_. Такие компоненты это просто функции, принимающие `props` в качестве аргумента и возвращающие JSX.
 
 ```js
 const Link = ({ children, ...props }) => (
@@ -66,4 +66,4 @@ const Link = ({ children, ...props }) => (
 );
 ```
 
-> *ES2015 Note:* the above is an Arrow Function, and because we've used parens instead of braces for the function body, the value within the parens is automatically returned. You can read more about this [here](https://github.com/lukehoban/es6features#arrows).
+> *Примечание ES2015:* выше используется стрелочная функция, и так как для тела функции были поставлены круглые скобки вместо фигурных, значение из круглых скобок вернётся автоматически. Об этом можно больше почитать [здесь](https://github.com/lukehoban/es6features#arrows).
