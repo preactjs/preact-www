@@ -1,21 +1,21 @@
 ---
-name: Lifecycle Methods
+name: Lifecycle-Methoden
 permalink: '/guide/lifecycle-methods'
 ---
 
-# Lifecycle Methods
+# Lifecycle-Methoden
 
-> _**Tip:** If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._
+> _**Tipp:** Falls du schon mal HTML5 Custom Elements verwendet hast, das ist vergleichbar mit den Lifecycle-Methoden `attachedCallback` und `detachedCallback`._
 
-Preact invokes the following lifecycle methods if they are defined for a Component:
+Preact führt die folgenden Lifecycle-Methoden aus, wenn diese bei einer Komponente definiert sind:
 
-| Lifecycle method            | When it gets called                              |
+| Lifecycle-Methode           | Wann sie ausgeführt wird                         |
 |-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentDidUnmount`       | after removal from the DOM                       |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
+| `componentWillMount`        | bevor die Komponente ins DOM gemounted wurde     |
+| `componentDidMount`         | nachdem die Komponente ins DOM gemounted wurde   |
+| `componentWillUnmount`      | vor dem Entfernen aus dem DOM                    |
+| `componentDidUnmount`       | nach dem Entfernen aus dem DOM                   |
+| `componentWillReceiveProps` | bevor neue Props akzeptiert wurden               |
+| `shouldComponentUpdate`     | vor `render()`. Gib `false` zurück um das Rendern zu überspringen |
+| `componentWillUpdate`       | vor `render()`                                   |
+| `componentDidUpdate`        | nach `render()`                                  |
