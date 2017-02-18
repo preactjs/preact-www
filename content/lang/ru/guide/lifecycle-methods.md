@@ -1,21 +1,21 @@
 ---
-name: Lifecycle Methods
+name: Методы жизненного цикла
 permalink: '/guide/lifecycle-methods'
 ---
 
-# Lifecycle Methods
+# Жизненный цикл компонентов и его методы
 
-> _**Tip:** If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._
+> _**Подсказка:** Если вы использовали HTML5 Custom Elements, то это очень похоже на методы жизненного цикла `attachedCallback` и `detachedCallback`._
 
-Preact invokes the following lifecycle methods if they are defined for a Component:
+Preact вызывает следующие методы жизненного цикла, если они заданы для компонента:
 
-| Lifecycle method            | When it gets called                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentDidUnmount`       | after removal from the DOM                       |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
+| Метод                       | Когда вызывается                                            |
+|-----------------------------|-------------------------------------------------------------|
+| `componentWillMount`        | перед тем, как компонент будет добавлен в DOM               |
+| `componentDidMount`         | после того, как компонент будет добавлен в DOM              |
+| `componentWillUnmount`      | перед удалением из DOM                                      |
+| `componentDidUnmount`       | после удаления из DOM                                       |
+| `componentWillReceiveProps` | перед получением новых `props`                              |
+| `shouldComponentUpdate`     | перед `render()`. Для пропуска рендера должен вернуть false |
+| `componentWillUpdate`       | перед `render()`                                            |
+| `componentDidUpdate`        | после `render()`                                            |
