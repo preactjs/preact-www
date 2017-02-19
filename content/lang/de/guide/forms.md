@@ -1,32 +1,32 @@
 ---
-name: Forms
+name: Formulare
 permalink: '/guide/forms'
 ---
 
-# Forms
+# Formulare
 
 
-Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
+Formulare in Preact funktionieren im Wesentlichen genauso wie in React. Allerdings werden statische Props/Attribute (für Ausgangswerte) nicht unterstützt.
 
-**[React Forms Docs](https://facebook.github.io/react/docs/forms.html)**
+**[React Formulare Doku](https://facebook.github.io/react/docs/forms.html)**
 
 
 ## Controlled & Uncontrolled Components
 
-React's documentation on ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
+Die Kapitel der React-Dokumentation über ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) und ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) sind äußerst nützlich, wenn es darum geht zu verstehen, wie HTML-Formulare, bei denen Daten in beide Richtungen fließen, im Kontext eines Virtual-DOM-Renderer auf Komponentenbasis mit unidirektionalem Datenfluss verwendet werden können.
 
-Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
+Allgemein solltest du versuchen, immer _Controlled_ Components zu verwenden. Bei der Entwicklung von Standalone-Komponenten oder dem Wrappen von Third-Party-UI-Libraries kann es allerdings trotzdem hilfreich sein, die Komponente einfach als Mountpoint für nicht-Preact-Logik zu verwenden. In diesen Fällen bieten sich "Uncontrolled" Components wunderbar an.
 
 
-## Checkboxes & Radio Buttons
+## Checkboxen & Radio-Buttons
 
-Checkboxes and radio buttons (`<input type="checkbox|radio">`) can initially cause confusion when building controlled forms. This is because in an uncontrolled environment, we would typically allow the browser to "toggle" or "check" a checkbox or radio button for us, listening for a change event and reacting to the new value.  However, this technique does not transition well into a world view where the UI is always updated automatically in response to state and prop changes.
+Checkboxen und Radio-Buttons (`<input type="checkbox|radio">`) können anfänglich für Verwirrung sorgen. Das liegt daran, dass wir üblicherweise in nicht-kontrollierten Umgebungen dem Browser erlauben würden, eine Checkbox oder einen Radio-Button für uns zu "toggeln" oder zu "checken", auf change-Events zu überwachen und auf neue Werte zu reagieren. Allerdings lässt sich dieses Vorgehen nicht gut auf eine Weltanschauung übertragen, inder das UI immer automatisch in Reaktion auf Änderungen von State und Props aktualisiert wird.
 
-> **Walk-Through:** Say we listen for a "change" event on a checkbox, which is fired when the checkbox is checked or unchecked by the user.  In our change event handler, we set a value in `state` to the new value received from the checkbox.  Doing so will trigger a re-render of our component, which will re-assign the value of the checkbox to the value from state.  This is unnecessary, because we just asked the DOM for a value but then told it to render again with whatever value we wanted.
+> **Schritt für Schritt:** Angenommen, wir überachen die "change"-Events einer Checkbox, welche ausgelöst werden, wenn die Checkbox an- oder abgewählt wird. In unserem Change-Event-Handler setzen wir einen Wert in `state` auf den neuen Wert, den wir von der Checkbox erhalten haben. Dadurch wird ein Neurendern unserer Komponente ausgelöst, welche den Wert der Checkbox auf den Wert aus dem State neu zuweist. Das ist überflüssig, da wir das DOM gerade nach einem Wert gefragt haben und das DOM dann darum gebeten haben, mit dem selben Wert neuzurendern.
 
-So, instead of listening for a `change` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_.  Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.
+Anstatt `change`-Events zu überwachen, sollten wir also `click`-Events überwachen, welche jedes Mal ausgelöst werden, wenn auf die Checkbox _oder ein verbundenes `<label>`_ geklickt wird. Checkboxes wechseln nur zwischen den boolschen Werten `true` und `false`. Beim Klick auf die Checkbox oder das Label invertieren wir also einfach den Wert, den wir im State haben, lösen dadurch ein Neurendern aus und setzen den dargestellten Wert der Checkbox auf den gewünschten.
 
-### Checkbox Example
+### Checkbox-Beispiel
 
 ```js
 class MyForm extends Component {
