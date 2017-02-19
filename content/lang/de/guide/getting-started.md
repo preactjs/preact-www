@@ -106,7 +106,7 @@ hyperscript mit einem Virtual DOM zu rendern, ist jedoch wenig sinnvoll. Wir wol
 
 ## Komponenten
 
-Preact exportiert eine generische `Component`-Klasse, die erweitert werden kann, um gekapselte, selbst-aktualisierende Teile eines User Interfaces zu entwickeln. Komponenten unterstützen alle [Lebenszyklus-Methoden] von React wie `shouldComponentUpdate()` und `componentWillReceiveProps()`.  Speifische Implementierungen dieser Methoden ist der bevorzugte Weg zur Steuerung _wann_ and _wo_ Komponenten aktualisiert werden sollen.
+Preact exportiert eine generische `Component`-Klasse, die erweitert werden kann, um gekapselte, selbst-aktualisierende Teile eines User Interfaces zu entwickeln. Komponenten unterstützen alle [Lifecycle-Methoden] von React wie `shouldComponentUpdate()` und `componentWillReceiveProps()`.  Speifische Implementierungen dieser Methoden ist der bevorzugte Weg zur Steuerung _wann_ and _wo_ Komponenten aktualisiert werden sollen.
 
 Komponenten verfügen ebenfalls über eine `render()`-Methode. Anders als bei React wird dieser Methode jedoch zusätzlich `(props, state)` als Argumente übergeben. Damit kann auf `props` und `state` als lokale Variablen zugegriffen und in JSX referenziert werden.
 
@@ -139,9 +139,9 @@ Und damit wird folgende HTML DOM-Struktur erzeugt:
 
 ## Der Lebenszyklus der Komponenten
 
-Damit die Uhrzeit in der Komponente jede Sekunde aktualisiert wird, müssen wir zunächst wissen, wann `<Clock>` im DOM erstmalig erstellt oder "gemountet" wird. _Falls du bereits mit HTML5-Custom Elements vertraut bist, ist dies vergleichbar mit den Lebenszyklus-Methoden `attachedCallback` und `detachedCallback`._ Preact ruft die folgenden Lebenszyklus-Methoden auf, sofern diese für eine Komponente definiert sind:
+Damit die Uhrzeit in der Komponente jede Sekunde aktualisiert wird, müssen wir zunächst wissen, wann `<Clock>` im DOM erstmalig erstellt oder "gemountet" wird. _Falls du bereits mit HTML5-Custom Elements vertraut bist, ist dies vergleichbar mit den Lifecycle-Methoden `attachedCallback` und `detachedCallback`._ Preact ruft die folgenden Lebenszyklus-Methoden auf, sofern diese für eine Komponente definiert sind:
 
-| Lebenszyklus-Methode        | Wann sie aufgerufen wird                         |
+| Lifecycle-Methode        | Wann sie aufgerufen wird                         |
 |-----------------------------|--------------------------------------------------|
 | `componentWillMount`        | bevor die Komponente im DOM gemountet wird       |
 | `componentDidMount`         | nachdem die Komponente im DOM gemountet wurde    |
