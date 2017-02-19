@@ -1,17 +1,17 @@
 ---
-name: Extending Component
+name: Die Component-Klasse erweitern
 permalink: '/guide/extending-component'
 ---
 
-# Extending Component
+# Die Component-Klasse erweiter
 
-It is possible that some projects would wish to extend Component with additional functionality.
+Es ist denkbar, dass für ein Projekt Component um zusätzliche Funktionen erweitert werden soll.
 
-There are varying opinions on the value of inheritance in JavaScript, but if you wish to build your own "base class" from which all of your components inherit, Preact has you covered.
+Es gibt verschiedene Meinungen zum Nutzen von Vererbung in JavaScript, aber falls du deine eigene "Base Class" entwickeln möchtest, von der all deine Komponenten abgeleitet werden, unterstützt dicg Preact dabei.
 
-Perhaps you want to do automatic connection to stores/reducers within a Flux-like architecture. Maybe you want to add property-based mixins to make it feel more like `React.createClass()` _(note: the [`@bind` decorator](https://github.com/developit/decko#bind) is preferable)_.
+Vielleicht willst du in einer an Flux angelehnten Architektur automatische Verbindungen zu Stores oder Reducers erstellen. Vielleicht willst du eigenschaftenbasierte Mixins entwickeln, die sich mehr wie `React.createClass()` anfühlen _(Hinweis: der [`@bind` Decorator](https://github.com/developit/decko#bind) ist zu bevorzugen)_.
 
-In any case, just use ES2015 class inheritance to extend Preact's `Component` class:
+Nutze in jedem Falle die Klassenvererbung von ES2015, um die `Component`-Klasse von Preact zu erweitern:
 
 ```js
 class BoundComponent extends Component {
@@ -30,7 +30,7 @@ class BoundComponent extends Component {
 }
 ```
 
-Example Usage:
+Beispiel:
 
 ```js
 class Link extends BoundComponent {
@@ -51,7 +51,7 @@ render(
 ```
 
 
-The possibilities are endless. Here's an extended `Component` class that supports rudimentary mixins:
+Die Möglichkeiten sind unbegrenzt. Die folgende erweiterte `Component`-Klasse unterstützt rudimentäre Mixins:
 
 ```js
 class MixedComponent extends Component {
@@ -64,4 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Footnote:** It's worth noting that inheritance can lock you into brittle parent-child relationships. Often when faced with a programming task that can be solved adequately with inheritance, there is a more functional way to achieve the same goal that would avoid creating such a relationship.
+> **Nachtrag:** Vererbung kann empfindliche Beziehungen zwischen Objekten herbeiführen. Wenn eine Programmieraufgabe mit Hilfe von Vererbung lösbar ist, gibt es oft auch einen funktionaleren Weg, dasselbe Ziel ohne eine solche Beziehung zu erreichen.
