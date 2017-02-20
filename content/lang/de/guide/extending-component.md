@@ -3,13 +3,13 @@ name: Die Component-Klasse erweitern
 permalink: '/guide/extending-component'
 ---
 
-# Die Component-Klasse erweiter
+# Die Component-Klasse erweitern
 
-Es ist denkbar, dass für ein Projekt Component um zusätzliche Funktionen erweitert werden soll.
+Es ist denkbar, dass für ein Projekt die Component-Klasse um zusätzliche Funktionen erweitert werden soll.
 
-Es gibt verschiedene Meinungen zum Nutzen von Vererbung in JavaScript, aber falls du deine eigene "Base Class" entwickeln möchtest, von der all deine Komponenten abgeleitet werden, unterstützt dicg Preact dabei.
+Es gibt verschiedene Meinungen zum Nutzen von Vererbung in JavaScript, aber falls du deine eigene "Base Class" entwickeln möchtest, von der all deine Komponenten abgeleitet werden, unterstützt dich Preact dabei.
 
-Vielleicht willst du in einer an Flux angelehnten Architektur automatische Verbindungen zu Stores oder Reducers erstellen. Vielleicht willst du eigenschaftenbasierte Mixins entwickeln, die sich mehr wie `React.createClass()` anfühlen _(Hinweis: der [`@bind` Decorator](https://github.com/developit/decko#bind) ist zu bevorzugen)_.
+Vielleicht willst du in einer an Flux angelehnten Architektur automatische Verbindungen zu Stores oder Reducers erstellen. Vielleicht willst du eigenschaftenbasierte Mixins entwickeln, die sich eher wie `React.createClass()` verhalten. _(Hinweis: der [`@bind` Decorator](https://github.com/developit/decko#bind) ist zu bevorzugen)_
 
 Nutze in jedem Falle die Klassenvererbung von ES2015, um die `Component`-Klasse von Preact zu erweitern:
 
