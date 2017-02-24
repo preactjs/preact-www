@@ -1,42 +1,38 @@
 ---
-name: Switching to Preact from React
+name: Von React zu Preact wechseln
 permalink: '/guide/switching-to-preact
 ---
 
-# Switching to Preact (from React)
+# Von React zu Preact wechseln
 
-There are two different approaches to switch from React to Preact:
+Es gibt zwei Wege, um von React zu Preact zu wechseln:
 
-1. Install the `preact-compat` alias
-2. Switch your imports to `preact` and remove incompatible code
+1. Das `preact-compat`-Modul als Alias installieren
+2. `preact` importieren und inkompatiblen Code entfernen
 
-## Easy: `preact-compat` Alias
+## Einfach: `preact-compat` als Alias
 
-Switching to Preact can be as easy as installing and aliasing `preact-compat` in for `react` and `react-dom`.
-This lets you continue writing React/ReactDOM code without any changes to your workflow or codebase.
-`preact-compat` adds somewhere around 2kb to your bundle size, but has the advantage of supporting
-the vast majority of existing React modules you might find on npm.  The `preact-compat` package provides
-all the necessary tweaks on top of Preact's core to make it work just like `react` and `react-dom`, in a single module.
+Preact kann ganz einfach installiert werden, indem du `preact-compat` als Alias für `react` und `react-dom` einsetzt.
+Damit kannst du weiterhin React/ReactDOM-Code schreiben, ohne Veränderungen am Workflow oder der Codebase vorzunehmen.
+`preact-compat` fügt ungefähr 2kb zur Größe deines Bundles hinzu, hat aber den Vorteil, die überwiegende Mehrheit der über npm verfügbaren React-Module zu unterstützen. Das `preact-compat`-Paket liefert alle notwendigen Anpassungen am Core von Preact, die es kompatibel zu `react` und `react-dom` in einem einzigen Modul machen.
 
-The process for installation is two steps.
-First, you must install preact and preact-compat (they are separate packages):
+Die Installation läuft in zwei Schritten ab.
+Zunächst installierst du preact und preact-compat (als zwei separate Pakete):
 
 ```sh
 npm i -S preact preact-compat
 ```
 
-With those dependencies installed, configure your build system to alias React imports so they point to Preact instead.
+Sobald diese beiden Abhängigkeiten installiert sind, konfigurierst du dein Build-System so, dass React-Importe stattdessen auf Preact verweisen.
 
 
-### How to Alias preact-compat
+### Aliase für preact-compat erstellen
 
-Now that you have your dependencies installed, you'll need to configure your build system
-to redirect any imports/requires looking for `react` or `react-dom` with `preact-compat`.
+Alle import/require-Statements, die auf `react` oder `react-dom` verweisen, ersetzt du durch `preact-compat`.
 
-#### Aliasing via Webpack
+#### Aliase über Webpack
 
-Simply add the following [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias)
-configuration to your `webpack.config.js`:
+Füge zu deiner `webpack.config.js` den folgenden [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias) hinzug:
 
 ```json
 {
@@ -49,13 +45,13 @@ configuration to your `webpack.config.js`:
 }
 ```
 
-#### Aliasing via Browserify
+#### Aliase über Browserify
 
-If you're using Browserify, aliases can be defined by adding the [aliasify](https://www.npmjs.com/package/aliasify) transform.
+Falls du Browserify einsetzt, können Aliase mit Hilfe des [aliasify](https://www.npmjs.com/package/aliasify)-Transform konfiguriert werden.
 
-First, install the transform:  `npm i -D aliasify`
+Installiere aliasify:  `npm i -D aliasify`
 
-Then, in your `package.json`, tell aliasify to redirect react imports to preact-compat:
+Weise aliasify dann in deiner `package.json` an, React-Importe auf preact-compat umzuleiten:
 
 ```json
 {
@@ -68,70 +64,65 @@ Then, in your `package.json`, tell aliasify to redirect react imports to preact-
 }
 ```
 
-#### Aliasing Manually
+#### Aliase manuell erstellen
 
-If you're not using a build system or want to permanently switch to `preact-compat`,
-you can also find & replace all the imports/requires in your codebase much like an alias does:
+Falls du kein Build-System nutzt oder dauerhaft zu `preact-compat` wechseln willst, kannst du auch über Suchen & Ersetzen alle Import/Require-Statements in deiner Codebase austauschen:
 
-> **find:**    `(['"])react(-dom)?\1`
+> **Suchen:**    `(['"])react(-dom)?\1`
 >
-> **replace:** `$1preact-compat$1`
+> **Ersetzen:** `$1preact-compat$1`
 
-In this case though, you might find it more compelling to switch directly to `preact` itself, rather than relying on `preact-compat`.
-Preact's core is quite fully featured, and many idiomatic React codebases can actually be switched straight to `preact` with little effort.
-That approach is covered in the next section.
+In diesem Falle könnte es sich aber eher anbieten, direkt zu `preact` zu wechseln, statt den Kompatibilitäts-Layer `preact-compat` einzusetzen.
+Der Core von Preact core bietet nahezu alle Features von React, und viele React-Projekte können ohne größeren Aufwand direkt mit `preact` betrieben werden.
+Die Vorgehensweise dazu wird weiter unten erläutert.
 
 
 ### Build & Test
 
-**You're done!**
-Now when you run your build, all your React imports will be instead importing `preact-compat` and your bundle will be much smaller.
-It's always a good idea to run your test suite and of course load up your app to see how it's working.
-
+**Fertig!**
+Wenn du nun deinen Build durchlaufen lässt, werden alle React-Importe auf `preact-compat` verweisen und die Größe deines Projektes wird viel kleiner. Deine Test-Suite und ein Aufruf der App sollte nun zeigen, ob alles noch reibungslos funktionert.
 
 ---
 
+## Optimal: Ganz zu Preact wechseln
 
-## Optimal: Switch to Preact
+Du muss nicht `preact-compat` nutzen, um von React zu Preact zu wechseln. Die API von Preact ist fast identisch zu React, und viele React-Projekte können ganz ohne oder nur mit wenigen Anpassungen migriert werden.
 
-You don't have to use `preact-compat` in your own codebase in order to migrate from React to Preact.
-Preact's API is nearly identical to React's, and many React codebases can be migrated with little or no changes needed.
+Grundsätzlich sind die Schritte einer Migration zu Preact die folgenden:
 
-Generally, the process of switching to Preact involves a few steps:
+### 1. Preact installieren
 
-### 1. Install Preact
-
-This one is simple: you'll need to install the library in order to use it!
+Wie üblich mit NPM oder Yarn installieren:
 
 ```sh
 npm install --save preact  # or: npm i -S preact
 ```
 
-### 2. JSX Pragma: transpile to `h()`
+### 2. JSX Pragma: Zu `h()` transpilieren
 
-> **Background:** While the [JSX] language extension is independent from React, popular
-> transpilers like [Babel] and [Bublé] default to converting JSX to `React.createElement()` calls.
-> There are historical reasons for this, but it's worth understanding that the function calls JSX
-> transpiles to are actually a pre-existing technology called [Hyperscript]. Preact pays homage
-> to this and attempts to promote a better understanding of the simplicity of JSX by using `h()`
-> as its [JSX Pragma].
+> **Hintergrund:** Wärend die [JSX]-Spracherweiterung unabhängig von React ist, wandeln beliebte
+> Transpiler wie [Babel] und [Bublé] JSX standardmäßig in `React.createElement()`-Aufrufe um.
+> Hierfür gibt es historische Gründe, aber die Funktionsaufrufe, in die JSX transpiliert wird,
+> sind genaugenommen eine schon vorher existierende Technologie namens [Hyperscript].
+> Preact greift dies auf und bemüht sich darum, die Einfachheit von JSX zu vermitteln, indem es
+> `h()` als sein [JSX Pragma] verwendet.
 >
-> **TL;DR:** We need to switch `React.createElement()` out for preact's `h()`
+> **TL;DR:** Alle Aufrufe von `React.createElement()` müssen durch `h()` ersetzt werden.
 
-In JSX, the "pragma" is the name of a function that handles creating each element:
+In JSX steht "pragma" für eine Funktion, die ein Element erstellt:
 
-> `<div />` transpiles to `h('div')`
+> `<div />` wird zu `h('div')` transpiliert
 >
-> `<Foo />` transpiles to `h(Foo)`
+> `<Foo />` wird zu `h(Foo)` transpiliert
 >
-> `<a href="/">Hello</a>` to `h('a', { href:'/' }, 'Hello')`
+> `<a href="/">Hallo</a>` wird zu `h('a', { href:'/' }, 'Hallo')`
 
-In each example above, `h` is the function name we declared as the JSX Pragma.
+In diesem Beispiel ist `h` die Funktion, die als JSX Pragma definiert wurde.
 
 
-#### Via Babel
+#### Mittels Babel
 
-If you're using Babel, you can set the JSX Pragma in your `.babelrc` or `package.json` (whichever you prefer):
+Falls du Babel bevorzugst, kann das JSX Pragma entweder in `.babelrc` oder in `package.json` konfiguriert werden:
 
 ```json
 {
@@ -142,71 +133,61 @@ If you're using Babel, you can set the JSX Pragma in your `.babelrc` or `package
 ```
 
 
-#### Via Comments
+#### Mittels Kommentaren
 
-If you're working in an online editor powered by Babel (such as JSFiddle or Codepen),
-you can set the JSX Pragma by defining a comment near the top of your code:
+Falls du einen Online-Editor, der Babel nutzt, verwendest (z.B. JSFiddle oder Codepen),
+kannst du das JSX Pragma über einen Kommentar am Kopf des Codes definieren:
 
 `/** @jsx h */`
 
 
-#### Via Bublé
+#### Mittels Bublé
 
-[Bublé] ships with JSX support by default.  Just set the `jsx` option:
+[Bublé] unterstützt standardmäßig JSX. Hier muss die `jsx`-Option konfiguriert werden:
 
 `buble({ jsx: 'h' })`
 
 
-### 3. Update any Legacy Code
+### 3. Älteren Code aktualisieren
 
-While Preact strives to be API-compatible with React, portions of the interface are intentionally not included.
-The most noteworthy of these is `createClass()`. Opinions vary wildly on the subject of classes and OOP, but
-it's worth understanding that JavaScript classes are internally in VDOM libraries to represent component types,
-which is important when dealing with the nuances of managing component lifecycles.
+Obwohl Preact API-Kompatibilität mit React anstrebt, sind Teile des Interfaces bewusst nicht enthalten. Hierzu zählt vor allem `createClass()`. Die Meinungen zu Klassen und OOP in Javascript gehen auseinander, aber es sei darauf hingewiesen, dass Javascript-Klassen intern in VDOM-Libraries für Komponententypen verwendet werden, was die Behandlung von Komponenten-Lifecycles wichtig ist.
 
-If your codebase is heavily reliant on `createClass()`, you still have a great option:
-Laurence Dorman maintains a [standalone `createClass()` implementation](https://github.com/ld0rman/preact-classless-component)
-that works directly with preact and is only a few hundred bytes.
-Alternatively, you can automatically convert your `createClass()` calls to ES Classes using [preact-codemod](https://github.com/vutran/preact-codemod) by Vu Tran.
+Falls deine Codebase viel von `createClass()` Gebrauch macht, gibt es jedoch eine nützliche Lösung:
+Laurence Dormans [`createClass()`-Implementierung](https://github.com/ld0rman/preact-classless-component), die direkt mit Preact zusammenarbeitet und nur ein paar hundert Bytes groß ist. Alternativ kannst du auch deine `createClass()`-Aufrufe automatisch in ES-Klassen mittels [preact-codemod](https://github.com/vutran/preact-codemod) von Vu Tran umwandeln lassen.
 
-Another difference worth noting is that Preact only supports Function Refs by default.
-String refs are deprecated in React and will be removed shortly, since they introduce a surprising amount of complexity for little gain.
-If you want to keep using String refs, [this tiny linkedRef function](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)
-offers a future-proofed version that still populates `this.refs.$$` like String Refs did.  The simplicity of this tiny wrapper around
-Function Refs also helps illustrate why Function Refs are now the preferred choice going forward.
+Ein weiterer wichtiger Unterschied ist, dass Preact standardmäßig nur Funktionsreferenzen unterstützt. Zeichenkettenreferenzen werden in React als deprecated behandelt und werden demnächst entfernt, da sie erstaunlich viel Komplexität für wenig Nutzen erfordern.
+Sofern du Zeichenkettenreferenzen weiter benutzen möchtest, bietet [diese winzige linkedRef-Funktion](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)
+eine zukunftssichere Version, die auch `this.refs.$$` wie alte Zeichenkettenreferenzen behandelt.  Die einfache Struktur dieser Funktion zeigt auch, wieso Funktionsreferenzen den künftig zu bevorzugenden Weg darstellen.
 
 
 ### 4. Simplify Root Render
 
-Since React 0.13, `render()` has been provided by the `react-dom` module.
-Preact does not use a separate module for DOM rendering, since it is focused solely on being a great DOM renderer.
-So, the last step in converting your codebase to Preact is switching `ReactDOM.render()` to preact's `render()`:
+Seit React 0.13 wird `render()` vom `react-dom`-Modul bereitgestellt.
+Preact nutzt kein separates Modul zum Rendern des DOM, weil genau das die eigentliche Zielstellung von Preact ist.
+Im letzten Schritt muss daher in deinem Code `ReactDOM.render()` in die `render()`-Methode von Preact umgewandelt werden:
 
 ```diff
 - ReactDOM.render(<App />, document.getElementById('app'));
 + render(<App />, document.body);
 ```
 
-It's also worth noting that Preact's `render()` is non-destructive, so rendering into `<body>` is perfectly fine (encouraged, even).
-This is possible because Preact does not assume it controls the entire root element you pass it.  The second argument to `render()`
-is actually `parent` - meaning it's a DOM element to render _into_.  If you would like to re-render from the root (perhaps for Hot
-Module Replacement), `render()` accepts an element to replace as a third argument:
+Es sei darauf hingewiesen, dass die `render()`-Funktion von Preact nicht-destruktiv ist, so dass das Rendern in das `<body>`-Element problemlos und sogar empfehlenswert ist.
+Dies wird dadurch ermöglicht, dass Preact nicht davon ausgehet, dass es das gesamte Root-Element, das ihm übergeben wird, steuert. Das zweite Argument der `render()`-Funktion ist das `Elternelement` - d.h. das DOM-Element, _in das_ gerendert werden soll. Falls du vom Root-Element aus neu rendern willst (z.B. für Hot Module Replacement), kann an `render()` als drittes Argument auch ein Element übergeben werden, das ersetzt werden soll:
 
 ```js
-// initial render:
+// Erstes Rendering:
 render(<App />, document.body);
 
-// update in-place:
+// Aktualisierung:
 render(<App />, document.body, document.body.lastElementChild);
 ```
 
-In the above example, we're relying on the last child being our previously rendered root.
-While this works in many cases (jsfiddles, codepens, etc), it's best to have more control.
-This is why `render()` returns the root element: you pass it as the third argument to re-render in-place.
-The following example shows how to re-render in response to Webpack's Hot Module Replacement updates:
+Im obigen Beispiel wird das letzte Kindelement genutzt, nämlich das zuvor gerenderte Root-Element.
+Obwohl dies in vielen Fällen funktioniert (jsfiddles, codepens, etc.), ist zu bevorzugen, die selbst bestimmen zu können. Darum liefert `render()` das Root-Element zurück: dieses kann dann als drittes Element übergeben werden, wenn am selben Ort neu gerendert werden soll.
+Das folgende Beispiel zeigt, wie bei einem Update über Hot Module Replacement von Webpack neu gerendert werden kann:
 
 ```js
-// root holds our app's root DOM Element:
+// root enthält das Root-DOM-Element:
 let root;
 
 function init() {
@@ -214,11 +195,11 @@ function init() {
 }
 init();
 
-// example: Re-render on Webpack HMR update:
+// Beispiel: Re-rendering beim HMR-Update von Webpack:
 if (module.hot) module.hot.accept('./app', init);
 ```
 
-The full technique can be seen in [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
+Diese Technik wird in [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18) angewendet
 
 
 [babel]: https://babeljs.io
