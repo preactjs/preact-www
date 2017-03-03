@@ -71,7 +71,7 @@ toc: false
     </p>
     
     <p>
-        It even includes extra performance features like DOM recycling and optimized event handling via [Linked State](/guide/linked-state).
+        It even includes extra performance features like customizable update batching, optional async rendering, DOM recycling, and optimized event handling via [Linked State](/guide/linked-state).
     </p>
 </section>
 
