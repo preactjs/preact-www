@@ -30,4 +30,10 @@ permalink: '/about/we-are-using'
 			<span style="margin-left: 5px;">Instant Domain Search</span>
 		</a>
 	</li>
+  <li style="list-style: none;">
+		<a href="//devpad.io" target="_blank">
+			<img src="/assets/devpad.png" alt="DevPad" style="height: 22px;vertical-align: middle;"/>
+			<span style="margin-left: 5px;">DevPad</span>
+		</a>
+	</li>
 </ul>
