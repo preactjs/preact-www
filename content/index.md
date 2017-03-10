@@ -71,7 +71,7 @@ toc: false
     </p>
     
     <p>
-        It even includes extra performance features like <a href="/guide/configuration#debounceRendering">customizable update batching</a>, optional <a href="/guide/configuration#syncComponentUpdates">async rendering</a>, DOM recycling and optimized event handling via [Linked State](/guide/linked-state).
+        It even includes extra performance features like customizable update batching, optional async rendering, DOM recycling, and optimized event handling via [Linked State](/guide/linked-state).
     </p>
 </section>
 
