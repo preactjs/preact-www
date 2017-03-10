@@ -21,11 +21,11 @@ const CSS_MAPS = ENV!=='production';
 const VENDORS = /\bbabel\-standalone\b/;
 
 module.exports = {
-	context: `${__dirname}/src`,
+	context: path.resolve(__dirname, 'src'),
 	entry: './index.js',
 
 	output: {
-		path: `${__dirname}/build`,
+		path: path.resolve(__dirname, 'build'),
 		publicPath: '/',
 		// filename: 'bundle.js'
 		filename: 'bundle.js',
@@ -35,13 +35,13 @@ module.exports = {
 	resolve: {
 		extensions: ['', '.jsx', '.js', '.json', '.less'],
 		modulesDirectories: [
-			`${__dirname}/src/lib`,
-			`${__dirname}/node_modules`,
+			path.resolve(__dirname, 'src/lib'),
+			path.resolve(__dirname, 'node_modules'),
 			'node_modules'
 		],
 		alias: {
-			components: `${__dirname}/src/components`,
-			style: `${__dirname}/src/style`,
+			components: path.resolve(__dirname, 'src/components'),
+			style: path.resolve(__dirname, 'src/style'),
 			'react': 'preact-compat',
 			'react-dom': 'preact-compat'
 		}
@@ -52,7 +52,7 @@ module.exports = {
 		preLoaders: [
 			{
 				test: /\.jsx?$/,
-				exclude: [/src\//, VENDORS],
+				exclude: [path.resolve(__dirname, 'src'), VENDORS],
 				loader: 'source-map'
 			}
 		],
@@ -64,7 +64,7 @@ module.exports = {
 			},
 			{
 				test: /\.(less|css)$/,
-				include: /src\/components\//,
+				include: [path.resolve(__dirname, 'src/components')],
 				loader: ExtractTextPlugin.extract('style', [
 					`css?sourceMap=${CSS_MAPS}&modules&importLoaders=1&localIdentName=[local]${process.env.CSS_MODULES_IDENT || '_[hash:base64:5]'}`,
 					'postcss',
@@ -73,7 +73,7 @@ module.exports = {
 			},
 			{
 				test: /\.(less|css)$/,
-				exclude: [/src\/components\//, VENDORS],
+				exclude: [path.resolve(__dirname, 'src/components'), VENDORS],
 				loader: ExtractTextPlugin.extract('style', [
 					`css?sourceMap=${CSS_MAPS}`,
 					`postcss`,
@@ -113,13 +113,13 @@ module.exports = {
 			'process.env.NODE_ENV': JSON.stringify(ENV)
 		}),
 		new HtmlWebpackPlugin({
-			template: `!!ejs-loader!${__dirname}/src/index.html`,
+			template: "!!ejs-loader!"+path.resolve(__dirname, 'src/index.html'),
 			inject: false,
 			minify: {
 				collapseWhitespace: true,
 				removeComments: true
 			},
-			favicon: `${__dirname}/src/assets/favicon.ico`,
+			favicon: path.resolve(__dirname, 'src/assets/favicon.ico'),
 			title: config.title,
 			config,
 			render: () => ssr({ url:'/' })
@@ -192,11 +192,11 @@ module.exports = {
 		port: process.env.PORT || 8080,
 		host: '0.0.0.0',
 		publicPath: '/',
-		outputPath: path.join(__dirname, 'build'),
+		outputPath: path.resolve(__dirname, 'build'),
 		quiet: true,
 		clientLogLevel: 'error',
 		compress: true,
-		contentBase: `${__dirname}/src`,
+		contentBase: path.resolve(__dirname, 'src'),
 		historyApiFallback: true,
 		setup(app) {
 			app.use('/content/**', (req, res) => {
