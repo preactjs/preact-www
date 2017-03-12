@@ -9,7 +9,7 @@ permalink: '/about/we-are-using'
 	<li style="list-style: none;">
 		<a href="//im.qq.com/" target="_blank">
 			<img src="/assets/qq.png" alt="Tencent QQ" style="height: 22px;vertical-align: middle;"/>
-			<span style="margin-left: 5px;">腾讯QQ</span>
+			<span style="margin-left: 5px;">腾讯 QQ</span>
 		</a>
 	</li>
 	<li style="list-style: none;">
@@ -26,3 +26,4 @@ permalink: '/about/we-are-using'
 - [heyli](http://www.github.com/lcxfs1991)
 - [muchen](https://github.com/tao1991123)
 - [zikeng](https://github.com/zikeng)
+- [malcolmyu](https://github.com/malcolmyu)
