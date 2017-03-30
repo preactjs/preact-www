@@ -39,7 +39,7 @@ toc: false
     </p>
 
     <p> 
-		Preact也是web平台的一等公民，他将虚拟DOM与DOM本身区别开，注册真实的事件处理函数，很好地与其它库一起工作。
+		Preact也是web平台的一等公民，它将虚拟DOM与DOM进行diff，注册非虚拟的事件处理函数，并能很好地与其它库一起工作。
     </p>
 </section>
 
@@ -50,7 +50,7 @@ toc: false
     <h2>小体积</h2>
     
     <p>
-		大多数UI框架是相当大的，是应用程序javascript体积的大部份。Preact不同：他足够小，<em>你的代码</em>是你的应用程序最大的部分。
+		大多数UI框架是相当大的，是应用程序javascript体积的大部份。Preact不同：它足够小，<em>你的代码</em>是你的应用程序最大的部分。
     </p>
     
     <p> 
@@ -65,11 +65,11 @@ toc: false
     <h2>高性能</h2>
     
     <p>
-		Preact是快速的，不仅是因为他的体积，因为一个简单和可预测的diff实现，使它成为最快的虚拟DOM框架之一。
+		Preact非常快，并不仅是因为它的体积小，更因为一个简单和可预测的diff实现，使它成为最快的虚拟DOM框架之一。
     </p>
     
     <p> 
-        他甚至包含额外的性能特性，如<a href="/guide/configuration#debounceRendering">批量自定义更新</a>，可选的<a href="/guide/configuration#syncComponentUpdates">异步渲染</a>，DOM回收和通过[关连状态](/guide/linked-state)优化的事件处理。
+        它甚至包含额外的性能特性，如<a href="/guide/configuration#debounceRendering">批量自定义更新</a>，可选的<a href="/guide/configuration#syncComponentUpdates">异步渲染</a>，DOM回收和通过[关连状态](/guide/linked-state)优化的事件处理。
     </p>
 </section>
 
@@ -77,10 +77,10 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/portable.svg">
  
-    <h2>轻量 &amp; 移植</h2>
+    <h2>轻量 &amp; 可移植</h2>
     
     <p>
-        Preact是轻量的意味着你可以把一个强大的虚拟DOM组件范例带到一个新的地方。
+        Preact是轻量的意味着你可以把一个强大的虚拟DOM组件范例带到一个新的地方。
     </p>
     
     <p> 
@@ -95,7 +95,7 @@ toc: false
     <h2>即时生产</h2>
     
     <p>
-        轻量可以在你不需要牺牲生产力时得到更多的乐趣。Preact让你立即获得生产力。他甚至有一些额外的功能：
+        轻量可以在你不需要牺牲生产力时得到更多的乐趣。Preact让你立即获得生产力。它甚至有一些额外的功能：
     </p>
     
     <ul>
