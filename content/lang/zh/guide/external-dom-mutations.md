@@ -35,7 +35,7 @@ class Block extends Component {
 
 ## 样例演练
 
-这是一个“去掉 " 组件重新渲染的例子。注意 render() 作为创建和挂载组件的一部份，为了生成组件初始的 DOM 结构，依然会被调用。
+这是一个"去掉" 组件重新渲染的例子。注意 render() 作为创建和挂载组件的一部份，为了生成组件初始的 DOM 结构，依然会被调用。
 ```js
 class Example extends Component {
   shouldComponentUpdate() {
