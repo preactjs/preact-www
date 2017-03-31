@@ -39,7 +39,7 @@ toc: false
     </p>
 
     <p> 
-		Preact也是web平台的一等公民，它将虚拟DOM与DOM进行diff，注册非虚拟的事件处理函数，并能很好地与其它库一起工作。
+		Preact也是web平台的一等公民，它将真实 dom 对应的 虚拟 dom 进行 diff，注册非虚拟的事件处理函数，并能很好地与其它库一起工作。
     </p>
 </section>
 
