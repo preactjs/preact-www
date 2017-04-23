@@ -183,7 +183,7 @@ Então, o último passo pra converter sua codebase para Preact é trocar `ReactD
 Também é válido notar que o `render()` do Preact é não destrutivo, então renderizar em `<body>` é totalmente okay (até encorajado).
 Isso é possível porque Preact não assume que tem total controle do elemento raiz que você passa. O segundo argumento de `render()`
 que é na verdade o `parent` - o que significa que é um elemento DOM pra renderizar _em_. Se você gostaria de re-renderizar a partir da
-raiz (talvez para Hot Module Replacement), `render()` aceita um emento pra substituir como um terceiro argumento:
+raiz (talvez para Hot Module Replacement), `render()` aceita um elemento pra substituir como um terceiro argumento:
 
 ```js
 // renderização inicial:
