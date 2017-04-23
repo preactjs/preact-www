@@ -68,9 +68,10 @@ class Example extends Component {
 
 ## Demonstração
 
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
+[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
 
-[**Veja esse demo no Webpackbin**](http://www.webpackbin.com/V1hyNQbpe)
+
+[**Veja esse demo no Webpackbin**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
 
 
 ## Exemplos do Mundo-Real
