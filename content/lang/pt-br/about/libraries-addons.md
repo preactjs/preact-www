@@ -27,6 +27,7 @@ Uma coleção de módulos construídos para trabalhar maravilhosamente com Preac
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Campo de texto que <i>tokeniza</i> a entrada, pra coisas como <i>tags</i>
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Renderize facilmente listas com milhões de linhas ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Biblioteca de layout simples e pequena.
+- :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet):Um gerenciador de documento para Preact
 
 
 ### Integrações
@@ -49,6 +50,6 @@ Uma coleção de módulos construídos para trabalhar maravilhosamente com Preac
 
 ### Utilitários
 
-- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): crie compoentens Preact sem a _keyword_ `Class` 
+- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): crie compoentens Preact sem a _keyword_ `Class`
 - :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Sintaxe similar a Hyperscript para criação de elementos.
 - :white_check_mark: [**shallow-compare**](https://github.com/tkh44/shallow-compare): _Helper_ simplificado para `shouldComponentUpdate`.
