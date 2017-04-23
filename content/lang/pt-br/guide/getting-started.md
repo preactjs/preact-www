@@ -8,15 +8,15 @@ permalink: '/guide/getting-started'
 Aqui, você será guiado a criar um componente simples de relógio contador. Informações mais detalhadas de cada tópico podem ser encontradas nas páginas dedicadas sobre o menu "Guide".
 
 
-> :information_desk_person: Você [não _tem_ de usar ES2015 para usar Preact](https://github.com/developit/preact-without-babel)... mas deveria. 
-Esse guia assume que você tem algum tipo de build ES2015 configurada utilizando Babel e/ou webpack/browserify/gulp/grunt/etc. Se você não tem, inicie com o [preact-boilerplate] ou um [template do CodePen ](http://codepen.io/developit/pen/pgaROe?editors=0010).
+> :information_desk_person: Você [não _tem_ de usar ES2015 para usar Preact](https://github.com/developit/preact-without-babel)... mas deveria.
+Esse guia assume que você tem algum tipo de build ES2015 configurado utilizando Babel e/ou webpack/browserify/gulp/grunt/etc. Se você não tem, inicie com o [preact-boilerplate] ou um [template do CodePen ](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 ---
 
 
 ## Importe o que você precisa
 
-O módulo `preact` provê ambos os exports nomeados e `default`, portanto vocẽ pode tanto importar tudo sobre um _namespace_ de sua escolha, ou apenas o que precisa como variáveis locais:
+O módulo `preact` provê ambos os exports nomeados e `default`, portanto você pode tanto importar tudo sobre um _namespace_ de sua escolha, ou apenas o que precisa como variáveis locais:
 
 
 **Nomeado:**
@@ -43,7 +43,7 @@ import preact from 'preact';
 Ao invés de declarar o _pragma_  `@jsx` no seu código, é melhor configurá-lo em um arquivo `.babelrc`
 
 **Nomeado:**
->**Para Babel 5 and anteriores:**
+>**Para Babel 5 e anteriores:**
 >
 > ```json
 > { "jsxPragma": "h" }
@@ -60,7 +60,7 @@ Ao invés de declarar o _pragma_  `@jsx` no seu código, é melhor configurá-lo
 > ```
 
 **Default:**
->**Para Babel 5 and anteriores:**
+>**Para Babel 5 e anteriores:**
 >
 > ```json
 > { "jsxPragma": "preact.h" }
@@ -83,7 +83,7 @@ Ao invés de declarar o _pragma_  `@jsx` no seu código, é melhor configurá-lo
 
 De forma imediata, Preact provê uma função `h()` que transforma seu JSX em elementos Virtual DOM _([leia como aqui](http://jasonformat.com/wtf-is-jsx))_. Também provê uma função `render()` que cria uma árvore DOM a partir da Virtual DOM.
 
-Para renderizar JSX, apenas import tais funções e use-as assim:
+Para renderizar JSX, apenas importe tais funções e use-as assim:
 
 ```js
 import { h, render } from 'preact';
@@ -98,18 +98,18 @@ render((
 
 Isso deve parecer muito familiar se você já utilizou [hyperscript] ou um de seus [muitos amigos](https://github.com/developit/vhtml).
 
-Renderizar hyperscript com uma virtual DOM é desnecessário, no entanto. Queremos renderizar componentes e atualizá-los quando os dados mudarem - É aí que o poder da comparação com Virtual DOM brilhar :start2:.
+Renderizar hyperscript com o virtual DOM é desnecessário, no entanto. Queremos renderizar componentes e atualizá-los quando os dados mudarem - É aí que o poder da comparação com o Virtual DOM brilha. 🌟
 
 ---
 
 
 ## Componentes
 
-Preact exporta uma classe genérica `Componente`, que pode ser extendida para construir pedaços auto-atualizáveis e encapsulados de Interface de Usuário. Componentes suportam todo os [métodos do ciclo de vida][lifecycle methods] padrão do React, como `shouldComponentUpdate()` e `componentWillReceiveProps()`. Prover implementações específicas para esses métodos é a maneira recomendada para controlar _quando_ e _como_ os componentes atualizam.
+Preact exporta uma classe genérica `Componente`, que pode ser extendida para construir pedaços auto-atualizáveis e encapsulados de Interface de Usuário. Componentes suportam todo os [métodos do ciclo de vida] padrão do React, como `shouldComponentUpdate()` e `componentWillReceiveProps()`. Prover implementações específicas para esses métodos é a maneira recomendada para controlar _quando_ e _como_ os componentes atualizam.
 
 Componentes também tem um método `render()`, mas diferente do React esse método recebe `(props, state)` como argumentos. Isso provê uma maneira ergonômica para desestruturar  `props` e `state` em variáveis locais para serem referenciadas a partir do JSX.
 
-Vamos dar uma olhada em um componente `Clock bem simples, que mostra o o tempo atual.
+Vamos dar uma olhada em um componente `Clock` bem simples, que mostra o o tempo atual.
 
 
 ```js
