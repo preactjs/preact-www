@@ -93,6 +93,7 @@
     "preact": "^7.2.0",
     "preact-compat": "^3.0.0",
     "preact-markup": "^1.3.0",
+    "preact-render-to-string": "^3.6.0",
     "preact-router": "^2.0.0",
     "progress-spinner": "^1.1.0",
     "promise-polyfill": "^6.0.2",
