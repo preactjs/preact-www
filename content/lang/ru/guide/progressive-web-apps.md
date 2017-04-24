@@ -1,13 +1,13 @@
 ---
-name: Progressive Web Apps
+name: Прогрессивные веб-приложения
 permalink: '/guide/progressive-web-apps'
 ---
 
-# Progressive Web Apps
+# Прогрессивные веб-приложения
 
-## Overview
+## Обзор
 
-Preact is an excellent choice for [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) that wish to load and become interactive quickly.
+Preact это отличный выбор для [прогрессивных веб-приложений](https://developers.google.com/web/progressive-web-apps/) которые быстро загружаются, и сразу становятся интерактивными.
 
 <ol class="list-view">
     <li class="list-item">
@@ -16,9 +16,9 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
         </div>
         <div class="list-detail">
           <div class="_title-block">
-            <h3>Loads less script</h3>
+            <h3>Меньше скриптов</h3>
           </div>
-          <p class="_summary">Preact's [small size](/about/project-goals) is valuable when you have a tight loading performance budget. On average mobile hardware, loading large bundles of JS leads to longer load, parse and eval times. This can leave users waiting a long time before they can interact with your app.  By trimming down the library code in your bundles, you load quicker by shipping less code to your users. </p>
+          <p class="_summary">[Небольшой размер](/about/project-goals) Preact полезен, когда у вас есть ограничение в кол-ве загружаемых данных. На рядовом мобильном устройстве большой размер js-бандла приводит к увеличению времени на загрузку, разбор и исполнение вашего кода. Это может привести к тому, что пользователи будут долго ждать, перед тем как им станет возможно взаимодействовать с вашим приложением. Сокращая библиотечный код в ваших пакетах, ваш сайт загружается быстрее.</p>
         </div>
     </li>
 
@@ -28,9 +28,10 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
         </div>
         <div class="list-detail">
           <div class="_title-block">
-            <h3>Faster time to interactivity</h3>
+            <h3>Быстрее становится интерактивным</h3>
           </div>
-          <p class="_summary"><p>If you're aiming to be [interactive in under 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), every KB matters. [Switching React for Preact](/guide/switching-to-preact) in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p></p>
+          <p class="_summary">Если Вы стремитесь к тому чтобы с вашим сайтом можно было [взаимодействовать в течении 5 секунд](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), то каждый килобайт на счету. [Переключение с React на Preact](/guide/switching-to-preact) в ваших проектах может урезать множество килобайт, и позволит вам получить работающее клиентское приложение в течение времени одного round-trip. Это делает его отличным решением для прогрессивных веб-приложений которые пытаются урезать как можно больше кода в каждом роуте.
+          </p>
         </div>
     </li>
 
@@ -40,24 +41,26 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
         </div>
         <div class="list-detail">
           <div class="_title-block">
-            <h3>A building block that works great with the React ecosystem</h3>
+            <h3>Строительный блок, который отлично работает с экосистемой React</h3>
           </div>
-          <p class="_summary"><p>Whether you need to use React's [server-side rendering](https://facebook.github.io/react/docs/react-dom-server.html) to get pixels on the screen quickly or use [React Router](https://github.com/ReactTraining/react-router) for navigation, Preact works well with many libraries in the ecosystem. </p></p>
+          <p class="_summary">Если вам нужно использовать реактовый [рендеринг на стороне сервера](https://facebook.github.io/react/docs/react-dom-server.html), для быстрого получения пикселей на экране, или использовать [React Router](https://github.com/ReactTraining/react-router) для навигации, Preact хорошо работает с многими библиотеками в экосистеме.</p>
         </div>
     </li>
 </ol>
 
-## This site is a PWA
+## Этот сайт является PWA (Прогрессивным веб-приложением)
 
-In fact, the site you're on right now is a Progressive Web App!. Here it is getting interactive in under 5 seconds in a trace from a Nexus 5X over 3G:
+Фактически, сайт, на котором вы сейчас находитесь, - это прогрессивное веб-приложение! Здесь он становится интерактивным в течение 5 секунд после открытия на Nexus 5X по 3G:
 
-<img src="../assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+<img src="../assets/pwa-guide/timeline.jpg" alt="Трассировка в Chrome_DevTools Timeline сайта preactjs.com на Nexus 5X"/>
 
-Static site content is stored in the (Service Worker) Cache Storage API enabling instant loading on repeat visits.
+Статический контент сайта хранится в (Service Worker) Cache Storage, что позволяет мгновенно загружать его при повторных посещениях.
 
-## Performance tips
+## Советы по повышению производительности
 
 While Preact is a drop-in that should work well for your PWA, it can also be used with a number of other tools and techniques. These include:
+
+В то время как замена React на Preact это достаточно лёгкий способ оптимизировать ваше PWA-приложение, его также можно использовать с рядом других инструментов и техник. К ним относятся:
 
 <ol class="list-view">
     <li class="list-item">
@@ -65,7 +68,7 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-splitting</a></strong> breaks up your code so you only ship what the user needs for a page. Lazy-loading the rest as needed improves page load times. Supported via Webpack.</p>
+          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Разделение кода</a></strong> разбивает ваш код, таким образом что ваш пользователь получает то что ему необходимо в данный момент. Ленивая загрузка остального кода по мере необходимости улучшает время загрузки страницы. Поддерживается через Webpack.</p>
         </div>
     </li>
 
@@ -74,7 +77,8 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> allows you to offline cache static and dynamic resources in your app, enabling instant loading and faster interactivity on repeat visits. Accomplish this with [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) or [offline-plugin](https://github.com/NekR/offline-plugin).</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Кэширование Service Worker</a></strong> позволяет вам кешировать статические и динамические ресурсы в вашем приложении, обеспечивая мгновенную загрузку и более быструю интерактивность при повторных посещениях. Выполняйте это с помощью [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) или [offline-plugin](https://github.com/NekR/offline-plugin).
+          </p>
         </div>
     </li>
 
@@ -83,7 +87,8 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> encourages preemptively pushing or pre-loading assets to the browser, speeding up the load of subsequent pages. It builds on code-splitting and SW caching. </p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> поощряет предварительную передачу данных или предварительную загрузку ресурсов в браузер, ускоряя загрузку последующих страниц. Он строится на кодовом разделении и Service Worker кэшировании.
+          </p>
         </div>
     </li>
 
@@ -92,7 +97,7 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> allows you to audit the performance and best practices of your Progressive Web App so you know how well your app performs.</p>
+          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> позволяет вам проверять производительность и лучшие практики вашего прогрессивного веб-приложения, чтобы вы знали, насколько хорошо работает ваше приложение.</p>
         </div>
     </li>
 </ol>
