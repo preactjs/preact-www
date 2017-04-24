@@ -30,7 +30,7 @@ Preact es una excelente elección para [Progressive Web Apps](https://developers
           <div class="_title-block">
             <h3>Tiempo de interacción más rápido</h3>
           </div>
-          <p class="_summary"><p>Si estás buscando ser [interactivo en menos de 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), cada KB importa. [Cambiando React por Preact](/guide/switching-to-preact) en tus proyectos puede acortar múltiples KBs y permitirte ser interactivo pronto. Esto es adecuado en una Progressive Web App intentando eliminar todo el código posible que no se necesita en cada ruta.</p></p>
+          <p class="_summary">Si estás buscando ser [interactivo en menos de 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), cada KB importa. [Cambiando React por Preact](/guide/switching-to-preact) en tus proyectos puede acortar múltiples KBs y permitirte ser interactivo pronto. Esto es adecuado en una Progressive Web App intentando eliminar todo el código posible que no se necesita en cada ruta.</p>
         </div>
     </li>
 
@@ -42,7 +42,7 @@ Preact es una excelente elección para [Progressive Web Apps](https://developers
           <div class="_title-block">
             <h3>Un ladrillo que funciona genial con el ecosistema de React</h3>
           </div>
-          <p class="_summary"><p>Ya sea que necesites usar el [server-side rendering](https://facebook.github.io/react/docs/react-dom-server.html) de React para mostrar pixels en la pantalla rápidamente o usar [React Router](https://github.com/ReactTraining/react-router) para la navegación, Preact funciona bien con muchas librerías del ecosistema. </p></p>
+          <p class="_summary">Ya sea que necesites usar el [server-side rendering](https://facebook.github.io/react/docs/react-dom-server.html) de React para mostrar pixels en la pantalla rápidamente o usar [React Router](https://github.com/ReactTraining/react-router) para la navegación, Preact funciona bien con muchas librerías del ecosistema. </p>
         </div>
     </li>
 </ol>
