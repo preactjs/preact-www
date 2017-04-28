@@ -5,7 +5,7 @@ permalink: '/about/demos-examples'
 
 # Demonstrações & Exemplos
 
-Essa página lista diversos <i>demos</i> e exemplos aue você pode utilizar para aprender Preact.
+Essa página lista diversos <i>demos</i> e exemplos que você pode utilizar para aprender Preact.
 
 
 > :information_desk_person: _Criou algo com Preact?
@@ -34,8 +34,15 @@ Uma aplicação similar ao 'peach.cool' de código aberto!
 [Github Project](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:
-Aplicação desktop para Dropbox, criado com Preact, Electron e Photon. 
+Aplicação desktop para Dropbox, criado com Preact, Electron e Photon.
 
+**[Connectivity Index](https://cindex.co)** :iphone:  
+Um site que permite que você pesquise através dos  [dados de conectividade Akamai](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) por país.
+
+**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+Desktop App for uploading assets to Contentful (API based CMS)
+Aplicativo de Desktop para upload de assets para o Contentful (CMS com base em API)
+[Github Project](https://github.com/contentful-labs/file-upload-example)
 
 ## Demos completos & Exemplos
 
@@ -65,6 +72,9 @@ Projeto exemplo com Preact + Redux, implementando uma <i>To-Do list</i> simples.
 
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
 Como usar Preact inteiramente sem Babel, ES2015 ou JSX.
+
+**[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
+Estrutura minimalista do Preact com todas as ferramentas necessárias para iniciar o seu projeto imediatamente.
 
 ## Codepens
 

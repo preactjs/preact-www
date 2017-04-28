@@ -72,7 +72,7 @@ toc: false
     </p>
 
     <p>
-        Até mesmo inclui recursos extra de performance como <a href="/guide/configuration#debounceRendering">atualizações em lote customizáveis</a>, <a href="/guide/configuration#syncComponentUpdates">renderização assíncrona</a> opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
+        Até mesmo inclui recursos extra de performance como atualizações em lote customizáveis, renderização assíncrona opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
     </p>
 </section>
 
