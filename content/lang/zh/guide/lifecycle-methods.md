@@ -14,7 +14,6 @@ permalink: '/guide/lifecycle-methods'
 | `componentWillMount`        | 在 component 插入 DOM 前调用    |
 | `componentDidMount`         | 在 component 插入 DOM 后调用       |
 | `componentWillUnmount`      | 在 component 移除前调用                   |
-| `componentDidUnmount`       | 在 component 移除后调用                          |
 | `componentWillReceiveProps` | 在 component 获取新的 props 前调用                    |
 | `shouldComponentUpdate`     | 在 `render()` 返回 `false` 来跳过渲染前调用 |
 | `componentWillUpdate`       | 在 `render()`  调用之前                              |

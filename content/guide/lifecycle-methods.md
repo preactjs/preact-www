@@ -14,7 +14,6 @@ Preact invokes the following lifecycle methods if they are defined for a Compone
 | `componentWillMount`        | before the component gets mounted to the DOM     |
 | `componentDidMount`         | after the component gets mounted to the DOM      |
 | `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentDidUnmount`       | after removal from the DOM                       |
 | `componentWillReceiveProps` | before new props get accepted                    |
 | `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
 | `componentWillUpdate`       | before `render()`                                |

@@ -145,7 +145,6 @@ render(<Clock />, document.body);
 | `componentWillMount`        | 在一个组件被渲染到 DOM 之前                         |
 | `componentDidMount`         | 在一个组件被渲染到 DOM 之后      					 |
 | `componentWillUnmount`      | 在一个组件在 DOM 中被清除之前                       |
-| `componentDidUnmount`       | 在一个组件在 DOM 中被清除之后                       |
 | `componentWillReceiveProps` | 在新的 props 被接受之前                              |
 | `shouldComponentUpdate`     | 在 `render()` 之前. 若返回 `false`，则跳过 render   |
 | `componentWillUpdate`       | 在 `render()` 之前                                |
