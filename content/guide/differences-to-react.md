@@ -45,7 +45,6 @@ Preact actually adds a few convenient features inspired by work in the React com
 - [Linked State] updates state when inputs change automatically
 - Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
 - You can just use `class` for CSS classes. `className` is still supported, but `class` is preferred.
-- Setting `class` to an Object creates a String className containing the keys having truthy values.
 - Component and element recycling/pooling.
 
 

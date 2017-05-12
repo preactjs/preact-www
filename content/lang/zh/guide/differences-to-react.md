@@ -39,12 +39,11 @@ Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻
 
 Preact 实际上添加了几个更为便捷的特性，灵感源于 React 的社区
 
-- `this.props` 和 `this.state` 帮你传进了 `render()` 作为参数 
+- `this.props` 和 `this.state` 帮你传进了 `render()` 作为参数
     - _你仍然可以手动地去引用它们，但这个特性更为简洁，尤其是做 [赋值解构] 的时候_
 - [Linked State] 当 inputs 输入框改变的时候，会自动更新状态 state
 - 批量 DOM 更新，`setTimeout(1)` 进行函数节流 使用 _(也可以使用 requestAnimationFrame)_
 - 你可以只用 `class` 作为 CSS 的类。 `className` 也仍然被支持， 但推荐使用 `class`
-- 给一个对象设置 `class` 创建了一个包含可信的键值的字符串类名
 - 组件和元素循环使用 / 存入池中
 
 
