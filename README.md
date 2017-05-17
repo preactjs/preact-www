@@ -1,5 +1,7 @@
 # Preact Documentation Website
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/developit/preact-www.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/developit/preact-www.svg?branch=master)](https://travis-ci.org/developit/preact-www)
 [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/developit/preact)
 
