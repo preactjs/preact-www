@@ -28,6 +28,10 @@
 					"name": "Getting Started"
 				},
 				{
+					"path": "/guide/api-reference",
+					"name": "API Reference"
+				},
+				{
 					"path": "/guide/differences-to-react",
 					"name": "Differences to React"
 				},
