@@ -1,25 +1,25 @@
 ---
-name: Libraries & Add-ons
+name: Библиотеки и аддоны
 permalink: '/about/addons-libraries'
 ---
 
-# Libraries & Add-ons
+# Библиотеки и аддоны
 
 
-A collection of modules built to work wonderfully with Preact.
+Коллекция модулей, собранных для работы с Preact.
 
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
+> :information_desk_person: _Создали свой?
+> [Добавьте!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
 
 
-### Add-Ons
+### Аддоны
 
 - :raised_hands: [**preact-compat**](https://git.io/preact-compat): use any React library with Preact *([full example](http://git.io/preact-compat-example))*
 - :repeat: [**preact-cycle**](https://git.io/preact-cycle): Functional-reactive paradigm for Preact
 - :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Universal rendering.
 
 
-### Components
+### Компоненты
 
 - :earth_americas: [**preact-router**](https://git.io/preact-router): URL routing for your components
 - :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): Render HTML & Custom Elements as JSX & Components
@@ -49,7 +49,7 @@ A collection of modules built to work wonderfully with Preact.
 - :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX assertion testing _(no DOM, right in Node)_
 
 
-### Utilities
+### Утилиты
 
 - :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): create preact components without the class keyword
 - :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Hyperscript-like syntax for creating elements

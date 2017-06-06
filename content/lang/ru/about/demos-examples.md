@@ -1,14 +1,14 @@
 ---
-name: Demos & Examples
+name: Демо и примеры
 permalink: '/about/demos-examples'
 ---
 
-# Demos & Examples
+# Демо и примеры
 
-This pages lists a bunch of demos and examples you can use to learn Preact.
+Эта страница содержит ряд демонстрационных примеров для изучения Preact.
 
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> :information_desk_person: _Написали своё?
+> [Добавьте!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
 ## Full Apps
