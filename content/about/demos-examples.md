@@ -38,6 +38,10 @@ Desktop app for Dropbox, built with Preact, Electron and Photon.
 **[Connectivity Index](https://cindex.co)** :iphone:  
 A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
 
+**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+Desktop App for uploading assets to Contentful (API based CMS)
+[Github Project](https://github.com/contentful-labs/file-upload-example)
+
 
 ## Full Demos & Examples
 

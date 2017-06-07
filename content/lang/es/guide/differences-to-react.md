@@ -45,7 +45,6 @@ Preact de hecho agrega algunas características convenientes inspiradas en el tr
 - [Estado conectado] actualiza el estado automáticamente cuando el input cambia
 - Batching de actualizaciones del DOM, demorado usando `setTimeout(1)` _(también puede usar requestAnimationFrame)_
 - Puedes usar `class` para clases de CSS. `className` es soportado, pero `class` es privilegiado.
-- Usando `class` como un objeto crea un String className conteniendo las claves que tienen valores que evalúan como verdadero.
 - Reciclado y agrupamiento de Componentes y elementos.
 
 
