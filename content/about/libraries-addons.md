@@ -47,6 +47,7 @@ A collection of modules built to work wonderfully with Preact.
 ### Testing
 
 - :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX assertion testing _(no DOM, right in Node)_
+- :white_check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX assertions, events, snapshots in Jest _(DOM, works under Node jsdom or out-of-the-box in Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
 
 
 ### Utilities

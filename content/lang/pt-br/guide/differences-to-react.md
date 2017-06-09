@@ -43,7 +43,6 @@ Preact na verdade adiciona algumas características conveninentes inspiradas pel
 - [Linked State] atualiza o estado quando os _inputs_ mudam automaticamente
 - Atualização de DOM em lotes, 'debounced/collated' usando `setTimeout(1)` _(também pode utilizar requestAnimationFrame)_
 - Você pode utilizar apenas `class` pra classes CSS. `classNames` ainda é suportado, mas `class` é preferível.
-- Definir `class` em um Objeto cria uma String `className` contendo as chaves que tem valor _truthy_
 - Reciclagem/_pooling_ de elementos e componentes.
 
 
