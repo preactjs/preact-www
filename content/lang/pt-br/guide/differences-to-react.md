@@ -5,7 +5,7 @@ permalink: '/guide/differences-to-react'
 
 # Diferenças do React
 
-O próprio Preact não tem a intenção de ser uma reimplementacao do React. Há diferenças. Muitas dessas são triviais, ou podem ser completamente removidas utilizando [praect-compat], que é uma fina camada sobre o Preact que tenta conseguir 100% de compatibilidade com React.
+O próprio Preact não tem a intenção de ser uma reimplementacao do React. Há diferenças. Muitas dessas são triviais, ou podem ser completamente removidas utilizando [preact-compat], que é uma fina camada sobre o Preact que tenta conseguir 100% de compatibilidade com React.
 
 Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pequeno** e **focado** - de outro modo faria mais sentido simplesmente submeter otimizações para o projeto React, que já é atualmente uma _codebase_ muito complexa e bem arquitetada.
 
@@ -43,7 +43,6 @@ Preact na verdade adiciona algumas características conveninentes inspiradas pel
 - [Linked State] atualiza o estado quando os _inputs_ mudam automaticamente
 - Atualização de DOM em lotes, 'debounced/collated' usando `setTimeout(1)` _(também pode utilizar requestAnimationFrame)_
 - Você pode utilizar apenas `class` pra classes CSS. `classNames` ainda é suportado, mas `class` é preferível.
-- Definir `class` em um Objeto cria uma String `className` contendo as chaves que tem valor _truthy_
 - Reciclagem/_pooling_ de elementos e componentes.
 
 
