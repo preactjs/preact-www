@@ -60,8 +60,8 @@
 					"name": "Extending Component"
 				},
 				{
-					"path": "/guide/write-unit-test",
-					"name": "Write unit test using enzyme"
+					"path": "/guide/unit-testing-with-enzyme",
+					"name": "Unit Testing with Enzyme"
 				},
 				{
 					"path": "/guide/progressive-web-apps",
