@@ -1,32 +1,35 @@
 ---
-name: Forms
+name: Формы
 permalink: '/guide/forms'
 ---
 
-# Forms
+# Формы
 
 
-Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
-
-**[React Forms Docs](https://facebook.github.io/react/docs/forms.html)**
+Формы в Preact работают так же, как в React, за исключением того, что отсутствует поддержка "static" для начальных значений свойств/атрибутов.
 
 
-## Controlled & Uncontrolled Components
-
-React's documentation on ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
-
-Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
+**[Документация по формам React](https://facebook.github.io/react/docs/forms.html)**
 
 
-## Checkboxes & Radio Buttons
+## Управляемые и неуправляемые компоненты
 
-Checkboxes and radio buttons (`<input type="checkbox|radio">`) can initially cause confusion when building controlled forms. This is because in an uncontrolled environment, we would typically allow the browser to "toggle" or "check" a checkbox or radio button for us, listening for a change event and reacting to the new value.  However, this technique does not transition well into a world view where the UI is always updated automatically in response to state and prop changes.
+Документация React по ["управляемым" компонентам](https://facebook.github.io/react/docs/forms.html#controlled-components) и ["неуправляемым" компонентам](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) чрезвычайно полезно для понимания как работать с HTML-формами, имеющими двунаправленный поток данных и как создать их из контекста компонентно-ориентированного рендеринга видтуального DOM, который обычно имеет однонаправленный поток данных.
 
-> **Walk-Through:** Say we listen for a "change" event on a checkbox, which is fired when the checkbox is checked or unchecked by the user.  In our change event handler, we set a value in `state` to the new value received from the checkbox.  Doing so will trigger a re-render of our component, which will re-assign the value of the checkbox to the value from state.  This is unnecessary, because we just asked the DOM for a value but then told it to render again with whatever value we wanted.
+Как правило, вы должны пытаться использовать _Controlled_ (управляемые) компоненты. Однако, при создании автономных компонентов или врапперов для сторонних UI-библиотек, всё же может быть полезно использовать ваш компонент в качестве точки монтирования для не-preact функциональности. Для таких задач хорошо подходят "неконтролируемые" компоненты.
 
-So, instead of listening for a `change` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_.  Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.
 
-### Checkbox Example
+## Флажки и переключатели
+
+Флажки и переключатели (`<input type="checkbox|radio">`) могут сперва вызвать путаницу при создании контролируемых форм. Это связано с тем, что в неконтролируемой среде мы обычно позволяем браузеру "переключать" или "отмечать" флажок или переключатель, слушать событие изменения и реагировать на новое значение. Однако, этот метод не очень хорошо подходит в случаях, когда пользовательский интерфейс всегда обновляется автоматически в ответ на изменения состояния и атрибутов.
+
+
+> **Пример:** Допустим, мы слушаем событие "change" для флажка, которое вызывается, когда флажок отмечен или не отмечен пользователем. В нашем обработчике этого события мы устанавливаем полученное новое значение значение флажка в `state` (состояние).  Это приведет к повторному рендерингу нашего компонента, который переустанавливает значение флажка в значение из состояния.  Это необязательно, отому что мы просто взяли значение из DOM, но затем перерендерили его с желаемым значением.
+
+
+Таким образом, вместо прослушивания события `change`, мы должны слушать событие `click`, которое вызывается каждый раз, когда пользователь кликает на флажок _или ассоциированный с ним `<label>`_.  Флажки просто переключаются между логическими значениями `true` и `false`, так что клик на флажок или метку просто инвертирует любое значение в состоянии, вызовет перерендер, установив значение флажка в то, которое нам нужно.
+
+### Пример флажка
 
 ```js
 class MyForm extends Component {
