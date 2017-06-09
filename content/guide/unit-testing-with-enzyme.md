@@ -1,28 +1,26 @@
 ---
-name: Write unit test
-permalink: '/guide/write-unit-test'
+name: Unit Testing with Enzyme
+permalink: '/guide/unit-testing-with-enzyme'
 ---
 
-# Write unit test.
+# Unit Testing with Enzyme
 
-As we all known, React provide `react-addons-test-utils` to test your components and Airbnb release a package called `enzyme` for writing test better. If you want to test your preact components base on `enzyme`, you can use `preact-compat-enzyme` that implemented React internal properties.
+React provides a `react-addons-test-utils` module for testing components, and Airbnb's `enzyme` takes this concept further - incorporating multiple rendering modes and other useful features. Testing preact components using `enzyme` is possible thanks to the `preact-compat-enzyme` module, which implements the necessary internal React properties on top of `preact-compat`.
 
-## Install
+## Installation
 
-We need two packages:
+We need two modules:
 
-`preact-compat-enzyme` provide React internal properties.
+- `preact-compat-enzyme`: to provide additional internal React properties.
+- `preact-test-utils`: to provide parts of the `react-addons-test-utils` API used by `enzyme`.
 
-`preact-test-utils` provide some api of `react-addons-test-utils` needed by `enzyme`.
-
-```shell
-npm install preact-compat-enzyme --save-dev
-npm install preact-test-utils --save-dev
+```sh
+npm install --save-dev preact-compat-enzyme preact-test-utils
 ```
 
 ## Configuration
 
-As common, We use karma to launch our test runner. Only add following [`webpack`](https://github.com/webpack-contrib/karma-webpack#usage) alias for react and others packages.
+Using Karma as a test runner, we'll need to add some [`webpack aliases`](https://github.com/webpack-contrib/karma-webpack#usage) for React and a few other modules:
 
 ```json
 {
@@ -37,15 +35,15 @@ As common, We use karma to launch our test runner. Only add following [`webpack`
 }
 ```
 
-## Notice
+## Current Limitations
 
-1. Only support [`mount`](http://airbnb.io/enzyme/docs/api/mount.html) mode.
-2. You should put your expect code in setTimeout when invoke `setProps` or `setState` method of `React Wrapper`.
+1. At present, only [`mount`](http://airbnb.io/enzyme/docs/api/mount.html) mode is supported.
+2. You may need to wrap assertions in a `setTimeout` when invoking the `setProps()` or `setState()` methods of `React Wrapper`.
 
 
 ## Example
 
-```shell
+```js
 let dataSource = [{ id: '1', name: 'test-content' }, { id: '2', name: 'test-content' }],
     table,
     wrapper;
