@@ -71,7 +71,7 @@ class Example extends Component {
 
 [![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
 
-[**View this demo on Webpackbin**](http://www.webpackbin.com/V1hyNQbpe)
+[**View this demo on Webpackbin**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
 
 
 ## Real-World Examples
