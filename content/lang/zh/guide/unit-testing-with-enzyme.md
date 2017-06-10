@@ -21,7 +21,7 @@ npm install --save-dev preact-compat-enzyme preact-test-utils
 
 ## 配置
 
-使用karma来进行测试服务的启动。我们需要在`karma`的[`webpack aliases`](https://github.com/webpack-contrib/karma-webpack#usage)的加入下面的alias即可。
+使用karma来进行测试服务的启动。我们需要在`karma`的[`webpack aliases`](https://github.com/webpack-contrib/karma-webpack#usage)的加入下面的alias。
 
 ```json
 {
@@ -39,7 +39,7 @@ npm install --save-dev preact-compat-enzyme preact-test-utils
 ## 限制
 
 1. 目前使用`enzyme`仅仅支持[`mount`](http://airbnb.io/enzyme/docs/api/mount.html)模式。
-2. 在执行`React Wrapper`的`setProps`或者`setState`方法时候，下一步断言的时候需要使用`setTimeout`方法。
+2. 在执行`React Wrapper`的`setProps`或者`setState`方法时候，需要使用`setTimeout`方法对断言进行包裹。
 
 ## 示例
 
