@@ -5,7 +5,26 @@ permalink: '/guide/api-reference'
 
 # API Reference
 
-## `Component`
+## `Preact.Component`
+
+`Component` is a base class that you will usually subclass to create stateful Preact components.
+
+### `Component.render(props, state)`
+
+The `render()` function is required for all components. It can inspect the props and state of the component, and should return a Preact element or `null`.
+
+```jsx
+import { Component } from 'preact';
+
+class MyComponent extends Component {
+	render(props, state) {
+		// props === this.props
+		// state === this.state
+
+		return <h1>Hello, {props.name}!</h1>;
+	}
+}
+```
 
 ### Lifecycle methods
 
@@ -23,8 +42,12 @@ Preact invokes the following lifecycle methods if they are defined for a Compone
 | `componentWillUpdate`       | before `render()`                                |
 | `componentDidUpdate`        | after `render()`                                 |
 
+All of the lifecycle methods and their parameters are shown in the following example component:
+
 ```js
-class Link extends Component {
+import { Component } from 'preact';
+
+class MyComponent extends Component {
 	shouldComponentUpdate(nextProps, nextState) {}
 	componentWillReceiveProps(nextProps, nextState) {
 		this.props // Previous props
@@ -37,14 +60,10 @@ class Link extends Component {
 		this.props // Current props
 		this.state // Current state
 	}
-	render(props, state) {
-		props === this.props
-		state === this.state
-	}
 }
 ```
 
-## `render()`
+## `Preact.render()`
 
 ```js
 render(
@@ -56,9 +75,35 @@ render(
 
 Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
 
-If the optional `replaceNode` DOM node is provided, Preact will replace `replaceNode` with the rendered component. Otherwise, Preact will append the rendered component to `containerNode`.
+If the optional `replaceNode` DOM node is provided, Preact will replace the contents of `replaceNode` with the rendered element. Otherwise, Preact will append the rendered element to `containerNode`.
 
-## `h()`
+```js
+import { render } from 'preact';
+
+// These examples show how render() behaves in a page with the following markup:
+// <div id="container">
+//   <h1>My App</h1>
+// </div>
+
+const container = document.getElementById('container');
+
+render(MyComponent, container);
+// Append MyComponent to container
+//
+// <div id="container">
+//   <h1>My App</h1>
+//   <MyComponent />
+// </div>
+
+render(MyComponent, container.parentNode, container);
+// Append MyComponent to container parent, replacing contents of container
+//
+// <div id="container">
+//   <MyComponent />
+// </div>
+```
+
+## `Preact.h()`
 
 ```js
 h(
@@ -68,7 +113,7 @@ h(
 )
 ```
 
-Returns a Preact component with the given `attributes`.
+Returns a Preact element with the given `attributes`.
 
 The optional `children` value can be any of the following:
 
@@ -77,16 +122,18 @@ The optional `children` value can be any of the following:
 - An array of strings or Preact components
 
 ```js
-h('div', { id: 'foo' }, 'Hello!')
+import { h } from 'preact';
+
+h('div', { id: 'foo' }, 'Hello!');
 // <div id="foo">Hello!</div>
 
-h('div', { id: 'foo' }, ['Hello', 'Preact!'])
+h('div', { id: 'foo' }, ['Hello', 'Preact!']);
 // <div id="foo">Hello Preact!</div>
 
 h(
 	'div',
 	{ id: 'foo' },
 	h('span', {}, 'Hello!')
-)
+);
 // <div id="foo"><span>Hello!</span></div>
 ```
