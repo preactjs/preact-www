@@ -42,7 +42,6 @@ Preact actually adds a few convenient features inspired by work in the React com
 
 - `this.props` and `this.state` are passed to `render()` for you  
     - _You can still reference them manually. This is just cleaner, particularly when [destructuring]_
-- [Linked State] updates state when inputs change automatically
 - Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
 - You can just use `class` for CSS classes. `className` is still supported, but `class` is preferred.
 - Component and element recycling/pooling.
