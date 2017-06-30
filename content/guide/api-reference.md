@@ -105,23 +105,23 @@ render(MyComponent, container, existingNode);
 // </div>
 ```
 
-## `Preact.h()`
+## `Preact.h()` / `Preact.createElement()`
 
 ```js
 h(
 	nodeName,
 	attributes,
-	[children]
+	[...children]
 )
 ```
 
-Returns a Preact element with the given `attributes`.
+Returns a Preact Virtual DOM element with the given `attributes`.
 
-The optional `children` value can be any of the following:
+All remaining arguments are collected into a `children` Array, and be any of the following:
 
-- A string
-- A Preact component
-- An array of strings or Preact components
+- Scalar values (string, number, boolean, null, undefined, etc)
+- More Virtual DOM elements
+- Infinitely nested Arrays of the above
 
 ```js
 import { h } from 'preact';
@@ -129,13 +129,13 @@ import { h } from 'preact';
 h('div', { id: 'foo' }, 'Hello!');
 // <div id="foo">Hello!</div>
 
-h('div', { id: 'foo' }, ['Hello', 'Preact!']);
+h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
 h(
 	'div',
 	{ id: 'foo' },
-	h('span', {}, 'Hello!')
+	h('span', null, 'Hello!')
 );
 // <div id="foo"><span>Hello!</span></div>
 ```
