@@ -75,7 +75,7 @@ render(
 
 Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
 
-If the optional `replaceNode` DOM node is provided, Preact will replace the contents of `replaceNode` with the rendered element. Otherwise, Preact will append the rendered element to `containerNode`.
+If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm. Otherwise, Preact will append the rendered element to `containerNode`.
 
 ```js
 import { render } from 'preact';
@@ -95,8 +95,10 @@ render(MyComponent, container);
 //   <MyComponent />
 // </div>
 
-render(MyComponent, container.parentNode, container);
-// Append MyComponent to container parent, replacing contents of container
+const existingNode = container.querySelector('h1');
+
+render(MyComponent, container, existingNode);
+// Diff MyComponent against <h1>My App</h1>
 //
 // <div id="container">
 //   <MyComponent />
