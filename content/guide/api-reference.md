@@ -65,13 +65,7 @@ class MyComponent extends Component {
 
 ## `Preact.render()`
 
-```js
-render(
-	component,
-	containerNode,
-	[replaceNode]
-)
-```
+`render(component, containerNode, [replaceNode])`
 
 Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
 
@@ -107,13 +101,7 @@ render(MyComponent, container, existingNode);
 
 ## `Preact.h()` / `Preact.createElement()`
 
-```js
-h(
-	nodeName,
-	attributes,
-	[...children]
-)
-```
+`h(nodeName, attributes, [...children])`
 
 Returns a Preact Virtual DOM element with the given `attributes`.
 
