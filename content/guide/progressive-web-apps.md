@@ -7,7 +7,7 @@ permalink: '/guide/progressive-web-apps'
 
 ## Overview
 
-Preact is an excellent choice for [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) that wish to load and become interactive quickly.
+Preact is an excellent choice for [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) that wish to load and become interactive quickly.  [Preact CLI](https://github.com/developit/preact-cli/) codifies this into an instant build tool that gives you a PWA with a 100 lighthouse score right out of the box.
 
 <ol class="list-view">
     <li class="list-item">
@@ -96,3 +96,17 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
         </div>
     </li>
 </ol>
+
+## Preact CLI
+
+[Preact CLI](https://github.com/developit/preact-cli/) is the official build tool for Preact projects. It's a single dependency command line tool that bundles your Preact code into a highly optimized Progressive Web App.  It aims to make all of the above recommendations automatic, so you can focus on writing great Components.
+
+Here are a few things Preact CLI bakes in:
+
+- Automatic, seamless code-splitting for your URL routes
+- Automatically generates and installs a ServiceWorker
+- Generates HTTP2/Push headers (or preload meta tags) based on the URL
+- Pre-rendering for a fast Time To First Paint
+- Conditionally loads polyfills if needed
+
+Since [Preact CLI](https://github.com/developit/preact-cli/) is internally powered by [Webpack](https://webpack.js.org), you can define a `preact.config.js` and customize the build process to suit your needs.  Even if you customize things, you still get to take advantage of awesome defaults, and can update as new versions of `preact-cli` are released.
