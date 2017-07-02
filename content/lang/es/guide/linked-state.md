@@ -23,14 +23,17 @@ class Foo extends Component {
 }
 ```
 
-Mientras que esto consigue mucha mejor performance en tiempo de ejecución, conlleva mucho código innecesario para conectar el estado a la UI.
+Mientras que esto consigue una mucha mejor performance en tiempo de ejecución, conlleva mucho código innecesario para conectar el estado a la UI.
 
 > Otra solución es asociar métodos del componente _declarativamente_, usando ES7 decorators, como el `@bind` de [decko](http://git.io/decko):
 
 
 ## Estado asociado al rescate
 
-Por suerte, existe una solución en la ofrma de `linkState()` en Preact, disponible como un método en la clase `Componente`.
+Por suerte, existe una solución en la ofrma de módulo  [`linkState`](https://github.com/developit/linkstate) en Preact.
+
+> Las versiones anteriores de Preact tenían la función `linkState ()` incorporada. Sin embargo, fue cambiado a un módulo separado. Si desea restaurar el antiguo comportamiento, busque [esa página](https://github.com/developit/linkstate#usage) para obtener informaciones sobre como usar el polyfill.
+
 
 Llamar a `.linkState('text')` retorna una función que, cuando se pasa a un Evento, usa su valor asociado para actualizar la propiedad nombrada en el estado del componente. Múltiples llamadas a `linkState(name)` con el mismo nombre son cacheadas, haciendo que escencialmente no haya penalidad de performance.
 
@@ -39,25 +42,25 @@ Este es el ejemplo previo reescrito usando **Estado Asociado**:
 ```js
 class Foo extends Component {
 	render({ }, { text }) {
-		return <input value={text} onInput={this.linkState('text')} />;
+		return <input value={text} onInput={linkState(this, 'text')} />;
 	}
 }
 ```
 
-Esto es conciso, fácil de comprender y efectivo. Maneja el estado asociado para cualquier tipo de input. Un segundo argumento `'path'` puede ser usado para proveer explicitamente el camino, separado por puntos, al espacio particular del estado que se quiere cambiar.
+Esto es conciso, fácil de comprender y efectivo. Maneja el estado asociado para cualquier tipo de input. Un tercero argumento `'path'` puede ser usado para proveer explícitamente el camino, separado por puntos, al espacio particular del estado que se quiere cambiar.
 
 
 ## Rutas de eventos personalizadas
 
 Por defecto, `linkState()` intenta devolver el valor apropiado de un evento automáticamente. Por ejemplo, un elemento `<input>` va a setear la propiedad del estado desde `event.target.value` o `event.target.checked` dependiendo del tipo de input. Para handlers de eventos personalizados, pasando valores escalares al handler generado por `linkState()` simplemente va a usar el valor escalar. La mayor parte del tiempo, este es el comportamiento que queremos.
 
-Hay casos donde es indeseable, sin embargo - los eventos personalizados y los radio buttons son dos de esos ejemplos. En estos casos, un segundo argumento puede ser pasado a `linkState()` para especificar la clave de la ruta separada por puntos en el evento donde el valor puede ser encontrado.
+Hay casos donde es indeseable, sin embargo - los eventos personalizados y los radio buttons son dos de esos ejemplos. En estos casos, un tercero argumento puede ser pasado a `linkState()` para especificar la clave de la ruta separada por puntos en el evento donde el valor puede ser encontrado.
 
 Para entender esta característica, puede ser útil adentrarse un poco en `linkState()`. El siguiente ejemplo ilustra un evento creado manualmente que persiste un valor emitido por un Evento en el estado. Es funcionalmente equivalente a la versión de `linkState(), aunque no incluye la optimización de memoization que hace `linkState()` valioso.
 
 ```js
 // handler retornado por linkState:
-handler = this.linkState('thing', 'foo.bar');
+handler = linkState(this, 'thing', 'foo.bar');
 
 // ...es funcionalmente equivalente a:
 handler = event => {
@@ -79,11 +82,11 @@ class Foo extends Component {
       <div>
         <input type="radio" name="demo"
           value="yes" checked={yes}
-          onChange={this.linkState('yes')}
+          onChange={linkState(this, 'yes')}
         />
         <input type="radio" name="demo"
           value="no" checked={no}
-          onChange={this.linkState('no')}
+          onChange={linkState(this, 'no')}
         />
       </div>
     );
@@ -92,7 +95,7 @@ class Foo extends Component {
 ```
 
 
-El segundo argumento de `linkState` ayuda en este caso. Te ayuda a proveer una ruta en el objeto del evento que usa como el valor asociado. Revisitando el ejemplo previo, digamosle explicitamente a linkState que obtenga el nuevo valor del estado desde la propiedad `value` en `event.target`:
+El tercero argumento de `linkState` ayuda en este caso. Te ayuda a proveer una ruta en el objeto del evento que usa como el valor asociado. Usando el ejemplo previo, digamosle explicitamente a linkState que obtenga el nuevo valor del estado desde la propiedad `value` en `event.target`:
 
 ```js
 class Foo extends Component {
@@ -101,11 +104,11 @@ class Foo extends Component {
       <div>
         <input type="radio" name="demo"
           value="yes" checked={answer == 'yes'}
-          onChange={this.linkState('answer', 'target.value')}
+          onChange={linkState(this, 'answer', 'target.value')}
         />
         <input type="radio" name="demo"
           value="no" checked={answer == 'no'}
-          onChange={this.linkState('answer', 'target.value')}
+          onChange={linkState(this, 'answer', 'target.value')}
         />
       </div>
     );

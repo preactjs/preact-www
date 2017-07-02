@@ -40,8 +40,8 @@
 					"name": "Types of Components"
 				},
 				{
-					"path": "/guide/lifecycle-methods",
-					"name": "Lifecycle Methods"
+					"path": "/guide/api-reference",
+					"name": "API Reference"
 				},
 				{
 					"path": "/guide/forms",
@@ -58,6 +58,10 @@
 				{
 					"path": "/guide/extending-component",
 					"name": "Extending Component"
+				},
+				{
+					"path": "/guide/unit-testing-with-enzyme",
+					"name": "Unit Testing with Enzyme"
 				},
 				{
 					"path": "/guide/progressive-web-apps",

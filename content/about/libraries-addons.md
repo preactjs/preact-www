@@ -28,6 +28,7 @@ A collection of modules built to work wonderfully with Preact.
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Text field that tokenizes input, for things like tags
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Easily render lists with millions of rows ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Small and simple layout library
+- :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): A document head manager for Preact
 
 
 ### Integrations
@@ -46,6 +47,7 @@ A collection of modules built to work wonderfully with Preact.
 ### Testing
 
 - :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX assertion testing _(no DOM, right in Node)_
+- :white_check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX assertions, events, snapshots in Jest _(DOM, works under Node jsdom or out-of-the-box in Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
 
 
 ### Utilities

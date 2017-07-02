@@ -7,11 +7,11 @@ permalink: '/guide/extending-component'
 
 Es posible que en algunos proyectos quieras extender `Component` con funcionalidad adicional.
 
-Existen variadas opiniones sobre el valor de la herencia en JavaScript, pero si querés construir tu "clase base" de la cual todos tus componentes heredan, Preact te tiene cubierto.
+Existen variadas opiniones sobre el valor de la herencia en JavaScript, pero si quieres construir tu "clase base" de la cual todos tus componentes heredan, Preact te tiene cubierto.
 
-Quizás quieras automatizar la conexión con stores/reducers como en una arquitectura a la Flux. Quizás querés agregar mixins basados en propiedades para sentirlo más como `React.createClass()` _note(: el [`@bind` decorator](https://github.com/developit/decko#bind) es preferible)_.
+Quizás quieras automatizar la conexión con stores/reducers como en una arquitectura a la Flux. Quizás quieras agregar mixins basados en propiedades para sentirlo más como `React.createClass()` _note(: el [`@bind` decorator](https://github.com/developit/decko#bind) es preferible)_.
 
-En cualquier caso, solo tenés que usar la herencia de clases de ES2016 para extender la clase `Component` de Preact:
+En cualquier caso, solo tienes que usar la herencia de clases de ES2016 para extender la clase `Component` de Preact:
 
 ```js
 class BoundComponent extends Component {

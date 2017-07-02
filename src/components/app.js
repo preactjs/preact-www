@@ -12,18 +12,18 @@ let store = createStore();
 export default class App extends Component {
 	handleUrlChange({ url }) {
 		let prev = store.getState().url || '/';
-		if (url!==prev) {
+		if (url!==prev && typeof ga==='function') {
 			store.setState({ url });
 			ga('send', 'pageview', url);
 		}
 	}
 
-	render() {
+	render({ url }) {
 		return (
 			<Provider store={store}>
 				<div id="app">
 					<Header />
-					<Routes onChange={this.handleUrlChange} />
+					<Routes url={url} onChange={this.handleUrlChange} />
 					<Footer />
 				</div>
 			</Provider>

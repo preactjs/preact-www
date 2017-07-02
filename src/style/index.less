@@ -23,13 +23,13 @@ html, body {
 }
 
 a {
-	color: #4183C4;
+	color: #2f6daa;
 	text-decoration: none;
 	outline: none;
 
 	&:hover, &:active, &:focus {
 		text-decoration: underline;
-		color: darken(#4183C4, 15%);
+		color: darken(#2f6daa, 15%);
 	}
 }
 
@@ -78,15 +78,10 @@ content-region {
 
 #app {
 	background: #FFF;
-	opacity: 0;
 	height: 100%;
-	animation: fadeIn 10ms ease forwards 1 100ms;
-	@keyframes fadeIn {
-		from { opacity:0; }
-		to { opacity:1; }
-	}
 
 	& > main {
+		min-height: 95%;
 		padding-top: 56px;
 	}
 }
@@ -129,7 +124,7 @@ main .markup {
 		border: none;
 		text-shadow: 0 .5px 0 rgba(255,255,255,0.3);
 		border-radius: 4px;
-		color: #343A47;
+		color: #22262e;
 		font-weight: bold;
 		text-transform: uppercase;
 		font-size: 16px;

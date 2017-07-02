@@ -20,7 +20,7 @@ Of course this website is built with Preact.
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.
 
-[**GuriVR**](https://gurivr.com) :eyeglasses:  
+[**GuriVR**](https://gurivr.com) :eyeglasses:
 Natural language based Web VR story creator.  
 _([Github Project](https://github.com/opennewslabs/guri-vr))_
 
@@ -38,6 +38,12 @@ Desktop app for Dropbox, built with Preact, Electron and Photon.
 **[Connectivity Index](https://cindex.co)** :iphone:  
 A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
 
+**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+Desktop App for uploading assets to Contentful (API based CMS)
+[Github Project](https://github.com/contentful-labs/file-upload-example)
+
+**[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
+Embed Hacker News comment tree below your blog article.
 
 ## Full Demos & Examples
 
@@ -71,6 +77,9 @@ Preact + Redux example project, implementing a simple To-Do list.
 
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
 How to use Preact entirely without Babel, ES2015 or JSX.
+
+**[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
+Minimal Preact structure with all the necessary tools to start your project right away.
 
 
 ## Codepens

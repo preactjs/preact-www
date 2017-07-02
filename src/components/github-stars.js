@@ -7,7 +7,7 @@ const githubStars = memoize( repo => fetch('//api.github.com/repos/'+repo)
 );
 
 // make available to homepage REPL demo
-window.githubStars = githubStars;
+if (typeof window!=='undefined') window.githubStars = githubStars;
 
 export default class GithubStars extends Component {
 	state = {
@@ -29,14 +29,14 @@ export default class GithubStars extends Component {
 	render({ user, repo, simple, children }, { stars }) {
 		let url = `//github.com/${user}/${repo}/`;
 		if (simple) return (
-			<a href={url} class="stars" target="_blank">⭐️ {stars} Stars</a>
+			<a href={url} class="stars" target="_blank" rel="noopener">⭐️ {stars} Stars</a>
 		);
 		return (
 			<span class="github-btn">
-				<a class="gh-btn" href={url} target="_blank" aria-label="Star on GitHub">
+				<a class="gh-btn" href={url} target="_blank" rel="noopener" aria-label="Star on GitHub">
 					<span class="gh-ico" /> Star
 				</a>
-				<a class="gh-count" href={url} target="_blank">
+				<a class="gh-count" href={url} target="_blank" rel="noopener">
 					{stars ? Math.round(stars).toLocaleString() : children || '..'}
 				</a>
 			</span>
