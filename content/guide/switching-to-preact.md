@@ -81,6 +81,23 @@ In this case though, you might find it more compelling to switch directly to `pr
 Preact's core is quite fully featured, and many idiomatic React codebases can actually be switched straight to `preact` with little effort.
 That approach is covered in the next section.
 
+#### Monkey Patching in Node
+
+For SSR purposes if you are not using webpack to build your server side code you can use the following to swap react with preact. This is slightly hack to Node's internal Module system, proceed with caution. Add these to the top most file of your server's main file.
+
+```js
+var React = require('react')
+var ReactDOM = require('react-dom')
+var ReactDOMServer = require('react-dom/server')
+var CreateReactClass = require('create-react-class')
+var Preact = require('preact-compat/dist/preact-compat.min')
+var Module = module.constructor
+Module._cache[require.resolve('react')].exports = Preact
+Module._cache[require.resolve('react-dom')].exports = Preact
+Module._cache[require.resolve('create-react-class')].exports.default = Preact.createClass
+```
+
+If you are using the new `import` syntax on your server with Babel, the above will not work as babel moves all `import` lines to the top of the file. in that case write the above in a patchPreact.js file then import it at the top of your file. `import './patchPreact'`
 
 ### Build & Test
 
