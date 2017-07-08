@@ -35,7 +35,7 @@ toc: false
     <h2>Plus proche du DOM</h2>
     
     <p>
-        Preact est une d'abstraction du DOM conçue pour être la plus légère possible.
+        Preact est une couche d’abstraction du DOM conçue pour être la plus légère possible.
         Le web est une plateforme stable, il est temps d'arrêter de le réimplémenter au nom de la sécurité.
     </p>
 
