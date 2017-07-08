@@ -11,7 +11,7 @@ toc: false
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-    <p>Alternative à React rapide pesant 3ko et proposant la même API ES6.</p>
+    <p>Une alternative à React rapide pesant 3ko et proposant la même API ES6.</p>
 
     <p>
         <a href="/guide/getting-started" class="home-button">Pour commencer</a>
@@ -35,12 +35,12 @@ toc: false
     <h2>Plus proche du DOM</h2>
     
     <p>
-        Preact est une couche abstraîte du DOM conçue pour être la plus légère possible.
+        Preact est une d'abstraction du DOM conçue pour être la plus légère possible.
         Le web est une plateforme stable, il est temps d'arrêter de le réimplémenter au nom de la sécurité.
     </p>
 
     <p>
-        Preact fait partie intégrante de la la plateforme web. Elle fait le différenciel entre le DOM Virtuel et le DOM réel, enregistre de vrais gestionnaires d'évènements, et s'intègre aussi parfaitement avec les autres bibliothèques.
+        Preact fait partie intégrante de la plateforme web. Elle fait le différentiel entre le DOM Virtuel et le DOM réel, enregistre de vrais gestionnaires d'évènements, et s'intègre aussi parfaitement avec les autres bibliothèques.
     </p>
 </section>
 
@@ -48,15 +48,15 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/size.svg" alt="size">
 
-    <h2>Taille Réduite</h2>
+    <h2>Une taille Réduite</h2>
     
     <p>
-        La plupart des frameworks UI sont tellement gros qu'ils comptent pour presque la totalité de la taille d'una application JavaScript.
-        Preact est différent: sa taille se fait oubliée au profit de <em>votre code</em> qui représente la majeure partie de votre application.
+        La plupart des frameworks UI sont tellement gros qu'ils comptent pour presque la totalité de la taille d'une application JavaScript.
+        Preact est différent: sa taille se fait oublier au profit de <em>votre code</em> qui représente la majeure partie de votre application.
     </p>
     
     <p>
-        Cela signifie moins de JavaScript à télécharger, parser et exécuter - laissant plus de temps à votre code, vous permettant de concevoir l'expérience que vous souhaitez sans vous battre avec un framework dont vous n'avez pas le contrôle.
+        Cela signifie moins de JavaScript à télécharger, parser et exécuter - ce qui vous laisse plus de temps pour coder et vous permettre de concevoir l'expérience que vous souhaitez, sans vous battre avec un framework dont vous n'avez pas le contrôle.
     </p>
 </section>
 
@@ -64,10 +64,10 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/performance.svg" alt="performance">
 
-    <h2>Performance Accrue</h2>
+    <h2>Une Performance Accrue</h2>
     
     <p>
-        Preact est rapide, et pas seulement à cause de sa taille. C'est l'une des bibliothèques de DOM Virtuel les plus rapides du marché, grâce à une implémentation du différenciel simple et prédictible.
+        Preact est rapide, et pas seulement à cause de sa taille. C'est l'une des bibliothèques de DOM Virtuel les plus rapides du moment, grâce à une implémentation du différentiel simple et prédictible.
     </p>
     
     <p>
@@ -82,11 +82,11 @@ toc: false
     <h2>Portable &amp; Embarquable</h2>
     
     <p>
-        La petite taille de Preact permet d'embarquer le paradigme du Composant DOM Virtuel dans des environnements où c'était jusque là impossible.
+        La taille réduite de Preact permet d'embarquer le paradigme de Composant du DOM Virtuel dans des environnements où l'on ne pouvait pas le faire jusque-là.
     </p>
     
     <p>
-        Utilisez Preact pour construire les éléments composants votre application sans intégration complexe. Embarquez Preact dans un widget et utilisez les mêmes outils et techniques que vous utiliseriez pour construire une application complète.
+        Utilisez Preact pour construire les éléments composant votre application sans intégration complexe. Embarquez Preact dans un widget et utilisez les mêmes outils et techniques que vous utiliseriez pour construire une application complète.
     </p>
 </section>
 
@@ -103,7 +103,7 @@ toc: false
     <ul>
         <li>`props`, `state` et `context` sont passées à `render()`</li>
         <li>Utilisez les attributs HTML standards comme `class` et `for`</li>
-        <li>Fonctionne avec React DevTools sans aucune modification</li>
+        <li>Fonctionne avec React DevTools sans aucune configuration nécessaire</li>
     </ul>
 </section>
 
@@ -111,15 +111,15 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/compatible.svg" alt="compatible">
 
-    <h2>Un Ecosystème Compatible</h2>
+    <h2>Un Écosystème Compatible</h2>
     
     <p>
-        Les Composants DOM Virtuel permettent de partager des éléments réutilisables - tout est réutilisable des boutons jusqu'aux data providers.
+        Les Composants du DOM Virtuel permettent de partager des éléments réutilisables - de vos boutons jusqu'à vos fournisseurs de données.
         Le design de Preact vous permet de réutiliser sans aucune modification des milliers de composants de l'écosystème React.
     </p>
     
     <p>
-        Ajouter un simple alias <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> à votre bundle fournit une couche de compatibilité qui vous permettra d'utiliser les composants React les plus complexes dans votre application.
+        Ajouter un simple alias <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> à votre bundle fournit une couche de compatibilité qui vous permettra d'utiliser les composants React même les plus complexes dans votre application.
     </p>
 </section>
 
@@ -161,7 +161,7 @@ export default class TodoList extends Component {
     </div>
     
     <div>
-        <h2>Démonstration</h2>
+        <h2>Exemple Interactif</h2>
         <pre repl="false"><code class="lang-js">
 import TodoList from './todo-list';
 
@@ -176,7 +176,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Télécharger les Etoiles Github</h2>
+        <h2>Récupérer le nombre de stars d'un dépot GitHub</h2>
         <pre><code class="lang-js">
 export default class Stars extends Component {
     async componentDidMount() {
@@ -187,7 +187,7 @@ export default class Stars extends Component {
         let url = \`//github.com/${repo}\`;
         return (
             &lt;a href={url} class="stars"&gt;
-                ⭐️ {stars} Etoiles
+                ⭐️ {stars} Étoiles
             &lt;/a&gt;
         );
     }
@@ -215,13 +215,13 @@ render(
 
 
 <section class="home-top">
-    <h1>Prêts pour le plongeon ?</h1>
+    <h1>Prêts pour le grand saut ?</h1>
 </section>
 
 
 <section style="text-align:center;">
     <p>
-        Nous avons des guides différents en fonction de votre niveau d'expérience en React.
+        Nous avons des guides différents en fonction de votre niveau d'expérience avec React.
         <br>
         Choisissez le guide qui vous convient le mieux !
     </p>
