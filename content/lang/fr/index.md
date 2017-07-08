@@ -25,14 +25,14 @@ toc: false
 
 
 <section class="home-top">
-    <h1>Une blibliothèque différente.</h1>
+    <h1>Une Bibliothèque Différente.</h1>
 </section>
 
 
 <section class="home-section">
     <img src="/assets/home/metal.svg" alt="metal">
 
-    <h2>Plus proche du DOM</h2>
+    <h2>Plus proche du DOM</h2>2
     
     <p>
         Preact est une couche d’abstraction du DOM conçue pour être la plus légère possible.
