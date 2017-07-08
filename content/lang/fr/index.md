@@ -48,7 +48,7 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/size.svg" alt="size">
 
-    <h2>Une taille Réduite</h2>
+    <h2>Une Taille Réduite</h2>
     
     <p>
         La plupart des frameworks UI sont tellement gros qu'ils comptent pour presque la totalité de la taille d'une application JavaScript.
