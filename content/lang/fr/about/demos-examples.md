@@ -1,97 +1,97 @@
 ---
-name: Demos & Examples
+name: Démos & Exemples
 permalink: '/about/demos-examples'
 ---
 
-# Demos & Examples
+# Démos & Exemples
 
-This pages lists a bunch of demos and examples you can use to learn Preact.
+Cette page liste des démos et exemples que vous pouvez utiliser pour apprendre Preact.
 
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> :information_desk_person: _Vous avez créé votre propre démo ?
+> [Ajoutez-le !](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
-## Full Apps
+## Applications Complètes
 
-[**Preact Website** _(preactjs.com)_](https://preactjs.com)  
-Of course this website is built with Preact.  
-[Github Project](https://github.com/developit/preact-www)
+[**Site Web de Preact** _(preactjs.com)_](https://preactjs.com)  
+Ce site web a bien-entendu été créé avec Preact.  
+[Projet Github](https://github.com/developit/preact-www)
 
-**[ESBench](http://esbench.com)** :alarm_clock:  
-Built with Preact & Material Design Lite.
+**[ESBench](http://esbench.com)** :alarm_clock:
+Créé avec Preact & Material Design Lite.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
 Natural language based Web VR story creator.  
-_([Github Project](https://github.com/opennewslabs/guri-vr))_
+_([Projet Github](https://github.com/opennewslabs/guri-vr))_
 
-[**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
-The audience participation Progressive Web App from Chrome Dev Summit 2016!  
-([Github Project](https://github.com/jakearchibald/big-web-quiz))
+[**BigWebQuiz**](https://bigwebquiz.com) :game_die:
+La Web App Progressive pour les participants à la conférence Chrome Dev Summit de 2016!
+([Projet Github](https://github.com/jakearchibald/big-web-quiz))
 
-**[Nectarine.rocks](http://nectarine.rocks)** :peach:  
-Open-Source peach.cool app.  
-[Github Project](https://github.com/developit/nectarine)
+**[Nectarine.rocks](http://nectarine.rocks)** :peach:
+L'application Ordinateur Open-Source peach.cool.  
+[Projet Github](https://github.com/developit/nectarine)
 
-**[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
+**[Dropfox](https://github.com/developit/dropfox)** :wolf:
+Application Bureau pour Dropbox créée avec Preact, Electron et Photon.
 
-**[Connectivity Index](https://cindex.co)** :iphone:  
-A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
+**[Connectivity Index](https://cindex.co)** :iphone:
+Un site permettant d'effectuer des recherches dans les données de la base [Rapport sur l'Etat de la Connectivité Internet Akamai](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) par pays.
 
-**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
-Desktop App for uploading assets to Contentful (API based CMS)
-[Github Project](https://github.com/contentful-labs/file-upload-example)
+**[Téléchargement de fichiers par glisser & déposer (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+Application Ordinateur permettant de télécharger du contenu vers Contentful (CMS basé sur une API)
+[Projet Github](https://github.com/contentful-labs/file-upload-example)
 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
-Embed Hacker News comment tree below your blog article.
+Bloc de commentaires Hacker News embarqué dans votre article de blog.
 
-## Full Demos & Examples
+## Démos Complètes & Exemples
 
-**[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
-View documentation.js output online.  
-[Github Project](https://github.com/developit/documentation-viewer)
+**[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**
+Visualiser en ligne le rendu de documentation.js.
+[Projet Github](https://github.com/developit/documentation-viewer)
 
-**[TodoMVC](http://developit.github.io/preact-todomvc/)**  
-Unofficial fastest TodoMVC implementation.  
-[Github Project](https://github.com/developit/preact-todomvc)
+**[TodoMVC](http://developit.github.io/preact-todomvc/)**
+L'implémentation non-officielle la plus rapide de TodoMVC.
+[Projet Github](https://github.com/developit/preact-todomvc)
 
-**[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
-[Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
+**[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:
+Synchronization Mode Non-Connecté de TodoMVC avec [PouchDB](https://pouchdb.com/).
+[Projet Github](https://github.com/katopz/preact-todomvc-pouchdb)
 
-**[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Tiny hacker news client.  
-[Github Project](https://github.com/developit/hn_minimal)
+**[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:
+Minuscule client pour hacker news.
+[Projet Github](https://github.com/developit/hn_minimal)
 
-**[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
-[Github Project](https://github.com/developit/preact-boilerplate)
+**[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:
+Kit de démarrage en 2 commandes seulement. Modules Preact + Webpack + LESS + CSS.
+[Projet Github](https://github.com/developit/preact-boilerplate)
 
-**[Preact Offline Starter](https://preact-starter.now.sh)** :100:  
-Simplified Webpack2 starter for Progressive Web Apps, with offline support.  
-[Github Project](https://github.com/lukeed/preact-starter)
+**[Kit de Démarrage Non-Connecté](https://preact-starter.now.sh)** :100:
+Kit de démarrage simplifié Webpack2 pour les Progressive Web Apps, avec support du mode non-connecté.
+[Projet Github](https://github.com/lukeed/preact-starter)
 
-**[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux example project, implementing a simple To-Do list.  
-[Github Project](https://github.com/developit/preact-redux-example)
+**[Exemple Preact Redux](https://preact-redux-example.surge.sh)** :repeat:
+Projet exemple Preact + Redux, implémentant une simple Liste de Tâches.
+[Projet Github](https://github.com/developit/preact-redux-example)
 
-**[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-How to use Preact entirely without Babel, ES2015 or JSX.
+**[Preact Sans Babel](https://github.com/developit/preact-without-babel)** :horse:
+Comment exploiter totalement Preact sans utiliser Babel, ES2015 ni JSX.
 
-**[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact structure with all the necessary tools to start your project right away.
+**[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:
+Structure Minimale contenant tous les outils nécessaires pour commencer un projet de zéro.
 
 
-## Codepens
+## Exemples Interactifs
 
-- [Flickr Browser](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
-- [Animating Text](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
-- [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
-- [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
+- [Navigateur Flickr](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
+- [Animer du Texte](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
+- [Spirale Arc-en-Ciel à 60FPS](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
+- [Horloge Simple](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
-## Templates
+## Modèles
 
-:zap: [**JSFiddle Template**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
+:zap: [**Modèle JSFiddle**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
 
-:zap: [**CodePen Template**](http://codepen.io/developit/pen/pgaROe?editors=0010)
+:zap: [**Modèle CodePen**](http://codepen.io/developit/pen/pgaROe?editors=0010)
