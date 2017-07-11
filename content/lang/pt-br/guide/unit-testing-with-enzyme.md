@@ -37,7 +37,7 @@ Usando `Karma` como test runner, precisaremos adicionar alguns [`webpack aliases
 
 ## Limitações atuais
 
-1. No momento, apenas módulo [`mount`](http://airbnb.io/enzyme/docs/api/mount.html)  é suportado.
+1. No momento, apenas o módulo [`mount`](http://airbnb.io/enzyme/docs/api/mount.html)  é suportado.
 2. Talvez seja necessário envolver as `assertions` em um` setTimeout` ao invocar os métodos `setProps ()` ou `setState ()` do `React Wrapper`.
 
 
