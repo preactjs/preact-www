@@ -103,7 +103,7 @@ moduleAlias.addAliases({
 
 `create-preact-class.js`:
 ```js
-import { createClass } from 'preact-compat'
+import { createClass } from 'preact-compat/dist/preact-compat.min'
 export default createClass
 ```
 
