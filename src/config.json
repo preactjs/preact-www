@@ -74,6 +74,10 @@
 			"content": "about",
 			"routes": [
 				{
+					"path": "/about/we-are-using",
+					"name": "Companies using Preact"
+				},
+				{
 					"path": "/about/libraries-addons",
 					"name": "Libraries & Add-ons"
 				},
@@ -88,10 +92,6 @@
 				{
 					"path": "/about/browser-support",
 					"name": "Browser Support"
-				},
-				{
-					"path": "/about/we-are-using",
-					"name": "We Are Using"
 				}
 			]
 		},
