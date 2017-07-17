@@ -119,4 +119,10 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
+    <li>
+        <a href="//ft.com" target="_blank">
+            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            Financial Times
+        </a>
+    </li>
 </ul>
