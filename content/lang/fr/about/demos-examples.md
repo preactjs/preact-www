@@ -29,7 +29,7 @@ La Web App Progressive pour les participants à la conférence Chrome Dev Summit
 ([Projet Github](https://github.com/jakearchibald/big-web-quiz))
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:
-L'application Ordinateur Open-Source peach.cool.  
+L’application Open-Source peach.cool.  
 [Projet Github](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:
@@ -39,7 +39,7 @@ Application Bureau pour Dropbox créée avec Preact, Electron et Photon.
 Un site permettant d'effectuer des recherches dans les données de la base [Rapport sur l'Etat de la Connectivité Internet Akamai](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) par pays.
 
 **[Téléchargement de fichiers par glisser & déposer (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
-Application Ordinateur permettant de télécharger du contenu vers Contentful (CMS basé sur une API)
+L’application permettant de télécharger du contenu vers Contentful (CMS basé sur une API)
 [Projet Github](https://github.com/contentful-labs/file-upload-example)
 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
