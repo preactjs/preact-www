@@ -119,4 +119,10 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
+    <li>
+        <a href="//en-ae.namshi.com" target="_blank">
+            <img src="/assets/we-are-using/namshi.png" alt="Namshi">
+            NAMSHI
+        </a>
+    </li>
 </ul>
