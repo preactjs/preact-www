@@ -1,5 +1,5 @@
 ---
-name: Unit Testing with Enzyme
+name: Prueba unitaria con Enzyme
 permalink: '/guide/unit-testing-with-enzyme'
 ---
 
