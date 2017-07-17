@@ -119,4 +119,22 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
+    <li>
+        <a href="//nytimes.com" target="_blank">
+            <img src="/assets/we-are-using/nytimes.png" alt="The New York Times">
+            The New York Times
+        </a>
+    </li>
+    <li>
+        <a href="//ft.com" target="_blank">
+            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            Financial Times
+        </a>
+    </li>
+    <li>
+        <a href="//en-ae.namshi.com" target="_blank">
+            <img src="/assets/we-are-using/namshi.png" alt="Namshi">
+            NAMSHI
+        </a>
+    </li>
 </ul>
