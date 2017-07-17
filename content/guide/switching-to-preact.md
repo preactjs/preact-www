@@ -81,10 +81,38 @@ In this case though, you might find it more compelling to switch directly to `pr
 Preact's core is quite fully featured, and many idiomatic React codebases can actually be switched straight to `preact` with little effort.
 That approach is covered in the next section.
 
-#### Monkey Patching in Node
+#### Aliasing in Node using module-alias
 
-For SSR purposes if you are not using webpack to build your server side code you can use the following to swap react with preact. This is slightly hack to Node's internal Module system, proceed with caution. Add these to the top most file of your server's main file.
+For SSR purposes if you are not using webpack to build your server side code you can use the following to swap react with preact.
 
+```sh
+npm i -S module-alias
+```
+
+`patchPreact.js`:
+```js
+var path = require('path')
+var moduleAlias = require('module-alias')
+
+moduleAlias.addAliases({
+  'react': 'preact-compat/dist/preact-compat.min',
+  'react-dom': 'preact-compat/dist/preact-compat.min',
+  'create-react-class': path.resolve(__dirname, './create-preact-class')
+})
+```
+
+`create-preact-class.js`:
+```js
+import { createClass } from 'preact-compat'
+export default createClass
+```
+
+If you are using the new `import` syntax on your server with Babel, writing these lines above your other imports will not work as babel moves all `import` lines to the top of the file. in that case write the above in a patchPreact.js file then import it at the top of your file. `import './patchPreact'`. Read more on `module-alias` usage [here](https://www.npmjs.com/package/module-alias)
+
+
+If you don't want to use module-alias you can do the foll. This is slightly hack to Node's internal Module system, proceed with caution. Import the foll. to the top of your main file.
+
+`patchPreact.js`:
 ```js
 var React = require('react')
 var ReactDOM = require('react-dom')
@@ -96,8 +124,6 @@ Module._cache[require.resolve('react')].exports = Preact
 Module._cache[require.resolve('react-dom')].exports = Preact
 Module._cache[require.resolve('create-react-class')].exports.default = Preact.createClass
 ```
-
-If you are using the new `import` syntax on your server with Babel, the above will not work as babel moves all `import` lines to the top of the file. in that case write the above in a patchPreact.js file then import it at the top of your file. `import './patchPreact'`
 
 ### Build & Test
 
