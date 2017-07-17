@@ -56,7 +56,7 @@ L'implémentation non-officielle la plus rapide de TodoMVC.
 [Projet Github](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:
-Synchronization Mode Non-Connecté de TodoMVC avec [PouchDB](https://pouchdb.com/).
+TodoMVC en mode hors ligne synchronisé avec [PouchDB](https://pouchdb.com/).
 [Projet Github](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:
