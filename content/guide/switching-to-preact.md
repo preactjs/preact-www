@@ -83,7 +83,7 @@ That approach is covered in the next section.
 
 #### Aliasing in Node using module-alias
 
-For SSR purposes if you are not using webpack to build your server side code you can use the following to swap react with preact.
+For SSR purposes, if you are not using a bundler like webpack to build your server side code, you can use the [module-alias](https://www.npmjs.com/package/module-alias) package to replace react with preact.
 
 ```sh
 npm i -S module-alias
@@ -107,13 +107,13 @@ import { createClass } from 'preact-compat/dist/preact-compat.min'
 export default createClass
 ```
 
-If you are using the new `import` syntax on your server with Babel, writing these lines above your other imports will not work as babel moves all `import` lines to the top of the file. in that case write the above in a patchPreact.js file then import it at the top of your file. `import './patchPreact'`. Read more on `module-alias` usage [here](https://www.npmjs.com/package/module-alias)
+If you are using the new `import` syntax on your server with Babel, writing these lines above your other imports will not work since Babel moves all imports to the top of a module.  In that case, save the above code as `patchPreact.js`, then import it at the top of your file (`import './patchPreact'`). You can read more on `module-alias` usage [here](https://www.npmjs.com/package/module-alias).
 
 
-If you don't want to use module-alias you can do the foll. This is slightly hack to Node's internal Module system, proceed with caution. Import the foll. to the top of your main file.
+It is also possible to alias directly in node without the `module-alias` package. This relies on internal properties of Node's module system, so proceed with caution.  To alias manually:
 
-`patchPreact.js`:
 ```js
+// patchPreact.js
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactDOMServer = require('react-dom/server')
