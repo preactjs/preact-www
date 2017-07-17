@@ -177,6 +177,12 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
+    <li>
+        <a href="//wellapp.com" target="_blank">
+            <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
+            WELL Messenger
+        </a>
+    </li>
 </ul>
 
 
