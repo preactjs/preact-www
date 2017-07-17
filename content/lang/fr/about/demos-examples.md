@@ -21,7 +21,7 @@ Ce site web a bien-entendu été créé avec Preact.
 Créé avec Preact & Material Design Lite.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
-Natural language based Web VR story creator.  
+Créateur d'histoires Web VR basé sur le langage naturel.  
 _([Projet Github](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:
