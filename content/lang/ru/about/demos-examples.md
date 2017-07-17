@@ -69,7 +69,7 @@ Cтарт проекта за две cli-команды. Preact + Webpack + LESS
 Упрощенный Webpack2 стартер для прогрессивных веб-приложений с автономной поддержкой.
 [Проект Github](https://github.com/lukeed/preact-starter)
 
-**[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
+**[Пример Preact Redux](https://preact-redux-example.surge.sh)** :repeat:  
 Пример Preact + Redux, реализующий простой список дел.
 [Проект Github](https://github.com/developit/preact-redux-example)
 
