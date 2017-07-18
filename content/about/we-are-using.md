@@ -177,6 +177,12 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
+    <li>
+        <a href="//try.cards" target="_blank">
+            <img src="/assets/we-are-using/cards.png" alt="Cards">
+            Cards
+        </a>
+    </li>
 </ul>
 
 
