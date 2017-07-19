@@ -11,85 +11,85 @@ permalink: '/about/demos-examples'
 > [Добавьте!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
-## Full Apps
+## Полные приложения
 
-[**Preact Website** _(preactjs.com)_](https://preactjs.com)  
-Of course this website is built with Preact.  
-[Github Project](https://github.com/developit/preact-www)
+[**Preact Вебсайт** _(preactjs.com)_](https://preactjs.com)  
+Конечно, этот сайт построен с помощью Preact.
+[Проект Github](https://github.com/developit/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
-Built with Preact & Material Design Lite.
+Построен с Preact & Material Design Lite.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:  
-Natural language based Web VR story creator.  
-_([Github Project](https://github.com/opennewslabs/guri-vr))_
+Основанный на естественном языке Web VR story creator.
+_([Проект Github](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
-The audience participation Progressive Web App from Chrome Dev Summit 2016!  
-([Github Project](https://github.com/jakearchibald/big-web-quiz))
+Участие аудитории Progressive Web App от Chrome Dev Summit 2016!
+([Проект Github](https://github.com/jakearchibald/big-web-quiz))
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
-Open-Source peach.cool app.  
-[Github Project](https://github.com/developit/nectarine)
+Приложение peach.cool с открытым исходным кодом.
+[Проект Github](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
+Десктопное приложение для Dropbox, построенное с помощью Preact, Electron и Photon.
 
-**[Connectivity Index](https://cindex.co)** :iphone:  
-A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
+**[Глобальное состояние отчетов о подключении к Интернету](https://cindex.co)** :iphone:
+Сайт, который позволяет вам просматривать [данные отчета о состоянии подключения к Интернету в Akamai](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) из разных стран.
 
-**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
-Desktop App for uploading assets to Contentful (API based CMS)
-[Github Project](https://github.com/contentful-labs/file-upload-example)
+**[Upload файлов с помощью Drag & Drop (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+Десктоп-приложение для загрузки ассетов в [Contentful](https://www.contentful.com/) (API based CMS)
+[Проект Github](https://github.com/contentful-labs/file-upload-example)
 
 
-## Full Demos & Examples
+## Полные демонстрации и примеры
 
-**[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
-View documentation.js output online.  
-[Github Project](https://github.com/developit/documentation-viewer)
+**[Просмотрщик документации](https://documentation-viewer.firebaseapp.com)**  
+Просмотр онлайн выхлоп от documentation.js.  
+[Проект Github](https://github.com/developit/documentation-viewer)
 
 **[TodoMVC](http://developit.github.io/preact-todomvc/)**  
-Unofficial fastest TodoMVC implementation.  
-[Github Project](https://github.com/developit/preact-todomvc)
+Неофициально самая быстрая реализация TodoMVC.  
+[Проект Github](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
-[Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
+Оффлайновая синхронизация TodoMVC с [PouchDB](https://pouchdb.com/).  
+[Проект Github](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Tiny hacker news client.  
-[Github Project](https://github.com/developit/hn_minimal)
+Крошечный клиент новостей хакеров.
+[Проект Github](https://github.com/developit/hn_minimal)
 
 **[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
-[Github Project](https://github.com/developit/preact-boilerplate)
+Cтарт проекта за две cli-команды. Preact + Webpack + LESS + CSS Modules.  
+[Проект Github](https://github.com/developit/preact-boilerplate)
 
 **[Preact Offline Starter](https://preact-starter.now.sh)** :100:  
-Simplified Webpack2 starter for Progressive Web Apps, with offline support.  
-[Github Project](https://github.com/lukeed/preact-starter)
+Упрощенный Webpack2 стартер для прогрессивных веб-приложений с автономной поддержкой.
+[Проект Github](https://github.com/lukeed/preact-starter)
 
-**[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux example project, implementing a simple To-Do list.  
-[Github Project](https://github.com/developit/preact-redux-example)
+**[Пример Preact Redux](https://preact-redux-example.surge.sh)** :repeat:  
+Пример Preact + Redux, реализующий простой список дел.
+[Проект Github](https://github.com/developit/preact-redux-example)
 
-**[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-How to use Preact entirely without Babel, ES2015 or JSX.
+**[Preact без Babel'я](https://github.com/developit/preact-without-babel)** :horse:  
+Как использовать Preact полностью без Babel, ES2015 или JSX.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact structure with all the necessary tools to start your project right away.
+Минимальная структура Preact со всеми необходимыми инструментами, чтобы сразу начать проект.
 
 
 ## Codepens
 
-- [Flickr Browser](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
-- [Animating Text](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
-- [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
-- [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
+- [Браузер Flickr](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
+- [Анимированный текст](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
+- [60FPS Радужная спираль](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
+- [Простые часы](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
 ## Templates
 
-:zap: [**JSFiddle Template**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
+:zap: [**Шаблон для JSFiddle**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
 
-:zap: [**CodePen Template**](http://codepen.io/developit/pen/pgaROe?editors=0010)
+:zap: [**Шаблон для CodePen**](http://codepen.io/developit/pen/pgaROe?editors=0010)
