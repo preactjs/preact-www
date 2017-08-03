@@ -21,7 +21,7 @@ Bien sûr ce site web est construit avec Preact.
 Construit avec Preact et Material Design Lite.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
-Créateur d'histoire Web VR basé sur le langage naturel.
+Créateur d'histoires Web VR basé sur le langage naturel.
 _([Projet Github](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
@@ -36,7 +36,7 @@ Une application Open-Source pour peach.cool.
 Une application bureau pour Dropbox, créée avec Preact, Electron et Photon.
 
 **[Connectivity Index](https://cindex.co)** :iphone:  
-Un site web qui vous permet de faire des recherches dans les données du [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) par pays.
+Un site web qui vous permet de faire des recherches par pays dans les données du [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html).
 
 **[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
 Une application bureau pour envoyer des ressources sur Contentful (un CMS basé sur une API)
@@ -52,7 +52,7 @@ Voir le résultat de documentation.js en ligne.
 [Projet Github](https://github.com/developit/documentation-viewer)
 
 **[TodoMVC](http://developit.github.io/preact-todomvc/)**
-L'implémentation non officiel de TodoMVC la plus rapide.
+L'implémentation non officielle de TodoMVC la plus rapide.
 [Projet Github](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
@@ -63,12 +63,12 @@ Synchronisez TodoMVC avec [PouchDB](https://pouchdb.com/) hors ligne.
 Un client hacker news léger.
 [Projet Github](https://github.com/developit/hn_minimal)
 
-**[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
+**[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:
+Un starter de projet avec Preact, Webpack, LESS et CSS Modules.
 [Projet Github](https://github.com/developit/preact-boilerplate)
 
 **[Preact Offline Starter](https://preact-starter.now.sh)** :100:
-Le Webpack2 starter simplifié pour les Progressive Web Apps, avec support du hors ligne.
+Un starter Webpack 2 simplifié pour les Progressive Web Apps, avec support du hors ligne.
 [Projet Github](https://github.com/lukeed/preact-starter)
 
 **[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
@@ -90,7 +90,7 @@ Une structure minimale pour Preact, incluant tous les outils nécéssaires pour 
 - [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
-## Modèles
+## Templates
 
 :zap: [**Modèle JSFiddle**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
 
