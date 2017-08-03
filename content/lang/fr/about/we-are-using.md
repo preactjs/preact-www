@@ -53,8 +53,6 @@ permalink: '/about/we-are-using'
     Vous trouverez ci-dessous un petit échantillon d'entreprises qui utilisent Preact pour des projets publics.
 </p>
 
-<!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
-
 
 <ul class="we-are-using">
     <li>
