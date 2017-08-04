@@ -45,7 +45,7 @@ Une application bureau pour envoyer des ressources sur Contentful (un CMS basé 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
 Embarquez l'arbre de commentaires de Hacker News sous votre article de blog.
 
-## Full Demos & Examples
+## Démos entières et Exemples
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**
 Voir le résultat de documentation.js en ligne.
