@@ -3,7 +3,7 @@ name: API Reference
 permalink: '/guide/api-reference'
 ---
 
-# API Reference
+# Référence API
 
 ## `Preact.Component`
 
