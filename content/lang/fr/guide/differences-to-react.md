@@ -40,7 +40,7 @@ En fait, Preact ajoute quelques fonctionnalités pratiques inspirées par le tra
 
 - `this.props` et `this.state` sont passées à `render()` pour vous
     - _Vous pouvez toujours les référencer manuellement. C'est juste plus propre, particulièrement quand vous [destructurez]_
-- Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
+- Mise à jour des éléments du document (DOM) par lot en utilisant la fonction `setTimeout(1)` _(sur des navigateurs plus récents la fonction `requestAnimationFrame` est utilisée)_. Pour éviter une trop grande variance dans leur mise à jour, un mécanisme de `debounce` est utilisé.
 - Vous pouvez utiliser `class` pour les classes CSS. `className` est toujours supportée, mais `class` est préféré.
 - Recyclage et groupement de composants et d'éléments.
 
