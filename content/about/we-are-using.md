@@ -183,6 +183,18 @@ permalink: '/about/we-are-using'
             WELL Messenger
         </a>
     </li>
+	  <li>
+        <a href="//try.cards" target="_blank">
+            <img src="/assets/we-are-using/cards.png" alt="Cards">
+            Cards
+        </a>
+    </li>
+	  <li>
+        <a href="//selly.gg" target="_blank">
+            <img src="/assets/we-are-using/selly.png" alt="Selly">
+            Selly
+        </a>
+    </li>
 </ul>
 
 
