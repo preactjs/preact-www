@@ -183,6 +183,12 @@ permalink: '/about/we-are-using'
             Cards
         </a>
     </li>
+	  <li>
+        <a href="//selly.gg" target="_blank">
+            <img src="/assets/we-are-using/selly.png" alt="Selly">
+            Selly
+        </a>
+    </li>
 </ul>
 
 
