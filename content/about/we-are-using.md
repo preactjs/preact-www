@@ -178,6 +178,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//wellapp.com" target="_blank">
+            <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
+            WELL Messenger
+        </a>
+    </li>
+	  <li>
         <a href="//try.cards" target="_blank">
             <img src="/assets/we-are-using/cards.png" alt="Cards">
             Cards
