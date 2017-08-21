@@ -32,7 +32,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
           <div class="_title-block">
             <h3>Faster time to interactivity</h3>
           </div>
-          <p class="_summary"><p>If you're aiming to be [interactive in under 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), every KB matters. [Switching React for Preact](/guide/switching-to-preact) in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p></p>
+          <p class="_summary">If you're aiming to be [interactive in under 5s](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), every KB matters. [Switching React for Preact](/guide/switching-to-preact) in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p>
         </div>
     </li>
 
@@ -44,7 +44,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
           <div class="_title-block">
             <h3>A building block that works great with the React ecosystem</h3>
           </div>
-          <p class="_summary"><p>Whether you need to use React's [server-side rendering](https://facebook.github.io/react/docs/react-dom-server.html) to get pixels on the screen quickly or use [React Router](https://github.com/ReactTraining/react-router) for navigation, Preact works well with many libraries in the ecosystem. </p></p>
+          <p class="_summary">Whether you need to use React's [server-side rendering](https://facebook.github.io/react/docs/react-dom-server.html) to get pixels on the screen quickly or use [React Router](https://github.com/ReactTraining/react-router) for navigation, Preact works well with many libraries in the ecosystem. </p>
         </div>
     </li>
 </ol>
