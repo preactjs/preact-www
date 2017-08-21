@@ -5,7 +5,8 @@
 		"zh": "Chinese",
 		"es": "Spanish",
 		"pt-br": "Brazilian Portuguese",
-		"fr": "French"
+		"fr": "French",
+		"de": "German"
 	},
 	"docsearch": {
 		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
