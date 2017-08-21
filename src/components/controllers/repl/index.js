@@ -118,6 +118,15 @@ export default class Repl extends Component {
 
 		return (
 			<div class={style.repl}>
+				<style>{`
+					main {
+						height: 100% !important;
+						overflow: hidden !important;
+					}
+					footer {
+						display: none !important;
+					}
+				`}</style>
 				<header class={style.toolbar}>
 					<label>
 						<select value={example} onChange={this.linkState('example')}>

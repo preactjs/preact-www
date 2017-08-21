@@ -20,7 +20,7 @@ Of course this website is built with Preact.
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.
 
-[**GuriVR**](https://gurivr.com) :eyeglasses:  
+[**GuriVR**](https://gurivr.com) :eyeglasses:
 Natural language based Web VR story creator.  
 _([Github Project](https://github.com/opennewslabs/guri-vr))_
 
@@ -42,6 +42,8 @@ A site that allows you to search through [Akamai State of the Internet Connectiv
 Desktop App for uploading assets to Contentful (API based CMS)
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
+**[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
+Embed Hacker News comment tree below your blog article.
 
 ## Full Demos & Examples
 
