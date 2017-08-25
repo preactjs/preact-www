@@ -35,7 +35,7 @@ toc: false
     <h2>Näher am Geschehen</h2>
 
     <p>
-        Preact bietet die kleinstmögliche Virtual DOM-Abstraktion über dem DOM.
+        Preact bietet die kleinstmögliche Virtual DOM-Abstraktion auf dem DOM.
         Das Web ist eine stabile Plattform, es ist an der Zeit, dass wir es im Namen der Sicherheit neu implementieren.
     </p>
 
@@ -71,7 +71,7 @@ toc: false
     </p>
 
     <p>
-        Preact beinhaltet sogar zusätzliche Leistungsfunkltionen wie anpassbares Update Batching, optionales Async-Rendering, DOM recycling und optimierte Ereignishandhabung mithilfe von [Linked State](/guide/linked-state).
+        Preact beinhaltet sogar zusätzliche Leistungsfunktionen wie anpassbares Update Batching, optionales Async-Rendering, DOM recycling und optimierte Ereignishandhabung mithilfe von [Linked State](/guide/linked-state).
     </p>
 </section>
 
@@ -82,11 +82,11 @@ toc: false
     <h2>Portabel &amp; Einbettbar</h2>
 
     <p>
-        Preacts winziger Fußabdrucks ermöglicht dem ressourcenreichen Virtual DOM-Komponentenparadigma Dinge, von dem es sonst nur träumen könnte.
+        Preacts winzige Größe ermöglicht dem ressourcenreichen Virtual DOM-Komponentenparadigma Dinge, von dem es sonst nur träumen könnte.
     </p>
 
     <p>
-        Verwende Preact, um Teile einer App ohne komplizierte integration zu erstellen. Bette Preact in einem Widget ein und wende die selben Werkzeuge und Techniken an, die man normalerweise in einer vollständigen App verwenden würde.
+        Verwende Preact, um Teile einer App ohne komplizierte Integration zu erstellen. Bette Preact in einem Widget ein und wende die selben Werkzeuge und Techniken an, die man normalerweise in einer vollständigen App verwenden würde.
     </p>
 </section>
 
@@ -97,7 +97,7 @@ toc: false
     <h2>Sofort produktiv</h2>
 
     <p>
-        Leichtigkeit ist deutlich spaßiger, wenn man dafür Produktivität nicht einbüßen muss. Preacts macht dich von Anfang an produktiv! Es hat sogar einige Bonusfunktionen:
+        Leichtigkeit ist deutlich spaßiger, wenn man dafür nicht an Produktivität einbüßen muss. Preact macht dich von Anfang an produktiv! Es hat sogar einige Bonusfunktionen:
     </p>
 
     <ul>
@@ -114,8 +114,8 @@ toc: false
     <h2>Ökosystem-kompatibel</h2>
 
     <p>
-        Virtual DOM-Komponenten machen es einfach, Dinge wieder zu verwenden - alles vom Knopf bis hin zu Datenquellen.
-        Preacts Gestaltung lässt dich tausende Komponenten, die bereits im React-Ökosystem verfügbar sind, verwenden.
+        Virtual DOM-Komponenten machen es einfach, Dinge wieder zu verwenden - alles vom Button bis hin zu Datenquellen.
+        Preacts Gestaltung lässt dich tausende Komponenten verwenden, die bereits im React-Ökosystem verfügbar sind.
     </p>
 
     <p>
@@ -125,7 +125,7 @@ toc: false
 
 
 <section class="home-top">
-    <h1>Erlebe es in freier Wildbahn!</h1>
+    <h1>Erlebe es in Aktion!</h1>
 </section>
 
 

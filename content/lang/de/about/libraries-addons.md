@@ -25,7 +25,7 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 - :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): HTML & eigene Elemente als JSX & Komponenten rendern
 - :satellite: [**preact-portal**](https://git.io/preact-portal): Rendern von Preact-Komponenten im (Welt-)Raum :milky_way:
 - :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Simple HTML-Editor-Komponente
-- :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Textfeld, dass Eingabe für Zwecke wie z.B. Tags in Tokens übersetzt
+- :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Textfeld, das Eingabe für Zwecke wie z.B. Tags in Tokens übersetzt
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Listen mit Millionen Reihen einfach rendern([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Kleine und simple Layout-Bibliothek
 - :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): Ein Dokumentenkopf-Manager für Preact
@@ -35,7 +35,7 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 
 - :thought_balloon: [**preact-socrates**](https://github.com/matthewmueller/preact-socrates): Preact-Plugin für [Socrates](http://github.com/matthewmueller/socrates)
 - :rowboat: [**preact-flyd**](https://github.com/xialvjun/preact-flyd): [flyd](https://github.com/paldepind/flyd) FRP-Streams in Preact + JSX benutzen
-- :speech_balloon: [**preact-i18nline**](https://github.com/download/preact-i18nline): Das  [i18n-js](https://github.com/everydayhero/i18n-js)-Ökosystem mit Preact mithilfe von  [i18nline](https://github.com/download/i18nline) integrieren.
+- :speech_balloon: [**preact-i18nline**](https://github.com/download/preact-i18nline): Das  [i18n-js](https://github.com/everydayhero/i18n-js)-Ökosystem mit Preact mithilfe von [i18nline](https://github.com/download/i18nline) integrieren.
 
 
 ### GUI Toolkits

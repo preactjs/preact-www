@@ -12,7 +12,7 @@ Preact ist nicht darauf ausgelegt, jede einzelne Funktion von React zu übernehm
 
 ## Versionenkompatibilität
 
-Für Preact und [preact-compat] gilt: Versionenkompatibilit wird gegen die _aktuellen_ und _vorherigen_ Hauptveröffentlichungen von React gemessen. Wenn neue Funktionen vom React-Team angekündigt werden, werden sie, sollten sie mit den [Projektziele]n im Hinterkopf nutzvoll sein, zu Preacts Kern hinzugefügt. Dies ist ein recht demokratischer Prozess, der von sich konstant entwickelnden Diskussionen und Entscheidungen der Masse gezeichnet ist. Er lebt von Issues und Pull Requests.
+Für Preact und [preact-compat] gilt: Versionenkompatibilität wird mit den _aktuellen_ und _vorherigen_ Hauptveröffentlichungen von React verglichen. Wenn neue Funktionen vom React-Team angekündigt werden sie, sollten sie mit den [Projektziele]n im Hinterkopf nützlich sein, zu Preacts Kern hinzugefügt. Dies ist ein recht demokratischer Prozess, der von sich konstant entwickelnden Diskussionen und Entscheidungen der Masse gezeichnet ist. Er lebt von Issues und Pull Requests.
 
 > Daher ist von React `0.14.x` und `15.x` gemeint, wenn auf der Website oder in der Dokumentation von Kompatibilität oder Vergleichen die Rede ist.
 
@@ -28,11 +28,11 @@ Für Preact und [preact-compat] gilt: Versionenkompatibilit wird gegen die _aktu
 - [Contexts]: Support for `context` was added in Preact [3.0].
     - _Kontext ist eine experimentelle React-Funktion, wurde aber von anderen Bibliotheken adoptiert._
 - [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
-    - _Refs bieten einen weg, gerenderte Elemente und Child-Komponenten zu rendern._
+    - _Refs bieten einen Weg, gerenderte Elemente und Child-Komponenten zu rendern._
 - Virtual DOM Diffing
     - _Quasi unabdingbar - Preacts Differenzierung ist simpel, aber effektiv und **[extrem](http://developit.github.io/js-repaint-perfs/) [schnell](https://localvoid.github.io/uibench/)**._
 - `h()`, eine mehr generalisierte Version von `React.createElement`
-- _Diese Idee hieß ursprünglich [hyperscript] und war weit über das React-Ökosystem hinaus wertvoll, daher bewirbt Preact den originalen Standart. ([Lies: warum `h()`?](http://jasonformat.com/wtf-is-jsx))_
+- _Diese Idee hieß ursprünglich [hyperscript] und war weit über das React-Ökosystem hinaus wertvoll, daher bewirbt Preact den originalen Standard. ([Lies: warum `h()`?](http://jasonformat.com/wtf-is-jsx))_
 - _Außerdem ist lesbarer: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
 
@@ -50,10 +50,10 @@ Preact fügt durchaus vereinzelt nützliche Funktionen hinzu, die von dem Schaff
 ## Was fehlt?
 
 - [PropType] Validierung: Nicht jeder benutzt PropTypes, daher gehören sie nicht Preacts Kern an.
-    - _**PropTypes sind vollständig durch** [preact-compat] **unterstützt**, können aber auchmaniell verwendet werden._
+    - _**PropTypes sind vollständig durch** [preact-compat] **unterstützt**, können aber auch manuell verwendet werden._
 - [Children]: Nicht notwendig in Preact, da `props.children` _immer ein Array_ ist.
     - _`React.Children` ist vollständig in [preact-compat] unterstützt._
-- Synthetisch Ereignisse: Preacts Ziel in der Browserunterstützung setzt diesen zusätzlichen Mehraufwand nicht vorraus.
+- Synthetische Ereignisse: Preacts Ziel in der Browserunterstützung setzt diesen zusätzlichen Mehraufwand nicht vorraus.
     - _Preact nutzt das native `addEventListener` des Browsers für Ereignishandhabung. Unter [GlobalEventHandlers] ist eine vollständige Liste an DOM Ereignishandhabungen zu finden._
     - _Eine vollständige Ereignisimplementierung würde mehr Wartung, Leistungseinbußen und eine größere API bedeuten._
 
@@ -63,7 +63,7 @@ Preact fügt durchaus vereinzelt nützliche Funktionen hinzu, die von dem Schaff
 Preact und React haben einige feinere Unteschiede:
 
 
-- `render()` akzeptiert ein drittes Argument, welches der Grundknoten zu _replace_ ist, andernfalls fügt es es hinzu. Dies könnte sich in einer zukünftigen Version ein wenig ändern, vermutlich durch automatische Erkennung der Angemessenheit eines Ersatzrenders mithilfe einer Inspizierung des Grundknoten.
+- `render()` akzeptiert ein drittes Argument, welches der Grundknoten zu _replace_ ist, andernfalls fügt es es hinzu. Dies könnte sich in einer zukünftigen Version ein wenig ändern, vermutlich durch automatische Erkennung der Angemessenheit eines Ersatzrenders mithilfe einer Inspizierung des Grundknotens.
 - Komponenten implementieren `contextTypes` oder `childContextTypes` nicht. Children empfangen alle `context`-Einträge von `getChildContext()`.
 
 [Projektziele]: /about/project-goals

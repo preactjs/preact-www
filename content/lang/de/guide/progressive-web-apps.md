@@ -20,7 +20,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
           <div class="_title-block">
             <h3>Weniger Skripte laden</h3>
           </div>
-          <p class="_summary">Preact's [kleine Größe](/about/project-goals) ist sehr wertvoll, wenn nur ein begränztes Ladezeitenkontingent verfügbar ist. Man kann davon ausgehen, dass das Laden von großen JavaScript-Bibliotheken mit mobilen Endgeräten immense Wartezeiten bis zur Benutzbarkeit der Applikation führen kann. Das Laden, Evaluieren und Berechnen der Skripte ist zu ressourcenhungrig. Das Reduzieren der Größe von Bibliotheken führt automatisch zu verbesserten Ladezeiten, da folglich auch weniger Code geladen und berechnet werden muss.</p>
+          <p class="_summary">Preact's [kleine Größe](/about/project-goals) ist sehr wertvoll, wenn nur ein begrenztes Ladezeitenkontingent verfügbar ist. Man kann davon ausgehen, dass das Laden von großen JavaScript-Bibliotheken mit mobilen Endgeräten immense Wartezeiten bis zur Benutzbarkeit der Applikation führen kann. Das Laden, Evaluieren und Berechnen der Skripte ist zu ressourcenhungrig. Das Reduzieren der Größe von Bibliotheken führt automatisch zu verbesserten Ladezeiten, da folglich auch weniger Code geladen und berechnet werden muss.</p>
         </div>
     </li>
 
@@ -32,7 +32,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
           <div class="_title-block">
             <h3>Schneller zur Interaktivität</h3>
           </div>
-          <p class="_summary"><p>Wenn man darauf abzielt, [Interaktivität in unter 5 Sekunden](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/) zu erreichen, zählt jeder einzelne KB. [Von React zu Preact zu wechseln](/guide/switching-to-preact) reduziert die Größe einer Applikation um einige KBs, was wiederum zu führt, dass Interaktivität innerhalb einer RTT (Paketlaufzeit) erreicht werden kann. Daher geben Preact und Progressive Web Apps ein wundervolles Paar ab, wenn man den Code für jede Route größtmöglich reduzieren möchte.</p></p>
+          <p class="_summary"><p>Wenn man darauf abzielt, [Interaktivität in unter 5 Sekunden](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/) zu erreichen, zählt jedes einzelne KB. [Von React zu Preact zu wechseln](/guide/switching-to-preact) reduziert die Größe einer Applikation um einige KBs, was wiederum dazu führt, dass Interaktivität innerhalb einer RTT (Paketlaufzeit) erreicht werden kann. Daher geben Preact und Progressive Web Apps ein wundervolles Paar ab, wenn man den Code für jede Route bestmöglich reduzieren möchte.</p></p>
         </div>
     </li>
 
@@ -57,7 +57,7 @@ In der Tat ist genau diese Website eine Progressive Web App! Hier ist zu sehen, 
 
 Statische Seiteninhalte werden in der (Service Worker) Cache Storage API gespeichert, die blitzschnelles Laden bei wiederholten Besuchen ermöglicht.
 
-## Leistiungstipps
+## Leistungstipps
 
 Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktionieren sollte, kann es auch mit einer Reihe von anderen Werkzeugen und Techniken verwendet werden. Diese beinhalten:
 
@@ -101,15 +101,15 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
 ## Preact CLI
 
-[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, dass eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten komnzentrieren kann.
+[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, dass eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten konzentrieren kann.
 
 Anbei einige Funktionen, die Preact CLI mitliefert:
 
 
-- Automartisches, lückenlosen Code-Splitting für URL-Routen
-- Automatisches Generieren und Installieren eines ServiceWorkers
-- Generierung von HTTP2/Push-Headern (oder Preload Meta Tags), die auf der URL basierern
-- Vorzeitiges Redern, dass zu schnellen "Time To First Paint"-Resultaten führt
+- Automatisches, lückenloses Code-Splitting für URL-Routen
+- Automatisches generieren und installieren eines ServiceWorkers
+- Generierung von HTTP2/Push-Headern (oder Preload Meta Tags), die auf der URL basieren
+- Vorzeitiges Rendern, dass zu schnellen "Time To First Paint"-Resultaten führt
 - Bedingungsweises Laden von Polyfills, falls diese benötigt werden
 
-Da [Preact CLI](https://github.com/developit/preact-cli/) im Inneren von [Webpack](https://webpack.js.org) angetrieben wird, kann man eine `preact.config.js`-Datei definieren und somit den Build-Prozess auf seine eigenen Anforderungen genau abstimmen. Sollte man also Anpassungen vornehmen, kann man immer noch die Vorteile einzelner wundervollen Standarteinstellungen nutzen. Außerdem kann man so einfach Aktualisierungen vornehmen, sollte eine neue Version von `preact-cli` veröffentlich werden.
+Da [Preact CLI](https://github.com/developit/preact-cli/) im Inneren auf [Webpack](https://webpack.js.org) basiert, kann man eine `preact.config.js`-Datei definieren und somit den Build-Prozess auf seine eigenen Anforderungen genau abstimmen. Sollte man also Anpassungen vornehmen, kann man immer noch die Vorteile einzelner wundervollen Standarteinstellungen nutzen. Außerdem kann man so einfach Aktualisierungen vornehmen, sollte eine neue Version von `preact-cli` veröffentlich werden.

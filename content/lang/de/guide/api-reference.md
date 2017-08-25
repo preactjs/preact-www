@@ -11,7 +11,7 @@ permalink: '/guide/api-reference'
 
 ### `Component.render(props, state)`
 
-Die `render()`-Funktion ist voraussetzend für alle Komponenten. Sie kann die props und states der Komponente inspizieren und sollte ein Preact-Element oder `null` zurückgeben.
+Die `render()`-Funktion ist Voraussetzung für alle Komponenten. Sie kann die props und states der Komponente inspizieren und sollte ein Preact-Element oder `null` zurückgeben.
 
 ```jsx
 import { Component } from 'preact';
@@ -34,8 +34,8 @@ Preact ruft die nachfolgenden Lebenszyklusmethoden auf, falls sie für eine Komp
 
 | Lebenszyklusmethoden        | Wann sie aufgerufen wird                             				 |
 |-----------------------------|--------------------------------------------------------------|
-| `componentWillMount`        | bevor die Komponente an das DOM eingehanden wird					   |
-| `componentDidMount`         | nachdem die Komponente an das DOM eingehanden wird 					 |
+| `componentWillMount`        | bevor die Komponente in DOM eingebunden wird					   |
+| `componentDidMount`         | nachdem die Komponente in DOM eingebunden wurde 					 |
 | `componentWillUnmount`      | vor dem Entfernen vom  DOM	                      					 |
 | `componentWillReceiveProps` | bevor neue props angenommen werden                 					 |
 | `shouldComponentUpdate`     | vor `render()`. `false` ausgeben, um Rendern zu überspringen |

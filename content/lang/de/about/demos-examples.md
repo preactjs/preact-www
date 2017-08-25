@@ -76,10 +76,10 @@ Preact + Redux-Beispielprojekt, das eine einfache To-Do-Liste implementiert.
 [GitHub-Projekt](https://github.com/developit/preact-redux-example)
 
 **[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-Wie man Preact gänzlich ohne Babes, ES2015 oder JSX benutzt.
+Wie man Preact gänzlich ohne Babel, ES2015 oder JSX benutzt.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Kleine Preact-Struktur mit allen nötigen Werkzeugen um direkt mit seinem Projekt zu Starten.
+Kleine Preact-Struktur mit allen nötigen Werkzeugen um direkt mit seinem Projekt zu starten.
 
 
 ## Codepens
@@ -90,7 +90,7 @@ Kleine Preact-Struktur mit allen nötigen Werkzeugen um direkt mit seinem Projek
 - [Simple Uhr](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
-## Vorlage
+## Vorlagen
 
 :zap: [**JSFiddle Template**](https://jsfiddle.net/developit/rs6zrh5f/embedded/result/)
 
