@@ -195,6 +195,12 @@ permalink: '/about/we-are-using'
             Selly
         </a>
     </li>
+    <li>
+        <a href="//slowtec.de" target="_blank">
+            <img src="/assets/we-are-using/slowtec.svg" alt="slowtec">
+            slowtec
+        </a>
+    </li>
 </ul>
 
 
