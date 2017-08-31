@@ -195,6 +195,12 @@ permalink: '/about/we-are-using'
             Selly
         </a>
     </li>
+	<li>
+        <a href="//tradeshift.com" target="_blank">
+            <img src="/assets/we-are-using/tradeshift.png" alt="Selly">
+            Tradeshift
+        </a>
+    </li>
 </ul>
 
 
