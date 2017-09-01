@@ -67,7 +67,7 @@ class MyComponent extends Component {
 
 将一个Preact组件渲染到 `containerNode` 这个DOM节点上。 返回一个对渲染的DOM节点的引用。
 
-如果提供了可选的DOM节点参数 `replaceNode` 并且是 `containerNode` 的子节点，Preact将使用它的diffing算法来更新或者该元素节点。否则，Preact将把渲染的元素添加到 `containerNode` 上。
+如果提供了可选的DOM节点参数 `replaceNode` 并且是 `containerNode` 的子节点，Preact将使用它的diffing算法来更新或者替换该元素节点。否则，Preact将把渲染的元素添加到 `containerNode` 上。
 
 ```js
 import { render } from 'preact';
