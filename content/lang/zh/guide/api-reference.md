@@ -6,7 +6,7 @@ permalink: '/guide/api-reference'
 # API 参考
 
 ## `Preact.Component`
-`Component` 是一个父类，您通常会使用它的子类去创建有状态的 Preact 组件。
+`Component` 是一个父类，您通常会使用子类继承的方式去创建有状态的 Preact 组件。
 
 ### `Component.render(props, state)`
 
