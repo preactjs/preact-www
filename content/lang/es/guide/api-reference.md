@@ -1,9 +1,13 @@
 ---
-name: Lifecycle Methods
-permalink: '/guide/lifecycle-methods'
+name: Referencia de la API
+permalink: '/guide/api-reference'
 ---
 
-# Métodos del ciclo de vida
+# Referencia de la API
+
+## `Preact.Component`
+
+### Métodos del ciclo de vida
 
 > _**Nota:** Si has utilizado Custom Elements de HTML5, es similar a los métodos `attachedCallback` y `detachedCallback`._
 

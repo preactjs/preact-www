@@ -2,6 +2,10 @@ import './lib/polyfills';
 import './style';
 import './pwa';
 import { h, render } from 'preact';
+import * as preact from 'preact';
+
+// allows users to play with preact in the browser developer console
+global.preact = preact
 
 let root = document.getElementById('app');
 function init() {

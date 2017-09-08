@@ -81,6 +81,49 @@ In this case though, you might find it more compelling to switch directly to `pr
 Preact's core is quite fully featured, and many idiomatic React codebases can actually be switched straight to `preact` with little effort.
 That approach is covered in the next section.
 
+#### Aliasing in Node using module-alias
+
+For SSR purposes, if you are not using a bundler like webpack to build your server side code, you can use the [module-alias](https://www.npmjs.com/package/module-alias) package to replace react with preact.
+
+```sh
+npm i -S module-alias
+```
+
+`patchPreact.js`:
+```js
+var path = require('path')
+var moduleAlias = require('module-alias')
+
+moduleAlias.addAliases({
+  'react': 'preact-compat/dist/preact-compat.min',
+  'react-dom': 'preact-compat/dist/preact-compat.min',
+  'create-react-class': path.resolve(__dirname, './create-preact-class')
+})
+```
+
+`create-preact-class.js`:
+```js
+import { createClass } from 'preact-compat/dist/preact-compat.min'
+export default createClass
+```
+
+If you are using the new `import` syntax on your server with Babel, writing these lines above your other imports will not work since Babel moves all imports to the top of a module.  In that case, save the above code as `patchPreact.js`, then import it at the top of your file (`import './patchPreact'`). You can read more on `module-alias` usage [here](https://www.npmjs.com/package/module-alias).
+
+
+It is also possible to alias directly in node without the `module-alias` package. This relies on internal properties of Node's module system, so proceed with caution.  To alias manually:
+
+```js
+// patchPreact.js
+var React = require('react')
+var ReactDOM = require('react-dom')
+var ReactDOMServer = require('react-dom/server')
+var CreateReactClass = require('create-react-class')
+var Preact = require('preact-compat/dist/preact-compat.min')
+var Module = module.constructor
+Module._cache[require.resolve('react')].exports = Preact
+Module._cache[require.resolve('react-dom')].exports = Preact
+Module._cache[require.resolve('create-react-class')].exports.default = Preact.createClass
+```
 
 ### Build & Test
 
