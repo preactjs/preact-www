@@ -183,16 +183,28 @@ permalink: '/about/we-are-using'
             WELL Messenger
         </a>
     </li>
-	  <li>
+    <li>
         <a href="//try.cards" target="_blank">
             <img src="/assets/we-are-using/cards.png" alt="Cards">
             Cards
         </a>
     </li>
-	  <li>
+    <li>
         <a href="//selly.gg" target="_blank">
             <img src="/assets/we-are-using/selly.png" alt="Selly">
             Selly
+        </a>
+    </li>
+    <li>
+        <a href="//tradeshift.com" target="_blank">
+            <img src="/assets/we-are-using/tradeshift.png" alt="Selly">
+            Tradeshift
+        </a>
+    </li>
+    <li>
+        <a href="//slowtec.de" target="_blank">
+            <img src="/assets/we-are-using/slowtec.svg" alt="slowtec">
+            slowtec
         </a>
     </li>
 </ul>
