@@ -106,7 +106,7 @@ Rendering hyperscript with a virtual DOM is pointless, though. We want to render
 
 ## Components
 
-Preact exports a generic `Component` class, which can be extended to build encapsulated, self-updating pieces of a User Interface.  Components support all of the standard React [lifecycle methods], like `shouldComponentUpdate()` and `componentWillReceiveProps()`.  Providing specific implementations of these methods is the preferred mechanism for controlling _when_ and _how_ components update.
+Preact exports a generic `Component` class, which can be extended to build encapsulated, self-updating pieces of a User Interface.  Components support all of the standard React [lifecycle methods][#the-component-lifecycle], like `shouldComponentUpdate()` and `componentWillReceiveProps()`.  Providing specific implementations of these methods is the preferred mechanism for controlling _when_ and _how_ components update.
 
 Components also have a `render()` method, but unlike React this method is passed `(props, state)` as arguments. This provides an ergonomic means to destructure `props` and `state` into local variables to be referenced from JSX.
 
@@ -146,7 +146,6 @@ In order to have the clock's time update every second, we need to know when `<Cl
 | `componentWillMount`        | before the component gets mounted to the DOM     |
 | `componentDidMount`         | after the component gets mounted to the DOM      |
 | `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentDidUnmount`       | after removal from the DOM                       |
 | `componentWillReceiveProps` | before new props get accepted                    |
 | `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
 | `componentWillUpdate`       | before `render()`                                |
@@ -193,7 +192,6 @@ render(<Clock />, document.body);
 
 
 Now we have [a ticking clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
-
 
 
 [preact-boilerplate]: https://github.com/developit/preact-boilerplate

@@ -96,7 +96,7 @@ render((
 ), document.body);
 ```
 
-如果你有使用 [hyperscript] 或者 它的一些[类似的库]((https://github.com/developit/vhtml))，这个看起来会非常直观。
+如果你有使用 [hyperscript] 或者 它的一些[类似的库](https://github.com/developit/vhtml)，这个看起来会非常直观。
 
 尽管用虚拟 DOM 去渲染 hyperscript 并没意义。我们想去渲染组件及使他们在数据变化的时候进行更新，那正是虚拟 DOM 比较的闪光点。:star2:
 
@@ -145,7 +145,6 @@ render(<Clock />, document.body);
 | `componentWillMount`        | 在一个组件被渲染到 DOM 之前                         |
 | `componentDidMount`         | 在一个组件被渲染到 DOM 之后      					 |
 | `componentWillUnmount`      | 在一个组件在 DOM 中被清除之前                       |
-| `componentDidUnmount`       | 在一个组件在 DOM 中被清除之后                       |
 | `componentWillReceiveProps` | 在新的 props 被接受之前                              |
 | `shouldComponentUpdate`     | 在 `render()` 之前. 若返回 `false`，则跳过 render   |
 | `componentWillUpdate`       | 在 `render()` 之前                                |

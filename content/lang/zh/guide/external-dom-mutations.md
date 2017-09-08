@@ -66,9 +66,9 @@ class Example extends Component {
 
 ## 示范
 
-[![样例](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
+[![样例](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
 
-[** 在 Webpackbin 中查看样例 **](http://www.webpackbin.com/V1hyNQbpe)
+[** 在 Webpackbin 中查看样例 **](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
 
 
 ## 真实场景中的样例

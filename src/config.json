@@ -4,7 +4,8 @@
 	"languages": {
 		"zh": "Chinese",
 		"es": "Spanish",
-		"pt-br": "Brazilian Portuguese"
+		"pt-br": "Brazilian Portuguese",
+		"de": "German"
 	},
 	"docsearch": {
 		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
@@ -40,8 +41,8 @@
 					"name": "Types of Components"
 				},
 				{
-					"path": "/guide/lifecycle-methods",
-					"name": "Lifecycle Methods"
+					"path": "/guide/api-reference",
+					"name": "API Reference"
 				},
 				{
 					"path": "/guide/forms",
@@ -60,6 +61,10 @@
 					"name": "Extending Component"
 				},
 				{
+					"path": "/guide/unit-testing-with-enzyme",
+					"name": "Unit Testing with Enzyme"
+				},
+				{
 					"path": "/guide/progressive-web-apps",
 					"name": "Progressive Web Apps"
 				}
@@ -69,6 +74,10 @@
 			"name": "About",
 			"content": "about",
 			"routes": [
+				{
+					"path": "/about/we-are-using",
+					"name": "Companies using Preact"
+				},
 				{
 					"path": "/about/libraries-addons",
 					"name": "Libraries & Add-ons"
@@ -84,10 +93,6 @@
 				{
 					"path": "/about/browser-support",
 					"name": "Browser Support"
-				},
-				{
-					"path": "/about/we-are-using",
-					"name": "We Are Using"
 				}
 			]
 		},
