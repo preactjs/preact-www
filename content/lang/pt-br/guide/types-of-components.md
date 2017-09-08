@@ -34,7 +34,7 @@ Podemos instanciar/renderizar esse componente como segue:
 
 ### Destructurar `Props` & `State`
 
-Visto que isso é ES6 / ES2015, podemos simplificar ainda mais nosso componente `<Link>` por mapear as chaves de `props` (o primeiro argument passado pra `render()`) para variáveis locais usando [destructuring](https://github.com/lukehoban/es6features#destructuring):
+Visto que isso é ES6 / ES2015, podemos simplificar ainda mais nosso componente `<Link>` por mapear as chaves de `props` (o primeiro argumento passado pra `render()`) para variáveis locais usando [destructuring](https://github.com/lukehoban/es6features#destructuring):
 
 ```js
 class Link extends Component {
@@ -44,7 +44,7 @@ class Link extends Component {
 }
 ```
 
-Se quiséssemos copiar _todas_ as `props` passadas para o componente `<Link>` para o elemento `<a>`, poderiamos utiliazr o [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
+Se quiséssemos copiar _todas_ as `props` passadas para o componente `<Link>` para o elemento `<a>`, poderíamos utilizar o [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
 
 ```js
 class Link extends Component {
@@ -57,7 +57,7 @@ class Link extends Component {
 
 ### Componentes Funcionais Sem Estado
 
-Por úlimo, podemos ver que esse componente não tem estado - podemos renderizá-lo com as mesmas `props` e receberemos o mesmo resultado todas as vezes.
+Por último, podemos ver que esse componente não tem estado - podemos renderizá-lo com as mesmas `props` e receberemos o mesmo resultado todas as vezes.
 Quando isso é o caso, é geralmente melhor utilizar um Componente Funcional Sem Estado. Esses são apenas funções que aceitam `props` como argumento e retornam JSX.
 
 ```js

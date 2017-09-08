@@ -43,11 +43,12 @@ A collection of modules built to work wonderfully with Preact.
 
 - :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Use [MDL](https://getmdl.io) as Preact components
 - :rocket: [**preact-photon**](https://git.io/preact-photon): build beautiful desktop UI with [photon](http://photonkit.com)
-
+- :penguin: [**preact-weui**](https://github.com/afeiship/preact-weui): [Weui](https://github.com/afeiship/preact-weui) for Preact
 
 ### Testing
 
 - :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX assertion testing _(no DOM, right in Node)_
+- :white_check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX assertions, events, snapshots in Jest _(DOM, works under Node jsdom or out-of-the-box in Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
 
 
 ### Utilities
