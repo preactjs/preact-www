@@ -96,7 +96,7 @@ render((
 ), document.body);
 ```
 
-如果你有使用 [hyperscript] 或者 它的一些[类似的库]((https://github.com/developit/vhtml))，这个看起来会非常直观。
+如果你有使用 [hyperscript] 或者 它的一些[类似的库](https://github.com/developit/vhtml)，这个看起来会非常直观。
 
 尽管用虚拟 DOM 去渲染 hyperscript 并没意义。我们想去渲染组件及使他们在数据变化的时候进行更新，那正是虚拟 DOM 比较的闪光点。:star2:
 
