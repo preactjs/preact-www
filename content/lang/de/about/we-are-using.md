@@ -1,6 +1,6 @@
 ---
 name: We Are Using
-title: Who's using Preact?
+title: Wer benutzt Preact?
 permalink: '/about/we-are-using'
 ---
 
@@ -49,8 +49,8 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations.
-    Below is a small sampling of organizations that depend on Preact for public-facing projects.
+    Preact wird von einem breiten Spektrum von Webseiten verwendet: von Open Source-Projekten bis hin zu großen multinationalen Unternehmen.
+    Nachfolgend ist ein kleiner Auszug von Unternehmen, die Preact für öffentliche Projekte benutzen:
 </p>
 
 <!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
@@ -136,12 +136,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//native-instruments.com" target="_blank">
-            <img src="/assets/we-are-using/native-instruments.png" alt="Native Instruments">
-            Native Instruments
-        </a>
-    </li>
-    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -183,36 +177,6 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
-    <li>
-        <a href="//wellapp.com" target="_blank">
-            <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
-            WELL Messenger
-        </a>
-    </li>
-    <li>
-        <a href="//try.cards" target="_blank">
-            <img src="/assets/we-are-using/cards.png" alt="Cards">
-            Cards
-        </a>
-    </li>
-    <li>
-        <a href="//selly.gg" target="_blank">
-            <img src="/assets/we-are-using/selly.png" alt="Selly">
-            Selly
-        </a>
-    </li>
-    <li>
-        <a href="//tradeshift.com" target="_blank">
-            <img src="/assets/we-are-using/tradeshift.png" alt="Selly">
-            Tradeshift
-        </a>
-    </li>
-    <li>
-        <a href="//slowtec.de" target="_blank">
-            <img src="/assets/we-are-using/slowtec.svg" alt="slowtec">
-            slowtec
-        </a>
-    </li>
 </ul>
 
 
@@ -220,6 +184,6 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Does your company use Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
+    Benutzt Ihr Unternehmen Preact?
+    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Fügen Sie es zur Liste hinzu!</strong></a>
 </p>
