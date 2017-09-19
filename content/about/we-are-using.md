@@ -154,6 +154,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//skiscool.com/" target="_blank" title="ski school courchevel">
+            <img src="/assets/we-are-using/skiscool.svg" alt="ski school courchevel">
+            ski school courchevel
+        </a>
+    </li>
+    <li>
         <a href="//coralproject.net" target="_blank">
             <img src="/assets/we-are-using/thecoralproject.png" alt="The Coral Project">
             The Coral Project
