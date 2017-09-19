@@ -136,6 +136,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//native-instruments.com" target="_blank">
+            <img src="/assets/we-are-using/native-instruments.png" alt="Native Instruments">
+            Native Instruments
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -145,6 +151,12 @@ permalink: '/about/we-are-using'
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
+        </a>
+    </li>
+    <li>
+        <a href="//skiscool.com/" target="_blank" title="ski school courchevel">
+            <img src="/assets/we-are-using/skiscool.svg" alt="ski school courchevel">
+            ski school courchevel
         </a>
     </li>
     <li>
