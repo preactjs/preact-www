@@ -136,6 +136,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//native-instruments.com" target="_blank">
+            <img src="/assets/we-are-using/native-instruments.png" alt="Native Instruments">
+            Native Instruments
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
