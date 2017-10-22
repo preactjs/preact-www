@@ -85,6 +85,10 @@ Minimal Preact structure with all the necessary tools to start your project righ
 Quickly spin up a new personal webpage by only needing to modify JSON data.
 [Github Project](https://github.com/tomasswood/preact-homepage-generator)
 
+**[Preact ThreeJS](https://github.com/gl2748/preact-three/blob/master/src/components/scene/index.js)** :rabbit:  
+Implement a ThreeJS scene in a component, copy of the [Preact + ThreeJS CodePen](http://codepen.io/developit/pen/PPMNjd?editors=0010).  
+[Github Project](https://github.com/gl2748/preact-three)
+
 
 ## Codepens
 
