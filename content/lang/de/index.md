@@ -119,7 +119,7 @@ toc: false
     </p>
 
     <p>
-        Das Hinzufügen eines einfachen<a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
+        Das Hinzufügen eines einfachen <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
     </p>
 </section>
 
