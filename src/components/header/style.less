@@ -362,3 +362,24 @@
 		}
 	}
 }
+
+// corner link
+.corner {
+	svg {
+		-webkit-filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+		filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+
+		path {
+			fill: #B31464;
+		}
+
+		&:hover path {
+			fill: lighten(#B31464, 5%);
+		}
+
+		text {
+			fill: #fff;
+			font-size: 16px;
+		}
+	}
+}
