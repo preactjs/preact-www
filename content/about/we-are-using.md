@@ -112,6 +112,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//hashicorp.com" target="_blank">
+            <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
+            HashiCorp
+        </a>
+    </li>
+    <li>
         <a href="//www.synacor.com" target="_blank">
             <img src="/assets/we-are-using/synacor.png" alt="Synacor">
             Synacor
