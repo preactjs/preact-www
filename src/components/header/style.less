@@ -365,6 +365,10 @@
 
 // corner link
 .corner {
+	@media (max-width: @header-mobile-breakpoint) {
+		display: none;
+	}
+
 	svg {
 		-webkit-filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
 		filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
