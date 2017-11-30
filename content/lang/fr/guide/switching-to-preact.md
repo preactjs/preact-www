@@ -23,7 +23,7 @@ Premièrement, vous devez installer preact et preact-compat (ce sont deux packag
 npm i -S preact preact-compat
 ```
 
-Une fois ces dépendences installées, configurez votre système de build pour remplacer les imports de React afin qu'ils pointent vers Preact.
+Une fois ces dépendances installées, configurez votre système de build pour remplacer les imports de React afin qu'ils pointent vers Preact.
 
 
 ### Comment créer un alias preact-compat
@@ -194,10 +194,10 @@ La plus remarquable est `createClass()`. Les opinions varient grandement sur le 
 
 Si votre codebase utilise énormément `createClass()`, il vous reste tout de même une très bonne option :
 Laurence Dorman maintient un [implémentation indépendant de `createClass()`](https://github.com/ld0rman/preact-classless-component) qui fonctionne directement avec preact et ne fait que quelques octets.
-Alternativement, vous pouvez automatiquement convertise vos appels à `createClass()` vers des classes ES en utilisant [preact-codemod](https://github.com/vutran/preact-codemod) de Vu Tran.
+Alternativement, vous pouvez automatiquement convertir vos appels à `createClass()` vers des classes ES6 en utilisant [preact-codemod](https://github.com/vutran/preact-codemod) de Vu Tran.
 
 Une autre différence qu'il convient de noter est que Preact ne support que les références fonctionnelles par défaut.
-Les références par chaîne de caractères sont dépréciées dans React et vont être supprimée sous peu, car elles introduisent trop de compléxité pour peu de gains.
+Les références par chaîne de caractères sont dépréciées dans React et vont être supprimées sous peu, car elles introduisent trop de complexité pour peu de gains.
 Si vous voulez continuer d'utiliser les références par chaîne de caractère, [cette petite fonction linkedRef](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d) vous offre une solution durable qui alimente `this.refs.$$` comme les références par chaine de caractères le faisaient. La simplicité de ce petit enrobage autour des références fonctionnelles aide aussi à illustrer pourquoi celles-ci sont maintenant le meilleur choix pour le futur.
 
 
