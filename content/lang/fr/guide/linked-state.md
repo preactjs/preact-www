@@ -5,7 +5,7 @@ permalink: '/guide/linked-state'
 
 # Etat lié
 
-Un point sur lequel Preact va un peu plus loin que React est l'optimisation des changements du state. Un motif commun dans le code React écrit en ES2015 est d'utiliser les fonctions flèchées dans une méthode `render()` afin de mettre à jour le state en réponse à des événements. Créer des fonctions comprises dans une portée à chaque nouveau rendu n'est pas efficace et force le ramasse miettes à travailler plus que nécessaire.
+Un point sur lequel Preact va un peu plus loin que React est l'optimisation des changements du state. Un motif commun dans le code React écrit en ES2015 est d'utiliser les fonctions fléchées dans une méthode `render()` afin de mettre à jour le state en réponse à des événements. Créer des fonctions comprises dans une portée à chaque nouveau rendu n'est pas efficace et force le ramasse-miettes à travailler plus que nécessaire.
 
 ## La méthode manuelle, plus agréable
 
@@ -52,7 +52,7 @@ C'est concis, facile à comprendre, et efficace. Cela gère la liaison du state 
 
 ## Custom Event Paths
 
-Par défaut, `linkState()` essayera d'extrait la bonne valeur à partir d'un événement automatiquement. Par exemple, un élément `<input>` affectera la propriété de l'état à `event.target.value` ou `event.target.checked` en fonction de son type. Pour les gestionnaires d'événement personnalisés, passer des valeurs scalaires au gestionnaire généré par `linkState()` utilisera simplement la valeur scalaire. La plupart du temps, c'est le comportement attendu.
+Par défaut, `linkState()` essayera d'extraire la bonne valeur à partir d'un événement automatiquement. Par exemple, un élément `<input>` affectera la propriété de l'état à `event.target.value` ou `event.target.checked` en fonction de son type. Pour les gestionnaires d'événement personnalisés, passer des valeurs scalaires au gestionnaire généré par `linkState()` utilisera simplement la valeur scalaire. La plupart du temps, c'est le comportement attendu.
 
 Il y a toutefois des cas où ce n'est pas ce qui est souhaité - les événements personnalisés et les boutons radios groupés sont deux exemples possibles. Dans ces cas-là, un troisième argument peut-être passé à `linkState()` pour spécifier le chemin séparé par des points dans l'objet événement où la valeur peut être trouvée.
 
