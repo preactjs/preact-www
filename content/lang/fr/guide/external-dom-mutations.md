@@ -75,4 +75,4 @@ class Example extends Component {
 
 ## Exemples réels
 
-Vous pouvez aussi voir cette technique en actio dans [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - cela utilise un composant comme point d'appui dans le DOM, puis désactive les mises à jour et laisse [tags-input](https://github.com/developit/tags-input) prendre la main. Un exemple plus complexe pourrait être [preact-richtextarea](https://github.com/developit/preact-richtextarea), qui utilise cette technique pour éviter de re-rendre une `<iframe>` modifiable.
+Vous pouvez aussi voir cette technique en action dans [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - cela utilise un composant comme point d'appui dans le DOM, puis désactive les mises à jour et laisse [tags-input](https://github.com/developit/tags-input) prendre la main. Un exemple plus complexe pourrait être [preact-richtextarea](https://github.com/developit/preact-richtextarea), qui utilise cette technique pour éviter de re-rendre une `<iframe>` modifiable.
