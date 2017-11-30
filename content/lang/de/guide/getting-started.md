@@ -1,6 +1,6 @@
 ---
-name: Los geht's
-permalink: /guide/getting-started
+name: "Los geht's"
+permalink: "/guide/getting-started"
 ---
 
 # Los geht's
