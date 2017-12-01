@@ -1,5 +1,5 @@
 ---
-name: Demos & Examples
+name: Démos et Exemples
 permalink: '/about/demos-examples'
 ---
 

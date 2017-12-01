@@ -1,5 +1,5 @@
 ---
-name: Switching to Preact from React
+name: Passer à Preact (à partir de React)
 permalink: '/guide/switching-to-preact
 ---
 

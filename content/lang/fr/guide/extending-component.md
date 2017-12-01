@@ -1,5 +1,5 @@
 ---
-name: Extending Component
+name: Étendre le composant de base
 permalink: '/guide/extending-component'
 ---
 

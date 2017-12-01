@@ -1,5 +1,5 @@
 ---
-name: Project Goals
+name: Les objectifs de Preact
 permalink: '/about/project-goals'
 ---
 

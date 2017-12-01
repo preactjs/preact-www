@@ -1,5 +1,5 @@
 ---
-name: Forms
+name: Formulaires
 permalink: '/guide/forms'
 ---
 

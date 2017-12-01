@@ -1,6 +1,6 @@
 ---
 name: We Are Using
-title: Who's using Preact?
+title: Qui utilise Preact ?
 permalink: '/about/we-are-using'
 ---
 

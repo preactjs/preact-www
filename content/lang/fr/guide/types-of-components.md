@@ -1,5 +1,5 @@
 ---
-name: Types of Components
+name: Types de composants
 permalink: '/guide/types-of-components'
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Libraries & Add-ons
+name: Bibliothèques et modules complémentaires
 permalink: '/about/addons-libraries'
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: API Reference
+name: Référence API
 permalink: '/guide/api-reference'
 ---
 

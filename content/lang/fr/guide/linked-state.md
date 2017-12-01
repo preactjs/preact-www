@@ -1,5 +1,5 @@
 ---
-name: Linked State
+name: Etat lié
 permalink: '/guide/linked-state'
 ---
 

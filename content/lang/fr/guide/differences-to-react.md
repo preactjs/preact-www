@@ -1,5 +1,5 @@
 ---
-name: Differences to React
+name: Différences avec React
 permalink: '/guide/differences-to-react'
 ---
 

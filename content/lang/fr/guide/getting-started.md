@@ -1,5 +1,5 @@
 ---
-name: Getting Started
+name: Commencer
 permalink: '/guide/getting-started'
 ---
 

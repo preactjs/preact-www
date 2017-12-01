@@ -1,5 +1,5 @@
 ---
-name: External DOM Mutations
+name: Modification Externe du DOM
 permalink: '/guide/external-dom-mutations'
 ---
 
