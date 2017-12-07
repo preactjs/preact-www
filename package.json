@@ -13,7 +13,9 @@
     "protect": "[ \"$NODE_ENV\" = \"production\" ] && snyk protect || exit 0",
     "lint": "eslint {src,test}",
     "predeploy": "npm run -s build",
-    "deploy": "cp build/index.html build/200.html && surge -d preactjs.com build"
+    "deploy": "cp build/index.html build/200.html && surge -d preactjs.com build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "preact",
@@ -98,7 +100,7 @@
     "progress-spinner": "^1.1.0",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^0.14.3",
-    "snyk": "^1.17.1",
+    "snyk": "^1.47.0",
     "yaml": "^0.3.0"
   },
   "main": "webpack.config.babel.js",
