@@ -16,7 +16,7 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verscheidene Wege, Komponent
 
 ## Beispiel
 
- Hier ein Beispiel: Eine einfache `<Link>`-Komponente, die ein ein HTML-`<a>`-Element erstellt:
+ Hier ein Beispiel: Eine einfache `<Link>`-Komponente, die ein HTML-`<a>`-Element erstellt:
 
 ```js
 class Link extends Component {
@@ -35,7 +35,7 @@ Die Komponente kann wie folgt instanziert/gerendert werden:
 
 ### Props & State destrukturieren
 
-Da dies in ES6/ES2015 lebt, kann man die `<Link>`-Komponente weiter vereinfachen, indem man Schlüssel von `props` (das erste `render()`-Argument) lokalen Variablen mithilfe von [destructuring](https://github.com/lukehoban/es6features#destructuring) zuweist:
+Da dies in ES6/ES2015-Code ist, kann man die `<Link>`-Komponente weiter vereinfachen, indem man Schlüssel von `props` (das erste `render()`-Argument) lokalen Variablen mithilfe von [destructuring](https://github.com/lukehoban/es6features#destructuring) zuweist:
 
 ```js
 class Link extends Component {

@@ -13,7 +13,7 @@ Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstell
 
 ## Importiere, was man braucht
 
-Das `preact`-Modul bietet die Option für bestimmte und allgemeine Exporte, man kann also alles unter einem persönlichen Namensraum importieren, oder aber das komplette Paket ansprechen.
+Das `preact`-Modul bietet die Option für bestimmte und allgemeine Exporte, man kann also alles unter einem eigenen Namensraum importieren, oder aber das komplette Paket verwenden.
 
 **Bestimmt:**
 
@@ -102,7 +102,7 @@ Hyperscript in einem Virtuellen DOM zu Rendern macht allerdings gar keinen Sinn.
 
 ## Komponente
 
-Preact exportiert eine generische `Komponente`-Klasse, welche zum Erstellen von verkapselten, sich selbst aktualisierenden Teilen einer Benutzeroberfläche erweitert werden kann. Komponenten unterstützt die standartmäßigen React-[Lebenszyklusmethoden] wie z.B. `shouldComponentUpdate()`und `componentWillReceiveProps()`. Das Bereitstellen von spezifischen Implementationen dieser Methoden ist die bevorzugte Vorgehensweise, wenn man kontrollieren will, _wann_ und _wie_ Komponenten sich aktualisieren.
+Preact exportiert eine generische `Komponente`-Klasse, welche zum Erstellen von verkapselten, sich selbst aktualisierenden Teilen einer Benutzeroberfläche erweitert werden kann. Komponenten unterstützt die standardmäßigen React-[Lebenszyklusmethoden] wie z.B. `shouldComponentUpdate()`und `componentWillReceiveProps()`. Das Bereitstellen von spezifischen Implementationen dieser Methoden ist die bevorzugte Vorgehensweise, wenn man kontrollieren will, _wann_ und _wie_ Komponenten sich aktualisieren.
 
 Komponenten haben außerdem eine `render()`-Methode, allerdings erhält diese, anders als in React, `(props, state)` als Argumente. Dies ermöglicht eine ergonomische Vorgehensweise, mit der man `props` und `state` in lokale Variablen destrukturieren kann, die dann von JSX referenziert werden können.
 
@@ -136,8 +136,8 @@ Damit sich die Uhr jede Sekunde aktualisieren kann, muss man wissen, wann `<Uhr>
 
 | Lebenszyklusmethoden        | Wann sie aufgerufen wird                             				 |
 |-----------------------------|--------------------------------------------------------------|
-| `componentWillMount`        | bevor die Komponente an das DOM eingehanden wird					   |
-| `componentDidMount`         | nachdem die Komponente an das DOM eingehanden wird 					 |
+| `componentWillMount`        | bevor die Komponente in DOM eingebunden wird					   |
+| `componentDidMount`         | nachdem die Komponente in DOM eingebunden wurde 					 |
 | `componentWillUnmount`      | vor dem Entfernen vom  DOM	                      					 |
 | `componentWillReceiveProps` | bevor neue props angenommen werden                 					 |
 | `shouldComponentUpdate`     | vor `render()`. `false` ausgeben, um Rendern zu überspringen |

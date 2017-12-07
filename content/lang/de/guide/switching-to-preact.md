@@ -14,8 +14,8 @@ Es gibt zwei verschiedene Herangehensweisen, wie man von React zu Preact wechsel
 
 Zu Preact wechseln ist eigentlich sehr einfach - man installiert `preact-compat` und setzt einen Alias für `preact-compat` anstatt `react` und `react-dom`.
 
-Das ermöglicht es einem, mit dem Schreiben von React/ReactDOM-Code fortzufahren, ohne jegliche Änderungen am Workflow oder an der Codebasis vornehmen zu müssen.
-`preact-compat` fügt zwar ungefähr 2kb zur Gesamtgröße des Projektes hinzu, hat allerdings den Vorteil, den Großteil von bereits existierenden React-Modulen, die man bei [npm](https://npmjs.com) finden sollte, zu unterstützen. Zusätzlich zu Preacts Kern liefert das `preact-compat`-Paket alle Änderungen, die benötigt werden, um genau wie `react` und `react-dom` zu funktionieren, in einem einzelnen Modul.
+Das ermöglicht es, mit dem Schreiben von React/ReactDOM-Code fortzufahren, ohne jegliche Änderungen am Workflow oder an der Codebasis vornehmen zu müssen.
+`preact-compat` fügt zwar ungefähr 2kb zur Gesamtgröße des Projektes hinzu, hat allerdings den Vorteil, den Großteil von bereits existierenden React-Modulen, die man bei [npm](https://npmjs.com) findet, zu unterstützen. Zusätzlich zu Preacts Kern liefert das `preact-compat`-Paket alle Änderungen, die benötigt werden, um genau wie `react` und `react-dom` zu funktionieren, in einem einzelnen Modul.
 
 Der Installationsprozess ist in zwei Schritte unterteilt.
 Zuerst muss man `preact` und `preact-compat`, zwei seperate Pakete, installieren:
@@ -105,7 +105,7 @@ import { createClass } from 'preact-compat/dist/preact-compat.min'
 export default createClass
 ```
 
-Falls die neuartige ìmport`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das obrige Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den obrigen Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
+Falls die neuartige ìmport`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das oben beschriebene Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den obrigen Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
 
 Es ist außerdem möglich, einen Alias direkt mithilfe von Node zu stetzen, ohne auf das `module-alias`-Paket angewiesen zu sein. Diese Methode basiert auf internen Properties von Nodes Modulsystem, daher sollte man sie mit Vorsicht genießen. Um manuell einen Alias zu setzen, sind folgende Schritte nötig:
 
@@ -135,7 +135,7 @@ Es ist immer eine gute Idee, die Testumgebung und die fertige App auszuführen, 
 
 ## Optimal: Wechseln zu Preact
 
-Die Nutzung von `preact-compat` in der eigenen Codebasis ist nicht vorausgesetzt, wenn man von React zu Preact migrieren will.
+Die Nutzung von `preact-compat` in der eigenen Codebasis wird nicht vorausgesetzt, wenn man von React zu Preact migrieren will.
 Preacts API ist fast identisch mit Reacts API. Ein Großteil der React-Codebasen kann mit winzigem bis nicht-existentem Aufwand migriert werden.
 
 Generell involviert der Prozess des Wechselns zu Preact einige Schritte:
@@ -151,12 +151,12 @@ npm install --save preact  # or: npm i -S preact
 ### 2. JSX Pragma: Zu `h()` transpilieren
 
 > **Hintergrund:** Während die [JSX]-Spracherweiterung unabhängig von React ist,
-> verwenden beliebte Transpilierer wie [Babel] and [Bublé] standartmäßig eine
+> verwenden beliebte Transpilierer wie [Babel] and [Bublé] standardmäßig eine
 > Konvertierung von JSX zu `React.createElement()`-Aufrufen.
 > Dafür gibt es zwar historische Gründe, es ist allerdings wichtig zu verstehen,
 > dass die Funktion, die JSX-Transpilierungen aufruft, eine bereits existierende
 > Technologie namens [Hyperscript] ist.
-> Preact huldigt dies und versucht, für ein besseres Verständnis für die Simplizität
+> Preact schätzt dies und versucht, für ein besseres Verständnis für die Simplizität
 > von JSX mithilfe der Nutzung von `h()` als sein [JSX Pragma] zu werben.
 >
 > **TL;DR:** `React.createElement()` wird zugunsten von preact's `h()` ausgetauscht.
@@ -174,7 +174,7 @@ In jedem der obengenannten Beispiele ist `h` der Funktionsname, der als JSX-Prag
 
 #### Mithilfe von Babel
 
-Falls Babel verwender wird, kann man das JSX-Pragma in der `.babelrc`- oder `package.json`-Datei definiert werden. In welcher der beiden Datein man dies tut, ist lediglich von persönlicher Präferenz abhängig:
+Falls Babel verwendet wird, kann man das JSX-Pragma in der `.babelrc`- oder `package.json`-Datei definiert werden. In welcher der beiden Datein man dies tut, ist lediglich von persönlicher Präferenz abhängig:
 
 ```json
 {
@@ -194,7 +194,7 @@ Falls man mit einem Onlineeditor mit Babel-Integration (z.B. JSFiddle oder CodeP
 
 #### Mithilfe von Bublé
 
-[Bublé] unterstützt JSX standartmäßig. Man muss lediglich die `jsx`-Option setzen:
+[Bublé] unterstützt JSX standardmäßig. Man muss lediglich die `jsx`-Option setzen:
 
 `buble({ jsx: 'h' })`
 
@@ -202,13 +202,13 @@ Falls man mit einem Onlineeditor mit Babel-Integration (z.B. JSFiddle oder CodeP
 ### 3. Legacy Code aktualisieren
 
 Preact strebt zwar eine vollständige API-Kompatibilität mit React an, allerdings werden kleine Teile des Interfaces absichtlich nicht integriert.
-Der am ehesten erwähnbare ausgelassene Teil ist `createClass()`. Die Meinung zum Thema Klassen und OOP gehen weit auseinander, man sollte aber verstehen, dass JavaScript-Klassen intern in VDOM-Bibliotheken zum Representieren von Komponententypen stehen. Dies wird wichtig, wenn man mit den Nuancen der Handhabung von Komponentenlebenszyklen arbeitet.
+Der am ehesten erwähnbare ausgelassene Teil ist `createClass()`. Die Meinung zum Thema Klassen und OOP gehen weit auseinander, man sollte aber verstehen, dass JavaScript-Klassen intern in VDOM-Bibliotheken zum Repräsentieren von Komponententypen stehen. Dies wird wichtig, wenn man mit den Nuancen der Handhabung von Komponentenlebenszyklen arbeitet.
 
 Falls die Codebasis schwerwiegend von `createClass()` abhängig ist, gibt es trotzdem eine großartige Option:
 Laurence Dorman pfelgt eine [alleinstehende `createClass()`-implementation](https://github.com/ld0rman/preact-classless-component), die nahtlos in Preact funktioniert und nur wenige Hundert Bytes groß ist.
 Alternativ kann man `createClass()`-Aufrufe auch automatisch mithilfe von Vu Trans [preact-codemod](https://github.com/vutran/preact-codemod) zu ES-Klassen konvertieren lassen.
 
-Ein weiterer erwähnbarer Unterschied ist, dass Preact standartmäßig lediglich Funktionsreferenzierungen unterstützt.
+Ein weiterer nennenswerter Unterschied ist, dass Preact standardmäßig lediglich Funktionsreferenzierungen unterstützt.
 Stringreferenzierungen sind in React veraltet und werden in naher Zukunft entfernt, da sie eine überraschende Menge an Komplexität für solch minimalen Nutzen hinzufügen.
 
 Wenn man auch in Zukunft Stringreferenzierungen nutzen möchte, bietet [diese kleine Funktion](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d) eine zukunftssichere Version, die `this.refs.$$` weiterhin wie Stringreferenzierungen behandelt. Die Simplizität dieses kleinen Umwegs für Funktionsreferenzierungen zeigt außerdem, warum Funktionsreferenzierungen mittlerweile die präferierte Methode darstellen.
@@ -217,7 +217,7 @@ Wenn man auch in Zukunft Stringreferenzierungen nutzen möchte, bietet [diese kl
 ### 4. Root Render vereinfachen
 
 Seit `react@0.13` wurde `render()` durch das `react-dom`-Modul bereitgestellt.
-Preact nutzt kein seperates Modul für das Rendern des DOMs, da Preact sowieso darauf konzentriert, ein guter DOM-Renderer zu sein.
+Preact nutzt kein seperates Modul für das Rendern des DOMs, da Preact sowieso darauf ausgerichtet ist, ein guter DOM-Renderer zu sein.
 Daher ist der letzte Schritt des Konvertierens der Codebasis zu Preact das Austauschen von `ReactDOM.render()` zu Preacts `render()`:
 
 ```diff
@@ -227,7 +227,7 @@ Daher ist der letzte Schritt des Konvertierens der Codebasis zu Preact das Austa
 
 Man sollte ebenfalls anmerken, dass Preacts `render()`-Funktion nicht-destruktiv ist, daher funktioniert das Rendern nach `<body>` einwandfrei und ist sogar wünschenswert.
 
-Dies ist möglich, da Preact nicht davon ausgeht, das komplette Root-Element zu steuern, dass man an Preact weitergibt. Das zweite `render()`-Argument ist `parent`, was bedeutet, dass es ein DOM-Element in, in das _hinein_ gerendert wird.
+Dies ist möglich, da Preact nicht davon ausgeht, das komplette Root-Element zu steuern, das man an Preact weitergibt. Das zweite `render()`-Argument ist `parent`, was bedeutet, dass es ein DOM-Element ist, in das _hinein_ gerendert wird.
 Falls es erwünscht ist, direkt vom Root aus neu zu rendern (möglicherweise für Hot Module Replacement), akzeptiert `render()` ein Element zum Ersetzen als drittes Argument:
 
 
@@ -239,9 +239,9 @@ render(<App />, document.body);
 render(<App />, document.body, document.body.lastElementChild);
 ```
 
-In dem obrigen Beispiel ist man darauf angewiesen, dass das letzte Child der vorher gerenderte Root ist.
+In diesem Beispiel ist man darauf angewiesen, dass das letzte Child der vorher gerenderte Root ist.
 Dies funktioniert zwar in vielen Fällen (JSFiddles, CodePens, uvm.), es ist allerdings trotzdem besser, über mehr Kontrolle zu verfügen.
-Deshalb gibt `render()` das Root-Element zurücl: man gibt es als drittes Argument zum Neurendern weiter.
+Deshalb gibt `render()` das Root-Element zurück: man gibt es als drittes Argument zum Neurendern weiter.
 
 Das nachfolgende Beispiel zeigt, wie man als Antwort auf Webpacks Hot Module Replacement-Aktualisierungen neu rendert:
 

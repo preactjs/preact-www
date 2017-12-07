@@ -12,7 +12,7 @@ Preact zielt darauf ab, Leistung aufgrund folgender Ziele zu liefern:
 - **Leistung:** Schnell und effizient rendern
 - **Größe:** Leichtigkeit und kleine Größe _(ungefähr 3.5kb)_
 - **Effizienz:** Effektive Speichernutzung _(Wiederverwendung, GC-Müll verhindern)_
-- **Verständlichkeit:** Die Grundlagen des Codes zu Verstehen sollte nicht länger als ein paar Stunden dauern
+- **Verständlichkeit:** Die Grundlagen des Codes zu verstehen sollte nicht länger als ein paar Stunden dauern
 - **Kompatibilität:** Preact zielt darauf ab, _Kompatibilität im großen Rahmen_ mit der React API zu erreichen. [preact-compat] versucht, die größtmögliche Kompatibilität mit React zu erzielen.
 
 ## Nicht-Ziele
