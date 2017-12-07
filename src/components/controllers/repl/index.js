@@ -1,12 +1,17 @@
 import { h, Component, render } from 'preact';
 import { debounce } from 'decko';
 import codeExample from './code-example.txt';
+import todoExample from './todo-example.txt';
 import style from './style';
 
 const EXAMPLES = [
 	{
 		name: 'Github Repo List',
 		code: codeExample
+	},
+	{
+		name: 'Todo List',
+		code: todoExample
 	}
 ];
 
