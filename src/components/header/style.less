@@ -362,3 +362,28 @@
 		}
 	}
 }
+
+// corner link
+.corner {
+	@media (max-width: @header-mobile-breakpoint) {
+		display: none;
+	}
+
+	svg {
+		-webkit-filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+		filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+
+		path {
+			fill: #f2777a;
+		}
+
+		&:hover path {
+			fill: darken(#f2777a, 5%);
+		}
+
+		text {
+			fill: #fff;
+			font-size: 16px;
+		}
+	}
+}
