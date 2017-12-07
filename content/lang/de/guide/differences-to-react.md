@@ -50,7 +50,7 @@ Preact fügt durchaus vereinzelt nützliche Funktionen hinzu, die von dem Schaff
 ## Was fehlt?
 
 - [PropType] Validierung: Nicht jeder benutzt PropTypes, daher gehören sie nicht Preacts Kern an.
-    - _**PropTypes sind vollständig durch** [preact-compat] **unterstützt**, können aber auchmaniell verwendet werden._
+    - _**PropTypes sind vollständig durch** [preact-compat] **unterstützt**, können aber auch manuell verwendet werden._
 - [Children]: Nicht notwendig in Preact, da `props.children` _immer ein Array_ ist.
     - _`React.Children` ist vollständig in [preact-compat] unterstützt._
 - Synthetisch Ereignisse: Preacts Ziel in der Browserunterstützung setzt diesen zusätzlichen Mehraufwand nicht vorraus.
