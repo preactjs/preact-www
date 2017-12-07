@@ -33,6 +33,7 @@ export default class Header extends Component {
 				<Hamburgler open={open} onClick={this.toggle} />
 				<Nav routes={config.nav} current={url} />
 				<Search />
+				<Corner />
 			</header>
 		);
 	}
@@ -127,4 +128,19 @@ class NavLink extends Component {
 // get a CSS-addressable identifier for a given route
 const getRouteIdent = route => (
 	(route.name || route.title || route.url).toLowerCase().replace(/[^a-z0-9]/i,'')
+);
+
+const Corner = () => (
+	<a href="https://opencollective.com/preact" target="_blank" class={style.corner} aria-label="Help support us">
+		<svg width="100" height="100" viewBox="0 0 100 100"
+		     style="position: absolute; top: 0; border: 0; right: 0" aria-hidden="true">
+			<path d="M0,0 L100,100 L100,0 Z" />
+			<text x="70" y="-30" transform="rotate(45)" style="text-anchor: middle">
+				Help
+			</text>
+			<text x="70" y="-10" transform="rotate(45)" style="text-anchor: middle">
+				Support Us !
+			</text>
+		</svg>
+	</a>
 );
