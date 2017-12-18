@@ -231,6 +231,12 @@ permalink: '/about/we-are-using'
             slowtec
         </a>
     </li>
+    <li>
+        <a href="//dev.to" target="_blank">
+            <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
+            The DEV Community
+        </a>
+    </li>
 </ul>
 
 
