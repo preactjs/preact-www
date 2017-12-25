@@ -118,12 +118,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//www.synacor.com" target="_blank">
-            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
-            Synacor
-        </a>
-    </li>
-    <li>
         <a href="//broadway.com" target="_blank">
             <img src="/assets/we-are-using/broadway.png" alt="Broadway.com">
             Broadway.com
@@ -148,6 +142,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//dev.to" target="_blank">
+            <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
+            The DEV Community
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -157,6 +157,18 @@ permalink: '/about/we-are-using'
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
+        </a>
+    </li>
+    <li>
+        <a href="//westwing.de" target="_blank">
+            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
+            Westwing
+        </a>
+    </li>
+    <li>
+        <a href="//www.synacor.com" target="_blank">
+            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
+            Synacor
         </a>
     </li>
     <li>
