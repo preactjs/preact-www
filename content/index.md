@@ -11,7 +11,7 @@ toc: false
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-    <p>Fast 3kB alternative to React with the same ES6 API.</p>
+    <p>Fast 3kB alternative to React with the same modern API.</p>
 
     <p>
         <a href="/guide/getting-started" class="home-button">Get Started</a>
