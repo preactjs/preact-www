@@ -177,7 +177,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Fetch Github Stars</h2>
+        <h2>Fetch GitHub Stars</h2>
         <pre><code class="lang-js">
 export default class Stars extends Component {
     async componentDidMount() {
