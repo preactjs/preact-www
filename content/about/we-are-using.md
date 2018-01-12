@@ -58,6 +58,12 @@ permalink: '/about/we-are-using'
 
 <ul class="we-are-using">
     <li>
+        <a href="//groupon.com" target="_blank">
+            <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
+            Groupon
+        </a>
+    </li>
+    <li>
         <a href="//uber.com" target="_blank">
             <img src="/assets/we-are-using/uber.png" alt="Uber">
             Uber
