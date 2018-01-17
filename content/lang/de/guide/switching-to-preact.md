@@ -8,7 +8,7 @@ permalink: '/guide/switching-to-preact
 Es gibt zwei verschiedene Herangehensweisen, wie man von React zu Preact wechseln kann:
 
 1. Den `preact-compat`-Alias installieren
-2. Die Importieriungen nach `preact` abändern und inkompatiblen Code entfernen
+2. Die Importierungen nach `preact` abändern und inkompatiblen Code entfernen
 
 ## Einfach: `preact-compat`-Alias
 
