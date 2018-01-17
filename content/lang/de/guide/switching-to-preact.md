@@ -105,7 +105,7 @@ import { createClass } from 'preact-compat/dist/preact-compat.min'
 export default createClass
 ```
 
-Falls die neuartige ìmport`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das obrige Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den obrigen Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
+Falls die neuartige `import`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das obrige Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den obrigen Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
 
 Es ist außerdem möglich, einen Alias direkt mithilfe von Node zu stetzen, ohne auf das `module-alias`-Paket angewiesen zu sein. Diese Methode basiert auf internen Properties von Nodes Modulsystem, daher sollte man sie mit Vorsicht genießen. Um manuell einen Alias zu setzen, sind folgende Schritte nötig:
 
