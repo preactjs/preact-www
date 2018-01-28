@@ -1,6 +1,6 @@
 ---
 name: We Are Using
-title: Who's using Preact?
+title: Qui utilise Preact ?
 permalink: '/about/we-are-using'
 ---
 
@@ -49,16 +49,14 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations.
-    Below is a small sampling of organizations that depend on Preact for public-facing projects.
+    Preact est utilisé par un large spectre de sites web, de projets Open Source à de grandes multinationales.
+    Vous trouverez ci-dessous un petit échantillon d'entreprises qui utilisent Preact pour des projets publics.
 </p>
-
-<!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
 
 
 <ul class="we-are-using">
     <li>
-        <a href="//groupon.com" target="_blank">
+        <a href="//groupon.fr" target="_blank">
             <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
             Groupon
         </a>
@@ -118,9 +116,9 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//hashicorp.com" target="_blank">
-            <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
-            HashiCorp
+        <a href="//www.synacor.com" target="_blank">
+            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
+            Synacor
         </a>
     </li>
     <li>
@@ -142,18 +140,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//native-instruments.com" target="_blank">
-            <img src="/assets/we-are-using/native-instruments.png" alt="Native Instruments">
-            Native Instruments
-        </a>
-    </li>
-    <li>
-        <a href="//dev.to" target="_blank">
-            <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
-            The DEV Community
-        </a>
-    </li>
-    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -163,24 +149,6 @@ permalink: '/about/we-are-using'
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
-        </a>
-    </li>
-    <li>
-        <a href="//westwing.de" target="_blank">
-            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
-            Westwing
-        </a>
-    </li>
-    <li>
-        <a href="//www.synacor.com" target="_blank">
-            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
-            Synacor
-        </a>
-    </li>
-    <li>
-        <a href="//skiscool.com/" target="_blank" title="ski school courchevel">
-            <img src="/assets/we-are-using/skiscool.svg" alt="ski school courchevel">
-            ski school courchevel
         </a>
     </li>
     <li>
@@ -213,36 +181,6 @@ permalink: '/about/we-are-using'
             DevPad
         </a>
     </li>
-    <li>
-        <a href="//wellapp.com" target="_blank">
-            <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
-            WELL Messenger
-        </a>
-    </li>
-    <li>
-        <a href="//andcards.com" target="_blank">
-            <img src="/assets/we-are-using/cards.png" alt="Cards">
-            Cards
-        </a>
-    </li>
-    <li>
-        <a href="//selly.gg" target="_blank">
-            <img src="/assets/we-are-using/selly.png" alt="Selly">
-            Selly
-        </a>
-    </li>
-    <li>
-        <a href="//tradeshift.com" target="_blank">
-            <img src="/assets/we-are-using/tradeshift.png" alt="Selly">
-            Tradeshift
-        </a>
-    </li>
-    <li>
-        <a href="//slowtec.de" target="_blank">
-            <img src="/assets/we-are-using/slowtec.svg" alt="slowtec">
-            slowtec
-        </a>
-    </li>
 </ul>
 
 
@@ -250,6 +188,6 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Does your company use Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
+    Votre entreprise utilise Preact ?
+    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Ajoutez-la à la liste !</strong></a>
 </p>

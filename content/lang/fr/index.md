@@ -5,18 +5,17 @@ show_title: false
 toc: false
 ---
 
-
 <jumbotron>
     <h1>
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-    <p>Fast 3kB alternative to React with the same modern API.</p>
+    <p>Alternative à React de seulement 3Ko, rapide et avec la même API ES6.</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/getting-started" class="home-button">Commencer</a>
+        <span class="home-button-sep">&nbsp; • &nbsp;</span>
+        <a href="/guide/switching-to-preact" class="home-button">Passer à preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
@@ -25,22 +24,22 @@ toc: false
 
 
 <section class="home-top">
-    <h1>A different kind of library.</h1>
+    <h1>Un concept différent</h1>
 </section>
 
 
 <section class="home-section">
     <img src="/assets/home/metal.svg" alt="metal">
 
-    <h2>Closer to the Metal</h2>
+    <h2>Plus proche de la machine</h2>
     
     <p>
-        Preact provides the thinnest possible Virtual DOM abstraction on top of the DOM.
-        The web is a stable platform, it's time we stopped reimplementing it in the name of safety.
+        Preact possède l'abstraction la plus fine au-dessus du DOM.
+        Le web est une plateforme stable, il est temps d'arrêter de réinventer la roue.
     </p>
-
+    
     <p>
-        Preact is also a first-class citizen of the web platform. It diffs Virtual DOM against the DOM itself, registers real event handlers, and plays nicely with other libraries.
+        Preact est aussi au premier rang de la plateforme web. Il compare le DOM Virtuel avec le DOM "réel", enregistre de vrais gestionnaires d'événement et fonctionne très bien avec d'autres bibliothèques.
     </p>
 </section>
 
@@ -48,15 +47,14 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/size.svg" alt="size">
 
-    <h2>Small Size</h2>
+    <h2>Petite taille</h2>
     
     <p>
-        Most UI frameworks are large enough to be the majority of an app's JavaScript size.
-        Preact is different: it's small enough that <em>your code</em> is the largest part of your application.
+        La plupart des framesworks UI est très large et possède généralement plus de code que votre application. Preact est différent : la majorité du code de votre application sera le votre.
     </p>
     
     <p>
-        That means less JavaScript to download, parse and execute - leaving more time for your code, so you can build an experience you define without fighting to keep a framework under control.
+        Concrètement moins de code Javascript sera à télécharger, analyser et exécuter. De ce fait votre code sera privilégié.
     </p>
 </section>
 
@@ -64,14 +62,14 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/performance.svg" alt="performance">
 
-    <h2>Big Performance</h2>
+    <h2>Grande performance</h2>
     
     <p>
-        Preact is fast, and not just because of its size. It's one of the fastest Virtual DOM libraries out there, thanks to a simple and predictable diff implementation.
+        Preact est performant. Il possède une des implémentations les plus rapides pour détecter les différences entre le DOM dans la page et le Virtual DOM.
     </p>
     
     <p>
-        It even includes extra performance features like customizable update batching, optional async rendering, DOM recycling, and optimized event handling via [Linked State](/guide/linked-state).
+        Il implémente certains extras comme <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">des mises à jour asynchrones</a>, la réutilisation du DOM et l'optimisation de la gestion des évènements avec [Linked State](/guide/linked-state).
     </p>
 </section>
 
@@ -79,14 +77,14 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/portable.svg" alt="portable">
 
-    <h2>Portable &amp; Embeddable</h2>
+    <h2>Portable &amp; embarquable</h2>
     
     <p>
-        Preact's tiny footprint means you can take the powerful Virtual DOM Component paradigm to new places it couldn't otherwise go.
+        Contrairement aux autres Preact ne possède pas un énorme surcoût, il vous permettra de bénéficier de la puissance du Virtual DOM.
     </p>
     
     <p>
-        Use Preact to build parts of an app without complex integration. Embed Preact into a widget and apply the same tools and techniques that you would to build a full app.
+        Vous pouvez utiliser Preact dans votre application sans intégration complexe. Embarquer Preact dans un widget n'est pas différent.
     </p>
 </section>
 
@@ -94,16 +92,16 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/productive.svg" alt="productive">
 
-    <h2>Instantly Productive</h2>
+    <h2>Productif instantanément</h2>
     
     <p>
-        Lightweight is a lot more fun when you don't have to sacrifice productivity to get there. Preact gets you productive right away. It even has a few bonus features:
+        La légereté est plus amusante quand vous n'avez pas à sacrifier la productivité pour y arriver. Avec Preact vous serez productif en quelques instants avec certains extras :
     </p>
     
     <ul>
-        <li>`props`, `state` and `context` are passed to `render()`</li>
-        <li>Use standard HTML attributes like `class` and `for`</li>
-        <li>Works with React DevTools right out of the box</li>
+        <li>`props`, `state` et `context` sont papssés en arguments de la méthode `render()`</li>
+        <li>Utiliser les attributs standard HTML comme `class` et `for`</li>
+        <li>Fonctionnne avec React DevTools sans effort</li>
     </ul>
 </section>
 
@@ -111,28 +109,26 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/compatible.svg" alt="compatible">
 
-    <h2>Ecosystem Compatible</h2>
+    <h2>Compatible avec l'écosystème</h2>
     
     <p>
-        Virtual DOM Components make it easy to share reusable things - everything from buttons to data providers.
-        Preact's design means you can seamlessly use thousands of Components available in the React ecosystem.
+        Les composants de Virtual DOM vous permet de réutiliser des briques de votre application. D'un simple bouton aux sources de données. Grâce à la conception de Preact vous avez à votre disposition les composants de l'écosystème React.
     </p>
     
     <p>
-        Adding a simple <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> alias to your bundler provides a compatibility layer
-        that enables even the most complex React components to be used in your application.
+        Un simple alias vers <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui apporte les fonctionnalités les plus complexes de React.
     </p>
 </section>
 
 
 <section class="home-top">
-    <h1>See it in action.</h1>
+    <h1>Voir en action</h1>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>Todo List Component</h2>
+        <h2>Composant liste de tâches</h2>
         <pre><code class="lang-js">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
@@ -162,7 +158,7 @@ export default class TodoList extends Component {
     </div>
     
     <div>
-        <h2>Running Example</h2>
+        <h2>Exemple interactif</h2>
         <pre repl="false"><code class="lang-js">
 import TodoList from './todo-list';
 
@@ -177,7 +173,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Fetch GitHub Stars</h2>
+        <h2>Récupérer les Stars Github</h2>
         <pre><code class="lang-js">
 export default class Stars extends Component {
     async componentDidMount() {
@@ -197,7 +193,7 @@ export default class Stars extends Component {
     </div>
     
     <div>
-        <h2>Running Example</h2>
+        <h2>Exemple fonctionnel</h2>
         
         <pre repl="false"><code class="lang-js">
 import Stars from './stars';
@@ -216,19 +212,19 @@ render(
 
 
 <section class="home-top">
-    <h1>Ready to dive in?</h1>
+    <h1>Pret à vous lancer ?</h1>
 </section>
 
 
 <section style="text-align:center;">
     <p>
-        We've got separate guides based on whether you have experience with React.
+        Nous avons séparé les guides en fonction de votre expérience avec React.
         <br>
-        Pick the guide that works best for you!
+        Choissiez celui qui vous convient.
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">Get Started</a>
+        <a href="/guide/getting-started" class="home-button">Commencer</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/switching-to-preact" class="home-button">Passer à Preact</a>
     </p>
 </section>
