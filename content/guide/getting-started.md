@@ -55,7 +55,7 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > { "jsxPragma": "h" }
 > ```
 >
-> **For Babel 6:**
+> **For Babel 6 and 7:**
 >
 > ```json
 > {
@@ -72,7 +72,7 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > { "jsxPragma": "preact.h" }
 > ```
 >
-> **For Babel 6:**
+> **For Babel 6 and 7:**
 >
 > ```json
 > {

@@ -85,6 +85,8 @@ Minimal Preact structure with all the necessary tools to start your project righ
 Quickly spin up a new personal webpage by only needing to modify JSON data.
 [Github Project](https://github.com/tomasswood/preact-homepage-generator)
 
+**[Parcel + Preact + Unistore Starter](https://github.com/hwclass/parcel-preact-unistore-starter)**
+Starter pack for lightning-fast prototyping and small/medium size project structure
 
 ## Codepens
 
