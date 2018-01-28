@@ -41,7 +41,7 @@ import preact from 'preact';
 **Using via a CDN:**
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/preact@8/dist/preact.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.min.js"></script>
 ```
 
 ### Global pragma
