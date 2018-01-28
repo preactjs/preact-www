@@ -220,7 +220,7 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//try.cards" target="_blank">
+        <a href="//andcards.com" target="_blank">
             <img src="/assets/we-are-using/cards.png" alt="Cards">
             Cards
         </a>
