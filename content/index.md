@@ -11,11 +11,11 @@ toc: false
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-    <p>Fast 3kB alternative to React with the same ES6 API.</p>
+    <p>Fast 3kB alternative to React with the same modern API.</p>
 
     <p>
         <a href="/guide/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
+        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
         <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
     <p>
@@ -177,7 +177,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Fetch Github Stars</h2>
+        <h2>Fetch GitHub Stars</h2>
         <pre><code class="lang-js">
 export default class Stars extends Component {
     async componentDidMount() {

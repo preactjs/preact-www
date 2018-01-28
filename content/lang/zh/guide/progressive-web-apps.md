@@ -31,8 +31,8 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <div class="_title-block">
             <h3>更快速进行交互</h3>
           </div>
-          <p class="_summary"><p>
-          如果你的目标是在 [5 秒内进行交互](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/)，每个 KB 都很重要，在您的项目中[切换 React 到 Preact](/guide/switching-to-preact) 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p></p>
+          <p class="_summary">
+          如果你的目标是在 [5 秒内进行交互](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/)，每个 KB 都很重要，在您的项目中[切换 React 到 Preact](/guide/switching-to-preact) 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p>
         </div>
     </li>
 
@@ -44,9 +44,9 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <div class="_title-block">
             <h3>构建块和 React 生态系统很好的一起工作</h3>
           </div>
-          <p class="_summary"><p>
+          <p class="_summary">
           无论您需要使用 React 的 [服务器端渲染](https://facebook.github.io/react/docs/react-dom-server.html) 以快速获取屏幕上的像素，还是使用 [React 路由](https://github.com/ReactTraining/react-router) 进行导航，Preact 都可以在生态系统中与许多的库正常工作。
-          </p></p>
+          </p>
         </div>
     </li>
 </ol>
