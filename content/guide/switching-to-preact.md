@@ -85,8 +85,6 @@ That approach is covered in the next section.
 
 It's probably that you are looking for use react to get compatibility with community React modules. If so, remember to configure the [Aliasify](https://www.npmjs.com/package/aliasify) transform with `global` (`--global-transform`). This is a [Browserify](https://github.com/browserify/browserify) option.
 
-É provável que você esteja querendo utilizar preact-compat, para conseguir usar módulos de React da comunidade. Se este é o caso, lembre-se de configurar o transform do [Aliasify](https://www.npmjs.com/package/aliasify) como `global` (`--global-transform`). Essa é uma configuração do [Browserify](https://github.com/browserify/browserify).
-
 #### Aliasing in Node using module-alias
 
 For SSR purposes, if you are not using a bundler like webpack to build your server side code, you can use the [module-alias](https://www.npmjs.com/package/module-alias) package to replace react with preact.
