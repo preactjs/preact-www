@@ -38,6 +38,12 @@ import preact from 'preact';
 
 > Named imports work well for highly structured applications, whereas the default import is quick and never needs to be updated when using different parts of the library.
 
+**Using via a CDN:**
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.min.js"></script>
+```
+
 ### Global pragma
 
 Instead of declaring the `@jsx` pragma in your code, it's best to configure it globally in a `.babelrc`.

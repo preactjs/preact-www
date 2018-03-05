@@ -131,16 +131,9 @@ const getRouteIdent = route => (
 );
 
 const Corner = () => (
-	<a href="https://opencollective.com/preact" target="_blank" class={style.corner} aria-label="Help support us">
-		<svg width="100" height="100" viewBox="0 0 100 100"
-		     style="position: absolute; top: 0; border: 0; right: 0" aria-hidden="true">
-			<path d="M0,0 L100,100 L100,0 Z" />
-			<text x="70" y="-30" transform="rotate(45)" style="text-anchor: middle">
-				Help
-			</text>
-			<text x="70" y="-10" transform="rotate(45)" style="text-anchor: middle">
-				Support Us !
-			</text>
-		</svg>
+	<a href="https://opencollective.com/preact" target="_blank" class={style.corner}>
+		<div class={style.cornerText}>
+			Help Support Us !
+		</div>
 	</a>
 );
