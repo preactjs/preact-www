@@ -32,11 +32,11 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/metal.svg" alt="metal">
 
-    <h2>Metale yakın</h2>
+    <h2>Metal'e yakın</h2>
 
     <p>
         Preact, DOM'un üzerinde mümkün olabilecek en ince Sanal DOM soyutlamasını sağlar.
-        Web stabil bir platform, emniyet adına sürekli yeniden icat etmeyi bırakmanın zamanı geldi.
+        Web stabil bir platform, emniyet adına sürekli yeniden icat etmeyi bırakmamızın zamanı geldi.
     </p>
 
     <p>
