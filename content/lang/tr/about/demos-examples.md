@@ -60,40 +60,40 @@ TodoMVC için çevrimdışı senkronizasyon PuchDB ile birlikte [PouchDB](https:
 [Github Projesi](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Minimal olarak hazırlanmış hacker news web sitesi.  
+Oldukça miminal olarak hazırlanmış hacker news web sitesi.  
 [Github Projesi](https://github.com/developit/hn_minimal)
 
 **[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
-[Github Project](https://github.com/developit/preact-boilerplate)
+Preact + Webpack + LESS + CSS paketlerinin dahil olduğu başlangıç paketi. 
+[Github Projesi](https://github.com/developit/preact-boilerplate)
 
-**[Preact Offline Starter](https://preact-starter.now.sh)** :100:  
-Simplified Webpack2 starter for Progressive Web Apps, with offline support.  
-[Github Project](https://github.com/lukeed/preact-starter)
+**[Preact Çevrimdışı Başlangıç Kiti](https://preact-starter.now.sh)** :100:  
+Webpack2 kullanan Progressive Web Apps ve çevrımdışı destekli başlangıç paketi.  
+[Github Projesi](https://github.com/lukeed/preact-starter)
 
-**[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux example project, implementing a simple To-Do list.  
-[Github Project](https://github.com/developit/preact-redux-example)
+**[Preact Redux Örneği](https://preact-redux-example.surge.sh)** :repeat:  
+Preact + Redux örnek projesi, basit bir to-do list uygulaması.  
+[Github Projesi](https://github.com/developit/preact-redux-example)
 
-**[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-How to use Preact entirely without Babel, ES2015 or JSX.
+**[Babel'siz Preact](https://github.com/developit/preact-without-babel)** :horse:  
+Preact'ı Babel, ES2015 veya JSX olmadan kullanan bir proje.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact structure with all the necessary tools to start your project right away.
+Minimal Preact yapısı ile ihtiyaç duyulan tüm araçlar dahil edilmiş, yeni projeye başlamanın en doğru yolu.
 
-**[Preact Homepage Generator](https://thomaswood.me/)** :globe_with_meridians:  
-Quickly spin up a new personal webpage by only needing to modify JSON data.
-[Github Project](https://github.com/tomasswood/preact-homepage-generator)
+**[Preact Kişisel Site Oluşturucu](https://thomaswood.me/)** :globe_with_meridians:  
+Yalnızca json verileri değiştirerek, oldukça hızlı bir şekilde kişisel web sitenizi oluşturun.
+[Github Projesi](https://github.com/tomasswood/preact-homepage-generator)
 
-**[Parcel + Preact + Unistore Starter](https://github.com/hwclass/parcel-preact-unistore-starter)**
-Starter pack for lightning-fast prototyping and small/medium size project structure
+**[Parcel + Preact + Unistore Başlangıç](https://github.com/hwclass/parcel-preact-unistore-starter)**
+Yıldırım hızında bir başlangıç kiti. Küçük/Orta ölçekli proje yapıları için ideal.
 
 ## Codepens
 
-- [Flickr Browser](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
-- [Animating Text](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
+- [Flickr Tarayıcı](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
+- [Animasyonlu yazı](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
 - [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
-- [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
+- [Basit Saat](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
 ## Templates
