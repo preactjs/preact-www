@@ -152,7 +152,7 @@ export default class TodoList extends Component {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;input value={text} onInput={this.setText} /&gt;
-                &lt;button type="submit"&gt;Add&lt;/button&gt;
+                &lt;button type="submit"&gt;Ekle&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -192,7 +192,7 @@ export default class Stars extends Component {
         let url = \`//github.com/${repo}\`;
         return (
             &lt;a href={url} class="stars"&gt;
-                ⭐️ {stars} Stars
+                ⭐️ {stars} Yıldız
             &lt;/a&gt;
         );
     }

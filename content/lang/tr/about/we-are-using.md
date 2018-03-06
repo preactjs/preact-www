@@ -1,6 +1,6 @@
 ---
 name: We Are Using
-title: Who's using Preact?
+title: Kimler Preact Kullanıyor?
 permalink: '/about/we-are-using'
 ---
 
@@ -49,12 +49,9 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations.
-    Below is a small sampling of organizations that depend on Preact for public-facing projects.
+    Preact, Açık Kaynak projelerden büyük çokuluslu şirketlere kadar çok çeşitli web siteleri tarafından kullanılır.
+    Aşağıda Preact'e dayanan halka açık projelerin ufak bir örneklemesi yer almaktadır.
 </p>
-
-<!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
-
 
 <ul class="we-are-using">
     <li>
@@ -250,6 +247,6 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Does your company use Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
+    İşletmen Preact kullanıyor mu?
+    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Listeye Ekle!</strong></a>
 </p>
