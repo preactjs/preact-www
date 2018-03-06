@@ -4,7 +4,7 @@ permalink: '/about/browser-support'
 ---
 
 # Tarayıcı desteği
-Preact modern tüm tarayıcıları destekler (Chrome, Firefox, Safari, Edge) ve IE9+. Fakat Internet Explorer 7 ve 8 sürümlerinde düzgün çalışmayabilir. Eğer I7 ve I8 gibi eski tarayıcılar için destek vermek isterseniz, bazı eklentiler kullanmanız gerekmektedir. Önerilen eklentiler [es5-shim] veya [babel-polyfill].
+Preact modern tüm tarayıcıları destekler (Chrome, Firefox, Safari, Edge) ve IE9+. Fakat Internet Explorer 7 ve 8 sürümlerinde düzgün çalışmayabilir. Eğer I7 ve I8 gibi eski tarayıcılar için destek vermek isterseniz, bazı paketleri kullanmanız gerekmektedir. Önerilen paketler [es5-shim] veya [babel-polyfill].
 
 <center>
     <a href="https://saucelabs.com/u/preact">
