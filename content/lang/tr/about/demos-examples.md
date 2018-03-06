@@ -3,65 +3,65 @@ name: Demos & Examples
 permalink: '/about/demos-examples'
 ---
 
-# Demos & Examples
+# Demolar & Örnekler
 
-This pages lists a bunch of demos and examples you can use to learn Preact.
+Bu sayfada Preact öğrenmek için kullanabileceğiniz demolar ve örnekler listelenmiştir
 
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> :information_desk_person: _Sizinde mi bir örneğiniz var ?
+> [Ekleyin!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
-## Full Apps
+## Tamamlanmış Uygulamalar
 
-[**Preact Website** _(preactjs.com)_](https://preactjs.com)  
-Of course this website is built with Preact.  
-[Github Project](https://github.com/developit/preact-www)
+[**Preact İnternet Sitesi** _(preactjs.com)_](https://preactjs.com)  
+Tabii ki de bu site Preact ile geliştirildi.  
+[Github Projesi](https://github.com/developit/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
-Built with Preact & Material Design Lite.
+Preact & Material Design Lite kullanarak geliştirilmiş.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
-Natural language based Web VR story creator.  
-_([Github Project](https://github.com/opennewslabs/guri-vr))_
+Doğal dil işleme tabanlı bir web vr oluşturucusu.  
+_([Github Projesi](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
-The audience participation Progressive Web App from Chrome Dev Summit 2016!  
-([Github Project](https://github.com/jakearchibald/big-web-quiz))
+Chrome Dev Summit 2016'dan katılımcılara  Progressive Web App sunumu!  
+([Github Projesi](https://github.com/jakearchibald/big-web-quiz))
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
-Open-Source peach.cool app.  
-[Github Project](https://github.com/developit/nectarine)
+Açık kaynak peach.cool uygulaması.
+[Github Projesi](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
+Preact, Electron ve Photon ile oluşturulmuş Dropbox için masaüstü uygulaması.
 
-**[Connectivity Index](https://cindex.co)** :iphone:  
-A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
+**[Bağlantı raporu](https://cindex.co)** :iphone:  
+Arama yapmanıza izin veren bir site [Akamia şirketinin ülke verilerine göre internet bağlantı raporu](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html)
 
-**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
-Desktop App for uploading assets to Contentful (API based CMS)
-[Github Project](https://github.com/contentful-labs/file-upload-example)
+**[Sürükle & Bırak dosya yükleme (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+İçerikleri yüklemeyi sürükle bırak ile yapan bir masaüstü uygulaması. (CMS bazlı API)
+[Github Projesi](https://github.com/contentful-labs/file-upload-example)
 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
-Embed Hacker News comment tree below your blog article.
+Embed Hacker News ile blog yazınızın altına yorumlar bırakın
 
-## Full Demos & Examples
+## Demolar & Örnekler
 
-**[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
-View documentation.js output online.  
-[Github Project](https://github.com/developit/documentation-viewer)
+**[Dökümantasyon görüntüleyici](https://documentation-viewer.firebaseapp.com)**  
+Documentation.js çıktısını çevrimiçi görüntülemenize yarar.
+[Github Projesi](https://github.com/developit/documentation-viewer)
 
 **[TodoMVC](http://developit.github.io/preact-todomvc/)**  
-Unofficial fastest TodoMVC implementation.  
-[Github Project](https://github.com/developit/preact-todomvc)
+Gayri resmi en hızlı TodoMVC uygulaması.  
+[Github Projesi](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
-[Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
+TodoMVC için çevrimdışı senkronizasyon PuchDB ile birlikte [PouchDB](https://pouchdb.com/).  
+[Github Projesi](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Tiny hacker news client.  
-[Github Project](https://github.com/developit/hn_minimal)
+Minimal olarak hazırlanmış hacker news web sitesi.  
+[Github Projesi](https://github.com/developit/hn_minimal)
 
 **[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
 2 command starter project. Preact + Webpack + LESS + CSS Modules.  
