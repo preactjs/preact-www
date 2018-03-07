@@ -61,18 +61,18 @@ Preact ve React arasında ince farkları vardır:
 *   Component'ler `contextTypes` veya `childContextTypes` implement etmiyor. Alt componentler, `getChildContext()` fonksiyonundan çekilen tüm `context`’leri kullanır.
 
 [Proje Hedefleri]: /about/project-goals
-[Hyperscript]: https://github.com/dominictarr/hyperscript
+[hyperscript]: https://github.com/dominictarr/hyperscript
 [3.0]: https://github.com/developit/preact/milestones/3.0
 [4.0]: https://github.com/developit/preact/milestones/4.0
-[Preact-compat]: https://github.com/developit/preact-compat
-[Proptype]: https://github.com/developit/proptypes
+[preact-compat]: https://github.com/developit/preact-compat
+[PropType]: https://github.com/developit/proptypes
 [Contexts]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
-[Globaleventhandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
-[Es6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
+[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
 [High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Stateless Pure Functional Components]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
-[Destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
+[destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
 [Linked State]: /guide/linked-state
 
