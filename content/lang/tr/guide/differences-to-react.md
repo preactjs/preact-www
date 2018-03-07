@@ -3,80 +3,76 @@ name: Differences to React
 permalink: '/guide/differences-to-react'
 ---
 
-# Differences to React
+# React’tan Farklılıkları
 
-Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
+Preact’ın kendisi React’ın yeniden tasarlanmış hali olmayı amaçlamamıştır. Aralarında farklılıklar vardır. Bu farklılıkların bir çoğu önemsiz ya da [preact-compat] kullanılarak tamamen kaldırılabilir. Preact-compat ise preact üzerinde bulunan, React ile %100 uyumluluğu sağlamaya çalışan bir katmandır.
 
-The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focused** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
+Preact’ın React’ın her bir özelliğini içermemesinin nedeni, **küçük** ve **odaklanmış** kalmak istemesidir. Aksi takdirde çok karmaşık ve iyi tasarlanmış kod tabanına sahip olan React projesinde iyileştirmeler yapmak çok daha mantıklı olur.
 
+## Sürüm Uyumluluğu
 
-## Version Compatibility
+Hem Preact hem [preact-compat] için versiyon uyuyumluğu, React’ın mevcut ve önceki ana sürümlerine göre ölçülür. React takımın tarafından yeni özellikler duyurulduğu zaman, [proje hedefleri] göz önüne alınarak mantıklı bulunan özellikler Preact’ın çekirdeğine eklenir.Bu süreç, `issue` ve `pull request`'ler kullanılarak devamlı tartışma ve açıkça alınan kararlar vasıtasıyla demokratik bir şekilde yürütülür.
 
-For both Preact and [preact-compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals].  This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
+> Dolayısıyla, uyumluk tartışılırken ya da karşılaştırma yapılırken, web sitesi ve dokümantasyon React `0.14.x` ve `15.x`‘i baz alır.
 
-> Thus, the website and documentation reflect React `0.14.x` and `15.x` when discussing compatibility or making comparisons.
+## Neler Dahil Edilir?
 
+*   [ES6 Class Components]
+    *   _`class`'lar, state tutan olan component'leri tanımlamak için tanımlayıcı bir yol sunar_
+*   [High-Order Components]
+    *   bunlar _`render()`’da başka component'leri döndüren component'lerdir -- teknik olarak `wrapper` olarak adlandırabiliriz._
+*   [Stateless Pure Functional Components]
+    *   _bunlar `props` olarak argümanlar alıp JSX/VDOM döndüren fonksiyonlardır._
+*   [Contexts]: Preact [3.0]'da `context` desteği eklenmiştir.
+    *   _Context deneysel bir React özelliğidir, fakat bazı kütüphaneler tarafından benimsenmiştir._
+*   [Refs]: Preact 4.0'da refs için destek gelmiştir. String referansları `preact-compat`'da desteklenir.
+    *   _Referanslar, render edilmiş alt componentlere ve öğelere atıfta bulunmanın yolunu sağlar._
+*   Virtual DOM Diffing
+    *   _Preact’ın farkı basit fakat etkili ve **[sonderece](http://developit.github.io/js-repaint-perfs/) [hızlı](https://localvoid.github.io/uibench/)** olması._
+*   `h()`, `React.createElement`’in daha geneleştirilmiş bir versiyonudur.
+    *   _Bu fikir başlangıçta [hyperscript] olarak adlandırılırdı ve React ekosistemin çok ötesinde bir değere sahip. Bu nedenle Preact ilk ortaya koyulan standardı geliştiriyor. ([Oku: Neden `h()`?](http://jasonformat.com/wtf-is-jsx))_
+    *   _Ayrıca biraz daha okunabilir: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
-## What's Included?
+## Neler Eklendi?
 
-- [ES6 Class Components]
-    - _classes provide an expressive way to define stateful components_
-- [High-Order Components]  
-    - _components that return other components from `render()`, effectively wrappers_
-- [Stateless Pure Functional Components]  
-    - _functions that receive `props` as arguments and return JSX/VDOM_
-- [Contexts]: Support for `context` was added in Preact [3.0].
-    - _Context is an experimental React feature, but has been adopted by some libraries._
-- [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
-    - _Refs provide a way to refer to rendered elements and child components._
-- Virtual DOM Diffing
-    - _This is a given - Preact's diff is simple but effective, and **[extremely](http://developit.github.io/js-repaint-perfs/) [fast](https://localvoid.github.io/uibench/)**._
-- `h()`, a more generalized version of `React.createElement`
-    - _This idea was originally called [hyperscript] and has value well beyond the React ecosystem, so Preact promotes the original standard. ([Read: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
-    - _It's also a little more readable: `h('a', { href:'/' }, h('span', null, 'Home'))`_
+Preact, React topluluğunun çalışmasından esinlenerek bir kaç pratik özelliği ekliyor:
 
+*   `this.props` ve `this.state`, `render()`'a otomatik olarak yollanır.
+    *   _Hala manuel olarak erişebilirsiniz. Fakat böylesi daha temiz, özellikle [destructuring] yaparken_
+*   Dom güncellemelerinin toplu işlenmesi, debounced/collated using `setTimeout(1)` (can also use requestAnimationFrame)\_
+*   Css sınıfları için yalnızca `class` kullanabilirsiniz. `className` hala destekleniyor fakat `class` tercih edilmeli.
+*   Component and öğe geri dönüştürmesi / havuzda tutulması.
 
-## What's Added?
+## Ne Yok?
 
-Preact actually adds a few convenient features inspired by work in the React community:
+*   [PropType] Validation: Herkes PropTypes kullanmadığı için Preact’ın çekirdeğinde yer almıyorlar.
+    *   _**PropTypes tamamen desteklerni** [preact-compat]'da, yada manuel olarak kullanabilirsiniz._
+*   [Children]: `props.children` _her zaman bir dize olduğu_ için Preact’da gerekli değildir.
+    *   _`React.Children` [preact-compat]'da tamamen desteklenmektedir._
+*   Synthetic Events: Preact'ın tarayıcı destek hedefi bu ekstra yükü gerektirmez.
+    *   _Preact olayı işlemek için tarayıcın ana `addEventListener`’ını kullanır. DOM olay işleyicilerin tam listesini görmek için [GlobalEventHandlers]’a bakabilirsiniz._
+    *   _Tam bir etkinlik uygulaması, daha fazla bakım, performans kaygısı ve daha büyük API anlamına gelir._
 
-- `this.props` and `this.state` are passed to `render()` for you  
-    - _You can still reference them manually. This is just cleaner, particularly when [destructuring]_
-- Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
-- You can just use `class` for CSS classes. `className` is still supported, but `class` is preferred.
-- Component and element recycling/pooling.
+## Farklı olan nedir?
 
+Preact ve React arasında ince farkları vardır:
 
-## What's Missing?
+*   `render()` değiştirilecek kök node olan üçün bir argümanı kabul eder, aksi takdirde ekler. Bu gelecekteki bir sürümde biraz _değişebilir_, belki de kök node incelenerek yerine getirme işleminin uygun olup olmadığı otomatik olarak tespit edilebilir.
+*   Component'ler `contextTypes` veya `childContextTypes` implement etmiyor. Alt componentler, `getChildContext()` fonksiyonundan çekilen tüm `context`’leri kullanır.
 
-- [PropType] Validation: Not everyone uses PropTypes, so they aren't part of Preact's core.
-    - _**PropTypes are fully supported** in [preact-compat], or you can use them manually._
-- [Children]: Not necessary in Preact, because `props.children` is _always an Array_.
-    - _`React.Children` is fully supported in [preact-compat]._
-- Synthetic Events: Preact's browser support target does not require this extra overhead.
-    - _Preact uses the browser's native `addEventListener` for event handling. See [GlobalEventHandlers] for a full list of DOM event handlers._
-    - _A full events implementation would mean more maintenance and performance concerns, and a larger API._
-
-
-## What's Different?
-
-Preact and React have some more subtle differences:
-
-- `render()` accepts a third argument, which is the root node to _replace_, otherwise it appends. This may change slightly in a future version, perhaps auto-detecting that a replacement render is appropriate by inspecting the root node.
-- Components do not implement `contextTypes` or `childContextTypes`. Children receive all `context` entries drawn from `getChildContext()`.
-
-[Project Goals]: /about/project-goals
-[hyperscript]: https://github.com/dominictarr/hyperscript
+[Proje Hedefleri]: /about/project-goals
+[Hyperscript]: https://github.com/dominictarr/hyperscript
 [3.0]: https://github.com/developit/preact/milestones/3.0
 [4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
-[PropType]: https://github.com/developit/proptypes
+[Preact-compat]: https://github.com/developit/preact-compat
+[Proptype]: https://github.com/developit/proptypes
 [Contexts]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
-[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
-[ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
+[Globaleventhandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[Es6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
 [High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Stateless Pure Functional Components]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
-[destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
+[Destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
 [Linked State]: /guide/linked-state
+
