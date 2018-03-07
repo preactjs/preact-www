@@ -119,7 +119,7 @@ toc: false
     <h2>Ekosistem Uyumluluğu</h2>
 
     <p>
-        Sanal DOM Komponentleri, butonlardan data sağlayıcılarına kadar yeniden kullanılabilir şeyleri paylaşmayı kolaylaştırır.
+        Sanal DOM Component'leri, butonlardan data sağlayıcılarına kadar yeniden kullanılabilir şeyleri paylaşmayı kolaylaştırır.
         Preact'ın tasarımı, halihazırda React'ın ekosisteminde bulunan yüzlerce Component'i sorunsuz bir şekilde kullanabileceğiniz manasına gelir.
     </p>
 
@@ -136,7 +136,7 @@ toc: false
 
 <section class="home-split">
     <div>
-        <h2>TodoList Komponenti</h2>
+        <h2>TodoList Component'i</h2>
         <pre><code class="lang-js">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
