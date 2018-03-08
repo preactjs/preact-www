@@ -5,9 +5,9 @@ permalink: '/about/demos-examples'
 
 # Demolar & Örnekler
 
-Bu sayfada Preact öğrenmek için kullanabileceğiniz demolar ve örnekler listelenmiştir
+Bu sayfada Preact öğrenmek için kullanabileceğiniz demolar ve örnekler listelenmiştir.
 
-> :information_desk_person: _Sizinde mi bir örneğiniz var ?
+> :information_desk_person: _Sizin de mi bir örneğiniz var ?
 > [Ekleyin!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
@@ -18,14 +18,14 @@ Tabii ki de bu site Preact ile geliştirildi.
 [Github Projesi](https://github.com/developit/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
-Preact & Material Design Lite kullanarak geliştirilmiş.
+Preact & Material Design Lite kullanarak geliştirildi.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
-Doğal dil işleme tabanlı bir web vr oluşturucusu.  
+Doğal dil tabanlı Web VR hikaye yaratıcısı. 
 _([Github Projesi](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
-Chrome Dev Summit 2016'dan katılımcılara  Progressive Web App sunumu!  
+Chrome Dev Summit 2016'dan katılımcılara Progressive Web App sunumu!  
 ([Github Projesi](https://github.com/jakearchibald/big-web-quiz))
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
@@ -33,7 +33,7 @@ Açık kaynak peach.cool uygulaması.
 [Github Projesi](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Preact, Electron ve Photon ile oluşturulmuş Dropbox için masaüstü uygulaması.
+Dropbox için Preact, Electron ve Photon ile oluşturulmuş masaüstü uygulaması.
 
 **[Bağlantı raporu](https://cindex.co)** :iphone:  
 Arama yapmanıza izin veren bir site [Akamia şirketinin ülke verilerine göre internet bağlantı raporu](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html)
@@ -56,7 +56,7 @@ Gayri resmi en hızlı TodoMVC uygulaması.
 [Github Projesi](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-TodoMVC için çevrimdışı senkronizasyon PuchDB ile birlikte [PouchDB](https://pouchdb.com/).  
+Çevrimdışı senkronizasyon destekli TodoMVC [PouchDB](https://pouchdb.com/).  
 [Github Projesi](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
@@ -72,14 +72,14 @@ Webpack2 kullanan Progressive Web Apps ve çevrımdışı destekli başlangıç 
 [Github Projesi](https://github.com/lukeed/preact-starter)
 
 **[Preact Redux Örneği](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux örnek projesi, basit bir to-do list uygulaması.  
+Preact + Redux örnek proje, basit bir to-do list'e uygulanması. 
 [Github Projesi](https://github.com/developit/preact-redux-example)
 
 **[Babel'siz Preact](https://github.com/developit/preact-without-babel)** :horse:  
 Preact'ı Babel, ES2015 veya JSX olmadan kullanan bir proje.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact yapısı ile ihtiyaç duyulan tüm araçlar dahil edilmiş, yeni projeye başlamanın en doğru yolu.
+Minimal Preact yapısı ile projenizi hemen başlatmak için gerekli tüm araçlar.
 
 **[Preact Kişisel Site Oluşturucu](https://thomaswood.me/)** :globe_with_meridians:  
 Yalnızca json verileri değiştirerek, oldukça hızlı bir şekilde kişisel web sitenizi oluşturun.
@@ -91,8 +91,8 @@ Yıldırım hızında bir başlangıç kiti. Küçük/Orta ölçekli proje yapı
 ## Codepens
 
 - [Flickr Tarayıcı](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
-- [Animasyonlu yazı](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
-- [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
+- [Animasyonlu Metin](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
+- [60FPS Gökkuşağı Spriali](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
 - [Basit Saat](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
