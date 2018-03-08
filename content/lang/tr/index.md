@@ -130,13 +130,13 @@ toc: false
 
 
 <section class="home-top">
-    <h1>Canlıda görün.</h1>
+    <h1>Örneğe gözatın.</h1>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>TodoList Component'i</h2>
+        <h2>TodoList (yapılacaklar listesi) Component'i</h2>
         <pre><code class="lang-js">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
@@ -152,7 +152,7 @@ export default class TodoList extends Component {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;input value={text} onInput={this.setText} /&gt;
-                &lt;button type="submit"&gt;Ekle&lt;/button&gt;
+                &lt;button type="submit"&gt;Add&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -181,7 +181,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Github Yıldız Sayısını Getirmek</h2>
+        <h2>Github Yıldız Sayısını Çekmek</h2>
         <pre><code class="lang-js">
 export default class Stars extends Component {
     async componentDidMount() {
@@ -220,7 +220,7 @@ render(
 
 
 <section class="home-top">
-    <h1>Dalışa hazır mısın?</h1>
+    <h1>Kolları sıvamaya hazır mısın?</h1>
 </section>
 
 
@@ -228,7 +228,7 @@ render(
     <p>
         React ile ilgili deneyime sahip olup olmadığınıza dayalı olarak farklı kılavuzlarımız var.
         <br>
-        Size uygun olan klavuzu seçin!
+        Size uygun olan kılavuzu seçin!
     </p>
     <p>
         <a href="/guide/getting-started" class="home-button">Başlangıç</a>

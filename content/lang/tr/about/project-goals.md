@@ -15,14 +15,14 @@ Preact birkaç temel hedefe ulaşmayı hedefliyor:
 - **Anlaşılabilirlik:** Codebase'i anlaması birkaç saatten fazla süre almamalı
 - **Uyumluluk:** Preact, React API ile _büyük ölçüde uyumlu_ olmayı hedefliyor. [preact-compat] React ile olabildiğince uyumluluk elde etmeye çalışıyor.
 
-## Amaç Olmayanlar
+## Proje Kapsamı Dışındaki unsurlar
 
 Bazı React özellikleri kasıtlı olarak ihmal edilmiştir çünkü bu özellikler yukarıda listelenen proje
 amaçlarını karşılamıyor ya da Preact'in core işlev setine uymuyor.
 
-- [Farklı olan nedir?](/guide/differences-to-react#whats-missing) Başlığındaki Kısıtlı Ögeler:
-    - PropTypes, ayrı bir kütüphane olarak kulayca kullanılan
-    - Children, since Preact always boxes children as an Array
+- [Farklı olan nedir?](/guide/differences-to-react#whats-missing) başlığındaki kısıtlı ögeler:
+    - PropTypes, ayrı bir kütüphane olarak kolayca kullanılabilir
+    - Children (alt component'ler), Preact children component'lere Array muamelesi yapıyor
     - Synthetic Events, since Preact does not attempt to patch issues in older browsers like IE8
 
 [preact-compat]: https://github.com/developit/preact-compat/
