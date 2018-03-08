@@ -208,12 +208,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//devpad.io" target="_blank">
-            <img src="/assets/we-are-using/devpad.png" alt="DevPad">
-            DevPad
-        </a>
-    </li>
-    <li>
         <a href="//wellapp.com" target="_blank">
             <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
             WELL Messenger
