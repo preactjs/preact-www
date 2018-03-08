@@ -25,7 +25,7 @@ export default class Logo extends Component {
 
 	componentDidMount() {
 		this.mounted = true;
-		this.next();
+		this.timer = setTimeout(this.next, 5000);
 
 		// every 10 seconds, spin for 1 second even if paused :)
 		let c = 0;
