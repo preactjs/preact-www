@@ -23,6 +23,6 @@ amaçlarını karşılamıyor ya da Preact'in core işlev setine uymuyor.
 - [Farklı olan nedir?](/guide/differences-to-react#whats-missing) başlığındaki kısıtlı ögeler:
     - PropTypes, ayrı bir kütüphane olarak kolayca kullanılabilir
     - Children (alt component'ler), Preact children component'lere Array muamelesi yapıyor
-    - Synthetic Events, since Preact does not attempt to patch issues in older browsers like IE8
+    - Synthetic Events, Preact IE8 gibi eski tarayıcılardaki sorunları patch'lemeye çalışmıyor
 
 [preact-compat]: https://github.com/developit/preact-compat/
