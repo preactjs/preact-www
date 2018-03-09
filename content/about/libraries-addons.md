@@ -41,6 +41,7 @@ A collection of modules built to work wonderfully with Preact.
 
 ### GUI Toolkits
 
+- :thumbsup: [**preact-material-components**](https://github.com/prateekbh/preact-material-components): Material Components for the Web (supersedes MDL)
 - :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Use [MDL](https://getmdl.io) as Preact components
 - :rocket: [**preact-photon**](https://git.io/preact-photon): build beautiful desktop UI with [photon](http://photonkit.com)
 - :penguin: [**preact-weui**](https://github.com/afeiship/preact-weui): [Weui](https://github.com/afeiship/preact-weui) for Preact
