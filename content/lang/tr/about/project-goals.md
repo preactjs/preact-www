@@ -1,27 +1,28 @@
 ---
-name: Project Goals
+name: Proje Amaçları
 permalink: '/about/project-goals'
 ---
 
-# Preact's Goals
+# Preact'in Amaçları
 
-## Goals
+## Amaçlar
 
-Preact aims to deliver on a few key goals:
+Preact birkaç temel hedefe ulaşmayı hedefliyor:
 
-- **Performance:** Render quickly & efficiently
-- **Size:** Small size, lightweight _(approximately 3.5kb)_
-- **Efficiency:** Effective memory usage _(recycling, avoiding GC thrash)_
-- **Understandability:** Understanding the codebase should take no more than a few hours
-- **Compatibility:** Preact aims to be _largely compatible_ with the React API. [preact-compat] attempts to achieve as much compatibility with React as possible.
+- **Performans:** Çabuk & verimli Render
+- **Boyut:** Küçük boyut, hafif _(yaklaşık 3.5kb)_
+- **Verim:** Etkili bellek kullanımı _(recycling, avoiding GC thrash)_
+- **Anlaşılabilirlik:** Codebase'i anlaması birkaç saatten fazla süre almamalı
+- **Uyumluluk:** Preact, React API ile _büyük ölçüde uyumlu_ olmayı hedefliyor. [preact-compat] React ile olabildiğince uyumluluk elde etmeye çalışıyor.
 
-## Non-Goals
+## Proje Kapsamı Dışındaki unsurlar
 
-Some React features are intentionally omitted from Preact, either because they are not achievable while meeting the primary project goals listed above or because they don't fit within the scope of Preact's core set of functionality.
+Bazı React özellikleri kasıtlı olarak ihmal edilmiştir çünkü bu özellikler yukarıda listelenen proje
+amaçlarını karşılamıyor ya da Preact'in core işlev setine uymuyor.
 
-- The intentional items under [What's Missing?](/guide/differences-to-react#whats-missing):
-    - PropTypes, which are easily used as a separate library
-    - Children, since Preact always boxes children as an Array
-    - Synthetic Events, since Preact does not attempt to patch issues in older browsers like IE8
+- [Farklı olan nedir?](/guide/differences-to-react#whats-missing) başlığındaki kısıtlı ögeler:
+    - PropTypes, ayrı bir kütüphane olarak kolayca kullanılabilir
+    - Children (alt component'ler), Preact children component'lere Array muamelesi yapıyor
+    - Synthetic Events, Preact IE8 gibi eski tarayıcılardaki sorunları patch'lemeye çalışmıyor
 
 [preact-compat]: https://github.com/developit/preact-compat/
