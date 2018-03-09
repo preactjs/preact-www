@@ -3,57 +3,47 @@ name: Libraries & Add-ons
 permalink: '/about/addons-libraries'
 ---
 
-# Libraries & Add-ons
+# Kütüphaneler & Eklentiler
 
+Preact ile oluşturulmuş mükemmelmel modül koleksiyonu.
+> :information_desk_person: _Kendin için bir tane oluşturdun mu?
+> [Sende Ekle!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
 
-A collection of modules built to work wonderfully with Preact.
-
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
-
-
-### Add-Ons
-
-- :raised_hands: [**preact-compat**](https://git.io/preact-compat): use any React library with Preact *([full example](http://git.io/preact-compat-example))*
-- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Functional-reactive paradigm for Preact
+### Eklentiler
+- :raised_hands: [**preact-compat**](https://git.io/preact-compat): Herhangi React kütüphanesini Preact ile kullan *([tam örnek](http://git.io/preact-compat-example))*
+- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Preact için Functional-reactive paradigma
 - :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Universal rendering.
 
+### Bileşenler
+- :earth_americas: [**preact-router**](https://git.io/preact-router): Bileşenlerin için URL yönlendirmesi
+- :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): JSX & Bileşen olarak HTML & Özel Elementler Oluştur
+- :satellite: [**preact-portal**](https://git.io/preact-portal): Preact bileşenlerini (bir) SPACE içine yerleştirin :milky_way:
+- :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Basit HTML editör bileşeni
+- :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Etiket gibi şeyler için token girişi yapılan metin alanı
+- :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Milyonlarca satır ile kolayca listeler oluştur ([demo](https://jsfiddle.net/developit/qqan9pdo/))
+- :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Kolay ve basit layout kütüphaneleri
+- :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): Preact için belge yöneticisi
+- :arrow_up_down: [**preact-custom-scrollbars**](https://github.com/lucafalasco/preact-custom-scrollbars): Native tarayıcı scrolling için tam özelleştirilebilir scrollbarlar
 
-### Components
-
-- :earth_americas: [**preact-router**](https://git.io/preact-router): URL routing for your components
-- :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): Render HTML & Custom Elements as JSX & Components
-- :satellite: [**preact-portal**](https://git.io/preact-portal): Render Preact components into (a) SPACE :milky_way:
-- :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Simple HTML editor component
-- :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Text field that tokenizes input, for things like tags
-- :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Easily render lists with millions of rows ([demo](https://jsfiddle.net/developit/qqan9pdo/))
-- :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Small and simple layout library
-- :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): A document head manager for Preact
-- :arrow_up_down: [**preact-custom-scrollbars**](https://github.com/lucafalasco/preact-custom-scrollbars): Fully customizable scrollbars, for frictionless native browser scrolling
-
-
-### Integrations
-
-- :thought_balloon: [**preact-socrates**](https://github.com/matthewmueller/preact-socrates): Preact plugin for [Socrates](http://github.com/matthewmueller/socrates)
-- :rowboat: [**preact-flyd**](https://github.com/xialvjun/preact-flyd): Use [flyd](https://github.com/paldepind/flyd) FRP streams in Preact + JSX
-- :speech_balloon: [**preact-i18nline**](https://github.com/download/preact-i18nline): Integrates the ecosystem around [i18n-js](https://github.com/everydayhero/i18n-js) with Preact via [i18nline](https://github.com/download/i18nline).
+### Entegrasyonlar
+- :thought_balloon: [**preact-socrates**](https://github.com/matthewmueller/preact-socrates): [Socrates](http://github.com/matthewmueller/socrates) için Preact eklentileri
+- :rowboat: [**preact-flyd**](https://github.com/xialvjun/preact-flyd): [flyd](https://github.com/paldepind/flyd) FRP stream'leri Preact + JSX'de kullanın
+- :speech_balloon: [**preact-i18nline**](https://github.com/download/preact-i18nline):[i18n-js](https://github.com/everydayhero/i18n-js) çevresindeki ekosistemi [i18nline](https://github.com/download/i18nline) yoluyla Preact ile bütünleştirir.
 
 
-### GUI Toolkits
+### GUI Araçları
+- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Preact bileşenleri olarak [MDL](https://getmdl.io) kullanın.
+- :rocket: [**preact-photon**](https://git.io/preact-photon):[photon](http://photonkit.com) ile güzel masaüstü UI'lari oluşturun.
+- :penguin: [**preact-weui**](https://github.com/afeiship/preact-weui):Preact için [Weui](https://github.com/afeiship/preact-weui)
+- 💅 [**preact-fluid**](https://github.com/ajainvivek/preact-fluid):Preact için minimal [Fluid](https://github.com/ajainvivek/preact-fluid) UI araçları.
 
-- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Use [MDL](https://getmdl.io) as Preact components
-- :rocket: [**preact-photon**](https://git.io/preact-photon): build beautiful desktop UI with [photon](http://photonkit.com)
-- :penguin: [**preact-weui**](https://github.com/afeiship/preact-weui): [Weui](https://github.com/afeiship/preact-weui) for Preact
-- 💅 [**preact-fluid**](https://github.com/ajainvivek/preact-fluid): [Fluid](https://github.com/ajainvivek/preact-fluid) minimal UI kit for Preact
-
-### Testing
-
+### Test Araçları
 - :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX assertion testing _(no DOM, right in Node)_
 - :white_check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX assertions, events, snapshots in Jest _(DOM, works under Node jsdom or out-of-the-box in Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
 
 
-### Utilities
+### Yardımcı Uygulamalar
 
-- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): create preact components without the class keyword
-- :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Hyperscript-like syntax for creating elements
-- :white_check_mark: [**shallow-compare**](https://github.com/tkh44/shallow-compare): simplified `shouldComponentUpdate` helper.
+- :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): Sınıf keyword olmadan preact bileşenleri yaratın.
+- :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Element oluşturmak için Hyperscript-like sözdizimi.
+- :white_check_mark: [**shallow-compare**](https://github.com/tkh44/shallow-compare): Basitleştirilmiş `shouldComponentUpdate` yardımcısı.
