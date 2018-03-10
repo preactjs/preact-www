@@ -3,97 +3,97 @@ name: Demos & Examples
 permalink: '/about/demos-examples'
 ---
 
-# Demos & Examples
+# Demolar & Örnekler
 
-This pages lists a bunch of demos and examples you can use to learn Preact.
+Bu sayfada Preact öğrenmek için kullanabileceğiniz demolar ve örnekler listelenmiştir.
 
-> :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> :information_desk_person: _Sizin de mi bir örneğiniz var ?
+> [Ekleyin!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
 
 
-## Full Apps
+## Tamamlanmış Uygulamalar
 
-[**Preact Website** _(preactjs.com)_](https://preactjs.com)  
-Of course this website is built with Preact.  
-[Github Project](https://github.com/developit/preact-www)
+[**Preact İnternet Sitesi** _(preactjs.com)_](https://preactjs.com)  
+Tabii ki de bu site Preact ile geliştirildi.  
+[Github Projesi](https://github.com/developit/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
-Built with Preact & Material Design Lite.
+Preact & Material Design Lite kullanarak geliştirildi.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
-Natural language based Web VR story creator.  
-_([Github Project](https://github.com/opennewslabs/guri-vr))_
+Doğal dil tabanlı Web VR hikaye yaratıcısı. 
+_([Github Projesi](https://github.com/opennewslabs/guri-vr))_
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
-The audience participation Progressive Web App from Chrome Dev Summit 2016!  
-([Github Project](https://github.com/jakearchibald/big-web-quiz))
+Chrome Dev Summit 2016'dan katılımcılara Progressive Web App sunumu!  
+([Github Projesi](https://github.com/jakearchibald/big-web-quiz))
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
-Open-Source peach.cool app.  
-[Github Project](https://github.com/developit/nectarine)
+Açık kaynak peach.cool uygulaması.
+[Github Projesi](https://github.com/developit/nectarine)
 
 **[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
+Dropbox için Preact, Electron ve Photon ile oluşturulmuş masaüstü uygulaması.
 
-**[Connectivity Index](https://cindex.co)** :iphone:  
-A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
+**[Bağlantı raporu](https://cindex.co)** :iphone:  
+Arama yapmanıza izin veren bir site [Akamia şirketinin ülke verilerine göre internet bağlantı raporu](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html)
 
-**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
-Desktop App for uploading assets to Contentful (API based CMS)
-[Github Project](https://github.com/contentful-labs/file-upload-example)
+**[Sürükle & Bırak dosya yükleme (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+İçerikleri yüklemeyi sürükle bırak ile yapan bir masaüstü uygulaması. (CMS bazlı API)
+[Github Projesi](https://github.com/contentful-labs/file-upload-example)
 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
-Embed Hacker News comment tree below your blog article.
+Embed Hacker News ile blog yazınızın altına yorumlar bırakın
 
-## Full Demos & Examples
+## Demolar & Örnekler
 
-**[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
-View documentation.js output online.  
-[Github Project](https://github.com/developit/documentation-viewer)
+**[Dökümantasyon görüntüleyici](https://documentation-viewer.firebaseapp.com)**  
+Documentation.js çıktısını çevrimiçi görüntülemenize yarar.
+[Github Projesi](https://github.com/developit/documentation-viewer)
 
 **[TodoMVC](http://developit.github.io/preact-todomvc/)**  
-Unofficial fastest TodoMVC implementation.  
-[Github Project](https://github.com/developit/preact-todomvc)
+Gayri resmi en hızlı TodoMVC uygulaması.  
+[Github Projesi](https://github.com/developit/preact-todomvc)
 
 **[TodoMVC+PouchDB](http://katopz.github.io/preact-todomvc-pouchdb/)** :floppy_disk:  
-Offline Sync TodoMVC with [PouchDB](https://pouchdb.com/).  
-[Github Project](https://github.com/katopz/preact-todomvc-pouchdb)
+Çevrimdışı senkronizasyon destekli TodoMVC [PouchDB](https://pouchdb.com/).  
+[Github Projesi](https://github.com/katopz/preact-todomvc-pouchdb)
 
 **[Hacker News Minimal](https://developit.github.io/hn_minimal/)** :newspaper:  
-Tiny hacker news client.  
-[Github Project](https://github.com/developit/hn_minimal)
+Oldukça miminal olarak hazırlanmış hacker news web sitesi.  
+[Github Projesi](https://github.com/developit/hn_minimal)
 
 **[Preact Boilerplate](https://preact-boilerplate.surge.sh)** :zap:  
-2 command starter project. Preact + Webpack + LESS + CSS Modules.  
-[Github Project](https://github.com/developit/preact-boilerplate)
+Preact + Webpack + LESS + CSS paketlerinin dahil olduğu başlangıç paketi. 
+[Github Projesi](https://github.com/developit/preact-boilerplate)
 
-**[Preact Offline Starter](https://preact-starter.now.sh)** :100:  
-Simplified Webpack2 starter for Progressive Web Apps, with offline support.  
-[Github Project](https://github.com/lukeed/preact-starter)
+**[Preact Çevrimdışı Başlangıç Kiti](https://preact-starter.now.sh)** :100:  
+Webpack2 kullanan Progressive Web Apps ve çevrımdışı destekli başlangıç paketi.  
+[Github Projesi](https://github.com/lukeed/preact-starter)
 
-**[Preact Redux Example](https://preact-redux-example.surge.sh)** :repeat:  
-Preact + Redux example project, implementing a simple To-Do list.  
-[Github Project](https://github.com/developit/preact-redux-example)
+**[Preact Redux Örneği](https://preact-redux-example.surge.sh)** :repeat:  
+Preact + Redux örnek proje, basit bir to-do list'e uygulanması. 
+[Github Projesi](https://github.com/developit/preact-redux-example)
 
-**[Preact Without Babel](https://github.com/developit/preact-without-babel)** :horse:  
-How to use Preact entirely without Babel, ES2015 or JSX.
+**[Babel'siz Preact](https://github.com/developit/preact-without-babel)** :horse:  
+Preact'ı Babel, ES2015 veya JSX olmadan kullanan bir proje.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact structure with all the necessary tools to start your project right away.
+Minimal Preact yapısı ile projenizi hemen başlatmak için gerekli tüm araçlar.
 
-**[Preact Homepage Generator](https://thomaswood.me/)** :globe_with_meridians:  
-Quickly spin up a new personal webpage by only needing to modify JSON data.
-[Github Project](https://github.com/tomasswood/preact-homepage-generator)
+**[Preact Kişisel Site Oluşturucu](https://thomaswood.me/)** :globe_with_meridians:  
+Yalnızca json verileri değiştirerek, oldukça hızlı bir şekilde kişisel web sitenizi oluşturun.
+[Github Projesi](https://github.com/tomasswood/preact-homepage-generator)
 
-**[Parcel + Preact + Unistore Starter](https://github.com/hwclass/parcel-preact-unistore-starter)**
-Starter pack for lightning-fast prototyping and small/medium size project structure
+**[Parcel + Preact + Unistore Başlangıç](https://github.com/hwclass/parcel-preact-unistore-starter)**
+Yıldırım hızında bir başlangıç kiti. Küçük/Orta ölçekli proje yapıları için ideal.
 
 ## Codepens
 
-- [Flickr Browser](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
-- [Animating Text](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
-- [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
-- [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
+- [Flickr Tarayıcı](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
+- [Animasyonlu Metin](http://codepen.io/developit/full/LpNOdm/) _(@ CodePen)_
+- [60FPS Gökkuşağı Spriali](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
+- [Basit Saat](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
 
 ## Templates
