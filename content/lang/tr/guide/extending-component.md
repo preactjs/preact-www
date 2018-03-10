@@ -3,15 +3,15 @@ name: Extending Component
 permalink: '/guide/extending-component'
 ---
 
-# Bileşen Genişletme
+# Extending Component
 
-Bazı projelerde bileşeni ek işlevsellik ile genişletmek istenebilir.
+Bazı projelerde component ek işlevsellik ile extend etmek istenebilir.
 
-Javascript'te mirasın değeri hakkında farklı görüşler vardır, ancak tüm bileşenlerin devralındığı kendi "temel sınıfınızı" oluşturmak isterseniz, Preact ihtiyacınızı karşılar.
+Javascript'te inheritance'ın değeri hakkında farklı görüşler vardır, ancak tüm component'lerin devralındığı kendi "base class" ınızı oluşturmak isterseniz, Preact ihtiyacınızı karşılar.
 
-Belki Flux benzeri bir mimaride store/reductor'lara otomatik bağlantı yapmak istersiniz. Belki de daha fazla `React.createClass()` gibi hissettirmesi için özellik-bazlı karışımlar eklemek isteyebilirsiniz _(not: [`@bind` dekoratörü](https://github.com/developit/decko#bind) tercih edilir)_.
+Belki Flux benzeri bir mimaride store/reductor'lara otomatik bağlantı yapmak istersiniz. Belki de daha fazla `React.createClass()` gibi hissettirmesi için property-based mixin'ler eklemek isteyebilirsiniz _(not: [`@bind` decorator](https://github.com/developit/decko#bind) tercih edilir)_.
 
-Her durumda, Preact'ın `Bileşen` sınıfını genişletmek için ES2015 sınıf mirasını kullanın:
+Her durumda, Preact'ın `Component` class'ını extend etmek için ES2015 class inheritance'ını kullanın:
 
 ```js
 class BoundComponent extends Component {
@@ -45,13 +45,13 @@ class Link extends BoundComponent {
 }
 
 render(
-    <Link href="http://example.com">Click Me</Link>,
+    <Link href="http://example.com">Bana Tıkla</Link>,
     document.body
 );
 ```
 
 
-İmkanlar sonsuzdur. İşte, temel olmayan karışımları destekleyen genişletilmiş bir `Bileşen` sınıfı:
+İmkanlar sonsuzdur. İşte, temel olmayan mixin'leri destekleyen extend edilmiş bir `Component` sınıfı:
 
 ```js
 class MixedComponent extends Component {
@@ -64,4 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Dipnot:** Mirasın sizi kırılgan ebeveyn-çocuk ilişkilerine kilitleyebileceğini belirtmek gerekir. Çoğu zaman kalıtımla yeterince çözülebilen bir programlama göreviyle karşı karşıya kaldığınızda böyle bir ilişkiyi yaratmaktan kaçının. Aynı amaca ulaşmak için daha işlevsel bir yol mutlaka vardır.
+> **Dipnot:** Inheritance'ın sizi kırılgan parent-child ilişkilerine kilitleyebileceğini belirtmek gerekir. Çoğu zaman inheritance ile yeterince çözülebilen bir programlama göreviyle karşı karşıya kaldığınızda böyle bir ilişkiyi yaratmaktan kaçının. Aynı amaca ulaşmak için daha işlevsel bir yol mutlaka vardır.
