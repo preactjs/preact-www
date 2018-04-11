@@ -25,7 +25,7 @@ export default class Logo extends Component {
 
 	componentDidMount() {
 		this.mounted = true;
-		this.timer = setTimeout(this.next, 5000);
+		this.startTimer = setTimeout(this.next, 5000);
 
 		// every 10 seconds, spin for 1 second even if paused :)
 		let c = 0;
@@ -38,6 +38,7 @@ export default class Logo extends Component {
 
 	componentWillUnmount() {
 		clearInterval(this.flashTimer);
+		clearTimeout(this.startTimer);
 		(cancelAnimationFrame || clearTimeout)(this.timer);
 		this.mounted = this.timer = false;
 	}
