@@ -3,15 +3,15 @@ name: API Reference
 permalink: '/guide/api-reference'
 ---
 
-# API Reference
+# API Referansı
 
 ## `Preact.Component`
 
-`Component` is a base class that you will usually subclass to create stateful Preact components.
+`Component` durum bilgisi olan Preact bileşenlerini oluşturmak için genellikle alt sınıfı kullanacağınız bir temel sınıftır.
 
 ### `Component.render(props, state)`
 
-The `render()` function is required for all components. It can inspect the props and state of the component, and should return a Preact element or `null`.
+Tüm bileşenler için `render ()` fonksiyonu gereklidir. Bileşenlerin sahne ve durumlarını inceleyebilir ve bir Preact öğesi veya `null` döndürmelidir.
 
 ```jsx
 import { Component } from 'preact';
@@ -26,23 +26,23 @@ class MyComponent extends Component {
 }
 ```
 
-### Lifecycle methods
+### Lifecycle metodları
 
-> _**Tip:** If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._
+> _**Öneri:** Eğer HTML5 Custom Elements kullandıysanız, bu metodlar `attachedCallback` ve `detachedCallback` lifecycle metodlarına çok benzerdir._
 
-Preact invokes the following lifecycle methods if they are defined for a Component:
+Preact, bir bileşen için tanımlanmışsa aşağıdaki lifecycle metodlarını çağırır:
 
-| Lifecycle method            | When it gets called                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
+| Lifecycle metodu            | Ne zaman çağrılacağı                                  |
+|-----------------------------|-------------------------------------------------------|
+| `componentWillMount`        | bileşen DOMa yüklenmeden önce                         |
+| `componentDidMount`         | bileşen DOMa yüklendikten sonra                       |
+| `componentWillUnmount`      | DOM'dan kaldırılmadan önce                            |
+| `componentWillReceiveProps` | yeni proplar kabul edilmeden önce                     |
+| `shouldComponentUpdate`     | `render()`dan önce. Renderı atlamak için`false` döndür|
+| `componentWillUpdate`       | `render()`dan önce                                    |
+| `componentDidUpdate`        | `render()`dan sonra                                   |
 
-All of the lifecycle methods and their parameters are shown in the following example component:
+Tüm lifecycle metodları ve parametreleri aşağıdaki örnek bileşende gösterilmiştir:
 
 ```js
 import { Component } from 'preact';
@@ -67,9 +67,9 @@ class MyComponent extends Component {
 
 `render(component, containerNode, [replaceNode])`
 
-Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
+Bir Preact bileşenini containerNode DOM nodeuna yerleştirin. İşlenen DOM nodeu için bir referans döndürür.
 
-If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm. Otherwise, Preact will append the rendered element to `containerNode`.
+İsteğe bağlı `replaceNode` DOM nodeu sağlanırsa ve `containerNode`'un bir alt öğesi ise Preact, bu öğeyi fark bulma algoritmasını kullanarak günceller veya değiştirir. Aksi takdirde, Preact işlenen öğeyi `containerNode`'a ekler.
 
 ```js
 import { render } from 'preact';
@@ -103,13 +103,16 @@ render(MyComponent, container, existingNode);
 
 `h(nodeName, attributes, [...children])`
 
-Returns a Preact Virtual DOM element with the given `attributes`.
+Verilen `attributes`a sahip bir Preact Sanal DOM öğesi döndürür.
 
-All remaining arguments are collected into a `children` Array, and be any of the following:
-
+Geriye kalan tüm argümanlar `children` Array içine toplanır ve aşağıdakilerden biri olabilir:
 - Scalar values (string, number, boolean, null, undefined, etc)
 - More Virtual DOM elements
 - Infinitely nested Arrays of the above
+
+- Skaler değerler (string, number, boolean, null, undefined, vb.)
+- Daha fazla sanal DOM öğesi
+- Yukarıdakilerin 2 seçeneğin iç içe geçmiş arrayi
 
 ```js
 import { h } from 'preact';
