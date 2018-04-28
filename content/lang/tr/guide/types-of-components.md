@@ -3,20 +3,20 @@ name: Types of Components
 permalink: '/guide/types-of-components'
 ---
 
-# Types of Components
+# Bileşen Türleri
 
 
-There two types of components in Preact:
+Preact'de 2 tür bileşen vardır:
 
-- Classical Components, with [lifecycle methods] and state
-- Stateless Functional Components, which are functions that accept `props` and return [JSX].
+- Klasik bileşenler ile [yaşam döngüsü yöntemleri] ve durum.
+- Stateless fonksiyonel bileşenler, probs kabul eden ve jsx döndüren fonksiyonlardır.
 
-Within these two types, there are also a few different ways to implement components.
+Bu iki tür bileşeni uygulamak için birkaç farklı yöntem vardır.
 
 
-## Example
+## Örnek
 
-Let's use an example: a simple `<Link>` component that creates an HTML `<a>` element:
+Hadi Bir örnek yapalım: Basit bir `<Link>` bileşeni bir HTML `<a> ` elemanı yaratır:
 
 ```js
 class Link extends Component {
@@ -26,17 +26,15 @@ class Link extends Component {
 }
 ```
 
-We can instantiate/render this component as follows:
-
+Bu bileşeni aşağıdaki gibi örneklendirelir/oluşturabiliriz.
 ```xml
-<Link href="http://example.com">Some Text</Link>
+<Link href="http://example.com">örnek link yazısı</Link>
 ```
 
 
 ### Destructure Props & State
 
-Since this is ES6 / ES2015, we can further simplify our `<Link>` component by mapping keys from `props` (the first argument to `render()`) to local variables using [destructuring](https://github.com/lukehoban/es6features#destructuring):
-
+ES6/ES2015'de `<Link>` bileşenimizi [destructuring](https://github.com/lukehoban/es6features#destructuring) kullanarak lokal değişkenlerimizi `props` lar (ilk argüman `render()`) ile eşleyersek daha da basitleştirebiliriz.
 ```js
 class Link extends Component {
 	render({ href, children }) {
@@ -45,7 +43,7 @@ class Link extends Component {
 }
 ```
 
-If we wanted to copy _all_ of the `props` passed to our `<Link>` component onto the `<a>` element, we can use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator):
+Eğer `<Link>` bileşeninin _tüm_ propsları kopyalayıp `<a>` elemanına vermek istersek, [spread operatörünü](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) kullanabiliriz:
 
 ```js
 class Link extends Component {
@@ -56,9 +54,9 @@ class Link extends Component {
 ```
 
 
-### Stateless Functional Components
+### Stateless Fonksiyonel Bileşenler
 
-Lastly, we can see that this component does not hold state - we can render the component with the same props and get the same result each time.  When this is the case, it's often best to use a Stateless Functional Component. These are just functions that accept `props` as an argument, and return JSX.
+Son olarak, bu bileşenlerin bir durum tutmadığını görebiliriz - bileşenleri aynı props ile oluşturabilir ve her seferinde aynı sonucu alabiliriz.Böyle durumlarda, çoğu zaman Stateless Fonksiyonel Bileşenlerini kullanmak en iyi yoldur.Bunlar sadece propsları bir argüman olarak kabul eden ve JSX döndüren fonksiyonlardır.
 
 ```js
 const Link = ({ children, ...props }) => (
@@ -66,4 +64,4 @@ const Link = ({ children, ...props }) => (
 );
 ```
 
-> *ES2015 Note:* the above is an Arrow Function, and because we've used parens instead of braces for the function body, the value within the parens is automatically returned. You can read more about this [here](https://github.com/lukehoban/es6features#arrows).
+> *ES2015 Not:* yukarıdaki örnekte Arrow Foksiyonunda parantezler içerisinde süslü parantezler kullandık.Çünkü parantez içerisindeki değeri otomatik olarak döndürür.Hakkında daha fazla bilgiye [buradan](https://github.com/lukehoban/es6features#arrows) ulaşabilirsiniz.
