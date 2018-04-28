@@ -68,6 +68,9 @@ Then, in your `package.json`, tell aliasify to redirect react imports to preact-
 }
 ```
 
+A common use-case for preact-compat is to support React-compatible third-party modules. When using Browserify, remember to configure the [Aliasify](https://www.npmjs.com/package/aliasify) transform to be **global** via the `--global-transform` [Browserify option](https://github.com/browserify/browserify).
+
+
 #### Aliasing Manually
 
 If you're not using a build system or want to permanently switch to `preact-compat`,
