@@ -58,6 +58,12 @@ permalink: '/about/we-are-using'
 
 <ul class="we-are-using">
     <li>
+        <a href="//www.ecatering.irctc.co.in" target="_blank">
+            <img src="/assets/we-are-using/irctc-ecatering.svg" alt="IRCTC Ecatering">
+            IRCTC Ecatering
+        </a>
+    </li>
+    <li>
         <a href="//groupon.com" target="_blank">
             <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
             Groupon
