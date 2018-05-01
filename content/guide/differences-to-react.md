@@ -42,10 +42,8 @@ Preact actually adds a few convenient features inspired by work in the React com
 
 - `this.props` and `this.state` are passed to `render()` for you  
     - _You can still reference them manually. This is just cleaner, particularly when [destructuring]_
-- [Linked State] updates state when inputs change automatically
 - Batching of DOM updates, debounced/collated using `setTimeout(1)` _(can also use requestAnimationFrame)_
 - You can just use `class` for CSS classes. `className` is still supported, but `class` is preferred.
-- Setting `class` to an Object creates a String className containing the keys having truthy values.
 - Component and element recycling/pooling.
 
 
@@ -75,7 +73,7 @@ Preact and React have some more subtle differences:
 [PropType]: https://github.com/developit/proptypes
 [Contexts]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
-[Children]: https://facebook.github.io/react/docs/top-level-api.html#react.children
+[Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
 [ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
 [High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750

@@ -146,7 +146,6 @@ Para lograr que el tiempo de reloj sea actualizado cada segundo, necesitamos sab
 | `componentWillMount`        | previo a que el componente sea montado en el DOM             |
 | `componentDidMount`         | luego de que el componente es montado en el DOM              |
 | `componentWillUnmount`      | previo a la eliminación del componente del DOM               |
-| `componentDidUnmount`       | luego de la eliminación del componente del DOM               |
 | `componentWillReceiveProps` | previo a que nuevas props sean aceptadas                     |
 | `shouldComponentUpdate`     | previo a `render()`. Devuelve `false` para evitar el render  |
 | `componentWillUpdate`       | previo a `render()`                                          |

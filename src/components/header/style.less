@@ -362,3 +362,40 @@
 		}
 	}
 }
+
+// corner link
+@corner-size: 140px;
+.corner {
+	@media (max-width: @header-mobile-breakpoint) {
+		display: none;
+	}
+
+	display: flex;
+	justify-content: center;
+	color: #fff;
+	background-color: #f2777a;
+	height: @corner-size;
+	width: @corner-size;
+	position: absolute;
+	right: @corner-size * -.5;
+	top: @corner-size * -.5;
+	transform: rotate(45deg);
+	box-shadow: 0 0 20px 5px rgba(0, 0, 0, .5);
+
+	&:hover, &:focus {
+		background-color: darken(#f2777a, 5%);
+		text-decoration: none;
+		color: #fff;
+	}
+
+}
+
+.cornerText {
+	align-self: flex-end;
+	display: inline-block;
+	font-size: 16px;
+	width: 100px;
+	padding: 0 3px 5px;
+	line-height: 1.3;
+}
+

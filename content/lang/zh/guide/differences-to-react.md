@@ -39,12 +39,11 @@ Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻
 
 Preact 实际上添加了几个更为便捷的特性，灵感源于 React 的社区
 
-- `this.props` 和 `this.state` 帮你传进了 `render()` 作为参数 
+- `this.props` 和 `this.state` 帮你传进了 `render()` 作为参数
     - _你仍然可以手动地去引用它们，但这个特性更为简洁，尤其是做 [赋值解构] 的时候_
 - [Linked State] 当 inputs 输入框改变的时候，会自动更新状态 state
 - 批量 DOM 更新，`setTimeout(1)` 进行函数节流 使用 _(也可以使用 requestAnimationFrame)_
 - 你可以只用 `class` 作为 CSS 的类。 `className` 也仍然被支持， 但推荐使用 `class`
-- 给一个对象设置 `class` 创建了一个包含可信的键值的字符串类名
 - 组件和元素循环使用 / 存入池中
 
 
@@ -52,7 +51,7 @@ Preact 实际上添加了几个更为便捷的特性，灵感源于 React 的社
 
 - [PropType] 验证：并非所有人使用 PropTypes，所以它们并非 Preact 的核心
     - _**PropTypes ** 被 [preact-compat] 完整支持, 或者你可以手动使用它们_
-- [Children]: 在 Preact 中并非必要的 Preact, 因为  `props.children` _总是一个数组_.
+- [Children]: 在 Preact 中并非必要的, 因为  `props.children` _总是一个数组_.
     - _`React.Children` is fully supported in [preact-compat]._
 - Synthetic Events: Preact 的浏览器支持并不需要这个开销
     - _一个事件的完整实现意味着更多的维护和性能的考虑，以及更庞大的 API_

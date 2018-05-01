@@ -20,7 +20,7 @@ Of course this website is built with Preact.
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.
 
-[**GuriVR**](https://gurivr.com) :eyeglasses:  
+[**GuriVR**](https://gurivr.com) :eyeglasses:
 Natural language based Web VR story creator.  
 _([Github Project](https://github.com/opennewslabs/guri-vr))_
 
@@ -42,6 +42,8 @@ A site that allows you to search through [Akamai State of the Internet Connectiv
 Desktop App for uploading assets to Contentful (API based CMS)
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
+**[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
+Embed Hacker News comment tree below your blog article.
 
 ## Full Demos & Examples
 
@@ -79,6 +81,12 @@ How to use Preact entirely without Babel, ES2015 or JSX.
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
 Minimal Preact structure with all the necessary tools to start your project right away.
 
+**[Preact Homepage Generator](https://thomaswood.me/)** :globe_with_meridians:  
+Quickly spin up a new personal webpage by only needing to modify JSON data.
+[Github Project](https://github.com/tomasswood/preact-homepage-generator)
+
+**[Parcel + Preact + Unistore Starter](https://github.com/hwclass/parcel-preact-unistore-starter)**
+Starter pack for lightning-fast prototyping and small/medium size project structure
 
 ## Codepens
 
