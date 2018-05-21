@@ -7,7 +7,7 @@ permalink: '/guide/extending-component'
 
 一些项目可能希望继承 Component 去获得额外的能力，在 JavaScript 下面有很多不同的继承，但是如果你想封装或者建一些属于你自己的『基类』，而且可以让你的组件去继承，那么 Preact 能做到这一点。
 
-或者，你想在类 flux 架构中实现对 stores/reducers 的自动连接。又或才你希望添加基于属性的 mixins, 使用它更像 `React.createClass()` (注：更推荐使用 [`@bind` 装饰器](https://github.com/developit/decko#bind))。
+或者，你想在类 flux 架构中实现对 stores/reducers 的自动连接。又或者你希望添加基于属性的 mixins, 使用它更像 `React.createClass()` (注：更推荐使用 [`@bind` 装饰器](https://github.com/developit/decko#bind))。
 
 
 
