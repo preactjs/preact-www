@@ -249,12 +249,6 @@ permalink: '/about/we-are-using'
             slowtec
         </a>
     </li>
-    <li>
-        <a href="//bakkenbaeck.no" target="_blank">
-            <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
-            Bakken & Baeck
-        </a>
-    </li>
 </ul>
 
 
