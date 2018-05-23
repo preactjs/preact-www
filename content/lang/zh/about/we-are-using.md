@@ -18,6 +18,13 @@ permalink: '/about/we-are-using'
 			<span style="margin-left: 5px;">花样直播</span>
 		</a>
 	</li>
+	<li style="list-style: none;">
+        <a href="//sierranevada.co" target="_blank">
+            <img src="/assets/we-are-using/sierranevada.svg" style="height: 22px;vertical-align: middle;" alt="Sierra Nevada - Hamburguesas y Malteadas">
+            Sierra Nevada - Hamburguesas y Malteadas
+        </a>
+    </li>
+
 </ul>
 
 ## 中文文档贡献者
