@@ -11,7 +11,7 @@ toc: false
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-    <p>Schnelle 3kB-Alternative zu React mit der selben ES6-API.</p>
+    <p>Schnelle 3kB-Alternative zu React mit der gleichen ES6-API.</p>
 
     <p>
         <a href="/guide/getting-started" class="home-button">Fang an</a>
@@ -35,8 +35,8 @@ toc: false
     <h2>Näher am Geschehen</h2>
 
     <p>
-        Preact bietet die kleinstmögliche Virtual DOM-Abstraktion über dem DOM.
-        Das Web ist eine stabile Plattform, es ist an der Zeit, dass wir es im Namen der Sicherheit neu implementieren.
+        Preact bietet die kleinstmögliche Virtual DOM Abstraktion auf dem DOM.
+        Das Web ist eine stabile Plattform und es ist an der Zeit, dass wir es im Namen der Sicherheit neu implementieren.
     </p>
 
     <p>
@@ -52,12 +52,11 @@ toc: false
 
     <p>
         Die meisten UI-Frameworks sind so riesig, dass sie den Großteil einer JavaScript-App ausmachen.
-        Mit Preact ist das anders: es ist winzig genug, damit <em>eigener Code</em> den Großteil der Application ausmacht.
+        Mit Preact ist das anders: Es ist winzig genug, damit <em>eigener Code</em> den Großteil der Application ausmacht.
     </p>
 
     <p>
-        Das bedeutet weniger JavaScript zum Runterladen, Analysieren und Ausführen - das Resultat ist mehr Zeit für eigenen Code, sodass eine selbstbestimmte Erfahrung ohne den Kampf, ein Framework unter Kontrolle zu halten, erstellt werden kann.
-    </p>
+        Dies bedeutet weniger JavaScript zum herunterladen, analysieren und ausführen - das Resultat ist mehr Zeit für den eigenen Code, sodass eine selbstbestimmte Erfahrung ohne den Kampf ein Framework unter Kontrolle zu halten, möglich ist.    </p>
 </section>
 
 
@@ -71,7 +70,7 @@ toc: false
     </p>
 
     <p>
-        Preact beinhaltet sogar zusätzliche Leistungsfunkltionen wie anpassbares Update Batching, optionales Async-Rendering, DOM recycling und optimierte Ereignishandhabung mithilfe von [Linked State](/guide/linked-state).
+        Preact beinhaltet sogar zusätzliche Leistungsfunktionen wie anpassbares Update Batching, optionales Async-Rendering, DOM recycling und optimierte Ereignishandhabung mithilfe von [Linked State](/guide/linked-state).
     </p>
 </section>
 
@@ -82,11 +81,11 @@ toc: false
     <h2>Portabel &amp; Einbettbar</h2>
 
     <p>
-        Preacts winziger Fußabdrucks ermöglicht dem ressourcenreichen Virtual DOM-Komponentenparadigma Dinge, von dem es sonst nur träumen könnte.
+        Preacts winziger Fußabdruck ermöglicht dem ressourcenreichen Virtual DOM-Komponentenparadigma Dinge, von dem es sonst nur träumen könnte.
     </p>
 
     <p>
-        Verwende Preact, um Teile einer App ohne komplizierte integration zu erstellen. Bette Preact in einem Widget ein und wende die selben Werkzeuge und Techniken an, die man normalerweise in einer vollständigen App verwenden würde.
+        Verwende Preact, um Teile einer App ohne komplizierte Integration zu erstellen. Bette Preact in einem Widget ein und wende die selben Werkzeuge und Techniken an, die man normalerweise in einer vollständigen App verwenden würde.
     </p>
 </section>
 
@@ -119,7 +118,7 @@ toc: false
     </p>
 
     <p>
-        Das Hinzufügen eines einfachen<a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
+        Das Hinzufügen eines einfachen <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
     </p>
 </section>
 

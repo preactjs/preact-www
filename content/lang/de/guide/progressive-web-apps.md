@@ -57,7 +57,7 @@ In der Tat ist genau diese Website eine Progressive Web App! Hier ist zu sehen, 
 
 Statische Seiteninhalte werden in der (Service Worker) Cache Storage API gespeichert, die blitzschnelles Laden bei wiederholten Besuchen ermöglicht.
 
-## Leistiungstipps
+## Leistungstipps
 
 Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktionieren sollte, kann es auch mit einer Reihe von anderen Werkzeugen und Techniken verwendet werden. Diese beinhalten:
 
@@ -67,7 +67,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-Splitting</a></strong>  teilt den Code auf, sodass man genau den Teil des Codes an den Nutzer ausliefern kann, den er für die angeforderte Seite benötigt. Den Rest der Seite bei Bedarf mithilfe von Lazy-loading aufzurufen verbessert Ladezeiten immens. Dies wird auch über Webpack unterstützt.</p>
+          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-Splitting</a></strong>  teilt den Code auf, sodass man genau den Teil des Codes an den Nutzer ausliefern kann, den er für die angeforderte Seite benötigt. Den Rest der Seite bei Bedarf mithilfe von Lazy-loading aufzurufen, verbessert Ladezeiten immens. Dies wird auch über Webpack unterstützt.</p>
         </div>
     </li>
 
@@ -101,15 +101,15 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
 ## Preact CLI
 
-[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, dass eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten komnzentrieren kann.
+[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, dass eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten konzentrieren kann.
 
 Anbei einige Funktionen, die Preact CLI mitliefert:
 
 
-- Automartisches, lückenlosen Code-Splitting für URL-Routen
+- Automatisches, lückenloses Code-Splitting für URL-Routen
 - Automatisches Generieren und Installieren eines ServiceWorkers
 - Generierung von HTTP2/Push-Headern (oder Preload Meta Tags), die auf der URL basierern
-- Vorzeitiges Redern, dass zu schnellen "Time To First Paint"-Resultaten führt
+- Vorzeitiges Rendern, dass zu schnellen "Time To First Paint"-Resultaten führt
 - Bedingungsweises Laden von Polyfills, falls diese benötigt werden
 
-Da [Preact CLI](https://github.com/developit/preact-cli/) im Inneren von [Webpack](https://webpack.js.org) angetrieben wird, kann man eine `preact.config.js`-Datei definieren und somit den Build-Prozess auf seine eigenen Anforderungen genau abstimmen. Sollte man also Anpassungen vornehmen, kann man immer noch die Vorteile einzelner wundervollen Standarteinstellungen nutzen. Außerdem kann man so einfach Aktualisierungen vornehmen, sollte eine neue Version von `preact-cli` veröffentlich werden.
+Da [Preact CLI](https://github.com/developit/preact-cli/) im Inneren von [Webpack](https://webpack.js.org) angetrieben wird, kann man eine `preact.config.js`-Datei definieren und somit den Build-Prozess auf seine eigenen Anforderungen genau abstimmen. Sollte man also Anpassungen vornehmen, kann man immer noch die Vorteile einzelner wundervollen Standardeinstellungen nutzen. Außerdem kann man so einfach Aktualisierungen vornehmen, sollte eine neue Version von `preact-cli` veröffentlich werden.

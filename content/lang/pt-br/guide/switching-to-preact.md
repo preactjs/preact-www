@@ -80,6 +80,10 @@ O _core_ do Preact é cheio de _features_ e muitas _codebases_ idiomáticas em R
 
 Falaremos dessa abordagem na próxima seção.
 
+#### Observação para o uso com outros módulos
+
+É provável que você esteja querendo utilizar preact-compat, para conseguir usar módulos de React da comunidade. Se este é o caso, lembre-se de configurar o transform do [Aliasify](https://www.npmjs.com/package/aliasify) como `global` (`--global-transform`). Essa é uma configuração do [Browserify](https://github.com/browserify/browserify).
+
 
 ### Build & Teste
 

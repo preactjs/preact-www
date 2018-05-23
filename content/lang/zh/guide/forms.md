@@ -13,7 +13,7 @@ permalink: '/guide/forms'
 
 React 关于 [『受控』组件](https://facebook.github.io/react/docs/forms.html#controlled-components) 与 [『不受控』组件](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) 的文档可以十分有效地帮助理解以下两点:
 1. 如何构建具有双向数据流的 HTML 表单
-2. 如何使用从基于组件化的 Virtual DOM 渲染而来的表单，当然通常 Virtual DOM 渲染是单项数据流
+2. 如何使用从基于组件化的 Virtual DOM 渲染而来的表单，当然通常 Virtual DOM 渲染是单向数据流
 
 通常说来，任何时候你都应该尝试使用受控的组件。然而，当构建独立组件，或者包装第三方 UI 库的时候，需要在非 Preact 环境下，把你的组件仅仅用作为一个挂载点。这种情况下，不受控组件十分适合这项工作。
 
