@@ -124,6 +124,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//www.ecatering.irctc.co.in" target="_blank">
+            <img src="/assets/we-are-using/irctc-ecatering.svg" alt="IRCTC Ecatering">
+            IRCTC Ecatering
+        </a>
+    </li>
+    <li>
         <a href="//hashicorp.com" target="_blank">
             <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
             HashiCorp
@@ -249,7 +255,12 @@ permalink: '/about/we-are-using'
             Sierra Nevada - Hamburguesas y Malteadas
         </a>
     </li>
-
+    <li>
+        <a href="//bakkenbaeck.no" target="_blank">
+            <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
+            Bakken & Baeck
+        </a>
+    </li>
 </ul>
 
 
