@@ -8,12 +8,12 @@ permalink: '/guide/forms'
 
 Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
 
-**[React Forms Docs](https://facebook.github.io/react/docs/forms.html)**
+**[React Forms Docs](https://reactjs.org/docs/forms.html)**
 
 
 ## Controlled & Uncontrolled Components
 
-React's documentation on ["Controlled" Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
+React's documentation on ["Controlled" Components](https://reactjs.org/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://reactjs.org/docs/uncontrolled-components.html) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
 
 Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
 
