@@ -250,6 +250,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//sierranevada.co" target="_blank">
+            <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
+            Sierra Nevada - Hamburguesas y Malteadas
+        </a>
+    </li>
+    <li>
         <a href="//bakkenbaeck.no" target="_blank">
             <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
             Bakken & Baeck
