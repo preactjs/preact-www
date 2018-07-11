@@ -52,7 +52,7 @@ Preact 实际上添加了几个更为便捷的特性，灵感源于 React 的社
 - [PropType] 验证：并非所有人使用 PropTypes，所以它们并非 Preact 的核心
     - _**PropTypes ** 被 [preact-compat] 完整支持, 或者你可以手动使用它们_
 - [Children]: 在 Preact 中并非必要的, 因为  `props.children` _总是一个数组_.
-    - _`React.Children` is fully supported in [preact-compat]._
+    - _`React.Children` 已在 [preact-compat] 中得到完整支持._
 - Synthetic Events: Preact 的浏览器支持并不需要这个开销
     - _一个事件的完整实现意味着更多的维护和性能的考虑，以及更庞大的 API_
 
