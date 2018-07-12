@@ -131,5 +131,10 @@ permalink: '/about/we-are-using'
             Sierra Nevada - Hamburguesas y Malteadas
         </a>
     </li>
-
+    <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
 </ul>
