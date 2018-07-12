@@ -166,6 +166,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -252,7 +258,7 @@ permalink: '/about/we-are-using'
     <li>
         <a href="//sierranevada.co" target="_blank">
             <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
-            Sierra Nevada - Hamburguesas y Malteadas
+            Sierra Nevad
         </a>
     </li>
     <li>
