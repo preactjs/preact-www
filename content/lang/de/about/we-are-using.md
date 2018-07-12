@@ -58,7 +58,7 @@ permalink: '/about/we-are-using'
 
 <ul class="we-are-using">
     <li>
-        <a href="//groupon.com" target="_blank">
+        <a href="//groupon.de" target="_blank">
             <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
             Groupon
         </a>
