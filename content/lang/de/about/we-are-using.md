@@ -64,6 +64,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//westwing.de" target="_blank">
+            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
+            Westwing
+        </a>
+    </li>
+    <li>
         <a href="//uber.com" target="_blank">
             <img src="/assets/we-are-using/uber.png" alt="Uber">
             Uber
@@ -181,12 +187,6 @@ permalink: '/about/we-are-using'
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
-        </a>
-    </li>
-    <li>
-        <a href="//westwing.de" target="_blank">
-            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
-            Westwing
         </a>
     </li>
     <li>
