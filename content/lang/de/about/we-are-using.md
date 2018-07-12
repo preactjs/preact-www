@@ -124,9 +124,21 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//www.synacor.com" target="_blank">
-            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
-            Synacor
+        <a href="//bustle.com" target="_blank">
+            <img src="/assets/we-are-using/bustle.svg" alt="Bustle">
+            Bustle
+        </a>
+    </li>
+    <li>
+        <a href="//www.ecatering.irctc.co.in" target="_blank">
+            <img src="/assets/we-are-using/irctc-ecatering.svg" alt="IRCTC Ecatering">
+            IRCTC Ecatering
+        </a>
+    </li>
+    <li>
+        <a href="//hashicorp.com" target="_blank">
+            <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
+            HashiCorp
         </a>
     </li>
     <li>
@@ -148,6 +160,24 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//native-instruments.com" target="_blank">
+            <img src="/assets/we-are-using/native-instruments.png" alt="Native Instruments">
+            Native Instruments
+        </a>
+    </li>
+    <li>
+        <a href="//dev.to" target="_blank">
+            <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
+            The DEV Community
+        </a>
+    </li>
+    <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -157,6 +187,18 @@ permalink: '/about/we-are-using'
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
+        </a>
+    </li>
+    <li>
+        <a href="//www.synacor.com" target="_blank">
+            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
+            Synacor
+        </a>
+    </li>
+    <li>
+        <a href="//skiscool.com/" target="_blank" title="ski school courchevel">
+            <img src="/assets/we-are-using/skiscool.svg" alt="ski school courchevel">
+            ski school courchevel
         </a>
     </li>
     <li>
@@ -184,18 +226,47 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//devpad.io" target="_blank">
-            <img src="/assets/we-are-using/devpad.png" alt="DevPad">
-            DevPad
+        <a href="//wellapp.com" target="_blank">
+            <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
+            WELL Messenger
+        </a>
+    </li>
+    <li>
+        <a href="//andcards.com" target="_blank">
+            <img src="/assets/we-are-using/cards.png" alt="Cards">
+            Cards
+        </a>
+    </li>
+    <li>
+        <a href="//selly.gg" target="_blank">
+            <img src="/assets/we-are-using/selly.png" alt="Selly">
+            Selly
+        </a>
+    </li>
+    <li>
+        <a href="//tradeshift.com" target="_blank">
+            <img src="/assets/we-are-using/tradeshift.png" alt="Selly">
+            Tradeshift
+        </a>
+    </li>
+    <li>
+        <a href="//slowtec.de" target="_blank">
+            <img src="/assets/we-are-using/slowtec.svg" alt="slowtec">
+            slowtec
         </a>
     </li>
     <li>
         <a href="//sierranevada.co" target="_blank">
             <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
-            Sierra Nevada - Hamburguesas y Malteadas
+            Sierra Nevad
         </a>
     </li>
-
+    <li>
+        <a href="//bakkenbaeck.no" target="_blank">
+            <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
+            Bakken & Baeck
+        </a>
+    </li>
 </ul>
 
 
