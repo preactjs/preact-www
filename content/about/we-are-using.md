@@ -166,6 +166,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -259,12 +265,6 @@ permalink: '/about/we-are-using'
         <a href="//bakkenbaeck.no" target="_blank">
             <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
             Bakken & Baeck
-        </a>
-    </li>
-    <li>
-        <a href="//www.dominos.com" target="_blank">
-            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
-            Domino's
         </a>
     </li>
 </ul>
