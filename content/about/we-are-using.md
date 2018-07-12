@@ -166,6 +166,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
