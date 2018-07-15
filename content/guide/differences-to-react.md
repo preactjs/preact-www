@@ -25,8 +25,8 @@ For both Preact and [preact-compat], version compatibility is measured against t
     - _components that return other components from `render()`, effectively wrappers_
 - [Stateless Pure Functional Components]  
     - _functions that receive `props` as arguments and return JSX/VDOM_
-- [Contexts]: Support for `context` was added in Preact [3.0].
-    - _Context is an experimental React feature, but has been adopted by some libraries._
+- [Contexts]: Support for the legacy `context API` was added in Preact [3.0].
+    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/developit/preact/pull/963)._
 - [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
     - _Refs provide a way to refer to rendered elements and child components._
 - Virtual DOM Diffing
@@ -71,7 +71,7 @@ Preact and React have some more subtle differences:
 [4.0]: https://github.com/developit/preact/milestones/4.0
 [preact-compat]: https://github.com/developit/preact-compat
 [PropType]: https://github.com/developit/proptypes
-[Contexts]: https://facebook.github.io/react/docs/context.html
+[Contexts]: https://reactjs.org/docs/legacy-context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
