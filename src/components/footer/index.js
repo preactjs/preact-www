@@ -13,7 +13,7 @@ export default class Footer extends Component {
 		let path = url.replace(/\/$/,'') || '/index';
 		if (lang) path = `/lang/${lang}${path}`;
 		let editUrl = `https://github.com/developit/preact-www/tree/master/content${path}.md`;
-		if (document && document.documentElement) document.documentElement.lang = lang;
+		if (typeof document!=='undefined' && document.documentElement) document.documentElement.lang = lang;
 		return (
 			<footer class={style.footer}>
 				<div class={style.inner}>
