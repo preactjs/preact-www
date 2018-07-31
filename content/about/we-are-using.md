@@ -47,14 +47,12 @@ permalink: '/about/we-are-using'
     }
 </style>
 
-
 <p align="center">
     Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations.
     Below is a small sampling of organizations that depend on Preact for public-facing projects.
 </p>
 
 <!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
-
 
 <ul class="we-are-using">
     <li>
@@ -267,11 +265,15 @@ permalink: '/about/we-are-using'
             Bakken & Baeck
         </a>
     </li>
+    <li>
+        <a href="//leesa.com" target="_blank">
+            <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
+            Leesa Sleep
+        </a>
+    </li>
 </ul>
 
-
 ---
-
 
 <p align="center">
     Does your company use Preact?
