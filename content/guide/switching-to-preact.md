@@ -49,6 +49,19 @@ configuration to your `webpack.config.js`:
 }
 ```
 
+#### Aliasing via Parcel
+
+Parcel supports defining module aliases right in your `package.json` under an `"aliases"` key:
+
+```json
+{
+  "alias": {
+    "react": "preact-compat",
+    "react-dom": "preact-compat"
+  }
+}
+```
+
 #### Aliasing via Browserify
 
 If you're using Browserify, aliases can be defined by adding the [aliasify](https://www.npmjs.com/package/aliasify) transform.
