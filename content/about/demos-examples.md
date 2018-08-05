@@ -45,6 +45,10 @@ Desktop App for uploading assets to Contentful (API based CMS)
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
 Embed Hacker News comment tree below your blog article.
 
+**[Web Maker](https://webmakerapp.com/app/)** :zap:
+Blazing fast & offline frontend playground.
+[Github Project](https://github.com/chinchang/web-maker)
+
 ## Full Demos & Examples
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
