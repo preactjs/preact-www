@@ -15,9 +15,9 @@ export default class Routes extends Component {
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
-	handleRoute = e => {
+	handleRoute = event => {
 		let { onChange } = this.props;
-		if (onChange) onChange(e);
+		if (onChange) onChange(event);
 	};
 
 	shouldComponentUpdate() {

@@ -47,14 +47,12 @@ permalink: '/about/we-are-using'
     }
 </style>
 
-
 <p align="center">
     Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations.
     Below is a small sampling of organizations that depend on Preact for public-facing projects.
 </p>
 
 <!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
-
 
 <ul class="we-are-using">
     <li>
@@ -166,6 +164,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
+    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -250,16 +254,26 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//sierranevada.co" target="_blank">
+            <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
+            Sierra Nevad
+        </a>
+    </li>
+    <li>
         <a href="//bakkenbaeck.no" target="_blank">
             <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
             Bakken & Baeck
         </a>
     </li>
+    <li>
+        <a href="//leesa.com" target="_blank">
+            <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
+            Leesa Sleep
+        </a>
+    </li>
 </ul>
 
-
 ---
-
 
 <p align="center">
     Does your company use Preact?

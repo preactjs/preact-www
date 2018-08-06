@@ -1,6 +1,6 @@
 ---
 name: We Are Using
-title: Wer benutzt Preact?
+title: Kimler Preact Kullanıyor?
 permalink: '/about/we-are-using'
 ---
 
@@ -49,24 +49,15 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Preact wird von einem breiten Spektrum von Webseiten verwendet: von Open Source-Projekten bis hin zu großen multinationalen Unternehmen.
-    Nachfolgend ist ein kleiner Auszug von Unternehmen, die Preact für öffentliche Projekte benutzen:
+    Preact, Açık Kaynak projelerden büyük çok uluslu şirketlere kadar çok çeşitli web siteleri tarafından kullanılır.
+    Aşağıda Preact'e dayanan halka açık projelerin ufak bir örneklemesi yer almaktadır.
 </p>
-
-<!-- Preact is used by a wide spectrum of websites, from Open Source projects to large multinational corporations. Below is a small sampling of organizations that depend on Preact for public-facing projects: -->
-
 
 <ul class="we-are-using">
     <li>
-        <a href="//groupon.de" target="_blank">
+        <a href="//groupon.com" target="_blank">
             <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
             Groupon
-        </a>
-    </li>
-    <li>
-        <a href="//westwing.de" target="_blank">
-            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
-            Westwing
         </a>
     </li>
     <li>
@@ -124,18 +115,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//bustle.com" target="_blank">
-            <img src="/assets/we-are-using/bustle.svg" alt="Bustle">
-            Bustle
-        </a>
-    </li>
-    <li>
-        <a href="//www.ecatering.irctc.co.in" target="_blank">
-            <img src="/assets/we-are-using/irctc-ecatering.svg" alt="IRCTC Ecatering">
-            IRCTC Ecatering
-        </a>
-    </li>
-    <li>
         <a href="//hashicorp.com" target="_blank">
             <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
             HashiCorp
@@ -172,12 +151,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//www.dominos.com" target="_blank">
-            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
-            Domino's
-        </a>
-    </li>
-    <li>
         <a href="http://www.transformersmovie.com" target="_blank">
             <img src="/assets/we-are-using/transformers.png" alt="Transformers">
             Transformers
@@ -187,6 +160,12 @@ permalink: '/about/we-are-using'
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
+        </a>
+    </li>
+    <li>
+        <a href="//westwing.de" target="_blank">
+            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
+            Westwing
         </a>
     </li>
     <li>
@@ -226,6 +205,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//devpad.io" target="_blank">
+            <img src="/assets/we-are-using/devpad.png" alt="DevPad">
+            DevPad
+        </a>
+    </li>
+    <li>
         <a href="//wellapp.com" target="_blank">
             <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
             WELL Messenger
@@ -255,18 +240,6 @@ permalink: '/about/we-are-using'
             slowtec
         </a>
     </li>
-    <li>
-        <a href="//sierranevada.co" target="_blank">
-            <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
-            Sierra Nevad
-        </a>
-    </li>
-    <li>
-        <a href="//bakkenbaeck.no" target="_blank">
-            <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
-            Bakken & Baeck
-        </a>
-    </li>
 </ul>
 
 
@@ -274,6 +247,6 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    Benutzt Ihr Unternehmen Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Fügen Sie es zur Liste hinzu!</strong></a>
+    İşletmen Preact kullanıyor mu?
+    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Listeye Ekle!</strong></a>
 </p>

@@ -46,11 +46,18 @@ permalink: '/about/we-are-using'
     }
 </style>
 
+
+<p align="center">
+    O Preact é usado por um amplo espectro de sites, desde projetos de código aberto até grandes corporações multinacionais.
+    Abaixo está uma pequena amostragem de organizações que dependem do Preact para projetos voltados ao público.
+</p>
+
+
 <ul class="we-are-using">
     <li>
-        <a href="//westwing.com.br" target="_blank">
-            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
-            Westwing
+        <a href="//groupon.com.br" target="_blank">
+            <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
+            Groupon
         </a>
     </li>
     <li>
@@ -78,6 +85,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//pepsi.com/" target="_blank">
+            <img src="/assets/we-are-using/pepsi.png" alt="Pepsi">
+            Pepsi
+        </a>
+    </li>
+    <li>
         <a href="//huayang.qq.com/" target="_blank">
             <img src="/assets/we-are-using/huayang.png" alt="Huayang Live">
             Huayang Live
@@ -96,9 +109,39 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//www.synacor.com" target="_blank">
-            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
-            Synacor
+        <a href="//nytimes.com" target="_blank">
+            <img src="/assets/we-are-using/nytimes.png" alt="The New York Times">
+            The New York Times
+        </a>
+    </li>
+    <li>
+        <a href="//bustle.com" target="_blank">
+            <img src="/assets/we-are-using/bustle.svg" alt="Bustle">
+            Bustle
+        </a>
+    </li>
+    <li>
+        <a href="//www.ecatering.irctc.co.in" target="_blank">
+            <img src="/assets/we-are-using/irctc-ecatering.svg" alt="IRCTC Ecatering">
+            IRCTC Ecatering
+        </a>
+    </li>
+    <li>
+        <a href="//hashicorp.com" target="_blank">
+            <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
+            HashiCorp
+        </a>
+    </li>
+    <li>
+        <a href="//broadway.com" target="_blank">
+            <img src="/assets/we-are-using/broadway.png" alt="Broadway.com">
+            Broadway.com
+        </a>
+    </li>
+    <li>
+        <a href="//ft.com" target="_blank">
+            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            Financial Times
         </a>
     </li>
     <li>
@@ -108,9 +151,69 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//native-instruments.com" target="_blank">
+            <img src="/assets/we-are-using/native-instruments.png" alt="Native Instruments">
+            Native Instruments
+        </a>
+    </li>
+    <li>
+        <a href="//dev.to" target="_blank">
+            <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
+            The DEV Community
+        </a>
+    </li>
+    <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
+        </a>
+    </li>
+    <li>
+        <a href="http://www.transformersmovie.com" target="_blank">
+            <img src="/assets/we-are-using/transformers.png" alt="Transformers">
+            Transformers
+        </a>
+    </li>
+    <li>
         <a href="//neo4j.com/" target="_blank">
             <img src="/assets/we-are-using/neo4j.png" alt="Neo4j">
             Neo4j
+        </a>
+    </li>
+    <li>
+        <a href="//westwing.com.br" target="_blank">
+            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
+            Westwing
+        </a>
+    </li>
+    <li>
+        <a href="//www.synacor.com" target="_blank">
+            <img src="/assets/we-are-using/synacor.png" alt="Synacor">
+            Synacor
+        </a>
+    </li>
+    <li>
+        <a href="//skiscool.com/" target="_blank" title="ski school courchevel">
+            <img src="/assets/we-are-using/skiscool.svg" alt="ski school courchevel">
+            ski school courchevel
+        </a>
+    </li>
+    <li>
+        <a href="//coralproject.net" target="_blank">
+            <img src="/assets/we-are-using/thecoralproject.png" alt="The Coral Project">
+            The Coral Project
+        </a>
+    </li>
+    <li>
+        <a href="//m.omroepwest.nl" target="_blank">
+            <img src="/assets/we-are-using/omroepwest.svg" alt="Omroep West">
+            Omroep West
+        </a>
+    </li>
+    <li>
+        <a href="//en-ae.namshi.com" target="_blank">
+            <img src="/assets/we-are-using/namshi.png" alt="Namshi">
+            NAMSHI
         </a>
     </li>
     <li>
@@ -120,9 +223,54 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//devpad.io" target="_blank">
-            <img src="/assets/we-are-using/devpad.png" alt="DevPad">
-            DevPad
+        <a href="//wellapp.com" target="_blank">
+            <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
+            WELL Messenger
+        </a>
+    </li>
+    <li>
+        <a href="//andcards.com" target="_blank">
+            <img src="/assets/we-are-using/cards.png" alt="Cards">
+            Cards
+        </a>
+    </li>
+    <li>
+        <a href="//selly.gg" target="_blank">
+            <img src="/assets/we-are-using/selly.png" alt="Selly">
+            Selly
+        </a>
+    </li>
+    <li>
+        <a href="//tradeshift.com" target="_blank">
+            <img src="/assets/we-are-using/tradeshift.png" alt="Selly">
+            Tradeshift
+        </a>
+    </li>
+    <li>
+        <a href="//slowtec.de" target="_blank">
+            <img src="/assets/we-are-using/slowtec.svg" alt="slowtec">
+            slowtec
+        </a>
+    </li>
+    <li>
+        <a href="//sierranevada.co" target="_blank">
+            <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
+            Sierra Nevada - Hamburguesas y Malteadas
+        </a>
+    </li>
+    <li>
+        <a href="//bakkenbaeck.no" target="_blank">
+            <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
+            Bakken & Baeck
         </a>
     </li>
 </ul>
+
+
+---
+
+
+<p align="center">
+    Sua empresa usa o Preact?
+    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Adicione-o à lista!</strong></a>
+</p>
