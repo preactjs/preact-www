@@ -55,7 +55,7 @@ class MyComponent extends Component {
 	}
 	componentWillMount() {}
 	componentDidMount() {}
-	componentDidUpdate() {}
+	componentDidUpdate(prevProps, prevState) {}
 	componentWillUnmount() {
 		this.props // Current props
 		this.state // Current state
