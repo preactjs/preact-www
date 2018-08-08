@@ -85,6 +85,9 @@ How to use Preact entirely without Babel, ES2015 or JSX.
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
 Minimal Preact structure with all the necessary tools to start your project right away.
 
+**[preact-typescript-webpack4-less](https://github.com/lexey111/preact-typescript-webpack4-boilerplate)**
+Another one minimal set with Preact, Typescript and Webpack 4.
+
 **[Preact Homepage Generator](https://thomaswood.me/)** :globe_with_meridians:  
 Quickly spin up a new personal webpage by only needing to modify JSON data.
 [Github Project](https://github.com/tomasswood/preact-homepage-generator)
