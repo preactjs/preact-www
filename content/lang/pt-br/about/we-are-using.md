@@ -181,7 +181,7 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//westwing.de" target="_blank">
+        <a href="//westwing.com.br" target="_blank">
             <img src="/assets/we-are-using/westwing.png" alt="Westwing">
             Westwing
         </a>
