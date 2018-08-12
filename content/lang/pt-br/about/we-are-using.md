@@ -255,7 +255,7 @@ permalink: '/about/we-are-using'
     <li>
         <a href="//sierranevada.co" target="_blank">
             <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
-            Sierra Nevada - Hamburguesas y Malteadas
+            Sierra Nevada
         </a>
     </li>
     <li>
@@ -264,8 +264,13 @@ permalink: '/about/we-are-using'
             Bakken & Baeck
         </a>
     </li>
+    <li>
+        <a href="//leesa.com" target="_blank">
+            <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
+            Leesa Sleep
+        </a>
+    </li>
 </ul>
-
 
 ---
 

@@ -262,9 +262,13 @@ permalink: '/about/we-are-using'
             Bakken & Baeck
         </a>
     </li>
+    <li>
+        <a href="//leesa.com" target="_blank">
+            <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
+            Leesa Sleep
+        </a>
+    </li>
 </ul>
-
-
 
 ---
 

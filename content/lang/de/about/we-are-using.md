@@ -64,12 +64,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//westwing.de" target="_blank">
-            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
-            Westwing
-        </a>
-    </li>
-    <li>
         <a href="//uber.com" target="_blank">
             <img src="/assets/we-are-using/uber.png" alt="Uber">
             Uber
@@ -190,6 +184,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//westwing.de" target="_blank">
+            <img src="/assets/we-are-using/westwing.png" alt="Westwing">
+            Westwing
+        </a>
+    </li>
+    <li>
         <a href="//www.synacor.com" target="_blank">
             <img src="/assets/we-are-using/synacor.png" alt="Synacor">
             Synacor
@@ -258,7 +258,7 @@ permalink: '/about/we-are-using'
     <li>
         <a href="//sierranevada.co" target="_blank">
             <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
-            Sierra Nevad
+            Sierra Nevada
         </a>
     </li>
     <li>
@@ -267,8 +267,13 @@ permalink: '/about/we-are-using'
             Bakken & Baeck
         </a>
     </li>
+    <li>
+        <a href="//leesa.com" target="_blank">
+            <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
+            Leesa Sleep
+        </a>
+    </li>
 </ul>
-
 
 ---
 
