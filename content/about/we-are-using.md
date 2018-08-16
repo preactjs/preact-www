@@ -271,6 +271,12 @@ permalink: '/about/we-are-using'
             Leesa Sleep
         </a>
     </li>
+    <li>
+        <a href="//www.themodernjs.com" target="_blank">
+            <img src="/assets/we-are-using/the-modern-javascript.png" alt="The Modern JavaScript">
+            The Modern JavaScript
+        </a>
+    </li>
 </ul>
 
 ---
