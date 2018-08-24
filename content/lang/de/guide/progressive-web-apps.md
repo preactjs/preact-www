@@ -7,7 +7,7 @@ permalink: '/guide/progressive-web-apps'
 
 ## Übersicht
 
-Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://developers.google.com/web/progressive-web-apps/), für die schnelles Laden und rasche Interaktivitätsmöglichkeiten erwünscht sind. [Preact CLI](https://github.com/developit/preact-cli) codifiziert dies in einem schnellem Baukastenwerkzeug, dass von Grund auf eine PWA (Progressive Web App) mit einem [Lighthouse][LH]-Score von 100 schafft.
+Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://developers.google.com/web/progressive-web-apps/), für die schnelles Laden und rasche Interaktivitätsmöglichkeiten erwünscht sind. [Preact CLI](https://github.com/developit/preact-cli) codifiziert dies in einem schnellen Baukastenwerkzeug, dass von Grund auf eine PWA (Progressive Web App) mit einem [Lighthouse][LH]-Score von 100 schafft.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 
@@ -20,7 +20,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
           <div class="_title-block">
             <h3>Weniger Skripte laden</h3>
           </div>
-          <p class="_summary">Preact's [kleine Größe](/about/project-goals) ist sehr wertvoll, wenn nur ein begränztes Ladezeitenkontingent verfügbar ist. Man kann davon ausgehen, dass das Laden von großen JavaScript-Bibliotheken mit mobilen Endgeräten immense Wartezeiten bis zur Benutzbarkeit der Applikation führen kann. Das Laden, Evaluieren und Berechnen der Skripte ist zu ressourcenhungrig. Das Reduzieren der Größe von Bibliotheken führt automatisch zu verbesserten Ladezeiten, da folglich auch weniger Code geladen und berechnet werden muss.</p>
+          <p class="_summary">Preact's [kleine Größe](/about/project-goals) ist sehr wertvoll, wenn nur ein begrenztes Ladezeitenkontingent verfügbar ist. Man kann davon ausgehen, dass das Laden von großen JavaScript-Bibliotheken mit mobilen Endgeräten immense Wartezeiten bis zur Benutzbarkeit der Applikation führen kann. Das Laden, Evaluieren und Berechnen der Skripte ist zu ressourcenhungrig. Das Reduzieren der Größe von Bibliotheken führt automatisch zu verbesserten Ladezeiten, da folglich auch weniger Code geladen und berechnet werden muss.</p>
         </div>
     </li>
 
@@ -94,21 +94,21 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
           <div class="_bubble" style="background-image: url(../assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> erlaubt es, die Leistung und Funktionalitäten einer Progessiven Web App zu testen, damit man stets darüber aufgeklärt ist, wie performant eine App wirklich ist.</p>
+          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> erlaubt es, die Leistung und Funktionalitäten einer Progressiven Web App zu testen, damit man stets darüber aufgeklärt ist, wie performant eine App wirklich ist.</p>
         </div>
     </li>
 </ol>
 
 ## Preact CLI
 
-[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, dass eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten konzentrieren kann.
+[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, das eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten konzentrieren kann.
 
 Anbei einige Funktionen, die Preact CLI mitliefert:
 
 
 - Automatisches, lückenloses Code-Splitting für URL-Routen
 - Automatisches Generieren und Installieren eines ServiceWorkers
-- Generierung von HTTP2/Push-Headern (oder Preload Meta Tags), die auf der URL basierern
+- Generierung von HTTP2/Push-Headern (oder Preload Meta Tags), die auf der URL basieren
 - Vorzeitiges Rendern, dass zu schnellen "Time To First Paint"-Resultaten führt
 - Bedingungsweises Laden von Polyfills, falls diese benötigt werden
 
