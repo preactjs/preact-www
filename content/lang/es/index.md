@@ -64,7 +64,7 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/performance.svg">
 
-    <h2>Gran Performance</h2>
+    <h2>Mayor Rendimiento</h2>
 
     <p>
         Preact es rápido, y no solo por su peso. Es una de las librerías de Virtual DOM más rápidas que vas a encontrar, gracias a su implementación de diffing simple y predecible.
