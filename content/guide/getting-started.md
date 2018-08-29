@@ -8,7 +8,7 @@ permalink: '/guide/getting-started'
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
 
-> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-cli] or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
+> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-cli](https://github.com/developit/preact-cli) or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 
 ---
