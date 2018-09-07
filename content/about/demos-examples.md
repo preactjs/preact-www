@@ -49,6 +49,10 @@ Embed Hacker News comment tree below your blog article.
 Blazing fast & offline frontend playground.
 [Github Project](https://github.com/chinchang/web-maker)
 
+**[BitMidi](https://bitmidi.com/)** :musical_keyboard:
+Wayback machine for free MIDI files
+[Github Project](https://github.com/feross/bitmidi.com)
+
 ## Full Demos & Examples
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
