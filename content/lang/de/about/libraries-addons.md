@@ -29,6 +29,7 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Listen mit Millionen Reihen einfach rendern([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Kleine und simple Layout-Bibliothek
 - :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): Ein Dokumentenkopf-Manager für Preact
+- :floppy_disk: [**preact-boot**](https://gitlab.com/cromefire_/preact-boot): Einfache, deklarative [Bootstrap 4](https://getbootstrap.com/) Komponenten für preact ([Lies die Dokumentation!](https://preactboot.rtfd.io) (Englisch)).
 
 
 ### Integrationen
