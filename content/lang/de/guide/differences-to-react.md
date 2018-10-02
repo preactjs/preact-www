@@ -53,14 +53,14 @@ Preact fügt durchaus vereinzelt nützliche Funktionen hinzu, die von dem Schaff
     - _**PropTypes sind vollständig durch** [preact-compat] **unterstützt**, können aber auch manuell verwendet werden._
 - [Children]: Nicht notwendig in Preact, da `props.children` _immer ein Array_ ist.
     - _`React.Children` ist vollständig in [preact-compat] unterstützt._
-- Synthetisch Ereignisse: Preacts Ziel in der Browserunterstützung setzt diesen zusätzlichen Mehraufwand nicht vorraus.
+- Synthetisch Ereignisse: Preacts Ziel in der Browserunterstützung setzt diesen zusätzlichen Mehraufwand nicht voraus.
     - _Preact nutzt das native `addEventListener` des Browsers für Ereignishandhabung. Unter [GlobalEventHandlers] ist eine vollständige Liste an DOM Ereignishandhabungen zu finden._
     - _Eine vollständige Ereignisimplementierung würde mehr Wartung, Leistungseinbußen und eine größere API bedeuten._
 
 
 ## Was ist anders?
 
-Preact und React haben einige feinere Unteschiede:
+Preact und React haben einige feinere Unterschiede:
 
 
 - `render()` akzeptiert ein drittes Argument, welches der Grundknoten zu _replace_ ist, andernfalls fügt es es hinzu. Dies könnte sich in einer zukünftigen Version ein wenig ändern, vermutlich durch automatische Erkennung der Angemessenheit eines Ersatzrenders mithilfe einer Inspizierung des Grundknoten.
