@@ -64,3 +64,29 @@ class UserList extends Component{
     }
 }
 ```
+
+# Inline If-Else with Conditional Operator
+
+```js
+
+class UserList extends Component{
+
+
+    renderUsers(){
+        return this.props.data.users.map(user =>(
+            <li>{ user.firstname }</li>
+        ));
+    }
+    render(){
+        
+    return(
+            <div>Lista de Usuarios <br/>
+                <ul>
+                    { !this.props.data.loading ? this.renderUsers() : Loading....}
+
+                </ul>
+            </div>
+        )
+    }
+}
+```
