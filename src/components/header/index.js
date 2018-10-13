@@ -131,7 +131,7 @@ const getRouteIdent = route => (
 );
 
 const Corner = () => (
-	<a href="https://opencollective.com/preact" target="_blank" class={style.corner}>
+	<a href="https://opencollective.com/preact" target="_blank" rel="noopener" class={style.corner}>
 		<div class={style.cornerText}>
 			Help Support Us !
 		</div>

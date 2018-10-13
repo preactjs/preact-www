@@ -5,7 +5,7 @@ permalink: '/guide/differences-to-react'
 
 # Differences to React
 
-Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is an thin layer over Preact that attempts to achieve 100% compatibility with React.
+Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
 
 The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focused** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
 
@@ -25,8 +25,8 @@ For both Preact and [preact-compat], version compatibility is measured against t
     - _components that return other components from `render()`, effectively wrappers_
 - [Stateless Pure Functional Components]  
     - _functions that receive `props` as arguments and return JSX/VDOM_
-- [Contexts]: Support for `context` was added in Preact [3.0].
-    - _Context is an experimental React feature, but has been adopted by some libraries._
+- [Contexts]: Support for the legacy `context API` was added in Preact [3.0].
+    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/developit/preact/pull/963)._
 - [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
     - _Refs provide a way to refer to rendered elements and child components._
 - Virtual DOM Diffing
@@ -71,7 +71,7 @@ Preact and React have some more subtle differences:
 [4.0]: https://github.com/developit/preact/milestones/4.0
 [preact-compat]: https://github.com/developit/preact-compat
 [PropType]: https://github.com/developit/proptypes
-[Contexts]: https://facebook.github.io/react/docs/context.html
+[Contexts]: https://reactjs.org/docs/legacy-context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers

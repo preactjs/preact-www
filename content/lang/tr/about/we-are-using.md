@@ -1,6 +1,6 @@
 ---
 name: We Are Using
-title: ¿Quién está usando Preact?
+title: Kimler Preact Kullanıyor?
 permalink: '/about/we-are-using'
 ---
 
@@ -17,20 +17,21 @@ permalink: '/about/we-are-using'
     }
     .we-are-using a {
         display: block;
-        padding: 30px 20px;
+        padding: 30px 10px 15px;
         margin: 0 0 .3em;
         border: 2px solid rgba(0,0,0,0);
         background: rgba(0,0,0,0);
         border-radius: 3px;
-        min-width: 160px;
-        max-width: 200px;
+        min-width: 170px;
+        max-width: 210px;
         text-decoration: none;
-        color: #555;
+        color: #BBB;
         transition: all 250ms ease;
     }
     .we-are-using a:hover {
         background-color: rgba(0,0,0,.01);
         border-color: rgba(0,0,0,.03);
+        color: #555;
     }
     .we-are-using img {
         height: 64px;
@@ -46,14 +47,15 @@ permalink: '/about/we-are-using'
     }
 </style>
 
+
 <p align="center">
-    Preact es utilizado por muchos sitios web, desde proyectos de código abierto hasta grandes corporaciones multinacionales.
-    A continuación hay una pequeña muestra de organizaciones que dependen de Preact para proyectos públicos.
+    Preact, Açık Kaynak projelerden büyük çok uluslu şirketlere kadar çok çeşitli web siteleri tarafından kullanılır.
+    Aşağıda Preact'e dayanan halka açık projelerin ufak bir örneklemesi yer almaktadır.
 </p>
 
 <ul class="we-are-using">
     <li>
-        <a href="//groupon.es" target="_blank">
+        <a href="//groupon.com" target="_blank">
             <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
             Groupon
         </a>
@@ -274,6 +276,6 @@ permalink: '/about/we-are-using'
 
 
 <p align="center">
-    ¿Su empresa usa Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>¡Añadirlo a la lista!</strong></a>
+    İşletmen Preact kullanıyor mu?
+    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Listeye Ekle!</strong></a>
 </p>

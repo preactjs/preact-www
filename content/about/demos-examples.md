@@ -22,11 +22,11 @@ Built with Preact & Material Design Lite.
 
 [**GuriVR**](https://gurivr.com) :eyeglasses:
 Natural language based Web VR story creator.  
-_([Github Project](https://github.com/opennewslabs/guri-vr))_
+[Github Project](https://github.com/opennewslabs/guri-vr)
 
 [**BigWebQuiz**](https://bigwebquiz.com) :game_die:  
 The audience participation Progressive Web App from Chrome Dev Summit 2016!  
-([Github Project](https://github.com/jakearchibald/big-web-quiz))
+[Github Project](https://github.com/jakearchibald/big-web-quiz)
 
 **[Nectarine.rocks](http://nectarine.rocks)** :peach:  
 Open-Source peach.cool app.  
@@ -44,6 +44,14 @@ Desktop App for uploading assets to Contentful (API based CMS)
 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
 Embed Hacker News comment tree below your blog article.
+
+**[Web Maker](https://webmakerapp.com/app/)** :zap:
+Blazing fast & offline frontend playground.
+[Github Project](https://github.com/chinchang/web-maker)
+
+**[BitMidi](https://bitmidi.com/)** :musical_keyboard:
+Wayback machine for free MIDI files
+[Github Project](https://github.com/feross/bitmidi.com)
 
 ## Full Demos & Examples
 
@@ -80,6 +88,9 @@ How to use Preact entirely without Babel, ES2015 or JSX.
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
 Minimal Preact structure with all the necessary tools to start your project right away.
+
+**[preact-typescript-webpack4-less](https://github.com/lexey111/preact-typescript-webpack4-boilerplate)**
+Another one minimal set with Preact, Typescript and Webpack 4.
 
 **[Preact Homepage Generator](https://thomaswood.me/)** :globe_with_meridians:  
 Quickly spin up a new personal webpage by only needing to modify JSON data.

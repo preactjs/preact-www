@@ -25,7 +25,7 @@ toc: false
 
 
 <section class="home-top">
-    <h1>Eine Bibliotek der anderen Art.</h1>
+    <h1>Eine Bibliothek der anderen Art.</h1>
 </section>
 
 

@@ -5,7 +5,7 @@ permalink: '/guide/differences-to-react'
 
 # Diferenças do React
 
-O próprio Preact não tem a intenção de ser uma reimplementacao do React. Há diferenças. Muitas dessas são triviais, ou podem ser completamente removidas utilizando [preact-compat], que é uma fina camada sobre o Preact que tenta conseguir 100% de compatibilidade com React.
+O próprio Preact não tem a intenção de ser uma reimplementação do React. Há diferenças. Muitas dessas são triviais, ou podem ser completamente removidas utilizando [preact-compat], que é uma fina camada sobre o Preact que tenta conseguir 100% de compatibilidade com React.
 
 Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pequeno** e **focado** - de outro modo faria mais sentido simplesmente submeter otimizações para o projeto React, que já é atualmente uma _codebase_ muito complexa e bem arquitetada.
 
@@ -13,7 +13,7 @@ Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pe
 
 Para ambos o Preact e [preact-compat], compatibilidade de versões pode ser medida comparando o _releases_ `current` e `previous` do React. Quando novos recursos são anunciados pelo time do React, eles podem ser adicionados ao Preact se os mesmos fizerem sentido de acordo com os [Objetivos do Projeto]. É um processo bastante democrático, que evolui constantemente através da discussão e decisão feita abertamente, utilizando _issues_ e _pull requests_.
 
-> Assim, o site e a documentação refletem o react `0.14.x` e `15.x` quando se discutem compatibildiade e fazem-se comparações.
+> Assim, o site e a documentação refletem o react `0.14.x` e `15.x` quando se discutem compatibilidade e fazem-se comparações.
 
 
 ## O que está incluso?
@@ -23,26 +23,26 @@ Para ambos o Preact e [preact-compat], compatibilidade de versões pode ser medi
 - [Componentes de Alta-Ordem]
     - _componentes que retornam outro componente a partir do `render()` (wrappers, efetivamente)_
 - [Componentes Funcionais Puros e Sem Estados]
-    - _funcões que recebem `props` como argumentos e retornam JSX/VDOM_
+    - _funções que recebem `props` como argumentos e retornam JSX/VDOM_
 - [Contextos]: Suporta para `contexto` foi adicionado no Preact [3.0].
     - _Contexto é uma funcionalidade experimental do React, mas tem sido adotada por algumas bibliotecas._
 - [Refs]: Suporte para _refs_ de função foi adicionado no Preact [4.0]. _refs_ de Strings são suportadas via `preact-compat`
-    - _Refs proveem uma maneira de se referir aos componentes renderizados e componentes filhos._
-- Compração de Virtual DOM
-    - _Essa com certeza! - O algorítimo de diff do Preact é simples porém efetivo e **[extremamente](http://developit.github.io/js-repaint-perfs/) [rápido](https://localvoid.github.io/uibench/)**._
+    - _Refs provêem uma maneira de se referir aos componentes renderizados e componentes filhos._
+- Comparação de Virtual DOM
+    - _Essa com certeza! - O algoritmo de diff do Preact é simples porém efetivo e **[extremamente](http://developit.github.io/js-repaint-perfs/) [rápido](https://localvoid.github.io/uibench/)**._
 - `h()`, uma versão mais generalizada do `React.createElement`
-    - _Essa ideia foi originalmente chama de [hyperscript] e tem valor muito além do ecossistema React, então Preact promove o padrão original.([Leia: Por que `h()`?](http://jasonformat.com/wtf-is-jsx))_
+    - _Essa ideia foi originalmente chamada de [hyperscript] e tem valor muito além do ecossistema React, então Preact promove o padrão original.([Leia: Por que `h()`?](http://jasonformat.com/wtf-is-jsx))_
     - _Também é mais legível: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
 ## O que foi adicionado?
 
-Preact na verdade adiciona algumas características conveninentes inspiradas pelo trabalho da comunidade do React:
+Preact na verdade adiciona algumas características convenientes inspiradas pelo trabalho da comunidade do React:
 
 - `this.props` e `this.state` são passadas para o `render()` pra você
     - _Você ainda os pode referenciar manualmente. Essa é só uma maneira mais limpa, particularmente com [destructuring]_
 - [Linked State] atualiza o estado quando os _inputs_ mudam automaticamente
 - Atualização de DOM em lotes, 'debounced/collated' usando `setTimeout(1)` _(também pode utilizar requestAnimationFrame)_
-- Você pode utilizar apenas `class` pra classes CSS. `classNames` ainda é suportado, mas `class` é preferível.
+- Você pode utilizar apenas `class` para classes CSS. `classNames` ainda é suportado, mas `class` é preferível.
 - Reciclagem/_pooling_ de elementos e componentes.
 
 
