@@ -1,3 +1,7 @@
+---
+name: Conditional Rendering
+permalink: '/guide/conditional-rendering'
+---
 
 # Conditional Rendering
 
