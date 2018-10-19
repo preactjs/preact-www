@@ -31,8 +31,8 @@
 					"name": "Getting Started"
 				},
 				{
-					"path": "/guide/differences-to-react",
-					"name": "Differences to React"
+					"path": "/guide/differences-from-react",
+					"name": "Differences from React"
 				},
 				{
 					"path": "/guide/switching-to-preact",
