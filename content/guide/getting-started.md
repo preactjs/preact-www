@@ -42,6 +42,9 @@ import preact from 'preact';
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.min.js"></script>
+
+<!-- To load Preact as a JS Module: -->
+<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.mjs" type="module"></script>
 ```
 
 ### Global pragma
