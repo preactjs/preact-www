@@ -76,6 +76,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//wenwen.sogou.com/" target="_blank">
+            <img src="/assets/we-are-using/sogou.png" alt="搜狗问问">
+            搜狗问问
+        </a>
+    </li>
+    <li>
         <a href="//housing.com" target="_blank">
             <img src="/assets/we-are-using/housing.png" alt="Housing.com">
             Housing.com
