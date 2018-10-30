@@ -58,12 +58,22 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > { "jsxPragma": "h" }
 > ```
 >
-> **For Babel 6 and 7:**
+> **For Babel 6:**
 >
 > ```json
 > {
 >   "plugins": [
 >     ["transform-react-jsx", { "pragma":"h" }]
+>   ]
+> }
+> ```
+>
+> **For Babel 7:**
+>
+> ```json
+> {
+>   "plugins": [
+>     ["@babel/plugin-transform-react-jsx", { "pragma":"h" }]
 >   ]
 > }
 > ```
@@ -75,12 +85,22 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > { "jsxPragma": "preact.h" }
 > ```
 >
-> **For Babel 6 and 7:**
+> **For Babel 6:**
 >
 > ```json
 > {
 >   "plugins": [
 >     ["transform-react-jsx", { "pragma":"preact.h" }]
+>   ]
+> }
+> ```
+>
+> **For Babel 7:**
+>
+> ```json
+> {
+>   "plugins": [
+>     ["@babel/plugin-transform-react-jsx", { "pragma":"preact.h" }]
 >   ]
 > }
 > ```
