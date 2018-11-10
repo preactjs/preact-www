@@ -54,7 +54,7 @@ Wayback machine for free MIDI files
 [Github Project](https://github.com/feross/bitmidi.com)
 
 **[Code and Comment](https://code-and-comment.github.io/code-and-comment/)** :memo:
-The which add the comments to a file in Github.
+The application to add the comments to a file in Github.
 [Github Project](https://github.com/code-and-comment/code-and-comment)
 
 ## Full Demos & Examples
