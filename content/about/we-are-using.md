@@ -56,6 +56,12 @@ permalink: '/about/we-are-using'
 
 <ul class="we-are-using">
     <li>
+        <a href="//insided.com" target="_blank">
+            <img src="/assets/we-are-using/insided.svg" alt="inSided">
+            Groupon
+        </a>
+    </li>
+    <li>
         <a href="//groupon.com" target="_blank">
             <img src="/assets/we-are-using/groupon.svg" alt="Groupon">
             Groupon
