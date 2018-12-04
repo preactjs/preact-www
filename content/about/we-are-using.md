@@ -147,7 +147,7 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//ft.com" target="_blank">
-            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            <img src="/assets/we-are-using/financial-times.svg" alt="Financial Times">
             Financial Times
         </a>
     </li>
