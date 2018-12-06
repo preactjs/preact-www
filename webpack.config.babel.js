@@ -6,6 +6,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
+import SizePlugin from 'size-plugin';
 import autoprefixer from 'autoprefixer';
 import rreaddir from 'recursive-readdir-sync';
 import minimatch from 'minimatch';
@@ -101,8 +102,11 @@ module.exports = {
 	],
 
 	plugins: ([
-		new ProgressBarPlugin(),
+		new ProgressBarPlugin({
+			clear: true
+		}),
 		new webpack.NoErrorsPlugin(),
+		new SizePlugin(),
 		new ExtractTextPlugin('style.css', {
 			allChunks: false,
 			disable: ENV!=='production'
@@ -176,7 +180,19 @@ module.exports = {
 		})
 	] : []),
 
-	stats: false,
+	stats: {
+		hash: false,
+		version: false,
+		timings: false,
+		assets: false,
+		chunks: false,
+		modules: false,
+		hiddenModules: false,
+		reasons: false,
+		children: false,
+		source: false,
+		publicPath: false
+	},
 
 	node: {
 		process: false,
