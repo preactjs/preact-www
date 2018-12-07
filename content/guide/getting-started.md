@@ -8,7 +8,7 @@ permalink: '/guide/getting-started'
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
 
-> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-cli] or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
+> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-cli](https://github.com/developit/preact-cli) or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 
 ---
@@ -42,6 +42,9 @@ import preact from 'preact';
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.min.js"></script>
+
+<!-- To load Preact as a JS Module: -->
+<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.mjs" type="module"></script>
 ```
 
 ### Global pragma
@@ -55,12 +58,22 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > { "jsxPragma": "h" }
 > ```
 >
-> **For Babel 6 and 7:**
+> **For Babel 6:**
 >
 > ```json
 > {
 >   "plugins": [
 >     ["transform-react-jsx", { "pragma":"h" }]
+>   ]
+> }
+> ```
+>
+> **For Babel 7:**
+>
+> ```json
+> {
+>   "plugins": [
+>     ["@babel/plugin-transform-react-jsx", { "pragma":"h" }]
 >   ]
 > }
 > ```
@@ -72,12 +85,22 @@ Instead of declaring the `@jsx` pragma in your code, it's best to configure it g
 > { "jsxPragma": "preact.h" }
 > ```
 >
-> **For Babel 6 and 7:**
+> **For Babel 6:**
 >
 > ```json
 > {
 >   "plugins": [
 >     ["transform-react-jsx", { "pragma":"preact.h" }]
+>   ]
+> }
+> ```
+>
+> **For Babel 7:**
+>
+> ```json
+> {
+>   "plugins": [
+>     ["@babel/plugin-transform-react-jsx", { "pragma":"preact.h" }]
 >   ]
 > }
 > ```
