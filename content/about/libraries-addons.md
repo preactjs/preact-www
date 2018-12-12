@@ -17,6 +17,7 @@ A collection of modules built to work wonderfully with Preact.
 - :raised_hands: [**preact-compat**](https://git.io/preact-compat): use any React library with Preact *([full example](http://git.io/preact-compat-example))*
 - :repeat: [**preact-cycle**](https://git.io/preact-cycle): Functional-reactive paradigm for Preact
 - :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Universal rendering.
+- :timer_clock: [**relaks**](https://github.com/trambarhq/relaks): Create components with render methods that return asynchronously.
 
 
 ### Components
