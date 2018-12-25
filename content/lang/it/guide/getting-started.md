@@ -5,7 +5,7 @@ permalink: '/guide/getting-started'
 
 # Primi passi
 
-In qursta guida vedremo come creare un semplice componente "Orologio". Informazioni più dettagliate su ogni singolo argomento sono disponibili nel menù Guida.
+In questa guida vedremo come creare un semplice componente "Orologio". Informazioni più dettagliate su ogni singolo argomento sono disponibili nel menù Guida.
 
 > :information_desk_person: [Non è necessario utilizzare ES2015 per usare Preact ](https://github.com/developit/preact-without-babel)... ma dovresti!. In questa guida si presuppone tu abbia un qualsiasi tipo di configurazione per buildare ES2015, utilizzando Babel e/o webpack/browserify/gulp/grunt/etc. Se non la hai puoi iniziare da qui  [preact-boilerplate] o qui [Template de CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
@@ -104,24 +104,24 @@ render((
 Ti potrà sembrare facile e intuitivo se hai utiliazzato in precedenza [hyperscript] o alcuni dei suoi [molti amici](https://github.com/developit/vhtml).
 
 
-Sin embargo, renderizar hyperscript con un Virtual DOM no tiene sentido. Queremos renderizar componentes y actualizarlos cuando los datos sean modificados - es ahí donde el poder del diffing de Virtual DOM brilla. :star2:
-
+Renderizzare hyperscript con il DOM virtuale è di per sé inutile, però... Noi vogliamo renderizzare i componenti ed averli aggiornati quando i dati cambiano - è qui che si vede la risplendente potenza del DOM virtuale.
 
 ---
 
 
-## Componentes
+## Componenti
 
-Preact exporta una clase generica `Component`, la cual puede ser extendida para construir piezas de una Interfaz de Usuario encapsuladas y auto-actualizables. Estos Componentes soportan todos los [lifecycle methods] de React, como por ejemplo `shouldComponentUpdate()` y `componentWillReceiveProps()`. Proporcionar implementaciones especificas de estos métodos es el mecanismo preferido para controlar _cómo_ y _cuándo_ los componentes son actualizados.
+Preact esporta una generica classe `Component`, la quale può essere estesa per costruire pezzi incapsulanti ed auto-aggiornanti di un'interfaccia utente. Questi Componenti supportano tutti i [lifecycle methods](#ciclo-di-vita-dei-componenti) di React, come per 
+esempio `shouldComponentUpdate()` e `componentWillReceiveProps()`. Fornire implementazioni specifiche di questi metodi è il meccanismo preferito per controllare l'aggiornamento dei componenti _when_ e _how_.
 
-Los componentes también tienen un método `render()`, pero a diferencia de React este método recibe `(props, state)` como argumentos. Esto provee una manera ergonómica de desestructurar `props`y `state` en variables locales para ser referenciadas por JSX.
+I componenti dispongono anche di un metodo chiamato `render()`, però a differenza di react questo metodo riceve `(props, state)` come argomenti. Questo fornisce un efficace metodo per destrutturare `props` e `state` in variabili locali per poterle referienziare da JSX.
 
-Hechemos un vistazo a un simple componente de `Reloj`, el cual muestra la hora actual.
+Diamo un occhiata ad un semplice componente `Orologio`, che mostra l'ora corrente.
 
 ```js
 import { h, render, Component } from 'preact';
 
-class Reloj extends Component {
+class Orologio extends Component {
 	render() {
 		let time = new Date().toLocaleTimeString();
 		return <span>{ time }</span>;
@@ -129,11 +129,9 @@ class Reloj extends Component {
 }
 
 // renderiza una instancia de Reloj en el <body>:
-render(<Reloj />, document.body);
+render(<Orologio />, document.body);
 ```
-
-
-Genial! Correr esto produce la siguiente estructura de HTML:
+Fantastico, L'esecuzione del codice soprastante produrrà la seguente struttura HTML:
 
 ```html
 <span>10:28:57 PM</span>
@@ -143,62 +141,62 @@ Genial! Correr esto produce la siguiente estructura de HTML:
 ---
 
 
-## Ciclo de vida de los Componentes
+## Ciclo di vita dei componenti
 
-Para lograr que el tiempo de reloj sea actualizado cada segundo, necesitamos saber cuándo `<Reloj>` es montado en el DOM. _Si ya has utilizado HTML5 Custom Elements, esto es similar a los métodos de ciclo de vida `attachedCallback` y `detachedCallback`._ Preact invoca a los siguientes métodos de ciclo de vida cuando son definidos para un Componente.
+Per far si che l'ora dell'Orologio si aggiorni ogni secondo, abbiamo bisogno di sapere quando `<Orologio>` viene montato nel DOM. _Se hai usato gli HTML5 Custom Element, questo potrebbe essere simili ai metodi `attachedCallback` e `detachedCallback` del ciclo di vita._
+Preact invoca i seguenti metodi del ciclo di vita se sono definiti per un Componente:
 
-
-| Lifecycle method            | Cuándo son llamados                                          |
+| Metodi del ciclo di vita    | Cuándo son llamados                                          |
 |-----------------------------|--------------------------------------------------------------|
-| `componentWillMount`        | previo a que el componente sea montado en el DOM             |
-| `componentDidMount`         | luego de que el componente es montado en el DOM              |
-| `componentWillUnmount`      | previo a la eliminación del componente del DOM               |
-| `componentWillReceiveProps` | previo a que nuevas props sean aceptadas                     |
-| `shouldComponentUpdate`     | previo a `render()`. Devuelve `false` para evitar el render  |
-| `componentWillUpdate`       | previo a `render()`                                          |
-| `componentDidUpdate`        | luego de `render()`                                          |
+| `componentWillMount`        | Prima che il componente venga montato nel DOM                |
+| `componentDidMount`         | Dopo che il componente viene montato nel DOM                 |
+| `componentWillUnmount`      | Prima che il componente venga rimosso dal DOM                |
+| `componentWillReceiveProps` | Prima che nuove props vengano accettate                      |
+| `shouldComponentUpdate`     | Prima di `render()`. Ritornare `false` per evitare il render |
+| `componentWillUpdate`       | Prima di `render()`                                          |
+| `componentDidUpdate`        | Dopo `render()`                                              |
 
 
+Così, noi vogliamo avere un timer da un secondo che inizi quando il componente viene aggiunto al DOM, e si fermi quando esso quest'ultimo viene rimosso. Creeremo il timer e memorizzeremo un riferimento ad esso in `componentDidMount`, e fermeremo il timer in `componentWillUnmount`. Su ogni tick del timer, aggiorneremo l'oggetto `state` del componente con il nuovo valore dell'ora. In questo modo, il nuovo componente verrà automaticamente sottoposto a rendering.
 
-Entonces, queremos tener un temporizador de 1 segundo que comienza cuando el Componente es agregado al DOM, y finaliza si es removido. Crearemos el temporizador y almacenaremos una referencia a él en `componentDidMount`, y finalizaremos el temporizador en `componentWillUnmount`. Para cada tic del temporizador, actualizaremos el `state` del objeto del componente con un nuevo tiempo. Al hacer esto, el componente será re-renderizado de forma automática.
 
 ```js
 import { h, render, Component } from 'preact';
 
-class Reloj extends Component {
+class Orologio extends Component {
 	constructor() {
 		super();
-		// configuramos tiempo inicial:
-		this.state.tiempo = Date.now();
+		// Configuriamo l'ora iniziale:
+		this.state.ora = Date.now();
 	}
 
 	componentDidMount() {
-		// actualizar el tiempo cada un segundo
-		this.temporizador = setInterval(() => {
+		// aggiorna il tempo ogni secondo
+		this.timer = setInterval(() => {
 			this.setState({ tiempo: Date.now() });
 		}, 1000);
 	}
 
 	componentWillUnmount() {
-		// finalizar cuando no es renderizable
-		clearInterval(this.temporizador);
+		// Fermarlo quando non è èiù renderizzabile
+		clearInterval(this.timer);
 	}
 
 	render(props, state) {
-		let tiempo = new Date(state.tiempo).toLocaleTimeString();
-		return <span>{ tiempo }</span>;
+		let ora = new Date(state.ora).toLocaleTimeString();
+		return <span>{ ora }</span>;
 	}
 }
 
-// renderizamos una instancia de Reloj en <body>:
-render(<Reloj />, document.body);
+// Renderizziamo un istanza dell'Orologio nel <body>:
+render(<Orologio />, document.body);
 ```
 
 
 ---
 
 
-Ahora sí: tenemos [un reloj](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
+Ora abbiamo un bellissimo [Orologio](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
 
 
 
