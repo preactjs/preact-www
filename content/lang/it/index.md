@@ -33,14 +33,13 @@ toc: false
     <h2>Più vicino alla macchina</h2>
     
     <p>
-        Preact fornisce la più leggera astrazione possibile del Virtual DOM sopra al DOM
-        Il web è una piattaforma stabile, è il tempo in cui dobbiamo smettere di reimplementarlo in nome della sicurezza
+        Preact fornisce la più leggera astrazione possibile del Virtual DOM.
+        Il web è una piattaforma stabile, è giunto il momento in cui dobbiamo smettere di reimplementarlo in nome della sicurezza.
     </p>
 
     <p>
-
-       Preact è anche un cittadino di prima classe della piattaforma Web. Compara il virtual DOM con il DOM stesso,
-       registra gestori di eventi reali, ed è compatibile, senza grossi problemi, con altre librerie
+       Preact è in prima linea nella piattaforma Web. Compara il virtual DOM con il DOM stesso,
+       registra i gestori di eventi, ed è compatibile, senza grossi problemi, con altre librerie.
     </p>
 </section>
 
@@ -48,16 +47,16 @@ toc: false
 <section class="home-section">
     <img src="/assets/home/size.svg" alt="size">
 
-    <h2>Piccolo nella dimensione</h2>
+    <h2>Piccolo nelle dimensioni</h2>
     
     <p>
         Molti degli UI framework sono grandi abbastanza per essere la parte più pesante del Javascript di un applicazione.
-        Preact è differente: è piccolo abbastanza affinchè il tuo codice sia la parte più grande della tua applicazione
+        Preact è differente: è così piccolo che il tuo codice sarà la parte più grande nella tua applicazione
     </p>
 
     <p>
         Questo significa meno Javascript da scaricare, analizzare ed eseguire - lasciando più tempo per il tuo codice,
-        così che tu possa costruire un esperienza da te definita senza combattere per tenere il framework sotto controllo.
+        così che tu possa costruire un'esperienza da te definita, senza dover combattere per tenere il framework sotto controllo.
     </p>
 </section>
 
@@ -68,12 +67,11 @@ toc: false
     <h2>Grandi Perfomance</h2>
     
     <p>
-        Preact è veloce, e non solo per il suo peso. è una delle più veloci librerie del Virtual DOM disponibili,
-        grazie alla sua semplice e prevedibile implementazione.
+        Preact è veloce, e non solo per il suo peso. Ha una delle implementazioni più veloci per rilevare le differenze tra il DOM sulla pagina e il DOM virtuale.
     </p>
     
     <p>
-        Include anche funzionalità aggiuntive per le prestazoni, come l'aggiornamento personalizzabile dei batch, un opzionale e asincrono rendering, riciclaggio del DOM, e una gestione ottimizzata degli eventi tramite lo  [Stato Collegato](/guide/linked-state).
+        Include anche funzionalità aggiuntive per le prestazoni, come l'aggiornamento personalizzabile dei batch, un opzionale e asincrono rendering, DOM riutilizzabile, e una gestione ottimizzata degli eventi tramite lo  [Stato Collegato](/guide/linked-state).
     </p>
 </section>
 
@@ -84,11 +82,11 @@ toc: false
     <h2>Portatile ed Integrabile</h2>
     
     <p>
-        La minuscola impronta di Preact permette di usare il potente paradigma dei Componenti del Virtual DOM in nuovi posti dove altrimenti non avresti potuto.
+        La minuscola impronta di Preact permette di usare il potente paradigma dei Componenti del Virtual DOM in posti dove altrimenti non avresti potuto.
     </p>
     
     <p>
-        Usa Preact per costruire parti della tua applicazione, senza una complicata integrazione. Integrare Preact in un widget e applica gli stessi strumenti e tecniche che useresti per costruire un intera applicazione.
+        Usa Preact per costruire parti della tua applicazione, senza una complicata integrazione. Integra Preact in un widget e applica gli stessi strumenti e tecniche che useresti per costruire un intera applicazione.
     </p>
 </section>
 
@@ -117,8 +115,8 @@ toc: false
     <h2>Compatibile con l'Ecosistema</h2>
     
     <p>
-        I componenti DOM virtuali facilitano la condivisione di cose riutilizzabili - qualcsiasi cosa dai bottoni ai fornitori di dati.
-        Il design di pract significa che puoi utilizzare senza problemi migliaia di componenti disponibili nell'ecosistema React.
+        I componenti DOM virtuali facilitano la condivisione di cose riutilizzabili - qualsiasi cosa dai bottoni ai fornitori di dati.
+        Il design di Preact ti permette di utilizzare senza problemi migliaia di componenti disponibili nell'ecosistema React.
     </p>
     
     <p>
@@ -199,7 +197,7 @@ export default class Stars extends Component {
     </div>
     
     <div>
-        <h2>Esempio in esevuzione</h2>
+        <h2>Esempio in esecuzione</h2>
         
         <pre repl="false"><code class="lang-js">
 import Stars from './stars';
@@ -224,7 +222,7 @@ render(
 
 <section style="text-align:center;">
     <p>
-        Abbiamo guide separate in base al fatto che tu abbia esperienza più o meno esperienza con React.
+        Abbiamo guide separate in base alla tua esperienza con React.
         <br>
         Scegli la guida migliore per te!
     </p>
