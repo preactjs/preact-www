@@ -243,7 +243,7 @@ init();
 if (module.hot) module.hot.accept('./app', init);
 ```
 
-Tüm tekniği [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18)) adresinden görebilirsiniz.
+Tüm tekniği [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18) adresinden görebilirsiniz.
 
 
 [babel]: https://babeljs.io
