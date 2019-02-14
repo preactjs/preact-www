@@ -277,6 +277,12 @@ permalink: '/about/we-are-using'
             Leesa Sleep
         </a>
     </li>
+    <li>
+        <a href="//anwb.nl" target="_blank">
+            <img src="/assets/we-are-using/anwb.svg" alt="ANWB">
+            ANWB
+        </a>
+    </li>
 </ul>
 
 ---
