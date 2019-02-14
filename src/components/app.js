@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Provider } from '../lib/store';
+import { Provider } from 'unistore/preact';
 import createStore from '../store';
 import Routes from './routes';
 import Header from './header';

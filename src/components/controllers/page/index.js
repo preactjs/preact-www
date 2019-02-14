@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import cx from 'classnames';
+import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';

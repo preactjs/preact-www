@@ -40,7 +40,7 @@ export default class Repl extends Component {
 			this.Runner.worker.call('ping').then( () => {
 				this.setState({ loading:false });
 			});
-		}, 'repl');
+		}, 'editor');
 
 		// webpack 2:
 		// Promise.all([

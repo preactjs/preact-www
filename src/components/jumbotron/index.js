@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import cx from 'classnames';
+import cx from '../../lib/cx';
 import style from './style';
 
 export default class Jumbotron extends Component {

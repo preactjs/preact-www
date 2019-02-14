@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { connect } from '../lib/store';
+import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
 import yaml from 'yaml';
 import Markdown from 'markdown';
@@ -9,6 +9,9 @@ import widgets from './widgets';
 const COMPONENTS = {
 	...widgets,
 	pre: widgets.CodeBlock,
+	img(props) {
+		return <img decoding="async" {...props} />;
+	},
 	a(props) {
 		if (!props.target && props.href.match(/:\/\//)) {
 			props.target = '_blank';
@@ -103,7 +106,7 @@ export default class ContentRegion extends Component {
 		if (!content.match(/([^\\]):[a-z0-9_]+:/gi)) return;
 
 		if (!this.emoji) {
-			require(['../lib/gh-emoji'], ({ replace }) => {
+			import(/* webpackChunkName: "emoji" */ '../lib/gh-emoji').then(({ replace }) => {
 				this.emoji = replace || EMPTY;
 				this.applyEmoji();
 			});

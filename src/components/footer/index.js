@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { connect } from '../../lib/store';
+import { connect } from 'unistore/preact';
 import config from '../../config';
 import style from './style';
 

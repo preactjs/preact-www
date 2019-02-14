@@ -1,8 +1,8 @@
 import { h, Component } from 'preact';
-import cx from 'classnames';
+import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
-import { connect } from '../../lib/store';
-import pure from '../../lib/pure-component';
+import { connect } from 'unistore/preact';
+// import pure from '../../lib/pure-component';
 import Search from './search';
 import style from './style';
 import config from '../../config';
@@ -14,7 +14,7 @@ const LINK_FLAIR = {
 
 
 @connect( ({ url }) => ({ url }) )
-@pure
+// @pure
 export default class Header extends Component {
 	state = { open:false };
 
