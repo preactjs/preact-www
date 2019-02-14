@@ -54,8 +54,12 @@ Wayback machine for free MIDI files
 [Github Project](https://github.com/feross/bitmidi.com)
 
 **[Code and Comment](https://code-and-comment.github.io/code-and-comment/)** :memo:
-The which add the comments to a file in Github.
+An application for adding comments to any file on Github.
 [Github Project](https://github.com/code-and-comment/code-and-comment)
+
+**[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
+The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
+[Github Project](https://github.com/sgtpep/exchange-widget)
 
 ## Full Demos & Examples
 

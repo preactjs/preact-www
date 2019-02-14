@@ -147,7 +147,7 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//ft.com" target="_blank">
-            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            <img src="/assets/we-are-using/financial-times.svg" alt="Financial Times">
             Financial Times
         </a>
     </li>
@@ -281,6 +281,12 @@ permalink: '/about/we-are-using'
         <a href="//leesa.com" target="_blank">
             <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
             Leesa Sleep
+        </a>
+    </li>
+    <li>
+        <a href="//anwb.nl" target="_blank">
+            <img src="/assets/we-are-using/anwb.svg" alt="ANWB">
+            ANWB
         </a>
     </li>
 </ul>
