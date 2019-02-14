@@ -12,7 +12,7 @@ Preact ist nicht darauf ausgelegt, jede einzelne Funktion von React zu übernehm
 
 ## Versionenkompatibilität
 
-Für Preact und [preact-compat] gilt: Versionenkompatibilit wird gegen die _aktuellen_ und _vorherigen_ Hauptveröffentlichungen von React gemessen. Wenn neue Funktionen vom React-Team angekündigt werden, werden sie, sollten sie mit den [Projektziele]n im Hinterkopf nutzvoll sein, zu Preacts Kern hinzugefügt. Dies ist ein recht demokratischer Prozess, der von sich konstant entwickelnden Diskussionen und Entscheidungen der Masse gezeichnet ist. Er lebt von Issues und Pull Requests.
+Für Preact und [preact-compat] gilt: Versionenkompatibilität wird gegen die _aktuellen_ und _vorherigen_ Hauptveröffentlichungen von React gemessen. Wenn neue Funktionen vom React-Team angekündigt werden, werden sie, sollten sie mit den [Projektziele]n im Hinterkopf nutzvoll sein, zu Preacts Kern hinzugefügt. Dies ist ein recht demokratischer Prozess, der von sich konstant entwickelnden Diskussionen und Entscheidungen der Masse gezeichnet ist. Er lebt von Issues und Pull Requests.
 
 > Daher ist von React `0.14.x` und `15.x` gemeint, wenn auf der Website oder in der Dokumentation von Kompatibilität oder Vergleichen die Rede ist.
 
