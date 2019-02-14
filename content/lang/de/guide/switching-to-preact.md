@@ -216,7 +216,7 @@ Wenn man auch in Zukunft Stringreferenzierungen nutzen möchte, bietet [diese kl
 
 ### 4. Root Render vereinfachen
 
-Seit `react@0.13` wurde `render()` durch das `react-dom`-Modul bereitgestellt.
+Seit React 0.13 wurde `render()` durch das `react-dom`-Modul bereitgestellt.
 Preact nutzt kein separates Modul für das Rendern des DOMs, da Preact sowieso darauf konzentriert, ein guter DOM-Renderer zu sein.
 Daher ist der letzte Schritt des Konvertierens der Codebasis zu Preact das Austauschen von `ReactDOM.render()` zu Preacts `render()`:
 
