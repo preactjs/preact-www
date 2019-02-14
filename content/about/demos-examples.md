@@ -57,6 +57,10 @@ Wayback machine for free MIDI files
 An application for adding comments to any file on Github.
 [Github Project](https://github.com/code-and-comment/code-and-comment)
 
+**[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
+The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
+[Github Project](https://github.com/sgtpep/exchange-widget)
+
 ## Full Demos & Examples
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
