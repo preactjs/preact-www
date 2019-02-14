@@ -279,7 +279,7 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//anwb.nl" target="_blank">
-            <img src="/assets/we-are-using/ANWB.svg" alt="ANWB">
+            <img src="/assets/we-are-using/anwb.svg" alt="ANWB">
             ANWB
         </a>
     </li>
