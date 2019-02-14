@@ -1,11 +1,30 @@
 {
   "sourceMaps": true,
   "presets": [
-    ["es2015", { "loose":true }],
-    "stage-0"
+    ["@babel/preset-env", {
+      "loose":true,
+      "targets": "> 1%, not dead",
+      "useBuiltIns": false,
+      "exclude": [
+        "transform-regenerator"
+      ]
+    }]
   ],
   "plugins": [
-    ["transform-decorators-legacy"],
-    ["transform-react-jsx", { "pragma": "h" }]
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "babel-plugin-transform-async-to-promises",
+      { "inlineHelpers": true, "externalHelpers": false }
+    ],
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true
+    }],
+    [
+      "@babel/plugin-proposal-class-properties",
+      { "loose": true }
+    ],
+    ["@babel/plugin-transform-react-jsx", {
+      "pragma": "h"
+    }]
   ]
 }
