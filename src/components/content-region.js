@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
 import yaml from 'yaml';
-import Markdown from 'markdown';
+import Markdown from 'lib/markdown';
 import Markup from 'preact-markup';
 import widgets from './widgets';
 
