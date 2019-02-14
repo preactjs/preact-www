@@ -170,6 +170,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//insided.com" target="_blank">
+            <img src="/assets/we-are-using/insided.svg" alt="inSided">
+            inSided
+        </a>
+    </li>
+    <li>
         <a href="//www.dominos.com" target="_blank">
             <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
             Domino's
