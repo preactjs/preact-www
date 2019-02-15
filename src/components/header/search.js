@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import style from './style';
 import config from '../../config';
 import { lazily, cancelLazily } from '../../lib/lazily';
+import root from 'window-or-global';
 
 let docsearchInstance, input;
 
@@ -10,7 +11,7 @@ export default class Search extends Component {
 
 	load = () => {
 		this.lazy = lazily(() => {
-			if (window.docsearch) return;
+			if (root.docsearch) return;
 
 			let head = document.head || document.querySelector('head');
 
@@ -27,7 +28,7 @@ export default class Search extends Component {
 	};
 
 	loaded = () => {
-		let docsearch = typeof window!=='undefined' && window.docsearch;
+		let docsearch = typeof root!=='undefined' && root.docsearch;
 		if (docsearch && !docsearchInstance) {
 			docsearchInstance = docsearch({
 				apiKey: config.docsearch.apiKey,

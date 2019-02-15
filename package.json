@@ -62,6 +62,7 @@
     "surge": "^0.20.1",
     "unfetch": "^4.0.1",
     "unistore": "^3.1.0",
+    "window-or-global": "^1.0.1",
     "worker-loader": "^2.0.0",
     "yaml": "^0.3.0"
   },

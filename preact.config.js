@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+const CopyPlugin = require('copy-webpack-plugin');
 
 export default function (config, env, helpers) {
   config.resolve.alias.src = resolve(__dirname, 'src')
@@ -11,5 +12,9 @@ export default function (config, env, helpers) {
 		}
 		return loader
 	})
+	config.output.globalObject = 'this';
+	config.plugins.push(new CopyPlugin([
+		{ from: resolve(__dirname, './content'), to: resolve(__dirname, './build/content/') }
+	]))
   return config
 }
