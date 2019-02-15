@@ -73,6 +73,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//wenwen.sogou.com/" target="_blank">
+            <img src="/assets/we-are-using/sogou.png" alt="Sogou wenwen">
+            Sogou wenwen
+        </a>
+    </li>
+    <li>
         <a href="//housing.com" target="_blank">
             <img src="/assets/we-are-using/housing.png" alt="Housing.com">
             Housing.com
@@ -115,6 +121,18 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//bustle.com" target="_blank">
+            <img src="/assets/we-are-using/bustle.svg" alt="Bustle">
+            Bustle
+        </a>
+    </li>
+    <li>
+        <a href="//www.ecatering.irctc.co.in" target="_blank">
+            <img src="/assets/we-are-using/irctc-ecatering.svg" alt="IRCTC Ecatering">
+            IRCTC Ecatering
+        </a>
+    </li>
+    <li>
         <a href="//hashicorp.com" target="_blank">
             <img src="/assets/we-are-using/hashicorp.svg" alt="HashiCorp">
             HashiCorp
@@ -128,7 +146,7 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//ft.com" target="_blank">
-            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            <img src="/assets/we-are-using/financial-times.svg" alt="Financial Times">
             Financial Times
         </a>
     </li>
@@ -148,6 +166,12 @@ permalink: '/about/we-are-using'
         <a href="//dev.to" target="_blank">
             <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
             The DEV Community
+        </a>
+    </li>
+    <li>
+        <a href="//www.dominos.com" target="_blank">
+            <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
+            Domino's
         </a>
     </li>
     <li>
@@ -205,12 +229,6 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
-        <a href="//devpad.io" target="_blank">
-            <img src="/assets/we-are-using/devpad.png" alt="DevPad">
-            DevPad
-        </a>
-    </li>
-    <li>
         <a href="//wellapp.com" target="_blank">
             <img src="/assets/we-are-using/wellapp.png" alt="WELL Messenger">
             WELL Messenger
@@ -240,8 +258,25 @@ permalink: '/about/we-are-using'
             slowtec
         </a>
     </li>
+    <li>
+        <a href="//sierranevada.co" target="_blank">
+            <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
+            Sierra Nevada
+        </a>
+    </li>
+    <li>
+        <a href="//bakkenbaeck.no" target="_blank">
+            <img src="/assets/we-are-using/bakkenbaeck.svg" alt="Bakken & Baeck">
+            Bakken & Baeck
+        </a>
+    </li>
+    <li>
+        <a href="//leesa.com" target="_blank">
+            <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
+            Leesa Sleep
+        </a>
+    </li>
 </ul>
-
 
 ---
 

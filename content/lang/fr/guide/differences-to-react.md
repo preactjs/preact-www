@@ -61,7 +61,7 @@ En fait, Preact ajoute quelques fonctionnalités pratiques inspirées par le tra
 Preact et React présentent quelques subtiles différences :
 
 - `render()` accepte un troisième argument, qui est le noeud racine à _remplacer_, sinon ça ajoute le noeud. Cela pourrait un peu changer dans une future version, peut-être en détectant automatiquement qu'un remplacement est approprié, en inspectant le noeud racine.
-- Les composants n'implémentent pas `contextTypes` ou `childContextTypes`. Les enfants reçoicent toutes les entrées du `context` définies dans `getChildContext()`.
+- Les composants n'implémentent pas `contextTypes` ou `childContextTypes`. Les enfants reçoivent toutes les entrées du `context` définies dans `getChildContext()`.
 
 [buts du projet]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript

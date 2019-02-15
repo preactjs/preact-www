@@ -74,6 +74,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//wenwen.sogou.com/" target="_blank">
+            <img src="/assets/we-are-using/sogou.png" alt="Sogou wenwen">
+            Sogou wenwen
+        </a>
+    </li>
+    <li>
         <a href="//housing.com" target="_blank">
             <img src="/assets/we-are-using/housing.png" alt="Housing.com">
             Housing.com
@@ -141,7 +147,7 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//ft.com" target="_blank">
-            <img src="/assets/we-are-using/financial-times.png" alt="Financial Times">
+            <img src="/assets/we-are-using/financial-times.svg" alt="Financial Times">
             Financial Times
         </a>
     </li>
@@ -161,6 +167,12 @@ permalink: '/about/we-are-using'
         <a href="//dev.to" target="_blank">
             <img src="/assets/we-are-using/thepracticaldev.png" alt="The DEV Community">
             The DEV Community
+        </a>
+    </li>
+    <li>
+        <a href="//insided.com" target="_blank">
+            <img src="/assets/we-are-using/insided.svg" alt="inSided">
+            inSided
         </a>
     </li>
     <li>
@@ -256,7 +268,7 @@ permalink: '/about/we-are-using'
     <li>
         <a href="//sierranevada.co" target="_blank">
             <img src="/assets/we-are-using/sierranevada.svg" alt="Sierra Nevada - Hamburguesas y Malteadas">
-            Sierra Nevad
+            Sierra Nevada
         </a>
     </li>
     <li>
@@ -269,6 +281,12 @@ permalink: '/about/we-are-using'
         <a href="//leesa.com" target="_blank">
             <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
             Leesa Sleep
+        </a>
+    </li>
+    <li>
+        <a href="//anwb.nl" target="_blank">
+            <img src="/assets/we-are-using/anwb.svg" alt="ANWB">
+            ANWB
         </a>
     </li>
 </ul>
