@@ -3,6 +3,7 @@ import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style';
+import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 
 const EXAMPLES = [
 	{
@@ -18,7 +19,7 @@ const EXAMPLES = [
 export default class Repl extends Component {
 	state = {
 		loading: 'Initializing...',
-		code: localStorage.getItem('preact-www-repl-code') || codeExample
+		code: localStorageGet('preact-www-repl-code') || codeExample
 	};
 
 	constructor(props, context) {
@@ -87,7 +88,7 @@ export default class Repl extends Component {
 	componentDidUpdate = debounce(500, () => {
 		let { code } = this.state;
 		if (code===codeExample) code = '';
-		localStorage.setItem('preact-www-repl-code', code || '');
+		localStorageSet('preact-www-repl-code', code || '');
 	})
 
 	componentWillReceiveProps({ code }) {
