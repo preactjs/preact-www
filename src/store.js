@@ -1,6 +1,7 @@
 import createStore from 'unistore';
 import getDefaultLanguage from './lib/default-language';
 import config from './config';
+import { localStorageSet, localStorageGet } from './lib/localstorage';
 
 const SAVE = ['lang'];
 
@@ -22,13 +23,13 @@ export default () => {
 function saveState(state) {
 	let saved = {};
 	for (let i=SAVE.length; i--; ) saved[SAVE[i]] = state[SAVE[i]];
-	localStorage.state = JSON.stringify(saved);
+	localStorageSet('state', JSON.stringify(saved));
 }
 
 function getSavedState() {
 	let state;
 	try {
-		state = JSON.parse(localStorage.state);
+		state = JSON.parse(localStorageGet('state'));
 	} catch (e) {}
 	return state || {};
 }
