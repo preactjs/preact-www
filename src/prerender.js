@@ -7,5 +7,6 @@ const routes = flatMap(config.nav, arr => arr.path ? {path: arr.path , name: arr
 
 module.exports = routes.map( route => ({
 	url: route.path,
-	data: fs.readFileSync( resolve(__dirname, '../', `content${route.path == '/' ? '/index' : route.path}.md`))
+	title: route.name
+	// ,data: fs.readFileSync(resolve(__dirname, '../', `content${route.path == '/' ? '/index' : route.path}.md`), 'utf8')
 }));

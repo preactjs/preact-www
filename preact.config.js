@@ -13,8 +13,17 @@ export default function (config, env, helpers) {
 		lib: resolve(__dirname, 'src/lib')
 	});
 
+	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions.PRERENDER = String(env.ssr===true);
+
 	// web worker HMR requires it
 	config.output.globalObject = 'self';
+
+	config.module.noParse = [
+		/babel-standalone/
+	].concat(config.module.noParse || []);
+
+	const babel = helpers.getLoadersByName(config, 'babel-loader')[0].rule;
+	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
 
 	// something broke in less
 	config.module.rules.forEach(loader => {
@@ -26,42 +35,45 @@ export default function (config, env, helpers) {
 	if (critters) {
 		config.plugins[critters.index] = new Critters({
 			preload: 'swap',
-			preloadFonts: true
+			mergeStylesheets: false
+			// preloadFonts: true
 		});
 		//critters.plugin.options.preloadFonts = true;
 	}
 
-	// Find YAML FrontMatter preceeding a markdown document
-	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
+	if (!env.ssr) {
+		// Find YAML FrontMatter preceeding a markdown document
+		const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
-	// Find a leading title in a markdown document
-	const TITLE_REG = /^\s*#\s+(.+)\n+/;
+		// Find a leading title in a markdown document
+		const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
-	// Converts YAML FrontMatter to JSON FrontMatter for easy client-side parsing.
-	config.plugins.push(new CopyPlugin([{
-		context: __dirname,
-		from: 'content',
-		to: 'content',
-		transform(content, path) {
-			if (typeof content !== 'string') {
-				content = content.toString('utf8');
-			}
-
-			const matches = content.match(FRONT_MATTER_REG);
-			if (!matches) return content;
-
-			const meta = yaml.eval('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
-			content = content.replace(FRONT_MATTER_REG, '');
-			if (!meta.title) {
-				let [,title] = content.match(TITLE_REG) || [];
-				if (title) {
-					content = content.replace(TITLE_REG, '');
-					meta.title = title;
+		// Converts YAML FrontMatter to JSON FrontMatter for easy client-side parsing.
+		config.plugins.push(new CopyPlugin([{
+			context: __dirname,
+			from: 'content',
+			to: 'content',
+			transform(content, path) {
+				if (typeof content !== 'string') {
+					content = content.toString('utf8');
 				}
-			}
 
-			content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
-			return content;
-		}
-	}]));
+				const matches = content.match(FRONT_MATTER_REG);
+				if (!matches) return content;
+
+				const meta = yaml.eval('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
+				content = content.replace(FRONT_MATTER_REG, '');
+				if (!meta.title) {
+					let [,title] = content.match(TITLE_REG) || [];
+					if (title) {
+						content = content.replace(TITLE_REG, '');
+						meta.title = title;
+					}
+				}
+
+				content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
+				return content;
+			}
+		}]));
+	}
 }

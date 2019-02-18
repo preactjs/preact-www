@@ -2,7 +2,7 @@
 import './style/index.less';
 import 'linkstate/polyfill';
 import './pwa';
-import App from './components/app'
+import App from './components/app';
 import * as preact from 'preact';
 
 // allows users to play with preact in the browser developer console

@@ -91,7 +91,7 @@ const getAllPaths = memoizeProd( () => {
 
 
 
-@connect( ({ lang, data }) => ({ lang, data }) )
+@connect( ({ lang }) => ({ lang }) )
 export default class ContentRegion extends Component {
 	fetch() {
 		let { name, lang, onLoad } = this.props;
@@ -145,18 +145,39 @@ export default class ContentRegion extends Component {
 	}
 
 	render({ store, name, children, onLoad, onToc, data, ...props }, { type, content }) {
-		if (!content && data && !data.$used && typeof document!=='undefined') {
-			// const c = document.querySelector('content-region');
-			const obj = {};
-			// Object.defineProperty(obj, '__html', { get: () => node.innerHTML });
-			return (
-				<content-region
-					ref={c => { obj.__html = c.innerHTML; }}
-					loading
-					dangerouslySetInnerHTML={obj}
-					{...props}
-				/>
-			);
+		if (!content) {
+			/*global PRERENDER,__non_webpack_require__*/
+			if (PRERENDER) {
+				let route = location.pathname == '/' ? '/index' : location.pathname;
+				let data = __non_webpack_require__('fs').readFileSync(`content${route}.md`, 'utf8');
+				const yaml = __non_webpack_require__('yaml');
+				data = data.replace(FRONT_MATTER_REG, (s, y) => {
+					const meta = yaml.eval('---\n'+y.replace(/^/gm,'  ')+'\n') || {};
+					return '---\n' + JSON.stringify(meta) + '\n---\n';
+				});
+				if (typeof DOMParser === 'undefined') {
+					global.DOMParser = new (__non_webpack_require__('jsdom').JSDOM)().window.DOMParser;
+				}
+				try {
+					({ content, type } = parseContent(data, 'md'));
+				} catch (err) {
+					console.log(console.log('prerender content: ', data));
+					throw err;
+				}
+			}
+			else if (typeof document!=='undefined') {
+				// const c = document.querySelector('content-region');
+				// Object.defineProperty(obj, '__html', { get: () => node.innerHTML });
+				const obj = {};
+				return (
+					<content-region
+						ref={c => { obj.__html = c.innerHTML; }}
+						loading
+						dangerouslySetInnerHTML={obj}
+						{...props}
+					/>
+				);
+			}
 		}
 
 		if (!content && data && !data.$used) content = data;
