@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import { memoize } from 'decko';
+import { localStorageGet, localStorageSet } from '../lib/localstorage';
 
 const githubStars = memoize( repo => fetch('//api.github.com/repos/'+repo)
 	.then( r => r.json() )
@@ -11,12 +12,12 @@ if (typeof window!=='undefined') window.githubStars = githubStars;
 
 export default class GithubStars extends Component {
 	state = {
-		stars: localStorage._stars || ''
+		stars: localStorageGet('_stars') || ''
 	};
 
 	setStars = stars => {
 		if (stars && stars!=this.state.stars) {
-			localStorage._stars = stars;
+			localStorageSet('_stars', stars);
 			this.setState({ stars });
 		}
 	};

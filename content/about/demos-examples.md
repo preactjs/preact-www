@@ -32,19 +32,6 @@ The audience participation Progressive Web App from Chrome Dev Summit 2016!
 Open-Source peach.cool app.  
 [Github Project](https://github.com/developit/nectarine)
 
-**[Dropfox](https://github.com/developit/dropfox)** :wolf:  
-Desktop app for Dropbox, built with Preact, Electron and Photon.
-
-**[Connectivity Index](https://cindex.co)** :iphone:  
-A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
-
-**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
-Desktop App for uploading assets to Contentful (API based CMS)
-[Github Project](https://github.com/contentful-labs/file-upload-example)
-
-**[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
-Embed Hacker News comment tree below your blog article.
-
 **[Web Maker](https://webmakerapp.com/app/)** :zap:
 Blazing fast & offline frontend playground.
 [Github Project](https://github.com/chinchang/web-maker)
@@ -53,9 +40,29 @@ Blazing fast & offline frontend playground.
 Wayback machine for free MIDI files
 [Github Project](https://github.com/feross/bitmidi.com)
 
+**[BBC Roasting Calculator](https://www.bbc.com/food/techniques/articles/roast-calculator)** :turkey:
+Calculates cooking times for different cuts of meat.
+
+**[Dropfox](https://github.com/developit/dropfox)** :wolf:  
+Desktop app for Dropbox, built with Preact, Electron and Photon.
+
+**[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
+Embed Hacker News comment tree below your blog article.
+
+**[Connectivity Index](https://cindex.co)** :iphone:  
+A site that allows you to search through [Akamai State of the Internet Connectivity Report](https://content.akamai.com/PG7010-Q2-2016-SOTI-Connectivity-Report.html) data by country.
+
+**[Drag & Drop file upload (webpack 2)](https://contentful-labs.github.io/file-upload-example/)** :rocket:
+Desktop App for uploading assets to Contentful (API based CMS)
+[Github Project](https://github.com/contentful-labs/file-upload-example)
+
 **[Code and Comment](https://code-and-comment.github.io/code-and-comment/)** :memo:
-The which add the comments to a file in Github.
+An application for adding comments to any file on Github.
 [Github Project](https://github.com/code-and-comment/code-and-comment)
+
+**[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
+The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
+[Github Project](https://github.com/sgtpep/exchange-widget)
 
 ## Full Demos & Examples
 
