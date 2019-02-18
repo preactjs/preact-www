@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
-import yaml from 'yaml';
+// import yaml from 'yaml';
 import Markdown from 'lib/markdown';
 import Markup from 'preact-markup';
 import widgets from './widgets';
@@ -29,10 +29,10 @@ const TYPES = {
 const EMPTY = {};
 
 // Find YAML FrontMatter preceeding a markdown document
-const FRONT_MATTER_REG = /^\s*\-\-\-\n\s*([\s\S]*?)\s*\n\-\-\-\n/i;
+const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 // Find a leading title in a markdown document
-const TITLE_REG = /^\s*#\s+(.+)\n+/;
+// const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
 // only memoize in prod
 const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f=>f;
@@ -63,15 +63,16 @@ const getContent = memoizeProd( ([lang, name]) => {
 
 function parseContent(text, ext) {
 	let [,frontMatter] = text.match(FRONT_MATTER_REG) || [],
-		meta = frontMatter && yaml.eval('---\n'+frontMatter.replace(/^/gm,'  ')+'\n') || {},
+		// meta = frontMatter && yaml.eval('---\n'+frontMatter.replace(/^/gm,'  ')+'\n') || {},
+		meta = frontMatter && JSON.parse(frontMatter),
 		content = text.replace(FRONT_MATTER_REG, '');
-	if (!meta.title) {
-		let [,title] = content.match(TITLE_REG) || [];
-		if (title) {
-			content = content.replace(TITLE_REG, '');
-			meta.title = title;
-		}
-	}
+	// if (!meta.title) {
+	// 	let [,title] = content.match(TITLE_REG) || [];
+	// 	if (title) {
+	// 		content = content.replace(TITLE_REG, '');
+	// 		meta.title = title;
+	// 	}
+	// }
 
 	return {
 		type: TYPES[String(ext).toLowerCase()] || TYPES.md,
@@ -90,7 +91,7 @@ const getAllPaths = memoizeProd( () => {
 
 
 
-@connect( ({ lang }) => ({ lang }) )
+@connect( ({ lang, data }) => ({ lang, data }) )
 export default class ContentRegion extends Component {
 	fetch() {
 		let { name, lang, onLoad } = this.props;
@@ -135,6 +136,7 @@ export default class ContentRegion extends Component {
 
 	componentDidMount() {
 		this.fetch();
+		if (this.props.data) this.props.data.$used = true;
 	}
 
 	componentDidUpdate({ name, lang }, { content }) {
@@ -142,7 +144,23 @@ export default class ContentRegion extends Component {
 		if (content!==this.state.content) this.updateToc();
 	}
 
-	render({ store, name, children, onLoad, onToc, ...props }, { type, content }) {
+	render({ store, name, children, onLoad, onToc, data, ...props }, { type, content }) {
+		if (!content && data && !data.$used && typeof document!=='undefined') {
+			// const c = document.querySelector('content-region');
+			const obj = {};
+			// Object.defineProperty(obj, '__html', { get: () => node.innerHTML });
+			return (
+				<content-region
+					ref={c => { obj.__html = c.innerHTML; }}
+					loading
+					dangerouslySetInnerHTML={obj}
+					{...props}
+				/>
+			);
+		}
+
+		if (!content && data && !data.$used) content = data;
+
 		return (
 			<content-region loading={!content} {...props}>
 				{ content && (

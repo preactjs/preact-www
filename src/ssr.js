@@ -1,6 +1,4 @@
 import 'isomorphic-unfetch';
-//import '.';
-import { h } from 'preact';
 import 'linkstate/polyfill';
 import renderToString from 'preact-render-to-string';
 import App from './components/app';
