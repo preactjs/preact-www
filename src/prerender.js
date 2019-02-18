@@ -1,12 +1,11 @@
 const fs = require('fs');
+const { resolve } = require('path');
+const flatMap = require('flatmap');
+const config = require('./config.json');
 
-const content = fs.readFileSync(__dirname + '/../content/index.md');
+const routes = flatMap(config.nav, arr => arr.path ? {path: arr.path == '/' ? '/index' : arr.path, name: arr.name} : arr.routes);
 
-console.log('prerender config loaded');
-
-module.exports = [
-	{
-		url: '/',
-		data: content
-	}
-];
+module.exports = routes.map( route => ({
+	url: route.path,
+	data: fs.readFileSync( resolve(__dirname, '../', `content${route.path}.md`))
+}));

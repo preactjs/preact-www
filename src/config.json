@@ -97,11 +97,6 @@
 					"name": "Browser Support"
 				}
 			]
-		},
-		{
-			"path": "/repl",
-			"title": "REPL",
-			"controller": "Repl"
 		}
 	]
 }
