@@ -35,10 +35,9 @@ export default function (config, env, helpers) {
 	if (critters) {
 		config.plugins[critters.index] = new Critters({
 			preload: 'swap',
-			mergeStylesheets: false
-			// preloadFonts: true
+			mergeStylesheets: false,
+			pruneSource: false
 		});
-		//critters.plugin.options.preloadFonts = true;
 	}
 
 	if (!env.ssr) {

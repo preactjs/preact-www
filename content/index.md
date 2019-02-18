@@ -19,7 +19,7 @@ toc: false
         <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
     <p>
-        <github-stars user="developit" repo="preact">19,000+</github-stars>
+        <github-stars user="developit" repo="preact">20,000+</github-stars>
     </p>
 </jumbotron>
 

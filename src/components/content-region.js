@@ -136,7 +136,7 @@ export default class ContentRegion extends Component {
 
 	componentDidMount() {
 		this.fetch();
-		if (this.props.data) this.props.data.$used = true;
+		// if (this.props.data) this.props.data.$used = true;
 	}
 
 	componentDidUpdate({ name, lang }, { content }) {
@@ -148,6 +148,8 @@ export default class ContentRegion extends Component {
 		if (!content) {
 			/*global PRERENDER,__non_webpack_require__*/
 			if (PRERENDER) {
+				// this is all only run during prerendering
+
 				let route = location.pathname == '/' ? '/index' : location.pathname;
 				let data = __non_webpack_require__('fs').readFileSync(`content${route}.md`, 'utf8');
 				const yaml = __non_webpack_require__('yaml');
@@ -158,12 +160,7 @@ export default class ContentRegion extends Component {
 				if (typeof DOMParser === 'undefined') {
 					global.DOMParser = new (__non_webpack_require__('jsdom').JSDOM)().window.DOMParser;
 				}
-				try {
-					({ content, type } = parseContent(data, 'md'));
-				} catch (err) {
-					console.log(console.log('prerender content: ', data));
-					throw err;
-				}
+				({ content, type } = parseContent(data, 'md'));
 			}
 			else if (typeof document!=='undefined') {
 				// const c = document.querySelector('content-region');
@@ -171,8 +168,8 @@ export default class ContentRegion extends Component {
 				const obj = {};
 				return (
 					<content-region
-						ref={c => { obj.__html = c.innerHTML; }}
-						loading
+						ref={c => { if (c) obj.__html = c.innerHTML; }}
+						// loading
 						dangerouslySetInnerHTML={obj}
 						{...props}
 					/>
@@ -182,8 +179,9 @@ export default class ContentRegion extends Component {
 
 		if (!content && data && !data.$used) content = data;
 
+		// loading={!content}
 		return (
-			<content-region loading={!content} {...props}>
+			<content-region {...props}>
 				{ content && (
 					<Content type={type} content={content} components={COMPONENTS} />
 				) }

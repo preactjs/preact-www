@@ -9,13 +9,13 @@ const EMPTY = {};
 const getContent = route => route.content || route.path;
 
 export default class Page extends Component {
-	state = { loading:true };
+	// state = { loading:true };
 
-	componentWillReceiveProps({ route }) {
-		if (getContent(route)!==getContent(this.props.route)) {
-			this.setState({ loading:true });
-		}
-	}
+	// componentWillReceiveProps({ route }) {
+	// 	if (getContent(route)!==getContent(this.props.route)) {
+	// 		this.setState({ loading:true });
+	// 	}
+	// }
 
 	componentDidMount() {
 		this.setTitle();
@@ -34,8 +34,8 @@ export default class Page extends Component {
 	onLoad = ({ meta }) => {
 		this.setState({
 			current: getContent(this.props.route),
-			meta,
-			loading: false
+			meta
+			// loading: false
 		});
 	};
 
@@ -44,8 +44,9 @@ export default class Page extends Component {
 			name = getContent(route);
 		if (name!==current) loading = true;
 		return (
-			<div class={cx(style.page, style[layout])} loading={loading}>
-				{ meta.show_title!==false && (
+			// loading={loading}
+			<div class={cx(style.page, style[layout])}>
+				{ name!='index' && meta.show_title!==false && (
 					<h1 key="title" class={style.title}>{ meta.title || route.title }</h1>
 				) }
 				{ toc && meta.toc!==false && (
