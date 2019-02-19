@@ -18,7 +18,7 @@ Start building a [Preact] Progressive Web App in seconds 🔥
 - Support for CSS Modules, LESS, Sass, Stylus; with Autoprefixer
 - Monitor your bundle/chunk sizes with built-in tracking
 - Automatic app mounting, debug helpers & Hot Module Replacement
-- Fully customizable (Babel, browserlist, webpack, template support, [plugins](https://github.com/developit/preact-cli/wiki/Plugins)
+- Fully customizable (Babel, [`"browserslist"`], webpack, template support, [plugins]
 - In just **4.5kb** you get a productive environment:
   - [preact]
   - [preact-router]
@@ -30,23 +30,11 @@ Start building a [Preact] Progressive Web App in seconds 🔥
 [Promise]: https://npm.im/promise-polyfill
 [fetch]: https://github.com/developit/unfetch
 [preact]: https://github.com/developit/preact
-[WebpackConfigHelpers]: docs/webpack-helpers.md
-[`.babelrc`]: https://babeljs.io/docs/usage/babelrc
-[simple]: https://github.com/preactjs-templates/simple
 [`"browserslist"`]: https://github.com/ai/browserslist
-[```.babelrc```]: https://babeljs.io/docs/usage/babelrc
-[default]: https://github.com/preactjs-templates/default
 [sw-precache]: https://github.com/GoogleChrome/sw-precache
 [preact-router]: https://github.com/developit/preact-router
-[material]: https://github.com/preactjs-templates/material
-[widget]: https://github.com/preactjs-templates/widget
-[Plugins wiki]: https://github.com/developit/preact-cli/wiki/Plugins
-[preactjs-templates organization]: https://github.com/preactjs-templates
-[preactjs-templates/default]: https://github.com/preactjs-templates/default
-[recipes wiki]: https://github.com/developit/preact-cli/wiki/Config-Recipes
+[plugins]: https://github.com/developit/preact-cli/wiki/Plugins
 [PRPL]: https://developers.google.com/web/fundamentals/performance/prpl-pattern
-[`babel-preset-env`]: https://github.com/babel/babel-preset-env#targetsbrowsers
 [proof]: https://googlechrome.github.io/lighthouse/viewer/?gist=142af6838482417af741d966e7804346
-[Preact CLI preset]: https://github.com/developit/preact-cli/blob/master/src/lib/babel-config.js
 [Service Workers]: https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
 [`async!`]: https://github.com/developit/preact-cli/blob/222e7018dd360e40f7db622191aeca62d6ef0c9a/examples/full/src/components/app.js#L7
