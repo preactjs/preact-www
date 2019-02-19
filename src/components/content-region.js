@@ -43,14 +43,17 @@ const getContent = memoizeProd( ([lang, name]) => {
 	// attempt to use prefetched request
 	let fetchPromise = process.env.NODE_ENV==='production' && typeof window!=='undefined' && window['_boostrap_'+url] || fetch(url);
 	return fetchPromise
-		.then( r => {
-			if (!r.ok) {
-				// @TODO: allow falling back to english? (404 crashes dev server)
-				// if (lang) return fetch(url.replace(/lang\/[^/]+\//,''));
-				ext = 'md';
-				r = fetch(`${path}/${r.status}.md`);
+		.then(r => {
+			// fall back to english
+			if (!r.ok && lang) {
+				return fetch(url.replace(/lang\/[^/]+\//,''));
 			}
 			return r;
+		})
+		.then( r => {
+			if (r.ok) return r;
+			ext = 'md';
+			return fetch(`${path}/${r.status}.md`);
 		})
 		.then( r => r.text() )
 		.then( r => parseContent(r, ext) );
