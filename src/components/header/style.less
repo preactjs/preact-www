@@ -28,15 +28,34 @@
 
 	@media (max-width: @header-mobile-breakpoint) {
 		overflow: hidden;
+		display: flex;
 
 		&.open {
 			background: #222;
 			height: 100%;
 			overflow: auto;
+			justify-content: space-between;
 			overflow-scrolling: touch;
-
 			nav {
 				margin-right: 0;
+				position: absolute;
+				width: 100%;
+				text-align: left;
+				padding: 0;
+				a:global(.home) {
+					text-align: left;
+    			padding-left: 26px;
+				}
+				a {
+					display: block;
+				}
+				section {
+					margin: 0;
+					display: block;
+					a {
+						text-align: left;
+					}
+				}
 			}
 		}
 	}
@@ -47,11 +66,9 @@
 		font-size: 100%;
 		user-select: none;
 		user-drag: none;
-
 		@media (max-width: @header-mobile-breakpoint) {
 			display: block;
-			// margin-top: @header-height;
-			margin-right: 100px;
+			padding: 0 23px;
 		}
 
 		a {
@@ -70,12 +87,19 @@
 			cursor: pointer;
 
 			@media (max-width: @header-mobile-breakpoint) {
-				display: block;
+				min-width: 100px;
+				text-align: left;
+				padding-left: 26px;
+				display: none;
 			}
 
 			&:global(.home) {
 				text-transform: uppercase;
 				padding: 0 15px;
+				@media (max-width: @header-mobile-breakpoint) {
+					display: block;
+					padding: 0;
+				}
 				svg {
 					position: relative;
 					padding-right: 5px;
@@ -116,7 +140,10 @@
 			}
 
 			@media (max-width: @header-mobile-breakpoint) {
-				&, & > a {
+				&{
+					display: none;
+				}
+				& > a {
 					display: block;
 				}
 			}
@@ -192,7 +219,6 @@
 						top: 0;
 						padding: 0;
 						background: #333;
-						margin: 0 10px 10px;
 						transform: none;
 						animation: menuExpand 250ms ease forwards 1;
 						@keyframes menuExpand {
@@ -232,7 +258,7 @@
 	margin: 3px;
 	width: 20px;
 	height: 20px;
-	padding: 18px 15px 12px;
+	padding: 18px 23px 12px;
 	line-height: @header-height;
 	text-align: center;
 	z-index: 100;
@@ -246,6 +272,7 @@
 
 	@media (max-width: @header-mobile-breakpoint) {
 		display: block;
+		position: relative;
 	}
 
 	&:before {
@@ -282,6 +309,9 @@
 	}
 
 	&[open] {
+		@media (max-width: @header-mobile-breakpoint) {
+			position: absolute;
+		}
 		.hb1 {
 			transform: translate(4px,-1px) rotate(45deg);
 		}
@@ -317,20 +347,13 @@
 	background: #673AB8;
 
 	@media (max-width: @header-mobile-breakpoint) {
-		position: absolute;
-		right: 51px;
-		top: 0;
-
+		flex-grow: 1;
 		.open & {
 			display: none;
 		}
 
 		.searchBox {
 			width: 0;
-
-			&:focus, &:valid {
-				margin-left: 1000px;
-			}
 		}
 	}
 
@@ -350,13 +373,18 @@
 		font-size: 100%;
 		will-change: width;
 		transition: width 250ms ease;
-
+		@media (max-width: @header-mobile-breakpoint) {
+			width: 100%;
+			margin: 10px 0;
+		}
 		&::-webkit-input-placeholder {
 			color: lighten(#673AB8, 5%);
 		}
 
 		&:focus, &:valid {
-			width: 140px;
+			@media (min-width: @header-mobile-breakpoint) {
+				width: 140px;
+			}
 			color: #D1C3EA;
 			outline: none;
 		}

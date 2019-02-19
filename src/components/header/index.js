@@ -22,6 +22,7 @@ export default class Header extends Component {
 
 	// close menu on navigate
 	componentWillReceiveProps({ url }) {
+		console.log('m8?', url, this.props.url)
 		if (url!==this.props.url && this.state.open) {
 			this.setState({ open:false });
 		}
@@ -30,9 +31,9 @@ export default class Header extends Component {
 	render({ url }, { open }) {
 		return (
 			<header class={cx(style.header, open && style.open)}>
-				<Hamburgler open={open} onClick={this.toggle} />
 				<Nav routes={config.nav} current={url} />
 				<Search />
+				<Hamburgler open={open} onClick={this.toggle} />
 				<Corner />
 			</header>
 		);
