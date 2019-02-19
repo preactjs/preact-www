@@ -28,30 +28,21 @@ export default class Repl extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ loading:'Loading REPL...' });
+		this.setState({ loading: 'Loading REPL...' });
 
-		// Load the code editor
-		require.ensure([], require => {
-			let r = obj => obj.default || obj;
-			this.CodeEditor = r(require('../../code-editor'));
-			this.Runner = r(require('./runner'));
+		Promise.all([
+			import(/* webpackChunkName: "editor" */ '../../code-editor'),
+			import(/* webpackChunkName: "runner" */ './runner')
+		]).then(([CodeEditor, Runner]) => {
+			this.CodeEditor = CodeEditor.default;
+			this.Runner = Runner.default;
 
 			// Load transpiler
-			this.setState({ loading:'Initializing Babel worker...' });
+			this.setState({ loading: 'Initializing Babel worker...' });
 			this.Runner.worker.call('ping').then( () => {
 				this.setState({ loading:false });
 			});
-		}, 'editor');
-
-		// webpack 2:
-		// Promise.all([
-		// 	System.import('../../code-editor'),
-		// 	System.import('./runner')
-		// ]).then( (CodeEditor, Runner) => {
-		// 	this.CodeEditor = CodeEditor;
-		// 	this.Runner = Runner;
-		// 	this.setState({ loading:false, loaded:true });
-		// });
+		});
 	}
 
 	share = () => {

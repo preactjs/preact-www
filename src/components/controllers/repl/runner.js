@@ -40,7 +40,7 @@ export default class Runner extends Component {
 	run = debounce(1000, () => {
 		let { code, onSuccess, onError } = this.props;
 
-		code = code.replace(/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*\;\s*(\r|\n)/g, (s, pre, q, lib) => {
+		code = code.replace(/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*;\s*(\r|\n)/g, (s, pre, q, lib) => {
 			console.info(`Skipping import "${lib}": imports not supported.`);
 			return pre || '';
 		});
