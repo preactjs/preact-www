@@ -3,6 +3,7 @@ import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style';
+import cx from '../../../lib/cx';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 
 const EXAMPLES = [
@@ -40,7 +41,7 @@ export default class Repl extends Component {
 			// Load transpiler
 			this.setState({ loading: 'Initializing Babel worker...' });
 			this.Runner.worker.call('ping').then( () => {
-				this.setState({ loading:false });
+				this.setState({ loading: false });
 			});
 		});
 	}
@@ -136,7 +137,7 @@ export default class Repl extends Component {
 					</label>
 					<button class={style.share} onClick={this.share}>{copied ? '🔗 Copied' : 'Share'}</button>
 				</header>
-				<pre class={{ [style.error]:true, [style.showing]:!!error }}>{ String(error) }</pre>
+				<pre class={cx(style.error, error && style.showing)}>{ String(error) }</pre>
 				<this.CodeEditor class={style.code} value={code} error={error} onInput={this.linkState('code', 'value')} />
 				<this.Runner class={style.output} onError={this.linkState('error', 'error')} onSuccess={this.onSuccess} code={code} />
 			</div>
