@@ -22,7 +22,6 @@ export default class Header extends Component {
 
 	// close menu on navigate
 	componentWillReceiveProps({ url }) {
-		console.log('m8?', url, this.props.url)
 		if (url!==this.props.url && this.state.open) {
 			this.setState({ open:false });
 		}
