@@ -95,25 +95,6 @@
 		}
 	}
 
-	.loading {
-		position: fixed;
-		display: none;
-		left: 50%;
-		top: 50%;
-		width: 200px;
-		margin: -40px 0 0 -100px;
-		text-align: center;
-
-		animation: fadeIn 400ms ease forwards 1 100ms;
-		@keyframes fadeIn {
-			from { opacity:0; }
-		}
-
-		progress-spinner {
-			font-size: 30px;
-		}
-	}
-
 	.title {
 		margin: 0 -1em;
 		padding: .5em;
@@ -136,21 +117,5 @@
 		position: relative;
 		overflow: hidden;
 		min-height: 200px;
-	}
-
-	& > h1,
-	.inner {
-		transition: opacity 80ms ease 30ms;
-	}
-
-	&[loading] {
-		.loading {
-			display: block;
-		}
-		& > h1,
-		.inner {
-			opacity: 0;
-			transition: none;
-		}
 	}
 }

@@ -9,13 +9,11 @@ const EMPTY = {};
 const getContent = route => route.content || route.path;
 
 export default class Page extends Component {
-	// state = { loading:true };
-
-	// componentWillReceiveProps({ route }) {
-	// 	if (getContent(route)!==getContent(this.props.route)) {
-	// 		this.setState({ loading:true });
-	// 	}
-	// }
+	componentWillReceiveProps({ route }) {
+		if (getContent(route)!==getContent(this.props.route)) {
+			this.setState({ loading:true });
+		}
+	}
 
 	componentDidMount() {
 		this.setTitle();
@@ -34,8 +32,8 @@ export default class Page extends Component {
 	onLoad = ({ meta }) => {
 		this.setState({
 			current: getContent(this.props.route),
-			meta
-			// loading: false
+			meta,
+			loading: false
 		});
 	};
 
@@ -44,18 +42,15 @@ export default class Page extends Component {
 			name = getContent(route);
 		if (name!==current) loading = true;
 		return (
-			// loading={loading}
 			<div class={cx(style.page, style[layout])}>
+				<progress-bar showing={loading} />
 				{ name!='index' && meta.show_title!==false && (
-					<h1 key="title" class={style.title}>{ meta.title || route.title }</h1>
+					<h1 class={style.title}>{ meta.title || route.title }</h1>
 				) }
 				{ toc && meta.toc!==false && (
-					<Toc key="toc" items={toc} />
+					<Toc items={toc} />
 				) }
-				<div key="loading" class={style.loading}>
-					<progress-spinner />
-				</div>
-				<div key="content" class={style.inner}>
+				<div class={style.inner}>
 					<ContentRegion
 						name={name}
 						onToc={this.linkState('toc', 'toc')}

@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
-// import yaml from 'yaml';
 import Markdown from 'lib/markdown';
 import Markup from 'preact-markup';
 import widgets from './widgets';
@@ -30,9 +29,6 @@ const EMPTY = {};
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
-
-// Find a leading title in a markdown document
-// const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
 // only memoize in prod
 const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f=>f;
@@ -63,16 +59,8 @@ const getContent = memoizeProd( ([lang, name]) => {
 
 function parseContent(text, ext) {
 	let [,frontMatter] = text.match(FRONT_MATTER_REG) || [],
-		// meta = frontMatter && yaml.eval('---\n'+frontMatter.replace(/^/gm,'  ')+'\n') || {},
 		meta = frontMatter && JSON.parse(frontMatter),
 		content = text.replace(FRONT_MATTER_REG, '');
-	// if (!meta.title) {
-	// 	let [,title] = content.match(TITLE_REG) || [];
-	// 	if (title) {
-	// 		content = content.replace(TITLE_REG, '');
-	// 		meta.title = title;
-	// 	}
-	// }
 
 	return {
 		type: TYPES[String(ext).toLowerCase()] || TYPES.md,
@@ -134,9 +122,16 @@ export default class ContentRegion extends Component {
 		if (onToc) onToc({ toc });
 	}
 
+	componentWillMount() {
+		const b = this.base = this.nextBase || this.__b;
+		if (b && typeof document!=='undefined') {
+			const C = b.nodeName;
+			this.bootTree = <C dangerouslySetInnerHTML={{ __html: b.innerHTML }} />;
+		}
+	}
+
 	componentDidMount() {
 		this.fetch();
-		// if (this.props.data) this.props.data.$used = true;
 	}
 
 	componentDidUpdate({ name, lang }, { content }) {
@@ -145,6 +140,8 @@ export default class ContentRegion extends Component {
 	}
 
 	render({ store, name, children, onLoad, onToc, data, ...props }, { type, content }) {
+		const regionHtml = this.regionHtml || (this.regionHtml = {});
+
 		if (!content) {
 			/*global PRERENDER,__non_webpack_require__*/
 			if (PRERENDER) {
@@ -162,26 +159,13 @@ export default class ContentRegion extends Component {
 				}
 				({ content, type } = parseContent(data, 'md'));
 			}
-			else if (typeof document!=='undefined') {
-				// const c = document.querySelector('content-region');
-				// Object.defineProperty(obj, '__html', { get: () => node.innerHTML });
-				const obj = {};
-				return (
-					<content-region
-						ref={c => { if (c) obj.__html = c.innerHTML; }}
-						// loading
-						dangerouslySetInnerHTML={obj}
-						{...props}
-					/>
-				);
+			else if (this.bootTree) {
+				return this.bootTree;
 			}
 		}
 
-		if (!content && data && !data.$used) content = data;
-
-		// loading={!content}
 		return (
-			<content-region {...props}>
+			<content-region dangerouslySetInnerHTML={regionHtml} {...props}>
 				{ content && (
 					<Content type={type} content={content} components={COMPONENTS} />
 				) }
