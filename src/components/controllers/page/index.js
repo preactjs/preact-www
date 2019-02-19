@@ -35,6 +35,15 @@ export default class Page extends Component {
 			meta,
 			loading: false
 		});
+		// content was loaded. if this was a forward route transition, animate back to top
+		if (window.nextStateToTop) {
+			window.nextStateToTop = false;
+			scrollTo({
+				top: 0,
+				left: 0,
+				behavior: 'smooth'
+			});
+		}
 	};
 
 	render({ route }, { current, loading, meta=EMPTY, toc }) {
