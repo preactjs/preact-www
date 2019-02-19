@@ -3,6 +3,7 @@ import delve from 'dlv';
 import CopyPlugin from 'copy-webpack-plugin';
 import Critters from 'critters-webpack-plugin';
 import yaml from 'yaml';
+import netlifyPlugin from 'preact-cli-plugin-netlify';
 
 export default function (config, env, helpers) {
 	// aliases from before the beginning of time
@@ -75,4 +76,6 @@ export default function (config, env, helpers) {
 			}
 		}]));
 	}
+
+	return netlifyPlugin(config);
 }
