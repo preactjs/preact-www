@@ -289,6 +289,12 @@ permalink: '/about/we-are-using'
             ANWB
         </a>
     </li>
+    <li>
+        <a href="//mopinion.com" target="_blank">
+            <img src="/assets/we-are-using/mopinion.svg" alt="Mopinion">
+            ANWB
+        </a>
+    </li>
 </ul>
 
 ---
