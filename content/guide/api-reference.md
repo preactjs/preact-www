@@ -49,6 +49,7 @@ import { Component } from 'preact';
 
 class MyComponent extends Component {
 	shouldComponentUpdate(nextProps, nextState) {}
+    willComponentUpdate(nextProps, nextState) {}
 	componentWillReceiveProps(nextProps, nextState) {
 		this.props // Previous props
 		this.state // Previous state
