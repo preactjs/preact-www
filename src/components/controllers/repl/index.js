@@ -106,25 +106,15 @@ export default class Repl extends Component {
 
 	render(_, { loading, code, error, example, copied }) {
 		if (loading) return (
-			<div class={style.repl}>
+			<ReplWrapper loading>
 				<div class={style.loading}>
-					<progress-spinner />
 					<h4>{loading}</h4>
 				</div>
-			</div>
+			</ReplWrapper>
 		);
 
 		return (
-			<div class={style.repl}>
-				<style>{`
-					main {
-						height: 100% !important;
-						overflow: hidden !important;
-					}
-					footer {
-						display: none !important;
-					}
-				`}</style>
+			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
 						<select value={example} onChange={this.linkState('example')}>
@@ -140,7 +130,24 @@ export default class Repl extends Component {
 				<pre class={cx(style.error, error && style.showing)}>{ String(error) }</pre>
 				<this.CodeEditor class={style.code} value={code} error={error} onInput={this.linkState('code', 'value')} />
 				<this.Runner class={style.output} onError={this.linkState('error', 'error')} onSuccess={this.onSuccess} code={code} />
-			</div>
+			</ReplWrapper>
 		);
 	}
 }
+
+const ReplWrapper = ({ loading, children }) => (
+	<div class={style.repl}>
+		<progress-bar showing={!!loading} />
+		<style>{`
+			main {
+				height: 100% !important;
+				overflow: hidden !important;
+			}
+			footer {
+				display: none !important;
+			}
+		`}</style>
+		{children}
+	</div>
+);
+

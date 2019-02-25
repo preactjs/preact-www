@@ -38,7 +38,14 @@ export default function (config, env, helpers) {
 			preload: 'swap',
 			mergeStylesheets: false,
 			pruneSource: false
+			// keyframes: 'none'
 		});
+	}
+
+	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
+	const optimizeCss = config.optimization && (config.optimization.minimizer || []).filter(plugin => /^OptimizeCssAssets(Webpack)?Plugin$/.test(plugin.constructor.name))[0];
+	if (optimizeCss) {
+		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
 	}
 
 	if (!env.ssr) {
