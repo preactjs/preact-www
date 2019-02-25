@@ -181,7 +181,7 @@ export default class Stars extends Component {
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = \`//github.com/${repo}\`;
+        let url = \`https://github.com/${repo}\`;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Stars

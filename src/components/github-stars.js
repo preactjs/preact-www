@@ -28,7 +28,7 @@ export default class GithubStars extends Component {
 	}
 
 	render({ user, repo, simple, children }, { stars }) {
-		let url = `//github.com/${user}/${repo}/`;
+		let url = `https://github.com/${user}/${repo}/`;
 		if (simple) return (
 			<a href={url} class="stars" target="_blank" rel="noopener">⭐️ {stars} Stars</a>
 		);
