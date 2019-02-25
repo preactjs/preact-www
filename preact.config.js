@@ -38,7 +38,6 @@ export default function (config, env, helpers) {
 			preload: 'swap',
 			mergeStylesheets: false,
 			pruneSource: false
-			// keyframes: 'none'
 		});
 	}
 
@@ -46,6 +45,19 @@ export default function (config, env, helpers) {
 	const optimizeCss = config.optimization && (config.optimization.minimizer || []).filter(plugin => /^OptimizeCssAssets(Webpack)?Plugin$/.test(plugin.constructor.name))[0];
 	if (optimizeCss) {
 		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
+	}
+
+	if (config.optimization) {
+		config.optimization.splitChunks = Object.assign({}, config.optimization.splitChunks || {}, {
+			cacheGroups: {
+				style: {
+					name: 'style',
+					test: /\.css$/,
+					chunks: 'all',
+					enforce: true
+				}
+			}
+		});
 	}
 
 	if (!env.ssr) {

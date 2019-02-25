@@ -12,7 +12,7 @@
 			<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
 		<% } %>
 		<% const loadManifest = htmlWebpackPlugin.options.createLoadManifest(compilation.assets, webpack.namedChunkGroups);%>
-		<% const filesRegexp = htmlWebpackPlugin.options.inlineCss ? /\.(chunk\.\w{5}\.css|js)$/ : /\.(css|js)$/;%>
+		<% const filesRegexp = /\.(css|js)$/;%>
 		<% for (const file in loadManifest[htmlWebpackPlugin.options.url]) { %>
 			<% if (htmlWebpackPlugin.options.preload && file && file.match(filesRegexp)) { %>
 				<% /* crossorigin for main bundle as that is loaded from `<script type=module` tag, other lazy loaded bundles are from webpack so its not needed */ %>
@@ -36,6 +36,6 @@
 		<% } else { %>
 			<script <%= htmlWebpackPlugin.options.scriptLoading %>  src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
 		<% } %>
-		<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-6031694-20', 'auto');ga('send', 'pageview');</script>
+		<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-6031694-20', 'auto');ga('send', 'pageview');</script>
 	</body>
 </html>

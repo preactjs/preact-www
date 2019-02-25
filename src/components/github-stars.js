@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { memoize } from 'decko';
 import { localStorageGet, localStorageSet } from '../lib/localstorage';
 
-const githubStars = memoize( repo => fetch('//api.github.com/repos/'+repo)
+const githubStars = memoize( repo => fetch('https://api.github.com/repos/'+repo)
 	.then( r => r.json() )
 	.then( d => d.stargazers || d.watchers )
 );
