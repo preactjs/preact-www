@@ -30,9 +30,9 @@ export default class Header extends Component {
 	render({ url }, { open }) {
 		return (
 			<header class={cx(style.header, open && style.open)}>
-				<Hamburgler open={open} onClick={this.toggle} />
 				<Nav routes={config.nav} current={url} />
 				<Search />
+				<Hamburgler open={open} onClick={this.toggle} />
 				<Corner />
 			</header>
 		);
