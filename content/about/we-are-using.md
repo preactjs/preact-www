@@ -170,6 +170,12 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//insided.com" target="_blank">
+            <img src="/assets/we-are-using/insided.svg" alt="inSided">
+            inSided
+        </a>
+    </li>
+    <li>
         <a href="//www.dominos.com" target="_blank">
             <img src="/assets/we-are-using/dominos.svg" alt="Domino's">
             Domino's
@@ -275,6 +281,18 @@ permalink: '/about/we-are-using'
         <a href="//leesa.com" target="_blank">
             <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
             Leesa Sleep
+        </a>
+    </li>
+    <li>
+        <a href="//anwb.nl" target="_blank">
+            <img src="/assets/we-are-using/anwb.svg" alt="ANWB">
+            ANWB
+        </a>
+    </li>
+    <li>
+        <a href="//mopinion.com" target="_blank">
+            <img src="/assets/we-are-using/mopinion.svg" alt="Mopinion">
+            ANWB
         </a>
     </li>
 </ul>

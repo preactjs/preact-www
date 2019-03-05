@@ -216,7 +216,7 @@ Wenn man auch in Zukunft Stringreferenzierungen nutzen möchte, bietet [diese kl
 
 ### 4. Root Render vereinfachen
 
-Seit `react@0.13` wurde `render()` durch das `react-dom`-Modul bereitgestellt.
+Seit React 0.13 wurde `render()` durch das `react-dom`-Modul bereitgestellt.
 Preact nutzt kein separates Modul für das Rendern des DOMs, da Preact sowieso darauf konzentriert, ein guter DOM-Renderer zu sein.
 Daher ist der letzte Schritt des Konvertierens der Codebasis zu Preact das Austauschen von `ReactDOM.render()` zu Preacts `render()`:
 
@@ -227,7 +227,7 @@ Daher ist der letzte Schritt des Konvertierens der Codebasis zu Preact das Austa
 
 Man sollte ebenfalls anmerken, dass Preacts `render()`-Funktion nicht-destruktiv ist, daher funktioniert das Rendern nach `<body>` einwandfrei und ist sogar wünschenswert.
 
-Dies ist möglich, da Preact nicht davon ausgeht, das komplette Root-Element zu steuern, dass man an Preact weitergibt. Das zweite `render()`-Argument ist `parent`, was bedeutet, dass es ein DOM-Element ist, in das _hinein_ gerendert wird.
+Dies ist möglich, da Preact nicht davon ausgeht, das komplette Root-Element zu steuern, das man an Preact weitergibt. Das zweite `render()`-Argument ist `parent`, was bedeutet, dass es ein DOM-Element ist, in das _hinein_ gerendert wird.
 Falls es erwünscht ist, direkt vom Root aus neu zu rendern (möglicherweise für Hot Module Replacement), akzeptiert `render()` ein Element zum Ersetzen als drittes Argument:
 
 
