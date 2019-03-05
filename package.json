@@ -85,7 +85,6 @@
   "dependencies": {
     "babel-runtime": "^6.6.1",
     "babel-standalone": "^6.10.3",
-    "bootstrap": "^3.3.6",
     "classnames": "^2.2.3",
     "codemirror": "^5.16.0",
     "decko": "^1.1.3",
