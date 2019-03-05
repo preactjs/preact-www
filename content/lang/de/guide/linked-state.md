@@ -53,11 +53,11 @@ Dieses Vorgehen ist präzise, einfach zu verstehen und effektiv. Es verarbeitet 
 
 ## Eigene Ereignispfade
 
-Standartmäßig wird `linkState()`versuchen, den passenden Wert eines Ereignisses automatisch er ermitteln. Ein `<input>`-Element wird beispielsweise, je nach Eingabetyp, die gegebene State-Property zu `event.target.value` bzw. `event.target.checked` setzen. Die meisten eigenen Ereignis-Handler funktionieren so, dass das Weitergeben von Skalarwerte zum von `linkState()` generierten Handler einfach diesen gegebenen Skalarwert verwendet. Dieses Verhalten ist in den meisten Fällen erwünscht.
+Standardmäßig wird `linkState()`versuchen, den passenden Wert eines Ereignisses automatisch er ermitteln. Ein `<input>`-Element wird beispielsweise, je nach Eingabetyp, die gegebene State-Property zu `event.target.value` bzw. `event.target.checked` setzen. Die meisten eigenen Ereignis-Handler funktionieren so, dass das Weitergeben von Skalarwerte zum von `linkState()` generierten Handler einfach diesen gegebenen Skalarwert verwendet. Dieses Verhalten ist in den meisten Fällen erwünscht.
 
 Es gibt auch Fälle, in den dieses Verhalten nicht wünschenswert ist. Eigene Ereignisse und gruppierte Radio Buttons sind zwei Beispiele. In diesen Fällen kann ein drittes Argument an `linkState()` weitergegeben werden, um Punkt-notierte Keypaths innerhalb des Ereignisses, in dem der Wert gefunden werden kann, zu spezifizieren.
 
-Um diese Funktion verstehen zu können, ist es nützlich, einen Blick unter die Haube von `linkState()` zu werfen. Der nachfolgende Teil illustriert einen manuell erstellten Ereignis-Handler, der einen Wert vom Inneren eines Ereignisobjektes in State schreibt. Dieses Verhalten ist funktional equivalent zur `linkState()`-Version, beinhaltet allerdings nicht die Memoisationsoptimierung, die `linkState()` so wertvoll macht.
+Um diese Funktion verstehen zu können, ist es nützlich, einen Blick unter die Haube von `linkState()` zu werfen. Der nachfolgende Teil illustriert einen manuell erstellten Ereignis-Handler, der einen Wert vom Inneren eines Ereignisobjektes in State schreibt. Dieses Verhalten ist funktional äquivalent zur `linkState()`-Version, beinhaltet allerdings nicht die Memoisationsoptimierung, die `linkState()` so wertvoll macht.
 
 ```js
 // Dieser von linkState zurückgegebene Handler:
@@ -99,7 +99,7 @@ class Foo extends Component {
 
 
 
-`linkState`s drittes Argument hilft hier weiter. Man kann einen hiermit einen Pfad im Ererignisobjekt als verlinkten Wert verwenden. Wenn man nun auf das vorherige Beispiel eingeht, kann man linkState explizit befehlen, seinen State-Wert von der `value`-Property aus `event.target` zu beziehen:
+`linkState`s drittes Argument hilft hier weiter. Man kann einen hiermit einen Pfad im Ereignisobjekt als verlinkten Wert verwenden. Wenn man nun auf das vorherige Beispiel eingeht, kann man linkState explizit befehlen, seinen State-Wert von der `value`-Property aus `event.target` zu beziehen:
 
 ```js
 import linkState from 'linkstate';

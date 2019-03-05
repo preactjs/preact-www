@@ -9,7 +9,7 @@ Es besteht die Möglichkeit, dass manche Projekte eine Komponente mit zusätzlic
 
 Der Stellenwert von Vererbung in JavaScript ist umstritten, wenn man allerdings eine eigene "Basisklasse" erstellen will, von der alle anderen Komponenten erben, ist Preact genau richtig.
 
-Möglicherweise ist das Erstellen von automatischen Verbindungen zu Stores/Reducers in einer Flux-ähnlichen Architektur gewünsht. Vielleicht mag man es auch, Eigentums-basierte Mixins hinzuzufügen, damit es sich mehr wie `React.createClass` anfühlt _(Anmerkung: der [@`bind` decorator](https://github.com/developit/decko#bind) ist bevorzugt)_.
+Möglicherweise ist das Erstellen von automatischen Verbindungen zu Stores/Reducers in einer Flux-ähnlichen Architektur gewünscht. Vielleicht mag man es auch, Eigentums-basierte Mixins hinzuzufügen, damit es sich mehr wie `React.createClass` anfühlt _(Anmerkung: der [@`bind` decorator](https://github.com/developit/decko#bind) ist bevorzugt)_.
 
 In jedem Fall ist die Klassenvererbbarkeit aus ES2015 anwendbar, um Preacts `Component`-Klasse zu erweitern:
 
@@ -51,7 +51,7 @@ render(
 ```
 
 
-Die Möglichkeiten sind unendlich. Hier ist eine erweiterte `Component`-Klasse, die rudimentelle Mixins unterstützt:
+Die Möglichkeiten sind unendlich. Hier ist eine erweiterte `Component`-Klasse, die rudimentäre Mixins unterstützt:
 
 ```js
 class MixedComponent extends Component {
@@ -64,4 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Fußnote:** Man sollte anmerken, dass Vererbung einen in zerbrechliche parent-child-Beziehungen sperren können. Wenn man auf eine Programmieraufgabe, die adequat mit Vererbung gelöst werden kann, gibt es oftmals einen funktionaleren Weg um das gleiche Ziel zu erreichen, das das Erstellen einer solchen Beziehung unnötig macht.
+> **Fußnote:** Man sollte anmerken, dass Vererbung einen in zerbrechliche parent-child-Beziehungen sperren können. Wenn man auf eine Programmieraufgabe, die adäquat mit Vererbung gelöst werden kann, gibt es oftmals einen funktionaleren Weg um das gleiche Ziel zu erreichen, das das Erstellen einer solchen Beziehung unnötig macht.

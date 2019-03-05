@@ -38,7 +38,7 @@ import preact from 'preact';
 
 ### Globales Pragma
 
-Anstatt das `@jsx`-Pragma im eigenen Code zu deklarieren sollte man es lieber global in einer `.babelrc`-Datei komnfigurieren.
+Anstatt das `@jsx`-Pragma im eigenen Code zu deklarieren sollte man es lieber global in einer `.babelrc`-Datei konfigurieren.
 
 **Bestimmt:**
 
@@ -80,7 +80,7 @@ Anstatt das `@jsx`-Pragma im eigenen Code zu deklarieren sollte man es lieber gl
 
 ## JSX Rendern
 
-Preact bietet von Grund auf eine `h()`-Funktion, die JSX-Code in VDOM-Elemente _([so funktioniert's](https://jasonformat.com/wtf-is-jsx))_ umwandeln. Es bietet außerdem die `render()`-Funktion an, mit der man einenn DOM-Baum des Virtuellen DOMs erstellt.
+Preact bietet von Grund auf eine `h()`-Funktion, die JSX-Code in VDOM-Elemente _([so funktioniert's](https://jasonformat.com/wtf-is-jsx))_ umwandeln. Es bietet außerdem die `render()`-Funktion an, mit der man einen DOM-Baum des Virtuellen DOMs erstellt.
 
 Um JSX zu rendern, importiert man diese zwei Funktionen und setzt sie wie folgt ein:
 
@@ -102,7 +102,7 @@ Hyperscript in einem Virtuellen DOM zu Rendern macht allerdings gar keinen Sinn.
 
 ## Komponente
 
-Preact exportiert eine generische `Komponente`-Klasse, welche zum Erstellen von verkapselten, sich selbst aktualisierenden Teilen einer Benutzeroberfläche erweitert werden kann. Komponenten unterstützt die standartmäßigen React-[Lebenszyklusmethoden] wie z.B. `shouldComponentUpdate()`und `componentWillReceiveProps()`. Das Bereitstellen von spezifischen Implementationen dieser Methoden ist die bevorzugte Vorgehensweise, wenn man kontrollieren will, _wann_ und _wie_ Komponenten sich aktualisieren.
+Preact exportiert eine generische `Komponente`-Klasse, welche zum Erstellen von verkapselten, sich selbst aktualisierenden Teilen einer Benutzeroberfläche erweitert werden kann. Komponenten unterstützt die standardmäßigen React-[Lebenszyklusmethoden] wie z.B. `shouldComponentUpdate()`und `componentWillReceiveProps()`. Das Bereitstellen von spezifischen Implementationen dieser Methoden ist die bevorzugte Vorgehensweise, wenn man kontrollieren will, _wann_ und _wie_ Komponenten sich aktualisieren.
 
 Komponenten haben außerdem eine `render()`-Methode, allerdings erhält diese, anders als in React, `(props, state)` als Argumente. Dies ermöglicht eine ergonomische Vorgehensweise, mit der man `props` und `state` in lokale Variablen destrukturieren kann, die dann von JSX referenziert werden können.
 

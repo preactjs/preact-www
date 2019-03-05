@@ -18,7 +18,7 @@ Das ermöglicht es einem, mit dem Schreiben von React/ReactDOM-Code fortzufahren
 `preact-compat` fügt zwar ungefähr 2kb zur Gesamtgröße des Projektes hinzu, hat allerdings den Vorteil, den Großteil von bereits existierenden React-Modulen, die man bei [npm](https://npmjs.com) finden sollte, zu unterstützen. Zusätzlich zu Preacts Kern liefert das `preact-compat`-Paket alle Änderungen, die benötigt werden, um genau wie `react` und `react-dom` zu funktionieren, in einem einzelnen Modul.
 
 Der Installationsprozess ist in zwei Schritte unterteilt.
-Zuerst muss man `preact` und `preact-compat`, zwei seperate Pakete, installieren:
+Zuerst muss man `preact` und `preact-compat`, zwei separate Pakete, installieren:
 
 ```sh
 npm i -S preact preact-compat
@@ -105,7 +105,7 @@ import { createClass } from 'preact-compat/dist/preact-compat.min'
 export default createClass
 ```
 
-Falls die neuartige `import`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das obrige Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den obrigen Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
+Falls die neuartige `import`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das obrige Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den darüberstehenden Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
 
 Es ist außerdem möglich, einen Alias direkt mithilfe von Node zu stetzen, ohne auf das `module-alias`-Paket angewiesen zu sein. Diese Methode basiert auf internen Properties von Nodes Modulsystem, daher sollte man sie mit Vorsicht genießen. Um manuell einen Alias zu setzen, sind folgende Schritte nötig:
 
@@ -151,7 +151,7 @@ npm install --save preact  # or: npm i -S preact
 ### 2. JSX Pragma: Zu `h()` transpilieren
 
 > **Hintergrund:** Während die [JSX]-Spracherweiterung unabhängig von React ist,
-> verwenden beliebte Transpilierer wie [Babel] and [Bublé] standartmäßig eine
+> verwenden beliebte Transpilierer wie [Babel] and [Bublé] standardmäßig eine
 > Konvertierung von JSX zu `React.createElement()`-Aufrufen.
 > Dafür gibt es zwar historische Gründe, es ist allerdings wichtig zu verstehen,
 > dass die Funktion, die JSX-Transpilierungen aufruft, eine bereits existierende
@@ -174,7 +174,7 @@ In jedem der obengenannten Beispiele ist `h` der Funktionsname, der als JSX-Prag
 
 #### Mithilfe von Babel
 
-Falls Babel verwender wird, kann man das JSX-Pragma in der `.babelrc`- oder `package.json`-Datei definiert werden. In welcher der beiden Datein man dies tut, ist lediglich von persönlicher Präferenz abhängig:
+Falls Babel verwendet wird, kann man das JSX-Pragma in der `.babelrc`- oder `package.json`-Datei definiert werden. In welcher der beiden Dateien man dies tut, ist lediglich von persönlicher Präferenz abhängig:
 
 ```json
 {
@@ -208,7 +208,7 @@ Falls die Codebasis schwerwiegend von `createClass()` abhängig ist, gibt es tro
 Laurence Dorman pflegt eine [alleinstehende `createClass()`-implementation](https://github.com/ld0rman/preact-classless-component), die nahtlos in Preact funktioniert und nur wenige hundert Bytes groß ist.
 Alternativ kann man `createClass()`-Aufrufe auch automatisch mithilfe von Vu Trans [preact-codemod](https://github.com/vutran/preact-codemod) zu ES-Klassen konvertieren lassen.
 
-Ein weiterer erwähnbarer Unterschied ist, dass Preact standartmäßig lediglich Funktionsreferenzierungen unterstützt.
+Ein weiterer erwähnbarer Unterschied ist, dass Preact standardmäßig lediglich Funktionsreferenzierungen unterstützt.
 Stringreferenzierungen sind in React veraltet und werden in naher Zukunft entfernt, da sie eine überraschende Menge an Komplexität für solch minimalen Nutzen hinzufügen.
 
 Wenn man auch in Zukunft Stringreferenzierungen nutzen möchte, bietet [diese kleine Funktion](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d) eine zukunftssichere Version, die `this.refs.$$` weiterhin wie Stringreferenzierungen behandelt. Die Simplizität dieses kleinen Umwegs für Funktionsreferenzierungen zeigt außerdem, warum Funktionsreferenzierungen mittlerweile die präferierte Methode darstellen.
@@ -239,7 +239,7 @@ render(<App />, document.body);
 render(<App />, document.body, document.body.lastElementChild);
 ```
 
-In dem obrigen Beispiel ist man darauf angewiesen, dass das letzte Child der vorher gerenderte Root ist.
+In dem darüberstehenden Beispiel ist man darauf angewiesen, dass das letzte Child der vorher gerenderte Root ist.
 Dies funktioniert zwar in vielen Fällen (JSFiddles, CodePens, uvm.), es ist allerdings trotzdem besser, über mehr Kontrolle zu verfügen.
 Deshalb gibt `render()` das Root-Element zurück: man gibt es als drittes Argument zum Neurendern weiter.
 
