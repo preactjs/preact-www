@@ -8,7 +8,7 @@ permalink: '/guide/external-dom-mutations'
 
 ## Übersicht
 
-Manchmal ist es nötig, mit Drittanbieterbibliotheken zu arbeiten, die erwarten, frei im DOM mutieren zu können, in einem Stadium zu verharren oder überhaupt gar keine Komponentengrenzen zu haben. Es gibt viele großartige UI-Toolkits oder wiederverwendbare Elemente, die so funktionieren. In Preact, ähnlich wie in React, setzt das Arbeiten mit diesen Bibliotheken voraus, dass man dem Rendering oder der Differenzierungsalgorithmus des Virtual DOM befield, keine externen DOM-Mutationen, die innerhalb einer gegebenen Komponente (oder dem DOM-Element, dass es repräsentiert), _zückgängig_ zu machen.
+Manchmal ist es nötig, mit Drittanbieterbibliotheken zu arbeiten, die erwarten, frei im DOM mutieren zu können, in einem Stadium zu verharren oder überhaupt gar keine Komponentengrenzen zu haben. Es gibt viele großartige UI-Toolkits oder wiederverwendbare Elemente, die so funktionieren. In Preact, ähnlich wie in React, setzt das Arbeiten mit diesen Bibliotheken voraus, dass man dem Rendering oder der Differenzierungsalgorithmus des Virtual DOM befielt, keine externen DOM-Mutationen, die innerhalb einer gegebenen Komponente (oder dem DOM-Element, dass es repräsentiert), _zückgängig_ zu machen.
 
 
 ## Technik
@@ -36,7 +36,7 @@ Mit diesem Lebenszyklus an Ort und Stelle und der Anweisung an Preact, die Kompo
 
 ## Beispielsdurchlauf
 
-Hier wird beispielhaft gezeigt, wie das Rerendern einer Komponente "ausgeschaltet" wird. Es muss beachtet wirden, dass `render()` immer noch im Zuge von Erstellung und Mounten der Komponente aufgerufen ist, damit seine ursprüngliche DOM-Struktur generiert werden kann.
+Hier wird beispielhaft gezeigt, wie das Rerendern einer Komponente "ausgeschaltet" wird. Es muss beachtet werden, dass `render()` immer noch im Zuge von Erstellung und Mounten der Komponente aufgerufen ist, damit seine ursprüngliche DOM-Struktur generiert werden kann.
 
 ```js
 class Beispiel extends Component {

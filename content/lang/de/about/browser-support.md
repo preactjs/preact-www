@@ -5,7 +5,7 @@ permalink: '/about/browser-support'
 
 # Browserunterstützung
 
-Prect untersützt moderne Browser (Chrome, Firefox, Safari, Edge) und IE9+. Es sollte in IE7 sowie IE8 funktionieren, setzt allerdings einige Polyfiller voraus. Wenn es beabsichtigt ist, Preact zu benutzen und diese älteren Browser zu untersützen, wird empfohlen, einen Polyfiller wie zum Beispiel [es5-shim] oder [babel-polyfill] zu verwenden.
+Prect unterstützt moderne Browser (Chrome, Firefox, Safari, Edge) und IE9+. Es sollte in IE7 sowie IE8 funktionieren, setzt allerdings einige Polyfiller voraus. Wenn es beabsichtigt ist, Preact zu benutzen und diese älteren Browser zu unterstützen, wird empfohlen, einen Polyfiller wie zum Beispiel [es5-shim] oder [babel-polyfill] zu verwenden.
 
 <center>
     <a href="https://saucelabs.com/u/preact">
