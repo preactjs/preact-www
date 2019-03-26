@@ -1,6 +1,6 @@
 ---
 name: Switching to Preact from React
-permalink: '/guide/switching-to-preact
+permalink: '/guide/switching-to-preact'
 ---
 
 # Switching to Preact (from React)

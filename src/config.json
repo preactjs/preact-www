@@ -64,8 +64,8 @@
 					"name": "Extending Component"
 				},
 				{
-					"path": "/guide/unit-testing-with-enzyme",
-					"name": "Unit Testing with Enzyme"
+					"path": "/guide/testing",
+					"name": "Testing"
 				},
 				{
 					"path": "/guide/progressive-web-apps",
