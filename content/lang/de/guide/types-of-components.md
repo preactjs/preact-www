@@ -11,7 +11,7 @@ Es gibt zwei Arten von Komponenten in Preact:
 - Klassische Komponenten mit [Lebenszyklusmethoden] und State
 - State-lose, funktionale Komponenten, welche Funktionen sind, die `props` akzeptieren und [JSX] ausgeben.
 
-Innerhalb dieser zwei Typen gibt es außerdem viele verscheidene Wege, Komponenten zu implementieren.
+Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponenten zu implementieren.
 
 
 ## Beispiel
@@ -58,7 +58,7 @@ class Link extends Component {
 
 ### State-lose funktionale Komponenten
 
-Zu guter Letzt kann man sehen, dass diese Komponente keinen State hat. Man kann die Komponente mit den selben props rendern und bekommt jedes Mal das gleiche Resulat. Wenn dies der Fall ist, ist die Nutzung von State-losen funktionalen Komponenten empfohlen. Diese sind lediglich Funktionen, die `props` als Argumente annehmen und JSX ausgeben.
+Zu guter Letzt kann man sehen, dass diese Komponente keinen State hat. Man kann die Komponente mit den selben props rendern und bekommt jedes Mal das gleiche Resultat. Wenn dies der Fall ist, ist die Nutzung von State-losen funktionalen Komponenten empfohlen. Diese sind lediglich Funktionen, die `props` als Argumente annehmen und JSX ausgeben.
 
 ```js
 const Link = ({ children, ...props }) => (
@@ -66,4 +66,4 @@ const Link = ({ children, ...props }) => (
 );
 ```
 
-> *ES2015-Anmerkung:* Das Obengenannte ist eine Arrow-Funktion. Da Parens, oder auch ()-Klammern, statt Braces, oder auch {}-Klammern, für den Funktionskörper verwendet wurden, wird der Wert innerhalb der Parens automatisch zurückgegeben. [Hier](https://github.com/likehoban/es6features#arrow) kann man mehr darüber erfahren.
+> *ES2015-Anmerkung:* Das oben genannte ist eine Arrow-Funktion. Da Parens, oder auch ()-Klammern, statt Braces, oder auch {}-Klammern, für den Funktionskörper verwendet wurden, wird der Wert innerhalb der Parens automatisch zurückgegeben. [Hier](https://github.com/likehoban/es6features#arrow) kann man mehr darüber erfahren.
