@@ -99,7 +99,7 @@
     "progress-spinner": "^1.1.0",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^0.14.3",
-    "snyk": "^1.47.0",
+    "snyk": "^1.76.0",
     "yaml": "^0.3.0"
   },
   "main": "webpack.config.babel.js",
