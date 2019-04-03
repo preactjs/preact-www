@@ -35,7 +35,7 @@ to redirect any imports/requires looking for `react` or `react-dom` with `preact
 
 #### Aliasing via Webpack
 
-Simply add the following [resolve.alias](https://webpack.github.io/docs/configuration.html#resolve-alias)
+Simply add the following [resolve.alias](https://webpack.js.org/configuration/resolve/#resolvealias)
 configuration to your `webpack.config.js`:
 
 ```json
