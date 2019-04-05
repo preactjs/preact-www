@@ -48,6 +48,10 @@
 					"name": "API Reference"
 				},
 				{
+					"path": "/guide/hooks",
+					"name": "Hooks"
+				},
+				{
 					"path": "/guide/forms",
 					"name": "Forms"
 				},
