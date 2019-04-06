@@ -83,6 +83,55 @@ when passing it like this it won't be reevaluted but only applied once.
 
 ### useReducer
 
+This is an alternative to useState, this useReducer hook can be called with a reducer
+function.
+
+A reducer, most commonly is of the following form:
+
+```js
+function(state, action) {
+    switch(action.type) {
+        case ADD_TODO: return { ...state, todos: [...state.todos, action.todo] };
+        default: return state;
+    }
+}
+```
+
+We dispatch actions to this reducer, these can have certain types.
+In the above type we have a type ADD_TODO, so the action we send will
+look like this: `{ type: ADD_TODO, todo: { id: 1, text: 'learn hooks' } }`.
+
+This is the first argument we can supply to this hook.
+
+As a second argument we can supply an initial state. When invoked
+this will return an array `[state, dispatch]`. This dispatch function
+is how we can send actions to our reducer function.
+
+Let's look at an example:
+
+```jsx
+import { useReducer } from 'preact/hooks';
+
+function reducer(state, action) {
+    switch(action.type) {
+        case ADD_TODO: return { ...state, todos: [...state.todos, action.todo] };
+        default: return state;
+    }
+}
+
+const TodoList = () => {
+    const [state, dispatch] = useReducer(reducer, { todos: [] });
+    return (
+        <div>
+            {state.todos.map(({ text, id }) => <p key={id}>{text}</p>)}
+            <button onClick={() => dispatch({ id: 1, text: 'learn hooks' })}>
+                Add todo
+            </button>
+        </div>
+    )
+}
+```
+
 ## Memoization
 
 ### useMemo
