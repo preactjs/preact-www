@@ -284,6 +284,18 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+        <a href="//anwb.nl" target="_blank">
+            <img src="/assets/we-are-using/anwb.svg" alt="ANWB">
+            ANWB
+        </a>
+    </li>
+    <li>
+        <a href="//mopinion.com" target="_blank">
+            <img src="/assets/we-are-using/mopinion.svg" alt="Mopinion">
+            Mopinion
+        </a>
+    </li>
+    <li>
         <a href="//www.narcity.com" target="_blank">
             <img src="/assets/we-are-using/narcitymedia.png" alt="Mopinion">
             Narcity Media
