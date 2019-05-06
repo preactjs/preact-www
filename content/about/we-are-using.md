@@ -292,7 +292,19 @@ permalink: '/about/we-are-using'
     <li>
         <a href="//mopinion.com" target="_blank">
             <img src="/assets/we-are-using/mopinion.svg" alt="Mopinion">
-            ANWB
+            Mopinion
+        </a>
+    </li>
+    <li>
+        <a href="//www.narcity.com" target="_blank">
+            <img src="/assets/we-are-using/narcitymedia.png" alt="Narcity Media">
+            Narcity Media
+        </a>
+    </li>
+    <li>
+        <a href="//liliumcms.com" target="_blank">
+            <img src="/assets/we-are-using/lmllogo.png" alt="Lilium CMS">
+            Lilium CMS
         </a>
     </li>
 </ul>
