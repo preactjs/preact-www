@@ -10,7 +10,7 @@ toc: false
         <logo height="1.5em" title="Preact" text>Preact</logo>
     </h1>
 
-    <p>Alternative à React de seulement 3Ko, rapide et avec la même API ES6.</p>
+    <p>Alternative légère et rapide à React avec le même API en seulement 3Ko.</p>
 
     <p>
         <a href="/guide/getting-started" class="home-button">Commencer</a>
@@ -34,12 +34,12 @@ toc: false
     <h2>Plus proche de la machine</h2>
     
     <p>
-        Preact possède l'abstraction la plus fine au-dessus du DOM.
+        Preact possède l'abstraction du DOM virtuel la plus fine.
         Le web est une plateforme stable, il est temps d'arrêter de réinventer la roue.
     </p>
     
     <p>
-        Preact est aussi au premier rang de la plateforme web. Il compare le DOM Virtuel avec le DOM "réel", enregistre de vrais gestionnaires d'événement et fonctionne très bien avec d'autres bibliothèques.
+        Preact est aussi au premier rang de la plateforme web. Il compare le DOM virtuel avec le DOM du navigateur, enregistre de vrais gestionnaires d'événements et fonctionne très bien avec les autres bibliothèques.
     </p>
 </section>
 
@@ -50,11 +50,11 @@ toc: false
     <h2>Petite taille</h2>
     
     <p>
-        La plupart des framesworks UI est très large et possède généralement plus de code que votre application. Preact est différent : la majorité du code de votre application sera le votre.
+        La plupart des frameworks UI sont très larges et possèdent généralement plus de code que votre application. Preact est différent : la majorité du code de votre application sera le vôtre.
     </p>
     
     <p>
-        Concrètement moins de code Javascript sera à télécharger, analyser et exécuter. De ce fait votre code sera privilégié.
+        Concrètement, moins de code Javascript sera à télécharger, à analyser et à exécuter. De ce fait, votre code sera privilégié.
     </p>
 </section>
 
@@ -65,11 +65,11 @@ toc: false
     <h2>Grande performance</h2>
     
     <p>
-        Preact est performant. Il possède une des implémentations les plus rapides pour détecter les différences entre le DOM dans la page et le Virtual DOM.
+        Preact est performant, non seulement à cause de sa taille, mais aussi parce qu'il possède une des implémentations les plus rapides pour détecter les différences entre le DOM du navigateur et le DOM virtuel.
     </p>
     
     <p>
-        Il implémente certains extras comme <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">des mises à jour asynchrones</a>, la réutilisation du DOM et l'optimisation de la gestion des évènements avec [Linked State](/guide/linked-state).
+        Il implémente certaines fonctionnalités supplémentaires à React telles que <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">les mises à jour asynchrones</a>, la réutilisation du DOM et l'optimisation de la gestion des évènements avec [Linked State](/guide/linked-state).
     </p>
 </section>
 
@@ -80,11 +80,11 @@ toc: false
     <h2>Portable &amp; embarquable</h2>
     
     <p>
-        Contrairement aux autres Preact ne possède pas un énorme surcoût, il vous permettra de bénéficier de la puissance du Virtual DOM.
+        Contrairement aux autres frameworks, Preact ne représente pas un énorme surcoût. Il vous permettra de bénéficier de la puissance du DOM virtuel.
     </p>
     
     <p>
-        Vous pouvez utiliser Preact dans votre application sans intégration complexe. Embarquer Preact dans un widget n'est pas différent.
+        Vous pouvez utiliser Preact pour bâtir une partie de votre application sans difficultés d'intégration. Ajouter Preact à un widget se fait de la même façon que vous construiriez une application complète.
     </p>
 </section>
 
@@ -95,12 +95,12 @@ toc: false
     <h2>Productif instantanément</h2>
     
     <p>
-        La légereté est plus amusante quand vous n'avez pas à sacrifier la productivité pour y arriver. Avec Preact vous serez productif en quelques instants avec certains extras :
+        La légereté est plus amusante quand vous n'avez pas à sacrifier la productivité pour y arriver. Avec Preact vous serez productif en quelques instants. Vous aurez même droit aux fonctionnalités supplémentaires suivantes :
     </p>
     
     <ul>
-        <li>`props`, `state` et `context` sont papssés en arguments de la méthode `render()`</li>
-        <li>Utiliser les attributs standard HTML comme `class` et `for`</li>
+        <li>Les `props`, `state` et `context` sont passés en arguments de la méthode `render()`</li>
+        <li>Les attributs standards HTML comme `class` et `for` peuvent être utilisés</li>
         <li>Fonctionnne avec React DevTools sans effort</li>
     </ul>
 </section>
@@ -112,11 +112,11 @@ toc: false
     <h2>Compatible avec l'écosystème</h2>
     
     <p>
-        Les composants de Virtual DOM vous permet de réutiliser des briques de votre application. D'un simple bouton aux sources de données. Grâce à la conception de Preact vous avez à votre disposition les composants de l'écosystème React.
+        Les composants du DOM virtuel vous permettent de réutiliser des briques de votre application. Grâce à la conception de Preact, vous avez à votre disposition les composants de l'écosystème React.
     </p>
     
     <p>
-        Un simple alias vers <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui apporte les fonctionnalités les plus complexes de React.
+        Un simple alias vers <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui permet l'utilisation des fonctionnalités les plus complexes de React.
     </p>
 </section>
 
@@ -220,7 +220,7 @@ render(
     <p>
         Nous avons séparé les guides en fonction de votre expérience avec React.
         <br>
-        Choissiez celui qui vous convient.
+        Choisissez celui qui vous convient.
     </p>
     <p>
         <a href="/guide/getting-started" class="home-button">Commencer</a>
