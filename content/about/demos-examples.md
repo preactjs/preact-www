@@ -64,6 +64,10 @@ An application for adding comments to any file on Github.
 The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
 [Github Project](https://github.com/sgtpep/exchange-widget)
 
+[**JavaScript Questions**](https://javascript-questions.netlify.com) :grey_question:
+Multiple choice JavaScript questions as Progressive Web App.
+[Github Project](https://github.com/andreruffert/javascript-questions)
+
 ## Full Demos & Examples
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
