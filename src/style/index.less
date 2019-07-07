@@ -1,8 +1,9 @@
-@import (css, inline) '~progress-spinner';
 @import './helpers';
 @import './markdown';
 @import './gh-btn';
 @import './list-view';
+@import '~highlight.js/styles/tomorrow-night-eighties.css';
+
 
 html, body {
 	height: 100%;
@@ -10,7 +11,7 @@ html, body {
 	padding: 0;
 	margin: 0;
 	background: #FFF;
-	font: 15px/1.8 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	font: 15px/1.8 system-ui, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	font-weight: 400;
 	color: #444;
 	-webkit-font-smoothing: antialiased;
@@ -82,6 +83,45 @@ content-region {
 	& > main {
 		min-height: 95%;
 		padding-top: 56px;
+	}
+}
+
+
+
+progress-bar {
+	position: fixed;
+	left: 0;
+	top: -5px;
+	width: 100%;
+	height: 3px;
+	background: fade(darken(#f2777a, 10%), 50%);
+	transform: translateY(0);
+	transition: transform 1s ease, opacity 1s ease;
+	opacity: 0;
+	z-index: 1000;
+	&::after {
+		content: '';
+		display: block;
+		height: 100%;
+		width: 75%;
+		background: #f2777a;
+		transform: translateX(-100%);
+		will-change: transform;
+	}
+	&[showing] {
+		transform: translateY(5px);
+		opacity: 1;
+		&::after {
+			animation: fly 1s linear forwards infinite;
+		}
+	}
+}
+@keyframes fly {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(150%);
 	}
 }
 

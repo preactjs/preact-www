@@ -1,4 +1,4 @@
-const SEARCH = '//api.github.com/search/repositories';
+const SEARCH = 'https://api.github.com/search/repositories';
 
 export default class Foo extends Component {
 	async componentDidMount() {

@@ -6,7 +6,11 @@ import controllers from './controllers';
 let { pushState } = history;
 history.pushState = (a, b, url) => {
 	pushState.call(history, a, b, url);
-	if (url.indexOf('#')<0) scrollTo(0, 0);
+	if (url.indexOf('#')<0) {
+		// next time content loads, scroll to top:
+		window.nextStateToTop = true;
+		// scrollTo(0, 0);
+	}
 };
 
 

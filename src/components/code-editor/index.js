@@ -1,5 +1,6 @@
 import { h, Component, render } from 'preact';
 import codemirror from 'codemirror';
+import cx from '../../lib/cx';
 import js from 'codemirror/mode/jsx/jsx';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/lib/codemirror.css';
@@ -88,6 +89,6 @@ export default class CodeEditor extends Component {
 	}
 
 	render({ value, onInput, children, ...props }) {
-		return <div {...props} class={{ [style.codeEditor]:true, [props.class]:props.class }} />;
+		return <div {...props} class={cx(style.codeEditor, props.class)} />;
 	}
 }

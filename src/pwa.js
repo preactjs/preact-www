@@ -1,6 +1,10 @@
-import runtime from 'offline-plugin/runtime';
+import { lazily } from './lib/lazily';
 
-runtime.install({
-	onUpdateReady: () => runtime.applyUpdate(),
-	onUpdated: () => location.reload()
+lazily(() => {
+	import(/* webpackChunkName: "offline" */ 'offline-plugin/runtime').then(runtime => {
+		runtime.install({
+			onUpdateReady: () => runtime.applyUpdate(),
+			onUpdated: () => location.reload()
+		});
+	});
 });

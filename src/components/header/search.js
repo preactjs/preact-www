@@ -1,30 +1,33 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import style from './style';
 import config from '../../config';
+import { lazily, cancelLazily } from '../../lib/lazily';
 
 let docsearchInstance, input;
 
 export default class Search extends Component {
 	id = 'docsearch-input';
 
-	load = () => this.timer = setTimeout(() => {
-		if (window.docsearch) return;
+	load = () => {
+		this.lazy = lazily(() => {
+			if (window.docsearch) return;
 
-		let head = document.head || document.querySelector('head');
+			let head = document.head || document.querySelector('head');
 
-		let link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = '//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css';
-		head.appendChild(link);
+			let link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.href = 'https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css';
+			head.appendChild(link);
 
-		let script = document.createElement('script');
-		script.src = '//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js';
-		script.onload = script.onerror = this.loaded;
-		head.appendChild(script);
-	}, 2000);
+			let script = document.createElement('script');
+			script.src = 'https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js';
+			script.onload = script.onerror = this.loaded;
+			head.appendChild(script);
+		});
+	};
 
 	loaded = () => {
-		let docsearch = typeof window!=='undefined' && window.docsearch;
+		let docsearch = window.docsearch;
 		if (docsearch && !docsearchInstance) {
 			docsearchInstance = docsearch({
 				apiKey: config.docsearch.apiKey,
@@ -48,17 +51,18 @@ export default class Search extends Component {
 			input.className = style.searchBox;
 			this.base.appendChild(input);
 
-			if (/loaded|complete/.test(document.readyState)) {
-				this.load();
-			}
-			else {
-				addEventListener('load', this.load);
-			}
+			this.load();
+			// if (/loaded|complete/.test(document.readyState)) {
+			// 	this.load();
+			// }
+			// else {
+			// 	addEventListener('load', this.load);
+			// }
 		}
 	}
 
 	componentWillUnmount() {
-		clearTimeout(this.timer);
+		cancelLazily(this.lazy);
 		if (input && input.parentNode) input.parentNode.removeChild(input);
 	}
 

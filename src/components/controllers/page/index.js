@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import cx from 'classnames';
+import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
@@ -9,8 +9,6 @@ const EMPTY = {};
 const getContent = route => route.content || route.path;
 
 export default class Page extends Component {
-	state = { loading:true };
-
 	componentWillReceiveProps({ route }) {
 		if (getContent(route)!==getContent(this.props.route)) {
 			this.setState({ loading:true });
@@ -37,6 +35,15 @@ export default class Page extends Component {
 			meta,
 			loading: false
 		});
+		// content was loaded. if this was a forward route transition, animate back to top
+		if (window.nextStateToTop) {
+			window.nextStateToTop = false;
+			scrollTo({
+				top: 0,
+				left: 0,
+				behavior: 'smooth'
+			});
+		}
 	};
 
 	render({ route }, { current, loading, meta=EMPTY, toc }) {
@@ -44,17 +51,15 @@ export default class Page extends Component {
 			name = getContent(route);
 		if (name!==current) loading = true;
 		return (
-			<div class={cx(style.page, style[layout])} loading={loading}>
-				{ meta.show_title!==false && (
-					<h1 key="title" class={style.title}>{ meta.title || route.title }</h1>
+			<div class={cx(style.page, style[layout])}>
+				<progress-bar showing={loading} />
+				{ name!='index' && meta.show_title!==false && (
+					<h1 class={style.title}>{ meta.title || route.title }</h1>
 				) }
 				{ toc && meta.toc!==false && (
-					<Toc key="toc" items={toc} />
+					<Toc items={toc} />
 				) }
-				<div key="loading" class={style.loading}>
-					<progress-spinner />
-				</div>
-				<div key="content" class={style.inner}>
+				<div class={style.inner}>
 					<ContentRegion
 						name={name}
 						onToc={this.linkState('toc', 'toc')}

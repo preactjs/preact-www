@@ -1,14 +1,16 @@
 import { h, Component } from 'preact';
-import { connect } from '../lib/store';
+import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
-import yaml from 'yaml';
-import Markdown from 'markdown';
+import Markdown from 'lib/markdown';
 import Markup from 'preact-markup';
 import widgets from './widgets';
 
 const COMPONENTS = {
 	...widgets,
 	pre: widgets.CodeBlock,
+	img(props) {
+		return <img decoding="async" {...props} />;
+	},
 	a(props) {
 		if (!props.target && props.href.match(/:\/\//)) {
 			props.target = '_blank';
@@ -26,10 +28,7 @@ const TYPES = {
 const EMPTY = {};
 
 // Find YAML FrontMatter preceeding a markdown document
-const FRONT_MATTER_REG = /^\s*\-\-\-\n\s*([\s\S]*?)\s*\n\-\-\-\n/i;
-
-// Find a leading title in a markdown document
-const TITLE_REG = /^\s*#\s+(.+)\n+/;
+const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 // only memoize in prod
 const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f=>f;
@@ -44,14 +43,17 @@ const getContent = memoizeProd( ([lang, name]) => {
 	// attempt to use prefetched request
 	let fetchPromise = process.env.NODE_ENV==='production' && typeof window!=='undefined' && window['_boostrap_'+url] || fetch(url);
 	return fetchPromise
-		.then( r => {
-			if (!r.ok) {
-				// @TODO: allow falling back to english? (404 crashes dev server)
-				// if (lang) return fetch(url.replace(/lang\/[^/]+\//,''));
-				ext = 'md';
-				r = fetch(`${path}/${r.status}.md`);
+		.then(r => {
+			// fall back to english
+			if (!r.ok && lang) {
+				return fetch(url.replace(/lang\/[^/]+\//,''));
 			}
 			return r;
+		})
+		.then( r => {
+			if (r.ok) return r;
+			ext = 'md';
+			return fetch(`${path}/${r.status}.md`);
 		})
 		.then( r => r.text() )
 		.then( r => parseContent(r, ext) );
@@ -60,15 +62,8 @@ const getContent = memoizeProd( ([lang, name]) => {
 
 function parseContent(text, ext) {
 	let [,frontMatter] = text.match(FRONT_MATTER_REG) || [],
-		meta = frontMatter && yaml.eval('---\n'+frontMatter.replace(/^/gm,'  ')+'\n') || {},
+		meta = frontMatter && JSON.parse(frontMatter),
 		content = text.replace(FRONT_MATTER_REG, '');
-	if (!meta.title) {
-		let [,title] = content.match(TITLE_REG) || [];
-		if (title) {
-			content = content.replace(TITLE_REG, '');
-			meta.title = title;
-		}
-	}
 
 	return {
 		type: TYPES[String(ext).toLowerCase()] || TYPES.md,
@@ -103,7 +98,7 @@ export default class ContentRegion extends Component {
 		if (!content.match(/([^\\]):[a-z0-9_]+:/gi)) return;
 
 		if (!this.emoji) {
-			require(['../lib/gh-emoji'], ({ replace }) => {
+			import(/* webpackChunkName: "emoji" */ '../lib/gh-emoji').then(({ replace }) => {
 				this.emoji = replace || EMPTY;
 				this.applyEmoji();
 			});
@@ -130,6 +125,14 @@ export default class ContentRegion extends Component {
 		if (onToc) onToc({ toc });
 	}
 
+	componentWillMount() {
+		const b = this.base = this.nextBase || this.__b;
+		if (b && typeof document!=='undefined') {
+			const C = b.nodeName;
+			this.bootTree = <C dangerouslySetInnerHTML={{ __html: b.innerHTML }} />;
+		}
+	}
+
 	componentDidMount() {
 		this.fetch();
 	}
@@ -139,9 +142,33 @@ export default class ContentRegion extends Component {
 		if (content!==this.state.content) this.updateToc();
 	}
 
-	render({ store, name, children, onLoad, onToc, ...props }, { type, content }) {
+	render({ store, name, children, onLoad, onToc, data, ...props }, { type, content }) {
+		const regionHtml = this.regionHtml || (this.regionHtml = {});
+
+		if (!content) {
+			/*global PRERENDER,__non_webpack_require__*/
+			if (PRERENDER) {
+				// this is all only run during prerendering
+
+				let route = location.pathname == '/' ? '/index' : location.pathname;
+				let data = __non_webpack_require__('fs').readFileSync(`content${route}.md`, 'utf8');
+				const yaml = __non_webpack_require__('yaml');
+				data = data.replace(FRONT_MATTER_REG, (s, y) => {
+					const meta = yaml.eval('---\n'+y.replace(/^/gm,'  ')+'\n') || {};
+					return '---\n' + JSON.stringify(meta) + '\n---\n';
+				});
+				if (typeof DOMParser === 'undefined') {
+					global.DOMParser = new (__non_webpack_require__('jsdom').JSDOM)().window.DOMParser;
+				}
+				({ content, type } = parseContent(data, 'md'));
+			}
+			else if (this.bootTree) {
+				return this.bootTree;
+			}
+		}
+
 		return (
-			<content-region loading={!content} {...props}>
+			<content-region dangerouslySetInnerHTML={regionHtml} {...props}>
 				{ content && (
 					<Content type={type} content={content} components={COMPONENTS} />
 				) }

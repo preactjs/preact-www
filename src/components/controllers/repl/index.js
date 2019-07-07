@@ -3,6 +3,7 @@ import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style';
+import cx from '../../../lib/cx';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 
 const EXAMPLES = [
@@ -28,30 +29,21 @@ export default class Repl extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ loading:'Loading REPL...' });
+		this.setState({ loading: 'Loading REPL...' });
 
-		// Load the code editor
-		require.ensure([], require => {
-			let r = obj => obj.default || obj;
-			this.CodeEditor = r(require('../../code-editor'));
-			this.Runner = r(require('./runner'));
+		Promise.all([
+			import(/* webpackChunkName: "editor" */ '../../code-editor'),
+			import(/* webpackChunkName: "runner" */ './runner')
+		]).then(([CodeEditor, Runner]) => {
+			this.CodeEditor = CodeEditor.default;
+			this.Runner = Runner.default;
 
 			// Load transpiler
-			this.setState({ loading:'Initializing Babel worker...' });
+			this.setState({ loading: 'Initializing Babel worker...' });
 			this.Runner.worker.call('ping').then( () => {
-				this.setState({ loading:false });
+				this.setState({ loading: false });
 			});
-		}, 'repl');
-
-		// webpack 2:
-		// Promise.all([
-		// 	System.import('../../code-editor'),
-		// 	System.import('./runner')
-		// ]).then( (CodeEditor, Runner) => {
-		// 	this.CodeEditor = CodeEditor;
-		// 	this.Runner = Runner;
-		// 	this.setState({ loading:false, loaded:true });
-		// });
+		});
 	}
 
 	share = () => {
@@ -114,25 +106,15 @@ export default class Repl extends Component {
 
 	render(_, { loading, code, error, example, copied }) {
 		if (loading) return (
-			<div class={style.repl}>
+			<ReplWrapper loading>
 				<div class={style.loading}>
-					<progress-spinner />
 					<h4>{loading}</h4>
 				</div>
-			</div>
+			</ReplWrapper>
 		);
 
 		return (
-			<div class={style.repl}>
-				<style>{`
-					main {
-						height: 100% !important;
-						overflow: hidden !important;
-					}
-					footer {
-						display: none !important;
-					}
-				`}</style>
+			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
 						<select value={example} onChange={this.linkState('example')}>
@@ -145,10 +127,27 @@ export default class Repl extends Component {
 					</label>
 					<button class={style.share} onClick={this.share}>{copied ? '🔗 Copied' : 'Share'}</button>
 				</header>
-				<pre class={{ [style.error]:true, [style.showing]:!!error }}>{ String(error) }</pre>
+				<pre class={cx(style.error, error && style.showing)}>{ String(error) }</pre>
 				<this.CodeEditor class={style.code} value={code} error={error} onInput={this.linkState('code', 'value')} />
 				<this.Runner class={style.output} onError={this.linkState('error', 'error')} onSuccess={this.onSuccess} code={code} />
-			</div>
+			</ReplWrapper>
 		);
 	}
 }
+
+const ReplWrapper = ({ loading, children }) => (
+	<div class={style.repl}>
+		<progress-bar showing={!!loading} />
+		<style>{`
+			main {
+				height: 100% !important;
+				overflow: hidden !important;
+			}
+			footer {
+				display: none !important;
+			}
+		`}</style>
+		{children}
+	</div>
+);
+

@@ -1,4 +1,4 @@
-import createStore from './lib/store';
+import createStore from 'unistore';
 import getDefaultLanguage from './lib/default-language';
 import config from './config';
 import { localStorageSet, localStorageGet } from './lib/localstorage';
