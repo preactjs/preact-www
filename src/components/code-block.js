@@ -9,7 +9,7 @@ import xml from 'highlight.js/lib/languages/xml';
 const LANGUAGES = { javascript, json, xml };
 Object.keys(LANGUAGES).forEach( key => hljs.registerLanguage(key, LANGUAGES[key]) );
 
-export default ({ children, ...props }) => {
+const CodeBlock = ({ children, ...props }) => {
 	let child = children && children[0],
 		isHighlight = child && child.nodeName==='code';
 	if (isHighlight) {
@@ -20,10 +20,12 @@ export default ({ children, ...props }) => {
 			repl = hLang==='js' && text.split('\n').length>2 && props.repl!=='false';
 		return (
 			<pre class={cx('highlight', `highlight-${hLang}`, props.class)}>
-				<code class={`hljs lang-${hLang}`} dangerouslySetInnerHTML={{ __html:highlighted.value }} />
+				<code class={`hljs lang-${hLang}`} dangerouslySetInnerHTML={{ __html: highlighted.value }} />
 				{ repl && <Link class="repl-link" href={`/repl?code=${encodeURIComponent(text)}`}>Run in REPL</Link> }
 			</pre>
 		);
 	}
 	return <pre {...props}>{ children }</pre>;
 };
+
+export default CodeBlock;

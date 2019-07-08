@@ -1,6 +1,4 @@
-// import './lib/polyfills';
 import './style/index.less';
-import 'linkstate/polyfill';
 import './pwa';
 import App from './components/app';
 import * as preact from 'preact';

@@ -18,7 +18,7 @@ export default class Footer extends Component {
 			<footer class={style.footer}>
 				<div class={style.inner}>
 					<p>
-						<a href={editUrl} target="_blank" rel="noopener">Edit this Page</a>
+						<a href={editUrl} target="_blank" rel="noopener noreferrer">Edit this Page</a>
 						<label class={style.lang}>
 							Language:{' '}
 							<select value={lang || ''} onChange={this.setLang}>
@@ -31,8 +31,8 @@ export default class Footer extends Component {
 						</label>
 					</p>
 					<p>
-						Built by <a href="https://github.com/developit" target="_blank" rel="noopener">@developit</a>{' '}
-						and a bunch of <a href="https://github.com/developit/preact/graphs/contributors" target="_blank" rel="noopener">lovely people</a>.
+						Built by <a href="https://github.com/developit" target="_blank" rel="noopener noreferrer">@developit</a>{' '}
+						and a bunch of <a href="https://github.com/developit/preact/graphs/contributors" target="_blank" rel="noopener noreferrer">lovely people</a>.
 					</p>
 				</div>
 			</footer>

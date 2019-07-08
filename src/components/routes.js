@@ -15,6 +15,7 @@ history.pushState = (a, b, url) => {
 
 
 export default class Routes extends Component {
+
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
@@ -52,12 +53,12 @@ export default class Routes extends Component {
 		return <Ctrl path={route.path || ''} route={route} />;
 	}
 
-	render({ url, component:C='main', onChange, ...props }) {
+	render({ url, component: C='main', onChange, ...props }) {
 		return (
 			<C {...props}>
 				<Router url={url} onChange={this.handleRoute}>
 					{ this.getNavRoutes(config.nav) }
-					<controllers.error route={{ content:'404', title:'404' }} default />
+					<controllers.error route={{ content: '404', title: '404' }} default />
 				</Router>
 			</C>
 		);

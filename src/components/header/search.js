@@ -52,12 +52,6 @@ export default class Search extends Component {
 			this.base.appendChild(input);
 
 			this.load();
-			// if (/loaded|complete/.test(document.readyState)) {
-			// 	this.load();
-			// }
-			// else {
-			// 	addEventListener('load', this.load);
-			// }
 		}
 	}
 
