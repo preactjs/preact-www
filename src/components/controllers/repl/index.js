@@ -39,7 +39,7 @@ export default class Repl extends Component {
 
 			// Load transpiler
 			this.setState({ loading: 'Initializing Babel worker...' });
-			this.Runner.worker.call('ping').then( () => {
+			this.Runner.worker.call('ping').then(() => {
 				this.setState({ loading: false });
 			});
 		});
@@ -59,7 +59,7 @@ export default class Repl extends Component {
 			input.blur();
 			document.body.removeChild(input);
 			this.setState({ copied: true });
-			setTimeout( () => this.setState({ copied: false }), 1000);
+			setTimeout(() => this.setState({ copied: false }), 1000);
 		}
 		catch (err) {
 			console.log(err);
@@ -95,7 +95,7 @@ export default class Repl extends Component {
 				this.setState({ code });
 			}
 			else {
-				setTimeout( () => {
+				setTimeout(() => {
 					if (confirm('Run code from link?')) {
 						this.setState({ code });
 					}
@@ -119,9 +119,9 @@ export default class Repl extends Component {
 					<label>
 						<select value={example} onChange={linkState(this, 'example')}>
 							<option value="">Select Example...</option>
-							{ EXAMPLES.map( ({ name }, index) => (
+							{EXAMPLES.map( ({ name }, index) => (
 								<option value={index}>{name}</option>
-							)) }
+							))}
 						</select>
 						<button class={style.reset} onClick={this.loadExample} disabled={!example}>Load</button>
 					</label>

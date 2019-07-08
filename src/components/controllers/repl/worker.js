@@ -4,10 +4,10 @@ import { transform, availablePlugins } from 'babel-standalone';
 // rpc
 addEventListener('message', ({ data }) => {
 	let { id, method, params } = data;
-	new Promise( r => r() )
-		.then( () => ACTIONS[method](...[].concat(params)) )
-		.then( result => postMessage({ id, result }) )
-		.catch( ({ message, loc }) => postMessage({ id, error: { message,loc } }) );
+	new Promise(r => r())
+		.then(() => ACTIONS[method](...[].concat(params)))
+		.then(result => postMessage({ id, result }))
+		.catch(({ message, loc }) => postMessage({ id, error: { message,loc } }));
 });
 
 const ACTIONS = {};

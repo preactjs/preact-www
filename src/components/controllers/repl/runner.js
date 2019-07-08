@@ -46,9 +46,9 @@ export default class Runner extends Component {
 		});
 
 		worker.call('transform', code)
-			.then( transpiled => this.execute(transpiled) )
-			.then( onSuccess )
-			.catch( ({ message, ...props }) => {
+			.then(transpiled => this.execute(transpiled))
+			.then(onSuccess)
+			.catch(({ message, ...props }) => {
 				let error = new Error(message);
 				for (let i in props) if (props.hasOwnProperty(i)) error[i] = props[i];
 				if (onError) onError({ error });
