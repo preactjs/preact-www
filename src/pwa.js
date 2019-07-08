@@ -3,17 +3,19 @@
 let hasInteracted, shouldReload;
 
 function sw() {
-	navigator.serviceWorker.getRegistration().then(reg => {
-		reg.onupdatefound = () => {
-			const w = reg.installing;
-			w.onstatechange = () => {
-				if (w.state === 'installed' && navigator.serviceWorker.controller) {
-					shouldReload = true;
-					if (!hasInteracted) location.reload();
-				}
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.getRegistration().then(reg => {
+			reg.onupdatefound = () => {
+				const w = reg.installing;
+				w.onstatechange = () => {
+					if (w.state === 'installed' && navigator.serviceWorker.controller) {
+						shouldReload = true;
+						if (!hasInteracted) location.reload();
+					}
+				};
 			};
-		};
-	});
+		});
+	}
 }
 
 if (!PRERENDER) {
