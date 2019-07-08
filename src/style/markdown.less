@@ -1,9 +1,14 @@
 .markup, .markdown {
-	& > *:first-child {
-		margin-top: 0;		// !important
+	& > * ~ * {
+		margin-top: 1.25rem;
 	}
-	& > *:last-child {
-		margin-bottom: 0;	// !important
+
+	p a {
+		background: linear-gradient(currentColor, currentColor);
+		text-shadow: 3px 0 #fff, 2px 0 #fff, 1px 0 #fff, -1px 0 #fff, -2px 0 #fff, -3px 0 #fff;
+		background-position: center bottom;
+		background-size: 100% 0.09rem;
+		background-repeat: no-repeat;
 	}
 
 	a.anchor {
@@ -48,8 +53,7 @@
 	}
 
 	h2 {
-		font-size: 24px;
-		border-bottom: 1px solid #ccc;
+		font-size: 1.8rem;
 		color: black;
 	}
 
@@ -68,10 +72,6 @@
 	h6 {
 		color: #777;
 		font-size: 14px;
-	}
-
-	p, blockquote, ul, ol, dl, li, table, pre {
-		margin: 20px 0;
 	}
 
 	ul, ol {
@@ -158,9 +158,10 @@
 	}
 
 	blockquote {
-		border-left: 4px solid #ddd;
-		padding: 0 15px;
-		color: #777;
+		border-left: .3rem solid @blockquote-border;
+		padding: .75rem 1rem;
+		background: @blockquote-bg;
+		color: #333;
 	}
 	blockquote > :first-child {
 		margin-top: 0;
