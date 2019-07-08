@@ -44,13 +44,12 @@ export default class CodeEditor extends Component {
 		this.showErrorTimer = setTimeout( () => {
 			this.editor.operation( () => {
 				let { left } = this.editor.cursorCoords({ line:error.loc.line-1, ch:error.loc.column-1 }, 'local');
+				const errorLine = <div class={style.lintError}>
+					<pre style={`padding-left:${left}px;`}>^</pre>
+					<div>🔥 { error.message.split('\n')[0] }</div>
+				</div>;
 				this.errors = [
-					this.editor.addLineWidget(error.loc.line-1, render(
-						<div class={style.lintError}>
-							<pre style={`padding-left:${left}px;`}>^</pre>
-							<div>🔥 { error.message.split('\n')[0] }</div>
-						</div>
-					,this.scratch))
+					this.editor.addLineWidget(error.loc.line-1, render(errorLine ,this.scratch))
 				];
 			});
 		}, 5000);

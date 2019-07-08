@@ -9,7 +9,7 @@ export default () => {
 	let state = getSavedState();
 
 	if (state.lang !== '') {
-		let langOverride = ((location.href.match(/[?&]lang=([a-z\-]+)/i) || [])[1] || '').toLowerCase();
+		let langOverride = ((location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || '').toLowerCase();
 		if (langOverride && config.languages[langOverride]) state.lang = langOverride;
 
 		if (!state.lang) state.lang = getDefaultLanguage(config.languages) || '';

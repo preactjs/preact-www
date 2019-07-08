@@ -1,6 +1,6 @@
 import map from './emoji.json';
 
-const REG = /\b\:([a-z0-9_]+)\:\b/gi;
+const REG = /\b:([a-z0-9_]+):\b/gi;
 
 const TO_EMOJI = (s, name) => map[name.toLowerCase()] || s;
 
