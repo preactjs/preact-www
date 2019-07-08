@@ -18,12 +18,6 @@ export default class App extends Component {
 		}
 	}
 
-	// componentWillMount() {
-	// 	if (this.props.data) {
-	// 		store.setState({ data: this.props.data });
-	// 	}
-	// }
-
 	render({ url }) {
 		return (
 			<Provider store={store}>

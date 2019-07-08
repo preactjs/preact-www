@@ -9,27 +9,6 @@ import style from './style';
 export default class CodeEditor extends Component {
 	scratch = document.createElement('div');
 
-	shouldComponentUpdate() {
-		return false;
-	}
-
-	componentWillReceiveProps({ value, error }) {
-		let current = this.hasOwnProperty('value') ? this.value : this.props.value;
-		if (value!==current) {
-			let e = this.events;
-			this.events = false;
-			this.value = value;
-			this.editor.setValue(value);
-			this.showError(null);
-			setTimeout( () => this.editor.refresh(), 1);
-			this.events = e;
-		}
-
-		if (error!==this.props.error) {
-			this.showError(error);
-		}
-	}
-
 	showError(error) {
 		clearTimeout(this.showErrorTimer);
 		if (this.errors) {
@@ -43,22 +22,18 @@ export default class CodeEditor extends Component {
 
 		this.showErrorTimer = setTimeout( () => {
 			this.editor.operation( () => {
-				let { left } = this.editor.cursorCoords({ line:error.loc.line-1, ch:error.loc.column-1 }, 'local');
-				const errorLine = <div class={style.lintError}>
-					<pre style={`padding-left:${left}px;`}>^</pre>
-					<div>🔥 { error.message.split('\n')[0] }</div>
-				</div>;
+				let { left } = this.editor.cursorCoords({ line: error.loc.line-1, ch: error.loc.column-1 }, 'local');
+				const errorLine = (
+					<div class={style.lintError}>
+						<pre style={`padding-left:${left}px;`}>^</pre>
+						<div>🔥 { error.message.split('\n')[0] }</div>
+					</div>
+				);
 				this.errors = [
 					this.editor.addLineWidget(error.loc.line-1, render(errorLine ,this.scratch))
 				];
 			});
 		}, 5000);
-	}
-
-	componentWillUnmount() {
-		let wrapper = this.editor && this.editor.getWrapperElement();
-		if (wrapper) this.base.removeChild(wrapper);
-		this.editor = null;
 	}
 
 	componentDidMount() {
@@ -85,6 +60,33 @@ export default class CodeEditor extends Component {
 			let { onInput } = this.props;
 			if (onInput) onInput({ value: this.value });
 		});
+	}
+
+	componentWillReceiveProps({ value, error }) {
+		let current = this.hasOwnProperty('value') ? this.value : this.props.value;
+		if (value!==current) {
+			let e = this.events;
+			this.events = false;
+			this.value = value;
+			this.editor.setValue(value);
+			this.showError(null);
+			setTimeout( () => this.editor.refresh(), 1);
+			this.events = e;
+		}
+
+		if (error!==this.props.error) {
+			this.showError(error);
+		}
+	}
+
+	shouldComponentUpdate() {
+		return false;
+	}
+
+	componentWillUnmount() {
+		let wrapper = this.editor && this.editor.getWrapperElement();
+		if (wrapper) this.base.removeChild(wrapper);
+		this.editor = null;
 	}
 
 	render({ value, onInput, children, ...props }) {

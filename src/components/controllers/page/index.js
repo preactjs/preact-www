@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import linkState from 'linkstate';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
@@ -9,26 +10,6 @@ const EMPTY = {};
 const getContent = route => route.content || route.path;
 
 export default class Page extends Component {
-	componentWillReceiveProps({ route }) {
-		if (getContent(route)!==getContent(this.props.route)) {
-			this.setState({ loading:true });
-		}
-	}
-
-	componentDidMount() {
-		this.setTitle();
-	}
-
-	componentDidUpdate() {
-		this.setTitle();
-	}
-
-	setTitle() {
-		let { props, state } = this,
-			title = state.meta && state.meta.title || props.route.title || '';
-		document.title = `${title} | ${config.title}`;
-	}
-
 	onLoad = ({ meta }) => {
 		this.setState({
 			current: getContent(this.props.route),
@@ -46,6 +27,26 @@ export default class Page extends Component {
 		}
 	};
 
+	setTitle() {
+		let { props, state } = this,
+			title = state.meta && state.meta.title || props.route.title || '';
+		document.title = `${title} | ${config.title}`;
+	}
+
+	componentDidMount() {
+		this.setTitle();
+	}
+
+	componentWillReceiveProps({ route }) {
+		if (getContent(route)!==getContent(this.props.route)) {
+			this.setState({ loading: true });
+		}
+	}
+
+	componentDidUpdate() {
+		this.setTitle();
+	}
+
 	render({ route }, { current, loading, meta=EMPTY, toc }) {
 		let layout = `${meta.layout || 'default'}Layout`,
 			name = getContent(route);
@@ -62,7 +63,7 @@ export default class Page extends Component {
 				<div class={style.inner}>
 					<ContentRegion
 						name={name}
-						onToc={this.linkState('toc', 'toc')}
+						onToc={linkState(this, 'toc', 'toc')}
 						onLoad={this.onLoad}
 					/>
 				</div>
@@ -78,7 +79,7 @@ class Toc extends Component {
 		return false;
 	};
 
-	open = () => this.setState({open:true});
+	open = () => this.setState({ open: true });
 
 	render({ items }, { open }) {
 		return (

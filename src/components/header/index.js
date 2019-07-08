@@ -16,14 +16,14 @@ const LINK_FLAIR = {
 @connect( ({ url }) => ({ url }) )
 // @pure
 export default class Header extends Component {
-	state = { open:false };
+	state = { open: false };
 
 	toggle = () => this.setState({ open: !this.state.open });
 
 	// close menu on navigate
 	componentWillReceiveProps({ url }) {
 		if (url!==this.props.url && this.state.open) {
-			this.setState({ open:false });
+			this.setState({ open: false });
 		}
 	}
 
@@ -67,9 +67,9 @@ const Nav = ({ routes, current, ...props }) => (
 
 // nav items are really the only complex bit for menuing, since they handle click events.
 class NavItem extends Component {
-	state = { open:false };
+	state = { open: false };
 
-	close = () => (this.setState({ open:false }), false);
+	close = () => (this.setState({ open: false }), false);
 
 	toggle = () => (this.setState({ open: !this.state.open }), false);
 
@@ -112,17 +112,15 @@ class NavItem extends Component {
 
 
 // depending on the type of nav link, use <a>
-class NavLink extends Component {
-	render({ to, ...props }, { hovered }) {
-		let Flair = to.flair && LINK_FLAIR[to.flair];
-		return (
-			<a href={to.path || 'javascript:'} {...props}>
-				{ Flair && <Flair /> }
-				{ to.name || to.title }
-			</a>
-		);
-	}
-}
+const NavLink = ({ to, ...props }) => {
+	let Flair = to.flair && LINK_FLAIR[to.flair];
+	return (
+		<a href={to.path || 'javascript:'} {...props}>
+			{ Flair && <Flair /> }
+			{ to.name || to.title }
+		</a>
+	);
+};
 
 
 // get a CSS-addressable identifier for a given route
@@ -131,7 +129,7 @@ const getRouteIdent = route => (
 );
 
 const Corner = () => (
-	<a href="https://opencollective.com/preact" target="_blank" rel="noopener" class={style.corner}>
+	<a href="https://opencollective.com/preact" target="_blank" rel="noopener noreferrer" class={style.corner}>
 		<div class={style.cornerText}>
 			Help Support Us !
 		</div>

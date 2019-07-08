@@ -10,24 +10,32 @@
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
     "test": "npm run -s lint && npm run -s test:karma",
     "test:karma": "karma start test/karma.conf.js --single-run",
-    "lint": "eslint src test",
-    "deploy": "npm run -s build && cp build/index.html build/200.html && surge -d preactjs.com build"
+    "lint": "eslint src test"
   },
   "keywords": [
     "preact"
   ],
+  "eslintConfig": {
+    "extends": "developit",
+    "rules": {
+      "react/sort-comp": 0,
+      "react/no-danger": 1
+    },
+    "globals": {
+      "PRERENDER": true
+    }
+  },
   "license": "MIT",
   "author": "Jason Miller <jason@developit.ca>",
   "devDependencies": {
-    "critters-webpack-plugin": "^2.2.0",
-    "dlv": "^1.1.2",
+    "critters-webpack-plugin": "^2.3.0",
+    "dlv": "^1.1.3",
     "eslint": "^4.9.0",
-    "eslint-config-synacor": "^2.0.2",
+    "eslint-config-developit": "^1.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "jsdom": "^13.2.0",
     "less-loader": "^4.1.0",
-    "offline-plugin": "^5.0.6",
     "per-env": "^1.0.2",
     "preact-cli": "^3.0.0-next.16",
     "preact-render-spy": "^1.2.1"
@@ -43,14 +51,12 @@
     "linkstate": "^1.1.1",
     "marked": "^0.3.5",
     "preact": "^8.4.2",
-    "preact-cli-plugin-netlify": "^1.1.0",
+    "preact-cli-plugin-netlify": "^1.2.1",
     "preact-markup": "^1.3.0",
     "preact-render-to-string": "^4.1.0",
     "preact-router": "^2.6.1",
-    "progress-spinner": "^1.1.0",
     "superstatic": "^4.0.3",
-    "surge": "^0.20.1",
-    "unistore": "^3.1.0",
+    "unistore": "^3.4.1",
     "window-or-global": "^1.0.1",
     "worker-loader": "^2.0.0",
     "yaml": "^0.3.0"

@@ -31,7 +31,7 @@ const EMPTY = {};
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 // only memoize in prod
-const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f=>f;
+const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f => f;
 
 
 // fetch and parse a markdown document
@@ -71,15 +71,6 @@ function parseContent(text, ext) {
 		meta
 	};
 }
-
-
-const getAllPaths = memoizeProd( () => {
-	let config = require('../config'),
-		reducer = (acc, route) => acc.concat(route.path || [], route.routes ? route.routes.reduce(reducer,[]) : []);
-	return config.nav.reduce(reducer, []);
-});
-
-
 
 
 @connect( ({ lang }) => ({ lang }) )

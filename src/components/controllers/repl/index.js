@@ -1,4 +1,5 @@
-import { h, Component, render } from 'preact';
+import { h, Component } from 'preact';
+import linkState from 'linkstate';
 import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
@@ -19,7 +20,7 @@ const EXAMPLES = [
 
 export default class Repl extends Component {
 	state = {
-		loading: 'Initializing...',
+		loading: 'Loading REPL...',
 		code: localStorageGet('preact-www-repl-code') || codeExample
 	};
 
@@ -29,8 +30,6 @@ export default class Repl extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ loading: 'Loading REPL...' });
-
 		Promise.all([
 			import(/* webpackChunkName: "editor" */ '../../code-editor'),
 			import(/* webpackChunkName: "runner" */ './runner')
@@ -59,9 +58,10 @@ export default class Repl extends Component {
 			document.execCommand('copy');
 			input.blur();
 			document.body.removeChild(input);
-			this.setState({ copied:true });
-			setTimeout( () => this.setState({ copied:false }), 1000);
-		} catch (err) {
+			this.setState({ copied: true });
+			setTimeout( () => this.setState({ copied: false }), 1000);
+		}
+		catch (err) {
 			console.log(err);
 		}
 	};
@@ -74,7 +74,7 @@ export default class Repl extends Component {
 	};
 
 	onSuccess = () => {
-		this.setState({ error:null });
+		this.setState({ error: null });
 	};
 
 	componentDidUpdate = debounce(500, () => {
@@ -117,7 +117,7 @@ export default class Repl extends Component {
 			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
-						<select value={example} onChange={this.linkState('example')}>
+						<select value={example} onChange={linkState(this, 'example')}>
 							<option value="">Select Example...</option>
 							{ EXAMPLES.map( ({ name }, index) => (
 								<option value={index}>{name}</option>
@@ -128,8 +128,8 @@ export default class Repl extends Component {
 					<button class={style.share} onClick={this.share}>{copied ? '🔗 Copied' : 'Share'}</button>
 				</header>
 				<pre class={cx(style.error, error && style.showing)}>{ String(error) }</pre>
-				<this.CodeEditor class={style.code} value={code} error={error} onInput={this.linkState('code', 'value')} />
-				<this.Runner class={style.output} onError={this.linkState('error', 'error')} onSuccess={this.onSuccess} code={code} />
+				<this.CodeEditor class={style.code} value={code} error={error} onInput={linkState(this, 'code', 'value')} />
+				<this.Runner class={style.output} onError={linkState(this, 'error', 'error')} onSuccess={this.onSuccess} code={code} />
 			</ReplWrapper>
 		);
 	}
