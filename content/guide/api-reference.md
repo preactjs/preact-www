@@ -5,7 +5,7 @@ permalink: '/guide/api-reference'
 
 # API Reference
 
-## `Preact.Component`
+## Preact.Component
 
 `Component` is a base class that you will usually subclass to create stateful Preact components.
 
