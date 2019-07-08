@@ -1,7 +1,8 @@
 # Preact Documentation Website
 
-[![Build Status](https://travis-ci.org/developit/preact-www.svg?branch=master)](https://travis-ci.org/developit/preact-www)
-[![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/developit/preact)
+[![Build Status](https://travis-ci.org/preactjs/preact-www.svg?branch=master)](https://travis-ci.org/preactjs/preact-www)
+[![Preact Slack Community](https://preact-slack.now.sh/badge.svg)](https://preact-slack.now.sh)
+
 
 Based on [preact-boilerplate](https://github.com/developit/preact-boilerplate)
 
@@ -74,5 +75,5 @@ MIT
 
 
 [marked]: https://github.com/chjj/marked
-[preact]: https://github.com/developit/preact
+[preact]: https://github.com/preactjs/preact
 [preact-markup]: https://github.com/developit/preact-markup
