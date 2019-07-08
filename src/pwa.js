@@ -1,3 +1,5 @@
+/*global PRERENDER*/
+
 let hasInteracted, shouldReload;
 
 function sw() {
