@@ -4,12 +4,13 @@
   "description": "Preact website.",
   "scripts": {
     "dev": "preact watch --template src/template.html",
-    "start": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
+    "start": "npm run -s server",
     "prestart": "npm run build",
+    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
     "build": "preact build --prerenderUrls src/prerender.js --template src/template.html",
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
-    "test": "npm run -s lint && npm run -s test:karma",
-    "test:karma": "karma start test/karma.conf.js --single-run",
+    "pretest": "npm run -s lint && npm run -s build",
+    "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage test/browser/**/*.js",
     "lint": "eslint src test"
   },
   "keywords": [
@@ -19,11 +20,15 @@
     "extends": "developit",
     "rules": {
       "react/sort-comp": 0,
-      "react/no-danger": 1
+      "react/no-danger": 0
     },
     "globals": {
-      "PRERENDER": true
+      "PRERENDER": true,
+      "page": true
     }
+  },
+  "jest": {
+    "preset": "jest-puppeteer"
   },
   "license": "MIT",
   "author": "Jason Miller <jason@developit.ca>",
@@ -33,12 +38,14 @@
     "eslint": "^4.9.0",
     "eslint-config-developit": "^1.1.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^21.2.1",
+    "jest": "^24.8.0",
+    "jest-puppeteer": "^4.2.0",
     "jsdom": "^13.2.0",
     "less-loader": "^4.1.0",
     "per-env": "^1.0.2",
     "preact-cli": "^3.0.0-next.16",
-    "preact-render-spy": "^1.2.1"
+    "preact-render-spy": "^1.2.1",
+    "puppeteer": "^1.18.1"
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",
