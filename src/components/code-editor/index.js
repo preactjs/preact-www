@@ -1,7 +1,7 @@
 import { h, Component, render } from 'preact';
 import codemirror from 'codemirror';
 import cx from '../../lib/cx';
-import js from 'codemirror/mode/jsx/jsx';
+import 'codemirror/mode/jsx/jsx';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/lib/codemirror.css';
 import style from './style';

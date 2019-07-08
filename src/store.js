@@ -31,6 +31,6 @@ function getSavedState() {
 	try {
 		state = JSON.parse(localStorageGet('state'));
 	}
- catch (e) {}
+	catch (e) {}
 	return state || {};
 }
