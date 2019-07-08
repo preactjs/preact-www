@@ -43,7 +43,7 @@
     "jsdom": "^13.2.0",
     "less-loader": "^4.1.0",
     "per-env": "^1.0.2",
-    "preact-cli": "^3.0.0-next.16",
+    "preact-cli": "^3.0.0-rc.2",
     "preact-render-spy": "^1.2.1",
     "puppeteer": "^1.18.1"
   },
