@@ -1,10 +1,32 @@
-import { lazily } from './lib/lazily';
+/*global PRERENDER*/
 
-lazily(() => {
-	import(/* webpackChunkName: "offline" */ 'offline-plugin/runtime').then(runtime => {
-		runtime.install({
-			onUpdateReady: () => runtime.applyUpdate(),
-			onUpdated: () => location.reload()
-		});
+let hasInteracted, shouldReload;
+
+function sw() {
+	navigator.serviceWorker.getRegistration().then(reg => {
+		reg.onupdatefound = () => {
+			const w = reg.installing;
+			w.onstatechange = () => {
+				if (w.state === 'installed' && navigator.serviceWorker.controller) {
+					shouldReload = true;
+					if (!hasInteracted) location.reload();
+				}
+			};
+		};
 	});
-});
+}
+
+if (!PRERENDER) {
+	addEventListener('click', e => {
+		hasInteracted = true;
+		const link = e.target.closest('a');
+		if (shouldReload) {
+			location.href = link.href;
+			e.preventDefault();
+			return false;
+		}
+	}, true);
+
+	if (document.readyState==='complete') setTimeout(sw);
+	else addEventListener('load', sw);
+}
