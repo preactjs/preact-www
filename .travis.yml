@@ -1,6 +1,4 @@
 language: node_js
 node_js:
   - 10
-script: npm run build
-after_success:
-  - if [[ "${TRAVIS_BRANCH}" == "master" && "${TRAVIS_PULL_REQUEST}" == "false" ]]; then npm run deploy -s; fi
+script: npm run build && npm t
