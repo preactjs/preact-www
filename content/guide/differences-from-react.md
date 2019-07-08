@@ -1,9 +1,9 @@
 ---
-name: Differences to React
-permalink: '/guide/differences-to-react'
+name: Differences from React
+permalink: '/guide/differences-from-react'
 ---
 
-# Differences to React
+# Differences from React
 
 Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
 
