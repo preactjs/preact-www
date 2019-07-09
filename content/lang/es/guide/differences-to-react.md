@@ -65,6 +65,7 @@ Preact y React tienen algunas otras diferencias sutiles:
 
 - `render()` acepta un tercer argumento, que es el elemento raíz a _reemplazar_, de otro modo se agrega al final. Esto puede cambiar ligeramente en una versión futura, quizás auto-detectando que un dibujo de reemplazo es apropiado inspeccionando el nodo raíz.
 
+- Los componentes no implementan `contextTypes` or `childContextTypes`. Los componentes hijos reciben todas los valores de `context` dibujados desde `getChildContext()`.
 
 [Metas del proyecto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
