@@ -51,7 +51,7 @@ export default class Toc extends Component {
 				<nav tabIndex="0" onFocus={this.open}>
 					{items.map(({ text, level, id }) => {
 						let activeCss = this.state.active===id ? style.linkActive : undefined;
-						return <a href={'#' + id} class={cx(style.link, activeCss)}>{text}</a>;
+						return <a href={'#' + id} class={cx(style.link, activeCss, style['level-' + level])}>{text}</a>;
 					})}
 				</nav>
 			</div>
