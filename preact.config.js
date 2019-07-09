@@ -47,18 +47,10 @@ export default function (config, env, helpers) {
 		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
 	}
 
-	if (config.optimization) {
-		config.optimization.splitChunks = Object.assign({}, config.optimization.splitChunks || {}, {
-			cacheGroups: {
-				style: {
-					name: 'style',
-					test: /\.css$/,
-					chunks: 'all',
-					enforce: true
-				}
-			}
+	Object.assign(config.optimization.splitChunks || (config.optimization.splitChunks = {}), {
+		minSize: 1000
 		});
-	}
+
 
 	if (!env.ssr) {
 		// Find YAML FrontMatter preceeding a markdown document
