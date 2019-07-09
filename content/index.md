@@ -19,7 +19,7 @@ toc: false
         <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
     <p>
-        <github-stars user="developit" repo="preact">20,000+</github-stars>
+        <github-stars user="preactjs" repo="preact">20,000+</github-stars>
     </p>
 </jumbotron>
 
@@ -203,13 +203,13 @@ export default class Stars extends Component {
 import Stars from './stars';
 
 render(
-    &lt;Stars repo="developit/preact" /&gt;,
+    &lt;Stars repo="preactjs/preact" /&gt;,
     document.body
 );
         </code></pre>
        
         <div class="home-demo">
-            <github-stars simple user="developit" repo="preact"></github-stars>
+            <github-stars simple user="preactjs" repo="preact"></github-stars>
         </div>
     </div>
 </section>
