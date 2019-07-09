@@ -52,15 +52,18 @@ export default class Page extends Component {
 		let layout = `${meta.layout || 'default'}Layout`,
 			name = getContent(route);
 		if (name!==current) loading = true;
+
+		let hasToc = toc && meta.toc!==false;
+
 		return (
-			<div class={cx(style.page, style[layout])}>
+			<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
 				<progress-bar showing={loading} />
-				{ name!='index' && meta.show_title!==false && (
+				{name!='index' && meta.show_title!==false && (
 					<h1 class={style.title}>{ meta.title || route.title }</h1>
-				) }
-				{ toc && meta.toc!==false && (
+				)}
+				{hasToc && (
 					<Toc items={toc} />
-				) }
+				)}
 				<div class={style.inner}>
 					<ContentRegion
 						name={name}
