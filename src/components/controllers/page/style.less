@@ -9,8 +9,12 @@
 	}
 
 	:global .markup {
-		padding: 50px 0;
 		overflow: visible;
+		padding: 1em 0;
+
+		@media (min-width: 800px) {
+			padding: 3.125em 0;
+		}
 
 		& > *,
 		.full-width > *,
