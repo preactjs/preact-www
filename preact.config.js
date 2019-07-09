@@ -86,7 +86,7 @@ export default function (config, env, helpers) {
 				return content;
 			}
 		}]));
-	}
 
-	return netlifyPlugin(config);
+		netlifyPlugin(config);
+	}
 }
