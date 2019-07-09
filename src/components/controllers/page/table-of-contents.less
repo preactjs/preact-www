@@ -7,18 +7,17 @@
 	z-index: 20;
 
 	@media (min-width: 800px) {
-		& {
-			width: 20vw;
-			position: fixed;
-			padding-left: 1.5rem;
-			padding-top: 3rem;
-			top: @header-height / 2;
-			left: 0;
-			bottom: 0;
-			background: whitesmoke;
-			background: white;
-			border-left: .0625rem solid #eee;
-		}
+		width: 18em;
+		position: fixed;
+		padding-left: 1.5em;
+		padding-top: 1.5em;
+		top: @header-height;
+		left: 0;
+		bottom: 0;
+	}
+
+	@media (min-width: 1600px) {
+		left: 16vw;
 	}
 
 	&.disabled {
