@@ -47,7 +47,7 @@ export default class Toc extends Component {
 	render({ items }, { open }) {
 		return (
 			<div class={cx(style.toc, !(items && items.length>1) && style.disabled)} open={open}>
-				<button class={style.toggle} onClick={this.toggle}>Table of Contents🔗</button>
+				<button class={style.toggle} onClick={this.toggle} value="table of contents">{'<>'}</button>
 				<nav tabIndex="0" onFocus={this.open}>
 					{items.map(({ text, level, id }) => {
 						let activeCss = this.state.active===id ? style.linkActive : undefined;
