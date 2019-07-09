@@ -33,7 +33,7 @@ export default class Toc extends Component {
 				}
 			}, config);
 
-			Array.from(document.querySelectorAll('content-region h2'))
+			Array.from(document.querySelectorAll('content-region h2, content-region h3, content-region h4'))
 				.forEach(heading => this.observer.observe(heading));
 		}
 	}
