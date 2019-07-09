@@ -1,13 +1,13 @@
 import './window';
-import { transform, availablePresets, availablePlugins } from 'babel-standalone';
+import { transform, availablePlugins } from 'babel-standalone';
 
 // rpc
 addEventListener('message', ({ data }) => {
 	let { id, method, params } = data;
-	new Promise( r => r() )
-		.then( () => ACTIONS[method](...[].concat(params)) )
-		.then( result => postMessage({ id, result }) )
-		.catch( ({ message, loc }) => postMessage({ id, error:{message,loc} }) );
+	new Promise(r => r())
+		.then(() => ACTIONS[method](...[].concat(params)))
+		.then(result => postMessage({ id, result }))
+		.catch(({ message, loc }) => postMessage({ id, error: { message,loc } }));
 });
 
 const ACTIONS = {};
@@ -23,7 +23,7 @@ ACTIONS.transform = code => {
 		sourceMap: true,
 		presets: ['es2015', 'stage-0', 'react'],
 		plugins: [
-			[availablePlugins['transform-react-jsx'], { pragma:'h' }]
+			[availablePlugins['transform-react-jsx'], { pragma: 'h' }]
 		]
 	});
 
@@ -34,7 +34,8 @@ ACTIONS.transform = code => {
 	if (transpiled && out.map) {
 		try {
 			transpiled += `\n//@ sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.map))))}`;
-		} catch (e) {
+		}
+		catch (e) {
 			console.error(`Source Map generation failed: ${e}`);
 		}
 	}

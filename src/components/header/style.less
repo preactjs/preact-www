@@ -28,15 +28,39 @@
 
 	@media (max-width: @header-mobile-breakpoint) {
 		overflow: hidden;
+		display: flex;
 
 		&.open {
 			background: #222;
 			height: 100%;
 			overflow: auto;
+			justify-content: space-between;
 			overflow-scrolling: touch;
 
 			nav {
 				margin-right: 0;
+				position: absolute;
+				width: 100%;
+				text-align: left;
+				padding: 0;
+
+				a:global(.home) {
+					text-align: left;
+					padding-left: 26px;
+				}
+
+				a {
+					display: block;
+				}
+
+				section {
+					margin: 0;
+					display: block;
+
+					a {
+						text-align: left;
+					}
+				}
 			}
 		}
 	}
@@ -50,8 +74,7 @@
 
 		@media (max-width: @header-mobile-breakpoint) {
 			display: block;
-			// margin-top: @header-height;
-			margin-right: 100px;
+			padding: 0 23px;
 		}
 
 		a {
@@ -63,19 +86,28 @@
 			min-width: 50px;
 			border: none;
 			text-align: center;
-			background-color: rgba(255,255,255,0);
+			background-color: rgba(255, 255, 255, 0);
 			text-decoration: none;
 			font-size: 16px;
 			color: #EEE;
 			cursor: pointer;
 
 			@media (max-width: @header-mobile-breakpoint) {
-				display: block;
+				min-width: 100px;
+				text-align: left;
+				padding-left: 26px;
+				display: none;
 			}
 
 			&:global(.home) {
 				text-transform: uppercase;
 				padding: 0 15px;
+
+				@media (max-width: @header-mobile-breakpoint) {
+					display: block;
+					padding: 0;
+				}
+
 				svg {
 					position: relative;
 					padding-right: 5px;
@@ -83,15 +115,21 @@
 			}
 
 			&.current {
-				background-color: rgba(255,255,255,0.15);
+				background-color: rgba(255, 255, 255, 0.15);
 			}
 
-			&:hover, &:active, &:focus {
-				background-color: rgba(255,255,255,0.3);
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: rgba(255, 255, 255, 0.3);
 			}
 
 			@media (max-width: @header-mobile-breakpoint) {
-				&, &.current, &:hover, &:active {
+
+				&,
+				&.current,
+				&:hover,
+				&:active {
 					background-color: transparent;
 				}
 			}
@@ -102,7 +140,7 @@
 			position: relative;
 			overflow: visible;
 
-			& > a {
+			&>a {
 				padding-left: 25px;
 
 				&::after {
@@ -116,22 +154,26 @@
 			}
 
 			@media (max-width: @header-mobile-breakpoint) {
-				&, & > a {
+				& {
+					display: none;
+				}
+
+				&>a {
 					display: block;
 				}
 			}
 
-			& > nav {
+			&>nav {
 				display: none;
 				position: absolute;
 				left: 50%;
 				top: 100%;
 				margin: 0;
 				padding: 3px 0;
-				transform: translateX(-50%) perspective(1000px) translateX(.5px);  // .5 fixes blur issue
+				transform: translateX(-50%) perspective(1000px) translateX(.5px); // .5 fixes blur issue
 				background: #FFF;
 				border-radius: 0 0 3px 3px;
-				box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 				border: 1px solid #673AB7;
 				border-top: none;
 				animation: menuOpen 150ms ease-out forwards 1;
@@ -160,7 +202,9 @@
 						color: #222;
 					}
 
-					&:hover, &:active, &:focus {
+					&:hover,
+					&:active,
+					&:focus {
 						background-color: #DDD;
 						color: #000;
 					}
@@ -168,33 +212,35 @@
 			}
 
 			&[open] {
-				& > a {
+				&>a {
 					background: #FFF;
 					color: #555;
 					z-index: 101;
 				}
+
 				nav {
 					display: inline-block;
 				}
 
 				@media (max-width: @header-mobile-breakpoint) {
-					& > a {
+					&>a {
 						color: #FFF;
 						background: #333;
 					}
+
 					nav {
 						display: block;
 					}
 
-					& > nav {
+					&>nav {
 						position: relative;
 						left: 0;
 						top: 0;
 						padding: 0;
 						background: #333;
-						margin: 0 10px 10px;
 						transform: none;
 						animation: menuExpand 250ms ease forwards 1;
+
 						@keyframes menuExpand {
 							from {
 								opacity: 0;
@@ -204,8 +250,11 @@
 
 						a {
 							color: #EEE;
-							&:hover, &:active, &.current {
-								background-color: rgba(255,255,255,0.2);
+
+							&:hover,
+							&:active,
+							&.current {
+								background-color: rgba(255, 255, 255, 0.2);
 							}
 						}
 					}
@@ -232,7 +281,7 @@
 	margin: 3px;
 	width: 20px;
 	height: 20px;
-	padding: 18px 15px 12px;
+	padding: 18px 23px 12px;
 	line-height: @header-height;
 	text-align: center;
 	z-index: 100;
@@ -246,6 +295,7 @@
 
 	@media (max-width: @header-mobile-breakpoint) {
 		display: block;
+		position: relative;
 	}
 
 	&:before {
@@ -257,17 +307,23 @@
 		height: 100%;
 		border-radius: 50%;
 		transform-origin: center;
-		background: rgba(255,255,255,0.2);
+		background: rgba(255, 255, 255, 0.2);
 		transform: scale(0);
 	}
+
 	&:active:before {
-		animation: pop 200ms forwards cubic-bezier(.15,1.05,.54,1.29) 1;
-	}
-	@keyframes pop {
-		to { transform: scale(1); }
+		animation: pop 200ms forwards cubic-bezier(.15, 1.05, .54, 1.29) 1;
 	}
 
-	.hb1, .hb2, .hb3 {
+	@keyframes pop {
+		to {
+			transform: scale(1);
+		}
+	}
+
+	.hb1,
+	.hb2,
+	.hb3 {
 		position: relative;
 		width: 20px;
 		height: 3px;
@@ -282,14 +338,20 @@
 	}
 
 	&[open] {
-		.hb1 {
-			transform: translate(4px,-1px) rotate(45deg);
+		@media (max-width: @header-mobile-breakpoint) {
+			position: absolute;
 		}
+
+		.hb1 {
+			transform: translate(4px, -1px) rotate(45deg);
+		}
+
 		.hb2 {
 			opacity: 0;
 		}
+
 		.hb3 {
-			transform: translate(2px,1px) rotate(-45deg);
+			transform: translate(2px, 1px) rotate(-45deg);
 		}
 	}
 }
@@ -301,6 +363,7 @@
 		top: 60px !important;
 		left: 50% !important;
 		transform: translateX(-50%) !important;
+
 		@media (max-width: @header-mobile-breakpoint) {
 			width: 90% !important;
 		}
@@ -317,9 +380,7 @@
 	background: #673AB8;
 
 	@media (max-width: @header-mobile-breakpoint) {
-		position: absolute;
-		right: 51px;
-		top: 0;
+		flex-grow: 1;
 
 		.open & {
 			display: none;
@@ -327,10 +388,6 @@
 
 		.searchBox {
 			width: 0;
-
-			&:focus, &:valid {
-				margin-left: 1000px;
-			}
 		}
 	}
 
@@ -338,25 +395,34 @@
 		width: 70px;
 		margin: 10px 5px;
 		padding: 8px 4px 8px 32px;
-		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="#7447c5" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
+		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%237447c5" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
 		background-position: 10px center;
 		background-repeat: no-repeat;
 		background-color: darken(#673AB8, 7%) !important;
 		border: 1px solid lighten(#673AB8, 5%);
 		border-bottom-color: lighten(#673AB8, 10%);
 		border-radius: 5px;
-		box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+		box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
 		color: #673AB8;
 		font-size: 100%;
 		will-change: width;
 		transition: width 250ms ease;
 
+		@media (max-width: @header-mobile-breakpoint) {
+			width: 100%;
+			margin: 10px 0;
+		}
+
 		&::-webkit-input-placeholder {
 			color: lighten(#673AB8, 5%);
 		}
 
-		&:focus, &:valid {
-			width: 140px;
+		&:focus,
+		&:valid {
+			@media (min-width: @header-mobile-breakpoint) {
+				width: 140px;
+			}
+
 			color: #D1C3EA;
 			outline: none;
 		}
@@ -365,6 +431,7 @@
 
 // corner link
 @corner-size: 140px;
+
 .corner {
 	@media (max-width: @header-mobile-breakpoint) {
 		display: none;
@@ -382,7 +449,8 @@
 	transform: rotate(45deg);
 	box-shadow: 0 0 20px 5px rgba(0, 0, 0, .5);
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		background-color: darken(#f2777a, 5%);
 		text-decoration: none;
 		color: #fff;
@@ -398,4 +466,3 @@
 	padding: 0 3px 5px;
 	line-height: 1.3;
 }
-

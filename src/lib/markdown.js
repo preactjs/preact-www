@@ -19,10 +19,12 @@ const markdownToHtml = md => (
  *	@param props.markdown	Markdown string to render.
  *	@returns VNode
  */
-export default ({ markdown, postProcess, ...props }) => {
+const Markdown = ({ markdown, postProcess, ...props }) => {
 	let markup = markdownToHtml(markdown);
 	if (postProcess) markup = postProcess(markup);
 	return (
 		<Markup markup={markup} type="html" trim={false} {...props} />
 	);
 };
+
+export default Markdown;

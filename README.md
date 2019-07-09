@@ -1,9 +1,10 @@
 # Preact Documentation Website
 
-[![Build Status](https://travis-ci.org/developit/preact-www.svg?branch=master)](https://travis-ci.org/developit/preact-www)
-[![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/developit/preact)
+[![Build Status](https://travis-ci.org/preactjs/preact-www.svg?branch=master)](https://travis-ci.org/preactjs/preact-www)
+[![Preact Slack Community](https://preact-slack.now.sh/badge.svg)](https://preact-slack.now.sh)
 
-Based on [preact-boilerplate](https://github.com/developit/preact-boilerplate)
+
+Built with [preact-cli](https://github.com/preactjs/preact-cli)
 
 > :rocket: `master` is automatically deployed to [preactjs.com](https://preactjs.com)
 
@@ -13,18 +14,27 @@ Based on [preact-boilerplate](https://github.com/developit/preact-boilerplate)
 
 # Application Structure
 
-This website is built as a static-app, following the Application Shell pattern.
+This website is built as a [prerendered static app](https://developers.google.com/web/updates/2019/02/rendering-on-the-web#static-rendering), following the [Application Shell pattern](https://developers.google.com/web/fundamentals/architecture/app-shell).
 
 
 #### Content
 
-Content is fetched and rendered on the fly from Markdown documents located in `content/`.
+Content is fetched and rendered on the fly from Markdown documents located in `content/`, similar to how Jekyll works.
 Documents can contain optional YAML FrontMatter for specifying page metadata or layout information.
 Once fetched, content is parsed using [marked] and rendered to VDOM via [preact-markup].
 
 #### Custom Elements
 
-Since [preact] is used to render the Markdown content, HTML contained in a document reference any of the Components listed in `src/components/widget.js` as Custom Elements, useful for dynamic content.
+Since [preact] is used to render the Markdown content, HTML contained in a document reference any of the Components listed in `src/components/widget.js` as Custom Elements, useful for dynamic content:
+
+```md
+## Example Page
+
+<!-- Jumbotron and Logo are actually Preact components! -->
+<jumbotron>
+    <h1><logo text>Preact</logo></h1>
+</jumbotron>
+```
 
 #### Navigation
 
@@ -74,5 +84,5 @@ MIT
 
 
 [marked]: https://github.com/chjj/marked
-[preact]: https://github.com/developit/preact
+[preact]: https://github.com/preactjs/preact
 [preact-markup]: https://github.com/developit/preact-markup

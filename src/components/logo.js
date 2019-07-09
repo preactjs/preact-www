@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 
 export default class Logo extends Component {
-	state = { i:0, flash:true, hover:false };
+	state = { i: 0, flash: true, hover: false };
 
 	hover = () => {
 		this.setState({ hover: true });
@@ -31,8 +31,8 @@ export default class Logo extends Component {
 		let c = 0;
 		this.flashTimer = setInterval( () => {
 			let i = c++%5;
-			if (i===0) this.setState({ flash:true });
-			if (i===1) this.setState({ flash:false });
+			if (i===0) this.setState({ flash: true });
+			if (i===1) this.setState({ flash: false });
 		}, 1000);
 	}
 
@@ -51,13 +51,23 @@ export default class Logo extends Component {
 		let gapLength = Math.sin(offset/500*Math.PI)*30+60;
 		let lineLength = 894 / 2 - gapLength;
 		return (
-			<ellipse cx="0" cy="0" stroke-dasharray={`${lineLength} ${gapLength}`} stroke-dashoffset={offset*10 + Math.sin(offset/100*Math.PI)*200} stroke-width="16px" rx="75px" ry="196px" fill="none" stroke={fg} transform={`rotate(${deg})`} />
+			<ellipse
+				cx="0"
+				cy="0"
+				rx="75px"
+				ry="196px"
+				stroke-width="16px"
+				stroke-dasharray={`${lineLength} ${gapLength}`}
+				stroke-dashoffset={offset*10 + Math.sin(offset/100*Math.PI)*200}
+				fill="none"
+				stroke={fg}
+				transform={`rotate(${deg})`}
+			/>
 		);
 	}
 
 	render({ inverted=false, text=false, fg='white', bg='#673ab8', component, ...props }, { i }) {
-		let Root = component || 'div',
-			touch = typeof navigator!=='undefined' && navigator.maxTouchPoints>1;
+		let touch = typeof navigator!=='undefined' && navigator.maxTouchPoints>1;
 		if (inverted) [bg, fg] = [fg, bg];
 
 		return (
@@ -67,7 +77,7 @@ export default class Logo extends Component {
 				viewBox={`-256 -256 ${text?1800:512} 512`}
 				style="display:inline-block; margin:-.25em 0 0; vertical-align:middle;"
 				onMouseover={!touch && this.hover}
-				onMouseout ={!touch && this.hoverOut}
+				onMouseout={!touch && this.hoverOut}
 				{...props}
 			>
 				<path style={`transition:all 1s ease; transform:rotate(${Math.floor(i/60/10)*60}deg);`} d="M0,-256 221.7025033688164,-128 221.7025033688164,128 0,256 -221.7025033688164,128 -221.7025033688164,-128z" fill={bg} />
@@ -82,8 +92,6 @@ export default class Logo extends Component {
 	}
 }
 
-export const InvertedLogo = props => {
-	return (
-		<Logo inverted {...props} />
-	);
-};
+export const InvertedLogo = props => (
+	<Logo inverted {...props} />
+);

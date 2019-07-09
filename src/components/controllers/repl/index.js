@@ -1,8 +1,10 @@
-import { h, Component, render } from 'preact';
+import { h, Component } from 'preact';
+import linkState from 'linkstate';
 import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style';
+import cx from '../../../lib/cx';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 
 const EXAMPLES = [
@@ -18,7 +20,7 @@ const EXAMPLES = [
 
 export default class Repl extends Component {
 	state = {
-		loading: 'Initializing...',
+		loading: 'Loading REPL...',
 		code: localStorageGet('preact-www-repl-code') || codeExample
 	};
 
@@ -28,30 +30,19 @@ export default class Repl extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ loading:'Loading REPL...' });
-
-		// Load the code editor
-		require.ensure([], require => {
-			let r = obj => obj.default || obj;
-			this.CodeEditor = r(require('../../code-editor'));
-			this.Runner = r(require('./runner'));
+		Promise.all([
+			import(/* webpackChunkName: "editor" */ '../../code-editor'),
+			import(/* webpackChunkName: "runner" */ './runner')
+		]).then(([CodeEditor, Runner]) => {
+			this.CodeEditor = CodeEditor.default;
+			this.Runner = Runner.default;
 
 			// Load transpiler
-			this.setState({ loading:'Initializing Babel worker...' });
-			this.Runner.worker.call('ping').then( () => {
-				this.setState({ loading:false });
+			this.setState({ loading: 'Initializing Babel worker...' });
+			this.Runner.worker.call('ping').then(() => {
+				this.setState({ loading: false });
 			});
-		}, 'repl');
-
-		// webpack 2:
-		// Promise.all([
-		// 	System.import('../../code-editor'),
-		// 	System.import('./runner')
-		// ]).then( (CodeEditor, Runner) => {
-		// 	this.CodeEditor = CodeEditor;
-		// 	this.Runner = Runner;
-		// 	this.setState({ loading:false, loaded:true });
-		// });
+		});
 	}
 
 	share = () => {
@@ -67,9 +58,10 @@ export default class Repl extends Component {
 			document.execCommand('copy');
 			input.blur();
 			document.body.removeChild(input);
-			this.setState({ copied:true });
-			setTimeout( () => this.setState({ copied:false }), 1000);
-		} catch (err) {
+			this.setState({ copied: true });
+			setTimeout(() => this.setState({ copied: false }), 1000);
+		}
+		catch (err) {
 			console.log(err);
 		}
 	};
@@ -82,7 +74,7 @@ export default class Repl extends Component {
 	};
 
 	onSuccess = () => {
-		this.setState({ error:null });
+		this.setState({ error: null });
 	};
 
 	componentDidUpdate = debounce(500, () => {
@@ -103,7 +95,7 @@ export default class Repl extends Component {
 				this.setState({ code });
 			}
 			else {
-				setTimeout( () => {
+				setTimeout(() => {
 					if (confirm('Run code from link?')) {
 						this.setState({ code });
 					}
@@ -114,41 +106,48 @@ export default class Repl extends Component {
 
 	render(_, { loading, code, error, example, copied }) {
 		if (loading) return (
-			<div class={style.repl}>
+			<ReplWrapper loading>
 				<div class={style.loading}>
-					<progress-spinner />
 					<h4>{loading}</h4>
 				</div>
-			</div>
+			</ReplWrapper>
 		);
 
 		return (
-			<div class={style.repl}>
-				<style>{`
-					main {
-						height: 100% !important;
-						overflow: hidden !important;
-					}
-					footer {
-						display: none !important;
-					}
-				`}</style>
+			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
-						<select value={example} onChange={this.linkState('example')}>
+						<select value={example} onChange={linkState(this, 'example')}>
 							<option value="">Select Example...</option>
-							{ EXAMPLES.map( ({ name }, index) => (
+							{EXAMPLES.map( ({ name }, index) => (
 								<option value={index}>{name}</option>
-							)) }
+							))}
 						</select>
 						<button class={style.reset} onClick={this.loadExample} disabled={!example}>Load</button>
 					</label>
 					<button class={style.share} onClick={this.share}>{copied ? '🔗 Copied' : 'Share'}</button>
 				</header>
-				<pre class={{ [style.error]:true, [style.showing]:!!error }}>{ String(error) }</pre>
-				<this.CodeEditor class={style.code} value={code} error={error} onInput={this.linkState('code', 'value')} />
-				<this.Runner class={style.output} onError={this.linkState('error', 'error')} onSuccess={this.onSuccess} code={code} />
-			</div>
+				<pre class={cx(style.error, error && style.showing)}>{ String(error) }</pre>
+				<this.CodeEditor class={style.code} value={code} error={error} onInput={linkState(this, 'code', 'value')} />
+				<this.Runner class={style.output} onError={linkState(this, 'error', 'error')} onSuccess={this.onSuccess} code={code} />
+			</ReplWrapper>
 		);
 	}
 }
+
+const ReplWrapper = ({ loading, children }) => (
+	<div class={style.repl}>
+		<progress-bar showing={!!loading} />
+		<style>{`
+			main {
+				height: 100% !important;
+				overflow: hidden !important;
+			}
+			footer {
+				display: none !important;
+			}
+		`}</style>
+		{children}
+	</div>
+);
+

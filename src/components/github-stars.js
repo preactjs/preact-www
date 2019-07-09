@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { memoize } from 'decko';
 import { localStorageGet, localStorageSet } from '../lib/localstorage';
 
-const githubStars = memoize( repo => fetch('//api.github.com/repos/'+repo)
+const githubStars = memoize( repo => fetch('https://api.github.com/repos/'+repo)
 	.then( r => r.json() )
 	.then( d => d.stargazers || d.watchers )
 );
@@ -28,16 +28,16 @@ export default class GithubStars extends Component {
 	}
 
 	render({ user, repo, simple, children }, { stars }) {
-		let url = `//github.com/${user}/${repo}/`;
+		let url = `https://github.com/${user}/${repo}/`;
 		if (simple) return (
-			<a href={url} class="stars" target="_blank" rel="noopener">⭐️ {stars} Stars</a>
+			<a href={url} class="stars" target="_blank" rel="noopener noreferrer">⭐️ {stars} Stars</a>
 		);
 		return (
 			<span class="github-btn">
-				<a class="gh-btn" href={url} target="_blank" rel="noopener" aria-label="Star on GitHub">
+				<a class="gh-btn" href={url} target="_blank" rel="noopener noreferrer" aria-label="Star on GitHub">
 					<span class="gh-ico" /> Star
 				</a>
-				<a class="gh-count" href={url} target="_blank" rel="noopener">
+				<a class="gh-count" href={url} target="_blank" rel="noopener noreferrer">
 					{stars ? Math.round(stars).toLocaleString() : children || '..'}
 				</a>
 			</span>

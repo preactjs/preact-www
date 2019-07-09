@@ -1,9 +1,8 @@
-import { h } from 'preact';
-import split from '../../lib/split-point';
 import Page from './page';
+import Repl from 'async!./repl';
 
 export default {
 	default: Page,
 	error: Page,
-	Repl: split(require('bundle?lazy!./repl'))
+	Repl
 };

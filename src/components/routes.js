@@ -6,11 +6,16 @@ import controllers from './controllers';
 let { pushState } = history;
 history.pushState = (a, b, url) => {
 	pushState.call(history, a, b, url);
-	if (url.indexOf('#')<0) scrollTo(0, 0);
+	if (url.indexOf('#')<0) {
+		// next time content loads, scroll to top:
+		window.nextStateToTop = true;
+		// scrollTo(0, 0);
+	}
 };
 
 
 export default class Routes extends Component {
+
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
@@ -48,12 +53,12 @@ export default class Routes extends Component {
 		return <Ctrl path={route.path || ''} route={route} />;
 	}
 
-	render({ url, component:C='main', onChange, ...props }) {
+	render({ url, component: C='main', onChange, ...props }) {
 		return (
 			<C {...props}>
 				<Router url={url} onChange={this.handleRoute}>
 					{ this.getNavRoutes(config.nav) }
-					<controllers.error route={{ content:'404', title:'404' }} default />
+					<controllers.error route={{ content: '404', title: '404' }} default />
 				</Router>
 			</C>
 		);

@@ -1,6 +1,6 @@
 import { h, Component, render } from 'preact';
 import { debounce, memoize } from 'decko';
-import Worker from 'worker!./worker';
+import Worker from 'worker-loader!./worker';
 import regeneratorRuntime from 'babel-runtime/regenerator';
 
 let cachedFetcher = memoize(fetch);
@@ -40,15 +40,15 @@ export default class Runner extends Component {
 	run = debounce(1000, () => {
 		let { code, onSuccess, onError } = this.props;
 
-		code = code.replace(/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*\;\s*(\r|\n)/g, (s, pre, q, lib) => {
+		code = code.replace(/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*;\s*(\r|\n)/g, (s, pre, q, lib) => {
 			console.info(`Skipping import "${lib}": imports not supported.`);
 			return pre || '';
 		});
 
 		worker.call('transform', code)
-			.then( transpiled => this.execute(transpiled) )
-			.then( onSuccess )
-			.catch( ({ message, ...props }) => {
+			.then(transpiled => this.execute(transpiled))
+			.then(onSuccess)
+			.catch(({ message, ...props }) => {
 				let error = new Error(message);
 				for (let i in props) if (props.hasOwnProperty(i)) error[i] = props[i];
 				if (onError) onError({ error });
@@ -56,7 +56,7 @@ export default class Runner extends Component {
 	});
 
 	execute(transpiled) {
-		let { onError, onSuccess } = this.props,
+		let { onError } = this.props,
 			module = { exports: {} },
 			fn, vnode;
 
@@ -66,7 +66,8 @@ export default class Runner extends Component {
 		try {
 			fn = eval(transpiled);  // eslint-disable-line
 			fn(h, Component, v => vnode=v, module, module.exports, regeneratorRuntime, cachedFetch);
-		} catch (error) {
+		}
+		catch (error) {
 			if (onError) onError({ error });
 			return;
 		}
@@ -78,7 +79,8 @@ export default class Runner extends Component {
 		if (vnode) {
 			try {
 				this.root = render(vnode, this.base, this.root);
-			} catch (error) {
+			}
+			catch (error) {
 				error.message = `[render] ${error.message}`;
 				throw error;
 			}
