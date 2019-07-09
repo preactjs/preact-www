@@ -33,7 +33,7 @@ export default class Toc extends Component {
 				}
 			}, config);
 
-			Array.prototype.slice.call(document.querySelectorAll('content-region h2'))
+			Array.from(document.querySelectorAll('content-region h2'))
 				.forEach(heading => this.observer.observe(heading));
 		}
 	}
