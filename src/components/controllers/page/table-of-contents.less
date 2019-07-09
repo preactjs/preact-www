@@ -2,9 +2,8 @@
 
 .toc {
 	display: block;
-	outline: none;
-	padding-top: 2rem;
 	position: relative;
+	padding-top: 2rem;
 	z-index: 20;
 
 	@media (min-width: 800px) {
@@ -67,42 +66,44 @@
 				padding: 2rem;
 			}
 		}
-
-		a {
-			display: block;
-			position: relative;
-			padding: .2rem 0 .2rem 1rem;
-			transition: background .5s;
-			color: #555;
-
-			&::before {
-				content: '';
-				visibility: hidden;
-				opacity: 0;
-			}
-		}
-
-		.linkInner {
-			// .link;
-		}
 	}
 }
 
-.toc nav .active {
-	background: #f6f6f6;
-	color: @color-brand;
-	font-weight: bold;
+.link {
+	display: block;
+	position: relative;
+	padding: .2em 0 .2em 1em;
+	color: @sidebar-link-color;
+
+	&::before,
+	&::after {
+		content: '';
+		.fadeOut;
+	}
 
 	&::before {
-		content: '';
-		visibility: visible;
-		opacity: 1;
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: .2rem;
 		height: 100%;
-		background: @color-link;
+		width: .2em;
 		background: @color-brand;
+	}
+
+	&::after {
+		.fill();
+		background: @sidebar-active-bg;
+		z-index: -1;
+		transition: visibility .5s, opacity .5s
+	}
+}
+
+.linkActive {
+	color: @color-brand;
+	font-weight: bold;
+
+	&::before,
+	&::after {
+		.fadeIn;
 	}
 }
