@@ -49,11 +49,12 @@
 		opacity: 0;
 
 		@media (min-width: 800px) {
+			position: absolute;
+			top: @header-height / 2;
 			transform: none;
 			display: block;
 			visibility: visible;
 			opacity: 1;
-			background: inherit;
 			padding: 2rem;
 		}
 	}
@@ -98,14 +99,11 @@
 	position: relative;
 	padding: .2em 0 .2em 1em;
 	color: @sidebar-link-color;
-
-	&::before,
-	&::after {
-		content: '';
-		.fadeOut;
-	}
+	transition: background .3s;
 
 	&::before {
+		.fadeOut;
+		content: '';
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -113,21 +111,14 @@
 		width: .2em;
 		background: @color-brand;
 	}
-
-	&::after {
-		.fill();
-		background: @sidebar-active-bg;
-		z-index: -1;
-		transition: visibility .5s, opacity .5s
-	}
 }
 
 .linkActive {
 	color: @color-brand;
 	font-weight: bold;
+	background: @sidebar-active-bg;
 
-	&::before,
-	&::after {
+	&::before {
 		.fadeIn;
 	}
 }
