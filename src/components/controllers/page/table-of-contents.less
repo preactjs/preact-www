@@ -1,0 +1,108 @@
+@import '../../../style/helpers';
+
+.toc {
+	display: block;
+	outline: none;
+	padding-top: 2rem;
+	position: relative;
+	z-index: 20;
+
+	@media (min-width: 800px) {
+		& {
+			width: 20vw;
+			position: fixed;
+			padding-left: 1.5rem;
+			padding-top: 3rem;
+			top: @header-height / 2;
+			left: 0;
+			bottom: 0;
+			background: whitesmoke;
+			background: white;
+			border-left: .0625rem solid #eee;
+		}
+	}
+
+	&.disabled {
+		display: none;
+	}
+
+	.toggle {
+		display: block;
+		background: #22262e;
+		border: none;
+		border-radius: 3px;
+		color: #FFF;
+		padding: .7em;
+		cursor: pointer;
+		width: 100%;
+		text-transform: uppercase;
+		letter-spacing: .18em;
+
+		@media (min-width: 800px) {
+			display: none;
+		}
+	}
+
+	&[open] {
+		nav {
+			display: block;
+		}
+	}
+
+	nav {
+		// display: none;
+		position: absolute;
+		padding: 1.5rem 1.5rem 1.5rem .5rem;
+		left: 0;
+		right: 0;
+		background: #fff;
+		border-radius: 2px;
+		overflow: hidden;
+		z-index: 2;
+
+		@media (min-width: 800px) {
+			& {
+				display: block;
+				background: inherit;
+				padding: 2rem;
+			}
+		}
+
+		a {
+			display: block;
+			position: relative;
+			padding: .2rem 0 .2rem 1rem;
+			transition: background .5s;
+			color: #555;
+
+			&::before {
+				content: '';
+				visibility: hidden;
+				opacity: 0;
+			}
+		}
+
+		.linkInner {
+			// .link;
+		}
+	}
+}
+
+.toc nav .active {
+	background: #f6f6f6;
+	color: @color-brand;
+	font-weight: bold;
+
+	&::before {
+		content: '';
+		visibility: visible;
+		opacity: 1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: .2rem;
+		height: 100%;
+		background: @color-link;
+		background: @color-brand;
+	}
+}

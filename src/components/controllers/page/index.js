@@ -4,6 +4,7 @@ import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
+import Toc from './table-of-content';
 
 const EMPTY = {};
 
@@ -67,29 +68,6 @@ export default class Page extends Component {
 						onLoad={this.onLoad}
 					/>
 				</div>
-			</div>
-		);
-	}
-}
-
-
-class Toc extends Component {
-	toggle = e => {
-		this.setState({ open: !this.state.open });
-		return false;
-	};
-
-	open = () => this.setState({ open: true });
-
-	render({ items }, { open }) {
-		return (
-			<div class={cx(style.toc, !(items && items.length>1) && style.disabled)} open={open}>
-				<a class={style.toggle} onClick={this.toggle} title="Table of Contents">🔗</a>
-				<nav tabIndex="0" onFocus={this.open}>
-					{ items.map( ({ text, level, id }) => (
-						<a href={'#' + id}>{ text }</a>
-					)) }
-				</nav>
 			</div>
 		);
 	}
