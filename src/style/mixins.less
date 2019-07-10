@@ -6,6 +6,13 @@
 	height: 100%;
 }
 
+.link() {
+	background: linear-gradient(currentColor, currentColor);
+	background-position: center bottom;
+	background-size: 100% 0.09rem;
+	background-repeat: no-repeat;
+}
+
 .scroll() {
 	overflow: auto;
 	overflow-scrolling: touch;
@@ -15,4 +22,14 @@
 		transform: translateZ(0);
 		overflow: hidden;
 	}
+}
+
+.fadeOut() {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.fadeIn() {
+	visibility: visible;
+	opacity: 1;
 }

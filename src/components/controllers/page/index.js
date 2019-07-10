@@ -4,6 +4,7 @@ import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
+import Toc from './table-of-content';
 
 const EMPTY = {};
 
@@ -51,15 +52,18 @@ export default class Page extends Component {
 		let layout = `${meta.layout || 'default'}Layout`,
 			name = getContent(route);
 		if (name!==current) loading = true;
+
+		let hasToc = toc && meta.toc!==false;
+
 		return (
-			<div class={cx(style.page, style[layout])}>
+			<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
 				<progress-bar showing={loading} />
-				{ name!='index' && meta.show_title!==false && (
+				{name!='index' && meta.show_title!==false && (
 					<h1 class={style.title}>{ meta.title || route.title }</h1>
-				) }
-				{ toc && meta.toc!==false && (
+				)}
+				{hasToc && (
 					<Toc items={toc} />
-				) }
+				)}
 				<div class={style.inner}>
 					<ContentRegion
 						name={name}
@@ -67,29 +71,6 @@ export default class Page extends Component {
 						onLoad={this.onLoad}
 					/>
 				</div>
-			</div>
-		);
-	}
-}
-
-
-class Toc extends Component {
-	toggle = e => {
-		this.setState({ open: !this.state.open });
-		return false;
-	};
-
-	open = () => this.setState({ open: true });
-
-	render({ items }, { open }) {
-		return (
-			<div class={cx(style.toc, !(items && items.length>1) && style.disabled)} open={open}>
-				<a class={style.toggle} onClick={this.toggle} title="Table of Contents">🔗</a>
-				<nav tabIndex="0" onFocus={this.open}>
-					{ items.map( ({ text, level, id }) => (
-						<a href={'#' + id}>{ text }</a>
-					)) }
-				</nav>
 			</div>
 		);
 	}

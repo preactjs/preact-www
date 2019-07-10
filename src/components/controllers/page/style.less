@@ -2,11 +2,17 @@
 
 .page {
 	position: relative;
-	overflow: hidden;
+	max-width: 100rem;
+	margin-left: auto;
+	margin-right: auto;
 
 	:global .markup {
-		padding: 50px 0;
 		overflow: visible;
+		padding: 1em 0;
+
+		@media (min-width: 800px) {
+			padding: 3.125em 0;
+		}
 
 		& > *,
 		.full-width > *,
@@ -32,78 +38,11 @@
 		}
 	}
 
-	.toc {
-		display: inline-block;
-		position: fixed;
-		right: -5px;
-		top: @header-height + 10px;
-		transform: translateX(100%);
-		opacity: 0.8;
-		z-index: 100;
-		transition: all 250ms ease;
-		outline: none;
-
-		&.disabled {
-			display: none;
-		}
-
-		.toggle {
-			position: absolute;
-			left: -45px;
-			top: 10px;
-			width: 48px;
-			height: 40px;
-			background: #FAFAFA;
-			box-shadow: 0 1px 6px rgba(0,0,0,0.3);
-			border: none;
-			border-radius: 3px;
-			font-size: 20px;
-			line-height: 40px;
-			text-align: left;
-			text-indent: 12px;
-			color: #FFF;
-			cursor: pointer;
-			z-index: 1;
-
-			&:hover {
-				background: #FFF;
-			}
-		}
-
-		&[open] {
-			transform: skew(0,0);
-			opacity: 1;
-		}
-
-		nav {
-			position: relative;
-			padding: 20px;
-			background: #fff;
-			box-shadow: 0 2px 7px rgba(0,0,0,0.3);
-			border-radius: 2px;
-			overflow: hidden;
-			z-index: 2;
-
-			a {
-				display: block;
-				border: none;
-
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-		}
-	}
-
 	.title {
-		margin: 0 -1em;
-		padding: .5em;
-		background: #22262e;
-		color: #f2777a;
-		text-shadow: 0 0 2px rgba(0,0,0,0.7);
-		font-size: 3em;
+		margin: 1rem 0 0 0;
+		padding: .5em .5em 0;
+		font-size: 4rem;
 		font-weight: 200;
-		box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
 		text-align: center;
 	}
 
@@ -115,7 +54,28 @@
 
 	.inner {
 		position: relative;
-		overflow: hidden;
 		min-height: 200px;
+	}
+}
+
+.withToc {
+	.title {
+		@media (min-width: 800px) {
+			margin-left: @sidebar-width;
+		}
+
+		@media (min-width: 1600px) {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	.inner {
+		@media (min-width: 800px) {
+			padding-left: @sidebar-width;
+		}
+		@media (min-width: 1600px) {
+			padding-left: 0;
+		}
 	}
 }
