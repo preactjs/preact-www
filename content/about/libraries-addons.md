@@ -33,6 +33,7 @@ A collection of modules built to work wonderfully with Preact.
 - :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): A document head manager for Preact
 - :arrow_up_down: [**preact-custom-scrollbars**](https://github.com/lucafalasco/preact-custom-scrollbars): Fully customizable scrollbars, for frictionless native browser scrolling
 - :floppy_disk: [**preact-boot**](https://gitlab.com/cromefire_/preact-boot): Simple, declarative [Bootstrap 4](https://getbootstrap.com/) components for the use with preact ([Read the docs!](https://preactboot.rtfd.io)).
+- :clapper: [**preact-scenejs**](https://github.com/daybrush/scenejs/tree/master/packages/preact-scenejs): Create JavaScript & CSS timeline-based animation with Scene.js. ([demo](https://codesandbox.io/s/preactscenejs-clapperboard-raindrop-demo-5o0gd))
 
 
 ### Integrations
