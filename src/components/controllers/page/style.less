@@ -2,11 +2,9 @@
 
 .page {
 	position: relative;
-	overflow: hidden;
-
-	@media (min-width: 800px) {
-		padding-left: 0vw;
-	}
+	max-width: 100rem;
+	margin-left: auto;
+	margin-right: auto;
 
 	:global .markup {
 		overflow: visible;
@@ -56,16 +54,28 @@
 
 	.inner {
 		position: relative;
-		overflow: hidden;
 		min-height: 200px;
 	}
 }
 
 .withToc {
-	@media (min-width: 800px) {
-		margin-left: 18rem;
+	.title {
+		@media (min-width: 800px) {
+			margin-left: @sidebar-width;
+		}
+
+		@media (min-width: 1600px) {
+			margin-left: auto;
+			margin-right: auto;
+		}
 	}
-	@media (min-width: 1300px) {
-		margin-left: 0;
+
+	.inner {
+		@media (min-width: 800px) {
+			padding-left: @sidebar-width;
+		}
+		@media (min-width: 1600px) {
+			padding-left: 0;
+		}
 	}
 }
