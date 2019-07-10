@@ -80,13 +80,13 @@ export default class ContentRegion extends Component {
 		let { name, lang, onLoad } = this.props;
 		getContent([lang, name]).then(s => {
 			this.setState(s);
-			this.applyEmoji();
+			this.applyEmoji(s.content);
 			if (onLoad) onLoad(s);
 		});
 	}
 
-	applyEmoji() {
-		let { content } = this.state;
+	applyEmoji(content) {
+		content = content || this.state.content;
 		if (!content.match(/([^\\]):[a-z0-9_]+:/gi)) return;
 
 		if (!this.emoji) {
