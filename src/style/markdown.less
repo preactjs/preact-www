@@ -1,4 +1,5 @@
-.markup, .markdown {
+.markup,
+.markdown {
 	& > * ~ * {
 		margin-top: 1.25rem;
 	}
@@ -21,7 +22,12 @@
 		bottom: 0;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		margin: 30px 0 10px;
 		padding: 0;
 		font-weight: bold;
@@ -36,12 +42,18 @@
 			content: '';
 			display: block;
 			height: @header-height;
-			margin :-@header-height 0 0;
+			margin: -@header-height 0 0;
 		}
 	}
 
-	h1, h2, h3, h4, h5, h6 {
-		tt, code {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		tt,
+		code {
 			font-size: inherit;
 		}
 	}
@@ -73,8 +85,10 @@
 		font-size: 14px;
 	}
 
-	ul, ol {
-		ul, ol {
+	ul,
+	ol {
+		ul,
+		ol {
 			margin: 5px 0;
 		}
 	}
@@ -83,8 +97,8 @@
 		height: 4px;
 		padding: 0;
 		margin: 30px 0 0;
-		background: #F8F8F8;
-		color: #F8F8F8;
+		background: #f8f8f8;
+		color: #f8f8f8;
 		border: 0 none;
 	}
 
@@ -100,13 +114,23 @@
 	}
 
 	a:first-child {
-		h1, h2, h3, h4, h5, h6 {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			margin-top: 0;
 			padding-top: 0;
 		}
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		p {
 			margin-top: 0;
 		}
@@ -118,11 +142,13 @@
 	li {
 		margin: 0;
 	}
-	ul, ol {
+	ul,
+	ol {
 		padding-left: 30px;
 	}
 
-	ul :first-child, ol :first-child {
+	ul :first-child,
+	ol :first-child {
 		margin-top: 0;
 	}
 
@@ -157,8 +183,8 @@
 	}
 
 	blockquote {
-		border-left: .3rem solid @blockquote-border;
-		padding: .75rem 1rem;
+		border-left: 0.3rem solid @blockquote-border;
+		padding: 0.75rem 1rem;
 		background: @blockquote-bg;
 		color: #444;
 	}
@@ -281,7 +307,8 @@
 		text-align: right;
 	}
 
-	code, tt {
+	code,
+	tt {
 		margin: 0 2px;
 		padding: 0 5px;
 		white-space: nowrap;
@@ -317,7 +344,8 @@
 		padding: 6px 10px;
 		border-radius: 3px;
 	}
-	pre code, pre tt {
+	pre code,
+	pre tt {
 		background-color: transparent;
 		border: none;
 	}
@@ -328,20 +356,21 @@
 		line-height: 0;
 	}
 	* {
-		 -webkit-print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
 	}
 	@media screen and (min-width: 914px) {
 		body {
 			width: 854px;
-			margin:0 auto;
+			margin: 0 auto;
 		}
 	}
 	@media print {
-		 table, pre {
-			  page-break-inside: avoid;
-		 }
-		 pre {
-			  word-wrap: break-word;
-		 }
+		table,
+		pre {
+			page-break-inside: avoid;
+		}
+		pre {
+			word-wrap: break-word;
+		}
 	}
 }

@@ -1,8 +1,8 @@
-export default function getDefaultLanguage(available={}) {
-	if (typeof navigator==='undefined') return;
+export default function getDefaultLanguage(available = {}) {
+	if (typeof navigator === 'undefined') return;
 
 	let langs = [navigator.language].concat(navigator.languages);
-	for (let i=0; i<langs.length; i++) {
+	for (let i = 0; i < langs.length; i++) {
 		if (langs[i]) {
 			let lang = String(langs[i]).toLowerCase();
 			if (available[lang]) return lang;

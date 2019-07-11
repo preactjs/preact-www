@@ -2,13 +2,14 @@ import { h, Component } from 'preact';
 import { memoize } from 'decko';
 import { localStorageGet, localStorageSet } from '../lib/localstorage';
 
-const githubStars = memoize( repo => fetch('https://api.github.com/repos/'+repo)
-	.then( r => r.json() )
-	.then( d => d.stargazers || d.watchers )
+const githubStars = memoize(repo =>
+	fetch('https://api.github.com/repos/' + repo)
+		.then(r => r.json())
+		.then(d => d.stargazers || d.watchers)
 );
 
 // make available to homepage REPL demo
-if (typeof window!=='undefined') window.githubStars = githubStars;
+if (typeof window !== 'undefined') window.githubStars = githubStars;
 
 export default class GithubStars extends Component {
 	state = {
@@ -16,7 +17,7 @@ export default class GithubStars extends Component {
 	};
 
 	setStars = stars => {
-		if (stars && stars!=this.state.stars) {
+		if (stars && stars != this.state.stars) {
 			localStorageSet('_stars', stars);
 			this.setState({ stars });
 		}
@@ -24,20 +25,34 @@ export default class GithubStars extends Component {
 
 	componentDidMount() {
 		let { user, repo } = this.props;
-		githubStars(user+'/'+repo).then(this.setStars);
+		githubStars(user + '/' + repo).then(this.setStars);
 	}
 
 	render({ user, repo, simple, children }, { stars }) {
 		let url = `https://github.com/${user}/${repo}/`;
-		if (simple) return (
-			<a href={url} class="stars" target="_blank" rel="noopener noreferrer">⭐️ {stars} Stars</a>
-		);
+		if (simple)
+			return (
+				<a href={url} class="stars" target="_blank" rel="noopener noreferrer">
+					⭐️ {stars} Stars
+				</a>
+			);
 		return (
 			<span class="github-btn">
-				<a class="gh-btn" href={url} target="_blank" rel="noopener noreferrer" aria-label="Star on GitHub">
+				<a
+					class="gh-btn"
+					href={url}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Star on GitHub"
+				>
 					<span class="gh-ico" /> Star
 				</a>
-				<a class="gh-count" href={url} target="_blank" rel="noopener noreferrer">
+				<a
+					class="gh-count"
+					href={url}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					{stars ? Math.round(stars).toLocaleString() : children || '..'}
 				</a>
 			</span>

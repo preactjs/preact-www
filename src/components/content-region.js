@@ -31,37 +31,39 @@ const EMPTY = {};
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 // only memoize in prod
-const memoizeProd = process.env.NODE_ENV==='production' ? memoize : f => f;
-
+const memoizeProd = process.env.NODE_ENV === 'production' ? memoize : f => f;
 
 // fetch and parse a markdown document
-const getContent = memoizeProd( ([lang, name]) => {
+const getContent = memoizeProd(([lang, name]) => {
 	let path = lang ? `/content/lang/${lang}` : '/content',
-		url = `${path}/${name.replace(/^\//,'')}`,
-		[,ext] = url.match(/\.([a-z]+)$/i) || [];
+		url = `${path}/${name.replace(/^\//, '')}`,
+		[, ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
 	// attempt to use prefetched request
-	let fetchPromise = process.env.NODE_ENV==='production' && typeof window!=='undefined' && window['_boostrap_'+url] || fetch(url);
+	let fetchPromise =
+		(process.env.NODE_ENV === 'production' &&
+			typeof window !== 'undefined' &&
+			window['_boostrap_' + url]) ||
+		fetch(url);
 	return fetchPromise
 		.then(r => {
 			// fall back to english
 			if (!r.ok && lang) {
-				return fetch(url.replace(/lang\/[^/]+\//,''));
+				return fetch(url.replace(/lang\/[^/]+\//, ''));
 			}
 			return r;
 		})
-		.then( r => {
+		.then(r => {
 			if (r.ok) return r;
 			ext = 'md';
 			return fetch(`${path}/${r.status}.md`);
 		})
-		.then( r => r.text() )
-		.then( r => parseContent(r, ext) );
+		.then(r => r.text())
+		.then(r => parseContent(r, ext));
 });
 
-
 function parseContent(text, ext) {
-	let [,frontMatter] = text.match(FRONT_MATTER_REG) || [],
+	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
 		meta = frontMatter && JSON.parse(frontMatter),
 		content = text.replace(FRONT_MATTER_REG, '');
 
@@ -72,12 +74,11 @@ function parseContent(text, ext) {
 	};
 }
 
-
-@connect( ({ lang }) => ({ lang }) )
+@connect(({ lang }) => ({ lang }))
 export default class ContentRegion extends Component {
 	fetch() {
 		let { name, lang, onLoad } = this.props;
-		getContent([lang, name]).then( s => {
+		getContent([lang, name]).then(s => {
 			this.setState(s);
 			this.applyEmoji();
 			if (onLoad) onLoad(s);
@@ -89,12 +90,13 @@ export default class ContentRegion extends Component {
 		if (!content.match(/([^\\]):[a-z0-9_]+:/gi)) return;
 
 		if (!this.emoji) {
-			import(/* webpackChunkName: "emoji" */ '../lib/gh-emoji').then(({ replace }) => {
-				this.emoji = replace || EMPTY;
-				this.applyEmoji();
-			});
-		}
-		else if (typeof this.emoji==='function') {
+			import(/* webpackChunkName: "emoji" */ '../lib/gh-emoji').then(
+				({ replace }) => {
+					this.emoji = replace || EMPTY;
+					this.applyEmoji();
+				}
+			);
+		} else if (typeof this.emoji === 'function') {
 			this.setState({ content: this.emoji(content) });
 		}
 	}
@@ -102,9 +104,9 @@ export default class ContentRegion extends Component {
 	updateToc() {
 		let headings = this.base.querySelectorAll('[id]'),
 			{ onToc } = this.props,
-			toc = this.toc = [];
-		for (let i=0; i<headings.length; i++) {
-			let [,level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
+			toc = (this.toc = []);
+		for (let i = 0; i < headings.length; i++) {
+			let [, level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
 			if (level) {
 				toc.push({
 					text: headings[i].textContent,
@@ -117,8 +119,8 @@ export default class ContentRegion extends Component {
 	}
 
 	componentWillMount() {
-		const b = this.base = this.nextBase || this.__b;
-		if (b && typeof document!=='undefined') {
+		const b = (this.base = this.nextBase || this.__b);
+		if (b && typeof document !== 'undefined') {
 			const C = b.nodeName;
 			this.bootTree = <C dangerouslySetInnerHTML={{ __html: b.innerHTML }} />;
 		}
@@ -129,11 +131,14 @@ export default class ContentRegion extends Component {
 	}
 
 	componentDidUpdate({ name, lang }, { content }) {
-		if (name!==this.props.name || lang!==this.props.lang) this.fetch();
-		if (content!==this.state.content) this.updateToc();
+		if (name !== this.props.name || lang !== this.props.lang) this.fetch();
+		if (content !== this.state.content) this.updateToc();
 	}
 
-	render({ store, name, children, onLoad, onToc, data, ...props }, { type, content }) {
+	render(
+		{ store, name, children, onLoad, onToc, data, ...props },
+		{ type, content }
+	) {
 		const regionHtml = this.regionHtml || (this.regionHtml = {});
 
 		if (!content) {
@@ -142,36 +147,39 @@ export default class ContentRegion extends Component {
 				// this is all only run during prerendering
 
 				let route = location.pathname == '/' ? '/index' : location.pathname;
-				let data = __non_webpack_require__('fs').readFileSync(`content${route}.md`, 'utf8');
+				let data = __non_webpack_require__('fs').readFileSync(
+					`content${route}.md`,
+					'utf8'
+				);
 				const yaml = __non_webpack_require__('yaml');
 				data = data.replace(FRONT_MATTER_REG, (s, y) => {
-					const meta = yaml.eval('---\n'+y.replace(/^/gm,'  ')+'\n') || {};
+					const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
 					return '---\n' + JSON.stringify(meta) + '\n---\n';
 				});
 				if (typeof DOMParser === 'undefined') {
-					global.DOMParser = new (__non_webpack_require__('jsdom').JSDOM)().window.DOMParser;
+					global.DOMParser = new (__non_webpack_require__(
+						'jsdom'
+					)).JSDOM().window.DOMParser;
 				}
 				({ content, type } = parseContent(data, 'md'));
-			}
-			else if (this.bootTree) {
+			} else if (this.bootTree) {
 				return this.bootTree;
 			}
 		}
 
 		return (
 			<content-region dangerouslySetInnerHTML={regionHtml} {...props}>
-				{ content && (
+				{content && (
 					<Content type={type} content={content} components={COMPONENTS} />
-				) }
+				)}
 			</content-region>
 		);
 	}
 }
 
-const Content = ({ type, content, ...props }) => (
-	type==='markdown' ? (
+const Content = ({ type, content, ...props }) =>
+	type === 'markdown' ? (
 		<Markdown markdown={content} {...props} />
-	) : type==='markup' ? (
+	) : type === 'markup' ? (
 		<Markup markup={content} type="html" {...props} />
-	) : null
-);
+	) : null;

@@ -12,7 +12,7 @@ let store = createStore();
 export default class App extends Component {
 	handleUrlChange({ url }) {
 		let prev = store.getState().url || '/';
-		if (url!==prev && typeof ga==='function') {
+		if (url !== prev && typeof ga === 'function') {
 			store.setState({ url });
 			ga('send', 'pageview', url);
 		}
