@@ -96,6 +96,10 @@
 					padding: 0;
 				}
 
+				&.current {
+					visibility: hidden;
+				}
+
 				svg {
 					position: relative;
 					padding-right: 5px;
@@ -395,6 +399,10 @@
 			margin: 10px 0;
 		}
 
+		@media (min-width: @header-mobile-breakpoint) {
+			width: 8.75rem;
+		}
+
 		&::-webkit-input-placeholder {
 			color: lighten(@color-brand, 5%);
 		}
@@ -402,7 +410,7 @@
 		&:focus,
 		&:valid {
 			@media (min-width: @header-mobile-breakpoint) {
-				width: 140px;
+				width: 12rem;
 			}
 
 			color: #D1C3EA;

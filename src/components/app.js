@@ -10,6 +10,13 @@ import Footer from './footer';
 let store = createStore();
 
 export default class App extends Component {
+	componentDidMount() {
+		if (typeof window !== undefined) {
+			// This triggers a second render :/
+			store.setState({ url: window.location.pathname });
+		}
+	}
+
 	handleUrlChange({ url }) {
 		let prev = store.getState().url || '/';
 		if (url !== prev && typeof ga === 'function') {
@@ -22,7 +29,7 @@ export default class App extends Component {
 		return (
 			<Provider store={store}>
 				<div id="app">
-					<Header />
+					<Header url={url} />
 					<Routes url={url} onChange={this.handleUrlChange} />
 					<Footer />
 				</div>
