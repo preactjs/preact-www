@@ -403,13 +403,17 @@
 			width: 8.75rem;
 		}
 
+		@media (min-width: 800px) {
+			width: 13rem;
+		}
+
 		&::-webkit-input-placeholder {
 			color: lighten(@color-brand, 5%);
 		}
 
 		&:focus,
 		&:valid {
-			@media (min-width: @header-mobile-breakpoint) {
+			@media (min-width: @header-mobile-breakpoint) and (max-width: 800px) {
 				width: 12rem;
 			}
 
