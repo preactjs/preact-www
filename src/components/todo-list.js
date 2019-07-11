@@ -22,9 +22,9 @@ export default class TodoList extends Component {
 				<input value={text} onInput={this.updateText} />
 				<button type="submit">Add</button>
 				<ul>
-					{ todos.map( todo => (
+					{todos.map(todo => (
 						<li>{todo.text}</li>
-					)) }
+					))}
 				</ul>
 			</form>
 		);

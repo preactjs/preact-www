@@ -11,9 +11,7 @@ const OPTIONS = {
 };
 
 // Convert Markdown to HTML using Marked
-const markdownToHtml = md => (
-	CACHE[md] || (CACHE[md] = marked(md, OPTIONS))
-);
+const markdownToHtml = md => CACHE[md] || (CACHE[md] = marked(md, OPTIONS));
 
 /** Component that renders Markdown to HTML via VDOM, using preact-markup.
  *	@param props.markdown	Markdown string to render.
@@ -22,9 +20,7 @@ const markdownToHtml = md => (
 const Markdown = ({ markdown, postProcess, ...props }) => {
 	let markup = markdownToHtml(markdown);
 	if (postProcess) markup = postProcess(markup);
-	return (
-		<Markup markup={markup} type="html" trim={false} {...props} />
-	);
+	return <Markup markup={markup} type="html" trim={false} {...props} />;
 };
 
 export default Markdown;

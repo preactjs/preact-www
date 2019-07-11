@@ -4,14 +4,15 @@
 @import './list-view';
 @import '~highlight.js/styles/tomorrow-night-eighties.css';
 
-
-html, body {
+html,
+body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #FFF;
-	font: 16px/1.65 system-ui, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	background: #fff;
+	font: 16px/1.65 system-ui, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	font-weight: 400;
 	color: #444;
 	-webkit-font-smoothing: antialiased;
@@ -20,7 +21,7 @@ html, body {
 
 * {
 	box-sizing: border-box;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 a {
@@ -29,12 +30,14 @@ a {
 }
 
 a.white {
-	color: #FFF;
+	color: #fff;
 }
 
-pre, code {
-	font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono', 'Courier New', monospace;
-	font-size: .9rem;
+pre,
+code {
+	font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
+		'Courier New', monospace;
+	font-size: 0.9rem;
 }
 
 pre.highlight {
@@ -50,7 +53,7 @@ pre.highlight {
 		top: 0;
 		padding: 3px 7px;
 		margin: 0;
-		color: #FFF;
+		color: #fff;
 		border: none;
 		background: #666;
 		border-radius: 0 0 0 3px;
@@ -72,7 +75,7 @@ content-region {
 }
 
 #app {
-	background: #FFF;
+	background: #fff;
 	height: 100%;
 
 	& > main {
@@ -80,8 +83,6 @@ content-region {
 		padding-top: @header-height;
 	}
 }
-
-
 
 progress-bar {
 	position: fixed;
@@ -120,8 +121,6 @@ progress-bar {
 	}
 }
 
-
-
 main .markup {
 	.home-top {
 		margin: 60px auto;
@@ -139,7 +138,7 @@ main .markup {
 		}
 	}
 
-	@media (max-width:600px) {
+	@media (max-width: 600px) {
 		.home-button-sep {
 			display: block;
 			height: 0;
@@ -152,11 +151,11 @@ main .markup {
 		display: inline-block;
 		min-width: 12em;
 		padding: 7px 15px;
-		background: #EEE;
-		box-shadow: inset 0 .5px 0 rgba(255,255,255,0.3)
-					0 1px 4px rgba(0,0,0,0.5);
+		background: #eee;
+		box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.3) 0 1px 4px
+			rgba(0, 0, 0, 0.5);
 		border: none;
-		text-shadow: 0 .5px 0 rgba(255,255,255,0.3);
+		text-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.3);
 		border-radius: 4px;
 		color: #22262e;
 		font-weight: bold;
@@ -214,19 +213,20 @@ main .markup {
 
 	.home-demo {
 		padding: 20px;
-		background: #F8F8F8;
-		border: 2px solid #DDD;
+		background: #f8f8f8;
+		border: 2px solid #ddd;
 
-		input, button {
+		input,
+		button {
 			margin: 0 5px 0 0;
 			padding: 5px 10px;
-			border: 1px solid #673AB8;
+			border: 1px solid #673ab8;
 			border-radius: 3px;
 			font-size: 100%;
 		}
 		button {
-			background: #673AB8;
-			color: #FFF;
+			background: #673ab8;
+			color: #fff;
 		}
 	}
 
@@ -250,7 +250,9 @@ main .markup {
 			font-weight: 300;
 		}
 
-		h2, p, ul {
+		h2,
+		p,
+		ul {
 			overflow: hidden;
 			margin-left: 0;
 		}
@@ -266,7 +268,7 @@ main .markup {
 			text-align: center;
 		}
 
-		&:nth-of-type(2n+1) {
+		&:nth-of-type(2n + 1) {
 			padding: 0 265px 0 20px;
 
 			img {
@@ -278,7 +280,7 @@ main .markup {
 		@media (max-width: 700px) {
 			padding: 0 20px 0 134px;
 
-			&:nth-of-type(2n+1) {
+			&:nth-of-type(2n + 1) {
 				padding: 0 134px 0 20px;
 			}
 

@@ -8,8 +8,7 @@ export function lazily(callback) {
 export function cancelLazily(id) {
 	if (typeof cancelIdleCallback === 'function') {
 		cancelIdleCallback(id);
-	}
-	else {
+	} else {
 		clearTimeout(id);
 	}
 }
