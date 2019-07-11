@@ -8,17 +8,10 @@ import Footer from './footer';
 /*global ga*/
 
 let store = createStore({
-  location: location.pathname
+	url: location.pathname
 });
 
 export default class App extends Component {
-	componentDidMount() {
-		if (typeof window !== undefined) {
-			// This triggers a second render :/
-			store.setState({ url: window.location.pathname });
-		}
-	}
-
 	handleUrlChange({ url }) {
 		let prev = store.getState().url || '/';
 		if (url !== prev && typeof ga === 'function') {
@@ -27,7 +20,8 @@ export default class App extends Component {
 		}
 	}
 
-	render({ url }) {
+	render() {
+		let url = store.getState().url;
 		return (
 			<Provider store={store}>
 				<div id="app">

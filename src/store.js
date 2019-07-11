@@ -5,8 +5,9 @@ import { localStorageSet, localStorageGet } from './lib/localstorage';
 
 const SAVE = ['lang'];
 
-export default () => {
-	let state = getSavedState();
+export default initial => {
+	let storedState = getSavedState();
+	let state = { ...initial, ...storedState };
 
 	if (state.lang !== '') {
 		let langOverride = ((location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || '').toLowerCase();
