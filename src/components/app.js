@@ -7,7 +7,9 @@ import Footer from './footer';
 
 /*global ga*/
 
-let store = createStore();
+let store = createStore({
+  location: location.pathname
+});
 
 export default class App extends Component {
 	componentDidMount() {
