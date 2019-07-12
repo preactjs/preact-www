@@ -53,8 +53,7 @@ export default class Page extends Component {
 			name = getContent(route);
 		if (name!==current) loading = true;
 
-		let hasToc = toc && meta.toc!==false;
-
+		let hasToc = toc && meta.toc!==false && toc.length > 0;
 		return (
 			<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
 				<progress-bar showing={loading} />
