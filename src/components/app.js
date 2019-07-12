@@ -7,7 +7,9 @@ import Footer from './footer';
 
 /*global ga*/
 
-let store = createStore();
+let store = createStore({
+	url: location.pathname
+});
 
 export default class App extends Component {
 	handleUrlChange({ url }) {
@@ -18,11 +20,12 @@ export default class App extends Component {
 		}
 	}
 
-	render({ url }) {
+	render() {
+		let url = store.getState().url;
 		return (
 			<Provider store={store}>
 				<div id="app">
-					<Header />
+					<Header url={url} />
 					<Routes url={url} onChange={this.handleUrlChange} />
 					<Footer />
 				</div>

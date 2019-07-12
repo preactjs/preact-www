@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 
 export default class Logo extends Component {
-	state = { i: 0, flash: true, hover: false };
+	state = { i: 0, hover: false };
 
 	hover = () => {
 		this.setState({ hover: true });
@@ -18,26 +18,17 @@ export default class Logo extends Component {
 	};
 
 	next = () => {
-		let { flash, hover } = this.state;
-		if (!this.mounted || !(flash || hover) || this.timer) return;
+		let { hover } = this.state;
+		if (!this.mounted || !hover || this.timer) return;
 		this.timer = (requestAnimationFrame || setTimeout)(this.frame, 15);
 	};
 
 	componentDidMount() {
 		this.mounted = true;
 		this.startTimer = setTimeout(this.next, 5000);
-
-		// every 10 seconds, spin for 1 second even if paused :)
-		let c = 0;
-		this.flashTimer = setInterval(() => {
-			let i = c++ % 5;
-			if (i === 0) this.setState({ flash: true });
-			if (i === 1) this.setState({ flash: false });
-		}, 1000);
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.flashTimer);
 		clearTimeout(this.startTimer);
 		(cancelAnimationFrame || clearTimeout)(this.timer);
 		this.mounted = this.timer = false;
@@ -94,9 +85,6 @@ export default class Logo extends Component {
 				{...props}
 			>
 				<path
-					style={`transition:all 1s ease; transform:rotate(${Math.floor(
-						i / 60 / 10
-					) * 60}deg);`}
 					d="M0,-256 221.7025033688164,-128 221.7025033688164,128 0,256 -221.7025033688164,128 -221.7025033688164,-128z"
 					fill={bg}
 				/>

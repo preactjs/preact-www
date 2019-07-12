@@ -102,7 +102,7 @@ class NavItem extends Component {
 		);
 
 		return (
-			<section {...props} open={open}>
+			<section {...props} data-open={open}>
 				<NavLink to={to} onClick={this.toggle} aria-haspopup />
 				<Nav routes={to.routes} current={current} aria-label="submenu" aria-hidden={''+!open} />
 			</section>

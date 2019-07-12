@@ -1,12 +1,13 @@
+@import '~style/helpers';
+
 body .jumbotron {
 	position: relative;
 	display: block;
 	padding: 45px 0;
-	background: #2b313c;
-	box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+	background: @color-brand;
 	overflow: hidden;
 	text-align: center;
-	color: #f2777a;
+	color: @color-complementary;
 	text-shadow: 0 0 1px #000;
 
 	&:first-child {
@@ -15,10 +16,9 @@ body .jumbotron {
 
 	p:first-of-type {
 		font-size: 150%;
-		letter-spacing: 0.02em;
-		font-weight: 300;
+		font-weight: 600;
 		line-height: 1.2;
-		padding: 10px 20px;
+		padding: 2rem 1rem 1rem;
 	}
 
 	h1 {
