@@ -12,7 +12,7 @@
     "pretest": "npm run -s lint && npm run -s build",
     "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage test/browser/**/*.js",
     "lint": "eslint src test",
-    "format": "prettier --write 'src/**/*.{less,js,json}'"
+    "format": "prettier --write '{src,test}/**/*.{less,js,json}'"
   },
   "keywords": [
     "preact"
