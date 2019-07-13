@@ -47,6 +47,7 @@ export default class Runner extends Component {
 		code = code.replace(
 			/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*;\s*(\r|\n)/g,
 			(s, pre, q, lib) => {
+				// eslint-disable-next-line no-console
 				console.info(`Skipping import "${lib}": imports not supported.`);
 				return pre || '';
 			}

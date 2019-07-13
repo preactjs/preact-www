@@ -23,7 +23,8 @@
       "react/sort-comp": 0,
       "react/no-danger": 0,
       "brace-style": 0,
-      "indent": 0
+      "indent": 0,
+      "lines-around-comment": 0
     },
     "globals": {
       "PRERENDER": true,

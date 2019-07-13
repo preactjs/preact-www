@@ -61,6 +61,7 @@ export default class Repl extends Component {
 			this.setState({ copied: true });
 			setTimeout(() => this.setState({ copied: false }), 1000);
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.log(err);
 		}
 	};
@@ -97,6 +98,7 @@ export default class Repl extends Component {
 				this.setState({ code });
 			} else {
 				setTimeout(() => {
+					// eslint-disable-next-line no-alert
 					if (confirm('Run code from link?')) {
 						this.setState({ code });
 					}
