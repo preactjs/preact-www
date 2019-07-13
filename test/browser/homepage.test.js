@@ -54,6 +54,7 @@ describe('Homepage', () => {
 		});
 		await page.waitForFunction('preact != null');
 		const { js, css } = await getCoverageData();
+		// eslint-disable-next-line no-console
 		console.log(
 			`
 			JS shipped:  ${(js.total / 1000).toFixed(1)}kB (${((js.used / js.total) * 100) |
