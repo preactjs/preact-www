@@ -29,6 +29,11 @@
     "globals": {
       "PRERENDER": true,
       "page": true
+    },
+    "settings": {
+      "react": {
+        "version": "16.8"
+      }
     }
   },
   "jest": {
