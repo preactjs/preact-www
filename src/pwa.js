@@ -17,16 +17,20 @@ function sw() {
 }
 
 if (!PRERENDER) {
-	addEventListener('click', e => {
-		hasInteracted = true;
-		const link = e.target.closest('a');
-		if (shouldReload) {
-			location.href = link.href;
-			e.preventDefault();
-			return false;
-		}
-	}, true);
+	addEventListener(
+		'click',
+		e => {
+			hasInteracted = true;
+			const link = e.target.closest('a');
+			if (shouldReload) {
+				location.href = link.href;
+				e.preventDefault();
+				return false;
+			}
+		},
+		true
+	);
 
-	if (document.readyState==='complete') setTimeout(sw);
+	if (document.readyState === 'complete') setTimeout(sw);
 	else addEventListener('load', sw);
 }

@@ -10,8 +10,11 @@ export default initial => {
 	let state = { ...initial, ...storedState };
 
 	if (state.lang !== '') {
-		let langOverride = ((location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || '').toLowerCase();
-		if (langOverride && config.languages[langOverride]) state.lang = langOverride;
+		let langOverride = (
+			(location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || ''
+		).toLowerCase();
+		if (langOverride && config.languages[langOverride])
+			state.lang = langOverride;
 
 		if (!state.lang) state.lang = getDefaultLanguage(config.languages) || '';
 	}
@@ -23,7 +26,7 @@ export default initial => {
 
 function saveState(state) {
 	let saved = {};
-	for (let i=SAVE.length; i--; ) saved[SAVE[i]] = state[SAVE[i]];
+	for (let i = SAVE.length; i--; ) saved[SAVE[i]] = state[SAVE[i]];
 	localStorageSet('state', JSON.stringify(saved));
 }
 
@@ -31,7 +34,6 @@ function getSavedState() {
 	let state;
 	try {
 		state = JSON.parse(localStorageGet('state'));
-	}
-	catch (e) {}
+	} catch (e) {}
 	return state || {};
 }
