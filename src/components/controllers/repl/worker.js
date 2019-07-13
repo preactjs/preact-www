@@ -32,9 +32,9 @@ ACTIONS.transform = code => {
 
 	if (transpiled && out.map) {
 		try {
-			transpiled += `\n//@ sourceMappingURL=data:application/json;base64,${btoa(
-				unescape(encodeURIComponent(JSON.stringify(out.map)))
-			)}`;
+			// Do not format this line or worker-loader will fail for some reason!
+			// prettier-ignore
+			transpiled += `\n//@ sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.map))))}`;
 		} catch (e) {
 			console.error(`Source Map generation failed: ${e}`);
 		}
