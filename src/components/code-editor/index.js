@@ -12,25 +12,31 @@ export default class CodeEditor extends Component {
 	showError(error) {
 		clearTimeout(this.showErrorTimer);
 		if (this.errors) {
-			this.editor.operation( () => {
-				this.errors.forEach( e => e.clear() );
+			this.editor.operation(() => {
+				this.errors.forEach(e => e.clear());
 			});
 			this.errors.length = 0;
 		}
 
 		if (!error || !error.loc) return;
 
-		this.showErrorTimer = setTimeout( () => {
-			this.editor.operation( () => {
-				let { left } = this.editor.cursorCoords({ line: error.loc.line-1, ch: error.loc.column-1 }, 'local');
+		this.showErrorTimer = setTimeout(() => {
+			this.editor.operation(() => {
+				let { left } = this.editor.cursorCoords(
+					{ line: error.loc.line - 1, ch: error.loc.column - 1 },
+					'local'
+				);
 				const errorLine = (
 					<div class={style.lintError}>
 						<pre style={`padding-left:${left}px;`}>^</pre>
-						<div>🔥 { error.message.split('\n')[0] }</div>
+						<div>🔥 {error.message.split('\n')[0]}</div>
 					</div>
 				);
 				this.errors = [
-					this.editor.addLineWidget(error.loc.line-1, render(errorLine ,this.scratch))
+					this.editor.addLineWidget(
+						error.loc.line - 1,
+						render(errorLine, this.scratch)
+					)
 				];
 			});
 		}, 5000);
@@ -46,7 +52,7 @@ export default class CodeEditor extends Component {
 			lineNumbers: true,
 			indentWithTabs: !spaces,
 			tabSize: tabSize || 2,
-			indentUnit: spaces ? (Math.round(spaces) || 2) : false,
+			indentUnit: spaces ? Math.round(spaces) || 2 : false,
 			showCursorWhenSelecting: true,
 			extraKeys: {
 				'Cmd-/': 'toggleComment'
@@ -54,7 +60,7 @@ export default class CodeEditor extends Component {
 		});
 
 		this.editor.on('change', () => {
-			if (this.events===false) return;
+			if (this.events === false) return;
 
 			this.value = this.editor.getValue();
 			let { onInput } = this.props;
@@ -64,17 +70,17 @@ export default class CodeEditor extends Component {
 
 	componentWillReceiveProps({ value, error }) {
 		let current = this.hasOwnProperty('value') ? this.value : this.props.value;
-		if (value!==current) {
+		if (value !== current) {
 			let e = this.events;
 			this.events = false;
 			this.value = value;
 			this.editor.setValue(value);
 			this.showError(null);
-			setTimeout( () => this.editor.refresh(), 1);
+			setTimeout(() => this.editor.refresh(), 1);
 			this.events = e;
 		}
 
-		if (error!==this.props.error) {
+		if (error !== this.props.error) {
 			this.showError(error);
 		}
 	}

@@ -60,15 +60,15 @@ export default class Repl extends Component {
 			document.body.removeChild(input);
 			this.setState({ copied: true });
 			setTimeout(() => this.setState({ copied: false }), 1000);
-		}
-		catch (err) {
+		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.log(err);
 		}
 	};
 
 	loadExample = () => {
 		let example = EXAMPLES[this.state.example];
-		if (example && example.code!==this.state.code) {
+		if (example && example.code !== this.state.code) {
 			this.setState({ code: example.code });
 		}
 	};
@@ -79,23 +79,26 @@ export default class Repl extends Component {
 
 	componentDidUpdate = debounce(500, () => {
 		let { code } = this.state;
-		if (code===codeExample) code = '';
+		if (code === codeExample) code = '';
 		localStorageSet('preact-www-repl-code', code || '');
-	})
+	});
 
 	componentWillReceiveProps({ code }) {
-		if (code && code!==this.props.code) {
+		if (code && code !== this.props.code) {
 			this.receiveCode(code);
 		}
 	}
 
 	receiveCode(code) {
-		if (code && code!==this.state.code) {
-			if (!document.referrer || document.referrer.indexOf(location.origin)===0) {
+		if (code && code !== this.state.code) {
+			if (
+				!document.referrer ||
+				document.referrer.indexOf(location.origin) === 0
+			) {
 				this.setState({ code });
-			}
-			else {
+			} else {
 				setTimeout(() => {
+					// eslint-disable-next-line no-alert
 					if (confirm('Run code from link?')) {
 						this.setState({ code });
 					}
@@ -105,13 +108,14 @@ export default class Repl extends Component {
 	}
 
 	render(_, { loading, code, error, example, copied }) {
-		if (loading) return (
-			<ReplWrapper loading>
-				<div class={style.loading}>
-					<h4>{loading}</h4>
-				</div>
-			</ReplWrapper>
-		);
+		if (loading)
+			return (
+				<ReplWrapper loading>
+					<div class={style.loading}>
+						<h4>{loading}</h4>
+					</div>
+				</ReplWrapper>
+			);
 
 		return (
 			<ReplWrapper loading={!!loading}>
@@ -119,17 +123,37 @@ export default class Repl extends Component {
 					<label>
 						<select value={example} onChange={linkState(this, 'example')}>
 							<option value="">Select Example...</option>
-							{EXAMPLES.map( ({ name }, index) => (
+							{EXAMPLES.map(({ name }, index) => (
 								<option value={index}>{name}</option>
 							))}
 						</select>
-						<button class={style.reset} onClick={this.loadExample} disabled={!example}>Load</button>
+						<button
+							class={style.reset}
+							onClick={this.loadExample}
+							disabled={!example}
+						>
+							Load
+						</button>
 					</label>
-					<button class={style.share} onClick={this.share}>{copied ? '🔗 Copied' : 'Share'}</button>
+					<button class={style.share} onClick={this.share}>
+						{copied ? '🔗 Copied' : 'Share'}
+					</button>
 				</header>
-				<pre class={cx(style.error, error && style.showing)}>{ String(error) }</pre>
-				<this.CodeEditor class={style.code} value={code} error={error} onInput={linkState(this, 'code', 'value')} />
-				<this.Runner class={style.output} onError={linkState(this, 'error', 'error')} onSuccess={this.onSuccess} code={code} />
+				<pre class={cx(style.error, error && style.showing)}>
+					{String(error)}
+				</pre>
+				<this.CodeEditor
+					class={style.code}
+					value={code}
+					error={error}
+					onInput={linkState(this, 'code', 'value')}
+				/>
+				<this.Runner
+					class={style.output}
+					onError={linkState(this, 'error', 'error')}
+					onSuccess={this.onSuccess}
+					code={code}
+				/>
 			</ReplWrapper>
 		);
 	}
@@ -150,4 +174,3 @@ const ReplWrapper = ({ loading, children }) => (
 		{children}
 	</div>
 );
-
