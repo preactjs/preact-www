@@ -132,6 +132,10 @@ const Corner = () => (
 		rel="noopener noreferrer"
 		class={style.corner}
 	>
-		<div class={style.cornerText}>Help Support Us !</div>
+		<div class={style.cornerText}>
+			Help
+			<br />
+			Support Us !
+		</div>
 	</a>
 );
