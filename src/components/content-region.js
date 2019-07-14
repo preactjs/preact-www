@@ -2,7 +2,6 @@ import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
-import Markup from 'preact-markup';
 import widgets from './widgets';
 
 const COMPONENTS = {
@@ -18,11 +17,6 @@ const COMPONENTS = {
 		}
 		return <a {...props} />;
 	}
-};
-
-const TYPES = {
-	md: 'markdown',
-	html: 'markup'
 };
 
 const EMPTY = {};
@@ -59,16 +53,15 @@ const getContent = memoizeProd(([lang, name]) => {
 			return fetch(`${path}/${r.status}.md`);
 		})
 		.then(r => r.text())
-		.then(r => parseContent(r, ext));
+		.then(r => parseContent(r));
 });
 
-function parseContent(text, ext) {
+function parseContent(text) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
 		meta = frontMatter && JSON.parse(frontMatter),
 		content = text.replace(FRONT_MATTER_REG, '');
 
 	return {
-		type: TYPES[String(ext).toLowerCase()] || TYPES.md,
 		content,
 		meta
 	};
@@ -144,7 +137,7 @@ export default class ContentRegion extends Component {
 
 	render(
 		{ store, name, children, onLoad, onToc, data, ...props },
-		{ type, content }
+		{ content }
 	) {
 		if (!content) {
 			/*global PRERENDER,__non_webpack_require__*/
@@ -166,7 +159,7 @@ export default class ContentRegion extends Component {
 						'jsdom'
 					)).JSDOM().window.DOMParser;
 				}
-				({ content, type } = parseContent(data, 'md'));
+				content = parseContent(data, 'md').content;
 			} else if (this.bootTree) {
 				return this.bootTree;
 			}
@@ -174,17 +167,8 @@ export default class ContentRegion extends Component {
 
 		return (
 			<content-region {...props}>
-				{content && (
-					<Content type={type} content={content} components={COMPONENTS} />
-				)}
+				{content && <Markdown content={content} components={COMPONENTS} />}
 			</content-region>
 		);
 	}
 }
-
-const Content = ({ type, content, ...props }) =>
-	type === 'markdown' ? (
-		<Markdown markdown={content} {...props} />
-	) : type === 'markup' ? (
-		<Markup markup={content} type="html" {...props} />
-	) : null;
