@@ -30,7 +30,7 @@ export default class Page extends Component {
 
 	setTitle() {
 		let { props, state } = this,
-			title = state.meta && state.meta.title || props.route.title || '';
+			title = (state.meta && state.meta.title) || props.route.title || '';
 		document.title = `${title} | ${config.title}`;
 	}
 
@@ -39,7 +39,7 @@ export default class Page extends Component {
 	}
 
 	componentWillReceiveProps({ route }) {
-		if (getContent(route)!==getContent(this.props.route)) {
+		if (getContent(route) !== getContent(this.props.route)) {
 			this.setState({ loading: true });
 		}
 	}
@@ -48,21 +48,19 @@ export default class Page extends Component {
 		this.setTitle();
 	}
 
-	render({ route }, { current, loading, meta=EMPTY, toc }) {
+	render({ route }, { current, loading, meta = EMPTY, toc }) {
 		let layout = `${meta.layout || 'default'}Layout`,
 			name = getContent(route);
-		if (name!==current) loading = true;
+		if (name !== current) loading = true;
 
-		let hasToc = toc && meta.toc!==false && toc.length > 0;
+		let hasToc = toc && meta.toc !== false && toc.length > 0;
 		return (
 			<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
 				<progress-bar showing={loading} />
-				{name!='index' && meta.show_title!==false && (
-					<h1 class={style.title}>{ meta.title || route.title }</h1>
+				{name != 'index' && meta.show_title !== false && (
+					<h1 class={style.title}>{meta.title || route.title}</h1>
 				)}
-				{hasToc && (
-					<Toc items={toc} />
-				)}
+				{hasToc && <Toc items={toc} />}
 				<div class={style.inner}>
 					<ContentRegion
 						name={name}

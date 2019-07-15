@@ -39,14 +39,14 @@
 		position: fixed;
 		top: @header-height;
 		bottom: 0;
-		padding: 1.5rem 1.5rem 1.5rem .5rem;
+		padding: 1.5rem 1.5rem 1.5rem 0.5rem;
 		left: 0;
 		right: 0;
 		background: #fff;
 		border-radius: 2px;
 		overflow: hidden;
 		transform: translateY(100%);
-		transition: transform .3s, opacity .3s;
+		transition: transform 0.3s, opacity 0.3s;
 		opacity: 0;
 
 		@media (min-width: 800px) {
@@ -73,11 +73,11 @@
 	color: white;
 	font-weight: bold;
 	background: @color-corner;
-	box-shadow: .125rem .125rem 5px rgba(0, 0, 0, 0.15);
-	padding: .7em;
+	box-shadow: 0.125rem 0.125rem 5px rgba(0, 0, 0, 0.15);
+	padding: 0.7em;
 	cursor: pointer;
 	z-index: 25;
-	transition: transform .3s;
+	transition: transform 0.3s;
 
 	@media (min-width: 50rem) {
 		display: none;
@@ -97,9 +97,9 @@
 .link {
 	display: block;
 	position: relative;
-	padding: .2em .75em .2em 1em;
+	padding: 0.2em 0.75em 0.2em 1em;
 	color: @sidebar-link-color;
-	transition: background .3s;
+	transition: background 0.3s;
 
 	&::before {
 		.fadeOut;
@@ -108,7 +108,7 @@
 		top: 0;
 		left: 0;
 		height: 100%;
-		width: .2em;
+		width: 0.2em;
 		background: @color-brand;
 	}
 }
@@ -131,17 +131,16 @@
 }
 
 .level-2 + .level-3 {
-	margin-top: .5rem;
+	margin-top: 0.5rem;
 }
 .level-3 + .level-4 {
-	margin-top: .5rem;
+	margin-top: 0.5rem;
 }
 .level-4 + .level-3 {
-	margin-top: .5rem;
+	margin-top: 0.5rem;
 }
 
 .level-3 + .level-2,
 .level-4 + .level-2 {
 	margin-top: 1rem;
 }
-

@@ -33,8 +33,11 @@ export default class Toc extends Component {
 				}
 			}, config);
 
-			Array.from(document.querySelectorAll('content-region h2, content-region h3, content-region h4'))
-				.forEach(heading => this.observer.observe(heading));
+			Array.from(
+				document.querySelectorAll(
+					'content-region h2, content-region h3, content-region h4'
+				)
+			).forEach(heading => this.observer.observe(heading));
 		}
 	}
 
@@ -46,13 +49,30 @@ export default class Toc extends Component {
 
 	render({ items }, { open }) {
 		return (
-			<div class={cx(style.toc, !(items && items.length>1) && style.disabled)} data-open={open}>
+			<div
+				class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
+				data-open={open}
+			>
 				<div class={style.inner}>
-					<button class={style.toggle} onClick={this.toggle} value="table of contents">{'<>'}</button>
+					<button
+						class={style.toggle}
+						onClick={this.toggle}
+						value="table of contents"
+					>
+						{'<>'}
+					</button>
 					<nav tabIndex="0" onFocus={this.open}>
 						{items.map(({ text, level, id }) => {
-							let activeCss = this.state.active===id ? style.linkActive : undefined;
-							return <a href={'#' + id} class={cx(style.link, activeCss, style['level-' + level])}>{text}</a>;
+							let activeCss =
+								this.state.active === id ? style.linkActive : undefined;
+							return (
+								<a
+									href={'#' + id}
+									class={cx(style.link, activeCss, style['level-' + level])}
+								>
+									{text}
+								</a>
+							);
 						})}
 					</nav>
 				</div>

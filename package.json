@@ -2,6 +2,10 @@
   "name": "preact-www",
   "version": "0.3.0",
   "description": "Preact website.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/preactjs/preact-www.git"
+  },
   "scripts": {
     "dev": "preact watch --template src/template.html",
     "start": "npm run -s server",
@@ -10,9 +14,9 @@
     "build": "preact build --prerenderUrls src/prerender.js --template src/template.html",
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
     "pretest": "npm run -s lint && npm run -s build",
-    "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage test/browser/**/*.js",
+    "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
     "lint": "eslint src test",
-    "format": "prettier --write 'src/*/*.{less,js,json}'"
+    "format": "prettier --write '{src,test}/**/*.{less,js,json}'"
   },
   "keywords": [
     "preact"
@@ -22,11 +26,18 @@
     "rules": {
       "react/sort-comp": 0,
       "react/no-danger": 0,
-      "brace-style": 0
+      "brace-style": 0,
+      "indent": 0,
+      "lines-around-comment": 0
     },
     "globals": {
       "PRERENDER": true,
       "page": true
+    },
+    "settings": {
+      "react": {
+        "version": "16.8"
+      }
     }
   },
   "jest": {
@@ -44,7 +55,7 @@
     }
   },
   "lint-staged": {
-    "src/*/*.{less,js,json}": [
+    "{src,test}/**/*.{less,js,json}": [
       "prettier --write",
       "git add"
     ]
@@ -64,7 +75,7 @@
     "less-loader": "^4.1.0",
     "lint-staged": "^9.2.0",
     "per-env": "^1.0.2",
-    "preact-cli": "^3.0.0-rc.2",
+    "preact-cli": "^3.0.0-rc.3",
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
     "puppeteer": "^1.18.1"
@@ -80,7 +91,7 @@
     "linkstate": "^1.1.1",
     "marked": "^0.3.5",
     "preact": "^8.4.2",
-    "preact-cli-plugin-netlify": "^1.2.1",
+    "preact-cli-plugin-netlify": "^1.3.0",
     "preact-markup": "^1.3.0",
     "preact-render-to-string": "^4.1.0",
     "preact-router": "^2.6.1",

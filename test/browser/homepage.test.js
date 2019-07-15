@@ -54,14 +54,22 @@ describe('Homepage', () => {
 		});
 		await page.waitForFunction('preact != null');
 		const { js, css } = await getCoverageData();
-		console.log(`
-			JS shipped:  ${(js.total/1000).toFixed(1)}kB (${js.used / js.total * 100 |0}% used by page)
-			CSS shipped: ${(css.total/1000).toFixed(1)}kB (${css.used / css.total * 100 |0}% used by page)
-		`.replace(/^\s*/gm,'').trim());
+		// eslint-disable-next-line no-console
+		console.log(
+			`
+			JS shipped:  ${(js.total / 1000).toFixed(1)}kB (${((js.used / js.total) * 100) |
+				0}% used by page)
+			CSS shipped: ${(css.total / 1000).toFixed(1)}kB (${((css.used / css.total) *
+				100) |
+				0}% used by page)
+		`
+				.replace(/^\s*/gm, '')
+				.trim()
+		);
 		expect(js.total).toBeLessThan(150000);
 		expect(css.total).toBeLessThan(100000);
-		expect(js.used/js.total).toBeGreaterThan(.4);
-		expect(css.used/css.total).toBeGreaterThan(.4); // note: css coverage looks a bit high here because of critical CSS inlining
+		expect(js.used / js.total).toBeGreaterThan(0.4);
+		expect(css.used / css.total).toBeGreaterThan(0.4); // note: css coverage looks a bit high here because of critical CSS inlining
 	});
 
 	it('should navigate to guide without reloading', async () => {
