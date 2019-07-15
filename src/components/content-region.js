@@ -76,6 +76,13 @@ function parseContent(text, ext) {
 
 @connect(({ lang }) => ({ lang }))
 export default class ContentRegion extends Component {
+	constructor(props) {
+		super(props);
+		// TODO: Remove this once it's fixed in `preact`
+		// or `preact-render-to-string`
+		this.state = {};
+	}
+
 	fetch() {
 		let { name, lang, onLoad } = this.props;
 		getContent([lang, name]).then(s => {
