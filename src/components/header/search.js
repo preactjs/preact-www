@@ -42,15 +42,7 @@ export default class Search extends Component {
 	}
 
 	componentDidMount() {
-		input = input || document.getElementById(this.id);
-
-		if (!input) {
-			input = document.createElement('input');
-			input.required = true;
-			input.id = this.id;
-			input.className = style.searchBox;
-			this.base.appendChild(input);
-
+		if (!docsearchInstance) {
 			this.load();
 		}
 	}
@@ -61,6 +53,13 @@ export default class Search extends Component {
 	}
 
 	render() {
-		return <div class={style.search} />;
+		return (
+			<div
+				class={style.search}
+				dangerouslySetInnerHTML={{
+					__html: `<input id=${this.id} class="${style.searchBox}" required>`
+				}}
+			/>
+		);
 	}
 }
