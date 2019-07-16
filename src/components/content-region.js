@@ -76,6 +76,13 @@ function parseContent(text, ext) {
 
 @connect(({ lang }) => ({ lang }))
 export default class ContentRegion extends Component {
+	constructor(props) {
+		super(props);
+		// TODO: Remove this once it's fixed in `preact`
+		// or `preact-render-to-string`
+		this.state = {};
+	}
+
 	fetch() {
 		let { name, lang, onLoad } = this.props;
 		getContent([lang, name]).then(s => {
@@ -139,8 +146,6 @@ export default class ContentRegion extends Component {
 		{ store, name, children, onLoad, onToc, data, ...props },
 		{ type, content }
 	) {
-		const regionHtml = this.regionHtml || (this.regionHtml = {});
-
 		if (!content) {
 			/*global PRERENDER,__non_webpack_require__*/
 			if (PRERENDER) {
@@ -168,7 +173,7 @@ export default class ContentRegion extends Component {
 		}
 
 		return (
-			<content-region dangerouslySetInnerHTML={regionHtml} {...props}>
+			<content-region {...props}>
 				{content && (
 					<Content type={type} content={content} components={COMPONENTS} />
 				)}
