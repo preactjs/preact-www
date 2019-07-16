@@ -11,6 +11,13 @@ const EMPTY = {};
 const getContent = route => route.content || route.path;
 
 export default class Page extends Component {
+	constructor(props) {
+		super(props);
+		// TODO: Remove this once it's fixed in `preact`
+		// or `preact-render-to-string`
+		this.state = {};
+	}
+
 	onLoad = ({ meta }) => {
 		this.setState({
 			current: getContent(this.props.route),
