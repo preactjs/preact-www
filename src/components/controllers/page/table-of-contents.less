@@ -12,6 +12,10 @@
 		bottom: 0;
 	}
 
+	@media (min-width: 1200px) {
+		left: calc(50% - (@content-width / 2) - @sidebar-width);
+	}
+
 	.inner {
 		@media (min-width: 800px) {
 			position: sticky;
