@@ -47,6 +47,7 @@ pre.highlight {
 	margin-bottom: 2.5rem;
 	padding: 0 !important;
 	line-height: 1.5;
+	background: transparent;
 
 	a.repl-link {
 		position: absolute;
@@ -148,48 +149,6 @@ main .markup {
 		}
 	}
 
-	.home-split {
-		padding: 0 10px;
-		max-width: 1280px;
-		overflow: hidden;
-
-		h2 {
-			margin-top: 0;
-			font-weight: inherit;
-		}
-
-		> div {
-			float: left;
-			box-sizing: border-box;
-			width: 40%;
-			padding: 10px;
-
-			&:first-child {
-				width: 60%;
-			}
-		}
-
-		@media (max-width: 840px) {
-			max-width: 600px;
-			margin: auto;
-
-			> div:last-child > h2 {
-				margin-bottom: 0;
-				font-size: 20px;
-				border-bottom: none;
-			}
-
-			pre {
-				margin: 10px 0;
-			}
-
-			> div {
-				float: none !important;
-				width: auto !important;
-			}
-		}
-	}
-
 	.home-demo {
 		padding: 20px;
 		background: #f8f8f8;
@@ -210,6 +169,57 @@ main .markup {
 	}
 }
 
+.home-split {
+	padding: 0 10px;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	max-width: @home-width !important; // TODO: Fix markup page styles
+
+	@media @sidebar-break {
+		padding: 0 10px;
+		flex-direction: row;
+	}
+
+	h2 {
+		font-weight: inherit;
+	}
+
+	> div {
+		float: left;
+		box-sizing: border-box;
+		width: 40%;
+
+		@media @sidebar-break {
+			padding: 10px;
+
+			&:first-child {
+				width: 60%;
+			}
+		}
+	}
+
+	@media (max-width: 840px) {
+		max-width: 600px;
+		margin: auto;
+
+		> div:last-child > h2 {
+			margin-bottom: 0;
+			font-size: 20px;
+			border-bottom: none;
+		}
+
+		pre {
+			margin: 10px 0;
+		}
+
+		> div {
+			float: none !important;
+			width: auto !important;
+		}
+	}
+}
+
 .home-button {
 	display: inline-block;
 	min-width: 12em;
@@ -222,7 +232,6 @@ main .markup {
 	font-weight: bold;
 	text-transform: uppercase;
 	white-space: nowrap;
-	margin-bottom: 1.5rem;
 
 	&:hover {
 		text-decoration: none;

@@ -132,6 +132,7 @@
 			overflow: visible;
 
 			& > a {
+				transition: all 0.3s;
 				padding-left: 25px;
 
 				&::after {
@@ -290,7 +291,7 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
-		border-radius: 50%;
+		border-radius: 40px;
 		transform-origin: center;
 		background: rgba(255, 255, 255, 0.2);
 		transform: scale(0);
@@ -378,7 +379,7 @@
 		width: 70px;
 		margin: 10px 5px;
 		padding: 8px 4px 8px 32px;
-		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%237447c5" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
+		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
 		background-position: 10px center;
 		background-repeat: no-repeat;
 		background-color: darken(@color-brand, 7%) !important;
@@ -442,7 +443,7 @@
 	right: @corner-size * -0.5;
 	top: @corner-size * -0.5;
 	transform: rotate(45deg);
-	box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 1px 0 9px 1px rgba(0, 0, 0, 0.4);
 
 	&:hover,
 	&:focus {

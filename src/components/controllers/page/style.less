@@ -6,7 +6,10 @@
 	margin-right: auto;
 
 	:global .markup {
-		overflow: visible;
+		// Necessary to prevent the background stripes of
+		// jumpotron/hero to affect the scrolling area.
+		overflow: hidden;
+		margin-bottom: 4rem;
 
 		& > *,
 		.full-width > *,
@@ -56,7 +59,6 @@
 
 .outer {
 	display: flex;
-	justify-content: center;
 }
 
 .withSidebar {
@@ -70,7 +72,6 @@
 		}
 
 		.inner {
-			overflow: auto;
 			flex-shrink: 1;
 			flex-grow: 1;
 			flex-basis: auto;
