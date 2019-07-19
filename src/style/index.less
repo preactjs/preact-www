@@ -130,11 +130,11 @@ main .markup {
 		h1 {
 			font-size: 7.3vw;
 			text-align: center;
-			font-weight: 300;
+			font-weight: lighter;
 			letter-spacing: 0.02em;
 
 			@media (min-width: 1024px) {
-				font-size: 500%;
+				font-size: 400%;
 			}
 		}
 	}
@@ -145,27 +145,6 @@ main .markup {
 			height: 0;
 			margin-bottom: 1.3em;
 			overflow: hidden;
-		}
-	}
-
-	.home-button {
-		display: inline-block;
-		min-width: 12em;
-		padding: 0.5em 0.9em;
-		background: #eee;
-		box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.3) 0 1px 4px
-			rgba(0, 0, 0, 0.5);
-		border: none;
-		text-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.3);
-		border-radius: 4px;
-		color: @color-brand;
-		font-weight: bold;
-		text-transform: uppercase;
-		white-space: nowrap;
-
-		&:hover {
-			text-decoration: none;
-			background: @color-corner;
 		}
 	}
 
@@ -231,6 +210,26 @@ main .markup {
 	}
 }
 
+.home-button {
+	display: inline-block;
+	min-width: 12em;
+	padding: 0.5em 0.9em;
+	background: #eee !important;
+	box-shadow: 0 2px 0 rgba(@color-brand, 0.3);
+	border: none;
+	border-radius: 4px;
+	color: @color-brand;
+	font-weight: bold;
+	text-transform: uppercase;
+	white-space: nowrap;
+	margin-bottom: 1.5rem;
+
+	&:hover {
+		text-decoration: none;
+		background: @color-corner;
+	}
+}
+
 @break-s: ~'(min-width: 700px)';
 
 // Styles for a typical media/flag layout where you have one image on the left
@@ -272,6 +271,7 @@ main .markup {
 	// TODO: Inline SVGs instead of using images to allow more styling options
 	// via CSS. We could play with subtle gradients for the stroke-color, etc.
 	img {
+		display: block;
 		width: 25%;
 		align-self: center;
 
