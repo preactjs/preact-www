@@ -1,40 +1,33 @@
 import { h, Component } from 'preact';
 import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
-import { connect } from 'unistore/preact';
-// import pure from '../../lib/pure-component';
 import Search from './search';
 import style from './style';
+import { useStore } from '../store-adapter';
 import config from '../../config';
+import { useCallback, useEffect, useState } from 'preact/hooks';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
-@connect(({ url }) => ({ url }))
-// @pure
-export default class Header extends Component {
-	state = { open: false };
+export default function Header() {
+	const { url } = useStore(['url']).state;
+	const [open, setOpen] = useState(false);
+	const toggle = useCallback(() => setOpen(!open), [open]);
 
-	toggle = () => this.setState({ open: !this.state.open });
+	useEffect(() => {
+		if (open) setOpen(false);
+	}, [url, open]);
 
-	// close menu on navigate
-	componentWillReceiveProps({ url }) {
-		if (url !== this.props.url && this.state.open) {
-			this.setState({ open: false });
-		}
-	}
-
-	render({ url }, { open }) {
-		return (
-			<header class={cx(style.header, open && style.open)}>
-				<Nav routes={config.nav} current={url} />
-				<Search />
-				<Hamburgler open={open} onClick={this.toggle} />
-				<Corner />
-			</header>
-		);
-	}
+	return (
+		<header class={cx(style.header, open && style.open)}>
+			<Nav routes={config.nav} current={url} />
+			<Search />
+			<Hamburgler open={open} onClick={toggle} />
+			<Corner />
+		</header>
+	);
 }
 
 // hamburgler menu
