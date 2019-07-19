@@ -171,13 +171,14 @@ main .markup {
 
 .home-split {
 	padding: 0 10px;
-	max-width: 1280px;
 	margin-bottom: 2rem;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	max-width: @home-width !important; // TODO: Fix markup page styles
 
 	@media @sidebar-break {
 		padding: 0 10px;
+		flex-direction: row;
 	}
 
 	h2 {
