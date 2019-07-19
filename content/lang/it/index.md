@@ -21,6 +21,19 @@ toc: false
     </p>
 </jumbotron>
 
+```js
+function Counter() {
+  const [value, setValue] = useState(0);
+
+  return (
+    <>
+      <div>Counter: {value}</div>
+      <button onClick={() => setValue(++value)}>Increment</button>
+      <button onClick={() => setValue(--value)}>Decrement</button>
+    </>
+  )
+}
+```
 
 <section class="home-top">
     <h1>Una Libreria differente!</h1>
