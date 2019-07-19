@@ -40,7 +40,7 @@
 	transform: translateY(100%);
 	transition: all 0.3s;
 	opacity: 0;
-	top: 0;
+	top: @header-height;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -54,7 +54,9 @@
 		transform: none;
 		flex-shrink: 0;
 		flex-grow: 0;
+		top: 0;
 		width: @sidebar-width;
+		background: transparent;
 	}
 
 	&[data-open] {
