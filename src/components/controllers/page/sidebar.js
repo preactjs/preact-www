@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import style from './sidebar.less';
 import DocVersion from './../../doc-version';
 import Toc from './table-of-content';
@@ -8,7 +8,7 @@ export default function Sidebar(props) {
 	const [open, setOpen] = useState(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 	return (
-		<>
+		<Fragment>
 			<button class={style.toggle} onClick={toggle} value="sidebar">
 				{'<>'}
 			</button>
@@ -18,6 +18,6 @@ export default function Sidebar(props) {
 					<Toc items={props.toc} />
 				</div>
 			</aside>
-		</>
+		</Fragment>
 	);
 }
