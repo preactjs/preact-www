@@ -6,6 +6,9 @@
 	margin-right: auto;
 
 	:global .markup {
+		// Necessary to prevent the background stripes of
+		// jumpotron/hero to affect the scrolling area.
+		overflow: hidden;
 		margin-bottom: 4rem;
 
 		& > *,
