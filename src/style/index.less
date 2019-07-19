@@ -1,4 +1,5 @@
 @import './helpers';
+@import './reset';
 @import './markdown';
 @import './gh-btn';
 @import './list-view';
@@ -228,81 +229,67 @@ main .markup {
 			color: #fff;
 		}
 	}
+}
 
-	.home-section {
-		position: relative;
-		margin: 60px auto;
-		max-width: 984px;
-		min-height: 230px;
-		overflow: hidden;
-		padding: 0 20px 0 265px;
+@break-s: ~'(min-width: 700px)';
 
-		@media (min-width: 1024px) {
-			font-size: 16px;
+// Styles for a typical media/flag layout where you have one image on the left
+// or right and text in the other column.
+.home-section {
+	display: flex;
+	flex-direction: column;
+	max-width: @home-width !important; // TODO: Fix markup page styles
+
+	@media @break-s {
+		flex-direction: row;
+	}
+
+	& + .home-section {
+		margin: 1.6rem 0;
+
+		@media @break-s {
+			margin: 3.75rem 0;
 		}
+	}
 
-		h2 {
-			font-size: 220%;
-			border-bottom: none;
+	// The following nodes are created inside the markdown files.
+	// To make the authoring experience easier we select and style them
+	// based on the type instead of forcing content creators to add classes.
+	h2 {
+		font-size: 220%;
+		letter-spacing: 0.01em;
+		font-weight: 300;
+		text-align: center;
+		line-height: 1.2;
+		margin-bottom: 0.5em;
+
+		@media @break-s {
 			margin-top: 0;
-			letter-spacing: 0.01em;
-			font-weight: 300;
+			text-align: left;
 		}
+	}
 
-		h2,
-		p,
-		ul {
-			overflow: hidden;
-			margin-left: 0;
+	// TODO: Inline SVGs instead of using images to allow more styling options
+	// via CSS. We could play with subtle gradients for the stroke-color, etc.
+	img {
+		width: 25%;
+		align-self: center;
+
+		@media @break-s {
+			width: 100%;
+			flex: 22% 0 0;
+			margin-right: 4%;
 		}
+	}
 
-		img {
-			position: absolute;
-			left: 0;
-			top: 50%;
-			width: 250px;
-			height: 250px;
-			margin: -125px 0 0;
-			font-size: 124px;
-			text-align: center;
-		}
-
+	@media @break-s {
+		// Variant: Right aligned image
 		&:nth-of-type(2n + 1) {
-			padding: 0 265px 0 20px;
+			flex-direction: row-reverse;
 
 			img {
-				left: auto;
-				right: 0;
-			}
-		}
-
-		@media (max-width: 700px) {
-			padding: 0 20px 0 134px;
-
-			&:nth-of-type(2n + 1) {
-				padding: 0 134px 0 20px;
-			}
-
-			img {
-				margin: -64px 0 0;
-				width: 128px;
-				height: 128px;
-			}
-		}
-
-		@media (max-width: 572px) {
-			margin: 30px 0;
-			padding: 0 20px !important;
-
-			h2 {
-				text-align: center;
-			}
-
-			img {
-				display: block;
-				position: relative;
-				top: 0;
-				margin: 10px auto;
+				margin-right: 0;
+				margin-left: 4%;
 			}
 		}
 	}

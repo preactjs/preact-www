@@ -30,8 +30,9 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg">
+  <img src="/assets/home/metal.svg">
 
+  <div>
     <h2>Mais próximo do metal.</h2>
 
     <p>
@@ -42,13 +43,14 @@ toc: false
     <p>
         Preact é também um cidadão de primeira-classe da plataforma web. Compara a Virtual DOM e o próprio DOM, registra <i>event handlers</i> de verdade, e funciona bem com outras bibliotecas.
     </p>
-
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg">
+  <img src="/assets/home/size.svg">
 
+  <div>
     <h2>Leve e Pequeno</h2>
 
     <p>
@@ -59,12 +61,14 @@ toc: false
     <p>
         Isso significa menos <i>download</i>, interpretação e execução - o que deixa mais tempo pro seu código, pra que você possa criar uma experiência definida por você, ao invés de lutar pra manter o <i>framework</i> sobre controle.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg">
+  <img src="/assets/home/performance.svg">
 
+  <div>
     <h2>Alta Performance</h2>
 
     <p>
@@ -74,12 +78,14 @@ toc: false
     <p>
         Até mesmo inclui recursos extra de performance como atualizações em lote customizáveis, renderização assíncrona opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg">
+  <img src="/assets/home/portable.svg">
 
+  <div>
     <h2>Portável &amp; Embutível</h2>
 
     <p>
@@ -89,12 +95,14 @@ toc: false
     <p>
         Use Preact para construir partes de um aplicativo sem integrações complexas. Adicione o Preact a um <i>widget</i> e aplique as mesmas ferramentas e técnicas que iria ao construir uma aplicação completa.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg">
+  <img src="/assets/home/productive.svg">
 
+  <div>
     <h2>Produtividade Instantânea</h2>
 
     <p>
@@ -106,12 +114,14 @@ toc: false
         <li>Uso de atributos HTML padrão como `class` e `for`</li>
         <li>Funciona com o React DevTools sem nenhuma configuração adicional</li>
     </ul>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/compatible.svg">
+  <img src="/assets/home/compatible.svg">
 
+  <div>
     <h2>Ecossistema compatível</h2>
 
     <p>
@@ -122,6 +132,7 @@ toc: false
     <p>
         Ao adicionar um simples <i>alias</i> <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> ao seu <i>bundler</i> adiciona uma camada de compatibilidade que possibilita até mesmo os componentes React mais complexos a serem utilizados na sua aplicação.
     </p>
+  </div>
 </section>
 
 
