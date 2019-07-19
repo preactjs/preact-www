@@ -3,8 +3,8 @@ import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
-import Toc from './table-of-content';
 import { useEffect, useState, useCallback } from 'preact/hooks';
+import Sidebar from './sidebar';
 
 const getContent = route => route.content || route.path;
 
@@ -65,13 +65,7 @@ export default function Page({ route }) {
 		<div class={cx(style.page, style[layout], hasToc && style.withSidebar)}>
 			<progress-bar showing={loading} />
 			<div class={style.outer}>
-				{hasToc && (
-					<aside class={style.sidebar}>
-						<div class={style.sidebarInner}>
-							<Toc items={toc} />
-						</div>
-					</aside>
-				)}
+				{hasToc && <Sidebar toc={toc} />}
 				<div class={style.inner}>
 					{name != 'index' && meta.show_title !== false && (
 						<h1 class={style.title}>{meta.title || route.title}</h1>

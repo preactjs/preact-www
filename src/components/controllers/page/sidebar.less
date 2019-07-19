@@ -1,0 +1,83 @@
+@import '~style/helpers';
+
+.toggle {
+	display: block;
+	position: fixed;
+	border: none;
+	bottom: 1rem;
+	right: 1rem;
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	color: white;
+	font-weight: bold;
+	background: @color-corner;
+	box-shadow: 0.125rem 0.125rem 5px rgba(0, 0, 0, 0.15);
+	padding: 0.7em;
+	cursor: pointer;
+	z-index: 25;
+	transition: transform 0.3s;
+
+	@media @sidebar-break {
+		display: none;
+	}
+
+	&:focus {
+		outline: none;
+		// Use box shadow to draw an outline because outline has no radius
+		box-shadow: 0 0 5px 5px lighten(@color-brand, 20%);
+	}
+
+	[data-open] & {
+		transform: rotate(90deg);
+	}
+}
+
+.sidebar {
+	visibility: hidden;
+	position: fixed;
+	overflow: visible;
+	transform: translateY(100%);
+	transition: all 0.3s;
+	opacity: 0;
+	top: @header-height;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 20;
+	background: white;
+
+	@media @sidebar-break {
+		position: relative;
+		visibility: visible;
+		opacity: 1;
+		transform: none;
+		flex-shrink: 0;
+		flex-grow: 0;
+		top: 0;
+		width: @sidebar-width;
+		background: transparent;
+	}
+
+	&[data-open] {
+		// display: block;
+		visibility: visible;
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.sidebarInner {
+	@media @sidebar-break {
+		position: sticky;
+		top: @header-height;
+		overflow: auto;
+		height: calc(100vh - @header-height);
+
+		> * + * {
+			border-top: 1px solid #eee;
+			margin-top: 1rem;
+			padding-top: 1rem;
+		}
+	}
+}
