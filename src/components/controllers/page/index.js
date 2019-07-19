@@ -1,29 +1,38 @@
-import { h, Component } from 'preact';
-import linkState from 'linkstate';
+import { h } from 'preact';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
 import Toc from './table-of-content';
-
-const EMPTY = {};
+import { useEffect, useState, useCallback } from 'preact/hooks';
 
 const getContent = route => route.content || route.path;
 
-export default class Page extends Component {
-	constructor(props) {
-		super(props);
-		// TODO: Remove this once it's fixed in `preact`
-		// or `preact-render-to-string`
-		this.state = {};
-	}
+/**
+ * Set `document.title`
+ * @param {string} title
+ */
+export function useTitle(title) {
+	useEffect(() => {
+		document.title = `${title} | ${config.title}`;
+	}, [title]);
+}
 
-	onLoad = ({ meta }) => {
-		this.setState({
-			current: getContent(this.props.route),
-			meta,
-			loading: false
-		});
+export function usePage(route) {
+	const [loading, setLoading] = useState(false);
+	const [meta, setMeta] = useState({});
+	const [current, setCurrent] = useState({});
+
+	useEffect(() => {
+		setLoading(true);
+	}, [getContent(route)]);
+
+	useTitle(meta.title);
+
+	function onLoad({ meta }) {
+		setMeta(meta);
+		setLoading(false);
+		setCurrent(getContent(route));
 		// content was loaded. if this was a forward route transition, animate back to top
 		if (window.nextStateToTop) {
 			window.nextStateToTop = false;
@@ -33,49 +42,43 @@ export default class Page extends Component {
 				behavior: 'smooth'
 			});
 		}
+	}
+
+	return {
+		current,
+		meta,
+		loading,
+		onLoad
 	};
+}
 
-	setTitle() {
-		let { props, state } = this,
-			title = (state.meta && state.meta.title) || props.route.title || '';
-		document.title = `${title} | ${config.title}`;
-	}
+export default function Page({ route }) {
+	const { loading, meta, onLoad } = usePage(route);
+	const [toc, setToc] = useState([]);
+	const onToc = useCallback(v => setToc(v.toc || []));
 
-	componentDidMount() {
-		this.setTitle();
-	}
+	const layout = `${meta.layout || 'default'}Layout`;
+	const name = getContent(route);
 
-	componentWillReceiveProps({ route }) {
-		if (getContent(route) !== getContent(this.props.route)) {
-			this.setState({ loading: true });
-		}
-	}
-
-	componentDidUpdate() {
-		this.setTitle();
-	}
-
-	render({ route }, { current, loading, meta = EMPTY, toc }) {
-		let layout = `${meta.layout || 'default'}Layout`,
-			name = getContent(route);
-		if (name !== current) loading = true;
-
-		let hasToc = toc && meta.toc !== false && toc.length > 0;
-		return (
-			<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
-				<progress-bar showing={loading} />
-				{name != 'index' && meta.show_title !== false && (
-					<h1 class={style.title}>{meta.title || route.title}</h1>
+	let hasToc = meta.toc !== false && toc.length > 0;
+	return (
+		<div class={cx(style.page, style[layout], hasToc && style.withSidebar)}>
+			<progress-bar showing={loading} />
+			<div class={style.outer}>
+				{hasToc && (
+					<aside class={style.sidebar}>
+						<div class={style.sidebarInner}>
+							<Toc items={toc} />
+						</div>
+					</aside>
 				)}
-				{hasToc && <Toc items={toc} />}
 				<div class={style.inner}>
-					<ContentRegion
-						name={name}
-						onToc={linkState(this, 'toc', 'toc')}
-						onLoad={this.onLoad}
-					/>
+					{name != 'index' && meta.show_title !== false && (
+						<h1 class={style.title}>{meta.title || route.title}</h1>
+					)}
+					<ContentRegion name={name} onToc={onToc} onLoad={onLoad} />
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 }
