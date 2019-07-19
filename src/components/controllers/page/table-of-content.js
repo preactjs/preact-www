@@ -47,35 +47,27 @@ export default class Toc extends Component {
 		}
 	}
 
-	render({ items }, { open }) {
+	render({ items, onClick }, { open }) {
 		return (
 			<div
 				class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 				data-open={open}
 			>
-				<div class={style.inner}>
-					<button
-						class={style.toggle}
-						onClick={this.toggle}
-						value="table of contents"
-					>
-						{'<>'}
-					</button>
-					<nav tabIndex="0" onFocus={this.open}>
-						{items.map(({ text, level, id }) => {
-							let activeCss =
-								this.state.active === id ? style.linkActive : undefined;
-							return (
-								<a
-									href={'#' + id}
-									class={cx(style.link, activeCss, style['level-' + level])}
-								>
-									{text}
-								</a>
-							);
-						})}
-					</nav>
-				</div>
+				<nav tabIndex="0" onFocus={this.open}>
+					{items.map(({ text, level, id }) => {
+						let activeCss =
+							this.state.active === id ? style.linkActive : undefined;
+						return (
+							<a
+								href={'#' + id}
+								onClick={onClick}
+								class={cx(style.link, activeCss, style['level-' + level])}
+							>
+								{text}
+							</a>
+						);
+					})}
+				</nav>
 			</div>
 		);
 	}
