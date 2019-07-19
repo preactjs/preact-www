@@ -47,7 +47,7 @@ export default class Toc extends Component {
 		}
 	}
 
-	render({ items }, { open }) {
+	render({ items, onClick }, { open }) {
 		return (
 			<div
 				class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
@@ -60,6 +60,7 @@ export default class Toc extends Component {
 						return (
 							<a
 								href={'#' + id}
+								onClick={onClick}
 								class={cx(style.link, activeCss, style['level-' + level])}
 							>
 								{text}

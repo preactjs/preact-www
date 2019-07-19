@@ -11,7 +11,7 @@
 	height: 3rem;
 	color: white;
 	font-weight: bold;
-	background: @color-corner;
+	background: lighten(@color-corner, 5%);
 	box-shadow: 0.125rem 0.125rem 5px rgba(0, 0, 0, 0.15);
 	padding: 0.7em;
 	cursor: pointer;
@@ -25,10 +25,11 @@
 	&:focus {
 		outline: none;
 		// Use box shadow to draw an outline because outline has no radius
-		box-shadow: 0 0 5px 5px lighten(@color-brand, 20%);
+		box-shadow: 1px 0 5px 3px lighten(@color-brand, 40%);
 	}
 
 	[data-open] & {
+		background: @color-corner;
 		transform: rotate(90deg);
 	}
 }
@@ -59,8 +60,7 @@
 		background: transparent;
 	}
 
-	&[data-open] {
-		// display: block;
+	[data-open] & {
 		visibility: visible;
 		transform: translateY(0);
 		opacity: 1;

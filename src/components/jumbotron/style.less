@@ -14,18 +14,23 @@
 		font-size: 150%;
 		font-weight: 300;
 		line-height: 1.2;
-		margin: 1.6rem 1rem 1rem;
-		padding: 1rem 2rem;
 		color: white;
 		position: relative;
 		transform: translate3d(0, 0, 0);
+
+		@media @sidebar-break {
+			margin: 1.6rem 1rem 1rem;
+			padding: 1rem 2rem;
+		}
 	}
 
 	h1 {
 		color: #fff;
-		font-size: 400%;
-		padding: 1.5rem 0 0 0 !important;
 		text-transform: uppercase;
+
+		@media @sidebar-break {
+			padding: 1.5rem 0 0 0 !important;
+		}
 
 		svg {
 			height: auto;
