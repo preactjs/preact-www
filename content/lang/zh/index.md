@@ -30,8 +30,9 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg">
+  <img src="/assets/home/metal.svg">
 
+  <div>
     <h2>更接近于实质</h2>
 
     <p>
@@ -41,12 +42,14 @@ toc: false
     <p>
 		Preact也是web平台的一等公民，它将真实 dom 对应的 虚拟 dom 进行 diff，注册非虚拟的事件处理函数，并能很好地与其它库一起工作。
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg">
+  <img src="/assets/home/size.svg">
 
+  <div>
     <h2>小体积</h2>
 
     <p>
@@ -56,12 +59,14 @@ toc: false
     <p>
 		这将意味可以下载更少的 javascript 代码，解析和执行 - 为您的代码节省更多的时间，所以你可以构建一个你定义的体验，而不需要受一个框架的控制.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg">
+  <img src="/assets/home/performance.svg">
 
+  <div>
     <h2>高性能</h2>
 
     <p>
@@ -71,12 +76,14 @@ toc: false
     <p>
         它甚至包含额外的性能特性，如 批量自定义更新，可选的 异步渲染，DOM 回收和通过[关联状态](/guide/linked-state) 优化的事件处理。
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg">
+  <img src="/assets/home/portable.svg">
 
+  <div>
     <h2>轻量 &amp; 可嵌入</h2>
 
     <p>
@@ -86,12 +93,14 @@ toc: false
     <p>
         使用 Preact 构建应用程序的各个部分，而无需复杂的集成。将 Preact 嵌入到窗口小部件中并应用相同的工具或技术，你将可以构建一个完整的应用程序。
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg">
+  <img src="/assets/home/productive.svg">
 
+  <div>
     <h2>即时生产</h2>
 
     <p>
@@ -103,12 +112,14 @@ toc: false
         <li>可以使用标准的 HTML 属性，如 `class` 和 `for`</li>
         <li>可以使用 React 开发工具</li>
     </ul>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/compatible.svg">
+  <img src="/assets/home/compatible.svg">
 
+  <div>
     <h2>生态系统兼容</h2>
 
     <p>
@@ -118,6 +129,7 @@ toc: false
     <p>
         增加一个简单的兼容层 <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> 到你的绑定库中，你甚至可以在你的系统中使用非常复杂的 React 组件。
     </p>
+  </div>
 </section>
 
 

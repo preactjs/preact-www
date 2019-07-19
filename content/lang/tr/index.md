@@ -30,8 +30,9 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal">
 
+  <div>
     <h2>Metal'e yakın</h2>
 
     <p>
@@ -43,12 +44,14 @@ toc: false
         Preact ayrıca web platformunun birinci sınıf bir vatandaşıdır.
         Sanal DOM'u, DOM'un kendisine karşı ayrıştırır, gerçek olay işleyicilerini kaydeder ve diğer kütüphanelerle düzgün çalışır.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg" alt="boyut">
+  <img src="/assets/home/size.svg" alt="boyut">
 
+  <div>
     <h2>Küçük Boyutlu</h2>
 
     <p>
@@ -59,12 +62,14 @@ toc: false
     <p>
         Bu, indirilecek, ayrıştırılacak ve çalıştırılacak daha az Javascript manasına geliyor - sizin kodunuza daha fazla zaman bırakıyor, böylece framework'ü kontrol altında tutmak için dövüşmeden bir deneyim inşa edebilirsiniz.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg" alt="performans">
+  <img src="/assets/home/performance.svg" alt="performans">
 
+  <div>
     <h2>Büyük Performans</h2>
 
     <p>
@@ -75,12 +80,14 @@ toc: false
     <p>
         Özelleştirilebilir toplu güncelleme, isteğe bağlı asenkron render, DOM geri dönüşümü ve optimize edilmiş olay işleyicisi gibi ekstra performans özellikleri bile içeriyor.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg" alt="taşınabilir">
+  <img src="/assets/home/portable.svg" alt="taşınabilir">
 
+  <div>
     <h2>Taşınabilir &amp; Gömülebilir</h2>
 
     <p>
@@ -91,12 +98,14 @@ toc: false
         Karmaşık entegrasyon adımları olmadan bir uygulamanın parçalarını geliştirmek için Preact kullanın.
         Preact'i bir widget'ın içine yerleştirin ve tam bir uygulama geliştirmek için kullandığınız araçları ve teknikleri uygulayın.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg" alt="üretken">
+  <img src="/assets/home/productive.svg" alt="üretken">
 
+  <div>
     <h2>Anlık Üretkenlik</h2>
 
     <p>
@@ -110,12 +119,14 @@ toc: false
         <li>`class` ve `for` gibi standart HTML attribute'larını kullanabilirsiniz.</li>
         <li>Kutudan çıktığı gibi React DevTools ile çalışır.</li>
     </ul>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/compatible.svg" alt="uyumlu">
+  <img src="/assets/home/compatible.svg" alt="uyumlu">
 
+  <div>
     <h2>Ekosistem Uyumluluğu</h2>
 
     <p>
@@ -126,6 +137,7 @@ toc: false
     <p>
         Paketleyicinizde <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>'ı eklemek, bir uyumluluk katmanı sunarak karmaşık React bileşenlerini dahi uygulamanızda kullanmanıza izin veriyor.
     </p>
+  </div>
 </section>
 
 

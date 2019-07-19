@@ -30,8 +30,9 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal">
 
+  <div>
     <h2>Näher am Geschehen</h2>
 
     <p>
@@ -42,12 +43,14 @@ toc: false
     <p>
         Preact ist außerdem ein Vorzeigemitglied der Web-Plattform. Es differenziert Virtual DOM gegen das DOM selbst, registriert reale Event-Handler und funktioniert Hand in Hand mit anderen Bibliotheken.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg" alt="größe">
+  <img src="/assets/home/size.svg" alt="größe">
 
+  <div>
     <h2>Kleine Größe</h2>
 
     <p>
@@ -56,13 +59,16 @@ toc: false
     </p>
 
     <p>
-        Dies bedeutet weniger JavaScript zum herunterladen, analysieren und ausführen - das Resultat ist mehr Zeit für den eigenen Code, sodass eine selbstbestimmte Erfahrung ohne den Kampf ein Framework unter Kontrolle zu halten, möglich ist.    </p>
+        Dies bedeutet weniger JavaScript zum herunterladen, analysieren und ausführen - das Resultat ist mehr Zeit für den eigenen Code, sodass eine selbstbestimmte Erfahrung ohne den Kampf ein Framework unter Kontrolle zu halten, möglich ist.
+    </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg" alt="leistung">
+  <img src="/assets/home/performance.svg" alt="leistung">
 
+  <div>
     <h2>Große Leistung</h2>
 
     <p>
@@ -72,12 +78,14 @@ toc: false
     <p>
         Preact beinhaltet sogar zusätzliche Leistungsfunktionen wie anpassbares Update Batching, optionales Async-Rendering, DOM recycling und optimierte Ereignishandhabung mithilfe von [Linked State](/guide/linked-state).
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg" alt="portabel">
+  <img src="/assets/home/portable.svg" alt="portabel">
 
+  <div>
     <h2>Portabel &amp; Einbettbar</h2>
 
     <p>
@@ -87,12 +95,14 @@ toc: false
     <p>
         Verwende Preact, um Teile einer App ohne komplizierte Integration zu erstellen. Bette Preact in einem Widget ein und wende die selben Werkzeuge und Techniken an, die man normalerweise in einer vollständigen App verwenden würde.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg" alt="produktiv">
+  <img src="/assets/home/productive.svg" alt="produktiv">
 
+  <div>
     <h2>Sofort produktiv</h2>
 
     <p>
@@ -104,12 +114,14 @@ toc: false
         <li>Standard HTML-Attribute (z.B. `class` und `for`) können verwendet werden</li>
         <li>Funktioniert ohne jegliche Modifikation mit React DevTools</li>
     </ul>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/compatible.svg" alt="kompatibel">
+  <img src="/assets/home/compatible.svg" alt="kompatibel">
 
+  <div>
     <h2>Ökosystem-kompatibel</h2>
 
     <p>
@@ -120,6 +132,7 @@ toc: false
     <p>
         Das Hinzufügen eines einfachen <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
     </p>
+  </div>
 </section>
 
 
