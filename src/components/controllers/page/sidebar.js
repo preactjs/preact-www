@@ -9,7 +9,7 @@ export default function Sidebar(props) {
 	const toggle = useCallback(() => setOpen(!open), [open]);
 	const close = useCallback(() => setOpen(false));
 	return (
-		<div data-open={open}>
+		<div class={style.wrapper} data-open={open}>
 			<button class={style.toggle} onClick={toggle} value="sidebar">
 				{'<>'}
 			</button>

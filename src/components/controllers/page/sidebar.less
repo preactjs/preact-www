@@ -1,5 +1,10 @@
 @import '~style/helpers';
 
+.wrapper {
+	// Force children to have a know height for `position:sticky` to work
+	display: flex;
+}
+
 .toggle {
 	display: block;
 	position: fixed;
@@ -37,7 +42,6 @@
 .sidebar {
 	visibility: hidden;
 	position: fixed;
-	overflow: visible;
 	transform: translateY(100%);
 	transition: all 0.3s;
 	opacity: 0;
@@ -71,8 +75,8 @@
 	@media @sidebar-break {
 		position: sticky;
 		top: @header-height;
-		overflow: auto;
 		height: calc(100vh - @header-height);
+		width: 100%;
 
 		> * + * {
 			border-top: 1px solid #eee;
