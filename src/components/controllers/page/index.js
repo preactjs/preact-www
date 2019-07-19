@@ -62,14 +62,22 @@ export default function Page({ route }) {
 
 	let hasToc = meta.toc !== false && toc.length > 0;
 	return (
-		<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
+		<div class={cx(style.page, style[layout], hasToc && style.withSidebar)}>
 			<progress-bar showing={loading} />
-			{name != 'index' && meta.show_title !== false && (
-				<h1 class={style.title}>{meta.title || route.title}</h1>
-			)}
-			{hasToc && <Toc items={toc} />}
-			<div class={style.inner}>
-				<ContentRegion name={name} onToc={onToc} onLoad={onLoad} />
+			<div class={style.outer}>
+				{hasToc && (
+					<aside class={style.sidebar}>
+						<div class={style.sidebarInner}>
+							<Toc items={toc} />
+						</div>
+					</aside>
+				)}
+				<div class={style.inner}>
+					{name != 'index' && meta.show_title !== false && (
+						<h1 class={style.title}>{meta.title || route.title}</h1>
+					)}
+					<ContentRegion name={name} onToc={onToc} onLoad={onLoad} />
+				</div>
 			</div>
 		</div>
 	);

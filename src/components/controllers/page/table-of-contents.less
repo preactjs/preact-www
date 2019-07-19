@@ -5,26 +5,6 @@
 	position: relative;
 	z-index: 20;
 
-	@media (min-width: 800px) {
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-	}
-
-	@media (min-width: 1200px) {
-		left: calc(50% - (@content-width / 2) - @sidebar-width);
-	}
-
-	.inner {
-		@media (min-width: 800px) {
-			position: sticky;
-			left: 0;
-			top: @header-height;
-			width: @sidebar-width;
-		}
-	}
-
 	&.disabled {
 		display: none;
 	}
@@ -53,7 +33,7 @@
 		transition: transform 0.3s, opacity 0.3s;
 		opacity: 0;
 
-		@media (min-width: 800px) {
+		@media @sidebar-break {
 			position: relative;
 			top: 0;
 			transform: none;
@@ -83,7 +63,7 @@
 	z-index: 25;
 	transition: transform 0.3s;
 
-	@media (min-width: 50rem) {
+	@media @sidebar-break {
 		display: none;
 	}
 
