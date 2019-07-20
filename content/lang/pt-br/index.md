@@ -23,6 +23,19 @@ toc: false
     </p>
 </jumbotron>
 
+```js
+function Counter() {
+  const [value, setValue] = useState(0);
+
+  return (
+    <>
+      <div>Counter: {value}</div>
+      <button onClick={() => setValue(value + 1)}>Increment</button>
+      <button onClick={() => setValue(value - 1)}>Decrement</button>
+    </>
+  )
+}
+```
 
 <section class="home-top">
     <h1>Uma biblioteca diferente.</h1>
