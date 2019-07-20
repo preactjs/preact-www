@@ -310,9 +310,16 @@
 	justify-content: center;
 	align-items: center;
 	color: #f0f0f0;
+	transition: all 0.3s;
 
 	@media @sidebar-break {
 		padding: 0 1rem;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: rgba(255, 255, 255, 0.3);
 	}
 
 	img {
