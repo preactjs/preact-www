@@ -3,12 +3,13 @@ import { Provider } from 'unistore/preact';
 import createStore from '../store';
 import Routes from './routes';
 import Header from './header';
-import Footer from './footer';
+import { storeCtx } from './store-adapter';
 
 /*global ga*/
 
 let store = createStore({
-	url: location.pathname
+	url: location.pathname,
+	lang: ''
 });
 
 export default class App extends Component {
@@ -24,11 +25,12 @@ export default class App extends Component {
 		let url = store.getState().url;
 		return (
 			<Provider store={store}>
-				<div id="app">
-					<Header url={url} />
-					<Routes url={url} onChange={this.handleUrlChange} />
-					<Footer />
-				</div>
+				<storeCtx.Provider value={store}>
+					<div id="app">
+						<Header url={url} />
+						<Routes url={url} onChange={this.handleUrlChange} />
+					</div>
+				</storeCtx.Provider>
 			</Provider>
 		);
 	}

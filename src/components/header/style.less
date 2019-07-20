@@ -13,10 +13,11 @@
 	text-align: center;
 	transition: all 250ms ease;
 	transform: translateZ(0);
+	display: flex;
+	justify-content: center;
 
 	@media (max-width: @header-mobile-breakpoint) {
 		overflow: hidden;
-		display: flex;
 
 		&.open {
 			background: #222;
@@ -50,6 +51,10 @@
 					}
 				}
 			}
+
+			:global(.home).current {
+				visibility: visible;
+			}
 		}
 	}
 
@@ -70,7 +75,7 @@
 			position: relative;
 			height: @header-height;
 			line-height: @header-height;
-			padding: 0 20px;
+			padding: 0 0.6rem;
 			min-width: 50px;
 			border: none;
 			text-align: center;
@@ -85,6 +90,10 @@
 				text-align: left;
 				padding-left: 26px;
 				display: none;
+			}
+
+			@media @sidebar-break {
+				padding: 0 1.25rem;
 			}
 
 			&:global(.home) {
@@ -257,6 +266,71 @@
 	}
 }
 
+.inner {
+	max-width: @full-width;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	@media (min-width: @content-width) {
+		justify-content: center;
+		justify-content: flex-start;
+	}
+
+	@media @sidebar-break {
+		justify-content: center;
+	}
+}
+
+.social {
+	position: absolute;
+	height: 2rem;
+	top: calc(100vh - 3rem); // TODO: Why does bottom not work?
+	padding: 0 1rem;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+
+	@media (min-width: @content-width) {
+		top: initial;
+		height: 100%;
+		left: initial;
+		position: relative;
+		width: initial;
+	}
+}
+
+.socialItem {
+	display: flex;
+	padding: 0 0.5rem;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	color: #f0f0f0;
+	transition: all 0.3s;
+
+	@media @sidebar-break {
+		padding: 0 1rem;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: rgba(255, 255, 255, 0.3);
+	}
+
+	img {
+		width: 1.6rem;
+	}
+}
+
+.release {
+	font-size: 0.9rem;
+}
+
 // hamburgler menu
 .hamburgler {
 	display: none;
@@ -419,45 +493,4 @@
 			outline: none;
 		}
 	}
-}
-
-// corner link
-@corner-size: 140px;
-
-.corner {
-	@media (max-width: @header-mobile-breakpoint) {
-		display: none;
-	}
-
-	display: flex;
-	justify-content: center;
-	color: #fff;
-	background: linear-gradient(
-		-39deg,
-		darken(@color-brand-light, 8%),
-		#ff0000 74%
-	);
-	height: @corner-size;
-	width: @corner-size;
-	position: absolute;
-	right: @corner-size * -0.5;
-	top: @corner-size * -0.5;
-	transform: rotate(45deg);
-	box-shadow: 1px 0 9px 1px rgba(0, 0, 0, 0.4);
-
-	&:hover,
-	&:focus {
-		background-color: darken(@color-corner, 5%);
-		text-decoration: none;
-		color: #fff;
-	}
-}
-
-.cornerText {
-	align-self: flex-end;
-	display: inline-block;
-	font-size: 16px;
-	width: 100px;
-	padding: 0 3px 5px;
-	line-height: 1.3;
 }
