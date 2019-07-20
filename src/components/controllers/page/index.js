@@ -3,6 +3,7 @@ import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
+import Footer from '../../footer';
 import { useEffect, useState, useCallback } from 'preact/hooks';
 import Sidebar from './sidebar';
 
@@ -71,6 +72,7 @@ export default function Page({ route }) {
 						<h1 class={style.title}>{meta.title || route.title}</h1>
 					)}
 					<ContentRegion name={name} onToc={onToc} onLoad={onLoad} />
+					<Footer />
 				</div>
 			</div>
 		</div>

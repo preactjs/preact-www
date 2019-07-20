@@ -3,7 +3,6 @@ import { Provider } from 'unistore/preact';
 import createStore from '../store';
 import Routes from './routes';
 import Header from './header';
-import Footer from './footer';
 import { storeCtx } from './store-adapter';
 
 /*global ga*/
@@ -30,7 +29,6 @@ export default class App extends Component {
 					<div id="app">
 						<Header url={url} />
 						<Routes url={url} onChange={this.handleUrlChange} />
-						<Footer />
 					</div>
 				</storeCtx.Provider>
 			</Provider>
