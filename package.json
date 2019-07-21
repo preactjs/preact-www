@@ -75,6 +75,7 @@
     "less-loader": "^4.1.0",
     "lint-staged": "^9.2.0",
     "per-env": "^1.0.2",
+    "postcss-custom-properties": "^9.0.2",
     "preact-cli": "^3.0.0-rc.3",
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
