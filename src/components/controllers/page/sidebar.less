@@ -80,9 +80,17 @@
 		overflow: auto;
 
 		> * + * {
-			border-top: 1px solid #eee;
+			border-top-style: solid;
+			border-top-width: 0.0625rem;
 			margin-top: 1rem;
 			padding-top: 1rem;
+
+			:global(.light) & {
+				border-color: @color-sidebar-divider-light;
+			}
+			:global(.dark) & {
+				border-color: @color-sidebar-divider-dark;
+			}
 		}
 	}
 }

@@ -7,8 +7,6 @@
 
 html,
 body {
-	height: 100%;
-	width: 100%;
 	padding: 0;
 	margin: 0;
 	background: #fff;
@@ -18,6 +16,16 @@ body {
 	color: #444;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	&.light {
+		background: @color-page-bg-light;
+		color: @color-text-light;
+	}
+
+	&.dark {
+		background: @color-page-bg-dark;
+		color: @color-text-dark;
+	}
 }
 
 * {
@@ -26,12 +34,22 @@ body {
 }
 
 a {
-	color: @color-link;
 	text-decoration: none;
 }
 
 a.white {
 	color: #fff;
+}
+
+h1,
+h2 {
+	.light & {
+		color: @color-heading-light;
+	}
+
+	.dark & {
+		color: @color-heading-dark;
+	}
 }
 
 pre,
@@ -68,7 +86,6 @@ pre.highlight {
 
 	& > code {
 		padding: 20px;
-		background: #2b313c;
 	}
 }
 
@@ -77,8 +94,7 @@ content-region {
 }
 
 #app {
-	background: #fff;
-	height: 100%;
+	min-height: 100%;
 
 	& > main {
 		min-height: 95%;

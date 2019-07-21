@@ -31,7 +31,6 @@
 			width: 100%;
 		}
 		pre.highlight {
-			border-radius: 0;
 			padding: 20px 0;
 		}
 	}
@@ -55,6 +54,13 @@
 	position: relative;
 	min-height: 200px;
 	width: 100%;
+
+	:global(.light) & {
+		background: @color-page-bg-light;
+	}
+	:global(.dark) & {
+		background: @color-page-bg-dark;
+	}
 }
 
 .outer {
@@ -63,7 +69,12 @@
 
 .withSidebar {
 	@media @sidebar-break {
-		background: #fafafa;
+		:global(.light) & {
+			background: @color-sidebar-bg-light;
+		}
+		:global(.dark) & {
+			background: @color-sidebar-bg-dark;
+		}
 
 		.outer {
 			margin-left: auto;
@@ -76,7 +87,6 @@
 			flex-grow: 1;
 			flex-basis: auto;
 			max-width: calc(100% - 20rem);
-			background: white;
 		}
 	}
 }

@@ -22,7 +22,6 @@
 	display: block;
 	position: relative;
 	padding: 0.4em 0.75em 0.4em 1em;
-	color: @sidebar-link-color;
 	transition: background 0.3s;
 
 	&::before {
@@ -35,15 +34,30 @@
 		width: 0.2em;
 		background: @color-brand;
 	}
+
+	:global(.light) & {
+		color: @color-sidebar-link-light;
+	}
+	:global(.dark) & {
+		color: @color-sidebar-link-dark;
+	}
 }
 
 .linkActive {
 	color: @color-brand;
 	font-weight: bold;
-	background: @sidebar-active-bg;
 
 	&::before {
 		.fadeIn;
+	}
+
+	:global(.light) & {
+		background: @color-sidebar-bg-active-light;
+		color: @color-sidebar-link-active-light;
+	}
+	:global(.dark) & {
+		background: @color-sidebar-bg-active-dark;
+		color: @color-sidebar-link-active-dark;
 	}
 }
 
