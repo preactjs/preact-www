@@ -26,7 +26,7 @@
 			<script>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
 		<% } %>
 	</head>
-	<body>
+	<body class="light">
 		<%= htmlWebpackPlugin.options.ssr({
 			url: htmlWebpackPlugin.options.url || '/'
 		}) %>
