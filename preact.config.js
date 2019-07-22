@@ -4,6 +4,8 @@ import CopyPlugin from 'copy-webpack-plugin';
 import Critters from 'critters-webpack-plugin';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
+import customProperties from 'postcss-custom-properties';
+// prettier-ignore
 
 export default function (config, env, helpers) {
 	// aliases from before the beginning of time
@@ -30,6 +32,14 @@ export default function (config, env, helpers) {
 	config.module.rules.forEach(loader => {
 		const opts = delve(loader, 'use.0.options.options');
 		if (opts && opts.paths) delete opts.paths;
+	});
+
+	// Add CSS Custom Property fallback
+	const cssConfig = config.module.rules.filter(d => d.test.test('foo.less'));
+	cssConfig.forEach(c => {
+		c.use.filter(d => d.loader == 'postcss-loader').forEach(x => {
+			x.options.plugins.push(customProperties({ preserve: true }));
+		});
 	});
 
 	const critters = helpers.getPluginsByName(config, 'Critters')[0];

@@ -31,7 +31,6 @@
 			width: 100%;
 		}
 		pre.highlight {
-			border-radius: 0;
 			padding: 20px 0;
 		}
 	}
@@ -55,6 +54,7 @@
 	position: relative;
 	min-height: 200px;
 	width: 100%;
+	background: var(--color-page-bg);
 }
 
 .outer {
@@ -63,7 +63,7 @@
 
 .withSidebar {
 	@media @sidebar-break {
-		background: #fafafa;
+		background: var(--color-sidebar-bg);
 
 		.outer {
 			margin-left: auto;
@@ -76,7 +76,6 @@
 			flex-grow: 1;
 			flex-basis: auto;
 			max-width: calc(100% - 20rem);
-			background: white;
 		}
 	}
 }
