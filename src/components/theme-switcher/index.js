@@ -1,11 +1,12 @@
 import { h } from 'preact';
 import { useStoredValue } from '../../lib/localstorage';
 import { useEffect } from 'preact/hooks';
+import style from './style.less';
 
 const THEMES = ['light', 'dark', 'auto'];
 
 export default function ThemeSwitcher() {
-	const [theme, setTheme] = useStoredValue('theme', 'light');
+	const [theme, setTheme] = useStoredValue('theme', 'auto');
 
 	function onClick() {
 		// Cycle through available themes
@@ -30,5 +31,9 @@ export default function ThemeSwitcher() {
 		}
 	}, [theme]);
 
-	return <button onClick={onClick}>Theme: {theme}</button>;
+	return (
+		<button onClick={onClick} class={style.root}>
+			<img src={`/assets/theme-${theme}.svg`} alt="" />
+		</button>
+	);
 }
