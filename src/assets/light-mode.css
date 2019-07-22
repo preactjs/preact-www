@@ -2,7 +2,7 @@
 	--color-page-bg: white;
 	--color-text: #444;
 	--color-heading: black;
-	--color-link: @color-brand;
+	--color-link: #673ab8;
 	--color-hr: #f8f8f8;
 	--color-quote-bg: #ebf6ff;
 	--color-quote-border: #5aa8ff;
@@ -17,11 +17,11 @@
 	--color-sidebar-divider: #eee;
 	--color-sidebar-bg: #fafafa;
 	--color-sidebar-bg-active: #f6f6f6;
-	--color-sidebar-link-active: @color-brand;
+	--color-sidebar-link-active: #673ab8;
 	--color-sidebar-link: #555;
 	--color-footer-lang-divider: #aaa;
-	--color-footer-lang: @color-brand;
-	--color-footer-link: @color-brand;
+	--color-footer-lang: #673ab8;
+	--color-footer-link: #673ab8;
 	--color-footer-text: #555;
 	--color-footer-bg: #f2f2f2;
 	--color-footer-border: #ddd;
