@@ -25,8 +25,10 @@
 		<% } else { %>
 			<script>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
 		<% } %>
+		<link rel="stylesheet" type="text/css" href="/assets/light-mode.css" />
+		<link rel="stylesheet" type="text/css" media="prefers-color-scheme: dark" href="/assets/dark-mode.css" />
 	</head>
-	<body class="light">
+	<body>
 		<%= htmlWebpackPlugin.options.ssr({
 			url: htmlWebpackPlugin.options.url || '/'
 		}) %>
