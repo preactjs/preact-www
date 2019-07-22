@@ -1,21 +1,11 @@
 @import (reference) '~style/helpers';
 
 .footer {
-	border-top-width: 0.0625rem;
-	border-top-style: solid;
 	text-align: center;
 	overflow: hidden;
-
-	:global(.light) & {
-		color: @color-footer-text-light;
-		background: @color-footer-bg-light;
-		border-color: @color-footer-border-light;
-	}
-	:global(.dark) & {
-		color: @color-footer-text-dark;
-		background: @color-footer-bg-dark;
-		border-color: @color-footer-border-dark;
-	}
+	color: var(--color-footer-text);
+	background: var(--color-footer-bg);
+	border-top: 0.0625rem solid var(--color-footer-border);
 
 	.inner {
 		position: relative;
@@ -27,17 +17,8 @@
 	.lang {
 		margin-left: 10px;
 		padding-left: 10px;
-		border-left-width: 0.0625rem;
-		border-left-style: solid;
-
-		:global(.light) & {
-			border-color: @color-footer-lang-divider-light;
-			color: @color-brand;
-		}
-		:global(.dark) & {
-			border-color: @color-footer-lang-divider-dark;
-			color: @color-brand-light;
-		}
+		border-left: 0.0625rem solid var(--color-footer-lang-divider);
+		color: var(--color-footer-lang);
 
 		select {
 			font-size: 100%;
@@ -49,11 +30,6 @@
 	}
 
 	a {
-		:global(.light) & {
-			color: @color-brand;
-		}
-		:global(.dark) & {
-			color: @color-brand-light;
-		}
+		color: var(--color-footer-link);
 	}
 }

@@ -54,13 +54,7 @@
 	position: relative;
 	min-height: 200px;
 	width: 100%;
-
-	:global(.light) & {
-		background: @color-page-bg-light;
-	}
-	:global(.dark) & {
-		background: @color-page-bg-dark;
-	}
+	background: var(--color-page-bg);
 }
 
 .outer {
@@ -69,12 +63,7 @@
 
 .withSidebar {
 	@media @sidebar-break {
-		:global(.light) & {
-			background: @color-sidebar-bg-light;
-		}
-		:global(.dark) & {
-			background: @color-sidebar-bg-dark;
-		}
+		background: var(--color-sidebar-bg);
 
 		.outer {
 			margin-left: auto;
