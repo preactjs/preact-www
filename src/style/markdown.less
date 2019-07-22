@@ -9,13 +9,7 @@
 	ul a,
 	ol a {
 		.link;
-
-		.light & {
-			color: @color-link-light;
-		}
-		.dark & {
-			color: @color-link-dark;
-		}
+		color: var(--color-link);
 	}
 
 	a.anchor {
@@ -103,14 +97,7 @@
 		padding: 0;
 		margin: 30px 0 0;
 		border: 0 none;
-
-		.light & {
-			background: @color-hr-light;
-		}
-
-		.dark & {
-			background: @color-hr-dark;
-		}
+		color: var(--color-hr);
 	}
 
 	& > h2:first-child,
@@ -197,18 +184,9 @@
 		border-left-width: 0.3rem;
 		border-left-style: solid;
 		padding: 0.75rem 1rem;
-
-		.light & {
-			background: @color-quote-bg-light;
-			color: @color-text-light;
-			border-color: @color-quote-border-light;
-		}
-
-		.dark & {
-			background: @color-quote-bg-dark;
-			color: @color-heading-dark;
-			border-color: @color-quote-border-dark;
-		}
+		background: var(--color-quote-bg);
+		color: var(--color-text);
+		border-color: var(--color-quote-border);
 	}
 	blockquote > :first-child {
 		margin-top: 0;
@@ -222,28 +200,13 @@
 		border-collapse: collapse;
 	}
 	table tr {
-		border-top-width: 0.0625rem;
-		border-top-style: solid;
-		.light & {
-			border-color: @color-table-border-light;
-			background: @color-table-even-bg-light;
-		}
-
-		.dark & {
-			border-color: @color-table-border-dark;
-			background: @color-table-even-bg-dark;
-		}
+		border: 0.0625rem solid var(--color-table-border);
+		background: var(--color-table-even-bg);
 		margin: 0;
 		padding: 0;
 	}
 	table tr:nth-child(2n) {
-		.light & {
-			background: @color-table-odd-bg-light;
-		}
-
-		.dark & {
-			background: @color-table-odd-bg-dark;
-		}
+		background: var(--color-table-odd-bg);
 	}
 	table tr th {
 		font-weight: bold;
@@ -261,13 +224,7 @@
 
 	td,
 	th {
-		.light & {
-			border-color: @color-table-border-light;
-		}
-
-		.dark & {
-			border-color: @color-table-border-dark;
-		}
+		border-color: var(--color-table-border);
 	}
 	table tr th :first-child,
 	table tr td :first-child {
@@ -365,16 +322,8 @@
 		border-radius: 3px;
 		border-width: 0.0625rem;
 		border-style: solid;
-
-		.light & {
-			background: @color-code-inline-bg-light;
-			border-color: @color-code-inline-border-light;
-		}
-
-		.dark & {
-			background: @color-code-inline-bg-dark;
-			border-color: @color-code-inline-border-dark;
-		}
+		background: var(--color-code-inline-bg);
+		border-color: var(--color-code-inline-border);
 	}
 
 	pre code {
@@ -382,15 +331,7 @@
 		padding: 0;
 		white-space: pre;
 		border: none;
-		background: transparent;
-
-		.light & {
-			background: @color-code-bg-light;
-		}
-
-		.dark & {
-			background: @color-code-bg-dark;
-		}
+		background: var(--color-code-bg);
 	}
 
 	.highlight pre {
@@ -409,19 +350,7 @@
 		overflow: auto;
 		padding: 6px 10px;
 		border-radius: 3px;
-
-		.light & {
-			border-color: @color-code-inline-border-light;
-		}
-
-		.dark & {
-			border-color: @color-code-inline-border-dark;
-		}
-	}
-	pre code,
-	pre tt {
-		background-color: transparent;
-		border: none;
+		border: 0.0625rem solid var(--color-code-inline-border);
 	}
 
 	sup {
