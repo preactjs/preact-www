@@ -8,6 +8,7 @@ import config from '../../config';
 import { useCallback, useEffect, useState } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
+import ThemeSwitcher from '../theme-switcher';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -35,6 +36,7 @@ export default function Header() {
 					<a class={style.socialItem} href="https://twitter.com/preactjs">
 						<img src="/assets/twitter.svg" alt="Twitter" />
 					</a>
+					<ThemeSwitcher />
 				</div>
 				<Hamburgler open={open} onClick={toggle} />
 				<Corner />
