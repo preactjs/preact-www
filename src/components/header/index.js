@@ -1,40 +1,48 @@
 import { h, Component } from 'preact';
 import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
-import { connect } from 'unistore/preact';
-// import pure from '../../lib/pure-component';
 import Search from './search';
 import style from './style';
+import { useStore } from '../store-adapter';
 import config from '../../config';
+import { useCallback, useEffect, useState } from 'preact/hooks';
+import ReleaseLink from './gh-version';
+import Corner from './corner';
+import ThemeSwitcher from '../theme-switcher';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
-@connect(({ url }) => ({ url }))
-// @pure
-export default class Header extends Component {
-	state = { open: false };
+export default function Header() {
+	const { url } = useStore(['url']).state;
+	const [open, setOpen] = useState(false);
+	const toggle = useCallback(() => setOpen(!open), [open]);
 
-	toggle = () => this.setState({ open: !this.state.open });
+	useEffect(() => {
+		if (open) setOpen(false);
+	}, [url]);
 
-	// close menu on navigate
-	componentWillReceiveProps({ url }) {
-		if (url !== this.props.url && this.state.open) {
-			this.setState({ open: false });
-		}
-	}
-
-	render({ url }, { open }) {
-		return (
-			<header class={cx(style.header, open && style.open)}>
-				<Nav routes={config.nav} current={url} />
+	return (
+		<header class={cx(style.header, open && style.open)}>
+			<div class={style.inner}>
+				<Nav class={style.nav} routes={config.nav} current={url} />
 				<Search />
-				<Hamburgler open={open} onClick={this.toggle} />
+				<div class={style.social}>
+					<ReleaseLink class={cx(style.socialItem, style.release)} />
+					<a class={style.socialItem} href="https://github.com/preactjs/preact">
+						<img src="/assets/github.svg" alt="GitHub" />
+					</a>
+					<a class={style.socialItem} href="https://twitter.com/preactjs">
+						<img src="/assets/twitter.svg" alt="Twitter" />
+					</a>
+					<ThemeSwitcher />
+				</div>
+				<Hamburgler open={open} onClick={toggle} />
 				<Corner />
-			</header>
-		);
-	}
+			</div>
+		</header>
+	);
 }
 
 // hamburgler menu
@@ -124,18 +132,3 @@ const getRouteIdent = route =>
 	(route.name || route.title || route.url)
 		.toLowerCase()
 		.replace(/[^a-z0-9]/i, '');
-
-const Corner = () => (
-	<a
-		href="https://opencollective.com/preact"
-		target="_blank"
-		rel="noopener noreferrer"
-		class={style.corner}
-	>
-		<div class={style.cornerText}>
-			Help
-			<br />
-			Support Us !
-		</div>
-	</a>
-);

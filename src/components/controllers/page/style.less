@@ -2,17 +2,14 @@
 
 .page {
 	position: relative;
-	max-width: 100rem;
 	margin-left: auto;
 	margin-right: auto;
 
 	:global .markup {
-		overflow: visible;
-		padding: 1em 0;
-
-		@media (min-width: 800px) {
-			padding: 3.125em 0;
-		}
+		// Necessary to prevent the background stripes of
+		// jumpotron/hero to affect the scrolling area.
+		overflow: hidden;
+		margin-bottom: 4rem;
 
 		& > *,
 		.full-width > *,
@@ -21,7 +18,7 @@
 			padding-right: 20px;
 			margin-left: auto;
 			margin-right: auto;
-			max-width: 800px;
+			max-width: @content-width;
 		}
 
 		& > ul,
@@ -34,49 +31,55 @@
 			width: 100%;
 		}
 		pre.highlight {
-			border-radius: 0;
 			padding: 20px 0;
 		}
 	}
+}
 
-	.title {
-		margin: 1rem 0 0 0;
-		padding: 0.5em 0.5em 0;
-		font-size: 4rem;
-		font-weight: 200;
-		text-align: center;
-	}
+.title {
+	margin: 1rem auto 0 auto;
+	padding: 0.5em;
+	font-size: 3.6rem;
+	font-weight: 200;
+	text-align: center;
+	line-height: 1.2;
+	max-width: @content-width;
 
 	@media (max-width: 600px) {
-		.title {
-			font-size: 2em;
-		}
-	}
-
-	.inner {
-		position: relative;
-		min-height: 200px;
+		font-size: 2em;
 	}
 }
 
-.withToc {
-	.title {
-		@media (min-width: 800px) {
-			margin-left: @sidebar-width;
-		}
+.inner {
+	position: relative;
+	min-height: 200px;
+	width: 100%;
+	background: var(--color-page-bg);
+}
 
-		@media (min-width: 1600px) {
+.outer {
+	display: flex;
+}
+
+.sidebarWrap {
+	display: flex;
+}
+
+.withSidebar {
+	@media @sidebar-break {
+		background: var(--color-sidebar-bg);
+
+		.outer {
 			margin-left: auto;
 			margin-right: auto;
+			max-width: @full-width;
 		}
-	}
 
-	.inner {
-		@media (min-width: 800px) {
-			padding-left: @sidebar-width;
-		}
-		@media (min-width: 1600px) {
-			padding-left: 0;
+		.inner {
+			flex-shrink: 1;
+			flex-grow: 1;
+			flex-basis: auto;
+			max-width: calc(100% - 20rem);
 		}
 	}
 }

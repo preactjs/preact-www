@@ -29,10 +29,12 @@ export default class Search extends Component {
 	loaded = () => {
 		let docsearch = window.docsearch;
 		if (docsearch && !docsearchInstance) {
-			docsearchInstance = docsearch({
-				apiKey: config.docsearch.apiKey,
-				indexName: config.docsearch.indexName,
-				inputSelector: `#${this.id}`
+			this.lazy = lazily(() => {
+				docsearchInstance = docsearch({
+					apiKey: config.docsearch.apiKey,
+					indexName: config.docsearch.indexName,
+					inputSelector: `#${this.id}`
+				});
 			});
 		}
 	};
@@ -56,10 +58,12 @@ export default class Search extends Component {
 		return (
 			<div
 				class={style.search}
-				dangerouslySetInnerHTML={{
-					__html: `<input id=${this.id} class="${style.searchBox}" required>`
-				}}
-			/>
+				// dangerouslySetInnerHTML={{
+				// 	__html: `<input id=${this.id} class="${style.searchBox}" required>`
+				// }}
+			>
+				<input id={this.id} class={style.searchBox} required />
+			</div>
 		);
 	}
 }

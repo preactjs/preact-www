@@ -22,6 +22,19 @@ toc: false
     </p>
 </jumbotron>
 
+```js
+function Counter() {
+  const [value, setValue] = useState(0);
+
+  return (
+    <>
+      <div>Counter: {value}</div>
+      <button onClick={() => setValue(value + 1)}>Increment</button>
+      <button onClick={() => setValue(value - 1)}>Decrement</button>
+    </>
+  )
+}
+```
 
 <section class="home-top">
     <h1>Un concept différent</h1>
@@ -29,8 +42,9 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal">
 
+  <div>
     <h2>Plus proche de la machine</h2>
     
     <p>
@@ -41,12 +55,14 @@ toc: false
     <p>
         Preact est aussi au premier rang de la plateforme web. Il compare le DOM virtuel avec le DOM du navigateur, enregistre de vrais gestionnaires d'événements et fonctionne très bien avec les autres bibliothèques.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg" alt="size">
+  <img src="/assets/home/size.svg" alt="size">
 
+  <div>
     <h2>Petite taille</h2>
     
     <p>
@@ -56,12 +72,14 @@ toc: false
     <p>
         Concrètement, moins de code Javascript sera à télécharger, à analyser et à exécuter. De ce fait, votre code sera privilégié.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg" alt="performance">
+  <img src="/assets/home/performance.svg" alt="performance">
 
+  <div>
     <h2>Grande performance</h2>
     
     <p>
@@ -71,12 +89,14 @@ toc: false
     <p>
         Il implémente certaines fonctionnalités supplémentaires à React telles que <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">les mises à jour asynchrones</a>, la réutilisation du DOM et l'optimisation de la gestion des évènements avec [Linked State](/guide/linked-state).
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg" alt="portable">
+  <img src="/assets/home/portable.svg" alt="portable">
 
+  <div>
     <h2>Portable &amp; embarquable</h2>
     
     <p>
@@ -86,12 +106,14 @@ toc: false
     <p>
         Vous pouvez utiliser Preact pour bâtir une partie de votre application sans difficultés d'intégration. Ajouter Preact à un widget se fait de la même façon que vous construiriez une application complète.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg" alt="productive">
+  <img src="/assets/home/productive.svg" alt="productive">
 
+  <div>
     <h2>Productif instantanément</h2>
     
     <p>
@@ -103,10 +125,12 @@ toc: false
         <li>Les attributs standards HTML comme `class` et `for` peuvent être utilisés</li>
         <li>Fonctionnne avec React DevTools sans effort</li>
     </ul>
+  </div>
 </section>
 
 
 <section class="home-section">
+  <div>
     <img src="/assets/home/compatible.svg" alt="compatible">
 
     <h2>Compatible avec l'écosystème</h2>
@@ -118,6 +142,7 @@ toc: false
     <p>
         Un simple alias vers <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui permet l'utilisation des fonctionnalités les plus complexes de React.
     </p>
+  </div>
 </section>
 
 

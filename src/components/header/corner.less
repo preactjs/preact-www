@@ -1,0 +1,47 @@
+@import '~style/helpers';
+
+@corner-size: 8em;
+
+.corner {
+	// The responsiveness can be controlled via this variable
+	font-size: 1.4vw;
+	max-width: 8.75rem;
+	display: flex;
+	justify-content: center;
+	color: #fff;
+	background: linear-gradient(
+		-39deg,
+		darken(@color-brand-light, 8%),
+		#ff0000 74%
+	);
+	height: @corner-size;
+	width: @corner-size;
+	position: absolute;
+	right: @corner-size * -0.5;
+	top: @corner-size * -0.5;
+	transform: rotate(45deg);
+	box-shadow: 1px 0 9px 1px rgba(0, 0, 0, 0.4);
+
+	@media (max-width: @header-mobile-breakpoint) {
+		display: none;
+	}
+
+	@media @sidebar-break {
+		font-size: 1rem;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: darken(@color-corner, 5%);
+		text-decoration: none;
+		color: #fff;
+	}
+}
+
+.cornerText {
+	align-self: flex-end;
+	display: inline-block;
+	font-size: 1em;
+	padding: 0 0.2em 0.3em;
+	line-height: 1.3;
+}

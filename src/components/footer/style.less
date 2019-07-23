@@ -1,23 +1,24 @@
 @import (reference) '~style/helpers';
 
 .footer {
-	background: #f2f2f2;
-	border-top: 1px solid #ddd;
 	text-align: center;
-	color: #555;
 	overflow: hidden;
+	color: var(--color-footer-text);
+	background: var(--color-footer-bg);
+	border-top: 0.0625rem solid var(--color-footer-border);
 
 	.inner {
 		position: relative;
 		padding: 20px;
 		margin: auto;
-		max-width: 800px;
+		max-width: @content-width;
 	}
 
 	.lang {
 		margin-left: 10px;
 		padding-left: 10px;
-		border-left: 1px solid #aaa;
+		border-left: 0.0625rem solid var(--color-footer-lang-divider);
+		color: var(--color-footer-lang);
 
 		select {
 			font-size: 100%;
@@ -29,6 +30,6 @@
 	}
 
 	a {
-		color: @color-brand;
+		color: var(--color-footer-link);
 	}
 }

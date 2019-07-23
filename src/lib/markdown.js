@@ -14,12 +14,13 @@ const OPTIONS = {
 export const markdownToHtml = md =>
 	CACHE[md] || (CACHE[md] = marked(md, OPTIONS));
 
-/** Component that renders Markdown to HTML via VDOM, using preact-markup.
- *	@param props.markdown	Markdown string to render.
- *	@returns VNode
+/**
+ * Component that renders Markdown to HTML via VDOM, using preact-markup.
+ * @param props.markdown	Markdown string to render.
+ * @returns VNode
  */
-const Markdown = ({ markdown, postProcess, ...props }) => {
-	let markup = markdownToHtml(markdown);
+const Markdown = ({ content, postProcess, ...props }) => {
+	let markup = markdownToHtml(content);
 	if (postProcess) markup = postProcess(markup);
 	return <Markup markup={markup} type="html" trim={false} {...props} />;
 };

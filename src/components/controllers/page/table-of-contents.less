@@ -1,105 +1,29 @@
-@import '../../../style/helpers';
+@import '~style/helpers';
 
 .toc {
 	display: block;
-	position: relative;
-	z-index: 20;
-
-	@media (min-width: 800px) {
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-	}
-
-	.inner {
-		@media (min-width: 800px) {
-			position: sticky;
-			left: 0;
-			top: @header-height;
-			width: @sidebar-width;
-		}
-	}
 
 	&.disabled {
 		display: none;
 	}
 
-	&[data-open] {
-		nav {
-			display: block;
-			visibility: visible;
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-
 	nav {
-		visibility: hidden;
-		position: fixed;
-		top: @header-height;
-		bottom: 0;
-		padding: 1.5rem 1.5rem 1.5rem 0.5rem;
-		left: 0;
-		right: 0;
-		background: #fff;
+		position: relative;
+		padding: 1.5rem 2rem;
 		border-radius: 2px;
-		overflow: hidden;
-		transform: translateY(100%);
-		transition: transform 0.3s, opacity 0.3s;
-		opacity: 0;
 
-		@media (min-width: 800px) {
-			position: relative;
-			top: 0;
-			transform: none;
-			display: block;
-			visibility: visible;
-			opacity: 1;
-			padding: 2rem 1rem 2rem 2rem;
+		@media @sidebar-break {
+			padding: 0 1rem 2rem 2rem;
 		}
-	}
-}
-
-.toggle {
-	display: block;
-	position: fixed;
-	border: none;
-	bottom: 1rem;
-	right: 1rem;
-	border-radius: 50%;
-	width: 3rem;
-	height: 3rem;
-	color: white;
-	font-weight: bold;
-	background: @color-corner;
-	box-shadow: 0.125rem 0.125rem 5px rgba(0, 0, 0, 0.15);
-	padding: 0.7em;
-	cursor: pointer;
-	z-index: 25;
-	transition: transform 0.3s;
-
-	@media (min-width: 50rem) {
-		display: none;
-	}
-
-	&:focus {
-		outline: none;
-		// Use box shadow to draw an outline because outline has no radius
-		box-shadow: 0 0 5px 5px lighten(@color-brand, 20%);
-	}
-
-	[data-open] & {
-		transform: rotate(90deg);
 	}
 }
 
 .link {
 	display: block;
 	position: relative;
-	padding: 0.2em 0.75em 0.2em 1em;
-	color: @sidebar-link-color;
+	padding: 0.4em 0.75em 0.4em 1em;
 	transition: background 0.3s;
+	color: var(--color-sidebar-link);
 
 	&::before {
 		.fadeOut;
@@ -116,7 +40,8 @@
 .linkActive {
 	color: @color-brand;
 	font-weight: bold;
-	background: @sidebar-active-bg;
+	background: var(--color-sidebar-bg-active);
+	color: var(--color-sidebar-link-active);
 
 	&::before {
 		.fadeIn;

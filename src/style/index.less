@@ -1,20 +1,139 @@
 @import './helpers';
+@import './reset';
 @import './markdown';
 @import './gh-btn';
 @import './list-view';
 @import '~highlight.js/styles/tomorrow-night-eighties.css';
 
+:root {
+	// Default variables that will be used by postcss-css-variables to generate
+	// fallback styles for IE11.
+	--color-page-bg: white;
+	--color-text: #444;
+	--color-heading: black;
+	--color-link: #673ab8;
+	--color-hr: #f8f8f8;
+	--color-quote-bg: #ebf6ff;
+	--color-quote-border: #5aa8ff;
+	--color-quote-text: #444;
+	--color-table-border: #ccc;
+	--color-table-even-bg: white;
+	--color-table-odd-bg: #f8f8f8;
+	--color-table-border: #ccc;
+	--color-code-inline-bg: #f8f8f8;
+	--color-code-inline-border: #eaeaea;
+	--color-code-bg: #2b313c;
+	--color-sidebar-divider: #eee;
+	--color-sidebar-bg: #fafafa;
+	--color-sidebar-bg-active: #f6f6f6;
+	--color-sidebar-link-active: #673ab8;
+	--color-sidebar-link: #555;
+	--color-footer-lang-divider: #aaa;
+	--color-footer-lang: #673ab8;
+	--color-footer-link: #673ab8;
+	--color-footer-text: #555;
+	--color-footer-bg: #f2f2f2;
+	--color-footer-border: #ddd;
+
+	// Modern browsers allow to specify the preferred color scheme
+	@media (prefers-color-scheme: dark) {
+		--color-page-bg: #242424;
+		--color-text: #a0a0a0;
+		--color-heading: #c5c5c5;
+		--color-link: #ae80ff;
+		--color-hr: #444;
+		--color-quote-bg: #29475f;
+		--color-quote-border: #3f6b9c;
+		--color-quote-text: #c5c5c5;
+		--color-table-border: #575757;
+		--color-table-even-bg: #242424;
+		--color-table-odd-bg: #2f2f2f;
+		--color-code-inline-bg: #2b313c;
+		--color-code-inline-border: #5e5e5e;
+		--color-code-bg: #2b313c;
+		--color-sidebar-divider: #4f4f4f;
+		--color-sidebar-bg: #171717;
+		--color-sidebar-bg-active: #242424;
+		--color-sidebar-link-active: #8f61e1;
+		--color-sidebar-link: #a0a0a0;
+		--color-footer-lang-divider: #444;
+		--color-footer-lang: #8f61e1;
+		--color-footer-link: #8f61e1;
+		--color-footer-text: #7e7e7e;
+		--color-footer-bg: #1b1b1b;
+		--color-footer-border: #1b1b1b;
+	}
+}
+
+// The following two classes may seem redundant, but they allow us to overwrite
+// the scheme defined by the browser if the user wants to.
+.light {
+	--color-page-bg: white !important;
+	--color-text: #444 !important;
+	--color-heading: black !important;
+	--color-link: #673ab8 !important;
+	--color-hr: #f8f8f8 !important;
+	--color-quote-bg: #ebf6ff !important;
+	--color-quote-border: #5aa8ff !important;
+	--color-quote-text: #444 !important;
+	--color-table-border: #ccc !important;
+	--color-table-even-bg: white !important;
+	--color-table-odd-bg: #f8f8f8 !important;
+	--color-table-border: #ccc !important;
+	--color-code-inline-bg: #f8f8f8 !important;
+	--color-code-inline-border: #eaeaea !important;
+	--color-code-bg: #2b313c !important;
+	--color-sidebar-divider: #eee !important;
+	--color-sidebar-bg: #fafafa !important;
+	--color-sidebar-bg-active: #f6f6f6 !important;
+	--color-sidebar-link-active: #673ab8 !important;
+	--color-sidebar-link: #555 !important;
+	--color-footer-lang-divider: #aaa !important;
+	--color-footer-lang: #673ab8 !important;
+	--color-footer-link: #673ab8 !important;
+	--color-footer-text: #555 !important;
+	--color-footer-bg: #f2f2f2 !important;
+	--color-footer-border: #ddd !important;
+}
+
+// Same for this one
+.dark {
+	--color-page-bg: #242424 !important;
+	--color-text: #a0a0a0 !important;
+	--color-heading: #c5c5c5 !important;
+	--color-link: #ae80ff !important;
+	--color-hr: #444 !important;
+	--color-quote-bg: #29475f !important;
+	--color-quote-border: #3f6b9c !important;
+	--color-quote-text: #c5c5c5 !important;
+	--color-table-border: #575757 !important;
+	--color-table-even-bg: #242424 !important;
+	--color-table-odd-bg: #2f2f2f !important;
+	--color-code-inline-bg: #2b313c !important;
+	--color-code-inline-border: #5e5e5e !important;
+	--color-code-bg: #2b313c !important;
+	--color-sidebar-divider: #4f4f4f !important;
+	--color-sidebar-bg: #171717 !important;
+	--color-sidebar-bg-active: #242424 !important;
+	--color-sidebar-link-active: #8f61e1 !important;
+	--color-sidebar-link: #a0a0a0 !important;
+	--color-footer-lang-divider: #444 !important;
+	--color-footer-lang: #8f61e1 !important;
+	--color-footer-link: #8f61e1 !important;
+	--color-footer-text: #7e7e7e !important;
+	--color-footer-bg: #1b1b1b !important;
+	--color-footer-border: #1b1b1b !important;
+}
+
 html,
 body {
-	height: 100%;
-	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #fff;
+	background: var(--color-page-bg);
+	color: var(--color-text);
 	font: 16px/1.65 system-ui, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
 		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	font-weight: 400;
-	color: #444;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -25,12 +144,16 @@ body {
 }
 
 a {
-	color: @color-link;
 	text-decoration: none;
 }
 
 a.white {
 	color: #fff;
+}
+
+h1,
+h2 {
+	color: var(--color-heading);
 }
 
 pre,
@@ -46,6 +169,7 @@ pre.highlight {
 	margin-bottom: 2.5rem;
 	padding: 0 !important;
 	line-height: 1.5;
+	background: transparent;
 
 	a.repl-link {
 		position: absolute;
@@ -66,7 +190,6 @@ pre.highlight {
 
 	& > code {
 		padding: 20px;
-		background: #2b313c;
 	}
 }
 
@@ -75,8 +198,7 @@ content-region {
 }
 
 #app {
-	background: #fff;
-	height: 100%;
+	min-height: 100%;
 
 	& > main {
 		min-height: 95%;
@@ -129,11 +251,11 @@ main .markup {
 		h1 {
 			font-size: 7.3vw;
 			text-align: center;
-			font-weight: 300;
+			font-weight: lighter;
 			letter-spacing: 0.02em;
 
 			@media (min-width: 1024px) {
-				font-size: 500%;
+				font-size: 400%;
 			}
 		}
 	}
@@ -144,69 +266,6 @@ main .markup {
 			height: 0;
 			margin-bottom: 1.3em;
 			overflow: hidden;
-		}
-	}
-
-	.home-button {
-		display: inline-block;
-		min-width: 12em;
-		padding: 0.5em 0.9em;
-		background: #eee;
-		box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.3) 0 1px 4px
-			rgba(0, 0, 0, 0.5);
-		border: none;
-		text-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.3);
-		border-radius: 4px;
-		color: @color-brand;
-		font-weight: bold;
-		text-transform: uppercase;
-		white-space: nowrap;
-
-		&:hover {
-			text-decoration: none;
-			background: @color-corner;
-		}
-	}
-
-	.home-split {
-		padding: 0 10px;
-		max-width: 1280px;
-		overflow: hidden;
-
-		h2 {
-			margin-top: 0;
-			font-weight: inherit;
-		}
-
-		> div {
-			float: left;
-			box-sizing: border-box;
-			width: 40%;
-			padding: 10px;
-
-			&:first-child {
-				width: 60%;
-			}
-		}
-
-		@media (max-width: 840px) {
-			max-width: 600px;
-			margin: auto;
-
-			> div:last-child > h2 {
-				margin-bottom: 0;
-				font-size: 20px;
-				border-bottom: none;
-			}
-
-			pre {
-				margin: 10px 0;
-			}
-
-			> div {
-				float: none !important;
-				width: auto !important;
-			}
 		}
 	}
 
@@ -228,81 +287,138 @@ main .markup {
 			color: #fff;
 		}
 	}
+}
 
-	.home-section {
-		position: relative;
-		margin: 60px auto;
-		max-width: 984px;
-		min-height: 230px;
-		overflow: hidden;
-		padding: 0 20px 0 265px;
+.home-split {
+	padding: 0 10px;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	max-width: @home-width !important; // TODO: Fix markup page styles
 
-		@media (min-width: 1024px) {
-			font-size: 16px;
+	@media @sidebar-break {
+		padding: 0 10px;
+		flex-direction: row;
+	}
+
+	h2 {
+		font-weight: inherit;
+	}
+
+	> div {
+		float: left;
+		box-sizing: border-box;
+		width: 40%;
+
+		@media @sidebar-break {
+			padding: 10px;
+
+			&:first-child {
+				width: 60%;
+			}
 		}
+	}
 
-		h2 {
-			font-size: 220%;
+	@media (max-width: 840px) {
+		max-width: 600px;
+		margin: auto;
+
+		> div:last-child > h2 {
+			margin-bottom: 0;
+			font-size: 20px;
 			border-bottom: none;
+		}
+
+		pre {
+			margin: 10px 0;
+		}
+
+		> div {
+			float: none !important;
+			width: auto !important;
+		}
+	}
+}
+
+.home-button {
+	display: inline-block;
+	min-width: 12em;
+	padding: 0.5em 0.9em;
+	background: #eee !important;
+	box-shadow: 0 2px 0 rgba(@color-brand, 0.3);
+	border: none;
+	border-radius: 4px;
+	color: @color-brand;
+	font-weight: bold;
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	&:hover {
+		text-decoration: none;
+		background: @color-corner;
+	}
+}
+
+@break-s: ~'(min-width: 700px)';
+
+// Styles for a typical media/flag layout where you have one image on the left
+// or right and text in the other column.
+.home-section {
+	display: flex;
+	flex-direction: column;
+	max-width: @home-width !important; // TODO: Fix markup page styles
+
+	@media @break-s {
+		flex-direction: row;
+	}
+
+	& + .home-section {
+		margin: 1.6rem 0;
+
+		@media @break-s {
+			margin: 3.75rem 0;
+		}
+	}
+
+	// The following nodes are created inside the markdown files.
+	// To make the authoring experience easier we select and style them
+	// based on the type instead of forcing content creators to add classes.
+	h2 {
+		font-size: 220%;
+		letter-spacing: 0.01em;
+		font-weight: 300;
+		text-align: center;
+		line-height: 1.2;
+		margin-bottom: 0.5em;
+
+		@media @break-s {
 			margin-top: 0;
-			letter-spacing: 0.01em;
-			font-weight: 300;
+			text-align: left;
 		}
+	}
 
-		h2,
-		p,
-		ul {
-			overflow: hidden;
-			margin-left: 0;
+	// TODO: Inline SVGs instead of using images to allow more styling options
+	// via CSS. We could play with subtle gradients for the stroke-color, etc.
+	img {
+		display: block;
+		width: 25%;
+		align-self: center;
+
+		@media @break-s {
+			width: 100%;
+			flex: 22% 0 0;
+			margin-right: 4%;
 		}
+	}
 
-		img {
-			position: absolute;
-			left: 0;
-			top: 50%;
-			width: 250px;
-			height: 250px;
-			margin: -125px 0 0;
-			font-size: 124px;
-			text-align: center;
-		}
-
+	@media @break-s {
+		// Variant: Right aligned image
 		&:nth-of-type(2n + 1) {
-			padding: 0 265px 0 20px;
+			flex-direction: row-reverse;
 
 			img {
-				left: auto;
-				right: 0;
-			}
-		}
-
-		@media (max-width: 700px) {
-			padding: 0 20px 0 134px;
-
-			&:nth-of-type(2n + 1) {
-				padding: 0 134px 0 20px;
-			}
-
-			img {
-				margin: -64px 0 0;
-				width: 128px;
-				height: 128px;
-			}
-		}
-
-		@media (max-width: 572px) {
-			margin: 30px 0;
-			padding: 0 20px !important;
-
-			h2 {
-				text-align: center;
-			}
-
-			img {
-				display: block;
-				position: relative;
-				top: 0;
-				margin: 10px auto;
+				margin-right: 0;
+				margin-left: 4%;
 			}
 		}
 	}

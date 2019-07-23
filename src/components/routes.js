@@ -52,14 +52,14 @@ export default class Routes extends Component {
 		return <Ctrl path={route.path || ''} route={route} />;
 	}
 
-	render({ url, component: C = 'main', onChange, ...props }) {
+	render({ url }) {
 		return (
-			<C {...props}>
+			<main>
 				<Router url={url} onChange={this.handleRoute}>
 					{this.getNavRoutes(config.nav)}
 					<controllers.error route={{ content: '404', title: '404' }} default />
 				</Router>
-			</C>
+			</main>
 		);
 	}
 }

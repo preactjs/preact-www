@@ -1,43 +1,46 @@
-import { Component, hydrate, createRef } from 'preact';
+import { Component, render, hydrate, createRef } from 'preact';
 
 function interopDefault(mod) {
 	return (mod && mod.default) || mod;
 }
 
-export default PRERENDER ? ServerHydrator : Hydrator;
-
-export function ServerHydrator({ load, ...props }) {
-	const Child = interopDefault(load());
+function ServerHydrator({ load, component, wrapperProps, ...props }) {
+	const Child = interopDefault(component || load());
 	return (
-		<section>
+		<section {...(wrapperProps || {})}>
 			<Child {...props} />
 		</section>
 	);
 }
 
-export class Hydrator extends Component {
+class Hydrator extends Component {
 	root = createRef();
 
 	boot = nextProps => {
+		// don't boot twice:
 		if (this.hasBooted) return;
-		const { load, ...props } = nextProps || this.props;
 		this.hasBooted = true;
+		const { component, load, ...props } = nextProps || this.props;
+		const ready = exports => {
+			this.Child = interopDefault(exports);
+			this._render(props);
+		};
+		if (component) return ready(component);
 		Promise.resolve()
 			.then(load)
-			.then(exports => {
-				this.Child = interopDefault(exports);
-				this.ready = true;
-				this._render(props);
-			});
+			.then(ready);
 	};
 
 	_render(props) {
-		const { Child } = this;
-		hydrate(<Child {...props} />, this.root.current);
+		const { hydrated, Child } = this;
+		this.hydrated = true;
+		// on re-renders, don't hydrate:
+		const fn = hydrated ? render : hydrate;
+		fn(<Child {...props} />, this.root.current);
 	}
 
 	shouldComponentUpdate(nextProps) {
-		if (this.ready) {
+		if (this.hydrated) {
 			this._render(nextProps);
 		} else if (nextProps.boot && !this.props.boot) {
 			this.boot(nextProps);
@@ -57,13 +60,16 @@ export class Hydrator extends Component {
 		}
 	}
 
-	render() {
+	render({ wrapperProps }) {
 		return (
 			<section
 				ref={this.root}
 				dangerouslySetInnerHTML={{ __html: '' }}
 				suppressHydrationWarning
+				{...(wrapperProps || {})}
 			/>
 		);
 	}
 }
+
+export default PRERENDER ? ServerHydrator : Hydrator;

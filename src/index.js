@@ -1,4 +1,5 @@
 import './style/index.less';
+import './analytics';
 import './pwa';
 import App from './components/app';
 import * as preact from 'preact';

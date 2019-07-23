@@ -23,6 +23,19 @@ toc: false
     </p>
 </jumbotron>
 
+```js
+function Counter() {
+  const [value, setValue] = useState(0);
+
+  return (
+    <>
+      <div>Counter: {value}</div>
+      <button onClick={() => setValue(value + 1)}>Increment</button>
+      <button onClick={() => setValue(value - 1)}>Decrement</button>
+    </>
+  )
+}
+```
 
 <section class="home-top">
     <h1>A different kind of library.</h1>
@@ -30,8 +43,9 @@ toc: false
 
 
 <section class="home-section">
-    <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal">
 
+  <div>
     <h2>Closer to the Metal</h2>
     
     <p>
@@ -42,12 +56,14 @@ toc: false
     <p>
         Preact is also a first-class citizen of the web platform. It diffs Virtual DOM against the DOM itself, registers real event handlers, and plays nicely with other libraries.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/size.svg" alt="size">
+  <img src="/assets/home/size.svg" alt="size">
 
+  <div>
     <h2>Small Size</h2>
     
     <p>
@@ -58,12 +74,14 @@ toc: false
     <p>
         That means less JavaScript to download, parse and execute - leaving more time for your code, so you can build an experience you define without fighting to keep a framework under control.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/performance.svg" alt="performance">
+  <img src="/assets/home/performance.svg" alt="performance">
 
+  <div>
     <h2>Big Performance</h2>
     
     <p>
@@ -73,12 +91,14 @@ toc: false
     <p>
         It even includes extra performance features like customizable update batching, optional async rendering, DOM recycling, and optimized event handling via [Linked State](/guide/linked-state).
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/portable.svg" alt="portable">
+  <img src="/assets/home/portable.svg" alt="portable">
 
+  <div>
     <h2>Portable &amp; Embeddable</h2>
     
     <p>
@@ -88,12 +108,14 @@ toc: false
     <p>
         Use Preact to build parts of an app without complex integration. Embed Preact into a widget and apply the same tools and techniques that you would to build a full app.
     </p>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/productive.svg" alt="productive">
+  <img src="/assets/home/productive.svg" alt="productive">
 
+  <div>
     <h2>Instantly Productive</h2>
     
     <p>
@@ -105,12 +127,14 @@ toc: false
         <li>Use standard HTML attributes like `class` and `for`</li>
         <li>Works with React DevTools right out of the box</li>
     </ul>
+  </div>
 </section>
 
 
 <section class="home-section">
-    <img src="/assets/home/compatible.svg" alt="compatible">
+  <img src="/assets/home/compatible.svg" alt="compatible">
 
+  <div>
     <h2>Ecosystem Compatible</h2>
     
     <p>
@@ -122,6 +146,7 @@ toc: false
         Adding a simple <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> alias to your bundler provides a compatibility layer
         that enables even the most complex React components to be used in your application.
     </p>
+  </div>
 </section>
 
 

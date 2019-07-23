@@ -2,9 +2,9 @@ import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
-import Markup from 'preact-markup';
 import widgets from './widgets';
 import { markdownToHtml } from '../lib/markdown';
+import Hydrator from '../lib/hydrator';
 
 const COMPONENTS = {
 	...widgets,
@@ -19,11 +19,6 @@ const COMPONENTS = {
 		}
 		return <a {...props} />;
 	}
-};
-
-const TYPES = {
-	md: 'markdown',
-	html: 'markup'
 };
 
 const EMPTY = {};
@@ -60,7 +55,7 @@ const getContent = memoizeProd(([lang, name]) => {
 			return fetch(`${path}/${r.status}.md`);
 		})
 		.then(r => r.text())
-		.then(r => parseContent(r, ext));
+		.then(r => parseContent(r));
 });
 
 export function getContentOnServer(route) {
@@ -103,13 +98,12 @@ export function getContentOnServer(route) {
 	return parsed;
 }
 
-function parseContent(text, ext) {
+function parseContent(text) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
 		meta = frontMatter && JSON.parse(frontMatter),
 		content = text.replace(FRONT_MATTER_REG, '');
 
 	return {
-		type: TYPES[String(ext).toLowerCase()] || TYPES.md,
 		content,
 		meta
 	};
@@ -176,42 +170,44 @@ export default class ContentRegion extends Component {
 	}
 
 	render(
-		{ store, name, data, children, onLoad, onToc, ...props },
-		{ type, content }
+		{ store, name, children, onLoad, onToc, data, ...props },
+		{ content }
 	) {
-		const regionHtml = this.regionHtml || (this.regionHtml = {});
+		// const regionHtml = this.regionHtml || (this.regionHtml = {});
 
 		if (!content) {
 			if (data) {
-				({ content, type } = data);
+				({ content } = data);
 			} else if (PRERENDER) {
 				// this is all only run during prerendering
-				({ content, type } = getContentOnServer(location.pathname));
+				({ content } = getContentOnServer(location.pathname));
 			}
 		}
 
-		if (!content) {
-			props.dangerouslySetInnerHTML = `<div>${regionHtml}</div>`;
-		}
+		// if (!content) {
+		// 	console.warn('No content received (name="'+name+'"), falling back to regionHtml.');
+		// 	props.dangerouslySetInnerHTML = `<div>${regionHtml}</div>`;
+		// }
 
 		return (
 			<content-region {...props}>
+				<Hydrator
+					component={Markdown}
+					boot={!!content}
+					content={content}
+					components={COMPONENTS}
+				/>
+				{/*
 				{content && (
-					<Content
+					<Markdown
 						key={content}
 						type={type}
 						content={content}
 						components={COMPONENTS}
 					/>
 				)}
+				*/}
 			</content-region>
 		);
 	}
 }
-
-const Content = ({ type, content, ...props }) =>
-	type === 'markdown' ? (
-		<Markdown markdown={content} {...props} />
-	) : type === 'markup' ? (
-		<Markup markup={content} type="html" {...props} />
-	) : null;

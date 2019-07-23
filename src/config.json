@@ -10,6 +10,7 @@
 		"de": "German",
 		"it": "Italian"
 	},
+	"repo": "preactjs/preact",
 	"docsearch": {
 		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
 		"indexName": "preact"
