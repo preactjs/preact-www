@@ -5,25 +5,23 @@ import Routes from './routes';
 import Header from './header';
 import Footer from './footer';
 
-/*global ga*/
-
-let store = createStore({
-	url: location.pathname
-});
-
 export default class App extends Component {
-	handleUrlChange({ url }) {
-		let prev = store.getState().url || '/';
+	store = createStore({
+		url: this.props.url || location.pathname
+	});
+
+	handleUrlChange = ({ url }) => {
+		let prev = this.store.getState().url || '/';
 		if (url !== prev && typeof ga === 'function') {
-			store.setState({ url });
+			this.store.setState({ url });
 			ga('send', 'pageview', url);
 		}
-	}
+	};
 
 	render() {
-		let url = store.getState().url;
+		const { url } = this.store.getState();
 		return (
-			<Provider store={store}>
+			<Provider store={this.store}>
 				<div id="app">
 					<Header url={url} />
 					<Routes url={url} onChange={this.handleUrlChange} />
