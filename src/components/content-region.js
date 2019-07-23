@@ -4,6 +4,7 @@ import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
 import Markup from 'preact-markup';
 import widgets from './widgets';
+import { markdownToHtml } from '../lib/markdown';
 
 const COMPONENTS = {
 	...widgets,
@@ -62,6 +63,46 @@ const getContent = memoizeProd(([lang, name]) => {
 		.then(r => parseContent(r, ext));
 });
 
+export function getContentOnServer(route) {
+	if (!PRERENDER) return;
+	if (route == '/') route = '/index';
+
+	const fs = __non_webpack_require__('fs');
+	let data = fs.readFileSync(`content${route}.md`, 'utf8');
+
+	// convert frontmatter from yaml to json:
+	const yaml = __non_webpack_require__('yaml');
+	data = data.replace(FRONT_MATTER_REG, (s, y) => {
+		const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
+		return '---\n' + JSON.stringify(meta) + '\n---\n';
+	});
+
+	if (typeof DOMParser === 'undefined') {
+		const jsdom = __non_webpack_require__('jsdom');
+		global.DOMParser = new jsdom.JSDOM().window.DOMParser;
+	}
+
+	const parsed = parseContent(data, 'md');
+	parsed.meta = parsed.meta || {};
+
+	// hoist title
+	const TITLE_REG = /^\s*#\s+(.+)\n+/;
+	if (!parsed.meta.title) {
+		let [, title] = parsed.content.match(TITLE_REG) || [];
+		if (title) {
+			parsed.content = parsed.content.replace(TITLE_REG, '');
+			parsed.meta.title = title;
+		}
+	}
+
+	// generate Table of Contents
+	const html = markdownToHtml(parsed.content);
+	const dom = new DOMParser().parseFromString(html, 'text/html');
+	parsed.meta.toc = getToc(dom);
+
+	return parsed;
+}
+
 function parseContent(text, ext) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
 		meta = frontMatter && JSON.parse(frontMatter),
@@ -74,14 +115,25 @@ function parseContent(text, ext) {
 	};
 }
 
+export function getToc(root) {
+	let headings = root.querySelectorAll('[id]'),
+		toc = [];
+	for (let i = 0; i < headings.length; i++) {
+		let [, level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
+		if (level) {
+			toc.push({
+				text: headings[i].textContent,
+				id: headings[i].getAttribute('id'),
+				level: Math.round(level)
+			});
+		}
+	}
+	return toc;
+}
+
 @connect(({ lang }) => ({ lang }))
 export default class ContentRegion extends Component {
-	constructor(props) {
-		super(props);
-		// TODO: Remove this once it's fixed in `preact`
-		// or `preact-render-to-string`
-		this.state = {};
-	}
+	state = {};
 
 	fetch() {
 		let { name, lang, onLoad } = this.props;
@@ -109,28 +161,9 @@ export default class ContentRegion extends Component {
 	}
 
 	updateToc() {
-		let headings = this.base.querySelectorAll('[id]'),
-			{ onToc } = this.props,
-			toc = (this.toc = []);
-		for (let i = 0; i < headings.length; i++) {
-			let [, level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
-			if (level) {
-				toc.push({
-					text: headings[i].textContent,
-					id: headings[i].getAttribute('id'),
-					level: Math.round(level)
-				});
-			}
-		}
+		let { onToc } = this.props;
+		let toc = (this.toc = getToc(this.base));
 		if (onToc) onToc({ toc });
-	}
-
-	componentWillMount() {
-		const b = (this.base = this.nextBase || this.__b);
-		if (b && typeof document !== 'undefined') {
-			const C = b.nodeName;
-			this.bootTree = <C dangerouslySetInnerHTML={{ __html: b.innerHTML }} />;
-		}
 	}
 
 	componentDidMount() {
@@ -143,39 +176,33 @@ export default class ContentRegion extends Component {
 	}
 
 	render(
-		{ store, name, children, onLoad, onToc, data, ...props },
+		{ store, name, data, children, onLoad, onToc, ...props },
 		{ type, content }
 	) {
-		if (!content) {
-			/*global PRERENDER,__non_webpack_require__*/
-			if (PRERENDER) {
-				// this is all only run during prerendering
+		const regionHtml = this.regionHtml || (this.regionHtml = {});
 
-				let route = location.pathname == '/' ? '/index' : location.pathname;
-				let data = __non_webpack_require__('fs').readFileSync(
-					`content${route}.md`,
-					'utf8'
-				);
-				const yaml = __non_webpack_require__('yaml');
-				data = data.replace(FRONT_MATTER_REG, (s, y) => {
-					const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
-					return '---\n' + JSON.stringify(meta) + '\n---\n';
-				});
-				if (typeof DOMParser === 'undefined') {
-					global.DOMParser = new (__non_webpack_require__(
-						'jsdom'
-					)).JSDOM().window.DOMParser;
-				}
-				({ content, type } = parseContent(data, 'md'));
-			} else if (this.bootTree) {
-				return this.bootTree;
+		if (!content) {
+			if (data) {
+				({ content, type } = data);
+			} else if (PRERENDER) {
+				// this is all only run during prerendering
+				({ content, type } = getContentOnServer(location.pathname));
 			}
+		}
+
+		if (!content) {
+			props.dangerouslySetInnerHTML = `<div>${regionHtml}</div>`;
 		}
 
 		return (
 			<content-region {...props}>
 				{content && (
-					<Content type={type} content={content} components={COMPONENTS} />
+					<Content
+						key={content}
+						type={type}
+						content={content}
+						components={COMPONENTS}
+					/>
 				)}
 			</content-region>
 		);

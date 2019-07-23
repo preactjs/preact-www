@@ -1,23 +1,16 @@
-import { h, Component } from 'preact';
-import linkState from 'linkstate';
+import { Component } from 'preact';
 import cx from '../../../lib/cx';
-import ContentRegion from '../../content-region';
+import ContentRegion, { getContentOnServer } from '../../content-region';
 import config from '../../../config';
 import style from './style';
 import Toc from './table-of-content';
+import Hydrator from '../../../lib/hydrator';
 
 const EMPTY = {};
 
 const getContent = route => route.content || route.path;
 
 export default class Page extends Component {
-	constructor(props) {
-		super(props);
-		// TODO: Remove this once it's fixed in `preact`
-		// or `preact-render-to-string`
-		this.state = {};
-	}
-
 	onLoad = ({ meta }) => {
 		this.setState({
 			current: getContent(this.props.route),
@@ -35,6 +28,10 @@ export default class Page extends Component {
 		}
 	};
 
+	gotToc = ({ toc }) => {
+		this.setState({ toc, gotToc: true });
+	};
+
 	setTitle() {
 		let { props, state } = this,
 			title = (state.meta && state.meta.title) || props.route.title || '';
@@ -47,7 +44,7 @@ export default class Page extends Component {
 
 	componentWillReceiveProps({ route }) {
 		if (getContent(route) !== getContent(this.props.route)) {
-			this.setState({ loading: true });
+			this.setState({ loading: true, gotToc: false });
 		}
 	}
 
@@ -55,23 +52,43 @@ export default class Page extends Component {
 		this.setTitle();
 	}
 
-	render({ route }, { current, loading, meta = EMPTY, toc }) {
+	render({ route }, { current, loading, meta = EMPTY, toc, gotToc } = {}) {
 		let layout = `${meta.layout || 'default'}Layout`,
-			name = getContent(route);
+			name = getContent(route),
+			data;
 		if (name !== current) loading = true;
 
+		if (PRERENDER) {
+			loading = false;
+			// on the server, pass data down through the tree to avoid repeated FS lookups
+			data = getContentOnServer(route.path);
+			({ meta } = data);
+			toc = meta.toc;
+		}
+
 		let hasToc = toc && meta.toc !== false && toc.length > 0;
+		if (toc && toc[0] && toc[0].level === 1) {
+			meta.title = toc[0].text;
+		}
 		return (
 			<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
 				<progress-bar showing={loading} />
-				{name != 'index' && meta.show_title !== false && (
-					<h1 class={style.title}>{meta.title || route.title}</h1>
-				)}
-				{hasToc && <Toc items={toc} />}
+				<Hydrator
+					load={() => Title}
+					boot={!loading && gotToc}
+					show={name != 'index' && meta.show_title !== false}
+					title={meta.title || route.title}
+				/>
+				<Hydrator
+					load={() => Toc}
+					boot={!loading && gotToc}
+					items={hasToc ? toc : []}
+				/>
 				<div class={style.inner}>
 					<ContentRegion
 						name={name}
-						onToc={linkState(this, 'toc', 'toc')}
+						data={data}
+						onToc={this.gotToc}
 						onLoad={this.onLoad}
 					/>
 				</div>
@@ -79,3 +96,5 @@ export default class Page extends Component {
 		);
 	}
 }
+
+const Title = ({ title, show }) => show && <h1 class={style.title}>{title}</h1>;

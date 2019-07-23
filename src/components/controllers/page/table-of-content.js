@@ -3,6 +3,8 @@ import cx from '../../../lib/cx';
 import style from './table-of-contents.less';
 
 export default class Toc extends Component {
+	state = {};
+
 	toggle = () => {
 		this.setState({ open: !this.state.open });
 		return false;
@@ -47,7 +49,7 @@ export default class Toc extends Component {
 		}
 	}
 
-	render({ items }, { open }) {
+	render({ items }, { open, active }) {
 		return (
 			<div
 				class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
@@ -63,8 +65,7 @@ export default class Toc extends Component {
 					</button>
 					<nav tabIndex="0" onFocus={this.open}>
 						{items.map(({ text, level, id }) => {
-							let activeCss =
-								this.state.active === id ? style.linkActive : undefined;
+							let activeCss = active === id ? style.linkActive : undefined;
 							return (
 								<a
 									href={'#' + id}
