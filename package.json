@@ -32,6 +32,8 @@
     },
     "globals": {
       "PRERENDER": true,
+      "__non_webpack_require__": true,
+      "ga": true,
       "page": true
     },
     "settings": {
