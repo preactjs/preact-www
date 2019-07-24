@@ -17,12 +17,13 @@ class Hydrator extends Component {
 	root = createRef();
 
 	boot = nextProps => {
-		// don't boot twice:
-		if (this.hasBooted) return;
-		this.hasBooted = true;
+		// don't initialize booting twice:
+		if (this.booted) return;
+		this.booted = true;
 		const { component, load, ...props } = nextProps || this.props;
 		const ready = exports => {
 			this.Child = interopDefault(exports);
+			this.hydrated = true;
 			this._render(props);
 		};
 		if (component) return ready(component);
@@ -32,11 +33,8 @@ class Hydrator extends Component {
 	};
 
 	_render(props) {
-		const { hydrated, Child } = this;
-		this.hydrated = true;
-		// on re-renders, don't hydrate:
-		const fn = hydrated ? render : hydrate;
-		fn(<Child {...props} />, this.root.current);
+		const { Child } = this;
+		render(<Child {...props} />, this.root.current);
 	}
 
 	shouldComponentUpdate(nextProps) {
@@ -46,6 +44,12 @@ class Hydrator extends Component {
 			this.boot(nextProps);
 		}
 		return false;
+	}
+
+	componentWillUnmount() {
+		if (this.hydrated && this.root.current) {
+			render(null, this.root.current);
+		}
 	}
 
 	componentDidMount() {
