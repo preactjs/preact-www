@@ -1,4 +1,4 @@
-import { Component, render, hydrate, createRef } from 'preact';
+import { Component, render, createRef } from 'preact';
 
 function interopDefault(mod) {
 	return (mod && mod.default) || mod;
