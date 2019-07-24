@@ -6,6 +6,7 @@ import style from './style';
 import Footer from '../../footer';
 import { useEffect, useState, useCallback } from 'preact/hooks';
 import Sidebar from './sidebar';
+import EditThisPage from '../../edit-button';
 
 const getContent = route => route.content || route.path;
 
@@ -68,6 +69,7 @@ export default function Page({ route }) {
 			<div class={style.outer}>
 				{hasToc && <Sidebar toc={toc} />}
 				<div class={style.inner}>
+					{name != 'index' && name != '404' && <EditThisPage />}
 					{name != 'index' && meta.show_title !== false && (
 						<h1 class={style.title}>{meta.title || route.title}</h1>
 					)}
