@@ -1,8 +1,13 @@
 import { h, Component } from 'preact';
 import cx from '../../../lib/cx';
 import style from './table-of-contents.less';
+import { getCurrentUrl } from 'preact-router';
 
 export default class Toc extends Component {
+	state = {
+		active: 0
+	};
+
 	toggle = () => {
 		this.setState({ open: !this.state.open });
 		return false;
@@ -48,18 +53,22 @@ export default class Toc extends Component {
 	}
 
 	render({ items, onClick }, { open }) {
+		const url = getCurrentUrl();
 		return (
 			<div
 				class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 				data-open={open}
 			>
 				<nav tabIndex="0" onFocus={this.open}>
-					{items.map(({ text, level, id }) => {
-						let activeCss =
-							this.state.active === id ? style.linkActive : undefined;
+					{items.map(({ text, level, id, href }) => {
+						let activeCss = (id
+						? this.state.active === id
+						: href === url)
+							? style.linkActive
+							: undefined;
 						return (
 							<a
-								href={'#' + id}
+								href={id != null ? '#' + id : href}
 								onClick={onClick}
 								class={cx(style.link, activeCss, style['level-' + level])}
 							>
