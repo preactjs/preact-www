@@ -3,5 +3,11 @@ node_js:
   - 10
 script: npm t
 
+# We do not test pushes to branches, since they are redundant with the pull_request build
+# for each branch. See: https://github.com/linkerd/linkerd2/blob/3be5de1736913f0a3924a1fbd968f7826b3e9a16/.travis.yml#L5-L10
+branches:
+  only:
+    - master
+
 notifications:
   email: false
