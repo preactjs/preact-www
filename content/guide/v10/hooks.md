@@ -33,6 +33,9 @@ the current state and the second one being the setter for our state.
 Our setter behaves similar to the setter of our classic state.
 It accepts a value or a function with the currentState as argument.
 
+When you call the setter and the state is different, it will trigger
+a rerender starting from the component where that useState has been used.
+
 ```jsx
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
@@ -50,3 +53,15 @@ const Counter = () => {
 ```
 
 > When our initial state is expensive it's better to pass a function instead of a value.
+
+### useReducer
+
+## Memoization
+
+## Refs
+
+## Context
+
+## Side-effects
+
+## Recipes
