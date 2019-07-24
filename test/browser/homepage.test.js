@@ -50,7 +50,7 @@ describe('Homepage', () => {
 			page.coverage.startCSSCoverage()
 		]);
 		await page.goto(URL, {
-			waitUntil: 'domcontentloaded'
+			waitUntil: 'networkidle0'
 		});
 		await page.waitForFunction('preact != null');
 		const { js, css } = await getCoverageData();
