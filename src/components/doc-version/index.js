@@ -2,6 +2,8 @@ import { h } from 'preact';
 import style from './style.less';
 import { getCurrentUrl, route } from 'preact-router';
 
+const LATEST_MAJOR = 10;
+
 function onChange(e) {
 	const url = getCurrentUrl().replace(/(v\d{1,2})/, `v${e.target.value}`);
 	route(url);
@@ -11,7 +13,7 @@ function onChange(e) {
  * Select box to switch the currently displayed docs version
  */
 export default function DocVersion() {
-	const version = getCurrentDocVersion(getCurrentUrl());
+	const version = getCurrentDocVersion(getCurrentUrl()) || LATEST_MAJOR;
 
 	return (
 		<label class={style.root}>
@@ -27,7 +29,7 @@ export default function DocVersion() {
 // `preact-router` doesn't support url paths like `/docs/:version/*`
 // so we'll just use a plain regex for now.
 const reg = /\/guide\/v(\d{1,2})\/.*/;
-function getCurrentDocVersion() {
+export function getCurrentDocVersion() {
 	const match = getCurrentUrl().match(reg);
-	return match != null ? match[1] : 10;
+	return match != null ? match[1] : null;
 }
