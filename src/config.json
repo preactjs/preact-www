@@ -123,6 +123,10 @@
 			"name": "Types of Components"
 		},
 		{
+			"path": "/guide/v10/hooks",
+			"name": "Hooks"
+		},
+		{
 			"path": "/guide/v10/api-reference",
 			"name": "API Reference"
 		},

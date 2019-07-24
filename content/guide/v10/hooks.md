@@ -1,15 +1,21 @@
 ---
 name: Hooks
-permalink: '/guide/hooks'
 ---
 
-# Hooks
+# Hooks <!-- omit in toc -->
 
 Hooks are a way to incorporate state/side effects/...
 in our functional components.
 
 There are two ways to import these, you can import them from
 `preact/hooks` or `preact/compat`.
+
+---
+
+- [Stateful hooks](#stateful-hooks)
+  - [useState](#usestate)
+
+---
 
 ## Stateful hooks
 
