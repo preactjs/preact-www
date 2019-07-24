@@ -1,11 +1,14 @@
 import { h, Component } from 'preact';
 import { memoize } from 'decko';
 import { localStorageGet, localStorageSet } from '../lib/localstorage';
+import { checkStatus } from '../lib/request';
 
 const githubStars = memoize(repo =>
 	fetch('https://api.github.com/repos/' + repo)
+		.then(checkStatus)
 		.then(r => r.json())
 		.then(d => d.stargazers || d.watchers)
+		.catch(() => 'unknown')
 );
 
 // make available to homepage REPL demo

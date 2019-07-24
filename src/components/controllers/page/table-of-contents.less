@@ -22,8 +22,8 @@
 	display: block;
 	position: relative;
 	padding: 0.4em 0.75em 0.4em 1em;
-	color: @sidebar-link-color;
 	transition: background 0.3s;
+	color: var(--color-sidebar-link);
 
 	&::before {
 		.fadeOut;
@@ -40,7 +40,8 @@
 .linkActive {
 	color: @color-brand;
 	font-weight: bold;
-	background: @sidebar-active-bg;
+	background: var(--color-sidebar-bg-active);
+	color: var(--color-sidebar-link-active);
 
 	&::before {
 		.fadeIn;

@@ -75,7 +75,7 @@
 			position: relative;
 			height: @header-height;
 			line-height: @header-height;
-			padding: 0 0.6rem;
+			padding: 0 1rem;
 			min-width: 50px;
 			border: none;
 			text-align: center;
@@ -142,7 +142,6 @@
 
 			& > a {
 				transition: all 0.3s;
-				padding-left: 25px;
 
 				&::after {
 					content: '▼';
@@ -312,7 +311,7 @@
 	color: #f0f0f0;
 	transition: all 0.3s;
 
-	@media @sidebar-break {
+	@media (min-width: 1024px) {
 		padding: 0 1rem;
 	}
 
@@ -476,6 +475,10 @@
 		}
 
 		@media (min-width: 800px) {
+			width: 10rem;
+		}
+
+		@media (min-width: 1024px) {
 			width: 13rem;
 		}
 
