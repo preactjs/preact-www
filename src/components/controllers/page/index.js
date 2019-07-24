@@ -31,9 +31,14 @@ export function usePage(route) {
 
 	useTitle(meta.title);
 
-	function onLoad({ meta }) {
-		setMeta(meta);
+	function onLoad({ meta, content }) {
 		setLoading(false);
+
+		// Don't show loader forever in case of an error
+		if (!meta) {
+			return;
+		}
+		setMeta(meta);
 		setCurrent(getContent(route));
 		// content was loaded. if this was a forward route transition, animate back to top
 		if (window.nextStateToTop) {
