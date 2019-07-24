@@ -1,13 +1,19 @@
 import { h } from 'preact';
 import { memoize } from 'decko';
 import { useEffect, useState } from 'preact/hooks';
+import { checkStatus } from '../../lib/request';
 
 const fetchRelease = memoize(() =>
 	fetch('https://api.github.com/repos/preactjs/preact/releases/latest')
+		.then(checkStatus)
 		.then(r => r.json())
 		.then(d => ({
-			version: d.tag_name,
-			url: d.html_url
+			version: d.tag_name || 'unknown',
+			url: d.html_url || '#'
+		}))
+		.catch(() => ({
+			url: '#',
+			version: 'unknown'
 		}))
 );
 
