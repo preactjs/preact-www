@@ -3,7 +3,7 @@
  * @param {Response} r
  */
 export function checkStatus(r) {
-	if (r.ok) {
+	if (!r.ok) {
 		throw new Error(`${r.status}: Request failed for '${r.url}'`);
 	}
 	return r;
