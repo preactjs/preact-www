@@ -4,6 +4,7 @@ module.exports = {
 		devtools: process.env.HEADLESS === 'false'
 	},
 	server: {
-		command: 'PORT=4444 npm run server'
+		command: 'PORT=4444 npm run server',
+		port: 4444
 	}
 };
