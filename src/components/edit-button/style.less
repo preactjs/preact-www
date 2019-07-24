@@ -6,17 +6,23 @@
 	max-width: @content-width;
 	margin-left: auto;
 	margin-right: auto;
+	padding-bottom: 1rem;
 }
 
 .edit {
 	position: absolute;
-	right: 1.25rem;
-	top: 1rem;
+	right: 0.8rem;
+	top: 0.8rem;
 	color: var(--color-link);
 	.link;
 	font-size: 0.9rem;
 
-	@media (min-width: 87.5rem) {
+	@media @sidebar-break {
+		right: 1.25rem;
+		top: 1rem;
+	}
+
+	@media (min-width: 74rem) {
 		right: 0;
 	}
 }
