@@ -79,7 +79,8 @@
     "preact-cli": "^3.0.0-rc.3",
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
-    "puppeteer": "^1.19.0"
+    "puppeteer": "^1.19.0",
+    "size-plugin": "github:kuldeepkeshwar/size-plugin#develop"
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",
@@ -96,6 +97,7 @@
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.0.4",
     "preact-router": "^3.0.0",
+    "simple-github-db": "^1.0.0",
     "superstatic": "^6.0.4",
     "unistore": "^3.4.1",
     "window-or-global": "^1.0.1",
