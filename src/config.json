@@ -131,10 +131,6 @@
 			"name": "Forms"
 		},
 		{
-			"path": "/guide/v10/linked-state",
-			"name": "Linked State"
-		},
-		{
 			"path": "/guide/v10/external-dom-mutations",
 			"name": "External DOM Mutations"
 		},
