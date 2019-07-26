@@ -1,1 +1,49 @@
-[{"timestamp":1564039366016,"files":[{"filename":"bda2fc19cbf02a35c1b5.worker.js","previous":214079,"size":214079,"diff":0},{"filename":"editor.chunk.50910.css","previous":3172,"size":3172,"diff":0},{"filename":"editor.chunk.*****.js","previous":65835,"size":65835,"diff":0},{"filename":"emoji.chunk.*****.js","previous":8834,"size":8834,"diff":0},{"filename":"runner.chunk.*****.js","previous":3798,"size":3798,"diff":0},{"filename":"ssr-bundle.3e753.css","previous":9504,"size":9504,"diff":0},{"filename":"ssr-bundle.js","previous":40259,"size":29558,"diff":-10701}]},{"timestamp":1564039110806,"files":[{"filename":"bda2fc19cbf02a35c1b5.worker.js","previous":214079,"size":214079,"diff":0},{"filename":"editor.chunk.50910.css","previous":3172,"size":3172,"diff":0},{"filename":"editor.chunk.*****.js","previous":65835,"size":65835,"diff":0},{"filename":"emoji.chunk.*****.js","previous":8834,"size":8834,"diff":0},{"filename":"runner.chunk.*****.js","previous":3798,"size":3798,"diff":0},{"filename":"ssr-bundle.3e753.css","previous":9504,"size":9504,"diff":0},{"filename":"ssr-bundle.js","previous":29558,"size":40259,"diff":10701}]},{"timestamp":1564036055797,"files":[{"filename":"bda2fc19cbf02a35c1b5.worker.js","previous":0,"size":214079,"diff":214079},{"filename":"editor.chunk.50910.css","previous":0,"size":3172,"diff":3172},{"filename":"editor.chunk.*****.js","previous":0,"size":65835,"diff":65835},{"filename":"emoji.chunk.*****.js","previous":0,"size":8834,"diff":8834},{"filename":"runner.chunk.*****.js","previous":0,"size":3798,"diff":3798},{"filename":"ssr-bundle.3e753.css","previous":0,"size":9504,"diff":9504},{"filename":"ssr-bundle.js","previous":0,"size":29558,"diff":29558}]}]
+[
+	{
+		"timestamp": 1564120033771,
+		"files": [
+			{
+				"filename": "bda2fc19cbf02a35c1b5.worker.js",
+				"previous": 0,
+				"size": 214079,
+				"diff": 214079
+			},
+			{
+				"filename": "editor.chunk.50910.css",
+				"previous": 0,
+				"size": 3172,
+				"diff": 3172
+			},
+			{
+				"filename": "editor.chunk.*****.js",
+				"previous": 0,
+				"size": 65835,
+				"diff": 65835
+			},
+			{
+				"filename": "emoji.chunk.*****.js",
+				"previous": 0,
+				"size": 8834,
+				"diff": 8834
+			},
+			{
+				"filename": "runner.chunk.*****.js",
+				"previous": 0,
+				"size": 3798,
+				"diff": 3798
+			},
+			{
+				"filename": "ssr-bundle.3e753.css",
+				"previous": 0,
+				"size": 9504,
+				"diff": 9504
+			},
+			{
+				"filename": "ssr-bundle.js",
+				"previous": 0,
+				"size": 29558,
+				"diff": 29558
+			}
+		]
+	}
+]

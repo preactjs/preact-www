@@ -1,1 +1,112 @@
-[{"timestamp":1564039397188,"files":[{"filename":"sw-esm.js","previous":592,"size":592,"diff":0},{"filename":"sw.js","previous":588,"size":588,"diff":0},{"filename":"b6ef98c2ffbf2dc46fca.worker.js","previous":213193,"size":213193,"diff":0},{"filename":"bundle.87bcb.css","previous":8429,"size":8429,"diff":0},{"filename":"editor.chunk.50910.css","previous":2152,"size":2152,"diff":0},{"filename":"editor.chunk.a7c4e.esm.js","previous":66294,"size":66294,"diff":0},{"filename":"emoji.chunk.91398.esm.js","previous":8854,"size":8854,"diff":0},{"filename":"polyfills.dae69.esm.js","previous":2005,"size":2005,"diff":0},{"filename":"runner.chunk.9660e.esm.js","previous":3761,"size":3761,"diff":0},{"filename":"5.chunk.69436.css","previous":879,"size":879,"diff":0},{"filename":"5.chunk.da064.esm.js","previous":2470,"size":2470,"diff":0},{"filename":"7f0e4ae07446c0d0e238.worker.js","previous":213191,"size":213191,"diff":0},{"filename":"editor.chunk.f3448.js","previous":66331,"size":66331,"diff":0},{"filename":"emoji.chunk.1ed91.js","previous":8848,"size":8848,"diff":0},{"filename":"polyfills.3d561.js","previous":2003,"size":2003,"diff":0},{"filename":"runner.chunk.82338.js","previous":3795,"size":3795,"diff":0},{"filename":"5.chunk.78e85.js","previous":2545,"size":2545,"diff":0},{"filename":"bundle.a8474.esm.js","previous":35813,"size":0,"diff":-35813},{"filename":"bundle.26ebe.js","previous":36187,"size":0,"diff":-36187},{"filename":"bundle.fc1ae.esm.js","previous":0,"size":31052,"diff":31052},{"filename":"bundle.5cab1.js","previous":0,"size":31256,"diff":31256}]},{"timestamp":1564039147546,"files":[{"filename":"sw-esm.js","previous":592,"size":592,"diff":0},{"filename":"sw.js","previous":588,"size":588,"diff":0},{"filename":"b6ef98c2ffbf2dc46fca.worker.js","previous":213193,"size":213193,"diff":0},{"filename":"bundle.87bcb.css","previous":8429,"size":8429,"diff":0},{"filename":"bundle.fc1ae.esm.js","previous":31052,"size":0,"diff":-31052},{"filename":"editor.chunk.50910.css","previous":2152,"size":2152,"diff":0},{"filename":"editor.chunk.a7c4e.esm.js","previous":66294,"size":66294,"diff":0},{"filename":"emoji.chunk.91398.esm.js","previous":8854,"size":8854,"diff":0},{"filename":"polyfills.dae69.esm.js","previous":2005,"size":2005,"diff":0},{"filename":"runner.chunk.9660e.esm.js","previous":3761,"size":3761,"diff":0},{"filename":"5.chunk.69436.css","previous":879,"size":879,"diff":0},{"filename":"5.chunk.da064.esm.js","previous":2470,"size":2470,"diff":0},{"filename":"7f0e4ae07446c0d0e238.worker.js","previous":213191,"size":213191,"diff":0},{"filename":"bundle.5cab1.js","previous":31256,"size":0,"diff":-31256},{"filename":"editor.chunk.f3448.js","previous":66331,"size":66331,"diff":0},{"filename":"emoji.chunk.1ed91.js","previous":8848,"size":8848,"diff":0},{"filename":"polyfills.3d561.js","previous":2003,"size":2003,"diff":0},{"filename":"runner.chunk.82338.js","previous":3795,"size":3795,"diff":0},{"filename":"5.chunk.78e85.js","previous":2545,"size":2545,"diff":0},{"filename":"bundle.a8474.esm.js","previous":0,"size":35813,"diff":35813},{"filename":"bundle.26ebe.js","previous":0,"size":36187,"diff":36187}]},{"timestamp":1564036090199,"files":[{"filename":"sw-esm.js","previous":0,"size":592,"diff":592},{"filename":"sw.js","previous":0,"size":588,"diff":588},{"filename":"b6ef98c2ffbf2dc46fca.worker.js","previous":0,"size":213193,"diff":213193},{"filename":"bundle.87bcb.css","previous":0,"size":8429,"diff":8429},{"filename":"bundle.fc1ae.esm.js","previous":0,"size":31052,"diff":31052},{"filename":"editor.chunk.50910.css","previous":0,"size":2152,"diff":2152},{"filename":"editor.chunk.a7c4e.esm.js","previous":0,"size":66294,"diff":66294},{"filename":"emoji.chunk.91398.esm.js","previous":0,"size":8854,"diff":8854},{"filename":"polyfills.dae69.esm.js","previous":0,"size":2005,"diff":2005},{"filename":"runner.chunk.9660e.esm.js","previous":0,"size":3761,"diff":3761},{"filename":"5.chunk.69436.css","previous":0,"size":879,"diff":879},{"filename":"5.chunk.da064.esm.js","previous":0,"size":2470,"diff":2470},{"filename":"7f0e4ae07446c0d0e238.worker.js","previous":0,"size":213191,"diff":213191},{"filename":"bundle.5cab1.js","previous":0,"size":31256,"diff":31256},{"filename":"editor.chunk.f3448.js","previous":0,"size":66331,"diff":66331},{"filename":"emoji.chunk.1ed91.js","previous":0,"size":8848,"diff":8848},{"filename":"polyfills.3d561.js","previous":0,"size":2003,"diff":2003},{"filename":"runner.chunk.82338.js","previous":0,"size":3795,"diff":3795},{"filename":"5.chunk.78e85.js","previous":0,"size":2545,"diff":2545}]}]
+[
+	{
+		"timestamp": 1564120065669,
+		"files": [
+
+			{ "filename": "sw-esm.js", "previous": 0, "size": 592, "diff": 592 },
+			{ "filename": "sw.js", "previous": 0, "size": 588, "diff": 588 },
+			{
+				"filename": "b6ef98c2ffbf2dc46fca.worker.js",
+				"previous": 0,
+				"size": 213193,
+				"diff": 213193
+			},
+			{
+				"filename": "bundle.87bcb.css",
+				"previous": 0,
+				"size": 8429,
+				"diff": 8429
+			},
+			{
+				"filename": "bundle.fc1ae.esm.js",
+				"previous": 0,
+				"size": 31052,
+				"diff": 31052
+			},
+			{
+				"filename": "editor.chunk.50910.css",
+				"previous": 0,
+				"size": 2152,
+				"diff": 2152
+			},
+			{
+				"filename": "editor.chunk.a7c4e.esm.js",
+				"previous": 0,
+				"size": 66294,
+				"diff": 66294
+			},
+			{
+				"filename": "emoji.chunk.91398.esm.js",
+				"previous": 0,
+				"size": 8854,
+				"diff": 8854
+			},
+			{
+				"filename": "polyfills.dae69.esm.js",
+				"previous": 0,
+				"size": 2005,
+				"diff": 2005
+			},
+			{
+				"filename": "runner.chunk.9660e.esm.js",
+				"previous": 0,
+				"size": 3761,
+				"diff": 3761
+			},
+			{
+				"filename": "5.chunk.69436.css",
+				"previous": 0,
+				"size": 879,
+				"diff": 879
+			},
+			{
+				"filename": "5.chunk.da064.esm.js",
+				"previous": 0,
+				"size": 2470,
+				"diff": 2470
+			},
+			{
+				"filename": "7f0e4ae07446c0d0e238.worker.js",
+				"previous": 0,
+				"size": 213191,
+				"diff": 213191
+			},
+			{
+				"filename": "bundle.5cab1.js",
+				"previous": 0,
+				"size": 31256,
+				"diff": 31256
+			},
+			{
+				"filename": "editor.chunk.f3448.js",
+				"previous": 0,
+				"size": 66331,
+				"diff": 66331
+			},
+			{
+				"filename": "emoji.chunk.1ed91.js",
+				"previous": 0,
+				"size": 8848,
+				"diff": 8848
+			},
+			{
+				"filename": "polyfills.3d561.js",
+				"previous": 0,
+				"size": 2003,
+				"diff": 2003
+			},
+			{
+				"filename": "runner.chunk.82338.js",
+				"previous": 0,
+				"size": 3795,
+				"diff": 3795
+			},
+			{
+				"filename": "5.chunk.78e85.js",
+				"previous": 0,
+				"size": 2545,
+				"diff": 2545
+			}
+		]
+	}
+]
