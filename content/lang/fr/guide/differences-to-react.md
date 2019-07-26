@@ -3,11 +3,21 @@ name: Différences avec React
 permalink: '/guide/differences-to-react'
 ---
 
-# Différences avec React
+# Différences avec React<!-- omit in toc -->
 
 En soit, Preact n'a pas pour but d'être une réimplémentation de React. Il y a des différences. La plupart de ces différences sont triviales, ou peuvent être complètement supprimées en utilisant [preact-compat], qui est une surcouche de Preact légère ayant pour but de fournir une compatibilité complète avec React.
 
 La raison pour laquelle Preact n'essaye pas d'inclure chaque fonctionnalité de React est de rester **léger** et **focalisé** - sinon cela aurait plus de sens de tout simplement proposer des optimisations au projet React, qui est déjà une base de code très complexe et bien architecturée.
+
+---
+
+- [Compatibilité de version](#compatibilité-de-version)
+- [Qu'est-ce qui est inclut ?](#quest-ce-qui-est-inclut-)
+- [Qu'est-ce qui a été ajouté ?](#quest-ce-qui-a-été-ajouté-)
+- [Qu'est-ce qu'il manque ?](#quest-ce-quil-manque-)
+- [Qu'est-ce qui est différent ?](#quest-ce-qui-est-différent-)
+
+---
 
 ## Compatibilité de version
 
