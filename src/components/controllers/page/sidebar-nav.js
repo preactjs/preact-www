@@ -16,21 +16,22 @@ import { getCurrentUrl } from 'preact-router';
 export default function SidebarNav({ items, onClick }) {
 	const url = getCurrentUrl();
 	return (
-		<div class={cx(style.toc, !(items && items.length > 1) && style.disabled)}>
-			<nav tabIndex="0">
-				{items.map(({ text, level, id, href }) => {
-					let activeCss = href === url ? style.linkActive : undefined;
-					return (
-						<a
-							href={id != null ? '#' + id : href}
-							onClick={onClick}
-							class={cx(style.link, activeCss, style['level-' + level])}
-						>
-							{text}
-						</a>
-					);
-				})}
-			</nav>
-		</div>
+		<nav
+			tabIndex="0"
+			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
+		>
+			{items.map(({ text, level, id, href }) => {
+				let activeCss = href === url ? style.linkActive : undefined;
+				return (
+					<a
+						href={id != null ? '#' + id : href}
+						onClick={onClick}
+						class={cx(style.link, activeCss, style['level-' + level])}
+					>
+						{text}
+					</a>
+				);
+			})}
+		</nav>
 	);
 }
