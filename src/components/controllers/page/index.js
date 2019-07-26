@@ -38,6 +38,15 @@ export function usePage(route) {
 		if (!meta) {
 			return;
 		}
+
+		// Many markdown formatters can generate the table of contents
+		// automatically. To skip a specific heading the use an html
+		// comment at the end of it. Example:
+		//
+		// ## Some random title <!-- omit in toc -->
+		//
+		meta.title = meta.title.replace(/\s*<!--.*-->/, '');
+
 		setMeta(meta);
 		setCurrent(getContent(route));
 		// content was loaded. if this was a forward route transition, animate back to top
