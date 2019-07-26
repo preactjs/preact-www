@@ -1,6 +1,5 @@
 ---
 name: Debugging Preact Apps
-permalink: '/guide/api-reference'
 ---
 
 # Debugging Preact Apps <!-- omit in toc -->
