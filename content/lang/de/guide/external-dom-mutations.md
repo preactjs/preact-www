@@ -3,8 +3,17 @@ name: Externe DOM-Mutationen
 permalink: '/guide/external-dom-mutations'
 ---
 
-# Externe DOM-Mutationen
+# Externe DOM-Mutationen<!-- omit in toc -->
 
+---
+
+- [Übersicht](#Übersicht)
+- [Technik](#technik)
+- [Beispielsdurchlauf](#beispielsdurchlauf)
+- [Demonstration](#demonstration)
+- [Beispiele aus der realen Welt](#beispiele-aus-der-realen-welt)
+
+---
 
 ## Übersicht
 
@@ -32,7 +41,6 @@ class Block extends Component {
 ```
 
 Mit diesem Lebenszyklus an Ort und Stelle und der Anweisung an Preact, die Komponente nicht zu rendern, wenn sich etwas im VDOM-Baum ändert, hat die Komponente nun eine Referenz in seinem DOM-Stammelement, das solange als statisch angesehen werden kann, bis die Komponente unmounted ist. Genau wie bei jeder Komponente wird diese Referenz einfach `this.base` genannt. Sie korrespondiert mit dem JSX-Stammelement, das von `render()` zurückgegeben wurde.
----
 
 ## Beispielsdurchlauf
 
