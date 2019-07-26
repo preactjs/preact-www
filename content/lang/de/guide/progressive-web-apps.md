@@ -12,7 +12,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/load-less-script.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/load-less-script.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -24,7 +24,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/faster-tti.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/faster-tti.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -36,7 +36,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/building-block.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/building-block.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -51,7 +51,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
 
 In der Tat ist genau diese Website eine Progressive Web App! Hier ist zu sehen, wie die App am Beispiel einer Trace ausgehend von einem Nexus 5X über 3G in unter 5 Sekunden interaktiv wird:
 
-<img src="../assets/pwa-guide/timeline.jpg" alt="Eine DevTools-Zeitleisten-Trace der preactjs.com-Seite auf einem Nexus 5X"/>
+<img src="../../assets/pwa-guide/timeline.jpg" alt="Eine DevTools-Zeitleisten-Trace der preactjs.com-Seite auf einem Nexus 5X"/>
 
 Statische Seiteninhalte werden in der (Service Worker) Cache Storage API gespeichert, die blitzschnelles Laden bei wiederholten Besuchen ermöglicht.
 
@@ -62,7 +62,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/code-splitting.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-Splitting</a></strong>  teilt den Code auf, sodass man genau den Teil des Codes an den Nutzer ausliefern kann, den er für die angeforderte Seite benötigt. Den Rest der Seite bei Bedarf mithilfe von Lazy-loading aufzurufen, verbessert Ladezeiten immens. Dies wird auch über Webpack unterstützt.</p>
@@ -71,7 +71,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> erlaubt das vom Internet getrennte Cachen von statischen und dynamischen Ressourcen. Dies erlaubt augenblickliches Laden und schnellere Interaktivität bei wiederholtem Besuchen einer Seite. Dieses Verhalten kann mit [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) oder [offline-plugin](https://github.com/NekR/offline-plugin) erreicht werden.</p>
@@ -80,7 +80,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/prpl.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> fördert das  vorzeitige Pushen bzw. vorladende Elemente im Browser. Auch so wird die Ladezeit von nachfolgenden Seiten verkürzt, indem es auf Code-Splitting und SW-Caching aufbaut.</p>
@@ -89,7 +89,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/lighthouse.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> erlaubt es, die Leistung und Funktionalitäten einer Progressiven Web App zu testen, damit man stets darüber aufgeklärt ist, wie performant eine App wirklich ist.</p>
