@@ -139,6 +139,10 @@
 			"name": "External DOM Mutations"
 		},
 		{
+			"path": "/guide/v10/debugging",
+			"name": "Debugging Tools"
+		},
+		{
 			"path": "/guide/v10/extending-component",
 			"name": "Extending Component"
 		},
