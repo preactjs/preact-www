@@ -35,11 +35,10 @@ export default class Toc extends Component {
 				}
 			}, config);
 
-			Array.from(
-				document.querySelectorAll(
-					'content-region h2, content-region h3, content-region h4'
-				)
-			).forEach(heading => this.observer.observe(heading));
+			const headings = document.querySelectorAll(
+				'content-region h2, content-region h3, content-region h4'
+			);
+			[].forEach.call(headings, heading => this.observer.observe(heading));
 		}
 	}
 
@@ -50,25 +49,26 @@ export default class Toc extends Component {
 	}
 
 	render({ items, onClick }, { open, active }) {
+		if (!PRERENDER && !active && items && items[0]) active = items[0].id;
 		return (
 			<div
 				class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 				data-open={open}
 			>
 				<nav tabIndex="0" onFocus={this.open}>
-					{items.map(({ text, level, id }) => {
-						let activeCss =
-							this.state.active === id ? style.linkActive : undefined;
-						return (
-							<a
-								href={'#' + id}
-								onClick={onClick}
-								class={cx(style.link, activeCss, style['level-' + level])}
-							>
-								{text}
-							</a>
-						);
-					})}
+					{items &&
+						items.map(({ text, level, id }) => {
+							let activeCss = active === id ? style.linkActive : undefined;
+							return (
+								<a
+									href={'#' + id}
+									onClick={onClick}
+									class={cx(style.link, activeCss, style['level-' + level])}
+								>
+									{text}
+								</a>
+							);
+						})}
 				</nav>
 			</div>
 		);

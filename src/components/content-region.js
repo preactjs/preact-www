@@ -58,45 +58,47 @@ const getContent = memoizeProd(([lang, name]) => {
 		.then(r => parseContent(r));
 });
 
-export function getContentOnServer(route) {
-	if (!PRERENDER) return;
-	if (route == '/') route = '/index';
+export const getContentOnServer = PRERENDER
+	? route => {
+			if (!PRERENDER) return;
+			if (route == '/') route = '/index';
 
-	const fs = __non_webpack_require__('fs');
-	let data = fs.readFileSync(`content${route}.md`, 'utf8');
+			const fs = __non_webpack_require__('fs');
+			let data = fs.readFileSync(`content${route}.md`, 'utf8');
 
-	// convert frontmatter from yaml to json:
-	const yaml = __non_webpack_require__('yaml');
-	data = data.replace(FRONT_MATTER_REG, (s, y) => {
-		const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
-		return '---\n' + JSON.stringify(meta) + '\n---\n';
-	});
+			// convert frontmatter from yaml to json:
+			const yaml = __non_webpack_require__('yaml');
+			data = data.replace(FRONT_MATTER_REG, (s, y) => {
+				const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
+				return '---\n' + JSON.stringify(meta) + '\n---\n';
+			});
 
-	if (typeof DOMParser === 'undefined') {
-		const jsdom = __non_webpack_require__('jsdom');
-		global.DOMParser = new jsdom.JSDOM().window.DOMParser;
-	}
+			if (typeof DOMParser === 'undefined') {
+				const jsdom = __non_webpack_require__('jsdom');
+				global.DOMParser = new jsdom.JSDOM().window.DOMParser;
+			}
 
-	const parsed = parseContent(data, 'md');
-	parsed.meta = parsed.meta || {};
+			const parsed = parseContent(data, 'md');
+			parsed.meta = parsed.meta || {};
 
-	// hoist title
-	const TITLE_REG = /^\s*#\s+(.+)\n+/;
-	if (!parsed.meta.title) {
-		let [, title] = parsed.content.match(TITLE_REG) || [];
-		if (title) {
-			parsed.content = parsed.content.replace(TITLE_REG, '');
-			parsed.meta.title = title;
-		}
-	}
+			// hoist title
+			const TITLE_REG = /^\s*#\s+(.+)\n+/;
+			if (!parsed.meta.title) {
+				let [, title] = parsed.content.match(TITLE_REG) || [];
+				if (title) {
+					parsed.content = parsed.content.replace(TITLE_REG, '');
+					parsed.meta.title = title;
+				}
+			}
 
-	// generate Table of Contents
-	const html = markdownToHtml(parsed.content);
-	const dom = new DOMParser().parseFromString(html, 'text/html');
-	parsed.meta.toc = getToc(dom);
+			// generate Table of Contents
+			const html = markdownToHtml(parsed.content);
+			const dom = new DOMParser().parseFromString(html, 'text/html');
+			parsed.meta.toc = getToc(dom);
 
-	return parsed;
-}
+			return parsed;
+	  }
+	: () => {};
 
 function parseContent(text) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
@@ -132,9 +134,11 @@ export default class ContentRegion extends Component {
 	fetch() {
 		let { name, lang, onLoad } = this.props;
 		getContent([lang, name]).then(s => {
-			this.setState(s);
+			this.setState(s, () => {
+				s.content = this.state.content;
+				if (onLoad) onLoad(s);
+			});
 			this.applyEmoji(s.content);
-			if (onLoad) onLoad(s);
 		});
 	}
 
@@ -170,14 +174,12 @@ export default class ContentRegion extends Component {
 	}
 
 	render(
-		{ store, name, children, onLoad, onToc, data, ...props },
+		{ store, name, children, onLoad, onToc, content: cachedContent, ...props },
 		{ content }
 	) {
-		// const regionHtml = this.regionHtml || (this.regionHtml = {});
-
 		if (!content) {
-			if (data) {
-				({ content } = data);
+			if (cachedContent) {
+				content = cachedContent;
 			} else if (PRERENDER) {
 				// this is all only run during prerendering
 				({ content } = getContentOnServer(location.pathname));
@@ -191,22 +193,9 @@ export default class ContentRegion extends Component {
 
 		return (
 			<content-region {...props}>
-				<Hydrator
-					component={Markdown}
-					boot={!!content}
-					content={content}
-					components={COMPONENTS}
-				/>
-				{/*
 				{content && (
-					<Markdown
-						key={content}
-						type={type}
-						content={content}
-						components={COMPONENTS}
-					/>
+					<Markdown key={content} content={content} components={COMPONENTS} />
 				)}
-				*/}
 			</content-region>
 		);
 	}

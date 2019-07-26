@@ -20,6 +20,7 @@ export default class Search extends Component {
 			head.appendChild(link);
 
 			let script = document.createElement('script');
+			script.async = true;
 			script.src = 'https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js';
 			script.onload = script.onerror = this.loaded;
 			head.appendChild(script);

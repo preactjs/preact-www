@@ -10,7 +10,7 @@
     "dev": "preact watch --template src/template.html",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
-    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
+    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "preact build --prerenderUrls src/prerender.js --template src/template.html",
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
     "pretest": "npm run -s lint && npm run -s build",

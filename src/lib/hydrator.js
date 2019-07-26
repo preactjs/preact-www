@@ -1,8 +1,11 @@
 import { Component, render, createRef } from 'preact';
+import { lazily, cancelLazily } from './lazily';
 
 function interopDefault(mod) {
 	return (mod && mod.default) || mod;
 }
+
+const EMPTY_OBJ = {};
 
 function ServerHydrator({ load, component, wrapperProps, ...props }) {
 	const Child = interopDefault(component || load());
@@ -22,9 +25,12 @@ class Hydrator extends Component {
 		this.booted = true;
 		const { component, load, ...props } = nextProps || this.props;
 		const ready = exports => {
-			this.Child = interopDefault(exports);
-			this.hydrated = true;
-			this._render(props);
+			this.timer = lazily(() => {
+				this.timer = null;
+				this.Child = interopDefault(exports);
+				this.hydrated = true;
+				this._render(props);
+			});
 		};
 		if (component) return ready(component);
 		Promise.resolve()
@@ -47,29 +53,34 @@ class Hydrator extends Component {
 	}
 
 	componentWillUnmount() {
+		if (this.timer) {
+			cancelLazily(this.timer);
+		}
 		if (this.hydrated && this.root.current) {
 			render(null, this.root.current);
 		}
 	}
 
 	componentDidMount() {
-		if (this.props.lazy) {
+		if (this.props.lazy && typeof IntersectionObserver === 'function') {
+			const root = this.root.current;
 			new IntersectionObserver(([entry], obs) => {
 				if (!entry.isIntersecting) return;
-				obs.unobserve(this.root);
+				obs.unobserve(root);
 				this.boot();
-			}).observe(this.root);
+			}).observe(root);
 		} else if (this.props.boot !== false) {
 			this.boot();
 		}
 	}
 
-	render({ wrapperProps }) {
+	render({ wrapperProps, wrapperType }) {
+		const Type = wrapperType || 'section';
 		return (
-			<section
+			<Type
 				ref={this.root}
-				dangerouslySetInnerHTML={{ __html: '' }}
-				suppressHydrationWarning
+				dangerouslySetInnerHTML={EMPTY_OBJ}
+				// suppressHydrationWarning
 				{...(wrapperProps || {})}
 			/>
 		);

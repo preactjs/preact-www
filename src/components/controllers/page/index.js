@@ -24,29 +24,49 @@ export function useTitle(title) {
 
 const noop = () => {};
 
+const cached =
+	!PRERENDER && document.querySelector(`script[type="text/prerender-data"]`);
+const bootRoute = cached && cached.getAttribute('data-route');
+const bootData =
+	cached &&
+	JSON.parse(
+		cached.firstChild.data
+			.replace(/(^<!--|-->$)/g, '')
+			.replace(/--&gt;/g, '-->')
+	);
+
 export function usePage(route) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
 	if (PRERENDER) {
-		const { meta } = getContentOnServer(route.path);
+		const { content, meta } = getContentOnServer(route.path);
 		return {
 			current: null,
+			content,
 			meta,
-			loading: false,
+			loading: true, // this is important since the client will initialize in a loading state.
 			onLoad: noop
 		};
 	}
 
-	const [loading, setLoading] = useState(false);
-	const [meta, setMeta] = useState({});
+	const hydrated = bootData && bootRoute === route.path;
+	const content = hydrated && bootData.content;
+
+	const [loading, setLoading] = useState(!hydrated);
+	// const [meta, setMeta] = useState(cached || {});
+	const [meta, setMeta] = useState(hydrated ? bootData.meta : {});
 	const [current, setCurrent] = useState({});
 
 	useEffect(() => {
-		setLoading(true);
+		if (!didLoad) {
+			setLoading(true);
+		}
 	}, [getContent(route)]);
 
 	useTitle(meta.title);
 
+	let didLoad = false;
 	function onLoad({ meta }) {
+		didLoad = true;
 		setMeta(meta);
 		setLoading(false);
 		setCurrent(getContent(route));
@@ -63,6 +83,7 @@ export function usePage(route) {
 
 	return {
 		current,
+		content,
 		meta,
 		loading,
 		onLoad
@@ -70,7 +91,7 @@ export function usePage(route) {
 }
 
 export default function Page({ route }) {
-	const { loading, meta, onLoad } = usePage(route);
+	const { loading, meta, content, onLoad } = usePage(route);
 	const [toc, setToc] = useState(meta.toc);
 	const onToc = useCallback(clientMeta => {
 		setToc(clientMeta.toc || []);
@@ -99,54 +120,29 @@ export default function Page({ route }) {
 						show={name != 'index' && meta.show_title !== false}
 						title={meta.title || route.title}
 					/>
-					<ContentRegion name={name} onToc={onToc} onLoad={onLoad} />
+					<ContentRegion
+						name={name}
+						content={content}
+						onToc={onToc}
+						onLoad={onLoad}
+					/>
 					<Footer />
 				</div>
 			</div>
+			{PRERENDER && (
+				<script
+					type="text/prerender-data"
+					data-route={route.path}
+					dangerouslySetInnerHTML={{
+						__html:
+							'<!--' +
+							JSON.stringify({ content, meta }).replace(/-->/g, '--&gt;') +
+							'-->'
+					}}
+				/>
+			)}
 		</div>
 	);
 }
 
 const Title = ({ title, show }) => show && <h1 class={style.title}>{title}</h1>;
-
-/*
-render({ route }, { current, loading, meta = EMPTY, toc, gotToc } = {}) {
-	let layout = `${meta.layout || 'default'}Layout`,
-		name = getContent(route),
-		data;
-	if (name !== current) loading = true;
-
-	if (PRERENDER) {
-		loading = false;
-		// on the server, pass data down through the tree to avoid repeated FS lookups
-		data = getContentOnServer(route.path);
-		({ meta } = data);
-		toc = meta.toc;
-	}
-
-	let hasToc = toc && meta.toc !== false && toc.length > 0;
-	if (toc && toc[0] && toc[0].level === 1) {
-		meta.title = toc[0].text;
-	}
-	return (
-		<div class={cx(style.page, style[layout], hasToc && style.withToc)}>
-			<progress-bar showing={loading} />
-			<Hydrator
-				load={() => Title}
-				boot={!loading && gotToc}
-				show={name != 'index' && meta.show_title !== false}
-				title={meta.title || route.title}
-			/>
-			<Hydrator
-				load={() => Toc}
-				boot={!loading && gotToc}
-				items={hasToc ? toc : []}
-			/>
-			<div class={style.inner}>
-				<ContentRegion
-					name={name}
-					data={data}
-					onToc={this.gotToc}
-					onLoad={this.onLoad}
-				/>
-*/
