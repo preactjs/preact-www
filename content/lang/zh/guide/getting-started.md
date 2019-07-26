@@ -3,16 +3,21 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# 如何开始
+# 如何开始<!-- omit in toc -->
 
 这个指引会示范去搭建一个简单的『时钟』组件。每个主题下更详情的信息，可以在『指引』菜单下面对应的页面找到。
 
-
 > :information_desk_person: 你 [使用 Preact 的时候，不必使用 ES2015](https://github.com/developit/preact-without-babel)... 但你最好使用。这个指引假定你已经使用过一些 ES2015 构建，基于 babel 和 / 或 webpack/browserify/gulp/grunt / 等等。如果你还没有，请从 [preact-boilerplate] 或一个 [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010)开始。
-
 
 ---
 
+- [Import 引用你所需要的](#import-引用你所需要的)
+  - [全局 pragma](#全局-pragma)
+- [渲染 JSX](#渲染-jsx)
+- [组件](#组件)
+- [组件生命周期](#组件生命周期)
+
+---
 
 ## Import 引用你所需要的
 
