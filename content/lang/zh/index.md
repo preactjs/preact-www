@@ -14,9 +14,9 @@ toc: false
    <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">如何开始</a>
+        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">切换到 preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>

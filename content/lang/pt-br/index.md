@@ -14,9 +14,9 @@ toc: false
     <p>Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">Como começar</a>
+        <a href="/guide/v10/getting-started" class="home-button">Como começar</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Mudando para Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Mudando para Preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>

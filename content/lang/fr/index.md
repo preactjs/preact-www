@@ -13,9 +13,9 @@ toc: false
     <p>Alternative légère et rapide à React avec le même API en seulement 3Ko.</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">Commencer</a>
+        <a href="/guide/v10/getting-started" class="home-button">Commencer</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Passer à preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Passer à preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
