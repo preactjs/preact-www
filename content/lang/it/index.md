@@ -144,7 +144,7 @@ function Counter() {
     </p>
     
     <p>
-        La semplice aggiunta dell'alias <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> al tuo bundler fornisce un livello di compatibilità che permette anche al più complesso componente React di essere utilizzato nella tua applicaizone.
+        La semplice aggiunta dell'alias <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> al tuo bundler fornisce un livello di compatibilità che permette anche al più complesso componente React di essere utilizzato nella tua applicaizone.
     </p>
   </div>
 </section>
@@ -252,8 +252,8 @@ render(
         Scegli la guida migliore per te!
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">Primi passi</a>
+        <a href="/guide/v10/getting-started" class="home-button">Primi passi</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Passa a Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Passa a Preact</a>
     </p>
 </section>

@@ -148,7 +148,7 @@ function Counter() {
     </p>
 
     <p>
-        Paketleyicinizde <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>'ı eklemek, bir uyumluluk katmanı sunarak karmaşık React bileşenlerini dahi uygulamanızda kullanmanıza izin veriyor.
+        Paketleyicinizde <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>'ı eklemek, bir uyumluluk katmanı sunarak karmaşık React bileşenlerini dahi uygulamanızda kullanmanıza izin veriyor.
     </p>
   </div>
 </section>
@@ -256,8 +256,8 @@ render(
         Size uygun olan kılavuzu seçin!
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">Başlangıç</a>
+        <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Preact'e Geçiş</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
     </p>
 </section>

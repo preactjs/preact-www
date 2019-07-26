@@ -140,7 +140,7 @@ function Counter() {
     </p>
     
     <p>
-        Un simple alias vers <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui permet l'utilisation des fonctionnalités les plus complexes de React.
+        Un simple alias vers <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui permet l'utilisation des fonctionnalités les plus complexes de React.
     </p>
   </div>
 </section>
@@ -248,8 +248,8 @@ render(
         Choisissez celui qui vous convient.
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">Commencer</a>
+        <a href="/guide/v10/getting-started" class="home-button">Commencer</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Passer à Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Passer à Preact</a>
     </p>
 </section>
