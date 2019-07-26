@@ -98,7 +98,7 @@
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.0.4",
     "preact-router": "^3.0.0",
-    "superstatic": "^4.0.3",
+    "superstatic": "^6.0.4",
     "unistore": "^3.4.1",
     "window-or-global": "^1.0.1",
     "worker-loader": "^2.0.0",
