@@ -4,7 +4,6 @@ import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
 import widgets from './widgets';
 import { markdownToHtml } from '../lib/markdown';
-import Hydrator from '../lib/hydrator';
 
 const COMPONENTS = {
 	...widgets,
