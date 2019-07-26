@@ -2,7 +2,6 @@
 	{
 		"timestamp": 1564120065669,
 		"files": [
-
 			{ "filename": "sw-esm.js", "previous": 0, "size": 592, "diff": 592 },
 			{ "filename": "sw.js", "previous": 0, "size": 588, "diff": 588 },
 			{
