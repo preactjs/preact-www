@@ -3,7 +3,14 @@ name: Referencia de la API
 permalink: '/guide/api-reference'
 ---
 
-# Referencia de la API
+# Referencia de la API<!-- omit in toc -->
+
+---
+
+- [`Preact.Component`](#preactcomponent)
+  - [Métodos del ciclo de vida](#métodos-del-ciclo-de-vida)
+
+---
 
 ## `Preact.Component`
 
