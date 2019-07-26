@@ -3,13 +3,20 @@ name: Forms
 permalink: '/guide/forms'
 ---
 
-# Forms
+# Forms<!-- omit in toc -->
 
 
 Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
 
 **[React Forms Docs](https://reactjs.org/docs/forms.html)**
 
+---
+
+- [Controlled & Uncontrolled Components](#controlled--uncontrolled-components)
+- [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
+  - [Checkbox Example](#checkbox-example)
+
+---
 
 ## Controlled & Uncontrolled Components
 

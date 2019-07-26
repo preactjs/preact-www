@@ -3,12 +3,21 @@ name: Differences to React
 permalink: '/guide/differences-to-react'
 ---
 
-# Differences to React
+# Differences to React <!-- omit in toc -->
 
 Preact itself is not intended to be a reimplementation of React.  There are differences.  Many of these differences are trivial, or can be completely removed by using [preact-compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
 
 The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focused** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
 
+---
+
+- [Version Compatibility](#version-compatibility)
+- [What's Included?](#whats-included)
+- [What's Added?](#whats-added)
+- [What's Missing?](#whats-missing)
+- [What's Different?](#whats-different)
+
+---
 
 ## Version Compatibility
 
@@ -70,6 +79,7 @@ Preact and React have some more subtle differences:
 [3.0]: https://github.com/developit/preact/milestones/3.0
 [4.0]: https://github.com/developit/preact/milestones/4.0
 [preact-compat]: https://github.com/developit/preact-compat
+[preact/compat]: https://github.com/developit/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contexts]: https://reactjs.org/docs/legacy-context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
