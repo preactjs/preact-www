@@ -30,18 +30,12 @@ export default class Footer extends Component {
 	};
 
 	render({ lang, url = location.pathname }, { contrib }) {
-		let path = url.replace(/\/$/, '') || '/index';
-		if (lang) path = `/lang/${lang}${path}`;
-		let editUrl = `https://github.com/preactjs/preact-www/tree/master/content${path}.md`;
 		if (typeof document !== 'undefined' && document.documentElement)
 			document.documentElement.lang = lang;
 		return (
 			<footer class={style.footer}>
 				<div class={style.inner}>
 					<p>
-						<a href={editUrl} target="_blank" rel="noopener noreferrer">
-							Edit this Page
-						</a>
 						<label class={style.lang}>
 							Language:{' '}
 							<select value={lang || ''} onChange={this.setLang}>

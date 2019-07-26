@@ -2,6 +2,17 @@ jest.setTimeout(10000);
 
 const URL = 'http://localhost:4444';
 
+/**
+ * Filters out external resources and duplicate coverage information
+ */
+function getUniqueResources(arr) {
+	const seen = new Map();
+	arr
+		.filter(x => x.url.startsWith('http://localhost'))
+		.forEach(x => seen.set(x.url, x));
+	return Array.from(seen).map(x => x[1]);
+}
+
 async function getCoverageData(customPage = page) {
 	const [js, css] = await Promise.all([
 		customPage.coverage.stopJSCoverage(),
@@ -21,8 +32,8 @@ async function getCoverageData(customPage = page) {
 	}
 
 	return {
-		js: calc(js),
-		css: calc(css)
+		js: calc(getUniqueResources(js)),
+		css: calc(getUniqueResources(css))
 	};
 }
 
@@ -32,12 +43,12 @@ function click(selector, customPage = page) {
 	}, selector);
 }
 
-beforeAll(async () => {
-	await page.setCacheEnabled(false);
-	page._client.send('Network.setBypassServiceWorker', { bypass: true });
-});
-
 describe('Homepage', () => {
+	beforeAll(async () => {
+		await page.setCacheEnabled(false);
+		page._client.send('Network.setBypassServiceWorker', { bypass: true });
+	});
+
 	it('should display "Preact" text on page', async () => {
 		await page.goto(URL);
 		await expect(page).toMatch('A different kind of library');
@@ -50,7 +61,7 @@ describe('Homepage', () => {
 			page.coverage.startCSSCoverage()
 		]);
 		await page.goto(URL, {
-			waitUntil: 'domcontentloaded'
+			waitUntil: 'networkidle0'
 		});
 		await page.waitForFunction('preact != null');
 		const { js, css } = await getCoverageData();

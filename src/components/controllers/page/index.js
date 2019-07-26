@@ -7,6 +7,7 @@ import Footer from '../../footer';
 import { useEffect, useState, useCallback } from 'preact/hooks';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
+import EditThisPage from '../../edit-button';
 
 const getContent = route => route.content || route.path;
 
@@ -114,6 +115,10 @@ export default function Page({ route }) {
 					toc={toc}
 				/>
 				<div class={style.inner}>
+					<Hydrator
+						component={EditThisPage}
+						show={name != 'index' && name != '404'}
+					/>
 					<Hydrator
 						component={Title}
 						boot={isReady}
