@@ -111,6 +111,10 @@
 			"name": "Getting Started"
 		},
 		{
+			"path": "/guide/v10/upgrade-guide",
+			"name": "Upgrading from 8.x"
+		},
+		{
 			"path": "/guide/v10/differences-to-react",
 			"name": "Differences to React"
 		},
