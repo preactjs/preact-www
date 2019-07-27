@@ -18,7 +18,7 @@ There are two ways to import these, you can import them from
 - [Introduction](#introduction)
 - [The dependency argument](#the-dependency-argument)
 - [Stateful hooks](#stateful-hooks)
-  - [useState](#usestate)
+  - [useState(initialState)](#usestateinitialstate)
   - [useReducer](#usereducer)
 - [Memoization](#memoization)
 - [Refs](#refs)
@@ -127,7 +127,7 @@ functional components.
 Before hooks we had to make a class component every time we needed
 state. Now times have changed.
 
-### useState
+### useState(initialState)
 
 This hook accepts an argument, this will be the initial state. When
 invoking this hook returns an array of two variables. The first being
@@ -166,6 +166,25 @@ const Counter = () => {
 ## Memoization
 
 ## Refs
+
+To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createrefs).
+
+```jsx
+function Foo() {
+  // Initialize useRef with an initial value of `null`
+  const input = useRef(null);
+  const onClick = () => input.current && input.current.focus();
+
+  return (
+    <>
+      <input ref={input} />
+      <button onClick={onClick}>Focus input<button>
+    </>
+  );
+}
+```
+
+> Be careful not to confuse `useRef` with `createRef`.
 
 ## Context
 
