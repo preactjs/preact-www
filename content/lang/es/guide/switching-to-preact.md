@@ -1,14 +1,33 @@
 ---
 name: Cambiando a Preact
-permalink: '/guide/switching-to-preact
+permalink: '/guide/switching-to-preact'
 ---
 
-# Cambiar a Preact (desde React)
+# Cambiar a Preact (desde React)<!-- omit in toc -->
 
 Hay dos formas distintas de moverse de React a Preact:
 
 1. Instalar el alias de`preact-compat`
 2. Modificar tus imports a `preact` y eliminar el código incompatible
+
+---
+
+- [Fácil: Alias de `preact-compat`](#fácil-alias-de-preact-compat)
+  - [Cómo hacer el alias de preact-compat](#cómo-hacer-el-alias-de-preact-compat)
+    - [Alias con Webpack](#alias-con-webpack)
+    - [Alias con Browserify](#alias-con-browserify)
+    - [Alias manual](#alias-manual)
+  - [Build y Test](#build-y-test)
+- [Óptimo: Cambiarse a Preact](#Óptimo-cambiarse-a-preact)
+  - [1. Instalar Preact](#1-instalar-preact)
+  - [2. JSX Pragma: transpilar a `h()`](#2-jsx-pragma-transpilar-a-h)
+    - [Vía Babel](#vía-babel)
+    - [Usando comentarios](#usando-comentarios)
+    - [Con Bublé](#con-bublé)
+  - [3. Actualizar código antiguo](#3-actualizar-código-antiguo)
+  - [4. Simplificando el renderizado de la raíz](#4-simplificando-el-renderizado-de-la-raíz)
+
+---
 
 ## Fácil: Alias de `preact-compat`
 

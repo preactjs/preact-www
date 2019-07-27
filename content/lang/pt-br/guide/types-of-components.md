@@ -3,15 +3,22 @@ name: Tipos de Componentes
 permalink: '/guide/types-of-components'
 ---
 
-# Tipos de Componentes
-
+# Tipos de Componentes<!-- omit in toc -->
 
 Há 2 tipos de componentes no Preact:
+
 - Componentes Clássicos, com [métodos do ciclo de vida] e estado
 - Componentes Funcionais Sem Estado, que são funções que aceitam `props` e retornam JSX.
 
 Dentro desses dois tipos, há também algumas maneiras diversas de implementar-se um componente,
 
+---
+
+- [Exemplo](#exemplo)
+  - [Destructurar `Props` & `State`](#destructurar-props--state)
+  - [Componentes Funcionais Sem Estado](#componentes-funcionais-sem-estado)
+
+---
 
 ## Exemplo
 

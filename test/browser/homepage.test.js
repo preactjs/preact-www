@@ -88,12 +88,12 @@ describe('Homepage', () => {
 			waitUntil: 'load'
 		});
 
-		await page.waitForSelector('[href="/guide/getting-started"]');
+		await page.waitForSelector('[href="/guide/v10/getting-started"]');
 
 		const spy = jest.fn();
 		page.once('domcontentloaded', spy);
 
-		await click('a[href="/guide/getting-started"]');
+		await click('a[href="/guide/v10/getting-started"]');
 
 		await expect(page).toMatch('Import what you need');
 
@@ -128,9 +128,9 @@ describe('No JS', () => {
 		});
 		await Promise.all([
 			page.waitForNavigation(),
-			click('[href="/guide/getting-started"]')
+			click('[href="/guide/v10/getting-started"]')
 		]);
-		expect(await page.url()).toMatch('/guide/getting-started');
+		expect(await page.url()).toMatch('/guide/v10/getting-started');
 		expect(await page.content()).toMatch('Import what you need');
 	});
 });

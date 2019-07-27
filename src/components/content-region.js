@@ -101,23 +101,6 @@ export default class ContentRegion extends Component {
 		}
 	}
 
-	updateToc() {
-		let headings = this.base.querySelectorAll('[id]'),
-			{ onToc } = this.props,
-			toc = (this.toc = []);
-		for (let i = 0; i < headings.length; i++) {
-			let [, level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
-			if (level) {
-				toc.push({
-					text: headings[i].textContent,
-					id: headings[i].getAttribute('id'),
-					level: Math.round(level)
-				});
-			}
-		}
-		if (onToc) onToc({ toc });
-	}
-
 	componentWillMount() {
 		const b = (this.base = this.nextBase || this.__b);
 		if (b && typeof document !== 'undefined') {
@@ -130,15 +113,11 @@ export default class ContentRegion extends Component {
 		this.fetch();
 	}
 
-	componentDidUpdate({ name, lang }, { content }) {
+	componentDidUpdate({ name, lang }) {
 		if (name !== this.props.name || lang !== this.props.lang) this.fetch();
-		if (content !== this.state.content) this.updateToc();
 	}
 
-	render(
-		{ store, name, children, onLoad, onToc, data, ...props },
-		{ content }
-	) {
+	render({ store, name, children, onLoad, data, ...props }, { content }) {
 		if (!content) {
 			/*global PRERENDER,__non_webpack_require__*/
 			if (PRERENDER) {

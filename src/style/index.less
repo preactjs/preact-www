@@ -12,6 +12,7 @@
 	--color-text: #444;
 	--color-heading: black;
 	--color-link: #673ab8;
+	--color-home-btn: #673ab8;
 	--color-hr: #f8f8f8;
 	--color-quote-bg: #ebf6ff;
 	--color-quote-border: #5aa8ff;
@@ -41,6 +42,7 @@
 		--color-text: #a0a0a0;
 		--color-heading: #c5c5c5;
 		--color-link: #ae80ff;
+		--color-home-btn: #673ab8;
 		--color-hr: #444;
 		--color-quote-bg: #29475f;
 		--color-quote-border: #3f6b9c;
@@ -70,6 +72,7 @@
 .light {
 	--color-page-bg: white !important;
 	--color-text: #444 !important;
+	--color-home-btn: #673ab8 !important;
 	--color-heading: black !important;
 	--color-link: #673ab8 !important;
 	--color-hr: #f8f8f8 !important;
@@ -102,6 +105,7 @@
 	--color-text: #a0a0a0 !important;
 	--color-heading: #c5c5c5 !important;
 	--color-link: #ae80ff !important;
+	--color-home-btn: #673ab8 !important;
 	--color-hr: #444 !important;
 	--color-quote-bg: #29475f !important;
 	--color-quote-border: #3f6b9c !important;
@@ -348,15 +352,10 @@ main .markup {
 	box-shadow: 0 2px 0 rgba(@color-brand, 0.3);
 	border: none;
 	border-radius: 4px;
-	color: @color-brand;
+	color: var(--color-home-btn) !important;
 	font-weight: bold;
 	text-transform: uppercase;
 	white-space: nowrap;
-
-	&:hover {
-		text-decoration: none;
-		background: @color-corner;
-	}
 }
 
 @break-s: ~'(min-width: 700px)';

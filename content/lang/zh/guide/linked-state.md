@@ -3,9 +3,18 @@ name: Linked State
 permalink: '/guide/linked-state'
 ---
 
-# 关联状态
+# 关联状态<!-- omit in toc -->
 
 在优化 state 改变的方面，Preact 比 React 走得跟超前一点。在 ES2015 React 代码中，通常的模式是在 `render()` 方法中使用箭头函数，以便于响应事件，更新状态。每次渲染都在局部创建一个函数闭包，这样效率十分低下而且会迫使垃圾回收器做许多不必要的工作。
+
+---
+
+- [更好的手动处理方式](#更好的手动处理方式)
+- [让关联状态（Linked State）来拯救你](#让关联状态linked-state来拯救你)
+- [Custom Event Paths](#custom-event-paths)
+  - [例子：分组单选按钮](#例子分组单选按钮)
+
+---
 
 ## 更好的手动处理方式
 

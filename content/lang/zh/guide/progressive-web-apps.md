@@ -11,7 +11,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/load-less-script.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/load-less-script.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -25,7 +25,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/faster-tti.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/faster-tti.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -38,7 +38,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/building-block.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/building-block.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -54,7 +54,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 ## 这个站点是 PWA
 
 事实上，你现在的查看的这个网站是一个渐进式 Web 应用程序！它可以在 5 秒内，在 3G 的网络环境下用 Nexus 5X 进行交互。
-<img src="../assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+<img src="../../assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
 
 静态站点内容存储在（Service Worker）高速缓存存储 API 中，使重复访问可以即时加载。
 
@@ -65,7 +65,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/code-splitting.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">代码拆分</a></strong> 
@@ -76,7 +76,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存 </a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。使用 [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) 或 [offline-plugin](https://github.com/NekR/offline-plugin) 完成此操作。
@@ -85,7 +85,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/prpl.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> 鼓励向浏览器预先推送或预加载资源，从而加快后续页面的加载速度。它基于代码拆分和 SW 缓存。</p>
@@ -94,7 +94,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/lighthouse.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> 允许你审计（监控）渐进式 Web 应用程序的性能和最佳实践，因此你能知道你的应用程序的表现情况。</p>

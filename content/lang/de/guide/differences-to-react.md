@@ -3,12 +3,21 @@ name: Unterschiede zu React
 permalink: '/guide/differences-to-react'
 ---
 
-# Unterschiede zu React
+# Unterschiede zu React<!-- omit in toc -->
 
 Preact selbst soll keine Neuimplementation von React sein. Es gibt durchaus Unterschiede. Viele dieser Unterschiede sind trivial oder können mit der Nutzung von [preact-compat] komplett entfernt werden. Preact-compat ist eine dünne Schicht, die über Preact liegt und versucht, die 100%ige Kompatibilität mit React herzustellen.
 
 Preact ist nicht darauf ausgelegt, jede einzelne Funktion von React zu übernehmen, um **klein** und **fokussiert** zu bleiben - andernfalls würde es mehr Sinn ergeben, simple Optimierungen für das React-Projekt, welches bereits über eine sehr komplexe und gut architektierte Codebasis verfügt, einzureichen.
 
+---
+
+- [Versionenkompatibilität](#versionenkompatibilität)
+- [Was ist inbegriffen?](#was-ist-inbegriffen)
+- [Was ist hinzugefügt?](#was-ist-hinzugefügt)
+- [Was fehlt?](#was-fehlt)
+- [Was ist anders?](#was-ist-anders)
+
+---
 
 ## Versionenkompatibilität
 

@@ -3,8 +3,7 @@ name: Types of Components
 permalink: '/guide/types-of-components'
 ---
 
-# Bileşen Türleri
-
+# Bileşen Türleri<!-- omit in toc -->
 
 Preact'de 2 tür bileşen vardır:
 
@@ -13,6 +12,13 @@ Preact'de 2 tür bileşen vardır:
 
 Bu iki tür bileşeni uygulamak için birkaç farklı yöntem vardır.
 
+---
+
+- [Örnek](#Örnek)
+  - [Destructure Props & State](#destructure-props--state)
+  - [Stateless Fonksiyonel Bileşenler](#stateless-fonksiyonel-bileşenler)
+
+---
 
 ## Örnek
 

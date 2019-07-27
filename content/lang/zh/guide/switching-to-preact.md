@@ -1,16 +1,33 @@
 ---
 name: Switching to Preact from React
-permalink: '/guide/switching-to-preact
+permalink: '/guide/switching-to-preact'
 ---
 
-
-
-# 用 Preact 替换 React
+# 用 Preact 替换 React<!-- omit in toc -->
 
 有两种途径把 React 替换成 Preact：
 
 1. 安装 `preact-compat`  
 2. 把 React 的入口替换为 `preact`，并解决代码冲突
+
+---
+
+- [简单的 `preact-compat` Alias 设置](#简单的-preact-compat-alias-设置)
+  - [怎样设置 preact-compat 的 Alias](#怎样设置-preact-compat-的-alias)
+    - [通过 Webpack 设置 Alias](#通过-webpack-设置-alias)
+    - [通过 Browserify 设置 Alias](#通过-browserify-设置-alias)
+    - [手动修改别名](#手动修改别名)
+  - [Build & Test](#build--test)
+- [最理想的 Preact 迁移方案](#最理想的-preact-迁移方案)
+  - [1. 安装 Preact](#1-安装-preact)
+  - [2. JSX 语法：转换到 `h()`](#2-jsx-语法转换到-h)
+    - [通过 Babel](#通过-babel)
+    - [通过 Comments](#通过-comments)
+    - [通过 Bublé](#通过-bublé)
+  - [3. 更新剩下的代码](#3-更新剩下的代码)
+  - [4. 简化 Root 节点的 Render](#4-简化-root-节点的-render)
+
+---
 
 ## 简单的 `preact-compat` Alias 设置
 

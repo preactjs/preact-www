@@ -4,9 +4,11 @@ import ContentRegion from '../../content-region';
 import config from '../../../config';
 import style from './style';
 import Footer from '../../footer';
-import { useEffect, useState, useCallback } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import Sidebar from './sidebar';
 import EditThisPage from '../../edit-button';
+import { isDocPage } from '../../../lib/docs';
+import { useStore } from '../../store-adapter';
 
 const getContent = route => route.content || route.path;
 
@@ -31,9 +33,23 @@ export function usePage(route) {
 
 	useTitle(meta.title);
 
-	function onLoad({ meta }) {
-		setMeta(meta);
+	function onLoad({ meta, content }) {
 		setLoading(false);
+
+		// Don't show loader forever in case of an error
+		if (!meta) {
+			return;
+		}
+
+		// Many markdown formatters can generate the table of contents
+		// automatically. To skip a specific heading the use an html
+		// comment at the end of it. Example:
+		//
+		// ## Some random title <!-- omit in toc -->
+		//
+		meta.title = meta.title.replace(/\s*<!--.*-->/, '');
+
+		setMeta(meta);
 		setCurrent(getContent(route));
 		// content was loaded. if this was a forward route transition, animate back to top
 		if (window.nextStateToTop) {
@@ -56,24 +72,23 @@ export function usePage(route) {
 
 export default function Page({ route }) {
 	const { loading, meta, onLoad } = usePage(route);
-	const [toc, setToc] = useState([]);
-	const onToc = useCallback(v => setToc(v.toc || []));
+	const { url } = useStore(['url']).state;
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContent(route);
 
-	let hasToc = meta.toc !== false && toc.length > 0;
+	let hasSidebar = meta.toc !== false && isDocPage(url);
 	return (
-		<div class={cx(style.page, style[layout], hasToc && style.withSidebar)}>
+		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
 			<div class={style.outer}>
-				{hasToc && <Sidebar toc={toc} />}
+				{hasSidebar && <Sidebar />}
 				<div class={style.inner}>
 					{name != 'index' && name != '404' && <EditThisPage />}
 					{name != 'index' && meta.show_title !== false && (
 						<h1 class={style.title}>{meta.title || route.title}</h1>
 					)}
-					<ContentRegion name={name} onToc={onToc} onLoad={onLoad} />
+					<ContentRegion name={name} onLoad={onLoad} />
 					<Footer />
 				</div>
 			</div>

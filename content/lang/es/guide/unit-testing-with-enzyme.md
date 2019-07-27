@@ -3,9 +3,18 @@ name: Prueba unitaria con Enzyme
 permalink: '/guide/unit-testing-with-enzyme'
 ---
 
-# Prueba unitaria con Enzyme
+# Prueba unitaria con Enzyme<!-- omit in toc -->
 
 `React` proporciona un módulo `reac-addons-test-utils` para probar componentes, y el `enzyme` del Airbnb lleva este concepto un poco más allá - Incorporando múltiples modos de renderizado y otros recursos útiles. La prueba de componentes de `Preact` con` Enzyme` es posible gracias al módulo `preact-compat-enzyme`, que implementa las propiedades internas necesarias del `React` sobre el `preact-compat`.
+
+---
+
+- [Instalación](#instalación)
+- [Configuración](#configuración)
+- [Limitaciones actuales](#limitaciones-actuales)
+- [Ejemplo](#ejemplo)
+
+---
 
 ## Instalación
 

@@ -3,16 +3,21 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Getting Started
+# Getting Started<!-- omit in toc -->
 
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
-
 > :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-boilerplate] or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
-
 
 ---
 
+- [Import what you need](#import-what-you-need)
+  - [Global pragma](#global-pragma)
+- [Rendering JSX](#rendering-jsx)
+- [Components](#components)
+- [The Component Lifecycle](#the-component-lifecycle)
+
+---
 
 ## Import what you need
 

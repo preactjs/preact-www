@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Primi passi
+# Primi passi<!-- omit in toc -->
 
 In questa guida vedremo come creare un semplice componente "Orologio". Informazioni più dettagliate su ogni singolo argomento sono disponibili nel menù Guida.
 
@@ -11,6 +11,13 @@ In questa guida vedremo come creare un semplice componente "Orologio". Informazi
 
 ---
 
+- [Importa ciò che ti serve](#importa-ciò-che-ti-serve)
+  - [Global pragma](#global-pragma)
+- [Interpretare il JSX](#interpretare-il-jsx)
+- [Componenti](#componenti)
+- [Ciclo di vita dei componenti](#ciclo-di-vita-dei-componenti)
+
+---
 
 ## Importa ciò che ti serve
 Il modulo `preact` fornisce sia esportazioni  `named` sia `default`, così puoi importare tutto sotto il namespace o solo quello di cui hai bisogno come variabili locali: 
