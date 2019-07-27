@@ -5,20 +5,18 @@ permalink: '/guide/external-dom-mutations'
 
 # External DOM Mutations <!-- omit in toc -->
 
+Sometimes there is a need to work with third-party libraries that expect to be able to freely mutate the DOM, persist state within it, or that have no component boundaries at all. There are many great UI toolkits or re-usable elements that operate this way.
+
+In Preact (and similarly in React), working with these types of libraries requires that you tell the Virtual DOM rendering/diffing algorithm that it shouldn't try to _undo_ any external DOM mutations performed within a given Component (or the DOM element it represents).
+
 ---
 
-- [Overview](#overview)
 - [Technique](#technique)
 - [Example Walk-Through](#example-walk-through)
 - [Demonstration](#demonstration)
 - [Real-World Examples](#real-world-examples)
 
 ---
-
-## Overview
-
-Sometimes there is a need to work with third-party libraries that expect to be able to freely mutate the DOM, persist state within it, or that have no component boundaries at all.  There are many great UI toolkits or re-usable elements that operate this way.  In Preact (and similarly in React), working with these types of libraries requires that you tell the Virtual DOM rendering/diffing algorithm that it shouldn't try to _undo_ any external DOM mutations performed within a given Component (or the DOM element it represents).
-
 
 ## Technique
 
