@@ -50,9 +50,13 @@
 	left: 0;
 	right: 0;
 	z-index: 20;
+	height: 100vh;
+	overflow-y: auto;
 	background: var(--color-sidebar-bg);
 
 	@media @sidebar-break {
+		height: auto;
+		overflow-y: initial;
 		position: relative;
 		visibility: visible;
 		opacity: 1;
