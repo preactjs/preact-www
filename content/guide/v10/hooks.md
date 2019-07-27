@@ -25,7 +25,6 @@ There are two ways to import these, you can import them from
 - [Refs](#refs)
 - [Context](#context)
 - [Side-Effects](#side-effects)
-- [Recipes](#recipes)
 
 ---
 
@@ -313,5 +312,3 @@ function WindowWidth(props) {
 ```
 
 > The cleanup function is optional. If you don't need to run any cleanup code, you don't need to return anything in the callback that's passed to `useEffect`.
-
-## Recipes
