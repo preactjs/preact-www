@@ -76,17 +76,17 @@
 }
 
 .sidebarInner {
+	> * + * {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 0.0625rem solid var(--color-sidebar-divider);
+	}
+
 	@media @sidebar-break {
 		position: sticky;
 		top: @header-height;
 		height: calc(100vh - @header-height);
 		width: 100%;
 		overflow: auto;
-
-		> * + * {
-			margin-top: 1rem;
-			padding-top: 1rem;
-			border-top: 0.0625rem solid var(--color-sidebar-divider);
-		}
 	}
 }
