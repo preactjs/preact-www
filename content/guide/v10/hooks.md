@@ -21,6 +21,7 @@ There are two ways to import these, you can import them from
   - [useState(initialState)](#usestateinitialstate)
   - [useReducer(reducer, initialState)](#usereducerreducer-initialstate)
 - [Memoization](#memoization)
+  - [useCallback](#usecallback)
 - [Refs](#refs)
 - [Context](#context)
 - [Side-Effects](#side-effects)
@@ -205,6 +206,19 @@ const memoized = useMemo(
 ```
 
 > Don't run any effectful code inside `useMemo`. Side-effects belong in `useEffect`.
+
+### useCallback
+
+The `useCallback` hook can be used to ensure that the returned function will remain referentially equal for as long as no dependencies have changed. This can be used to optimize updates of child components when they rely on referential equality to skip updates (e.g. `shouldComponentUpdate`).
+
+```jsx
+const onClick = useCallback(
+  () => console.log(a, b);
+  [a, b],
+);
+```
+
+> Fun fact: `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
 ## Refs
 
