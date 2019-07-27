@@ -188,6 +188,28 @@ function Foo() {
 
 ## Context
 
+To access context in a functional component we can use the `useContext` hook, without any high-order or wrapper components. The first argument must be the context object that's created from a `createContext` call.
+
+```jsx
+const Theme = createContext('light');
+
+function DisplayTheme() {
+  const theme = useContext(Theme);
+  return <p>Active theme: {theme}</p>;
+}
+
+// ...later
+function App() {
+  return (
+    <Theme.Provider value="light">
+      <OtherComponent>
+        <DisplayTheme />
+      </OtherComponent>
+    </Theme.Provider>
+  )
+}
+```
+
 ## Side-Effects
 
 Side-Effects are at the heart of many modern Apps. Whether you want to fetch some data from an API or trigger an effect on the document, you'll find that the `useEffect` fits all your needs.
