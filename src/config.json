@@ -163,6 +163,10 @@
 			"name": "Unit Testing with Enzyme"
 		},
 		{
+			"path": "/guide/v10/web-components",
+			"name": "Web Components"
+		},
+		{
 			"path": "/guide/v10/progressive-web-apps",
 			"name": "Progressive Web Apps"
 		}
