@@ -155,6 +155,10 @@
 			"name": "Debugging Tools"
 		},
 		{
+			"path": "/guide/v10/server-side-rendering",
+			"name": "Server-Side Rendering"
+		},
+		{
 			"path": "/guide/v10/extending-component",
 			"name": "Extending Component"
 		},
