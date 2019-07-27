@@ -1,17 +1,18 @@
 ---
 name: Forms
-permalink: '/guide/forms'
 ---
 
 # Forms <!-- omit in toc -->
 
-Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.
+Forms in Preact work much the same as they do in HTML. You render a control, and attach an event listener to it.
 
-**[React Forms Docs](https://reactjs.org/docs/forms.html)**
+The main difference is that in most cases the `value` is not controlled by the DOM node, but by Preact.
 
 ---
 
 - [Controlled & Uncontrolled Components](#controlled--uncontrolled-components)
+- [Creating A Simple Form](#creating-a-simple-form)
+- [Select Input](#select-input)
 - [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
   - [Checkbox Example](#checkbox-example)
 
@@ -19,10 +20,83 @@ Forms in Preact work much the same as they do in React, except there is no suppo
 
 ## Controlled & Uncontrolled Components
 
-React's documentation on ["Controlled" Components](https://reactjs.org/docs/forms.html#controlled-components) and ["Uncontrolled" Components](https://reactjs.org/docs/uncontrolled-components.html) is immensely useful in understanding how to take HTML forms, which have bidirectional data flow, and make use of them from the context of a Component-based Virtual DOM renderer, which generally has unidirectional data flow.
+When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled. The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update it's value when a user typed into it.
 
-Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality.  In these cases, "Uncontrolled" Components are nicely suited to the task.
+A framework like Preact in contrast generally has a unidirectional data flow. The component doesn't manage the value itself there, but something else higher up in the component tree.
 
+```jsx
+// Uncontrolled, because Preact doesn't set the value
+<input onInput={myEventHandler} />;
+
+// Controlled, because Preact manages the input's value now
+<input value={someValue} onInput={myEventHandler} />;
+```
+
+Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality. In these cases, "Uncontrolled" Components are nicely suited to the task.
+
+> One gotcha to note here is that setting the value to `undefined` or `null` will essentially become uncontrolled.
+
+## Creating A Simple Form
+
+Let's create a simple form to submit todo items. For this we create a `<form>`-Element and bind an event handler that is called whenever the form is submitted. We do a similar thing for the text input field, but note that we are storing the value in our class ourselves. You guessed it, we're using a _controlled_ input here. In this example it's very useful, because we need to display the input's value in another element.
+
+```jsx
+class TodoForm extends Component {
+  state = { value: '' };
+
+  onSubmit = e => {
+    alert("Submitted a todo");
+    e.preventDefault();
+  }
+
+  onInput = e => {
+    const { value } = e.target;
+    this.setState({ value })
+  }
+
+  render(_, { value }) {
+    return (
+      <form onSubmit={this.onSubmit}>
+        <input type="text" value={value} onInput={this.onInput} />
+        <p>You typed this value: {value}<p>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+```
+
+## Select Input
+
+A `<select>`-Element is a little more involved, but works similar to all other form controls:
+
+```jsx
+class MySelect extends Component {
+  state = { value: '' };
+
+  onInput = e => {
+    this.setState({ value: e.target.value });
+  }
+
+  onSubmit = e => {
+    alert("Submitted something");
+    e.preventDefault();
+  }
+
+  render(_, { value }) {
+    return (
+      <form onSubmit={this.onSubmit}>
+        <select value={value} onInput={this.onInput}>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+```
 
 ## Checkboxes & Radio Buttons
 
@@ -30,25 +104,27 @@ Checkboxes and radio buttons (`<input type="checkbox|radio">`) can initially cau
 
 > **Walk-Through:** Say we listen for a "change" event on a checkbox, which is fired when the checkbox is checked or unchecked by the user.  In our change event handler, we set a value in `state` to the new value received from the checkbox.  Doing so will trigger a re-render of our component, which will re-assign the value of the checkbox to the value from state.  This is unnecessary, because we just asked the DOM for a value but then told it to render again with whatever value we wanted.
 
-So, instead of listening for a `change` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_.  Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.
+So, instead of listening for a `input` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_.  Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.
 
 ### Checkbox Example
 
 ```js
 class MyForm extends Component {
-    toggle = e => {
-        let checked = !this.state.checked;
-        this.setState({ checked });
-    };
-    render({ }, { checked }) {
-        return (
-            <label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={this.toggle} />
-            </label>
-        );
-    }
+  toggle = e => {
+      let checked = !this.state.checked;
+      this.setState({ checked });
+  };
+
+  render(_, { checked }) {
+    return (
+      <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          onClick={this.toggle}
+        />
+      </label>
+    );
+  }
 }
 ```
