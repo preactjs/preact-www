@@ -19,7 +19,7 @@ There are two ways to import these, you can import them from
 - [The dependency argument](#the-dependency-argument)
 - [Stateful hooks](#stateful-hooks)
   - [useState(initialState)](#usestateinitialstate)
-  - [useReducer](#usereducer)
+  - [useReducer(reducer, initialState)](#usereducerreducer-initialstate)
 - [Memoization](#memoization)
 - [Refs](#refs)
 - [Context](#context)
@@ -161,7 +161,35 @@ const Counter = () => {
 
 > When our initial state is expensive it's better to pass a function instead of a value.
 
-### useReducer
+### useReducer(reducer, initialState)
+
+The `useReducer` hook has a close resemblence to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
+
+```jsx
+const initialState = 0;
+const reducer = (state, action) => {
+  switch (action) {
+    case 'increment': return state + 1;
+    case 'decrement': return state - 1;
+    case 'reset': return 0;
+    default: throw new Error('Unexpected action');
+  }
+};
+
+function Counter() {
+  // Returns the current state and a dispatch function to
+  // trigger an action
+  const [count, dispatch] = useReducer(reducer, initialState);
+  return (
+    <div>
+      {count}
+      <button onClick={() => dispatch('increment')}>+1</button>
+      <button onClick={() => dispatch('decrement')}>-1</button>
+      <button onClick={() => dispatch('reset')}>reset</button>
+    </div>
+  );
+}
+```
 
 ## Memoization
 
