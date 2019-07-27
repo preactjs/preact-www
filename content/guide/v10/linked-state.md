@@ -3,10 +3,18 @@ name: Linked State
 permalink: '/guide/linked-state'
 ---
 
-# Linked State
+# Linked State<!-- omit in toc -->
 
+One area Preact takes a little further than React is in optimizing state changes. A common pattern in ES2015 React code is to use Arrow functions within a `render()` method in order to update state in response to events. Creating functions enclosed in a scope on every render is inefficient and forces the garbage collector to do more work than is necessary.
 
-One area Preact takes a little further than React is in optimizing state changes. A common pattern in ES2015 React code is to use Arrow functions within a `render()` method in order to update state in response to events.  Creating functions enclosed in a scope on every render is inefficient and forces the garbage collector to do more work than is necessary.
+---
+
+- [The Nicer Manual Way](#the-nicer-manual-way)
+- [Linked State to the Rescue](#linked-state-to-the-rescue)
+- [Custom Event Paths](#custom-event-paths)
+  - [Illustration: Grouped Radio Buttons](#illustration-grouped-radio-buttons)
+
+---
 
 ## The Nicer Manual Way
 

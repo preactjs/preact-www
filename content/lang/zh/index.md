@@ -14,9 +14,9 @@ toc: false
    <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">如何开始</a>
+        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">切换到 preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
@@ -140,7 +140,7 @@ function Counter() {
     </p>
 
     <p>
-        增加一个简单的兼容层 <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> 到你的绑定库中，你甚至可以在你的系统中使用非常复杂的 React 组件。
+        增加一个简单的兼容层 <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> 到你的绑定库中，你甚至可以在你的系统中使用非常复杂的 React 组件。
     </p>
   </div>
 </section>
@@ -248,8 +248,8 @@ render(
         选取最适合您的指导规范！
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">如何开始</a>
+        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">切换到 Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 Preact</a>
     </p>
 </section>

@@ -13,9 +13,9 @@ toc: false
     <p>Fast 3kB alternative to React with the same modern API.</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">Get Started</a>
+        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
         <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
     <p>
         <github-stars user="preactjs" repo="preact">20,000+</github-stars>
@@ -137,7 +137,7 @@ function Counter() {
     </p>
     
     <p>
-      Adding a simple <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> alias to your bundler provides a compatibility layer
+      Adding a simple <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> alias to your bundler provides a compatibility layer
       that enables even the most complex React components to be used in your application.
     </p>
   </div>
@@ -241,8 +241,8 @@ render(
         Pick the guide that works best for you!
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">Get Started</a>
+        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
 </section>

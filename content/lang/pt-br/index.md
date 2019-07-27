@@ -14,9 +14,9 @@ toc: false
     <p>Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
 
     <p>
-        <a href="/guide/getting-started" class="home-button">Como começar</a>
+        <a href="/guide/v10/getting-started" class="home-button">Como começar</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Mudando para Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Mudando para Preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
@@ -156,7 +156,7 @@ function Counter() {
     </p>
 
     <p>
-        Ao adicionar um simples <i>alias</i> <a href="/guide/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> ao seu <i>bundler</i> adiciona uma camada de compatibilidade que possibilita até mesmo os componentes React mais complexos a serem utilizados na sua aplicação.
+        Ao adicionar um simples <i>alias</i> <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> ao seu <i>bundler</i> adiciona uma camada de compatibilidade que possibilita até mesmo os componentes React mais complexos a serem utilizados na sua aplicação.
     </p>
   </div>
 </section>
@@ -264,8 +264,8 @@ render(
         Escolha a melhor opção pra você!
     </p>
     <p>
-        <a href="/guide/getting-started" class="home-button">Como começar</a>
+        <a href="/guide/v10/getting-started" class="home-button">Como começar</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/switching-to-preact" class="home-button">Mudando para Preact</a>
+        <a href="/guide/v10/switching-to-preact" class="home-button">Mudando para Preact</a>
     </p>
 </section>

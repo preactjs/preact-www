@@ -3,12 +3,17 @@ name: Eingabemasken
 permalink: '/guide/forms'
 ---
 
-# Eingabemasken
-
+# Eingabemasken<!-- omit in toc -->
 
 Eingabemasken funktionieren in Preact fast genauso wie in React, allerdings gibt es keine Unterstützung für "statische" (Ausgangswert) props/Attribute.
 
 **[React Eingabemasken-Doku](https://facebook.github.io/react/docs/forms.html)**
+
+---
+
+- [Kontrollierte & Unkontrollierte Komponenten](#kontrollierte--unkontrollierte-komponenten)
+- [Kontrollbox & Radio Buttons](#kontrollbox--radio-buttons)
+  - [Kontrollboxbeispiel](#kontrollboxbeispiel)
 
 
 ## Kontrollierte & Unkontrollierte Komponenten

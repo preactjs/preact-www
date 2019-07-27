@@ -3,7 +3,17 @@ name: Mutações Externas de DOM
 permalink: '/guide/external-dom-mutations'
 ---
 
-# Mutações Externas de DOM
+# Mutações Externas de DOM<!-- omit in toc -->
+
+---
+
+- [Visão Geral](#visão-geral)
+- [Técnica](#técnica)
+- [Guia Exemplo](#guia-exemplo)
+- [Demonstração](#demonstração)
+- [Exemplos do Mundo-Real](#exemplos-do-mundo-real)
+
+---
 
 
 ## Visão Geral

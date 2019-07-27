@@ -14,7 +14,7 @@ Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progres
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/load-less-script.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/load-less-script.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -26,7 +26,7 @@ Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progres
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/faster-tti.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/faster-tti.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -38,7 +38,7 @@ Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progres
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/building-block.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/building-block.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -53,7 +53,7 @@ Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progres
 
 Aslında şu anda bulunduğunuz site bir Progressive Web App! Burada 3G ile internete bağlı Nexus 5X'inizi kullanarak 5 saniyeden daha kısa bir sürede interaktif hale gelilrsiniz:
 
-<img src="../assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+<img src="../../assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
 
 Statik site içeriği (Servis Çalışanı) Önbellek Depolama API'sında depolanır ve tekrar eden ziyaretlerde anında yüklenebilir.
 
@@ -64,7 +64,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/code-splitting.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-splitting</a></strong> kodunuzu parçalara ayırarak sadece kullanıcının ihtiyacı olan parçaların aktarılmasını sağlar. Geri kalanı lazy-loading ile ihtiyaç duyulduğunda aktarmak, sayfanın yüklenme süresini hızlandırır. Webpack ile desteklenir.</p>
@@ -73,7 +73,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/service-worker-caching.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> uygulamaya tekrar eden ziyaretlerde anında yüklemeyi etkinleştirerek statik ve dinamik kaynaklarınızı çevrimdışı önbelleğe almayı sağlar. Bunu [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) veya [offline-plugin](https://github.com/NekR/offline-plugin) ile sağlayabilirsiniz.</p>
@@ -82,7 +82,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/prpl.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> varlıkları önceden tarayıcı sayfalarına aktarmaya veya ön yüklemeye teşvik eder ve sonraki sayfaların yüklenmesini hızlandırır. Kod bölme ve SW önbellekleme üzerine kurulmuştur.</p>
@@ -91,7 +91,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
 
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(../assets/pwa-guide/lighthouse.svg);"></div>
+          <div class="_bubble" style="background-image: url(../../assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> PWAinizin performansını ve en iyi uygulamalarını denetlemenize olanak tanır, böylece uygulamanızın ne kadar iyi performans gösterdiğini bilirsiniz.</p>

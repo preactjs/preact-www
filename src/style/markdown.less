@@ -4,6 +4,13 @@
 		margin-top: 1.25rem;
 	}
 
+	> p:first-of-type {
+		font-size: 1.4rem;
+		font-weight: 300;
+		line-height: 1.4;
+		margin-bottom: 1.5em;
+	}
+
 	p > a,
 	p > em > a,
 	ul a,
@@ -97,7 +104,13 @@
 		padding: 0;
 		margin: 30px 0 0;
 		border: 0 none;
-		color: var(--color-hr);
+		background: var(--color-hr);
+
+		// Assume that any sibling lists are a TOC
+		& + ul,
+		& + ol {
+			padding-left: calc(1rem + 20px) !important;
+		}
 	}
 
 	& > h2:first-child,

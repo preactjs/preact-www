@@ -3,13 +3,21 @@ name: "Los geht's"
 permalink: "/guide/getting-started"
 ---
 
-# Los geht's
+# Los geht's<!-- omit in toc -->
 
 Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstellt. Detailliertere Informationen zu jedem Thema können auf den dedizierten Seiten unter dem Anleitungsmenü gefunden werden.
 
 > :information_desk_person: Man [_muss_ nicht ES2015 für Preact benutzen](<https://github.com/developit/preact-without-babel>)... man sollte es aber. Diese Anleitung geht davon aus, dass man eine ES2015-Umgebung mit Babel und/oder Webpack/Browserify/Gulp/Grunt/etc. benutzt. Wenn das nicht der Fall ist, verwende [preact-boilerplate] oder eine [CodePen-Vorlage](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
---------------------------------------------------------------------------------
+---
+
+- [Importiere, was man braucht](#importiere-was-man-braucht)
+  - [Globales Pragma](#globales-pragma)
+- [JSX Rendern](#jsx-rendern)
+- [Komponente](#komponente)
+- [Der Komponentenlebenszyklus](#der-komponentenlebenszyklus)
+
+---
 
 ## Importiere, was man braucht
 
@@ -34,7 +42,6 @@ import preact from 'preact';
 ```
 
 > Bestimmte Importierungen funktionieren wundervoll mit hochstrukturierten Applikationen, der allgemeine Import ist hingegen schnell und muss niemals aktualisiert werden, sollte man verschiedene Teile der Bibliothek verwenden.
-
 
 ### Globales Pragma
 
@@ -76,8 +83,6 @@ Anstatt das `@jsx`-Pragma im eigenen Code zu deklarieren sollte man es lieber gl
 > }
 > ```
 
---------------------------------------------------------------------------------
-
 ## JSX Rendern
 
 Preact bietet von Grund auf eine `h()`-Funktion, die JSX-Code in VDOM-Elemente _([so funktioniert's](https://jasonformat.com/wtf-is-jsx))_ umwandeln. Es bietet außerdem die `render()`-Funktion an, mit der man einen DOM-Baum des Virtuellen DOMs erstellt.
@@ -98,7 +103,6 @@ render((
 Dies sollte eigentlich bekannt sein, wenn man bereits mit [hyperscript] oder einem seiner [vielen Freunde](https://github.com/developit/vhtml) gearbeitet hat.
 
 Hyperscript in einem Virtuellen DOM zu Rendern macht allerdings gar keinen Sinn. Da man Komponenten rendern möchte und diese sich aktualisieren sollen, wenn sich Daten ändern, glänzt in diesem Falle die Differenzierung des Virtuellen DOM ganz besonders. :star2:
---------------------------------------------------------------------------------
 
 ## Komponente
 

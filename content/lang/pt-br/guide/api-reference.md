@@ -3,7 +3,17 @@ name: Referência da API
 permalink: '/guide/api-reference'
 ---
 
-# Referência da API
+# Referência da API<!-- omit in toc -->
+
+---
+
+- [`Preact.Component`](#preactcomponent)
+  - [`Component.render(props, state)`](#componentrenderprops-state)
+  - [Métodos do Ciclo de Vida](#métodos-do-ciclo-de-vida)
+- [`Preact.render()`](#preactrender)
+- [`Preact.h()` / `Preact.createElement()`](#preacth--preactcreateelement)
+
+---
 
 ## `Preact.Component`
 
