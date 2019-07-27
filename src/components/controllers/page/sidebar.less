@@ -50,9 +50,13 @@
 	left: 0;
 	right: 0;
 	z-index: 20;
+	height: calc(var(--vh) - @header-height);
+	overflow-y: auto;
 	background: var(--color-sidebar-bg);
 
 	@media @sidebar-break {
+		height: auto;
+		overflow-y: initial;
 		position: relative;
 		visibility: visible;
 		opacity: 1;
@@ -72,17 +76,17 @@
 }
 
 .sidebarInner {
+	> * + * {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 0.0625rem solid var(--color-sidebar-divider);
+	}
+
 	@media @sidebar-break {
 		position: sticky;
 		top: @header-height;
 		height: calc(100vh - @header-height);
 		width: 100%;
 		overflow: auto;
-
-		> * + * {
-			margin-top: 1rem;
-			padding-top: 1rem;
-			border-top: 0.0625rem solid var(--color-sidebar-divider);
-		}
 	}
 }

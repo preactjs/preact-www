@@ -1,17 +1,24 @@
 ---
 name: API Reference
-permalink: '/guide/api-reference'
 ---
 
 # API Reference <!-- omit in toc -->
 
+This page serves as a quick overview over all exported functions.
+
 ---
 
 - [Preact.Component](#preactcomponent)
-  - [`Component.render(props, state)`](#componentrenderprops-state)
+  - [Component.render(props, state)](#componentrenderprops-state)
   - [Lifecycle methods](#lifecycle-methods)
-- [`Preact.render()`](#preactrender)
-- [`Preact.h()` / `Preact.createElement()`](#preacth--preactcreateelement)
+- [render()](#render)
+- [hydrate()](#hydrate)
+- [h() / createElement()](#h--createelement)
+- [toChildArray](#tochildarray)
+- [cloneElement](#cloneelement)
+- [createContext](#createcontext)
+- [createRef](#createref)
+- [Fragment](#fragment)
 
 ---
 
@@ -19,7 +26,7 @@ permalink: '/guide/api-reference'
 
 `Component` is a base class that you will usually subclass to create stateful Preact components.
 
-### `Component.render(props, state)`
+### Component.render(props, state)
 
 The `render()` function is required for all components. It can inspect the props and state of the component, and should return a Preact element or `null`.
 
@@ -73,43 +80,58 @@ class MyComponent extends Component {
 }
 ```
 
-## `Preact.render()`
+## render()
 
 `render(component, containerNode, [replaceNode])`
 
 Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
 
-If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm. Otherwise, Preact will append the rendered element to `containerNode`.
+If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm.
 
 ```js
 import { render } from 'preact';
 
-// These examples show how render() behaves in a page with the following markup:
+const Foo = () => <div>foo</div>;
+
+// DOM before render:
+// <div id="container"></div>
+render(<Foo />, document.getElementById('container'));
+// After render:
 // <div id="container">
-//   <h1>My App</h1>
+//  <div>foo</div>
 // </div>
 
-const container = document.getElementById('container');
-
-render(MyComponent, container);
-// Append MyComponent to container
-//
+// DOM before render:
 // <div id="container">
-//   <h1>My App</h1>
-//   <MyComponent />
+//   <div>bar</div>
+//   <div id="target"></div>
 // </div>
-
-const existingNode = container.querySelector('h1');
-
-render(MyComponent, container, existingNode);
-// Diff MyComponent against <h1>My App</h1>
-//
+render(
+  Foo,
+  document.getElementById('container'),
+  document.getElementById('target')
+);
+// After render:
 // <div id="container">
-//   <MyComponent />
+//   <div>bar</div>
+//   <div id="target">
+//     <div>foo</div>
+//   </div>
 // </div>
 ```
 
-## `Preact.h()` / `Preact.createElement()`
+## hydrate()
+
+When you have a prerendered DOM, there is no need to re-render it again. With hydrate most of the diffing phase will be skipped with event listeners being the exception. It's mainly used in conjuncton with [Server-Side Rendering](/guide/v10/server-side-rendering).
+
+```jsx
+import { render } from 'preact';
+
+const Foo = () => <div>foo</div>;
+hydrate(<Foo />, document.getElementById('container));
+```
+
+## h() / createElement()
 
 `h(nodeName, attributes, [...children])`
 
@@ -136,4 +158,65 @@ h(
 	h('span', null, 'Hello!')
 );
 // <div id="foo"><span>Hello!</span></div>
+```
+
+## toChildArray
+
+This helper function will always convert children to an array. If it's already an array it will be a noop essentially. This function is needed because children are not guaranteed to be an array.
+
+If an element only has a single child it will receive it directly. Only when there are more than one children you can be sure that you'll receive an array. With `toChildArray` you can ensure that this is always the case.
+
+```jsx
+import { toChildArray } from 'preact';
+
+function Foo(props) {
+  const count = toChildArray(props.children).length;
+  return <div>I have {count} children</div>;
+}
+
+// children is not an array
+render(<Foo>bar</Foo>, container);
+
+// Children is an array
+render((
+  <Foo>
+    <p>A</p>
+    <p>B</p>
+  </Foo>,
+  container
+);
+```
+
+## cloneElement
+
+This function allows you to shallow clone a component and to render the clone somewhere else.
+
+## createContext
+
+See the section in the [Context documentation](/guide/v10/context#createcontext).
+
+## createRef
+
+See the section in the [References documentation](/guide/v10/refs#createref).
+
+## Fragment
+
+A special kind of component that doesn't render anything into the DOM. They allow a component to return multiple sibling children without needing to wrap them in a container div.
+
+```jsx
+import { Fragment, render } from 'preact';
+
+render((
+  <Fragment>
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+  </Fragment>
+), container);
+// Renders:
+// <div id="container>
+//   <div>A</div>
+//   <div>B</div>
+//   <div>C</div>
+// </div>
 ```

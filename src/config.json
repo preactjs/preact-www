@@ -111,6 +111,10 @@
 			"name": "Getting Started"
 		},
 		{
+			"path": "/guide/v10/upgrade-guide",
+			"name": "Upgrading from 8.x"
+		},
+		{
 			"path": "/guide/v10/differences-to-react",
 			"name": "Differences to React"
 		},
@@ -143,6 +147,10 @@
 			"name": "References"
 		},
 		{
+			"path": "/guide/v10/context",
+			"name": "Context"
+		},
+		{
 			"path": "/guide/v10/external-dom-mutations",
 			"name": "External DOM Mutations"
 		},
@@ -151,12 +159,20 @@
 			"name": "Debugging Tools"
 		},
 		{
+			"path": "/guide/v10/server-side-rendering",
+			"name": "Server-Side Rendering"
+		},
+		{
 			"path": "/guide/v10/extending-component",
 			"name": "Extending Component"
 		},
 		{
 			"path": "/guide/v10/unit-testing-with-enzyme",
 			"name": "Unit Testing with Enzyme"
+		},
+		{
+			"path": "/guide/v10/web-components",
+			"name": "Web Components"
 		},
 		{
 			"path": "/guide/v10/progressive-web-apps",
