@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import config from '../config.json';
 import controllers from './controllers';
-import { Redirect } from '../lib/router.js';
+import { Redirect } from '../lib/router';
 
 let { pushState } = history;
 history.pushState = (a, b, url) => {
