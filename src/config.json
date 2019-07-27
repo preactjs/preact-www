@@ -135,6 +135,10 @@
 			"name": "Linked State"
 		},
 		{
+			"path": "/guide/v10/refs",
+			"name": "References"
+		},
+		{
 			"path": "/guide/v10/external-dom-mutations",
 			"name": "External DOM Mutations"
 		},
