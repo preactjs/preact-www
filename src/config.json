@@ -143,6 +143,10 @@
 			"name": "References"
 		},
 		{
+			"path": "/guide/v10/context",
+			"name": "Context"
+		},
+		{
 			"path": "/guide/v10/external-dom-mutations",
 			"name": "External DOM Mutations"
 		},
