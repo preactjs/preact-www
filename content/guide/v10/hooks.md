@@ -16,6 +16,7 @@ There are two ways to import these, you can import them from
 ---
 
 - [Introduction](#introduction)
+- [The dependency argument](#the-dependency-argument)
 - [Stateful hooks](#stateful-hooks)
   - [useState](#usestate)
   - [useReducer](#usereducer)
@@ -101,6 +102,24 @@ Note how both `CounterA` and `CounterB` are completely independent of each other
 
 > If you're thinking that they may look a bit weird, than you're not alone. It took everybody a while to rethink our learned habits.
 
+## The dependency argument
+
+Many hooks feature an argument that can be used to limit when a hook should be updated. Preact will walk over the dependency array and check for referential equality. In the previous Counter example we've used it on `useCallback`:
+
+```jsx
+function useCounter() {
+  const [value, setValue] = useState(0);
+  const increment = useCallback(
+    () => setValue(value + 1),
+    // This is the dependency array
+    [value]
+  );
+  return { value, increment };
+}
+```
+
+In this example we always want to update the function reference to the callback whenever `value` changes. This is necessary because otherwise the callback would still reference the `value` variable of the time the callback was created in.
+
 ## Stateful hooks
 
 Here we'll see how we can introduce stateful logic into these
@@ -151,5 +170,52 @@ const Counter = () => {
 ## Context
 
 ## Side-Effects
+
+Side-Effects are at the heart of many modern Apps. Whether you want to fetch some data from an API or trigger an effect on the document, you'll find that the `useEffect` fits all your needs.
+
+```jsx
+useEffect(() => {
+  // Trigger your effect
+  return () => {
+    // Optional: Any cleanup code
+  };
+}, []);
+```
+
+We'll start with a `Title` component which should reflect the title to the document, so that we can see it in the addressbar of our tab in our browser.
+
+```jsx
+function PageTitle(props) {
+  useEffect(() => {
+    document.title = props.title;
+  }, [prop.title]);
+
+  return <h1>{props.title}</h1>;
+}
+```
+
+The first argument to `useEffect` is an argument-less callback that triggers the effect. In our case we only want to trigger it, when the title really has changed. There'd be no point in updating it when it stayed the same. That's why we're using the second argument to specify our [dependency-array](#the-dependency-argument).
+
+But sometimes we have a more complex use case. Think of a component which needs to subscribe to some data when it mounts and needs to unsubscribe when it unmounts. This can be accomplished with `useEffect` too. To run any cleanup code we just need to return a function in our callback.
+
+```jsx
+// Component that will always display the current window width
+function WindowWidth(props) {
+  const [width, setWidth] = useState(0);
+
+  function onResize() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  return <div>Window width: {width}</div>;
+}
+```
+
+> The cleanup function is optional. If you don't need to run any cleanup code, you don't need to return anything in the callback that's passed to `useEffect`.
 
 ## Recipes
