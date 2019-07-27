@@ -2,12 +2,13 @@ import { h } from 'preact';
 import style from './sidebar.less';
 import DocVersion from './../../doc-version';
 import SidebarNav from './sidebar-nav';
-import { useState, useCallback } from 'preact/hooks';
+import { useCallback } from 'preact/hooks';
 import config from '../../../config.json';
 import { useStore } from '../../store-adapter';
+import { useOverlayToggle } from '../../../lib/toggle-overlay';
 
 export default function Sidebar() {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 	const close = useCallback(() => setOpen(false));
 	const { docVersion } = useStore(['docVersion']).state;

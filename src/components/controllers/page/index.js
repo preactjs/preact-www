@@ -78,17 +78,20 @@ export default function Page({ route }) {
 	const name = getContent(route);
 
 	let hasSidebar = meta.toc !== false && isDocPage(url);
+	const canEdit = name != 'index' && name != '404';
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
 			<div class={style.outer}>
 				{hasSidebar && <Sidebar />}
 				<div class={style.inner}>
-					{name != 'index' && name != '404' && <EditThisPage />}
-					{name != 'index' && meta.show_title !== false && (
-						<h1 class={style.title}>{meta.title || route.title}</h1>
-					)}
-					<ContentRegion name={name} onLoad={onLoad} />
+					{!loading && canEdit && <EditThisPage />}
+					<div class={!loading && canEdit ? style.withEdit : undefined}>
+						{name != 'index' && meta.show_title !== false && (
+							<h1 class={style.title}>{meta.title || route.title}</h1>
+						)}
+						<ContentRegion name={name} onLoad={onLoad} />
+					</div>
 					<Footer />
 				</div>
 			</div>

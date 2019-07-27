@@ -5,10 +5,11 @@ import Search from './search';
 import style from './style';
 import { useStore } from '../store-adapter';
 import config from '../../config';
-import { useCallback, useEffect, useState } from 'preact/hooks';
+import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import ThemeSwitcher from '../theme-switcher';
+import { useOverlayToggle } from '../../lib/toggle-overlay';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -16,7 +17,7 @@ const LINK_FLAIR = {
 
 export default function Header() {
 	const { url } = useStore(['url']).state;
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
 	useEffect(() => {
