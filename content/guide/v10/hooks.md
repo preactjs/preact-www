@@ -165,6 +165,19 @@ const Counter = () => {
 
 ## Memoization
 
+In UI programming there is often some state or result that's expensive to calculate. With the `useMemo` hook we can memoize (as in cache) the results of that computation and only recaculate it, when one of the dependencies changes.
+
+```jsx
+const memoized = useMemo(
+  () => expensive(a, b),
+  // Only re-run the expensive function when any of these
+  // dependencies change
+  [a, b]
+);
+```
+
+> Don't run any effectful code inside `useMemo`. Side-effects belong in `useEffect`.
+
 ## Refs
 
 To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createrefs).
