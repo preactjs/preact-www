@@ -1,233 +1,166 @@
 ---
 name: Getting Started
-permalink: '/guide/getting-started'
 ---
 
-# Getting Started<!-- omit in toc -->
+# Getting Started <!-- omit in toc -->
 
-This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
+This guide helps you get up and running to start developing Preact apps. There are 3 popular ways to do so.
 
-> :information_desk_person: You [don't _have_ to use ES2015 to use Preact](https://github.com/developit/preact-without-babel)... but you should. This guide assumes you have some sort of ES2015 build set up using babel and/or webpack/browserify/gulp/grunt/etc.  If you don't, start with [preact-cli](https://github.com/developit/preact-cli) or a [CodePen Template](http://codepen.io/developit/pen/pgaROe?editors=0010).
-
----
-
-- [Import what you need](#import-what-you-need)
-  - [Global pragma](#global-pragma)
-- [Rendering JSX](#rendering-jsx)
-- [Components](#components)
-- [The Component Lifecycle](#the-component-lifecycle)
+If you're just starting out we highly recommend going with [preact-cli](#best-practices-powered-with-preact-cli).
 
 ---
 
+- [No build tools route](#no-build-tools-route)
+  - [Alternatives to JSX](#alternatives-to-jsx)
+- [Best practices powered with `preact-cli`](#best-practices-powered-with-preact-cli)
+  - [Getting ready for development](#getting-ready-for-development)
+  - [Making a production build](#making-a-production-build)
+- [Integrating Into An Existing Pipeline](#integrating-into-an-existing-pipeline)
+  - [Aliasing React to Preact](#aliasing-react-to-preact)
+    - [Aliasing in webpack](#aliasing-in-webpack)
+    - [Aliasing in parcel](#aliasing-in-parcel)
+    - [Aliasing in jest](#aliasing-in-jest)
 
-## Import what you need
+---
 
-The `preact` module provides both named and default exports, so you can either import everything under a namespace of your choosing, or just what you need as locals:
+## No build tools route
 
-**Named:**
+Preact has always been readily packaged to be used right in the browser. This doesn't require any build tools at all.
 
 ```js
-import { h, render, Component } from 'preact';
+import { h, Component, render } from 'https://unpkg.com/preact';
 
-// Tell Babel to transform JSX into h() calls:
-/** @jsx h */
+// Create your app
+const app = h('div', null, 'Hello World!`);
+
+// Inject your application into the an element with the id `app`.
+// Make sure that such an element exists in the dom ;)
+render(app, document.getElementById('app'));
 ```
 
-**Default:**
+The only difference is that you cannot use JSX, because JSX needs to be transpiled. We got you covered with an alternative in the next section. So keep reading.
+
+### Alternatives to JSX
+
+Writing raw `h` or `createElement` calls all the time is much less fun than using something JSX-like. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. It requires a built-step though, so we highly recommend an alternative called [htm].
+
+In a nutshell [htm] can be best decribed as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
 
 ```js
-import preact from 'preact';
+import { h, Component, render } from 'https://unpkg.com/preact';
+import { html, Component, render } from 'https://unpkg.com/htm';
 
-// Tell Babel to transform JSX into preact.h() calls:
-/** @jsx preact.h */
+// Initialize htm with Preact
+const html = htm.bind(h);
+
+const app = html`<div>Hello World!</div>`
+render(app, document.getElementById('app'));
 ```
 
-> Named imports work well for highly structured applications, whereas the default import is quick and never needs to be updated when using different parts of the library.
+It's a very popular way of writing Preact apps and we highly recommend checking out htm's [README][htm] file if you're interested in going with this route.
 
-**Using via a CDN:**
+## Best practices powered with `preact-cli`
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.min.js"></script>
+The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's build on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicty this is the most popular way to use Preact among our users.
 
-<!-- To load Preact as a JS Module: -->
-<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.mjs" type="module"></script>
+As the name implies, `preact-cli` is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
+
+```bash
+npm install -g preact-cli
 ```
 
-### Global pragma
+After that you'll have a new command in your terminal called `preact`. With it you can create a new application by executing the following command:
 
-Instead of declaring the `@jsx` pragma in your code, it's best to configure it globally in a `.babelrc`.
+```bash
+preact create default my-project
+```
 
-**Named:**
->**For Babel 5 and prior:**
->
-> ```json
-> { "jsxPragma": "h" }
-> ```
->
-> **For Babel 6:**
->
-> ```json
-> {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"h" }]
->   ]
-> }
-> ```
->
-> **For Babel 7:**
->
-> ```json
-> {
->   "plugins": [
->     ["@babel/plugin-transform-react-jsx", { "pragma":"h" }]
->   ]
-> }
-> ```
+The above command pulls the template from `preactjs-templates/default`, prompts for some information, and generates the project at `./my-project/`.
 
-**Default:**
->**For Babel 5 and prior:**
->
-> ```json
-> { "jsxPragma": "preact.h" }
-> ```
->
-> **For Babel 6:**
->
-> ```json
-> {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"preact.h" }]
->   ]
-> }
-> ```
->
-> **For Babel 7:**
->
-> ```json
-> {
->   "plugins": [
->     ["@babel/plugin-transform-react-jsx", { "pragma":"preact.h" }]
->   ]
-> }
-> ```
+> Tip: Any Github repo with a `'template'` folder can be used as a custom template: `preact create <username>/<repository> <project-name>`
 
----
+### Getting ready for development
 
+Now we're ready to start our application. To fire up the development server run the following command inside the freshly generated project folder (`my-project` in this example):
 
-## Rendering JSX
+```bash
+# Go into the generated project folder
+cd my-project/
 
-Out of the box, Preact provides an `h()` function that turns your JSX into Virtual DOM elements _([here's how](http://jasonformat.com/wtf-is-jsx))_. It also provides a `render()` function that creates a DOM tree from that Virtual DOM.
+# Start the devserver
+npm run dev
+```
 
-To render some JSX, just import those two functions and use them like so:
+Once the server is up you can access your app at the url that was printed in the console. Now you're ready to develop your app!
+
+### Making a production build
+
+There comes a time when you need to deploy your app somewhere. The cli ships with a handy `build` command which will generate a highly optimized build.
+
+```bash
+npm run build
+```
+
+Upon completion you'll have a new `build/` folder which can be deployed directly to a server.
+
+> For a full list of all available commands check out the list in preact-cli's [README file](https://github.com/preactjs/preact-cli#cli-options).
+
+## Integrating Into An Existing Pipeline
+
+If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them. No changes needed!
+
+### Aliasing React to Preact
+
+At some point you'll probably want to make use of the vast react ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it we need to point all `react` and `react-dom` imports to Preact. This step is called aliasing.
+
+#### Aliasing in webpack
+
+To alias any package in webpack you need to add the the `resolve.alias` section
+to your config. Depending on the configuration you're using this section may
+already be present, but missing the aliases for Preact.
 
 ```js
-import { h, render } from 'preact';
-
-render((
-	<div id="foo">
-		<span>Hello, world!</span>
-		<button onClick={ e => alert("hi!") }>Click Me</button>
-	</div>
-), document.body);
-```
-
-This should seem pretty straightforward if you've used [hyperscript] or one of its [many friends](https://github.com/developit/vhtml).
-
-Rendering hyperscript with a virtual DOM is pointless, though. We want to render components and have them updated when data changes - that's where the power of virtual DOM diffing shines. :star2:
-
-
----
-
-
-## Components
-
-Preact exports a generic `Component` class, which can be extended to build encapsulated, self-updating pieces of a User Interface.  Components support all of the standard React [lifecycle methods](#the-component-lifecycle), like `shouldComponentUpdate()` and `componentWillReceiveProps()`.  Providing specific implementations of these methods is the preferred mechanism for controlling _when_ and _how_ components update.
-
-Components also have a `render()` method, but unlike React this method is passed `(props, state)` as arguments. This provides an ergonomic means to destructure `props` and `state` into local variables to be referenced from JSX.
-
-Let's take a look at a very simple `Clock` component, which shows the current time.
-
-```js
-import { h, render, Component } from 'preact';
-
-class Clock extends Component {
-	render() {
-		let time = new Date().toLocaleTimeString();
-		return <span>{ time }</span>;
-	}
+const config = {
+  //...snip
+  resolve: {
+    alias: {
+        'react': 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat', // Must be below test-utils
+    },
 }
-
-// render an instance of Clock into <body>:
-render(<Clock />, document.body);
 ```
 
+#### Aliasing in parcel
 
-That's great. Running this produces the following HTML DOM structure:
+Parcel uses the standard `package.json` file to read configuration options under
+an `alias` key.
 
-```html
-<span>10:28:57 PM</span>
+```json
+{
+  "alias": {
+    "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat"
+  },
+}
 ```
 
+#### Aliasing in jest
 
----
-
-
-## The Component Lifecycle
-
-In order to have the clock's time update every second, we need to know when `<Clock>` gets mounted to the DOM. _If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._ Preact invokes the following lifecycle methods if they are defined for a Component:
-
-| Lifecycle method            | When it gets called                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
-
-
-
-So, we want to have a 1-second timer start once the Component gets added to the DOM, and stop if it is removed. We'll create the timer and store a reference to it in `componentDidMount`, and stop the timer in `componentWillUnmount`. On each timer tick, we'll update the component's `state` object with a new time value. Doing this will automatically re-render the component.
+Similar to bundlers, [jest](https://jestjs.io/) allows to rewrite module paths. The syntax is a bit
+different, than in say webpack, because it's based on regex. Add this to your
+jest configuration:
 
 ```js
-import { h, render, Component } from 'preact';
-
-class Clock extends Component {
-	constructor() {
-		super();
-		// set initial time:
-		this.state.time = Date.now();
-	}
-
-	componentDidMount() {
-		// update time every second
-		this.timer = setInterval(() => {
-			this.setState({ time: Date.now() });
-		}, 1000);
-	}
-
-	componentWillUnmount() {
-		// stop when not renderable
-		clearInterval(this.timer);
-	}
-
-	render(props, state) {
-		let time = new Date(state.time).toLocaleTimeString();
-		return <span>{ time }</span>;
-	}
+{
+  "moduleNameMapper": {
+    "react": "preact/compat"
+    "react-dom/test-utils": "preact/test-utils"
+    "react-dom": "preact/compat"
+  }
 }
-
-// render an instance of Clock into <body>:
-render(<Clock />, document.body);
 ```
 
+[htm]: https://github.com/developit/htm
 
----
-
-
-Now we have [a ticking clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
-
-
-[preact-boilerplate]: https://github.com/developit/preact-boilerplate
-[hyperscript]: https://github.com/dominictarr/hyperscript
