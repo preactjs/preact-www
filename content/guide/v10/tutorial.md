@@ -43,9 +43,9 @@ Congratulations, you've build your first Preact app!
 
 Rendering text is a start, but we want to make our app a little more interactive. We want to update it when data changes. :star2:
 
-Our endgoal is that we have an app where the user can enter a name and display it, when the form is submitted. For this we need to have something where we can store what we submitted. This is where [Components](/guide/v10/types-of-components) come into play.
+Our endgoal is that we have an app where the user can enter a name and display it, when the form is submitted. For this we need to have something where we can store what we submitted. This is where [Components](/guide/v10/components) come into play.
 
-So let's turn our existing App into a [Components](/guide/v10/types-of-components):
+So let's turn our existing App into a [Components](/guide/v10/components):
 
 ```jsx
 import { h, render, Component } from 'preact';

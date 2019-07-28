@@ -127,8 +127,8 @@
 			"name": "Switching to Preact"
 		},
 		{
-			"path": "/guide/v10/types-of-components",
-			"name": "Types of Components"
+			"path": "/guide/v10/components",
+			"name": "Components"
 		},
 		{
 			"path": "/guide/v10/hooks",
