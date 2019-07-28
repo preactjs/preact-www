@@ -16,6 +16,7 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
   - [Getting ready for development](#getting-ready-for-development)
   - [Making a production build](#making-a-production-build)
 - [Integrating Into An Existing Pipeline](#integrating-into-an-existing-pipeline)
+  - [Setting up JSX](#setting-up-jsx)
   - [Aliasing React to Preact](#aliasing-react-to-preact)
     - [Aliasing in webpack](#aliasing-in-webpack)
     - [Aliasing in parcel](#aliasing-in-parcel)
@@ -108,6 +109,23 @@ Upon completion you'll have a new `build/` folder which can be deployed directly
 ## Integrating Into An Existing Pipeline
 
 If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them. No changes needed!
+
+### Setting up JSX
+
+To transpile JSX you need a babel plugin that converts it to valid JavaScript code. The one we all use is [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx). Once installed you need to specify the function for JSX that should be used:
+
+```json
+{
+  "plugins": [
+    ["@babel/plugin-transform-react-jsx", {
+      "pragma": "h",
+      "pragmaFrag": "Fragment",
+    }]
+  ]
+}
+```
+
+> [babeljs](https://babeljs.io/) has one of the best documentation out there. We highly recommend checking it out for questions surrounding babel and how to set it up.
 
 ### Aliasing React to Preact
 
