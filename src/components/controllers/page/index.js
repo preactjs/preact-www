@@ -26,16 +26,6 @@ export function useTitle(title) {
 
 const noop = () => {};
 
-// const cached = !PRERENDER && document.querySelector('[type="text/prerender-data"]');
-// const bootRoute = cached && cached.getAttribute('data-preid');
-// const bootData =
-// 	cached &&
-// 	JSON.parse(
-// 		cached.firstChild.data
-// 			.replace(/(^<!--|-->$)/g, '')
-// 			.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-// 	);
-
 
 export function usePage(route) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
@@ -53,7 +43,6 @@ export function usePage(route) {
 	const [current, setCurrent] = useState(getContent(route));
 	
 	const bootData = getPrerenderData(current);
-	console.log({ current, bootData });
 
 	const [hydrated, setHydrated] = useState(!!bootData);
 	const content = hydrated && bootData.content;
