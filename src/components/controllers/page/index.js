@@ -8,6 +8,7 @@ import { useEffect, useState, useCallback } from 'preact/hooks';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
 import EditThisPage from '../../edit-button';
+import { getPrerenderData, InjectPrerenderData } from '../../../lib/prerender-data';
 
 const getContent = route => route.content || route.path;
 
@@ -25,16 +26,16 @@ export function useTitle(title) {
 
 const noop = () => {};
 
-const cached =
-	!PRERENDER && document.querySelector(`script[type="text/prerender-data"]`);
-const bootRoute = cached && cached.getAttribute('data-route');
-const bootData =
-	cached &&
-	JSON.parse(
-		cached.firstChild.data
-			.replace(/(^<!--|-->$)/g, '')
-			.replace(/--&gt;/g, '-->')
-	);
+// const cached = !PRERENDER && document.querySelector('[type="text/prerender-data"]');
+// const bootRoute = cached && cached.getAttribute('data-preid');
+// const bootData =
+// 	cached &&
+// 	JSON.parse(
+// 		cached.firstChild.data
+// 			.replace(/(^<!--|-->$)/g, '')
+// 			.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+// 	);
+
 
 export function usePage(route) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
@@ -49,16 +50,23 @@ export function usePage(route) {
 		};
 	}
 
-	const hydrated = bootData && bootRoute === route.path;
+	const [current, setCurrent] = useState(getContent(route));
+	
+	const bootData = getPrerenderData(current);
+	console.log({ current, bootData });
+
+	const [hydrated, setHydrated] = useState(!!bootData);
 	const content = hydrated && bootData.content;
 
-	const [loading, setLoading] = useState(!hydrated);
-	// const [meta, setMeta] = useState(cached || {});
-	const [meta, setMeta] = useState(hydrated ? bootData.meta : {});
-	const [current, setCurrent] = useState({});
+	const [loading, setLoading] = useState(true);
+	let [meta, setMeta] = useState(hydrated ? bootData.meta : {});
+	if (hydrated) meta = bootData.meta;
 
 	useEffect(() => {
-		if (!didLoad) {
+		if (hydrated) {
+			onLoad({ meta });
+		}
+		else if (!didLoad) {
 			setLoading(true);
 		}
 	}, [getContent(route)]);
@@ -70,7 +78,9 @@ export function usePage(route) {
 		didLoad = true;
 		setMeta(meta);
 		setLoading(false);
-		setCurrent(getContent(route));
+		const current = getContent(route);
+		setHydrated(!!bootData);
+		setCurrent(current);
 		// content was loaded. if this was a forward route transition, animate back to top
 		if (window.nextStateToTop) {
 			window.nextStateToTop = false;
@@ -92,7 +102,7 @@ export function usePage(route) {
 }
 
 export default function Page({ route }) {
-	const { loading, meta, content, onLoad } = usePage(route);
+	const { loading, meta, content, current, onLoad } = usePage(route);
 	const [toc, setToc] = useState(meta.toc);
 	const onToc = useCallback(clientMeta => {
 		setToc(clientMeta.toc || []);
@@ -103,6 +113,12 @@ export default function Page({ route }) {
 
 	const isReady = !loading && toc != null;
 	const hasToc = meta.toc !== false && toc && toc.length > 0;
+
+	// Note:
+	// "name" is the exact page ID from the URL
+	// "current" is the currently *displayed* page ID.
+
+	const showTitle = current != 'index' && meta.show_title !== false;
 
 	return (
 		<div class={cx(style.page, style[layout], hasToc && style.withSidebar)}>
@@ -116,13 +132,14 @@ export default function Page({ route }) {
 				/>
 				<div class={style.inner}>
 					<Hydrator
+						boot={isReady}
 						component={EditThisPage}
-						show={name != 'index' && name != '404'}
+						show={showTitle && current != '404'}
 					/>
 					<Hydrator
 						component={Title}
 						boot={isReady}
-						show={name != 'index' && meta.show_title !== false}
+						show={showTitle}
 						title={meta.title || route.title}
 					/>
 					<ContentRegion
@@ -134,18 +151,7 @@ export default function Page({ route }) {
 					<Footer />
 				</div>
 			</div>
-			{PRERENDER && (
-				<script
-					type="text/prerender-data"
-					data-route={route.path}
-					dangerouslySetInnerHTML={{
-						__html:
-							'<!--' +
-							JSON.stringify({ content, meta }).replace(/-->/g, '--&gt;') +
-							'-->'
-					}}
-				/>
-			)}
+			<InjectPrerenderData name={name} data={{ content, meta }} />
 		</div>
 	);
 }

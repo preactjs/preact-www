@@ -35,12 +35,23 @@ export default class Toc extends Component {
 				}
 			}, config);
 
-			const headings = document.querySelectorAll(
-				'content-region h2, content-region h3, content-region h4'
-			);
-			[].forEach.call(headings, heading => this.observer.observe(heading));
+			this.reset(this.props.items);
 		}
 	}
+
+	componentWillReceiveProps({ items }) {
+		if (items !== this.props.items) {
+			this.reset(items);
+		}
+	}
+
+	reset(items) {
+		if (this.observed) {
+			this.observed.forEach(c => this.observer.unobserve(c));
+		}
+		this.observed = [].concat(items || []).map(x => x.element);
+		this.observed.forEach(c => this.observer.observe(c));
+}
 
 	componentWillUnmount() {
 		if (this.observer) {

@@ -119,7 +119,8 @@ export function getToc(root) {
 			toc.push({
 				text: headings[i].textContent,
 				id: headings[i].getAttribute('id'),
-				level: Math.round(level)
+				level: Math.round(level),
+				element: headings[i]
 			});
 		}
 	}
