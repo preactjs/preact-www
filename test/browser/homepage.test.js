@@ -95,7 +95,7 @@ describe('Homepage', () => {
 
 		await click('a[href="/guide/v10/getting-started"]');
 
-		await expect(page).toMatch('Import what you need');
+		await expect(page).toMatch('No build tools');
 
 		expect(spy).not.toHaveBeenCalled();
 	});
@@ -131,6 +131,6 @@ describe('No JS', () => {
 			click('[href="/guide/v10/getting-started"]')
 		]);
 		expect(await page.url()).toMatch('/guide/v10/getting-started');
-		expect(await page.content()).toMatch('Import what you need');
+		expect(await page.content()).toMatch('No build tools');
 	});
 });
