@@ -107,16 +107,16 @@
 		},
 
 		{
-			"path": "/guide/v10/installation",
-			"name": "Installation"
-		},
-		{
 			"path": "/guide/v10/getting-started",
 			"name": "Getting Started"
 		},
 		{
 			"path": "/guide/v10/upgrade-guide",
 			"name": "Upgrading from 8.x"
+		},
+		{
+			"path": "/guide/v10/tutorial",
+			"name": "Tutorial"
 		},
 		{
 			"path": "/guide/v10/differences-to-react",
