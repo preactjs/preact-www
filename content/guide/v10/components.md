@@ -13,6 +13,8 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 - [Functional Components](#functional-components)
 - [Class Components](#class-components)
   - [Lifecycle Methods](#lifecycle-methods)
+    - [componentDidCatch](#componentdidcatch)
+- [Fragments](#fragments)
 
 ---
 
@@ -82,3 +84,69 @@ In order to have the clock's time update every second, we need to know when `<Cl
 | `componentDidUpdate`        | after `render()`                                 |
 
 > See [this diagram](https://twitter.com/dan_abramov/status/981712092611989509) to get a visual overview of how they relate to each other.
+
+#### componentDidCatch
+
+There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happend in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
+
+When an error is caught we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
+
+```jsx
+class Catcher extends Component {
+  state = { errored: false }
+
+  componentDidCatch(error) {
+    this.setState({ errored: true });
+  }
+
+  render(props, state) {
+    if (state.errored) {
+      return <p>Something went badly wrong</p>;
+    }
+    return props.children;
+  }
+}
+```
+
+## Fragments
+
+A `Fragment` allows you to return multiple elements at once. They solve the limitation of JSX where every "block" must have a single root element. You'll often encounter them in combination with lists, tables or with CSS flexbox where any intermediate element would otherwise affect styling.
+
+```jsx
+import { Fragment, render } from 'preact';
+
+function TodoItems() {
+  return (
+    <Fragment>
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+    </Fragment>
+  )
+}
+
+const App = (
+  <ul>
+    <TodoItems />
+    <li>D</li>
+  </ul>
+);
+
+render(App, container);
+// Renders:
+// <ul>
+//   <li>A</li>
+//   <li>B</li>
+//   <li>C</li>
+//   <li>D</li>
+// </ul>
+```
+
+Note that most modern transpilers allow you to use a shorter syntax for `Fragments`. The shorter one is a lot more common and is the one you'll typically encounter.
+
+```jsx
+// This:
+const Foo = <Fragment>foo</Fragment>;
+// ...is the same as this:
+const Bar = <>foo</>;
+```
