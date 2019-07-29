@@ -80,16 +80,6 @@ export const getContentOnServer = PRERENDER
 			const parsed = parseContent(data, 'md');
 			parsed.meta = parsed.meta || {};
 
-			// hoist title
-			const TITLE_REG = /^\s*#\s+(.+)\n+/;
-			if (!parsed.meta.title) {
-				let [, title] = parsed.content.match(TITLE_REG) || [];
-				if (title) {
-					parsed.content = parsed.content.replace(TITLE_REG, '');
-					parsed.meta.title = title;
-				}
-			}
-
 			// generate Table of Contents
 			const html = markdownToHtml(parsed.content);
 			const dom = new DOMParser().parseFromString(html, 'text/html');
@@ -101,8 +91,26 @@ export const getContentOnServer = PRERENDER
 
 function parseContent(text) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
-		meta = frontMatter && JSON.parse(frontMatter),
+		meta = frontMatter && JSON.parse(frontMatter) || {},
 		content = text.replace(FRONT_MATTER_REG, '');
+
+	// hoist title
+	const TITLE_REG = /^\s*#\s+(.+)\n+/;
+	if (!meta.title) {
+		let [, title] = content.match(TITLE_REG) || [];
+		if (title) {
+			content = content.replace(TITLE_REG, '');
+			meta.title = title;
+		}
+	}
+
+	// Many markdown formatters can generate the table of contents
+	// automatically. To skip a specific heading the use an html
+	// comment at the end of it. Example:
+	//
+	// ## Some random title <!-- omit in toc -->
+	//
+	meta.title = meta.title.replace(/\s*<!--.*-->/, '');
 
 	return {
 		content,
