@@ -18,13 +18,16 @@ There are two ways to import these, you can import them from
 - [Introduction](#introduction)
 - [The dependency argument](#the-dependency-argument)
 - [Stateful hooks](#stateful-hooks)
-  - [useState(initialState)](#usestateinitialstate)
-  - [useReducer(reducer, initialState)](#usereducerreducer-initialstate)
+  - [useState](#usestate)
+  - [useReducer](#usereducer)
 - [Memoization](#memoization)
+  - [useMemo](#usememo)
   - [useCallback](#usecallback)
-- [Refs](#refs)
-- [Context](#context)
+- [useRef](#useref)
+- [useContext](#usecontext)
 - [Side-Effects](#side-effects)
+  - [useEffect](#useeffect)
+  - [useLayoutEffect](#uselayouteffect)
 
 ---
 
@@ -127,7 +130,7 @@ functional components.
 Before hooks we had to make a class component every time we needed
 state. Now times have changed.
 
-### useState(initialState)
+### useState
 
 This hook accepts an argument, this will be the initial state. When
 invoking this hook returns an array of two variables. The first being
@@ -161,7 +164,7 @@ const Counter = () => {
 
 > When our initial state is expensive it's better to pass a function instead of a value.
 
-### useReducer(reducer, initialState)
+### useReducer
 
 The `useReducer` hook has a close resemblence to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
 
@@ -193,7 +196,11 @@ function Counter() {
 
 ## Memoization
 
-In UI programming there is often some state or result that's expensive to calculate. With the `useMemo` hook we can memoize (as in cache) the results of that computation and only recaculate it, when one of the dependencies changes.
+In UI programming there is often some state or result that's expensive to calculate. Memoization can cache the results of that calculation allowing it to be reused when the same input is used.
+
+### useMemo
+
+With the `useMemo` hook we can memoize the results of that computation and only recaculate it when one of the dependencies changes.
 
 ```jsx
 const memoized = useMemo(
@@ -219,7 +226,7 @@ const onClick = useCallback(
 
 > Fun fact: `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
-## Refs
+## useRef
 
 To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createrefs).
 
@@ -240,7 +247,7 @@ function Foo() {
 
 > Be careful not to confuse `useRef` with `createRef`.
 
-## Context
+## useContext
 
 To access context in a functional component we can use the `useContext` hook, without any high-order or wrapper components. The first argument must be the context object that's created from a `createContext` call.
 
@@ -266,7 +273,11 @@ function App() {
 
 ## Side-Effects
 
-Side-Effects are at the heart of many modern Apps. Whether you want to fetch some data from an API or trigger an effect on the document, you'll find that the `useEffect` fits all your needs.
+Side-Effects are at the heart of many modern Apps. Whether you want to fetch some data from an API or trigger an effect on the document, you'll find that the `useEffect` fits nearly all your needs. It's one of the main advantages of the hooks API, that it reshapes your mind into thinking in effects instead of a component's lifecycle.
+
+### useEffect
+
+As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect one if needed.
 
 ```jsx
 useEffect(() => {
@@ -312,3 +323,7 @@ function WindowWidth(props) {
 ```
 
 > The cleanup function is optional. If you don't need to run any cleanup code, you don't need to return anything in the callback that's passed to `useEffect`.
+
+### useLayoutEffect
+
+The signature is identical to [useEffect](#useeffect), but it will fire as soon as the component is diffed and the browser has a chance to paint.
