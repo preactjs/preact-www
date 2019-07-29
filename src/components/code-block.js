@@ -15,7 +15,7 @@ const CodeBlock = ({ children, ...props }) => {
 	let child = children && children[0],
 		isHighlight = child && child.type === 'code';
 	if (isHighlight) {
-		let text = child.props.children[0].replace(/(^\s+|\s+$)/g, ''),
+		let text = (child.props.children[0] || '').replace(/(^\s+|\s+$)/g, ''),
 			lang = (child.props.class && child.props.class).match(/lang-([a-z]+)/)[1],
 			highlighted = hljs.highlightAuto(text, lang ? [lang] : null),
 			hLang = highlighted.language,
