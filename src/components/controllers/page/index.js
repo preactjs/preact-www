@@ -1,14 +1,16 @@
 import { h } from 'preact';
+import { useEffect, useState, useCallback, useMemo } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion, { getContentOnServer } from '../../content-region';
 import config from '../../../config';
 import style from './style';
 import Footer from '../../footer';
-import { useEffect, useState, useCallback } from 'preact/hooks';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
 import EditThisPage from '../../edit-button';
 import { getPrerenderData, InjectPrerenderData } from '../../../lib/prerender-data';
+import { isDocPage } from '../../../lib/docs';
+import { useStore } from '../../store-adapter';
 
 const getContent = route => route.content || route.path;
 
@@ -45,17 +47,14 @@ export function usePage(route) {
 	const bootData = getPrerenderData(current);
 
 	const [hydrated, setHydrated] = useState(!!bootData);
-	const content = hydrated && bootData.content;
+	const content = hydrated && bootData && bootData.content;
 
 	const [loading, setLoading] = useState(true);
 	let [meta, setMeta] = useState(hydrated ? bootData.meta : {});
 	if (hydrated) meta = bootData.meta;
 
 	useEffect(() => {
-		if (hydrated) {
-			onLoad({ meta });
-		}
-		else if (!didLoad) {
+		if (!didLoad) {
 			setLoading(true);
 		}
 	}, [getContent(route)]);
@@ -65,9 +64,24 @@ export function usePage(route) {
 	let didLoad = false;
 	function onLoad({ meta }) {
 		didLoad = true;
+
+		// Don't show loader forever in case of an error
+		if (!meta) {
+			return;
+		}
+
+		// Many markdown formatters can generate the table of contents
+		// automatically. To skip a specific heading the use an html
+		// comment at the end of it. Example:
+		//
+		// ## Some random title <!-- omit in toc -->
+		//
+		meta.title = meta.title.replace(/\s*<!--.*-->/, '');
+
 		setMeta(meta);
 		setLoading(false);
 		const current = getContent(route);
+		const bootData = getPrerenderData(current);
 		setHydrated(!!bootData);
 		setCurrent(current);
 		// content was loaded. if this was a forward route transition, animate back to top
@@ -96,34 +110,38 @@ export default function Page({ route }) {
 	const onToc = useCallback(clientMeta => {
 		setToc(clientMeta.toc || []);
 	});
+	const { url } = useStore(['url']).state;
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContent(route);
 
 	const isReady = !loading && toc != null;
-	const hasToc = meta.toc !== false && toc && toc.length > 0;
 
 	// Note:
 	// "name" is the exact page ID from the URL
 	// "current" is the currently *displayed* page ID.
 
 	const showTitle = current != 'index' && meta.show_title !== false;
+	const canEdit = showTitle && current != '404';
+	const hasSidebar = meta.toc !== false && toc && toc.length > 0 && isDocPage(url);
+	// let hasSidebar = meta.toc !== false && isDocPage(url);
 
 	return (
-		<div class={cx(style.page, style[layout], hasToc && style.withSidebar)}>
+		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
 			<div class={style.outer}>
 				<Hydrator
 					wrapperProps={{ class: style.sidebarWrap }}
 					component={Sidebar}
 					boot={isReady}
+					show={hasSidebar}
 					toc={toc}
 				/>
 				<div class={style.inner}>
 					<Hydrator
 						boot={isReady}
 						component={EditThisPage}
-						show={showTitle && current != '404'}
+						show={canEdit}
 					/>
 					<Hydrator
 						component={Title}

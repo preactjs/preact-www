@@ -3,7 +3,18 @@ name: External DOM Mutations
 permalink: '/guide/external-dom-mutations'
 ---
 
-# 外部 DOM 修改
+# 外部 DOM 修改<!-- omit in toc -->
+
+---
+
+- [综述](#综述)
+- [技巧](#技巧)
+- [样例演练](#样例演练)
+- [示范](#示范)
+- [真实场景中的样例](#真实场景中的样例)
+
+---
+
 
 ## 综述
 

@@ -2,19 +2,16 @@
 
 .toc {
 	display: block;
+	position: relative;
+	padding: 1rem 2rem 1.5rem;
+	border-radius: 2px;
+
+	@media @sidebar-break {
+		padding: 1.5rem 1rem 2rem 2rem;
+	}
 
 	&.disabled {
 		display: none;
-	}
-
-	nav {
-		position: relative;
-		padding: 1.5rem 2rem;
-		border-radius: 2px;
-
-		@media @sidebar-break {
-			padding: 0 1rem 2rem 2rem;
-		}
 	}
 }
 

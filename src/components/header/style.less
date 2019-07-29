@@ -21,7 +21,7 @@
 
 		&.open {
 			background: #222;
-			height: 100%;
+			height: var(--vh);
 			overflow: auto;
 			justify-content: space-between;
 			overflow-scrolling: touch;
@@ -286,7 +286,7 @@
 .social {
 	position: absolute;
 	height: 2rem;
-	top: calc(100vh - 3rem); // TODO: Why does bottom not work?
+	top: calc(var(--vh) - 3rem); // TODO: Why does bottom not work?
 	padding: 0 1rem;
 	display: flex;
 	width: 100%;

@@ -3,16 +3,22 @@ name: Como começar
 permalink: '/guide/getting-started'
 ---
 
-# Como Começar
+# Como Começar<!-- omit in toc -->
 
 Aqui, você será guiado a criar um componente simples de relógio contador. Informações mais detalhadas de cada tópico podem ser encontradas nas páginas dedicadas sobre o menu "Guide".
-
 
 > :information_desk_person: Você [não _tem_ de usar ES2015 para usar Preact](https://github.com/developit/preact-without-babel)... mas deveria.
 Esse guia assume que você tem algum tipo de build ES2015 configurado utilizando Babel e/ou webpack/browserify/gulp/grunt/etc. Se você não tem, inicie com o [preact-boilerplate] ou um [template do CodePen ](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 ---
 
+- [Importe o que você precisa](#importe-o-que-você-precisa)
+  - [Pragma global](#pragma-global)
+- [Renderizando JSX](#renderizando-jsx)
+- [Componentes](#componentes)
+- [Ciclo de Vida de Componentes](#ciclo-de-vida-de-componentes)
+
+---
 
 ## Importe o que você precisa
 

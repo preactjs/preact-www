@@ -3,11 +3,18 @@ name: Forms
 permalink: '/guide/forms'
 ---
 
-# 表单
+# 表单<!-- omit in toc -->
 
 在 Preact 中，表单元素的行为表现和他们在 React 中十分相似，除了不支持一些 "静态"（初始值）的 props/attributes。
 **[React 表单文档](https://facebook.github.io/react/docs/forms.html)**
 
+---
+
+- [受控 & 不受控 组件](#受控--不受控-组件)
+- [多选框 & 单选框](#多选框--单选框)
+  - [多选框样例](#多选框样例)
+
+---
 
 ## 受控 & 不受控 组件
 

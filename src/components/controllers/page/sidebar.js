@@ -1,13 +1,23 @@
 import { h } from 'preact';
 import style from './sidebar.less';
 import DocVersion from './../../doc-version';
-import Toc from './table-of-content';
-import { useState, useCallback } from 'preact/hooks';
+import SidebarNav from './sidebar-nav';
+import { useCallback } from 'preact/hooks';
+import config from '../../../config.json';
+import { useStore } from '../../store-adapter';
+import { useOverlayToggle } from '../../../lib/toggle-overlay';
 
-export default function Sidebar(props) {
-	const [open, setOpen] = useState(false);
+export default function Sidebar() {
+	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 	const close = useCallback(() => setOpen(false));
+	const { docVersion } = useStore(['docVersion']).state;
+
+	// Get menu items for the current version of the docs
+	const docNav = config.docs
+		.filter(item => item.path.indexOf(`/v${docVersion}`) > -1)
+		.map(item => ({ text: item.name, level: 2, href: item.path }));
+
 	return (
 		<div class={style.wrapper} data-open={open}>
 			<button class={style.toggle} onClick={toggle} value="sidebar">
@@ -16,7 +26,7 @@ export default function Sidebar(props) {
 			<aside class={style.sidebar}>
 				<div class={style.sidebarInner}>
 					<DocVersion />
-					<Toc items={props.toc} onClick={close} />
+					<SidebarNav items={docNav} onClick={close} />
 				</div>
 			</aside>
 		</div>

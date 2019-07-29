@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Primeros pasos
+# Primeros pasos<!-- omit in toc -->
 
 En esta guía vamos a ver cómo crear un simple componente de "Reloj". Puedes encontrar información más detallada para cada tema dentro del menú de Guía.
 
@@ -11,6 +11,13 @@ En esta guía vamos a ver cómo crear un simple componente de "Reloj". Puedes en
 
 ---
 
+- [Importa lo que necesitas](#importa-lo-que-necesitas)
+  - [Global pragma](#global-pragma)
+- [Renderizado de JSX](#renderizado-de-jsx)
+- [Componentes](#componentes)
+- [Ciclo de vida de los Componentes](#ciclo-de-vida-de-los-componentes)
+
+---
 
 ## Importa lo que necesitas
 

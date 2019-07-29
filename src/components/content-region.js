@@ -168,9 +168,8 @@ export default class ContentRegion extends Component {
 		this.fetch();
 	}
 
-	componentDidUpdate({ name, lang }, { content }) {
+	componentDidUpdate({ name, lang }) {
 		if (name !== this.props.name || lang !== this.props.lang) this.fetch();
-		if (content !== this.state.content) this.updateToc();
 	}
 
 	render(
@@ -185,11 +184,6 @@ export default class ContentRegion extends Component {
 				({ content } = getContentOnServer(location.pathname));
 			}
 		}
-
-		// if (!content) {
-		// 	console.warn('No content received (name="'+name+'"), falling back to regionHtml.');
-		// 	props.dangerouslySetInnerHTML = `<div>${regionHtml}</div>`;
-		// }
 
 		return (
 			<content-region {...props}>

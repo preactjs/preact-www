@@ -3,14 +3,24 @@ name: Differences to React
 permalink: '/guide/differences-to-react'
 ---
 
-# 与 React 的不同之处
+# 与 React 的不同之处<!-- omit in toc -->
 
 Preact 本身并没有去重新实现一遍 React。它有些不同之处。大部份的不同都是很细微的，而且可以完全通过 [preact-compat] 去掉。这是一个轻量级的在 Preact 的基础上，尝试 100% 去实现 React 的接口。
 
 Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻量** 而 **专注** —— 否则，给 React 项目提交优化方案会更为明智，而 React 本身也已经是一个非常复杂和良好设计的代码库。
 
+---
+
+- [版本兼容](#版本兼容)
+- [被包含的特性](#被包含的特性)
+- [新增特性](#新增特性)
+- [缺少特性](#缺少特性)
+- [有什么区别？](#有什么区别)
+
+---
 
 ## 版本兼容
+
 对于 Preact 和 [preact-compat]， 版本兼容通过 _current_ 和 _previous_ 主要的 React 发布去衡量。当新的特性被 React 团队公布的时候，若考虑到 [项目目标] 也非常合理，它们可能会被添加到 Preact 的核心当中。这是一个相对民主的迭代过程，持续通过公开的使用 issues 和 pull request 来进行的讨论和决策。
 
 > 因此，当讨论兼容性和比较的时候，官网和文档会指明 React `0.14.x` 和 `15.x`。

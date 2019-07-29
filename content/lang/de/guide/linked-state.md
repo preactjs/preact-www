@@ -3,10 +3,18 @@ name: Verlinkter State
 permalink: '/guide/linked-state'
 ---
 
-# Verlinkter State
+# Verlinkter State<!-- omit in toc -->
 
 Ein Bereich, den Preact ausführlicher als React behandelt ist das Optimieren der Änderungen von States. Ein gängiges Schema in ES2015-React-Code ist das Benutzen von Arrow-Funktionen innerhalb einer `render()`-Methode, um States im Falle eines Ereignisses zu aktualisieren. Funktionen, die nur innerhalb einer einzelnen Render-Instanz leben ist ineffizient und zwingt den Garbage Collector dazu, deutlich mehr Arbeit als nötig wäre zu verrichten.
 
+---
+
+- [Der schönere, manuelle Weg](#der-schönere-manuelle-weg)
+- [Verlinkter State eilt zur Rettung](#verlinkter-state-eilt-zur-rettung)
+- [Eigene Ereignispfade](#eigene-ereignispfade)
+  - [Illustration: Gruppierte Radio Buttons](#illustration-gruppierte-radio-buttons)
+
+---
 
 ## Der schönere, manuelle Weg
 

@@ -27,52 +27,7 @@
 		{
 			"name": "Guide",
 			"content": "guide",
-			"routes": [
-				{
-					"path": "/guide/getting-started",
-					"name": "Getting Started"
-				},
-				{
-					"path": "/guide/differences-to-react",
-					"name": "Differences to React"
-				},
-				{
-					"path": "/guide/switching-to-preact",
-					"name": "Switching to Preact"
-				},
-				{
-					"path": "/guide/types-of-components",
-					"name": "Types of Components"
-				},
-				{
-					"path": "/guide/api-reference",
-					"name": "API Reference"
-				},
-				{
-					"path": "/guide/forms",
-					"name": "Forms"
-				},
-				{
-					"path": "/guide/linked-state",
-					"name": "Linked State"
-				},
-				{
-					"path": "/guide/external-dom-mutations",
-					"name": "External DOM Mutations"
-				},
-				{
-					"path": "/guide/extending-component",
-					"name": "Extending Component"
-				},
-				{
-					"path": "/guide/unit-testing-with-enzyme",
-					"name": "Unit Testing with Enzyme"
-				},
-				{
-					"path": "/guide/progressive-web-apps",
-					"name": "Progressive Web Apps"
-				}
-			]
+			"path": "/guide/v10/getting-started"
 		},
 		{
 			"name": "About",
@@ -104,6 +59,125 @@
 			"path": "/repl",
 			"title": "REPL",
 			"controller": "Repl"
+		}
+	],
+	"docs": [
+		{
+			"path": "/guide/v8/getting-started",
+			"name": "Getting Started"
+		},
+		{
+			"path": "/guide/v8/differences-to-react",
+			"name": "Differences to React"
+		},
+		{
+			"path": "/guide/v8/switching-to-preact",
+			"name": "Switching to Preact"
+		},
+		{
+			"path": "/guide/v8/types-of-components",
+			"name": "Types of Components"
+		},
+		{
+			"path": "/guide/v8/api-reference",
+			"name": "API Reference"
+		},
+		{
+			"path": "/guide/v8/forms",
+			"name": "Forms"
+		},
+		{
+			"path": "/guide/v8/linked-state",
+			"name": "Linked State"
+		},
+		{
+			"path": "/guide/v8/external-dom-mutations",
+			"name": "External DOM Mutations"
+		},
+		{
+			"path": "/guide/v8/extending-component",
+			"name": "Extending Component"
+		},
+		{
+			"path": "/guide/v8/unit-testing-with-enzyme",
+			"name": "Unit Testing with Enzyme"
+		},
+		{
+			"path": "/guide/v8/progressive-web-apps",
+			"name": "Progressive Web Apps"
+		},
+
+		{
+			"path": "/guide/v10/getting-started",
+			"name": "Getting Started"
+		},
+		{
+			"path": "/guide/v10/upgrade-guide",
+			"name": "Upgrading from 8.x"
+		},
+		{
+			"path": "/guide/v10/differences-to-react",
+			"name": "Differences to React"
+		},
+		{
+			"path": "/guide/v10/switching-to-preact",
+			"name": "Switching to Preact"
+		},
+		{
+			"path": "/guide/v10/types-of-components",
+			"name": "Types of Components"
+		},
+		{
+			"path": "/guide/v10/hooks",
+			"name": "Hooks"
+		},
+		{
+			"path": "/guide/v10/api-reference",
+			"name": "API Reference"
+		},
+		{
+			"path": "/guide/v10/forms",
+			"name": "Forms"
+		},
+		{
+			"path": "/guide/v10/linked-state",
+			"name": "Linked State"
+		},
+		{
+			"path": "/guide/v10/refs",
+			"name": "References"
+		},
+		{
+			"path": "/guide/v10/context",
+			"name": "Context"
+		},
+		{
+			"path": "/guide/v10/external-dom-mutations",
+			"name": "External DOM Mutations"
+		},
+		{
+			"path": "/guide/v10/debugging",
+			"name": "Debugging Tools"
+		},
+		{
+			"path": "/guide/v10/server-side-rendering",
+			"name": "Server-Side Rendering"
+		},
+		{
+			"path": "/guide/v10/extending-component",
+			"name": "Extending Component"
+		},
+		{
+			"path": "/guide/v10/unit-testing-with-enzyme",
+			"name": "Unit Testing with Enzyme"
+		},
+		{
+			"path": "/guide/v10/web-components",
+			"name": "Web Components"
+		},
+		{
+			"path": "/guide/v10/progressive-web-apps",
+			"name": "Progressive Web Apps"
 		}
 	]
 }
