@@ -13,7 +13,6 @@ export function getPrerenderData(name) {
 			let data;
 			try {
 			 data = JSON.parse(prerenderNodes[i].firstChild.data
-				.replace(/(^<!--|-->$)/g, '')
 				.replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
 			} catch (e) {}
 			return prerenderData[name] = data;
@@ -30,7 +29,7 @@ export const InjectPrerenderData = PRERENDER ? (
 				type={TYPE}
 				data-pd={name}
 				dangerouslySetInnerHTML={{
-					__html: '<!--' + content + '-->'
+					__html: content
 				}}
 			/>
 		);
