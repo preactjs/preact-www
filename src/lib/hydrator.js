@@ -1,4 +1,4 @@
-import { Component, render, createRef } from 'preact';
+import { Component, render, hydrate, createRef } from 'preact';
 import { lazily, cancelLazily } from './lazily';
 
 function interopDefault(mod) {
@@ -16,6 +16,15 @@ function ServerHydrator({ load, component, wrapperProps, ...props }) {
 	);
 }
 
+class ContextProvider extends Component {
+	getChildContext() {
+		return this.props.context;
+	}
+	render(props) {
+		return props.children;
+	}
+}
+
 class Hydrator extends Component {
 	root = createRef();
 
@@ -28,8 +37,8 @@ class Hydrator extends Component {
 			this.timer = lazily(() => {
 				this.timer = null;
 				this.Child = interopDefault(exports);
-				this.hydrated = true;
 				this._render(props);
+				this.hydrated = true;
 			});
 		};
 		if (component) return ready(component);
@@ -40,7 +49,14 @@ class Hydrator extends Component {
 
 	_render(props) {
 		const { Child } = this;
-		render(<Child {...props} />, this.root.current);
+		// hydrate on first run, then normal renders thereafter
+		const doRender = this.hydrated ? render : hydrate;
+		doRender(
+			<ContextProvider context={this.context}>
+				<Child {...props} />
+			</ContextProvider>,
+			this.root.current
+		);
 	}
 
 	shouldComponentUpdate(nextProps) {
