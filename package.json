@@ -42,6 +42,7 @@
       }
     }
   },
+  "eslintIgnore": ["prism.js"],
   "jest": {
     "preset": "jest-puppeteer"
   },
