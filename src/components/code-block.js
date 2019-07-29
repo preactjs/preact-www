@@ -1,31 +1,32 @@
 import { h } from 'preact';
 import { Link } from 'preact-router';
+import * as prism from '../lib/prism';
 import cx from '../lib/cx';
-import hljs from 'highlight.js/lib/highlight';
-import javascript from 'highlight.js/lib/languages/javascript';
-import json from 'highlight.js/lib/languages/json';
-import xml from 'highlight.js/lib/languages/xml';
 
-const LANGUAGES = { javascript, json, xml };
-Object.keys(LANGUAGES).forEach(key =>
-	hljs.registerLanguage(key, LANGUAGES[key])
-);
+/*global PRERENDER */
 
 const CodeBlock = ({ children, ...props }) => {
-	let child = children && children[0],
-		isHighlight = child && child.type === 'code';
+	let child = children && children[0];
+	let isHighlight = child && child.type === 'code';
+
 	if (isHighlight) {
-		let text = (child.props.children[0] || '').replace(/(^\s+|\s+$)/g, ''),
-			lang = (child.props.class && child.props.class).match(/lang-([a-z]+)/)[1],
-			highlighted = hljs.highlightAuto(text, lang ? [lang] : null),
-			hLang = highlighted.language,
-			repl =
-				hLang === 'js' && text.split('\n').length > 2 && props.repl !== 'false';
+		let text = (child.props.children[0] || '').replace(/(^\s+|\s+$)/g, '');
+		let lang = (child.props.class && child.props.class).match(
+			/lang-([a-z]+)/
+		)[1];
+
+		let highlighted = text;
+		if (!PRERENDER && prism.languages[lang]) {
+			highlighted = prism.highlight(text, prism.languages[lang], lang);
+		}
+		let repl =
+			lang === 'js' && text.split('\n').length > 2 && props.repl !== 'false';
+
 		return (
-			<pre class={cx('highlight', `highlight-${hLang}`, props.class)}>
+			<pre class={cx('highlight', props.class)}>
 				<code
-					class={`hljs lang-${hLang}`}
-					dangerouslySetInnerHTML={{ __html: highlighted.value }}
+					class={`language-${lang}`}
+					dangerouslySetInnerHTML={{ __html: highlighted }}
 				/>
 				{repl && (
 					<Link
