@@ -110,7 +110,9 @@ function parseContent(text) {
 	//
 	// ## Some random title <!-- omit in toc -->
 	//
-	meta.title = meta.title.replace(/\s*<!--.*-->/, '');
+	if (meta.title) {
+		meta.title = meta.title.replace(/\s*<!--.*-->/, '');
+	}
 
 	return {
 		content,
