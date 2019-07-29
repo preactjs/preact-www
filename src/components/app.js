@@ -9,7 +9,7 @@ import { getCurrentDocVersion } from '../lib/docs';
 export default class App extends Component {
 	store = createStore({
 		url: this.props.url || location.pathname,
-		lang: 'en',
+		lang: '',
 		docVersion: getCurrentDocVersion(location.pathname)
 	});
 
