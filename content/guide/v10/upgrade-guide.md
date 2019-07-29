@@ -12,11 +12,7 @@ Preact X brings many new exciting features such as `Fragments`, `hooks` and much
 
 - [Upgrading dependencies](#upgrading-dependencies)
   - [Updating preact-related libraries](#updating-preact-related-libraries)
-  - [Setting up aliases](#setting-up-aliases)
-    - [Aliasing in `preact-cli`](#aliasing-in-preact-cli)
-    - [Aliasing in `webpack`](#aliasing-in-webpack)
-    - [Aliasing in `parcel`](#aliasing-in-parcel)
-    - [Aliasing in `jest`](#aliasing-in-jest)
+  - [Compat has moved to core](#compat-has-moved-to-core)
   - [Third party libraries](#third-party-libraries)
     - [preact-redux](#preact-redux)
     - [mobx-preact](#mobx-preact)
@@ -63,66 +59,13 @@ To guarantee a stable ecosystem for our users (especially for our enterprise use
 
 **All libraries for X can be installed via the `next` tag. For example: `npm install preact-router@next`**
 
-### Setting up aliases
+### Compat has moved to core
 
-To make third-party react libraries work with Preact we ship a **compat**ibility layer that can be imported via `preact/compat`. This is pretty much the same as for Preact 8.x with the notable exception that you need to change one character: `preact-compat` -> `preact/compat` (note the slash).
+To make third-party react libraries work with Preact we ship a **compat**ibility layer that can be imported via `preact/compat`. It was previously available as a separate package, but to make coordination easier we've moved it into the core repository. So you'll need to change existing import or alias declarations from `preact-compat` to `preact/compat` (note the slash).
 
 Be careful not to introduce any spelling errors here. A common one seems to be to write `compact` instead of `compat`. If you're having trouble with that, think of `compat` as the `compatibility` layer for react. That's where the name is coming from.
 
-#### Aliasing in `preact-cli`
-
-This is done automatically for you. Use the upcoming version that will be tagged as stable once Preact X is released:
-
-```bash
-npm install preact-cli@rc
-```
-
-#### Aliasing in `webpack`
-
-To alias any package in webpack you need to add the the `resolve.alias` section to your config. Depending on the configuration you're using this section may already be present, but missing the aliases for Preact.
-
-```js
-const config = {
-  //...snip
-  resolve: {
-    alias: {
-      'react': 'preact/compat',
-      'react-dom/test-utils': 'preact/test-utils',
-      'react-dom': 'preact/compat', // Must be below test-utils
-    },
-}
-```
-
-#### Aliasing in `parcel`
-
-Parcel uses the standard `package.json` file to read configuration options under an `alias` key.
-
-```json
-{
-  "name": "my-package",
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
-  },
-  "dependencies": {},
-  "devDependencies": {}
-}
-```
-
-#### Aliasing in `jest`
-
-Similar to bundlers, `jest` allows to rewrite module paths. The syntax is a bit different, than in say webpack, because it's based on regex. Add this to your jest configuration:
-
-```js
-{
-  "moduleNameMapper": {
-    "react": "preact/compat"
-    "react-dom/test-utils": "preact/test-utils"
-    "react-dom": "preact/compat"
-  }
-}
-```
+> If you're using `preact-cli` than this step is already done for you :tada:
 
 ### Third party libraries
 

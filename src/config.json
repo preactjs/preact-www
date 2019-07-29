@@ -116,6 +116,10 @@
 			"name": "Upgrading from 8.x"
 		},
 		{
+			"path": "/guide/v10/tutorial",
+			"name": "Tutorial"
+		},
+		{
 			"path": "/guide/v10/differences-to-react",
 			"name": "Differences to React"
 		},
@@ -124,8 +128,8 @@
 			"name": "Switching to Preact"
 		},
 		{
-			"path": "/guide/v10/types-of-components",
-			"name": "Types of Components"
+			"path": "/guide/v10/components",
+			"name": "Components"
 		},
 		{
 			"path": "/guide/v10/hooks",
