@@ -3,7 +3,7 @@
 const flatMap = require('flatmap');
 const config = require('./config.json');
 
-const routes = flatMap(config.nav, arr =>
+const routes = flatMap(config.nav.concat(config.docs), arr =>
 	arr.path ? { path: arr.path, name: arr.name } : arr.routes
 );
 
