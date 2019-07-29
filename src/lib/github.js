@@ -11,8 +11,6 @@ export const repoInfo = memoize(repo =>
 	fetch(`https://api.github.com/repos/${repo}`)
 		.then(checkStatus)
 		.then(r => r.json())
-		.then(d => d.stargazers || d.watchers)
-		.catch(() => 'unknown')
 );
 
 export const fetchRelease = memoize(repo =>

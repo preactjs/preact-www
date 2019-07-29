@@ -3,7 +3,9 @@ import { localStorageGet, localStorageSet } from '../lib/localstorage';
 import { repoInfo } from '../lib/github';
 
 const githubStars = repo =>
-	repoInfo(repo).then(d => d.stargazers || d.watchers);
+	repoInfo(repo).then(d => d.stargazers_count || d.watchers_count);
+
+const formatNumber = num => (num + '').replace(/(\d{3})$/g, ',$1');
 
 // make available to homepage REPL demo
 if (typeof window !== 'undefined') window.githubStars = githubStars;
@@ -27,12 +29,14 @@ export default class GithubStars extends Component {
 
 	render({ user, repo, simple, children }, { stars }) {
 		let url = `https://github.com/${user}/${repo}/`;
-		if (simple)
+		if (simple) {
 			return (
 				<a href={url} class="stars" target="_blank" rel="noopener noreferrer">
 					⭐️ {stars} Stars
 				</a>
 			);
+		}
+
 		return (
 			<span class="github-btn">
 				<a
@@ -50,7 +54,7 @@ export default class GithubStars extends Component {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					{stars ? Math.round(stars).toLocaleString() : children || '..'}
+					{stars ? formatNumber(Math.round(stars)) : children || '..'}
 				</a>
 			</span>
 		);
