@@ -1,18 +1,12 @@
 import { createContext } from 'preact';
 import { useContext, useEffect, useCallback, useState } from 'preact/hooks';
 import { mapActions } from 'unistore/src/util';
-import createStore from '../store';
 
 /**
  * Store context that will be passed around the app. Complex shared state
  * should be stored here.
  */
-export const storeCtx = createContext(
-	createStore({
-		url: location.pathname,
-		lang: ''
-	})
-);
+export const storeCtx = createContext();
 
 function mapStateToProps(keys, state) {
 	return keys.reduce((acc, key) => {
