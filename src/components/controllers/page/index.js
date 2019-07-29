@@ -102,7 +102,8 @@ export default function Page({ route }) {
 	const onToc = useCallback(clientMeta => {
 		setToc(clientMeta.toc || []);
 	});
-	const { url } = useStore(['url']).state;
+	const urlState = useStore(['url']).state;
+	const url = useMemo(() => urlState.url, [current]);
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContent(route);
@@ -115,8 +116,7 @@ export default function Page({ route }) {
 
 	const showTitle = current != 'index' && meta.show_title !== false;
 	const canEdit = showTitle && current != '404';
-	const hasSidebar = meta.toc !== false && toc && toc.length > 0 && isDocPage(url);
-	// let hasSidebar = meta.toc !== false && isDocPage(url);
+	const hasSidebar = meta.toc !== false && isDocPage(url);
 
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
