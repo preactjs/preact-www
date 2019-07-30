@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useEffect, useState, useCallback, useMemo } from 'preact/hooks';
+import { useEffect, useState, useMemo } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion, { getContentOnServer } from '../../content-region';
 import config from '../../../config';
