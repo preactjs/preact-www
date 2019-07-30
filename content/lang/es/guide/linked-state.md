@@ -9,10 +9,7 @@ Hay un área de Preact que va un poco más allá que React a la hora de optimiza
 
 ---
 
-- [La forma linda y manual](#la-forma-linda-y-manual)
-- [Estado asociado al rescate](#estado-asociado-al-rescate)
-- [Rutas de eventos personalizadas](#rutas-de-eventos-personalizadas)
-  - [Ejemplo: Radio Buttons Agrupados](#ejemplo-radio-buttons-agrupados)
+<toc></toc>
 
 ---
 

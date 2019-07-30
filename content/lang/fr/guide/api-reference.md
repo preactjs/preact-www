@@ -7,11 +7,7 @@ permalink: '/guide/api-reference'
 
 ---
 
-- [`Preact.Component`](#preactcomponent)
-  - [`Component.render(props, state)`](#componentrenderprops-state)
-  - [Méthodes de cycle de vie](#méthodes-de-cycle-de-vie)
-- [`Preact.render()`](#preactrender)
-- [`Preact.h()` / `Preact.createElement()`](#preacth--preactcreateelement)
+<toc></toc>
 
 ---
 

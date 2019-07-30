@@ -12,21 +12,7 @@ Es gibt zwei verschiedene Herangehensweisen, wie man von React zu Preact wechsel
 
 ---
 
-- [Einfach: `preact-compat`-Alias](#einfach-preact-compat-alias)
-  - [`preact-compat`-Alias setzen](#preact-compat-alias-setzen)
-    - [Setzen des Alias mithilfe von Webpack](#setzen-des-alias-mithilfe-von-webpack)
-    - [Setzen des Alias mithilfe von Browserify](#setzen-des-alias-mithilfe-von-browserify)
-    - [Manuelles Setzen des Alias](#manuelles-setzen-des-alias)
-    - [Setzen des Alias mithilfe von Node und module-alias](#setzen-des-alias-mithilfe-von-node-und-module-alias)
-  - [Erstellen und Testen](#erstellen-und-testen)
-- [Optimal: Wechseln zu Preact](#optimal-wechseln-zu-preact)
-  - [1. Preact installieren](#1-preact-installieren)
-  - [2. JSX Pragma: Zu `h()` transpilieren](#2-jsx-pragma-zu-h-transpilieren)
-    - [Mithilfe von Babel](#mithilfe-von-babel)
-    - [Mithilfe von Kommentaren](#mithilfe-von-kommentaren)
-    - [Mithilfe von Bublé](#mithilfe-von-bublé)
-  - [3. Legacy Code aktualisieren](#3-legacy-code-aktualisieren)
-  - [4. Root Render vereinfachen](#4-root-render-vereinfachen)
+<toc></toc>
 
 ---
 

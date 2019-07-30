@@ -14,9 +14,7 @@ Dentro de estos dos tipos, también hay diferentes maneras de implementar compon
 
 ---
 
-- [Ejemplo](#ejemplo)
-  - [Destructurar Props y State](#destructurar-props-y-state)
-  - [Componentes Funcionales Sin Estado](#componentes-funcionales-sin-estado)
+<toc></toc>
 
 ---
 

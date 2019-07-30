@@ -12,10 +12,7 @@ In Preact (and similarly in React), working with these types of libraries requir
 
 ---
 
-- [Technique](#technique)
-- [Example Walk-Through](#example-walk-through)
-- [Demonstration](#demonstration)
-- [Real-World Examples](#real-world-examples)
+<toc></toc>
 
 ---
 

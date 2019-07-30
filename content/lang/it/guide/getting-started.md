@@ -11,11 +11,7 @@ In questa guida vedremo come creare un semplice componente "Orologio". Informazi
 
 ---
 
-- [Importa ciò che ti serve](#importa-ciò-che-ti-serve)
-  - [Global pragma](#global-pragma)
-- [Interpretare il JSX](#interpretare-il-jsx)
-- [Componenti](#componenti)
-- [Ciclo di vita dei componenti](#ciclo-di-vita-dei-componenti)
+<toc></toc>
 
 ---
 

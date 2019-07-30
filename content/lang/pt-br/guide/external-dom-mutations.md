@@ -7,14 +7,9 @@ permalink: '/guide/external-dom-mutations'
 
 ---
 
-- [Visão Geral](#visão-geral)
-- [Técnica](#técnica)
-- [Guia Exemplo](#guia-exemplo)
-- [Demonstração](#demonstração)
-- [Exemplos do Mundo-Real](#exemplos-do-mundo-real)
+<toc></toc>
 
 ---
-
 
 ## Visão Geral
 

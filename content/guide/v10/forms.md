@@ -11,11 +11,7 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ---
 
-- [Controlled & Uncontrolled Components](#controlled--uncontrolled-components)
-- [Creating A Simple Form](#creating-a-simple-form)
-- [Select Input](#select-input)
-- [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
-  - [Checkbox Example](#checkbox-example)
+<toc></toc>
 
 ---
 

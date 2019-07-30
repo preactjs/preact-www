@@ -11,10 +11,7 @@ Server-Side Rendering (often abbreviated as "SSR") allows you to render your app
 
 ---
 
-- [Installation](#installation)
-- [Shallow Rendering](#shallow-rendering)
-- [Pretty Mode](#pretty-mode)
-- [JSX Mode](#jsx-mode)
+<toc></toc>
 
 ---
 

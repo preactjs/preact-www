@@ -9,10 +9,7 @@ React提供了`react-addons-test-utils`来测试组件，而Airbnb开发的`enzy
 
 ---
 
-- [安装](#安装)
-- [配置](#配置)
-- [限制](#限制)
-- [示例](#示例)
+<toc></toc>
 
 ---
 

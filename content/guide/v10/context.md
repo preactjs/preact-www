@@ -11,8 +11,7 @@ There are two different ways to use context: Via the newer `createContext` API a
 
 ---
 
-- [createContext](#createcontext)
-- [Legacy Context API](#legacy-context-api)
+<toc></toc>
 
 ---
 

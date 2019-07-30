@@ -11,9 +11,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 ---
 
-- [Hello World](#hello-world)
-- [Interactive Hello World](#interactive-hello-world)
-- [A Clock Component](#a-clock-component)
+<toc></toc>
 
 ---
 

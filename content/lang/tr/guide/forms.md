@@ -10,9 +10,7 @@ Preact'deki formlar React'deki ile aynı işi yaparlar, fakat "static" (başlang
 
 ---
 
-- [Kontrollü & Kontrolsüz Bileşenller](#kontrollü--kontrolsüz-bileşenller)
-- [Checkboxe'lar & Radio Button'lar](#checkboxelar--radio-buttonlar)
-  - [Checkbox Örnek](#checkbox-Örnek)
+<toc></toc>
 
 ---
 

@@ -11,11 +11,7 @@ permalink: '/guide/getting-started'
 
 ---
 
-- [Import 引用你所需要的](#import-引用你所需要的)
-  - [全局 pragma](#全局-pragma)
-- [渲染 JSX](#渲染-jsx)
-- [组件](#组件)
-- [组件生命周期](#组件生命周期)
+<toc></toc>
 
 ---
 

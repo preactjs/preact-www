@@ -12,20 +12,7 @@ Hay dos formas distintas de moverse de React a Preact:
 
 ---
 
-- [Fácil: Alias de `preact-compat`](#fácil-alias-de-preact-compat)
-  - [Cómo hacer el alias de preact-compat](#cómo-hacer-el-alias-de-preact-compat)
-    - [Alias con Webpack](#alias-con-webpack)
-    - [Alias con Browserify](#alias-con-browserify)
-    - [Alias manual](#alias-manual)
-  - [Build y Test](#build-y-test)
-- [Óptimo: Cambiarse a Preact](#Óptimo-cambiarse-a-preact)
-  - [1. Instalar Preact](#1-instalar-preact)
-  - [2. JSX Pragma: transpilar a `h()`](#2-jsx-pragma-transpilar-a-h)
-    - [Vía Babel](#vía-babel)
-    - [Usando comentarios](#usando-comentarios)
-    - [Con Bublé](#con-bublé)
-  - [3. Actualizar código antiguo](#3-actualizar-código-antiguo)
-  - [4. Simplificando el renderizado de la raíz](#4-simplificando-el-renderizado-de-la-raíz)
+<toc></toc>
 
 ---
 

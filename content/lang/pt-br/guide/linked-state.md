@@ -9,10 +9,7 @@ Uma área que o Preact leva um pouco mais além do que o React é na otimizaçã
 
 ---
 
-- [A Maneira Manual Melhor](#a-maneira-manual-melhor)
-- [Estado Associado ao Resgate](#estado-associado-ao-resgate)
-- [Caminhos de Evento Personalizados](#caminhos-de-evento-personalizados)
-  - [Ilustração: Botões _Radio_ Agrupados](#ilustração-botões-_radio_-agrupados)
+<toc></toc>
 
 ---
 

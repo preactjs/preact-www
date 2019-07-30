@@ -9,10 +9,7 @@ State değişikliklerini optimize etmede, React’tan biraz daha kolaylık sağl
 
 ---
 
-- [Güzel Manuel Yöntem](#güzel-manuel-yöntem)
-- [Linked State'i Kurtarmak İçin](#linked-statei-kurtarmak-İçin)
-- [Özel Event Paths](#Özel-event-paths)
-  - [Örnekler ile Açıklama: Gruplanmış Radio Butonları](#Örnekler-ile-açıklama-gruplanmış-radio-butonları)
+<toc></toc>
 
 ---
 

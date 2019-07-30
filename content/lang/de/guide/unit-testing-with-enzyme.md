@@ -9,10 +9,7 @@ React bietet ein `react-addons-test-utils`-Modul zum Testen von Komponenten an. 
 
 ---
 
-- [Installation](#installation)
-- [Konfiguration](#konfiguration)
-- [Aktuelle Limitationen](#aktuelle-limitationen)
-- [Beispiel](#beispiel)
+<toc></toc>
 
 ---
 

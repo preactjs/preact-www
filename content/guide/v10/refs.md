@@ -11,9 +11,7 @@ A typical usecase for it is measuring the actual size of a DOM node. While it's 
 
 ---
 
-- [`createRef`](#createref)
-- [Callback Refs](#callback-refs)
-- [Putting it all together](#putting-it-all-together)
+<toc></toc>
 
 ---
 

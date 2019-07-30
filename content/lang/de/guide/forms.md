@@ -11,10 +11,9 @@ Eingabemasken funktionieren in Preact fast genauso wie in React, allerdings gibt
 
 ---
 
-- [Kontrollierte & Unkontrollierte Komponenten](#kontrollierte--unkontrollierte-komponenten)
-- [Kontrollbox & Radio Buttons](#kontrollbox--radio-buttons)
-  - [Kontrollboxbeispiel](#kontrollboxbeispiel)
+<toc></toc>
 
+---
 
 ## Kontrollierte & Unkontrollierte Komponenten
 

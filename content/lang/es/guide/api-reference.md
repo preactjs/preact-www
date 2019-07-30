@@ -7,8 +7,7 @@ permalink: '/guide/api-reference'
 
 ---
 
-- [`Preact.Component`](#preactcomponent)
-  - [Métodos del ciclo de vida](#métodos-del-ciclo-de-vida)
+<toc></toc>
 
 ---
 

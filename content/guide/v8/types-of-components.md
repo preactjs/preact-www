@@ -14,9 +14,7 @@ Within these two types, there are also a few different ways to implement compone
 
 ---
 
-- [Example](#example)
-  - [Destructure Props & State](#destructure-props--state)
-  - [Stateless Functional Components](#stateless-functional-components)
+<toc></toc>
 
 ---
 

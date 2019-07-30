@@ -11,9 +11,7 @@ Formulários no Preact funcionam de forma muito parecida ao React, exceto por n�
 
 ---
 
-- [Componentes Controlados e Não-Controlados](#componentes-controlados-e-não-controlados)
-- [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
-  - [Exemplo de Checkbox](#exemplo-de-checkbox)
+<toc></toc>
 
 ---
 

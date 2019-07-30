@@ -9,10 +9,7 @@ Ein Bereich, den Preact ausführlicher als React behandelt ist das Optimieren de
 
 ---
 
-- [Der schönere, manuelle Weg](#der-schönere-manuelle-weg)
-- [Verlinkter State eilt zur Rettung](#verlinkter-state-eilt-zur-rettung)
-- [Eigene Ereignispfade](#eigene-ereignispfade)
-  - [Illustration: Gruppierte Radio Buttons](#illustration-gruppierte-radio-buttons)
+<toc></toc>
 
 ---
 

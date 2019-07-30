@@ -11,11 +11,7 @@ Preact’ın React’ın her bir özelliğini içermemesinin nedeni, **küçük*
 
 ---
 
-- [Sürüm Uyumluluğu](#sürüm-uyumluluğu)
-- [Neler Dahil Edilir?](#neler-dahil-edilir)
-- [Neler Eklendi?](#neler-eklendi)
-- [Ne Yok?](#ne-yok)
-- [Farklı olan nedir?](#farklı-olan-nedir)
+<toc></toc>
 
 ---
 

@@ -11,11 +11,7 @@ La razón por la que Preact no intenta incluir absolutamente todas las caracter�
 
 ---
 
-- [Compatibilidad de versiones](#compatibilidad-de-versiones)
-- [¿Qué está incluido?](#qué-está-incluido)
-- [¿Qué fue agregado?](#qué-fue-agregado)
-- [¿Qué falta?](#qué-falta)
-- [¿Cuál es la diferencia?](#cuál-es-la-diferencia)
+<toc></toc>
 
 ---
 

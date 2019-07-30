@@ -9,10 +9,7 @@ Sometimes there is a need to work with third-party libraries that expect to be a
 
 ---
 
-- [Technique](#technique)
-- [Example Walk-Through](#example-walk-through)
-- [Demonstration](#demonstration)
-- [Real-World Examples](#real-world-examples)
+<toc></toc>
 
 ---
 

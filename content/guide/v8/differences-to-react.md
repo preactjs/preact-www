@@ -11,11 +11,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-- [Version Compatibility](#version-compatibility)
-- [What's Included?](#whats-included)
-- [What's Added?](#whats-added)
-- [What's Missing?](#whats-missing)
-- [What's Different?](#whats-different)
+<toc></toc>
 
 ---
 

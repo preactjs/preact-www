@@ -11,9 +11,7 @@ Dans Preact, les formulaires fonctionnent globalement de la même façon que dan
 
 ---
 
-- [Composants Controllés et Non Controllés](#composants-controllés-et-non-controllés)
-- [Checkboxes & boutons Radios](#checkboxes--boutons-radios)
-  - [Exemple de checkbox](#exemple-de-checkbox)
+<toc></toc>
 
 ---
 

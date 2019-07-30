@@ -11,11 +11,7 @@ Preact ist nicht darauf ausgelegt, jede einzelne Funktion von React zu übernehm
 
 ---
 
-- [Versionenkompatibilität](#versionenkompatibilität)
-- [Was ist inbegriffen?](#was-ist-inbegriffen)
-- [Was ist hinzugefügt?](#was-ist-hinzugefügt)
-- [Was fehlt?](#was-fehlt)
-- [Was ist anders?](#was-ist-anders)
+<toc></toc>
 
 ---
 

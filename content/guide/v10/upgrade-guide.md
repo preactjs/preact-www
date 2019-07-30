@@ -11,23 +11,7 @@ Preact X brings many new exciting features such as `Fragments`, `hooks` and much
 
 ---
 
-- [Upgrading dependencies](#upgrading-dependencies)
-  - [Updating preact-related libraries](#updating-preact-related-libraries)
-  - [Compat has moved to core](#compat-has-moved-to-core)
-  - [Third party libraries](#third-party-libraries)
-    - [preact-redux](#preact-redux)
-    - [mobx-preact](#mobx-preact)
-    - [styled-components](#styled-components)
-    - [preact-portal](#preact-portal)
-- [Getting your code ready](#getting-your-code-ready)
-  - [Using named exports](#using-named-exports)
-  - [Remove the 3rd argument to `render`](#remove-the-3rd-argument-to-render)
-  - [`props.children` is not always an `array`](#propschildren-is-not-always-an-array)
-  - [Don't access `this.state` synchronously](#dont-access-thisstate-synchronously)
-  - [`dangerouslySetInnerHTML` will skip diffing of children](#dangerouslysetinnerhtml-will-skip-diffing-of-children)
-- [Notes for library authors](#notes-for-library-authors)
-  - [The `VNode` shape has changed](#the-vnode-shape-has-changed)
-  - [Adjacent text nodes are not joined anymore](#adjacent-text-nodes-are-not-joined-anymore)
+<toc></toc>
 
 ---
 

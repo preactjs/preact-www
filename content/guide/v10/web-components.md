@@ -11,8 +11,7 @@ One thing to keep in mind is that Web Components don't replace Preact as they do
 
 ---
 
-- [Rendering Web Components](#rendering-web-components)
-- [Accessing Instance Methods](#accessing-instance-methods)
+<toc></toc>
 
 ---
 

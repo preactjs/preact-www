@@ -9,10 +9,7 @@ permalink: '/guide/unit-testing-with-enzyme'
 
 ---
 
-- [Instalación](#instalación)
-- [Configuración](#configuración)
-- [Limitaciones actuales](#limitaciones-actuales)
-- [Ejemplo](#ejemplo)
+<toc></toc>
 
 ---
 

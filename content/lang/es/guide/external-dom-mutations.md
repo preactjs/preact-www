@@ -9,10 +9,7 @@ A veces existe la necesidad de trabajar con librerías de terceros que esperan t
 
 ---
 
-- [Técnica](#técnica)
-- [Paso a paso de ejemplo](#paso-a-paso-de-ejemplo)
-- [Demostración](#demostración)
-- [Ejemplos de la vida real](#ejemplos-de-la-vida-real)
+<toc></toc>
 
 ---
 

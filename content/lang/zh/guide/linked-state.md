@@ -9,10 +9,7 @@ permalink: '/guide/linked-state'
 
 ---
 
-- [更好的手动处理方式](#更好的手动处理方式)
-- [让关联状态（Linked State）来拯救你](#让关联状态linked-state来拯救你)
-- [Custom Event Paths](#custom-event-paths)
-  - [例子：分组单选按钮](#例子分组单选按钮)
+<toc></toc>
 
 ---
 

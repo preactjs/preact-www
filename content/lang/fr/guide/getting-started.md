@@ -9,13 +9,10 @@ Dans ce guide, nous allons créer un simple composant d'horloge. Vous pouvez tro
 
 > :information_desk_person: Vous [n'êtes pas obligé d'utiliser ES2015 pour utiliser Preact](https://github.com/developit/preact-without-babel)... mais vous devriez. Ce guide part du principe que vous avez déjà un système de build ES2015 utilisant babel et/ou webpack/browserify/gulp/grunt/etc. Si ce n'est pas le cas, commencez avec [preact-boiletplate] ou un [template CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
+
 ---
 
-- [Importer ce dont vous avez besoin](#importer-ce-dont-vous-avez-besoin)
-  - [Pragma global](#pragma-global)
-- [Rendre du JSX](#rendre-du-jsx)
-- [Composants](#composants)
-- [Le cycle de vie d'un composant](#le-cycle-de-vie-dun-composant)
+<toc></toc>
 
 ---
 

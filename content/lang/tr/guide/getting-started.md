@@ -11,11 +11,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 ---
 
-- [Import what you need](#import-what-you-need)
-  - [Global pragma](#global-pragma)
-- [Rendering JSX](#rendering-jsx)
-- [Components](#components)
-- [The Component Lifecycle](#the-component-lifecycle)
+<toc></toc>
 
 ---
 

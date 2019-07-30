@@ -12,9 +12,7 @@ Forms in Preact work much the same as they do in React, except there is no suppo
 
 ---
 
-- [Controlled & Uncontrolled Components](#controlled--uncontrolled-components)
-- [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
-  - [Checkbox Example](#checkbox-example)
+<toc></toc>
 
 ---
 

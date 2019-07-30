@@ -5,13 +5,10 @@ permalink: '/guide/api-reference'
 
 # API Reference<!-- omit in toc -->
 
+
 ---
 
-- [Preact.Component](#preactcomponent)
-  - [`Component.render(props, state)`](#componentrenderprops-state)
-  - [Lifecycle methods](#lifecycle-methods)
-- [`Preact.render()`](#preactrender)
-- [`Preact.h()` / `Preact.createElement()`](#preacth--preactcreateelement)
+<toc></toc>
 
 ---
 

@@ -11,11 +11,7 @@ La raison pour laquelle Preact n'essaye pas d'inclure chaque fonctionnalité de 
 
 ---
 
-- [Compatibilité de version](#compatibilité-de-version)
-- [Qu'est-ce qui est inclut ?](#quest-ce-qui-est-inclut-)
-- [Qu'est-ce qui a été ajouté ?](#quest-ce-qui-a-été-ajouté-)
-- [Qu'est-ce qu'il manque ?](#quest-ce-quil-manque-)
-- [Qu'est-ce qui est différent ?](#quest-ce-qui-est-différent-)
+<toc></toc>
 
 ---
 

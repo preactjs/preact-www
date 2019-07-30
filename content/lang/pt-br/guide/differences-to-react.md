@@ -11,11 +11,7 @@ Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pe
 
 ---
 
-- [Compatibilidade de Versões](#compatibilidade-de-versões)
-- [O que está incluso?](#o-que-está-incluso)
-- [O que foi adicionado?](#o-que-foi-adicionado)
-- [O que está faltando?](#o-que-está-faltando)
-- [O que é diferente?](#o-que-é-diferente)
+<toc></toc>
 
 ---
 

@@ -11,11 +11,7 @@ Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstell
 
 ---
 
-- [Importiere, was man braucht](#importiere-was-man-braucht)
-  - [Globales Pragma](#globales-pragma)
-- [JSX Rendern](#jsx-rendern)
-- [Komponente](#komponente)
-- [Der Komponentenlebenszyklus](#der-komponentenlebenszyklus)
+<toc></toc>
 
 ---
 

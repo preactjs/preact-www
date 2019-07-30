@@ -16,19 +16,7 @@ There are two ways to import these, you can import them from
 
 ---
 
-- [Introduction](#introduction)
-- [The dependency argument](#the-dependency-argument)
-- [Stateful hooks](#stateful-hooks)
-  - [useState](#usestate)
-  - [useReducer](#usereducer)
-- [Memoization](#memoization)
-  - [useMemo](#usememo)
-  - [useCallback](#usecallback)
-- [useRef](#useref)
-- [useContext](#usecontext)
-- [Side-Effects](#side-effects)
-  - [useEffect](#useeffect)
-  - [useLayoutEffect](#uselayouteffect)
+<toc></toc>
 
 ---
 

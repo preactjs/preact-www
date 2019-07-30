@@ -9,10 +9,7 @@ O `React` fornece um módulo `reag-addons-test-utils` para testar componentes, e
 
 ---
 
-- [Instalação](#instalação)
-- [Configuração](#configuração)
-- [Limitações atuais](#limitações-atuais)
-- [Exemplo](#exemplo)
+<toc></toc>
 
 ---
 

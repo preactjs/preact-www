@@ -9,10 +9,7 @@ React provides a `react-addons-test-utils` module for testing components, and Ai
 
 ---
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Current Limitations](#current-limitations)
-- [Example](#example)
+<toc></toc>
 
 ---
 

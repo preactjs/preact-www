@@ -13,18 +13,7 @@ we'll print a warning or an error whenever we detect something wrong like incorr
 
 ---
 
-- [Installation](#installation)
-  - [Strip devtools from production](#strip-devtools-from-production)
-- [Debug Warnings and Errors](#debug-warnings-and-errors)
-  - [`undefined` parent passed to `render()`](#undefined-parent-passed-to-render)
-  - [`undefined` component passed to `createElement()`](#undefined-component-passed-to-createelement)
-  - [Passed a JSX literal as JSX twice](#passed-a-jsx-literal-as-jsx-twice)
-  - [Improper nesting of table detected](#improper-nesting-of-table-detected)
-  - [Invalid `ref`-property](#invalid-ref-property)
-  - [Invalid event handler](#invalid-event-handler)
-  - [Hook can only be invoked from render methods](#hook-can-only-be-invoked-from-render-methods)
-  - [Getting `vnode.[property]` is deprecated](#getting-vnodeproperty-is-deprecated)
-  - [Found children with the same key](#found-children-with-the-same-key)
+<toc></toc>
 
 ---
 

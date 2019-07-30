@@ -14,9 +14,7 @@ Bu iki tür bileşeni uygulamak için birkaç farklı yöntem vardır.
 
 ---
 
-- [Örnek](#Örnek)
-  - [Destructure Props & State](#destructure-props--state)
-  - [Stateless Fonksiyonel Bileşenler](#stateless-fonksiyonel-bileşenler)
+<toc></toc>
 
 ---
 

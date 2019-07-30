@@ -9,10 +9,7 @@ Un point sur lequel Preact va un peu plus loin que React est l'optimisation des 
 
 ---
 
-- [La méthode manuelle, plus agréable](#la-méthode-manuelle-plus-agréable)
-- [Etat lié à la rescousse](#etat-lié-à-la-rescousse)
-- [Custom Event Paths](#custom-event-paths)
-  - [Illustration: boutons radio groupés](#illustration-boutons-radio-groupés)
+<toc></toc>
 
 ---
 

@@ -11,11 +11,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 
 ---
 
-- [Functional Components](#functional-components)
-- [Class Components](#class-components)
-  - [Lifecycle Methods](#lifecycle-methods)
-    - [componentDidCatch](#componentdidcatch)
-- [Fragments](#fragments)
+<toc></toc>
 
 ---
 

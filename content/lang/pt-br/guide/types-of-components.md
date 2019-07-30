@@ -14,9 +14,7 @@ Dentro desses dois tipos, há também algumas maneiras diversas de implementar-s
 
 ---
 
-- [Exemplo](#exemplo)
-  - [Destructurar `Props` & `State`](#destructurar-props--state)
-  - [Componentes Funcionais Sem Estado](#componentes-funcionais-sem-estado)
+<toc></toc>
 
 ---
 

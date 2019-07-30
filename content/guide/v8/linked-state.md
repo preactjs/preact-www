@@ -9,10 +9,7 @@ One area Preact takes a little further than React is in optimizing state changes
 
 ---
 
-- [The Nicer Manual Way](#the-nicer-manual-way)
-- [Linked State to the Rescue](#linked-state-to-the-rescue)
-- [Custom Event Paths](#custom-event-paths)
-  - [Illustration: Grouped Radio Buttons](#illustration-grouped-radio-buttons)
+<toc></toc>
 
 ---
 

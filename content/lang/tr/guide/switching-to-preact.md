@@ -12,21 +12,7 @@ Preact'tan React'a geçişte iki türlü yaklaşım vardır:
 
 ---
 
-- [Kolay olanı: `preact-compat`](#kolay-olanı-preact-compat)
-  - [preact-compat için Alias Oluşturmak](#preact-compat-için-alias-oluşturmak)
-    - [Webpack ile Alias Oluşturmak](#webpack-ile-alias-oluşturmak)
-    - [Browserify ile Alias Oluşturmak](#browserify-ile-alias-oluşturmak)
-    - [Manuel Olarak Alias Oluşturmak](#manuel-olarak-alias-oluşturmak)
-    - [Module-alias kullanarak Node içerisinde Alias oluşturmak](#module-alias-kullanarak-node-içerisinde-alias-oluşturmak)
-  - [Build & Test](#build--test)
-- [En ideali: Preact'a Geçiş](#en-ideali-preacta-geçiş)
-  - [1. Preact'ı Yükleme](#1-preactı-yükleme)
-  - [2. JSX Pragması: `h()`'e transpile etmek](#2-jsx-pragması-he-transpile-etmek)
-    - [Babel Yoluyla](#babel-yoluyla)
-    - [Yorum Satırlarıyla](#yorum-satırlarıyla)
-    - [Bublé Yoluyla](#bublé-yoluyla)
-  - [3. Zaman Aşımına Uğrayan Her Kodu Yenileyebilirsiniz](#3-zaman-aşımına-uğrayan-her-kodu-yenileyebilirsiniz)
-  - [4. Kök (Root) Render'ı Basitleştirmek](#4-kök-root-renderı-basitleştirmek)
+<toc></toc>
 
 ---
 

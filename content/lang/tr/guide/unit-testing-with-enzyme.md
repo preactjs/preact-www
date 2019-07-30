@@ -10,10 +10,7 @@ Preact bileşenlerini `enzyme` kullanarak test etmek, `preact-compat`'ın üzeri
 
 ---
 
-- [Kurulum](#kurulum)
-- [Yapılandırma](#yapılandırma)
-- [Şu Anki Sınırlılıklar](#Şu-anki-sınırlılıklar)
-- [Örnek](#Örnek)
+<toc></toc>
 
 ---
 

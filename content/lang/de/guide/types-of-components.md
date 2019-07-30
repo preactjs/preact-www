@@ -14,9 +14,7 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponent
 
 ---
 
-- [Beispiel](#beispiel)
-  - [Props & State destrukturieren](#props--state-destrukturieren)
-  - [State-lose funktionale Komponenten](#state-lose-funktionale-komponenten)
+<toc></toc>
 
 ---
 
