@@ -19,8 +19,7 @@ export default class App extends Component {
 		if (url !== prev) {
 			this.store.setState({
 				url,
-				docVersion: getCurrentDocVersion(url),
-				toc: []
+				docVersion: getCurrentDocVersion(url)
 			});
 			if (typeof ga === 'function') {
 				ga('send', 'pageview', url);

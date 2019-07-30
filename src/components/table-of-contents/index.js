@@ -2,10 +2,17 @@ import { h } from 'preact';
 import cx from '../../lib/cx';
 import style from './style.less';
 import { useStore } from '../store-adapter';
+import { useState, useEffect } from 'preact/hooks';
+import { getToc } from '../content-region';
 
 export default function Toc() {
-	const store = useStore(['toc', 'url']);
-	const { toc, url } = store.state;
+	const { url } = useStore(['url']).state;
+	let [toc, setToc] = useState([]);
+
+	// TODO: What happens when the markdown isn't loaded yet?
+	useEffect(() => {
+		setToc(getToc(document.querySelector('content-region')));
+	}, [url]);
 
 	if (toc.length === 0) return null;
 
@@ -53,6 +60,7 @@ export function listToTree(arr) {
 export function TocItem(props) {
 	const { id, text, level, children, loc } = props;
 	let activeCss = loc ? style.linkActive : undefined;
+
 	return (
 		<li>
 			<a

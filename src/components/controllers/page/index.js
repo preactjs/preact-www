@@ -115,9 +115,6 @@ export function usePage(route) {
 export default function Page({ route }) {
 	const { loading, meta, content, current, onLoad } = usePage(route);
 	const store = useStore(['toc', 'url']);
-	const onToc = useCallback(clientMeta => {
-		store.update({ toc: clientMeta.toc || [] });
-	});
 	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
 
@@ -152,12 +149,7 @@ export default function Page({ route }) {
 						show={showTitle}
 						title={meta.title || route.title}
 					/>
-					<ContentRegion
-						name={name}
-						content={content}
-						onToc={onToc}
-						onLoad={onLoad}
-					/>
+					<ContentRegion name={name} content={content} onLoad={onLoad} />
 					<Footer />
 				</div>
 			</div>
