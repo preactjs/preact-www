@@ -42,12 +42,10 @@ export function useStore(keys = [], actions) {
 				return setV(++v);
 			}
 		}
-	}, [keys, store.getState()]);
+	}, [v]);
 
 	useEffect(() => {
-		store.subscribe(() => {
-			update();
-		});
+		store.subscribe(update);
 		return () => store.unsubscribe(update);
 	}, [update]);
 
