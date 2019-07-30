@@ -79,7 +79,7 @@
     "per-env": "^1.0.2",
     "postcss-custom-properties": "^9.0.2",
     "preact-cli": "^3.0.0-rc.4",
-    "preact-cli-plugin-netlify": "github:developit/preact-cli-plugin-netlify#2d01d189c59c0892111d6e332f5fefdf5f31e6bb",
+    "preact-cli-plugin-netlify": "github:developit/preact-cli-plugin-netlify#55e12d869acdadf58c6dd4d6c5537af991911658",
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0"
