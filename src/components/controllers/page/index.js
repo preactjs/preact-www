@@ -114,17 +114,17 @@ export function usePage(route) {
 
 export default function Page({ route }) {
 	const { loading, meta, content, current, onLoad } = usePage(route);
-	const [toc, setToc] = useState(meta.toc);
+	const store = useStore(['toc', 'url']);
 	const onToc = useCallback(clientMeta => {
-		setToc(clientMeta.toc || []);
+		store.update({ toc: clientMeta.toc || [] });
 	});
-	const urlState = useStore(['url']).state;
+	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContent(route);
 
-	const isReady = !loading && toc != null;
+	const isReady = !loading && urlState.toc != null;
 
 	// Note:
 	// "name" is the exact page ID from the URL
@@ -143,7 +143,6 @@ export default function Page({ route }) {
 					component={Sidebar}
 					boot={isReady}
 					show={hasSidebar}
-					toc={toc}
 				/>
 				<div class={style.inner}>
 					<Hydrator boot={isReady} component={EditThisPage} show={canEdit} />
