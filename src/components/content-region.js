@@ -147,6 +147,7 @@ export default class ContentRegion extends Component {
 			this.setState(s, () => {
 				s.content = this.state.content;
 				if (onLoad) onLoad(s);
+				this.updateToc();
 			});
 			this.applyEmoji(s.content);
 		});
