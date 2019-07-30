@@ -7,7 +7,6 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
-		<link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
 		<% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
 			<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
 		<% } %>
@@ -20,22 +19,21 @@
 			<% } %>
 		<% } %>
 		<% if (webpack.assets.filter(entry => entry.name.match(/bundle.\w{5}.esm.js$/)).length > 0) { %>
-			<script>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()},!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
-			<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
-		<% } else { %>
-			<script>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
+			<script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()},!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
 		<% } %>
+		<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
+		<link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
 	</head>
 	<body>
 		<%= htmlWebpackPlugin.options.ssr({
 			url: htmlWebpackPlugin.options.url || '/'
 		}) %>
 		<% if (webpack.assets.filter(entry => entry.name.match(/bundle.\w{5}.esm.js$/)).length > 0) { %>
-			<script crossorigin="anonymous" src="<%= htmlWebpackPlugin.files.publicPath %><%= webpack.assets.filter(entry => entry.name.match(/bundle.\w{5}.esm.js$/))[0].name %>" type="module"></script>
+			<script crossorigin="anonymous" src="<%= htmlWebpackPlugin.files.publicPath %><%= webpack.assets.filter(entry => entry.name.match(/bundle.\w{5}.esm.js$/))[0].name %>" type="module" async></script>
 			<script nomodule defer src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
 		<% } else { %>
-			<script <%= htmlWebpackPlugin.options.scriptLoading %>  src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
+			<script async <%= htmlWebpackPlugin.options.scriptLoading %> src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
 		<% } %>
-		<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-6031694-20', 'auto');ga('send', 'pageview');</script>
+		<script async defer src="https://www.google-analytics.com/analytics.js"></script>
 	</body>
 </html>

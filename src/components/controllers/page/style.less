@@ -65,7 +65,15 @@
 	display: flex;
 }
 
+.sidebarWrap {
+	display: none;
+}
+
 .withSidebar {
+	.sidebarWrap {
+		display: flex;
+	}
+
 	@media @sidebar-break {
 		background: var(--color-sidebar-bg);
 

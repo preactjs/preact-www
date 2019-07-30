@@ -1,7 +1,7 @@
 // `preact-router` doesn't support url paths like `/docs/:version/*`
 // so we'll just use a plain regex for now.
 const LATEST_MAJOR = 10;
-const DOC_REG = /\/guide\/v(\d{1,2})\/.*/;
+const DOC_REG = /^\/guide\/v(\d+)\//;
 
 /**
  * Retrieve the docs version from the url
