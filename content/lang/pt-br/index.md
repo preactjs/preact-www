@@ -23,7 +23,7 @@ toc: false
     </p>
 </jumbotron>
 
-```js
+```jsx
 function Counter() {
   const [value, setValue] = useState(0);
 
@@ -58,20 +58,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
-```js
-function Counter() {
-  const [value, setValue] = useState(0);
-
-  return (
-    <>
-      <div>Counter: {value}</div>
-      <button onClick={() => setValue(++value)}>Increment</button>
-      <button onClick={() => setValue(--value)}>Decrement</button>
-    </>
-  )
-}
-```
 
 <section class="home-section">
   <img src="/assets/home/size.svg">
