@@ -13,7 +13,8 @@ export default function Sidebar() {
 	const close = useCallback(() => setOpen(false));
 	const { docVersion } = useStore(['docVersion']).state;
 
-	// Get menu items for the current version of the docs
+	// Get menu items for the current version of the docs (guides)
+	// TODO: allow multiple sections - config[meta.section]
 	const docNav = config.docs
 		.filter(item => item.path.indexOf(`/v${docVersion}`) > -1)
 		.map(item => ({ text: item.name, level: 2, href: item.path }));

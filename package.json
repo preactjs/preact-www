@@ -10,7 +10,7 @@
     "dev": "preact watch --template src/template.html",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
-    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=86400\"}]}]}'",
+    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "preact build --prerenderUrls src/prerender.js --template src/template.html",
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
     "pretest": "npm run -s lint && npm run -s build",
@@ -32,6 +32,8 @@
     },
     "globals": {
       "PRERENDER": true,
+      "__non_webpack_require__": true,
+      "ga": true,
       "page": true
     },
     "settings": {
@@ -63,7 +65,7 @@
   "license": "MIT",
   "author": "Preact Authors <core@preactjs.com>",
   "devDependencies": {
-    "critters-webpack-plugin": "^2.3.0",
+    "critters-webpack-plugin": "^2.4.0",
     "dlv": "^1.1.3",
     "eslint": "^4.9.0",
     "eslint-config-developit": "^1.1.1",
@@ -77,6 +79,7 @@
     "per-env": "^1.0.2",
     "postcss-custom-properties": "^9.0.2",
     "preact-cli": "^3.0.0-rc.4",
+    "preact-cli-plugin-netlify": "github:developit/preact-cli-plugin-netlify#55e12d869acdadf58c6dd4d6c5537af991911658",
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0"
@@ -92,7 +95,6 @@
     "linkstate": "^1.1.1",
     "marked": "^0.3.5",
     "preact": "^10.0.0-rc.0",
-    "preact-cli-plugin-netlify": "^1.3.0",
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.0.4",
     "preact-router": "^3.0.0",

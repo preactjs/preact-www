@@ -20,6 +20,7 @@ export default class Search extends Component {
 			head.appendChild(link);
 
 			let script = document.createElement('script');
+			script.async = true;
 			script.src = 'https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js';
 			script.onload = script.onerror = this.loaded;
 			head.appendChild(script);
@@ -29,10 +30,12 @@ export default class Search extends Component {
 	loaded = () => {
 		let docsearch = window.docsearch;
 		if (docsearch && !docsearchInstance) {
-			docsearchInstance = docsearch({
-				apiKey: config.docsearch.apiKey,
-				indexName: config.docsearch.indexName,
-				inputSelector: `#${this.id}`
+			this.lazy = lazily(() => {
+				docsearchInstance = docsearch({
+					apiKey: config.docsearch.apiKey,
+					indexName: config.docsearch.indexName,
+					inputSelector: `#${this.id}`
+				});
 			});
 		}
 	};
@@ -56,10 +59,12 @@ export default class Search extends Component {
 		return (
 			<div
 				class={style.search}
-				dangerouslySetInnerHTML={{
-					__html: `<input id=${this.id} class="${style.searchBox}" required>`
-				}}
-			/>
+				// dangerouslySetInnerHTML={{
+				// 	__html: `<input id=${this.id} class="${style.searchBox}" required>`
+				// }}
+			>
+				<input id={this.id} class={style.searchBox} required />
+			</div>
 		);
 	}
 }

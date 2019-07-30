@@ -3,6 +3,7 @@ import { connect } from 'unistore/preact';
 import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
 import widgets from './widgets';
+import { markdownToHtml } from '../lib/markdown';
 
 const COMPONENTS = {
 	...widgets,
@@ -56,10 +57,62 @@ const getContent = memoizeProd(([lang, name]) => {
 		.then(r => parseContent(r));
 });
 
+export const getContentOnServer = PRERENDER
+	? route => {
+			if (!PRERENDER) return;
+			if (route == '/') route = '/index';
+
+			const fs = __non_webpack_require__('fs');
+			let data = fs.readFileSync(`content${route}.md`, 'utf8');
+
+			// convert frontmatter from yaml to json:
+			const yaml = __non_webpack_require__('yaml');
+			data = data.replace(FRONT_MATTER_REG, (s, y) => {
+				const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
+				return '---\n' + JSON.stringify(meta) + '\n---\n';
+			});
+
+			if (typeof DOMParser === 'undefined') {
+				const jsdom = __non_webpack_require__('jsdom');
+				global.DOMParser = new jsdom.JSDOM().window.DOMParser;
+			}
+
+			const parsed = parseContent(data, 'md');
+			parsed.meta = parsed.meta || {};
+
+			// generate Table of Contents
+			const html = markdownToHtml(parsed.content);
+			const dom = new DOMParser().parseFromString(html, 'text/html');
+			parsed.meta.toc = getToc(dom);
+
+			return parsed;
+	  }
+	: () => {};
+
 function parseContent(text) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
-		meta = frontMatter && JSON.parse(frontMatter),
+		meta = frontMatter && JSON.parse(frontMatter) || {},
 		content = text.replace(FRONT_MATTER_REG, '');
+
+	// hoist title
+	const TITLE_REG = /^\s*#\s+(.+)\n+/;
+	if (!meta.title) {
+		let [, title] = content.match(TITLE_REG) || [];
+		if (title) {
+			content = content.replace(TITLE_REG, '');
+			meta.title = title;
+		}
+	}
+
+	// Many markdown formatters can generate the table of contents
+	// automatically. To skip a specific heading the use an html
+	// comment at the end of it. Example:
+	//
+	// ## Some random title <!-- omit in toc -->
+	//
+	if (meta.title) {
+		meta.title = meta.title.replace(/\s*<!--.*-->/, '');
+	}
 
 	return {
 		content,
@@ -67,21 +120,36 @@ function parseContent(text) {
 	};
 }
 
+export function getToc(root) {
+	let headings = root.querySelectorAll('[id]'),
+		toc = [];
+	for (let i = 0; i < headings.length; i++) {
+		let [, level] = String(headings[i].nodeName).match(/^h(\d)$/i) || [];
+		if (level) {
+			toc.push({
+				text: headings[i].textContent,
+				id: headings[i].getAttribute('id'),
+				level: Math.round(level),
+				element: headings[i]
+			});
+		}
+	}
+	return toc;
+}
+
 @connect(({ lang }) => ({ lang }))
 export default class ContentRegion extends Component {
-	constructor(props) {
-		super(props);
-		// TODO: Remove this once it's fixed in `preact`
-		// or `preact-render-to-string`
-		this.state = {};
-	}
+	state = {};
 
 	fetch() {
 		let { name, lang, onLoad } = this.props;
 		getContent([lang, name]).then(s => {
-			this.setState(s);
+			this.setState(s, () => {
+				s.content = this.state.content;
+				if (onLoad) onLoad(s);
+				this.updateToc();
+			});
 			this.applyEmoji(s.content);
-			if (onLoad) onLoad(s);
 		});
 	}
 
@@ -101,12 +169,10 @@ export default class ContentRegion extends Component {
 		}
 	}
 
-	componentWillMount() {
-		const b = (this.base = this.nextBase || this.__b);
-		if (b && typeof document !== 'undefined') {
-			const C = b.nodeName;
-			this.bootTree = <C dangerouslySetInnerHTML={{ __html: b.innerHTML }} />;
-		}
+	updateToc() {
+		let { onToc } = this.props;
+		let toc = (this.toc = getToc(this.base));
+		if (onToc) onToc({ toc });
 	}
 
 	componentDidMount() {
@@ -117,36 +183,24 @@ export default class ContentRegion extends Component {
 		if (name !== this.props.name || lang !== this.props.lang) this.fetch();
 	}
 
-	render({ store, name, children, onLoad, data, ...props }, { content }) {
+	render(
+		{ store, name, children, onLoad, onToc, content: cachedContent, ...props },
+		{ content }
+	) {
 		if (!content) {
-			/*global PRERENDER,__non_webpack_require__*/
-			if (PRERENDER) {
+			if (cachedContent) {
+				content = cachedContent;
+			} else if (PRERENDER) {
 				// this is all only run during prerendering
-
-				let route = location.pathname == '/' ? '/index' : location.pathname;
-				let data = __non_webpack_require__('fs').readFileSync(
-					`content${route}.md`,
-					'utf8'
-				);
-				const yaml = __non_webpack_require__('yaml');
-				data = data.replace(FRONT_MATTER_REG, (s, y) => {
-					const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
-					return '---\n' + JSON.stringify(meta) + '\n---\n';
-				});
-				if (typeof DOMParser === 'undefined') {
-					global.DOMParser = new (__non_webpack_require__(
-						'jsdom'
-					)).JSDOM().window.DOMParser;
-				}
-				content = parseContent(data, 'md').content;
-			} else if (this.bootTree) {
-				return this.bootTree;
+				({ content } = getContentOnServer(location.pathname));
 			}
 		}
 
 		return (
 			<content-region {...props}>
-				{content && <Markdown content={content} components={COMPONENTS} />}
+				{content && (
+					<Markdown key={content} content={content} components={COMPONENTS} />
+				)}
 			</content-region>
 		);
 	}

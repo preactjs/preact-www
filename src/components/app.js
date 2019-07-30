@@ -6,28 +6,31 @@ import Header from './header';
 import { storeCtx } from './store-adapter';
 import { getCurrentDocVersion } from '../lib/docs';
 
-/*global ga*/
-
-let store = createStore({
-	url: location.pathname,
-	lang: '',
-	docVersion: getCurrentDocVersion(location.pathname)
-});
-
 export default class App extends Component {
-	handleUrlChange({ url }) {
-		let prev = store.getState().url || '/';
-		if (url !== prev && typeof ga === 'function') {
-			store.setState({ url, docVersion: getCurrentDocVersion(url) });
-			ga('send', 'pageview', url);
+	store = createStore({
+		url: this.props.url || location.pathname,
+		lang: '',
+		docVersion: getCurrentDocVersion(location.pathname)
+	});
+
+	handleUrlChange = ({ url }) => {
+		let prev = this.store.getState().url || '/';
+		if (url !== prev) {
+			this.store.setState({
+				 url,
+				 docVersion: getCurrentDocVersion(url)
+			});
+			if (typeof ga === 'function') {
+				ga('send', 'pageview', url);
+			}
 		}
-	}
+	};
 
 	render() {
-		let url = store.getState().url;
+		const { url } = this.store.getState();
 		return (
-			<Provider store={store}>
-				<storeCtx.Provider value={store}>
+			<Provider store={this.store}>
+				<storeCtx.Provider value={this.store}>
 					<div id="app">
 						<Header url={url} />
 						<Routes url={url} onChange={this.handleUrlChange} />

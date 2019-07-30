@@ -45,7 +45,7 @@ export default function (config, env, helpers) {
 	const critters = helpers.getPluginsByName(config, 'Critters')[0];
 	if (critters) {
 		config.plugins[critters.index] = new Critters({
-			preload: 'swap',
+			preload: 'media',
 			mergeStylesheets: false,
 			pruneSource: false
 		});
