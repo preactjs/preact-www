@@ -15,10 +15,11 @@ const CodeBlock = ({ children, ...props }) => {
 			/lang-([a-z]+)/
 		)[1];
 
-		let highlighted = text;
-		if (!PRERENDER && prism.languages[lang]) {
-			highlighted = prism.highlight(text, prism.languages[lang], lang);
-		}
+		const canHighlight = !PRERENDER && prism.languages[lang];
+
+		let highlighted = canHighlight
+			? prism.highlight(text, prism.languages[lang], lang)
+			: text;
 		let repl =
 			lang === 'js' && text.split('\n').length > 2 && props.repl !== 'false';
 
@@ -26,7 +27,10 @@ const CodeBlock = ({ children, ...props }) => {
 			<pre class={cx('highlight', props.class)}>
 				<code
 					class={`language-${lang}`}
-					dangerouslySetInnerHTML={{ __html: highlighted }}
+					dangerouslySetInnerHTML={
+						canHighlight ? { __html: highlighted } : undefined
+					}
+					children={!canHighlight ? text : undefined}
 				/>
 				{repl && (
 					<Link
