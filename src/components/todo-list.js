@@ -19,7 +19,10 @@ export default class TodoList extends Component {
 	render(props, { todos, text }) {
 		return (
 			<form onSubmit={this.addItem} action="javascript:">
-				<input value={text} onInput={this.updateText} />
+				<label>
+					<span>Add Todo</span>
+					<input value={text} onInput={this.updateText} />
+				</label>
 				<button type="submit">Add</button>
 				<ul>
 					{todos.map(todo => (

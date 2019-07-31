@@ -150,8 +150,10 @@ export default class TodoList extends Component {
     render({ }, { todos, text }) {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
-                &lt;input value={text} onInput={this.setText} /&gt;
-                &lt;button type="submit"&gt;Add&lt;/button&gt;
+                &lt;label&gt;
+                  &lt;span&gt;Add Todo&lt;span&gt;
+                  &lt;input value={text} onInput={this.setText} /&gt;
+                &lt;/label&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;

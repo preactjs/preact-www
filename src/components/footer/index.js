@@ -31,7 +31,7 @@ export default class Footer extends Component {
 
 	render({ lang, url = location.pathname }, { contrib }) {
 		if (typeof document !== 'undefined' && document.documentElement)
-			document.documentElement.lang = lang;
+			document.documentElement.lang = lang || 'en';
 		return (
 			<footer class={style.footer}>
 				<div class={style.inner}>

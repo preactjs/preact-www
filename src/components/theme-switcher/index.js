@@ -32,7 +32,7 @@ export default function ThemeSwitcher() {
 	}, [theme]);
 
 	return (
-		<button onClick={onClick} class={style.root}>
+		<button onClick={onClick} class={style.root} title="Change color scheme">
 			<img src={`/assets/theme-${theme}.svg`} alt="" />
 		</button>
 	);

@@ -25,6 +25,8 @@
 	--color-code-inline-bg: #f8f8f8;
 	--color-code-inline-border: #eaeaea;
 	--color-code-bg: #2b313c;
+	--color-repl-bg: #666;
+	--color-repl-hover: #999;
 	--color-sidebar-divider: #eee;
 	--color-sidebar-bg: #fafafa;
 	--color-sidebar-bg-active: #f3f3f3;
@@ -40,7 +42,7 @@
 	// Modern browsers allow to specify the preferred color scheme
 	@media (prefers-color-scheme: dark) {
 		--color-page-bg: #242424;
-		--color-text: #a0a0a0;
+		--color-text: #b0b0b0;
 		--color-heading: #c5c5c5;
 		--color-link: #ae80ff;
 		--color-home-btn: #673ab8;
@@ -53,16 +55,18 @@
 		--color-table-odd-bg: #2f2f2f;
 		--color-code-inline-bg: #2b313c;
 		--color-code-inline-border: #5e5e5e;
-		--color-code-bg: #2b313c;
+		--color-code-bg: #252931;
+		--color-repl-bg: #414141;
+		--color-repl-hover: #555;
 		--color-sidebar-divider: #4f4f4f;
 		--color-sidebar-bg: #171717;
 		--color-sidebar-bg-active: #242424;
 		--color-sidebar-link-active: #8f61e1;
-		--color-sidebar-link: #a0a0a0;
+		--color-sidebar-link: #b0b0b0;
 		--color-footer-lang-divider: #444;
-		--color-footer-lang: #8f61e1;
-		--color-footer-link: #8f61e1;
-		--color-footer-text: #7e7e7e;
+		--color-footer-lang: #ae80ff;
+		--color-footer-link: #ae80ff;
+		--color-footer-text: #999;
 		--color-footer-bg: #1b1b1b;
 		--color-footer-border: #1b1b1b;
 	}
@@ -70,64 +74,68 @@
 
 // The following two classes may seem redundant, but they allow us to overwrite
 // the scheme defined by the browser if the user wants to.
-.light {
-	--color-page-bg: white !important;
-	--color-text: #444 !important;
-	--color-home-btn: #673ab8 !important;
-	--color-heading: black !important;
-	--color-link: #673ab8 !important;
-	--color-hr: #f8f8f8 !important;
-	--color-quote-bg: #ebf6ff !important;
-	--color-quote-border: #5aa8ff !important;
-	--color-quote-text: #444 !important;
-	--color-table-border: #ccc !important;
-	--color-table-even-bg: white !important;
-	--color-table-odd-bg: #f8f8f8 !important;
-	--color-table-border: #ccc !important;
-	--color-code-inline-bg: #f8f8f8 !important;
-	--color-code-inline-border: #eaeaea !important;
-	--color-code-bg: #2b313c !important;
-	--color-sidebar-divider: #eee !important;
-	--color-sidebar-bg: #fafafa !important;
-	--color-sidebar-bg-active: #f3f3f3 !important;
-	--color-sidebar-link-active: #673ab8 !important;
-	--color-sidebar-link: #555 !important;
-	--color-footer-lang-divider: #aaa !important;
-	--color-footer-lang: #673ab8 !important;
-	--color-footer-link: #673ab8 !important;
-	--color-footer-text: #555 !important;
-	--color-footer-bg: #f2f2f2 !important;
-	--color-footer-border: #ddd !important;
+html.light {
+	--color-page-bg: white;
+	--color-text: #444;
+	--color-home-btn: #673ab8;
+	--color-heading: black;
+	--color-link: #673ab8;
+	--color-hr: #f8f8f8;
+	--color-quote-bg: #ebf6ff;
+	--color-quote-border: #5aa8ff;
+	--color-quote-text: #444;
+	--color-table-border: #ccc;
+	--color-table-even-bg: white;
+	--color-table-odd-bg: #f8f8f8;
+	--color-table-border: #ccc;
+	--color-code-inline-bg: #f8f8f8;
+	--color-code-inline-border: #eaeaea;
+	--color-code-bg: #2b313c;
+	--color-repl-bg: #666;
+	--color-repl-hover: #999;
+	--color-sidebar-divider: #eee;
+	--color-sidebar-bg: #fafafa;
+	--color-sidebar-bg-active: #f3f3f3;
+	--color-sidebar-link-active: #673ab8;
+	--color-sidebar-link: #555;
+	--color-footer-lang-divider: #aaa;
+	--color-footer-lang: #673ab8;
+	--color-footer-link: #673ab8;
+	--color-footer-text: #555;
+	--color-footer-bg: #f2f2f2;
+	--color-footer-border: #ddd;
 }
 
 // Same for this one
-.dark {
-	--color-page-bg: #242424 !important;
-	--color-text: #a0a0a0 !important;
-	--color-heading: #c5c5c5 !important;
-	--color-link: #ae80ff !important;
-	--color-home-btn: #673ab8 !important;
-	--color-hr: #444 !important;
-	--color-quote-bg: #29475f !important;
-	--color-quote-border: #3f6b9c !important;
-	--color-quote-text: #c5c5c5 !important;
-	--color-table-border: #575757 !important;
-	--color-table-even-bg: #242424 !important;
-	--color-table-odd-bg: #2f2f2f !important;
-	--color-code-inline-bg: #2b313c !important;
-	--color-code-inline-border: #5e5e5e !important;
-	--color-code-bg: #2b313c !important;
-	--color-sidebar-divider: #4f4f4f !important;
-	--color-sidebar-bg: #171717 !important;
-	--color-sidebar-bg-active: #242424 !important;
-	--color-sidebar-link-active: #8f61e1 !important;
-	--color-sidebar-link: #a0a0a0 !important;
-	--color-footer-lang-divider: #444 !important;
-	--color-footer-lang: #8f61e1 !important;
-	--color-footer-link: #8f61e1 !important;
-	--color-footer-text: #7e7e7e !important;
-	--color-footer-bg: #1b1b1b !important;
-	--color-footer-border: #1b1b1b !important;
+html.dark {
+	--color-page-bg: #242424;
+	--color-text: #b0b0b0;
+	--color-heading: #c5c5c5;
+	--color-link: #ae80ff;
+	--color-home-btn: #673ab8;
+	--color-hr: #444;
+	--color-quote-bg: #29475f;
+	--color-quote-border: #3f6b9c;
+	--color-quote-text: #c5c5c5;
+	--color-table-border: #575757;
+	--color-table-even-bg: #242424;
+	--color-table-odd-bg: #2f2f2f;
+	--color-code-inline-bg: #2b313c;
+	--color-code-inline-border: #5e5e5e;
+	--color-code-bg: #252931;
+	--color-repl-bg: #414141;
+	--color-repl-hover: #555;
+	--color-sidebar-divider: #4f4f4f;
+	--color-sidebar-bg: #171717;
+	--color-sidebar-bg-active: #242424;
+	--color-sidebar-link-active: #8f61e1;
+	--color-sidebar-link: #b0b0b0;
+	--color-footer-lang-divider: #444;
+	--color-footer-lang: #ae80ff;
+	--color-footer-link: #ae80ff;
+	--color-footer-text: #999;
+	--color-footer-bg: #1b1b1b;
+	--color-footer-border: #1b1b1b;
 }
 
 html,
@@ -141,6 +149,12 @@ body {
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	// Sets overflowing background color when scrolled past the page in
+	// MacOS or in iOS.
+	background: @color-brand;
 }
 
 * {
@@ -183,12 +197,13 @@ pre.highlight {
 		margin: 0;
 		color: #fff;
 		border: none;
-		background: #666;
+		background: var(--color-repl-bg);
 		border-radius: 0 0 0 3px;
 		text-align: center;
 		text-decoration: none;
+
 		&:hover {
-			background: #999;
+			background: var(--color-repl-hover);
 		}
 	}
 }
@@ -283,9 +298,16 @@ main .markup {
 		background: #f8f8f8;
 		border: 2px solid #ddd;
 
+		label {
+			color: #444;
+			span:first-child {
+				display: block;
+			}
+		}
+
 		input,
 		button {
-			margin: 0 5px 0 0;
+			margin: 0 5px 0 0.5re;
 			padding: 5px 10px;
 			border: 1px solid #673ab8;
 			border-radius: 3px;
