@@ -19,9 +19,9 @@ const CodeBlock = ({ children, ...props }) => {
 			? prism.highlight(text, prism.languages[lang], lang)
 			: text;
 
-		let repl = false;
-		// 	lang === 'js' ||
-		// 	(lang === 'jsx' && text.split('\n').length > 2 && props.repl !== 'false');
+		let repl =
+			lang === 'js' ||
+			(lang === 'jsx' && text.split('\n').length > 2 && props.repl !== 'false');
 
 		return (
 			<pre class={cx('highlight', props.class)}>
