@@ -38,7 +38,6 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
             Isso é muito adequado para Progressive Web Apps que tentam remover o máximo de código possível para cada rota.</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/building-block.svg);"></div>
