@@ -10,9 +10,7 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-
-   <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
-
+    <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
@@ -44,14 +42,11 @@ function Counter() {
 
 <section class="home-section">
   <img src="/assets/home/metal.svg">
-
   <div>
     <h2>更接近于实质</h2>
-
     <p>
 		Preact 在 DOM 上实现一个可能是最薄的一层虚拟 DOM 实现。web 是一个稳定的平台，我们是时候停止以安全的名义重新去实现它（一套新的 DOM 实现框架）。
     </p>
-
     <p>
 		Preact也是web平台的一等公民，它将真实 dom 对应的 虚拟 dom 进行 diff，注册非虚拟的事件处理函数，并能很好地与其它库一起工作。
     </p>
@@ -64,11 +59,9 @@ function Counter() {
 
   <div>
     <h2>小体积</h2>
-
     <p>
 		大多数 UI 框架是相当大的，是应用程序 javascript 体积的大部份。Preact 不同：它足够小，<em > 你的代码</em > 是你的应用程序最大的部分。
     </p>
-
     <p>
 		这将意味可以下载更少的 javascript 代码，解析和执行 - 为您的代码节省更多的时间，所以你可以构建一个你定义的体验，而不需要受一个框架的控制.
     </p>
@@ -81,11 +74,9 @@ function Counter() {
 
   <div>
     <h2>高性能</h2>
-
     <p>
 		Preact 是快速的，不仅是因为它的体积，因为一个简单和可预测的 diff 实现，使它成为最快的虚拟 DOM 框架之一。
     </p>
-
     <p>
         它甚至包含额外的性能特性，如 批量自定义更新，可选的 异步渲染，DOM 回收和通过[关联状态](/guide/linked-state) 优化的事件处理。
     </p>
@@ -98,11 +89,9 @@ function Counter() {
 
   <div>
     <h2>轻量 &amp; 可嵌入</h2>
-
     <p>
         Preact 是轻量的意味着你可以把一个强大的虚拟 DOM 组件范例带到一个新的地方。
     </p>
-
     <p>
         使用 Preact 构建应用程序的各个部分，而无需复杂的集成。将 Preact 嵌入到窗口小部件中并应用相同的工具或技术，你将可以构建一个完整的应用程序。
     </p>
@@ -115,11 +104,9 @@ function Counter() {
 
   <div>
     <h2>即时生产</h2>
-
     <p>
         轻量可以让你在不需要牺牲生产力的前提下得到更多的乐趣。Preact 让你立即获得生产力。他甚至有一些额外的功能：
     </p>
-
     <ul>
         <li>`props`, `state` 和 `context` 可以被传递给 `render()`</li>
         <li>可以使用标准的 HTML 属性，如 `class` 和 `for`</li>
@@ -134,11 +121,9 @@ function Counter() {
 
   <div>
     <h2>生态系统兼容</h2>
-
     <p>
         虚拟 DOM 组件使得易于共享可重用的事物 —— 从按钮到数据提供程序。Preact 的设计意味着您可以无缝使用 React 生态系统中可用的数千个组件。
     </p>
-
     <p>
         增加一个简单的兼容层 <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> 到你的绑定库中，你甚至可以在你的系统中使用非常复杂的 React 组件。
     </p>
@@ -181,7 +166,6 @@ export default class TodoList extends Component {
 }
         </code></pre>
     </div>
-
     <div>
         <h2>运行例子</h2>
         <pre repl="false"><code class="lang-jsx">
@@ -206,7 +190,7 @@ export default class Stars extends Component {
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = \`https://github.com/${repo}\`;
+        let url = &#96;https://github.com/${repo}&#96;;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Stars
@@ -216,10 +200,8 @@ export default class Stars extends Component {
 }
         </code></pre>
     </div>
-
     <div>
         <h2>运行例子</h2>
-
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -228,7 +210,6 @@ render(
     document.body
 );
         </code></pre>
-
         <div class="home-demo">
             <github-stars simple user="developit" repo="preact"></github-stars>
         </div>
