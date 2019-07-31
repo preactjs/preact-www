@@ -1,5 +1,5 @@
 import { createContext } from 'preact';
-import { useContext, useEffect, useCallback, useState } from 'preact/hooks';
+import { useContext, useEffect, useState } from 'preact/hooks';
 import { mapActions } from 'unistore/src/util';
 
 /**
@@ -25,33 +25,41 @@ function mapStateToProps(keys, state) {
  */
 export function useStore(keys = [], actions) {
 	const store = useContext(storeCtx);
-	let state = mapStateToProps(keys, store.getState());
-	let [v, setV] = useState(0);
-
-	const update = useCallback(() => {
-		let mapped = mapStateToProps(keys, store.getState());
-		for (let i in mapped) {
-			if (mapped[i] !== state[i]) {
-				state = mapped;
-				return setV(++v);
-			}
-		}
-		for (let i in state) {
-			if (!(i in mapped)) {
-				state = mapped;
-				return setV(++v);
-			}
-		}
-	}, [v]);
+	let [currentState, setCurrentState] = useState(
+		mapStateToProps(keys, store.getState())
+	);
 
 	useEffect(() => {
-		store.subscribe(update);
-		return () => store.unsubscribe(update);
-	}, [update]);
+		const update = () => {
+			let mapped = mapStateToProps(keys, store.getState());
+			for (let i in mapped) {
+				if (mapped[i] !== currentState[i]) {
+					return setCurrentState(mapped);
+				}
+			}
+
+			for (let i in currentState) {
+				if (!(i in mapped)) {
+					return setCurrentState(mapped);
+				}
+			}
+		};
+
+		const dispose = store.subscribe(update);
+		return dispose;
+	}, [currentState]);
 
 	return {
-		state,
+		state: currentState,
 		actions: actions ? mapActions(actions, store) : { store },
 		update: s => store.setState(Object.assign(store.getState, s))
 	};
+}
+
+/**
+ * The hooks version of component.forceUpdate();
+ */
+export function useForceUpdate() {
+	let [v, set] = useState(0);
+	return () => set(++v);
 }

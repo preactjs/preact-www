@@ -91,7 +91,7 @@ export const getContentOnServer = PRERENDER
 
 function parseContent(text) {
 	let [, frontMatter] = text.match(FRONT_MATTER_REG) || [],
-		meta = frontMatter && JSON.parse(frontMatter) || {},
+		meta = (frontMatter && JSON.parse(frontMatter)) || {},
 		content = text.replace(FRONT_MATTER_REG, '');
 
 	// hoist title
@@ -170,9 +170,12 @@ export default class ContentRegion extends Component {
 	}
 
 	updateToc() {
-		let { onToc } = this.props;
 		let toc = (this.toc = getToc(this.base));
-		if (onToc) onToc({ toc });
+		const store = this.context.store;
+		store.setState({
+			...store.getState(),
+			toc
+		});
 	}
 
 	componentDidMount() {
@@ -184,7 +187,7 @@ export default class ContentRegion extends Component {
 	}
 
 	render(
-		{ store, name, children, onLoad, onToc, content: cachedContent, ...props },
+		{ store, name, children, onLoad, content: cachedContent, ...props },
 		{ content }
 	) {
 		if (!content) {

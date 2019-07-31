@@ -11,13 +11,15 @@ export default class App extends Component {
 		url: this.props.url || location.pathname,
 		lang: '',
 		docVersion: getCurrentDocVersion(location.pathname),
-		toc: []
+		toc: null
 	});
 
 	handleUrlChange = ({ url }) => {
 		let prev = this.store.getState().url || '/';
 		if (url !== prev) {
 			this.store.setState({
+				...this.store.getState(),
+				toc: null,
 				url,
 				docVersion: getCurrentDocVersion(url)
 			});

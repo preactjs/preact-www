@@ -1,6 +1,8 @@
 import { h } from 'preact';
 import marked from 'marked';
 import Markup from 'preact-markup';
+import { useEffect } from 'preact/hooks';
+import { useForceUpdate, useStore } from '../components/store-adapter';
 
 // Cache of markdown to generated html
 const CACHE = {};
@@ -20,6 +22,17 @@ export const markdownToHtml = md =>
  * @returns VNode
  */
 const Markdown = ({ content, postProcess, ...props }) => {
+	// Workaround for hooks not working when a component is instantiated inside
+	// the markdown. So far the issue only became to light with the toc. As a
+	// workaround we'll just trigger a forceupdate of the markdown rendering to
+	// ensure that the <toc> component inside the markdown get's most current
+	// state
+	const forceUpdate = useForceUpdate();
+	const { toc } = useStore(['toc']).state;
+	useEffect(() => {
+		forceUpdate(toc);
+	}, [toc]);
+
 	let markup = markdownToHtml(content);
 	if (postProcess) markup = postProcess(markup);
 	return <Markup markup={markup} type="html" trim={false} {...props} />;
