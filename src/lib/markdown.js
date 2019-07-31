@@ -16,6 +16,11 @@ const OPTIONS = {
 export const markdownToHtml = md =>
 	CACHE[md] || (CACHE[md] = marked(md, OPTIONS));
 
+// Make sure that the markup component actually re-renders when the TOC is
+// updated. This obviously pretty a gross hack, so don't copy that.
+// TODO: Add support for stateful hooks in preact-markup.
+Markup.prototype.shouldComponentUpdate = () => true;
+
 /**
  * Component that renders Markdown to HTML via VDOM, using preact-markup.
  * @param props.markdown	Markdown string to render.
