@@ -11,7 +11,9 @@ const CodeBlock = ({ children, ...props }) => {
 
 	if (isHighlight) {
 		let text = (child.props.children[0] || '').replace(/(^\s+|\s+$)/g, '');
-		let lang = child.props.class.match(/(?:lang|language)-([a-z]+)/)[1];
+		let lang =
+			child.props.class &&
+			child.props.class.match(/(?:lang|language)-([a-z]+)/)[1];
 
 		const canHighlight = !PRERENDER && prism.languages[lang] != null;
 
@@ -20,8 +22,9 @@ const CodeBlock = ({ children, ...props }) => {
 			: text;
 
 		let repl =
-			lang === 'js' ||
-			(lang === 'jsx' && text.split('\n').length > 2 && props.repl !== 'false');
+			(lang === 'js' || lang === 'jsx') &&
+			text.split('\n').length > 2 &&
+			props.repl !== 'false';
 
 		return (
 			<pre class={cx('highlight', props.class)}>
