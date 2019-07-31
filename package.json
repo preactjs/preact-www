@@ -42,7 +42,9 @@
       }
     }
   },
-  "eslintIgnore": ["prism.js"],
+  "eslintIgnore": [
+    "prism.js"
+  ],
   "jest": {
     "preset": "jest-puppeteer"
   },
@@ -93,7 +95,7 @@
     "flatmap": "0.0.3",
     "less": "^3.9.0",
     "linkstate": "^1.1.1",
-    "marked": "^0.3.5",
+    "marked": "^0.7.0",
     "preact": "^10.0.0-rc.0",
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.0.4",
