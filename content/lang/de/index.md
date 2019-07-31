@@ -157,7 +157,7 @@ function Counter() {
 <section class="home-split">
     <div>
         <h2>To Do-Listen-Komponente</h2>
-        <pre><code class="lang-js">
+        <pre><code class="lang-jsx">
 export default class ToDoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
@@ -187,7 +187,7 @@ export default class ToDoList extends Component {
 
     <div>
         <h2>Laufendes Beispiel</h2>
-        <pre repl="false"><code class="lang-js">
+        <pre repl="false"><code class="lang-jsx">
 import ToDoList from './todo-list';
 
 render(&lt;ToDoList /&gt;, document.body);
@@ -202,7 +202,7 @@ render(&lt;ToDoList /&gt;, document.body);
 <section class="home-split">
     <div>
         <h2>Zeige GitHub-Stars</h2>
-        <pre><code class="lang-js">
+        <pre><code class="lang-jsx">
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
@@ -223,7 +223,7 @@ export default class Stars extends Component {
     <div>
         <h2>Laufendes Beispiel</h2>
 
-        <pre repl="false"><code class="lang-js">
+        <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
 render(

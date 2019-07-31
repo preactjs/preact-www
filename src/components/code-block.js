@@ -11,15 +11,15 @@ const CodeBlock = ({ children, ...props }) => {
 
 	if (isHighlight) {
 		let text = (child.props.children[0] || '').replace(/(^\s+|\s+$)/g, '');
-		let lang = (child.props.class && child.props.class).match(
-			/lang-([a-z]+)/
-		)[1];
+		let lang = child.props.class.match(/lang-([a-z]+)/);
 
-		const canHighlight = !PRERENDER && prism.languages[lang];
+		if (lang != null) lang = lang[1];
+		const canHighlight = !PRERENDER && prism.languages[lang] != null;
 
 		let highlighted = canHighlight
 			? prism.highlight(text, prism.languages[lang], lang)
 			: text;
+
 		let repl =
 			lang === 'js' && text.split('\n').length > 2 && props.repl !== 'false';
 
