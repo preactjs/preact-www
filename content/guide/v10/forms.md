@@ -1,5 +1,6 @@
 ---
 name: Forms
+description: 'How to build awesome forms in Preact that work anywhere.'
 ---
 
 # Forms <!-- omit in toc -->

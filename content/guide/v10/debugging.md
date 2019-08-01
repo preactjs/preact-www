@@ -1,5 +1,6 @@
 ---
 name: Debugging Preact Apps
+description: 'How to debug Preact applications when something goes wrong.'
 ---
 
 # Debugging Preact Apps <!-- omit in toc -->

@@ -1,6 +1,7 @@
 ---
 name: External DOM Mutations
 permalink: '/guide/external-dom-mutations'
+description: 'How to integrate Preact with jQuery and other JavaScript snippets which mutate the DOM directly'
 ---
 
 # External DOM Mutations <!-- omit in toc -->

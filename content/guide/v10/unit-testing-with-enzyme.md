@@ -1,6 +1,7 @@
 ---
 name: Unit Testing with Enzyme
 permalink: '/guide/unit-testing-with-enzyme'
+description: 'Testing Preact applications made easy with enzyme'
 ---
 
 # Unit Testing with Enzyme<!-- omit in toc -->

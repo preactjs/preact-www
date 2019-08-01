@@ -1,5 +1,6 @@
 ---
 name: Components
+descriptions: 'Components are the heart of any Preact application. Learn how to create them and use them to compose UIs together'
 ---
 
 # Components <!-- omit in toc -->

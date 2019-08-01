@@ -1,6 +1,7 @@
 ---
 name: Switching to Preact from React
 permalink: '/guide/switching-to-preact'
+description: 'Everything you need to know to switch from React to Preact.'
 ---
 
 # Switching to Preact (from React)<!-- omit in toc -->

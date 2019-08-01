@@ -1,5 +1,6 @@
 ---
 name: Getting Started
+description: "How to get started with Preact. We'll learn how to setup the tooling (if any) and get going with writing an application."
 ---
 
 # Getting Started <!-- omit in toc -->

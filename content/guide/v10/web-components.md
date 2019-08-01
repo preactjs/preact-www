@@ -1,5 +1,6 @@
 ---
 name: Web Components
+description: 'How to use webcomponents with Preact.'
 ---
 
 # Web Components<!-- omit in toc -->
