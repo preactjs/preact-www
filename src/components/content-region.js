@@ -30,7 +30,7 @@ const memoizeProd = process.env.NODE_ENV === 'production' ? memoize : f => f;
 
 // fetch and parse a markdown document
 const getContent = memoizeProd(([lang, name]) => {
-	let path = lang ? `/content/lang/${lang}` : '/content',
+	let path = lang !== 'en' ? `/content/lang/${lang}` : '/content',
 		url = `${path}/${name.replace(/^\//, '')}`,
 		[, ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
@@ -43,7 +43,7 @@ const getContent = memoizeProd(([lang, name]) => {
 	return fetchPromise
 		.then(r => {
 			// fall back to english
-			if (!r.ok && lang) {
+			if (!r.ok && lang != 'en') {
 				return fetch(url.replace(/lang\/[^/]+\//, ''));
 			}
 			return r;
