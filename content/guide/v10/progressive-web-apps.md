@@ -1,6 +1,7 @@
 ---
 name: Progressive Web Apps
 permalink: '/guide/progressive-web-apps'
+description: 'Progressive Web Apps (PWA) allow you to ship your app offline. They work pretty well with Preact'
 ---
 
 # Progressive Web Apps<!-- omit in toc -->

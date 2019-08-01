@@ -1,5 +1,6 @@
 ---
 name: API Reference
+description: 'Learn more about all exported functions of the Preact module'
 ---
 
 # API Reference <!-- omit in toc -->

@@ -1,6 +1,7 @@
 ---
 name: Browser Support
 permalink: '/about/browser-support'
+description: "Preact supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE11 out of the box."
 ---
 
 # Browser Support

@@ -2,6 +2,7 @@
 name: We Are Using
 title: Who's using Preact?
 permalink: '/about/we-are-using'
+description: 'Companies who are proudly using Preact'
 ---
 
 <style>

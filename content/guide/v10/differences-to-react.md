@@ -1,6 +1,7 @@
 ---
 name: Differences to React
 permalink: '/guide/differences-to-react'
+description: 'What are the differences between Preact and React. This document describes them in detail'
 ---
 
 # Differences to React <!-- omit in toc -->

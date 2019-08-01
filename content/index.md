@@ -3,6 +3,7 @@ layout: home
 title: Preact
 show_title: false
 toc: false
+description: 'Preact is a fast 3kB alternative to React with the same modern API'
 ---
 
 <jumbotron>

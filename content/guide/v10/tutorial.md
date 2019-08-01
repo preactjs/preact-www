@@ -1,5 +1,6 @@
 ---
 name: Tutorial
+description: 'Write your first Preact application'
 ---
 
 # Tutorial<!-- omit in toc -->

@@ -1,5 +1,6 @@
 ---
 name: References
+description: 'References can be used to access raw DOM nodes that Preact has rendered'
 ---
 
 # References<!-- omit in toc -->
