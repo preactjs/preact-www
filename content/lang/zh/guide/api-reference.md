@@ -3,7 +3,7 @@ name: API Reference
 permalink: '/guide/api-reference'
 ---
 
-# API 参考<!-- omit in toc -->
+# API 参考
 
 ---
 

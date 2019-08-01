@@ -3,7 +3,7 @@ name: "Los geht's"
 permalink: "/guide/getting-started"
 ---
 
-# Los geht's<!-- omit in toc -->
+# Los geht's
 
 Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstellt. Detailliertere Informationen zu jedem Thema können auf den dedizierten Seiten unter dem Anleitungsmenü gefunden werden.
 

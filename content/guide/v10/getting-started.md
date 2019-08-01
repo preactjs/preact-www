@@ -3,7 +3,7 @@ name: Getting Started
 description: "How to get started with Preact. We'll learn how to setup the tooling (if any) and get going with writing an application."
 ---
 
-# Getting Started <!-- omit in toc -->
+# Getting Started
 
 This guide helps you get up and running to start developing Preact apps. There are 3 popular ways to do so.
 

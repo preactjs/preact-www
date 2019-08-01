@@ -3,7 +3,7 @@ name: Types de composants
 permalink: '/guide/types-of-components'
 ---
 
-# Types de composants<!-- omit in toc -->
+# Types de composants
 
 Il y a deux types de composants dans Preact :
 

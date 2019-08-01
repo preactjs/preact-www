@@ -3,7 +3,7 @@ name: Switching to Preact from React
 permalink: '/guide/switching-to-preact'
 ---
 
-# React'tan Preact'a geçiş<!-- omit in toc -->
+# React'tan Preact'a geçiş
 
 Preact'tan React'a geçişte iki türlü yaklaşım vardır:
 

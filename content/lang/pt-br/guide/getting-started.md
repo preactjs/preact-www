@@ -3,7 +3,7 @@ name: Como começar
 permalink: '/guide/getting-started'
 ---
 
-# Como Começar<!-- omit in toc -->
+# Como Começar
 
 Aqui, você será guiado a criar um componente simples de relógio contador. Informações mais detalhadas de cada tópico podem ser encontradas nas páginas dedicadas sobre o menu "Guide".
 

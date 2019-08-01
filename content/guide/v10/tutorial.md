@@ -3,7 +3,7 @@ name: Tutorial
 description: 'Write your first Preact application'
 ---
 
-# Tutorial<!-- omit in toc -->
+# Tutorial
 
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 

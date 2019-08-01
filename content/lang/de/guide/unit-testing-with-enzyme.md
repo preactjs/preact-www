@@ -3,7 +3,7 @@ name: Unit-Prüfung mit Enzyme
 permalink: '/guide/unit-testing-with-enzyme'
 ---
 
-# Unit-Prüfung mit Enzyme<!-- omit in toc -->
+# Unit-Prüfung mit Enzyme
 
 React bietet ein `react-addons-test-utils`-Modul zum Testen von Komponenten an. Airbnbs `enzyme` geht tiefer auf dieses Konzept ein - es vereinigt mehrere Rendermodi und andere nützliche Funktionen. Das Testen von Preact-Komponenten mithilfe von `enzyme` ist dank dem `preact-compat-enzyme`-Modul möglich. Dieses implementiert die benötigten internen React-Properties auf `preact-compat` drauf.
 

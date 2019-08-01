@@ -3,7 +3,7 @@ name: Passer à Preact (à partir de React)
 permalink: '/guide/switching-to-preact'
 ---
 
-# Passer à Preact (à partir de React)<!-- omit in toc -->
+# Passer à Preact (à partir de React)
 
 Il y a deux approches différentes pour passer de React à Preact :
 

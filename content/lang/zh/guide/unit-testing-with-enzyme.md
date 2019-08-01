@@ -3,7 +3,7 @@ name: Unit Testing with Enzyme
 permalink: '/guide/unit-testing-with-enzyme'
 ---
 
-# 使用Enzyme来编写单元测试<!-- omit in toc -->
+# 使用Enzyme来编写单元测试
 
 React提供了`react-addons-test-utils`来测试组件，而Airbnb开发的`enzyme`则让这个更进一步，提供了多种渲染模式和其他有用的特性。多亏了`preact-compat-enzyme`这个模块，在`preact-compat`基础之上实现了必要的React的内部属性，这让使用`enzyme`来测试preact的组件成为可能。
 

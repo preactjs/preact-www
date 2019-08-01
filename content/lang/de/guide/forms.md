@@ -3,7 +3,7 @@ name: Eingabemasken
 permalink: '/guide/forms'
 ---
 
-# Eingabemasken<!-- omit in toc -->
+# Eingabemasken
 
 Eingabemasken funktionieren in Preact fast genauso wie in React, allerdings gibt es keine Unterstützung für "statische" (Ausgangswert) props/Attribute.
 

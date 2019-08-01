@@ -3,7 +3,7 @@ name: Forms
 permalink: '/guide/forms'
 ---
 
-# Forms<!-- omit in toc -->
+# Forms
 
 Preact'deki formlar React'deki ile aynı işi yaparlar, fakat "static" (başlangıç değeri) props/attributes için destek sağlamaz.
 **[React Formları için Dokümanlar](https://facebook.github.io/react/docs/forms.html)**

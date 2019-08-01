@@ -3,7 +3,7 @@ name: Types of Components
 permalink: '/guide/types-of-components'
 ---
 
-# Bileşen Türleri<!-- omit in toc -->
+# Bileşen Türleri
 
 Preact'de 2 tür bileşen vardır:
 

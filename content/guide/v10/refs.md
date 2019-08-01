@@ -3,7 +3,7 @@ name: References
 description: 'References can be used to access raw DOM nodes that Preact has rendered'
 ---
 
-# References<!-- omit in toc -->
+# References
 
 There will always be scenarios where you need a direct reference to the DOM-Element or Component that was rendered by Preact. Refs allow you to do just that.
 

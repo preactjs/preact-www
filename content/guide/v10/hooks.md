@@ -3,7 +3,7 @@ name: Hooks
 description: 'Hooks in Preact allow you to compose behaviours together and re-use that logic in different components.'
 ---
 
-# Hooks <!-- omit in toc -->
+# Hooks
 
 Hooks is a new concept that allows you to compose state and side effects. They allow you to reuse stateful logic between components.
 

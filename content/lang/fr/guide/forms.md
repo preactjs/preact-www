@@ -3,7 +3,7 @@ name: Formulaires
 permalink: '/guide/forms'
 ---
 
-# Formulaires<!-- omit in toc -->
+# Formulaires
 
 Dans Preact, les formulaires fonctionnent globalement de la même façon que dans React, à l'exception près qu'il n'y a pas de support pour les props/attributs "statiques" (valeur initiale).
 

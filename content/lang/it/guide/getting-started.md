@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Primi passi<!-- omit in toc -->
+# Primi passi
 
 In questa guida vedremo come creare un semplice componente "Orologio". Informazioni più dettagliate su ogni singolo argomento sono disponibili nel menù Guida.
 

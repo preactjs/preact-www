@@ -4,7 +4,7 @@ permalink: '/guide/external-dom-mutations'
 description: 'How to integrate Preact with jQuery and other JavaScript snippets which mutate the DOM directly'
 ---
 
-# External DOM Mutations <!-- omit in toc -->
+# External DOM Mutations
 
 Sometimes there is a need to work with third-party libraries that expect to be able to freely mutate the DOM, persist state within it, or that have no component boundaries at all. There are many great UI toolkits or re-usable elements that operate this way.
 

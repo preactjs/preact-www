@@ -3,7 +3,7 @@ name: Linked State
 permalink: '/guide/linked-state'
 ---
 
-# Linked State<!-- omit in toc -->
+# Linked State
 
 One area Preact takes a little further than React is in optimizing state changes. A common pattern in ES2015 React code is to use Arrow functions within a `render()` method in order to update state in response to events. Creating functions enclosed in a scope on every render is inefficient and forces the garbage collector to do more work than is necessary.
 

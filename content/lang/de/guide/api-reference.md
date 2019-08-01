@@ -3,7 +3,7 @@ name: API-Referenzierung
 permalink: '/guide/api-reference'
 ---
 
-# API-Referenzierung<!-- omit in toc -->
+# API-Referenzierung
 
 ---
 

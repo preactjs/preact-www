@@ -3,7 +3,7 @@ name: Commencer
 permalink: '/guide/getting-started'
 ---
 
-# Commencer<!-- omit in toc -->
+# Commencer
 
 Dans ce guide, nous allons créer un simple composant d'horloge. Vous pouvez trouver plus d'information sur chaque sujet dans les pages dédiées dans le menu Guide.
 

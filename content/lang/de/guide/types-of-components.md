@@ -3,7 +3,7 @@ name: Komponententypen
 permalink: '/guide/types-of-components'
 ---
 
-# Komponententypen<!-- omit in toc -->
+# Komponententypen
 
 Es gibt zwei Arten von Komponenten in Preact:
 

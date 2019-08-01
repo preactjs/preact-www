@@ -3,7 +3,7 @@ name: Upgrading from Preact 8.x
 description: 'Upgrade your Preact 8.x application to Preact X'
 ---
 
-# Upgrading from Preact 8.x <!-- omit in toc -->
+# Upgrading from Preact 8.x
 
 This document is intended to guide you through upgrading an existing Preact 8.x application to Preact X and is divided in 3 main sections
 

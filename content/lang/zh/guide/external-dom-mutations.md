@@ -3,7 +3,7 @@ name: External DOM Mutations
 permalink: '/guide/external-dom-mutations'
 ---
 
-# 外部 DOM 修改<!-- omit in toc -->
+# 外部 DOM 修改
 
 ---
 

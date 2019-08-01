@@ -3,7 +3,7 @@ name: Mutações Externas de DOM
 permalink: '/guide/external-dom-mutations'
 ---
 
-# Mutações Externas de DOM<!-- omit in toc -->
+# Mutações Externas de DOM
 
 ---
 

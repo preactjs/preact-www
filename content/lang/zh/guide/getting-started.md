@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# 如何开始<!-- omit in toc -->
+# 如何开始
 
 这个指引会示范去搭建一个简单的『时钟』组件。每个主题下更详情的信息，可以在『指引』菜单下面对应的页面找到。
 

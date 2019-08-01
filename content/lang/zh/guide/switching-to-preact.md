@@ -3,7 +3,7 @@ name: Switching to Preact from React
 permalink: '/guide/switching-to-preact'
 ---
 
-# 用 Preact 替换 React<!-- omit in toc -->
+# 用 Preact 替换 React
 
 有两种途径把 React 替换成 Preact：
 

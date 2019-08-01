@@ -3,7 +3,7 @@ name: Linked State
 permalink: '/guide/linked-state'
 ---
 
-# Linked State<!-- omit in toc -->
+# Linked State
 
 State değişikliklerini optimize etmede, React’tan biraz daha kolaylık sağlar. React kodunda ES2015 de populer olan Arrow fonksiyolarını `render()` methodu içinde event’lere yanıt olarak state güncellemek için kullanır. Her bir render’a ait scope içinde fonksiyonların oluşturulması verimsizdir ve garbage collector’lara gereğinden fazla iş yapmaya zorlar.
 

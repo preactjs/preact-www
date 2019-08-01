@@ -3,7 +3,7 @@ name: Estado asociado
 permalink: '/guide/linked-state'
 ---
 
-# Estado asociado<!-- omit in toc -->
+# Estado asociado
 
 Hay un área de Preact que va un poco más allá que React a la hora de optimizar cambios de estado. Un patrón común en código ES2015 en React es usar Arrow functions dentro del método `render()` para actualizar estado en respuesta a eventos. Creando funciones encerradas en un contexto en cada render es ineficiente y fuerza al garbage collector a hacer más trabajo que el necesario.
 

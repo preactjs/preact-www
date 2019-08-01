@@ -3,7 +3,7 @@ name: Forms
 permalink: '/guide/forms'
 ---
 
-# Forms<!-- omit in toc -->
+# Forms
 
 
 Forms in Preact work much the same as they do in React, except there is no support for the "static" (initial value) props/attributes.

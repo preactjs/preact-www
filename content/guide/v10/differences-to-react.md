@@ -4,7 +4,7 @@ permalink: '/guide/differences-to-react'
 description: 'What are the differences between Preact and React. This document describes them in detail'
 ---
 
-# Differences to React <!-- omit in toc -->
+# Differences to React
 
 Preact itself is not intended to be a reimplementation of React. There are differences. Many of these differences are trivial, or can be completely removed by using [preact/compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
 

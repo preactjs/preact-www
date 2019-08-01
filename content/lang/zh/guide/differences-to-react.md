@@ -3,7 +3,7 @@ name: Differences to React
 permalink: '/guide/differences-to-react'
 ---
 
-# 与 React 的不同之处<!-- omit in toc -->
+# 与 React 的不同之处
 
 Preact 本身并没有去重新实现一遍 React。它有些不同之处。大部份的不同都是很细微的，而且可以完全通过 [preact-compat] 去掉。这是一个轻量级的在 Preact 的基础上，尝试 100% 去实现 React 的接口。
 

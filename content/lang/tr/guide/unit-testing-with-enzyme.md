@@ -3,7 +3,7 @@ name: Enzyme ile Unit Test
 permalink: '/guide/unit-testing-with-enzyme'
 ---
 
-# Enzyme ile Unit Test<!-- omit in toc -->
+# Enzyme ile Unit Test
 
 React bileşenleri test etmek için `react-addons-test-utils` modülünü sağlar ve Airbnb'nin `enzyme`'si bu konsepti daha da ileriye götürür - çoklu render ve diğer kullanışlı özellikleri içerir.
 Preact bileşenlerini `enzyme` kullanarak test etmek, `preact-compat`'ın üzerinde gerekli React property'lerini uygulayan `preact-compat-enzyme` modülü sayesinde mümkün oluyor.

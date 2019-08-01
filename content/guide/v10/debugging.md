@@ -3,7 +3,7 @@ name: Debugging Preact Apps
 description: 'How to debug Preact applications when something goes wrong.'
 ---
 
-# Debugging Preact Apps <!-- omit in toc -->
+# Debugging Preact Apps
 
 Preact ships with a lot of tools to make debugging easier. They're packaged in a single import and can be included by importing `preact/debug`.
 

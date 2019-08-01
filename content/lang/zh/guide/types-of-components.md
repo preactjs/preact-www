@@ -3,7 +3,7 @@ name: Types of Components
 permalink: '/guide/types-of-components'
 ---
 
-# 组件种类 <!-- omit in toc -->
+# 组件种类
 
 Preact 中有两种组件：
 

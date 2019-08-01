@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Getting Started<!-- omit in toc -->
+# Getting Started
 
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 

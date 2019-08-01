@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Primeros pasos<!-- omit in toc -->
+# Primeros pasos
 
 En esta guía vamos a ver cómo crear un simple componente de "Reloj". Puedes encontrar información más detallada para cada tema dentro del menú de Guía.
 
