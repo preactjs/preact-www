@@ -1,7 +1,7 @@
 ---
 name: Project Goals
 permalink: '/about/project-goals'
-description: 'Read more about Preact's project goals'
+description: "Read more about Preact's project goals"
 ---
 
 # Preact's Goals
