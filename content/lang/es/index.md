@@ -62,8 +62,8 @@ function Counter() {
   <div>
     <h2>Tamaño reducido</h2>
     <p>
-        La mayoría de los frameworks de UI son suficientemente largos como para ser la mayor parte del tamaño del JavaScript de una app.
-        Preact es distinto: Es suficientemente pequeño como para que <em>tu código</em> sea la parte más pesada de tu aplicación.
+        La mayoría de los frameworks de UI son suficientemente grandes como para ser la mayor parte del tamaño del JavaScript de una app.
+        Preact es distinto: Es lo suficientemente pequeño como para que <em>tu código</em> sea la parte más pesada de tu aplicación.
     </p>
     <p>
         Esto significa menos JavaScript para descargar, interpretar y ejecutar - dejando más tiempo para tu código, para que puedas construir una experiencia que tú definas sin tener que pelear para mantener el framework bajo control.
@@ -76,12 +76,12 @@ function Counter() {
   <img src="/assets/home/performance.svg">
 
   <div>
-    <h2>Gran Performance</h2>
+    <h2>Gran Rendimiento</h2>
     <p>
         Preact es rápido, y no solo por su peso. Es una de las librerías de Virtual DOM más rápidas que vas a encontrar, gracias a su implementación de diffing simple y predecible.
     </p>
     <p>
-        También incluye agregados extra de performance como actualizaciones customizables en batch, async rendering opcional, reciclado del DOM y manejo de eventos optimizado via [Estado Asociado](/guide/linked-state).
+        También incluye añadidos extra de rendimientos como actualizaciones customizables en batch, async rendering opcional, reciclado del DOM y manejo de eventos optimizado via [Estado Asociado](/guide/linked-state).
     </p>
   </div>
 </section>
