@@ -3,7 +3,7 @@ name: Web Components
 description: 'How to use webcomponents with Preact.'
 ---
 
-# Web Components<!-- omit in toc -->
+# Web Components
 
 Due to its lightweight nature Preact is a popular choice for writing web components. Many use it to build a component system that is then wrapped into various web components. This allows you to easily re-use them in other projects where a completely different framework is used.
 
@@ -11,8 +11,7 @@ One thing to keep in mind is that Web Components don't replace Preact as they do
 
 ---
 
-- [Rendering Web Components](#rendering-web-components)
-- [Accessing Instance Methods](#accessing-instance-methods)
+<toc></toc>
 
 ---
 

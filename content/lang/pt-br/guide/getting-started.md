@@ -3,7 +3,7 @@ name: Como começar
 permalink: '/guide/getting-started'
 ---
 
-# Como Começar<!-- omit in toc -->
+# Como Começar
 
 Aqui, você será guiado a criar um componente simples de relógio contador. Informações mais detalhadas de cada tópico podem ser encontradas nas páginas dedicadas sobre o menu "Guide".
 
@@ -12,11 +12,7 @@ Esse guia assume que você tem algum tipo de build ES2015 configurado utilizando
 
 ---
 
-- [Importe o que você precisa](#importe-o-que-você-precisa)
-  - [Pragma global](#pragma-global)
-- [Renderizando JSX](#renderizando-jsx)
-- [Componentes](#componentes)
-- [Ciclo de Vida de Componentes](#ciclo-de-vida-de-componentes)
+<toc></toc>
 
 ---
 

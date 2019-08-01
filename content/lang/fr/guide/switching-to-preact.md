@@ -3,7 +3,7 @@ name: Passer à Preact (à partir de React)
 permalink: '/guide/switching-to-preact'
 ---
 
-# Passer à Preact (à partir de React)<!-- omit in toc -->
+# Passer à Preact (à partir de React)
 
 Il y a deux approches différentes pour passer de React à Preact :
 
@@ -12,21 +12,7 @@ Il y a deux approches différentes pour passer de React à Preact :
 
 ---
 
-- [Facile : l'alias `preact-compat`](#facile--lalias-preact-compat)
-  - [Comment créer un alias preact-compat](#comment-créer-un-alias-preact-compat)
-    - [Aliasing avec Webpack](#aliasing-avec-webpack)
-    - [Aliasing avec Browserify](#aliasing-avec-browserify)
-    - [Faire l'aliasing manuellement](#faire-laliasing-manuellement)
-    - [Aliasing avec Node en utilisant module-alias](#aliasing-avec-node-en-utilisant-module-alias)
-  - [Build & Test](#build--test)
-- [Optimal : passer à Preact](#optimal--passer-à-preact)
-  - [1. Installer Preact](#1-installer-preact)
-  - [2. Pragma JSX : transpiler vers `h()`](#2-pragma-jsx--transpiler-vers-h)
-    - [Avec Babel](#avec-babel)
-    - [Avec des commentaires](#avec-des-commentaires)
-    - [Avec Bublé](#avec-bublé)
-  - [3. Mettre à jour n'importe quel code ancien](#3-mettre-à-jour-nimporte-quel-code-ancien)
-  - [4. Simplify Root Render](#4-simplify-root-render)
+<toc></toc>
 
 ---
 

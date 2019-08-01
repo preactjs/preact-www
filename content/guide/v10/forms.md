@@ -3,7 +3,7 @@ name: Forms
 description: 'How to build awesome forms in Preact that work anywhere.'
 ---
 
-# Forms <!-- omit in toc -->
+# Forms
 
 Forms in Preact work much the same as they do in HTML. You render a control, and attach an event listener to it.
 
@@ -11,11 +11,7 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ---
 
-- [Controlled & Uncontrolled Components](#controlled--uncontrolled-components)
-- [Creating A Simple Form](#creating-a-simple-form)
-- [Select Input](#select-input)
-- [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
-  - [Checkbox Example](#checkbox-example)
+<toc></toc>
 
 ---
 

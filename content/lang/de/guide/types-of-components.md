@@ -3,7 +3,7 @@ name: Komponententypen
 permalink: '/guide/types-of-components'
 ---
 
-# Komponententypen<!-- omit in toc -->
+# Komponententypen
 
 Es gibt zwei Arten von Komponenten in Preact:
 
@@ -14,9 +14,7 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponent
 
 ---
 
-- [Beispiel](#beispiel)
-  - [Props & State destrukturieren](#props--state-destrukturieren)
-  - [State-lose funktionale Komponenten](#state-lose-funktionale-komponenten)
+<toc></toc>
 
 ---
 

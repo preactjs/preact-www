@@ -3,7 +3,7 @@ name: Components
 descriptions: 'Components are the heart of any Preact application. Learn how to create them and use them to compose UIs together'
 ---
 
-# Components <!-- omit in toc -->
+# Components
 
 Components represent the basic building block in Preact. They are fundamental in making it easy to build complex UIs from little building blocks. They're also responsible for attaching state to our rendered output.
 
@@ -11,11 +11,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 
 ---
 
-- [Functional Components](#functional-components)
-- [Class Components](#class-components)
-  - [Lifecycle Methods](#lifecycle-methods)
-    - [componentDidCatch](#componentdidcatch)
-- [Fragments](#fragments)
+<toc></toc>
 
 ---
 

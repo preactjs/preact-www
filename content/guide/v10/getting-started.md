@@ -3,7 +3,7 @@ name: Getting Started
 description: "How to get started with Preact. We'll learn how to setup the tooling (if any) and get going with writing an application."
 ---
 
-# Getting Started <!-- omit in toc -->
+# Getting Started
 
 This guide helps you get up and running to start developing Preact apps. There are 3 popular ways to do so.
 
@@ -11,17 +11,7 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
 
 ---
 
-- [No build tools route](#no-build-tools-route)
-  - [Alternatives to JSX](#alternatives-to-jsx)
-- [Best practices powered with `preact-cli`](#best-practices-powered-with-preact-cli)
-  - [Getting ready for development](#getting-ready-for-development)
-  - [Making a production build](#making-a-production-build)
-- [Integrating Into An Existing Pipeline](#integrating-into-an-existing-pipeline)
-  - [Setting up JSX](#setting-up-jsx)
-  - [Aliasing React to Preact](#aliasing-react-to-preact)
-    - [Aliasing in webpack](#aliasing-in-webpack)
-    - [Aliasing in parcel](#aliasing-in-parcel)
-    - [Aliasing in jest](#aliasing-in-jest)
+<toc></toc>
 
 ---
 

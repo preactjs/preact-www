@@ -3,16 +3,13 @@ name: Modification Externe du DOM
 permalink: '/guide/external-dom-mutations'
 ---
 
-# Modification Externe du DOM<!-- omit in toc -->
+# Modification Externe du DOM
 
 Parfois vous avez besoin de travailler avec des bibliothèques externes qui ont besoin de pouvoir modifier librement le DOM, persister le state dans celui-ci, ou ne sont pas contraintes à l'intérieur d'un composant. Il existe beaucoup de très bonnes boîtes à outils ou d'éléments réutilisables qui fonctionnent de cette façon. Dans Preact (tout comme React), travailler avec ce type de bibliothèques demande à ce que vous disiez à l'algorithme de rendu et de comparaison du DOM Virtuel qu'il ne doit pas essayer _d'annuler_ les modifications externes du DOM effectuées dans un composant donné (ou dans l'élément DOM qu'il représente).
 
 ---
 
-- [Technique](#technique)
-- [Exemple](#exemple)
-- [Démonstration](#démonstration)
-- [Exemples réels](#exemples-réels)
+<toc></toc>
 
 ---
 

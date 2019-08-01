@@ -3,7 +3,7 @@ name: Types de composants
 permalink: '/guide/types-of-components'
 ---
 
-# Types de composants<!-- omit in toc -->
+# Types de composants
 
 Il y a deux types de composants dans Preact :
 
@@ -14,9 +14,7 @@ Entre ces deux types, il y a aussi plusieurs façons d'implémenter les composan
 
 ---
 
-- [Exemple](#exemple)
-  - [Destructurer les Props et le State](#destructurer-les-props-et-le-state)
-  - [Composants fonctionnels sans état](#composants-fonctionnels-sans-état)
+<toc></toc>
 
 ---
 

@@ -3,7 +3,7 @@ name: Getting Started
 permalink: '/guide/getting-started'
 ---
 
-# Getting Started<!-- omit in toc -->
+# Getting Started
 
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
@@ -11,11 +11,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 ---
 
-- [Import what you need](#import-what-you-need)
-  - [Global pragma](#global-pragma)
-- [Rendering JSX](#rendering-jsx)
-- [Components](#components)
-- [The Component Lifecycle](#the-component-lifecycle)
+<toc></toc>
 
 ---
 

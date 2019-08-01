@@ -4,16 +4,13 @@ permalink: '/guide/unit-testing-with-enzyme'
 description: 'Testing Preact applications made easy with enzyme'
 ---
 
-# Unit Testing with Enzyme<!-- omit in toc -->
+# Unit Testing with Enzyme
 
 React provides a `react-addons-test-utils` module for testing components, and Airbnb's `enzyme` takes this concept further - incorporating multiple rendering modes and other useful features. Testing preact components using `enzyme` is possible thanks to the `preact-compat-enzyme` module, which implements the necessary internal React properties on top of `preact-compat`.
 
 ---
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Current Limitations](#current-limitations)
-- [Example](#example)
+<toc></toc>
 
 ---
 

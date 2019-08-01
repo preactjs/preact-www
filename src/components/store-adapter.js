@@ -1,5 +1,5 @@
 import { createContext } from 'preact';
-import { useContext, useEffect, useCallback, useState } from 'preact/hooks';
+import { useContext, useLayoutEffect, useState } from 'preact/hooks';
 import { mapActions } from 'unistore/src/util';
 
 /**
@@ -25,32 +25,36 @@ function mapStateToProps(keys, state) {
  */
 export function useStore(keys = [], actions) {
 	const store = useContext(storeCtx);
-	let state = mapStateToProps(keys, store.getState());
-	let [v, setV] = useState(0);
+	let [currentState, setCurrentState] = useState(
+		mapStateToProps(keys, store.getState())
+	);
 
-	const update = useCallback(() => {
-		let mapped = mapStateToProps(keys, store.getState());
-		for (let i in mapped) {
-			if (mapped[i] !== state[i]) {
-				state = mapped;
-				return setV(++v);
+	// We can't use `useEffect` here, because the callback will be called to late.
+	// This is most noticable when the store was updated when a component has
+	// has rendered, but hasn't subscribed to the store yet. In that case it will
+	// miss the store update. That's why we need to subscribe immediately.
+	useLayoutEffect(() => {
+		const update = () => {
+			let mapped = mapStateToProps(keys, store.getState());
+			for (let i in mapped) {
+				if (mapped[i] !== currentState[i]) {
+					return setCurrentState(mapped);
+				}
 			}
-		}
-		for (let i in state) {
-			if (!(i in mapped)) {
-				state = mapped;
-				return setV(++v);
-			}
-		}
-	});
 
-	useEffect(() => {
-		store.subscribe(update);
-		return () => store.unsubscribe(update);
-	}, []);
+			for (let i in currentState) {
+				if (!(i in mapped)) {
+					return setCurrentState(mapped);
+				}
+			}
+		};
+
+		const dispose = store.subscribe(update);
+		return dispose;
+	}, [currentState]);
 
 	return {
-		state,
+		state: currentState,
 		actions: actions ? mapActions(actions, store) : { store },
 		update: s => store.setState(Object.assign(store.getState, s))
 	};

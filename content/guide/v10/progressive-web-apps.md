@@ -4,7 +4,7 @@ permalink: '/guide/progressive-web-apps'
 description: 'Progressive Web Apps (PWA) allow you to ship your app offline. They work pretty well with Preact'
 ---
 
-# Progressive Web Apps<!-- omit in toc -->
+# Progressive Web Apps
 
 Preact is an excellent choice for [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) that wish to load and become interactive quickly.  [Preact CLI](https://github.com/developit/preact-cli/) codifies this into an instant build tool that gives you a PWA with a 100 [Lighthouse][LH] score right out of the box.
 

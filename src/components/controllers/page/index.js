@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useEffect, useState, useCallback, useMemo } from 'preact/hooks';
+import { useEffect, useState, useMemo } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion, { getContentOnServer } from '../../content-region';
 import config from '../../../config';
@@ -114,17 +114,14 @@ export function usePage(route) {
 
 export default function Page({ route }) {
 	const { loading, meta, content, current, onLoad } = usePage(route);
-	const [toc, setToc] = useState(meta.toc);
-	const onToc = useCallback(clientMeta => {
-		setToc(clientMeta.toc || []);
-	});
-	const urlState = useStore(['url']).state;
+	const store = useStore(['toc', 'url']);
+	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContent(route);
 
-	const isReady = !loading && toc != null;
+	const isReady = !loading && urlState.toc != null;
 
 	// Note:
 	// "name" is the exact page ID from the URL
@@ -143,7 +140,6 @@ export default function Page({ route }) {
 					component={Sidebar}
 					boot={isReady}
 					show={hasSidebar}
-					toc={toc}
 				/>
 				<div class={style.inner}>
 					<Hydrator boot={isReady} component={EditThisPage} show={canEdit} />
@@ -153,12 +149,7 @@ export default function Page({ route }) {
 						show={showTitle}
 						title={meta.title || route.title}
 					/>
-					<ContentRegion
-						name={name}
-						content={content}
-						onToc={onToc}
-						onLoad={onLoad}
-					/>
+					<ContentRegion name={name} content={content} onLoad={onLoad} />
 					<Footer />
 				</div>
 			</div>
