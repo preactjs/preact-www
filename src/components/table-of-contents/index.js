@@ -1,36 +1,37 @@
 import { h } from 'preact';
 import cx from '../../lib/cx';
 import style from './style.less';
-import { storeCtx } from '../store-adapter';
-import { useMemo, useContext, useRef, useEffect } from 'preact/hooks';
+import { useStore } from '../store-adapter';
+import { useMemo, useRef, useEffect } from 'preact/hooks';
 
 export default function Toc() {
-	const store = useContext(storeCtx);
 	const ref = useRef(null);
+	const cache = useRef([]);
 
-	// WARNING: We can't use any state/effect hooks here because
-	// this component will be rendered inside the markdown. The parent component
-	// that's responsible for rendering the markdown will trigger a re-render so
-	// that we get the correct current state.
-	const { toc, url } = store.getState();
-	const items = useMemo(() => (toc !== null ? listToTree(toc) : []), [toc]);
+	const { toc, url } = useStore(['url', 'toc']).state;
+	// eslint-disable-next-line
+	const items = useMemo(() => {
+		return toc !== null
+			? (cache.current = listToTree(toc))
+			: cache.current || [];
+	}, [toc]);
 
 	// We'll set the current height of the last toc and keep it around until
 	// the toc changes. This reduces the layout jumpiness quite noticeably
 	// because the toc is always visible at the top.
 	useEffect(() => {
-		if (ref.current != null && toc != null && toc.length > 0) {
+		if (ref.current != null && items.length > 0) {
 			const dim = ref.current.getBoundingClientRect();
 			ref.current.style.height = dim.height + 'px';
 		}
-	}, [toc, ref.current]);
+	}, [items, ref.current]);
 
-	if (toc == null || toc.length === 0) return <div ref={ref} />;
+	if (items.length === 0) return <div ref={ref} />;
 
 	const loc = url.slice(url.indexOf('#') >>> 0);
 
 	return (
-		<div ref={ref} class={cx(style.toc, !(toc.length > 1) && style.disabled)}>
+		<div ref={ref} class={cx(style.toc, !(items.length > 1) && style.disabled)}>
 			<nav tabIndex="0" onFocus={this.open}>
 				<ul>
 					{items.map(entry => (
