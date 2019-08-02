@@ -1,5 +1,5 @@
 import createStore from 'unistore';
-import getDefaultLanguage from './lib/default-language';
+import { getDefaultLanguage } from './lib/language';
 import config from './config';
 import { localStorageSet, localStorageGet } from './lib/localstorage';
 
@@ -11,7 +11,7 @@ export default initial => {
 
 	if (state.lang !== '') {
 		let langOverride = (
-			(location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || ''
+			(location.search.match(/[?&]lang=([a-z-]+)/i) || [])[1] || ''
 		).toLowerCase();
 		if (langOverride && config.languages[langOverride])
 			state.lang = langOverride;

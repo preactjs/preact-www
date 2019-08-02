@@ -1,8 +1,10 @@
 import { h } from 'preact';
 import config from '../../config';
+import { route } from 'preact-router';
 import { useState, useEffect, useCallback } from 'preact/hooks';
 import { useStore } from '../store-adapter';
 import style from './style';
+import { addLangToUrl } from '../../lib/language';
 
 /*
  * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
@@ -28,18 +30,19 @@ export function useContributors(deps) {
  * Handles all logic related to language settings
  */
 export function useLanguage() {
-	const store = useStore(['lang']);
-	const { lang } = store.state;
+	const store = useStore(['lang', 'url']);
+	const { lang, url } = store.state;
 
-	useEffect(() => {
-		if (typeof document !== 'undefined' && document.documentElement) {
-			document.documentElement.lang = lang;
-		}
-	}, [lang]);
-
-	function setLang(next) {
-		store.update({ lang: next });
-	}
+	const setLang = useCallback(
+		next => {
+			if (typeof document !== 'undefined' && document.documentElement) {
+				document.documentElement.lang = next;
+			}
+			route(addLangToUrl(url, next));
+			store.update({ lang: next });
+		},
+		[url]
+	);
 
 	return [lang, setLang];
 }
@@ -49,7 +52,7 @@ export default function Footer() {
 	const contrib = useContributors([url]);
 	const [lang, setLang] = useLanguage();
 
-	const onSelect = useCallback(e => setLang(e.target.value), []);
+	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
 
 	return (
 		<footer class={style.footer}>
@@ -57,14 +60,14 @@ export default function Footer() {
 				<p>
 					<label class={style.lang}>
 						Language:{' '}
-						<select value={lang} onInput={onSelect}>
-							<option value="">English</option>
+						<select value={lang || 'en'} onInput={onSelect}>
 							{Object.keys(config.languages).map(id => (
 								<option selected={id == lang} value={id}>
 									{config.languages[id]}
 								</option>
 							))}
 						</select>
+						{lang && <code>?lang={lang}</code>}
 					</label>
 				</p>
 				<p style="line-height: 1">

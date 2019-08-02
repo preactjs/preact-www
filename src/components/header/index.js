@@ -10,6 +10,7 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import ThemeSwitcher from '../theme-switcher';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { addLangToUrl } from '../../lib/language';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -127,9 +128,11 @@ class NavItem extends Component {
 
 // depending on the type of nav link, use <a>
 const NavLink = ({ to, ...props }) => {
+	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
+	const href = to.path ? addLangToUrl(to.path, lang) : 'javascript:';
 	return (
-		<a href={to.path || 'javascript:'} {...props}>
+		<a href={href} {...props}>
 			{Flair && <Flair />}
 			{to.name || to.title}
 		</a>
