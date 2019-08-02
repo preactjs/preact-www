@@ -16,7 +16,9 @@ export default initial => {
 		if (langOverride && config.languages[langOverride])
 			state.lang = langOverride;
 
-		if (!state.lang) state.lang = getDefaultLanguage(config.languages) || '';
+		if (!state.lang) state.lang = getDefaultLanguage(config.languages) || 'en';
+	} else {
+		state.lang = 'en';
 	}
 
 	let store = createStore(state);
