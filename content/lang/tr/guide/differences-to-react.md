@@ -3,7 +3,7 @@ name: Differences to React
 permalink: '/guide/differences-to-react'
 ---
 
-# React’tan Farklılıkları<!-- omit in toc -->
+# React’tan Farklılıkları
 
 Preact’ın kendisi React’ın yeniden tasarlanmış hali olmayı amaçlamamıştır. Aralarında farklılıklar vardır. Bu farklılıkların bir çoğu önemsiz ya da [preact-compat] kullanılarak tamamen kaldırılabilir. Preact-compat ise preact üzerinde bulunan, React ile %100 uyumluluğu sağlamaya çalışan bir katmandır.
 
@@ -11,11 +11,7 @@ Preact’ın React’ın her bir özelliğini içermemesinin nedeni, **küçük*
 
 ---
 
-- [Sürüm Uyumluluğu](#sürüm-uyumluluğu)
-- [Neler Dahil Edilir?](#neler-dahil-edilir)
-- [Neler Eklendi?](#neler-eklendi)
-- [Ne Yok?](#ne-yok)
-- [Farklı olan nedir?](#farklı-olan-nedir)
+<toc></toc>
 
 ---
 

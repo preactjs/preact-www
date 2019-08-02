@@ -3,7 +3,7 @@ name: Switching to Preact from React
 permalink: '/guide/switching-to-preact'
 ---
 
-# Switching to Preact (from React)<!-- omit in toc -->
+# Switching to Preact (from React)
 
 There are two different approaches to switch from React to Preact:
 
@@ -12,22 +12,7 @@ There are two different approaches to switch from React to Preact:
 
 ---
 
-- [Easy: `preact-compat` Alias](#easy-preact-compat-alias)
-  - [How to Alias preact-compat](#how-to-alias-preact-compat)
-    - [Aliasing via Webpack](#aliasing-via-webpack)
-    - [Aliasing via Parcel](#aliasing-via-parcel)
-    - [Aliasing via Browserify](#aliasing-via-browserify)
-    - [Aliasing Manually](#aliasing-manually)
-    - [Aliasing in Node using module-alias](#aliasing-in-node-using-module-alias)
-  - [Build & Test](#build--test)
-- [Optimal: Switch to Preact](#optimal-switch-to-preact)
-  - [1. Install Preact](#1-install-preact)
-  - [2. JSX Pragma: transpile to `h()`](#2-jsx-pragma-transpile-to-h)
-    - [Via Babel](#via-babel)
-    - [Via Comments](#via-comments)
-    - [Via Bublé](#via-bublé)
-  - [3. Update any Legacy Code](#3-update-any-legacy-code)
-  - [4. Simplify Root Render](#4-simplify-root-render)
+<toc></toc>
 
 ---
 

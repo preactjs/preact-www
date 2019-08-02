@@ -3,16 +3,13 @@ name: Etat lié
 permalink: '/guide/linked-state'
 ---
 
-# Etat lié<!-- omit in toc -->
+# Etat lié
 
 Un point sur lequel Preact va un peu plus loin que React est l'optimisation des changements du state. Un motif commun dans le code React écrit en ES2015 est d'utiliser les fonctions fléchées dans une méthode `render()` afin de mettre à jour le state en réponse à des événements. Créer des fonctions comprises dans une portée à chaque nouveau rendu n'est pas efficace et force le ramasse-miettes à travailler plus que nécessaire.
 
 ---
 
-- [La méthode manuelle, plus agréable](#la-méthode-manuelle-plus-agréable)
-- [Etat lié à la rescousse](#etat-lié-à-la-rescousse)
-- [Custom Event Paths](#custom-event-paths)
-  - [Illustration: boutons radio groupés](#illustration-boutons-radio-groupés)
+<toc></toc>
 
 ---
 

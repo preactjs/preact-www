@@ -14,7 +14,8 @@ import { getCurrentUrl } from 'preact-router';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
-	const url = getCurrentUrl();
+	// Remove trailing slash to fix activeCss check below.
+	const url = getCurrentUrl().replace(/\/$/, '');
 	return (
 		<nav
 			tabIndex="0"

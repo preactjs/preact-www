@@ -3,7 +3,7 @@ name: Formulários
 permalink: '/guide/forms'
 ---
 
-# Formulários<!-- omit in toc -->
+# Formulários
 
 Formulários no Preact funcionam de forma muito parecida ao React, exceto por não suportarem _props/attributes_ "estáticos" (valor inicial).
 
@@ -11,9 +11,7 @@ Formulários no Preact funcionam de forma muito parecida ao React, exceto por n�
 
 ---
 
-- [Componentes Controlados e Não-Controlados](#componentes-controlados-e-não-controlados)
-- [Checkboxes & Radio Buttons](#checkboxes--radio-buttons)
-  - [Exemplo de Checkbox](#exemplo-de-checkbox)
+<toc></toc>
 
 ---
 

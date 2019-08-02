@@ -3,7 +3,7 @@ name: Types of Components
 permalink: '/guide/types-of-components'
 ---
 
-# 组件种类 <!-- omit in toc -->
+# 组件种类
 
 Preact 中有两种组件：
 
@@ -14,9 +14,7 @@ Preact 中有两种组件：
 
 ---
 
-- [例子](#例子)
-  - [解构属性与状态](#解构属性与状态)
-  - [无状态的函数式组件](#无状态的函数式组件)
+<toc></toc>
 
 ---
 

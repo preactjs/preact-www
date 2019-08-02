@@ -3,16 +3,13 @@ name: Mutaciones externas del DOM
 permalink: '/guide/external-dom-mutations'
 ---
 
-# Mutaciones externas del DOM<!-- omit in toc -->
+# Mutaciones externas del DOM
 
 A veces existe la necesidad de trabajar con librerías de terceros que esperan tener la libertad de mutar el DOM a piacere, persistir estado en él, o que no tienen límites de componentes. Hay excelentes UI toolkits o elementos reusables que operan de esta manera. En Preact (y de manera similar en React), trabajando con este tipo de librerías requiere que le digas al algoritmo de rendering/diffing del Virtual DOM que no debe intentar _volver atrás_ cualquier mutación external del DOM realizada dentro de un Componente específico (o el elemento del DOM que representa).
 
 ---
 
-- [Técnica](#técnica)
-- [Paso a paso de ejemplo](#paso-a-paso-de-ejemplo)
-- [Demostración](#demostración)
-- [Ejemplos de la vida real](#ejemplos-de-la-vida-real)
+<toc></toc>
 
 ---
 

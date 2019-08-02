@@ -1,8 +1,9 @@
 ---
 name: Context
+description: 'Context allows you to pass props through intermediate components. This documents describes both the new and the old API'
 ---
 
-# Context<!-- omit in toc -->
+# Context
 
 Context allows you to pass a value to a child deep down the tree without having to pass it through every component inbetween via props. A very popular use case for this is theming. In a nutshell context can be thought of a way to do pup-sub-style updates in Preact.
 
@@ -10,8 +11,7 @@ There are two different ways to use context: Via the newer `createContext` API a
 
 ---
 
-- [createContext](#createcontext)
-- [Legacy Context API](#legacy-context-api)
+<toc></toc>
 
 ---
 

@@ -3,7 +3,7 @@ name: Mudando para Preact do React
 permalink: '/guide/switching-to-preact'
 ---
 
-# Mudando para Preact (do React)<!-- omit in toc -->
+# Mudando para Preact (do React)
 
 Há duas abordagens diferentes para mudar do React pro Preact:
 
@@ -12,21 +12,7 @@ Há duas abordagens diferentes para mudar do React pro Preact:
 
 ---
 
-- [Fácil: `preact-compat` Alias](#fácil-preact-compat-alias)
-  - [Como fazer o Alias do preact-compat](#como-fazer-o-alias-do-preact-compat)
-    - [Alias pelo Webpack](#alias-pelo-webpack)
-    - [Aliasing pelo Browserify](#aliasing-pelo-browserify)
-    - [Fazendo Alias manualmnete](#fazendo-alias-manualmnete)
-    - [Observação para o uso com outros módulos](#observação-para-o-uso-com-outros-módulos)
-  - [Build & Teste](#build--teste)
-- [Ótima: Mudar para o Preact](#Ótima-mudar-para-o-preact)
-  - [1. Instalar o Preact](#1-instalar-o-preact)
-  - [2. JSX Pragma: transpilar para `h()`](#2-jsx-pragma-transpilar-para-h)
-    - [Via Babel](#via-babel)
-    - [Via Commentários](#via-commentários)
-    - [Via Bublé](#via-bublé)
-  - [3. Atualize qualquer código legado](#3-atualize-qualquer-código-legado)
-  - [4. Simplifique o Render raiz](#4-simplifique-o-render-raiz)
+<toc></toc>
 
 ---
 
