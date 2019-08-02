@@ -22,7 +22,6 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           </p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/faster-tti.svg);"></div>
@@ -35,7 +34,6 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           如果你的目标是在 [5 秒内进行交互](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/)，每个 KB 都很重要，在您的项目中[切换 React 到 Preact](/guide/switching-to-preact) 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/building-block.svg);"></div>
@@ -73,7 +71,6 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           </p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/service-worker-caching.svg);"></div>
@@ -82,7 +79,6 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存 </a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。使用 [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) 或 [offline-plugin](https://github.com/NekR/offline-plugin) 完成此操作。
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/prpl.svg);"></div>
@@ -91,7 +87,6 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> 鼓励向浏览器预先推送或预加载资源，从而加快后续页面的加载速度。它基于代码拆分和 SW 缓存。</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/lighthouse.svg);"></div>

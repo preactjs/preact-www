@@ -10,15 +10,18 @@ export default class App extends Component {
 	store = createStore({
 		url: this.props.url || location.pathname,
 		lang: '',
-		docVersion: getCurrentDocVersion(location.pathname)
+		docVersion: getCurrentDocVersion(location.pathname),
+		toc: null
 	});
 
 	handleUrlChange = ({ url }) => {
 		let prev = this.store.getState().url || '/';
 		if (url !== prev) {
 			this.store.setState({
-				 url,
-				 docVersion: getCurrentDocVersion(url)
+				...this.store.getState(),
+				toc: null,
+				url,
+				docVersion: getCurrentDocVersion(url)
 			});
 			if (typeof ga === 'function') {
 				ga('send', 'pageview', url);

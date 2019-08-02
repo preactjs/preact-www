@@ -23,7 +23,6 @@ Preact est un excellent choix pour les [Progressive Web Apps](https://developers
           <p class="_summary">La petite taille de Preact est précieuse lors vous avez un budget performance serré. Sur un terminal mobile moyen, le chargement de gros bundles de JavaScript mènent à des temps de chargement, d'analyse et d'évaluation plus longs. Cela peut faire attendre les utilisateurs plus longtemps avant qu'ils puissent intéragir avec votre application. En rognant sur le code de la bibliothèque dans vos bundles, vous améliorez le temps de chargement en livrant moins de code à vos utilisateurs.</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/faster-tti.svg);"></div>
@@ -35,7 +34,6 @@ Preact est un excellent choix pour les [Progressive Web Apps](https://developers
           <p class="_summary">Si vous voulez être [interactif en moins de 5 secondes](https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/), chaque Ko compte. [Passer de React à Preact](/guide/switching-to-preact) dans vos projets peut vous faire économiser de nombreux Ko et vous permettre d'être interactif en un RTT. Cela fonctionne très bien pour les Progressive Web Apps qui essayent de servir le moins de code possible pour chaque route.</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/building-block.svg);"></div>
@@ -70,7 +68,6 @@ En plus d'être une solution qui fonctionne bien pour votre PWA, Preact peut aus
           <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Le Code-splitting</a></strong> divise votre code de manière à ce que vous puissiez servir uniquement ce dont l'utilisateur a besoin pour une page. Charger le reste à la demande améliore le temps de chargement de la page. Ceci est supporté via Webpack.</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/service-worker-caching.svg);"></div>
@@ -79,7 +76,6 @@ En plus d'être une solution qui fonctionne bien pour votre PWA, Preact peut aus
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Le cache des Service Worker</a></strong> vous permet de mettre en cache hors-ligne des ressources statiques et dynamiques de votre application, offrant un chargement instantané et une interactivité plus rapide lors des visites répétées. Vous pouvez faire cela avec [sw-precache](https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits) ou [offline-plugin](https://github.com/NekR/offline-plugin).</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/prpl.svg);"></div>
@@ -88,7 +84,6 @@ En plus d'être une solution qui fonctionne bien pour votre PWA, Preact peut aus
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">Le PRPL</a></strong> encourage à pousser ou précharger des ressources vers le navigateur de manière préemptive, afin d'améliorer le temps de chargement des pages suivantes. Cela fonctionne grâve au code-splitting et au cache du Service Worker.</p>
         </div>
     </li>
-
     <li class="list-item">
         <div class="list-header">
           <div class="_bubble" style="background-image: url(../../assets/pwa-guide/lighthouse.svg);"></div>

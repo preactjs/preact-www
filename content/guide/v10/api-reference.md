@@ -1,24 +1,15 @@
 ---
 name: API Reference
+description: 'Learn more about all exported functions of the Preact module'
 ---
 
-# API Reference <!-- omit in toc -->
+# API Reference
 
 This page serves as a quick overview over all exported functions.
 
 ---
 
-- [Preact.Component](#preactcomponent)
-  - [Component.render(props, state)](#componentrenderprops-state)
-  - [Lifecycle methods](#lifecycle-methods)
-- [render()](#render)
-- [hydrate()](#hydrate)
-- [h() / createElement()](#h--createelement)
-- [toChildArray](#tochildarray)
-- [cloneElement](#cloneelement)
-- [createContext](#createcontext)
-- [createRef](#createref)
-- [Fragment](#fragment)
+<toc></toc>
 
 ---
 

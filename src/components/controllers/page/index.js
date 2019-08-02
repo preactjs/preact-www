@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useEffect, useState, useCallback, useMemo } from 'preact/hooks';
+import { useEffect, useState, useMemo } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion, { getContentOnServer } from '../../content-region';
 import config from '../../../config';
@@ -8,7 +8,10 @@ import Footer from '../../footer';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
 import EditThisPage from '../../edit-button';
-import { getPrerenderData, InjectPrerenderData } from '../../../lib/prerender-data';
+import {
+	getPrerenderData,
+	InjectPrerenderData
+} from '../../../lib/prerender-data';
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
 
@@ -26,8 +29,20 @@ export function useTitle(title) {
 	}, [title]);
 }
 
-const noop = () => {};
+/**
+ * Set the meta description tag content
+ * @param {string} text
+ */
+export function useDescription(text) {
+	useEffect(() => {
+		const el = document.querySelector('meta[name=description]');
+		if (text && el) {
+			el.setAttribute('content', text);
+		}
+	}, [text]);
+}
 
+const noop = () => {};
 
 export function usePage(route) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
@@ -43,7 +58,7 @@ export function usePage(route) {
 	}
 
 	const [current, setCurrent] = useState(getContent(route));
-	
+
 	const bootData = getPrerenderData(current);
 
 	const [hydrated, setHydrated] = useState(!!bootData);
@@ -60,6 +75,7 @@ export function usePage(route) {
 	}, [getContent(route)]);
 
 	useTitle(meta.title);
+	useDescription(meta.description);
 
 	let didLoad = false;
 	function onLoad({ meta }) {
@@ -98,17 +114,14 @@ export function usePage(route) {
 
 export default function Page({ route }) {
 	const { loading, meta, content, current, onLoad } = usePage(route);
-	const [toc, setToc] = useState(meta.toc);
-	const onToc = useCallback(clientMeta => {
-		setToc(clientMeta.toc || []);
-	});
-	const urlState = useStore(['url']).state;
+	const store = useStore(['toc', 'url']);
+	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContent(route);
 
-	const isReady = !loading && toc != null;
+	const isReady = !loading && urlState.toc != null;
 
 	// Note:
 	// "name" is the exact page ID from the URL
@@ -127,26 +140,16 @@ export default function Page({ route }) {
 					component={Sidebar}
 					boot={isReady}
 					show={hasSidebar}
-					toc={toc}
 				/>
 				<div class={style.inner}>
-					<Hydrator
-						boot={isReady}
-						component={EditThisPage}
-						show={canEdit}
-					/>
+					<Hydrator boot={isReady} component={EditThisPage} show={canEdit} />
 					<Hydrator
 						component={Title}
 						boot={isReady}
 						show={showTitle}
 						title={meta.title || route.title}
 					/>
-					<ContentRegion
-						name={name}
-						content={content}
-						onToc={onToc}
-						onLoad={onLoad}
-					/>
+					<ContentRegion name={name} content={content} onLoad={onLoad} />
 					<Footer />
 				</div>
 			</div>

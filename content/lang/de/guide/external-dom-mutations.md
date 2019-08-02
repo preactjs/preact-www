@@ -3,15 +3,11 @@ name: Externe DOM-Mutationen
 permalink: '/guide/external-dom-mutations'
 ---
 
-# Externe DOM-Mutationen<!-- omit in toc -->
+# Externe DOM-Mutationen
 
 ---
 
-- [Übersicht](#Übersicht)
-- [Technik](#technik)
-- [Beispielsdurchlauf](#beispielsdurchlauf)
-- [Demonstration](#demonstration)
-- [Beispiele aus der realen Welt](#beispiele-aus-der-realen-welt)
+<toc></toc>
 
 ---
 
