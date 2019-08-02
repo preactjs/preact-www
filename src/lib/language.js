@@ -16,7 +16,7 @@ export function getDefaultLanguage(available = {}) {
 	}
 }
 
-const LANG_REG = /[?&]lang=([a-z-]+)/i;
+const LANG_REG = /([?&])lang=([a-z-]+)/i;
 /**
  * Replace or add the language to the url
  * @param {string} url
@@ -24,8 +24,9 @@ const LANG_REG = /[?&]lang=([a-z-]+)/i;
  */
 export function addLangToUrl(url, lang) {
 	const sep = url.indexOf('?') > -1 ? '&' : '?';
-	if ((url.match(LANG_REG) || [])[1] || '') {
-		return url.replace(LANG_REG, lang != 'en' ? `${sep}lang=${lang}` : '');
+	const match = url.match(LANG_REG);
+	if (match != null) {
+		return url.replace(LANG_REG, lang != 'en' ? `${match[1]}lang=${lang}` : '');
 	}
 
 	const hashIdx = url.indexOf('#');
