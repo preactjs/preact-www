@@ -1,9 +1,10 @@
 ---
 name: Differences to React
 permalink: '/guide/differences-to-react'
+description: 'What are the differences between Preact and React. This document describes them in detail'
 ---
 
-# Differences to React <!-- omit in toc -->
+# Differences to React
 
 Preact itself is not intended to be a reimplementation of React. There are differences. Many of these differences are trivial, or can be completely removed by using [preact/compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
 
@@ -11,17 +12,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-- [Main differences](#main-differences)
-- [Version Compatibility](#version-compatibility)
-- [Features unique to Preact](#features-unique-to-preact)
-  - [Arguments in `Component.render()`](#arguments-in-componentrender)
-  - [Raw HTML attribute/property names](#raw-html-attributeproperty-names)
-  - [Use `onInput` instead of `onChange`](#use-oninput-instead-of-onchange)
-  - [JSX-Constructor](#jsx-constructor)
-  - [No contextTypes needed](#no-contexttypes-needed)
-- [Features exclusive to `preact/compat`](#features-exclusive-to-preactcompat)
-  - [Children-API](#children-api)
-  - [Specialised Components](#specialised-components)
+<toc></toc>
 
 ---
 

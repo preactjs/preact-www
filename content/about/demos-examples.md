@@ -1,6 +1,7 @@
 ---
 name: Demos & Examples
 permalink: '/about/demos-examples'
+description: 'Collection of demos and example Preact applications'
 ---
 
 # Demos & Examples

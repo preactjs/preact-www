@@ -3,16 +3,13 @@ name: Estado Associado
 permalink: '/guide/linked-state'
 ---
 
-# Estado Associado<!-- omit in toc -->
+# Estado Associado
 
 Uma área que o Preact leva um pouco mais além do que o React é na otimização de mudanças de estado. Um padrão comum no React ES2015 é utilizar _Arrow functions_ dentro de método render de modo a atualizar o estado em resposta a eventos. Criar funções enclausuradas num escopo em cada renderização é ineficiente e força o _garbage collector_ a fazer mais trabalho que necessário.
 
 ---
 
-- [A Maneira Manual Melhor](#a-maneira-manual-melhor)
-- [Estado Associado ao Resgate](#estado-associado-ao-resgate)
-- [Caminhos de Evento Personalizados](#caminhos-de-evento-personalizados)
-  - [Ilustração: Botões _Radio_ Agrupados](#ilustração-botões-_radio_-agrupados)
+<toc></toc>
 
 ---
 

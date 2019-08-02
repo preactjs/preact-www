@@ -63,7 +63,9 @@ export default class Search extends Component {
 				// 	__html: `<input id=${this.id} class="${style.searchBox}" required>`
 				// }}
 			>
-				<input id={this.id} class={style.searchBox} required />
+				<label aria-label="Search">
+					<input id={this.id} class={style.searchBox} required />
+				</label>
 			</div>
 		);
 	}

@@ -31,10 +31,18 @@ export default function Header() {
 				<Search />
 				<div class={style.social}>
 					<ReleaseLink class={cx(style.socialItem, style.release)} />
-					<a class={style.socialItem} href="https://github.com/preactjs/preact">
+					<a
+						class={style.socialItem}
+						aria-label="Browse the code on GitHub"
+						href="https://github.com/preactjs/preact"
+					>
 						<img src="/assets/github.svg" alt="GitHub" />
 					</a>
-					<a class={style.socialItem} href="https://twitter.com/preactjs">
+					<a
+						class={style.socialItem}
+						aria-label="Follow us on Twitter"
+						href="https://twitter.com/preactjs"
+					>
 						<img src="/assets/twitter.svg" alt="Twitter" />
 					</a>
 					<ThemeSwitcher />

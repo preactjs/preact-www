@@ -8,11 +8,9 @@ toc: false
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text>Preact</logo>
+        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-
     <p>Una alternativa veloz a React en 3kB con la misma API de ES6.</p>
-
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
@@ -23,7 +21,7 @@ toc: false
     </p>
 </jumbotron>
 
-```js
+```jsx
 function Counter() {
   const [value, setValue] = useState(0);
 
@@ -47,12 +45,10 @@ function Counter() {
 
   <div>
     <h2>Más cerca del metal</h2>
-
     <p>
         Preact provee la abstracción más pequeña del Virtual DOM sobre el DOM.
         La web es una plataforma estable, es tiempo de dejar de reimplementarla en nombre de la seguridad.
     </p>
-
     <p>
         Preact también es un ciudadano de primera clase de la plataforma web. Compara el Virtual DOM contra el DOM, registra manejadores de eventos reales y se comporta bien con otras librerías.
     </p>
@@ -65,12 +61,10 @@ function Counter() {
 
   <div>
     <h2>Tamaño reducido</h2>
-
     <p>
-        La mayoría de los frameworks de UI son suficientemente largos como para ser la mayor parte del tamaño del JavaScript de una app.
-        Preact es distinto: Es suficientemente pequeño como para que <em>tu código</em> sea la parte más pesada de tu aplicación.
+        La mayoría de los frameworks de UI son suficientemente grandes como para ser la mayor parte del tamaño del JavaScript de una app.
+        Preact es distinto: Es lo suficientemente pequeño como para que <em>tu código</em> sea la parte más pesada de tu aplicación.
     </p>
-
     <p>
         Esto significa menos JavaScript para descargar, interpretar y ejecutar - dejando más tiempo para tu código, para que puedas construir una experiencia que tú definas sin tener que pelear para mantener el framework bajo control.
     </p>
@@ -82,14 +76,12 @@ function Counter() {
   <img src="/assets/home/performance.svg">
 
   <div>
-    <h2>Gran Performance</h2>
-
+    <h2>Gran Rendimiento</h2>
     <p>
         Preact es rápido, y no solo por su peso. Es una de las librerías de Virtual DOM más rápidas que vas a encontrar, gracias a su implementación de diffing simple y predecible.
     </p>
-
     <p>
-        También incluye agregados extra de performance como actualizaciones customizables en batch, async rendering opcional, reciclado del DOM y manejo de eventos optimizado via [Estado Asociado](/guide/linked-state).
+        También incluye añadidos extra de rendimientos como actualizaciones customizables en batch, async rendering opcional, reciclado del DOM y manejo de eventos optimizado via [Estado Asociado](/guide/linked-state).
     </p>
   </div>
 </section>
@@ -100,11 +92,9 @@ function Counter() {
 
   <div>
     <h2>Portable y embebible</h2>
-
     <p>
         La pequeña huella que deja Preact significa que puedes tomar el poderoso paradigma del Componente de Virtual DOM a nuevos lugares donde de otra manera no podría entrar.
     </p>
-
     <p>
         Usa Preact para crear partes de una aplicación sin integración compleja. Embebe Preact en un widget y usa las mismas herramientas y técnicas que usarías para crear una app completa.
     </p>
@@ -117,12 +107,10 @@ function Counter() {
 
   <div>
     <h2>Productividad instantánea</h2>
-
     <p>
         La liviandad es mucho más divertida cuando no tienes que sacrificar productividad para llegar a ella.
         Preact habilita tu productividad desde el comienzo. De hecho tiene algunos bonus:
     </p>
-
     <ul>
         <li>`props`, `state` y `context` son pasados a `render()`</li>
         <li>Usa atributos HTML standard como `class` y `for`</li>
@@ -137,12 +125,10 @@ function Counter() {
 
   <div>
     <h2>Ecosistema compatible</h2>
-
     <p>
         Los Componentes de Virtual DOM hacen simple compartir elementos reusables - desde botones hasta proveedores de data.
         El diseño de Preact significa también que tienes miles de Componentes disponibles desde el ecosistema de React.
     </p>
-
     <p>
         Agregando un simple alias a
         <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> en tu bundler provee una capa de compatibilidad que habilita incluso los componentes de React más complejos para ser usados en tu aplicación.
@@ -159,7 +145,7 @@ function Counter() {
 <section class="home-split">
     <div>
         <h2>Componente de Todo List</h2>
-        <pre><code class="lang-js">
+        <pre><code class="lang-jsx">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
@@ -173,8 +159,10 @@ export default class TodoList extends Component {
     render({ }, { todos, text }) {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
-                &lt;input value={text} onInput={this.setText} /&gt;
-                &lt;button type="submit"&gt;Add&lt;/button&gt;
+                &lt;label&gt;
+                  &lt;span&gt;Add Todo&lt;span&gt;
+                  &lt;input value={text} onInput={this.setText} /&gt;
+                &lt;/label&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -186,10 +174,9 @@ export default class TodoList extends Component {
 }
         </code></pre>
     </div>
-
     <div>
         <h2>Ejemplo corriendo</h2>
-        <pre repl="false"><code class="lang-js">
+        <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
 render(&lt;TodoList /&gt;, document.body);
@@ -204,7 +191,7 @@ render(&lt;TodoList /&gt;, document.body);
 <section class="home-split">
     <div>
         <h2>Buscando las estrellas de Github</h2>
-        <pre><code class="lang-js">
+        <pre><code class="lang-jsx">
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
@@ -221,11 +208,9 @@ export default class Stars extends Component {
 }
         </code></pre>
     </div>
-
     <div>
         <h2>Ejemplo corriendo</h2>
-
-        <pre repl="false"><code class="lang-js">
+        <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
 render(
@@ -233,7 +218,6 @@ render(
     document.body
 );
         </code></pre>
-
         <div class="home-demo">
             <github-stars simple user="developit" repo="preact"></github-stars>
         </div>

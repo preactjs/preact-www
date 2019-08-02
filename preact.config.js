@@ -96,6 +96,10 @@ export default function (config, env, helpers) {
 				content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
 				return content;
 			}
+		}, {
+			context: __dirname,
+			from: 'src/robots.txt',
+			to: 'robots.txt'
 		}]));
 
 		netlifyPlugin(config, {
