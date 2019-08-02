@@ -134,13 +134,19 @@ const NavLink = ({ to, ...props }) => {
 	return (
 		<a href={href} {...props}>
 			{Flair && <Flair />}
-			{to.name || to.title}
+			{getRouteName(to, lang)}
 		</a>
 	);
 };
 
+export function getRouteName(route, lang) {
+	return typeof route.name === 'object'
+		? route.name[lang] || route.name.en
+		: route.name || route.title;
+}
+
 // get a CSS-addressable identifier for a given route
 const getRouteIdent = route =>
-	(route.name || route.title || route.url)
+	(getRouteName(route, 'en') || route.url)
 		.toLowerCase()
 		.replace(/[^a-z0-9]/i, '');
