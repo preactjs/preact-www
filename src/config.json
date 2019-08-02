@@ -2,6 +2,7 @@
 	"title": "Preact: Fast 3kb React alternative with the same ES6 API. Components & Virtual DOM.",
 	"name": "Preact",
 	"languages": {
+		"en": "English",
 		"zh": "Chinese",
 		"fr": "French",
 		"es": "Spanish",
