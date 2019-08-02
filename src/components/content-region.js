@@ -4,20 +4,17 @@ import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
 import widgets from './widgets';
 import { markdownToHtml } from '../lib/markdown';
+import { localStorageGet } from '../lib/localstorage';
+import { addLangToUrl } from '../lib/language';
 
 const COMPONENTS = {
 	...widgets,
 	pre: widgets.CodeBlock,
 	img(props) {
 		return <img decoding="async" {...props} />;
-	},
-	a(props) {
-		if (!props.target && props.href.match(/:\/\//)) {
-			props.target = '_blank';
-			props.rel = 'noopener noreferrer';
-		}
-		return <a {...props} />;
 	}
+	// Component for `<a>` elements will be created dynamically to be able
+	// to access information from context.
 };
 
 const EMPTY = {};
@@ -200,10 +197,26 @@ export default class ContentRegion extends Component {
 			}
 		}
 
+		function a(props) {
+			const href = props.href;
+			if (!props.target && props.href.match(/:\/\//)) {
+				props.target = '_blank';
+				props.rel = 'noopener noreferrer';
+			} else if (href[0] != null && href[0] !== '#') {
+				const { lang } = store.getState();
+				if (lang) props.href = addLangToUrl(href);
+			}
+			return <a {...props} />;
+		}
+
 		return (
 			<content-region {...props}>
 				{content && (
-					<Markdown key={content} content={content} components={COMPONENTS} />
+					<Markdown
+						key={content}
+						content={content}
+						components={{ ...COMPONENTS, a }}
+					/>
 				)}
 			</content-region>
 		);
