@@ -10,8 +10,11 @@ export default initial => {
 	let state = { ...initial, ...storedState };
 
 	if (state.lang !== '') {
+		// Use `location.href` instead of `location.search` because the latter is
+		// not patched in preact-cli.
+		// See: https://github.com/preactjs/preact-cli/pull/856
 		let langOverride = (
-			(location.search.match(/[?&]lang=([a-z-]+)/i) || [])[1] || ''
+			(location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || ''
 		).toLowerCase();
 		if (langOverride && config.languages[langOverride])
 			state.lang = langOverride;
