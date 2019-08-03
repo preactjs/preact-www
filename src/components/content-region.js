@@ -27,7 +27,7 @@ const memoizeProd = process.env.NODE_ENV === 'production' ? memoize : f => f;
 // fetch and parse a markdown document
 const getContent = memoizeProd(([lang, name]) => {
 	if (lang == '') lang = 'en';
-	let path = lang !== 'en' ? `/content/lang/${lang}` : '/content',
+	let path = `/content/${lang}`,
 		url = `${path}/${name.replace(/^\//, '')}`,
 		[, ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
