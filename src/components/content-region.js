@@ -58,12 +58,12 @@ const getContent = memoizeProd(([lang, name]) => {
 });
 
 export const getContentOnServer = PRERENDER
-	? route => {
+	? (route, lang) => {
 			if (!PRERENDER) return;
 			if (route == '/') route = '/index';
 
 			const fs = __non_webpack_require__('fs');
-			let data = fs.readFileSync(`content${route}.md`, 'utf8');
+			let data = fs.readFileSync(`content/${lang}/${route}.md`, 'utf8');
 
 			// convert frontmatter from yaml to json:
 			const yaml = __non_webpack_require__('yaml');
@@ -195,7 +195,7 @@ export default class ContentRegion extends Component {
 				content = cachedContent;
 			} else if (PRERENDER) {
 				// this is all only run during prerendering
-				({ content } = getContentOnServer(location.pathname));
+				({ content } = getContentOnServer(location.pathname, props.lang));
 			}
 		}
 

@@ -44,10 +44,10 @@ export function useDescription(text) {
 
 const noop = () => {};
 
-export function usePage(route) {
+export function usePage(route, lang) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
 	if (PRERENDER) {
-		const { content, meta } = getContentOnServer(route.path);
+		const { content, meta } = getContentOnServer(route.path, lang);
 		return {
 			current: null,
 			content,
@@ -113,8 +113,11 @@ export function usePage(route) {
 }
 
 export default function Page({ route }) {
-	const { loading, meta, content, current, onLoad } = usePage(route);
-	const store = useStore(['toc', 'url']);
+	const store = useStore(['toc', 'url', 'lang']);
+	const { loading, meta, content, current, onLoad } = usePage(
+		route,
+		store.state.lang
+	);
 	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
 
