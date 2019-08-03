@@ -4,7 +4,6 @@ import { memoize } from 'decko';
 import Markdown from 'lib/markdown';
 import widgets from './widgets';
 import { markdownToHtml } from '../lib/markdown';
-import { localStorageGet } from '../lib/localstorage';
 import { addLangToUrl } from '../lib/language';
 
 const COMPONENTS = {
