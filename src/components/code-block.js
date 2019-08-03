@@ -9,8 +9,15 @@ const CodeBlock = ({ children, ...props }) => {
 	let child = children && children[0];
 	let isHighlight = child && child.type === 'code';
 
-	if (isHighlight) {
-		let text = (child.props.children[0] || '').replace(/(^\s+|\s+$)/g, '');
+	let firstChild = child.props.children[0];
+	// Children is mutated and it will have the highlighted tree on second render.
+	// We can detect that by checken if we have more than one child
+	if (
+		isHighlight &&
+		child.props.children.length === 1 &&
+		typeof firstChild === 'string'
+	) {
+		let text = (firstChild || '').replace(/(^\s+|\s+$)/g, '');
 		let lang =
 			child.props.class &&
 			child.props.class.match(/(?:lang|language)-([a-z]+)/)[1];
