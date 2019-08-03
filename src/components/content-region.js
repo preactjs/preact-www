@@ -40,11 +40,14 @@ const getContent = memoizeProd(([lang, name]) => {
 			typeof window !== 'undefined' &&
 			window['_boostrap_' + url]) ||
 		fetch(url);
+
+	let fallback = false;
 	return fetchPromise
 		.then(r => {
 			// fall back to english
 			if (!r.ok && lang != 'en') {
-				return fetch(url.replace(/content\/[^/]+\//, 'content/'));
+				fallback = true;
+				return fetch(url.replace(/content\/[^/]+\//, 'content/en/'));
 			}
 			return r;
 		})
@@ -54,7 +57,7 @@ const getContent = memoizeProd(([lang, name]) => {
 			return fetch(`${path}/${r.status}.md`);
 		})
 		.then(r => r.text())
-		.then(r => parseContent(r));
+		.then(r => ({ ...parseContent(r), fallback }));
 });
 
 export const getContentOnServer = PRERENDER
