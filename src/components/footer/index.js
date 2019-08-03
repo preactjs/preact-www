@@ -1,10 +1,8 @@
 import { h } from 'preact';
 import config from '../../config';
-import { route } from 'preact-router';
 import { useState, useEffect, useCallback } from 'preact/hooks';
 import { useStore } from '../store-adapter';
 import style from './style';
-import { addLangToUrl } from '../../lib/language';
 
 /*
  * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
@@ -38,7 +36,6 @@ export function useLanguage() {
 			if (typeof document !== 'undefined' && document.documentElement) {
 				document.documentElement.lang = next;
 			}
-			route(addLangToUrl(url, next));
 			store.update({ lang: next });
 		},
 		[url]
