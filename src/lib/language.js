@@ -1,4 +1,8 @@
-export default function getDefaultLanguage(available = {}) {
+/**
+ * Get the default language based on the preferred preference of the browser
+ * @param {Record<string, string>} available All available languages
+ */
+export function getDefaultLanguage(available = {}) {
 	if (typeof navigator === 'undefined') return;
 
 	let langs = [navigator.language].concat(navigator.languages);

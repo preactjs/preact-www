@@ -30,7 +30,7 @@ const memoizeProd = process.env.NODE_ENV === 'production' ? memoize : f => f;
 
 // fetch and parse a markdown document
 const getContent = memoizeProd(([lang, name]) => {
-	let path = lang ? `/content/lang/${lang}` : '/content',
+	let path = `/content/${lang}`,
 		url = `${path}/${name.replace(/^\//, '')}`,
 		[, ext] = url.match(/\.([a-z]+)$/i) || [];
 	if (!ext) url += '.md';
@@ -40,11 +40,14 @@ const getContent = memoizeProd(([lang, name]) => {
 			typeof window !== 'undefined' &&
 			window['_boostrap_' + url]) ||
 		fetch(url);
+
+	let fallback = false;
 	return fetchPromise
 		.then(r => {
 			// fall back to english
-			if (!r.ok && lang) {
-				return fetch(url.replace(/lang\/[^/]+\//, ''));
+			if (!r.ok && lang != 'en') {
+				fallback = true;
+				return fetch(url.replace(/content\/[^/]+\//, 'content/en/'));
 			}
 			return r;
 		})
@@ -54,16 +57,16 @@ const getContent = memoizeProd(([lang, name]) => {
 			return fetch(`${path}/${r.status}.md`);
 		})
 		.then(r => r.text())
-		.then(r => parseContent(r));
+		.then(r => ({ ...parseContent(r), fallback }));
 });
 
 export const getContentOnServer = PRERENDER
-	? route => {
+	? (route, lang) => {
 			if (!PRERENDER) return;
 			if (route == '/') route = '/index';
 
 			const fs = __non_webpack_require__('fs');
-			let data = fs.readFileSync(`content${route}.md`, 'utf8');
+			let data = fs.readFileSync(`content/${lang}/${route}.md`, 'utf8');
 
 			// convert frontmatter from yaml to json:
 			const yaml = __non_webpack_require__('yaml');
@@ -195,7 +198,7 @@ export default class ContentRegion extends Component {
 				content = cachedContent;
 			} else if (PRERENDER) {
 				// this is all only run during prerendering
-				({ content } = getContentOnServer(location.pathname));
+				({ content } = getContentOnServer(location.pathname, props.lang));
 			}
 		}
 

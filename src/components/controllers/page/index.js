@@ -44,10 +44,10 @@ export function useDescription(text) {
 
 const noop = () => {};
 
-export function usePage(route) {
+export function usePage(route, lang) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
 	if (PRERENDER) {
-		const { content, meta } = getContentOnServer(route.path);
+		const { content, meta } = getContentOnServer(route.path, lang);
 		return {
 			current: null,
 			content,
@@ -65,6 +65,7 @@ export function usePage(route) {
 	const content = hydrated && bootData && bootData.content;
 
 	const [loading, setLoading] = useState(true);
+	const [isFallback, setFallback] = useState(false);
 	let [meta, setMeta] = useState(hydrated ? bootData.meta : {});
 	if (hydrated) meta = bootData.meta;
 
@@ -78,7 +79,8 @@ export function usePage(route) {
 	useDescription(meta.description);
 
 	let didLoad = false;
-	function onLoad({ meta }) {
+	function onLoad(data) {
+		const { meta, fallback } = data;
 		didLoad = true;
 
 		// Don't show loader forever in case of an error
@@ -88,6 +90,7 @@ export function usePage(route) {
 
 		setMeta(meta);
 		setLoading(false);
+		setFallback(fallback);
 		const current = getContent(route);
 		const bootData = getPrerenderData(current);
 		setHydrated(!!bootData);
@@ -108,13 +111,17 @@ export function usePage(route) {
 		content,
 		meta,
 		loading,
-		onLoad
+		onLoad,
+		isFallback
 	};
 }
 
 export default function Page({ route }) {
-	const { loading, meta, content, current, onLoad } = usePage(route);
-	const store = useStore(['toc', 'url']);
+	const store = useStore(['toc', 'url', 'lang']);
+	const { loading, meta, content, current, onLoad, isFallback } = usePage(
+		route,
+		store.state.lang
+	);
 	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
 
@@ -142,7 +149,12 @@ export default function Page({ route }) {
 					show={hasSidebar}
 				/>
 				<div class={style.inner}>
-					<Hydrator boot={isReady} component={EditThisPage} show={canEdit} />
+					<Hydrator
+						boot={isReady}
+						component={EditThisPage}
+						show={canEdit}
+						isFallback={isFallback}
+					/>
 					<Hydrator
 						component={Title}
 						boot={isReady}

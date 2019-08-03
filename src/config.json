@@ -2,6 +2,7 @@
 	"title": "Preact: Fast 3kb React alternative with the same ES6 API. Components & Virtual DOM.",
 	"name": "Preact",
 	"languages": {
+		"en": "English",
 		"zh": "Chinese",
 		"fr": "French",
 		"es": "Spanish",
@@ -25,33 +26,54 @@
 			"content": "index"
 		},
 		{
-			"name": "Guide",
+			"name": {
+				"en": "Guide",
+				"de": "Anleitung"
+			},
 			"content": "guide",
 			"path": "/guide/v10/getting-started"
 		},
 		{
-			"name": "About",
+			"name": {
+				"en": "About",
+				"de": "Mehr"
+			},
 			"content": "about",
 			"routes": [
 				{
 					"path": "/about/we-are-using",
-					"name": "Companies using Preact"
+					"name": {
+						"en": "Companies using Preact",
+						"de": "Firmen die Preact benutzen"
+					}
 				},
 				{
 					"path": "/about/libraries-addons",
-					"name": "Libraries & Add-ons"
+					"name": {
+						"en": "Libraries & Add-ons",
+						"de": "Bibliotheken & Erweiterungen"
+					}
 				},
 				{
 					"path": "/about/demos-examples",
-					"name": "Demos & Examples"
+					"name": {
+						"en": "Demos & Examples",
+						"de": "Beispiel-Projekte"
+					}
 				},
 				{
 					"path": "/about/project-goals",
-					"name": "Project Goals"
+					"name": {
+						"en": "Project Goals",
+						"de": "Projekt-Ziele"
+					}
 				},
 				{
 					"path": "/about/browser-support",
-					"name": "Browser Support"
+					"name": {
+						"en": "Browser Support",
+						"de": "Browserunterstützung"
+					}
 				}
 			]
 		},
@@ -64,27 +86,45 @@
 	"docs": [
 		{
 			"path": "/guide/v8/getting-started",
-			"name": "Getting Started"
+			"name": {
+				"en": "Getting Started",
+				"de": "Los geht's"
+			}
 		},
 		{
 			"path": "/guide/v8/differences-to-react",
-			"name": "Differences to React"
+			"name": {
+				"en": "Differences to React",
+				"de": "Unterschiede zu React"
+			}
 		},
 		{
 			"path": "/guide/v8/switching-to-preact",
-			"name": "Switching to Preact"
+			"name": {
+				"en": "Switching to Preact",
+				"de": "Wechsel zu Preact"
+			}
 		},
 		{
 			"path": "/guide/v8/types-of-components",
-			"name": "Types of Components"
+			"name": {
+				"en": "Types of Components",
+				"de": "Komponenten-Typen"
+			}
 		},
 		{
 			"path": "/guide/v8/api-reference",
-			"name": "API Reference"
+			"name": {
+				"en": "API Reference",
+				"de": "API Referenz"
+			}
 		},
 		{
 			"path": "/guide/v8/forms",
-			"name": "Forms"
+			"name": {
+				"en": "Forms",
+				"de": "Formulare"
+			}
 		},
 		{
 			"path": "/guide/v8/linked-state",
@@ -92,15 +132,24 @@
 		},
 		{
 			"path": "/guide/v8/external-dom-mutations",
-			"name": "External DOM Mutations"
+			"name": {
+				"en": "External DOM Mutations",
+				"de": "Externe DOM Mutationen"
+			}
 		},
 		{
 			"path": "/guide/v8/extending-component",
-			"name": "Extending Component"
+			"name": {
+				"en": "Extending Component",
+				"de": "Komponente Erweitern"
+			}
 		},
 		{
 			"path": "/guide/v8/unit-testing-with-enzyme",
-			"name": "Unit Testing with Enzyme"
+			"name": {
+				"en": "Unit Testing with Enzyme",
+				"de": "Unit-Tests mit Enzyme"
+			}
 		},
 		{
 			"path": "/guide/v8/progressive-web-apps",
@@ -109,11 +158,17 @@
 
 		{
 			"path": "/guide/v10/getting-started",
-			"name": "Getting Started"
+			"name": {
+				"en": "Getting Started",
+				"de": "Los geht's"
+			}
 		},
 		{
 			"path": "/guide/v10/upgrade-guide",
-			"name": "Upgrading from 8.x"
+			"name": {
+				"en": "Upgrading from 8.x",
+				"de": "Migration von 8.x"
+			}
 		},
 		{
 			"path": "/guide/v10/tutorial",
@@ -121,15 +176,24 @@
 		},
 		{
 			"path": "/guide/v10/differences-to-react",
-			"name": "Differences to React"
+			"name": {
+				"en": "Differences to React",
+				"de": "Unterschiede zu React"
+			}
 		},
 		{
 			"path": "/guide/v10/switching-to-preact",
-			"name": "Switching to Preact"
+			"name": {
+				"en": "Switching to Preact",
+				"de": "Wechsel zu Preact"
+			}
 		},
 		{
 			"path": "/guide/v10/components",
-			"name": "Components"
+			"name": {
+				"en": "Components",
+				"de": "Komponenten"
+			}
 		},
 		{
 			"path": "/guide/v10/hooks",
@@ -137,11 +201,17 @@
 		},
 		{
 			"path": "/guide/v10/api-reference",
-			"name": "API Reference"
+			"name": {
+				"en": "API Reference",
+				"de": "API Referenz"
+			}
 		},
 		{
 			"path": "/guide/v10/forms",
-			"name": "Forms"
+			"name": {
+				"en": "Forms",
+				"de": "Formulare"
+			}
 		},
 		{
 			"path": "/guide/v10/linked-state",
@@ -149,19 +219,31 @@
 		},
 		{
 			"path": "/guide/v10/refs",
-			"name": "References"
+			"name": {
+				"en": "References",
+				"de": "Referenzen"
+			}
 		},
 		{
 			"path": "/guide/v10/context",
-			"name": "Context"
+			"name": {
+				"en": "Context",
+				"de": "Kontext"
+			}
 		},
 		{
 			"path": "/guide/v10/external-dom-mutations",
-			"name": "External DOM Mutations"
+			"name": {
+				"en": "External DOM Mutations",
+				"de": "Externe DOM Mutationen"
+			}
 		},
 		{
 			"path": "/guide/v10/debugging",
-			"name": "Debugging Tools"
+			"name": {
+				"en": "Debugging Tools",
+				"de": "Entwickler-Tools"
+			}
 		},
 		{
 			"path": "/guide/v10/server-side-rendering",
@@ -169,11 +251,17 @@
 		},
 		{
 			"path": "/guide/v10/extending-component",
-			"name": "Extending Component"
+			"name": {
+				"en": "Extending Component",
+				"de": "Komponente Erweitern"
+			}
 		},
 		{
 			"path": "/guide/v10/unit-testing-with-enzyme",
-			"name": "Unit Testing with Enzyme"
+			"name": {
+				"en": "Unit Testing with Enzyme",
+				"de": "Unit-Tests mit Enzyme"
+			}
 		},
 		{
 			"path": "/guide/v10/web-components",

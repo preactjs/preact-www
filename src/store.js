@@ -1,5 +1,5 @@
 import createStore from 'unistore';
-import getDefaultLanguage from './lib/default-language';
+import { getDefaultLanguage } from './lib/language';
 import config from './config';
 import { localStorageSet, localStorageGet } from './lib/localstorage';
 
@@ -10,13 +10,18 @@ export default initial => {
 	let state = { ...initial, ...storedState };
 
 	if (state.lang !== '') {
+		// Use `location.href` instead of `location.search` because the latter is
+		// not patched in preact-cli.
+		// See: https://github.com/preactjs/preact-cli/pull/856
 		let langOverride = (
 			(location.href.match(/[?&]lang=([a-z-]+)/i) || [])[1] || ''
 		).toLowerCase();
 		if (langOverride && config.languages[langOverride])
 			state.lang = langOverride;
 
-		if (!state.lang) state.lang = getDefaultLanguage(config.languages) || '';
+		if (!state.lang) state.lang = getDefaultLanguage(config.languages) || 'en';
+	} else {
+		state.lang = 'en';
 	}
 
 	let store = createStore(state);
