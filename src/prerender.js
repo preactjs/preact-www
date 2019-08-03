@@ -1,11 +1,10 @@
 // const fs = require('fs');
 // const { resolve } = require('path');
-const flatMap = require('flatmap');
 const config = require('./config.json');
-
-const routes = flatMap(config.nav.concat(config.docs), arr =>
-	arr.path ? { path: arr.path, name: arr.name } : arr.routes
-);
+// eslint-disable-next-line
+const routes = config.nav.concat(config.docs).reduce((acc, arr) => {
+	return acc.concat(arr.path ? { path: arr.path, name: arr.name } : arr.routes);
+});
 
 module.exports = routes.map(route => ({
 	url: route.path,
