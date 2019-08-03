@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import fs from 'fs';
 import delve from 'dlv';
 import CopyPlugin from 'copy-webpack-plugin';
 import Critters from 'critters-webpack-plugin';
@@ -60,7 +61,7 @@ export default function (config, env, helpers) {
 
 	Object.assign(config.optimization.splitChunks || (config.optimization.splitChunks = {}), {
 		minSize: 1000
-		});
+	});
 
 	const sizePlugin = helpers.getPluginsByName(config, 'SizePlugin')[0];
 	if (sizePlugin) {
@@ -107,6 +108,10 @@ export default function (config, env, helpers) {
 			to: 'robots.txt'
 		}]));
 
-		netlifyPlugin(config);
+		netlifyPlugin(config, {
+			redirects: [
+				fs.readFileSync('src/_redirects', 'utf-8').trim()
+			]
+		});
 	}
 }

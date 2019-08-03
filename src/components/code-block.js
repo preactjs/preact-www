@@ -15,7 +15,7 @@ const CodeBlock = ({ children, ...props }) => {
 			child.props.class &&
 			child.props.class.match(/(?:lang|language)-([a-z]+)/)[1];
 
-		const canHighlight = !PRERENDER && prism.languages[lang] != null;
+		const canHighlight = prism.languages[lang] != null;
 
 		let highlighted = canHighlight
 			? prism.highlight(text, prism.languages[lang], lang)
