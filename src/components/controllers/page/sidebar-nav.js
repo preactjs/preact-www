@@ -15,9 +15,12 @@ import { getCurrentUrl } from 'preact-router';
  */
 export default function SidebarNav({ items, onClick }) {
 	// Remove trailing slash to fix activeCss check below.
+	// Note that netlify will always append a slash to the url so that we end
+	// up with something like "foo/bar/?lang=de". That's why we first remove
+	// the search params before removing the trailing slash.
 	const url = getCurrentUrl()
-		.replace(/\/$/, '')
-		.replace(/\?.*/, '');
+		.replace(/\?.*/, '')
+		.replace(/\/$/, '');
 
 	return (
 		<nav
