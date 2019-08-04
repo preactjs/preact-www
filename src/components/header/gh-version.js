@@ -18,14 +18,14 @@ export default function ReleaseLink(props) {
 			}))
 			.then(d => {
 				const newVersion = d.version[0] === 'v' ? d.version : `v${d.version}`;
-				store.update({ version: newVersion });
+				store.update({ preactVersion: newVersion });
 				setUrl(d.url);
 			});
 	}, []);
 
 	return (
 		<a href={url} {...props}>
-			{version}
+			{preactVersion}
 		</a>
 	);
 }
