@@ -8,12 +8,12 @@ const URL = 'https://github.com/' + config.repo;
 
 export default function ReleaseLink(props) {
 	const store = useStore(['preactVersion']);
-	const { version } = store.state;
+	const { preactVersion } = store.state;
 	const [url, setUrl] = useState(URL);
 	useEffect(() => {
 		fetchRelease(config.repo)
 			.catch(() => ({
-				version,
+				version: preactVersion,
 				url: URL
 			}))
 			.then(d => {
