@@ -149,19 +149,21 @@ export default function Page({ route }) {
 					show={hasSidebar}
 				/>
 				<div class={style.inner}>
-					<Hydrator
-						boot={isReady}
-						component={EditThisPage}
-						show={canEdit}
-						isFallback={isFallback}
-					/>
-					<Hydrator
-						component={Title}
-						boot={isReady}
-						show={showTitle}
-						title={meta.title || route.title}
-					/>
-					<ContentRegion name={name} content={content} onLoad={onLoad} />
+					<div class={style.contentWrapper}>
+						<Hydrator
+							boot={isReady}
+							component={EditThisPage}
+							show={canEdit}
+							isFallback={isFallback}
+						/>
+						<Hydrator
+							component={Title}
+							boot={isReady}
+							show={showTitle}
+							title={meta.title || route.title}
+						/>
+						<ContentRegion name={name} content={content} onLoad={onLoad} />
+					</div>
 					<Footer />
 				</div>
 			</div>

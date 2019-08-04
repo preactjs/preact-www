@@ -103,10 +103,7 @@ export default function (config, env, helpers) {
 		}]));
 
 		netlifyPlugin(config, {
-			redirects: [
-				'/content/* /content/* 200',
-				...fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
-			]
+			redirects: fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
 		});
 	}
 }

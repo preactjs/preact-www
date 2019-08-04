@@ -24,8 +24,8 @@ export default function EditThisPage({ show, isFallback }) {
 
 					{isFallback && (
 						<div class={style.fallback}>
-							<b>Error:</b> Could not find a translation for this page. You can
-							help us out by <a href={editUrl}>adding one here</a>.
+							Could not find a translation for this page. You can help us out by{' '}
+							<a href={editUrl}>adding one here</a>.
 						</div>
 					)}
 				</div>
