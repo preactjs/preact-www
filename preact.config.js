@@ -9,6 +9,8 @@ import customProperties from 'postcss-custom-properties';
 // prettier-ignore
 
 export default function (config, env, helpers) {
+	config.optimization.minimize = false;
+
 	// aliases from before the beginning of time
 	Object.assign(config.resolve.alias, {
 		src: resolve(__dirname, 'src'),

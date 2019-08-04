@@ -63,6 +63,7 @@ export function usePage(route, lang) {
 
 	const [hydrated, setHydrated] = useState(!!bootData);
 	const content = hydrated && bootData && bootData.content;
+	console.log('BOOT CONTENT: ', content);
 
 	const [loading, setLoading] = useState(true);
 	const [isFallback, setFallback] = useState(false);

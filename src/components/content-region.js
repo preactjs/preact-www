@@ -176,7 +176,7 @@ export default class ContentRegion extends Component {
 		let toc = (this.toc = getToc(this.base));
 		const store = this.context.store;
 		store.setState({
-			...store.getState(),
+			// ...store.getState(),
 			toc
 		});
 	}
@@ -204,9 +204,7 @@ export default class ContentRegion extends Component {
 
 		return (
 			<content-region {...props}>
-				{content && (
-					<Markdown key={content} content={content} components={COMPONENTS} />
-				)}
+				{content && <Markdown content={content} components={COMPONENTS} />}
 			</content-region>
 		);
 	}
