@@ -6,7 +6,7 @@ import Header from './header';
 import { storeCtx } from './store-adapter';
 import { getCurrentDocVersion } from '../lib/docs';
 
-let VERSION = '10';
+let VERSION = '10.0.0';
 
 if (PRERENDER) {
 	VERSION = require('../../package.json').dependencies.preact.replace('^', '');
