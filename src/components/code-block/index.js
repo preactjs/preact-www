@@ -9,12 +9,11 @@ let highlight;
 if (PRERENDER) {
 	highlight = require('./prism.worker').highlight;
 } else {
-	const createWorker = require('workerize-loader!./prism.worker');
+	const createWorker = require('workerize-loader?name=prism!./prism.worker');
 	let worker;
 	// highlight = (code, lang) => (worker || (worker = createWorker())).highlight(code, lang);
 	highlight = (code, lang) => {
 		if (!worker) worker = createWorker();
-		// console.log('got worker: ', worker);
 		return worker.highlight(code, lang);
 	};
 	// console.log({ highlight });
