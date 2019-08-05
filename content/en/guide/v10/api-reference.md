@@ -34,42 +34,7 @@ class MyComponent extends Component {
 }
 ```
 
-### Lifecycle methods
-
-> _**Tip:** If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._
-
-Preact invokes the following lifecycle methods if they are defined for a Component:
-
-| Lifecycle method            | When it gets called                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentWillReceiveProps` | before new props get accepted                    |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | before `render()`                                |
-| `componentDidUpdate`        | after `render()`                                 |
-
-All of the lifecycle methods and their parameters are shown in the following example component:
-
-```js
-import { Component } from 'preact';
-
-class MyComponent extends Component {
-	shouldComponentUpdate(nextProps, nextState) {}
-	componentWillReceiveProps(nextProps, nextState) {
-		this.props // Previous props
-		this.state // Previous state
-	}
-	componentWillMount() {}
-	componentDidMount() {}
-	componentDidUpdate(prevProps, prevState) {}
-	componentWillUnmount() {
-		this.props // Current props
-		this.state // Current state
-	}
-}
-```
+To learn more about components and how they can be used, head over to the [Components](guide/v10/components) page.
 
 ## render()
 

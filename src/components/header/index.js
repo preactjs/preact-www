@@ -71,7 +71,12 @@ const Nav = ({ routes, current, ...props }) => (
 				to={route}
 				current={current}
 				route={getRouteIdent(route)}
-				class={cx(route.class, route.path === current && style.current)}
+				class={cx(
+					route.class,
+					(route.path === current ||
+						(route.content === 'guide' && /^\/guide\//.test(current))) &&
+						style.current
+				)}
 			/>
 		))}
 	</nav>
@@ -127,17 +132,24 @@ class NavItem extends Component {
 
 // depending on the type of nav link, use <a>
 const NavLink = ({ to, ...props }) => {
+	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
 	return (
 		<a href={to.path || 'javascript:'} {...props}>
 			{Flair && <Flair />}
-			{to.name || to.title}
+			{getRouteName(to, lang)}
 		</a>
 	);
 };
 
+export function getRouteName(route, lang) {
+	return typeof route.name === 'object'
+		? route.name[lang] || route.name.en
+		: route.name || route.title;
+}
+
 // get a CSS-addressable identifier for a given route
 const getRouteIdent = route =>
-	(route.name || route.title || route.url)
+	(getRouteName(route, 'en') || route.url)
 		.toLowerCase()
 		.replace(/[^a-z0-9]/i, '');
