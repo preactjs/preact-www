@@ -1,3 +1,4 @@
+import './polyfills';
 import './style/index.less';
 import './analytics';
 import './pwa';

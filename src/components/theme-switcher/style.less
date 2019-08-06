@@ -1,19 +1,24 @@
 .root {
-	border: none;
-	background: none;
-	cursor: pointer;
-	padding: 0 0.25rem;
-	transition: all 0.3s;
-	height: 100%;
-	outline: none;
+	display: none;
 
-	&:hover,
-	&:active,
-	&:focus {
-		background-color: rgba(255, 255, 255, 0.3);
-	}
+	@supports (--foo: green) {
+		display: block;
+		border: none;
+		background: none;
+		cursor: pointer;
+		padding: 0 0.25rem;
+		transition: all 0.3s;
+		height: 100%;
+		outline: none;
 
-	img {
-		width: 1.6rem;
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+
+		img {
+			width: 1.6rem;
+		}
 	}
 }
