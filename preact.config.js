@@ -18,6 +18,11 @@ export default function (config, env, helpers) {
 		'promise-polyfill': resolve(__dirname, 'src/promise-polyfill.js')
 	});
 
+	// Use our custom polyfill entry
+	if (!config.entry['ssr-bundle']) {
+		config.entry.polyfills = resolve(__dirname, 'src/polyfills.js');
+	}
+
 	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions.PRERENDER = String(env.ssr===true);
 
 	// web worker HMR requires it
