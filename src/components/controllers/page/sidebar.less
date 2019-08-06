@@ -83,10 +83,12 @@
 	}
 
 	@media @sidebar-break {
-		position: sticky;
+		@supports (position: sticky) {
+			position: sticky;
+			height: calc(100vh - @header-height);
+			overflow: auto;
+		}
 		top: @header-height;
-		height: calc(100vh - @header-height);
 		width: 100%;
-		overflow: auto;
 	}
 }
