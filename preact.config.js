@@ -14,7 +14,8 @@ export default function (config, env, helpers) {
 		src: resolve(__dirname, 'src'),
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
-		lib: resolve(__dirname, 'src/lib')
+		lib: resolve(__dirname, 'src/lib'),
+		'promise-polyfill': resolve(__dirname, 'src/promise-polyfill.js')
 	});
 
 	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions.PRERENDER = String(env.ssr===true);

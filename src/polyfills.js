@@ -1,9 +1,6 @@
 // This file contains polyfills that are necessary to make our
 // site work in older browsers like IE11
 if (typeof window !== 'undefined') {
-	require('core-js/features/promise');
-	require('unfetch/polyfill');
-
 	if (!Element.prototype.matches) {
 		Element.prototype.matches =
 			Element.prototype.msMatchesSelector ||
