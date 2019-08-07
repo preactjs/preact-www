@@ -79,7 +79,7 @@ Preact 8.x only worked up to `styled-components@3.x`. With Preact X this barrier
 The `Portal` component is now part of `preact/compat`.
 
 1. Remove `preact-portal`
-2. Import `createPortal` from `mobx-react`
+2. Import `createPortal` from `preact/compat`
 
 ## Getting your code ready
 
