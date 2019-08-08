@@ -85,7 +85,8 @@
     "preact-cli-plugin-netlify": "^1.4.0",
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
-    "puppeteer": "^1.19.0"
+    "puppeteer": "^1.19.0",
+    "workerize-loader": "^1.0.4"
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",

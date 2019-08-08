@@ -1,12 +1,14 @@
-import { Component } from 'preact';
+import { createRef, Component } from 'preact';
 import style from './style';
 import config from '../../config';
 import { lazily, cancelLazily } from '../../lib/lazily';
 
-let docsearchInstance, input;
+let docsearchInstance;
 
 export default class Search extends Component {
 	id = 'docsearch-input';
+
+	input = createRef();
 
 	load = () => {
 		this.lazy = lazily(() => {
@@ -34,7 +36,7 @@ export default class Search extends Component {
 				docsearchInstance = docsearch({
 					apiKey: config.docsearch.apiKey,
 					indexName: config.docsearch.indexName,
-					inputSelector: `#${this.id}`
+					inputSelector: this.input.current
 				});
 			});
 		}
@@ -52,19 +54,18 @@ export default class Search extends Component {
 
 	componentWillUnmount() {
 		cancelLazily(this.lazy);
-		if (input && input.parentNode) input.parentNode.removeChild(input);
 	}
 
 	render() {
 		return (
-			<div
-				class={style.search}
-				// dangerouslySetInnerHTML={{
-				// 	__html: `<input id=${this.id} class="${style.searchBox}" required>`
-				// }}
-			>
+			<div class={style.search}>
 				<label aria-label="Search">
-					<input id={this.id} class={style.searchBox} required />
+					<input
+						ref={this.input}
+						id={this.id}
+						class={style.searchBox}
+						required
+					/>
 				</label>
 			</div>
 		);

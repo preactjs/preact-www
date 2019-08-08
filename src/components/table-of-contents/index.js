@@ -2,7 +2,7 @@ import { h } from 'preact';
 import cx from '../../lib/cx';
 import style from './style.less';
 import { useStore } from '../store-adapter';
-import { useMemo, useRef, useEffect } from 'preact/hooks';
+import { useMemo, useRef } from 'preact/hooks';
 
 export default function Toc() {
 	const ref = useRef(null);
@@ -15,16 +15,6 @@ export default function Toc() {
 			? (cache.current = listToTree(toc))
 			: cache.current || [];
 	}, [toc]);
-
-	// We'll set the current height of the last toc and keep it around until
-	// the toc changes. This reduces the layout jumpiness quite noticeably
-	// because the toc is always visible at the top.
-	useEffect(() => {
-		if (ref.current != null && items.length > 0) {
-			const dim = ref.current.getBoundingClientRect();
-			ref.current.style.height = dim.height + 'px';
-		}
-	}, [items, ref.current]);
 
 	if (items.length === 0) return <div ref={ref} />;
 
