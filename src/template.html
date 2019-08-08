@@ -22,7 +22,10 @@
 		<% if (webpack.assets.filter(entry => entry.name.match(/bundle.\w{5}.esm.js$/)).length > 0) { %>
 			<script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()},!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
 		<% } %>
-		<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
+		<% for (const file of webpack.assets.filter(entry => entry.name.match(/prism.*\.worker\.js$/))) { %>
+			<link rel="prefetch" href="<%= htmlWebpackPlugin.files.publicPath + file.name %>" as="script">
+		<% } %>
+		<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks.polyfills.entry %>"><\/script>')</script>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
 	</head>
 	<body>

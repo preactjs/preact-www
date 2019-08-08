@@ -64,6 +64,7 @@ export function usePage(route, lang) {
 	const [content, setContent] = useState(
 		hydrated && bootData && bootData.content
 	);
+	const [html, setHtml] = useState();
 
 	const [loading, setLoading] = useState(true);
 	const [isFallback, setFallback] = useState(false);
@@ -89,7 +90,7 @@ export function usePage(route, lang) {
 
 	let didLoad = false;
 	function onLoad(data) {
-		const { content, meta, fallback } = data;
+		const { content, html, meta, fallback } = data;
 		didLoad = true;
 
 		// Don't show loader forever in case of an error
@@ -97,6 +98,7 @@ export function usePage(route, lang) {
 
 		setContent(content);
 		setMeta(meta);
+		setHtml(html);
 		setLoading(false);
 		setFallback(fallback);
 		const current = getContentId(route);
@@ -117,16 +119,16 @@ export function usePage(route, lang) {
 	return {
 		current,
 		content,
+		html,
 		meta,
 		loading,
-		onLoad,
 		isFallback
 	};
 }
 
 export default function Page({ route }, ctx) {
 	const store = useStore(['url', 'lang']);
-	const { loading, meta, content, current, isFallback } = usePage(
+	const { loading, meta, content, html, current, isFallback } = usePage(
 		route,
 		store.state.lang
 	);
@@ -173,7 +175,12 @@ export default function Page({ route }, ctx) {
 					{showTitle && (
 						<h1 class={style.title}>{meta.title || route.title}</h1>
 					)}
-					<ContentRegion name={name} content={content} />
+					<Hydrator
+						component={ContentRegion}
+						boot={!!html}
+						name={name}
+						content={html}
+					/>
 					<Footer />
 				</div>
 			</div>
