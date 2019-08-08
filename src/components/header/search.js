@@ -48,7 +48,11 @@ export default class Search extends Component {
 
 	componentDidMount() {
 		if (!docsearchInstance) {
-			this.load();
+			if (document.readyState === 'complete') {
+				this.load();
+			} else {
+				addEventListener('load', this.load);
+			}
 		}
 	}
 
