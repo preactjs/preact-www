@@ -26,18 +26,16 @@ export default class CodeEditor extends Component {
 					{ line: error.loc.line - 1, ch: error.loc.column - 1 },
 					'local'
 				);
+				console.log(left, this.scratch);
+				let ref;
 				const errorLine = (
-					<div class={style.lintError}>
+					<div ref={r => (ref = r)} class={style.lintError}>
 						<pre style={`padding-left:${left}px;`}>^</pre>
 						<div>🔥 {error.message.split('\n')[0]}</div>
 					</div>
 				);
-				this.errors = [
-					this.editor.addLineWidget(
-						error.loc.line - 1,
-						render(errorLine, this.scratch)
-					)
-				];
+				render(errorLine, this.scratch);
+				this.errors = [this.editor.addLineWidget(error.loc.line - 1, ref)];
 			});
 		}, 5000);
 	}

@@ -1,5 +1,6 @@
 import { h, Component, render, hydrate } from 'preact';
 import { debounce, memoize } from 'decko';
+import { ErrorOverlay } from './error-overlay';
 import ReplWorker from 'workerize-loader?name=repl.[hash]!./repl.worker';
 
 let cachedFetcher = memoize(fetch);
@@ -104,7 +105,10 @@ export default class Runner extends Component {
 		}
 		if (vnode) {
 			try {
-				this.root = render(vnode, this.base);
+				this.root = render(
+					<Catcher onError={this.props.onError}>{vnode}</Catcher>,
+					this.base
+				);
 			} catch (error) {
 				error.message = `[render] ${error.message}`;
 				throw error;
@@ -118,3 +122,61 @@ export default class Runner extends Component {
 		return <div {...props} />;
 	}
 }
+
+let catchMe;
+class Catcher extends Component {
+	state = { error: null };
+
+	constructor(props) {
+		super(props);
+		catchMe = this;
+	}
+
+	componentDidCatch(err) {
+		if (!err) return;
+		this.setState({ error: err });
+		if (!err.loc) {
+			const match = err.stack.match(/:(\d+):(\d+)\)/m);
+			if (match) {
+				err.loc = {
+					// Correction for repl wrapper code
+					line: parseInt(match[1], 10) - 5,
+					column: parseInt(match[2], 10)
+				};
+			}
+		}
+		if (this.props.onError)
+			this.props.onError({
+				error: err
+			});
+	}
+
+	componentDidUpdate() {
+		this.state.error = null;
+	}
+
+	componentWillUnmount() {
+		delete window.onerror;
+		delete window.onunhandledrejection;
+	}
+
+	render({ children }, { error }) {
+		if (error != null) {
+			return (
+				<ErrorOverlay
+					name={error.name}
+					message={error.message}
+					stack={error.stack
+						.replace(/.*is not defined\s+/, '')
+						.replace(/\(webpack-.*\),/, '')}
+				/>
+			);
+		}
+
+		return children;
+	}
+}
+
+const handler = ev => catchMe && catchMe.componentDidCatch(ev.reason);
+window.onerror = handler;
+window.onunhandledrejection = handler;
