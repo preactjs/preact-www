@@ -1,4 +1,4 @@
-import marked from 'marked';
+import MarkedWorker from 'workerize-loader?name=markdown.[hash]!./marked.worker';
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
@@ -41,6 +41,7 @@ export function getContent([lang, name]) {
 		.then(r => r.text())
 		.then(parseContent)
 		.then(applyEmojiToContent)
+		.then(parseMarkdownContent)
 		.then(data => {
 			data.fallback = fallback;
 			return data;
@@ -103,13 +104,18 @@ export function parseContent(text) {
 
 	if (meta.title) meta.title = sanitizeTitle(meta.title);
 
-	const html = marked(content);
-
 	return {
 		content,
-		html,
 		meta
 	};
+}
+
+const markedWorker = !PRERENDER && new MarkedWorker();
+function parseMarkdownContent(data) {
+	return markedWorker.convert(data.content).then(html => {
+		data.html = html;
+		return data;
+	});
 }
 
 let processEmojis, pendingEmojiProcessor;
