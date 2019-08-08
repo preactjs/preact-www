@@ -120,7 +120,6 @@ function applyEmojiToContent(data) {
 		return data;
 	});
 }
-
 /**
  * @param {string} content
  * @returns {Promise<string>}
