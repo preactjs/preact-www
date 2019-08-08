@@ -14,8 +14,14 @@ export default function (config, env, helpers) {
 		src: resolve(__dirname, 'src'),
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
-		lib: resolve(__dirname, 'src/lib')
+		lib: resolve(__dirname, 'src/lib'),
+		'promise-polyfill': resolve(__dirname, 'src/promise-polyfill.js')
 	});
+
+	// Use our custom polyfill entry
+	if (!config.entry['ssr-bundle']) {
+		config.entry.polyfills = resolve(__dirname, 'src/polyfills.js');
+	}
 
 	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions.PRERENDER = String(env.ssr===true);
 
@@ -103,9 +109,7 @@ export default function (config, env, helpers) {
 		}]));
 
 		netlifyPlugin(config, {
-			redirects: [
-				fs.readFileSync('src/_redirects', 'utf-8').trim()
-			]
+			redirects: fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
 		});
 	}
 }

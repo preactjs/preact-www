@@ -1,6 +1,5 @@
 import { useStore } from '../store-adapter';
 import style from './style.less';
-import cx from '../../lib/cx';
 import { Fragment } from 'preact';
 
 export default function EditThisPage({ show, isFallback }) {
@@ -12,7 +11,7 @@ export default function EditThisPage({ show, isFallback }) {
 	return (
 		show && (
 			<Fragment>
-				<div class={cx(style.wrapper, isFallback && style.withFallback)}>
+				<div class={style.wrapper}>
 					<a
 						class={style.edit}
 						href={editUrl}
@@ -24,8 +23,10 @@ export default function EditThisPage({ show, isFallback }) {
 
 					{isFallback && (
 						<div class={style.fallback}>
-							<b>Error:</b> Could not find a translation for this page. You can
-							help us out by <a href={editUrl}>adding one here</a>.
+							<div class={style.fallbackInner}>
+								Could not find a translation for this page. You can help us out
+								by <a href={editUrl}>adding one here</a>.
+							</div>
 						</div>
 					)}
 				</div>

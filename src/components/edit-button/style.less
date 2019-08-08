@@ -31,12 +31,16 @@
 }
 
 .fallback {
-	background: var(--color-error-bg);
+	padding-top: 4rem;
+}
+
+.fallbackInner {
+	background: var(--color-warn-bg);
 	padding: 0.75rem 1rem;
-	border-left: 0.3rem solid var(--color-error-border);
+	color: #444;
 
 	a {
 		.link;
-		color: var(--color-link);
+		color: @color-brand;
 	}
 }
