@@ -1,10 +1,9 @@
-import { memoize } from 'decko';
 import { checkStatus } from './request';
 
-// function memoize(fn) {
-// 	const CACHE = {};
-// 	return key => CACHE[key] || (CACHE[key] = fn(key));
-// }
+function memoize(fn) {
+	const CACHE = {};
+	return key => CACHE[key] || (CACHE[key] = fn(key));
+}
 
 // TODO: use GraphQL to avoid fetching so much data
 export const repoInfo = memoize(repo =>
