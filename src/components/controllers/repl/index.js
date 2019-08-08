@@ -38,8 +38,8 @@ export default class Repl extends Component {
 			this.Runner = Runner.default;
 
 			// Load transpiler
-			this.setState({ loading: 'Initializing Babel worker...' });
-			this.Runner.worker.call('ping').then(() => {
+			this.setState({ loading: 'Initializing REPL...' });
+			this.Runner.worker.ping().then(() => {
 				this.setState({ loading: false });
 			});
 		});
@@ -108,6 +108,7 @@ export default class Repl extends Component {
 	}
 
 	render(_, { loading, code, error, example, copied }) {
+		console.log('error: ', error);
 		if (loading)
 			return (
 				<ReplWrapper loading>
