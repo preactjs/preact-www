@@ -1,8 +1,4 @@
 import Markdown from './markdown';
-import { h, Component } from 'preact';
-import { connect } from 'unistore/preact';
-import { memoize } from 'decko';
-import Markdown from 'lib/markdown';
 import widgets from './widgets';
 
 const COMPONENTS = {
