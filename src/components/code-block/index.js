@@ -72,8 +72,6 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 		code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	const htmlObj = useMemo(() => ({ __html: html }), [html]);
 
-	console.log({ canHighlight, pending, error });
-
 	return (
 		<pre class={cx('highlight', props.class)}>
 			<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />

@@ -108,7 +108,6 @@ export default class Repl extends Component {
 	}
 
 	render(_, { loading, code, error, example, copied }) {
-		console.log('error: ', error);
 		if (loading)
 			return (
 				<ReplWrapper loading>
