@@ -1,6 +1,6 @@
 import { h, Component, render, hydrate } from 'preact';
 import { debounce, memoize } from 'decko';
-import ReplWorker from 'workerize-loader?name=repl.[hash]!./repl.worker';
+import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
 import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
