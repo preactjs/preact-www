@@ -104,7 +104,12 @@ class Foo extends Component {
 
 
 
-`linkState`s drittes Argument hilft hier weiter. Man kann einen hiermit einen Pfad im Ereignisobjekt als verlinkten Wert verwenden. Wenn man nun auf das vorherige Beispiel eingeht, kann man linkState explizit befehlen, seinen State-Wert von der `value`-Property aus `event.target` zu beziehen:
+Hier hilft die Nutzung des dritten `linkState`-Argumentes weiter, 
+indem man hier den Wert an Hand eines expliziten Pfades des Ereignisobjekts auswählt.
+
+Angewendet auf das vorherige Beispiel bedeutet das folgendes:
+`linkState` soll den Wert der `value`-Property aus `event.target` unter dem Bezeichner `answer` im State setzen.
+Der Wert des State-Objekts namens `answer` wird daraufhin genutzt, um die `checked`-Property an den Radio Buttons entsprechend zu reflektieren.
 
 ```js
 import linkState from 'linkstate';
