@@ -1,4 +1,4 @@
-import Markdown from './markdown';
+import Markup from 'preact-markup';
 import widgets from './widgets';
 
 const COMPONENTS = {
@@ -20,9 +20,11 @@ export default function ContentRegion({ content, ...props }) {
 	return (
 		<content-region {...props}>
 			{content && (
-				<Markdown
+				<Markup
 					// key={content}
-					content={content}
+					markup={content}
+					type="html"
+					trim={false}
 					components={COMPONENTS}
 				/>
 			)}
