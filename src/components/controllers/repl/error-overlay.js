@@ -7,8 +7,12 @@ export function ErrorOverlay({ name, message, stack }) {
 			<h1>
 				{name}: {message}
 			</h1>
-			<p>Stack trace:</p>
-			<p>{stack}</p>
+			<span class={style.stackLabel}>Stack trace:</span>
+			{stack.map(frame => (
+				<p class={style.frame}>
+					{frame.functionName} :{frame.line}:{frame.column}
+				</p>
+			))}
 		</div>
 	);
 }
