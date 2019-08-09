@@ -1,6 +1,7 @@
 import { h, Component, render, hydrate } from 'preact';
 import { debounce, memoize } from 'decko';
 import ReplWorker from 'workerize-loader?name=repl.[hash]!./repl.worker';
+import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
@@ -29,9 +30,8 @@ export default class Runner extends Component {
 			.process(code, {})
 			.then(transpiled => this.execute(transpiled))
 			.then(onSuccess)
-			.catch(({ message, ...props }) => {
-				let error = new Error(message);
-				for (let i in props) if (props.hasOwnProperty(i)) error[i] = props[i];
+			.catch(error => {
+				patchErrorLocation(error);
 				if (onError) onError({ error });
 			});
 	});
@@ -91,6 +91,7 @@ export default class Runner extends Component {
 			if (isFallback !== true) {
 				return this.execute(transpiled, true);
 			}
+			patchErrorLocation(error);
 			throw error;
 		}
 
@@ -106,7 +107,7 @@ export default class Runner extends Component {
 			try {
 				this.root = render(vnode, this.base);
 			} catch (error) {
-				error.message = `[render] ${error.message}`;
+				patchErrorLocation(error);
 				throw error;
 			}
 		}
