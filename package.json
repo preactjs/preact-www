@@ -12,7 +12,7 @@
     "prestart": "npm run -s build",
     "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "preact build --prerenderUrls src/prerender.js --template src/template.html",
-    "postbuild": "echo \"\n/*.*\n    Link:\\\"\\\"\n\" >> build/_headers",
+    "postbuild": "echo \"\n/*.js\n    Link:\\\"\\\"\n/*.css\n    Link:\\\"\\\"\n/*.md\n    Link:\\\"\\\"\n\" >> build/_headers",
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
     "pretest": "npm run -s lint && npm run -s build",
     "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
