@@ -2,29 +2,35 @@ import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { fetchRelease } from '../../lib/github';
 import config from '../../config.json';
-import { useStore } from '../store-adapter';
 
 const URL = 'https://github.com/' + config.repo;
 
+let VERSION = '10.0.0';
+if (PRERENDER) {
+	VERSION = require('../../../package.json').dependencies.preact.replace(
+		'^',
+		''
+	);
+}
+
 export default function ReleaseLink(props) {
-	const store = useStore(['preactVersion']);
-	const { preactVersion } = store.state;
 	const [url, setUrl] = useState(URL);
+	const [version, setVersion] = useState(VERSION);
 	useEffect(() => {
 		fetchRelease(config.repo)
 			.catch(() => ({
-				version: preactVersion,
+				version: VERSION,
 				url: URL
 			}))
 			.then(d => {
-				store.update({ preactVersion: d.version });
+				setVersion(d.version);
 				setUrl(d.url);
 			});
 	}, []);
 
 	return (
 		<a href={url} {...props}>
-			v{preactVersion}
+			v{version}
 		</a>
 	);
 }
