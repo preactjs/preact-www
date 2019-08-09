@@ -1,39 +1,39 @@
 const SEARCH = 'https://api.github.com/search/repositories';
 
-export default class Foo extends Component {
-	async componentDidMount() {
-		let res = await fetch(`${SEARCH}?q=preact`),
-			json = await res.json(),
-			results = json && json.items || [];
-		this.setState({ results });
-	}
+export default function Example() {
+	const [items, setItems] = useState([]);
 
-	render({ }, { results=[] }) {
-		return (
-			<div>
-				<h1 style="text-align:center;">Example</h1>
-				<div class="list">
-					{ results.map( result => (
-						<Result result={result} />
-					)) }
-				</div>
+	useEffect(() => {
+		fetch(`${SEARCH}?q=preact`)
+			.then(res => res.json())
+			.then(data => setItems((data && data.items) || []));
+	}, []);
+
+	return (
+		<div>
+			<h1 style="text-align:center; font-weight: 200">Example</h1>
+			<div class="list">
+				{items.map(result => (
+					<Result {...result} />
+				))}
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
-const Result = ({ result }) => (
-	<div style={{
-		padding: 10,
-		margin: 10,
-		background: 'white',
-		boxShadow: '0 1px 5px rgba(0,0,0,0.5)'
-	}}>
+const Result = result => (
+	<div class="repl-list-item">
 		<div>
-			<a href={result.html_url} target="_blank">
+			<a
+				href={result.html_url}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="repl-link"
+			>
 				{result.full_name}
 			</a>
-			🌟<strong>{result.stargazers_count}</strong>
+			{" - "}
+			<strong>{result.stargazers_count}</strong>
 		</div>
 		<p>{result.description}</p>
 	</div>

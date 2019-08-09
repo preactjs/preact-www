@@ -3,7 +3,11 @@ import { Link } from 'preact-router';
 import cx from '../../lib/cx';
 import PrismWorker from 'workerize-loader?name=prism.[hash:5]!./prism.worker';
 
-const { highlight } = PRERENDER ? require('./prism.worker') : new PrismWorker();
+// @TODO this should work in development, but Preact CLI transforms to CommonJS.
+const { highlight } =
+	PRERENDER || process.env.NODE_ENV === 'development'
+		? require('./prism.worker')
+		: new PrismWorker();
 
 function useFuture(initializer, params) {
 	const getInitialState = () => {

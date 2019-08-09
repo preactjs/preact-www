@@ -64,4 +64,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Fußnote:** Man sollte anmerken, dass Vererbung einen in zerbrechliche parent-child-Beziehungen sperren können. Wenn man auf eine Programmieraufgabe, die adäquat mit Vererbung gelöst werden kann, gibt es oftmals einen funktionaleren Weg um das gleiche Ziel zu erreichen, das das Erstellen einer solchen Beziehung unnötig macht.
+> **Fußnote:** Man sollte anmerken, dass Vererbung in zerbrechliche parent-child-Beziehungen mit ihren entsprechenden Problemen führen kann. Für eine Programmieraufgabe, die adäquat mit Vererbung gelöst werden kann, gibt es oftmals einen funktionaleren Weg um das gleiche Ziel zu erreichen. Dies macht das Erstellen solcher Beziehungen unnötig.
