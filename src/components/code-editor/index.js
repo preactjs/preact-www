@@ -29,7 +29,7 @@ export default class CodeEditor extends Component {
 				let ref;
 				const errorLine = (
 					<div ref={r => (ref = r)} class={style.lintError}>
-						<pre style={`padding-left:${left}px;`}>^</pre>
+						<pre style={`padding-left:${left}px;`}>▲</pre>
 						<div>🔥 {error.message.split('\n')[0]}</div>
 					</div>
 				);
