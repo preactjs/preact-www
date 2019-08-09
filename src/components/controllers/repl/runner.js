@@ -1,7 +1,7 @@
 import { h, Component, render, hydrate } from 'preact';
 import { debounce, memoize } from 'decko';
-import { ErrorOverlay } from './error-overlay';
 import ReplWorker from 'workerize-loader?name=repl.[hash]!./repl.worker';
+import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
@@ -30,9 +30,8 @@ export default class Runner extends Component {
 			.process(code, {})
 			.then(transpiled => this.execute(transpiled))
 			.then(onSuccess)
-			.catch(({ message, ...props }) => {
-				let error = new Error(message);
-				for (let i in props) if (props.hasOwnProperty(i)) error[i] = props[i];
+			.catch(error => {
+				patchErrorLocation(error);
 				if (onError) onError({ error });
 			});
 	});
@@ -92,6 +91,7 @@ export default class Runner extends Component {
 			if (isFallback !== true) {
 				return this.execute(transpiled, true);
 			}
+			patchErrorLocation(error);
 			throw error;
 		}
 
@@ -105,12 +105,9 @@ export default class Runner extends Component {
 		}
 		if (vnode) {
 			try {
-				this.root = render(
-					<Catcher onError={this.props.onError}>{vnode}</Catcher>,
-					this.base
-				);
+				this.root = render(vnode, this.base);
 			} catch (error) {
-				error.message = `[render] ${error.message}`;
+				patchErrorLocation(error);
 				throw error;
 			}
 		}
@@ -122,61 +119,3 @@ export default class Runner extends Component {
 		return <div {...props} />;
 	}
 }
-
-let catchMe;
-class Catcher extends Component {
-	state = { error: null };
-
-	constructor(props) {
-		super(props);
-		catchMe = this;
-	}
-
-	componentDidCatch(err) {
-		if (!err) return;
-		this.setState({ error: err });
-		if (!err.loc) {
-			const match = err.stack.match(/:(\d+):(\d+)\)/m);
-			if (match) {
-				err.loc = {
-					// Correction for repl wrapper code
-					line: parseInt(match[1], 10) - 5,
-					column: parseInt(match[2], 10)
-				};
-			}
-		}
-		if (this.props.onError)
-			this.props.onError({
-				error: err
-			});
-	}
-
-	componentDidUpdate() {
-		this.state.error = null;
-	}
-
-	componentWillUnmount() {
-		delete window.onerror;
-		delete window.onunhandledrejection;
-	}
-
-	render({ children }, { error }) {
-		if (error != null) {
-			return (
-				<ErrorOverlay
-					name={error.name}
-					message={error.message}
-					stack={error.stack
-						.replace(/.*is not defined\s+/, '')
-						.replace(/\(webpack-.*\),/, '')}
-				/>
-			);
-		}
-
-		return children;
-	}
-}
-
-const handler = ev => catchMe && catchMe.componentDidCatch(ev.reason);
-window.onerror = handler;
-window.onunhandledrejection = handler;
