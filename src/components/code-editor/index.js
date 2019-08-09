@@ -26,7 +26,6 @@ export default class CodeEditor extends Component {
 					{ line: error.loc.line - 1, ch: error.loc.column - 1 },
 					'local'
 				);
-				console.log(left, this.scratch);
 				let ref;
 				const errorLine = (
 					<div ref={r => (ref = r)} class={style.lintError}>
@@ -37,7 +36,7 @@ export default class CodeEditor extends Component {
 				render(errorLine, this.scratch);
 				this.errors = [this.editor.addLineWidget(error.loc.line - 1, ref)];
 			});
-		}, 5000);
+		}, 1000);
 	}
 
 	componentDidMount() {
