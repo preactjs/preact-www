@@ -1,30 +1,11 @@
-import { h, Component, render } from 'preact';
+import { h, Component, render, hydrate } from 'preact';
 import { debounce, memoize } from 'decko';
-import Worker from 'worker-loader!./worker';
-import regeneratorRuntime from 'babel-runtime/regenerator';
+import ReplWorker from 'workerize-loader?name=repl.[hash]!./repl.worker';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
 
-const Empty = () => null;
-
-let count = 0;
-const worker = new Worker();
-worker.call = (method, ...params) =>
-	new Promise((resolve, reject) => {
-		let id = ++count,
-			msg;
-		worker.addEventListener(
-			'message',
-			(msg = ({ data }) => {
-				if (data.id !== id) return;
-				worker.removeEventListener('message', msg);
-				if (data.error) reject(data.error);
-				resolve(...[].concat(data.result));
-			})
-		);
-		worker.postMessage({ id, method, params });
-	});
+const worker = new ReplWorker();
 
 export default class Runner extends Component {
 	static worker = worker;
@@ -44,17 +25,8 @@ export default class Runner extends Component {
 	run = debounce(1000, () => {
 		let { code, onSuccess, onError } = this.props;
 
-		code = code.replace(
-			/^(\r|\n|\s)*import(?:\s.+?from\s+)?(['"])(.+?)\2\s*;\s*(\r|\n)/g,
-			(s, pre, q, lib) => {
-				// eslint-disable-next-line no-console
-				console.info(`Skipping import "${lib}": imports not supported.`);
-				return pre || '';
-			}
-		);
-
 		worker
-			.call('transform', code)
+			.process(code, {})
 			.then(transpiled => this.execute(transpiled))
 			.then(onSuccess)
 			.catch(({ message, ...props }) => {
@@ -64,29 +36,62 @@ export default class Runner extends Component {
 			});
 	});
 
-	execute(transpiled) {
-		let { onError } = this.props,
-			module = { exports: {} },
+	execute(transpiled, isFallback) {
+		const PREACT = {
+			...require('preact'),
+			render: (v, a, b) => {
+				if (!vnode) vnode = v;
+				else if (this.base.contains(a)) {
+					return render(v, a, b);
+				}
+			},
+			hydrate: (v, a) => {
+				if (!vnode) vnode = v;
+				else if (this.base.contains(a)) {
+					return hydrate(v, a);
+				}
+			}
+		};
+
+		let module = { exports: {} },
+			modules = {
+				preact: () => PREACT,
+				'preact/hooks': () => require('preact/hooks'),
+				'preact/debug': () => require('preact/debug'),
+				'preact/compat': () => require('preact/compat'),
+				react: () => require('preact/compat'),
+				'react-dom': () => require('preact/compat')
+				// unistore: require('unistore'),
+				// 'unistore/preact': require('unistore/preact')
+			},
+			moduleCache = {},
 			fn,
 			vnode;
 
-		this.root = render(<Empty />, this.base, this.root);
-		this.base.innerHTML = '';
+		function _require(id) {
+			if (id in moduleCache) {
+				return moduleCache[id];
+			}
+			if (id in modules) {
+				return (moduleCache[id] = modules[id]());
+			}
+			throw Error(`No module found for ${id}`);
+		}
+
+		if (isFallback === true) {
+			this.root = render(null, this.base);
+			this.base.innerHTML = '';
+		}
 
 		try {
 			fn = eval(transpiled); // eslint-disable-line
-			fn(
-				h,
-				Component,
-				v => (vnode = v),
-				module,
-				module.exports,
-				regeneratorRuntime,
-				cachedFetch
-			);
+			fn(module, module.exports, _require, cachedFetch);
 		} catch (error) {
-			if (onError) onError({ error });
-			return;
+			// try once more without DOM reuse:
+			if (isFallback !== true) {
+				return this.execute(transpiled, true);
+			}
+			throw error;
 		}
 
 		let exported =
@@ -99,7 +104,7 @@ export default class Runner extends Component {
 		}
 		if (vnode) {
 			try {
-				this.root = render(vnode, this.base, this.root);
+				this.root = render(vnode, this.base);
 			} catch (error) {
 				error.message = `[render] ${error.message}`;
 				throw error;
