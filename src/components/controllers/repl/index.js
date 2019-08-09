@@ -4,6 +4,7 @@ import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style';
+import './examples.less';
 import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
