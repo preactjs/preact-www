@@ -20,7 +20,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 The main difference when comparing Preact and React apps is that we don't ship our own Synthetic Event system. Preact uses the browser's native `addEventlistener` for event handling internally. See [GlobalEventHandlers] for a full list of DOM event handlers.
 
-For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintainence overhead and a larger API surface area for us.
+For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintenance overhead and a larger API surface area for us.
 
 The other main difference is that we follow a bit more closely the DOM specification. One example of that is that you can use `class` instead of `className`.
 
@@ -62,7 +62,7 @@ class Foo extends Component {
 }
 ```
 
-Both snippets render the exact same thing. It's just a matter of stylisic preference.
+Both snippets render the exact same thing. It's just a matter of stylistic preference.
 
 ### Raw HTML attribute/property names
 
@@ -116,7 +116,7 @@ In most Preact apps you'll encounter `h()`, but we support both in core, so it d
 
 ### No contextTypes needed
 
-The legacy `Context`-API requires Components to implement `contextTypes` or `childContextTypes` in React. With Preact we don't have that limitation and and all Components receive the all `context` entries drawn from `getChildContext()`.
+The legacy `Context`-API requires Components to implement `contextTypes` or `childContextTypes` in React. With Preact we don't have that limitation and all Components receive the all `context` entries drawn from `getChildContext()`.
 
 ## Features exclusive to `preact/compat`
 

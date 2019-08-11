@@ -84,7 +84,7 @@ In order to have the clock's time update every second, we need to know when `<Cl
 
 #### componentDidCatch
 
-There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happend in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
+There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happened in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
 
 When an error is caught we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
 

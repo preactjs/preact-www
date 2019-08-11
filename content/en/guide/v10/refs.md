@@ -7,7 +7,7 @@ description: 'References can be used to access raw DOM nodes that Preact has ren
 
 There will always be scenarios where you need a direct reference to the DOM-Element or Component that was rendered by Preact. Refs allow you to do just that.
 
-A typical usecase for it is measuring the actual size of a DOM node. While it's possible to get the reference to the component instance via `ref` we don't generally recommend it. It will create a hard coupling between a parent and a child which breaks the composability of the component model. In most cases it's more natural to just pass the callback as a prop instead of trying to call the method of a class component directly.
+A typical use case for it is measuring the actual size of a DOM node. While it's possible to get the reference to the component instance via `ref` we don't generally recommend it. It will create a hard coupling between a parent and a child which breaks the composability of the component model. In most cases it's more natural to just pass the callback as a prop instead of trying to call the method of a class component directly.
 
 ---
 
