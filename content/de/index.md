@@ -155,7 +155,7 @@ export default class ToDoList extends Component {
         return (
             &lt;form onSubmit={this.addToDo} action="javascript:"&gt;
                 &lt;label&gt;
-                  &lt;span&gt;Add Todo&lt;span&gt;
+                  &lt;span&gt;Add Todo&lt;/span&gt;
                   &lt;input value={text} onInput={this.setText} /&gt;
                 &lt;/label&gt;
                 &lt;ul&gt;

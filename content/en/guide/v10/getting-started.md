@@ -23,7 +23,7 @@ Preact has always been readily packaged to be used right in the browser. This do
 import { h, Component, render } from 'https://unpkg.com/preact';
 
 // Create your app
-const app = h('div', null, 'Hello World!`);
+const app = h('div', null, 'Hello World!');
 
 // Inject your application into the an element with the id `app`.
 // Make sure that such an element exists in the dom ;)

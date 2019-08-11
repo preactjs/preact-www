@@ -14,22 +14,14 @@ const AVAILABLE_DOCS = [10, 8];
  * Select box to switch the currently displayed docs version
  */
 export default function DocVersion() {
-	const { docVersion, preactVersion } = useStore([
-		'docVersion',
-		'preactVersion'
-	]).state;
-
-	// A simple `parseInt` works remarkeable well for getting the major version.
-	// It works with release tags, like "10.0.0-beta.2".
-	const major = parseInt(preactVersion, 10);
+	const { docVersion } = useStore(['docVersion']).state;
 
 	return (
 		<label class={style.root}>
 			Version:{' '}
 			<select value={docVersion} class={style.select} onChange={onChange}>
 				{AVAILABLE_DOCS.map(v => {
-					const suffix =
-						v === major ? ' (current)' : v > major ? ' (next)' : '';
+					const suffix = v === 10 ? ' (current)' : '';
 					return (
 						<option value={v}>
 							{v}.x{suffix}

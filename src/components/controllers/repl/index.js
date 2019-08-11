@@ -4,8 +4,10 @@ import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style';
-import cx from '../../../lib/cx';
+import './examples.less';
+import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
+import { parseStackTrace } from './errors';
 
 const EXAMPLES = [
 	{
@@ -38,8 +40,8 @@ export default class Repl extends Component {
 			this.Runner = Runner.default;
 
 			// Load transpiler
-			this.setState({ loading: 'Initializing Babel worker...' });
-			this.Runner.worker.call('ping').then(() => {
+			this.setState({ loading: 'Initializing REPL...' });
+			this.Runner.worker.ping().then(() => {
 				this.setState({ loading: false });
 			});
 		});
@@ -139,21 +141,27 @@ export default class Repl extends Component {
 						{copied ? '🔗 Copied' : 'Share'}
 					</button>
 				</header>
-				<pre class={cx(style.error, error && style.showing)}>
-					{String(error)}
-				</pre>
+
 				<this.CodeEditor
 					class={style.code}
 					value={code}
 					error={error}
 					onInput={linkState(this, 'code', 'value')}
 				/>
-				<this.Runner
-					class={style.output}
-					onError={linkState(this, 'error', 'error')}
-					onSuccess={this.onSuccess}
-					code={code}
-				/>
+				<div class={style.output}>
+					{error && (
+						<ErrorOverlay
+							name={error.name}
+							message={error.message}
+							stack={parseStackTrace(error)}
+						/>
+					)}
+					<this.Runner
+						onError={linkState(this, 'error', 'error')}
+						onSuccess={this.onSuccess}
+						code={code}
+					/>
+				</div>
 			</ReplWrapper>
 		);
 	}

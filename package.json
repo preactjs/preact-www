@@ -12,6 +12,7 @@
     "prestart": "npm run -s build",
     "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "preact build --prerenderUrls src/prerender.js --template src/template.html",
+    "postbuild": "echo \"\n/*.js\n    Link:\\\"\\\"\n/*.css\n    Link:\\\"\\\"\n/*.md\n    Link:\\\"\\\"\n\" >> build/_headers",
     "prebuild": "rm -rf build/assets build/content && mkdir -p build",
     "pretest": "npm run -s lint && npm run -s build",
     "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
@@ -86,7 +87,8 @@
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0",
-    "size-plugin": "github:kuldeepkeshwar/size-plugin#develop"
+    "size-plugin": "github:kuldeepkeshwar/size-plugin#develop",
+    "workerize-loader": "^1.0.4"
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",
@@ -101,6 +103,7 @@
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.0.4",
     "preact-router": "^3.0.0",
+    "sucrase": "^3.10.1",
     "superstatic": "^6.0.4",
     "unistore": "^3.4.1",
     "window-or-global": "^1.0.1",
