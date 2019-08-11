@@ -58,7 +58,7 @@ Due to the nature of the breaking changes, some existing libraries may cease to 
 
 #### preact-redux
 
-`preact-redux` is one of such libraries that hasn't been updated yet. The good news is that `preact/compat` is much more react-complient and works out of the box with the react bindings called `react-redux`. Switching to it will resolve the situation. Make sure that you've aliased `react` and `react-dom` to `preact/compat` in your bundler.
+`preact-redux` is one of such libraries that hasn't been updated yet. The good news is that `preact/compat` is much more React-complient and works out of the box with the React bindings called `react-redux`. Switching to it will resolve the situation. Make sure that you've aliased `react` and `react-dom` to `preact/compat` in your bundler.
 
 1. Remove `preact-redux`
 2. Install `react-redux`
