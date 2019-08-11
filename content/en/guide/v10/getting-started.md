@@ -36,7 +36,7 @@ The only difference is that you cannot use JSX, because JSX needs to be transpil
 
 Writing raw `h` or `createElement` calls all the time is much less fun than using something JSX-like. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. It requires a built-step though, so we highly recommend an alternative called [htm].
 
-In a nutshell [htm] can be best decribed as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
+In a nutshell [htm] can be best described as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
 
 ```js
 import { h, Component, render } from 'https://unpkg.com/preact';
@@ -53,7 +53,7 @@ It's a very popular way of writing Preact apps and we highly recommend checking 
 
 ## Best practices powered with `preact-cli`
 
-The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's build on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicty this is the most popular way to use Preact among our users.
+The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's build on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicity this is the most popular way to use Preact among our users.
 
 As the name implies, `preact-cli` is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
 
@@ -83,11 +83,11 @@ cd my-project/
 npm run dev
 ```
 
-Once the server is up you can access your app at the url that was printed in the console. Now you're ready to develop your app!
+Once the server is up you can access your app at the URL that was printed in the console. Now you're ready to develop your app!
 
 ### Making a production build
 
-There comes a time when you need to deploy your app somewhere. The cli ships with a handy `build` command which will generate a highly optimized build.
+There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly optimized build.
 
 ```bash
 npm run build
@@ -124,7 +124,7 @@ At some point you'll probably want to make use of the vast react ecosystem. Libr
 
 #### Aliasing in webpack
 
-To alias any package in webpack you need to add the the `resolve.alias` section
+To alias any package in webpack you need to add the `resolve.alias` section
 to your config. Depending on the configuration you're using this section may
 already be present, but missing the aliases for Preact.
 

@@ -7,7 +7,7 @@ description: 'Upgrade your Preact 8.x application to Preact X'
 
 This document is intended to guide you through upgrading an existing Preact 8.x application to Preact X and is divided in 3 main sections
 
-Preact X brings many new exciting features such as `Fragments`, `hooks` and much improved compatibility with the react ecosystem. We tried to keep any breaking changes to the minimum possible, but couldn't eliminate all of them completely without compromising on our Feature set.
+Preact X brings many new exciting features such as `Fragments`, `hooks` and much improved compatibility with the React ecosystem. We tried to keep any breaking changes to the minimum possible, but couldn't eliminate all of them completely without compromising on our feature set.
 
 ---
 
@@ -17,7 +17,7 @@ Preact X brings many new exciting features such as `Fragments`, `hooks` and much
 
 ## Upgrading dependencies
 
-_Note: Throgout this guide we'll be using the `npm` client and the commands should be easily applicable to other package managers such as `yarn`._
+_Note: Throughout this guide we'll be using the `npm` client and the commands should be easily applicable to other package managers such as `yarn`._
 
 Let's begin! First install Preact X:
 
@@ -46,7 +46,7 @@ To guarantee a stable ecosystem for our users (especially for our enterprise use
 
 ### Compat has moved to core
 
-To make third-party react libraries work with Preact we ship a **compat**ibility layer that can be imported via `preact/compat`. It was previously available as a separate package, but to make coordination easier we've moved it into the core repository. So you'll need to change existing import or alias declarations from `preact-compat` to `preact/compat` (note the slash).
+To make third-party React libraries work with Preact we ship a **compat**ibility layer that can be imported via `preact/compat`. It was previously available as a separate package, but to make coordination easier we've moved it into the core repository. So you'll need to change existing import or alias declarations from `preact-compat` to `preact/compat` (note the slash).
 
 Be careful not to introduce any spelling errors here. A common one seems to be to write `compact` instead of `compat`. If you're having trouble with that, think of `compat` as the `compatibility` layer for react. That's where the name is coming from.
 
@@ -58,7 +58,7 @@ Due to the nature of the breaking changes, some existing libraries may cease to 
 
 #### preact-redux
 
-`preact-redux` is one of such libraries that hasn't been updated yet. The good news is that `preact/compat` is much more React-complient and works out of the box with the React bindings called `react-redux`. Switching to it will resolve the situation. Make sure that you've aliased `react` and `react-dom` to `preact/compat` in your bundler.
+`preact-redux` is one of such libraries that hasn't been updated yet. The good news is that `preact/compat` is much more React-compliant and works out of the box with the React bindings called `react-redux`. Switching to it will resolve the situation. Make sure that you've aliased `react` and `react-dom` to `preact/compat` in your bundler.
 
 1. Remove `preact-redux`
 2. Install `react-redux`
@@ -166,7 +166,7 @@ When a `vnode` has the property `dangerouslySetInnerHTML` set Preact will skip d
 
 ## Notes for library authors
 
-This section is intended for library authors who are maintaing packages to be used with Preact X. You can safely skip this section if you're not writing one.
+This section is intended for library authors who are maintaining packages to be used with Preact X. You can safely skip this section if you're not writing one.
 
 ### The `VNode` shape has changed
 
