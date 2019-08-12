@@ -227,7 +227,7 @@ you can set the JSX Pragma by defining a comment near the top of your code:
 
 While Preact strives to be API-compatible with React, portions of the interface are intentionally not included.
 The most noteworthy of these is `createClass()`. Opinions vary wildly on the subject of classes and OOP, but
-it's worth understanding that JavaScript classes are internally in VDOM libraries to represent component types,
+it's worth understanding that JavaScript classes are used internally in VDOM libraries to represent component types,
 which is important when dealing with the nuances of managing component lifecycles.
 
 If your codebase is heavily reliant on `createClass()`, you still have a great option:
