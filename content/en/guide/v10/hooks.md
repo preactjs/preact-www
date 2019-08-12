@@ -41,7 +41,7 @@ class Counter extends Component {
 }
 ```
 
-All the component does is render a div and a button to increment the counter. Let's rewrite it to be beased on hooks:
+All the component does is render a div and a button to increment the counter. Let's rewrite it to be based on hooks:
 
 ```jsx
 function Counter() {
@@ -155,7 +155,7 @@ const Counter = () => {
 
 ### useReducer
 
-The `useReducer` hook has a close resemblence to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
+The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
 
 ```jsx
 const initialState = 0;
@@ -189,7 +189,7 @@ In UI programming there is often some state or result that's expensive to calcul
 
 ### useMemo
 
-With the `useMemo` hook we can memoize the results of that computation and only recaculate it when one of the dependencies changes.
+With the `useMemo` hook we can memoize the results of that computation and only recalculate it when one of the dependencies changes.
 
 ```jsx
 const memoized = useMemo(
@@ -277,7 +277,7 @@ useEffect(() => {
 }, []);
 ```
 
-We'll start with a `Title` component which should reflect the title to the document, so that we can see it in the addressbar of our tab in our browser.
+We'll start with a `Title` component which should reflect the title to the document, so that we can see it in the address bar of our tab in our browser.
 
 ```jsx
 function PageTitle(props) {
