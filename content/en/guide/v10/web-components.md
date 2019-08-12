@@ -42,3 +42,18 @@ function Foo() {
   return <x-foo ref={myRef} />;
 }
 ```
+
+## Triggering custom events
+
+A web component might listen for custom events to add additional functionality. We can't make the same assumptions about casing like we can with native DOM events, so we pass the event name as is. We don't change the casing in any way there.
+
+```jsx
+// native DOM event -> add handler for "click" event
+<div onClick={() => console.log('click')} />
+
+// Custom Element
+// Add handler for "IonChange" event
+<my-foo onIonChange={() => console.log('IonChange')} />
+// Add handler for "ionChange" event (note the casing)
+<my-foo onionChange={() => console.log('IonChange')} />
+```
