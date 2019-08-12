@@ -48,7 +48,7 @@ function Foo() {
 A web component might listen for custom events to add additional functionality. We can't make the same assumptions about casing like we can with native DOM events, so we pass the event name as is. We don't change the casing in any way there.
 
 ```jsx
-// native DOM event -> add handler for "click" event
+// native DOM event -> listens for a "click" event
 <div onClick={() => console.log('click')} />
 
 // Custom Element
