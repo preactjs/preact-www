@@ -37,7 +37,7 @@ While this achieves much better runtime performance, it's still a lot of unneces
 
 Fortunately, there is a solution in the form of preact's [`linkState`](https://github.com/developit/linkstate) module.
 
-> Earlier versions of Preact had the `linkState()` function built-in; however, it has since been moved to a separate module. If you wish to restore the old behavior, see [this page](https://github.com/developit/linkstate#usage) for information about using the polyfill. 
+> Earlier versions of Preact had the `linkState()` function built-in; however, it has since been moved to a separate module. If you wish to restore the old behavior, see [this page](https://github.com/developit/linkstate#usage) for information about using the polyfill.
 
 Calling `linkState(this, 'text')` returns a handler function that, when passed an Event, uses its associated value to update the named property in your component's state.  Multiple calls to `linkState(component, name)` with the same `component` and `name` are cached, so there is essentially no performance penalty.
 
