@@ -45,7 +45,7 @@ function Foo() {
 
 ## Triggering custom events
 
-A web component might listen for custom events to add additional functionality. We can't make the same assumptions about casing like we can with native DOM events, so we pass the event name as is. We don't change the casing in any way there.
+Preact normalizes the casing of standard built-in DOM Events, which is how we can pass an `onChange` prop to `<div>`, when the event listener actually requires lowercase `"change"`. However, Custom Elements often fire custom events as part of their public API, and there's no way to know what custom events might be fired. In order to ensure Custom Elements are seamlessly supported in Preact, any unrecognized event handler props passed to a DOM Element will have their casing preserved.
 
 ```jsx
 // native DOM event -> listens for a "click" event
