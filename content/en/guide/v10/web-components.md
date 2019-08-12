@@ -55,5 +55,5 @@ A web component might listen for custom events to add additional functionality. 
 // Add handler for "IonChange" event
 <my-foo onIonChange={() => console.log('IonChange')} />
 // Add handler for "ionChange" event (note the casing)
-<my-foo onionChange={() => console.log('IonChange')} />
+<my-foo onionChange={() => console.log('ionChange')} />
 ```
