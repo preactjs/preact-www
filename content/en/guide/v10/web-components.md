@@ -42,3 +42,18 @@ function Foo() {
   return <x-foo ref={myRef} />;
 }
 ```
+
+## Triggering custom events
+
+Preact normalizes the casing of standard built-in DOM Events, which is how we can pass an `onChange` prop to `<div>`, when the event listener actually requires lowercase `"change"`. However, Custom Elements often fire custom events as part of their public API, and there's no way to know what custom events might be fired. In order to ensure Custom Elements are seamlessly supported in Preact, any unrecognized event handler props passed to a DOM Element will have their casing preserved.
+
+```jsx
+// native DOM event -> listens for a "click" event
+<div onClick={() => console.log('click')} />
+
+// Custom Element
+// Add handler for "IonChange" event
+<my-foo onIonChange={() => console.log('IonChange')} />
+// Add handler for "ionChange" event (note the casing)
+<my-foo onionChange={() => console.log('ionChange')} />
+```
