@@ -146,7 +146,7 @@ const ref = createRef();
 
 ### Invalid event handler
 
-Sometimes you'll may accidentally pass a wrong value to an event handler. They must always be a `function` or `null` if you want to remove it. All other types are invalid.
+Sometimes you'll may accidentally pass a wrong value to an event handler. They must always be a `function`, or if you want to remove it `null`. All other types are invalid.
 
 ```jsx
 // valid
