@@ -95,6 +95,9 @@ describe('Homepage', () => {
 
 		await click('a[href="/guide/v10/getting-started"]');
 
+		// sleep 1s
+		await new Promise(r => setTimeout(r, 1000));
+
 		await expect(page).toMatch('No build tools');
 
 		expect(spy).not.toHaveBeenCalled();

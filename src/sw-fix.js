@@ -74,6 +74,7 @@ var storage = (function(e) {
 
 self.addEventListener('install', async e => {
 	if (!(await storage.get('v2'))) {
+		// eslint-disable-next-line
 		console.log('not v2');
 		self.skipWaiting();
 	}
@@ -81,6 +82,7 @@ self.addEventListener('install', async e => {
 
 self.addEventListener('activate', async e => {
 	if (!(await storage.get('v2'))) {
+		// eslint-disable-next-line
 		console.log('not v2, upgrading');
 		await storage.set('v2', true);
 		await clients.claim();
