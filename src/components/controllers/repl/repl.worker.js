@@ -4,7 +4,7 @@ import { parseStackTrace } from './errors';
 const PREPEND = `(function(module,exports,require,fetch){`;
 
 const IMPORTS = `
-const {h,createElement,Fragment,Component,render,hydrate} = require('preact');
+const {render,hydrate,h,createElement,Fragment,createRef,Component,cloneElement,createContext,toChildArray,options} = require('preact');
 const {useState,useReducer,useEffect,useLayoutEffect,useRef,useImperativeHandle,useMemo,useCallback,useContext,useDebugValue} = require('preact/hooks');\n
 `;
 
