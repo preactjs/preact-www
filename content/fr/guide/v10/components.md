@@ -4,7 +4,7 @@ descriptions: 'Les composants sont le coeur des application Preact. Apprenez com
 
 ---
 
-# Composant `Components`
+# Composant
 
 Les composants (`Component`) représentent le bloque de construction de base de Preact. Il sont fondamentaux pour construire facilement des UI complexes à partir de petits blocs. Ils sont aussi responsables d'attacher l'état (`state`) à notre rendu de sorti.
 
@@ -16,7 +16,7 @@ Il y a deux types de composants dans Preact, et nous allons les voir dans ce gui
 
 ---
 
-## Composant fonctionnel `Functional Components`
+## Composant fonctionnel
 
 Les composants fonctionnels sont des simples fonctions qui reçoivent en paramètre `props` comme premier argument. Le nom de la fonction **doit** commencer avec une majuscule pour qu'elles soient reconnues avec JSX.
 
