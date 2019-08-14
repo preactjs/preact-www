@@ -36,6 +36,13 @@ export default class Runner extends Component {
 			});
 	});
 
+	handleRenderError = (error, path) => {
+		if (this.props.onError) {
+			patchErrorLocation(error);
+			this.props.onError({ error, path });
+		}
+	};
+
 	execute(transpiled, isFallback) {
 		const PREACT = {
 			...require('preact'),
@@ -105,7 +112,10 @@ export default class Runner extends Component {
 		}
 		if (vnode) {
 			try {
-				this.root = render(vnode, this.base);
+				this.root = render(
+					<ReplRoot onError={this.handleRenderError}>{vnode}</ReplRoot>,
+					this.base
+				);
 			} catch (error) {
 				patchErrorLocation(error);
 				throw error;
@@ -117,5 +127,14 @@ export default class Runner extends Component {
 
 	render({ onError, onSuccess, code, children, ...props }) {
 		return <div {...props} />;
+	}
+}
+
+class ReplRoot extends Component {
+	componentDidCatch(error, path) {
+		this.props.onError(error, path);
+	}
+	render({ children }) {
+		return children;
 	}
 }
