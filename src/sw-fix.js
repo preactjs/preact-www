@@ -4,7 +4,6 @@
 
 // eslint-disable-next-line
 var storage = (function(e) {
-	'use strict';
 	class t {
 		constructor(e = 'keyval-store', t = 'keyval') {
 			(this.storeName = t),
