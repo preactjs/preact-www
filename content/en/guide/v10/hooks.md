@@ -228,7 +228,7 @@ function Foo() {
   return (
     <>
       <input ref={input} />
-      <button onClick={onClick}>Focus input<button>
+      <button onClick={onClick}>Focus input</button>
     </>
   );
 }

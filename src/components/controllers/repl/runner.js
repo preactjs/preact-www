@@ -60,7 +60,8 @@ export default class Runner extends Component {
 				'preact/debug': () => require('preact/debug'),
 				'preact/compat': () => require('preact/compat'),
 				react: () => require('preact/compat'),
-				'react-dom': () => require('preact/compat')
+				'react-dom': () => require('preact/compat'),
+				htm: () => require('htm')
 				// unistore: require('unistore'),
 				// 'unistore/preact': require('unistore/preact')
 			},
@@ -69,6 +70,9 @@ export default class Runner extends Component {
 			vnode;
 
 		function _require(id) {
+			// flatten unpkg
+			if (typeof id === 'string')
+				id = id.replace(/^(https?:)?\/\/unpkg\.com\//, '');
 			if (id in moduleCache) {
 				return moduleCache[id];
 			}
