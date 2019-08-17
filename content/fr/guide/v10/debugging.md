@@ -1,15 +1,15 @@
 ---
-name: Debugger une application Preact
-description: 'Comment debugger une application Preact quand quelque chose ne va pas.'
+name: Débogage d'une application Preact
+description: 'Comment déboguer une application Preact quand quelque chose ne va pas.'
 ---
 
-# Debugger une application Preact
+# Déboguer une application Preact
 
-Preact livre de nombreux outils pour permettre un déboggage plus simple. Ils sont empaquetés dans un seul `import` et peuvent êtres inclus en important `preact/debug`.
+Preact livre de nombreux outils pour permettre un débogage plus simple. Ils sont empaquetés dans un seul `import` et peuvent êtres inclus en important `preact/debug`.
 
-Ceux-ci incluent un pont vers l'excellente extension pour Chrome ou Firefox, [Outil développement React]. Si vous l'avez déjà d'installé vous pouvez **l'essayer sur ce site**. Vous n'avez qu'a ouvrir la console de développement et inspecter comment nous l'avons construit.
+Ceux-ci incluent un pont vers l'excellente extension pour Chrome ou Firefox, [Outil développement React]. Si vous l'avez déjà installée vous pouvez **l'essayer sur ce site**. Vous n'avez qu'à ouvrir la console de développement et inspecter comment nous l'avons construit.
 
-Nous afficherons un message de sommation ou une erreur lorsque nous rencontrerons un problème comme d'incorrecte nidification (en anglais nesting) des éléments `<table>`.
+Nous afficherons un message d'avertissement ou une erreur lorsque nous rencontrerons un problème comme un embriquement incorrect (en anglais nesting) des éléments `<table>`.
 
 
 ---
@@ -25,11 +25,11 @@ L'[Outil de développement React] peut être installé dans la page d'extensions
 - [Pour Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 - [Pour Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
 
-Une fois installé, nous avons besoin d'import `preact/debug` quelque part pour initialiser la connexion à l'extension. Soyez certain que cette import **est le premier** import de toute votre application.
+Une fois installé, nous avons besoin d'importer `preact/debug` quelque part pour initialiser la connexion à l'extension. Faites un sorte que cette import **est le premier** de toute votre application.
 
 > `preact-cli` inclue le paquet `preact/debug/` automatiquement. Vous pouvez sauter la prochaine étape en toute sécurité si vous l'utilisez.
 
-Voila un exemple d'entrée principal de votre application.
+Voici un exemple d'entrée principale d'application.
 
 ```jsx
 // Doit être le premier import
@@ -40,9 +40,9 @@ import App from './components/App';
 render(<App />, document.getElementById('root'));
 ```
 
-### Supprimer les outils de développement de la production
+### Supprimer les outils de développement en production
 
-La plupart des "bundlers" vous permettent de supprimer du code lorsqu'ils détectent qu'une instruction `if` ne sera jamais rencontré. Vous pouvez utiliser ceci pour n'inclue `preact/debug` que pendant votre développement et sauvegarder quelques bytes précieux dans votre application final.
+La plupart des "bundlers" vous permettent de supprimer du code lorsqu'ils détectent qu'une instruction `if` ne sera jamais rencontrée, vous pouvez utiliser ceci pour n'inclure `preact/debug` que pendant votre développement et sauvegarder quelques précieux octets dans votre application finale.
 
 ```js
 // Doit être le premier import
@@ -58,24 +58,24 @@ import App from './components/App';
 render(<App />, document.getElementById('root'));
 ```
 
-Soyez certain d'attribuer la variable d'environnement `NODE_ENV` à la valeur correct dans votre outil de "bundling".
+Soyez certain d'attribuer la variable d'environnement `NODE_ENV` à la valeur correcte dans votre outil de "bundling".
 
-Debugger des sommations et des erreurs
+Déboguer les avertissements et des erreurs
 
-De temps en temps vous pourrez rencontrer une sommation (warning) ou une erreur (error) lorsque Preact détectera du code invalide. Elles doivent être corrigé pour permettre à l'application de fonctionner correctement.
+De temps en temps vous pourrez rencontrer un avertissement (warning) ou une erreur (error) lorsque Preact détectera du code invalide. Elles doivent être corrigé pour permettre à l'application de fonctionner correctement.
 
 ### `undefined` parent passed to `render()`
 
-Cela veut dire que le code essaie de faire un rendu de votre application dans le néant au lieu d'un élément DOM. C'est la différence entre :
+Cela veut dire que le code essaie de faire un rendu de votre application dans le vide, au lieu d'un élément DOM. C'est la différence entre :
 
 ```jsx
-// What Preact received
+// Ce qu'à reçu Preact
 render(<App />, undefined);
 
-// vs what it expected
+// vs. ce à quoi il s'attendait
 render(<App />, actualDomNode);
 ```
-La raison principal pour laquelle cette erreur apparait est que votre élément DOM n'est pas présent lorsque la fonction `render()` est appelée. Soyez certain qu'il existe. 
+La raison principale pour laquelle cette erreur apparaît est que votre élément DOM n'est pas présent lorsque la fonction `render()` est appelée. Soyez certain qu'il existe. 
 
 ### `undefined` component passed to `createElement()`
 
@@ -92,7 +92,7 @@ import { App } from './app';
 render(<App />, dom);
 ```
 
-La même erreur sera lancé lorsque ce sera l'inverse. Lorsque vous déclarez un export nommé (`named` export) et que vous essayez d'utiliser l'export `default`. Une façon rapide de vérifier cela (dans le cas où votre éditeur ne le fait pas déjà), est de simplement logger l'import.
+La même erreur sera lancée lorsque çe sera l'inverse, par exemple lorsque vous déclarez un export nommé (`named` export) et que vous essayez d'utiliser l'export `default`. Une façon rapide de vérifier cela (dans le cas où votre éditeur ne le fait pas déjà), est de simplement faire usage de `console.log` afin d'en connaître la valeur.
 
 ```js
 // app.js
@@ -109,11 +109,11 @@ console.log(App);
 
 ### Passed a JSX literal as JSX twice
 
-Passer un literal-JSX ou un composant dans du JSX à nouveau est invalide et déclenchera cette erreur.
+Passer une constante JSX ou un composant dans du JSX à nouveau est invalide et déclenchera cette erreur.
 
 ```jsx
 const Foo = <div>foo</div>;
-// Invalide: Foo contient déjà un élément-JSX
+// Invalide: Foo contient déjà une constante JSX
 render(<Foo />, dom);
 ```
 Pour corriger cela, nous pouvons juste passer la variable directement:
@@ -125,11 +125,11 @@ render(Foo, dom);
 
 ### Improper nesting of table detected
 
-HTML a une direction très claire sur la manière dont les tables devraient être structurés. Ne pas respecter ce format amènera à des erreurs de rendus qui peuvent être difficile à débogguer. Dans Preact, nous détectons et affichons ces erreurs. Pour en apprendre d'avantage sur comment ces tables devraient être structurés nous vous recommandons vivement la [documentation MDN](https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics)
+HTML a une direction très claire sur la manière dont les tables devraient être structurées. Ne pas respecter ce format amènera à des erreurs de rendu qui peuvent être difficile à déboguer. Dans Preact, nous détectons et affichons ces erreurs. Pour en apprendre d'avantage sur la structure correcte des tables, nous vous recommandons vivement la [documentation MDN](https://developer.mozilla.org/fr/docs/Apprendre/HTML/Tableaux/Basics)
 
 ### Invalid `ref`-property
 
-Lorsque la propriété `ref` contient quelque chose de non attendu, nous lancerons cette erreur. Ceci inclus les `refs` à base de chaine de caractère (`string-based refs`) qui peuvent avoir été déprécié il y a un moment.
+Lorsque la propriété `ref` contient quelque chose de non attendu, nous lancerons cette erreur. Ceci inclut les `refs` à base de chaîne de caractères (`string-based refs`) qui ont été déprécié par le passé.
 
 ```jsx
 // valide
@@ -145,7 +145,7 @@ const ref = createRef();
 
 ### Invalid event handler
 
-De temps en temps vous pourriez accidentellement passer une valeur incorrect à un handler. Elles doivent toujours être une fonction (`function`) ou si vous souhaitez l'enlever, `null`. Tous les autres types sont invalides.
+De temps en temps vous pourriez accidentellement passer une valeur incorrecte à un handler. Elles doivent toujours être une fonction, ou, si vous souhaitez l'enlever, `null`. Tous les autres types sont invalides.
 
 
 ```jsx
@@ -173,7 +173,7 @@ function Foo() {
 
 ### Getting `vnode.[property]` is deprecated
 
-Avec Preact X nous il y a certains changement majeurs qui entrainent une rupture de compatibilité avec la précédente version de Preact dans la façon dont nous gérons la structure interne `vnode`.
+Avec Preact X, certains changement majeurs entraînent une rupture de compatibilité avec la précédente version de Preact dans la façon dont nous gérons la structure interne `vnode`.
 
 | Preact 8.x | Preact 10.x |
 |---|---|
@@ -183,7 +183,7 @@ Avec Preact X nous il y a certains changement majeurs qui entrainent une rupture
 
 ### Found children with the same key
 
-Un aspect unique à propos des librairies basés sur un DOM virtuel est qu'elles ont une chance de détecter lorsqu'un noeud a été bougé. Cependant, pour savoir exactement quel noeud est lequel, nous avons besoin de les identifier. _Ceci n'est nécéssaire que lorsque nous créons des éléments dynamiquement._
+Un aspect unique des librairies basés sur un DOM virtuel est qu'elles ont une chance de détecter lorsqu'un nœud a été bougé. Cependant, pour savoir exactement quel nœud est lequel, nous avons besoin de les identifier. _Ceci n'est nécessaire que lorsque nous créons des éléments dynamiquement._
 
 
 ```jsx
@@ -193,7 +193,7 @@ Un aspect unique à propos des librairies basés sur un DOM virtuel est qu'elles
 </div>
 ```
 
-La façon correct de faire cela est de leur donner des clés uniques. Dans la plupart des cas, la donnée sur lequel vous itérez aura une forme d'`id`.
+La bonne façon de gérer cela est de leur donner des clés uniques. Dans la plupart des cas, la donnée sur laquelle vous itérez aura une forme d'`id`.
 
 
 ```jsx

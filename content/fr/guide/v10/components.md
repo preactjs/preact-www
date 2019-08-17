@@ -6,7 +6,7 @@ descriptions: 'Les composants sont le coeur des application Preact. Apprenez com
 
 # Composant
 
-Les composants (`Component`) représentent le bloque de construction de base de Preact. Il sont fondamentaux pour construire facilement des UI complexes à partir de petits blocs. Ils sont aussi responsables d'attacher l'état (`state`) à notre rendu de sorti.
+Les composants (`Component`) représentent le bloc de construction de base de Preact. Il sont fondamentaux pour construire facilement des UI complexes. Ils sont aussi responsables d'attacher l'état (`state`) à notre rendu de sortie.
 
 Il y a deux types de composants dans Preact, et nous allons les voir dans ce guide.
 
@@ -32,11 +32,11 @@ const App = <MyComponent name="John Doe" />;
 render(App, document.body);
 ```
 
-> Note, dans des versions antérieurs elles étaient connues comme des composants sans états mais ceci n'est plus vrai depuis les [`hooks-addon`](/guide/v10/hooks)
+> NB : dans des versions antérieures elles étaient connues comme des composants sans état mais ceci n'est plus vrai depuis les [`Hooks`](/guide/v10/hooks)
 
-## Composant class
+## Composant de classe
 
-Les composants class ont un état et des méthodes de cycle de vie. Les suivantes sont des méthodes spéciales qui seront appelés lorsque le composant est attaché au DOM ou lorsqu'il est détruit par exemple.
+Les composants class ont un état et des méthodes de cycle de vie. Ces dernières sont des méthodes spéciales qui seront appelés lorsque le composant est attaché au DOM ou lorsqu'il est détruit, par exemple.
 
 Ici, nous avons une simple classe composant appelé `<Clock>` qui affiche le temps actuel:
 
@@ -67,7 +67,7 @@ class Clock extends Component {
 
 ### Méthodes de cycle de vie
 
-Afin de permettre à l'horloge de se mettre à jours toutes les secondes, nous avons besoin de savoir quand `<Clock>` est monté au DOM. _Si vous avez utilisé des éléments personnalisés HTML5, ceci est similaire aux méthodes de cycle de vie `attachedCallback` et `detachedCallback`._ Preact invoque ces méthodes en suivant le cycle suivant s'ils sont défini dans le composant:
+Afin de permettre à l'horloge de se mettre à jour toutes les secondes, nous avons besoin de savoir quand `<Clock>` est monté au DOM. _Si vous avez utilisé des éléments personnalisés HTML5, ceci est similaire aux méthodes de cycle de vie `attachedCallback` et `detachedCallback`._ Preact invoque ces méthodes en suivant le cycle suivant s'ils sont défini dans le composant:
 
 | Méthode de cycle de vie     | Quand est ce qu'elle est appelé                 |
 |-----------------------------|--------------------------------------------------|
@@ -81,13 +81,13 @@ Afin de permettre à l'horloge de se mettre à jours toutes les secondes, nous a
 | `getSnapshotBeforeUpdate`   | appelé avant `render()` |
 | `componentDidUpdate`        | appelé après `render()`                                 |
 
-> Voir [ce diagramme](https://twitter.com/dan_abramov/status/981712092611989509) pour avoir un visuel de leur relation entre eux même.
+> Voir [ce diagramme](https://twitter.com/dan_abramov/status/981712092611989509) pour avoir un visuel de leurs relations.
 
 #### componentDidCatch
 
-Il y a une méthode qui a besoin d'une reconnaissance spécial et c'est `componentDidCatch`. Elle est special car elle permet de gérer des erreurs qui apparaissent pendant le rendu. Ceci inclus les erreurs qui apparaissent dans les fonctions attachés aux cycle de vie, mais exclus toute erreur géré de manière asynchrone (Comme après un appel `fetch()`).
+Une de ces méthodes est particulière : `componentDidCatch`. Elle est spéciale car elle permet de gérer les erreurs qui apparaissent pendant le rendu. Ceci inclus les erreurs qui apparaissent dans les fonctions attachés aux cycle de vie, mais exclut toute erreur gérée de manière asynchrone (Comme après un appel `fetch()`).
 
-Quand une erreur est appelé, nous pouvons utiliser cette méthode pour réagir à n'importe quel erreurs et afficher un jolie message d'erreur ou tout autre contenu de retrait.
+Quand une erreur est lancée, nous pouvons utiliser cette méthode pour réagir à cette dernière, et afficher un joli message d'erreur ou tout autre contenu de retrait.
 
 
 ```jsx
@@ -109,7 +109,7 @@ class Catcher extends Component {
 
 ## Fragments
 
-Un `Fragment` permet de retourner de multiples éléments à la fois. Ils résolvent une limitation du JSX qui demande que chaque "bloques (`block`)" ne doivent avoir qu'un seul élément racine (`root`). Vous les rencontrerez souvent en combination avec les listes, les tables ou le CSS Flexbox ou chaque éléments intermédiaires auraient autrement un style différent.
+Un `Fragment` permet de retourner plusieurs éléments à la fois. Ils résolvent une limitation du JSX qui demande que chaque bloc ne doit avoir qu'un seul élément racine (`root`). Vous les rencontrerez souvent en combinaison avec les listes, les tables ou le CSS Flexbox où chaque élément intermédiaire aurait autrement un style différent.
 
 ```jsx
 import { Fragment, render } from 'preact';

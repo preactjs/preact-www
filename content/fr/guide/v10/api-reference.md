@@ -5,7 +5,7 @@ description: ‘Apprenez en plus à propos de toutes les fonctions exporté Prea
 
 # Référence API
 
-Cette page sert de rapide vue d’ensemble de toutes les fonctions exportés.
+Cette page sert de rapide vue d’ensemble de toutes les fonctions exportées.
 
 
 ---
@@ -35,7 +35,7 @@ class MyComponent extends Component {
 }
 ```
 
-Pour en apprendre d’avantage à propos des `Components` et comment ils peuvent être utilisé, visitez la page [Components](guide/v10/components).
+Pour en apprendre d’avantage à propos des `Components` et comment ils peuvent être utilisés, visitez la page [Components](guide/v10/components).
 
 ## render()
 
@@ -98,7 +98,7 @@ Les arguments suivant sont collectés dans une liste de `children` (enfants), et
 
 - Une valeur scalaire (chaine de caractère, nombres, booléen, null, undefined, etc...)
 - D'autres éléments DOM virtuel
-- Une infinité de chaine imbriqués des éléments d'au dessus
+- Une infinité de chaine imbriqués d'éléments spécifiés ci-dessus
 
 ```js
 import { h } from 'preact';
@@ -119,11 +119,11 @@ h(
 
 ## toChildArray
 
-Cette fonction d'aide convertira toujours des enfants en liste. Si le paramètre est déjà une liste ceci ne fera rien. Cette fonction est nécéssaire parce que le paramètre `children` n'est pas garantis d'être une liste.
+Cette fonction d'aide convertira toujours des enfants en liste. Si le paramètre est déjà une liste ceci ne fera rien. Cette fonction est nécessaire parce que le paramètre `children` ne garantit pas d'être une liste.
 
-Si un élément ne contient qu'un seul enfant, celui-ci le recevra directement. Ce n'est seulement lorsqu'il y a d'avantage d'enfants que vous pouvez être sûr que vous recevrez une liste.
+Si un élément ne contient qu'un seul enfant, celui-ci le recevra directement. Ce n'est seulement que lorsqu'il y a plusieurs enfants que vous pouvez être certain que `children` sera une liste.
 
-Avec `toChildArray` vous pouvez vous assurer que ce sera toujours le cas.
+Cependant, `toChildArray` retournant toujours une liste, cela vous facilitera la vie concernant leur prise en charge.
 
 ```jsx
 import { toChildArray } from 'preact';
@@ -148,19 +148,19 @@ render((
 
 ## cloneElement
 
-Cette fonction vous permet de faire un clone superficiel d'un composant et de faire le rendu du clone quelque part d'autre.
+Cette fonction vous permet de faire un clonage superficiel d'un composant et d'en faire le rendu autre part.
 
 ## createContext
 
-Voir dans la section [Documentation context](/guide/v10/context#createcontext).
+Voir dans la section [Documentation du contexte](/guide/v10/context#createcontext).
 
 ## createRef
 
-Voir dans la section [Documentation références](/guide/v10/refs#createref).
+Voir dans la section [Documentation des références](/guide/v10/refs#createref).
 
 ## Fragment
 
-Un type spécial de composant qui ne fait aucun rendu dans le DOM. Ils permettent à un composant de retourner multiple enfants sans avoir besoin de les emballer dans une balise div.
+Un type spécial de composant qui ne fait aucun rendu dans le DOM. Il permet à un composant de retourner plusieurs enfants sans avoir besoin de les emballer dans une balise div.
 
 ```jsx
 import { Fragment, render } from 'preact';
