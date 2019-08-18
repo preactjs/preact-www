@@ -78,7 +78,7 @@ render(
 ```
 
 ## hydrate()
-Lorsque vous utilisez un DOM pré-rendu, il n'y a pas besoin de faire en rendu encore une fois. Avec `hydrate`, la plupart de la phase de différenciation sera sauté à l'exception des écoute d'évènements. C'est principalement utilisé en conjonction avec le rendu coté serveur (en anglais SSR : [Server-Side Rendering](/guide/v10/server-side-rendering)).
+Si vous avez un dom déjà rendu (par exemple parce que vous avez un rendu serveur, SSR [Server-Side Rendering](/guide/v10/server-side-rendering)), vous n'avez pas besoin de réappliquer un rendu avec `render` encore une fois. Vous pouvez utiliser `hydrate` qui sautera la phase de rendu et ne fera qu'attacher l'écoute d'événement (en anglais : EventHandlers) s'ils sont passé en paramètre avec `props`.
 
 
 ```jsx

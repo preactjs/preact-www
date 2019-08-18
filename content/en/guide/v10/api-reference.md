@@ -78,7 +78,8 @@ render(
 
 ## hydrate()
 
-When you have a prerendered DOM, there is no need to re-render it again. With hydrate most of the diffing phase will be skipped with event listeners being the exception. It's mainly used in conjuncton with [Server-Side Rendering](/guide/v10/server-side-rendering).
+If you have a prerendered DOM (because of [Server-Side-Rendering](/guide/v10/server-side-rendering) then there is no need to use `render` again. You can use `hydrate` which will skip the internal diffing algorithm and only attach event listeners if it finds any in `props`.”
+
 
 ```jsx
 import { render } from 'preact';
