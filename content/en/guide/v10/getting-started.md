@@ -40,7 +40,7 @@ In a nutshell [htm] can be best described as: JSX-like syntax in plain JavaScrip
 
 ```js
 import { h, Component, render } from 'https://unpkg.com/preact';
-import html from 'https://unpkg.com/htm';
+import htm from 'https://unpkg.com/htm';
 
 // Initialize htm with Preact
 const html = htm.bind(h);
