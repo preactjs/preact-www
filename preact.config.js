@@ -72,6 +72,7 @@ export default function (config, env, helpers) {
 	const sizePlugin = helpers.getPluginsByName(config, 'SizePlugin')[0];
 	if (sizePlugin) {
 		config.plugins[sizePlugin.index] = new SizePlugin({
+			publish: true,
 			filename: `size-plugin-${env.ssr?'ssr':'browser'}.json`
 		});
 	}
