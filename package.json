@@ -87,6 +87,7 @@
     "preact-render-spy": "^1.2.1",
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0",
+    "size-plugin": "^2.0.0",
     "workerize-loader": "^1.0.4"
   },
   "dependencies": {

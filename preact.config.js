@@ -6,6 +6,7 @@ import Critters from 'critters-webpack-plugin';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
+import SizePlugin from 'size-plugin';
 // prettier-ignore
 
 export default function (config, env, helpers) {
@@ -68,7 +69,13 @@ export default function (config, env, helpers) {
 		minSize: 1000
 	});
 
-
+	const sizePlugin = helpers.getPluginsByName(config, 'SizePlugin')[0];
+	if (sizePlugin) {
+		config.plugins[sizePlugin.index] = new SizePlugin({
+			publish: true,
+			filename: `size-plugin-${env.ssr?'ssr':'browser'}.json`
+		});
+	}
 	if (!env.ssr) {
 		// Find YAML FrontMatter preceeding a markdown document
 		const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
