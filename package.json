@@ -88,7 +88,7 @@
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0",
     "size-plugin": "^2.0.0",
-    "workerize-loader": "^1.0.4"
+    "workerize-loader": "^1.1.0"
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",
