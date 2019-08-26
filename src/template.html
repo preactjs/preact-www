@@ -28,6 +28,7 @@
 		<% } %>
 		<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks.polyfills.entry %>"><\/script>')</script>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect">
+		<link href="https://api.github.com" rel="preconnect" crossorigin>
 	</head>
 	<body>
 		<%= htmlWebpackPlugin.options.ssr({
