@@ -27,7 +27,7 @@
 			<link rel="preload" href="<%= htmlWebpackPlugin.files.publicPath + file.name %>" as="script">
 		<% } %>
 		<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks.polyfills.entry %>"><\/script>')</script>
-		<link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net" rel="preconnect">
 	</head>
 	<body>
 		<%= htmlWebpackPlugin.options.ssr({
