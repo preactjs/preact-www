@@ -29,7 +29,7 @@ class Foo extends Component {
   }
   
   render() {
-    return <div ref={setRef}>foo</div>
+    return <div ref={this.ref}>foo</div>
   }
 }
 ```
