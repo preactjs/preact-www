@@ -22,7 +22,7 @@ if (!PRERENDER) {
 		e => {
 			hasInteracted = true;
 			const link = e.target.closest('a');
-			if (shouldReload) {
+			if (link && shouldReload) {
 				location.href = link.href;
 				e.preventDefault();
 				return false;
