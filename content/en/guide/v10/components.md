@@ -147,3 +147,33 @@ const Foo = <Fragment>foo</Fragment>;
 // ...is the same as this:
 const Bar = <>foo</>;
 ```
+
+You can also return arrays from your components:
+
+```js
+function Columns() {
+  return [
+    <td>Hello</td>
+    <td>World</td>
+  ];
+}
+```
+
+Don't forget to add keys to `Fragments` if you create them in a loop:
+
+```js
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
+        // Without the `key`, Preact can't efficiently add,
+        // remove, remove new elements as the list changes
+        <Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </Fragment>
+      ))}
+    </dl>
+  );
+}
+```

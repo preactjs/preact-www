@@ -164,6 +164,12 @@
 			}
 		},
 		{
+			"path": "/guide/v10/whats-new",
+			"name": {
+				"en": "What's new?"
+			}
+		},
+		{
 			"path": "/guide/v10/upgrade-guide",
 			"name": {
 				"en": "Upgrading from 8.x",
