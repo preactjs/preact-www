@@ -58,7 +58,7 @@ Due to the nature of the breaking changes, some existing libraries may cease to 
 
 #### preact-redux
 
-`preact-redux` has been updated and works with Preact X without the need to use `preact/compat`. Just make sure you're using `preact-redux^3.0.0`.
+`preact-redux` has been updated and works with Preact X without the need to use `preact/compat`. Just make sure you're using `preact-redux@^3.0.0`.
 
 #### mobx-preact
 
