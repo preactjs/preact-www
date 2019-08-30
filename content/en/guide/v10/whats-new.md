@@ -105,7 +105,7 @@ function App() {
 
 ## CSS Custom Properties
 
-Sometimes it's the little things that make a huge difference. With the recent advancements in CSS you can leverage variables for styling:
+Sometimes it's the little things that make a huge difference. With the recent advancements in CSS you can leverage [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) for styling:
 
 ```jsx
 function Foo(props) {
