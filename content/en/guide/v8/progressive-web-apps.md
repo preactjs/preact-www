@@ -5,7 +5,7 @@ permalink: '/guide/progressive-web-apps'
 
 # Progressive Web Apps
 
-Preact is an excellent choice for [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) that wish to load and become interactive quickly.  [Preact CLI](https://github.com/developit/preact-cli/) codifies this into an instant build tool that gives you a PWA with a 100 [Lighthouse][LH] score right out of the box.
+Preact is an excellent choice for [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) that wish to load and become interactive quickly.  [Preact CLI](https://github.com/preactjs/preact-cli/) codifies this into an instant build tool that gives you a PWA with a 100 [Lighthouse][LH] score right out of the box.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 
@@ -94,7 +94,7 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
 
 ## Preact CLI
 
-[Preact CLI](https://github.com/developit/preact-cli/) is the official build tool for Preact projects. It's a single dependency command line tool that bundles your Preact code into a highly optimized Progressive Web App.  It aims to make all of the above recommendations automatic, so you can focus on writing great Components.
+[Preact CLI](https://github.com/preactjs/preact-cli/) is the official build tool for Preact projects. It's a single dependency command line tool that bundles your Preact code into a highly optimized Progressive Web App.  It aims to make all of the above recommendations automatic, so you can focus on writing great Components.
 
 Here are a few things Preact CLI bakes in:
 
@@ -104,4 +104,4 @@ Here are a few things Preact CLI bakes in:
 - Pre-rendering for a fast Time To First Paint
 - Conditionally loads polyfills if needed
 
-Since [Preact CLI](https://github.com/developit/preact-cli/) is internally powered by [Webpack](https://webpack.js.org), you can define a `preact.config.js` and customize the build process to suit your needs.  Even if you customize things, you still get to take advantage of awesome defaults, and can update as new versions of `preact-cli` are released.
+Since [Preact CLI](https://github.com/preactjs/preact-cli/) is internally powered by [Webpack](https://webpack.js.org), you can define a `preact.config.js` and customize the build process to suit your needs.  Even if you customize things, you still get to take advantage of awesome defaults, and can update as new versions of `preact-cli` are released.
