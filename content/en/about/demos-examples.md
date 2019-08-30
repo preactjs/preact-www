@@ -9,14 +9,14 @@ description: 'Collection of demos and example Preact applications'
 This pages lists a bunch of demos and examples you can use to learn Preact.
 
 > :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Add it!](https://github.com/preactjs/preact-www/blob/master/content/en/about/demos-examples.md)_
 
 
 ## Full Apps
 
 [**Preact Website** _(preactjs.com)_](https://preactjs.com)  
 Of course this website is built with Preact.  
-[Github Project](https://github.com/developit/preact-www)
+[Github Project](https://github.com/preactjs/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.

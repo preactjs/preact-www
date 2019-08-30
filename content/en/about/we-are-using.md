@@ -314,5 +314,5 @@ description: 'Companies who are proudly using Preact'
 
 <p align="center">
     Does your company use Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
+    <a href="https://github.com/preactjs/preact-www/blob/master/content/en/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
 </p>
