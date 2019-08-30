@@ -17,7 +17,7 @@ In a nutshell Preact X is what we always wanted Preact to be: A tiny, fast and f
 
 ## Fragments
 
-`Fragments` are a major new feature of Preact X and it was the reason we that largely motivated us to rewrite Preact from scratch. They are a special kind of component that renders children elements inline with their parent, without an extra wrapping DOM element. On top of that they allow you to return multiple nodes from `render`.
+`Fragments` are a major new feature of Preact X, and one of the main motivations for rethinking Preact's architecture. They are a special kind of component that renders children elements inline with their parent, without an extra wrapping DOM element. On top of that they allow you to return multiple nodes from `render`.
 
 [Fragment docs →](/guide/v10/components#fragments)
 
