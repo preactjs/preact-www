@@ -117,7 +117,7 @@ function Foo(props) {
 
 Although we were always keen on adding new features and pushing Preact forward, the `preact-compat` package didn't receive as much love. Up until now it has lived in a separate repository making it harder to introduce breaking changes.
 
-[Compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat) has learned several new tricks such as `forwardRef`, `memo` and countless compatibility improvements.
+The compatibility layer is now called [preact/compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat), and has learned several new tricks such as `forwardRef`, `memo` and countless compatibility improvements.
 
 ```js
 // Preact 8.x
