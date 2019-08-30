@@ -115,7 +115,7 @@ function Foo(props) {
 
 ## Compat lives in core
 
-Although we were always keen on adding new features and pushing Preact forward, the `preact-compat` package didn't receive as much love. Up until now it has lived in a separate repository making it harder to introduce breaking changes.
+Although we were always keen on adding new features and pushing Preact forward, the `preact-compat` package didn't receive as much love. Up until now it has lived in a separate repository making it harder to coordinate large changes spanning Preact and the compatibility layer. By moving compat into the same package as Preact itself, there's nothing extra to install in order to use libraries from the React ecosystem.
 
 The compatibility layer is now called [preact/compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat), and has learned several new tricks such as `forwardRef`, `memo` and countless compatibility improvements.
 
