@@ -25,16 +25,16 @@ Start building a [Preact] Progressive Web App in seconds 🔥
   - [preact-router]
   - 1.5kb of conditionally-loaded polyfills for [fetch] & [Promise]
 
-### [Get Started on Github](https://github.com/developit/preact-cli) 
-[![Build Status](https://travis-ci.org/developit/preact-cli.svg?branch=master)](https://travis-ci.org/developit/preact-cli) [![NPM Downloads](https://img.shields.io/npm/dm/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![NPM Version](https://img.shields.io/npm/v/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100)](https://github.com/developit/preact-cli)
+### [Get Started on Github](https://github.com/preactjs/preact-cli) 
+[![Build Status](https://travis-ci.org/preactjs/preact-cli.svg?branch=master)](https://travis-ci.org/preactjs/preact-cli) [![NPM Downloads](https://img.shields.io/npm/dm/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![NPM Version](https://img.shields.io/npm/v/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100)](https://github.com/developit/preact-cli)
 
 [Promise]: https://npm.im/promise-polyfill
 [fetch]: https://github.com/developit/unfetch
-[preact]: https://github.com/developit/preact
+[preact]: https://github.com/preactjs/preact
 [`"browserslist"`]: https://github.com/ai/browserslist
 [sw-precache]: https://github.com/GoogleChrome/sw-precache
-[preact-router]: https://github.com/developit/preact-router
-[plugins]: https://github.com/developit/preact-cli/wiki/Plugins
+[preact-router]: https://github.com/preactjs/preact-router
+[plugins]: https://github.com/preactjs/preact-cli/wiki/Plugins
 [PRPL]: https://developers.google.com/web/fundamentals/performance/prpl-pattern
 [proof]: https://googlechrome.github.io/lighthouse/viewer/?gist=142af6838482417af741d966e7804346
 [Service Workers]: https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
