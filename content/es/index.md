@@ -113,7 +113,7 @@ function Counter() {
     </p>
     <ul>
         <li>`props`, `state` y `context` son pasados a `render()`</li>
-        <li>Usa atributos HTML standard como `class` y `for`</li>
+        <li>Usa atributos HTML estandar como `class` y `for`</li>
         <li>Compatible con las herramientas de desarrollo de React</li>
     </ul>
   </div>
@@ -234,7 +234,7 @@ render(
     <p>
         Tenemos guías separadas basadas en tus conocimientos de React.
         <br>
-        ¡Elige la guía que funciona mejor para ti!
+        ¡Elige la guía que mejor de funcione!
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
