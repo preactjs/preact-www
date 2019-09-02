@@ -5,7 +5,7 @@ description: 'New features and changes in Preact X'
 
 # What's new in Preact X
 
-Preact X is a huge step forward from Preact 8.x. We've rethought every bit and byte of our code and added a plethora of major features in the process. Same goes to for compatibility enhancements to support more third-party libraries.
+Preact X is a huge step forward from Preact 8.x. We've rethought every bit and byte of our code and added a plethora of major features in the process. Same goes for compatibility enhancements to support more third-party libraries.
 
 In a nutshell Preact X is what we always wanted Preact to be: A tiny, fast and feature-packed library. And speaking of size, you'll be happy to hear that all the new features and improved rendering fit into the same size footprint as `8.x`!
 
