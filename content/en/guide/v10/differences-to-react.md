@@ -142,14 +142,14 @@ function App(props) {
 
 [preact/compat] ships with specialised components that are not necessary for every app. These include
 
-- `PureComponent`: Only updates if `props` and `state` have changed
-- `memo`: Similar in spirit to `PureComponent` but allows to use a custom comparer function
-- `forwardRef`: Supply a `ref` to a specified child component.
-- `Portals`: Continues rendering the current tree into a different DOM container
-- `Suspense`: **experimental** Allows to display fallback content in case the tree is not ready
-- `lazy`: **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
+- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` and `state` have changed
+- [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
+- [forwardRef](/guide/v10/switching-to-preact#forwardRef): Supply a `ref` to a specified child component.
+- [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
+- [Suspense](/guide/v10/switching-to-preact#suspense): **experimental** Allows to display fallback content in case the tree is not ready
+- [lazy](/guide/v10/switching-to-preact#suspense): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[preact/compat]: #features-exclusive-to-preactcompat
+[preact/compat]: /guide/v10/switching-to-preact
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
