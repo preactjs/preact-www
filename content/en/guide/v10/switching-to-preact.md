@@ -43,11 +43,11 @@ render(<Foo value="3" />, dom);
 render(<Foo value="3" />, dom);
 ```
 
-> Note that the advantage of `PureComponent` only pays off when then render is expensive. For simple children trees it can be quicker to just do the render compared to the overhead of comparing props.
+> Note that the advantage of `PureComponent` only pays off when then render is expensive. For simple children trees it can be quicker to just do the `render` compared to the overhead of comparing props.
 
 ## memo
 
-`memo` is equivalen to functional components as `PureComponent` is to classes. It uses the same comparison function under the hood, but allows you to specify your own specialized function optimized for your use case.
+`memo` is equivalent to functional components as `PureComponent` is to classes. It uses the same comparison function under the hood, but allows you to specify your own specialized function optimized for your use case.
 
 ```jsx
 import { memo } from 'preact/compat';
@@ -122,7 +122,7 @@ function App() {
 
 ## Suspense (experimental)
 
-The main idea behind `Suspense` is to allow sections of your UI to display some sort of loading content while components further down the tree are still loading. A common use case for this is code-splitting where you'll need to load a component from the network before you can render it.
+The main idea behind `Suspense` is to allow sections of your UI to display some sort of placeholder content while components further down the tree are still loading. A common use case for this is code-splitting where you'll need to load a component from the network before you can render it.
 
 ```jsx
 import { Suspense, lazy } from `preact/compat`;
