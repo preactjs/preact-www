@@ -11,9 +11,8 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
     <p>Fast 3kB alternative to React with the same modern API.</p>
-    <p>
+    <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
     <p>
