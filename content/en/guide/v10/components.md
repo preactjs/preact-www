@@ -153,7 +153,7 @@ You can also return arrays from your components:
 ```js
 function Columns() {
   return [
-    <td>Hello</td>
+    <td>Hello</td>,
     <td>World</td>
   ];
 }
