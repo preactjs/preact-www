@@ -1,3 +1,4 @@
+import 'promise-polyfill';
 import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
 

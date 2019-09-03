@@ -1,4 +1,4 @@
-import 'preact-cli/lib/lib/webpack/polyfills';
+import 'promise-polyfill';
 import marked from 'marked';
 
 export function convert(markdown) {

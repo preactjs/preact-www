@@ -1,4 +1,4 @@
-import 'preact-cli/lib/lib/webpack/polyfills';
+import 'promise-polyfill';
 import * as prism from '../../lib/prism';
 
 export function highlight(code, lang) {
