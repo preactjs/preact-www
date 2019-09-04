@@ -5,3 +5,9 @@ if (!Uint8Array.prototype.slice) {
 		return new Uint8Array([].slice.call(this, begin, end));
 	};
 }
+
+if (!String.prototype.includes) {
+	String.prototype.includes = function(needle) {
+		return this.indexOf(needle) !== -1;
+	};
+}
