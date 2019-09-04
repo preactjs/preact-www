@@ -35,3 +35,12 @@ if (!Object.entries) {
 		return entries;
 	};
 }
+
+if (!Array.prototype.entries) {
+	Array.prototype.entries = function() {
+		let index = 0;
+		return {
+			next: () => index<this.length ? { value: this[index++], done: false } : { done: true }
+		};
+	};
+}
