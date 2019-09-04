@@ -6,8 +6,14 @@ if (!Uint8Array.prototype.slice) {
 	};
 }
 
+function includes(needle) {
+	return this.indexOf(needle) !== -1;
+}
+
 if (!String.prototype.includes) {
-	String.prototype.includes = function(needle) {
-		return this.indexOf(needle) !== -1;
-	};
+	String.prototype.includes = includes;
+}
+
+if (!Array.prototype.includes) {
+	Array.prototype.includes = includes;
 }
