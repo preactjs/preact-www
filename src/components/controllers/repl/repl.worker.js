@@ -1,4 +1,4 @@
-import 'promise-polyfill';
+import 'promise-polyfill/dist/polyfill.min.js';
 import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
 
