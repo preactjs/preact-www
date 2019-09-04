@@ -17,3 +17,21 @@ if (!String.prototype.includes) {
 if (!Array.prototype.includes) {
 	Array.prototype.includes = includes;
 }
+
+if (!Object.keys) {
+	Object.keys = function(obj) {
+		const keys = [];
+		for (const i in obj) keys.push(i);
+		return keys;
+	};
+}
+
+if (!Object.entries) {
+	Object.entries = function(obj) {
+		const entries = [];
+		for (const i in obj) {
+			entries.push([i, obj[i]]);
+		}
+		return entries;
+	};
+}
