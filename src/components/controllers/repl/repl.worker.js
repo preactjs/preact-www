@@ -1,4 +1,4 @@
-import 'promise-polyfill/lib/polyfill';
+import './worker-polyfills';
 import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
 
