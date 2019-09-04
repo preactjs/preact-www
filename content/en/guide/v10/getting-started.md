@@ -164,8 +164,8 @@ jest configuration:
 ```js
 {
   "moduleNameMapper": {
-    "react": "preact/compat"
-    "react-dom/test-utils": "preact/test-utils"
+    "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
     "react-dom": "preact/compat"
   }
 }
