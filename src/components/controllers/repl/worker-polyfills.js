@@ -44,3 +44,13 @@ if (!Array.prototype.entries) {
 		};
 	};
 }
+
+if (typeof Map!=='undefined' && !Map.prototype.entries) {
+	Map.prototype.entries = function() {
+		const arr = [];
+		this.forEach((value, key) => {
+			arr.push([value, key]);
+		});
+		return arr.entries();
+	};
+}
