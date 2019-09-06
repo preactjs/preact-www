@@ -303,6 +303,12 @@ description: 'Companies who are proudly using Preact'
         </a>
     </li>
     <li>
+        <a href="//www.indev.net.br" target="_blank">
+            <img src="/assets/we-are-using/indevweb.png" alt="Indev Desenvolvimento web">
+           Indev Desenvolvimento web
+        </a>
+    </li>
+    <li>
         <a href="//liliumcms.com" target="_blank">
             <img src="/assets/we-are-using/lmllogo.png" alt="Lilium CMS">
             Lilium CMS
