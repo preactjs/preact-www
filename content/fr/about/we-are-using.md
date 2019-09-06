@@ -279,7 +279,7 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//www.bluehive.com" target="_blank">
-            <img src="/assets/we-are-using/bluehive.png" alt="BlueHive">
+            <img src="/assets/we-are-using/bluehive.svg" alt="BlueHive">
             BlueHive
         </a>
     </li>
