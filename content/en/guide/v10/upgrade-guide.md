@@ -196,3 +196,11 @@ console.log(<div>foo{"bar"}</div>);
 //     text
 //     text
 ```
+
+### Use JSX type which exists preact namespace
+
+In Preact X, JSX type exists in `preact` namespace, not `global` namespace.
+
+* In Preact 8.4.x, JSX type exists in `global` namespace.
+* In Preact 8.5+, JSX type exists in `global` namespace and `preact` namespace.
+* In Preact X, JSX type exists in `preact` namespace.
