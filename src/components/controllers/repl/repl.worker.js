@@ -1,4 +1,4 @@
-import './worker-polyfills';
+import '@babel/polyfill';
 import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
 

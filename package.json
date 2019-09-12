@@ -69,6 +69,7 @@
   "license": "MIT",
   "author": "Preact Authors <core@preactjs.com>",
   "devDependencies": {
+    "@babel/polyfill": "^7.6.0",
     "critters-webpack-plugin": "^2.4.0",
     "dlv": "^1.1.3",
     "eslint": "^4.9.0",
