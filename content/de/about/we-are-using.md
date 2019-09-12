@@ -279,6 +279,12 @@ permalink: '/about/we-are-using'
             Leesa Sleep
         </a>
     </li>
+    <li>
+        <a href="//rocket.chat" target="_blank">
+            <img src="/assets/we-are-using/rocketchat.svg" alt="Rocket.Chat">
+            Rocket.Chat
+        </a>
+    </li>
 </ul>
 
 ---
