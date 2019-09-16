@@ -16,7 +16,7 @@ export default function (config, env, helpers) {
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
 		lib: resolve(__dirname, 'src/lib'),
-		'promise-polyfill': resolve(__dirname, 'src/promise-polyfill.js')
+		'promise-polyfill$': resolve(__dirname, 'src/promise-polyfill.js')
 	});
 
 	// Use our custom polyfill entry

@@ -277,13 +277,25 @@ permalink: '/about/we-are-using'
         </a>
     </li>
     <li>
+
         <a href="//www.indev.net.br" target="_blank">
             <img src="/assets/we-are-using/indevweb.png" alt="Indev Desenvolvimento web">
            Indev Desenvolvimento web
         </a>
     </li>
 
-    
+        <a href="//rocket.chat" target="_blank">
+            <img src="/assets/we-are-using/rocketchat.svg" alt="Rocket.Chat">
+            Rocket.Chat
+        </a>
+    </li>
+    <li>
+        <a href="//www.bluehive.com" target="_blank">
+            <img src="/assets/we-are-using/bluehive.svg" alt="BlueHive">
+            BlueHive
+        </a>
+    </li>
+
 </ul>
 
 ---
