@@ -55,7 +55,7 @@ class TodoForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input type="text" value={value} onInput={this.onInput} />
-        <p>You typed this value: {value}<p>
+        <p>You typed this value: {value}</p>
         <button type="submit">Submit</button>
       </form>
     );
