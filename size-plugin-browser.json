@@ -1,5 +1,196 @@
 [
   {
+    "timestamp": 1568803811524,
+    "files": [
+      {
+        "filename": "sw-esm.js",
+        "previous": 682,
+        "size": 682,
+        "diff": 0
+      },
+      {
+        "filename": "sw.js",
+        "previous": 678,
+        "size": 678,
+        "diff": 0
+      },
+      {
+        "filename": "markdown.bc303.worker.js",
+        "previous": 8681,
+        "size": 0,
+        "diff": -8681
+      },
+      {
+        "filename": "prism.18eb5.worker.js",
+        "previous": 6256,
+        "size": 0,
+        "diff": -6256
+      },
+      {
+        "filename": "emoji.chunk.91398.esm.js",
+        "previous": 8854,
+        "size": 8854,
+        "diff": 0
+      },
+      {
+        "filename": "polyfills.6a525.esm.js",
+        "previous": 2128,
+        "size": 2128,
+        "diff": 0
+      },
+      {
+        "filename": "markdown.8ff2c.worker.js",
+        "previous": 8682,
+        "size": 0,
+        "diff": -8682
+      },
+      {
+        "filename": "emoji.chunk.1ed91.js",
+        "previous": 8848,
+        "size": 8848,
+        "diff": 0
+      },
+      {
+        "filename": "polyfills.3233a.js",
+        "previous": 2124,
+        "size": 2124,
+        "diff": 0
+      },
+      {
+        "filename": "repl.0b7a0.worker.js",
+        "previous": 34904,
+        "size": 0,
+        "diff": -34904
+      },
+      {
+        "filename": "editor.chunk.7a736.css",
+        "previous": 2154,
+        "size": 2154,
+        "diff": 0
+      },
+      {
+        "filename": "editor.chunk.fa6b3.esm.js",
+        "previous": 66306,
+        "size": 66306,
+        "diff": 0
+      },
+      {
+        "filename": "runner.chunk.a92f8.esm.js",
+        "previous": 5790,
+        "size": 0,
+        "diff": -5790
+      },
+      {
+        "filename": "5.chunk.bc319.css",
+        "previous": 1467,
+        "size": 1467,
+        "diff": 0
+      },
+      {
+        "filename": "5.chunk.95a73.esm.js",
+        "previous": 3387,
+        "size": 3387,
+        "diff": 0
+      },
+      {
+        "filename": "repl.3f385.worker.js",
+        "previous": 36357,
+        "size": 0,
+        "diff": -36357
+      },
+      {
+        "filename": "editor.chunk.e0251.js",
+        "previous": 66351,
+        "size": 66351,
+        "diff": 0
+      },
+      {
+        "filename": "runner.chunk.2df13.js",
+        "previous": 5830,
+        "size": 0,
+        "diff": -5830
+      },
+      {
+        "filename": "5.chunk.b2018.js",
+        "previous": 3451,
+        "size": 3451,
+        "diff": 0
+      },
+      {
+        "filename": "bundle.c6f3d.css",
+        "previous": 9114,
+        "size": 9114,
+        "diff": 0
+      },
+      {
+        "filename": "bundle.01f9a.esm.js",
+        "previous": 22880,
+        "size": 0,
+        "diff": -22880
+      },
+      {
+        "filename": "bundle.1e481.js",
+        "previous": 23243,
+        "size": 0,
+        "diff": -23243
+      },
+      {
+        "filename": "prism.d329b.worker.js",
+        "previous": 0,
+        "size": 7324,
+        "diff": 7324
+      },
+      {
+        "filename": "markdown.6af7e.worker.js",
+        "previous": 0,
+        "size": 9659,
+        "diff": 9659
+      },
+      {
+        "filename": "repl.bfeb7.worker.js",
+        "previous": 0,
+        "size": 66701,
+        "diff": 66701
+      },
+      {
+        "filename": "bundle.6ee5f.esm.js",
+        "previous": 0,
+        "size": 22881,
+        "diff": 22881
+      },
+      {
+        "filename": "runner.chunk.097ea.esm.js",
+        "previous": 0,
+        "size": 5789,
+        "diff": 5789
+      },
+      {
+        "filename": "markdown.d9ce1.worker.js",
+        "previous": 0,
+        "size": 9660,
+        "diff": 9660
+      },
+      {
+        "filename": "repl.6e676.worker.js",
+        "previous": 0,
+        "size": 68132,
+        "diff": 68132
+      },
+      {
+        "filename": "bundle.31633.js",
+        "previous": 0,
+        "size": 23243,
+        "diff": 23243
+      },
+      {
+        "filename": "runner.chunk.50868.js",
+        "previous": 0,
+        "size": 5831,
+        "diff": 5831
+      }
+    ]
+  },
+  {
     "timestamp": 1567449858181,
     "files": [
       {
