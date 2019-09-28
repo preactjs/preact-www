@@ -283,7 +283,7 @@ We'll start with a `Title` component which should reflect the title to the docum
 function PageTitle(props) {
   useEffect(() => {
     document.title = props.title;
-  }, [prop.title]);
+  }, [props.title]);
 
   return <h1>{props.title}</h1>;
 }
