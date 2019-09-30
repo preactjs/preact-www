@@ -151,7 +151,7 @@ En algún momento, probablemente querrás utilizar el vasto ecosistema de reacci
 
 Para crear un alias de cualquier paquete en el paquete web, debe agregar la sección `resolve.alias` a su configuración. Dependiendo de la configuración que esté utilizando, esta sección ya puede estar presente, pero le faltan los alias para Preact.
 
-```javascript
+```json
 const config = {
   //...snip
   resolve: {
