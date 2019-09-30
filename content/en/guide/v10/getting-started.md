@@ -128,7 +128,7 @@ To alias any package in webpack you need to add the `resolve.alias` section
 to your config. Depending on the configuration you're using this section may
 already be present, but missing the aliases for Preact.
 
-```js
+```json
 const config = {
   //...snip
   resolve: {
@@ -161,7 +161,7 @@ Similar to bundlers, [jest](https://jestjs.io/) allows to rewrite module paths. 
 different, than in say webpack, because it's based on regex. Add this to your
 jest configuration:
 
-```js
+```json
 {
   "moduleNameMapper": {
     "react": "preact/compat",
