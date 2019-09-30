@@ -128,15 +128,17 @@ To alias any package in webpack you need to add the `resolve.alias` section
 to your config. Depending on the configuration you're using this section may
 already be present, but missing the aliases for Preact.
 
-```json
-const config = {
-  //...snip
-  resolve: {
-    alias: {
-        'react': 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat', // Must be below test-utils
+```js
+const config = { 
+   //...snip
+  "resolve": { 
+    "alias": { 
+      "react": "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat",
+     // Must be below test-utils
     },
+  }
 }
 ```
 

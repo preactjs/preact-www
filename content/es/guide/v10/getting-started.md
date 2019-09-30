@@ -151,15 +151,17 @@ En algún momento, probablemente querrás utilizar el vasto ecosistema de reacci
 
 Para crear un alias de cualquier paquete en el paquete web, debe agregar la sección `resolve.alias` a su configuración. Dependiendo de la configuración que esté utilizando, esta sección ya puede estar presente, pero le faltan los alias para Preact.
 
-```json
-const config = {
-  //...snip
-  resolve: {
-    alias: {
-        'react': 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat', // Must be below test-utils
+```js
+const config = { 
+   //...snip
+  "resolve": { 
+    "alias": { 
+      "react": "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat",
+     // Must be below test-utils
     },
+  }
 }
 ```
 #### Aliasing en Parcel
