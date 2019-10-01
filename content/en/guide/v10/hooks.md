@@ -7,7 +7,7 @@ description: 'Hooks in Preact allow you to compose behaviours together and re-us
 
 Hooks is a new concept that allows you to compose state and side effects. They allow you to reuse stateful logic between components.
 
-If you've worked with Preact for a while you may be familiar with patterns like `render-props` and `high-order-components` that try to solve the same. But they've always made code harder to follow whereas with hooks you can neatly extract that logic and make it easy to unit test it independently.
+If you've worked with Preact for a while you may be familiar with patterns like `render-props` and `higher-order-components` that try to solve the same. But they've always made code harder to follow whereas with hooks you can neatly extract that logic and make it easy to unit test it independently.
 
 Due to their functional nature they can be used in functional components and avoid many pitfalls of the `this` keyword that's present in classes. Instead they rely on closures which makes them value-bound and eliminates a whole bag of bugs when it comes to async state updates.
 
@@ -238,7 +238,7 @@ function Foo() {
 
 ## useContext
 
-To access context in a functional component we can use the `useContext` hook, without any high-order or wrapper components. The first argument must be the context object that's created from a `createContext` call.
+To access context in a functional component we can use the `useContext` hook, without any higher-order or wrapper components. The first argument must be the context object that's created from a `createContext` call.
 
 ```jsx
 const Theme = createContext('light');
