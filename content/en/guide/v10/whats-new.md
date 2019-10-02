@@ -98,7 +98,7 @@ function App() {
       <SomeComponent>
         <ThemedButton />
       </SomeComponent>
-    <Theme.Provider />
+    </Theme.Provider>
   );
 }
 ```
