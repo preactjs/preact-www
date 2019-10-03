@@ -19,7 +19,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
           <div class="_title-block">
             <h3>Loads less script</h3>
           </div>
-          <p class="_summary">Preact's <a href="/about/project-goals">[small size]</a> is valuable when you have a tight loading performance budget. On average mobile hardware, loading large bundles of JS leads to longer load, parse and eval times. This can leave users waiting a long time before they can interact with your app.  By trimming down the library code in your bundles, you load quicker by shipping less code to your users. </p>
+          <p class="_summary">Preact's <a href="/about/project-goals">small size</a> is valuable when you have a tight loading performance budget. On average mobile hardware, loading large bundles of JS leads to longer load, parse and eval times. This can leave users waiting a long time before they can interact with your app.  By trimming down the library code in your bundles, you load quicker by shipping less code to your users. </p>
         </div>
     </li>
     <li class="list-item">
