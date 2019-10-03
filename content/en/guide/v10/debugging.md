@@ -208,4 +208,4 @@ const persons = [
 </div>
 ```
 
-[React Developer Tools]: https://github.com/facebook/react-devtools
+[React Developer Tools]: https://github.com/facebook/react/tree/master/packages/react-devtools
