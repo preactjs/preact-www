@@ -43,7 +43,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
             <h3>构建块和 React 生态系统很好的一起工作</h3>
           </div>
           <p class="_summary">
-          无论您需要使用 React 的 <a href="https://facebook.github.io/react/docs/react-dom-server.html">服务器端渲染</a> 以快速获取屏幕上的像素，还是使用 <a href="https://github.com/ReactTraining/react-router">[React 路由</a> 进行导航，Preact 都可以在生态系统中与许多的库正常工作。
+          无论您需要使用 React 的 <a href="https://facebook.github.io/react/docs/react-dom-server.html">服务器端渲染</a> 以快速获取屏幕上的像素，还是使用 <a href="https://github.com/ReactTraining/react-router">React 路由</a> 进行导航，Preact 都可以在生态系统中与许多的库正常工作。
           </p>
         </div>
     </li>
@@ -76,7 +76,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存 </a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。使用 <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> 或 <a href="https://github.com/NekR/offline-plugin">[offline-plugin</a> 完成此操作。
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存 </a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。使用 <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> 或 <a href="https://github.com/NekR/offline-plugin">offline-plugin</a> 完成此操作。
         </div>
     </li>
     <li class="list-item">

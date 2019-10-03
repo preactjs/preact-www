@@ -29,7 +29,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
           <div class="_title-block">
             <h3>Schneller zur Interaktivität</h3>
           </div>
-          <p class="_summary"><p>Wenn man darauf abzielt, <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">Interaktivität in unter 5 Sekunden</a> zu erreichen, zählt jeder einzelne KB. <a href="/guide/switching-to-preact">[Von React zu Preact zu wechseln</a> reduziert die Größe einer Applikation um einige KBs, was wiederum zu führt, dass Interaktivität innerhalb einer RTT (Paketlaufzeit) erreicht werden kann. Daher geben Preact und Progressive Web Apps ein wundervolles Paar ab, wenn man den Code für jede Route größtmöglich reduzieren möchte.</p></p>
+          <p class="_summary"><p>Wenn man darauf abzielt, <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">Interaktivität in unter 5 Sekunden</a> zu erreichen, zählt jeder einzelne KB. <a href="/guide/switching-to-preact">Von React zu Preact zu wechseln</a> reduziert die Größe einer Applikation um einige KBs, was wiederum zu führt, dass Interaktivität innerhalb einer RTT (Paketlaufzeit) erreicht werden kann. Daher geben Preact und Progressive Web Apps ein wundervolles Paar ab, wenn man den Code für jede Route größtmöglich reduzieren möchte.</p></p>
         </div>
     </li>
     <li class="list-item">
@@ -71,7 +71,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> erlaubt das vom Internet getrennte Cachen von statischen und dynamischen Ressourcen. Dies erlaubt augenblickliches Laden und schnellere Interaktivität bei wiederholtem Besuchen einer Seite. Dieses Verhalten kann mit <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> oder <a href="https://github.com/NekR/offline-plugin">[offline-plugin</a> erreicht werden.</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> erlaubt das vom Internet getrennte Cachen von statischen und dynamischen Ressourcen. Dies erlaubt augenblickliches Laden und schnellere Interaktivität bei wiederholtem Besuchen einer Seite. Dieses Verhalten kann mit <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> oder <a href="https://github.com/NekR/offline-plugin">offline-plugin</a> erreicht werden.</p>
         </div>
     </li>
     <li class="list-item">
