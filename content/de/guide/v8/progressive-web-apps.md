@@ -40,7 +40,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
           <div class="_title-block">
             <h3> Ein Baustein, der perfekt mit Reacts Ökosystem harmoniert</h3>
           </div>
-          <p class="_summary"><p>Wo auch immer man Reacts <a href="https://facebook.github.io/react/docs/react-dom-server.html">[serverseitiges Rendern]</a> einsetzen muss, um Pixel flink auf dem Bildschirm erscheinen zu lassen, oder <a href="https://github.com/ReactTraining/react-router">[React Router]</a> zur Navigation verwendet, lässt sich Preact wundervoll integrieren, da es gut mit einer Vielzahl von Bibliotheken des React-Ökosystem zusammenarbeitet.</p></p>
+          <p class="_summary"><p>Wo auch immer man Reacts <a href="https://facebook.github.io/react/docs/react-dom-server.html">serverseitiges Rendern</a> einsetzen muss, um Pixel flink auf dem Bildschirm erscheinen zu lassen, oder <a href="https://github.com/ReactTraining/react-router">React Router</a> zur Navigation verwendet, lässt sich Preact wundervoll integrieren, da es gut mit einer Vielzahl von Bibliotheken des React-Ökosystem zusammenarbeitet.</p></p>
         </div>
     </li>
 </ol>
