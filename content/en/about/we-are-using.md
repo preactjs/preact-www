@@ -320,6 +320,12 @@ description: 'Companies who are proudly using Preact'
             BlueHive
         </a>
     </li>
+    <li>
+        <a href="//dailymotion.com" target="_blank">
+            <img src="/assets/we-are-using/dailymotion.svg" alt="dailymotion">
+            dailymotion
+        </a>
+    </li>
 </ul>
 
 ---
