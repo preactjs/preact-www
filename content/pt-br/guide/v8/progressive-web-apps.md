@@ -33,7 +33,7 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
             <h3>Tempo mais veloz para interatividade</h3>
           </div>
           <p class="_summary">
-            Se você busca ser <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[interativo em menos 5 segundos]</a>, cada KB importa.
+            Se você busca ser <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">interativo em menos 5 segundos</a>, cada KB importa.
             <a href="/guide/switching-to-preact">Trocar React pelo Preact</a> em seus projetos pode cortar múltiplos KB e permitir a você oferecer interatividade imediata.
             Isso é muito adequado para Progressive Web Apps que tentam remover o máximo de código possível para cada rota.</p>
         </div>
@@ -47,7 +47,7 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
             <h3>Uma peça de montar que funciona bem com o ecossistema React</h3>
           </div>
           <p class="_summary">
-            Caso precise usar _<a href="https://facebook.github.io/react/docs/react-dom-server.html">[server-side rendering]</a>_ do React pra mostrar pixels na tela o mais rápido possível
+            Caso precise usar _<a href="https://facebook.github.io/react/docs/react-dom-server.html">server-side rendering</a>_ do React pra mostrar pixels na tela o mais rápido possível
             ou usar <a href="https://github.com/ReactTraining/react-router">React Router</a> para navegação, Preact funciona bem com muitas bibliotecas no ecossistema. </p>
         </div>
     </li>

@@ -30,7 +30,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
           <div class="_title-block">
             <h3>Faster time to interactivity</h3>
           </div>
-          <p class="_summary">If you're aiming to be <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[interactive in under 5s]</a>, every KB matters. <a href="/guide/switching-to-preact">Switching React for Preact</a> in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p>
+          <p class="_summary">If you're aiming to be <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">interactive in under 5s</a>, every KB matters. <a href="/guide/switching-to-preact">Switching React for Preact</a> in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p>
         </div>
     </li>
     <li class="list-item">
@@ -41,7 +41,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
           <div class="_title-block">
             <h3>A building block that works great with the React ecosystem</h3>
           </div>
-          <p class="_summary">Whether you need to use React's <a href="https://facebook.github.io/react/docs/react-dom-server.html">server-side rendering</a> to get pixels on the screen quickly or use <a href="https://github.com/ReactTraining/react-router">[React Router</a> for navigation, Preact works well with many libraries in the ecosystem. </p>
+          <p class="_summary">Whether you need to use React's <a href="https://facebook.github.io/react/docs/react-dom-server.html">server-side rendering</a> to get pixels on the screen quickly or use <a href="https://github.com/ReactTraining/react-router">React Router</a> for navigation, Preact works well with many libraries in the ecosystem. </p>
         </div>
     </li>
 </ol>
@@ -72,7 +72,7 @@ While Preact is a drop-in that should work well for your PWA, it can also be use
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> allows you to offline cache static and dynamic resources in your app, enabling instant loading and faster interactivity on repeat visits. Accomplish this with <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> or <a href="https://github.com/NekR/offline-plugin">[offline-plugin]</a>.</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> allows you to offline cache static and dynamic resources in your app, enabling instant loading and faster interactivity on repeat visits. Accomplish this with <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> or <a href="https://github.com/NekR/offline-plugin">offline-plugin</a>.</p>
         </div>
     </li>
     <li class="list-item">
