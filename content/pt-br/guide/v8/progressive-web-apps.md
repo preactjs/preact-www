@@ -19,7 +19,7 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
             <h3>Carregue menos scripts</h3>
           </div>
           <p class="_summary">
-            O <a href="/about/project-goals">[tamanho pequeno]</a> do Preact é valioso quando você tem um planejamento restrito de performance. Em _hardware_ móvel mediano, carregar grandes quantidades de JS leva a um maior tempo de carregamento, interpretação e análise.
+            O <a href="/about/project-goals">tamanho pequeno</a> do Preact é valioso quando você tem um planejamento restrito de performance. Em _hardware_ móvel mediano, carregar grandes quantidades de JS leva a um maior tempo de carregamento, interpretação e análise.
             Isso pode deixar usuários esperando por bastante tempo até que possam interagir com sua aplicação. Ao reduzir o código de bibliotecas nos seus _bundles_, você carrega mais rápido por enviar menos código aos seus usuários.
             </p>
         </div>
@@ -34,7 +34,7 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
           </div>
           <p class="_summary">
             Se você busca ser <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[interativo em menos 5 segundos]</a>, cada KB importa.
-            <a href="/guide/switching-to-preact">[Trocar React pelo Preact]</a> em seus projetos pode cortar múltiplos KB e permitir a você oferecer interatividade imediata.
+            <a href="/guide/switching-to-preact">Trocar React pelo Preact</a> em seus projetos pode cortar múltiplos KB e permitir a você oferecer interatividade imediata.
             Isso é muito adequado para Progressive Web Apps que tentam remover o máximo de código possível para cada rota.</p>
         </div>
     </li>
@@ -48,7 +48,7 @@ Preact é uma excelente escolha para [Progressive Web Apps](https://developers.g
           </div>
           <p class="_summary">
             Caso precise usar _<a href="https://facebook.github.io/react/docs/react-dom-server.html">[server-side rendering]</a>_ do React pra mostrar pixels na tela o mais rápido possível
-            ou usar <a href="https://github.com/ReactTraining/react-router">[React Router]</a> para navegação, Preact funciona bem com muitas bibliotecas no ecossistema. </p>
+            ou usar <a href="https://github.com/ReactTraining/react-router">React Router</a> para navegação, Preact funciona bem com muitas bibliotecas no ecossistema. </p>
         </div>
     </li>
 </ol>
@@ -80,7 +80,7 @@ Mesmo o Preact devendo funcionar bem para seu PWA, ele também pode ser utilizad
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Caching via Service Worker</a></strong> permite que você faça _cache_ offline de conteúdo estático e dinâmico na sua aplicação, permitindo carregamento instantâneo e interatividade mais rápida em visitas repetidas. Utilize <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">[sw-precache]</a> ou <a href="https://github.com/NekR/offline-plugin">[offline-plugin]</a> pra isso.</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Caching via Service Worker</a></strong> permite que você faça _cache_ offline de conteúdo estático e dinâmico na sua aplicação, permitindo carregamento instantâneo e interatividade mais rápida em visitas repetidas. Utilize <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> ou <a href="https://github.com/NekR/offline-plugin">[offline-plugin</a> pra isso.</p>
         </div>
     </li>
     <li class="list-item">

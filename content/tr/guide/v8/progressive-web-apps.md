@@ -31,7 +31,7 @@ Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progres
           <div class="_title-block">
             <h3>Etkileşim öncesi daha kısa süre</h3>
           </div>
-          <p class="_summary">Eğer <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[5 saniyenin altında etkileşimli olma]</a>yı hedefliyorsanız, her KB önemlidir. Projelerinizde <a href="/guide/switching-to-preact">[React'den Preact'e geçmek]</a> fazlaca KB düşüşüyle tek bir RTT'de etkileşime girmenizi sağlayabilir. Bu, her bir rota için mümkün olduğunca fazla kod kırpmaya çalışan PWAler için mükemmel bir seçenektir.</p>
+          <p class="_summary">Eğer <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[5 saniyenin altında etkileşimli olma]</a>yı hedefliyorsanız, her KB önemlidir. Projelerinizde <a href="/guide/switching-to-preact">React'den Preact'e geçmek</a> fazlaca KB düşüşüyle tek bir RTT'de etkileşime girmenizi sağlayabilir. Bu, her bir rota için mümkün olduğunca fazla kod kırpmaya çalışan PWAler için mükemmel bir seçenektir.</p>
         </div>
     </li>
     <li class="list-item">
@@ -73,7 +73,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> uygulamaya tekrar eden ziyaretlerde anında yüklemeyi etkinleştirerek statik ve dinamik kaynaklarınızı çevrimdışı önbelleğe almayı sağlar. Bunu <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">[sw-precache]</a> veya <a href="https://github.com/NekR/offline-plugin">[offline-plugin]</a> ile sağlayabilirsiniz.</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> uygulamaya tekrar eden ziyaretlerde anında yüklemeyi etkinleştirerek statik ve dinamik kaynaklarınızı çevrimdışı önbelleğe almayı sağlar. Bunu <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> veya <a href="https://github.com/NekR/offline-plugin">[offline-plugin</a> ile sağlayabilirsiniz.</p>
         </div>
     </li>
     <li class="list-item">

@@ -18,7 +18,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
             <h3>加载更少的脚本</h3>
           </div>
           <p class="_summary"> 
-          Preact 的 <a href="/about/project-goals">[小体积]</a> 是有价值的，当你有一个紧张的加载性能预算。通常移动设备加载大量的 JS 会导致更长的加载、解析和执行时间。 这可能会使用户在等待很长时间才能与您的应用互动。 通过缩减你绑定 (bundles) 包中的库代码，您可以通过向用户发送较少的代码来加快速度。
+          Preact 的 <a href="/about/project-goals">小体积</a> 是有价值的，当你有一个紧张的加载性能预算。通常移动设备加载大量的 JS 会导致更长的加载、解析和执行时间。 这可能会使用户在等待很长时间才能与您的应用互动。 通过缩减你绑定 (bundles) 包中的库代码，您可以通过向用户发送较少的代码来加快速度。
           </p>
         </div>
     </li>
@@ -31,7 +31,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
             <h3>更快速进行交互</h3>
           </div>
           <p class="_summary">
-          如果你的目标是在 <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[5 秒内进行交互]</a>，每个 KB 都很重要，在您的项目中<a href="/guide/switching-to-preact">[切换 React 到 Preact]</a> 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p>
+          如果你的目标是在 <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">[5 秒内进行交互]</a>，每个 KB 都很重要，在您的项目中<a href="/guide/switching-to-preact">切换 React 到 Preact</a> 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p>
         </div>
     </li>
     <li class="list-item">
@@ -43,7 +43,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
             <h3>构建块和 React 生态系统很好的一起工作</h3>
           </div>
           <p class="_summary">
-          无论您需要使用 React 的 <a href="https://facebook.github.io/react/docs/react-dom-server.html">[服务器端渲染]</a> 以快速获取屏幕上的像素，还是使用 <a href="https://github.com/ReactTraining/react-router">[React 路由]</a> 进行导航，Preact 都可以在生态系统中与许多的库正常工作。
+          无论您需要使用 React 的 <a href="https://facebook.github.io/react/docs/react-dom-server.html">服务器端渲染</a> 以快速获取屏幕上的像素，还是使用 <a href="https://github.com/ReactTraining/react-router">[React 路由</a> 进行导航，Preact 都可以在生态系统中与许多的库正常工作。
           </p>
         </div>
     </li>
@@ -76,7 +76,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存 </a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。使用 <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">[sw-precache]</a> 或 <a href="https://github.com/NekR/offline-plugin">[offline-plugin]</a> 完成此操作。
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存 </a></strong> 允许您离线缓存应用程序中的静态和动态资源，实现即时加载和重复访问时更快的交互性。使用 <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> 或 <a href="https://github.com/NekR/offline-plugin">[offline-plugin</a> 完成此操作。
         </div>
     </li>
     <li class="list-item">
