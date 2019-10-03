@@ -18,7 +18,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://develope
           <div class="_title-block">
             <h3>Weniger Skripte laden</h3>
           </div>
-          <p class="_summary">Preact's <a href="/about/project-goals">[kleine Größe]</a> ist sehr wertvoll, wenn nur ein begrenztes Ladezeitenkontingent verfügbar ist. Man kann davon ausgehen, dass das Laden von großen JavaScript-Bibliotheken mit mobilen Endgeräten immense Wartezeiten bis zur Benutzbarkeit der Applikation führen kann. Das Laden, Evaluieren und Berechnen der Skripte ist zu ressourcenhungrig. Das Reduzieren der Größe von Bibliotheken führt automatisch zu verbesserten Ladezeiten, da folglich auch weniger Code geladen und berechnet werden muss.</p>
+          <p class="_summary">Preact's <a href="/about/project-goals">kleine Größe</a> ist sehr wertvoll, wenn nur ein begrenztes Ladezeitenkontingent verfügbar ist. Man kann davon ausgehen, dass das Laden von großen JavaScript-Bibliotheken mit mobilen Endgeräten immense Wartezeiten bis zur Benutzbarkeit der Applikation führen kann. Das Laden, Evaluieren und Berechnen der Skripte ist zu ressourcenhungrig. Das Reduzieren der Größe von Bibliotheken führt automatisch zu verbesserten Ladezeiten, da folglich auch weniger Code geladen und berechnet werden muss.</p>
         </div>
     </li>
     <li class="list-item">
