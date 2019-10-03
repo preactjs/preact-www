@@ -71,7 +71,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> erlaubt das vom Internet getrennte Cachen von statischen und dynamischen Ressourcen. Dies erlaubt augenblickliches Laden und schnellere Interaktivität bei wiederholtem Besuchen einer Seite. Dieses Verhalten kann mit <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">[sw-precache]</a> oder <a href="https://github.com/NekR/offline-plugin">[offline-plugin]</a> erreicht werden.</p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker caching</a></strong> erlaubt das vom Internet getrennte Cachen von statischen und dynamischen Ressourcen. Dies erlaubt augenblickliches Laden und schnellere Interaktivität bei wiederholtem Besuchen einer Seite. Dieses Verhalten kann mit <a href="https://github.com/GoogleChrome/sw-precache#wrappers-and-starter-kits">sw-precache</a> oder <a href="https://github.com/NekR/offline-plugin">offline-plugin</a> erreicht werden.</p>
         </div>
     </li>
     <li class="list-item">
