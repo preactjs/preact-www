@@ -109,7 +109,7 @@ Sometimes it's the little things that make a huge difference. With the recent ad
 
 ```jsx
 function Foo(props) {
-  return <div> style={{ '--theme-color': 'blue' }}>{props.children}</div>;
+  return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
 }
 ```
 
