@@ -16,7 +16,7 @@ else {
 
 	module.exports = routes.map(route => ({
 		url: route.path,
-		title: route.name
+		title: route.name && route.name.en || route.name
 		// ,data: fs.readFileSync(resolve(__dirname, '../', `content${route.path == '/' ? '/index' : route.path}.md`), 'utf8')
 	}));
 }

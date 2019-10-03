@@ -20,7 +20,7 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
 Preact has always been readily packaged to be used right in the browser. This doesn't require any build tools at all.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
+import { h, Component, render } from 'https://unpkg.com/preact?module';
 
 // Create your app
 const app = h('div', null, 'Hello World!');
@@ -129,14 +129,16 @@ to your config. Depending on the configuration you're using this section may
 already be present, but missing the aliases for Preact.
 
 ```js
-const config = {
-  //...snip
-  resolve: {
-    alias: {
-        'react': 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat', // Must be below test-utils
+const config = { 
+   //...snip
+  "resolve": { 
+    "alias": { 
+      "react": "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat",
+     // Must be below test-utils
     },
+  }
 }
 ```
 
@@ -161,7 +163,7 @@ Similar to bundlers, [jest](https://jestjs.io/) allows to rewrite module paths. 
 different, than in say webpack, because it's based on regex. Add this to your
 jest configuration:
 
-```js
+```json
 {
   "moduleNameMapper": {
     "react": "preact/compat",

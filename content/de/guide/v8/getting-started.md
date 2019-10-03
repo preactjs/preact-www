@@ -21,7 +21,7 @@ Das `preact`-Modul bietet die Option für bestimmte und allgemeine Exporte, man 
 
 **Bestimmt:**
 
-```javascript
+```js
 import { h, render, Component } from 'preact';
 
 // Weise Babel an, JSX in h()-Aufrufe zu transformieren:
@@ -30,7 +30,7 @@ import { h, render, Component } from 'preact';
 
 **Allgemein:**
 
-```javascript
+```js
 import preact from 'preact';
 
 // Weise Babel an, JSX in preact.h()-Aufrufe zu transformieren:
@@ -85,7 +85,7 @@ Preact bietet von Grund auf eine `h()`-Funktion, die JSX-Code in VDOM-Elemente _
 
 Um JSX zu rendern, importiert man diese zwei Funktionen und setzt sie wie folgt ein:
 
-```javascript
+```js
 import { h, render } from 'preact';
 
 render((
@@ -108,7 +108,7 @@ Komponenten haben außerdem eine `render()`-Methode, allerdings erhält diese, a
 
 Nachfolgend ist eine simple `Uhr`-Komponente, die die aktuelle Zeit anzeigt.
 
-```javascript
+```js
 import { h, render, Component } from 'preact';
 
 class Uhr extends Component {
@@ -146,7 +146,7 @@ Damit sich die Uhr jede Sekunde aktualisieren kann, muss man wissen, wann `<Uhr>
 
 Gewünscht ist also ein 1-Sekunden-Timer, der startet, sobald die Komponente zum DOM hinzugefügt wird und stoppt, sobald diese vom DOM entfernt wird. Dieser erstellte Timer wird in `componentDidMount` referenziert und mithilfe von `componentWillUnmount` gestoppt. Bei jedem Durchlauf des Timers wird das `state`-Objekt der Komponente mit einem neuen Zeitwert aktualisiert. Dies führt automatisch dazu, dass die Komponente neu gerendert wird.
 
-```javascript
+```js
 import { h, render, Component } from 'preact';
 
 class Uhr extends Component {
