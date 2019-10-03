@@ -20,7 +20,7 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
 Preact has always been readily packaged to be used right in the browser. This doesn't require any build tools at all.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
+import { h, Component, render } from 'https://unpkg.com/preact?module';
 
 // Create your app
 const app = h('div', null, 'Hello World!');
