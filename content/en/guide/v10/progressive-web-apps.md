@@ -41,7 +41,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://developers.goog
           <div class="_title-block">
             <h3>A building block that works great with the React ecosystem</h3>
           </div>
-          <p class="_summary">Whether you need to use React's <a href="https://facebook.github.io/react/docs/react-dom-server.html">[server-side rendering]</a> to get pixels on the screen quickly or use <a href="https://github.com/ReactTraining/react-router">[React Router]</a> for navigation, Preact works well with many libraries in the ecosystem. </p>
+          <p class="_summary">Whether you need to use React's <a href="https://facebook.github.io/react/docs/react-dom-server.html">server-side rendering</a> to get pixels on the screen quickly or use <a href="https://github.com/ReactTraining/react-router">React Router</a> for navigation, Preact works well with many libraries in the ecosystem. </p>
         </div>
     </li>
 </ol>
