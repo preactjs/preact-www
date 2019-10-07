@@ -55,7 +55,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 You'll notice that we added a new `Component` import at the top and that we turned `App` into a class. This alone isn't useful but it's the precursor for what we're going to do next. To make things a little more exciting we'll add a form with a text input and a submit button.
@@ -77,7 +77,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 Now we're talking! It's starting to look like a real app! We still need to make it interactive though. Remember that we'll want to change `"Hello world!"` to `"Hello, [userinput]!"`, so we need a way to know the current input value.
@@ -112,7 +112,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 At this point the app shouldn't have changed much from a users point of view, but we'll bring all the pieces together in our next step.
@@ -148,7 +148,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 Boom! We're done! We can now enter a custom name, click "Update" and our new name appears in our heading.
