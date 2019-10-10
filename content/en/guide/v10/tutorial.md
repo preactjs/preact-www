@@ -7,7 +7,7 @@ description: 'Write your first Preact application'
 
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
-> :information_desk_person: This guide assumes that you completed the [Getting Started](/guide/v10/getting-started) document and have successfully set up your tooling. If not, start with [preact-cli](guide/v10/getting-started#best-practices-powered-with-preact-cli).
+> :information_desk_person: This guide assumes that you completed the [Getting Started](/guide/v10/getting-started) document and have successfully set up your tooling. If not, start with [preact-cli](/guide/v10/getting-started#best-practices-powered-with-preact-cli).
 
 ---
 
