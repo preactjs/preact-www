@@ -326,6 +326,12 @@ description: 'Companies who are proudly using Preact'
             dailymotion
         </a>
     </li>
+    <li>
+        <a href="//bodybuilding.com" target="_blank">
+            <img src="/assets/we-are-using/bodybuildingcom.svg" alt="Bodybuilding.com">
+            Bodybuilding.com
+        </a>
+    </li>
 </ul>
 
 ---
