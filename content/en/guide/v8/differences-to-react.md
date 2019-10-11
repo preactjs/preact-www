@@ -30,8 +30,7 @@ For both Preact and [preact-compat], version compatibility is measured against t
     - _components that return other components from `render()`, effectively wrappers_
 - [Stateless Pure Functional Components]  
     - _functions that receive `props` as arguments and return JSX/VDOM_
-- [Contexts]: Support for the legacy `context API` was added in Preact [3.0].
-    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/developit/preact/pull/963)._
+- [Contexts]: Support for the legacy `context API` was added in Preact [3.0]. Support for the new `context API` was added in [Preact X](https://github.com/preactjs/preact/pull/963#issuecomment-540819887).
 - [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
     - _Refs provide a way to refer to rendered elements and child components._
 - Virtual DOM Diffing
