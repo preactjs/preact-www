@@ -100,7 +100,7 @@ import { h, Component } from "preact";
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
 
-### `render()` behaviour is changed
+### `render()` replaces an existing Preact component
 
 In Preact 8.x, `render()` appends a Preact component when `render()` is repeated. In Preact X, `render()` replaces an existing Preact component when `render()` is repeated.
 
