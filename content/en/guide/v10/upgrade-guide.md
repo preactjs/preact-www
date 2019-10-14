@@ -102,8 +102,7 @@ _Note: This change doesn't affect `preact/compat`. It still has both named and a
 
 ### `render()` behaviour is changed
 
-In Preact 8.x, `render()` appends a Preact component when `render()` is repeated.
-In Preact X,  `render()`  replaces an existing Preact component when `render()` is repeated.
+In Preact 8.x, `render()` appends a Preact component when `render()` is repeated. In Preact X, `render()` replaces an existing Preact component when `render()` is repeated.
 
 ```js
 render(<p>foo</p>, document.body);
