@@ -100,6 +100,19 @@ import { h, Component } from "preact";
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
 
+### `render()` behaviour is changed
+
+In Preact 8.x, `render()` appends a Preact component when `render()` is repeated.
+In Preact X,  `render()`  replaces an existing Preact component when `render()` is repeated.
+
+```js
+render(<p>foo</p>, document.body);
+render(<p>bar</p>, document.body);
+
+// Preact 8.x: <p>foo</p><p>bar</p>
+// Preact 10: <p>bar</p>
+```
+
 ### `props.children` is not always an `array`
 
 In Preact X we can't guarantee `props.children` to always be of type `array` anymore. This change was necessary to resolve parsing ambiguities in regards to `Fragments` and components that return an `array` of children. In most cases you may not even notice it. Only in places where you'll use array methods on `props.children` directly need to be wrapped with `toChildArray`. This function will always return an array.
