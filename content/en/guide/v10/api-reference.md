@@ -40,7 +40,7 @@ To learn more about components and how they can be used, head over to the [Compo
 
 `render(component, containerNode, [replaceNode])`
 
-Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
+Render a Preact component into the `containerNode` DOM node. Does not return anything.
 
 If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm.
 
