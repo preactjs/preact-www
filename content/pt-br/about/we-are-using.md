@@ -288,6 +288,18 @@ permalink: '/about/we-are-using'
             BlueHive
         </a>
     </li>
+    <li>
+        <a href="//dailymotion.com" target="_blank">
+            <img src="/assets/we-are-using/dailymotion.svg" alt="dailymotion">
+            dailymotion
+        </a>
+    </li>
+    <li>
+        <a href="//bodybuilding.com" target="_blank">
+            <img src="/assets/we-are-using/bodybuildingcom.svg" alt="Bodybuilding.com">
+            Bodybuilding.com
+        </a>
+    </li>
 </ul>
 
 ---
