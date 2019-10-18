@@ -39,8 +39,8 @@ Writing raw `h` or `createElement` calls all the time is much less fun than usin
 In a nutshell [htm] can be best described as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
-import htm from 'https://unpkg.com/htm';
+import { h, Component, render } from 'https://unpkg.com/preact?module';
+import htm from 'https://unpkg.com/htm?module';
 
 // Initialize htm with Preact
 const html = htm.bind(h);

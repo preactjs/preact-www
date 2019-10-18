@@ -5,7 +5,7 @@ description: 'Context allows you to pass props through intermediate components. 
 
 # Context
 
-Context allows you to pass a value to a child deep down the tree without having to pass it through every component in-between via props. A very popular use case for this is theming. In a nutshell context can be thought of a way to do pup-sub-style updates in Preact.
+Context allows you to pass a value to a child deep down the tree without having to pass it through every component in-between via props. A very popular use case for this is theming. In a nutshell context can be thought of a way to do pub-sub-style updates in Preact.
 
 There are two different ways to use context: Via the newer `createContext` API and the legacy context API. The difference between the two is that the legacy one can't update a child when a component inbetween aborts rendering via `shouldComponentUpdate`. That's why we highly recommend to always use `createContext`.
 
