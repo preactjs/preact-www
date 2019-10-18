@@ -98,16 +98,16 @@ import { h, Component } from "preact";
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
 
-### Remove the 3rd argument to `render`
+### `render()` replaces an existing Preact component
 
-The `render` function has changed and works now out of the box like you'd expect it to. Repeated renders will correctly render into the container instead of always appending to it.
+In Preact 8.x, `render()` appends a Preact component when `render()` is repeated. In Preact X, `render()` replaces an existing Preact component when `render()` is repeated.
 
 ```js
-// Preact 8.x
-render(<App />, container, container.firstChild);
+render(<p>foo</p>, document.body);
+render(<p>bar</p>, document.body);
 
-// Preact X
-render(<App />, container);
+// Preact 8.x: <p>foo</p><p>bar</p>
+// Preact 10: <p>bar</p>
 ```
 
 ### `props.children` is not always an `array`
