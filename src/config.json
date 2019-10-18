@@ -94,6 +94,24 @@
 					"name": {
 						"en": "Getting started"
 					}
+				},
+				{
+					"path": "/cli/service-worker",
+					"name": {
+						"en": "Service workers"
+					}
+				},
+				{
+					"path": "/cli/pre-rendering",
+					"name": {
+						"en": "Pre-rendering"
+					}
+				},
+				{
+					"path": "/cli/faq",
+					"name": {
+						"en": "FAQs"
+					}
 				}
 			]
 		},
