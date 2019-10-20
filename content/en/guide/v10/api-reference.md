@@ -63,7 +63,7 @@ render(<Foo />, document.getElementById('container'));
 //   <div id="target"></div>
 // </div>
 render(
-  Foo,
+  <Foo />,
   document.getElementById('container'),
   document.getElementById('target')
 );
@@ -74,6 +74,25 @@ render(
 //     <div>foo</div>
 //   </div>
 // </div>
+```
+
+The first argument must be a valid virtual-dom node that represents either a component or an HTML-Element.
+
+```jsx
+const App = () => <div>foo</div>;
+
+// WRONG: First parameter must be passed through h() or
+// createElement() either directly or indirectly via JSX
+render(App(), rootElement);
+
+// WRONG: For the same reasons as above
+render(App, rootElement);
+
+// CORRECT: Passing App through h()
+render(h(App), rootElement);
+
+// CORRECT: Passing App indirectly through h() via JSX
+render(<App />, rootElement)
 ```
 
 ## hydrate()
