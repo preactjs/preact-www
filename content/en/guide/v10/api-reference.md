@@ -76,6 +76,25 @@ render(
 // </div>
 ```
 
+The first argument must be a valid virtual-dom node that represents either a component or an HTML-Element.
+
+```jsx
+const App = () => <div>foo</div>;
+
+// WRONG: First parameter must be passed through h() or
+// createElement() either directly or indirectly via JSX
+render(App(), rootElement);
+
+// WRONG: For the same reasons as above
+render(App, rootElement);
+
+// CORRECT: Passing App through h()
+render(h(App), rootElement);
+
+// CORRECT: Passing App indirectly through h() via JSX
+render(<App />, rootElement)
+```
+
 ## hydrate()
 
 When you have a prerendered DOM, there is no need to re-render it again. With hydrate most of the diffing phase will be skipped with event listeners being the exception. It's mainly used in conjuncton with [Server-Side Rendering](/guide/v10/server-side-rendering).
