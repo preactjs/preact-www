@@ -63,7 +63,7 @@ render(<Foo />, document.getElementById('container'));
 //   <div id="target"></div>
 // </div>
 render(
-  Foo,
+  <Foo />,
   document.getElementById('container'),
   document.getElementById('target')
 );
