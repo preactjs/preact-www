@@ -1,6 +1,6 @@
 ---
 name: CLI
-permalink: '/cli/about'
+permalink: '/cli'
 description: 'Preact CLI documentation'
 ---
 

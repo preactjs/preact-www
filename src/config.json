@@ -84,7 +84,7 @@
 			"content": "cli",
 			"routes": [
 				{
-					"path": "/cli/about",
+					"path": "/cli",
 					"name": {
 						"en": "Introduction"
 					}

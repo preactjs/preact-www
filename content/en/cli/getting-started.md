@@ -46,3 +46,42 @@ This will create the folder and install all the dependencies.
 cd <app-name>
 npm run dev/build
 ```
+
+## Production builds
+Run `npm run build` to create production build which will reside in `build` directory in the app folder.
+
+Production builds can be fine tuned to match your needs with a series of flags. Find the full linst of flags [here](https://github.com/preactjs/preact-cli#preact-build).
+
+**Usage**
+
+e.g.
+
+This will generate webpack's asset json which can be used in a webpack [analyzer](https://chrisbateman.github.io/webpack-visualizer/).
+
+```shell
+preact build --json
+```
+
+## Editing index.html
+There are use cases where you would like to add something to the markup generated. These can be adding meta tags, adding additional scripts, or adding link tags for fonts.
+The projects scaffolded by preact-cli v3 should have a `template.html` in `src` folder.
+Also, if you're upgrading from an old version you can create `index.html` in `src` folder and will be picked automatically.
+
+The default markup looks like the following
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title><% preact.title %></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<% preact.headEnd %>
+	</head>
+	<body>
+		<% preact.bodyEnd %>
+	</body>
+</html>
+```
