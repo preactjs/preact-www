@@ -47,6 +47,8 @@ cd <app-name>
 npm start
 ```
 
+Now open your editor and start editing! For most templates the best place to start is `src/index.js` or `src/components/app/index.js`.
+
 ## Production builds
 Run `npm run build` to create production build which will reside in `build` directory in the app folder.
 
