@@ -20,7 +20,7 @@ Use one of our official templates to get started
 
 - **Default**
 
-  This template comes configured with `preact` and `preact-router` to get you started with your app development without any bloat.
+This template is a great starting point for most applications. It comes with `preact-router` and a couple sample routes, and does route-based code splitting by default.
 
 - **Simple**
 
