@@ -5,7 +5,7 @@ description: 'Preact CLI documentation'
 ---
 
 # Preact CLI
-Preact-cli helps you get started with a Preact PWA in seconds 🔥.
+[Preact CLI](https://github.com/preactjs/preact-cli/) helps you get started building a blazing fast Preact PWA in just a few seconds.
 
 It is a scaffolding tool built with webpack and other open source libraries giving an opinionated way of building PWAs with preact. Preact CLI goves you a headstart of a great performance benefits which you can use to build your site upon.
 
