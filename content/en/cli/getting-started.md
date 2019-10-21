@@ -34,7 +34,7 @@ This template comes pre-configured with [preact-material-components](https://mat
 
 Looking to set up a blog? Look no further! This template gives you a simple and elegant Preact-powered blog that you can edit using [Netlify CMS](https://www.netlifycms.org/).
 
-To get started with these templates just do
+To get started with any of these templates, run `preact create` to create a new project with your template of choice:
 
 ```shell
 preact create <template-name> <app-name>
