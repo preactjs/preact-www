@@ -5,7 +5,7 @@ description: 'Preact CLI documentation'
 ---
 
 # Installation
-Getting started with Preact-CLi is just about download preact-cli node module.
+To get started with Preact CLI, install it from [npm](https://npmjs.com/package/preact-cli):
 
 ```shell
 npm i -g preact-cli
