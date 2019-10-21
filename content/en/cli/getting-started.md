@@ -24,7 +24,7 @@ Use one of our official templates to get started
 
 - **Simple**
 
-  This tempalte is an open playing groung. With no deps installed, you are free to choose your own tools.
+A "bare bones" template, starting from a "Hello World" application. If you're looking to chose your own tools or already have a setup in mind, this is a good way to start.
 
 - **Material**
 
