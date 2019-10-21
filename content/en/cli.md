@@ -9,7 +9,7 @@ description: 'Preact CLI documentation'
 
 Preact CLI takes the pain out of starting a new project, getting you up and running instantly with a minimal and understandable project structure. It's powered by the same Open Source tools you know and love, just without the need to configure anything - Webpack, Babel, Terser, etc. Everything from hot-reloading to critical CSS inlining is set up optimally for you. 
 
-You get a production environment in ~ 4.5 KB!!! and development environment with the hot-reloading capability baked in.
+Preact CLI puts your project on the path to excellent performance. New projects ship just 4.5kB of JavaScript in production and get interactive in under 3s - even on slow devices and networks.
 
 ## Features
 
