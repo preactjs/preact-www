@@ -24,7 +24,7 @@ Out of the box, the two functions you'll always see in any Preact codebase are `
 const App = <h1>Hello World!</h1>;
 
 // ...the same without JSX
-const App = h('h1', null, 'Hello World';
+const App = h('h1', null, 'Hello World');
 ```
 
 This alone doesn't do anything and we need a way to inject our Hello-World app into the DOM. For this we use the `render()` function.
@@ -178,7 +178,7 @@ So, we want to have a 1-second timer start once the Component gets added to the 
 import { h, render, Component } from 'preact';
 
 class Clock extends Component {
-  state = { time: Date.now() }
+  state = { time: Date.now() };
 
   // Called whenever our component is created
   componentDidMount() {
