@@ -32,7 +32,7 @@ This template comes pre-configured with [preact-material-components](https://mat
 
 - **Netlify CMS**
 
-  If you're looking for your next blog, look no further. This template has Netlify CMS pre-configured and gives you a simple elegant blog for you.
+Looking to set up a blog? Look no further! This template gives you a simple and elegant Preact-powered blog that you can edit using [Netlify CMS](https://www.netlifycms.org/).
 
 To get started with these templates just do
 
