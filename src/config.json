@@ -94,6 +94,12 @@
 					"name": {
 						"en": "Getting started"
 					}
+				},
+				{
+					"path": "/cli/service-worker",
+					"name": {
+						"en": "Service Workers"
+					}
 				}
 			]
 		},

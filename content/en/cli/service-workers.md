@@ -1,7 +1,7 @@
 ---
-name: Getting started
-permalink: '/cli/getting-started'
-description: 'Getting started with preact CLI documentation'
+name: CLI's Service worker
+permalink: '/cli/service-workers'
+description: 'Preact CLI documentation'
 ---
 
 # Installation
