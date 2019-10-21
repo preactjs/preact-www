@@ -28,7 +28,7 @@ A "bare bones" template, starting from a "Hello World" application. If you're lo
 
 - **Material**
 
-  If you are a material design lover this template comes pre-configured with `preact-material-components` so that you can start using material design without any hassle.
+This template comes pre-configured with [preact-material-components](https://material.preactjs.com) and a small example app to get you started quickly and easily.
 
 - **Netlify CMS**
 
