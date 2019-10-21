@@ -52,7 +52,7 @@ Run `npm run build` to create production build which will reside in `build` dire
 
 Production builds can be fine tuned to match your needs with a series of flags. Find the full linst of flags [here](https://github.com/preactjs/preact-cli#preact-build).
 
-**Usage**
+**Usage Example:**
 
 e.g.
 
