@@ -40,7 +40,7 @@ To get started with any of these templates, run `preact create` to create a new 
 preact create <template-name> <app-name>
 ```
 
-This will create the folder and install all the dependencies.
+Now that your project is set up, you can `cd` into the newly-created directory and start a development server:
 
 ```shell
 cd <app-name>
