@@ -11,7 +11,7 @@ Preact CLI gives offline capabilities to the pre-built javascript/css and pre-re
 
 **Note:** Preact CLI fetches navigation requests with [Network first](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#network-falling-back-to-cache) approach, meaning that you users will always see fresh content unless they are offline.
 
-## Custom functionality to you servive worker
+## Custom functionality to you service worker
 In order to make any changes to the default service worker functionality,
 - Create a `sw.js` file in `src` folder.
 - Paste the following snippet in this file to get the default functionality.
@@ -20,13 +20,6 @@ In order to make any changes to the default service worker functionality,
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 
 const isNav = event => event.request.mode === 'navigate';
-
-workbox.routing.registerRoute(
-  ({url, event}) => {
-    return (url.pathname === '/special/url');
-  },
-  workbox.strategies.networkOnly()
-);
 
 /**
  * Adding this before `precacheAndRoute` lets us handle all

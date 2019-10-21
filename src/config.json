@@ -100,6 +100,12 @@
 					"name": {
 						"en": "Service Workers"
 					}
+				},
+				{
+					"path": "/cli/pre-rendering",
+					"name": {
+						"en": "Pre-rendering"
+					}
 				}
 			]
 		},
