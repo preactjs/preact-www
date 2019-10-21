@@ -44,7 +44,7 @@ This will create the folder and install all the dependencies.
 
 ```shell
 cd <app-name>
-npm run dev/build
+npm start
 ```
 
 ## Production builds
