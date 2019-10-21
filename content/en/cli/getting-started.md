@@ -11,7 +11,7 @@ Getting started with Preact-CLi is just about download preact-cli node module.
 npm i -g preact-cli
 ```
 
-This installs a global command `preact`, which can be used to create, develop and build preact PWAs henceforth.
+This installs a global `preact` command, which we'll use to set up a new projects.
 
 ## Project creation
 
