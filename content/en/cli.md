@@ -5,6 +5,7 @@ description: 'Preact CLI documentation'
 ---
 
 # Preact CLI
+
 [Preact CLI](https://github.com/preactjs/preact-cli/) helps you get started building a blazing fast Preact PWA in just a few seconds.
 
 Preact CLI takes the pain out of starting a new project, getting you up and running instantly with a minimal and understandable project structure. It's powered by the same Open Source tools you know and love, just without the need to configure anything - Webpack, Babel, Terser, etc. Everything from hot-reloading to critical CSS inlining is set up optimally for you. 
