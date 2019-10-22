@@ -12,7 +12,7 @@ To get started with Preact CLI, install it from [npm](https://npmjs.com/package/
 npm i -g preact-cli
 ```
 
-This installs a global `preact` command, which we'll use to set up a new projects.
+This installs a global `preact` command, which we'll use to set up a new project.
 
 ## Project creation
 
@@ -22,11 +22,11 @@ Use one of our official templates to get started
 
 - **Default**
 
-This template is a great starting point for most applications. It comes with `preact-router` and a couple sample routes, and does route-based code splitting by default.
+This template is a great starting point for most applications. It comes with `preact-router` and a couple of sample routes and does route-based code splitting by default.
 
 - **Simple**
 
-A "bare bones" template, starting from a "Hello World" application. If you're looking to chose your own tools or already have a setup in mind, this is a good way to start.
+A "bare-bones" template, starting from a "Hello World" application. If you're looking to choose your own tools or already have a setup in mind, this is a good way to start.
 
 - **Material**
 
@@ -49,13 +49,13 @@ cd <app-name>
 npm start
 ```
 
-Now open your editor and start editing! For most templates the best place to start is `src/index.js` or `src/components/app/index.js`.
+Now open your editor and start editing! For most templates, the best place to start is `src/index.js` or `src/components/app/index.js`.
 
 ## Production builds
 
 The `npm run build` command compiles a production-ready build of your application and places it a `build` directory a the project root.
 
-Production builds can be fine tuned to match your needs with a series of flags. Find the full list of flags [here](https://github.com/preactjs/preact-cli#preact-build).
+Production builds can be fine-tuned to match your needs with a series of flags. Find the full list of flags [here](https://github.com/preactjs/preact-cli#preact-build).
 
 **Usage Example:**
 
