@@ -78,6 +78,38 @@
 			]
 		},
 		{
+			"name": {
+				"en": "CLI"
+			},
+			"content": "cli",
+			"routes": [
+				{
+					"path": "/cli",
+					"name": {
+						"en": "Introduction"
+					}
+				},
+				{
+					"path": "/cli/getting-started",
+					"name": {
+						"en": "Getting started"
+					}
+				},
+				{
+					"path": "/cli/service-worker",
+					"name": {
+						"en": "Service Workers"
+					}
+				},
+				{
+					"path": "/cli/pre-rendering",
+					"name": {
+						"en": "Pre-rendering"
+					}
+				}
+			]
+		},
+		{
 			"path": "/repl",
 			"title": "REPL",
 			"controller": "Repl"
