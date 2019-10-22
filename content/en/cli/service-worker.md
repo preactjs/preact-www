@@ -8,11 +8,11 @@ description: 'Preact CLI documentation'
 
 Preact CLI comes bundled with [workbox](https://developers.google.com/web/tools/workbox). It takes advantage of [InjectManifest](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#injectmanifest_plugin_2) plugin to gain and give high flexibility and more control over service worker use cases.
 
-Preact CLI gives offline capabilities to the pre-built javascript/css and pre-rendered deta out of the box.
+Preact CLI gives offline capabilities to the pre-built javascript/css and pre-rendered data out of the box.
 
 > **Note:** Preact CLI fetches navigation requests with [Network first](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#network-falling-back-to-cache) approach, meaning that you users will always see fresh content unless they are offline.
 
-## Custom functionality to you service worker
+## Custom functionality to your service worker
 
 In order to make any changes to the default service worker functionality,
 
@@ -58,7 +58,7 @@ workbox.routing.setCatchHandler(({ event }) => {
 If you want to add other routes or your API calls to runtime caching, follow the following steps.
 
 - Create a `sw.js` file in your `src` folder.
-- Add the following code with you respective settings.
+- Add the following code with your respective settings.
 
 ```js
 workbox.routing.registerRoute(
@@ -69,14 +69,14 @@ workbox.routing.registerRoute(
 );
 ```
 
-- You can configure the the above snippet with `networkOnly` to make sure that `/special/url` is never cached in service worker.
+- You can configure the above snippet with `networkOnly` to make sure that `/special/url` is never cached in service worker.
 
 > **Note:** Any custom routing code should be put before `workbox.precaching.precacheAndRoute(self.__precacheManifest, precacheOptions);`
 
 ## Using other workbox modules in your service worker
 
-Preact CLI imports [worbox-sw](https://developers.google.com/web/tools/workbox/modules/workbox-sw) in its service worker, thus all modules can be loaded on demand as you use them.
-Feel free to use any module from workbox offering and it will be available on global scope of service worker at runtime.
+Preact CLI imports [worbox-sw](https://developers.google.com/web/tools/workbox/modules/workbox-sw) in its service worker, thus all modules can be loaded on-demand as you use them.
+Feel free to use any module from workbox offering and it will be available on the global scope of service worker at runtime.
 
 e.g.: Adding Background sync
 
