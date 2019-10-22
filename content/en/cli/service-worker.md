@@ -10,7 +10,7 @@ Preact CLI comes bundled with [workbox](https://developers.google.com/web/tools/
 
 Preact CLI gives offline capabilities to the pre-built javascript/css and pre-rendered deta out of the box.
 
-**Note:** Preact CLI fetches navigation requests with [Network first](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#network-falling-back-to-cache) approach, meaning that you users will always see fresh content unless they are offline.
+> **Note:** Preact CLI fetches navigation requests with [Network first](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#network-falling-back-to-cache) approach, meaning that you users will always see fresh content unless they are offline.
 
 ## Custom functionality to you service worker
 
@@ -71,7 +71,7 @@ workbox.routing.registerRoute(
 
 - You can configure the the above snippet with `networkOnly` to make sure that `/special/url` is never cached in service worker.
 
-**Note:** Any custom routing code should be put before `workbox.precaching.precacheAndRoute(self.__precacheManifest, precacheOptions);`
+> **Note:** Any custom routing code should be put before `workbox.precaching.precacheAndRoute(self.__precacheManifest, precacheOptions);`
 
 ## Using other workbox modules in your service worker
 
