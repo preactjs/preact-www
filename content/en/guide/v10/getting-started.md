@@ -80,7 +80,7 @@ Now we're ready to start our application. To fire up the development server run 
 cd my-project/
 
 # Start the devserver
-npm run dev
+npm start
 ```
 
 Once the server is up you can access your app at the URL that was printed in the console. Now you're ready to develop your app!
