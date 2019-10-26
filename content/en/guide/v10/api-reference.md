@@ -34,7 +34,7 @@ class MyComponent extends Component {
 }
 ```
 
-To learn more about components and how they can be used, head over to the [Components](guide/v10/components) page.
+To learn more about components and how they can be used, head over to the [Components](/guide/v10/components) page.
 
 ## render()
 
