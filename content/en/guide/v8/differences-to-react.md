@@ -26,7 +26,7 @@ For both Preact and [preact-compat], version compatibility is measured against t
 
 - [ES6 Class Components]
     - _classes provide an expressive way to define stateful components_
-- [High-Order Components]  
+- [Higher-Order Components]  
     - _components that return other components from `render()`, effectively wrappers_
 - [Stateless Pure Functional Components]  
     - _functions that receive `props` as arguments and return JSX/VDOM_
@@ -81,7 +81,7 @@ Preact and React have some more subtle differences:
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
 [ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-[High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
+[Higher-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Stateless Pure Functional Components]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
 [destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
 [Linked State]: /guide/linked-state

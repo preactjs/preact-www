@@ -327,6 +327,18 @@ main .markup {
 	font-weight: bold;
 	text-transform: uppercase;
 	white-space: nowrap;
+
+	& + .home-button-sep + .home-button {
+		@media (max-width: 600px) {
+			margin-top: 1.3rem;
+		}
+	}
+}
+
+.home-button-sep {
+	@media (max-width: 600px) {
+		display: none;
+	}
 }
 
 @break-s: ~'(min-width: 700px)';
