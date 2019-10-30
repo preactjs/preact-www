@@ -20,7 +20,7 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
 Preact has always been readily packaged to be used right in the browser. This doesn't require any build tools at all.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
+import { h, Component, render } from 'https://unpkg.com/preact?module';
 
 // Create your app
 const app = h('div', null, 'Hello World!');
@@ -39,8 +39,8 @@ Writing raw `h` or `createElement` calls all the time is much less fun than usin
 In a nutshell [htm] can be best described as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
-import htm from 'https://unpkg.com/htm';
+import { h, Component, render } from 'https://unpkg.com/preact?module';
+import htm from 'https://unpkg.com/htm?module';
 
 // Initialize htm with Preact
 const html = htm.bind(h);
@@ -53,7 +53,7 @@ It's a very popular way of writing Preact apps and we highly recommend checking 
 
 ## Best practices powered with `preact-cli`
 
-The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's build on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicity this is the most popular way to use Preact among our users.
+The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's built on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicity this is the most popular way to use Preact among our users.
 
 As the name implies, `preact-cli` is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
 
@@ -80,7 +80,7 @@ Now we're ready to start our application. To fire up the development server run 
 cd my-project/
 
 # Start the devserver
-npm run dev
+npm start
 ```
 
 Once the server is up you can access your app at the URL that was printed in the console. Now you're ready to develop your app!
