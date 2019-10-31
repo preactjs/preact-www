@@ -8,7 +8,7 @@ description: 'Automatically pre-render pages using Preact CLI.'
 
 Preact CLI automatically "pre-renders" your pages to static HTML so they load fast.
 
-When building for production, Preact CLI executes your code in the Node.js environment and saves the result as static HTML. This means visitors to your site immediately see the pre-rendered HTML version, before any JavaScript has loaded.
+When building for production, Preact CLI renders your components and saves the result as static HTML. This means visitors to your site immediately see the pre-rendered HTML version, even before any JavaScript has loaded.
 
 > **⚠️ Important:** When pre-rendering, your module as components are executed in a Node.js environment, where most Web APIs are not available. To account for this, wrap that code in a check like `if (typeof window !== 'undefined')`.
 
