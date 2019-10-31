@@ -1,150 +1,146 @@
 ---
-name: CLI's Pre rendering
+name: 'Preact CLI: Pre-rendering'
 permalink: '/cli/pre-rendering'
-description: 'Preact CLI documentation for pre-rendering'
+description: 'Automatically pre-render pages using Preact CLI.'
 ---
 
-# Pre rendering pages
+# Pre-rendering Pages
 
-Preact CLI supports out of the box automatic pre-rendering of pages. By default, the homepage is always pre-rendered by executing your code in a node environment.
+Preact CLI automatically "pre-renders" your pages to static HTML so they load fast.
 
-You can give additional props and details and other URLs that you want to be pre-rendered in a js/json file as shown below.
+When building for production, Preact CLI executes your code in the Node.js environment and saves the result as static HTML. This means visitors to your site immediately see the pre-rendered HTML version, before any JavaScript has loaded.
 
-> **⚠️ Important:** Since the same client-side code is executed on node, please be aware that most of the DOM/Web APIs are not available for pre-rendering. If you're using one of those, please wrap them in an `if (x !== undefined)` block.
+> **⚠️ Important:** When pre-rendering, your module as components are executed in a Node.js environment, where most Web APIs are not available. To account for this, wrap that code in a check like `if (typeof window !== 'undefined')`.
 
-## Using a static JS/JSON file
+## Multiple URLs and custom data
 
-By simply adding a `prerender-urls.json` at the root of your project you can give additional config for pre-rendering to Preact CLI.
+Out of the box only the homepage is pre-rendered. In order to pre-render additional URLs (routes), you'll want to add a `prerender-urls.json` file to your project. This file can also pass additional data as props to the `<App />` component for each URL.
 
 ```json
 [
   {
     "url": "/", // required
-    "title": "My webapp's homepage",
-    "prop1": "foo",
-    "prop2": "bar"
+    "title": "All About Dogs",
+    "breeds": ["Shiba", "Golden", "Husky"]
   },
   {
-    "url": "/profile", // required
-    "title": "My webapp's profile page",
-    "prop1": "foo",
-    "prop2": "bar"
+    "url": "/breeds/shiba", // required
+    "title": "Shibas!",
+    "photo": "/assets/shiba.jpg"
   }
-  ...
 ]
 ```
 
-You can also export the same config from a `.js` file. However for using other file names/extensions use a `--prerenderUrls` flag. e.g. `preact build --prerenderUrls ./prerender-urls.js`.
+### Dynamic pre-rendering
+
+In addition to the `prerender-urls.json`, it's also possible to export the same information from a JavaScript file. This file will be executed by Preact CLI, and it can export a function that returns the prerender configuration.
+
+To use dynamic pre-rendering configuration, you'll need to specify the JavaScript filename to Preact CLI:
+
+`preact build --prerenderUrls ./prerender-urls.js`
+
+The `prerender-urls.js` version of our prerender data looks like this:
 
 ```js
-module.exports = () => {
+const breeds = ["Shiba", "Golden", "Husky"];
+
+module.exports = function() {
   return [
     {
-      'url': '/', // required
-      'title': 'My webapp's homepage',
-      'prop1': 'foo',
-      'prop2': 'bar'
+      url: "/",
+      title: "All About Dogs",
+      breeds
     },
     {
-      'url': '/profile', // required
-      'title': 'My webapp's profile page',
-      'prop1': 'foo',
-      'prop2': 'bar'
+      url: "/breeds/shiba",
+      title: "Shibas!",
+      photo: "/assets/shiba.jpg",
+      breeds
     }
-    ...
   ];
 };
 ```
 
-### Pre-rendering with data from an external source
+### Using an external data source
 
-You can also configure your Preact CLI app to work with a CMS. In order to fetch details from a CMS and generate static webpage for the same you can wire up pre-rendering with an async function.
+You can use Preact CLI's custom pre-rendering to integrate with an external data source like a CMS. In order to fetch pages from a CMS and generate static pre-rendered URLs for each, we can export an async function from our `prerender-urls.js` file:
 
 ```js
-module.exports = async () => {
-  const result = await fetch('/url-ot-cms/');
-  const data = await results.json();
-  return data.pages.map(page => ({
+module.exports = async function() {
+  const response = await fetch('https://cms.example.com/pages/');
+  const pages = await response.json();
+  return pages.map(page => ({
     url: page.url,
     title: page.title,
-    prop1: page.details.foo,
-    prop2: page.details.bar
-  }))
+    meta: page.meta,
+    data: page.data
+  }));
 };
 ```
 
-## Consuming Pre-rendering data
+## Consuming pre-render data
 
-All the pre-rendered pages have an inline script tag with the pre-rendered data inside it.
-
-e.g.
+All pre-rendered pages include an inline script containing the pre-rendered data:
 
 ```html
-<script type="__PREACT_CLI_DATA__"> {
+<script type="__PREACT_CLI_DATA__">{
   "preRenderData": {
-    "url":"/",
-    "seo": {
-      "cover": "/assets/profile.jpg"
-    }
+    "url": "/",
+    "photo": "/assets/shiba.jpg"
   }
-}
-</script>
+}</script>
 ```
 
-You can access this tag in your code to hydrate the data for a custom store like redux or graph QL.
-This data will always have a `URL` key which you can use to ensure that the correct route is being hydrated.
+You can access this in your code in order to "rehydrate" based on the pre-rendered data. This is particularly useful when using state management solutions like Redux or GraphQL. The JSON data will always contain a `"url"` key, which is useful for ensuring it's only used when hydrating the pre-rendered route.
 
-> **💡 Tip:** When the user opens a Preact CLI app's page, the markup will only contain the pre-rendered data for that specific page to avoid unnecessary download size. Thus when the user navigates to other pre-rendered routes via client-side navigation, you'll need to do a fetch call for `/<new-route>/preact_prerender_data.json` to get the data for next route. Preact CLI enables this, by keeping a `preact_prerender_data.json` next to every pre-rendered page at the build time.
+> **💡 Tip:** When a visitor first navigates to your app, the markup will contain only pre-rendered data for that specific page to avoid unnecessary download size. When they navigate to another route via client-side navigation, there won't be inlined pre-render data for that page. To get the data, make a request to `/<new-route>/preact_prerender_data.json` to get the data that route. Preact CLI enables this by generating a `preact_prerender_data.json` file next to each pre-rendered page at build time.
 
 ### Using `@preact/prerender-data-provider`
 
-Preact CLI has a solution for you to do the pre-rendered data fetching for you automatically. This package will either give you the pre-rendered data from the inline script tag or if the user has navigated to other routes then it will perform a network fetch and get the pre-rendered data for the next page for you.
+To simplify usage of pre-render data in Preact CLI, we've created a wrapper library that does hydration and data fetching for you. It finds and parses the pre-rendered data from the inline script tag when rendered on a page with the matching URL, or fetches pre-render data if there's no inlined version when navigating on the client.
 
-To use `@preact/prerender-data-provider`, take the following steps.
+To get started, install the library from npm:
 
-- `npm i -D @preact/prerender-data-provider`
-- Add prerender-data-provider to you `app.js`
+`npm i -D @preact/prerender-data-provider`
+
+Now that you have the library, import and use it in your App component (`components/app.js`):
 
 ```jsx
 import { Provider } from '@preact/prerender-data-provider';
-...
 
 export default class App extends Component {
-  ...
+  // ...
   render(props) {
     return (
       <Provider value={props}>
-        ...
+        // rest of your app here!
       </Provider>
     )
   }
 }
 ```
 
-- in your route components use prerender-data-provider.
+Now your route components can use `prerender-data-provider` to access pre-render data:
 
 ```jsx
 import { usePrerenderData } from '@preact/prerender-data-provider';
-const profileComponent = (props) => {
-  
+
+export default function MyRoute(props) {
+
   // You can disable auto fetching performed by this hook in the
   // following way: usePrerenderData(props, false);
-  const [data, isLoading, error] = usePrerenderData(props);
+  const [data, loading, error] = usePrerenderData(props);
 
-  if (isLoading) {
-    return (<h1>Loading...</h1>);
-  }
+  if (loading) return <h1>Loading...</h1>;
 
-  if (error) {
-    return (<h1>Loading...</h1>);
-  }
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
       // use data here
     </div>
   );
-};
+}
 ```
 
-> **Note:** `@preact/prerender-data-provider` also comes with a render prop implementatation with the same function signature as hook, if in case your route component is a class and you cannot use a hook in it.
+Passing `false` as a second parameter to `usePrerenderData` will disable dynamic fetching of `preact_prerender_data.json`. In addition to the hook shown above, a `<PrerenderData>` variant is available with the same signature as the hook.
