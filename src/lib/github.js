@@ -15,17 +15,3 @@ export const repoInfo = memoize(repo =>
 			watchers_count: 9999
 		}))
 );
-
-export const fetchRelease = memoize(repo =>
-	fetch(`https://api.github.com/repos/${repo}/releases/latest`)
-		.then(checkStatus)
-		.then(r => r.json())
-		.then(d => ({
-			version: d.tag_name || 'unknown',
-			url: d.html_url || '#'
-		}))
-		.catch(() => ({
-			url: '#',
-			version: 'unknown'
-		}))
-);
