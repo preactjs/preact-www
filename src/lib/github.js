@@ -37,7 +37,7 @@ export const fetchRelease = memoize(repo =>
 		.then(checkStatus)
 		.then(r => r.json())
 		.then(d => {
-			const releases = d.sort((releaseA, releaseB) => {
+			const releases = (d || []).sort((releaseA, releaseB) => {
 				const a = parseVersion(releaseA.tag_name);
 				const b = parseVersion(releaseB.tag_name);
 
@@ -60,8 +60,8 @@ export const fetchRelease = memoize(repo =>
 			});
 
 			return {
-				version: releases[0].tag_name || 'unknown',
-				url: releases[0].html_url || '#'
+				version: releases.length ? releases[0].tag_name : 'unknown',
+				url: releases.length ? releases[0].html_url : '#'
 			};
 		})
 		.catch(() => ({
