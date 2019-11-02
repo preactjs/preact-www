@@ -50,7 +50,7 @@ class Hydrator extends Component {
 	_render(props) {
 		const { Child } = this;
 		// hydrate on first run, then normal renders thereafter
-		const doRender = this.hydrated ? render : hydrate;
+		const doRender = process.env.NODE_ENV!=='production' || this.hydrated ? render : hydrate;
 		doRender(
 			<ContextProvider context={this.context}>
 				<Child {...props} />
