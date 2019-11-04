@@ -100,10 +100,10 @@ render(<App />, rootElement)
 When you have a prerendered DOM, there is no need to re-render it again. With hydrate most of the diffing phase will be skipped with event listeners being the exception. It's mainly used in conjuncton with [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
-import { render } from 'preact';
+import { hydrate } from 'preact';
 
 const Foo = () => <div>foo</div>;
-hydrate(<Foo />, document.getElementById('container));
+hydrate(<Foo />, document.getElementById('container'));
 ```
 
 ## h() / createElement()
