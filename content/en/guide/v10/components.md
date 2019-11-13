@@ -43,6 +43,7 @@ Here we have a simple class component called `<Clock>` that displays the current
 class Clock extends Component {
 
   constructor() {
+    super();
     this.state = { time: Date.now() };
   }
  
@@ -96,6 +97,7 @@ When an error is caught we can use this lifecycle to react to any errors and dis
 class Catcher extends Component {
   
   constructor() {
+    super();
     this.state = { errored: false };
   }
 
