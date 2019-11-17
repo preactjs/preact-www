@@ -37,7 +37,7 @@ Além do `prerender-urls.json`, também é possível exportar as mesmas informa�
 
 Para usar a configuração dinâmica de pré-renderização, você precisará especificar o nome do arquivo JavaScript para Preact CLI:
 
-`preact build --prerenderUrls. / prerender-urls.js`
+`preact build --prerenderUrls./prerender-urls.js`
 
 A versão `prerender-urls.js` dos nossos dados de pré-renderizador é assim:
 
@@ -93,7 +93,7 @@ Todas as páginas pré-renderizadas incluem um script embutido contendo os dados
 
 Você pode acessar isso no seu código para "reidratar" com base nos dados pré-renderizados. Isso é particularmente útil ao usar soluções de gerenciamento de estado como Redux ou GraphQL. Os dados JSON sempre conterão uma chave `" url "`, que é útil para garantir que seja usada apenas ao hidratar a rota pré-renderizada.
 
-> **💡 Dica:** Quando um visitante acessa seu aplicativo pela primeira vez, a marcação contém apenas dados pré-renderizados para essa página específica, para evitar o tamanho desnecessário do download. Quando eles navegam para outra rota por meio da navegação do cliente, não haverá dados de pré-renderização inline para essa página. Para obter os dados, faça uma solicitação para `/ <novo-rede> / preact_prerender_data.json` para obter os dados que serão roteados. O Preact CLI permite isso gerando um arquivo `preact_prerender_data.json` próximo a cada página pré-renderizada no tempo de construção.
+> **💡 Dica:** Quando um visitante acessa seu aplicativo pela primeira vez, a marcação contém apenas dados pré-renderizados para essa página específica, para evitar o tamanho desnecessário do download. Quando eles navegam para outra rota por meio da navegação do cliente, não haverá dados de pré-renderização inline para essa página. Para obter os dados, faça uma solicitação para `/<nova-rota>/preact_prerender_data.json` para obter os dados que serão roteados. O Preact CLI permite isso gerando um arquivo `preact_prerender_data.json` próximo a cada página pré-renderizada no tempo de construção.
 
 ### Utilizando `@preact/prerender-data-provider`
 

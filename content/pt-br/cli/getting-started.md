@@ -49,7 +49,7 @@ cd <app-name>
 npm start
 ```
 
-Agora abra seu editor e comece a editar! Para a maioria dos modelos, o melhor lugar para começar é `src / index.js` ou `src / components / app / index.js`.
+Agora abra seu editor e comece a editar! Para a maioria dos modelos, o melhor lugar para começar é `src/index.js` ou `src/components/app/index.js`.
 
 ## Builds em produção
 
