@@ -98,17 +98,65 @@ import { h, Component } from "preact";
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
 
-### `render()` replaces an existing Preact component
+### `render()` always diffs existing children
 
-In Preact 8.x, `render()` appends a Preact component when `render()` is repeated. In Preact X, `render()` replaces an existing Preact component when `render()` is repeated.
+In Preact 8.x, the calls to `render()` would always append the elements to the container.
 
-```js
+```jsx
+// Existing markup:
+<body>
+  <div>hello</div>
+</body>
+
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
-// Preact 8.x: <p>foo</p><p>bar</p>
-// Preact 10: <p>bar</p>
+// Preact 8.x output:
+<body>
+  <div>hello</div>
+  <p>foo</p>
+  <p>bar</p>
+</body>
 ```
+
+In order to diff existing children in Preact 8, an existing DOM node had to be provided.
+
+```jsx
+// Existing markup:
+<body>
+  <div>hello</div>
+</body>
+
+let element;
+element = render(<p>foo</p>, document.body);
+element = render(<p>bar</p>, document.body, element);
+
+// Preact 8.x output:
+<body>
+  <div>hello</div>
+  <p>bar</p>
+</body>
+```
+
+In Preact X, `render()` always diffs DOM children inside of the container. So if your container contains DOM that was not rendered by Preact, Preact will try to diff it with the elements you pass it. This new behavior more closely matches the behavior of other VDOM libraries.
+
+```jsx
+// Existing markup:
+<body>
+  <div>hello</div>
+</body>
+
+render(<p>foo</p>, document.body);
+render(<p>bar</p>, document.body);
+
+// Preact X output:
+<body>
+  <p>bar</p>
+  <div>hello</div>
+</body>
+```
+
+If you are looking for behavior that exactly matches how React's `render` method works, use the `render` method exported by `preact/compat`.
 
 ### `props.children` is not always an `array`
 
