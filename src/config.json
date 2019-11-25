@@ -333,7 +333,7 @@
 			"path": "/guide/v10/unit-testing-with-enzyme",
 			"name": {
 				"en": "Unit Testing with Enzyme",
-				"pt-br": "Teste unitado com Enzyme",
+				"pt-br": "Teste unitario com Enzyme",
 				"de": "Unit-Tests mit Enzyme"
 			}
 		},
