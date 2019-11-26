@@ -332,6 +332,12 @@ description: 'Companies who are proudly using Preact'
             Bodybuilding.com
         </a>
     </li>
+      <li>
+        <a href="//swissdevjobs.ch/jobs/Python/All" target="_blank">
+            <img src="/assets/we-are-using/swissdevjobs.png" alt="swissdevjobs.ch/jobs/Python/All">
+            SwissDev Jobs
+        </a>
+    </li>
 </ul>
 
 ---
