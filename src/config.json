@@ -28,7 +28,8 @@
 		{
 			"name": {
 				"en": "Guide",
-				"de": "Anleitung"
+				"de": "Anleitung",
+				"pt-br": "Guia"
 			},
 			"content": "guide",
 			"path": "/guide/v10/getting-started"
@@ -36,7 +37,8 @@
 		{
 			"name": {
 				"en": "About",
-				"de": "Mehr"
+				"de": "Mehr",
+				"pt-br": "Sobre"
 			},
 			"content": "about",
 			"routes": [
@@ -44,35 +46,40 @@
 					"path": "/about/we-are-using",
 					"name": {
 						"en": "Companies using Preact",
-						"de": "Firmen die Preact benutzen"
+						"de": "Firmen die Preact benutzen",
+						"pt-br": "Empresas que usam Preact"
 					}
 				},
 				{
 					"path": "/about/libraries-addons",
 					"name": {
 						"en": "Libraries & Add-ons",
-						"de": "Bibliotheken & Erweiterungen"
+						"de": "Bibliotheken & Erweiterungen",
+						"pt-br": "Bibliotecas e Complementos"
 					}
 				},
 				{
 					"path": "/about/demos-examples",
 					"name": {
 						"en": "Demos & Examples",
-						"de": "Beispiel-Projekte"
+						"de": "Beispiel-Projekte",
+						"pt-br": "Demonstrações e exemplos"
 					}
 				},
 				{
 					"path": "/about/project-goals",
 					"name": {
 						"en": "Project Goals",
-						"de": "Projekt-Ziele"
+						"de": "Projekt-Ziele",
+						"pt-br": "Objetivos do Projeto"
 					}
 				},
 				{
 					"path": "/about/browser-support",
 					"name": {
 						"en": "Browser Support",
-						"de": "Browserunterstützung"
+						"de": "Browserunterstützung",
+						"pt-br": "Suporte do navegador"
 					}
 				}
 			]
@@ -86,13 +93,15 @@
 				{
 					"path": "/cli",
 					"name": {
-						"en": "Introduction"
+						"en": "Introduction",
+						"pt-br": "Introdução"
 					}
 				},
 				{
 					"path": "/cli/getting-started",
 					"name": {
-						"en": "Getting started"
+						"en": "Getting started",
+						"pt-br": "Começando"
 					}
 				},
 				{
@@ -104,7 +113,8 @@
 				{
 					"path": "/cli/pre-rendering",
 					"name": {
-						"en": "Pre-rendering"
+						"en": "Pre-rendering",
+						"pt-br": "Pré-renderização"
 					}
 				}
 			]
@@ -120,6 +130,7 @@
 			"path": "/guide/v8/getting-started",
 			"name": {
 				"en": "Getting Started",
+				"pt-br": "Começando",
 				"de": "Los geht's"
 			}
 		},
@@ -127,6 +138,7 @@
 			"path": "/guide/v8/differences-to-react",
 			"name": {
 				"en": "Differences to React",
+				"pt-br": "Diferenças do React",
 				"de": "Unterschiede zu React"
 			}
 		},
@@ -134,6 +146,7 @@
 			"path": "/guide/v8/switching-to-preact",
 			"name": {
 				"en": "Switching to Preact",
+				"pt-br": "Mudando para Preact",
 				"de": "Wechsel zu Preact"
 			}
 		},
@@ -141,6 +154,7 @@
 			"path": "/guide/v8/types-of-components",
 			"name": {
 				"en": "Types of Components",
+				"pt-br": "Tipos de Componentes",
 				"de": "Komponenten-Typen"
 			}
 		},
@@ -148,6 +162,7 @@
 			"path": "/guide/v8/api-reference",
 			"name": {
 				"en": "API Reference",
+				"pt-br": "Referência da API",
 				"de": "API Referenz"
 			}
 		},
@@ -155,6 +170,7 @@
 			"path": "/guide/v8/forms",
 			"name": {
 				"en": "Forms",
+				"pt-br": "Formulários",
 				"de": "Formulare"
 			}
 		},
@@ -166,6 +182,7 @@
 			"path": "/guide/v8/external-dom-mutations",
 			"name": {
 				"en": "External DOM Mutations",
+				"pt-br": "Mutações do DOM externas",
 				"de": "Externe DOM Mutationen"
 			}
 		},
@@ -173,6 +190,7 @@
 			"path": "/guide/v8/extending-component",
 			"name": {
 				"en": "Extending Component",
+				"pt-br": "Extendendo Componentes",
 				"de": "Komponente Erweitern"
 			}
 		},
@@ -180,6 +198,7 @@
 			"path": "/guide/v8/unit-testing-with-enzyme",
 			"name": {
 				"en": "Unit Testing with Enzyme",
+				"pt-br": "Teste unitado com Enzyme",
 				"de": "Unit-Tests mit Enzyme"
 			}
 		},
@@ -192,19 +211,22 @@
 			"path": "/guide/v10/getting-started",
 			"name": {
 				"en": "Getting Started",
+				"pt-br": "Começando",
 				"de": "Los geht's"
 			}
 		},
 		{
 			"path": "/guide/v10/whats-new",
 			"name": {
-				"en": "What's new?"
+				"en": "What's new?",
+				"pt-br": "o que há de novo"
 			}
 		},
 		{
 			"path": "/guide/v10/upgrade-guide",
 			"name": {
 				"en": "Upgrading from 8.x",
+				"pt-br": "Fazendo upgrade do 8.x",
 				"de": "Migration von 8.x"
 			}
 		},
@@ -216,6 +238,7 @@
 			"path": "/guide/v10/differences-to-react",
 			"name": {
 				"en": "Differences to React",
+				"pt-br": "Diferenças do React",
 				"de": "Unterschiede zu React"
 			}
 		},
@@ -223,6 +246,7 @@
 			"path": "/guide/v10/switching-to-preact",
 			"name": {
 				"en": "Switching to Preact",
+				"pt-br": "Mudando para Preact",
 				"de": "Wechsel zu Preact"
 			}
 		},
@@ -230,6 +254,7 @@
 			"path": "/guide/v10/components",
 			"name": {
 				"en": "Components",
+				"pt-br": "Componentes",
 				"de": "Komponenten"
 			}
 		},
@@ -241,6 +266,7 @@
 			"path": "/guide/v10/api-reference",
 			"name": {
 				"en": "API Reference",
+				"pt-br": "Referência da API",
 				"de": "API Referenz"
 			}
 		},
@@ -248,17 +274,22 @@
 			"path": "/guide/v10/forms",
 			"name": {
 				"en": "Forms",
+				"pt-br": "Formulários",
 				"de": "Formulare"
 			}
 		},
 		{
 			"path": "/guide/v10/linked-state",
-			"name": "Linked State"
+			"name": {
+				"en": "Linked State",
+				"pt-br": "Estado Associado"
+			}
 		},
 		{
 			"path": "/guide/v10/refs",
 			"name": {
 				"en": "References",
+				"pt-br": "Referências",
 				"de": "Referenzen"
 			}
 		},
@@ -266,6 +297,7 @@
 			"path": "/guide/v10/context",
 			"name": {
 				"en": "Context",
+				"pt-br": "Contexto",
 				"de": "Kontext"
 			}
 		},
@@ -273,6 +305,7 @@
 			"path": "/guide/v10/external-dom-mutations",
 			"name": {
 				"en": "External DOM Mutations",
+				"pt-br": "Mutações do DOM externas",
 				"de": "Externe DOM Mutationen"
 			}
 		},
@@ -280,6 +313,7 @@
 			"path": "/guide/v10/debugging",
 			"name": {
 				"en": "Debugging Tools",
+				"pt-br": "Ferramentas de depuração",
 				"de": "Entwickler-Tools"
 			}
 		},
@@ -291,6 +325,7 @@
 			"path": "/guide/v10/extending-component",
 			"name": {
 				"en": "Extending Component",
+				"pt-br": "Extendendo Componentes",
 				"de": "Komponente Erweitern"
 			}
 		},
@@ -298,6 +333,7 @@
 			"path": "/guide/v10/unit-testing-with-enzyme",
 			"name": {
 				"en": "Unit Testing with Enzyme",
+				"pt-br": "Teste unitario com Enzyme",
 				"de": "Unit-Tests mit Enzyme"
 			}
 		},
