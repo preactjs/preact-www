@@ -294,6 +294,12 @@ permalink: '/about/we-are-using'
             Bodybuilding.com
         </a>
     </li>
+    <li>
+        <a href="//swissdevjobs.ch/jobs/dotNET/All" target="_blank">
+            <img src="/assets/we-are-using/swissdevjobs.png" alt="swissdevjobs.ch/jobs/dotNET/All">
+            SwissDev Jobs
+        </a>
+    </li>
 </ul>
 
 ---
