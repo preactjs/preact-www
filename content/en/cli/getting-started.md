@@ -53,7 +53,7 @@ Now open your editor and start editing! For most templates, the best place to st
 
 ## Production builds
 
-The `npm run build` command compiles a production-ready build of your application and places it a `build` directory a the project root.
+The `npm run build` command compiles a production-ready build of your application and places it in `build` directory at the project root.
 
 Production builds can be fine-tuned to match your needs with a series of flags. Find the full list of flags [here](https://github.com/preactjs/preact-cli#preact-build).
 
