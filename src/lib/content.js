@@ -45,6 +45,11 @@ export function getContent([lang, name]) {
 		.then(data => {
 			data.fallback = fallback;
 			return data;
+		})
+		.catch(err => {
+			// eslint-disable-next-line no-console
+			console.log(err);
+			CACHE[url] = undefined;
 		});
 	return (CACHE[url] = res);
 }
