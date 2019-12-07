@@ -20,6 +20,8 @@ export function getContent([lang, name]) {
 
 	// In prod, never re-fetch the content (url is just a convenient compound cache key)
 	if (process.env.NODE_ENV === 'production' && url in CACHE) {
+		// eslint-disable-next-line no-console
+		console.log(CACHE);
 		return CACHE[url];
 	}
 
