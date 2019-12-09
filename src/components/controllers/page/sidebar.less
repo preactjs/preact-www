@@ -6,22 +6,37 @@
 }
 
 .toggle {
-	display: block;
+	display: flex;
+	align-items: center;
 	position: fixed;
 	border: none;
 	bottom: 1rem;
-	right: 1rem;
-	border-radius: 50%;
-	width: 3rem;
+	right: 50%;
+	margin-right: -4em;
+	border-radius: 3rem;
 	height: 3rem;
-	color: black;
+	background: @color-brand;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+	padding: 0 1.5em;
 	font-weight: bold;
-	background: lighten(@color-corner, 5%);
-	box-shadow: 0.125rem 0.125rem 5px rgba(0, 0, 0, 0.15);
-	padding: 0.7em;
+	font-size: 1em;
+	color: #fff;
+	fill: rgba(255, 255, 255, 0.6);
 	cursor: pointer;
 	z-index: 25;
 	transition: transform 0.3s;
+	
+	/*
+	<svg height="30" width="30" viewBox="0 0 100 100" style="margin-left: .2em;position: relative;left: .5em;"><path d="M7.5,36.7h58.4v10.6H7.5V36.7z M7.5,20.8h58.4v10.6H7.5V20.8z M7.5,52.7h58.4v10.6H7.5V52.7z M7.5,68.6h58.4  v10.6H7.5V68.6z M71.3,52.7l10.6,15.9l10.6-15.9H71.3z M92.5,47.3L81.9,31.4L71.3,47.3H92.5z"></path></svg>
+	*/
+	
+	svg {
+		position: relative;
+		margin: 0 0 0 .2em;
+		left: .5em;
+		width: 2em;
+		height: 2em;
+	}
 
 	@media @sidebar-break {
 		display: none;
@@ -30,11 +45,12 @@
 	&:focus {
 		outline: none;
 		// Use box shadow to draw an outline because outline has no radius
-		box-shadow: 1px 0 5px 3px lighten(@color-brand, 40%);
+		box-shadow:
+			0 0 2px 2px lighten(@color-brand, 40%),
+			0 3px 8px rgba(0, 0, 0, 0.5);
 	}
 
 	[data-open] & {
-		background: @color-corner;
 		transform: rotate(90deg);
 	}
 }
