@@ -101,7 +101,7 @@ class Foo extends Component {
       <div ref={this.ref}>
         Width: {width}, Height: {height}
       </div>
-    };
+    );
   }
 }
 ```
