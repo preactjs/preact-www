@@ -6,22 +6,35 @@
 }
 
 .toggle {
-	display: block;
+	display: flex;
+	align-items: center;
 	position: fixed;
 	border: none;
 	bottom: 1rem;
-	right: 1rem;
-	border-radius: 50%;
-	width: 3rem;
+	right: 50%;
+	margin-right: -4em;
+	border-radius: 3rem;
 	height: 3rem;
-	color: black;
+	background: @color-brand;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+	padding: 0 1.5em;
 	font-weight: bold;
-	background: lighten(@color-corner, 5%);
-	box-shadow: 0.125rem 0.125rem 5px rgba(0, 0, 0, 0.15);
-	padding: 0.7em;
+	font-size: 1em;
+	color: #fff;
+	fill: rgba(255, 255, 255, 0.6);
 	cursor: pointer;
 	z-index: 25;
 	transition: transform 0.3s;
+	
+	&:after {
+		content: '';
+		display: inline-block;
+		position: relative;
+		left: 0.6em;
+		width: 2em;
+		height: 2em;
+		background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white"><path d="M7.5 36.7h58.4v10.6H7.5V36.7zm0-15.9h58.4v10.6H7.5V20.8zm0 31.9h58.4v10.6H7.5V52.7zm0 15.9h58.4v10.6H7.5V68.6zm63.8-15.9l10.6 15.9 10.6-15.9H71.3zm21.2-5.4L81.9 31.4 71.3 47.3h21.2z"/></svg>') center/contain;
+	}
 
 	@media @sidebar-break {
 		display: none;
@@ -30,12 +43,17 @@
 	&:focus {
 		outline: none;
 		// Use box shadow to draw an outline because outline has no radius
-		box-shadow: 1px 0 5px 3px lighten(@color-brand, 40%);
+		box-shadow:
+			0 0 2px 2px lighten(@color-brand, 40%),
+			0 3px 8px rgba(0, 0, 0, 0.5);
 	}
 
 	[data-open] & {
 		background: @color-corner;
-		transform: rotate(90deg);
+
+		&:after {
+			background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white"><path d="M38 13l-3-3-11 12-11-11-3 3 11 11-11 11 3 3 11-11 11 11 3-3-11-11z"/></svg>');
+		}
 	}
 }
 
@@ -76,6 +94,8 @@
 }
 
 .sidebarInner {
+	padding-bottom: 3rem;
+
 	> * + * {
 		margin-top: 1rem;
 		padding-top: 1rem;
@@ -89,6 +109,7 @@
 			overflow: auto;
 		}
 		top: @header-height;
+		padding-bottom: 0;
 		width: 100%;
 	}
 }
