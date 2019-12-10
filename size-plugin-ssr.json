@@ -1,5 +1,70 @@
 [
   {
+    "timestamp": 1576002536568,
+    "files": [
+      {
+        "filename": "editor.chunk.*****.js",
+        "previous": 66440,
+        "size": 66440,
+        "diff": 0
+      },
+      {
+        "filename": "emoji.chunk.*****.js",
+        "previous": 8834,
+        "size": 8834,
+        "diff": 0
+      },
+      {
+        "filename": "runner.chunk.*****.js",
+        "previous": 5918,
+        "size": 5918,
+        "diff": 0
+      },
+      {
+        "filename": "ssr-bundle.js",
+        "previous": 28001,
+        "size": 28017,
+        "diff": 16
+      },
+      {
+        "filename": "prism.b5f06.worker.js",
+        "previous": 7235,
+        "size": 7235,
+        "diff": 0
+      },
+      {
+        "filename": "markdown.7b46a.worker.js",
+        "previous": 9565,
+        "size": 9565,
+        "diff": 0
+      },
+      {
+        "filename": "repl.33978.worker.js",
+        "previous": 68559,
+        "size": 68559,
+        "diff": 0
+      },
+      {
+        "filename": "editor.chunk.5af90.css",
+        "previous": 3182,
+        "size": 3182,
+        "diff": 0
+      },
+      {
+        "filename": "ssr-bundle.749bb.css",
+        "previous": 11632,
+        "size": 0,
+        "diff": -11632
+      },
+      {
+        "filename": "ssr-bundle.5f59c.css",
+        "previous": 0,
+        "size": 11837,
+        "diff": 11837
+      }
+    ]
+  },
+  {
     "timestamp": 1575388090742,
     "files": [
       {
