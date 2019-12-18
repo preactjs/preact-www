@@ -9,7 +9,7 @@ Hooks is a new concept that allows you to compose state and side effects. They a
 
 If you've worked with Preact for a while you may be familiar with patterns like `render-props` and `higher-order-components` that try to solve the same. But they've always made code harder to follow whereas with hooks you can neatly extract that logic and make it easy to unit test it independently.
 
-Due to their functional nature they can be used in functional components and avoid many pitfalls of the `this` keyword that's present in classes. Instead they rely on closures which makes them value-bound and eliminates a whole bag of bugs when it comes to async state updates.
+Hooks can only be used in function components and avoid many pitfalls of the `this` keyword that's present in classes. Instead they rely on closures which makes them value-bound and eliminates a whole bag of bugs when it comes to async state updates.
 
 There are two ways to import these, you can import them from
 `preact/hooks` or `preact/compat`.
