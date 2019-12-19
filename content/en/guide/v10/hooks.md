@@ -7,12 +7,11 @@ description: 'Hooks in Preact allow you to compose behaviours together and re-us
 
 Hooks is a new concept that allows you to compose state and side effects. They allow you to reuse stateful logic between components.
 
-If you've worked with Preact for a while you may be familiar with patterns like `render-props` and `higher-order-components` that try to solve the same. But they've always made code harder to follow whereas with hooks you can neatly extract that logic and make it easy to unit test it independently.
+If you've worked with Preact for a while, you may be familiar with patterns like "render props" and "higher order components" that try to solve these challenges. These solutions have tended to make code harder to follow and more abstract. The hooks API makes it possible to neatly extract the logic for state and side effects, and also simplifies unit testing that logic independently from the components that rely on it.
 
-Hooks can only be used in function components and avoid many pitfalls of the `this` keyword that's present in classes. Instead they rely on closures which makes them value-bound and eliminates a whole bag of bugs when it comes to async state updates.
+Hooks can be used in any component, and avoid many pitfalls of the `this` keyword relied on by the class components API. Instead of accessing properties from the component instance, hooks rely on closures. This makes them value-bound and eliminates a number of stale data problems that can occur when dealing with asynchronous state updates.
 
-There are two ways to import these, you can import them from
-`preact/hooks` or `preact/compat`.
+There are two ways to import hooks: from `preact/hooks` or `preact/compat`.
 
 ---
 
@@ -22,18 +21,24 @@ There are two ways to import these, you can import them from
 
 ## Introduction
 
-It's easier to show you what they look like and compare that to class components to get a grasp of the advantages of them. Take a simple counter app for example:
+The easiest way to understand hooks is to compare them to equivalent class-based Components.
+
+We'll use a simple counter component as our example, which renders a number and a button that increases it by one:
 
 ```jsx
 class Counter extends Component {
-  state = { value: 0 };
+  state = {
+    value: 0
+  };
 
-  increment = () => this.setState(prev => ({ value: prev.value +1 }));
+  increment = () => {
+    this.setState(prev => ({ value: prev.value +1 })
+  });
 
-  render(_, { value }) {
+  render(props, state) {
     return (
       <div>
-        Counter: {value}
+        Counter: {state.value}
         <button onClick={this.increment}>Increment</button>
       </div>
     );
@@ -41,12 +46,14 @@ class Counter extends Component {
 }
 ```
 
-All the component does is render a div and a button to increment the counter. Let's rewrite it to be based on hooks:
+Now, here's an equivalent function component built with hooks:
 
 ```jsx
 function Counter() {
   const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+  const increment = useCallback(() => {
+    setValue(value + 1);
+  }, [value]);
 
   return (
     <div>
@@ -57,12 +64,16 @@ function Counter() {
 }
 ```
 
-At this point they seem pretty similar. So let's take it one step further. Now we can extract the counter logic into a custom hook to make it reusable across components.
+At this point they seem pretty similar, however we can further simplify the hooks version.
+
+Let's extract the counter logic into a custom hook, making it easily reusable across components:
 
 ```jsx
 function useCounter() {
   const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+  const increment = useCallback(() => {
+    setValue(value + 1);
+  }, [value]);
   return { value, increment };
 }
 
@@ -90,34 +101,39 @@ function CounterB() {
 }
 ```
 
-Note how both `CounterA` and `CounterB` are completely independent of each other.
+Note that both `CounterA` and `CounterB` are completely independent of each other. They both use the `useCounter()` custom hook, but each has its own instance of that hook's associated state.
 
-> If you're thinking that they may look a bit weird, than you're not alone. It took everybody a while to rethink our learned habits.
+> Thinking this looks a strange? You're not alone!
+>
+> It took many of us a while to grow accustomed to this approach.
 
 ## The dependency argument
 
-Many hooks feature an argument that can be used to limit when a hook should be updated. Preact will walk over the dependency array and check for referential equality. In the previous Counter example we've used it on `useCallback`:
+Many hooks accept an argument that can be used to limit when a hook should be updated. Preact inspects each value in a dependency array and checks to see if it has changed since the last time a hook was called.
+
+In our `useCounter()` implementation above, we passed an array of dependencies to `useCallback()`:
 
 ```jsx
 function useCounter() {
   const [value, setValue] = useState(0);
-  const increment = useCallback(
-    () => setValue(value + 1),
-    // This is the dependency array
-    [value]
-  );
+  const increment = useCallback(() => {
+    setValue(value + 1);
+  }, [value]);  // <-- the dependency array
   return { value, increment };
 }
 ```
 
-In this example we always want to update the function reference to the callback whenever `value` changes. This is necessary because otherwise the callback would still reference the `value` variable of the time the callback was created in.
+Passing `value` here causes `useCallback` to return a new function reference whenever `value` changes.
+This is necessary in order to avoid "stale closures", where the callback would always reference the first render's `value` variable from when it was created, causing `increment` to always set a value of `1`.
+
+> This creates a new `increment` callback every time `value` changes.
+> For performance reasons, it's often better to use a [callback](#usestate) to update state values rather than retaining the current value using dependencies.
 
 ## Stateful hooks
 
-Here we'll see how we can introduce stateful logic into these
-functional components.
-Before hooks we had to make a class component every time we needed
-state. Now times have changed.
+Here we'll see how we can introduce stateful logic into functional components.
+
+Prior to the introduction of hooks, class components were required anywhere state was needed.
 
 ### useState
 
