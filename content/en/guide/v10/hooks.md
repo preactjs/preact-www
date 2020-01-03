@@ -332,3 +332,25 @@ function WindowWidth(props) {
 ### useLayoutEffect
 
 The signature is identical to [useEffect](#useeffect), but it will fire as soon as the component is diffed and the browser has a chance to paint.
+
+### useErrorBoundary
+
+This hook is a replacement to the classic [`componentDidCatch`](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) component lifecycle, the hook accepts an optional callback to for instance call an API to report this error.
+
+The hook returns a tuple of the current error value and a resetError function.
+
+Any error thrown in a child-component of the component where this hook is used will be caught by the hook.
+
+A component would look like this:
+
+```jsx
+const App = props => {
+  const [err, resetErr] = useErrorBoundary((e) => callMyApi(e));
+  return err ? (
+    <div>
+      <p>{err.message}</p>
+      <button onClick={resetErr}>Try again</button>
+    </div>
+  ) : <Component />;
+};
+```
