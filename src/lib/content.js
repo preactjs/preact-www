@@ -19,9 +19,11 @@ export function getContent([lang, name]) {
 	if (!ext) url += '.md';
 
 	// In prod, never re-fetch the content (url is just a convenient compound cache key)
-	if (process.env.NODE_ENV === 'production' && url in CACHE) {
-		return CACHE[url];
-	}
+	// if (process.env.NODE_ENV === 'production' && url in CACHE) {
+	// 	// eslint-disable-next-line no-console
+	// 	console.log(CACHE);
+	// 	return CACHE[url];
+	// }
 
 	let fallback = false;
 	const res = fetch(url)
@@ -45,6 +47,11 @@ export function getContent([lang, name]) {
 		.then(data => {
 			data.fallback = fallback;
 			return data;
+		})
+		.catch(err => {
+			// eslint-disable-next-line no-console
+			console.log(err);
+			CACHE[url] = undefined;
 		});
 	return (CACHE[url] = res);
 }
