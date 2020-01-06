@@ -43,7 +43,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/metal.svg">
   <div>
-    <h2>Mais próximo do metal.</h2>
+    <h2>Mais próximo do DOM.</h2>
     <p>
         Preact fornece a mais leve abstração de Virtual DOM possível em cima do DOM.
         A web é uma plataforma estável - É tempo de pararmos de reimplementá-la em nome da segurança.
