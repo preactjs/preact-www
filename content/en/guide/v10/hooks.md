@@ -335,22 +335,43 @@ The signature is identical to [useEffect](#useeffect), but it will fire as soon 
 
 ### useErrorBoundary
 
-This hook is a replacement to the classic [`componentDidCatch`](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) component lifecycle, the hook accepts an optional callback to for instance call an API to report this error.
+Whenever a child component throws an error you can use this hook to catch it and display a custom error UI to the user.
 
-The hook returns a tuple of the current error value and a resetError function.
+```jsx
+// error = The error that was caught or `undefined` if nothing errored.
+// resetError = Call this function to mark an error as resolved. It's
+//   up to your app to decide what that means and if it is possible
+//   to recover from errors.
+const [error, resetError] = useErrorBoundary();
+```
 
-Any error thrown in a child-component of the component where this hook is used will be caught by the hook.
+For monitoring purposes it's often incredibly useful to notify a service of any errors. For that we can leverage an optional callback and pass that as the first argument to `useErrorBoundary`.
 
-A component would look like this:
+```jsx
+const [error] = useErrorBoundary(error => callMyApi(error.message));
+```
+
+A full usage example may look like this:
 
 ```jsx
 const App = props => {
-  const [err, resetErr] = useErrorBoundary((e) => callMyApi(e));
-  return err ? (
-    <div>
-      <p>{err.message}</p>
-      <button onClick={resetErr}>Try again</button>
-    </div>
-  ) : <Component />;
+  const [error, resetError] = useErrorBoundary(
+    error => callMyApi(error.message)
+  );
+  
+  // Display a nice error message
+  if (error) {
+    return (
+      <div>
+        <p>{error.message}</p>
+        <button onClick={resetError}>Try again</button>
+      </div>
+    );
+  } else {
+    return <div>{props.children}</div>
+  }
 };
 ```
+
+> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) lifecycle method.
+> This hook is was introduced with Preact 10.2.0 .
