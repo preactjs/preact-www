@@ -7,7 +7,7 @@ permalink: '/guide/switching-to-preact'
 
 There are two different approaches to switch from React to Preact:
 
-1. Install the `preact-compat` alias
+1. Install the `preact`
 2. Switch your imports to `preact` and remove incompatible code
 
 ---
@@ -16,28 +16,28 @@ There are two different approaches to switch from React to Preact:
 
 ---
 
-## Easy: `preact-compat` Alias
+## Easy: `preact/compat` Alias
 
-Switching to Preact can be as easy as installing and aliasing `preact-compat` in for `react` and `react-dom`.
+Switching to Preact can be as easy as installing and aliasing `preact/compat` in for `react` and `react-dom`.
 This lets you continue writing React/ReactDOM code without any changes to your workflow or codebase.
-`preact-compat` adds somewhere around 2kb to your bundle size, but has the advantage of supporting
-the vast majority of existing React modules you might find on npm.  The `preact-compat` package provides
+`preact/compat` adds somewhere around 2kb to your bundle size, but has the advantage of supporting
+the vast majority of existing React modules you might find on npm.  The `preact/compat` package provides
 all the necessary tweaks on top of Preact's core to make it work just like `react` and `react-dom`, in a single module.
 
 The process for installation is two steps.
-First, you must install preact and preact-compat (they are separate packages):
+First, you must install preact:
 
 ```sh
-npm i -S preact preact-compat
+npm i -S preact
 ```
 
 With those dependencies installed, configure your build system to alias React imports so they point to Preact instead.
 
 
-### How to Alias preact-compat
+### How to Alias preact/compat
 
 Now that you have your dependencies installed, you'll need to configure your build system
-to redirect any imports/requires looking for `react` or `react-dom` with `preact-compat`.
+to redirect any imports/requires looking for `react` or `react-dom` with `preact/compat`.
 
 #### Aliasing via Webpack
 
@@ -48,8 +48,8 @@ configuration to your `webpack.config.js`:
 {
   "resolve": {
     "alias": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
+      "react": "preact/compat",
+      "react-dom": "preact/compat"
     }
   }
 }
@@ -62,8 +62,8 @@ Parcel supports defining module aliases right in your `package.json` under an `"
 ```json
 {
   "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat"
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
   }
 }
 ```
@@ -74,32 +74,32 @@ If you're using Browserify, aliases can be defined by adding the [aliasify](http
 
 First, install the transform:  `npm i -D aliasify`
 
-Then, in your `package.json`, tell aliasify to redirect react imports to preact-compat:
+Then, in your `package.json`, tell aliasify to redirect react imports to preact/compat:
 
 ```json
 {
   "aliasify": {
     "aliases": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
+      "react": "preact/compat",
+      "react-dom": "preact/compat"
     }
   }
 }
 ```
 
-A common use-case for preact-compat is to support React-compatible third-party modules. When using Browserify, remember to configure the [Aliasify](https://www.npmjs.com/package/aliasify) transform to be **global** via the `--global-transform` [Browserify option](https://github.com/browserify/browserify).
+A common use-case for preact/compat is to support React-compatible third-party modules. When using Browserify, remember to configure the [Aliasify](https://www.npmjs.com/package/aliasify) transform to be **global** via the `--global-transform` [Browserify option](https://github.com/browserify/browserify).
 
 
 #### Aliasing Manually
 
-If you're not using a build system or want to permanently switch to `preact-compat`,
+If you're not using a build system or want to permanently switch to `preact/compat`,
 you can also find & replace all the imports/requires in your codebase much like an alias does:
 
 > **find:**    `(['"])react(-dom)?\1`
 >
-> **replace:** `$1preact-compat$1`
+> **replace:** `$1preact/compat$1`
 
-In this case though, you might find it more compelling to switch directly to `preact` itself, rather than relying on `preact-compat`.
+In this case though, you might find it more compelling to switch directly to `preact` itself, rather than relying on `preact/compat`.
 Preact's core is quite fully featured, and many idiomatic React codebases can actually be switched straight to `preact` with little effort.
 That approach is covered in the next section.
 
@@ -117,15 +117,15 @@ var path = require('path')
 var moduleAlias = require('module-alias')
 
 moduleAlias.addAliases({
-  'react': 'preact-compat/dist/preact-compat.min',
-  'react-dom': 'preact-compat/dist/preact-compat.min',
+  'react': 'preact/compat/dist/compat.min',
+  'react-dom': 'preact/compat/dist/compat.min',
   'create-react-class': path.resolve(__dirname, './create-preact-class')
 })
 ```
 
 `create-preact-class.js`:
 ```js
-import { createClass } from 'preact-compat/dist/preact-compat.min'
+import { createClass } from 'preact/compat/dist/compat.min'
 export default createClass
 ```
 
@@ -140,7 +140,7 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactDOMServer = require('react-dom/server')
 var CreateReactClass = require('create-react-class')
-var Preact = require('preact-compat/dist/preact-compat.min')
+var Preact = require('preact/compat/dist/compat.min')
 var Module = module.constructor
 Module._cache[require.resolve('react')].exports = Preact
 Module._cache[require.resolve('react-dom')].exports = Preact
@@ -150,7 +150,7 @@ Module._cache[require.resolve('create-react-class')].exports.default = Preact.cr
 ### Build & Test
 
 **You're done!**
-Now when you run your build, all your React imports will be instead importing `preact-compat` and your bundle will be much smaller.
+Now when you run your build, all your React imports will be instead importing `preact/compat` and your bundle will be much smaller.
 It's always a good idea to run your test suite and of course load up your app to see how it's working.
 
 
@@ -159,7 +159,7 @@ It's always a good idea to run your test suite and of course load up your app to
 
 ## Optimal: Switch to Preact
 
-You don't have to use `preact-compat` in your own codebase in order to migrate from React to Preact.
+You don't have to use `preact/compat` in your own codebase in order to migrate from React to Preact.
 Preact's API is nearly identical to React's, and many React codebases can be migrated with little or no changes needed.
 
 Generally, the process of switching to Preact involves a few steps:
