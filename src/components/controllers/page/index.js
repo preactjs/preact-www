@@ -15,6 +15,7 @@ import {
 } from '../../../lib/prerender-data';
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
+import { AVAILABLE_DOCS } from '../../doc-version';
 
 const getContentId = route => route.content || route.path;
 
@@ -127,13 +128,18 @@ export function usePage(route, lang) {
 }
 
 export default function Page({ route }, ctx) {
-	const store = useStore(['url', 'lang']);
+	const store = useStore(['url', 'lang', 'docVersion']);
 	const { loading, meta, content, html, current, isFallback } = usePage(
 		route,
 		store.state.lang
 	);
 	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
+
+	const docsUrl = useMemo(
+		() => url.replace(/(v\d{1,2})/, `v${AVAILABLE_DOCS[0]}`),
+		[url]
+	);
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContentId(route);
@@ -166,6 +172,12 @@ export default function Page({ route }, ctx) {
 					show={hasSidebar}
 				/>
 				<div class={style.inner}>
+					{isDocPage(url) && +store.state.docVersion !== AVAILABLE_DOCS[0] && (
+						<div class={style.oldDocsWarning}>
+							You are viewing the documentation for an older version of Preact.
+							Switch to the <a href={docsUrl}>current version</a>.
+						</div>
+					)}
 					<Hydrator
 						boot={isReady}
 						component={EditThisPage}
