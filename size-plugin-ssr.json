@@ -1,12 +1,12 @@
 [
   {
-    "timestamp": 1578508677605,
+    "timestamp": 1578511767574,
     "files": [
       {
         "filename": "editor.chunk.*****.js",
-        "previous": 66440,
+        "previous": 66430,
         "size": 66430,
-        "diff": -10
+        "diff": 0
       },
       {
         "filename": "emoji.chunk.*****.js",
@@ -16,75 +16,51 @@
       },
       {
         "filename": "runner.chunk.*****.js",
-        "previous": 5918,
+        "previous": 5931,
         "size": 5931,
-        "diff": 13
+        "diff": 0
       },
       {
         "filename": "ssr-bundle.js",
-        "previous": 28017,
-        "size": 28034,
-        "diff": 17
+        "previous": 28034,
+        "size": 28159,
+        "diff": 125
       },
       {
-        "filename": "prism.b5f06.worker.js",
-        "previous": 7235,
-        "size": 0,
-        "diff": -7235
+        "filename": "markdown.c9960.worker.js",
+        "previous": 10199,
+        "size": 10199,
+        "diff": 0
       },
       {
-        "filename": "markdown.7b46a.worker.js",
-        "previous": 9565,
-        "size": 0,
-        "diff": -9565
+        "filename": "prism.05c92.worker.js",
+        "previous": 7246,
+        "size": 7246,
+        "diff": 0
       },
       {
-        "filename": "repl.33978.worker.js",
-        "previous": 68559,
-        "size": 0,
-        "diff": -68559
+        "filename": "repl.eadff.worker.js",
+        "previous": 73721,
+        "size": 73721,
+        "diff": 0
       },
       {
-        "filename": "editor.chunk.5af90.css",
-        "previous": 3182,
-        "size": 0,
-        "diff": -3182
+        "filename": "editor.chunk.78d77.css",
+        "previous": 3188,
+        "size": 3188,
+        "diff": 0
       },
       {
-        "filename": "ssr-bundle.f5906.css",
+        "filename": "ssr-bundle.314a6.css",
         "previous": 11830,
         "size": 0,
         "diff": -11830
       },
       {
-        "filename": "markdown.c9960.worker.js",
+        "filename": "ssr-bundle.8178b.css",
         "previous": 0,
-        "size": 10199,
-        "diff": 10199
-      },
-      {
-        "filename": "prism.05c92.worker.js",
-        "previous": 0,
-        "size": 7246,
-        "diff": 7246
-      },
-      {
-        "filename": "repl.eadff.worker.js",
-        "previous": 0,
-        "size": 73721,
-        "diff": 73721
-      },
-      {
-        "filename": "editor.chunk.78d77.css",
-        "previous": 0,
-        "size": 3188,
-        "diff": 3188
-      },
-      {
-        "filename": "ssr-bundle.314a6.css",
-        "previous": 0,
-        "size": 11830,
-        "diff": 11830
+        "size": 11783,
+        "diff": 11783
       }
     ]
   }
