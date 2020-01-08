@@ -1,12 +1,12 @@
 [
   {
-    "timestamp": 1578435289283,
+    "timestamp": 1578508677605,
     "files": [
       {
         "filename": "editor.chunk.*****.js",
         "previous": 66440,
-        "size": 66440,
-        "diff": 0
+        "size": 66430,
+        "diff": -10
       },
       {
         "filename": "emoji.chunk.*****.js",
@@ -17,47 +17,71 @@
       {
         "filename": "runner.chunk.*****.js",
         "previous": 5918,
-        "size": 5918,
-        "diff": 0
+        "size": 5931,
+        "diff": 13
       },
       {
         "filename": "ssr-bundle.js",
         "previous": 28017,
-        "size": 28017,
-        "diff": 0
+        "size": 28034,
+        "diff": 17
       },
       {
         "filename": "prism.b5f06.worker.js",
         "previous": 7235,
-        "size": 7235,
-        "diff": 0
+        "size": 0,
+        "diff": -7235
       },
       {
         "filename": "markdown.7b46a.worker.js",
         "previous": 9565,
-        "size": 9565,
-        "diff": 0
+        "size": 0,
+        "diff": -9565
       },
       {
         "filename": "repl.33978.worker.js",
         "previous": 68559,
-        "size": 68559,
-        "diff": 0
+        "size": 0,
+        "diff": -68559
       },
       {
         "filename": "editor.chunk.5af90.css",
         "previous": 3182,
-        "size": 3182,
-        "diff": 0
-      },
-      {
-        "filename": "ssr-bundle.a5d24.css",
-        "previous": 11832,
         "size": 0,
-        "diff": -11832
+        "diff": -3182
       },
       {
         "filename": "ssr-bundle.f5906.css",
+        "previous": 11830,
+        "size": 0,
+        "diff": -11830
+      },
+      {
+        "filename": "markdown.c9960.worker.js",
+        "previous": 0,
+        "size": 10199,
+        "diff": 10199
+      },
+      {
+        "filename": "prism.05c92.worker.js",
+        "previous": 0,
+        "size": 7246,
+        "diff": 7246
+      },
+      {
+        "filename": "repl.eadff.worker.js",
+        "previous": 0,
+        "size": 73721,
+        "diff": 73721
+      },
+      {
+        "filename": "editor.chunk.78d77.css",
+        "previous": 0,
+        "size": 3188,
+        "diff": 3188
+      },
+      {
+        "filename": "ssr-bundle.314a6.css",
         "previous": 0,
         "size": 11830,
         "diff": 11830
