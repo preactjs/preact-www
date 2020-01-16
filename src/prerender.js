@@ -5,7 +5,7 @@ const flatMap = require('flatmap');
 const config = require('./config.json');
 
 // https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup
-const MAX_DESCRIPTION_LENGTH = 201;
+const MAX_DESCRIPTION_LENGTH = 200;
 
 if (process.env.PRERENDER_HOME) {
 	module.exports = [
@@ -29,7 +29,8 @@ if (process.env.PRERENDER_HOME) {
 			{ encoding: 'utf8' }
 		);
 		const name = (route.name && route.name.en) || route.name;
-		const title = !name || name === 'Preact' ? 'Preact' : `${name} – Preact`;
+		const packageName = route.path.substring(0, 4) === '/cli' ? 'Preact CLI' : 'Preact';
+		const title = !name || name === 'Preact' ? 'Preact' : `${name} – ${packageName}`;
 		const contentBody = content.split('---')[2];
 		let description;
 		if (title === 'Preact' || contentBody === undefined) {
