@@ -224,8 +224,8 @@ The `useCallback` hook can be used to ensure that the returned function will rem
 
 ```jsx
 const onClick = useCallback(
-  () => console.log(a, b);
-  [a, b],
+  () => console.log(a, b),
+  [a, b]
 );
 ```
 
