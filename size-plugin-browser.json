@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1578511843839,
+    "timestamp": 1579731985547,
     "files": [
       {
         "filename": "sw-esm.js",
@@ -31,18 +31,6 @@
         "previous": 71887,
         "size": 71887,
         "diff": 0
-      },
-      {
-        "filename": "bundle.0d2b5.css",
-        "previous": 9350,
-        "size": 0,
-        "diff": -9350
-      },
-      {
-        "filename": "bundle.e1de4.esm.js",
-        "previous": 23579,
-        "size": 0,
-        "diff": -23579
       },
       {
         "filename": "editor.chunk.78d77.css",
@@ -99,12 +87,6 @@
         "diff": 0
       },
       {
-        "filename": "bundle.c0478.js",
-        "previous": 23959,
-        "size": 0,
-        "diff": -23959
-      },
-      {
         "filename": "editor.chunk.bd419.js",
         "previous": 66910,
         "size": 66910,
@@ -136,21 +118,33 @@
       },
       {
         "filename": "bundle.447b7.css",
-        "previous": 0,
+        "previous": 9336,
         "size": 9336,
-        "diff": 9336
+        "diff": 0
       },
       {
         "filename": "bundle.cb61a.esm.js",
-        "previous": 0,
-        "size": 23714,
-        "diff": 23714
+        "previous": 23714,
+        "size": 0,
+        "diff": -23714
       },
       {
         "filename": "bundle.e4956.js",
+        "previous": 24125,
+        "size": 0,
+        "diff": -24125
+      },
+      {
+        "filename": "bundle.d8904.esm.js",
         "previous": 0,
-        "size": 24125,
-        "diff": 24125
+        "size": 23804,
+        "diff": 23804
+      },
+      {
+        "filename": "bundle.a5f4c.js",
+        "previous": 0,
+        "size": 24215,
+        "diff": 24215
       }
     ]
   }
