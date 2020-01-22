@@ -3,7 +3,7 @@ name: Libraries & Add-ons
 permalink: '/about/addons-libraries'
 ---
 
-# Librerias y Add-ons
+# Librerías y complementos
 
 Una colección de módulos construidos para trabajar perfectamente con Preact.
 
@@ -11,7 +11,7 @@ Una colección de módulos construidos para trabajar perfectamente con Preact.
 > [¡Agregalo!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
 
 
-### Add-Ons
+### Complementos
 
 - :raised_hands: [**preact-compat**](https://git.io/preact-compat): utilizar cualquier librería de React con Preact *([full example](http://git.io/preact-compat-example))*
 - :repeat: [**preact-cycle**](https://git.io/preact-cycle): Paradigma funcional-reactivo para Preact

@@ -29,7 +29,8 @@
 			"name": {
 				"en": "Guide",
 				"de": "Anleitung",
-				"pt-br": "Guia"
+				"pt-br": "Guia",
+				"es": "Guía"
 			},
 			"content": "guide",
 			"path": "/guide/v10/getting-started"
@@ -38,7 +39,8 @@
 			"name": {
 				"en": "About",
 				"de": "Mehr",
-				"pt-br": "Sobre"
+				"pt-br": "Sobre",
+				"es": "Sobre"
 			},
 			"content": "about",
 			"routes": [
@@ -47,7 +49,8 @@
 					"name": {
 						"en": "Companies using Preact",
 						"de": "Firmen die Preact benutzen",
-						"pt-br": "Empresas que usam Preact"
+						"pt-br": "Empresas que usam Preact",
+						"es": "Empresas que usan Preact"
 					}
 				},
 				{
@@ -55,7 +58,8 @@
 					"name": {
 						"en": "Libraries & Add-ons",
 						"de": "Bibliotheken & Erweiterungen",
-						"pt-br": "Bibliotecas e Complementos"
+						"pt-br": "Bibliotecas e Complementos",
+						"es": "Librerías y complementos"
 					}
 				},
 				{
@@ -63,7 +67,8 @@
 					"name": {
 						"en": "Demos & Examples",
 						"de": "Beispiel-Projekte",
-						"pt-br": "Demonstrações e exemplos"
+						"pt-br": "Demonstrações e exemplos",
+						"es": "Demostraciones y ejemplos"
 					}
 				},
 				{
@@ -71,7 +76,8 @@
 					"name": {
 						"en": "Project Goals",
 						"de": "Projekt-Ziele",
-						"pt-br": "Objetivos do Projeto"
+						"pt-br": "Objetivos do Projeto",
+						"es": "Objetivos del proyecto"
 					}
 				},
 				{
@@ -79,7 +85,8 @@
 					"name": {
 						"en": "Browser Support",
 						"de": "Browserunterstützung",
-						"pt-br": "Suporte do navegador"
+						"pt-br": "Suporte do navegador",
+						"es": "Soporte de navegadores"
 					}
 				}
 			]
@@ -94,14 +101,16 @@
 					"path": "/cli",
 					"name": {
 						"en": "Introduction",
-						"pt-br": "Introdução"
+						"pt-br": "Introdução",
+						"es": "Introducción"
 					}
 				},
 				{
 					"path": "/cli/getting-started",
 					"name": {
 						"en": "Getting started",
-						"pt-br": "Começando"
+						"pt-br": "Começando",
+						"es": "Empezando"
 					}
 				},
 				{
@@ -114,7 +123,8 @@
 					"path": "/cli/pre-rendering",
 					"name": {
 						"en": "Pre-rendering",
-						"pt-br": "Pré-renderização"
+						"pt-br": "Pré-renderização",
+						"es": "Pre-renderización"
 					}
 				}
 			]

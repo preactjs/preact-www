@@ -44,13 +44,13 @@ function Counter() {
   <img src="/assets/home/metal.svg">
 
   <div>
-    <h2>Más cerca del metal</h2>
+    <h2>Más cerca del DOM</h2>
     <p>
         Preact provee la abstracción más pequeña del Virtual DOM sobre el DOM.
-        La web es una plataforma estable, es tiempo de dejar de reimplementarla en nombre de la seguridad.
+        Se basa en características estables de la plataforma, registra manejadores de eventos reales y funciona muy bien con otras librerías.
     </p>
     <p>
-        Preact también es un ciudadano de primera clase de la plataforma web. Compara el Virtual DOM contra el DOM, registra manejadores de eventos reales y se comporta bien con otras librerías.
+        Preact puede ser usado directamente en el navegador sin necesidad de ningún proceso de transpilación.
     </p>
   </div>
 </section>
@@ -63,7 +63,7 @@ function Counter() {
     <h2>Tamaño reducido</h2>
     <p>
         La mayoría de los frameworks de UI son suficientemente grandes como para ser la mayor parte del tamaño del JavaScript de una app.
-        Preact es distinto: Es lo suficientemente pequeño como para que <em>tu código</em> sea la parte más pesada de tu aplicación.
+        Preact es distinto: es lo suficientemente pequeño como para que <em>tu código</em> sea la parte más pesada de tu aplicación.
     </p>
     <p>
         Esto significa menos JavaScript para descargar, interpretar y ejecutar - dejando más tiempo para tu código, para que puedas construir una experiencia que tú definas sin tener que pelear para mantener el framework bajo control.
@@ -234,7 +234,7 @@ render(
     <p>
         Tenemos guías separadas basadas en tus conocimientos de React.
         <br>
-        ¡Elige la guía que mejor de funcione!
+        ¡Elige la guía que mejor te funcione!
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
