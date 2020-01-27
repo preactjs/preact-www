@@ -7,7 +7,7 @@ description: 'Write your first Preact application'
 
 This guide walks through building a simple "ticking clock" component. More detailed information for each topic can be found in the dedicated pages under the Guide menu.
 
-> :information_desk_person: This guide assumes that completed the [Getting Started](/guide/v10/getting-started) document and have successfully set up your tooling. If not, start with [preact-cli](guide/v10/getting-started#best-practices-powered-with-preact-cli).
+> :information_desk_person: This guide assumes that you completed the [Getting Started](/guide/v10/getting-started) document and have successfully set up your tooling. If not, start with [preact-cli](/guide/v10/getting-started#best-practices-powered-with-preact-cli).
 
 ---
 
@@ -24,7 +24,7 @@ Out of the box, the two functions you'll always see in any Preact codebase are `
 const App = <h1>Hello World!</h1>;
 
 // ...the same without JSX
-const App = h('h1', null, 'Hello World';
+const App = h('h1', null, 'Hello World');
 ```
 
 This alone doesn't do anything and we need a way to inject our Hello-World app into the DOM. For this we use the `render()` function.
@@ -55,7 +55,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 You'll notice that we added a new `Component` import at the top and that we turned `App` into a class. This alone isn't useful but it's the precursor for what we're going to do next. To make things a little more exciting we'll add a form with a text input and a submit button.
@@ -77,7 +77,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 Now we're talking! It's starting to look like a real app! We still need to make it interactive though. Remember that we'll want to change `"Hello world!"` to `"Hello, [userinput]!"`, so we need a way to know the current input value.
@@ -112,7 +112,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 At this point the app shouldn't have changed much from a users point of view, but we'll bring all the pieces together in our next step.
@@ -148,7 +148,7 @@ class App extends Component {
   }
 }
 
-render(App, document.body);
+render(<App />, document.body);
 ```
 
 Boom! We're done! We can now enter a custom name, click "Update" and our new name appears in our heading.
@@ -178,7 +178,7 @@ So, we want to have a 1-second timer start once the Component gets added to the 
 import { h, render, Component } from 'preact';
 
 class Clock extends Component {
-  state = { time: Date.now() }
+  state = { time: Date.now() };
 
   // Called whenever our component is created
   componentDidMount() {

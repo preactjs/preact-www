@@ -239,8 +239,8 @@ permalink: '/about/we-are-using'
     </li>
     <li>
         <a href="//andcards.com" target="_blank">
-            <img src="/assets/we-are-using/cards.png" alt="Cards">
-            Cards
+            <img src="/assets/we-are-using/andcards.png" alt="andcards">
+            andcards
         </a>
     </li>
     <li>
@@ -277,6 +277,36 @@ permalink: '/about/we-are-using'
         <a href="//leesa.com" target="_blank">
             <img src="/assets/we-are-using/leesa.svg" alt="Leesa Sleep">
             Leesa Sleep
+        </a>
+    </li>
+    <li>
+        <a href="//rocket.chat" target="_blank">
+            <img src="/assets/we-are-using/rocketchat.svg" alt="Rocket.Chat">
+            Rocket.Chat
+        </a>
+    </li>
+    <li>
+        <a href="//www.bluehive.com" target="_blank">
+            <img src="/assets/we-are-using/bluehive.svg" alt="BlueHive">
+            BlueHive
+        </a>
+    </li>
+    <li>
+        <a href="//dailymotion.com" target="_blank">
+            <img src="/assets/we-are-using/dailymotion.svg" alt="dailymotion">
+            dailymotion
+        </a>
+    </li>
+    <li>
+        <a href="//bodybuilding.com" target="_blank">
+            <img src="/assets/we-are-using/bodybuildingcom.svg" alt="Bodybuilding.com">
+            Bodybuilding.com
+        </a>
+    </li>
+    <li>
+        <a href="//swissdevjobs.ch/jobs/Python/All" target="_blank">
+            <img src="/assets/we-are-using/swissdevjobs.png" alt="swissdevjobs.ch/jobs/Python/All">
+            SwissDev Jobs
         </a>
     </li>
 </ul>

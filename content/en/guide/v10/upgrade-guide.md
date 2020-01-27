@@ -22,7 +22,7 @@ _Note: Throughout this guide we'll be using the `npm` client and the commands sh
 Let's begin! First install Preact X:
 
 ```bash
-npm install preact@next
+npm install preact
 ```
 
 Because compat has moved to core, there is no need for `preact-compat` anymore. Remove it with:
@@ -33,7 +33,7 @@ npm remove preact-compat
 
 ### Updating preact-related libraries
 
-To guarantee a stable ecosystem for our users (especially for our enterprise users) we've put Preact X related libraries behind a `tag`. If you're using `preact-render-to-string` you need to update it to the version that works with X.
+To guarantee a stable ecosystem for our users (especially for our enterprise users) we've released major version updates to Preact X related libraries. If you're using `preact-render-to-string` you need to update it to the version that works with X.
 
 | Library                   | Preact 8.x | Preact X |
 | ------------------------- | ---------- | -------- |
@@ -41,8 +41,6 @@ To guarantee a stable ecosystem for our users (especially for our enterprise use
 | `preact-router`           | 2.x        | 3.x      |
 | `preact-jsx-chai`         | 2.x        | 3.x      |
 | `preact-markup`           | 1.x        | 2.x      |
-
-**All libraries for X can be installed via the `next` tag. For example: `npm install preact-router@next`**
 
 ### Compat has moved to core
 
@@ -100,17 +98,65 @@ import { h, Component } from "preact";
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
 
-### Remove the 3rd argument to `render`
+### `render()` always diffs existing children
 
-The `render` function has changed and works now out of the box like you'd expect it to. Repeated renders will correctly render into the container instead of always appending to it.
+In Preact 8.x, the calls to `render()` would always append the elements to the container.
 
-```js
-// Preact 8.x
-render(<App />, container, container.firstChild);
+```jsx
+// Existing markup:
+<body>
+  <div>hello</div>
+</body>
 
-// Preact X
-render(<App />, container);
+render(<p>foo</p>, document.body);
+render(<p>bar</p>, document.body);
+
+// Preact 8.x output:
+<body>
+  <div>hello</div>
+  <p>foo</p>
+  <p>bar</p>
+</body>
 ```
+
+In order to diff existing children in Preact 8, an existing DOM node had to be provided.
+
+```jsx
+// Existing markup:
+<body>
+  <div>hello</div>
+</body>
+
+let element;
+element = render(<p>foo</p>, document.body);
+element = render(<p>bar</p>, document.body, element);
+
+// Preact 8.x output:
+<body>
+  <div>hello</div>
+  <p>bar</p>
+</body>
+```
+
+In Preact X, `render()` always diffs DOM children inside of the container. So if your container contains DOM that was not rendered by Preact, Preact will try to diff it with the elements you pass it. This new behavior more closely matches the behavior of other VDOM libraries.
+
+```jsx
+// Existing markup:
+<body>
+  <div>hello</div>
+</body>
+
+render(<p>foo</p>, document.body);
+render(<p>bar</p>, document.body);
+
+// Preact X output:
+<body>
+  <p>bar</p>
+  <div>hello</div>
+</body>
+```
+
+If you are looking for behavior that exactly matches how React's `render` method works, use the `render` method exported by `preact/compat`.
 
 ### `props.children` is not always an `array`
 

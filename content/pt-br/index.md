@@ -11,7 +11,7 @@ toc: false
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
     <p>Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
-    <p>
+    <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Como começar</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Mudando para Preact</a>
@@ -43,7 +43,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/metal.svg">
   <div>
-    <h2>Mais próximo do metal.</h2>
+    <h2>Mais próximo do DOM.</h2>
     <p>
         Preact fornece a mais leve abstração de Virtual DOM possível em cima do DOM.
         A web é uma plataforma estável - É tempo de pararmos de reimplementá-la em nome da segurança.

@@ -34,13 +34,13 @@ class MyComponent extends Component {
 }
 ```
 
-To learn more about components and how they can be used, head over to the [Components](guide/v10/components) page.
+To learn more about components and how they can be used, head over to the [Components](/guide/v10/components) page.
 
 ## render()
 
 `render(component, containerNode, [replaceNode])`
 
-Render a Preact component into the `containerNode` DOM node. Returns a reference to the rendered DOM node.
+Render a Preact component into the `containerNode` DOM node. Does not return anything.
 
 If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm.
 
@@ -63,7 +63,7 @@ render(<Foo />, document.getElementById('container'));
 //   <div id="target"></div>
 // </div>
 render(
-  Foo,
+  <Foo />,
   document.getElementById('container'),
   document.getElementById('target')
 );
@@ -76,15 +76,34 @@ render(
 // </div>
 ```
 
+The first argument must be a valid virtual-dom node that represents either a component or an HTML-Element.
+
+```jsx
+const App = () => <div>foo</div>;
+
+// WRONG: First parameter must be passed through h() or
+// createElement() either directly or indirectly via JSX
+render(App(), rootElement);
+
+// WRONG: For the same reasons as above
+render(App, rootElement);
+
+// CORRECT: Passing App through h()
+render(h(App), rootElement);
+
+// CORRECT: Passing App indirectly through h() via JSX
+render(<App />, rootElement)
+```
+
 ## hydrate()
 
 When you have a prerendered DOM, there is no need to re-render it again. With hydrate most of the diffing phase will be skipped with event listeners being the exception. It's mainly used in conjuncton with [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
-import { render } from 'preact';
+import { hydrate } from 'preact';
 
 const Foo = () => <div>foo</div>;
-hydrate(<Foo />, document.getElementById('container));
+hydrate(<Foo />, document.getElementById('container'));
 ```
 
 ## h() / createElement()

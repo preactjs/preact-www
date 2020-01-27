@@ -6,6 +6,7 @@ import Critters from 'critters-webpack-plugin';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
+import SizePlugin from 'size-plugin';
 // prettier-ignore
 
 export default function (config, env, helpers) {
@@ -15,7 +16,7 @@ export default function (config, env, helpers) {
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
 		lib: resolve(__dirname, 'src/lib'),
-		'promise-polyfill': resolve(__dirname, 'src/promise-polyfill.js')
+		'promise-polyfill$': resolve(__dirname, 'src/promise-polyfill.js')
 	});
 
 	// Use our custom polyfill entry
@@ -68,7 +69,13 @@ export default function (config, env, helpers) {
 		minSize: 1000
 	});
 
-
+	const sizePlugin = helpers.getPluginsByName(config, 'SizePlugin')[0];
+	if (sizePlugin) {
+		config.plugins[sizePlugin.index] = new SizePlugin({
+			publish: true,
+			filename: `size-plugin-${env.ssr?'ssr':'browser'}.json`
+		});
+	}
 	if (!env.ssr) {
 		// Find YAML FrontMatter preceeding a markdown document
 		const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
@@ -89,7 +96,7 @@ export default function (config, env, helpers) {
 				const matches = content.match(FRONT_MATTER_REG);
 				if (!matches) return content;
 
-				const meta = yaml.eval('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
+				const meta = yaml.parse('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
 				content = content.replace(FRONT_MATTER_REG, '');
 				if (!meta.title) {
 					let [,title] = content.match(TITLE_REG) || [];

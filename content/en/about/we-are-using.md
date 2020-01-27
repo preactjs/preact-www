@@ -244,8 +244,8 @@ description: 'Companies who are proudly using Preact'
     </li>
     <li>
         <a href="//andcards.com" target="_blank">
-            <img src="/assets/we-are-using/cards.png" alt="Cards">
-            Cards
+            <img src="/assets/we-are-using/andcards.png" alt="andcards">
+            andcards
         </a>
     </li>
     <li>
@@ -308,11 +308,41 @@ description: 'Companies who are proudly using Preact'
             Lilium CMS
         </a>
     </li>
+    <li>
+        <a href="//rocket.chat" target="_blank">
+            <img src="/assets/we-are-using/rocketchat.svg" alt="Rocket.Chat">
+            Rocket.Chat
+        </a>
+    </li>
+    <li>
+        <a href="//www.bluehive.com" target="_blank">
+            <img src="/assets/we-are-using/bluehive.svg" alt="BlueHive">
+            BlueHive
+        </a>
+    </li>
+    <li>
+        <a href="//dailymotion.com" target="_blank">
+            <img src="/assets/we-are-using/dailymotion.svg" alt="dailymotion">
+            dailymotion
+        </a>
+    </li>
+    <li>
+        <a href="//bodybuilding.com" target="_blank">
+            <img src="/assets/we-are-using/bodybuildingcom.svg" alt="Bodybuilding.com">
+            Bodybuilding.com
+        </a>
+    </li>
+      <li>
+        <a href="//swissdevjobs.ch/jobs/Python/All" target="_blank">
+            <img src="/assets/we-are-using/swissdevjobs.png" alt="swissdevjobs.ch/jobs/Python/All">
+            SwissDev Jobs
+        </a>
+    </li>
 </ul>
 
 ---
 
 <p align="center">
     Does your company use Preact?
-    <a href="https://github.com/developit/preact-www/blob/master/content/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
+    <a href="https://github.com/preactjs/preact-www/blob/master/content/en/about/we-are-using.md" target="_blank"><strong>Add it to the list!</strong></a>
 </p>

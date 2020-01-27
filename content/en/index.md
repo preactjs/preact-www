@@ -11,9 +11,8 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
     <p>Fast 3kB alternative to React with the same modern API.</p>
-    <p>
+    <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
     <p>
@@ -107,8 +106,8 @@ function Counter() {
       Lightweight is a lot more fun when you don't have to sacrifice productivity to get there. Preact gets you productive right away. It even has a few bonus features:
     </p>
     <ul>
-      <li>`props`, `state` and `context` are passed to `render()`</li>
-      <li>Use standard HTML attributes like `class` and `for`</li>
+      <li><code>props</code>, <code>state</code> and <code>context</code> are passed to <code>render()</code></li>
+      <li>Use standard HTML attributes like <code>class</code> and <code>for</code></li>
       <li>Works with React DevTools right out of the box</li>
     </ul>
   </div>

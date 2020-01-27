@@ -23,11 +23,15 @@ export default function Sidebar() {
 			level: 2,
 			href: item.path
 		}));
+	
+	// TODO: use URL match instead of .content
+	const guide = config.nav.filter(item => item.content === 'guide')[0];
+	const sectionName = getRouteName(guide, lang);
 
 	return (
 		<div class={style.wrapper} data-open={open}>
 			<button class={style.toggle} onClick={toggle} value="sidebar">
-				{'<>'}
+				{sectionName}
 			</button>
 			<aside class={style.sidebar}>
 				<div class={style.sidebarInner}>

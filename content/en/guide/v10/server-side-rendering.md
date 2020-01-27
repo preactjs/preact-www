@@ -73,11 +73,11 @@ console.log(render(App, { pretty: true }));
 The JSX rendering mode is especially useful if you're doing any kind of snapshot testing. It renders the output as if it was written in JSX.
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const App = <div data-foo={true} />;
 
-console.log(render(App, { jsx: true }));
+console.log(render(App));
 // Logs: <div data-foo={true} />
 ```

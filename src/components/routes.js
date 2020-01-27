@@ -43,6 +43,7 @@ export default class Routes extends Component {
 	buildRoute(route) {
 		let Ctrl = controllers.default;
 		if (route.controller) {
+			// eslint-disable-next-line no-unused-vars
 			for (let i in controllers) {
 				if (i.toLowerCase() === route.controller.toLowerCase()) {
 					Ctrl = controllers[i];
