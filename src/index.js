@@ -5,7 +5,15 @@ import App from './components/app';
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
 
-export default App;
+let app = App;
+
+if (!PRERENDER) {
+	app = undefined;
+	const root = document.getElementById('app');
+	preact.hydrate(preact.h(App), root.parentNode, root);
+}
+
+export default app;
 
 // allows users to play with preact in the browser developer console
 global.preact = { ...preact, ...hooks };

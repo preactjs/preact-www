@@ -19,6 +19,16 @@ export default function (config, env, helpers) {
 		'promise-polyfill$': resolve(__dirname, 'src/promise-polyfill.js')
 	});
 
+	config.module.rules.forEach(loader => {
+		if (/async-loader/.test(loader.loader)) {
+			console.log('found async-loader');
+		}
+		if (/@preact\/async-loader/.test(loader.loader)) {
+			console.log('found and replaced @preact/async-loader');
+			loader.loader = resolve(__dirname, 'temp/async-loader.js');
+		}
+	});
+
 	// Use our custom polyfill entry
 	if (!config.entry['ssr-bundle']) {
 		config.entry.polyfills = resolve(__dirname, 'src/polyfills.js');
