@@ -3,11 +3,11 @@ name: Options
 description: 'Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process.'
 ---
 
-# Options
+# Renderer Options
 
-Preact supports a range of callbacks that allow you to hook into different stages of the renderer process. These are frequently use to extend the featureset of Preact itself, or to create specialized testing tools.
+Preact supports a number of different callbacks that can be used to observe or change each stage of the renderering process, commonly referred to as "Option Hooks" (not to be confused with [hooks](https://preactjs.com/guide/v10/hooks)). These are frequently used to extend the featureset of Preact itself, or to create specialized testing tools.
 
-All of our addons like `preact/hooks`, `preact/compat` and our devtools extension are based on this. This document is mainly intended for tooling or library authors who wish to extend Preact.
+All of our addons like `preact/hooks`, `preact/compat` and our devtools extension are based on these callbacks. This document is mainly intended for tooling or library authors who wish to extend Preact.
 
 ---
 
@@ -15,11 +15,17 @@ All of our addons like `preact/hooks`, `preact/compat` and our devtools extensio
 
 ---
 
-## Setting option hooks
+## Versioning and Support
 
-You can set option hooks in Preact by modifying the exported `options` object. Always make sure that you keep calling the previously defined hook if there was any. Otherwise tha callchain will be broken and other code that depends on it will break (like addons for example). Make sure to forward the same arguments, too.
+Option Hooks are shipped in Preact, and as such are semantically versioned. However, they do not have the same deprecation policy, which means major versions can change the API without an extended announcement period leading up to release. This is also true for the structure of internal APIs exposed through Options Hooks, like `VNode` objects.
 
-```jsx
+## Setting Option Hooks
+
+You can set Options Hooks in Preact by modifying the exported `options` object.
+
+When defining a hook, always make sure to call a previously defined hook of that name if there was one. Without this, the callchain will be broken and code that depends on the previously-installed hook will break, resulting in addons like `preact/hooks` or DevTools ceasing to work. Make sure to pass the same arguments to the original hook, too - unless you have a specific reason to change them.
+
+```js
 import { options } from 'preact';
 
 // Store previous hook
@@ -36,14 +42,50 @@ options.vnode = vnode => {
 }
 ```
 
+None of the currently available hooks have return values, so handling return values from the original hook is not necessary.
+
 ## Available Option Hooks
 
-| Hook name | Type Signature | Description |
-|---|---|---|
-| `vnode` | `(vnode: VNode) => void` | Attach a hook that is invoked whenever a VNode is created. |
-| `unmount` | `(vnode: VNode) => void` | Attach a hook that is invoked immediately before a vnode is unmounted. |
-| `diffed` | `(vnode: VNode) => void` | Attach a hook that is invoked after a vnode has rendered. |
-| `event` | `(event: Event) => void` | Called just before an event is forwarded to the attached event listener. |
-| `requestAnimationFrame` | `(callback) => void` | Used to control scheduling of effect based functionality in `preat/hooks`. |
-| `debounceRendering` | `(callback: () => void) => void` | Timing function that is used to process updates from the global component queue. By default we use `Promise.resolve()` or `setTimeout` if Promises are not available. |
-| `useDebugValue` | `(value: string | number) => void` | Called when the `useDebugValue` hook in `preact/hooks` is called. |
+#### `options.vnode`
+
+**Signature:** `(vnode: VNode) => void`
+
+The most common Options Hook, `vnode` is invoked whenever a VNode object is created. VNodes are Preact's representation of Virtual DOM elements, commonly thought of as "JSX Elements".
+
+#### `options.unmount`
+
+**Signature:** `(vnode: VNode) => void`
+
+Invoked immediately before a vnode is unmounted, when its DOM representation is still attached.
+
+#### `options.diffed`
+
+**Signature:** `(vnode: VNode) => void`
+
+Invoked immediately after a vnode is rendered, once its DOM representation is constructed or transformed into the correct state.
+
+#### `options.event`
+
+**Signature:** `(event: Event) => void`
+
+Invoked just before a DOM event is handled by its associated Virtual DOM listener.
+
+#### `options.requestAnimationFrame`
+
+**Signature:** `(callback: () => void) => void`
+
+Controls the scheduling of effects and effect-based based functionality in `preat/hooks`.
+
+#### `options.debounceRendering`
+
+**Signature:** `(callback: () => void) => void`
+
+A timing "deferral" function that is used to batch processing of updates in the global component rendering queue.
+
+By default, Preact uses a Microtask tick via `Promise.resolve()`, or `setTimeout` when Promise is not available.
+
+#### `options.useDebugValue`
+
+**Signature:** `(value: string | number) => void`
+
+Called when the `useDebugValue` hook in `preact/hooks` is called.
