@@ -354,6 +354,13 @@
 		{
 			"path": "/guide/v10/progressive-web-apps",
 			"name": "Progressive Web Apps"
+		},
+		{
+			"path": "/guide/v10/options",
+			"name": {
+				"en": "Options",
+				"de": "Optionen"
+			}
 		}
 	]
 }
