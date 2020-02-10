@@ -7,9 +7,9 @@ description: 'How to debug Preact applications when something goes wrong.'
 
 Preact ships with a lot of tools to make debugging easier. They're packaged in a single import and can be included by importing `preact/debug`.
 
-These include a bridge to the excellent [React Developer Tools] Extension for Chrome and Firefox. If you have them already installed you can **try it out on this site.** Just open the devtools and start inspecting how we built it.
+These include integration with our own [Preact Devtools] Extension for Chrome and Firefox.
 
-we'll print a warning or an error whenever we detect something wrong like incorrect nesting in `<table>` elements.
+We'll print a warning or an error whenever we detect something wrong like incorrect nesting in `<table>` elements.
 
 ---
 
@@ -19,10 +19,10 @@ we'll print a warning or an error whenever we detect something wrong like incorr
 
 ## Installation
 
-The [React Developer Tools] can be installed in the extension store of your browser.
+The [Preact Devtools] can be installed in the extension store of your browser.
 
-- [For Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-- [For Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+- [For Chrome](https://chrome.google.com/webstore/detail/preact-developer-tools/ilcajpmogmhpliinlbcdebhbcanbghmd)
+- [For Firefox](https://addons.mozilla.org/en-US/firefox/addon/preact-devtools/)
 
 Once installed we need to import `preact/debug` somewhere to initialize the connection to the extension. Make sure that this import is **the first** import in your whole app.
 
@@ -43,7 +43,7 @@ render(<App />, document.getElementById('root'));
 
 Most bundlers allow you strip out code when they detect that a branch inside an `if`-statement will never be hit. We can use this to only include `preact/debug` during development and save those precious bytes in a production build.
 
-```js
+```jsx
 // Must be the first import
 if (process.env.NODE_ENV==='development') {
   // Must use require here as import statements are only allowed
@@ -94,7 +94,7 @@ render(<App />, dom);
 
 The same error will be thrown when it's the other way around. When you declare a `named` export and are trying to use it as a `default` export. One quick way to check this (in case your editor won't do it already), is to just log out the import:
 
-```js
+```jsx
 // app.js
 export function App() {
   return <div>Hello World</div>;
@@ -208,4 +208,4 @@ const persons = [
 </div>
 ```
 
-[React Developer Tools]: https://github.com/facebook/react/tree/master/packages/react-devtools
+[Preact Devtools]: https://preactjs.github.io/preact-devtools/
