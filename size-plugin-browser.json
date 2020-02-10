@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1579731985547,
+    "timestamp": 1581364440979,
     "files": [
       {
         "filename": "sw-esm.js",
@@ -123,28 +123,28 @@
         "diff": 0
       },
       {
-        "filename": "bundle.cb61a.esm.js",
-        "previous": 23714,
-        "size": 0,
-        "diff": -23714
-      },
-      {
-        "filename": "bundle.e4956.js",
-        "previous": 24125,
-        "size": 0,
-        "diff": -24125
-      },
-      {
         "filename": "bundle.d8904.esm.js",
-        "previous": 0,
-        "size": 23804,
-        "diff": 23804
+        "previous": 23804,
+        "size": 0,
+        "diff": -23804
       },
       {
         "filename": "bundle.a5f4c.js",
+        "previous": 24215,
+        "size": 0,
+        "diff": -24215
+      },
+      {
+        "filename": "bundle.086fd.esm.js",
         "previous": 0,
-        "size": 24215,
-        "diff": 24215
+        "size": 23814,
+        "diff": 23814
+      },
+      {
+        "filename": "bundle.be94c.js",
+        "previous": 0,
+        "size": 24226,
+        "diff": 24226
       }
     ]
   }
