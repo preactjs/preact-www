@@ -61,9 +61,21 @@ module.exports = function() {
 };
 ```
 
+#### Using pre-rendering values in your markup
+The values provided during pre-rendering via any of the abovesaid methods can be used in the `template.html` file to be used in all generated `html` files. This can be used to provide values for meta tags or other useful data in the markup itself.
+To consume the values use `htmlWebpackPlugin.options.<key>` in the markup.
+
+```html
+  <html>
+    <head>
+      <meta name="demo-keyword" content="<%= htmlWebpackPlugin.options.blah %>">
+    </head>
+  </html>
+```
+
 ### Using an external data source
 
-You can use Preact CLI's custom pre-rendering to integrate with an external data source like a CMS. In order to fetch pages from a CMS and generate static pre-rendered URLs for each, we can export an async function from our `prerender-urls.js` file:
+You can use Preact CLI's custom pre-rendering to integrate with an external data source like a CMS. To fetch pages from a CMS and generate static pre-rendered URLs for each, we can export an async function from our `prerender-urls.js` file:
 
 ```js
 module.exports = async function() {
