@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1581364365044,
+    "timestamp": 1581442107088,
     "files": [
       {
         "filename": "editor.chunk.*****.js",
@@ -22,9 +22,9 @@
       },
       {
         "filename": "ssr-bundle.js",
-        "previous": 28237,
-        "size": 28247,
-        "diff": 10
+        "previous": 28247,
+        "size": 28306,
+        "diff": 59
       },
       {
         "filename": "markdown.c9960.worker.js",
