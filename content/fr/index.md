@@ -79,7 +79,7 @@ function Counter() {
         Preact est performant, non seulement à cause de sa taille, mais aussi parce qu'il possède une des implémentations les plus rapides pour détecter les différences entre le DOM du navigateur et le DOM virtuel.
     </p>
     <p>
-        Il implémente certaines fonctionnalités supplémentaires à React telles que <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">les mises à jour asynchrones</a>, la réutilisation du DOM et l'optimisation de la gestion des évènements avec [Linked State](/guide/linked-state).
+        Il implémente certaines fonctionnalités supplémentaires à React telles que <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">les mises à jour asynchrones</a> et la réutilisation du DOM.
     </p>
   </div>
 </section>

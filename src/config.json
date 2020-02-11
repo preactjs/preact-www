@@ -289,13 +289,6 @@
 			}
 		},
 		{
-			"path": "/guide/v10/linked-state",
-			"name": {
-				"en": "Linked State",
-				"pt-br": "Estado Associado"
-			}
-		},
-		{
 			"path": "/guide/v10/refs",
 			"name": {
 				"en": "References",
