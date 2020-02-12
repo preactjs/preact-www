@@ -76,7 +76,7 @@ class MySelect extends Component {
   }
 
   onSubmit = e => {
-    alert("Submitted something");
+    alert("Submitted " + this.state.value);
     e.preventDefault();
   }
 
