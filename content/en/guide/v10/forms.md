@@ -83,7 +83,7 @@ class MySelect extends Component {
   render(_, { value }) {
     return (
       <form onSubmit={this.onSubmit}>
-        <select value={value} onInput={this.onInput}>
+        <select value={value} onChange={this.onInput}>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
