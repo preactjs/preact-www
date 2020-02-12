@@ -71,7 +71,7 @@ A `<select>`-Element is a little more involved, but works similar to all other f
 class MySelect extends Component {
   state = { value: '' };
 
-  onInput = e => {
+  onChange = e => {
     this.setState({ value: e.target.value });
   }
 
@@ -83,7 +83,7 @@ class MySelect extends Component {
   render(_, { value }) {
     return (
       <form onSubmit={this.onSubmit}>
-        <select value={value} onChange={this.onInput}>
+        <select value={value} onChange={this.onChange}>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
