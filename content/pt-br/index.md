@@ -77,7 +77,7 @@ function Counter() {
         Preact é rápido, e não só por causa do seu tamanho. É uma das bibliotecas Virtual DOM mais rápidas disponíveis, graças a uma simples e rápida implementação do algorítimo de comparação.
     </p>
     <p>
-        Até mesmo inclui recursos extra de performance como atualizações em lote customizáveis, renderização assíncrona opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
+        Até mesmo inclui recursos extra de performance como atualizações em lote customizáveis, renderização assíncrona opcional e reciclagem do DOM.
     </p>
   </div>
 </section>
