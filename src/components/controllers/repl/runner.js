@@ -71,8 +71,9 @@ export default class Runner extends Component {
 
 		function _require(id) {
 			// flatten unpkg
-			if (typeof id === 'string')
-				id = id.replace(/^(https?:)?\/\/unpkg\.com\//, '');
+			if (typeof id === 'string') {
+				id = id.replace(/(^(https?:)?\/\/unpkg\.com\/|\?module$)/, '');
+			}
 			if (id in moduleCache) {
 				return moduleCache[id];
 			}
