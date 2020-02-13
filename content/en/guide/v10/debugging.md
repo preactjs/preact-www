@@ -23,6 +23,7 @@ The [Preact Devtools] can be installed in the extension store of your browser.
 
 - [For Chrome](https://chrome.google.com/webstore/detail/preact-developer-tools/ilcajpmogmhpliinlbcdebhbcanbghmd)
 - [For Firefox](https://addons.mozilla.org/en-US/firefox/addon/preact-devtools/)
+- [For Edge](https://microsoftedge.microsoft.com/addons/detail/hdkhobcafnfejjieimdkmjaiihkjpmhk)
 
 Once installed we need to import `preact/debug` somewhere to initialize the connection to the extension. Make sure that this import is **the first** import in your whole app.
 
@@ -175,11 +176,11 @@ function Foo() {
 
 With Preact X we did some breaking changes to our internal `vnode` shape.
 
-| Preact 8.x | Preact 10.x |
-|---|---|
-| `vnode.nodeName` | `vnode.type` |
-| `vnode.attributes` | `vnode.props` |
-| `vnode.children` | `vnode.props.children`|
+| Preact 8.x         | Preact 10.x            |
+| ------------------ | ---------------------- |
+| `vnode.nodeName`   | `vnode.type`           |
+| `vnode.attributes` | `vnode.props`          |
+| `vnode.children`   | `vnode.props.children` |
 
 ### Found children with the same key
 
