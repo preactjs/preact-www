@@ -25,9 +25,10 @@ import { h, Component, render } from 'https://unpkg.com/preact?module';
 // Create your app
 const app = h('div', null, 'Hello World!');
 
-// Inject your application into the an element with the id `app`.
-// Make sure that such an element exists in the dom ;)
-render(app, document.getElementById('app'));
+// Render the application into <body>.
+render(app, document.body);
+
+// Note: it's best use a wrapper element instead of body.
 ```
 
 The only difference is that you cannot use JSX, because JSX needs to be transpiled. We got you covered with an alternative in the next section. So keep reading.
