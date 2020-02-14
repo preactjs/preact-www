@@ -117,7 +117,7 @@ render(<App />, document.body);
 
 At this point the app shouldn't have changed much from a users point of view, but we'll bring all the pieces together in our next step.
 
-Well add a handler to the `submit` event of our `<form>` in similar fashion like we just did for the input. The difference is that it writes into a different property of our `state` called `name`. Then we swap out our heading and insert our `state.name` value there.
+We'll add a handler to the `submit` event of our `<form>` in similar fashion like we just did for the input. The difference is that it writes into a different property of our `state` called `name`. Then we swap out our heading and insert our `state.name` value there.
 
 ```jsx
 import { h, render, Component } from 'preact';
