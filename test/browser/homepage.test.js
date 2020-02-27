@@ -22,8 +22,10 @@ async function getCoverageData(customPage = page) {
 	function calc(arr) {
 		let total = 0;
 		let used = 0;
+		// eslint-disable-next-line no-unused-vars
 		for (const entry of arr) {
 			total += entry.text.length;
+			// eslint-disable-next-line no-unused-vars
 			for (const range of entry.ranges) {
 				used += range.end - range.start - 1;
 			}

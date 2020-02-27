@@ -11,7 +11,7 @@ toc: false
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
     <p>Schnelle 3kB-Alternative zu React mit der gleichen ES6-API.</p>
-    <p>
+    <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Fang an</a>
         <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Wechsle zu Preact</a>
@@ -81,7 +81,7 @@ function Counter() {
         Preact ist schnell, was nicht nur an seiner Größe liegt. Dank einer simplen und vorhersehbaren Differenzierungsimplementation ist es eine der schnellsten Virtual DOM-Bibliotheken überhaupt.
     </p>
     <p>
-        Preact beinhaltet sogar zusätzliche Leistungsfunktionen wie anpassbares Update Batching, optionales Async-Rendering, DOM recycling und optimierte Ereignishandhabung mithilfe von [Linked State](/guide/linked-state).
+        Preact batched automatisch updates und ist stark auf Performance getuned. Wir arbeiten direkt mit Entwicklern von Browsern zusammen und die maximalste Performance aus Preact heraus zu holen.
     </p>
   </div>
 </section>

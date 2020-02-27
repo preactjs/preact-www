@@ -16,7 +16,7 @@ export default function (config, env, helpers) {
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
 		lib: resolve(__dirname, 'src/lib'),
-		'promise-polyfill': resolve(__dirname, 'src/promise-polyfill.js')
+		'promise-polyfill$': resolve(__dirname, 'src/promise-polyfill.js')
 	});
 
 	// Use our custom polyfill entry
@@ -96,7 +96,7 @@ export default function (config, env, helpers) {
 				const matches = content.match(FRONT_MATTER_REG);
 				if (!matches) return content;
 
-				const meta = yaml.eval('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
+				const meta = yaml.parse('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
 				content = content.replace(FRONT_MATTER_REG, '');
 				if (!meta.title) {
 					let [,title] = content.match(TITLE_REG) || [];

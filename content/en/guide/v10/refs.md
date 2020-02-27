@@ -49,7 +49,7 @@ class Foo extends Component {
   }
   
   render() {
-    return <div ref={setRef}>foo</div>
+    return <div ref={this.setRef}>foo</div>
   }
 }
 ```
@@ -101,7 +101,7 @@ class Foo extends Component {
       <div ref={this.ref}>
         Width: {width}, Height: {height}
       </div>
-    };
+    );
   }
 }
 ```

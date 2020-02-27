@@ -50,7 +50,7 @@ This is likely to change, but in the meantime it means any new pages must be lin
 ### Clone & Install Dependencies
 
 ```sh
-git clone https://github.com/developit/preact-www.git
+git clone https://github.com/preactjs/preact-www.git
 cd preact-www
 
 npm install

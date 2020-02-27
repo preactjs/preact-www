@@ -8,7 +8,7 @@ function onChange(e) {
 	route(url);
 }
 
-const AVAILABLE_DOCS = [10, 8];
+export const AVAILABLE_DOCS = [10, 8];
 
 /**
  * Select box to switch the currently displayed docs version

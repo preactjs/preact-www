@@ -11,7 +11,7 @@ toc: false
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
     <p>Un alternativa veloce e leggera 3Kb a React con le stesse moderne API.</p>
-    <p>
+    <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Primi Passi</a>
         <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Passare a Preact</a>
@@ -83,7 +83,7 @@ function Counter() {
         Preact è veloce, e non solo per il suo peso. Ha una delle implementazioni più veloci per rilevare le differenze tra il DOM sulla pagina e il DOM virtuale.
     </p>
     <p>
-        Include anche funzionalità aggiuntive per le prestazoni, come l'aggiornamento personalizzabile dei batch, un opzionale e asincrono rendering, DOM riutilizzabile, e una gestione ottimizzata degli eventi tramite lo  [Stato Collegato](/guide/linked-state).
+        Include anche funzionalità aggiuntive per le prestazoni, come l'aggiornamento personalizzabile dei batch, un opzionale e asincrono rendering e DOM riutilizzabile.
     </p>
   </div>
 </section>

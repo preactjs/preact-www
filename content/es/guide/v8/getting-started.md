@@ -7,6 +7,11 @@ permalink: '/guide/getting-started'
 
 En esta guía vamos a ver cómo crear un simple componente de "Reloj". Puedes encontrar información más detallada para cada tema dentro del menú de Guía.
 
+##
+
+Si recién está comenzando, le recomendamos ir con preact-cli.
+
+
 > :information_desk_person: [No es necesario utilizar ES2015 para poder usar Preact](https://github.com/developit/preact-without-babel)... pero deberías hacerlo. Esta guía asume que cuentas con algún tipo de configuración compatible con ES2015 usando Babel y/o webpack/browserify/gulp/grunt/etc. Si no la tienes, comienza con [preact-boilerplate] o un [Template de CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 ---

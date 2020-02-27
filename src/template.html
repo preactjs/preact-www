@@ -12,6 +12,11 @@
 		<% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
 			<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
 		<% } %>
+		<meta name="twitter:card" content="summary" />
+		<meta property="og:url" content="https://preactjs.com<%= htmlWebpackPlugin.options.url %>" />
+		<meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
+		<meta property="og:description" content="<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.description %>" />
+		<meta property="og:image" content="https://preactjs.com/assets/app-icon.png" />
 		<script>ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga('set','dimension1','<%= process.env.BRANCH %>');onerror=function(e,f,l,c){ga('send','event','exception',e,f+':'+l+':'+c)}</script>
 		<% const loadManifest = htmlWebpackPlugin.options.createLoadManifest(compilation.assets, webpack.namedChunkGroups);%>
 		<% const filesRegexp = /\.(css|js)$/;%>

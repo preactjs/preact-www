@@ -3,7 +3,7 @@ name: Demos & Examples
 permalink: '/about/demos-examples'
 ---
 
-# Demos y Ejemplos
+# Demostraciones y Ejemplos
 
 Esta página contiene una serie de demos y ejemplos que puedes utilizar para aprender Preact.
 
