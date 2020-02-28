@@ -1,6 +1,6 @@
 .btn {
 	display: inline-block;
-	min-width: 12em;
+	min-width: 16em;
 	padding: 0.75rem 2rem;
 	margin: 0 1rem;
 	box-shadow: 0 0.125rem 0 rgba(@color-brand, 0.3);
@@ -9,6 +9,10 @@
 	text-transform: uppercase;
 	white-space: nowrap;
 	letter-spacing: 0.075em;
+
+	@media (min-width: 600px) {
+		min-width: auto;
+	}
 
 	&.primary {
 		background: var(--color-btn-background) !important;
