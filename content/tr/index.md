@@ -13,7 +13,6 @@ toc: false
     <p>Aynı modern API ile React'e hızlı ve 3kB'lık alternatif.</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
     </p>
     <p>
@@ -241,7 +240,6 @@ render(
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
     </p>
 </section>

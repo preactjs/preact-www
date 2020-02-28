@@ -13,7 +13,6 @@ toc: false
     <p>Una alternativa veloz a React en 3kB con la misma API de ES6.</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Cambiar a Preact</a>
     </p>
     <p>
@@ -238,7 +237,6 @@ render(
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Cambiando a Preact</a>
     </p>
 </section>

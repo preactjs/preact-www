@@ -12,7 +12,6 @@ toc: false
     <p>Alternative légère et rapide à React avec le même API en seulement 3Ko.</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="home-button">Commencer</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Passer à preact</a>
     </p>
     <p>
@@ -232,7 +231,6 @@ render(
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Commencer</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Passer à Preact</a>
     </p>
 </section>

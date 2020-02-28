@@ -227,7 +227,6 @@ render(
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
         <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
     </p>
 </section>
