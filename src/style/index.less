@@ -1,5 +1,6 @@
 @import './helpers';
 @import './reset';
+@import './buttons';
 @import './markdown';
 @import './gh-btn';
 @import './list-view';
@@ -300,29 +301,6 @@ main .markup {
 			float: none !important;
 			width: auto !important;
 		}
-	}
-}
-
-.home-button {
-	display: inline-block;
-	min-width: 12em;
-	padding: 0.5em 0.9em;
-	background: #eee !important;
-	box-shadow: 0 2px 0 rgba(@color-brand, 0.3);
-	border: none;
-	border-radius: 4px;
-	color: var(--color-home-btn) !important;
-	font-weight: bold;
-	text-transform: uppercase;
-	white-space: nowrap;
-	margin: 0 1rem;
-}
-
-.home-button + .home-button {
-	margin-top: 1.3rem;
-
-	@media (min-width: 600px) {
-		margin-top: 0;
 	}
 }
 
