@@ -15,9 +15,6 @@ toc: false
         <a href="/guide/v10/getting-started" class="btn primary">Başlangıç</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact'e Geçiş</a>
     </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
-    </p>
 </jumbotron>
 
 ```js

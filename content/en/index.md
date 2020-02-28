@@ -15,9 +15,6 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
         <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
-    <p>
-        <github-stars user="preactjs" repo="preact">20,000+</github-stars>
-    </p>
 </jumbotron>
 
 ```jsx

@@ -15,9 +15,6 @@ toc: false
         <a href="/guide/v10/getting-started" class="btn primary">Primi Passi</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Passare a Preact</a>
     </p>
-    <p>
-        <github-stars user="developit" repo="preact">19,000+</github-stars>
-    </p>
 </jumbotron>
 
 ```jsx
