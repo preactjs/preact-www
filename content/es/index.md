@@ -12,8 +12,8 @@ toc: false
     </h1>
     <p>Una alternativa veloz a React en 3kB con la misma API de ES6.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn">Primeros pasos</a>
-        <a href="/guide/v10/switching-to-preact" class="btn">Cambiar a Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Cambiar a Preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
@@ -236,7 +236,7 @@ render(
         ¡Elige la guía que mejor te funcione!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="btn">Primeros pasos</a>
-        <a href="/guide/v10/switching-to-preact" class="btn">Cambiando a Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Cambiando a Preact</a>
     </p>
 </section>

@@ -11,8 +11,8 @@ toc: false
     </h1>
     <p>Alternative légère et rapide à React avec le même API en seulement 3Ko.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn">Commencer</a>
-        <a href="/guide/v10/switching-to-preact" class="btn">Passer à preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Commencer</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passer à preact</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
@@ -230,7 +230,7 @@ render(
         Choisissez celui qui vous convient.
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="btn">Commencer</a>
-        <a href="/guide/v10/switching-to-preact" class="btn">Passer à Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Commencer</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passer à Preact</a>
     </p>
 </section>
