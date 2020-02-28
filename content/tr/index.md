@@ -12,8 +12,8 @@ toc: false
     </h1>
     <p>Aynı modern API ile React'e hızlı ve 3kB'lık alternatif.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
+        <a href="/guide/v10/getting-started" class="btn">Başlangıç</a>
+        <a href="/guide/v10/switching-to-preact" class="btn">Preact'e Geçiş</a>
     </p>
     <p>
         <github-stars user="developit" repo="preact">5,000+</github-stars>
@@ -239,7 +239,7 @@ render(
         Size uygun olan kılavuzu seçin!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
+        <a href="/guide/v10/getting-started" class="btn">Başlangıç</a>
+        <a href="/guide/v10/switching-to-preact" class="btn">Preact'e Geçiş</a>
     </p>
 </section>
