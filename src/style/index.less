@@ -223,18 +223,6 @@ main .markup {
 			justify-content: center;
 			align-items: initial;
 		}
-
-		.home-button + .home-button {
-			margin-top: 1.3rem;
-
-			@media (min-width: 600px) {
-				margin-top: 0;
-			}
-		}
-	}
-
-	.home-button {
-		margin: 0 1rem;
 	}
 
 	.home-demo {
@@ -327,17 +315,14 @@ main .markup {
 	font-weight: bold;
 	text-transform: uppercase;
 	white-space: nowrap;
-
-	& + .home-button-sep + .home-button {
-		@media (max-width: 600px) {
-			margin-top: 1.3rem;
-		}
-	}
+	margin: 0 1rem;
 }
 
-.home-button-sep {
-	@media (max-width: 600px) {
-		display: none;
+.home-button + .home-button {
+	margin-top: 1.3rem;
+
+	@media (min-width: 600px) {
+		margin-top: 0;
 	}
 }
 
