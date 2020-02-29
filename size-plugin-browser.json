@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1582966863119,
+    "timestamp": 1582982605473,
     "files": [
       {
         "filename": "sw-esm.js",
@@ -57,18 +57,6 @@
         "diff": 0
       },
       {
-        "filename": "5.chunk.65231.css",
-        "previous": 1467,
-        "size": 0,
-        "diff": -1467
-      },
-      {
-        "filename": "5.chunk.2e498.esm.js",
-        "previous": 3382,
-        "size": 0,
-        "diff": -3382
-      },
-      {
         "filename": "markdown.f1c81.worker.js",
         "previous": 10256,
         "size": 10256,
@@ -99,34 +87,10 @@
         "diff": 0
       },
       {
-        "filename": "5.chunk.7d278.js",
-        "previous": 3456,
-        "size": 0,
-        "diff": -3456
-      },
-      {
-        "filename": "bundle.447b7.css",
-        "previous": 9336,
-        "size": 0,
-        "diff": -9336
-      },
-      {
-        "filename": "bundle.00e28.esm.js",
-        "previous": 23845,
-        "size": 0,
-        "diff": -23845
-      },
-      {
         "filename": "runner.chunk.cc4fb.esm.js",
         "previous": 5860,
         "size": 5860,
         "diff": 0
-      },
-      {
-        "filename": "bundle.80e34.js",
-        "previous": 24260,
-        "size": 0,
-        "diff": -24260
       },
       {
         "filename": "runner.chunk.32860.js",
@@ -136,36 +100,72 @@
       },
       {
         "filename": "bundle.7bc91.css",
-        "previous": 0,
-        "size": 9358,
-        "diff": 9358
+        "previous": 9358,
+        "size": 0,
+        "diff": -9358
       },
       {
         "filename": "bundle.4c91a.esm.js",
-        "previous": 0,
-        "size": 23848,
-        "diff": 23848
+        "previous": 23848,
+        "size": 0,
+        "diff": -23848
       },
       {
         "filename": "5.chunk.34067.css",
-        "previous": 0,
-        "size": 1470,
-        "diff": 1470
+        "previous": 1470,
+        "size": 0,
+        "diff": -1470
       },
       {
         "filename": "5.chunk.15a95.esm.js",
-        "previous": 0,
-        "size": 3382,
-        "diff": 3382
+        "previous": 3382,
+        "size": 0,
+        "diff": -3382
       },
       {
         "filename": "bundle.dc911.js",
+        "previous": 24263,
+        "size": 0,
+        "diff": -24263
+      },
+      {
+        "filename": "5.chunk.8551a.js",
+        "previous": 3455,
+        "size": 0,
+        "diff": -3455
+      },
+      {
+        "filename": "bundle.4b143.css",
+        "previous": 0,
+        "size": 9383,
+        "diff": 9383
+      },
+      {
+        "filename": "bundle.32272.esm.js",
+        "previous": 0,
+        "size": 23849,
+        "diff": 23849
+      },
+      {
+        "filename": "5.chunk.429c6.css",
+        "previous": 0,
+        "size": 1483,
+        "diff": 1483
+      },
+      {
+        "filename": "5.chunk.63f0a.esm.js",
+        "previous": 0,
+        "size": 3381,
+        "diff": 3381
+      },
+      {
+        "filename": "bundle.6cb92.js",
         "previous": 0,
         "size": 24263,
         "diff": 24263
       },
       {
-        "filename": "5.chunk.8551a.js",
+        "filename": "5.chunk.13309.js",
         "previous": 0,
         "size": 3455,
         "diff": 3455
