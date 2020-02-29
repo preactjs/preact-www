@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1582966782900,
+    "timestamp": 1582982531450,
     "files": [
       {
         "filename": "editor.chunk.*****.js",
@@ -22,9 +22,9 @@
       },
       {
         "filename": "ssr-bundle.js",
-        "previous": 28286,
+        "previous": 28292,
         "size": 28292,
-        "diff": 6
+        "diff": 0
       },
       {
         "filename": "markdown.c9960.worker.js",
@@ -51,16 +51,16 @@
         "diff": 0
       },
       {
-        "filename": "ssr-bundle.8178b.css",
-        "previous": 11783,
+        "filename": "ssr-bundle.2f095.css",
+        "previous": 11820,
         "size": 0,
-        "diff": -11783
+        "diff": -11820
       },
       {
-        "filename": "ssr-bundle.2f095.css",
+        "filename": "ssr-bundle.bb7c2.css",
         "previous": 0,
-        "size": 11820,
-        "diff": 11820
+        "size": 11875,
+        "diff": 11875
       }
     ]
   }
