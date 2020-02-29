@@ -105,7 +105,7 @@ So, instead of listening for a `input` event we should listen for a `click` even
 
 ### Checkbox Example
 
-```js
+```jsx
 class MyForm extends Component {
   toggle = e => {
       let checked = !this.state.checked;

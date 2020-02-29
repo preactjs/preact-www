@@ -162,7 +162,7 @@ If you are looking for behavior that exactly matches how React's `render` method
 
 In Preact X we can't guarantee `props.children` to always be of type `array` anymore. This change was necessary to resolve parsing ambiguities in regards to `Fragments` and components that return an `array` of children. In most cases you may not even notice it. Only in places where you'll use array methods on `props.children` directly need to be wrapped with `toChildArray`. This function will always return an array.
 
-```js
+```jsx
 // Preact 8.x
 function Foo(props) {
   // `.length` is an array method. In Preact X when `props.children` is not an

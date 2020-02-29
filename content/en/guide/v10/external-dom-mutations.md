@@ -20,7 +20,7 @@ In Preact (and similarly in React), working with these types of libraries requir
 
 This can be as simple as defining a `shouldComponentUpdate()` method on your component, and having it return `false`:
 
-```js
+```jsx
 class Block extends Component {
   shouldComponentUpdate() {
     return false;
@@ -30,7 +30,7 @@ class Block extends Component {
 
 ... or for shorthand:
 
-```js
+```jsx
 class Block extends Component {
   shouldComponentUpdate = () => false;
 }
@@ -44,7 +44,7 @@ With this lifecycle hook in place and telling Preact not to re-render the Compon
 
 Here is an example of "turning off" re-rendering for a Component.  Note that `render()` is still invoked as part of creating and mounting the Component, in order to generate its initial DOM structure.
 
-```js
+```jsx
 class Example extends Component {
   shouldComponentUpdate() {
     // do not re-render via diff:

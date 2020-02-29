@@ -46,7 +46,7 @@ Com esse gancho no _lifecycle_ adicionado, dizendo ao Preact para não re-render
 
 Aqui está um exemplo para "desligar" a re-renderização de com Componente. Note que `render()` ainda é invocado com parte da criação e montagem do Componente, de modo a gerar sua estrutura geral DOM.
 
-```js
+```jsx
 class Example extends Component {
   shouldComponentUpdate() {
     // não renderize via diff:

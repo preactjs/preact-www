@@ -17,7 +17,7 @@ toc: false
     </p>
 </jumbotron>
 
-```js
+```jsx
 function Counter() {
   const [value, setValue] = useState(0);
 

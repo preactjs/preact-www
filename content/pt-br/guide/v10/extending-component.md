@@ -33,7 +33,7 @@ class BoundComponent extends Component {
 
 Exemplo de uso:
 
-```js
+```jsx
 class Link extends BoundComponent {
     bind = ['click'];
     click() {
