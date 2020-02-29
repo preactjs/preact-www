@@ -15,7 +15,7 @@ import { useState, useCallback } from 'preact/hooks';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
-	const [activeGroup, setActiveGroup] = useState('');
+	const [activeGroups, setActiveGroup] = useState({});
 
 	// Remove trailing slash to fix activeCss check below.
 	// Note that netlify will always append a slash to the url so that we end
@@ -35,21 +35,23 @@ export default function SidebarNav({ items, onClick }) {
 					const headerId = `accordion_header_${text}`;
 					const id = `accordion_body_${text}`;
 					const isActive =
-						activeGroup === headerId ||
-						routes.some(r => r.href === url) ||
-						true;
+						activeGroups[headerId] === undefined || !!activeGroups[headerId];
+					routes.some(r => r.href === url);
 
 					return (
 						<Fragment key={headerId}>
-							<AccordionHeader
+							<SidebarGroup
 								id={headerId}
 								level={level}
 								controls={id}
 								isActive={isActive}
-								onClick={setActiveGroup}
+								// eslint-disable-next-line react/jsx-no-bind
+								onClick={(name, value) =>
+									setActiveGroup({ ...activeGroups, [name]: value })
+								}
 							>
 								{text}
-							</AccordionHeader>
+							</SidebarGroup>
 							<div
 								id={id}
 								role="region"
@@ -90,10 +92,10 @@ export default function SidebarNav({ items, onClick }) {
 	);
 }
 
-function AccordionHeader(props) {
+function SidebarGroup(props) {
 	const { id, level, onClick, children, isActive, controls } = props;
 	const onClickFn = useCallback(() => {
-		onClick(!isActive ? id : '');
+		onClick(id, !isActive);
 	}, [onClick, id, isActive]);
 
 	return (
