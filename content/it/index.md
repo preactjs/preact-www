@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Un alternativa veloce e leggera 3Kb a React con le stesse moderne API.</p>
+    <p class="tagline">Un alternativa veloce e leggera 3Kb a React con le stesse moderne API.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Primi Passi</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Passare a Preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">19,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Primi Passi</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passare a Preact</a>
     </p>
 </jumbotron>
 
@@ -238,8 +234,7 @@ render(
         Scegli la guida migliore per te!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Primi passi</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Passa a Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Primi passi</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passa a Preact</a>
     </p>
 </section>

@@ -10,13 +10,10 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Fast 3kB alternative to React with the same modern API.</p>
+    <p class="tagline">Fast 3kB alternative to React with the same modern API.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
-    </p>
-    <p>
-        <github-stars user="preactjs" repo="preact">20,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </jumbotron>
 
@@ -226,8 +223,7 @@ render(
         Pick the guide that works best for you!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </section>

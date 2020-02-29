@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
+    <p class="tagline">React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">如何开始</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 preact</a>
     </p>
 </jumbotron>
 
@@ -231,8 +227,7 @@ render(
         选取最适合您的指导规范！
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">如何开始</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 Preact</a>
     </p>
 </section>
