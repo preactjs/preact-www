@@ -28,6 +28,13 @@ export default function SidebarNav({ items, onClick }) {
 			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 		>
 			{items.map(({ text, level, href }) => {
+				if (!href) {
+					return (
+						<span className={cx(style.category, style['level-' + level])}>
+							{text}
+						</span>
+					);
+				}
 				let activeCss = href === url ? style.linkActive : undefined;
 				return (
 					<a
