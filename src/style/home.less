@@ -1,0 +1,28 @@
+.logo {
+	position: relative;
+
+	@media @sidebar-break {
+		left: -4rem;
+	}
+}
+
+.tagline {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: 300;
+	line-height: 1.2;
+	color: white;
+	position: relative;
+	transform: translate3d(0, 0, 0);
+	text-align: center;
+	margin: 2rem 0 2.5rem 0;
+
+	@media @sidebar-break {
+		max-width: calc(100% - 9.5rem);
+		margin-top: 0;
+		text-align: left;
+		padding: 0;
+		top: -1.5rem;
+		left: 11.75rem;
+	}
+}

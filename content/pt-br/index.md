@@ -10,7 +10,7 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
+    <p class="tagline">Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Como começar</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Mudando para Preact</a>
