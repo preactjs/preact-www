@@ -32,21 +32,20 @@ export default function Sidebar() {
 				acc.push({
 					text: getRouteName(item, lang),
 					level: 2,
-					href: null
-				});
-				return acc.concat(
-					item.routes.map(nested => ({
+					href: null,
+					routes: item.routes.map(nested => ({
 						text: getRouteName(nested, lang),
 						level: 3,
 						href: nested.path
 					}))
-				);
+				});
+			} else {
+				acc.push({
+					text: getRouteName(item, lang),
+					level: 2,
+					href: item.path
+				});
 			}
-			acc.push({
-				text: getRouteName(item, lang),
-				level: 2,
-				href: item.path
-			});
 			return acc;
 		}, []);
 

@@ -1,7 +1,8 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import cx from '../../../lib/cx';
 import style from './sidebar-nav.less';
 import { getCurrentUrl } from 'preact-router';
+import { useState, useCallback } from 'preact/hooks';
 
 /**
  * @typedef {object} SidebarNavProps
@@ -14,6 +15,8 @@ import { getCurrentUrl } from 'preact-router';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
+	const [activeGroup, setActiveGroup] = useState('');
+
 	// Remove trailing slash to fix activeCss check below.
 	// Note that netlify will always append a slash to the url so that we end
 	// up with something like "foo/bar/?lang=de". That's why we first remove
@@ -27,25 +30,112 @@ export default function SidebarNav({ items, onClick }) {
 			tabIndex="0"
 			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 		>
-			{items.map(({ text, level, href }) => {
+			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
+					const headerId = `accordion_header_${text}`;
+					const id = `accordion_body_${text}`;
+					const isActive =
+						activeGroup === headerId ||
+						routes.some(r => r.href === url) ||
+						true;
+
 					return (
-						<span className={cx(style.category, style['level-' + level])}>
-							{text}
-						</span>
+						<Fragment key={headerId}>
+							<AccordionHeader
+								id={headerId}
+								level={level}
+								controls={id}
+								isActive={isActive}
+								onClick={setActiveGroup}
+							>
+								{text}
+							</AccordionHeader>
+							<div
+								id={id}
+								role="region"
+								aria-labelledby={headerId}
+								isActive={isActive}
+								hidden={!isActive}
+								class={style.accordionBody}
+							>
+								{routes.map(route => {
+									const { href, onClick, text } = route;
+									return (
+										<SidebarNavLink
+											key={href}
+											href={href}
+											onClick={onClick}
+											isActive={href === url}
+										>
+											{text}
+										</SidebarNavLink>
+									);
+								})}
+							</div>
+						</Fragment>
 					);
 				}
-				let activeCss = href === url ? style.linkActive : undefined;
 				return (
-					<a
+					<SidebarNavLink
+						key={href}
 						href={href}
 						onClick={onClick}
-						class={cx(style.link, activeCss, style['level-' + level])}
+						isActive={href === url}
 					>
 						{text}
-					</a>
+					</SidebarNavLink>
 				);
 			})}
 		</nav>
+	);
+}
+
+function AccordionHeader(props) {
+	const { id, level, onClick, children, isActive, controls } = props;
+	const onClickFn = useCallback(() => {
+		onClick(!isActive ? id : '');
+	}, [onClick, id, isActive]);
+
+	return (
+		<button
+			id={id}
+			onClick={onClickFn}
+			className={cx(style.category, style['level-' + level])}
+			aria-controls={controls}
+			aria-expanded={'' + !!isActive}
+		>
+			{children}
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="20"
+				height="20"
+				viewBox="0 0 8.467 8.467"
+				aria-hidden="true"
+				className={cx(style.accordionIcon, isActive && style.active)}
+			>
+				<path
+					d="M1.587 2.913L4.233 5.56 6.88 2.913"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</button>
+	);
+}
+
+function SidebarNavLink(props) {
+	const { href, onClick, level, isActive, children } = props;
+	let activeCss = isActive ? style.linkActive : undefined;
+	return (
+		<a
+			href={href}
+			onClick={onClick}
+			class={cx(style.link, activeCss, style['level-' + level])}
+		>
+			{children}
+		</a>
 	);
 }
