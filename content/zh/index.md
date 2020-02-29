@@ -31,6 +31,11 @@ function Counter() {
 }
 ```
 
+<div class="sponsors">
+  <p>Proudly <a href="https://opencollective.com/preact">sponsored by:</a></p>
+  <sponsors></sponsors>
+</div>
+
 <section class="home-top">
     <h1>与众不同的库</h1>
 </section>
