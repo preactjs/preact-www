@@ -13,7 +13,7 @@ Perhaps you want to do automatic connection to stores/reducers within a Flux-lik
 
 In any case, just use ES2015 class inheritance to extend Preact's `Component` class:
 
-```js
+```jsx
 class BoundComponent extends Component {
     // example: get bound methods
     binds() {
@@ -32,7 +32,7 @@ class BoundComponent extends Component {
 
 Example Usage:
 
-```js
+```jsx
 class Link extends BoundComponent {
     bind = ['click'];
     click() {
@@ -53,7 +53,7 @@ render(
 
 The possibilities are endless. Here's an extended `Component` class that supports rudimentary mixins:
 
-```js
+```jsx
 class MixedComponent extends Component {
     constructor() {
         super();

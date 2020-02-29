@@ -44,7 +44,7 @@ Render a Preact component into the `containerNode` DOM node. Does not return any
 
 If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm.
 
-```js
+```jsx
 import { render } from 'preact';
 
 const Foo = () => <div>foo</div>;

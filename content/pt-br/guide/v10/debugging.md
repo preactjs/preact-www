@@ -43,7 +43,7 @@ render(<App />, document.getElementById('root'));
 
 A maioria dos bundlers permite remover o código quando eles detectam que um ramo dentro de uma instrução `if` nunca será atingido. Podemos usar isso para incluir apenas `preact/debug` durante o desenvolvimento e salvar esses bytes preciosos em uma applição em produção.
 
-```js
+```jsx
 // Deve ser o primeiro import
 if (process.env.NODE_ENV==='development') {
   // Deve ser obrigatório o uso aqui, pois as instruções de importação são permitidas apenas
@@ -94,7 +94,7 @@ render(<App />, dom);
 
 O mesmo erro será gerado quando for o contrário. Quando você declara uma exportação `nomeada` e está tentando usá-la como uma exportação `padrão`. Uma maneira rápida de verificar isso (caso o seu editor ainda não o faça) é apenas desconectar a importação:
 
-```js
+```jsx
 // app.js
 export function App() {
   return <div>Olá Mundo</div>;
