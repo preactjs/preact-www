@@ -218,142 +218,171 @@
 		},
 
 		{
-			"path": "/guide/v10/getting-started",
 			"name": {
-				"en": "Getting Started",
-				"pt-br": "Começando",
-				"de": "Los geht's"
-			}
+				"en": "Introduction",
+				"de": "Einführung"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/getting-started",
+					"name": {
+						"en": "Getting Started",
+						"pt-br": "Começando",
+						"de": "Los geht's"
+					}
+				},
+				{
+					"path": "/guide/v10/whats-new",
+					"name": {
+						"en": "What's new?",
+						"pt-br": "o que há de novo"
+					}
+				},
+				{
+					"path": "/guide/v10/upgrade-guide",
+					"name": {
+						"en": "Upgrading from 8.x",
+						"pt-br": "Fazendo upgrade do 8.x",
+						"de": "Migration von 8.x"
+					}
+				},
+				{
+					"path": "/guide/v10/tutorial",
+					"name": "Tutorial"
+				}
+			]
 		},
 		{
-			"path": "/guide/v10/whats-new",
 			"name": {
-				"en": "What's new?",
-				"pt-br": "o que há de novo"
-			}
+				"en": "Essentials"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/components",
+					"name": {
+						"en": "Components",
+						"pt-br": "Componentes",
+						"de": "Komponenten"
+					}
+				},
+				{
+					"path": "/guide/v10/hooks",
+					"name": "Hooks"
+				},
+				{
+					"path": "/guide/v10/forms",
+					"name": {
+						"en": "Forms",
+						"pt-br": "Formulários",
+						"de": "Formulare"
+					}
+				},
+				{
+					"path": "/guide/v10/refs",
+					"name": {
+						"en": "References",
+						"pt-br": "Referências",
+						"de": "Referenzen"
+					}
+				},
+				{
+					"path": "/guide/v10/context",
+					"name": {
+						"en": "Context",
+						"pt-br": "Contexto",
+						"de": "Kontext"
+					}
+				}
+			]
 		},
 		{
-			"path": "/guide/v10/upgrade-guide",
 			"name": {
-				"en": "Upgrading from 8.x",
-				"pt-br": "Fazendo upgrade do 8.x",
-				"de": "Migration von 8.x"
-			}
+				"en": "Debug & Test"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/debugging",
+					"name": {
+						"en": "Debugging Tools",
+						"pt-br": "Ferramentas de depuração",
+						"de": "Entwickler-Tools"
+					}
+				},
+				{
+					"path": "/guide/v10/unit-testing-with-enzyme",
+					"name": {
+						"en": "Unit Testing with Enzyme",
+						"pt-br": "Teste unitario com Enzyme",
+						"de": "Unit-Tests mit Enzyme"
+					}
+				}
+			]
 		},
 		{
-			"path": "/guide/v10/tutorial",
-			"name": "Tutorial"
-		},
-		{
-			"path": "/guide/v10/differences-to-react",
 			"name": {
-				"en": "Differences to React",
-				"pt-br": "Diferenças do React",
-				"de": "Unterschiede zu React"
-			}
+				"en": "React compatibility"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/differences-to-react",
+					"name": {
+						"en": "Differences to React",
+						"pt-br": "Diferenças do React",
+						"de": "Unterschiede zu React"
+					}
+				},
+				{
+					"path": "/guide/v10/switching-to-preact",
+					"name": {
+						"en": "Switching to Preact",
+						"pt-br": "Mudando para Preact",
+						"de": "Wechsel zu Preact"
+					}
+				}
+			]
 		},
 		{
-			"path": "/guide/v10/switching-to-preact",
 			"name": {
-				"en": "Switching to Preact",
-				"pt-br": "Mudando para Preact",
-				"de": "Wechsel zu Preact"
-			}
-		},
-		{
-			"path": "/guide/v10/components",
-			"name": {
-				"en": "Components",
-				"pt-br": "Componentes",
-				"de": "Komponenten"
-			}
-		},
-		{
-			"path": "/guide/v10/hooks",
-			"name": "Hooks"
-		},
-		{
-			"path": "/guide/v10/api-reference",
-			"name": {
-				"en": "API Reference",
-				"pt-br": "Referência da API",
-				"de": "API Referenz"
-			}
-		},
-		{
-			"path": "/guide/v10/forms",
-			"name": {
-				"en": "Forms",
-				"pt-br": "Formulários",
-				"de": "Formulare"
-			}
-		},
-		{
-			"path": "/guide/v10/refs",
-			"name": {
-				"en": "References",
-				"pt-br": "Referências",
-				"de": "Referenzen"
-			}
-		},
-		{
-			"path": "/guide/v10/context",
-			"name": {
-				"en": "Context",
-				"pt-br": "Contexto",
-				"de": "Kontext"
-			}
-		},
-		{
-			"path": "/guide/v10/external-dom-mutations",
-			"name": {
-				"en": "External DOM Mutations",
-				"pt-br": "Mutações do DOM externas",
-				"de": "Externe DOM Mutationen"
-			}
-		},
-		{
-			"path": "/guide/v10/debugging",
-			"name": {
-				"en": "Debugging Tools",
-				"pt-br": "Ferramentas de depuração",
-				"de": "Entwickler-Tools"
-			}
-		},
-		{
-			"path": "/guide/v10/server-side-rendering",
-			"name": "Server-Side Rendering"
-		},
-		{
-			"path": "/guide/v10/extending-component",
-			"name": {
-				"en": "Extending Component",
-				"pt-br": "Extendendo Componentes",
-				"de": "Komponente Erweitern"
-			}
-		},
-		{
-			"path": "/guide/v10/unit-testing-with-enzyme",
-			"name": {
-				"en": "Unit Testing with Enzyme",
-				"pt-br": "Teste unitario com Enzyme",
-				"de": "Unit-Tests mit Enzyme"
-			}
-		},
-		{
-			"path": "/guide/v10/web-components",
-			"name": "Web Components"
-		},
-		{
-			"path": "/guide/v10/progressive-web-apps",
-			"name": "Progressive Web Apps"
-		},
-		{
-			"path": "/guide/v10/options",
-			"name": {
-				"en": "Options",
-				"de": "Optionen"
-			}
+				"en": "Advanced",
+				"de": "Fortgeschritten"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/api-reference",
+					"name": {
+						"en": "API Reference",
+						"pt-br": "Referência da API",
+						"de": "API Referenz"
+					}
+				},
+				{
+					"path": "/guide/v10/web-components",
+					"name": "Web Components"
+				},
+				{
+					"path": "/guide/v10/progressive-web-apps",
+					"name": "Progressive Web Apps"
+				},
+				{
+					"path": "/guide/v10/server-side-rendering",
+					"name": "Server-Side Rendering"
+				},
+				{
+					"path": "/guide/v10/external-dom-mutations",
+					"name": {
+						"en": "External DOM Mutations",
+						"pt-br": "Mutações do DOM externas",
+						"de": "Externe DOM Mutationen"
+					}
+				},
+				{
+					"path": "/guide/v10/options",
+					"name": {
+						"en": "Options",
+						"de": "Optionen"
+					}
+				}
+			]
 		}
 	]
 }
