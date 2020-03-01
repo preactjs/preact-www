@@ -376,14 +376,6 @@
 					}
 				},
 				{
-					"path": "/guide/v10/extending-component",
-					"name": {
-						"en": "Extending Component",
-						"pt-br": "Extendendo Componentes",
-						"de": "Komponente Erweitern"
-					}
-				},
-				{
 					"path": "/guide/v10/options",
 					"name": {
 						"en": "Options",
