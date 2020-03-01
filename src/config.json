@@ -245,6 +245,10 @@
 						"pt-br": "Fazendo upgrade do 8.x",
 						"de": "Migration von 8.x"
 					}
+				},
+				{
+					"path": "/guide/v10/tutorial",
+					"name": "Tutorial"
 				}
 			]
 		},
@@ -254,23 +258,11 @@
 			},
 			"routes": [
 				{
-					"path": "/guide/v10/tutorial",
-					"name": "Tutorial"
-				},
-				{
 					"path": "/guide/v10/components",
 					"name": {
 						"en": "Components",
 						"pt-br": "Componentes",
 						"de": "Komponenten"
-					}
-				},
-				{
-					"path": "/guide/v10/extending-component",
-					"name": {
-						"en": "Extending Component",
-						"pt-br": "Extendendo Componentes",
-						"de": "Komponente Erweitern"
 					}
 				},
 				{
@@ -300,13 +292,28 @@
 						"pt-br": "Contexto",
 						"de": "Kontext"
 					}
-				},
+				}
+			]
+		},
+		{
+			"name": {
+				"en": "Debug & Test"
+			},
+			"routes": [
 				{
 					"path": "/guide/v10/debugging",
 					"name": {
 						"en": "Debugging Tools",
 						"pt-br": "Ferramentas de depuração",
 						"de": "Entwickler-Tools"
+					}
+				},
+				{
+					"path": "/guide/v10/unit-testing-with-enzyme",
+					"name": {
+						"en": "Unit Testing with Enzyme",
+						"pt-br": "Teste unitario com Enzyme",
+						"de": "Unit-Tests mit Enzyme"
 					}
 				}
 			]
@@ -330,21 +337,6 @@
 						"en": "Switching to Preact",
 						"pt-br": "Mudando para Preact",
 						"de": "Wechsel zu Preact"
-					}
-				}
-			]
-		},
-		{
-			"name": {
-				"en": "Testing"
-			},
-			"routes": [
-				{
-					"path": "/guide/v10/unit-testing-with-enzyme",
-					"name": {
-						"en": "Unit Testing with Enzyme",
-						"pt-br": "Teste unitario com Enzyme",
-						"de": "Unit-Tests mit Enzyme"
 					}
 				}
 			]
@@ -381,6 +373,14 @@
 						"en": "External DOM Mutations",
 						"pt-br": "Mutações do DOM externas",
 						"de": "Externe DOM Mutationen"
+					}
+				},
+				{
+					"path": "/guide/v10/extending-component",
+					"name": {
+						"en": "Extending Component",
+						"pt-br": "Extendendo Componentes",
+						"de": "Komponente Erweitern"
 					}
 				},
 				{
