@@ -40,6 +40,7 @@
 		padding: 0;
 		font-weight: bold;
 		cursor: text;
+		position: relative;
 
 		&:hover a.anchor {
 			text-decoration: none;
@@ -49,6 +50,7 @@
 		&:before {
 			content: '';
 			display: block;
+			position: absolute;
 			height: @header-height;
 			margin: -@header-height 0 0;
 		}

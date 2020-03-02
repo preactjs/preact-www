@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Schnelle 3kB-Alternative zu React mit der gleichen ES6-API.</p>
+    <p class="tagline">Schnelle 3kB-Alternative zu React mit der gleichen ES6-API.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Fang an</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Wechsle zu Preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Fang an</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Wechsle zu Preact</a>
     </p>
 </jumbotron>
 
@@ -34,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p><a href="https://opencollective.com/preact">Gesponsort von:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>Eine Bibliothek der anderen Art.</h1>
@@ -111,7 +112,6 @@ function Counter() {
     <ul>
         <li>`props`, `state` und `context` werden zu `render()` weitergegeben</li>
         <li>Standard HTML-Attribute (z.B. `class` und `for`) können verwendet werden</li>
-        <li>Funktioniert ohne jegliche Modifikation mit React DevTools</li>
     </ul>
   </div>
 </section>
@@ -232,8 +232,7 @@ render(
         Wähle die Anleitung aus, die für dich am besten geeignet ist!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Fang an</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Wechsle zu Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Fang an</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Wechsle zu Preact</a>
     </p>
 </section>

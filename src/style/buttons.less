@@ -1,0 +1,40 @@
+.btn {
+	display: inline-block;
+	min-width: 16em;
+	padding: 0.5rem 1.5rem;
+	margin: 0 1rem;
+	box-shadow: 0 0.125rem 0 rgba(@color-brand, 0.3);
+	border: 0.2rem solid var(--color-btn-background);
+	border-radius: 0.25rem;
+	text-transform: uppercase;
+	white-space: nowrap;
+	letter-spacing: 0.075em;
+
+	@media (min-width: 600px) {
+		padding: 0.75rem 2rem;
+	}
+
+	&.primary {
+		background: var(--color-btn-background) !important;
+		color: black !important;
+	}
+
+	&.secondary  {
+		background: transparent !important;
+		color: var(--color-btn-secondary) !important;
+	}
+
+	.intro-buttons & {
+		&.secondary {
+			color: white !important;
+		}
+	}
+}
+
+.btn + .btn {
+	margin-top: 1.3rem;
+
+	@media (min-width: 600px) {
+		margin-top: 0;
+	}
+}

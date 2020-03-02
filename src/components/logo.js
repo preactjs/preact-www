@@ -76,6 +76,7 @@ export default class Logo extends Component {
 
 		return (
 			<svg
+				class="logo"
 				width={!text && '34px'}
 				height="34px"
 				viewBox={`-256 -256 ${text ? 1800 : 512} 512`}

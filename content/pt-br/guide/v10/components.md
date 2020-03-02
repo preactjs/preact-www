@@ -39,7 +39,7 @@ Os componentes de classe podem ter métodos de estado e ciclo de vida. Os últim
 
 Aqui temos um componente de classe simples chamado `<Clock>` que exibe a hora atual:
 
-```js
+```jsx
 class Clock extends Component {
   state = { time: Date.now() }
 
@@ -150,7 +150,7 @@ const Bar = <>foo</>;
 
 Você também pode retornar arrays de seus componentes:
 
-```js
+```jsx
 function Columns() {
   return [
     <td>Olá</td>,
@@ -161,7 +161,7 @@ function Columns() {
 
 Não se esqueça de adicionar chaves ao `Fragments` se você as criar em um loop:
 
-```js
+```jsx
 function Glossary(props) {
   return (
     <dl>

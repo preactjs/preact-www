@@ -39,14 +39,13 @@ Class components can have state and lifecycle methods. The latter are special me
 
 Here we have a simple class component called `<Clock>` that displays the current time:
 
-```js
+```jsx
 class Clock extends Component {
 
   constructor() {
     super();
     this.state = { time: Date.now() };
   }
- 
 
   // Lifecycle: Called whenever our component is created
   componentDidMount() {
@@ -159,7 +158,7 @@ const Bar = <>foo</>;
 
 You can also return arrays from your components:
 
-```js
+```jsx
 function Columns() {
   return [
     <td>Hello</td>,
@@ -170,7 +169,7 @@ function Columns() {
 
 Don't forget to add keys to `Fragments` if you create them in a loop:
 
-```js
+```jsx
 function Glossary(props) {
   return (
     <dl>

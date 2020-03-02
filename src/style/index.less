@@ -1,17 +1,21 @@
 @import './helpers';
 @import './reset';
+@import './buttons';
 @import './markdown';
 @import './gh-btn';
 @import './list-view';
 @import './prism.css';
 @import './variables';
+@import './home';
 
 // The following two classes may seem redundant, but they allow us to overwrite
 // the scheme defined by the browser if the user wants to.
 html.light {
 	--color-page-bg: white;
 	--color-text: #444;
-	--color-home-btn: #673ab8;
+	--color-btn: #673ab8;
+	--color-btn-secondary: #673ab8;
+	--color-btn-background: #eee;
 	--color-heading: black;
 	--color-link: #673ab8;
 	--color-hr: #f8f8f8;
@@ -47,7 +51,9 @@ html.dark {
 	--color-text: #b0b0b0;
 	--color-heading: #c5c5c5;
 	--color-link: #ae80ff;
-	--color-home-btn: #673ab8;
+	--color-btn: #673ab8;
+	--color-btn-secondary: white;
+	--color-btn-background: #eee;
 	--color-hr: #444;
 	--color-quote-bg: #29475f;
 	--color-quote-border: #3f6b9c;
@@ -217,24 +223,14 @@ main .markup {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-bottom: 3rem;
 
 		@media (min-width: 600px) {
 			flex-direction: row-reverse;
 			justify-content: center;
 			align-items: initial;
+			margin-bottom: 4.5rem;
 		}
-
-		.home-button + .home-button {
-			margin-top: 1.3rem;
-
-			@media (min-width: 600px) {
-				margin-top: 0;
-			}
-		}
-	}
-
-	.home-button {
-		margin: 0 1rem;
 	}
 
 	.home-demo {
@@ -312,32 +308,6 @@ main .markup {
 			float: none !important;
 			width: auto !important;
 		}
-	}
-}
-
-.home-button {
-	display: inline-block;
-	min-width: 12em;
-	padding: 0.5em 0.9em;
-	background: #eee !important;
-	box-shadow: 0 2px 0 rgba(@color-brand, 0.3);
-	border: none;
-	border-radius: 4px;
-	color: var(--color-home-btn) !important;
-	font-weight: bold;
-	text-transform: uppercase;
-	white-space: nowrap;
-
-	& + .home-button-sep + .home-button {
-		@media (max-width: 600px) {
-			margin-top: 1.3rem;
-		}
-	}
-}
-
-.home-button-sep {
-	@media (max-width: 600px) {
-		display: none;
 	}
 }
 

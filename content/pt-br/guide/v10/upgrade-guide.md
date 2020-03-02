@@ -102,7 +102,7 @@ _Nota: Esta alteração não afeta o `preact/compat`. Ele ainda tem uma exporta�
 
 No Preact 8.x, `render ()` acrescenta um componente Preact quando `render ()` é repetido. No Preact X, `render ()` substitui um componente Preact existente quando `render ()` é repetido.
 
-```js
+```jsx
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
@@ -114,7 +114,7 @@ render(<p>bar</p>, document.body);
 
 No Preact X, não podemos garantir que `props.children 'sempre seja do tipo` array'. Essa alteração foi necessária para resolver ambiguidades de análise em relação a `Fragmentos` e componentes que retornam um `array` de filhos. Na maioria dos casos, você pode nem perceber. Somente em lugares onde você usará métodos de array em `props.children` diretamente precisa ser envolvido com `toChildArray`. Esta função sempre retornará um array.
 
-```js
+```jsx
 // Preact 8.x
 function Foo(props) {
   // `.length` é um método de matriz. No Preact X, quando `props.children` não é um

@@ -44,6 +44,37 @@
 	}
 }
 
+.category {
+	color: var(--color-sidebar-link-active);
+	text-transform: uppercase;
+	letter-spacing: 0.125em;
+	display: block;
+	margin-top: 1rem;
+	background: none;
+	border: none;
+	padding: 0.5rem 0;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	font-size: 0.9rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.accordionIcon {
+	transform: rotate(0);
+	transition: all 0.3s;
+
+	&.active {
+		transform: rotate(-180deg);
+	}
+}
+
+.accordionBody {
+	margin-top: 0.25rem;
+}
+
 .level-3 {
 	padding-left: 2rem;
 }

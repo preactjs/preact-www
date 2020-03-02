@@ -157,7 +157,7 @@ Boom! We're done! We can now enter a custom name, click "Update" and our new nam
 
 We wrote our first component, so let's get a little more practice. This time we build a clock.
 
-```js
+```jsx
 import { h, render, Component } from 'preact';
 
 class Clock extends Component {
@@ -174,7 +174,7 @@ Ok, that was easy enough! Problem is, that the time doesn't change. It's frozen 
 
 So, we want to have a 1-second timer start once the Component gets added to the DOM, and stop if it is removed. We'll create the timer and store a reference to it in `componentDidMount`, and stop the timer in `componentWillUnmount`. On each timer tick, we'll update the component's `state` object with a new time value. Doing this will automatically re-render the component.
 
-```js
+```jsx
 import { h, render, Component } from 'preact';
 
 class Clock extends Component {
