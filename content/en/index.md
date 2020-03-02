@@ -110,7 +110,6 @@ function Counter() {
     <ul>
       <li><code>props</code>, <code>state</code> and <code>context</code> are passed to <code>render()</code></li>
       <li>Use standard HTML attributes like <code>class</code> and <code>for</code></li>
-      <li>Works with React DevTools right out of the box</li>
     </ul>
   </div>
 </section>
