@@ -5,9 +5,11 @@ description: "How to get started with Preact. We'll learn how to setup the tooli
 
 # Getting Started
 
-This guide helps you get up and running to start developing Preact apps. There are 3 popular ways to do so.
+This guide helps you get up and running to start developing Preact apps.
 
-If you're just starting out we highly recommend going with [preact-cli](#best-practices-powered-by-preact-cli).
+There are 3 popular ways to use Preact.
+
+If you're new to Preact, we highly recommend starting with [Preact CLI](#best-practices-powered-by-preact-cli).
 
 ---
 
@@ -183,4 +185,4 @@ jest configuration:
 ```
 
 [htm]: https://github.com/developit/htm
-
+[Preact CLI]: https://github.com/preactjs/preact-cli
