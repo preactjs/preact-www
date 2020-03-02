@@ -17,42 +17,45 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
 
 ## No build tools route
 
-Preact has always been readily packaged to be used right in the browser. This doesn't require any build tools at all.
+Preact is packaged to be used directly in the browser. This doesn't require any build or tools.
 
-```js
-import { h, Component, render } from 'https://unpkg.com/preact?module';
+```html
+<script type="module">
+  import { h, Component, render } from 'https://unpkg.com/preact?module';
 
-// Create your app
-const app = h('div', null, 'Hello World!');
+  // Create your app
+  const app = h('h1', null, 'Hello World!');
 
-// Render the application into <body>.
-render(app, document.body);
-
-// Note: it's best use a wrapper element instead of body.
+  render(app, document.body);
+</script>
 ```
 
-_Don't forget to call the script as a module like so `<script type="module">`_ 
+[🔨 Edit on Glitch](https://glitch.com/~preact-no-build-tools)
 
-The only difference is that you cannot use JSX, because JSX needs to be transpiled. We got you covered with an alternative in the next section. So keep reading.
+The primary difference when developing this way is the lack of JSX, since JSX requires a build step. However, there are several ergonomic and performant alternatives to JSX documented in the next section.
 
 ### Alternatives to JSX
 
-Writing raw `h` or `createElement` calls all the time is much less fun than using something JSX-like. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. It requires a built-step though, so we highly recommend an alternative called [htm].
+Writing raw `h` or `createElement` calls all the time can be tedious. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. JSX requires a built-step though, so we highly recommend an alternative called [HTM][htm].
 
-In a nutshell [htm] can be best described as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
+[HTM][htm] is a JSX-like syntax that works in standard JavaScript. Instead of requiring a build step, it uses JavaScript's own [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, which was added in 2015 and is supported in [all modern browsers](https://caniuse.com/#feat=template-literals).
 
-```js
-import { h, Component, render } from 'https://unpkg.com/preact?module';
-import htm from 'https://unpkg.com/htm?module';
+```html
+<script type="module">
+  import { h, Component, render } from 'https://unpkg.com/preact?module';
+  import htm from 'https://unpkg.com/htm?module';
 
-// Initialize htm with Preact
-const html = htm.bind(h);
+  // Initialize htm with Preact
+  const html = htm.bind(h);
 
-const app = html`<div>Hello World!</div>`
-render(app, document.getElementById('app'));
+  const app = html`<h1>Hello World!</h1>`;
+  render(app, document.body);
+</script>
 ```
 
-It's a very popular way of writing Preact apps and we highly recommend checking out htm's [README][htm] file if you're interested in going with this route.
+[🔨 Edit on Glitch](https://glitch.com/~preact-with-htm)
+
+This is an increasingly popular way to write Preact apps, since there is much less to understand than a traditional front-end build tooling setup. For more information, check out the [HTM documentation][htm].
 
 ## Best practices powered with `preact-cli`
 
@@ -119,7 +122,7 @@ To transpile JSX you need a babel plugin that converts it to valid JavaScript co
 }
 ```
 
-> [babeljs](https://babeljs.io/) has one of the best documentation out there. We highly recommend checking it out for questions surrounding babel and how to set it up.
+> [babeljs](https://babeljs.io/) has some of the best documentation out there. We highly recommend checking it out for questions surrounding babel and how to set it up.
 
 ### Aliasing React to Preact
 
