@@ -31,6 +31,8 @@ render(app, document.body);
 // Note: it's best use a wrapper element instead of body.
 ```
 
+_Don't forget to call the script as a module like so `<script type="module">`_ 
+
 The only difference is that you cannot use JSX, because JSX needs to be transpiled. We got you covered with an alternative in the next section. So keep reading.
 
 ### Alternatives to JSX
