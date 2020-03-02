@@ -112,7 +112,6 @@ function Counter() {
     <ul>
         <li>Les `props`, `state` et `context` sont passés en arguments de la méthode `render()`</li>
         <li>Les attributs standards HTML comme `class` et `for` peuvent être utilisés</li>
-        <li>Fonctionnne avec React DevTools sans effort</li>
     </ul>
   </div>
 </section>
