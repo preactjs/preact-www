@@ -7,7 +7,7 @@ description: "How to get started with Preact. We'll learn how to setup the tooli
 
 This guide helps you get up and running to start developing Preact apps. There are 3 popular ways to do so.
 
-If you're just starting out we highly recommend going with [preact-cli](#best-practices-powered-with-preact-cli).
+If you're just starting out we highly recommend going with [preact-cli](#best-practices-powered-by-preact-cli).
 
 ---
 
@@ -17,7 +17,7 @@ If you're just starting out we highly recommend going with [preact-cli](#best-pr
 
 ## No build tools route
 
-Preact is packaged to be used directly in the browser. This doesn't require any build or tools.
+Preact is packaged to be used directly in the browser, and doesn't require any build or tools:
 
 ```html
 <script type="module">
@@ -32,13 +32,13 @@ Preact is packaged to be used directly in the browser. This doesn't require any 
 
 [🔨 Edit on Glitch](https://glitch.com/~preact-no-build-tools)
 
-The primary difference when developing this way is the lack of JSX, since JSX requires a build step. However, there are several ergonomic and performant alternatives to JSX documented in the next section.
+The primary drawback of developing this way is the lack of JSX, which requires a build step. An ergonomic and performant alternative to JSX is documented in the next section.
 
 ### Alternatives to JSX
 
-Writing raw `h` or `createElement` calls all the time can be tedious. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. JSX requires a built-step though, so we highly recommend an alternative called [HTM][htm].
+Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. JSX requires a built-step though, so we highly recommend an alternative called [HTM][htm].
 
-[HTM][htm] is a JSX-like syntax that works in standard JavaScript. Instead of requiring a build step, it uses JavaScript's own [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, which was added in 2015 and is supported in [all modern browsers](https://caniuse.com/#feat=template-literals).
+[HTM][htm] is a JSX-like syntax that works in standard JavaScript. Instead of requiring a build step, it uses JavaScript's own [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, which was added in 2015 and is supported in [all modern browsers](https://caniuse.com/#feat=template-literals). This is an increasingly popular way to write Preact apps, since there are fewer moving parts to understand than a traditional front-end build tooling setup.
 
 ```html
 <script type="module">
@@ -55,45 +55,48 @@ Writing raw `h` or `createElement` calls all the time can be tedious. JSX has th
 
 [🔨 Edit on Glitch](https://glitch.com/~preact-with-htm)
 
-This is an increasingly popular way to write Preact apps, since there is much less to understand than a traditional front-end build tooling setup. For more information, check out the [HTM documentation][htm].
+For more information on HTM, check out its [documentation][htm].
 
-## Best practices powered with `preact-cli`
+## Best practices powered by Preact CLI
 
-The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's built on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicity this is the most popular way to use Preact among our users.
+[Preact CLI] is an off-the-shelf solution for building Preact applications that is optimized for modern web development. It's built on standard tooling projects like Webpack, Babel and PostCSS. Preact CLI does not require any configuration or prior knowledge to get started, and this simplicity makes it the most popular way to use Preact.
 
-As the name implies, `preact-cli` is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
+As the name implies, Preact CLI is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
 
 ```bash
 npm install -g preact-cli
 ```
 
-After that you'll have a new command in your terminal called `preact`. With it you can create a new application by executing the following command:
+After that you'll have a new command in your terminal called `preact`. With it you can create a new application by running the `preact create` command:
 
 ```bash
 preact create default my-project
 ```
 
-The above command pulls the template from `preactjs-templates/default`, prompts for some information, and generates the project at `./my-project/`.
+This will create a new application based on our [default template](https://github.com/preactjs-templates/default). You will be asked for some information about your project, which will then be generated in the directory you specified (`my-project` in this case).
 
-> Tip: Any Github repo with a `'template'` folder can be used as a custom template: `preact create <username>/<repository> <project-name>`
+> **Tip:** Any GitHub repository with a `template/` folder can be used as a custom template:
+>
+> `preact create <username>/<repository> <project-name>`
 
 ### Getting ready for development
 
-Now we're ready to start our application. To fire up the development server run the following command inside the freshly generated project folder (`my-project` in this example):
+Now we're ready to start our application. To start a development server, run the following command inside your newly generated project folder (`my-project` from above):
 
 ```bash
 # Go into the generated project folder
-cd my-project/
+cd my-project
 
-# Start the devserver
+# Start a development server
 npm start
 ```
 
-Once the server is up you can access your app at the URL that was printed in the console. Now you're ready to develop your app!
+Once the server has started, it will print a local development URL to open in your browser.
+Now you're ready to start coding your app!
 
 ### Making a production build
 
-There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly optimized build.
+There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly optimized production build.
 
 ```bash
 npm run build
@@ -101,7 +104,7 @@ npm run build
 
 Upon completion you'll have a new `build/` folder which can be deployed directly to a server.
 
-> For a full list of all available commands check out the list in preact-cli's [README file](https://github.com/preactjs/preact-cli#cli-options).
+> For a full list of all available commands check out the [Preact CLI Documentation](https://github.com/preactjs/preact-cli#cli-options).
 
 ## Integrating Into An Existing Pipeline
 
