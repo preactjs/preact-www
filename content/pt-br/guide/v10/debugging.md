@@ -7,7 +7,7 @@ description: 'Como debugar aplicativos preact quando algo der errado.'
 
 O Preact é fornecido com muitas ferramentas para facilitar a depuração. Eles são empacotados em uma única importação e podem ser incluídos importando `preact / debug`.
 
-Isso inclui uma ponte para a excelente [Preact Developer Tools] Extenção para o  Chrome e Firefox. Se você já os tiver instalado, pode **experimentá-lo neste site.** Basta abrir os devtools e começar a inspecionar como o construímos.
+Isso inclui uma ponte para a excelente [Preact Devtools] Extenção para o  Chrome e Firefox. Se você já os tiver instalado, pode **experimentá-lo neste site.** Basta abrir os devtools e começar a inspecionar como o construímos.
 
 imprimiremos um aviso ou erro sempre que detectarmos algo errado, como aninhamento incorreto nos elementos `<table>`.
 
@@ -19,7 +19,7 @@ imprimiremos um aviso ou erro sempre que detectarmos algo errado, como aninhamen
 
 ## Intalação
 
-O [Preact Developer Tools] pode ser instalado no loja de extensões do seu navegador.
+O [Preact Devtools] pode ser instalado no loja de extensões do seu navegador.
 
 - [Para o Chrome](https://chrome.google.com/webstore/detail/preact-developer-tools/ilcajpmogmhpliinlbcdebhbcanbghmd)
 - [Para o Firefox](https://addons.mozilla.org/en-US/firefox/addon/preact-devtools/)
@@ -209,4 +209,4 @@ const pessoas = [
 </div>
 ```
 
-[React Developer Tools]: https://preactjs.github.io/preact-devtools/
+[Preact Devtools]: https://preactjs.github.io/preact-devtools/
