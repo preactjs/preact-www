@@ -5,6 +5,7 @@ import TodoList from './todo-list';
 import Logo from './logo';
 import Toc from './table-of-contents';
 import Sponsors from './sponsors';
+import WeAreUsing from './we-are-using';
 
 export default {
 	Toc,
@@ -13,5 +14,6 @@ export default {
 	GithubStars,
 	TodoList,
 	Sponsors,
-	Logo
+	Logo,
+	WeAreUsing
 };
