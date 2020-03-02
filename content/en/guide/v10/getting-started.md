@@ -7,9 +7,7 @@ description: "How to get started with Preact. We'll learn how to setup the tooli
 
 This guide helps you get up and running to start developing Preact apps.
 
-There are 3 popular ways to use Preact.
-
-If you're new to Preact, we highly recommend starting with [Preact CLI](#best-practices-powered-by-preact-cli).
+There are 3 popular options. If you're new to Preact, we recommend starting with [Preact CLI](#best-practices-powered-by-preact-cli).
 
 ---
 
