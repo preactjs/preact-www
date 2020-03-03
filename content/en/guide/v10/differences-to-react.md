@@ -142,7 +142,7 @@ function App(props) {
 
 [preact/compat] ships with specialised components that are not necessary for every app. These include
 
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` and `state` have changed
+- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
 - [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
 - [forwardRef](/guide/v10/switching-to-preact#forwardRef): Supply a `ref` to a specified child component.
 - [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
