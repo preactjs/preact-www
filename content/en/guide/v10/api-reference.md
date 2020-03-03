@@ -15,7 +15,7 @@ This page serves as a quick overview over all exported functions.
 
 ## Component
 
-`Component` is a base class can be extended to create stateful Preact components.
+`Component` is a base class that can be extended to create stateful Preact components.
 
 Rather than being instantiated directly, Components are managed by the renderer and created as-needed.
 
