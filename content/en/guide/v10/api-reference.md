@@ -13,91 +13,104 @@ This page serves as a quick overview over all exported functions.
 
 ---
 
-## Preact.Component
+## Component
 
-`Component` is a base class that you will usually subclass to create stateful Preact components.
+`Component` is a base class that can be extended to create stateful Preact components.
+
+Rather than being instantiated directly, Components are managed by the renderer and created as-needed.
+
+```js
+import { Component } from 'preact';
+
+class MyComponent extends Component {
+  // (see below)
+}
+```
 
 ### Component.render(props, state)
 
-The `render()` function is required for all components. It can inspect the props and state of the component, and should return a Preact element or `null`.
+All components must provide a  `render()` function. The render function is passed the component's current props and state, and should return a Virtual DOM Element (typically a JSX "element"), an Array, or `null`.
 
 ```jsx
 import { Component } from 'preact';
 
 class MyComponent extends Component {
 	render(props, state) {
-		// props === this.props
-		// state === this.state
+		// props is the same as this.props
+		// state is the same as this.state
 
 		return <h1>Hello, {props.name}!</h1>;
 	}
 }
 ```
 
-To learn more about components and how they can be used, head over to the [Components](/guide/v10/components) page.
+To learn more about components and how they can be used, check out the [Components Documentation](/guide/v10/components).
 
 ## render()
 
-`render(component, containerNode, [replaceNode])`
+`render(virtualDom, containerNode, [replaceNode])`
 
-Render a Preact component into the `containerNode` DOM node. Does not return anything.
-
-If the optional `replaceNode` DOM node is provided and is a child of `containerNode`, Preact will update or replace that element using its diffing algorithm.
+Render a Virtual DOM Element into a parent DOM element `containerNode`. Does not return anything.
 
 ```jsx
+// DOM tree before render:
+// <div id="container"></div>
+
 import { render } from 'preact';
 
 const Foo = () => <div>foo</div>;
 
-// DOM before render:
-// <div id="container"></div>
 render(<Foo />, document.getElementById('container'));
+
 // After render:
 // <div id="container">
 //  <div>foo</div>
 // </div>
+```
 
-// DOM before render:
+If the optional `replaceNode` parameter is provided, it must be a child of `containerNode`. Instead of inferring where to start rendering, Preact will update or replace the passed element using its diffing algorithm.
+
+```jsx
+// DOM tree before render:
 // <div id="container">
 //   <div>bar</div>
-//   <div id="target"></div>
+//   <div id="target">foo</div>
 // </div>
+
+import { render } from 'preact';
+
+const Foo = () => <div id="target">BAR</div>;
+
 render(
   <Foo />,
   document.getElementById('container'),
   document.getElementById('target')
 );
+
 // After render:
 // <div id="container">
 //   <div>bar</div>
-//   <div id="target">
-//     <div>foo</div>
-//   </div>
+//   <div id="target">BAR</div>
 // </div>
 ```
 
-The first argument must be a valid virtual-dom node that represents either a component or an HTML-Element.
+The first argument must be a valid Virtual DOM Element, which represents either a component or an element. When passing a Component, it's important to let Preact do the instantiation rather than invoking your component directly, which will break in unexpected ways:
 
 ```jsx
 const App = () => <div>foo</div>;
 
-// WRONG: First parameter must be passed through h() or
-// createElement() either directly or indirectly via JSX
-render(App(), rootElement);
+// DON'T: Invoking components directly breaks hooks and update ordering:
+render(App(), rootElement); // ERROR
+render(App, rootElement); // ERROR
 
-// WRONG: For the same reasons as above
-render(App, rootElement);
-
-// CORRECT: Passing App through h()
-render(h(App), rootElement);
-
-// CORRECT: Passing App indirectly through h() via JSX
-render(<App />, rootElement)
+// DO: Passing components using h() or JSX allows Preact to render correctly:
+render(h(App), rootElement); // success
+render(<App />, rootElement); // success
 ```
 
 ## hydrate()
 
-When you have a prerendered DOM, there is no need to re-render it again. With hydrate most of the diffing phase will be skipped with event listeners being the exception. It's mainly used in conjuncton with [Server-Side Rendering](/guide/v10/server-side-rendering).
+If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
 import { hydrate } from 'preact';
@@ -108,14 +121,15 @@ hydrate(<Foo />, document.getElementById('container'));
 
 ## h() / createElement()
 
-`h(nodeName, attributes, [...children])`
+`h(type, props, ...children)`
 
-Returns a Preact Virtual DOM element with the given `attributes`.
+Returns a Virtual DOM Element with the given `props`. Virtual DOM Elements are lightweight descriptions of a node in your application's UI heirarchy, essentially an object of the form `{ type, props }`.
 
-All remaining arguments are collected into a `children` Array, and be any of the following:
+After `type` and `props`, any remaining parameters are collected into a `children` Array.
+Children may be any of the following:
 
 - Scalar values (string, number, boolean, null, undefined, etc)
-- More Virtual DOM elements
+- Nested Virtual DOM Elements
 - Infinitely nested Arrays of the above
 
 ```js
@@ -137,9 +151,9 @@ h(
 
 ## toChildArray
 
-This helper function will always convert children to an array. If it's already an array it will be a noop essentially. This function is needed because children are not guaranteed to be an array.
+This helper function converts a `props.children` value to a flattened Array regardless of its structure or nesting. If `props.children` is already an array, a copy is returned. This function is useful in cases where `props.children` may not be an array, which can happen with certain combinatations of static and dynamic expressions in JSX.
 
-If an element only has a single child it will receive it directly. Only when there are more than one children you can be sure that you'll receive an array. With `toChildArray` you can ensure that this is always the case.
+For Virtual DOM Elements with a single child, `props.children` is a reference to the child. When there are multiple children, `props.children` is always an Array. The `toChildArray` helper provides a way to consistently handle all cases.
 
 ```jsx
 import { toChildArray } from 'preact';
@@ -149,11 +163,14 @@ function Foo(props) {
   return <div>I have {count} children</div>;
 }
 
-// children is not an array
-render(<Foo>bar</Foo>, container);
+// props.children is "bar"
+render(
+  <Foo>bar</Foo>,
+  container
+);
 
-// Children is an array
-render((
+// props.children is [<p>A</p>, <p>B</p>]
+render(
   <Foo>
     <p>A</p>
     <p>B</p>
@@ -164,7 +181,19 @@ render((
 
 ## cloneElement
 
-This function allows you to shallow clone a component and to render the clone somewhere else.
+`cloneElement(virtualElement, props, ...children)`
+
+This function allows you to create a shallow copy of a Virtual DOM Element.
+It's generally used to add or overwrite `props` of an element:
+
+```jsx
+function Linkout(props) {
+  // add target="_blank" to the link:
+  return cloneElement(props.children, { target: '_blank' });
+}
+render(<Linkout><a href="/">home</a></Linkout>);
+// <a href="/" target="_blank">home</a>
+```
 
 ## createContext
 
@@ -172,22 +201,26 @@ See the section in the [Context documentation](/guide/v10/context#createcontext)
 
 ## createRef
 
-See the section in the [References documentation](/guide/v10/refs#createref).
+Creates a ref object, with a `.current` property pointing to the ref's most recently set value.
+
+See the [References documentation](/guide/v10/refs#createref) for more details.
 
 ## Fragment
 
-A special kind of component that doesn't render anything into the DOM. They allow a component to return multiple sibling children without needing to wrap them in a container div.
+A special kind of component that can have children, but is not rendered as a DOM element.
+Fragments make it possible to return multiple sibling children without needing to wrap them in a DOM container:
 
 ```jsx
 import { Fragment, render } from 'preact';
 
-render((
+render(
   <Fragment>
     <div>A</div>
     <div>B</div>
     <div>C</div>
-  </Fragment>
-), container);
+  </Fragment>,
+  document.getElementById('container')
+);
 // Renders:
 // <div id="container>
 //   <div>A</div>
