@@ -47,16 +47,16 @@ export default function Header() {
 					</a>
 					<ThemeSwitcher />
 				</div>
-				<Hamburgler open={open} onClick={toggle} />
+				<Hamburger open={open} onClick={toggle} />
 				<Corner />
 			</div>
 		</header>
 	);
 }
 
-// hamburgler menu
-const Hamburgler = ({ open, ...props }) => (
-	<div class={style.hamburgler} open={open} {...props}>
+// hamburger menu
+const Hamburger = ({ open, ...props }) => (
+	<div class={style.hamburger} open={open} {...props}>
 		<div class={style.hb1} />
 		<div class={style.hb2} />
 		<div class={style.hb3} />
