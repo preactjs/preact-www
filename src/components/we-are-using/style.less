@@ -35,11 +35,9 @@ html .root {
 		background: none !important;
 		padding: 1rem;
 
-		&:hover {
-			img {
-				filter: none;
-				opacity: 1;
-			}
+		&:hover img {
+			filter: none;
+			opacity: 1;
 		}
 	}
 
@@ -47,9 +45,23 @@ html .root {
 		height: 4.5rem;
 		display: block;
 		margin: 0 auto 1rem;
-		opacity: 0.5;
+		opacity: 0.7;
 		filter: grayscale(1);
 		transition: all 250ms ease;
+	}
+}
+
+html.dark .item {
+	img {
+		filter: invert(.862745) hue-rotate(180deg) grayscale(1);
+		opacity: 1;
+	}
+
+	&:hover img {
+		filter: invert(0) hue-rotate(0deg) grayscale(0)
+			drop-shadow(0 0 .5px #fff)
+			drop-shadow(0 5px 10px #000)
+			drop-shadow(0 0 20px rgba(255,255,255,0.5));
 	}
 }
 
