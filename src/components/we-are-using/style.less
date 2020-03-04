@@ -1,0 +1,59 @@
+@import '~style/helpers';
+
+[name='/about/we-are-using'] p {
+	text-align: center;
+}
+
+html .root {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 4rem auto 0;
+	padding: 0;
+	max-width: 120rem;
+
+	@media @sidebar-break {
+		margin: 4rem auto 2rem;
+	}
+}
+
+.item {
+	display: inline-block;
+	list-style: none;
+	width: 10rem;
+
+	@media @sidebar-break {
+		width: 12.5rem;
+	}
+
+	a {
+		display: block;
+		padding: 2rem 1.25rem;
+		margin-bottom: 1rem;
+		transition: all 250ms ease;
+		text-align: center;
+		background: none !important;
+		padding: 1rem;
+
+		&:hover {
+			img {
+				filter: none;
+				opacity: 1;
+			}
+		}
+	}
+
+	img {
+		height: 4.5rem;
+		display: block;
+		margin: 0 auto 1rem;
+		opacity: 0.5;
+		filter: grayscale(1);
+		transition: all 250ms ease;
+	}
+}
+
+:global(.breaker) {
+	margin: 0 !important;
+	max-width: none !important;
+}
