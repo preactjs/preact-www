@@ -48,8 +48,22 @@ html .root {
 		display: block;
 		margin: 0 auto 1rem;
 		opacity: 0.5;
-		filter: grayscale(1);
 		transition: all 250ms ease;
+
+		// Invert based on luminosity
+		@media (prefers-color-scheme: dark) {
+			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+		}
+		:global(.dark) & {
+			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+		}
+
+		@media (prefers-color-scheme: light) {
+			filter: grayscale(1);
+		}
+		:global(.light) & {
+			filter: grayscale(1);
+		}
 	}
 }
 
