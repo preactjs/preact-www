@@ -253,7 +253,6 @@ export default function WeAreUsing() {
 						rel="noopener noreferrer"
 					>
 						<img src={`/assets/we-are-using/${c.logo}`} alt={c.name} />
-						<span class={styles.name}>{c.name}</span>
 					</a>
 				</li>
 			))}
