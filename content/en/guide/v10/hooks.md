@@ -32,8 +32,8 @@ class Counter extends Component {
   };
 
   increment = () => {
-    this.setState(prev => ({ value: prev.value +1 })
-  });
+    this.setState(prev => ({ value: prev.value +1 }));
+  };
 
   render(props, state) {
     return (
