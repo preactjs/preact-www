@@ -117,7 +117,7 @@ class NavItem extends Component {
 		if (!to.routes) return <NavLink to={to} {...props} />;
 
 		return (
-			<section {...props} data-open={open}>
+			<div {...props} data-open={open} class={style.navGroup}>
 				<NavLink to={to} onClick={this.toggle} aria-haspopup isOpen={open} />
 				<Nav
 					routes={to.routes}
@@ -125,7 +125,7 @@ class NavItem extends Component {
 					aria-label="submenu"
 					aria-hidden={'' + !open}
 				/>
-			</section>
+			</div>
 		);
 	}
 }
