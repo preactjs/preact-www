@@ -10,9 +10,9 @@ const EMPTY_OBJ = {};
 function ServerHydrator({ load, component, wrapperProps, ...props }) {
 	const Child = interopDefault(component || load());
 	return (
-		<section {...(wrapperProps || {})}>
+		<div {...(wrapperProps || {})}>
 			<Child {...props} />
-		</section>
+		</div>
 	);
 }
 
@@ -50,7 +50,8 @@ class Hydrator extends Component {
 	_render(props) {
 		const { Child } = this;
 		// hydrate on first run, then normal renders thereafter
-		const doRender = process.env.NODE_ENV!=='production' || this.hydrated ? render : hydrate;
+		const doRender =
+			process.env.NODE_ENV !== 'production' || this.hydrated ? render : hydrate;
 		doRender(
 			<ContextProvider context={this.context}>
 				<Child {...props} />
@@ -91,7 +92,7 @@ class Hydrator extends Component {
 	}
 
 	render({ wrapperProps, wrapperType }) {
-		const Type = wrapperType || 'section';
+		const Type = wrapperType || 'div';
 		return (
 			<Type
 				ref={this.root}
