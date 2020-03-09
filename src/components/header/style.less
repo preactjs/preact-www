@@ -63,14 +63,15 @@
 		display: inline-block;
 		font-size: 100%;
 		user-select: none;
-		user-drag: none;
+		-webkit-user-drag: none;
 
 		@media (max-width: @header-mobile-breakpoint) {
 			display: block;
 			padding: 0 23px;
 		}
 
-		a {
+		a,
+		button {
 			display: inline-block;
 			position: relative;
 			height: @header-height;
@@ -143,7 +144,8 @@
 			position: relative;
 			overflow: visible;
 
-			& > a {
+			& > a,
+			& > button {
 				transition: all 0.3s;
 
 				&::after {
@@ -161,7 +163,8 @@
 					display: none;
 				}
 
-				& > a {
+				& > a,
+				& > button {
 					display: block;
 				}
 			}
@@ -191,7 +194,8 @@
 					}
 				}
 
-				a {
+				a,
+				button {
 					display: block;
 					padding: 10px 20px;
 					height: auto;
@@ -216,7 +220,8 @@
 			}
 
 			&[data-open] {
-				& > a {
+				& > a,
+				& > button {
 					background: #fff;
 					color: #555;
 					z-index: 101;
@@ -227,9 +232,11 @@
 				}
 
 				@media (max-width: @header-mobile-breakpoint) {
-					& > a {
+					& > a,
+					& > button {
 						color: #fff;
 						background: #333;
+						width: 100%;
 					}
 
 					nav {
@@ -252,7 +259,8 @@
 							}
 						}
 
-						a {
+						a,
+						button {
 							color: #eee;
 
 							&:hover,

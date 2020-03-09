@@ -70,7 +70,7 @@ const Nav = ({ routes, current, ...props }) => (
 			<NavItem
 				to={route}
 				current={current}
-				route={getRouteIdent(route)}
+				data-route={getRouteIdent(route)}
 				class={cx(
 					route.class,
 					(route.path === current ||
@@ -118,7 +118,7 @@ class NavItem extends Component {
 
 		return (
 			<section {...props} data-open={open}>
-				<NavLink to={to} onClick={this.toggle} aria-haspopup />
+				<NavLink to={to} onClick={this.toggle} aria-haspopup isOpen={open} />
 				<Nav
 					routes={to.routes}
 					current={current}
@@ -131,11 +131,25 @@ class NavItem extends Component {
 }
 
 // depending on the type of nav link, use <a>
-const NavLink = ({ to, ...props }) => {
+const NavLink = ({ to, isOpen, route, ...props }) => {
 	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
+
+	if (!to.path) {
+		return (
+			<button
+				{...props}
+				aria-haspopup="true"
+				aria-expanded={isOpen}
+				data-route={route}
+			>
+				{getRouteName(to, lang)}
+			</button>
+		);
+	}
+
 	return (
-		<a href={to.path || 'javascript:'} {...props}>
+		<a href={to.path} {...props} data-route={route}>
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>
