@@ -237,6 +237,11 @@ const companies = [
 		name: 'SwissDev Jobs',
 		href: 'https://swissdevjobs.ch/jobs/Python/All',
 		logo: 'swissdevjobs.png'
+	},
+	{
+		name: 'Zeo Agency',
+		href: 'https://zeo.org',
+		logo: 'zeoagency.svg'
 	}
 ];
 
