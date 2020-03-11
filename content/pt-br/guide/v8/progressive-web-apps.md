@@ -72,7 +72,7 @@ Mesmo o Preact devendo funcionar bem para seu PWA, ele também pode ser utilizad
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-splitting</a></strong> quebra seu código em pedacinhos para que o usuário receba só o que necessita para uma página. Utilizando _Lazy-loading_, carrega-se o resto quando necessário o que melhora o tempo de carregamento das páginas. Suportado via Webpack.</p>
+          <p class="_summary"><strong><a href="https://webpack.js.org/guides/code-splitting/">Code-splitting</a></strong> quebra seu código em pedacinhos para que o usuário receba só o que necessita para uma página. Utilizando _Lazy-loading_, carrega-se o resto quando necessário o que melhora o tempo de carregamento das páginas. Suportado via Webpack.</p>
         </div>
     </li>
     <li class="list-item">
