@@ -63,7 +63,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-Splitting</a></strong>  teilt den Code auf, sodass man genau den Teil des Codes an den Nutzer ausliefern kann, den er für die angeforderte Seite benötigt. Den Rest der Seite bei Bedarf mithilfe von Lazy-loading aufzurufen, verbessert Ladezeiten immens. Dies wird auch über Webpack unterstützt.</p>
+          <p class="_summary"><strong><a href="https://webpack.js.org/guides/code-splitting/">Code-Splitting</a></strong>  teilt den Code auf, sodass man genau den Teil des Codes an den Nutzer ausliefern kann, den er für die angeforderte Seite benötigt. Den Rest der Seite bei Bedarf mithilfe von Lazy-loading aufzurufen, verbessert Ladezeiten immens. Dies wird auch über Webpack unterstützt.</p>
         </div>
     </li>
     <li class="list-item">
