@@ -81,6 +81,13 @@
 					}
 				},
 				{
+					"path": "/about/security",
+					"name": {
+						"en": "Security",
+						"de": "Sicherheit"
+					}
+				},
+				{
 					"path": "/about/browser-support",
 					"name": {
 						"en": "Browser Support",
