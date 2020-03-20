@@ -11,7 +11,7 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

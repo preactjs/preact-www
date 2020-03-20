@@ -11,7 +11,7 @@ Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

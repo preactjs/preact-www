@@ -8,7 +8,7 @@ description: 'Como integrar o Preact ao jQuery e outros snippets JavaScript que 
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

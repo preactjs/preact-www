@@ -11,7 +11,7 @@ Formul√°rios no Preact funcionam de forma muito parecida ao React, exceto por n√
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

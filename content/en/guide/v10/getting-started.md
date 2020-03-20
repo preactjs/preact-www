@@ -11,7 +11,7 @@ There are 3 popular options. If you're new to Preact, we recommend starting with
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

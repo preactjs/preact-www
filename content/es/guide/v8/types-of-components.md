@@ -14,7 +14,7 @@ Dentro de estos dos tipos, también hay diferentes maneras de implementar compon
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

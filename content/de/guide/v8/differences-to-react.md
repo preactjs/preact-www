@@ -11,7 +11,7 @@ Preact ist nicht darauf ausgelegt, jede einzelne Funktion von React zu übernehm
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

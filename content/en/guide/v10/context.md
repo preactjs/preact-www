@@ -11,7 +11,7 @@ There are two different ways to use context: Via the newer `createContext` API a
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
