@@ -11,7 +11,7 @@ Se você está apenas começando, é altamente recomendável usar o [preact-cli]
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

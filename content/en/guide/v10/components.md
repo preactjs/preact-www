@@ -11,7 +11,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

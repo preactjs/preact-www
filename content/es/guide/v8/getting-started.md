@@ -16,7 +16,7 @@ Si recién está comenzando, le recomendamos ir con preact-cli.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

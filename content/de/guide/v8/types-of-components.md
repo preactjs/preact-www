@@ -14,7 +14,7 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponent
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

@@ -9,7 +9,7 @@ Uma área que o Preact leva um pouco mais além do que o React é na otimizaçã
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

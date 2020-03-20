@@ -11,7 +11,7 @@ In a nutshell Preact X is what we always wanted Preact to be: A tiny, fast and f
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

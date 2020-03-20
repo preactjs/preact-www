@@ -11,7 +11,7 @@ A typical use case for it is measuring the actual size of a DOM node. While it's
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

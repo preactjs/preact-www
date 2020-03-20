@@ -12,7 +12,7 @@ Isso permite que você continue escrevendo o código React / ReactDOM sem nenhum
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

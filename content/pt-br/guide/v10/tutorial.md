@@ -11,7 +11,7 @@ Este guia mostra a construção de um simples componente "relógio". Informaçõ
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

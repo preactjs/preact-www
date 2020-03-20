@@ -12,7 +12,7 @@ In Preact (and similarly in React), working with these types of libraries requir
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

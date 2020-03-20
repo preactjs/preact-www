@@ -9,7 +9,7 @@ A veces existe la necesidad de trabajar con librerías de terceros que esperan t
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

@@ -14,7 +14,7 @@ Preact 中有两种组件：
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

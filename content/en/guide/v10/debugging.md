@@ -13,7 +13,7 @@ We'll print a warning or an error whenever we detect something wrong like incorr
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

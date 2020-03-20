@@ -14,7 +14,7 @@ Bu iki tür bileşeni uygulamak için birkaç farklı yöntem vardır.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

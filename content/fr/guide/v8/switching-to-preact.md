@@ -12,7 +12,7 @@ Il y a deux approches différentes pour passer de React à Preact :
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

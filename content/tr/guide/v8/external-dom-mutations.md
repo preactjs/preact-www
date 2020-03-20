@@ -9,7 +9,7 @@ Sometimes there is a need to work with third-party libraries that expect to be a
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

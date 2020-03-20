@@ -8,7 +8,7 @@ permalink: '/guide/api-reference'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

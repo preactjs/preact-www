@@ -11,7 +11,7 @@ Um caso de uso típico para medir o tamanho real de um nó DOM. Embora seja poss
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

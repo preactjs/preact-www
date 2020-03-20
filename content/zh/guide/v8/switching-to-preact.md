@@ -12,7 +12,7 @@ permalink: '/guide/switching-to-preact'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

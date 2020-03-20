@@ -11,7 +11,7 @@ Em poucas palavras, o Preact X é o que sempre quisemos que fosse: Uma bibliotec
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
