@@ -237,6 +237,11 @@ const companies = [
 		name: 'SwissDev Jobs',
 		href: 'https://swissdevjobs.ch/jobs/Python/All',
 		logo: 'swissdevjobs.png'
+	},
+	{
+		name: 'Doxford Pet Software',
+		href: 'https://doxford.net',
+		logo: 'doxford.png'
 	}
 ];
 
