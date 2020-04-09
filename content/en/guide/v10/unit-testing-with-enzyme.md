@@ -23,7 +23,7 @@ Preact differs from Enzyme with React.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -44,7 +44,7 @@ adapter:
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-preact-pure';
 
-configure({ adapter: new Adapter });
+configure({ adapter: new Adapter() });
 ```
 
 For guidance on using Enzyme with different test runners, see the

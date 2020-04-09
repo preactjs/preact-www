@@ -9,7 +9,7 @@ permalink: '/guide/unit-testing-with-enzyme'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

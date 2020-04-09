@@ -32,8 +32,9 @@ export default function SidebarNav({ items, onClick }) {
 		>
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
-					const headerId = `accordion_header_${text}`;
-					const id = `accordion_body_${text}`;
+					const textId = text.replace(/\s+/g, '-');
+					const headerId = `accordion_header_${textId}`;
+					const id = `accordion_body_${textId}`;
 					const isActive =
 						activeGroups[headerId] === undefined || !!activeGroups[headerId];
 					routes.some(r => r.href === url);
@@ -56,7 +57,6 @@ export default function SidebarNav({ items, onClick }) {
 								id={id}
 								role="region"
 								aria-labelledby={headerId}
-								isActive={isActive}
 								hidden={!isActive}
 								class={style.accordionBody}
 							>

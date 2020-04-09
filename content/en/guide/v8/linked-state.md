@@ -9,7 +9,7 @@ One area Preact takes a little further than React is in optimizing state changes
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

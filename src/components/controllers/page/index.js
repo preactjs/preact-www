@@ -111,8 +111,7 @@ export function usePage(route, lang) {
 			window.nextStateToTop = false;
 			scrollTo({
 				top: 0,
-				left: 0,
-				behavior: 'smooth'
+				left: 0
 			});
 		}
 	}

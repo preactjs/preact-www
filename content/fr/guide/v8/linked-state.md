@@ -9,7 +9,7 @@ Un point sur lequel Preact va un peu plus loin que React est l'optimisation des 
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

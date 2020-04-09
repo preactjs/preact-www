@@ -10,7 +10,7 @@ A renderização no servidor (geralmente abreviada como "SSR") permite renderiza
 > Nota: O SSR é ativado automaticamente com `preact-cli`: tada:
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

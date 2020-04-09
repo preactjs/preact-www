@@ -65,7 +65,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">Code-splitting</a></strong> kodunuzu parçalara ayırarak sadece kullanıcının ihtiyacı olan parçaların aktarılmasını sağlar. Geri kalanı lazy-loading ile ihtiyaç duyulduğunda aktarmak, sayfanın yüklenme süresini hızlandırır. Webpack ile desteklenir.</p>
+          <p class="_summary"><strong><a href="https://webpack.js.org/guides/code-splitting/">Code-splitting</a></strong> kodunuzu parçalara ayırarak sadece kullanıcının ihtiyacı olan parçaların aktarılmasını sağlar. Geri kalanı lazy-loading ile ihtiyaç duyulduğunda aktarmak, sayfanın yüklenme süresini hızlandırır. Webpack ile desteklenir.</p>
         </div>
     </li>
     <li class="list-item">

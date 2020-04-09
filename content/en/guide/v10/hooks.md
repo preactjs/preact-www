@@ -15,7 +15,7 @@ There are two ways to import hooks: from `preact/hooks` or `preact/compat`.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -32,8 +32,8 @@ class Counter extends Component {
   };
 
   increment = () => {
-    this.setState(prev => ({ value: prev.value +1 })
-  });
+    this.setState(prev => ({ value: prev.value +1 }));
+  };
 
   render(props, state) {
     return (

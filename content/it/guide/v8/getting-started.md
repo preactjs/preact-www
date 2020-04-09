@@ -11,7 +11,7 @@ In questa guida vedremo come creare un semplice componente "Orologio". Informazi
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

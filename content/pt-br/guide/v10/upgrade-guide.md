@@ -11,7 +11,7 @@ O Preact X traz muitos novos recursos interessantes, como `Fragments`,` hooks 'e
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

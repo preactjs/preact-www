@@ -11,7 +11,7 @@ Preact X brings many new exciting features such as `Fragments`, `hooks` and much
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
