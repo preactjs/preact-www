@@ -46,7 +46,7 @@ Ahora que el proyecto está creado y configurado, hacer `cd` al directorio cread
 
 ```sh
 cd <app-name>
-npm start
+npm run dev
 ```
 
 Ahora abra su editor y comience a escribir. Para la mayoría de las plantillas, el mejor lugar para comenzar es `src/index.js` o `src/components/app/index.js`.

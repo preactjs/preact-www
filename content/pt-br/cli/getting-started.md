@@ -46,7 +46,7 @@ Agora que seu projeto está configurado, você pode `cd` no diretório recém-cr
 
 ```sh
 cd <app-name>
-npm start
+npm run dev
 ```
 
 Agora abra seu editor e comece a editar! Para a maioria dos modelos, o melhor lugar para começar é `src/index.js` ou `src/components/app/index.js`.
