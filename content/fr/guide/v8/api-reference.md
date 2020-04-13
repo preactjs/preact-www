@@ -60,6 +60,10 @@ class MyComponent extends Component {
 		this.state // state précédent
 	}
 	componentWillMount() {}
+	componentWillUpdate(nextProps, nextState) {
+		this.props // Previous props
+		this.state // Previous state
+	}
 	componentDidMount() {}
 	componentDidUpdate() {}
 	componentWillUnmount() {
