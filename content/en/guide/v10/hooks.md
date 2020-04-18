@@ -276,7 +276,7 @@ function App() {
 }
 ```
 
-The `useContext` hook accepts a second arguments, we call this the `shouldUpdate` function, this will be registered once and will determine wheter or not your component should rerender.
+The `useContext` hook accepts an optional `shouldUpdate` function as a second argument. This function will be called each time the context value is changed, and can return a Boolean value indicating whether the subscribed component should rerender.
 
 ```jsx
 const Theme = createContext({ theme: 'light' });
