@@ -282,7 +282,7 @@ The `useContext` hook accepts an optional `shouldUpdate` function as a second ar
 const Theme = createContext({ theme: 'light' });
 
 function DisplayTheme() {
-  const theme = useContext(Theme, (ctx, prevCtx) => ctx.theme !== prevCtx.theme);
+  const { theme } = useContext(Theme, (ctx, prevCtx) => ctx.theme !== prevCtx.theme);
   return <p>Active theme: {theme}</p>;
 }
 
@@ -298,10 +298,9 @@ function App() {
 }
 ```
 
-In the above example we'll only rerender if the current context and previous context are different from one another.
+In the above example, the custom `shouldUpdate` function means `DisplayTheme` will only be re-rendered when the context object's `.theme` property is changed.
 
-> Note that using a conditional there like `condition ? func1 : func2` will only use the function from the first value since it doesn't
-  track the need for re-registering.
+> Note: the `shouldUpdate` function is registered once and can't be changed dynamically. New function references passed as the second argument to useContext will be ignored.
 
 ## Side-Effects
 
