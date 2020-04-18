@@ -276,6 +276,33 @@ function App() {
 }
 ```
 
+The `useContext` hook accepts a second arguments, we call this the `shouldUpdate` function, this will be registered once and will determine wheter or not your component should rerender.
+
+```jsx
+const Theme = createContext({ theme: 'light' });
+
+function DisplayTheme() {
+  const theme = useContext(Theme, (ctx, prevCtx) => ctx.theme !== prevCtx.theme);
+  return <p>Active theme: {theme}</p>;
+}
+
+// ...later
+function App() {
+  return (
+    <Theme.Provider value={{ theme: 'light' }}>
+      <OtherComponent>
+        <DisplayTheme />
+      </OtherComponent>
+    </Theme.Provider>
+  )
+}
+```
+
+In the above example we'll only rerender if the current context and previous context are different from one another.
+
+> Note that using a conditional there like `condition ? func1 : func2` will only use the function from the first value since it doesn't
+  track the need for re-registering.
+
 ## Side-Effects
 
 Side-Effects are at the heart of many modern Apps. Whether you want to fetch some data from an API or trigger an effect on the document, you'll find that the `useEffect` fits nearly all your needs. It's one of the main advantages of the hooks API, that it reshapes your mind into thinking in effects instead of a component's lifecycle.
