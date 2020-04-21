@@ -3,6 +3,7 @@
 	"name": "Preact",
 	"languages": {
 		"en": "English",
+		"ja": "Japanese",
 		"zh": "Chinese",
 		"fr": "French",
 		"es": "Spanish",
@@ -19,6 +20,7 @@
 	"i18n": {
 		"next": {
 			"en": "Next Page",
+			"ja": "次のページ",
 			"de": "Nächste Seite",
 			"fr": "Page Suivante",
 			"es": "Siguiente Página",
@@ -29,6 +31,7 @@
 		},
 		"previous": {
 			"en": "Previous Page",
+			"ja": "前のページ",
 			"de": "Vorherige Seite",
 			"fr": "Page Précédente",
 			"es": "Pagina Anterior",
@@ -52,6 +55,7 @@
 				"en": "Guide",
 				"de": "Anleitung",
 				"pt-br": "Guia",
+				"ja": "ガイド",
 				"es": "Guía"
 			},
 			"content": "guide",
@@ -62,6 +66,7 @@
 				"en": "About",
 				"de": "Mehr",
 				"pt-br": "Sobre",
+				"ja": "Preactについて",
 				"es": "Sobre"
 			},
 			"content": "about",
@@ -72,6 +77,7 @@
 						"en": "Companies using Preact",
 						"de": "Firmen die Preact benutzen",
 						"pt-br": "Empresas que usam Preact",
+						"ja": "Preactを使っている企業",
 						"es": "Empresas que usan Preact"
 					}
 				},
@@ -81,6 +87,7 @@
 						"en": "Libraries & Add-ons",
 						"de": "Bibliotheken & Erweiterungen",
 						"pt-br": "Bibliotecas e Complementos",
+						"ja": "ライブラリとアドオン",
 						"es": "Librerías y complementos"
 					}
 				},
@@ -90,6 +97,7 @@
 						"en": "Demos & Examples",
 						"de": "Beispiel-Projekte",
 						"pt-br": "Demonstrações e exemplos",
+						"ja": "デモと例",
 						"es": "Demostraciones y ejemplos"
 					}
 				},
@@ -99,6 +107,7 @@
 						"en": "Project Goals",
 						"de": "Projekt-Ziele",
 						"pt-br": "Objetivos do Projeto",
+						"ja": "Preactの目的",
 						"es": "Objetivos del proyecto"
 					}
 				},
@@ -108,6 +117,7 @@
 						"en": "Browser Support",
 						"de": "Browserunterstützung",
 						"pt-br": "Suporte do navegador",
+						"ja": "ブラウザのサポート",
 						"es": "Soporte de navegadores"
 					}
 				}
@@ -124,6 +134,7 @@
 					"name": {
 						"en": "Introduction",
 						"pt-br": "Introdução",
+						"ja": "Preact CLI",
 						"es": "Introducción"
 					}
 				},
@@ -132,13 +143,15 @@
 					"name": {
 						"en": "Getting started",
 						"pt-br": "Começando",
+						"ja": "はじめに",
 						"es": "Empezando"
 					}
 				},
 				{
 					"path": "/cli/service-worker",
 					"name": {
-						"en": "Service Workers"
+						"en": "Service Workers",
+						"ja": "Service Worker"
 					}
 				},
 				{
@@ -146,6 +159,7 @@
 					"name": {
 						"en": "Pre-rendering",
 						"pt-br": "Pré-renderização",
+						"ja": "プリレンダリング",
 						"es": "Pre-renderización"
 					}
 				}
@@ -250,6 +264,7 @@
 					"name": {
 						"en": "Getting Started",
 						"pt-br": "Começando",
+						"ja": "はじめに",
 						"de": "Los geht's"
 					}
 				},
@@ -257,6 +272,7 @@
 					"path": "/guide/v10/whats-new",
 					"name": {
 						"en": "What's new?",
+						"ja": "Preact Xの新機能",
 						"pt-br": "o que há de novo"
 					}
 				},
@@ -265,12 +281,18 @@
 					"name": {
 						"en": "Upgrading from 8.x",
 						"pt-br": "Fazendo upgrade do 8.x",
+						"ja": "Preact 8.xからのアップグレード",
 						"de": "Migration von 8.x"
 					}
 				},
 				{
 					"path": "/guide/v10/tutorial",
-					"name": "Tutorial"
+					"name": {
+						"en": "Tutorial",
+						"pt-br": "Tutorial",
+						"ja": "チュートリアル",
+						"de": "Tutorial"
+					}
 				}
 			]
 		},
@@ -284,18 +306,25 @@
 					"name": {
 						"en": "Components",
 						"pt-br": "Componentes",
+						"ja": "コンポーネント",
 						"de": "Komponenten"
 					}
 				},
 				{
 					"path": "/guide/v10/hooks",
-					"name": "Hooks"
+					"name": {
+						"en": "Hooks",
+						"pt-br": "Hooks",
+						"ja": "フック(Hooks)",
+						"de": "Hooks"
+					}
 				},
 				{
 					"path": "/guide/v10/forms",
 					"name": {
 						"en": "Forms",
 						"pt-br": "Formulários",
+						"ja": "フォーム",
 						"de": "Formulare"
 					}
 				},
@@ -304,6 +333,7 @@
 					"name": {
 						"en": "References",
 						"pt-br": "Referências",
+						"ja": "リファレンス(Ref)",
 						"de": "Referenzen"
 					}
 				},
@@ -312,6 +342,7 @@
 					"name": {
 						"en": "Context",
 						"pt-br": "Contexto",
+						"ja": "コンテキスト(Context)",
 						"de": "Kontext"
 					}
 				}
@@ -327,6 +358,7 @@
 					"name": {
 						"en": "Debugging Tools",
 						"pt-br": "Ferramentas de depuração",
+						"ja": "デバッグツール",
 						"de": "Entwickler-Tools"
 					}
 				},
@@ -335,6 +367,7 @@
 					"name": {
 						"en": "Preact Testing Library",
 						"pt-br": "Preact Testing Library",
+						"ja": "Preact Testing Library",
 						"de": "Preact Testing Library"
 					}
 				},
@@ -343,6 +376,7 @@
 					"name": {
 						"en": "Unit Testing with Enzyme",
 						"pt-br": "Teste unitario com Enzyme",
+						"ja": "Enzymeを使った単体テスト",
 						"de": "Unit-Tests mit Enzyme"
 					}
 				}
@@ -358,6 +392,7 @@
 					"name": {
 						"en": "Differences to React",
 						"pt-br": "Diferenças do React",
+						"ja": "Reactとの違い",
 						"de": "Unterschiede zu React"
 					}
 				},
@@ -366,6 +401,7 @@
 					"name": {
 						"en": "Switching to Preact",
 						"pt-br": "Mudando para Preact",
+						"ja": "Preactへの移行",
 						"de": "Wechsel zu Preact"
 					}
 				}
@@ -382,12 +418,18 @@
 					"name": {
 						"en": "API Reference",
 						"pt-br": "Referência da API",
+						"ja": "APIリファレンス",
 						"de": "API Referenz"
 					}
 				},
 				{
 					"path": "/guide/v10/web-components",
-					"name": "Web Components"
+					"name": {
+						"en": "Web Components",
+						"pt-br": "Web Components",
+						"ja": "Webコンポーネント",
+						"de": "Web Components"
+					}
 				},
 				{
 					"path": "/guide/v10/progressive-web-apps",
@@ -395,13 +437,19 @@
 				},
 				{
 					"path": "/guide/v10/server-side-rendering",
-					"name": "Server-Side Rendering"
+					"name": {
+						"en": "Server-Side Rendering",
+						"pt-br": "Server-Side Rendering",
+						"ja": "サーバーサイドレンダリング",
+						"de": "Server-Side Rendering"
+					}
 				},
 				{
 					"path": "/guide/v10/external-dom-mutations",
 					"name": {
 						"en": "External DOM Mutations",
 						"pt-br": "Mutações do DOM externas",
+						"ja": "Preactのステート管理の範囲外のDOMとの連携",
 						"de": "Externe DOM Mutationen"
 					}
 				},
@@ -409,6 +457,7 @@
 					"path": "/guide/v10/options",
 					"name": {
 						"en": "Option Hooks",
+						"ja": "オプションフック",
 						"de": "Optionen"
 					}
 				}
