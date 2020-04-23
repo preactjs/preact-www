@@ -151,7 +151,7 @@ h(
 
 ## toChildArray
 
-This helper function converts a `props.children` value to a flattened Array regardless of its structure or nesting. If `props.children` is already an array, a copy is returned. This function is useful in cases where `props.children` may not be an array, which can happen with certain combinatations of static and dynamic expressions in JSX.
+This helper function converts a `props.children` value to a flattened Array regardless of its structure or nesting. If `props.children` is already an array, a copy is returned. This function is useful in cases where `props.children` may not be an array, which can happen with certain combinations of static and dynamic expressions in JSX.
 
 For Virtual DOM Elements with a single child, `props.children` is a reference to the child. When there are multiple children, `props.children` is always an Array. The `toChildArray` helper provides a way to consistently handle all cases.
 
@@ -201,7 +201,7 @@ See the section in the [Context documentation](/guide/v10/context#createcontext)
 
 ## createRef
 
-Creates a ref object, with a `.current` property pointing to the ref's most recently set value.
+Creates a `ref` object, with a `current` property pointing to the `ref`'s most recently set value.
 
 See the [References documentation](/guide/v10/refs#createref) for more details.
 
