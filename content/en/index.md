@@ -136,7 +136,7 @@ function Counter() {
 
 <section class="home-split">
     <div>
-        <h2>Todo List Component</h2>
+        <h2>Todo List</h2>
         <pre><code class="lang-jsx">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };

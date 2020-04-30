@@ -54,7 +54,7 @@ describe('Homepage', () => {
 	it('should display "Preact" text on page', async () => {
 		await page.goto(URL);
 		await expect(page).toMatch('A different kind of library');
-		await expect(page).toMatch('Todo List Component');
+		await expect(page).toMatch('Todo List');
 	});
 
 	it('should not load extra code', async () => {
@@ -121,7 +121,7 @@ describe('No JS', () => {
 	it('should display "Preact" text on page', async () => {
 		await page.goto(URL);
 		await expect(page).toMatch('A different kind of library');
-		await expect(page).toMatch('Todo List Component');
+		await expect(page).toMatch('Todo List');
 	});
 
 	it('should navigate to guide', async () => {
