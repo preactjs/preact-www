@@ -87,7 +87,7 @@ Most Preact developers prefer to use `class` because it's shorter to write, but 
 
 ### Use `onInput` instead of `onChange`
 
-For historical reasons React basically aliased `onChange` to `onInput`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
+For historical reasons, React basically aliased `onInput` to `onChange`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
 
 ```jsx
 // React
