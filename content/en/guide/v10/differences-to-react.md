@@ -97,7 +97,7 @@ For historical reasons, React basically aliased `onInput` to `onChange`. The lat
 <input onInput={e => console.log(e.target.value)} />
 ```
 
-If you're using [preact/compat] we'll set up this alias for `onChange` to `onInput` globally similar to React. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
+If you're using [preact/compat], we'll set up this alias for `onInput` to `onChange` globally similar to React. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
 
 ### JSX-Constructor
 
