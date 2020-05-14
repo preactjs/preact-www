@@ -131,7 +131,8 @@ class App extends Component {
   }
 
   // Adicione um manipulador de envio que atualize o `name` com o valor de entrada mais recente
-  onSubmit = () => {
+  onSubmit = ev => {
+    ev.preventDefault();
     this.setState({ name: this.state.value });
   }
 
