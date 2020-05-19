@@ -88,7 +88,7 @@ Now we're ready to start our application. To start a development server, run the
 cd my-project
 
 # Start a development server
-npm start
+npm run dev
 ```
 
 Once the server has started, it will print a local development URL to open in your browser.
