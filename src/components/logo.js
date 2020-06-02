@@ -64,7 +64,8 @@ export default class Logo extends Component {
 			inverted = false,
 			text = false,
 			fg = 'white',
-			bg = '#673ab8',
+			// bg = '#673ab8',
+			bg = '#646365', // Black lives matter
 			component,
 			...props
 		},

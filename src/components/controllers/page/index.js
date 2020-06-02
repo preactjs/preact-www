@@ -16,6 +16,7 @@ import {
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
 import { AVAILABLE_DOCS } from '../../doc-version';
+import { BlackLivesMatterBanner } from './campaigns/black-lives-matter';
 
 const getContentId = route => route.content || route.path;
 
@@ -163,6 +164,7 @@ export default function Page({ route }, ctx) {
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
+			{url === '/' && <BlackLivesMatterBanner />}
 			<div class={style.outer}>
 				<Hydrator
 					wrapperProps={{ class: style.sidebarWrap }}
