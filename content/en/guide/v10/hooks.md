@@ -171,7 +171,7 @@ const Counter = () => {
 
 ### useReducer
 
-The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
+The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestate) it's easier to use when you have complex state logic where the next state depends on the previous one.
 
 ```jsx
 const initialState = 0;
