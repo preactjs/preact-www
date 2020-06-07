@@ -44,7 +44,7 @@ options.vnode = vnode => {
 }
 ```
 
-None of the currently available hooks have return values, so handling return values from the original hook is not necessary.
+None of the currently available hooks excluding `options.event` have return values, so handling return values from the original hook is not necessary.
 
 ## Available Option Hooks
 
