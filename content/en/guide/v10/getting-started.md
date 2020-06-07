@@ -166,6 +166,26 @@ an `alias` key.
 }
 ```
 
+#### Aliasing in rollup
+
+To alias within rollup you'll need to install [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias).
+The plugin will need to be placed before your [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
+
+```js
+import alias from '@rollup/plugin-alias';
+
+module.exports = {
+  plugins: [
+    alias({
+      entries: [
+        { find: 'react', replacement: 'preact/compat' },
+        { find: 'react-dom', replacement: 'preact/compat' }
+      ]
+    })
+  ]
+};
+```
+
 #### Aliasing in jest
 
 Similar to bundlers, [jest](https://jestjs.io/) allows to rewrite module paths. The syntax is a bit
@@ -184,3 +204,16 @@ jest configuration:
 
 [htm]: https://github.com/developit/htm
 [Preact CLI]: https://github.com/preactjs/preact-cli
+
+## Typescript preact/compat configuration
+
+Your project could need support for the wider react ecosystem.  To make your application
+compile you'll need to disable type checking on your node_modules like this.  This way 
+your alias will work properly when libraries import react.
+
+```json
+{
+  ...
+  "skipLibCheck": true,
+}
+```
