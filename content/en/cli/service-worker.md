@@ -14,43 +14,36 @@ Preact CLI gives offline capabilities to the pre-built javascript/css and pre-re
 
 ## Custom functionality to your service worker
 
-In order to make any changes to the default service worker functionality,
+Peract CLI has a 3 line service worker API which you can edit in order to make any changes to the default service worker functionality.
 
 - Create a `sw.js` file in `src` folder.
-- Paste the following snippet in this file to get the default functionality.
-
-```js
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-
-const isNav = event => event.request.mode === 'navigate';
-
-/**
- * Adding this before `precacheAndRoute` lets us handle all
- * the navigation requests even if they are in precache.
- */
-workbox.routing.registerRoute(
-  ({ event }) => isNav(event),
-  new workbox.strategies.NetworkFirst({
-    // this cache is plunged with every new service worker deploy so we dont need to care about purging the cache.
-    cacheName: workbox.core.cacheNames.precache,
-    networkTimeoutSeconds: 5, // if u dont start getting headers within 5 sec fallback to cache.
-    plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [200], // only cache valid responses, not opaque responses e.g. wifi portal.
-      }),
-    ],
-  })
-);
-
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.routing.setCatchHandler(({ event }) => {
-  if (isNav(event))
-    return caches.match(workbox.precaching.getCacheKeyForURL('/index.html'));
-  return Response.error();
-});
-```
-
+- import preact-cli's sw library
+  ```js
+    import { getFiles, setupPrecaching, setupRouting } from 'preact-cli/sw/';
+  ```
+- Setup NetworkFirst fallback routing.
+  ```js
+    import { getFiles, setupPrecaching, setupRouting } from 'preact-cli/sw/';
+    /**
+     * This sets up the Network first fallback behaviour for offline users.
+     * Skip this if you want a custom setup for offline fallback behavior.
+     */
+    setupRouting();
+  ```
+- Setup Precaching.
+  ```js
+    import { getFiles, setupPrecaching, setupRouting } from 'preact-cli/sw/';
+    /**
+     * This sets up the Network first fallback behaviour for offline users.
+     * Skip this if you want a custom setup for offline fallback behavior.
+     */
+    setupRouting();
+    /**
+     * This sets up precaching for all the files returned from the `getFiles`.
+     * If you want to modify the list of files being pre-cached than just modify the result of `getFiles()` and pass it to the `setupPrecaching`
+     */
+    setupPrecaching(getFiles());
+  ```
 - Make changes according to your needs
 
 ## Adding other routes to runtime caching
@@ -58,7 +51,7 @@ workbox.routing.setCatchHandler(({ event }) => {
 If you want to add other routes or your API calls to runtime caching, follow the following steps.
 
 - Create a `sw.js` file in your `src` folder.
-- Add the following code with your respective settings.
+- Add the following code at the end with your respective settings.
 
 ```js
 workbox.routing.registerRoute(
