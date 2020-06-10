@@ -18,7 +18,7 @@ Without writing any code, Preact CLI will generate a service worker when buildin
 
 **1. Create a `sw.js` file within your `src/` directory**
 
-```
+```sh
 package.json
 src/
   index.js
