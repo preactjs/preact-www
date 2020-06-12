@@ -2,6 +2,9 @@
   "name": "preact-www",
   "version": "0.3.0",
   "description": "Preact website.",
+  "engines": {
+    "node": ">=12"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/preactjs/preact-www.git"
