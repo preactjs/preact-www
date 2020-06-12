@@ -10,6 +10,7 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import ThemeSwitcher from '../theme-switcher';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { useLanguage } from '../../lib/language';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -19,6 +20,9 @@ export default function Header() {
 	const { url } = useStore(['url']).state;
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
+	const [lang, setLang] = useLanguage();
+
+	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
 
 	useEffect(() => {
 		if (open) setOpen(false);
@@ -46,6 +50,16 @@ export default function Header() {
 						<img src="/assets/twitter.svg" alt="Twitter" />
 					</a>
 					<ThemeSwitcher />
+					<label class={style.language}>
+						Language:{' '}
+						<select value={lang || 'en'} onInput={onSelect}>
+							{Object.keys(config.languages).map(id => (
+								<option selected={id == lang} value={id}>
+									{config.languages[id]}
+								</option>
+							))}
+						</select>
+					</label>
 				</div>
 				<Hamburger open={open} onClick={toggle} />
 				<Corner />
