@@ -11,7 +11,7 @@ import { getRouteName } from '../../header';
 export default function Sidebar() {
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
-	const close = useCallback(() => setOpen(false));
+	const close = useCallback(() => setOpen(false), []);
 	const { docVersion, lang } = useStore(['docVersion', 'lang']).state;
 
 	// Get menu items for the current version of the docs (guides)
