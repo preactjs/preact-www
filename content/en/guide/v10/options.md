@@ -76,7 +76,7 @@ Invoked just before a DOM event is handled by its associated Virtual DOM listene
 
 **Signature:** `(callback: () => void) => void`
 
-Controls the scheduling of effects and effect-based based functionality in `preat/hooks`.
+Controls the scheduling of effects and effect-based based functionality in `preact/hooks`.
 
 #### `options.debounceRendering`
 
