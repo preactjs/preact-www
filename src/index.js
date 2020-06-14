@@ -4,16 +4,7 @@ import './pwa';
 import App from './components/app';
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
-
-// Inline `preact/devtools` from the latest Preact release here, because
-// we can't update the Preact version until hydration is sorted out.
-// TODO: Replace this with `import "preact/devtools"` once hydration
-// is solved.
-if (typeof window !== 'undefined' && window.__PREACT_DEVTOOLS__) {
-	window.__PREACT_DEVTOOLS__.attachPreact('10.0.5', preact.options, {
-		Fragment: preact.Fragment
-	});
-}
+import 'preact/devtools';
 
 export default App;
 
