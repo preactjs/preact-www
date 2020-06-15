@@ -40,7 +40,7 @@ function UncontrolledExample() {
 
 It is generally considered a good idea to use Controlled Components so that all state is managed the same way. However, when building standalone components or wrapping third-party UI libraries, it can still be useful to use a component as a simple "mount point" in the DOM for attaching non-Preact functionality. In these cases, an "Uncontrolled" Component is well-suited to the task.
 
-> Note: If `value` attribute is set to `undefined` or `null`, it becomes "Uncontrolled" Component.
+> **Note:** Setting the `value` of an input to `undefined` or `null` also makes it "Uncontrolled".
 
 ## Creating A Simple Form
 
