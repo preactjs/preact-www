@@ -125,6 +125,7 @@ class MyForm extends Component {
           checked={checked}
           onClick={this.toggle}
         />
+        foo
       </label>
     );
   }
@@ -152,6 +153,7 @@ class MyForm extends Component {
           checked={checked}
           onClick={this.toggle}
         />
+        foo
       </label>
     );
   }
