@@ -19,7 +19,7 @@ Much like in HTML forms, forms in Preact both work by rendering input elements a
 
 You'll often encounter the terms "Controlled Component" and "Uncontrolled Component" in documentation about working with forms in Preact. These terms refer to the way data flow is handled. The DOM has bidirectional data flow where each form control manages its own state and user input. For example, when typing into a text input element, the text is updated without requiring additional logic to store and display values.
 
-A framework like Preact in contrast generally has a unidirectional data flow. In Preact, generally, DOM (Example: text `input` element) doesn't manage the value itself there, Component (Example: a component which has child text `input` element) manages the value.
+In contrast, frameworks like Preact use unidirectional data flow. In this paradigm, instead of DOM elements like inputs managing their own internal state, most state is controlled by the Component that rendered that element.
 
 Controlled Component is that a component manages value of input control. Uncontrolled Component is that a component does not manages value of input control.
 
