@@ -5,9 +5,9 @@ description: 'How to build awesome forms in Preact that work anywhere.'
 
 # Forms
 
-Forms in Preact and Forms in HTML work much the same. Both render a control, and attach an event listener to it.
+Forms in Preact are largely the same as HTML forms.
 
-The main difference between both is that in most cases the `value` of input control is controlled by whether DOM node or Component.
+Much like in HTML forms, forms in Preact both work by rendering input elements and listening for events triggered as the form is modified. The primary difference when rendering forms with Preact is that the value of each form input is generally controlled by Preact.
 
 ---
 
