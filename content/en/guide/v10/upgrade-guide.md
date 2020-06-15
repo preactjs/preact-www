@@ -70,7 +70,7 @@ Due to our increased compatibility with the react-ecosystem this package isn't n
 
 #### styled-components
 
-Preact 8.x only worked up to `styled-components@3.x`. With Preact X this barrier is no more and we work with the latest version of `styled-components`. Make sure that you've [aliased react to preact](#setting-up-aliases) correctly.
+Preact 8.x only worked up to `styled-components@3.x`. With Preact X this barrier is no more and we work with the latest version of `styled-components`. Make sure that you've [aliased react to preact](/guide/v10/getting-started#aliasing-react-to-preact) correctly.
 
 #### preact-portal
 

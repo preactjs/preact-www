@@ -44,7 +44,7 @@ options.vnode = vnode => {
 }
 ```
 
-None of the currently available hooks have return values, so handling return values from the original hook is not necessary.
+None of the currently available hooks excluding `options.event` have return values, so handling return values from the original hook is not necessary.
 
 ## Available Option Hooks
 
@@ -76,7 +76,7 @@ Invoked just before a DOM event is handled by its associated Virtual DOM listene
 
 **Signature:** `(callback: () => void) => void`
 
-Controls the scheduling of effects and effect-based based functionality in `preat/hooks`.
+Controls the scheduling of effects and effect-based based functionality in `preact/hooks`.
 
 #### `options.debounceRendering`
 
