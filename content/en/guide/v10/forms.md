@@ -44,7 +44,7 @@ It is generally considered a good idea to use Controlled Components so that all 
 
 ## Creating A Simple Form
 
-Let's create a simple form to submit todo items. For this we create a `<form>`-Element and bind an event handler to onSubmit of the form. We do a similar thing for the text input field, but note that we are storing the value in TodoForm component by using `setState()`. You guessed it, we're using a Controlled Component here. In this example, Controlled Component is suitable, because we need to display the input's value in another element.
+Let's create a simple form to submit todo items. For this we create a `<form>` Element, then add a handler to listen for the form's "submit" event. Similarly, we create a text input field and listen for the "input" event triggered in response to typing. Notice that we are storing the text input's value in our `TodoForm` component using `setState()` - this makes it a Controlled input. A Controlled component is suitable for this example, because we need to know the input's state in order to display its current value in another element.
 
 ```jsx
 class TodoForm extends Component {
