@@ -31,7 +31,7 @@ A "Controlled" Component is a component where state must be manually managed by 
 <input onInput={myEventHandler} />;
 ```
 
-Generally, you should try to use "Controlled" Component at all times. However, when building standalone Component or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality. In these cases, "Uncontrolled" Component are nicely suited to the task.
+It is generally considered a good idea to use Controlled Components so that all state is managed the same way. However, when building standalone components or wrapping third-party UI libraries, it can still be useful to use a component as a simple "mount point" in the DOM for attaching non-Preact functionality. In these cases, an "Uncontrolled" Component is well-suited to the task.
 
 > Note: If `value` attribute is set to `undefined` or `null`, it becomes "Uncontrolled" Component.
 
