@@ -21,7 +21,7 @@ You'll often encounter the terms "Controlled Component" and "Uncontrolled Compon
 
 In contrast, frameworks like Preact use unidirectional data flow. In this paradigm, instead of DOM elements like inputs managing their own internal state, most state is controlled by the Component that rendered that element.
 
-Controlled Component is that a component manages value of input control. Uncontrolled Component is that a component does not manages value of input control.
+A "Controlled" Component is a component where state must be manually managed by listening for events and passing new values as props. An "Uncontrolled" Component is a component that manages its own internal state, handling events and updating itself automatically.
 
 ```jsx
 // This is Controlled Component. Component manages the input's value.
