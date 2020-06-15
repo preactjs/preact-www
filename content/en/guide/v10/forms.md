@@ -131,7 +131,11 @@ class MyForm extends Component {
 }
 ```
 
-But, it is unnecessary to use `checked` value in Event object, since the component has `checked` value at before changing in `state`. So, instead of listening for a `change` event we should listen for a `click` event, which is fired any time the user clicks on the checkbox _or an associated `<label>`_. Checkboxes just toggle between Boolean `true` and `false`, so clicking the checkbox or the label, we'll just invert whatever value we have in state, triggering a re-render, setting the checkbox's displayed value to the one we want.
+When managing the state of checkboxes or radio buttons, it's important to understand the two different mechanisms for observing value changes. The `click` event is triggered on an input when its own value changes, such as when a radio button is clicked, or activated via the keyboard or its associated `<label>`. The `change` event is triggered on all inputs in a form group when the value of that _group_ is changed.
+
+It's most common to use the `click` event for checkboxes and radio buttons, since it doesn't rely on named form groups which are a type of DOM state. When handling `click` events, the input element's boolean `checked` property indicates its current value.
+
+In the example below, clicking on the checkbox or its label should toggle between Boolean `true` and `false` values. To achieve this as a controlled input, we can store the initial value in state and simply invert it in response to clicks. This will trigger a re-render, setting the checkbox's displayed value to the value from state.
 
 ```jsx
 class MyForm extends Component {
