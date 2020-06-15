@@ -24,11 +24,18 @@ In contrast, frameworks like Preact use unidirectional data flow. In this paradi
 A "Controlled" Component is a component where state must be manually managed by listening for events and passing new values as props. An "Uncontrolled" Component is a component that manages its own internal state, handling events and updating itself automatically.
 
 ```jsx
-// This is Controlled Component. Component manages the input's value.
-<input value={someValue} onInput={myEventHandler} />;
+// Controlled: a Component manages the input's value.
+function ControlledExample() {
+    const someValue = 'hello';
+    const handlInput = () => { /* */ };
+    return <input value={someValue} onInput={handleInput} />;
+}
 
-// This is Uncontrolled Component. Component doesn't set the value. DOM manages input's value.
-<input onInput={myEventHandler} />;
+// Uncontrolled: nothing sets the input value, so it is managed by the DOM
+function UncontrolledExample() {
+    const handlInput = () => { /* */ };
+    return <input onInput={handleInput} />;
+}
 ```
 
 It is generally considered a good idea to use Controlled Components so that all state is managed the same way. However, when building standalone components or wrapping third-party UI libraries, it can still be useful to use a component as a simple "mount point" in the DOM for attaching non-Preact functionality. In these cases, an "Uncontrolled" Component is well-suited to the task.
