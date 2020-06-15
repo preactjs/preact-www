@@ -74,7 +74,7 @@ class TodoForm extends Component {
 
 ## Select Element
 
-A `<select>`-Element is a little more involved, but works similar to all other form controls:
+The `<select>` element uses `<option>` children to build up a list of values, typically shown as a dropdown. Once constructed, it can be controlled using `value` and `onChange` similar to other form controls:
 
 ```jsx
 class MySelect extends Component {
