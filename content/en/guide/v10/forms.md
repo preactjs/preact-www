@@ -123,7 +123,7 @@ class MyForm extends Component {
         <input
           type="checkbox"
           checked={checked}
-          onClick={this.toggle}
+          onChange={this.toggle}
         />
         foo
       </label>
