@@ -25,7 +25,7 @@ export default function (config, env, helpers) {
 	}
 
 	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions.PRERENDER = String(env.ssr===true);
-	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions['process.env.BRANCH'] = String(process.env.BRANCH);
+	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions['process.env.BRANCH'] = JSON.stringify(process.env.BRANCH);
 
 	// web worker HMR requires it
 	config.output.globalObject = 'self';
