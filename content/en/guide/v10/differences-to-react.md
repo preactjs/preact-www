@@ -12,7 +12,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -21,6 +21,12 @@ The reason Preact does not attempt to include every single feature of React is i
 The main difference when comparing Preact and React apps is that we don't ship our own Synthetic Event system. Preact uses the browser's native `addEventlistener` for event handling internally. See [GlobalEventHandlers] for a full list of DOM event handlers.
 
 For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintenance overhead and a larger API surface area for us.
+
+We've come across the following differences between React's synthetic event system and native browser events:
+
+- Browser events don't bubble through `<Portal>`-Components
+- The clear "x" button in IE11 for `<input type="search">` elements does not fire an `input` event.
+- Use `onInput` instead `onChange` for `<input>`-elements (**only if `preact/compat` is not used**)
 
 The other main difference is that we follow a bit more closely the DOM specification. One example of that is that you can use `class` instead of `className`.
 
@@ -77,6 +83,25 @@ With Preact we follow more closely the DOM specification supported by all major 
 ```
 
 Most Preact developers prefer to use `class` because it's shorter to write, but both are supported.
+
+### SVG inside JSX
+
+SVG is pretty interesting when it comes to the names of its properties and attributes. Some properties (and their attributes) on SVG objects are camelCased (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes)), some attributes are kebab-case (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), and other attributes (usually ones inherited from the DOM, e.g. `oninput`) are all lowercase.
+
+Preact forwards SVG-Attributes as is. This allows you to copy and paste unmodified SVG snippets right into your code and have them work out of the box. This allows greater interoperability with tools designers tend to use to generate icons or SVG illustrations.
+
+If you're coming from React you're likely used to specify every attribute in camelCase. If you'd like to continue using the camelCase'd attribute names you can use our [preact/compat] compatibility layer. It mirrors the React API and normalizes these attributes.
+
+```jsx
+// React
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" strokeWidth="2" strokeLinejoin="round" cx="24" cy="24" r="20" />
+</svg>
+// Preact (note stroke-width and stroke-linejoin)
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" stroke-width="2" stroke-linejoin="round" cx="24" cy="24" r="20" />
+</svg>
+```
 
 ### Use `onInput` instead of `onChange`
 
@@ -170,7 +195,7 @@ A React-compatible `Children` API is available from `preact/compat` to make inte
 
 [preact/compat] ships with specialised components that are not necessary for every app. These include
 
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` and `state` have changed
+- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
 - [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
 - [forwardRef](/guide/v10/switching-to-preact#forwardRef): Supply a `ref` to a specified child component.
 - [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
