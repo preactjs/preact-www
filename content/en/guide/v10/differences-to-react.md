@@ -79,17 +79,29 @@ standard `class` attribute instead of `className`.
 
 Most Preact developers prefer to use `class` because it's shorter to write, but both are supported.
 
-### Use `onInput` instead of `onChange`
+### Raw SVG inside JSX
 
-For historical reasons React basically aliased `onChange` to `onInput`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
+SVG is pretty interesting when it comes to the names of its properties and attributes. Some properties (and their attributes) on SVG objects are camelCased (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes)), some attributes are kebab-case (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), and other attributes (usually ones inherited from the DOM, e.g. `oninput`) are all lowercase.
+
+Preact doesn't normalize SVG properties and attributes [like React does]((https://github.com/facebook/react/pull/6243)) and instead, allows you to write valid SVG inside JSX by passing attributes through.
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" strokeWidth="2" strokeLinejoin="round" cx="24" cy="24" r="20" />
+</svg>
 
-// Preact
-<input onInput={e => console.log(e.target.value)} />
+// Preact (note stroke-width and stroke-linejoin)
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" stroke-width="2" stroke-linejoin="round" cx="24" cy="24" r="20" />
+</svg>
 ```
+
+[preact/compat] however, tries to mimic React which does normalize these attributes.
+
+### Use `onInput` instead of `onChange`
+
+For historical reasons React basically aliased `onChange` to `onInput`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
 
 If you're using [preact/compat] we'll set up this alias for `onChange` to `onInput` globally similar to React. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
 
