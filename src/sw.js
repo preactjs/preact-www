@@ -1,4 +1,8 @@
-import 'preact-cli/lib/lib/sw.js';
+import { getFiles, setupPrecaching, setupRouting } from 'preact-cli/sw';
+
+setupRouting();
+
+setupPrecaching(getFiles());
 
 // fix upgrades from the old site
 self.caches.keys().then(keys => {

@@ -9,7 +9,7 @@ Esta página serve como uma rápida visão geral de todas as funções exportada
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -44,7 +44,7 @@ Renderizar um componente Preact no `containerNode` do DOM. Não retorna nada.
 
 Se o nó DOM opcional `replaceNode` for fornecido e for filho de `containerNode`, o Preact atualizará ou substituirá esse elemento usando seu algoritmo de comparação.
 
-```js
+```jsx
 import { render } from 'preact';
 
 const Foo = () => <div>foo</div>;

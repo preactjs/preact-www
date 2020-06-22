@@ -23,7 +23,7 @@ O Preact difere da Enzyme com o React.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -55,7 +55,7 @@ Seção [Guias](https://airbnb.io/enzyme/docs/guides.html) da documentação do 
 Suponha que tenhamos um simples componente `Counter 'que exibe um valor inicial,
 com um botão para atualizá-lo:
 
-```js
+```jsx
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
@@ -75,7 +75,7 @@ export default function Counter({ initialCount }) {
 Usando um corredor de teste como mocha ou Jest, você pode escrever um teste para verificar se
 funciona como esperado:
 
-```js
+```jsx
 import { expect } from 'chai';
 import { h } from 'preact';
 import { mount } from 'enzyme';
@@ -116,7 +116,7 @@ a saída.
 
 A Enzyme possui três "modos" de renderização:
 
-```js
+```jsx
 import { mount, shallow, render } from 'enzyme';
 
 // Renderiza a árvore de componentes completa:
@@ -178,7 +178,7 @@ através do método `simulate`:
 import { act } from 'preact/test-utils';
 ```
 
-```js
+```jsx
 it("deve incrementar após clicar no botão 'Incrementar'", () => {
     const wrapper = mount(<Counter initialCount={5}/>);
     const onClick = wrapper.find('button').props().onClick;

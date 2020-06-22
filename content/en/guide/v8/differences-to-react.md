@@ -11,7 +11,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

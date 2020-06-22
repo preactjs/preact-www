@@ -1,0 +1,49 @@
+:global(.sponsors) {
+	text-align: center;
+	margin-bottom: -2rem;
+
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.sponsorList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 !important;
+	margin: 1rem 0 0 0;
+}
+
+.sponsorItem {
+	list-style: none;
+	opacity: 0.5;
+	transition: all 0.3s;
+	filter: grayscale(1);
+
+	@media (prefers-color-scheme: dark) {
+		filter: brightness(0) invert(1);
+	}
+	:global(.dark) & {
+		filter: brightness(0) invert(1);
+	}
+	:global(.light) & {
+		filter: grayscale(1);
+	}
+
+	&:hover {
+		opacity: 1;
+	}
+
+	a {
+		text-decoration: none;
+		display: block;
+		color: transparent !important;
+		// Fix IE 11 border
+		background: none !important;
+	}
+
+	& + .sponsorItem {
+		margin-left: 3rem;
+	}
+}

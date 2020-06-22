@@ -14,7 +14,7 @@ Entre ces deux types, il y a aussi plusieurs façons d'implémenter les composan
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

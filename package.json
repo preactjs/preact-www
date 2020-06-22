@@ -2,6 +2,9 @@
   "name": "preact-www",
   "version": "0.3.0",
   "description": "Preact website.",
+  "engines": {
+    "node": ">=12"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/preactjs/preact-www.git"
@@ -84,7 +87,7 @@
     "lint-staged": "^9.5.0",
     "per-env": "^1.0.2",
     "postcss-custom-properties": "^9.0.2",
-    "preact-cli": "^3.0.0-rc.7",
+    "preact-cli": "^3.0.0-rc.14",
     "preact-cli-plugin-netlify": "^1.5.0",
     "preact-render-spy": "^1.3.0",
     "prettier": "^1.19.1",
@@ -103,9 +106,9 @@
     "less": "^3.10.3",
     "linkstate": "^1.1.1",
     "marked": "^0.8.0",
-    "preact": "^10.0.0-rc.0",
+    "preact": "^10.4.4",
     "preact-markup": "^2.0.0",
-    "preact-render-to-string": "^5.1.3",
+    "preact-render-to-string": "^5.1.9",
     "preact-router": "^3.1.0",
     "sucrase": "^3.12.0",
     "superstatic": "^6.0.4",

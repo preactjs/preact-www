@@ -10,7 +10,7 @@ Preact'deki formlar React'deki ile aynı işi yaparlar, fakat "static" (başlang
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

@@ -16,7 +16,7 @@ Existem duas maneiras de importá-las, você pode importá-las de
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

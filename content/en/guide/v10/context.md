@@ -11,7 +11,7 @@ There are two different ways to use context: Via the newer `createContext` API a
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -49,7 +49,7 @@ function App() {
 
 We include the legacy API mainly for backwards-compatibility reasons. It has been superseded by the `createContext` API. The legacy API has known issues like blocking updates if there are components in-between that return `false` in `shouldComponentUpdate`. If you nonetheless need to use it, keep reading.
 
-To pass down a custom variable through the context a component needs to have the `getChildContext` method. There you return the new values you want to store in the context. The context can be accessed via the second argument in function components or `this.context` in a class-based component.
+To pass down a custom variable through the context, a component needs to have the `getChildContext` method. There you return the new values you want to store in the context. The context can be accessed via the second argument in function components or `this.context` in a class-based component.
 
 ```jsx
 function ThemedButton(props, context) {

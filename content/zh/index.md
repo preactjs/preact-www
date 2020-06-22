@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
+    <p class="tagline">React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">如何开始</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 preact</a>
     </p>
 </jumbotron>
 
@@ -34,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p>Proudly <a href="https://opencollective.com/preact">sponsored by:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>与众不同的库</h1>
@@ -78,7 +79,7 @@ function Counter() {
 		Preact 是快速的，不仅是因为它的体积，因为一个简单和可预测的 diff 实现，使它成为最快的虚拟 DOM 框架之一。
     </p>
     <p>
-        它甚至包含额外的性能特性，如 批量自定义更新，可选的 异步渲染，DOM 回收和通过[关联状态](/guide/linked-state) 优化的事件处理。
+        它甚至包含额外的性能特性，如 批量自定义更新，可选的 异步渲染，DOM 回收和通过。
     </p>
   </div>
 </section>
@@ -231,8 +232,7 @@ render(
         选取最适合您的指导规范！
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">如何开始</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 Preact</a>
     </p>
 </section>

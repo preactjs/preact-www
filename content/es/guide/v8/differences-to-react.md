@@ -11,7 +11,7 @@ La raz√≥n por la que Preact no intenta incluir absolutamente todas las caracter√
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

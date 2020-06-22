@@ -11,7 +11,7 @@ Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstell
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

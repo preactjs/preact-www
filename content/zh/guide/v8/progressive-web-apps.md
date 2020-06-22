@@ -66,7 +66,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://de
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://webpack.github.io/docs/code-splitting.html">代码拆分</a></strong> 
+          <p class="_summary"><strong><a href="https://webpack.js.org/guides/code-splitting/">代码拆分</a></strong> 
             分解您的代码，以便只发送用户页面需要的代码。根据需要延迟加载其余部分可提高页面加载时间。这点通过 webpack 支持。
           </p>
         </div>

@@ -9,7 +9,7 @@ permalink: '/guide/linked-state'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

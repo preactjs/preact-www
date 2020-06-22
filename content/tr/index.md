@@ -10,18 +10,14 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Aynı modern API ile React'e hızlı ve 3kB'lık alternatif.</p>
+    <p class="tagline">Aynı modern API ile React'e hızlı ve 3kB'lık alternatif.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Başlangıç</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact'e Geçiş</a>
     </p>
 </jumbotron>
 
-```js
+```jsx
 function Counter() {
   const [value, setValue] = useState(0);
 
@@ -34,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p><a href="https://opencollective.com/preact">Sponsorluğunda:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>Başka bir tür kütüphane.</h1>
@@ -118,7 +119,6 @@ function Counter() {
     <ul>
         <li>`props`, `state` ve `context` zaten `render()`'a paslanmış durumda. </li>
         <li>`class` ve `for` gibi standart HTML attribute'larını kullanabilirsiniz.</li>
-        <li>Kutudan çıktığı gibi React DevTools ile çalışır.</li>
     </ul>
   </div>
 </section>
@@ -240,8 +240,7 @@ render(
         Size uygun olan kılavuzu seçin!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Başlangıç</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Preact'e Geçiş</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Başlangıç</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact'e Geçiş</a>
     </p>
 </section>

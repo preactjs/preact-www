@@ -11,7 +11,7 @@ Se você está apenas começando, é altamente recomendável usar o [preact-cli]
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -81,7 +81,7 @@ Agora estamos prontos para iniciar nosso aplicativo. Para iniciar o servidor de 
 cd my-project/
 
 # iniciar o servidor em dev
-npm start
+npm run dev
 ```
 
 Depois que o servidor estiver ativo, você poderá acessar seu aplicativo no URL que foi impresso no console. Agora você está pronto para desenvolver seu aplicativo!

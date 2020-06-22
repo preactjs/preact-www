@@ -10,13 +10,10 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Fast 3kB alternative to React with the same modern API.</p>
+    <p class="tagline">Fast 3kB alternative to React with the same modern API.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
-    </p>
-    <p>
-        <github-stars user="preactjs" repo="preact">20,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </jumbotron>
 
@@ -33,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<section class="sponsors">
+  <p>Proudly <a href="https://opencollective.com/preact">sponsored by:</a></p>
+  <sponsors></sponsors>
+</section>
 
 <section class="home-top">
     <h1>A different kind of library.</h1>
@@ -108,7 +110,6 @@ function Counter() {
     <ul>
       <li><code>props</code>, <code>state</code> and <code>context</code> are passed to <code>render()</code></li>
       <li>Use standard HTML attributes like <code>class</code> and <code>for</code></li>
-      <li>Works with React DevTools right out of the box</li>
     </ul>
   </div>
 </section>
@@ -135,7 +136,7 @@ function Counter() {
 
 <section class="home-split">
     <div>
-        <h2>Todo List Component</h2>
+        <h2>Todo List</h2>
         <pre><code class="lang-jsx">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
@@ -226,8 +227,7 @@ render(
         Pick the guide that works best for you!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </section>

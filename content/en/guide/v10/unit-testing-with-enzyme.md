@@ -23,7 +23,7 @@ Preact differs from Enzyme with React.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -44,7 +44,7 @@ adapter:
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-preact-pure';
 
-configure({ adapter: new Adapter });
+configure({ adapter: new Adapter() });
 ```
 
 For guidance on using Enzyme with different test runners, see the
@@ -56,7 +56,7 @@ documentation.
 Suppose we have a simple `Counter` component which displays an initial value,
 with a button to update it:
 
-```js
+```jsx
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
@@ -76,7 +76,7 @@ export default function Counter({ initialCount }) {
 Using a test runner such as mocha or Jest, you can write a test to check that
 it works as expected:
 
-```js
+```jsx
 import { expect } from 'chai';
 import { h } from 'preact';
 import { mount } from 'enzyme';
@@ -117,7 +117,7 @@ the output.
 
 Enzyme has three rendering "modes":
 
-```js
+```jsx
 import { mount, shallow, render } from 'enzyme';
 
 // Render the full component tree:
@@ -179,7 +179,7 @@ through the `simulate` method:
 import { act } from 'preact/test-utils';
 ```
 
-```js
+```jsx
 it('should increment after "Increment" button is clicked', () => {
     const wrapper = mount(<Counter initialCount={5}/>);
     const onClick = wrapper.find('button').props().onClick;

@@ -64,7 +64,8 @@ export default class Logo extends Component {
 			inverted = false,
 			text = false,
 			fg = 'white',
-			bg = '#673ab8',
+			// bg = '#673ab8',
+			bg = '#646365', // Black lives matter
 			component,
 			...props
 		},
@@ -76,6 +77,7 @@ export default class Logo extends Component {
 
 		return (
 			<svg
+				class="logo"
 				width={!text && '34px'}
 				height="34px"
 				viewBox={`-256 -256 ${text ? 1800 : 512} 512`}

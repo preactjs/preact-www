@@ -12,7 +12,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -21,6 +21,12 @@ The reason Preact does not attempt to include every single feature of React is i
 The main difference when comparing Preact and React apps is that we don't ship our own Synthetic Event system. Preact uses the browser's native `addEventlistener` for event handling internally. See [GlobalEventHandlers] for a full list of DOM event handlers.
 
 For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintenance overhead and a larger API surface area for us.
+
+We've come across the following differences between React's synthetic event system and native browser events:
+
+- Browser events don't bubble through `<Portal>`-Components
+- The clear "x" button in IE11 for `<input type="search">` elements does not fire an `input` event.
+- Use `onInput` instead `onChange` for `<input>`-elements (**only if `preact/compat` is not used**)
 
 The other main difference is that we follow a bit more closely the DOM specification. One example of that is that you can use `class` instead of `className`.
 
@@ -101,7 +107,7 @@ Preact doesn't normalize SVG properties and attributes [like React does]((https:
 
 ### Use `onInput` instead of `onChange`
 
-For historical reasons React basically aliased `onChange` to `onInput`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
+For historical reasons, React basically aliased `onInput` to `onChange`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
 
 ```jsx
 // React
@@ -111,7 +117,7 @@ For historical reasons React basically aliased `onChange` to `onInput`. The latt
 <input onInput={e => console.log(e.target.value)} />
 ```
 
-If you're using [preact/compat] we'll set up this alias for `onChange` to `onInput` globally similar to React. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
+If you're using [preact/compat], we'll set up this alias for `onInput` to `onChange` globally similar to React. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
 
 ### JSX-Constructor
 
@@ -162,7 +168,7 @@ function App(props) {
 
 [preact/compat] ships with specialised components that are not necessary for every app. These include
 
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` and `state` have changed
+- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
 - [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
 - [forwardRef](/guide/v10/switching-to-preact#forwardRef): Supply a `ref` to a specified child component.
 - [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container

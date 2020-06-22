@@ -7,7 +7,7 @@ permalink: '/guide/api-reference'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -60,6 +60,10 @@ class MyComponent extends Component {
 		this.state // Previous state
 	}
 	componentWillMount() {}
+	componentWillUpdate(nextProps, nextState) {
+		this.props // Previous props
+		this.state // Previous state
+	}
 	componentDidMount() {}
 	componentDidUpdate() {}
 	componentWillUnmount() {

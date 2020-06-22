@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Una alternativa veloz a React en 3kB con la misma API de ES6.</p>
+    <p class="tagline">Una alternativa veloz a React en 3kB con la misma API de ES6.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Cambiar a Preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Cambiar a Preact</a>
     </p>
 </jumbotron>
 
@@ -34,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p><a href="https://opencollective.com/preact">Patrocinado por:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>Una librería distinta.</h1>
@@ -81,7 +82,7 @@ function Counter() {
         Preact es rápido, y no solo por su peso. Es una de las librerías de Virtual DOM más rápidas que vas a encontrar, gracias a su implementación de diffing simple y predecible.
     </p>
     <p>
-        También incluye añadidos extra de rendimientos como actualizaciones customizables en batch, async rendering opcional, reciclado del DOM y manejo de eventos optimizado via [Estado Asociado](/guide/linked-state).
+        También incluye añadidos extra de rendimientos como actualizaciones customizables en batch, async rendering opcional y reciclado del DOM.
     </p>
   </div>
 </section>
@@ -237,8 +238,7 @@ render(
         ¡Elige la guía que mejor te funcione!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Primeros pasos</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Cambiando a Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Cambiando a Preact</a>
     </p>
 </section>
