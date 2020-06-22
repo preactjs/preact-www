@@ -11,7 +11,7 @@ Preact X brings many new exciting features such as `Fragments`, `hooks` and much
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -70,7 +70,7 @@ Due to our increased compatibility with the react-ecosystem this package isn't n
 
 #### styled-components
 
-Preact 8.x only worked up to `styled-components@3.x`. With Preact X this barrier is no more and we work with the latest version of `styled-components`. Make sure that you've [aliased react to preact](#setting-up-aliases) correctly.
+Preact 8.x only worked up to `styled-components@3.x`. With Preact X this barrier is no more and we work with the latest version of `styled-components`. Make sure that you've [aliased react to preact](/guide/v10/getting-started#aliasing-react-to-preact) correctly.
 
 #### preact-portal
 
@@ -162,7 +162,7 @@ If you are looking for behavior that exactly matches how React's `render` method
 
 In Preact X we can't guarantee `props.children` to always be of type `array` anymore. This change was necessary to resolve parsing ambiguities in regards to `Fragments` and components that return an `array` of children. In most cases you may not even notice it. Only in places where you'll use array methods on `props.children` directly need to be wrapped with `toChildArray`. This function will always return an array.
 
-```js
+```jsx
 // Preact 8.x
 function Foo(props) {
   // `.length` is an array method. In Preact X when `props.children` is not an

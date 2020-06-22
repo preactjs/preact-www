@@ -11,7 +11,7 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -71,19 +71,19 @@ A `<select>`-Element is a little more involved, but works similar to all other f
 class MySelect extends Component {
   state = { value: '' };
 
-  onInput = e => {
+  onChange = e => {
     this.setState({ value: e.target.value });
   }
 
   onSubmit = e => {
-    alert("Submitted something");
+    alert("Submitted " + this.state.value);
     e.preventDefault();
   }
 
   render(_, { value }) {
     return (
       <form onSubmit={this.onSubmit}>
-        <select value={value} onInput={this.onInput}>
+        <select value={value} onChange={this.onChange}>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
@@ -105,7 +105,7 @@ So, instead of listening for a `input` event we should listen for a `click` even
 
 ### Checkbox Example
 
-```js
+```jsx
 class MyForm extends Component {
   toggle = e => {
       let checked = !this.state.checked;

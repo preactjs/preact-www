@@ -11,7 +11,7 @@ A principal diferença é que, na maioria dos casos, o `valor 'não é controlad
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -107,7 +107,7 @@ Portanto, em vez de ouvir um evento `input`, devemos ouvir um evento `click`, qu
 
 ### Exemplo da caixa de seleção
 
-```js
+```jsx
 class MyForm extends Component {
   toggle = e => {
       let checked = !this.state.checked;

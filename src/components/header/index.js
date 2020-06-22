@@ -47,16 +47,16 @@ export default function Header() {
 					</a>
 					<ThemeSwitcher />
 				</div>
-				<Hamburgler open={open} onClick={toggle} />
+				<Hamburger open={open} onClick={toggle} />
 				<Corner />
 			</div>
 		</header>
 	);
 }
 
-// hamburgler menu
-const Hamburgler = ({ open, ...props }) => (
-	<div class={style.hamburgler} open={open} {...props}>
+// hamburger menu
+const Hamburger = ({ open, ...props }) => (
+	<div class={style.hamburger} open={open} {...props}>
 		<div class={style.hb1} />
 		<div class={style.hb2} />
 		<div class={style.hb3} />
@@ -70,7 +70,7 @@ const Nav = ({ routes, current, ...props }) => (
 			<NavItem
 				to={route}
 				current={current}
-				route={getRouteIdent(route)}
+				data-route={getRouteIdent(route)}
 				class={cx(
 					route.class,
 					(route.path === current ||
@@ -117,25 +117,39 @@ class NavItem extends Component {
 		if (!to.routes) return <NavLink to={to} {...props} />;
 
 		return (
-			<section {...props} data-open={open}>
-				<NavLink to={to} onClick={this.toggle} aria-haspopup />
+			<div {...props} data-open={open} class={style.navGroup}>
+				<NavLink to={to} onClick={this.toggle} aria-haspopup isOpen={open} />
 				<Nav
 					routes={to.routes}
 					current={current}
 					aria-label="submenu"
 					aria-hidden={'' + !open}
 				/>
-			</section>
+			</div>
 		);
 	}
 }
 
 // depending on the type of nav link, use <a>
-const NavLink = ({ to, ...props }) => {
+const NavLink = ({ to, isOpen, route, ...props }) => {
 	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
+
+	if (!to.path) {
+		return (
+			<button
+				{...props}
+				aria-haspopup="true"
+				aria-expanded={isOpen}
+				data-route={route}
+			>
+				{getRouteName(to, lang)}
+			</button>
+		);
+	}
+
 	return (
-		<a href={to.path || 'javascript:'} {...props}>
+		<a href={to.path} {...props} data-route={route}>
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>

@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1579731907448,
+    "timestamp": 1592133279974,
     "files": [
       {
         "filename": "editor.chunk.*****.js",
@@ -16,45 +16,51 @@
       },
       {
         "filename": "runner.chunk.*****.js",
-        "previous": 5931,
-        "size": 5931,
-        "diff": 0
+        "previous": 8111,
+        "size": 8061,
+        "diff": -50
       },
       {
         "filename": "ssr-bundle.js",
-        "previous": 28159,
-        "size": 28237,
-        "diff": 78
+        "previous": 31193,
+        "size": 31220,
+        "diff": 27
       },
       {
-        "filename": "markdown.c9960.worker.js",
-        "previous": 10199,
-        "size": 10199,
-        "diff": 0
-      },
-      {
-        "filename": "prism.05c92.worker.js",
+        "filename": "prism.fd5f9.worker.js",
         "previous": 7246,
         "size": 7246,
         "diff": 0
       },
       {
-        "filename": "repl.eadff.worker.js",
-        "previous": 73721,
-        "size": 73721,
+        "filename": "markdown.0f5bf.worker.js",
+        "previous": 10198,
+        "size": 10198,
         "diff": 0
       },
       {
-        "filename": "editor.chunk.78d77.css",
-        "previous": 3188,
-        "size": 3188,
+        "filename": "repl.f6f3f.worker.js",
+        "previous": 73734,
+        "size": 73734,
         "diff": 0
       },
       {
-        "filename": "ssr-bundle.8178b.css",
-        "previous": 11783,
-        "size": 11783,
+        "filename": "editor.chunk.b63ca.css",
+        "previous": 3131,
+        "size": 3131,
         "diff": 0
+      },
+      {
+        "filename": "ssr-bundle.b654f.css",
+        "previous": 12419,
+        "size": 0,
+        "diff": -12419
+      },
+      {
+        "filename": "ssr-bundle.f0370.css",
+        "previous": 0,
+        "size": 12419,
+        "diff": 12419
       }
     ]
   }

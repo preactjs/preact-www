@@ -11,7 +11,7 @@ Los Formularios en Preact funcionan de la misma manera que en React, excepto que
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

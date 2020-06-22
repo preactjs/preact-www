@@ -15,7 +15,7 @@ There are two ways to import hooks: from `preact/hooks` or `preact/compat`.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -32,8 +32,8 @@ class Counter extends Component {
   };
 
   increment = () => {
-    this.setState(prev => ({ value: prev.value +1 })
-  });
+    this.setState(prev => ({ value: prev.value +1 }));
+  };
 
   render(props, state) {
     return (
@@ -171,7 +171,7 @@ const Counter = () => {
 
 ### useReducer
 
-The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
+The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestate) it's easier to use when you have complex state logic where the next state depends on the previous one.
 
 ```jsx
 const initialState = 0;
@@ -374,4 +374,4 @@ const App = props => {
 ```
 
 > If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) lifecycle method.
-> This hook is was introduced with Preact 10.2.0 .
+> This hook was introduced with Preact 10.2.0 .

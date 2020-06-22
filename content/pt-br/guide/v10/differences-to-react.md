@@ -12,7 +12,7 @@ Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pe
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

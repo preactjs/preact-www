@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Un alternativa veloce e leggera 3Kb a React con le stesse moderne API.</p>
+    <p class="tagline">Un alternativa veloce e leggera 3Kb a React con le stesse moderne API.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Primi Passi</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Passare a Preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">19,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Primi Passi</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passare a Preact</a>
     </p>
 </jumbotron>
 
@@ -34,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p><a href="https://opencollective.com/preact">Sponsorizzata da:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>Una Libreria differente!</h1>
@@ -83,7 +84,7 @@ function Counter() {
         Preact è veloce, e non solo per il suo peso. Ha una delle implementazioni più veloci per rilevare le differenze tra il DOM sulla pagina e il DOM virtuale.
     </p>
     <p>
-        Include anche funzionalità aggiuntive per le prestazoni, come l'aggiornamento personalizzabile dei batch, un opzionale e asincrono rendering, DOM riutilizzabile, e una gestione ottimizzata degli eventi tramite lo  [Stato Collegato](/guide/linked-state).
+        Include anche funzionalità aggiuntive per le prestazoni, come l'aggiornamento personalizzabile dei batch, un opzionale e asincrono rendering e DOM riutilizzabile.
     </p>
   </div>
 </section>
@@ -116,7 +117,6 @@ function Counter() {
     <ul>
         <li>`props`, `state` e `context` sono passati a `render()`</li>
         <li>Usa attributi standard dell' HTML come `class` e `for`</li>
-        <li>Funziona con React DevTools senza alcuna configurazione</li>
     </ul>
   </div>
 </section>
@@ -238,8 +238,7 @@ render(
         Scegli la guida migliore per te!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Primi passi</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Passa a Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Primi passi</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passa a Preact</a>
     </p>
 </section>

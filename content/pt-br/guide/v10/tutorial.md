@@ -11,7 +11,7 @@ Este guia mostra a construção de um simples componente "relógio". Informaçõ
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -131,7 +131,8 @@ class App extends Component {
   }
 
   // Adicione um manipulador de envio que atualize o `name` com o valor de entrada mais recente
-  onSubmit = () => {
+  onSubmit = ev => {
+    ev.preventDefault();
     this.setState({ name: this.state.value });
   }
 
@@ -157,7 +158,7 @@ Estrondo! Foram realizadas! Agora podemos inserir um nome personalizado, clicar 
 
 Nós escrevemos nosso primeiro componente, então vamos praticar um pouco mais. Desta vez, construímos um relógio.
 
-```js
+```jsx
 import { h, render, Component } from 'preact';
 
 class Clock extends Component {
@@ -174,7 +175,7 @@ Ok, isso foi fácil! O problema é que o tempo não muda. Está congelado no mom
 
 Portanto, queremos que o cronômetro de 1 segundo seja iniciado assim que o componente for adicionado ao DOM e pare se for removido. Criaremos o timer e armazenaremos uma referência a ele em `componentDidMount`, e pararemos o timer em `componentWillUnmount`. Em cada marca de timer, atualizaremos o objeto `state 'do componente com um novo valor de tempo. Fazer isso renderiza automaticamente o componente.
 
-```js
+```jsx
 import { h, render, Component } from 'preact';
 
 class Clock extends Component {

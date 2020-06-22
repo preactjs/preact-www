@@ -20,7 +20,7 @@ Preact aims to deliver on a few key goals:
 
 Some React features are intentionally omitted from Preact, either because they are not achievable while meeting the primary project goals listed above or because they don't fit within the scope of Preact's core set of functionality.
 
-- The intentional items under [Differences to React](/guide/v10/differences-to-react):
+The intentional items under [Differences to React](/guide/v10/differences-to-react):
 - `PropTypes`, which are easily used as a separate library
 - `Children`, can be replaced with native arrays
 - `Synthetic Events`, since Preact does not attempt to patch issues in older browsers like IE8

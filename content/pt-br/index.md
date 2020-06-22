@@ -10,14 +10,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
+    <p class="tagline">Uma alternativa ao React com apenas 3kB e a mesma API ES6.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Como começar</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Mudando para Preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Como começar</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Mudando para Preact</a>
     </p>
 </jumbotron>
 
@@ -34,6 +30,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p><a href="https://opencollective.com/preact">Patrocinado por:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>Uma biblioteca diferente.</h1>
@@ -77,7 +78,7 @@ function Counter() {
         Preact é rápido, e não só por causa do seu tamanho. É uma das bibliotecas Virtual DOM mais rápidas disponíveis, graças a uma simples e rápida implementação do algorítimo de comparação.
     </p>
     <p>
-        Até mesmo inclui recursos extra de performance como atualizações em lote customizáveis, renderização assíncrona opcional, reciclagem do DOM e manipulação de eventos otimizado por meio do [Estado Associado (Linked State)](/guide/linked-state).
+        Até mesmo inclui recursos extra de performance como atualizações em lote customizáveis, renderização assíncrona opcional e reciclagem do DOM.
     </p>
   </div>
 </section>
@@ -107,7 +108,6 @@ function Counter() {
     <ul>
         <li>`props`, `state` e `context` são passados pro `render()` como parâmetro</li>
         <li>Uso de atributos HTML padrão como `class` e `for`</li>
-        <li>Funciona com o React DevTools sem nenhuma configuração adicional</li>
     </ul>
   </div>
 </section>
@@ -228,8 +228,7 @@ render(
         Escolha a melhor opção pra você!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Como começar</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Mudando para Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Como começar</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Mudando para Preact</a>
     </p>
 </section>

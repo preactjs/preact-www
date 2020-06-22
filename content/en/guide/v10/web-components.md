@@ -11,7 +11,7 @@ One thing to keep in mind is that Web Components don't replace Preact as they do
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

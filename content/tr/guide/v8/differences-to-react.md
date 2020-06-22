@@ -11,7 +11,7 @@ Preact’ın React’ın her bir özelliğini içermemesinin nedeni, **küçük*
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

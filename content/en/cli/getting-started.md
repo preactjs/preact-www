@@ -46,7 +46,7 @@ Now that your project is set up, you can `cd` into the newly-created directory a
 
 ```sh
 cd <app-name>
-npm start
+npm run dev
 ```
 
 Now open your editor and start editing! For most templates, the best place to start is `src/index.js` or `src/components/app/index.js`.

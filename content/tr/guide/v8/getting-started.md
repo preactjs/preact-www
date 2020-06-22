@@ -11,7 +11,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

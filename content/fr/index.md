@@ -9,14 +9,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Alternative légère et rapide à React avec le même API en seulement 3Ko.</p>
+    <p class="tagline">Alternative légère et rapide à React avec le même API en seulement 3Ko.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="home-button">Commencer</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Passer à preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+        <a href="/guide/v10/getting-started" class="btn primary">Commencer</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passer à preact</a>
     </p>
 </jumbotron>
 
@@ -33,6 +29,11 @@ function Counter() {
   )
 }
 ```
+
+<div class="sponsors">
+  <p><a href="https://opencollective.com/preact">Sponsorisé par:</a></p>
+  <sponsors></sponsors>
+</div>
 
 <section class="home-top">
     <h1>Un concept différent</h1>
@@ -79,7 +80,7 @@ function Counter() {
         Preact est performant, non seulement à cause de sa taille, mais aussi parce qu'il possède une des implémentations les plus rapides pour détecter les différences entre le DOM du navigateur et le DOM virtuel.
     </p>
     <p>
-        Il implémente certaines fonctionnalités supplémentaires à React telles que <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">les mises à jour asynchrones</a>, la réutilisation du DOM et l'optimisation de la gestion des évènements avec [Linked State](/guide/linked-state).
+        Il implémente certaines fonctionnalités supplémentaires à React telles que <a href="/guide/configuration#debounceRendering">les updates en batch</a>, <a href="/guide/configuration#syncComponentUpdates">les mises à jour asynchrones</a> et la réutilisation du DOM.
     </p>
   </div>
 </section>
@@ -111,7 +112,6 @@ function Counter() {
     <ul>
         <li>Les `props`, `state` et `context` sont passés en arguments de la méthode `render()`</li>
         <li>Les attributs standards HTML comme `class` et `for` peuvent être utilisés</li>
-        <li>Fonctionnne avec React DevTools sans effort</li>
     </ul>
   </div>
 </section>
@@ -231,8 +231,7 @@ render(
         Choisissez celui qui vous convient.
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Commencer</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Passer à Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Commencer</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passer à Preact</a>
     </p>
 </section>

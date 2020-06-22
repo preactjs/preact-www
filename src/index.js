@@ -4,6 +4,7 @@ import './pwa';
 import App from './components/app';
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
+import 'preact/devtools';
 
 export default App;
 

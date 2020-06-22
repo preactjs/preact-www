@@ -11,7 +11,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -39,14 +39,13 @@ Class components can have state and lifecycle methods. The latter are special me
 
 Here we have a simple class component called `<Clock>` that displays the current time:
 
-```js
+```jsx
 class Clock extends Component {
 
   constructor() {
     super();
     this.state = { time: Date.now() };
   }
- 
 
   // Lifecycle: Called whenever our component is created
   componentDidMount() {
@@ -91,7 +90,7 @@ In order to have the clock's time update every second, we need to know when `<Cl
 
 There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happened in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
 
-When an error is caught we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
+When an error is caught, we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
 
 ```jsx
 class Catcher extends Component {
@@ -159,7 +158,7 @@ const Bar = <>foo</>;
 
 You can also return arrays from your components:
 
-```js
+```jsx
 function Columns() {
   return [
     <td>Hello</td>,
@@ -170,7 +169,7 @@ function Columns() {
 
 Don't forget to add keys to `Fragments` if you create them in a loop:
 
-```js
+```jsx
 function Glossary(props) {
   return (
     <dl>

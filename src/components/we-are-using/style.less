@@ -1,0 +1,81 @@
+@import '~style/helpers';
+
+[name='/about/we-are-using'] p {
+	text-align: center;
+}
+
+html .root {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 4rem auto 0;
+	padding: 0;
+	max-width: 120rem;
+
+	@media @sidebar-break {
+		margin: 4rem auto 2rem;
+	}
+}
+
+.item {
+	display: inline-block;
+	list-style: none;
+	width: 10rem;
+
+	@media @sidebar-break {
+		width: 12.5rem;
+	}
+
+	a {
+		display: block;
+		padding: 2rem 1.25rem;
+		margin-bottom: 1rem;
+		transition: all 250ms ease;
+		text-align: center;
+		background: none !important;
+		padding: 1rem;
+
+		&:hover img {
+			filter: grayscale(0);
+			opacity: 1;
+		}
+		
+		:global(.dark) &:hover img {
+			filter: invert(0) hue-rotate(0deg) grayscale(0)
+				drop-shadow(0 0 .5px #fff)
+				drop-shadow(0 5px 10px #000)
+				drop-shadow(0 0 20px rgba(255,255,255,0.5));
+		}
+		@media (prefers-color-scheme: dark) {
+			&:hover img {
+				filter: invert(0) hue-rotate(0deg) grayscale(0)
+					drop-shadow(0 0 .5px #fff)
+					drop-shadow(0 5px 10px #000)
+					drop-shadow(0 0 20px rgba(255,255,255,0.5));
+			}
+		}
+	}
+
+	img {
+		height: 4.5rem;
+		display: block;
+		margin: 0 auto 1rem;
+		opacity: 0.6;
+		transition: all 250ms ease;
+		filter: grayscale(1);
+
+		// Invert based on luminosity
+		@media (prefers-color-scheme: dark) {
+			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+		}
+		:global(.dark) & {
+			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+			opacity: 1;
+		}
+	}
+}
+
+:global(.breaker) {
+	margin: 0 !important;
+	max-width: none !important;
+}

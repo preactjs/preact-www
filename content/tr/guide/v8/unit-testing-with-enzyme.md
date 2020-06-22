@@ -10,7 +10,7 @@ Preact bileşenlerini `enzyme` kullanarak test etmek, `preact-compat`'ın üzeri
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

@@ -7,22 +7,23 @@ description: 'Como debugar aplicativos preact quando algo der errado.'
 
 O Preact é fornecido com muitas ferramentas para facilitar a depuração. Eles são empacotados em uma única importação e podem ser incluídos importando `preact / debug`.
 
-Isso inclui uma ponte para a excelente [React Developer Tools] Extenção para o  Chrome e Firefox. Se você já os tiver instalado, pode **experimentá-lo neste site.** Basta abrir os devtools e começar a inspecionar como o construímos.
+Isso inclui uma ponte para a excelente [Preact Devtools] Extenção para o  Chrome e Firefox. Se você já os tiver instalado, pode **experimentá-lo neste site.** Basta abrir os devtools e começar a inspecionar como o construímos.
 
 imprimiremos um aviso ou erro sempre que detectarmos algo errado, como aninhamento incorreto nos elementos `<table>`.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
 ## Intalação
 
-O [React Developer Tools] pode ser instalado no loja de extensões do seu navegador.
+O [Preact Devtools] pode ser instalado no loja de extensões do seu navegador.
 
-- [Para o Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-- [Para o Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+- [Para o Chrome](https://chrome.google.com/webstore/detail/preact-developer-tools/ilcajpmogmhpliinlbcdebhbcanbghmd)
+- [Para o Firefox](https://addons.mozilla.org/en-US/firefox/addon/preact-devtools/)
+- [Para o Edge](https://microsoftedge.microsoft.com/addons/detail/hdkhobcafnfejjieimdkmjaiihkjpmhk)
 
 Uma vez instalado, precisamos importar o `preact / debug` em algum lugar para inicializar a conexão com a extensão. Verifique se essa importação é **a primeira** importação em todo o aplicativo.
 
@@ -43,7 +44,7 @@ render(<App />, document.getElementById('root'));
 
 A maioria dos bundlers permite remover o código quando eles detectam que um ramo dentro de uma instrução `if` nunca será atingido. Podemos usar isso para incluir apenas `preact/debug` durante o desenvolvimento e salvar esses bytes preciosos em uma applição em produção.
 
-```js
+```jsx
 // Deve ser o primeiro import
 if (process.env.NODE_ENV==='development') {
   // Deve ser obrigatório o uso aqui, pois as instruções de importação são permitidas apenas
@@ -94,7 +95,7 @@ render(<App />, dom);
 
 O mesmo erro será gerado quando for o contrário. Quando você declara uma exportação `nomeada` e está tentando usá-la como uma exportação `padrão`. Uma maneira rápida de verificar isso (caso o seu editor ainda não o faça) é apenas desconectar a importação:
 
-```js
+```jsx
 // app.js
 export function App() {
   return <div>Olá Mundo</div>;
@@ -175,11 +176,11 @@ function Foo() {
 
 Com o Preact X, fizemos algumas mudanças no formato interno do 'vnode'.
 
-| Preact 8.x | Preact 10.x |
-|---|---|
-| `vnode.nodeName` | `vnode.type` |
-| `vnode.attributes` | `vnode.props` |
-| `vnode.children` | `vnode.props.children`|
+| Preact 8.x         | Preact 10.x            |
+| ------------------ | ---------------------- |
+| `vnode.nodeName`   | `vnode.type`           |
+| `vnode.attributes` | `vnode.props`          |
+| `vnode.children`   | `vnode.props.children` |
 
 ### Encontrou filhos com a mesmas chaves
 
@@ -208,4 +209,4 @@ const pessoas = [
 </div>
 ```
 
-[React Developer Tools]: https://github.com/facebook/react/tree/master/packages/react-devtools
+[Preact Devtools]: https://preactjs.github.io/preact-devtools/

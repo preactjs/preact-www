@@ -11,7 +11,7 @@ Server-Side Rendering (often abbreviated as "SSR") allows you to render your app
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
