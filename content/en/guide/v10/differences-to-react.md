@@ -85,6 +85,26 @@ standard `class` attribute instead of `className`.
 
 Most Preact developers prefer to use `class` because it's shorter to write, but both are supported.
 
+### SVG inside JSX
+
+SVG is pretty interesting when it comes to the names of its properties and attributes. Some properties (and their attributes) on SVG objects are camelCased (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes)), some attributes are kebab-case (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), and other attributes (usually ones inherited from the DOM, e.g. `oninput`) are all lowercase.
+
+Preact forwards SVG-Attributes as is. This allows you to copy and paste unmodified SVG snippets right into your code and have them work out of the box. This allows greater interoperability with tools designers tend to use to generate icons or SVG illustrations.
+
+If you're coming from React you're likely used to specify every attribute in camelCase. If you'd like to continue using the camelCase'd attribute names you can use our [preact/compat] compatibility layer. It mirrors the React API and normalizes these attributes.
+
+```jsx
+// React
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" strokeWidth="2" strokeLinejoin="round" cx="24" cy="24" r="20" />
+</svg>
+
+// Preact (note stroke-width and stroke-linejoin)
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" stroke-width="2" stroke-linejoin="round" cx="24" cy="24" r="20" />
+</svg>
+```
+
 ### Use `onInput` instead of `onChange`
 
 For historical reasons, React basically aliased `onInput` to `onChange`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
