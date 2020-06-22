@@ -103,6 +103,14 @@ Preact doesn't normalize SVG properties and attributes [like React does]((https:
 
 For historical reasons React basically aliased `onChange` to `onInput`. The latter is the one that's native to the DOM and supported everywhere. The `input` event is what you're looking for in nearly all cases where you want to be notified when the form control is updated.
 
+```
+// React
+<input onChange={e => console.log(e.target.value)} />
+
+// Preact
+<input onInput={e => console.log(e.target.value)} />
+```
+
 If you're using [preact/compat] we'll set up this alias for `onChange` to `onInput` globally similar to React. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
 
 ### JSX-Constructor
