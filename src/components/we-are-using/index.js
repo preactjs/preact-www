@@ -247,6 +247,10 @@ const companies = [
 		name: 'Aarogya Setu',
 		href: 'https://www.aarogyasetu.gov.in/',
 		logo: 'aarogyasetu.svg'
+	},{
+		name: 'Extrieve Technologies',
+		href: 'https://www.extrieve.com/',
+		logo: 'extrieve.svg'
 	}
 ];
 
