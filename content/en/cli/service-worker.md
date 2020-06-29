@@ -58,20 +58,41 @@ const urlsToCache = getFiles();
 setupPrecaching(urlsToCache);
 ```
 
+**4.1 Adding other assets to precache manifest**
+
+In order to add anything else to the pre-cache manifest, you can use `urlsToCache` object in the above example and push another entry({url, revision}) to it.
+e.g.
+```js
+import { getFiles, setupPrecaching, setupRouting } from 'preact-cli/sw';
+
+setupRouting();
+
+const urlsToCache = getFiles();
+urlsToCache.push({url: '/favicon.ico', revision: null});
+
+setupPrecaching(urlsToCache);
+```
+
+> The revision in the above example is used to invalidate the resource if it changes. It the URL has this info(e.g. a hash) then feel free to leave it `null`.
+
 **5. Add your custom service worker logic**
 
 Now that the default Preact CLI functionality has been added to your custom service worker, you can now change or extend it to suit your needs - whether that's customizing the list of URLs to precache or [setting up push notifications](https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications).
+
 
 ## Adding other routes to runtime caching
 
 To add runtime caching of other routes or API calls, first create a custom `sw.js` by following the [steps above](#adding-a-custom-service-worker). Then, use the Workbox API to customize your service worker:
 
 ```js
-workbox.routing.registerRoute(
+import { registerRoute } from 'workbox-routing';
+import { NetworkOnly } from 'workbox-strategies';
+
+registerRoute(
   ({url, event}) => {
     return (url.pathname === '/special/url');
   },
-  workbox.strategies.networkOnly()  // or: cacheFirst(), cacheOnly(), staleWhileRevalidate()
+  new NetworkOnly()  // or: CacheFirst/CacheOnly/StaleWhileRevalidate
 );
 ```
 
@@ -81,23 +102,35 @@ In the example above, using the `networkOnly` strategy means `/special/url` will
 
 ## Using other workbox modules in your service worker
 
-Preact CLI imports [worbox-sw](https://developers.google.com/web/tools/workbox/modules/workbox-sw) in its service worker, thus all modules can be loaded on-demand as you use them. Importing any module from workbox will make it available as a global in your service worker.
+Preact CLI uses [InjectManifestPlugin](https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.InjectManifest) to compile the service worker.
+This means that in order to use any other workbox [module](https://github.com/GoogleChrome/workbox/tree/v6/packages) you'll need to install them via NPM and use them in you `src/sw.js` by importing them.
 
 **Example: Adding Background sync**
 
 The following code can be added to your custom `sw.js`. It uses [Workbox Background Sync](https://developers.google.com/web/tools/workbox/modules/workbox-background-sync) to retry API requests that failed when the user was offline.
 
 ```js
-const bgSyncPlugin = new workbox.backgroundSync.Plugin('apiRequests', {
-  maxRetentionTime: 60  // retry for up to one hour (in minutes)
+import { getFiles, setupPrecaching, setupRouting } from 'preact-cli/sw';
+import { BackgroundSyncPlugin } from 'workbox-background-sync';
+import { registerRoute } from 'workbox-routing';
+import { NetworkOnly } from 'workbox-strategies';
+
+const bgSyncPlugin = new BackgroundSyncPlugin('apiRequests', {
+	maxRetentionTime: 60  // retry for up to one hour (in minutes)
 });
 
 // retry failed POST requests to /api/**.json
-workbox.routing.registerRoute(
-  /\/api\/.*\/.*\.json/,
-  new workbox.strategies.NetworkOnly({
-    plugins: [bgSyncPlugin]
-  }),
-  'POST'
+registerRoute(
+	/\/api\/.*\/.*\.json/,
+	new NetworkOnly({
+		plugins: [bgSyncPlugin]
+	}),
+	'POST'
 );
+
+/** Preact CLI setup */
+setupRouting();
+
+const urlsToCache = getFiles();
+setupPrecaching(urlsToCache);
 ```
