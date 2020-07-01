@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1593490809179,
+    "timestamp": 1593640351578,
     "files": [
       {
         "filename": "sw-esm.js",
@@ -15,28 +15,10 @@
         "diff": 0
       },
       {
-        "filename": "prism.4155a.worker.js",
-        "previous": 7324,
-        "size": 0,
-        "diff": -7324
-      },
-      {
-        "filename": "markdown.3e5b8.worker.js",
-        "previous": 10003,
-        "size": 0,
-        "diff": -10003
-      },
-      {
-        "filename": "repl.7ec47.worker.js",
-        "previous": 71765,
-        "size": 0,
-        "diff": -71765
-      },
-      {
         "filename": "bundle.*****.esm.js",
-        "previous": 27174,
-        "size": 27205,
-        "diff": 31
+        "previous": 27205,
+        "size": 27206,
+        "diff": 1
       },
       {
         "filename": "editor.chunk.b63ca.css",
@@ -46,27 +28,27 @@
       },
       {
         "filename": "editor.chunk.*****.esm.js",
-        "previous": 66869,
+        "previous": 66879,
         "size": 66879,
-        "diff": 10
+        "diff": 0
       },
       {
         "filename": "emoji.chunk.*****.esm.js",
-        "previous": 8860,
+        "previous": 8859,
         "size": 8859,
-        "diff": -1
+        "diff": 0
       },
       {
         "filename": "polyfills.*****.esm.js",
-        "previous": 2137,
+        "previous": 2136,
         "size": 2136,
-        "diff": -1
+        "diff": 0
       },
       {
         "filename": "runner.chunk.*****.esm.js",
-        "previous": 8000,
+        "previous": 7999,
         "size": 7999,
-        "diff": -1
+        "diff": 0
       },
       {
         "filename": "5.chunk.b8f8a.css",
@@ -76,51 +58,9 @@
       },
       {
         "filename": "5.chunk.*****.esm.js",
-        "previous": 3398,
-        "size": 3404,
-        "diff": 6
-      },
-      {
-        "filename": "prism.d397f.worker.js",
-        "previous": 7324,
-        "size": 0,
-        "diff": -7324
-      },
-      {
-        "filename": "markdown.9e407.worker.js",
-        "previous": 10256,
-        "size": 0,
-        "diff": -10256
-      },
-      {
-        "filename": "repl.57051.worker.js",
-        "previous": 73425,
-        "size": 0,
-        "diff": -73425
-      },
-      {
-        "filename": "editor.chunk.28c51.js",
-        "previous": 66910,
-        "size": 0,
-        "diff": -66910
-      },
-      {
-        "filename": "emoji.chunk.582ab.js",
-        "previous": 8851,
-        "size": 0,
-        "diff": -8851
-      },
-      {
-        "filename": "polyfills.77125.js",
-        "previous": 2135,
-        "size": 0,
-        "diff": -2135
-      },
-      {
-        "filename": "5.chunk.cefcb.js",
-        "previous": 3481,
-        "size": 0,
-        "diff": -3481
+        "previous": 3404,
+        "size": 3413,
+        "diff": 9
       },
       {
         "filename": "bundle.51329.css",
@@ -129,88 +69,88 @@
         "diff": 0
       },
       {
-        "filename": "bundle.cb66c.js",
-        "previous": 27514,
-        "size": 0,
-        "diff": -27514
-      },
-      {
-        "filename": "runner.chunk.b6ffb.js",
-        "previous": 8037,
-        "size": 0,
-        "diff": -8037
-      },
-      {
         "filename": "prism.e9154.worker.js",
-        "previous": 0,
+        "previous": 7324,
         "size": 7324,
-        "diff": 7324
+        "diff": 0
       },
       {
         "filename": "markdown.9e3c3.worker.js",
-        "previous": 0,
+        "previous": 10002,
         "size": 10002,
-        "diff": 10002
+        "diff": 0
       },
       {
         "filename": "repl.5aaa2.worker.js",
-        "previous": 0,
+        "previous": 71764,
         "size": 71764,
-        "diff": 71764
+        "diff": 0
       },
       {
         "filename": "prism.4a4e2.worker.js",
-        "previous": 0,
+        "previous": 7323,
         "size": 7323,
-        "diff": 7323
+        "diff": 0
       },
       {
         "filename": "markdown.262b2.worker.js",
-        "previous": 0,
+        "previous": 10257,
         "size": 10257,
-        "diff": 10257
+        "diff": 0
       },
       {
         "filename": "repl.39c06.worker.js",
-        "previous": 0,
+        "previous": 73425,
         "size": 73425,
-        "diff": 73425
+        "diff": 0
       },
       {
         "filename": "bundle.d0c3d.js",
-        "previous": 0,
-        "size": 27491,
-        "diff": 27491
+        "previous": 27491,
+        "size": 0,
+        "diff": -27491
       },
       {
         "filename": "editor.chunk.17c2c.js",
-        "previous": 0,
+        "previous": 66910,
         "size": 66910,
-        "diff": 66910
+        "diff": 0
       },
       {
         "filename": "emoji.chunk.62c4f.js",
-        "previous": 0,
+        "previous": 8849,
         "size": 8849,
-        "diff": 8849
+        "diff": 0
       },
       {
         "filename": "polyfills.510ca.js",
-        "previous": 0,
+        "previous": 2134,
         "size": 2134,
-        "diff": 2134
+        "diff": 0
       },
       {
         "filename": "runner.chunk.327f8.js",
-        "previous": 0,
+        "previous": 8038,
         "size": 8038,
-        "diff": 8038
+        "diff": 0
       },
       {
         "filename": "5.chunk.c25a5.js",
+        "previous": 3482,
+        "size": 0,
+        "diff": -3482
+      },
+      {
+        "filename": "bundle.bb138.js",
         "previous": 0,
-        "size": 3482,
-        "diff": 3482
+        "size": 27494,
+        "diff": 27494
+      },
+      {
+        "filename": "5.chunk.cab52.js",
+        "previous": 0,
+        "size": 3526,
+        "diff": 3526
       }
     ]
   }
