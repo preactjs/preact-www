@@ -28,7 +28,9 @@ export default class Repl extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		if (props.code) this.receiveCode(props.code);
+		if (props.code) {
+			this.state.code = props.code;
+		}
 	}
 
 	componentDidMount() {
