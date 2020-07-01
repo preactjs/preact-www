@@ -26,10 +26,9 @@ export default class Repl extends Component {
 		code: localStorageGet('preact-www-repl-code') || codeExample
 	};
 
-	constructor(props, context) {
-		super(props, context);
-		if (props.code) {
-			this.state.code = props.code;
+	componentWillMount() {
+		if (this.props.code) {
+			this.receiveCode(this.props.code);
 		}
 	}
 
