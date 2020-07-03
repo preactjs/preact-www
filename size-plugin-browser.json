@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1593640351578,
+    "timestamp": 1593808916710,
     "files": [
       {
         "filename": "sw-esm.js",
@@ -16,9 +16,9 @@
       },
       {
         "filename": "bundle.*****.esm.js",
-        "previous": 27205,
-        "size": 27206,
-        "diff": 1
+        "previous": 27206,
+        "size": 27160,
+        "diff": -46
       },
       {
         "filename": "editor.chunk.b63ca.css",
@@ -53,20 +53,20 @@
       {
         "filename": "5.chunk.b8f8a.css",
         "previous": 1476,
-        "size": 1476,
-        "diff": 0
+        "size": 0,
+        "diff": -1476
       },
       {
         "filename": "5.chunk.*****.esm.js",
-        "previous": 3404,
-        "size": 3413,
-        "diff": 9
+        "previous": 3413,
+        "size": 3379,
+        "diff": -34
       },
       {
         "filename": "bundle.51329.css",
         "previous": 9930,
-        "size": 9930,
-        "diff": 0
+        "size": 0,
+        "diff": -9930
       },
       {
         "filename": "prism.e9154.worker.js",
@@ -105,12 +105,6 @@
         "diff": 0
       },
       {
-        "filename": "bundle.d0c3d.js",
-        "previous": 27491,
-        "size": 0,
-        "diff": -27491
-      },
-      {
         "filename": "editor.chunk.17c2c.js",
         "previous": 66910,
         "size": 66910,
@@ -135,22 +129,40 @@
         "diff": 0
       },
       {
-        "filename": "5.chunk.c25a5.js",
-        "previous": 3482,
-        "size": 0,
-        "diff": -3482
-      },
-      {
         "filename": "bundle.bb138.js",
-        "previous": 0,
-        "size": 27494,
-        "diff": 27494
+        "previous": 27494,
+        "size": 0,
+        "diff": -27494
       },
       {
         "filename": "5.chunk.cab52.js",
+        "previous": 3526,
+        "size": 0,
+        "diff": -3526
+      },
+      {
+        "filename": "bundle.b37af.css",
         "previous": 0,
-        "size": 3526,
-        "diff": 3526
+        "size": 9837,
+        "diff": 9837
+      },
+      {
+        "filename": "5.chunk.18ffb.css",
+        "previous": 0,
+        "size": 1435,
+        "diff": 1435
+      },
+      {
+        "filename": "bundle.4c49b.js",
+        "previous": 0,
+        "size": 27442,
+        "diff": 27442
+      },
+      {
+        "filename": "5.chunk.25509.js",
+        "previous": 0,
+        "size": 3496,
+        "diff": 3496
       }
     ]
   }
