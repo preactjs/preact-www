@@ -247,6 +247,11 @@ const companies = [
 		name: 'Aarogya Setu',
 		href: 'https://www.aarogyasetu.gov.in/',
 		logo: 'aarogyasetu.svg'
+	},
+	{
+		name: 'RailRecipe',
+		href: 'https://www.railrecipe.com',
+		logo: 'railrecipe-logo.png'
 	}
 ];
 
