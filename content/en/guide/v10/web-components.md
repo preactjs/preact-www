@@ -7,6 +7,7 @@ description: 'How to use webcomponents with Preact.'
 
 Due to its lightweight nature Preact is a popular choice for writing web components. Many use it to build a component system that is then wrapped into various web components. This allows you to easily re-use them in other projects where a completely different framework is used.
 
+ To learn more about how to build web components with Preact, please see [preact-custom-element](https://github.com/preactjs/preact-custom-element).
 One thing to keep in mind is that Web Components don't replace Preact as they don't have the same goals.
 
 ---
