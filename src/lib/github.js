@@ -6,7 +6,7 @@ const baseUrl =
 		: 'http://localhost:9000/.netlify/functions/';
 
 export const repoInfo = repo =>
-	fetch(`${baseUrl}repo?repo=${repo}`, { mode: 'no-cors' })
+	fetch(`${baseUrl}repo?repo=${repo}`, { credentials: 'omit' })
 		.then(checkStatus)
 		.then(r => r.json())
 		.catch(() => ({
