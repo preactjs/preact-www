@@ -20,7 +20,7 @@ export const fetchRelease = repo =>
 		.then(r => r.json())
 		.then(d => ({
 			version: d.version || 'unknown',
-			url: d.url || '#'
+			url: d.url || 'https://github.com/preactjs/preact'
 		}))
 		.catch(() => ({
 			url: '#',
