@@ -15,7 +15,7 @@ export const repoInfo = repo =>
 		}));
 
 export const fetchRelease = repo =>
-	fetch(`${baseUrl}release?repo=${repo}`, { mode: 'no-cors' })
+	fetch(`${baseUrl}release?repo=${repo}`, { mode: 'omit' })
 		.then(checkStatus)
 		.then(r => r.json())
 		.then(d => ({

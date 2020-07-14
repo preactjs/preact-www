@@ -1,2 +1,6 @@
 [build]
   functions = "dist/lambda"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3000"

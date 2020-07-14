@@ -2,8 +2,9 @@ import fetch from 'node-fetch';
 
 exports.handler = async event => {
 	const { version, url } = await fetchRelease(
-		event.queryStringParameters.repo || 'preactjs/preact'
+		`preactjs/${event.queryStringParameters.repo || 'preact'}`
 	);
+
 	return {
 		statusCode: 200,
 		body: JSON.stringify({
@@ -19,11 +20,6 @@ function checkStatus(r) {
 	}
 
 	return r;
-}
-
-function memoize(fn) {
-	const CACHE = {};
-	return key => CACHE[key] || (CACHE[key] = fn(key));
 }
 
 const semverReg = /^.*?(\d+)\.(\d+)\.(\d+)(.*)?$/g;
@@ -42,7 +38,7 @@ function parseVersion(version) {
 	return [0, 0, 0];
 }
 
-const fetchRelease = memoize(repo =>
+const fetchRelease = repo =>
 	fetch(`https://api.github.com/repos/${repo}/releases`)
 		.then(checkStatus)
 		.then(r => r.json())
@@ -73,5 +69,4 @@ const fetchRelease = memoize(repo =>
 				version: releases.length ? releases[0].tag_name : 'unknown',
 				url: releases.length ? releases[0].html_url : '#'
 			};
-		})
-);
+		});
