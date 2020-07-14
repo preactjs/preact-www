@@ -10,7 +10,8 @@ exports.handler = async event => {
 		body: JSON.stringify({
 			version,
 			url
-		})
+		}),
+		headers: { 'Cache-Control': 'public, s-maxage=1800' }
 	};
 };
 
