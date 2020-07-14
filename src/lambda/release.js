@@ -11,7 +11,10 @@ exports.handler = async event => {
 			version,
 			url
 		}),
-		headers: { 'Cache-Control': 'public, s-maxage=1800' }
+		headers: {
+			'Cache-Control': 'public, s-maxage=1800',
+			'Access-Control-Allow-Origin': 'http://localhost:8080'
+		}
 	};
 };
 

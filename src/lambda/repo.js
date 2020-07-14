@@ -7,7 +7,10 @@ exports.handler = async event => {
 	return {
 		statusCode: 200,
 		body: JSON.stringify(result),
-		headers: { 'Cache-Control': 'public, s-maxage=1800' }
+		headers: {
+			'Cache-Control': 'public, s-maxage=1800',
+			'Access-Control-Allow-Origin': 'http://localhost:8080'
+		}
 	};
 };
 
