@@ -43,7 +43,7 @@ function App() {
 }
 ```
 
-> Uma maneira mais fácil de usar o contexto é através do [useContext](/guide/v10/hooks#context) hook.
+> Uma maneira mais fácil de usar o contexto é através do [useContext](/guide/v10/hooks#usecontext) hook.
 
 ## Legacy Context API
 
