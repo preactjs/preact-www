@@ -48,12 +48,19 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
   // Initialize htm with Preact
   const html = htm.bind(h);
 
-  const app = html`<h1>Hello World!</h1>`;
-  render(app, document.body);
+  function App (props) {
+    return html`<h1>Hello ${props.name}!</h1>`;
+  }
+
+  render(html`<${App} name="World" />`, document.body);
 </script>
 ```
 
 [🔨 Edit on Glitch](https://glitch.com/~preact-with-htm)
+
+> **Tip:** HTM also provides a convenient single-import Preact version:
+>
+> `import { html, render } from 'https://unpkg.com/htm/preact/index.mjs?module'`
 
 For more information on HTM, check out its [documentation][htm].
 
