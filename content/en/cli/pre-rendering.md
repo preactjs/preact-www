@@ -62,13 +62,14 @@ module.exports = function() {
 ```
 
 #### Using pre-rendering values in your markup
+
 The values provided during pre-rendering via any of the abovesaid methods can be used in the `template.html` file to be used in all generated `html` files. This can be used to provide values for meta tags or other useful data in the markup itself.
-To consume the values use `htmlWebpackPlugin.options.<key>` in the markup.
+To consume the values use `htmlWebpackPlugin.options.CLI_DATA.preRenderData.<key>` in the markup.
 
 ```html
   <html>
     <head>
-      <meta name="demo-keyword" content="<%= htmlWebpackPlugin.options.blah %>">
+      <meta name="demo-keyword" content="<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.blah %>">
     </head>
   </html>
 ```
