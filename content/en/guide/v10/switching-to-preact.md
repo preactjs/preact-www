@@ -125,7 +125,7 @@ function App() {
 The main idea behind `Suspense` is to allow sections of your UI to display some sort of placeholder content while components further down the tree are still loading. A common use case for this is code-splitting where you'll need to load a component from the network before you can render it.
 
 ```jsx
-import { Suspense, lazy } from `preact/compat`;
+import { Suspense, lazy } from 'preact/compat';
 
 const SomeComponent = lazy(() => import('./SomeComponent'));
 
