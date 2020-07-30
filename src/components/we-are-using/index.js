@@ -242,11 +242,6 @@ const companies = [
 		name: 'Doxford Pet Software',
 		href: 'https://doxford.net',
 		logo: 'doxford.png'
-	},
-	{
-		name: 'Aarogya Setu',
-		href: 'https://www.aarogyasetu.gov.in/',
-		logo: 'aarogyasetu.svg'
 	}
 ];
 
