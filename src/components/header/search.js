@@ -36,7 +36,10 @@ export default class Search extends Component {
 				docsearchInstance = docsearch({
 					apiKey: config.docsearch.apiKey,
 					indexName: config.docsearch.indexName,
-					inputSelector: this.input.current
+					inputSelector: this.input.current,
+					autocompleteOptions: {
+						dropdownMenuContainer: 'body'
+					}
 				});
 			});
 		}
