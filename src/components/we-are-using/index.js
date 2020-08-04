@@ -89,6 +89,11 @@ const companies = [
 		logo: 'algolia.png'
 	},
 	{
+		name: 'Songwhip',
+		href: 'https://songwhip.com/',
+		logo: 'songwhip.svg'
+	},
+	{
 		name: 'Native Instruments',
 		href: 'https://native-instruments.com/',
 		logo: 'native-instruments.png'
