@@ -61,7 +61,7 @@ import { h } from 'preact';
 const Foo = () => <div>foo</div>;
 const App = <div class="foo"><Foo /></div>;
 
-console.log(render(App, { pretty: true }));
+console.log(render(App, {}, { pretty: true }));
 // Logs:
 // <div class="foo">
 //   <div>foo</div>
