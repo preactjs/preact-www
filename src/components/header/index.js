@@ -8,7 +8,6 @@ import config from '../../config';
 import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
-import ThemeSwitcher from '../theme-switcher';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 
 const LINK_FLAIR = {
@@ -45,7 +44,6 @@ export default function Header() {
 					>
 						<img src="/assets/twitter.svg" alt="Twitter" />
 					</a>
-					<ThemeSwitcher />
 				</div>
 				<Hamburger open={open} onClick={toggle} />
 				<Corner />
