@@ -159,7 +159,8 @@ export default function Page({ route }, ctx) {
 
 	const showTitle = current != 'index' && meta.show_title !== false;
 	const canEdit = showTitle && current != '404';
-	const hasSidebar = meta.toc !== false && isDocPage(url);
+	const hasSidebar =
+		meta.toc !== false && (isDocPage(url) || /^\/cli/.test(url));
 
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>

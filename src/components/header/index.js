@@ -74,7 +74,8 @@ const Nav = ({ routes, current, ...props }) => (
 				class={cx(
 					route.class,
 					(route.path === current ||
-						(route.content === 'guide' && /^\/guide\//.test(current))) &&
+						(route.content === 'guide' && /^\/guide\//.test(current)) ||
+						(route.content === 'cli' && /^\/cli/.test(current))) &&
 						style.current
 				)}
 			/>

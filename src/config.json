@@ -96,43 +96,44 @@
 				"en": "CLI"
 			},
 			"content": "cli",
-			"routes": [
-				{
-					"path": "/cli",
-					"name": {
-						"en": "Introduction",
-						"pt-br": "Introdução",
-						"es": "Introducción"
-					}
-				},
-				{
-					"path": "/cli/getting-started",
-					"name": {
-						"en": "Getting started",
-						"pt-br": "Começando",
-						"es": "Empezando"
-					}
-				},
-				{
-					"path": "/cli/service-worker",
-					"name": {
-						"en": "Service Workers"
-					}
-				},
-				{
-					"path": "/cli/pre-rendering",
-					"name": {
-						"en": "Pre-rendering",
-						"pt-br": "Pré-renderização",
-						"es": "Pre-renderización"
-					}
-				}
-			]
+			"path": "/cli"
 		},
 		{
 			"path": "/repl",
 			"title": "REPL",
 			"controller": "Repl"
+		}
+	],
+	"cli": [
+		{
+			"path": "/cli",
+			"name": {
+				"en": "Introduction",
+				"pt-br": "Introdução",
+				"es": "Introducción"
+			}
+		},
+		{
+			"path": "/cli/getting-started",
+			"name": {
+				"en": "Getting started",
+				"pt-br": "Começando",
+				"es": "Empezando"
+			}
+		},
+		{
+			"path": "/cli/service-worker",
+			"name": {
+				"en": "Service Workers"
+			}
+		},
+		{
+			"path": "/cli/pre-rendering",
+			"name": {
+				"en": "Pre-rendering",
+				"pt-br": "Pré-renderização",
+				"es": "Pre-renderización"
+			}
 		}
 	],
 	"docs": [
