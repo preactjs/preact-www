@@ -5,11 +5,14 @@
 	margin-left: auto;
 	margin-right: auto;
 
+	content-region:not([data-page-nav]) :global(.markup) {
+		margin-bottom: 4rem;
+	}
+
 	:global .markup {
 		// Necessary to prevent the background stripes of
 		// jumpotron/hero to affect the scrolling area.
 		overflow: hidden;
-		margin-bottom: 4rem;
 
 		& > *,
 		.full-width > * {

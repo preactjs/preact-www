@@ -1,0 +1,57 @@
+@import '~style/helpers';
+
+content-region {
+	display: block;
+}
+
+.nextWrapper {
+	max-width: @content-width;
+	margin: 2rem auto 0;
+	padding: 0 0 4rem 0;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	@media @sidebar-break {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	@media (min-width: 72rem) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.nextLink {
+	color: var(--color-link);
+	display: flex;
+	text-decoration: none;
+
+	&[data-dir-end] {
+		flex-direction: row-reverse;
+	}
+}
+
+.icon {
+	font-size: 1.75rem;
+}
+
+.nextTitle {
+	display: inline-block;
+	margin-bottom: 0.2rem;
+	font-size: 1.75rem;
+}
+
+.nextTitleInner {
+	border-bottom: 0.125rem solid var(--color-next-link);
+}
+
+.nextUrl {
+	display: block;
+	color: var(--color-footer-text);
+	font-size: 0.9rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
