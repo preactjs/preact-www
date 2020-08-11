@@ -61,7 +61,7 @@ export default function SidebarNav({ items, onClick }) {
 								class={style.accordionBody}
 							>
 								{routes.map(route => {
-									const { href, onClick, text } = route;
+									const { href, text } = route;
 									return (
 										<SidebarNavLink
 											key={href}
