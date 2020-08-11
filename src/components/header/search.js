@@ -33,12 +33,16 @@ export default class Search extends Component {
 		let docsearch = window.docsearch;
 		if (docsearch && !docsearchInstance) {
 			this.lazy = lazily(() => {
+				const parent = document.createElement('span');
+				parent.style.position = 'relative';
+				parent.id = 'alsearch';
+				document.body.appendChild(parent);
 				docsearchInstance = docsearch({
 					apiKey: config.docsearch.apiKey,
 					indexName: config.docsearch.indexName,
 					inputSelector: this.input.current,
 					autocompleteOptions: {
-						dropdownMenuContainer: 'body'
+						dropdownMenuContainer: '#alsearch'
 					}
 				});
 			});
