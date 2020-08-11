@@ -2,7 +2,6 @@ import { h, Fragment } from 'preact';
 import cx from '../../../lib/cx';
 import style from './sidebar-nav.less';
 import { getCurrentUrl } from 'preact-router';
-import { useState, useCallback } from 'preact/hooks';
 
 /**
  * @typedef {object} SidebarNavProps
@@ -15,8 +14,6 @@ import { useState, useCallback } from 'preact/hooks';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
-	const [activeGroups, setActiveGroup] = useState({});
-
 	// Remove trailing slash to fix activeCss check below.
 	// Note that netlify will always append a slash to the url so that we end
 	// up with something like "foo/bar/?lang=de". That's why we first remove
@@ -32,34 +29,10 @@ export default function SidebarNav({ items, onClick }) {
 		>
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
-					const textId = text.replace(/\s+/g, '-');
-					const headerId = `accordion_header_${textId}`;
-					const id = `accordion_body_${textId}`;
-					const isActive =
-						activeGroups[headerId] === undefined || !!activeGroups[headerId];
-					routes.some(r => r.href === url);
-
 					return (
-						<Fragment key={headerId}>
-							<SidebarGroup
-								id={headerId}
-								level={level}
-								controls={id}
-								isActive={isActive}
-								// eslint-disable-next-line react/jsx-no-bind
-								onClick={(name, value) =>
-									setActiveGroup({ ...activeGroups, [name]: value })
-								}
-							>
-								{text}
-							</SidebarGroup>
-							<div
-								id={id}
-								role="region"
-								aria-labelledby={headerId}
-								hidden={!isActive}
-								class={style.accordionBody}
-							>
+						<Fragment>
+							<SidebarGroup level={level}>{text}</SidebarGroup>
+							<div class={style.accordionBody}>
 								{routes.map(route => {
 									const { href, onClick, text } = route;
 									return (
@@ -92,39 +65,9 @@ export default function SidebarNav({ items, onClick }) {
 	);
 }
 
-function SidebarGroup(props) {
-	const { id, level, onClick, children, isActive, controls } = props;
-	const onClickFn = useCallback(() => {
-		onClick(id, !isActive);
-	}, [onClick, id, isActive]);
-
+function SidebarGroup({ level, children }) {
 	return (
-		<button
-			id={id}
-			onClick={onClickFn}
-			className={cx(style.category, style['level-' + level])}
-			aria-controls={controls}
-			aria-expanded={'' + !!isActive}
-		>
-			{children}
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="20"
-				height="20"
-				viewBox="0 0 8.467 8.467"
-				aria-hidden="true"
-				className={cx(style.accordionIcon, isActive && style.active)}
-			>
-				<path
-					d="M1.587 2.913L4.233 5.56 6.88 2.913"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				/>
-			</svg>
-		</button>
+		<h3 className={cx(style.category, style['level-' + level])}>{children}</h3>
 	);
 }
 
