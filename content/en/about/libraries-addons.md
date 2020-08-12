@@ -37,6 +37,7 @@ A collection of modules built to work wonderfully with Preact.
 - :rowboat: [**preact-flyd**](https://github.com/xialvjun/preact-flyd): Use [flyd](https://github.com/paldepind/flyd) FRP streams in Preact + JSX
 - :speech_balloon: [**preact-i18nline**](https://github.com/download/preact-i18nline): Integrates the ecosystem around [i18n-js](https://github.com/everydayhero/i18n-js) with Preact via [i18nline](https://github.com/download/i18nline).
 - :diamond_shape_with_a_dot_inside: [**Capacitor**](https://capacitorjs.com/solution/preact): Turn your Preact app into a Native iOS/Android App and PWA.
+- :ice_cube: [**Kretes**](https://kretes.dev/docs/howtos/preact-setup/): Build full-stack TypeScript apps using Preact and Node.js
 
 ## GUI Toolkits
 
