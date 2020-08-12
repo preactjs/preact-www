@@ -16,6 +16,28 @@
 		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
 		"indexName": "preact"
 	},
+	"i18n": {
+		"next": {
+			"en": "Next Page",
+			"de": "Nächste Seite",
+			"fr": "Page Suivante",
+			"es": "Siguiente Página",
+			"tr": "Sonraki Sayfa",
+			"it": "Pagina Successiva",
+			"pt-br": "Próxima Página",
+			"zh": "下一页"
+		},
+		"previous": {
+			"en": "Previous Page",
+			"de": "Vorherige Seite",
+			"fr": "Page Précédente",
+			"es": "Pagina Anterior",
+			"tr": "Önceki Sayfa",
+			"it": "Pagina Precedente",
+			"pt-br": "Página Anterior",
+			"zh": "上一页"
+		}
+	},
 	"nav": [
 		{
 			"path": "/",

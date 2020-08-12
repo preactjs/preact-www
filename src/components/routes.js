@@ -13,6 +13,12 @@ history.pushState = (a, b, url) => {
 	}
 };
 
+function isValidSiblingRoute(sibling, route) {
+	const idx = route.path.lastIndexOf('/');
+	const common = idx > 1 ? route.path.slice(0, idx) : route.path;
+	return sibling && sibling.path.substring(0, common.length) === common;
+}
+
 export default class Routes extends Component {
 	/**
 	 * Gets fired when the route changes.
@@ -29,18 +35,35 @@ export default class Routes extends Component {
 	}
 
 	getNavRoutes(nav) {
-		return nav.reduce((routes, route) => {
-			if (route.path) {
-				routes.push(this.buildRoute(route));
-			}
+		const routes = [];
+		const stack = [...nav];
+		let route;
+		while ((route = stack.pop())) {
 			if (route.routes) {
-				routes = routes.concat(this.getNavRoutes(route.routes));
+				stack.push(...route.routes);
+			} else {
+				routes.push(route);
 			}
-			return routes;
+		}
+
+		return routes.reverse().reduce((out, route, i, routes) => {
+			if (route.path) {
+				const skip = route.path === '/' || /^\/about/.test(route.path);
+				const prev = !skip && i - 1 > 0 ? routes[i - 1] : null;
+				const next = !skip && i + 1 < routes.length ? routes[i + 1] : null;
+
+				const view = this.buildRoute(
+					route,
+					isValidSiblingRoute(prev, route) ? prev : null,
+					isValidSiblingRoute(next, route) ? next : null
+				);
+				out.push(view);
+			}
+			return out;
 		}, []);
 	}
 
-	buildRoute(route) {
+	buildRoute(route, prev, next) {
 		let Ctrl = controllers.default;
 		if (route.controller) {
 			// eslint-disable-next-line no-unused-vars
@@ -50,7 +73,9 @@ export default class Routes extends Component {
 				}
 			}
 		}
-		return <Ctrl path={route.path || ''} route={route} />;
+		return (
+			<Ctrl path={route.path || ''} route={route} prev={prev} next={next} />
+		);
 	}
 
 	render({ url }) {

@@ -3,6 +3,7 @@ import config from '../../config';
 import { useState, useEffect, useCallback } from 'preact/hooks';
 import { useStore } from '../store-adapter';
 import style from './style';
+import { useLanguage } from '../../lib/i18n';
 
 /*
  * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
@@ -22,26 +23,6 @@ export function useContributors(deps) {
 		setValue(CONTRIBS[(Math.random() * (CONTRIBS.length - 1)) | 0]);
 	}, deps);
 	return value;
-}
-
-/**
- * Handles all logic related to language settings
- */
-export function useLanguage() {
-	const store = useStore(['lang', 'url']);
-	const { lang, url } = store.state;
-
-	const setLang = useCallback(
-		next => {
-			if (typeof document !== 'undefined' && document.documentElement) {
-				document.documentElement.lang = next;
-			}
-			store.update({ lang: next });
-		},
-		[url]
-	);
-
-	return [lang, setLang];
 }
 
 export default function Footer() {

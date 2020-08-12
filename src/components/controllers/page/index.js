@@ -127,7 +127,7 @@ export function usePage(route, lang) {
 	};
 }
 
-export default function Page({ route }, ctx) {
+export default function Page({ route, prev, next }, ctx) {
 	const store = useStore(['url', 'lang', 'docVersion']);
 	const { loading, meta, content, html, current, isFallback } = usePage(
 		route,
@@ -193,6 +193,9 @@ export default function Page({ route }, ctx) {
 						boot={!!html}
 						name={name}
 						content={html}
+						prev={prev}
+						next={next}
+						lang={store.state.lang}
 					/>
 					<Footer />
 				</div>
