@@ -41,7 +41,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Closer to the DOM</h2>
@@ -56,7 +56,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/size.svg" alt="size">
+  <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Small Size</h2>
@@ -71,7 +71,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg" alt="performance">
+  <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Big Performance</h2>
@@ -86,7 +86,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg" alt="portable">
+  <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Portable &amp; Embeddable</h2>
@@ -100,7 +100,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg" alt="productive">
+  <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Instantly Productive</h2>
@@ -115,7 +115,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg" alt="compatible">
+  <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Ecosystem Compatible</h2>
