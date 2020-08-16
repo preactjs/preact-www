@@ -20,13 +20,13 @@ Preact CLI comes with the following features out of the box.
 - Fully automatic code splitting for routes.
 - Transparently code-split any component with an async! prefix.
 - Differential javascript serving.
-- Auto-generated Service Workers for offline caching powered by sw-precache.
+- Auto-generated Service Workers for offline caching powered by Workbox.
 - PRPL pattern support for efficient loading.
 - Zero-configuration pre-rendering / server-side rendering hydration.
 - Support for CSS Modules, LESS, Sass, Stylus; with Autoprefixer.
 - Monitor your bundle/chunk sizes with built-in tracking.
 - Automatic app mounting, debug helpers & Hot Module Replacement.
-- preact.
+- Preact.
 - preact-router.
 - 1.5kb of conditionally-loaded polyfills for fetch & Promise.
 
