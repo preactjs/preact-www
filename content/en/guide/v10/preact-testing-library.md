@@ -7,7 +7,9 @@ description: 'Testing Preact applications made easy with testing-library'
 
 The [Preact Testing Library](https://github.com/testing-library/preact-testing-library) is a lightweight wrapper around `preact/test-utils` to verify the rendered DOM. This helps in avoiding including internal implementation details in your tests, thus making them easier to maintain and more resilient against refactorings of your components.
 
-Compared to [Enzyme](/guide/v10/unit-testing-with-enzyme) it requires DOM environment, making it a little bit harder to set up. That quickly pays of in the end though as test suites written with Preact Testing Library tend to be more resilient against internal changes of components. That said both libraries are a great way to test Preact apps!
+Compared to [Enzyme](/guide/v10/unit-testing-with-enzyme) it requires DOM environment, making it a little bit harder to set up. That quickly pays of in the end though as test suites written with Preact Testing Library tend to be more resilient against internal changes of components.
+
+Whereas with Enzyme you handle state updates yourself, you don't do that with testing library. Instead you fire events on the DOM directly and verify the resulting DOM render.
 
 ---
 
@@ -71,6 +73,10 @@ describe('Counter', () => {
   });
 });
 ```
+
+You may have noticed the `waitFor()` call there. We need this to ensure that Preact had enough time to render to the DOM and flush all pending effects. Rendering is never synchronously and doing the assertion without the `waitFor()` would lead to unstable test results. Whenever you render or trigger a state update you basically need to wait for a condition to pass. This condition signals that the render is completed.
+
+In the above example whe know that the update is completed, when the counter is incremented and the new value is rendered into the DOM.
 
 ## Using native CSS selectors
 
