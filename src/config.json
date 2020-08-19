@@ -331,6 +331,14 @@
 					}
 				},
 				{
+					"path": "/guide/v10/preact-testing-library",
+					"name": {
+						"en": "Preact Testing Library",
+						"pt-br": "Preact Testing Library",
+						"de": "Preact Testing Library"
+					}
+				},
+				{
 					"path": "/guide/v10/unit-testing-with-enzyme",
 					"name": {
 						"en": "Unit Testing with Enzyme",
