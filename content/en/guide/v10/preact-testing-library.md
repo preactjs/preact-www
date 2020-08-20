@@ -5,11 +5,11 @@ description: 'Testing Preact applications made easy with testing-library'
 
 # Testing with Preact Testing Library
 
-The [Preact Testing Library](https://github.com/testing-library/preact-testing-library) is a lightweight wrapper around `preact/test-utils` to verify the rendered DOM. This helps in avoiding including internal implementation details in your tests, thus making them easier to maintain and more resilient against refactorings of your components.
+The [Preact Testing Library](https://github.com/testing-library/preact-testing-library) is a lightweight wrapper around `preact/test-utils` to that is used verify the rendered DOM. This approach allows you write tests in such a way that they don't rely on internal implementation details. Consequently, this makes tests easier to maintain and more resilient when the component that is tested is refactored.
 
-Compared to [Enzyme](/guide/v10/unit-testing-with-enzyme) it requires DOM environment, making it a little bit harder to set up. That quickly pays of in the end though as test suites written with Preact Testing Library tend to be more resilient against internal changes of components.
+Compared to [Enzyme](/guide/v10/unit-testing-with-enzyme) testing library has an additional requirement to function. It needs to be called inside a DOM environment. Another difference is the way tests are written.
 
-Whereas with Enzyme you handle state updates yourself, you don't do that with testing library. Instead you fire events on the DOM directly and verify the resulting DOM render.
+Whereas with Enzyme you interface directly with the component instance through a wrapper. You don't do that with testing-library and instead only interact with the DOM lik a user would.
 
 ---
 
@@ -19,13 +19,13 @@ Whereas with Enzyme you handle state updates yourself, you don't do that with te
 
 ## Installation
 
-Install the testing library Preact adapter via the following command:
+Install the testing-library Preact adapter via the following command:
 
 ```sh
 npm install --save-dev @testing-library/preact
 ```
 
-> Note: This library relies on a DOM environment being present. If you're using [Jest](https://github.com/facebook/jest) it's already included and enabled by default. If you're using another test runner like [mocha](https://github.com/mochajs/mocha) or [jasmine](https://github.com/jasmine/jasmine) you can add a DOM environment to node yourself by installing [jsdom](https://github.com/jsdom/jsdom).
+> Note: This library relies on a DOM environment being present. If you're using [Jest](https://github.com/facebook/jest) it's already included and enabled by default. If you're using another test runner like [mocha](https://github.com/mochajs/mocha) or [jasmine](https://github.com/jasmine/jasmine) you can add a DOM environment to node by installing [jsdom](https://github.com/jsdom/jsdom).
 
 ## Usage
 
@@ -48,7 +48,7 @@ export function Counter({ initialCount }) {
 }
 ```
 
-For this component we want to verify that it displays the initial count and that clicking the button will increment the counter. Using the test runner of your choice like [Jest](https://github.com/facebook/jest) or [mocha](https://github.com/mochajs/mocha), we can write these two scenarios down:
+We want to verify that our Counter displays the initial count and that clicking the button will increment it. Using the test runner of your choice, like [Jest](https://github.com/facebook/jest) or [mocha](https://github.com/mochajs/mocha), we can write these two scenarios down:
 
 ```jsx
 import { expect } from 'expect';
@@ -74,13 +74,23 @@ describe('Counter', () => {
 });
 ```
 
-You may have noticed the `waitFor()` call there. We need this to ensure that Preact had enough time to render to the DOM and flush all pending effects. Rendering is never synchronously and doing the assertion without the `waitFor()` would lead to unstable test results. Whenever you render or trigger a state update you basically need to wait for a condition to pass. This condition signals that the render is completed.
+You may have noticed the `waitFor()` call there. We need this to ensure that Preact had enough time to render to the DOM and flush all pending effects.
 
-In the above example whe know that the update is completed, when the counter is incremented and the new value is rendered into the DOM.
+```jsx
+test('should increment counter", async () => {
+  render(<Counter initialCount={5}/>);
 
-## Using native CSS selectors
+  fireEvent.click(screen.getByText('Increment'));
+  // WRONG: Preact likely won't have finished rendering here
+  expect(screen.textContent).toMatch('Current value: 6');
+});
+```
 
-With a full DOM environment in place we are not limited to the matching functions supplied by `@testing-library/preact` and can use the full power of CSS selectors.
+Under the hood, `waitFor` repeatedly calls the passed callback function until it doesn't throw an error anymore or a timeout runs out (default: 1000ms). In the above example whe know that the update is completed, when the counter is incremented and the new value is rendered into the DOM.
+
+## Use test IDs as much as possible
+
+With a full DOM environment in place we can verify our DOM nodes directly. Commonly tests check for attributes being present like an input value or that an element appeared/disappeared.
 
 ```jsx
 const { container } = render(<MyLoginForm />);
@@ -89,16 +99,14 @@ const email = container.querySelector('input[type="email"]');
 expect(email.placeholder).toEqual('hello@example.com');
 ```
 
-## Use test IDs as much as possible
-
-Whilst doing assertions based on text may work just fine for smaller apps, it will quickly become unmaintainable as soon as your app grows. Text may change as more languages are added to your app. This is illustrated in the next code snippet.
+But be careful when assert on text content directly. Doing so makes the tests very dependend on the language of your app. If the text changes or a new language is added in the future all your tests will cease to work. Let's illustrate this scenario:
 
 ```jsx
 function Foo({ onClick }) {
   return <button onClick={onClick}>click me</button>
 }
 
-// Test, all good so far
+// Only works if the app only supports english
 fireEvent.click(screen.getByText('click me'));
 ```
 
@@ -113,9 +121,7 @@ function Foo({ onClick }) {
 fireEvent.click(screen.getByText('click me'));
 ```
 
-What's more is that the DOM hierarchy often changes dramatically during development, so don't rely on that too much either!
-
-Instead a more robust approach is to rely on `data-testid`-attributes, making a node easy to target, even if its parents or its position in the DOM changes.
+The same is true for DOM hierachy. During development it often undergoes dramatic chagnes, so don't rely on that too much either. A more robust approach is to is to rely on `data-testid`-attributes. That way you can match a node directly without having to specify the DOM hierarchy in your selector.
 
 ```jsx
 function Foo({ onClick }) {
@@ -130,7 +136,7 @@ function Foo({ onClick }) {
 fireEvent.click(screen.getByTestId('foo'));
 ```
 
-In the above example, we've guarded our test case against any changes. We can change the text of our button, we can add additional DOM nodes and a lot more, without having to update our test to make it pass. That way you can cut down a lot of maintenance overhead.
+Let's imagine that the button is swapped out with a link for example. With our `data-testid`-attribute still in place we don't need to update our test case at all. It continues to work, which reduces maintenance costs over time.
 
 ## Debugging Tests
 
@@ -145,7 +151,7 @@ debug();
 
 ## Supplying custom Context Providers
 
-Quite often you'll end up with a component which depends on shared context state. This can become tedious to set up for each test case, so we recommend creating a custom `render` function by wrapping the one from `@testing-library/preact`. Common Providers typically range from Routers, State, to sometimes Themes and other ones that are global for your specific app.
+Quite often you'll end up with a component which depends on shared context state. Common Providers typically range from Routers, State, to sometimes Themes and other ones that are global for your specific app This can become tedious to set up for each test case repeatedly, so we recommend creating a custom `render` function by wrapping the one from `@testing-library/preact`.
 
 ```jsx
 // helpers.js
@@ -171,13 +177,13 @@ render(<MyComponent />)
 
 ## Testing Preact Hooks
 
-The testing library project hosts another module that can be used to test [hooks](/guide/v10/hooks) in isolation. It's called [@testing-library/preact-hooks](https://github.com/testing-library/preact-hooks-testing-library). It needs to be installed separately.
+The testing-library project hosts another module that can be used to test [hooks](/guide/v10/hooks) in isolation. It's called [@testing-library/preact-hooks](https://github.com/testing-library/preact-hooks-testing-library) and it needs to be installed separately.
 
 ```bash
 npm install --save-dev @testing-library/preact-hooks
 ```
 
-Imagine a `useCounter` hook (I know we love counters!), that we want to test:
+Imagine that we want to re-use the counter functionality for multiple components (I know we love counters!) and have extracted it to a hook. And we now want to test it.
 
 ```jsx
 import { useState, useCallback } from 'preact/hooks';
@@ -189,7 +195,7 @@ const useCounter = () => {
 }
 ```
 
-Like before we want to verify that we can increment our counter. It would be pretty useless otherwise!. So a corresponding test case will "render" the hook directly and make the return value accessible under the `result.current` property:
+Like before, the approach behind it is similar: We want to verify that we can increment our counter. So we need to somehow call our hook. This can be done with the `renderHook()`-function, which automatically creates a surrounding component internally. The function returns the current hook return value under `result.current`, which we can use to do our verifications:
 
 ```jsx
 import { renderHook, act } from '@testing-library/preact-hooks';
@@ -198,10 +204,15 @@ import useCounter from './useCounter';
 test('should increment counter', () => {
   const { result } = renderHook(() => useCounter());
 
+  // Initially the counter should be 0
+  expect(result.current.count).toBe(0);
+
+  // Let's update the counter by calling a hook callback
   act(() => {
     result.current.increment();
   });
 
+  // Check that the hook return value reflects the new state.
   expect(result.current.count).toBe(1);
 });
 ```
