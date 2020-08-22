@@ -88,40 +88,80 @@ test('should increment counter", async () => {
 
 Under the hood, `waitFor` repeatedly calls the passed callback function until it doesn't throw an error anymore or a timeout runs out (default: 1000ms). In the above example whe know that the update is completed, when the counter is incremented and the new value is rendered into the DOM.
 
-## Use test IDs as much as possible
-
-With a full DOM environment in place we can verify our DOM nodes directly. Commonly tests check for attributes being present like an input value or that an element appeared/disappeared.
+We can also write tests in an async-first way by using the "findBy" version of the queries instead of "getBy". Async queries retry using `waitFor` under the hood, and return Promises, so you need to await them.
 
 ```jsx
-const { container } = render(<MyLoginForm />);
-const email = container.querySelector('input[type="email"]');
+test('should increment counter", async () => {
+  render(<Counter initialCount={5}/>);
 
-expect(email.placeholder).toEqual('hello@example.com');
+  fireEvent.click(screen.getByText('Increment'));
+
+  await findByText('Current value: 6'); // waits for changed element
+  
+  expect(screen.textContent).toMatch('Current value: 6'); // passes
+});
 ```
 
-But be careful when assert on text content directly. Doing so makes the tests very dependend on the language of your app. If the text changes or a new language is added in the future all your tests will cease to work. Let's illustrate this scenario:
+## Finding Elements
+
+With a full DOM environment in place we can verify our DOM nodes directly. Commonly tests check for attributes being present like an input value or that an element appeared/disappeared. To do this we need to be able to locate elements in the DOM.
+
+### Using Content
+
+The Testing Library philosophy is that the "the more your tests resemble the way your software is used, the more confidence they can give you".
+
+The recommended way to interact with a page is by finding elements the way a user does, through the text content.
+
+You can find a guide to picking the right query on the ['Which query should I use'](https://testing-library.com/docs/guide-which-query) page of the Testing Library docs. The simplest query is `getByText`, which looks at elements' `textContent`. There are also queries for label text, placeholder, title attributes, etc. The `getByRole` query is the most powerful in that it abstracts over the DOM and allows you to find elements in the accessibility tree, which is how your page is read by a screen reader. Combining [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques) and [`accessible name`](https://www.w3.org/TR/accname-1.1/#mapping_additional_nd_name) covers many common DOM traversals in a single query.
 
 ```jsx
-function Foo({ onClick }) {
-  return <button onClick={onClick}>click me</button>
-}
+import { render, fireEvent, screen } from '@testing-library/preact';
 
-// Only works if the app only supports english
-fireEvent.click(screen.getByText('click me'));
+test('should be able to sign in', async () => {
+  render(<MyLoginForm />);
+  
+  // Locate the input using textbox role and the accessible name,
+  // which is stable no matter if you use a label element, aria-label, or
+  // aria-labelledby relationship
+  const field = await screen.findByRole('textbox', { name: 'Sign In' });
+  
+  // type in the field
+  fireEvent.change(field, { value: 'user123' });
+})
 ```
 
-Sometime later the text of the button is changed to better reflect the new marketing strategy:
+Sometimes using text content directly creates friction when the content changes a lot, or if you use an internationalization framework that translates text into different languages. You can work around this by treating text as data that you snapshot, making it easy to update but keeping the source of truth outside the test.
+
+```diff jsx
+test('should be able to sign in', async () => {
+  render(<MyLoginForm />);
+  
+  // What if we render the app in another language, or change the text? Test fails.
+  const field = await screen.findByRole('textbox', { name: 'Sign In' });
+  fireEvent.change(field, { value: 'user123' });
+})
+```
+
+Even if you don't use a translation framework, you can keep your strings in a separate file and use the same strategy as in the example below:
 
 ```jsx
-function Foo({ onClick }) {
-  return <button onClick={onClick}>click here</button>
-}
+test('should be able to sign in', async () => {
+  render(<MyLoginForm />);
 
-// ERROR: There is no element with the text "click me" anymore :(
-fireEvent.click(screen.getByText('click me'));
+  // We can use our translation function directly in the test
+  const label = translate('signinpage.label', 'en-US');
+  // Snapshot the result so we know what's going on
+  expect(label).toMatchInlineSnapshot(`Sign In`);
+
+  const field = await screen.findByRole('textbox', { name: label });
+  fireEvent.change(field, { value: 'user123' });
+})
 ```
 
-The same is true for DOM hierachy. During development it often undergoes dramatic chagnes, so don't rely on that too much either. A more robust approach is to is to rely on `data-testid`-attributes. That way you can match a node directly without having to specify the DOM hierarchy in your selector.
+### Using Test IDs
+
+Test IDs are data attributes added to DOM elements to help in cases where selecting content is ambiguous or unpredictable, or to decouple from implementation
+details like DOM structure. They can be used when none of the other methods of finding elements make sense.
 
 ```jsx
 function Foo({ onClick }) {
@@ -132,11 +172,12 @@ function Foo({ onClick }) {
   );
 }
 
-// Always works
+// Only works if the text stays the same
+fireEvent.click(screen.getByText('click here'));
+
+// Works if we change the text
 fireEvent.click(screen.getByTestId('foo'));
 ```
-
-Let's imagine that the button is swapped out with a link for example. With our `data-testid`-attribute still in place we don't need to update our test case at all. It continues to work, which reduces maintenance costs over time.
 
 ## Debugging Tests
 
