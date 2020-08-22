@@ -132,7 +132,7 @@ test('should be able to sign in', async () => {
 
 Sometimes using text content directly creates friction when the content changes a lot, or if you use an internationalization framework that translates text into different languages. You can work around this by treating text as data that you snapshot, making it easy to update but keeping the source of truth outside the test.
 
-```diff jsx
+```jsx
 test('should be able to sign in', async () => {
   render(<MyLoginForm />);
   
