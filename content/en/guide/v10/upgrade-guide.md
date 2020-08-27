@@ -188,12 +188,12 @@ In Preact X the state of a component will no longer be mutated synchronously. Th
 this.state = { counter: 0 };
 
 // Preact 8.x
-this.setState({ counter: this.state.counter++ });
+this.setState({ counter: ++this.state.counter });
 
 // Preact X
 this.setState(prevState => {
   // Alternatively return `null` here to abort the state update
-  return { counter: prevState.counter++ };
+  return { counter: ++prevState.counter };
 });
 ```
 
