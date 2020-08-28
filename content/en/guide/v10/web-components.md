@@ -101,8 +101,6 @@ register(Greeting, 'x-greeting', ['name']);
 
 If you omit the third parameter to `register()`, the list of attributes to observe can be specified using a static `observedAttributes` property on your Component. This also works for the Custom Element's name, which can be specified using a `tagName` static property:
 
-If the third parameter is not left out we'll try to infer
-
 ```jsx
 import register from 'preact-custom-element';
 
@@ -119,4 +117,46 @@ class Greeting extends Component {
   }
 }
 register(Greeting);
+```
+
+If no `observedAttributes` are specified, they will be inferred from the keys of `propTypes` if present on the Component:
+
+```jsx
+// Other option: use PropTypes:
+function FullName({ first, last }) {
+  return <span>{first} {last}</span>
+}
+
+FullName.propTypes = {
+  first: Object,   // you can use PropTypes, or this
+  last: Object     // trick to define untyped props.
+};
+
+register(FullName, 'full-name');
+```
+
+### Passing slots as props
+
+The `register()` function has a fourth parameter to pass options. Currently only the `shadow` options is supported, which attaches a shadow DOM tree to the specified element. When enabled it allows you to use named `<slot>`-nodes to forward elements to a specific place in the tree.
+
+```jsx
+function TextSection({ heading, content }) {
+	return (
+		<div>
+			<h1>{heading}</h1>
+			<p>{content}</p>
+		</div>
+	);
+}
+
+registerElement(Foo, 'x-section', [], { shadow: true });
+```
+
+Usage:
+
+```html
+<x-section>
+  <slot name="heading">Nice heading</slot>
+  <slot name="content">Great content</slot>
+</x-section>
 ```
