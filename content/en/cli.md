@@ -18,7 +18,7 @@ Preact CLI comes with the following features out of the box.
 
 - 100/100 Lighthouse score, right out of the box ([proof](https://googlechrome.github.io/lighthouse/viewer/?gist=142af6838482417af741d966e7804346)).
 - Fully automatic code splitting for routes.
-- Transparently code-split any component with an async! prefix.
+- Transparently code-split any component with an async prefix.
 - Differential javascript serving.
 - Auto-generated Service Workers for offline caching powered by Workbox.
 - PRPL pattern support for efficient loading.
