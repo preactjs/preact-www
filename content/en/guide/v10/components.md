@@ -174,7 +174,7 @@ function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Without a key, Preact has to guess which items have
+        // Without a key, Preact has to guess which elements have
         // changed when re-rendering.
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
