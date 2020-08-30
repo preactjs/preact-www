@@ -110,7 +110,7 @@ render(<App />, rootElement); // success
 
 ## hydrate()
 
-If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
+If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
 import { hydrate } from 'preact';
