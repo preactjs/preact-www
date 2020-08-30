@@ -7,7 +7,7 @@ description: 'Preact has several option hooks that allow you to attach callbacks
 
 Callbacks for plugins that can change Preact's rendering.
 
-Preact supports a number of different callbacks that can be used to observe or change each stage of the renderering process, commonly referred to as "Option Hooks" (not to be confused with [hooks](https://preactjs.com/guide/v10/hooks)). These are frequently used to extend the featureset of Preact itself, or to create specialized testing tools. All of our addons like `preact/hooks`, `preact/compat` and our devtools extension are based on these callbacks.
+Preact supports a number of different callbacks that can be used to observe or change each stage of the rendering process, commonly referred to as "Option Hooks" (not to be confused with [hooks](https://preactjs.com/guide/v10/hooks)). These are frequently used to extend the feature-set of Preact itself, or to create specialized testing tools. All of our addons like `preact/hooks`, `preact/compat` and our devtools extension are based on these callbacks.
 
 This API is primarily intended for tooling or library authors who wish to extend Preact.
 
