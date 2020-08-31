@@ -10,7 +10,7 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p class="tagline">Aynı modern API ile React'e hızlı ve 3kB'lık alternatif.</p>
+    <p class="tagline">Aynı modern API ile React'e hızlı ve 3kB'lık alternatif</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Başlangıç</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact'e Geçiş</a>
@@ -37,7 +37,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Başka bir tür kütüphane.</h1>
+    <h1>Başka bir tür kütüphane</h1>
 </section>
 
 
@@ -141,7 +141,7 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Örneğe gözatın.</h1>
+    <h1>Örneğe gözatın!</h1>
 </section>
 
 
