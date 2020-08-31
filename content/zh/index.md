@@ -133,7 +133,7 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>『码』上见分晓</h1>
+    <h1>『码』上见分晓！</h1>
 </section>
 
 
