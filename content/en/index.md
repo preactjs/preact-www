@@ -10,7 +10,7 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p class="tagline">Fast 3kB alternative to React with the same modern API.</p>
+    <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
@@ -37,7 +37,7 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>A different kind of library.</h1>
+    <h1>A different kind of library</h1>
 </section>
 
 <section class="home-section">
@@ -131,7 +131,7 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>See it in action.</h1>
+    <h1>See it in action!</h1>
 </section>
 
 <section class="home-split">
