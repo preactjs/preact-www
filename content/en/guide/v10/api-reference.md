@@ -201,7 +201,7 @@ See the section in the [Context documentation](/guide/v10/context#createcontext)
 
 ## createRef
 
-Creates a `ref` object, with a `current` property pointing to the `ref`'s most recently set value.
+Provides a way to reference an element or component once it has been rendered.
 
 See the [References documentation](/guide/v10/refs#createref) for more details.
 
