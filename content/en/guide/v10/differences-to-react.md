@@ -191,9 +191,9 @@ function App(props) {
 
 A React-compatible `Children` API is available from `preact/compat` to make integration with existing component libraries seamless.
 
-### Specialised Components
+### Specialised Components and Functions
 
-[preact/compat] ships with specialised components that are not necessary for every app. These include
+[preact/compat] ships with specialised components and functions that are not necessary for every app. These include
 
 - [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
 - [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
