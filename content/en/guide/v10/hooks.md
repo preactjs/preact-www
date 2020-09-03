@@ -103,7 +103,7 @@ function CounterB() {
 
 Note that both `CounterA` and `CounterB` are completely independent of each other. They both use the `useCounter()` custom hook, but each has its own instance of that hook's associated state.
 
-> Thinking this looks a strange? You're not alone!
+> Thinking this looks a little strange? You're not alone!
 >
 > It took many of us a while to grow accustomed to this approach.
 
