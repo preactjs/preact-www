@@ -5,11 +5,9 @@ description: 'Testing Preact applications made easy with testing-library'
 
 # Testing with Preact Testing Library
 
-The [Preact Testing Library](https://github.com/testing-library/preact-testing-library) is a lightweight wrapper around `preact/test-utils` to that is used verify the rendered DOM. This approach allows you write tests in such a way that they don't rely on internal implementation details. Consequently, this makes tests easier to maintain and more resilient when the component that is tested is refactored.
+The [Preact Testing Library](https://github.com/testing-library/preact-testing-library) is a lightweight wrapper around `preact/test-utils`. It provides a set of query methods for accessing the rendered DOM in a way similiar to how a user finds elements on a page. This approach allows you to write tests that do not rely on implementation details. Consequently, this makes tests easier to maintain and more resilient when the component being tested is refactored.
 
-Compared to [Enzyme](/guide/v10/unit-testing-with-enzyme) testing library has an additional requirement to function. It needs to be called inside a DOM environment. Another difference is the way tests are written.
-
-Whereas with Enzyme you interface directly with the component instance through a wrapper. You don't do that with testing-library and instead only interact with the DOM lik a user would.
+Unlike [Enzyme](/guide/v10/unit-testing-with-enzyme), Preact Testing Library must be called inside a DOM environment.
 
 ---
 

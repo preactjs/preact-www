@@ -10,7 +10,7 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p class="tagline">Una alternativa veloz a React en 3kB con la misma API de ES6.</p>
+    <p class="tagline">Una alternativa veloz a React en 3kB con la misma API de ES6</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Cambiar a Preact</a>
@@ -37,7 +37,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Una librería distinta.</h1>
+    <h1>Una librería distinta</h1>
 </section>
 
 
@@ -139,7 +139,7 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Míralo en acción.</h1>
+    <h1>Míralo en acción!</h1>
 </section>
 
 

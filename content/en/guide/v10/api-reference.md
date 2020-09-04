@@ -110,7 +110,7 @@ render(<App />, rootElement); // success
 
 ## hydrate()
 
-If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
+If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
 import { hydrate } from 'preact';
@@ -123,7 +123,7 @@ hydrate(<Foo />, document.getElementById('container'));
 
 `h(type, props, ...children)`
 
-Returns a Virtual DOM Element with the given `props`. Virtual DOM Elements are lightweight descriptions of a node in your application's UI heirarchy, essentially an object of the form `{ type, props }`.
+Returns a Virtual DOM Element with the given `props`. Virtual DOM Elements are lightweight descriptions of a node in your application's UI hierarchy, essentially an object of the form `{ type, props }`.
 
 After `type` and `props`, any remaining parameters are collected into a `children` Array.
 Children may be any of the following:
@@ -201,7 +201,7 @@ See the section in the [Context documentation](/guide/v10/context#createcontext)
 
 ## createRef
 
-Creates a `ref` object, with a `current` property pointing to the `ref`'s most recently set value.
+Provides a way to reference an element or component once it has been rendered.
 
 See the [References documentation](/guide/v10/refs#createref) for more details.
 
