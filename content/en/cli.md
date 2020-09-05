@@ -18,7 +18,7 @@ Preact CLI comes with the following features out of the box.
 
 - 100/100 Lighthouse score, right out of the box ([proof](https://googlechrome.github.io/lighthouse/viewer/?gist=142af6838482417af741d966e7804346)).
 - Fully automatic code splitting for routes.
-- Using prefix "async!"  like `import Foo from 'async!./foo';`, Foo Component is lazy-loaded.
+- Lazy-load components by prefixing their import: `import Foo from 'async!./foo'`
 - Generating two script tags for browser supporting to [module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and browser not supporting. ([More information](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/))
 - Auto-generated Service Workers for offline caching powered by Workbox.
 - PRPL pattern support for efficient loading.
