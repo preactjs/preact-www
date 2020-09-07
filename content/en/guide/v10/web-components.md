@@ -1,13 +1,18 @@
 ---
 name: Web Components
-description: 'How to use webcomponents with Preact.'
+description: 'How to use web components with Preact.'
 ---
 
 # Web Components
 
-Due to its lightweight nature Preact is a popular choice for writing web components. Many use it to build a component system that is then wrapped into various web components. This allows you to easily re-use them in other projects where a completely different framework is used.
+Preact's tiny size and standards-first approach make it a great choice for building web components.
 
-One thing to keep in mind is that Web Components don't replace Preact as they don't have the same goals.
+Web Components are a set of standards that make it possible to build new HTML element types - Custom Elements like `<material-card>` or `<tab-bar>`.
+Preact [fully supports these standards](https://custom-elements-everywhere.com/#preact), allowing seamless use of Custom Element lifecycles, properties and events. 
+
+Preact is designed to render both full applications and individual parts of a page, making it a natural fit for building Web Components. Many companies use it to build component or design systems that are then wrapped up into a set of Web Components, enabling re-use across multiple projects and within other frameworks.
+
+Preact and Web Components are complimentary technologies: Web Components provide a set of low-level primitives for extending the browser, and Preact provides a high-level component model that can sit atop those primitives.
 
 ---
 
@@ -17,17 +22,39 @@ One thing to keep in mind is that Web Components don't replace Preact as they do
 
 ## Rendering Web Components
 
-From Preact's point of view, web components are just standard DOM-Elements. We can render them by using the registered tag name:
+In Preact, web components work just like other DOM Elements. They can be rendered using their registered tag name:
 
 ```jsx
+customElements.define('x-foo', class extends HTMLElement {
+  // ...
+});
+
 function Foo() {
   return <x-foo />;
 }
 ```
 
+### Properties and Attributes
+
+JSX does not provide a way to differentiate between properties and attributes. Custom Elements generally rely on custom properties in order to support setting complex values that can't be expressed as attributes. This works well in Preact, because the renderer automatically determines whether to set values using a property or attribute by inspecting the affected DOM element. When a Custom Element defines a [setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) for a given property, Preact detects its existence and will use the setter instead of an attribute.
+
+```jsx
+customElements.define('context-menu', class extends HTMLElement {
+  set position({ x, y }) {
+    this.style.cssText = `left:${x}px; top:${y}px;`;
+  }
+});
+
+function Foo() {
+  return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
+}
+```
+
+When rendering static HTML using `preact-render-to-string` ("SSR"), complex property values like the object above are not automatically serialized. They are applied once the static HTML is hydrated on the client.
+
 ### Accessing Instance Methods
 
-To be able to access the instance of your custom web component, we can leverage `refs`.
+To be able to access the instance of your custom web component, we can leverage `refs`:
 
 ```jsx
 function Foo() {
@@ -45,17 +72,17 @@ function Foo() {
 
 ### Triggering custom events
 
-Preact normalizes the casing of standard built-in DOM Events, which is how we can pass an `onChange` prop to `<div>`, when the event listener actually requires lowercase `"change"`. However, Custom Elements often fire custom events as part of their public API, and there's no way to know what custom events might be fired. In order to ensure Custom Elements are seamlessly supported in Preact, any unrecognized event handler props passed to a DOM Element will have their casing preserved.
+Preact normalizes the casing of standard built-in DOM Events, which are normally case-sensitive. This is the reason it's possible to pass an `onChange` prop to `<input>`, despite the actual event name being `"change"`. Custom Elements often fire custom events as part of their public API, however there is no way to know what custom events might be fired. In order to ensure Custom Elements are seamlessly supported in Preact, unrecognized event handler props passed to a DOM Element are registered using their casing exactly as specified.
 
 ```jsx
-// native DOM event -> listens for a "click" event
-<div onClick={() => console.log('click')} />
+// Built-in DOM event: listens for a "click" event
+<input onClick={() => console.log('click')} />
 
-// Custom Element
-// Add handler for "IonChange" event
-<my-foo onIonChange={() => console.log('IonChange')} />
-// Add handler for "ionChange" event (note the casing)
-<my-foo onionChange={() => console.log('ionChange')} />
+// Custom Element: listens for "TabChange" event (case-sensitive!)
+<tab-bar onTabChange={() => console.log('tab change')} />
+
+// Corrected: listens for "tabchange" event (lower-case)
+<tab-bar ontabchange={() => console.log('tab change')} />
 ```
 
 ## Creating a Web Component
@@ -91,7 +118,7 @@ Output:
 
 ### Observed Attributes
 
-In contrast to Preact components, Web Components require explicitly stating the names of attributes you want to observe. Otherwise the component will not receive any attribute changes. These can be specified via the third parameter that's passed to the `register()` function:
+Web Components require explicitly listing the names of attributes you want to observe in order to respond when their values are changed. These can be specified via the third parameter that's passed to the `register()` function:
 
 ```jsx
 // Listen to changes to the `name` attribute
@@ -128,7 +155,7 @@ function FullName({ first, last }) {
 
 FullName.propTypes = {
   first: Object,   // you can use PropTypes, or this
-  last: Object     // trick to define untyped props.
+  last: Object     // trick to define un-typed props.
 };
 
 register(FullName, 'full-name');
@@ -136,7 +163,7 @@ register(FullName, 'full-name');
 
 ### Passing slots as props
 
-The `register()` function has a fourth parameter to pass options. Currently only the `shadow` options is supported, which attaches a shadow DOM tree to the specified element. When enabled it allows you to use named `<slot>`-nodes to forward elements to a specific place in the tree.
+The `register()` function has a fourth parameter to pass options. Currently only the `shadow` options is supported, which attaches a shadow DOM tree to the specified element. When enabled, this allows the use of named `<slot>` elements to forward the Custom Element's children to specific places in the shadow tree.
 
 ```jsx
 function TextSection({ heading, content }) {
@@ -148,14 +175,14 @@ function TextSection({ heading, content }) {
 	);
 }
 
-registerElement(Foo, 'x-section', [], { shadow: true });
+registerElement(Foo, 'text-section', [], { shadow: true });
 ```
 
 Usage:
 
 ```html
-<x-section>
+<text-section>
   <slot name="heading">Nice heading</slot>
   <slot name="content">Great content</slot>
-</x-section>
+</text-section>
 ```
