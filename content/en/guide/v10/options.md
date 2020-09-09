@@ -1,9 +1,9 @@
 ---
-name: Options
+name: Option Hooks
 description: 'Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process.'
 ---
 
-# Renderer Options
+# Option Hooks
 
 Callbacks for plugins that can change Preact's rendering.
 
