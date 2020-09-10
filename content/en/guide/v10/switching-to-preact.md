@@ -90,7 +90,7 @@ This component is most useful for library authors.
 
 ## Portals
 
-In rare circumstances you may want to continue rendering into a different DOM node. The target DOM node **must** be present before attempting to render into it.
+Using `createPortal()`, you can add rendering results to the DOM node outside the component at rendering. The target DOM node **must** be present before attempting to render into it.
 
 ```html
 <html>
