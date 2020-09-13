@@ -109,7 +109,7 @@ Note that both `CounterA` and `CounterB` are completely independent of each othe
 
 ## The dependency argument
 
-Many hooks accept an argument that can be used to limit when a hook should be updated. Preact inspects each value in a dependency array and checks to see if it has changed since the last time a hook was called. When the dependency argument is not specified, the callback function is always executed.
+Many hooks accept an argument that can be used to limit when a hook should be updated. Preact inspects each value in a dependency array and checks to see if it has changed since the last time a hook was called. When the dependency argument is not specified, the hook is always executed.
 
 In our `useCounter()` implementation above, we passed an array of dependencies to `useCallback()`:
 
