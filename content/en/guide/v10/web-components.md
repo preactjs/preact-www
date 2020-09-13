@@ -12,7 +12,7 @@ Preact [fully supports these standards](https://custom-elements-everywhere.com/#
 
 Preact is designed to render both full applications and individual parts of a page, making it a natural fit for building Web Components. Many companies use it to build component or design systems that are then wrapped up into a set of Web Components, enabling re-use across multiple projects and within other frameworks.
 
-Preact and Web Components are complimentary technologies: Web Components provide a set of low-level primitives for extending the browser, and Preact provides a high-level component model that can sit atop those primitives.
+Preact and Web Components are complementary technologies: Web Components provide a set of low-level primitives for extending the browser, and Preact provides a high-level component model that can sit atop those primitives.
 
 ---
 
