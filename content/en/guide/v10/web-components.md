@@ -72,17 +72,20 @@ function Foo() {
 
 ### Triggering custom events
 
-Preact normalizes the casing of standard built-in DOM Events, which are normally case-sensitive. This is the reason it's possible to pass an `onChange` prop to `<input>`, despite the actual event name being `"change"`. Custom Elements often fire custom events as part of their public API, however there is no way to know what custom events might be fired. In order to ensure Custom Elements are seamlessly supported in Preact, unrecognized event handler props passed to a DOM Element are registered using their casing exactly as specified.
+Preact normalizes standard DOM events to lowercase. For example, `onChange` prop and `onchange` prop  are regarded as the same "change" event listener. On the other hand, Custom Events are case-sensitive. For example, `onTabChange` prop and `ontabchange` prop are regarded as different event listeners. `onTabChange` prop is regarded as  a "TabChange" event listener. `ontabchange` prop is regarded as  a "tabchange" event listener.
 
 ```jsx
-// Built-in DOM event: listens for a "click" event
+// Standard DOM event: listens for "click" event
 <input onClick={() => console.log('click')} />
 
-// Custom Element: listens for "TabChange" event (case-sensitive!)
-<tab-bar onTabChange={() => console.log('tab change')} />
+// Standard DOM event: listens for "click" event
+<input onclick={() => console.log('click')} />
 
-// Corrected: listens for "tabchange" event (lower-case)
-<tab-bar ontabchange={() => console.log('tab change')} />
+// Custom event: listens for "TabChange" event
+<div onTabChange={() => console.log('tab change')} />
+
+// Custom event: listens for "tabchange" event
+<div ontabchange={() => console.log('tab change')} />
 ```
 
 ## Creating a Web Component
