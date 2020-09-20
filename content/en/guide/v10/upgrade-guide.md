@@ -152,7 +152,6 @@ render(<p>bar</p>, document.body);
 // Preact X output:
 <body>
   <p>bar</p>
-  <div>hello</div>
 </body>
 ```
 
@@ -202,7 +201,7 @@ this.setState(prevState => {
 When a `vnode` has the property `dangerouslySetInnerHTML` set Preact will skip diffing the `vnode's` children.
 
 ```jsx
-<div dangerouslySetInnerHTML="foo">
+<div dangerouslySetInnerHTML="{ { __html: 'foo' } }">
   <span>I will be skipped</span>
   <p>So do I</p>
 </div>
@@ -220,7 +219,7 @@ We renamed/moved the following properties:
 - `nodeName` -> `type`
 - `children` -> `props.children`
 
-As much as we tried, we always ran into edge-cases with third-party libraries written for react. This change to our `vnode` shape removed many difficult to spot bugs and makes our `compat` code a lot cleaner.
+As much as we tried, we always ran into edge-cases with third-party libraries written for react. This change to our `vnode` shape removed many difficulties to spot bugs and makes our `compat` code a lot cleaner.
 
 ### Adjacent text nodes are not joined anymore
 
