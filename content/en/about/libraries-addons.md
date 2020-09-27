@@ -17,6 +17,7 @@ A collection of modules built to work wonderfully with Preact.
 - :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Universal rendering.
 - :timer_clock: [**relaks**](https://github.com/trambarhq/relaks): Create components with render methods that return asynchronously.
 - :nut_and_bolt: [**express-preact-views**](https://github.com/edwjusti/express-preact-views): Express View Engine.
+- :floppy_disk: [**Prefresh**](https://github.com/JoviDeCroock/prefresh): Fast-Refresh for Preact.
 
 ## Components
 
