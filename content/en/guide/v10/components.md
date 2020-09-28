@@ -74,9 +74,9 @@ In order to have the clock's time update every second, we need to know when `<Cl
 
 | Lifecycle method            | When it gets called                              |
 |-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | (deprecated) before the component gets mounted to the DOM
-| `componentDidMount`         | after the component gets mounted to the DOM
-| `componentWillUnmount`      | prior to removal from the DOM
+| `componentWillMount()`        | (deprecated) before the component gets mounted to the DOM
+| `componentDidMount()`         | after the component gets mounted to the DOM
+| `componentWillUnmount()`      | prior to removal from the DOM
 | `componentWillReceiveProps(nextProps, nextState)` | before new props get accepted _(deprecated)_
 | `getDerivedStateFromProps(nextProps)` | just before `shouldComponentUpdate`. Use with care.
 | `shouldComponentUpdate(nextProps, nextState)` | before `render()`. Return `false` to skip render
