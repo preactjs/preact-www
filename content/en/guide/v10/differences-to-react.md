@@ -24,11 +24,11 @@ For us it doesn't make sense as the browser's event system supports all features
 
 We've come across the following differences between React's synthetic event system and native browser events:
 
-- Browser events don't bubble through `<Portal>`-Components
-- The clear "x" button in IE11 for `<input type="search">` elements does not fire an `input` event.
-- Use `onInput` instead `onChange` for `<input>`-elements (**only if `preact/compat` is not used**)
+- Events don't bubble through `<Portal>` components
+- The clear "x" button for `<input type="search">` does not fire an `input` event in IE11 - use `onSearch` instead.
+- Use `onInput` instead `onChange` for `<input>` elements (**only if `preact/compat` is not used**)
 
-The other main difference is that we follow a bit more closely the DOM specification. One example of that is that you can use `class` instead of `className`.
+The other main difference is that Preact follows the DOM specification more closely. An example of this is the ability to use `class` instead of `className`.
 
 ## Version Compatibility
 
