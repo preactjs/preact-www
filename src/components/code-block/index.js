@@ -73,14 +73,16 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 	const htmlObj = useMemo(() => ({ __html: html }), [html]);
 
 	return (
-		<pre class={cx('highlight', props.class)}>
-			<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
+		<div class={cx('highlight-container', props.class)}>
+			<pre class="highlight">
+				<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
+			</pre>
 			{repl && (
 				<Link class="repl-link" href={`/repl?code=${encodeURIComponent(code)}`}>
 					Run in REPL
 				</Link>
 			)}
-		</pre>
+		</div>
 	);
 }
 
