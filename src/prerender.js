@@ -15,8 +15,9 @@ if (process.env.PRERENDER_HOME) {
 		}
 	];
 } else {
-	const routes = flatMap(config.nav.concat(config.docs), arr =>
-		arr.path ? { path: arr.path, name: arr.name } : arr.routes
+	const routes = flatMap(
+		config.nav.concat(config.docs).concat(config.cli),
+		arr => (arr.path ? { path: arr.path, name: arr.name } : arr.routes)
 	);
 
 	module.exports = routes.map(route => {
@@ -29,8 +30,10 @@ if (process.env.PRERENDER_HOME) {
 			{ encoding: 'utf8' }
 		);
 		const name = (route.name && route.name.en) || route.name;
-		const packageName = route.path.substring(0, 4) === '/cli' ? 'Preact CLI' : 'Preact';
-		const title = !name || name === 'Preact' ? 'Preact' : `${name} – ${packageName}`;
+		const packageName =
+			route.path.substring(0, 4) === '/cli' ? 'Preact CLI' : 'Preact';
+		const title =
+			!name || name === 'Preact' ? 'Preact' : `${name} – ${packageName}`;
 		const contentBody = content.split('---')[2];
 		let description;
 		if (title === 'Preact' || contentBody === undefined) {
