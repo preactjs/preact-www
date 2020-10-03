@@ -282,7 +282,7 @@ Side-Effects are at the heart of many modern Apps. Whether you want to fetch som
 
 ### useEffect
 
-As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect one if needed.
+As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect if one is needed.
 
 ```jsx
 useEffect(() => {
