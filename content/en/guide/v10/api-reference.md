@@ -125,7 +125,7 @@ hydrate(<Foo />, document.getElementById('container'));
 
 Returns a Virtual DOM Element with the given `props`. Virtual DOM Elements are lightweight descriptions of a node in your application's UI hierarchy, essentially an object of the form `{ type, props }`.
 
-After `type` and `props`, any remaining parameters are collected into a `children` Array.
+After `type` and `props`, any remaining parameters are collected into a `children` property.
 Children may be any of the following:
 
 - Scalar values (string, number, boolean, null, undefined, etc)
