@@ -2,7 +2,6 @@
 
 ## Japanese Version
 
-* When Japanese Version is changed, it is necessary to approve by @38elements.
-
-* For easy review, each sentence is new line.
-Cosmetic change is not accepted.
+* Changes to the Japanese Version are approved by @38elements.
+* For easy review, place each sentence on a new line.
+* Cosmetic changes are not accepted.
