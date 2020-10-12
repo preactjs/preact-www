@@ -216,7 +216,7 @@ render(
 </section>
 
 <section class="home-top">
-    <h1>Preactについてもっと知りたいですか？</h1>
+    <h1>もっと詳しく知りたいですか？</h1>
 </section>
 
 <section style="text-align:center;">
