@@ -23,7 +23,7 @@ Install the testing-library Preact adapter via the following command:
 npm install --save-dev @testing-library/preact
 ```
 
-> Note: This library relies on a DOM environment being present. If you're using [Jest](https://github.com/facebook/jest) it's already included and enabled by default. If you're using another test runner like [mocha](https://github.com/mochajs/mocha) or [jasmine](https://github.com/jasmine/jasmine) you can add a DOM environment to node by installing [jsdom](https://github.com/jsdom/jsdom).
+> Note: This library relies on a DOM environment being present. If you're using [Jest](https://github.com/facebook/jest) it's already included and enabled by default. If you're using another test runner like [Mocha](https://github.com/mochajs/mocha) or [Jasmine](https://github.com/jasmine/jasmine) you can add a DOM environment to node by installing [jsdom](https://github.com/jsdom/jsdom).
 
 ## Usage
 
@@ -46,7 +46,7 @@ export function Counter({ initialCount }) {
 }
 ```
 
-We want to verify that our Counter displays the initial count and that clicking the button will increment it. Using the test runner of your choice, like [Jest](https://github.com/facebook/jest) or [mocha](https://github.com/mochajs/mocha), we can write these two scenarios down:
+We want to verify that our Counter displays the initial count and that clicking the button will increment it. Using the test runner of your choice, like [Jest](https://github.com/facebook/jest) or [Mocha](https://github.com/mochajs/mocha), we can write these two scenarios down:
 
 ```jsx
 import { expect } from 'expect';
@@ -84,7 +84,7 @@ test('should increment counter", async () => {
 });
 ```
 
-Under the hood, `waitFor` repeatedly calls the passed callback function until it doesn't throw an error anymore or a timeout runs out (default: 1000ms). In the above example whe know that the update is completed, when the counter is incremented and the new value is rendered into the DOM.
+Under the hood, `waitFor` repeatedly calls the passed callback function until it doesn't throw an error anymore or a timeout runs out (default: 1000ms). In the above example we know that the update is completed, when the counter is incremented and the new value is rendered into the DOM.
 
 We can also write tests in an async-first way by using the "findBy" version of the queries instead of "getBy". Async queries retry using `waitFor` under the hood, and return Promises, so you need to await them.
 
@@ -102,7 +102,7 @@ test('should increment counter", async () => {
 
 ## Finding Elements
 
-With a full DOM environment in place we can verify our DOM nodes directly. Commonly tests check for attributes being present like an input value or that an element appeared/disappeared. To do this we need to be able to locate elements in the DOM.
+With a full DOM environment in place, we can verify our DOM nodes directly. Commonly tests check for attributes being present like an input value or that an element appeared/disappeared. To do this, we need to be able to locate elements in the DOM.
 
 ### Using Content
 
