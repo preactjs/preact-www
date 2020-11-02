@@ -46,7 +46,7 @@ export function Counter({ initialCount }) {
 }
 ```
 
-We want to verify that our Counter displays the initial count and that clicking the button will increment it. Using the test runner of your choice, like [Jest](https://github.com/facebook/jest) or [Mocha](https://github.com/mochajs/mocha), we can write these two scenarios down:
+We want to verify that our Counter displays the initial count and that clicking the button will increment it. Using the test runner of your choice, like [Jest](https://github.com/facebook/jest) or [Mocha](https://github.com/mochajs/mocha), we can write these two scenarios down. We explain with using Jest in here:
 
 ```jsx
 import { expect } from 'expect';
@@ -140,15 +140,15 @@ test('should be able to sign in', async () => {
 })
 ```
 
-Even if you don't use a translation framework, you can keep your strings in a separate file and use the same strategy as in the example below:
+Supposing `translate()` which uses a key and its corresponding string in a separate file for internationalization, it can be tested as below:
 
 ```jsx
 test('should be able to sign in', async () => {
   render(<MyLoginForm />);
 
-  // We can use our translation function directly in the test
   const label = translate('signinpage.label', 'en-US');
-  // Snapshot the result so we know what's going on
+  // The snapshot for `label` is added to an argument of `toMatchInlineSnapshot()`.
+  // https://jestjs.io/docs/en/snapshot-testing#inline-snapshots
   expect(label).toMatchInlineSnapshot(`Sign In`);
 
   const field = await screen.findByRole('textbox', { name: label });
