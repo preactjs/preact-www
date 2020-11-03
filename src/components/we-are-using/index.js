@@ -252,7 +252,7 @@ const companies = [
 		name: 'Hugo Insurance',
 		href: 'https://withhugo.com/',
 		logo: 'hugo.svg'
-	},
+	}
 ];
 
 // Grid of companies using Preact
