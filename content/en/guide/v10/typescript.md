@@ -47,7 +47,7 @@ Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
 ## Typing components
 
-tbd
+There are different ways to type components in Preact. Class components have generic type variables to ensure type safety. TypeScript sees a function as functional component as long as it returns JSX. There are multiple solutions to define props for functional components.
 
 ### Function components
 
