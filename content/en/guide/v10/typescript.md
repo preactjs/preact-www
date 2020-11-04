@@ -43,7 +43,7 @@ If you use TypeScript within a Babel toolchain, set `jsx` to `preserve` and let 
 }
 ```
 
-Rename your `jsx` files to `tsx` for TypeScript to correctly parse your JSX.
+Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
 ## Typing components
 
@@ -216,6 +216,7 @@ class Foo extends Component {
   ref = createRef<HTMLAnchorElement>();
 
   componentDidMount() {
+    // current is of type HTMLAnchorElement
     console.log(this.ref.current);
   }
 
@@ -226,6 +227,8 @@ class Foo extends Component {
   }
 }
 ```
+
+This helps a lot if you want to make sure that the elements you `ref` to are input elements that can be e.g. focussed.
 
 ## Typing context
 
@@ -254,11 +257,13 @@ function App() {
   return (
     <AppContext.Provider
       value={{
+//    ~~~~~ 
+// 💥 Error: theme not defined
         lang: "de",
         authenticated: true
       }}
-      {/* ~~~ Error: theme not defined */}
     >
+    {}
       <ComponentThatUsesAppContext />
     </AppContext.Provider>
   );
@@ -311,11 +316,59 @@ All values become optional, so you have to do null checks when using them.
 
 ## Typing hooks
 
-### useState
+Most hooks don't need any special typing information, but can infer types from usage.
 
-### useEffect
+### useState, useEffect, useContext
 
-### useContext
+`useState`, `useEffect` and `useContext` all feature generic types so you don't need to annotate extra. Below is a minimal component that uses `useState`, with all types infered from the function signature's default values.
+
+```tsx
+const Counter = ({ initial = 0 }) => {
+  // since initial is a number (default value!), clicks is a number
+  // setClicks is a function that accepts 
+  // - a number 
+  // - a function returning a number
+  const [clicks, setClicks] = useState(initial);
+  return (
+    <>
+      <p>Clicks: {clicks}</p>
+      <button onClick={() => setClicks(clicks + 1)}>+</button>
+      <button onClick={() => setClicks(clicks - 1)}>-</button>
+    </>
+  );
+};
+```
+
+`useEffect` does extra checks so you only return cleanup functions.
+
+```typescript
+useEffect(() => {
+  const handler = () => {
+    document.title = window.innerWidth.toString();
+  };
+  window.addEventListener("resize", handler);
+
+  // ✅  if you return something from the effect callback
+  // it HAS to be a function without arguments
+  return () => {
+    window.removeEventListener("resize", handler);
+  };
+});
+```
+
+`useContext` gets the type information from the default object you pass into `createContext`.
+
+```tsx
+const LanguageContext = createContext({ lang: 'en' });
+
+const Display = () => {
+  // lang will be of type string
+  const { lang } = useContext(LanguageContext);
+  return <>
+    <p>Your selected language: {lang}</p>
+  </>
+}
+```
 
 ### useRef
 
@@ -346,8 +399,65 @@ function TextInputWithFocusButton() {
 }
 ```
 
-### useMemo and useCallback
-
 ### useReducer
+
+For the `useReducer` hook, TypeScript tries to infer as many types as possible from the reducer function. See for example a reducer for a counter.
+
+```typescript
+// The state type for the reducer function
+type StateType = {
+  count: number;
+}
+
+// An action type, where the `type` can be either
+// "reset", "decrement", "increment"
+type ActionType = {
+  type: "reset" | "decrement" | "increment";
+}
+
+// The initial state. No need to annotate
+const initialState = { count: 0 };
+
+function reducer(state: StateType, action: ActionType) {
+  switch (action.type) {
+    // TypeScript makes sure we handle all possible
+    // action types, and gives auto complete for type
+    // strings
+    case "reset":
+      return initialState;
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+```
+
+Once we use the reducer function in `useReducer`, we infer several types and do type checks for passed arguments.
+
+```tsx
+function Counter({ initialCount = 0 }) {
+  // TypeScript makes sure reducer has maximum two arguments, and that
+  // the initial state is of type Statetype.
+  // Furthermore:
+  // - state is of type StateType
+  // - dispatch is a function to dispath ActionType
+  const [state, dispatch] = useReducer(reducer, { count: initialCount });
+
+  return (
+    <>
+      Count: {state.count}
+      {/* TypeScript ensures that the dispatched actions are of ActionType */}
+      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+    </>
+  );
+}
+```
+
+The only annotation needed is in the reducer function itself. The `useReducer` types also ensure that the return value of the reducer function is of type `StateType`.
 
 ## Exposed types
