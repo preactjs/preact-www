@@ -47,6 +47,7 @@ Rename your `jsx` files to `tsx` for TypeScript to correctly parse your JSX.
 
 ## Typing components
 
+tbd
 
 ### Function components
 
@@ -163,6 +164,58 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 
 Class components include children by default, typed as `ComponentChildren`.
 
+## Typing events
+
+Preact emits the regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
+
+```tsx
+export class Button extends Component {
+  handleClick(event: MouseEvent) {
+    event.preventDefault();
+    if (event.target instanceof HTMLElement) {
+      alert(event.target.tagName); // Alerts BUTTON
+    }
+  }
+
+  render() {
+    return <button onClick={this.handleClick}>{this.props.children}</button>;
+  }
+}
+```
+
+You can restrict event handlers by adding a type annotation for `this` to the function signature as the first argument. This argument will be erased after transpilation.
+
+```tsx
+export class Button extends Component {
+  handleClick(this: HTMLButtonElement, event: MouseEvent) {
+    event.preventDefault();
+    if (event.target instanceof HTMLElement) {
+      alert(event.target.tagName); // Alerts BUTTON
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <button onClick={this.handleClick}>{this.props.children}</button>;
+      </>
+    );
+  }
+}
+```
+
+## Typing references
+
 ## Typing hooks
 
-## Typing events
+### useState
+
+### useEffect
+
+### useContext
+
+### useRef
+
+### useMemo and useCallback
+
+### useReducer
