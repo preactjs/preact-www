@@ -166,7 +166,7 @@ Class components include children by default, typed as `ComponentChildren`.
 
 ## Typing events
 
-Preact emits the regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
+Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
 ```tsx
 export class Button extends Component {
@@ -187,6 +187,7 @@ You can restrict event handlers by adding a type annotation for `this` to the fu
 
 ```tsx
 export class Button extends Component {
+  // Adding the this argument restricts binding
   handleClick(this: HTMLButtonElement, event: MouseEvent) {
     event.preventDefault();
     if (event.target instanceof HTMLElement) {
@@ -206,6 +207,108 @@ export class Button extends Component {
 
 ## Typing references
 
+The `createRef` function is also generic, and lets you bind references to element types. In this example, we ensure that the reference can only be bound to `HTMLAnchorElement`. Using `ref` with any other element lets TypeScript thrown an error:
+
+```tsx
+import { h, Component, createRef } from "preact";
+
+class Foo extends Component {
+  ref = createRef<HTMLAnchorElement>();
+
+  componentDidMount() {
+    console.log(this.ref.current);
+  }
+
+  render() {
+    return <div ref={this.ref}>Foo</div>;
+    //          ~~~
+    //       💥 Error! Ref only can be used for HTMLAnchorELement
+  }
+}
+```
+
+## Typing context
+
+`createContext` tries to infer as much as possible from the intial values you pass to:
+
+```tsx
+import { h, createContext } from "preact";
+
+const AppContext = createContext({
+  authenticated: true,
+  lang: "en",
+  theme: "dark"
+});
+// AppContext is of type preact.Context<{
+//   authenticated: boolean;
+//   lang: string;
+//   theme: string;
+// }>
+```
+
+It also requires you to pass in all the properties you defined in the initial value:
+
+```tsx
+function App() {
+  // This one errors 💥 as we haven't defined theme
+  return (
+    <AppContext.Provider
+      value={{
+        lang: "de",
+        authenticated: true
+      }}
+      {/* ~~~ Error: theme not defined */}
+    >
+      <ComponentThatUsesAppContext />
+    </AppContext.Provider>
+  );
+}
+```
+
+If you don't want to specify all properties, you can either merge default values with overrides:
+
+```tsx
+const AppContext = createContext(appContextDefault);
+
+function App() {
+  return (
+    <AppContext.Provider
+      value={{
+        lang: "de",
+        ...appContextDefault
+      }}
+    >
+      <ComponentThatUsesAppContext />
+    </AppContext.Provider>
+  );
+}
+```
+
+Or you work without default values and use bind the generic type variable to bind context to a certain type:
+
+```tsx
+type AppContextValues = {
+  authenticated: boolean;
+  lang: string;
+  theme: string;
+}
+
+const AppContext = createContext<Partial<AppContextValues>>({});
+
+function App() {
+  return (
+    <AppContext.Provider
+      value={{
+        lang: "de"
+      }}
+    >
+      <ComponentThatUsesAppContext />
+    </AppContext.Provider>
+  );
+```
+
+All values become optional, so you have to do null checks when using them.
+
 ## Typing hooks
 
 ### useState
@@ -216,6 +319,35 @@ export class Button extends Component {
 
 ### useRef
 
+Just like `createRef`, `useRef` benefits from binding a generic type variable to a subtype of `HTMLElement`. In the example below, we make sure that `inputRef` only can be passed to `HTMLInputElement`. `useRef` is usually initialized with `null`, with the `strictNullChecks` flag enabled, we need to check if `inputRef` is actually available. 
+
+```tsx
+import { h } from "preact";
+import { useRef } from "preact/hoooks";
+
+function TextInputWithFocusButton() {
+  // initialise with null, but tell TypeScript we are looking for an HTMLInputElement
+  const inputRef = useRef<HTMLInputElement>(null);
+  const focusElement = () => {
+    // strict null checks need us to check if inputEl and current exist.
+    // but once current exists, it is of type HTMLInputElement, thus it
+    // has the method focus! ✅
+    if(inputRef && inputRef.current) {
+      inputRef.current.focus();
+    } 
+  };
+  return (
+    <>
+      { /* in addition, inputEl only can be used with input elements */ }
+      <input ref={inputRef} type="text" />
+      <button onClick={focusElement}>Focus the input</button>
+    </>
+  );
+}
+```
+
 ### useMemo and useCallback
 
 ### useReducer
+
+## Exposed types
