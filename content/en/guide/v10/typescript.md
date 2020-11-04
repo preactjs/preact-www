@@ -460,4 +460,3 @@ function Counter({ initialCount = 0 }) {
 
 The only annotation needed is in the reducer function itself. The `useReducer` types also ensure that the return value of the reducer function is of type `StateType`.
 
-## Exposed types
