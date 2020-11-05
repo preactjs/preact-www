@@ -18,7 +18,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ## Main differences
 
-The main difference when comparing Preact and React apps is that we don't ship our own Synthetic Event system. Preact uses the browser's native `addEventlistener` for event handling internally. See [GlobalEventHandlers] for a full list of DOM event handlers.
+The main difference when comparing Preact and React apps is that we don't ship our own Synthetic Event system. Preact uses the browser's native `addEventListener` for event handling internally. See [GlobalEventHandlers] for a full list of DOM event handlers.
 
 For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintenance overhead and a larger API surface area for us.
 
@@ -32,9 +32,9 @@ The other main difference is that Preact follows the DOM specification more clos
 
 ## Version Compatibility
 
-For both Preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
+For both preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
-> Thus, the website and documentation reflect React `0.16.x` and `15.x` when discussing compatibility or making comparisons.
+> Thus, the website and documentation reflect React `16.x` and `15.x` when discussing compatibility or making comparisons.
 
 ## Debug messages and errors
 
@@ -69,7 +69,7 @@ class Foo extends Component {
 }
 ```
 
-In Preact this is can be also written like this:
+In Preact this can be also written like this:
 
 ```jsx
 // Only works in Preact
@@ -119,7 +119,7 @@ If you're coming from React you're likely used to specify every attribute in cam
 
 ### Use `onInput` instead of `onChange`
 
-Largely for historical reasons, the semantics of React's `onChange` event are actually the same as the `onInput` event provided by browsers, which is supported everywhere. The `input` event is the best-suited event for the majority of cases where you want react when a form control is modified. In Preact core, `onChange` is the standard [DOM change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) that gets fired when an element's value is _committed_ by the user.
+Largely for historical reasons, the semantics of React's `onChange` event are actually the same as the `onInput` event provided by browsers, which is supported everywhere. The `input` event is the best-suited event for the majority of cases where you want to react when a form control is modified. In Preact core, `onChange` is the standard [DOM change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) that gets fired when an element's value is _committed_ by the user.
 
 ```jsx
 // React
