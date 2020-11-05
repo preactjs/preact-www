@@ -1,0 +1,4 @@
+/test/ @preactjs/website
+/src/ @preactjs/website
+/content/en/ @preactjs/docs
+/content/ja/ @38elements

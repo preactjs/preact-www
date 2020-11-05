@@ -242,6 +242,16 @@ const companies = [
 		name: 'Doxford Pet Software',
 		href: 'https://doxford.net',
 		logo: 'doxford.png'
+	},
+	{
+		name: 'SmartRate',
+		href: 'https://www.smartrate.se',
+		logo: 'smartrate.png'
+	},
+	{
+		name: 'Hugo Insurance',
+		href: 'https://withhugo.com/',
+		logo: 'hugo.svg'
 	}
 ];
 

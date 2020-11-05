@@ -109,7 +109,7 @@ Note that both `CounterA` and `CounterB` are completely independent of each othe
 
 ## The dependency argument
 
-Many hooks accept an argument that can be used to limit when a hook should be updated. Preact inspects each value in a dependency array and checks to see if it has changed since the last time a hook was called.
+Many hooks accept an argument that can be used to limit when a hook should be updated. Preact inspects each value in a dependency array and checks to see if it has changed since the last time a hook was called. When the dependency argument is not specified, the hook is always executed.
 
 In our `useCounter()` implementation above, we passed an array of dependencies to `useCallback()`:
 
@@ -282,7 +282,7 @@ Side-Effects are at the heart of many modern Apps. Whether you want to fetch som
 
 ### useEffect
 
-As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect one if needed.
+As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect if one is needed.
 
 ```jsx
 useEffect(() => {

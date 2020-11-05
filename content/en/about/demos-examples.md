@@ -65,6 +65,10 @@ An application for adding comments to any file on Github.
 The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
 [Github Project](https://github.com/sgtpep/exchange-widget)
 
+**[Blaze](https://blaze.now.sh)** :zap:  
+Modern peer-to-peer file sharing Progressive Web App.  
+[Github Project](https://github.com/blenderskool/blaze)
+
 ## Full Demos & Examples
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  

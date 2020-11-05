@@ -24,11 +24,11 @@ For us it doesn't make sense as the browser's event system supports all features
 
 We've come across the following differences between React's synthetic event system and native browser events:
 
-- Browser events don't bubble through `<Portal>`-Components
-- The clear "x" button in IE11 for `<input type="search">` elements does not fire an `input` event.
-- Use `onInput` instead `onChange` for `<input>`-elements (**only if `preact/compat` is not used**)
+- Events don't bubble through `<Portal>` components
+- The clear "x" button for `<input type="search">` does not fire an `input` event in IE11 - use `onSearch` instead.
+- Use `onInput` instead `onChange` for `<input>` elements (**only if `preact/compat` is not used**)
 
-The other main difference is that we follow a bit more closely the DOM specification. One example of that is that you can use `class` instead of `className`.
+The other main difference is that Preact follows the DOM specification more closely. An example of this is the ability to use `class` instead of `className`.
 
 ## Version Compatibility
 
@@ -36,9 +36,23 @@ For both preact and [preact/compat], version compatibility is measured against t
 
 > Thus, the website and documentation reflect React `16.x` and `15.x` when discussing compatibility or making comparisons.
 
+## Debug messages and errors
+
+Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](https://preactjs.com/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
+
+```js
+import "preact/debug"; // <-- Add this line at the top of your main entry file
+```
+
+This is different from React which requires a bundler being present that strips out debugging messages at build time by checking for `NODE_ENV != "production"`.
+
 ## Features unique to Preact
 
 Preact actually adds a few convenient features inspired by work in the (P)React community:
+
+### Native support for ES Modules
+
+Preact was built with ES Modules in mind from the get go and therefore was one of the first frameworks to support them. You can load Preact via the `import` keyword directly in browsers without having it to pass through a bundler first.
 
 ### Arguments in `Component.render()`
 
