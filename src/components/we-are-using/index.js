@@ -247,6 +247,11 @@ const companies = [
 		name: 'SmartRate',
 		href: 'https://www.smartrate.se',
 		logo: 'smartrate.png'
+	},
+	{
+		name: 'Hugo Insurance',
+		href: 'https://withhugo.com/',
+		logo: 'hugo.svg'
 	}
 ];
 
