@@ -190,7 +190,7 @@ debug();
 
 ## Supplying custom Context Providers
 
-Quite often you'll end up with a component which depends on shared context state. Common Providers typically range from Routers, State, to sometimes Themes and other ones that are global for your specific app This can become tedious to set up for each test case repeatedly, so we recommend creating a custom `render` function by wrapping the one from `@testing-library/preact`.
+Quite often you'll end up with a component which depends on shared context state. Common Providers typically range from Routers, State, to sometimes Themes and other ones that are global for your specific app. This can become tedious to set up for each test case repeatedly, so we recommend creating a custom `render` function by wrapping the one from `@testing-library/preact`.
 
 ```jsx
 // helpers.js
