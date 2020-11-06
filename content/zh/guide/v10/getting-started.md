@@ -82,13 +82,13 @@ preact create default my-project
 
 这会创建一个基于 [默认模板](https://github.com/preactjs-templates/default)的新项目. 创建过程中会要求填写一些项目所需信息, 项目会被创建在你规定的目录下(在这个例子中目录是 `my-project`).
 
-> **Tip:** Any GitHub repository with a `template/` folder can be used as a custom template:
+> **提示:** 任何 GitHub 仓库有 `template/` 文件目录都可被用作自定义模板:
 >
 > `preact create <username>/<repository> <project-name>`
 
-### Getting ready for development
+### 开始开发
 
-Now we're ready to start our application. To start a development server, run the following command inside your newly generated project folder (`my-project` from above):
+现在我们可以开始开发我们的项目了. 为了启动开发服务, 在你创建的项目目录中运行如下命令 (`my-project` 同上文所创建):
 
 ```bash
 # Go into the generated project folder
@@ -98,28 +98,28 @@ cd my-project
 npm run dev
 ```
 
-Once the server has started, it will print a local development URL to open in your browser.
-Now you're ready to start coding your app!
+一旦服务已经启动, 会打印一个本地开发URL，在浏览器中打开这个这个URL.
+现在你可以开始编写你的应用了！
 
-### Making a production build
+### 进行生产环境打包构建
 
-There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly-optimized production build.
+如果你需要发布你的应用. Preact CLI 有方便的 `build`命令，可以生成一个高度优化的生产环境构建物.
 
 ```bash
 npm run build
 ```
 
-Upon completion, you'll have a new `build/` folder which can be deployed directly to a server.
+构建完成后, 项目中会生成一个 `build/` 目录，可以直接部署在服务器上.
 
-> For a full list of all available commands, check out the [Preact CLI Documentation](https://github.com/preactjs/preact-cli#cli-options).
+> 查看全部的可用命令列表, 点击查看 [Preact CLI 文档](https://github.com/preactjs/preact-cli#cli-options).
 
-## Integrating Into An Existing Pipeline
+## 在已有项目中集成
 
-If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them. No changes needed!
+如果你已经有一个现有的打包流程. 例如最受欢迎的选择 [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact 可以完美兼容，无需任何改变。
 
-### Setting up JSX
+### 配置 JSX
 
-To transpile JSX, you need a Babel plugin that converts it to valid JavaScript code. The one we all use is [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx). Once installed, you need to specify the function for JSX that should be used:
+为了转译 JSX, 你需要一个Babel插件将JSX转换为有效的JavaScript 代码. 我们使用 [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx). 安装后, 你需要指定JSX使用的方法:
 
 ```json
 {
@@ -132,17 +132,16 @@ To transpile JSX, you need a Babel plugin that converts it to valid JavaScript c
 }
 ```
 
-> [Babel](https://babeljs.io/) has some of the best documentation out there. We highly recommend checking it out for questions surrounding Babel and how to set it up.
+> 这里有[Babel](https://babeljs.io/) 官方的文档. 我们强烈推荐点击查看有关Babel的问题以及如何设置Babel.
 
-### Aliasing React to Preact
+### 配置Preact别名React，以使用React生态
 
-At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing._
+有时, 你可能需要使用庞大的React生态.为React写的库和组件可以无缝的再Preact平台中使用. 为了使用这些, 我们需要指定 `react` 和 `react-dom` 引入 为 Preact. 这个过程就叫做 _aliasing._
 
-#### Aliasing in webpack
+#### 在 webpack 中配置别名
 
-To alias any package in webpack, you need to add the `resolve.alias` section
-to your config. Depending on the configuration you're using, this section may
-already be present, but missing the aliases for Preact.
+在webpack中添加依赖包别名, 你需要添加 `resolve.alias` 到
+你的配置中. 取决于你所使用的配置, 配置可能已经存在, 、但是缺少preact配置
 
 ```js
 const config = { 
@@ -158,10 +157,9 @@ const config = {
 }
 ```
 
-#### Aliasing in Parcel
+#### 在 Parcel 中配置别名
 
-Parcel uses the standard `package.json` file to read configuration options under
-an `alias` key.
+Parcel 使用标准的 `package.json` 文件 读取其中 键名为`alias`配置 .
 
 ```json
 {
@@ -173,10 +171,10 @@ an `alias` key.
 }
 ```
 
-#### Aliasing in Rollup
+#### 在 Rollup 中配置别名
 
-To alias within Rollup, you'll need to install [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias).
-The plugin will need to be placed before your [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
+在 Rollup 中配置别名, 你需要安装 [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias).
+这个插件需要被放在 [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)插件之前
 
 ```js
 import alias from '@rollup/plugin-alias';
@@ -193,10 +191,10 @@ module.exports = {
 };
 ```
 
-#### Aliasing in Jest
+#### 在 Jest在 中配置别名
 
-[Jest](https://jestjs.io/) allows the rewriting of module paths similar to bundlers.
-These rewrites are configured using regular expressions in your Jest configuration:
+[Jest](https://jestjs.io/) 允许改写包路径类似于打包工具.
+重写配置使用正则表达式:
 
 ```json
 {
@@ -211,11 +209,10 @@ These rewrites are configured using regular expressions in your Jest configurati
 [htm]: https://github.com/developit/htm
 [Preact CLI]: https://github.com/preactjs/preact-cli
 
-## TypeScript preact/compat configuration
+## TypeScript preact/compat 配置
 
-Your project could need support for the wider React ecosystem.  To make your application
-compile, you'll need to disable type checking on your `node_modules` like this.  This way,
-your alias will work properly when libraries import React.
+您的项目可能需要对更广泛的React生态系统的支持. 为了是您的项目能正常编译, 您需要在 `node_modules` 中禁止类型检查.  这样,
+您所配置的别名就能正确的在引入React时生效.
 
 ```json
 {
