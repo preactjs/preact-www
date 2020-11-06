@@ -128,34 +128,6 @@ test('should be able to sign in', async () => {
 })
 ```
 
-Sometimes using text content directly creates friction when the content changes a lot, or if you use an internationalization framework that translates text into different languages. You can work around this by treating text as data that you snapshot, making it easy to update but keeping the source of truth outside the test.
-
-```jsx
-test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
-  
-  // What if we render the app in another language, or change the text? Test fails.
-  const field = await screen.findByRole('textbox', { name: 'Sign In' });
-  fireEvent.change(field, { value: 'user123' });
-})
-```
-
-Supposing `translate()` which uses a key and its corresponding string in a separate file for internationalization, it can be tested as below:
-
-```jsx
-test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
-
-  const label = translate('signinpage.label', 'en-US');
-  // The snapshot for `label` is added to an argument of `toMatchInlineSnapshot()`.
-  // https://jestjs.io/docs/en/snapshot-testing#inline-snapshots
-  expect(label).toMatchInlineSnapshot(`Sign In`);
-
-  const field = await screen.findByRole('textbox', { name: label });
-  fireEvent.change(field, { value: 'user123' });
-})
-```
-
 ### Using Test IDs
 
 Test IDs are data attributes added to DOM elements to help in cases where selecting content is ambiguous or unpredictable, or to decouple from implementation
