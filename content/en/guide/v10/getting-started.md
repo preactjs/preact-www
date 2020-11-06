@@ -138,6 +138,54 @@ To transpile JSX, you need a Babel plugin that converts it to valid JavaScript c
 
 At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing._
 
+#### Aliasing in NPM itself
+
+Aliasing in NPM itself is quite easy. After such preparation every library which has React in peer dependencies will get `preact/compat`. You need to create some directory for our mimic module (we can't refer `preact/compat` directly because this directory doesn't exists before first install). For example:
+
+```
+.
+├── node_alias/
+│   └── react/
+│       ├── main.js
+│       └── package.json
+└── package.json // package.json of your project
+```
+
+In our new created package.json we need to set-up `name`, `peerDependency` and optionally `version`:
+
+```json
+{
+    "name": "react",
+    "main": "main.js",
+    "version": "16.14.0",
+    "peerDependencies": {
+        "preact": "^10.0.0"
+    }
+}
+```
+
+In `node_alias/react/main.js` we need to just redirect export, like that:
+
+```js
+module.exports = require('preact/compat');
+```
+
+Last step is setting-up `react`/`react-dom` in ours project `package.json`, like that:
+
+```json
+{
+    "name": "awesome-project",
+    // ...
+    "dependencies": {
+        "react": "file:node_alias/react",
+        "react-dom": "file:node_alias/react",
+        "preact": "^10.0.0"
+    }
+}
+```
+
+We can optionally set-up also directory for `react-dom` if there are any reason of that, for example if some library fetch files and search for `package.json` files.
+
 #### Aliasing in webpack
 
 To alias any package in webpack, you need to add the `resolve.alias` section
