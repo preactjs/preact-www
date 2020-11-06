@@ -80,7 +80,7 @@ npm install -g preact-cli
 preact create default my-project
 ```
 
-这会创建一个基于 [默认模板](https://github.com/preactjs-templates/default)的新项目. You will be asked for some information about your project, which will then be generated in the directory you specified (`my-project` in this case).
+这会创建一个基于 [默认模板](https://github.com/preactjs-templates/default)的新项目. 创建过程中会要求填写一些项目所需信息, 项目会被创建在你规定的目录下(在这个例子中目录是 `my-project`).
 
 > **Tip:** Any GitHub repository with a `template/` folder can be used as a custom template:
 >
