@@ -219,7 +219,7 @@ We renamed/moved the following properties:
 - `nodeName` -> `type`
 - `children` -> `props.children`
 
-As much as we tried, we always ran into edge-cases with third-party libraries written for react. This change to our `vnode` shape removed many difficulties to spot bugs and makes our `compat` code a lot cleaner.
+As much as we tried, we always ran into edge-cases with third-party libraries written for react. This change to our `vnode` shape removed many difficult to spot bugs and makes our `compat` code a lot cleaner.
 
 ### Adjacent text nodes are not joined anymore
 
