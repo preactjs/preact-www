@@ -201,7 +201,7 @@ import { FooContext } from './foo';
 const history = createMemoryHistory();
 
 export function render(vnode) {
-  return render(
+  return originalRender(
     <FooContext.Provider value="foo">
       <Router history={memoryHistory}>
         {vnode}
