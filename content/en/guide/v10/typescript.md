@@ -221,7 +221,7 @@ class Foo extends Component {
   render() {
     return <div ref={this.ref}>Foo</div>;
     //          ~~~
-    //       💥 Error! Ref only can be used for HTMLAnchorELement
+    //       💥 Error! Ref only can be used for HTMLAnchorElement
   }
 }
 ```
