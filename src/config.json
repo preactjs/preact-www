@@ -462,9 +462,7 @@
 				},
 				{
 					"path": "/guide/v10/typescript",
-					"name": {
-						"en": "TypeScript"
-					}
+					"name": "TypeScript"
 				}
 			]
 		}
