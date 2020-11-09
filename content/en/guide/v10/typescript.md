@@ -191,7 +191,7 @@ export class Button extends Component {
   handleClick(this: HTMLButtonElement, event: MouseEvent) {
     event.preventDefault();
     if (event.target instanceof HTMLElement) {
-      alert(event.target.tagName); // Alerts BUTTON
+      console.log(event.target.localName); // "button"
     }
   }
 
