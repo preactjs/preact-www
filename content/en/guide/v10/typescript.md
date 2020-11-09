@@ -197,9 +197,7 @@ export class Button extends Component {
 
   render() {
     return (
-      <>
-        <button onClick={this.handleClick}>{this.props.children}</button>;
-      </>
+      <button onClick={this.handleClick}>{this.props.children}</button>
     );
   }
 }
@@ -459,4 +457,3 @@ function Counter({ initialCount = 0 }) {
 ```
 
 The only annotation needed is in the reducer function itself. The `useReducer` types also ensure that the return value of the reducer function is of type `StateType`.
-
