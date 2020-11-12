@@ -252,7 +252,6 @@
 			"path": "/guide/v8/progressive-web-apps",
 			"name": "Progressive Web Apps"
 		},
-
 		{
 			"name": {
 				"en": "Introduction",
@@ -460,6 +459,10 @@
 						"ja": "オプションフック",
 						"de": "Optionen"
 					}
+				},
+				{
+					"path": "/guide/v10/typescript",
+					"name": "TypeScript"
 				}
 			]
 		}
