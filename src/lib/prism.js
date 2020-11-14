@@ -8,8 +8,9 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
  */
 
 var _self = typeof self!=='undefined' ? self : {};
-var Prism = function(e) {
-    var t = /\blang(?:uage)?-([\w-]+)\b/i, n = 0, a = {
+
+var Prism = module.exports = function(e) {
+    var n = 0, a = {
         util: {
             encode: function e(t) {
                 return t instanceof r ? new r(t.type, e(t.content), t.alias) : Array.isArray(t) ? t.map(e) : t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
@@ -63,7 +64,7 @@ var Prism = function(e) {
                 for (var l in t) if (t.hasOwnProperty(l)) {
                     n.call(t, l, t[l], r || l);
                     var o = t[l], u = a.util.type(o);
-                    "Object" !== u || i[s(o)] ? "Array" !== u || i[s(o)] || (i[s(o)] = !0, e(o, n, l, i)) : (i[s(o)] = !0, 
+                    "Object" !== u || i[s(o)] ? "Array" !== u || i[s(o)] || (i[s(o)] = !0, e(o, n, l, i)) : (i[s(o)] = !0,
                     e(o, n, null, i));
                 }
             }
@@ -75,7 +76,7 @@ var Prism = function(e) {
                 grammar: t,
                 language: n
             };
-            return a.hooks.run("before-tokenize", i), i.tokens = a.tokenize(i.code, i.grammar), 
+            return a.hooks.run("before-tokenize", i), i.tokens = a.tokenize(i.code, i.grammar),
             a.hooks.run("after-tokenize", i), r.stringify(a.util.encode(i.tokens), i.language);
         },
         tokenize: function(e, t) {
@@ -118,7 +119,7 @@ var Prism = function(e) {
                     var F = f.pattern.toString().match(/[imsuy]*$/)[0];
                     f.pattern = RegExp(f.pattern.source, F + "g");
                 }
-                for (var x = f.pattern || f, k = s.next, w = u; k !== t.tail && !(c && w >= c.reach); w += k.value.length, 
+                for (var x = f.pattern || f, k = s.next, w = u; k !== t.tail && !(c && w >= c.reach); w += k.value.length,
                 k = k.next) {
                     var A = k.value;
                     if (t.length > e.length) return;
@@ -129,7 +130,7 @@ var Prism = function(e) {
                             var $ = E.index + (h && E[1] ? E[1].length : 0), S = E.index + E[0].length, j = w;
                             for (j += k.value.length; $ >= j; ) j += (k = k.next).value.length;
                             if (w = j -= k.value.length, k.value instanceof r) continue;
-                            for (var _ = k; _ !== t.tail && (j < S || "string" == typeof _.value); _ = _.next) P++, 
+                            for (var _ = k; _ !== t.tail && (j < S || "string" == typeof _.value); _ = _.next) P++,
                             j += _.value.length;
                             P--, A = e.slice(w, j), E.index -= w;
                         } else {
@@ -142,7 +143,7 @@ var Prism = function(e) {
                             var N = E[0].slice(v), z = (S = $ + N.length, A.slice(0, $)), C = A.slice(S), B = w + A.length;
                             c && B > c.reach && (c.reach = B);
                             var T = k.prev;
-                            z && (T = l(t, T, z), w += z.length), o(t, T, P), k = l(t, T, new r(g, m ? a.tokenize(N, m) : N, b, N)), 
+                            z && (T = l(t, T, z), w += z.length), o(t, T, P), k = l(t, T, new r(g, m ? a.tokenize(N, m) : N, b, N)),
                             C && l(t, k, C), P > 1 && i(e, t, n, k.prev, w, {
                                 cause: g + "," + p,
                                 reach: B
@@ -194,7 +195,7 @@ var Prism = function(e) {
             attributes: {},
             language: n
         }, s = t.alias;
-        s && (Array.isArray(s) ? Array.prototype.push.apply(i.classes, s) : i.classes.push(s)), 
+        s && (Array.isArray(s) ? Array.prototype.push.apply(i.classes, s) : i.classes.push(s)),
         a.hooks.run("wrap", i);
         var l = "";
         for (var o in i.attributes) l += " " + o + '="' + (i.attributes[o] || "").replace(/"/g, "&quot;") + '"';
@@ -300,7 +301,7 @@ Object.defineProperty(Prism.languages.markup.tag, "addInlined", {
 
 Prism.languages.html = Prism.languages.markup,
 Prism.languages.svg = Prism.languages.markup,
-Prism.languages.xml = Prism.languages.extend("markup", {}), 
+Prism.languages.xml = Prism.languages.extend("markup", {}),
 
 (function(e) {
     var t = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
@@ -512,7 +513,7 @@ Prism.languages.json = {
 (function(e) {
     var t = e.util.clone(e.languages.javascript);
 	e.languages.jsx = e.languages.extend("markup", t);
-	e.languages.jsx.tag.pattern = /<\/?(?:[\w.:-]+\s*(?:\s+(?:[\w.:$-]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s{'">=]+|\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}))?|\{\s*\.{3}\s*[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\s*\}))*\s*\/?)?>/i, 
+	e.languages.jsx.tag.pattern = /<\/?(?:[\w.:-]+\s*(?:\s+(?:[\w.:$-]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s{'">=]+|\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}))?|\{\s*\.{3}\s*[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\s*\}))*\s*\/?)?>/i,
 	e.languages.jsx.tag.inside.tag.pattern = /^<\/?[^\s>\/]*/i;
 	e.languages.jsx.tag.inside["attr-value"].pattern = /=(?!\{)(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">]+)/i;
     e.languages.jsx.tag.inside.tag.inside["class-name"] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
@@ -546,11 +547,11 @@ Prism.languages.json = {
             if ("string" != typeof s && ("tag" === s.type && s.content[0] && "tag" === s.content[0].type ? "</" === s.content[0].content[0].content ? r.length > 0 && r[r.length - 1].tagName === n(s.content[0].content[1]) && r.pop() : "/>" === s.content[s.content.length - 1].content || r.push({
                 tagName: n(s.content[0].content[1]),
                 openedBraces: 0
-            }) : r.length > 0 && "punctuation" === s.type && "{" === s.content ? r[r.length - 1].openedBraces++ : r.length > 0 && r[r.length - 1].openedBraces > 0 && "punctuation" === s.type && "}" === s.content ? r[r.length - 1].openedBraces-- : l = !0), 
+            }) : r.length > 0 && "punctuation" === s.type && "{" === s.content ? r[r.length - 1].openedBraces++ : r.length > 0 && r[r.length - 1].openedBraces > 0 && "punctuation" === s.type && "}" === s.content ? r[r.length - 1].openedBraces-- : l = !0),
             (l || "string" == typeof s) && r.length > 0 && 0 === r[r.length - 1].openedBraces) {
                 var o = n(s);
-                i < t.length - 1 && ("string" == typeof t[i + 1] || "plain-text" === t[i + 1].type) && (o += n(t[i + 1]), 
-                t.splice(i + 1, 1)), i > 0 && ("string" == typeof t[i - 1] || "plain-text" === t[i - 1].type) && (o = n(t[i - 1]) + o, 
+                i < t.length - 1 && ("string" == typeof t[i + 1] || "plain-text" === t[i + 1].type) && (o += n(t[i + 1]),
+                t.splice(i + 1, 1)), i > 0 && ("string" == typeof t[i - 1] || "plain-text" === t[i - 1].type) && (o = n(t[i - 1]) + o,
                 t.splice(i - 1, 1), i--), t[i] = new e.Token("plain-text", o, null, o);
             }
             s.content && "string" != typeof s.content && a(s.content);
