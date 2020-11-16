@@ -307,7 +307,7 @@ function PageTitle(props) {
 
 The first argument to `useEffect` is an argument-less callback that triggers the effect. In our case we only want to trigger it, when the title really has changed. There'd be no point in updating it when it stayed the same. That's why we're using the second argument to specify our [dependency-array](#the-dependency-argument).
 
-But sometimes we have a more complex use case. Think of a component which needs to subscribe to some data when it mounts and needs to unsubscribe when it unmounts. This can be accomplished with `useEffect` too. To run any cleanup code we just need to return a function in our callback.
+But sometimes we have a more complex use case. Think of a component which needs to subscribe to some data when it mounts and needs to unsubscribe when it unmounts. This can be accomplished with `useEffect` too. To run any cleanup code we just need to return a function in our callback. The following example shows how to attach an event listener to `window` and have it removed in the cleanup callback:
 
 ```jsx
 // Component that will always display the current window width
