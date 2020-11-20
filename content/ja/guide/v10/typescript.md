@@ -1,15 +1,11 @@
 ---
 name: TypeScript
-description: "Preact has built-in TypeScript support. Learn how to make use of it!"
+description: "Preactは初期状態でTypeScriptをサポートしています。それの使い方を学びましょう。"
 ---
 
 # TypeScript
 
-Preact ships TypeScript type definitions, which are used by the library itself! 
-
-When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit from the added type information while writing regular JavaScript.
-If you want to add type information to your own applications, you can use [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/), or write TypeScript and transpile to regular JavaScript.
-This section will focus on the latter.
+Preactは自身のTypeScriptの型定義を提供します。
 
 ---
 
@@ -17,12 +13,13 @@ This section will focus on the latter.
 
 ---
 
-## TypeScript configuration
+## TypeScriptの設定
 
-TypeScript includes a full-fledged JSX compiler that you can use instead of Babel.
-Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
+TypeScriptにはBabelの代わりに使うことができる完全なJSXコンパイラがあります。
+JSXをPreactが実行可能なJavaScriptに変換するために、以下の設定を`tsconfig.json`に加えます。
 
 ```json
+// TypeScript < 4.1.1
 {
   "compilerOptions": {
     "jsx": "react",
@@ -33,8 +30,19 @@ Add the following configuration to your `tsconfig.json` to transpile JSX to Prea
 }
 ```
 
-If you use TypeScript within a Babel toolchain, set `jsx` to `preserve` and let Babel handle the transpilation.
-You still need to specify `jsxFactory` and `jsxFragmentFactory` to get the correct types.
+```json
+// TypeScript >= 4.1.1
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    //...
+  }
+}
+```
+
+Babelのツールチェーン内でTypeScriptを使う場合は、以下のように`jsx`に`preserve`をセットしてBabelに変換処理を行わせます。
+更に、正しい型を取得するために`jsxFactory`と`jsxFragmentFactory`を指定する必要があります。
 
 ```json
 {
@@ -47,18 +55,18 @@ You still need to specify `jsxFactory` and `jsxFragmentFactory` to get the corre
 }
 ```
 
-Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
+TypeScriptがJSXを正しくパースするために、ファイルの拡張子を`.jsx`から`.tsx`に変更します。
 
-## Typing components
+## コンポーネントの型
 
-There are different ways to type components in Preact.
-Class components have generic type variables to ensure type safety.
-TypeScript sees a function as functional component as long as it returns JSX.
-There are multiple solutions to define props for functional components.
+Preactでは、コンポーネントの種類ごとに型を加える方法が異なります。
+クラスコンポーネントには型安全を保証するためのジェネリック型変数があります。
+TypeScriptは、関数がJSXを返す場合に限り、それを関数コンポーネントと判定します。
+関数コンポーネントの`props`を定義する方法は複数あります。
 
-### Function components
+### 関数コンポーネント
 
-Typing regular function components is as easy as adding type information to the function arguments.
+関数コンポーネントに型を加えることは関数の引数に型を加えることと同じくらい簡単です。
 
 ```tsx
 type MyComponentProps = {
@@ -75,21 +83,21 @@ function MyComponent({ name, age }: MyComponentProps) {
 }
 ```
 
-You can set default props by setting a default value in the function signature.
+関数の定義にデフォルトの値を設定することで、デフォルトの`props`を設定することができます。
 
 ```tsx
 type GreetingProps = {
-  name?: string; // name is optional!
+  name?: string; // nameはオプションです。
 }
 
 function Greeting({ name = "User" }: GreetingProps) {
-  // name is at least "User"
+  // nameのデフォルトの値は"User"になります。
   return <div>Hello {name}!</div>
 }
 ```
 
-Preact also ships a `FunctionComponent` type to annotate anonymous functions.
-`FunctionComponent` also adds a type for `children`:
+Preactは無名関数に対応する`FunctionComponent`型を提供します。
+`FunctionComponent`は`children`に対応する型を`props`に追加します。
 
 ```tsx
 import { h, FunctionComponent } from "preact";
@@ -104,8 +112,8 @@ const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
 };
 ```
 
-`children` is of type `ComponentChildren`.
-You can specify children on your own using this type:
+`children`の型は`ComponentChildren`です。
+この型を使って、`children`を判別させることができます。
 
 
 ```tsx
@@ -126,34 +134,35 @@ function Card({ title, children }: ChildrenProps) {
 };
 ```
 
-### Class components
+### クラスコンポーネント
 
-Preact's `Component` class is typed as a generic with two generic type variables: Props and State.
-Both types default to the empty object, and you can specify them according to your needs.
+Preactの`Component`クラスはジェネリック型です。
+その型はPropsとStateに対応するジェネリック型変数を持ちます。
+デフォルトでは、ジェネリック型変数は空のオブジェクトです。
+以下のように、必要に応じて型を定義してジェネリック型変数として渡すことができます
 
 ```tsx
-// Types for props
+// Propsに対応する型
 type ExpandableProps = {
   title: string;
 };
 
-// Types for state
+// Stateステートに対応する型
 type ExpandableState = {
   toggled: boolean;
 };
 
 
-// Bind generics to ExpandableProps and ExpandableState
+// ExpandablePropsとExpandableStateをジェネリック型変数として渡します。
 class Expandable extends Component<ExpandableProps, ExpandableState> {
-  constructor() {
-    super();
-    // this.state is an object with a boolean field `toggle`
-    // due to ExpandableState
+  constructor(props: ExpandableProps) {
+    super(props);
+    // ExpandableStateによって、this.stateはboolean型の`toggle`プロパティを持つオブジェクトになりました。
     this.state = {
       toggled: false
     };
   }
-  // `this.props.title` is string due to ExpandableProps
+  // ExpandablePropsによって、`this.props.title`はstring型になりました。
   render() {
     return (
       <div class="expandable">
@@ -165,14 +174,13 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
             Toggle
           </button>
         </h2>
+        // デフォルトで、`props`は`children`プロパティを`ComponentChildren`型として持ちます。
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
   }
 }
 ```
-
-Class components include children by default, typed as `ComponentChildren`.
 
 ## Typing events
 
