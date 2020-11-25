@@ -20,11 +20,22 @@ When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit 
 TypeScript includes a full-fledged JSX compiler that you can use instead of Babel. Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
 
 ```json
+// TypeScript < 4.1.1
 {
   "compilerOptions": {
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
+    //...
+  }
+}
+```
+```json
+// TypeScript >= 4.1.1
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     //...
   }
 }
