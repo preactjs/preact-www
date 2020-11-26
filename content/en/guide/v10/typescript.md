@@ -5,9 +5,9 @@ description: "Preact has built-in TypeScript support. Learn how to make use of i
 
 # TypeScript
 
-Preact ships TypeScript type definitions, which are used by the library itself! 
+`preact` and `preact/compat` provide TypeScript type definitions.
 
-When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit from the added type information while writing regular JavaScript. If you want to add type information to your own applications, you can use [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/), or write TypeScript and transpile to regular JavaScript. This section will focus on the latter.
+> 💁 You can also use Preact's type definitions in plain JavaScript with [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/).
 
 ---
 
@@ -15,7 +15,7 @@ When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit 
 
 ---
 
-## TypeScript configuration
+## TypeScript Configuration
 
 TypeScript includes a full-fledged JSX compiler that you can use instead of Babel. Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
 
@@ -30,6 +30,7 @@ TypeScript includes a full-fledged JSX compiler that you can use instead of Babe
   }
 }
 ```
+
 ```json
 // TypeScript >= 4.1.1
 {
@@ -56,13 +57,11 @@ If you use TypeScript within a Babel toolchain, set `jsx` to `preserve` and let 
 
 Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
-## Typing components
+## Typing Components
 
-There are different ways to type components in Preact. Class components have generic type variables to ensure type safety. TypeScript sees a function as functional component as long as it returns JSX. There are multiple solutions to define props for functional components.
+### Functional Components
 
-### Function components
-
-Typing regular function components is as easy as adding type information to the function arguments.
+Typing functional components is as easy as adding type information to the function arguments.
 
 ```tsx
 type MyComponentProps = {
@@ -92,7 +91,7 @@ function Greeting({ name = "User" }: GreetingProps) {
 }
 ```
 
-Preact also ships a `FunctionComponent` type to annotate anonymous functions. `FunctionComponent` also adds a type for `children`:
+Preact ships a `FunctionComponent` type to annotate anonymous function. `FunctionComponent` adds a type for `children` to `props`:
 
 ```tsx
 import { h, FunctionComponent } from "preact";
@@ -107,8 +106,7 @@ const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
 };
 ```
 
-`children` is of type `ComponentChildren`. You can specify children on your own using this type:
-
+`children` is of type `ComponentChildren`. You can specify `children` on your own using this type:
 
 ```tsx
 import { h, ComponentChildren } from "preact";
@@ -128,9 +126,9 @@ function Card({ title, children }: ChildrenProps) {
 };
 ```
 
-### Class components
+### Class Components
 
-Preact's `Component` class is typed as a generic with two generic type variables: Props and State. Both types default to the empty object, and you can specify them according to your needs.
+Preact's `Component` class is a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes). This type has two generic type parameters which correspond Props and State. These generic type parameters are empty objects by default, and can be defined as follows:
 
 ```tsx
 // Types for props
@@ -144,28 +142,26 @@ type ExpandableState = {
 };
 
 
-// Bind generics to ExpandableProps and ExpandableState
+// ExpandableProps and ExpandableState are passed as generic type parameter.
 class Expandable extends Component<ExpandableProps, ExpandableState> {
   constructor(props: ExpandableProps) {
     super(props);
-    // this.state is an object with a boolean field `toggle`
-    // due to ExpandableState
+    // `this.state` is a object with `toggle` property which is boolean type by ExpandableState.
     this.state = {
       toggled: false
     };
   }
-  // `this.props.title` is string due to ExpandableProps
   render() {
     return (
       <div class="expandable">
         <h2>
+          // `this.props.title` is string type by ExpandableProps.
           {this.props.title}{" "}
-          <button
-            onClick={() => this.setState({ toggled: !this.state.toggled })}
-          >
+          <button onClick={() => this.setState({ toggled: !this.state.toggled })}>
             Toggle
           </button>
         </h2>
+        // `this.props.children` is `ComponentChildren` type by default.
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
@@ -173,18 +169,16 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 }
 ```
 
-Class components include children by default, typed as `ComponentChildren`.
+## Typing Events
 
-## Typing events
-
-Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
+Preact uses standard DOM events. Include `"DOM"` in TypeScript's [lib](https://www.typescriptlang.org/tsconfig#lib) compiler option to enable standard DOM event types.
 
 ```tsx
 export class Button extends Component {
   handleClick(event: MouseEvent) {
     event.preventDefault();
     if (event.target instanceof HTMLElement) {
-      alert(event.target.tagName); // Alerts BUTTON
+      console.log(event.target.tagName); // "BUTTON"
     }
   }
 
@@ -194,16 +188,14 @@ export class Button extends Component {
 }
 ```
 
-You can restrict event handlers by adding a type annotation for `this` to the function signature as the first argument. This argument will be erased after transpilation.
+You can provide a more specific type than `EventTarget` by using [this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters):
 
 ```tsx
 export class Button extends Component {
-  // Adding the this argument restricts binding
+  // Define `this parameters`
   handleClick(this: HTMLButtonElement, event: MouseEvent) {
     event.preventDefault();
-    if (event.target instanceof HTMLElement) {
-      console.log(event.target.localName); // "button"
-    }
+    console.log(this.tagName); // "BUTTON"
   }
 
   render() {
@@ -214,32 +206,26 @@ export class Button extends Component {
 }
 ```
 
-## Typing references
+## Typing References
 
-The `createRef` function is also generic, and lets you bind references to element types. In this example, we ensure that the reference can only be bound to `HTMLAnchorElement`. Using `ref` with any other element lets TypeScript thrown an error:
+`createRef()`is [generic type](https://www.typescriptlang.org/docs/handbook/generics.html#generic-types). You can specify a reference type by passing it as `createRef()`'s generic type parameter:
 
 ```tsx
 import { h, Component, createRef } from "preact";
 
 class Foo extends Component {
+  // `this.ref.current` is HTMLAnchorElement type.
   ref = createRef<HTMLAnchorElement>();
-
-  componentDidMount() {
-    // current is of type HTMLAnchorElement
-    console.log(this.ref.current);
-  }
 
   render() {
     return <div ref={this.ref}>Foo</div>;
     //          ~~~
-    //       💥 Error! Ref only can be used for HTMLAnchorElement
+    //       💥 Error! `this.ref` can only be passed to Anchor Element's `ref` attribute.
   }
 }
 ```
 
-This helps a lot if you want to make sure that the elements you `ref` to are input elements that can be e.g. focussed.
-
-## Typing context
+## Typing Context
 
 `createContext` tries to infer as much as possible from the intial values you pass to:
 
@@ -323,7 +309,7 @@ function App() {
 
 All values become optional, so you have to do null checks when using them.
 
-## Typing hooks
+## Typing Hooks
 
 Most hooks don't need any special typing information, but can infer types from usage.
 
