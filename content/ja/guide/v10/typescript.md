@@ -157,24 +157,22 @@ type ExpandableState = {
 class Expandable extends Component<ExpandableProps, ExpandableState> {
   constructor(props: ExpandableProps) {
     super(props);
-    // ExpandableStateによって、this.stateはboolean型のtoggleプロパティを持つオブジェクトになりました。
+    // ExpandableStateによって、`this.state`はboolean型のtoggleプロパティを持つオブジェクトになりました。
     this.state = {
       toggled: false
     };
   }
-  // ExpandablePropsによって、this.props.titleはstring型になりました。
+  // ExpandablePropsによって、`this.props.title`はstring型になりました。
   render() {
     return (
       <div class="expandable">
         <h2>
           {this.props.title}{" "}
-          <button
-            onClick={() => this.setState({ toggled: !this.state.toggled })}
-          >
+          <button onClick={() => this.setState({ toggled: !this.state.toggled })}>
             Toggle
           </button>
         </h2>
-        // デフォルトで、propsはchildrenプロパティをComponentChildren型として持ちます。
+        // デフォルトで、`this.props.children`はComponentChildren型です。
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
