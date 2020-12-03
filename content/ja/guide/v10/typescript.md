@@ -157,12 +157,12 @@ type ExpandableState = {
 class Expandable extends Component<ExpandableProps, ExpandableState> {
   constructor(props: ExpandableProps) {
     super(props);
-    // ExpandableStateによって、this.stateはboolean型の`toggle`プロパティを持つオブジェクトになりました。
+    // ExpandableStateによって、this.stateはboolean型のtoggleプロパティを持つオブジェクトになりました。
     this.state = {
       toggled: false
     };
   }
-  // ExpandablePropsによって、`this.props.title`はstring型になりました。
+  // ExpandablePropsによって、this.props.titleはstring型になりました。
   render() {
     return (
       <div class="expandable">
@@ -174,7 +174,7 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
             Toggle
           </button>
         </h2>
-        // デフォルトで、`props`は`children`プロパティを`ComponentChildren`型として持ちます。
+        // デフォルトで、propsはchildrenプロパティをComponentChildren型として持ちます。
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
@@ -182,7 +182,7 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 }
 ```
 
-## Typing events
+## イベントの型
 
 Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
