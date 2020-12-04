@@ -182,7 +182,8 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 
 ## イベントの型
 
-Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
+Preactは、標準のDOMイベント扱います。
+As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
 ```tsx
 export class Button extends Component {
