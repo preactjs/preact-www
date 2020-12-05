@@ -183,14 +183,14 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 ## イベントの型
 
 Preactは、標準のDOMイベント扱います。
-As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
+TypeScriptのコンパイラオプションの[lib](https://www.typescriptlang.org/tsconfig#lib)に`DOM`が含まれている場合、標準のDOMのイベント型を利用することができます。
 
 ```tsx
 export class Button extends Component {
   handleClick(event: MouseEvent) {
     event.preventDefault();
     if (event.target instanceof HTMLElement) {
-      alert(event.target.tagName); // Alerts BUTTON
+      alert(event.target.tagName); // アラートでBUTTONを表示します。
     }
   }
 
