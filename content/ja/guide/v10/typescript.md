@@ -190,7 +190,7 @@ export class Button extends Component {
   handleClick(event: MouseEvent) {
     event.preventDefault();
     if (event.target instanceof HTMLElement) {
-      alert(event.target.tagName); // アラートでBUTTONを表示します。
+      console.log(event.target.tagName); // "BUTTON"
     }
   }
 
@@ -200,8 +200,7 @@ export class Button extends Component {
 }
 ```
 
-You can restrict event handlers by adding a type annotation for `this` to the function signature as the first argument.
-This argument will be erased after transpilation.
+[this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters)を使うと、`EventTarget`の型を指定することができます。
 
 ```tsx
 export class Button extends Component {
