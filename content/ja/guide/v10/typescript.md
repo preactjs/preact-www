@@ -200,7 +200,7 @@ export class Button extends Component {
 }
 ```
 
-[this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters)を使うと、`EventTarget`の型を指定することができます。
+以下のように、[this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters)を使うと、`EventTarget`の型を指定することができます。
 
 ```tsx
 export class Button extends Component {
