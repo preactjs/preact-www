@@ -4,7 +4,16 @@ permalink: '/cli/getting-started'
 description: 'Preact CLIを始める'
 ---
 
-# を始める
+# はじめに
+
+最初にPreact CLIを[npm](https://npmjs.com/package/preact-cli)からインストールします。
+
+```shell
+npm i -g preact-cli
+```
+
+これで`preact`コマンドがグローバルにインストールされます。
+これを使用して新しいプロジェクトを作成していきます。
 
 ## プロジェクトの作成
 
@@ -31,10 +40,10 @@ description: 'Preact CLIを始める'
 ブログを始めたいと思っていますか？ここに良いものがあります。
 このテンプレートは[Netlify CMS](https://www.netlifycms.org/)を使って編集することができるシンプルでエレガントなブログを提供します。
 
-これらのテンプレートを使うには以下のように`npx preact-cli create`コマンドでテンプレートを指定して新しいプロジェクトを作成します。
+これらのテンプレートを使うには以下のように`preact create`コマンドでテンプレートを指定して新しいプロジェクトを作成します。
 
 ```sh
-npx preact-cli create <template-name> <app-name>
+preact create <template-name> <app-name>
 ```
 
 これでプロジェクトが作成されました。

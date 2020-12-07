@@ -4,7 +4,15 @@ permalink: '/cli/getting-started'
 description: 'Introdução à documentação do Preact CLI'
 ---
 
-# Começando
+# Instalação
+
+Para iniciar o Preact CLI, instale-o em [npm](https://npmjs.com/package/preact-cli):
+
+```shell
+npm i -g preact-cli
+```
+
+Isso instala um comando global `preact`, que usaremos para configurar um novo projeto.
 
 ## Criação de projeto
 
@@ -28,10 +36,10 @@ Este modelo vem pré-configurado com [preact-material-components](https://materi
 
 Deseja criar um blog? Não procure mais! Este modelo fornece um blog simples e elegante com o Preact que você pode editar usando o [Netlify CMS](https://www.netlifycms.org/).
 
-Para começar com qualquer um desses modelos, execute `npx preact-cli create` para criar um novo projeto com o seu modelo de escolha:
+Para começar com qualquer um desses modelos, execute `preact create` para criar um novo projeto com o seu modelo de escolha:
 
 ```sh
-npx preact-cli create <template-name> <app-name>
+preact create <template-name> <app-name>
 ```
 
 Agora que seu projeto está configurado, você pode `cd` no diretório recém-criado e iniciar um servidor de desenvolvimento:
