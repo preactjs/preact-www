@@ -220,6 +220,20 @@ module.exports = {
 }
 ```
 
+#### Snowpackでエイリアスする
+
+[Snowpack](https://www.snowpack.dev/)でエイリアスするには、以下のように`snowpack.config.json`ファイルにエイリアスの設定を加えます。
+
+```js
+// snowpack.config.json
+{
+  alias: {
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
+  }
+}
+```
+
 ## preact/compatのTypeScriptの設定
 
 あなたのプロジェクトはより広範囲のReactエコシステムを扱う必要があるかもしれません。
