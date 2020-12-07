@@ -4,15 +4,7 @@ permalink: '/cli/getting-started'
 description: 'Introducción documentación de preact CLI'
 ---
 
-# Instalación
-
-Para iniciar con Preact CLI, instalarlo desde [npm](https://npmjs.com/package/preact-cli):
-
-```shell
-npm i -g preact-cli
-```
-
-Esto instala `preact` como comando de acceso global, que usaremos para configurar un nuevo proyecto.
+# Empezando
 
 ## Creación de proyectos
 
@@ -36,10 +28,10 @@ Esta plantilla viene preconfigurada con [preact-material-components] (https://ma
 
 ¿Estás buscando configurar un blog? Esta plantilla ofrece un blog simple y elegante con Preact que se puede editar usando [Netlify CMS](https://www.netlifycms.org/).
 
-Para comenzar con cualquiera de estas plantillas, ejecute `preact create` para crear un nuevo proyecto con la plantilla de elegida:
+Para comenzar con cualquiera de estas plantillas, ejecute `npx preact-cli create` para crear un nuevo proyecto con la plantilla de elegida:
 
 ```sh
-preact create <template-name> <app-name>
+npx preact-cli create <template-name> <app-name>
 ```
 
 Ahora que el proyecto está creado y configurado, hacer `cd` al directorio creado e iniciar el servidor de desarrollo:
