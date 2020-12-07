@@ -146,8 +146,8 @@ type ExpandableState = {
 
 // Bind generics to ExpandableProps and ExpandableState
 class Expandable extends Component<ExpandableProps, ExpandableState> {
-  constructor() {
-    super();
+  constructor(props: ExpandableProps) {
+    super(props);
     // this.state is an object with a boolean field `toggle`
     // due to ExpandableState
     this.state = {
