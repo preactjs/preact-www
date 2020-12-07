@@ -4,11 +4,11 @@ Thanks for contributing to Preact's documentation!
 
 ## Languages
 
-In order to facilitate language translations, all content should be authored and submitted in your primary language.
+Please author and submit content **only in one language** _(generally your primary written language)_ to facilitate translation.
 
-Once content is added, the wonderful folks who help maintain each translation will work to apply those changes to the other languages.
+Once the content is added, the wonderful folks who help maintain each translation will work to apply those changes to the other languages.
 
-English is the site's default language, and generally the source used for translations. Please follow the existing formatting as much as possible.
+English is the site's default language and is generally the source for translations. Try to follow the existing formatting where possible.
 
 ### Japanese Version
 
