@@ -90,7 +90,7 @@ This component is most useful for library authors.
 
 ## Portals
 
-Using `createPortal()`, you can add rendering results to the DOM node outside the component at rendering. The target DOM node **must** be present before attempting to render into it.
+Using `createPortal()`, it's possible to insert JSX into a DOM tree outside of the component being rendered. The target DOM node **must** be present before attempting to render into it.
 
 ```html
 <html>
