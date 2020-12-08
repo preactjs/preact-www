@@ -200,16 +200,14 @@ export class Button extends Component {
 }
 ```
 
-以下のように、[this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters)を使うと、`EventTarget`の型を指定することができます。
+以下のように、[this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters)を使うと、`EventTarget`よりも詳細な型を指定することができます。
 
 ```tsx
 export class Button extends Component {
-  // Adding the this argument restricts binding
+  // `this parameters`を定義します。
   handleClick(this: HTMLButtonElement, event: MouseEvent) {
     event.preventDefault();
-    if (event.target instanceof HTMLElement) {
-      console.log(event.target.localName); // "button"
-    }
+    console.log(this.tagName); // "BUTTON"
   }
 
   render() {
