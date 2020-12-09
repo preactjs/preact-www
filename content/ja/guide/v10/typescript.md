@@ -5,7 +5,7 @@ description: "Preactは初期状態でTypeScriptをサポートしています�
 
 # TypeScript
 
-PreactのパッケージはTypeScriptの型定義を提供します。
+`preact`と`preact/compat`はTypeScriptの型定義を提供します。
 
 > 💁 [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/)を使うと、Preactの型定義をJavaScriptで使うことができます。
 
