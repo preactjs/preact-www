@@ -220,32 +220,25 @@ export class Button extends Component {
 }
 ```
 
-## Typing references
+## リファレンス(Ref)の型
 
-The `createRef` function is also generic, and lets you bind references to element types.
-In this example, we ensure that the reference can only be bound to `HTMLAnchorElement`.
-Using `ref` with any other element lets TypeScript thrown an error:
+`createRef()`は[ジェネリック型](https://www.typescriptlang.org/docs/handbook/generics.html#generic-types)です。
+`createRef()`のジェネリック型変数(generic type parameter)としてリファレンスの型を渡すと、それを指定することができます。
 
 ```tsx
 import { h, Component, createRef } from "preact";
 
 class Foo extends Component {
+  // `this.ref.current`はHTMLAnchorElement型です。
   ref = createRef<HTMLAnchorElement>();
-
-  componentDidMount() {
-    // current is of type HTMLAnchorElement
-    console.log(this.ref.current);
-  }
 
   render() {
     return <div ref={this.ref}>Foo</div>;
     //          ~~~
-    //       💥 Error! Ref only can be used for HTMLAnchorElement
+    //       💥 エラー、`this.ref`はHTMLAnchorElementの`ref`属性のみに渡されるべきです。
   }
 }
 ```
-
-This helps a lot if you want to make sure that the elements you `ref` to are input elements that can be e.g. focussed.
 
 ## Typing context
 
