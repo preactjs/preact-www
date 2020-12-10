@@ -235,12 +235,12 @@ class Foo extends Component {
   render() {
     return <div ref={this.ref}>Foo</div>;
     //          ~~~
-    //       💥 エラー、`this.ref`はHTMLAnchorElementの`ref`属性のみに渡されるべきです。
+    //       💥 エラー、`this.ref`はHTMLAnchorElementの`ref`属性のみに渡すことができます。
   }
 }
 ```
 
-## Typing context
+## コンテキスト(Context)の型
 
 `createContext` tries to infer as much as possible from the intial values you pass to:
 
