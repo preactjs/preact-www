@@ -71,26 +71,9 @@ interface FunctionComponent<P = {}> {
 }
 ```
 
-> 💁 `FunctionalComponent` type is alias of `FunctionComponent` type.
+> 💁 FunctionalComponent type is alias of FunctionComponent type.
 
 You can implement a functional component in TypeScript, as below.
-
-```tsx
-type Props = {
-  name: string;
-  age: number;
-};
-
-function MyComponent({ name, age }: Props) {
-  return (
-    <div>
-      My name is {name}, I am {age} years old.
-    </div>
-  );
-}
-```
-
-In the case using an anonymous function, you can implement a functional component in TypeScript, as below.
 
 ```tsx
 type Props = {
@@ -107,17 +90,20 @@ const MyComponent: FunctionComponent<Props> = function ({ name, age }) {
 }
 ```
 
-`children` is of type `ComponentChildren`. You can specify `children` on your own using this type:
+`children` is `ComponentChildren` type. `children` as `ComponentChildren` type is added to props in `RenderableProps` type:
+
+```ts
+type RenderableProps<P, RefType = any> = P & Readonly<Attributes & { children?: ComponentChildren; ref?: Ref<RefType> }>;
+```
+
+You do not need to add `children` as `ComponentChildren` type to `Props` type:
 
 ```tsx
-import { h, ComponentChildren } from "preact";
-
-type ChildrenProps = {
+type Props = {
   title: string;
-  children: ComponentChildren;
 }
 
-function Card({ title, children }: ChildrenProps) {
+function Card({ title, children }: Props) {
   return (
     <div class="card">
       <h1>{title}</h1>
