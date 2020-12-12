@@ -61,49 +61,50 @@ Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
 ### Functional Components
 
-Typing functional components is as easy as adding type information to the function arguments.
+The type corresponding to functional components is `FunctionComponent` type. This is type definition of `FunctionComponent` type:
+
+```ts
+interface FunctionComponent<P = {}> {
+  (props: RenderableProps<P>, context?: any): VNode<any> | null;
+  displayName?: string;
+  defaultProps?: Partial<P>;
+}
+```
+
+> 💁 `FunctionalComponent` type is alias of `FunctionComponent` type.
+
+You can implement a functional component in TypeScript, as below.
 
 ```tsx
-type MyComponentProps = {
+type Props = {
   name: string;
   age: number;
 };
 
-function MyComponent({ name, age }: MyComponentProps) {
+function MyComponent({ name, age }: Props) {
   return (
     <div>
-      My name is {name}, I am {age.toString()} years old.
+      My name is {name}, I am {age} years old.
     </div>
   );
 }
 ```
 
-You can set default props by setting a default value in the function signature.
+In the case using an anonymous function, you can implement a functional component in TypeScript, as below.
 
 ```tsx
-type GreetingProps = {
-  name?: string; // name is optional!
-}
-
-function Greeting({ name = "User" }: GreetingProps) {
-  // name is at least "User"
-  return <div>Hello {name}!</div>
-}
-```
-
-Preact ships a `FunctionComponent` type to annotate anonymous function. `FunctionComponent` adds a type for `children` to `props`:
-
-```tsx
-import { h, FunctionComponent } from "preact";
-
-const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
-  return (
-    <div class="card">
-      <h1>{title}</h1>
-      {children}
-    </div>
-  );
+type Props = {
+  name: string;
+  age: number;
 };
+
+const MyComponent: FunctionComponent<Props> = function ({ name, age }) {
+  return (
+    <div>
+      My name is {name}, I am {age} years old.
+    </div>
+  );
+}
 ```
 
 `children` is of type `ComponentChildren`. You can specify `children` on your own using this type:
