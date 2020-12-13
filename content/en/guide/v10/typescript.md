@@ -90,7 +90,7 @@ const MyComponent: FunctionComponent<Props> = function ({ name, age }) {
 }
 ```
 
-`children` is `ComponentChildren` type. `children` as `ComponentChildren` type is added to props in `RenderableProps` type:
+`children` is `ComponentChildren` type. `children` as `ComponentChildren` type is added to `FunctionComponent`'s `props` by `RenderableProps` type:
 
 ```ts
 type RenderableProps<P, RefType = any> = P & Readonly<Attributes & { children?: ComponentChildren; ref?: Ref<RefType> }>;
