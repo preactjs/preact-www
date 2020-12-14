@@ -187,7 +187,7 @@ abstract class Component<P, S> {
 }
 ```
 
-You can be defined as follows:
+You can implement a class component:
 
 ```tsx
 import { h, Component } from 'preact';
@@ -222,7 +222,8 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
             Toggle
           </button>
         </h2>
-        // Since `this.props` is `RenderableProps<P>` type, `this.props.children` is `ComponentChildren` type by default.
+        // Since `this.props` is `RenderableProps<P>` type,
+	// `this.props.children` is `ComponentChildren` type by default.
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
