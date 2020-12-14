@@ -223,7 +223,7 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
           </button>
         </h2>
         // Since `this.props` is `RenderableProps<P>` type,
-	// `this.props.children` is `ComponentChildren` type by default.
+        // `this.props.children` is `ComponentChildren` type by default.
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
