@@ -3,7 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { fetchRelease } from '../../lib/github';
 import config from '../../config.json';
 
-const VERSION = '10.0.4';
+const VERSION = '10.5.7';
 const URL = `https://github.com/preactjs/preact/releases/tag/${VERSION}`;
 
 export default function ReleaseLink(props) {
