@@ -5,7 +5,7 @@ description: "Preact has built-in TypeScript support. Learn how to make use of i
 
 # TypeScript
 
-`preact` and `preact/compat` provide TypeScript type definitions.
+This guide explains how to configure to use Typescript and use Preact's TypeScript type definitions.
 
 > 💁 You can also use Preact's type definitions in plain JavaScript with [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/).
 
@@ -15,7 +15,7 @@ description: "Preact has built-in TypeScript support. Learn how to make use of i
 
 ---
 
-## TypeScript Configuration
+## Configuration
 
 TypeScript includes a full-fledged JSX compiler that you can use instead of Babel. Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
 
@@ -57,9 +57,11 @@ If you use TypeScript within a Babel toolchain, set `jsx` to `preserve` and let 
 
 Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
-## Typing Components
+## Type Definitions
 
-### Functional Components
+Preact's packages (preact, preact/compat, hooks, etc.) provide TypeScript type definitions. These type definitions are explained at below.
+
+## Functional Components
 
 The type corresponding to functional components is `FunctionComponent` type. This is type definition of `FunctionComponent` type:
 
@@ -76,6 +78,8 @@ interface FunctionComponent<P = {}> {
 You can implement a functional component in TypeScript, as below.
 
 ```tsx
+import { h, FunctionComponent } from 'preact';
+
 type Props = {
   name: string;
   age: number;
@@ -99,13 +103,15 @@ type RenderableProps<P, RefType = any> = P & Readonly<Attributes & { children?: 
 You do not need to add `children` as `ComponentChildren` type to `Props` type:
 
 ```tsx
+import { h, FunctionComponent } from 'preact';
+
 type Props = {
   title: string;
 }
 
-function Card({ title, children }: Props) {
+const Card: FunctionComponent<Props> = function ({ title, children }) {
   return (
-    <div class="card">
+    <div>
       <h1>{title}</h1>
       {children}
     </div>
@@ -113,11 +119,79 @@ function Card({ title, children }: Props) {
 };
 ```
 
-### Class Components
+## Class Components
 
-Preact's `Component` class is a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes). This type has two generic type parameters which correspond Props and State. These generic type parameters are empty objects by default, and can be defined as follows:
+Preact's `Component` class is a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes). This type has two generic type parameters which correspond `props` and `state`. These generic type parameters are empty objects by default:
+
+```ts
+interface Component<P = {}, S = {}> {
+  componentWillMount?(): void;
+  componentDidMount?(): void;
+  componentWillUnmount?(): void;
+  getChildContext?(): object;
+  componentWillReceiveProps?(nextProps: Readonly<P>, nextContext: any): void;
+  shouldComponentUpdate?(
+    nextProps: Readonly<P>,
+    nextState: Readonly<S>,
+    nextContext: any
+  ): boolean;
+  componentWillUpdate?(
+    nextProps: Readonly<P>,
+    nextState: Readonly<S>,
+    nextContext: any
+  ): void;
+  getSnapshotBeforeUpdate?(oldProps: Readonly<P>, oldState: Readonly<S>): any;
+  componentDidUpdate?(
+    previousProps: Readonly<P>,
+    previousState: Readonly<S>,
+    snapshot: any
+  ): void;
+  componentDidCatch?(error: any, errorInfo: any): void;
+}
+
+abstract class Component<P, S> {
+  constructor(props?: P, context?: any);
+
+  static displayName?: string;
+  static defaultProps?: any;
+  static contextType?: Context<any>;
+
+  static getDerivedStateFromProps?(
+    props: Readonly<object>,
+    state: Readonly<object>
+  ): object | null;
+  static getDerivedStateFromError?(error: any): object | null;
+
+  state: Readonly<S>;
+  props: RenderableProps<P>;
+  context: any;
+  base?: Element | Text;
+
+  setState<K extends keyof S>(
+    state:
+      | ((
+          prevState: Readonly<S>,
+          props: Readonly<P>
+        ) => Pick<S, K> | Partial<S> | null)
+      | (Pick<S, K> | Partial<S> | null),
+    callback?: () => void
+  ): void;
+
+  forceUpdate(callback?: () => void): void;
+
+  abstract render(
+    props?: RenderableProps<P>,
+    state?: Readonly<S>,
+    context?: any
+  ): ComponentChild;
+}
+```
+
+You can be defined as follows:
 
 ```tsx
+import { h, Component } from 'preact';
+
 // Types for props
 type ExpandableProps = {
   title: string;
@@ -140,7 +214,7 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
   }
   render() {
     return (
-      <div class="expandable">
+      <div>
         <h2>
           // `this.props.title` is string type by ExpandableProps.
           {this.props.title}{" "}
@@ -148,7 +222,7 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
             Toggle
           </button>
         </h2>
-        // `this.props.children` is `ComponentChildren` type by default.
+        // Since `this.props` is `RenderableProps<P>` type, `this.props.children` is `ComponentChildren` type by default.
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
@@ -156,14 +230,15 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 }
 ```
 
-## Typing Events
+## Events
 
 Preact uses standard DOM events. Include `"DOM"` in TypeScript's [lib](https://www.typescriptlang.org/tsconfig#lib) compiler option to enable standard DOM event types.
 
 ```tsx
+import { h, Component } from 'preact';
+
 export class Button extends Component {
   handleClick(event: MouseEvent) {
-    event.preventDefault();
     if (event.target instanceof HTMLElement) {
       console.log(event.target.tagName); // "BUTTON"
     }
@@ -178,22 +253,38 @@ export class Button extends Component {
 You can provide a more specific type than `EventTarget` by using [this parameters](https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters):
 
 ```tsx
+import { h, Component } from 'preact';
+
 export class Button extends Component {
   // Define `this parameters`
   handleClick(this: HTMLButtonElement, event: MouseEvent) {
-    event.preventDefault();
     console.log(this.tagName); // "BUTTON"
   }
 
   render() {
-    return (
-      <button onClick={this.handleClick}>{this.props.children}</button>
-    );
+    return <button onClick={this.handleClick}>{this.props.children}</button>;
   }
 }
 ```
 
-## Typing References
+You can provide a more specific type than `EventTarget` by using `TargetedEvent`:
+
+```tsx
+import { h, Component, JSX } from 'preact';
+
+export class Button extends Component {
+  // Define `this parameters`
+  handleClick({ currentTarget }: JSX.TargetedEvent<HTMLInputElement, Event> {
+    console.log(currentTarget.tagName); // "BUTTON"
+  }
+
+  render() {
+    return <button onClick={this.handleClick}>{this.props.children}</button>;
+  }
+}
+```
+
+## References
 
 `createRef()`is [generic type](https://www.typescriptlang.org/docs/handbook/generics.html#generic-types). You can specify a reference type by passing it as `createRef()`'s generic type parameter:
 
@@ -212,7 +303,7 @@ class Foo extends Component {
 }
 ```
 
-## Typing Context
+## Context
 
 `createContext` tries to infer as much as possible from the intial values you pass to:
 
@@ -296,7 +387,7 @@ function App() {
 
 All values become optional, so you have to do null checks when using them.
 
-## Typing Hooks
+## Hooks
 
 Most hooks don't need any special typing information, but can infer types from usage.
 
@@ -323,7 +414,7 @@ const Counter = ({ initial = 0 }) => {
 
 `useEffect` does extra checks so you only return cleanup functions.
 
-```typescript
+```ts
 useEffect(() => {
   const handler = () => {
     document.title = window.innerWidth.toString();
@@ -385,7 +476,7 @@ function TextInputWithFocusButton() {
 
 For the `useReducer` hook, TypeScript tries to infer as many types as possible from the reducer function. See for example a reducer for a counter.
 
-```typescript
+```ts
 // The state type for the reducer function
 type StateType = {
   count: number;
