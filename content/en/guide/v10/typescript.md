@@ -268,13 +268,12 @@ export class Button extends Component {
 }
 ```
 
-You can provide a more specific type than `EventTarget` by using `TargetedEvent`:
+You can provide a more specific type than `EventTarget` by using `TargetedEvent`. `TargetedEvent` type has two generic type parameters which corresponds `currentTarget`'s type and Event type:
 
 ```tsx
 import { h, Component, JSX } from 'preact';
 
 export class Button extends Component {
-  // Define `this parameters`
   handleClick({ currentTarget }: JSX.TargetedEvent<HTMLInputElement, Event> {
     console.log(currentTarget.tagName); // "BUTTON"
   }
