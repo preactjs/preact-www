@@ -288,6 +288,11 @@ export class Button extends Component {
 
 `createRef()`is [generic type](https://www.typescriptlang.org/docs/handbook/generics.html#generic-types). You can specify a reference type by passing it as `createRef()`'s generic type parameter:
 
+```ts
+function createRef<T = any>(): RefObject<T>;
+type RefObject<T> = { current: T | null };
+```
+
 ```tsx
 import { h, Component, createRef } from "preact";
 
