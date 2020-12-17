@@ -274,7 +274,7 @@ You can provide a more specific type than `EventTarget` by using `TargetedEvent`
 import { h, Component, JSX } from 'preact';
 
 export class Button extends Component {
-  handleClick({ currentTarget }: JSX.TargetedEvent<HTMLInputElement, Event> {
+  handleClick({ currentTarget }: JSX.TargetedEvent<HTMLButtonElement, Event> {
     console.log(currentTarget.tagName); // "BUTTON"
   }
 
@@ -293,17 +293,20 @@ function createRef<T = any>(): RefObject<T>;
 type RefObject<T> = { current: T | null };
 ```
 
+The following code is usage:
+
 ```tsx
 import { h, Component, createRef } from "preact";
 
-class Foo extends Component {
-  // `this.ref.current` is HTMLAnchorElement type.
-  ref = createRef<HTMLAnchorElement>();
+export class Button extends Component {
+  ref = createRef<HTMLButtonElement>();
+
+  componentDidMount() {
+    console.log(this.ref.current.tagName); // "BUTTON"
+  }
 
   render() {
-    return <div ref={this.ref}>Foo</div>;
-    //          ~~~
-    //       💥 Error! `this.ref` can only be passed to Anchor Element's `ref` attribute.
+    return <button ref={this.ref}>{this.props.children}</button>;
   }
 }
 ```
