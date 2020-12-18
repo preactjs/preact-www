@@ -94,19 +94,20 @@ const MyComponent: FunctionComponent<Props> = function ({ name, age }) {
 }
 ```
 
-`children` is `ComponentChildren` type. `children` as `ComponentChildren` type is added to `FunctionComponent`'s `props` by `RenderableProps` type:
+`children` is `ComponentChildren` type. `children?` as `ComponentChildren` type is added to `FunctionComponent`'s `props` by `RenderableProps` type:
 
 ```ts
 type RenderableProps<P, RefType = any> = P & Readonly<Attributes & { children?: ComponentChildren; ref?: Ref<RefType> }>;
 ```
 
-You do not need to add `children` as `ComponentChildren` type to `Props` type:
+When `children` is required, it need to be specified:
 
 ```tsx
 import { h, FunctionComponent } from 'preact';
 
 type Props = {
   title: string;
+  children: ComponentChildren;
 }
 
 const Card: FunctionComponent<Props> = function ({ title, children }) {
