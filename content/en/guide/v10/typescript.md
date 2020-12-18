@@ -122,7 +122,7 @@ const Card: FunctionComponent<Props> = function ({ title, children }) {
 
 ## Class Components
 
-Preact's `Component` class is a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes). This type has two generic type parameters which correspond `props` and `state`. These generic type parameters are empty objects by default:
+Preact's `Component` class is a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes). This type has two generic type parameters which correspond `props` and `state`. These generic type parameters are empty objects by default. `children?` as `ComponentChildren` type is added to `Component`'s `props` by `RenderableProps` type:
 
 ```ts
 interface Component<P = {}, S = {}> {
@@ -194,8 +194,10 @@ You can implement a class component:
 import { h, Component } from 'preact';
 
 // Types for props
+// children is required.
 type ExpandableProps = {
   title: string;
+  children: ComponentChildren;
 };
 
 // Types for state
@@ -223,8 +225,6 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
             Toggle
           </button>
         </h2>
-        // Since `this.props` is `RenderableProps<P>` type,
-        // `this.props.children` is `ComponentChildren` type by default.
         <div hidden={this.state.toggled}>{this.props.children}</div>
       </div>
     );
