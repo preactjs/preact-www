@@ -100,7 +100,7 @@ const MyComponent: FunctionComponent<Props> = function ({ name, age }) {
 type RenderableProps<P, RefType = any> = P & Readonly<Attributes & { children?: ComponentChildren; ref?: Ref<RefType> }>;
 ```
 
-When `children` is required, it need to be specified:
+Since `children` in `RenderableProps` type is `children?: ComponentChildren`, `children` need to be specified when `children` is required:
 
 ```tsx
 import { h, FunctionComponent } from 'preact';
