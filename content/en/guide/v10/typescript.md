@@ -194,7 +194,7 @@ You can implement a class component:
 import { h, Component } from 'preact';
 
 // Types for props
-// children is required.
+// in the case `children` is required.
 type ExpandableProps = {
   title: string;
   children: ComponentChildren;
