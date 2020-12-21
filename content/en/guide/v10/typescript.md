@@ -365,8 +365,6 @@ useEffect(() => {
   };
   window.addEventListener("resize", handler);
 
-  // ✅  if you return something from the effect callback
-  // it HAS to be a function without arguments
   return () => {
     window.removeEventListener("resize", handler);
   };
