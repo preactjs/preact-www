@@ -459,10 +459,6 @@
 						"ja": "オプションフック",
 						"de": "Optionen"
 					}
-				},
-				{
-					"path": "/guide/v10/typescript",
-					"name": "TypeScript"
 				}
 			]
 		}
