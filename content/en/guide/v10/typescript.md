@@ -314,163 +314,22 @@ export class Button extends Component {
 
 ## Context
 
-`createContext` tries to infer as much as possible from the intial values you pass to:
-
-```tsx
-import { h, createContext } from "preact";
-
-const AppContext = createContext({
-  authenticated: true,
-  lang: "en",
-  theme: "dark"
-});
-// AppContext is of type preact.Context<{
-//   authenticated: boolean;
-//   lang: string;
-//   theme: string;
-// }>
-```
-
 ## Hooks
 
-Most hooks don't need any special typing information, but can infer types from usage.
-
-### useState, useEffect, useContext
-
-`useState`, `useEffect` and `useContext` all feature generic types so you don't need to annotate extra. Below is a minimal component that uses `useState`, with all types infered from the function signature's default values.
-
-```tsx
-const Counter = ({ initial = 0 }) => {
-  // since initial is a number (default value!), clicks is a number
-  // setClicks is a function that accepts 
-  // - a number 
-  // - a function returning a number
-  const [clicks, setClicks] = useState(initial);
-  return (
-    <>
-      <p>Clicks: {clicks}</p>
-      <button onClick={() => setClicks(clicks + 1)}>+</button>
-      <button onClick={() => setClicks(clicks - 1)}>-</button>
-    </>
-  );
-};
-```
-
-`useEffect` does extra checks so you only return cleanup functions.
-
-```ts
-useEffect(() => {
-  const handler = () => {
-    document.title = window.innerWidth.toString();
-  };
-  window.addEventListener("resize", handler);
-
-  return () => {
-    window.removeEventListener("resize", handler);
-  };
-});
-```
-
-`useContext` gets the type information from the default object you pass into `createContext`.
-
-```tsx
-const LanguageContext = createContext({ lang: 'en' });
-
-const Display = () => {
-  // lang will be of type string
-  const { lang } = useContext(LanguageContext);
-  return <>
-    <p>Your selected language: {lang}</p>
-  </>
-}
-```
-
-### useRef
-
-Just like `createRef`, `useRef` benefits from binding a generic type variable to a subtype of `HTMLElement`. In the example below, we make sure that `inputRef` only can be passed to `HTMLInputElement`. `useRef` is usually initialized with `null`, with the `strictNullChecks` flag enabled, we need to check if `inputRef` is actually available. 
-
-```tsx
-import { h } from "preact";
-import { useRef } from "preact/hoooks";
-
-function TextInputWithFocusButton() {
-  // initialise with null, but tell TypeScript we are looking for an HTMLInputElement
-  const inputRef = useRef<HTMLInputElement>(null);
-  const focusElement = () => {
-    // strict null checks need us to check if inputEl and current exist.
-    // but once current exists, it is of type HTMLInputElement, thus it
-    // has the method focus! ✅
-    if(inputRef && inputRef.current) {
-      inputRef.current.focus();
-    } 
-  };
-  return (
-    <>
-      { /* in addition, inputEl only can be used with input elements */ }
-      <input ref={inputRef} type="text" />
-      <button onClick={focusElement}>Focus the input</button>
-    </>
-  );
-}
-```
+### useState
 
 ### useReducer
 
-For the `useReducer` hook, TypeScript tries to infer as many types as possible from the reducer function. See for example a reducer for a counter.
+### useMemo 
 
-```ts
-// The state type for the reducer function
-type StateType = {
-  count: number;
-}
+### useCallback
 
-// An action type, where the `type` can be either
-// "reset", "decrement", "increment"
-type ActionType = {
-  type: "reset" | "decrement" | "increment";
-}
+### useRef
 
-// The initial state. No need to annotate
-const initialState = { count: 0 };
+### useContext
 
-function reducer(state: StateType, action: ActionType) {
-  switch (action.type) {
-    // TypeScript makes sure we handle all possible
-    // action types, and gives auto complete for type
-    // strings
-    case "reset":
-      return initialState;
-    case "increment":
-      return { count: state.count + 1 };
-    case "decrement":
-      return { count: state.count - 1 };
-    default:
-      return state;
-  }
-}
-```
+### useEffect
 
-Once we use the reducer function in `useReducer`, we infer several types and do type checks for passed arguments.
+### useLayoutEffect
 
-```tsx
-function Counter({ initialCount = 0 }) {
-  // TypeScript makes sure reducer has maximum two arguments, and that
-  // the initial state is of type Statetype.
-  // Furthermore:
-  // - state is of type StateType
-  // - dispatch is a function to dispath ActionType
-  const [state, dispatch] = useReducer(reducer, { count: initialCount });
-
-  return (
-    <>
-      Count: {state.count}
-      {/* TypeScript ensures that the dispatched actions are of ActionType */}
-      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
-      <button onClick={() => dispatch({ type: "increment" })}>+</button>
-      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
-    </>
-  );
-}
-```
-
-The only annotation needed is in the reducer function itself. The `useReducer` types also ensure that the return value of the reducer function is of type `StateType`.
+### useErrorBoundary
