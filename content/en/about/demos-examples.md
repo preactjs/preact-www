@@ -57,10 +57,6 @@ A site that allows you to search through [Akamai State of the Internet Connectiv
 Desktop App for uploading assets to Contentful (API based CMS)
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
-**[Code and Comment](https://code-and-comment.github.io/code-and-comment/)** :memo:
-An application for adding comments to any file on Github.
-[Github Project](https://github.com/code-and-comment/code-and-comment)
-
 **[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
 The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
 [Github Project](https://github.com/sgtpep/exchange-widget)

@@ -10,12 +10,6 @@ Once the content is added, the wonderful folks who help maintain each translatio
 
 English is the site's default language and is generally the source for translations. Try to follow the existing formatting where possible.
 
-### Japanese Version
-
-* Changes to the Japanese Version are approved by @38elements.
-* For easy review, place each sentence on a new line.
-* Cosmetic changes are not accepted.
-
 ### German Version
 
 * German translations can be approved by @marvinhagemeister
