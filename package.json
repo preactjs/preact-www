@@ -111,7 +111,7 @@
     "less": "^3.10.3",
     "linkstate": "^1.1.1",
     "marked": "^0.8.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "preact": "^10.4.4",
     "preact-custom-element": "^4.0.0",
     "preact-markup": "^2.0.0",
