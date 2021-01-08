@@ -6,7 +6,7 @@ description: 'Preact와 React에는 어떤 차이점이 있을까요? 이 문서
 
 # React와의 차이점
 
-Preact는 React를 재구현하기 위해 만들어진 것이 아니며 차이점이 있습니다. 이 차이점들의 대부분은 사소한 것들이거나 혹은, preact/compat를 사용해 완벽히 제거할 수 있습니다. [preact/compat]는 React와 100% 호환을 목표로 Preact 위에 덧씌우는 얉은 레이어입니다.
+Preact는 React를 재구현하기 위해 만들어진 것이 아니며 차이점이 있습니다. 이 차이점의 대부분은 사소한 것이거나 혹은, preact/compat를 사용해 완벽히 제거할 수 있습니다. [preact/compat]는 React와 100% 호환을 목표로 Preact 위에 덧씌우는 얉은 레이어입니다.
 
 Preact가 React의 모든 기능을 하나하나 포함하지 않으려는 이유는 **작고** **집중된** 상태를 유지하기 위해서입니다. 만약 그렇지 않다면, 이미 매우 복잡하고 잘 설계된 코드 베이스인 React 프로젝트를 최적화하는 것이 더 타당할 것입니다.
 
@@ -25,10 +25,10 @@ Preact 앱과 React 앱을 비교할 때 주요 차이점은 Preact에서는 자
 React의 합성 이벤트 시스템과 네이티브 브라우저 이벤트에는 다음과 같은 차이점이 있습니다.
 
 - `<Portal>` 컴포넌트를 통해 이벤트 버블이 발생하지 않습니다.
-- IE11에서 `<input type=”search”>`의 초기화 "x" 버튼에 대한 `input` 이벤트가 발생하지 않습니다. 대신 `onSearch`를 사용하세요.
-- `<input>` 요소들에 `onChange` 대신 `onInput`을 사용하세요. (**`preact/compat`를 사용하지 않는 경우에만 해당**)
+- IE11에서 `<input type=”search”>`의 초기화 "x" 버튼에 대한 `input` 이벤트가 발생하지 않습니다. 대신 `onSearch`를 사용합니다.
+- `<input>` 요소들에 `onChange` 대신 `onInput`을 사용합니다. (**`preact/compat`를 사용하지 않는 경우에만 해당**)
 
-또 다른 주요 차이점은 Preact는 DOM의 사양을 React보다 더 많이 따르고 있다는 점입니다. 예를 들어 `className` 대신 `class`를 사용할 수 있습니다.
+또 다른 차이점은 Preact기 DOM의 사양을 React보다 더 많이 따르고 있다는 점입니다. 예를 들어 `className` 대신 `class`를 사용할 수 있습니다.
 
 ## 버전 호환성
 
@@ -39,7 +39,7 @@ Preact와 [preact/compat]의 버전 호환성은 React의 _최신_ 메이저 버
 
 ## 디버그 메세지와 오류
 
-Preact의 유연한 구조는 개발 경험을 향상시키기 위한 애드온을 어떤 방식으로든 허용합니다. 이런 애드온 중 하나가 `preact/debug`입니다. 만약 설치되어있다면 [유용한 경고와 오류](https://preactjs.com/guide/v10/debugging)를 추가하고 브라우저 확장 프로그램 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/)를 연결해줍니다. 이는 Preact 어플리케이션을 개발할 때 도움을 주고 무슨 일이 일어나고 있는지 점검하는 것을 매우 쉽게 해줄 것입니다. preact/debug는 다음의 import 문을 통해 추가할 수 있습니다.
+Preact의 유연한 구조는 개발 경험을 향상시키기 위한 애드온을 어떤 방식으로든 허용합니다. 이런 애드온 중 하나가 `preact/debug`입니다. 만약 설치되어있다면 [유용한 경고와 오류](https://preactjs.com/guide/v10/debugging)를 추가하고 브라우저 확장 프로그램 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/)를 연결해줍니다. 이는 Preact 애플리케이션을 개발할 때 도움을 주고 무슨 일이 일어나고 있는지 조사하는 것을 매우 쉽게 해줄 것입니다. preact/debug는 다음의 import 문을 통해 추가할 수 있습니다.
 
 ```js
 import "preact/debug"; // <-- 이 문장을 메인 엔트리 파일의 최상단에 추가하세요
@@ -49,15 +49,15 @@ import "preact/debug"; // <-- 이 문장을 메인 엔트리 파일의 최상단
 
 ## Preact 고유 기능
 
-사실 Preact는 (P)React 커뮤니티 활동에서 영향을 받은 몇 가지 편리한 기능들을 추가했습니다.
+사실 Preact는 (P)React 커뮤니티 활동에서 영향을 받은 몇 가지 편리한 기능을 추가했습니다.
 
 ### ES Modules 기본 지원
 
-Preact는 처음부터 ES Modules를 염두에 두고 만들어진, 최초로 ES Modules를 지원하는 프레임워크였습니다. 번들러를 거칠 필요 없이 `import` 키워드로 브라우저에 바로 Preact를 로드할 수 있습니다. 
+Preact는 처음부터 ES Modules를 염두에 두고 만들어진, 최초로 ES Modules를 지원하는 프레임워크입니다. 번들러를 거칠 필요 없이 `import` 키워드로 브라우저에 바로 Preact를 로드할 수 있습니다. 
 
 ### `Component.render()`에 대한 논쟁
 
-편의를 위해 class 컴포넌트의 `this.props`와 `this.state`를 `render()`에 전달합니다. prop 과 state 프로퍼티를 하나씩 사용하는 이 컴포넌트를 살펴봅시다.
+편의를 위해 class 컴포넌트의 `this.props`와 `this.state`를 `render()`에 전달합니다. prop 과 state 프로퍼티를 사용하는 이 컴포넌트를 살펴봅시다.
 
 ```jsx
 // Preact와 React 모두에서 작동함
@@ -85,9 +85,9 @@ class Foo extends Component {
 
 두 코드 모두 완전히 똑같은 것을 render합니다. 선호하는 스타일로 작성하세요.
 
-### Raw HTML 속성/프로퍼티 이름
+### Raw HTML 어트리뷰트/프로퍼티 이름
 
-Preact는 모든 메이저 브라우저에서 지원하는 DOM 사양을 React보다 더 많이 따르고 있습니다. 중요한 차이는 `className` 대신 표준 `class` 속성을 사용할 수 있다는 점입니다.
+Preact는 모든 메이저 브라우저에서 지원하는 DOM 사양을 React보다 더 많이 따르고 있습니다. 중요한 차이는 `className` 대신 표준 `class` 어트리뷰트를 사용할 수 있다는 점입니다.
 
 ```jsx
 // 이것은:
@@ -99,13 +99,13 @@ Preact는 모든 메이저 브라우저에서 지원하는 DOM 사양을 React�
 
 대부분의 Preact 개발자들은 `class`를 사용하기를 선호합니다. `className`보다 작성하기 짧지만, `className`과 `class`를 모두 지원하기 때문입니다. 
 
-### JSX 내의 SVG
+### JSX 안의 SVG
 
-SVG의 속성과 프로퍼티의 이름들은 꽤 흥미롭습니다. SVG object의 몇몇 프로퍼티들(과 그것의 속성들)은 카멜케이스(camel-case) (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes))로 되어있고, 몇몇 속성들은 케밥케이스(kebab-case)로 (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), 또 다른 속성들은 (주로 `oninput`과 같이 DOM에서 상속된 것들)은 모두 소문자로 작성되어있습니다. 
+SVG의 프로퍼티와 어트리뷰트의 이름들은 꽤 흥미롭습니다. SVG object의 몇몇 프로퍼티(그리고 어트리뷰트)는 카멜케이스(camel-case) (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes))로 되어있고, 몇몇 속성들은 케밥케이스(kebab-case)로 (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), 또 다른 어트리뷰트는 (주로 `oninput`처럼 DOM에서 상속된 것들)은 모두 소문자로 작성되어있습니다. 
 
 Preact는 SVG-Arrtibutes를 있는 그대로 전달합니다. 수정되지 않은 SVG 조각을 코드에 곧바로 붙여넣을 수 있고 박스 밖에서 작동될 수 있게 합니다. 이것은 아이콘이나 SVG 일러스트레이션을 만드는 툴 디자이너들과의 상호운용성을 향상시킵니다. 
 
-React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시하는 것이 익숙할 것입니다. 카멜케이스로 작성된 속성을 계속해서 사용하길 바란다면 [preact/compat] 호환 레이어를 사용하면 됩니다. React API를 반영하고 속성들을 표준화해줄 것입니다.
+React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시하는 것이 익숙할 것입니다. 카멜케이스로 작성된 속성을 계속해서 사용하길 바란다면 [preact/compat] 호환 레이어를 사용하면 됩니다. React API를 반영하고 어트리뷰트를 표준화해줄 것입니다.
 
 ```jsx
 // React
@@ -120,7 +120,7 @@ React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시
 
 ### `onChange` 대신 `onInput` 사용
 
-주로 역사적 이유로, 사실 React에서 `onChange` 이벤트의 의미는 모든 브라우저에서 지원하는 `onInput` 이벤트와 같습니다. `input` 이벤트는 폼 컨트롤이 수정되었을 때 반응할 주된 경우들에 있어 최적의 이벤트입니다. Preact core에서 `onChange`는 표준 [DOM 변경 이벤트](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)로, 요소의 값이 사용자에 의해 _변경될 때_ 실행됩니다.
+대게 역사적 이유로, 사실 React에서 `onChange` 이벤트의 의미는 모든 브라우저에서 지원하는 `onInput` 이벤트와 같습니다. `input` 이벤트는 폼 컨트롤이 수정되었을 때 반응할 주된 경우들에 있어 최적의 이벤트입니다. Preact core에서 `onChange`는 표준 [DOM 변경 이벤트](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)로, 요소의 값이 사용자에 의해 _변경될 때_ 실행됩니다.
 
 ```jsx
 // React
@@ -134,7 +134,7 @@ React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시
 
 ### JSX Constructor
 
-JSX는 JavaScript의 구문 확장자로, 이는 중첩 함수 호출로 변환됩니다. 이런 중첩 호출을 이용해 트리 구조를 만들려는 아이디어는 JSX 이전부터 존재했으며, 일전에 [hyperscript] 프로젝트를 통해 대중화되었습니다. 이런 접근은 React의 생태계 범위 이상의 가치를 가지고 있습니다. 따라서 Preact는 일반화된 커뮤니티 표준을 권장합니다. JSX가 어떻게 동작하고 Hyperscript와의 관계에 대해 더 깊은 논의를 하고 싶다면 [이 글을 읽어보세요](http://jasonformat.com/wtf-is-jsx).
+JSX는 JavaScript의 구문 확장자로, 이는 중첩 함수 호출로 변환됩니다. 이런 중첩 호출을 이용해 트리 구조를 만들려는 아이디어는 JSX 이전부터 존재했으며, [hyperscript] 프로젝트를 통해 대중화되었습니다. 이런 접근은 React의 생태계 범위 이상의 가치를 가지고 있습니다. 따라서 Preact는 일반화된 커뮤니티 표준을 권장합니다. JSX가 어떻게 동작하고 Hyperscript와의 관계에 대해 더 깊은 논의를 하고 싶다면 [이 글을 읽어보세요](http://jasonformat.com/wtf-is-jsx).
 
 **Source:** (JSX)
 
@@ -162,7 +162,7 @@ React.createElement(
 );
 ```
 
-결과적으로, Preact 어플리케이션에 대해 생성된 출력 코드를 살펴보면, 이름이 없는 짧은 “JSX pragma”가 더 읽기 쉽고 minification과 같은 최적화에 더 적합하다는 것을 명확하게 알 수 있습니다. 대부분의 Preact 앱에서 `h()`를 마주치지만, `createElement` 별칭 내보내기도 제공하기 때문에 어떤 이름을 사용하는지는 중요하지 않습니다.
+최종적으로 생성된 Preact 어플리케이션 출력 코드를 살펴보면, 이름이 없는 짧은 “JSX pragma”가 더 읽기 쉽고 minification과 같은 최적화에 더 적합하다는 것을 명확하게 알 수 있습니다. 대부분의 Preact 앱에서 `h()`를 마주치지만, `createElement` 별칭 내보내기도 제공하기 때문에 어떤 이름을 사용하는지는 중요하지 않습니다.
 
 ### contextTypes가 필요하지 않습니다
 
@@ -170,11 +170,11 @@ React.createElement(
 
 ## `preact/compat` 전용 기능
 
-`preact/compat` 는 React 코드를 Preact로 번역해주는 Preact의 호환성 레이어(**compat**ibility layer)입니다. React 사용자들이 코드를 수정하지 않고 Preact를 테스트해볼 수 있는 쉬운 방법입니다. 번들러 환경 설정에 [몇몇의 별칭들을 세팅](https://preactjs.com/guide/v10/getting-started#aliasing-react-to-preact)하면 됩니다. 
+`preact/compat` 는 React 코드를 Preact로 번역해주는 Preact의 호환성 레이어(**compat**ibility layer)입니다. React 사용자가 코드를 수정하지 않고 Preact를 시도해볼 수 있는 쉬운 방법입니다. 번들러 환경 설정에 [몇가지 별칭을 세팅](https://preactjs.com/guide/v10/getting-started#aliasing-react-to-preact)하면 됩니다. 
 
 ### Children API
 
-`Children` API는 `props.children`의 값을 사용하기 위해 전문화된 메소드들의 집합입니다. Preact에서는 일반적으로 불필요하며, 대신 내장 배열 메소드를 사용하기를 권장합니다. Preact에서 `props.children`은 Virtual DOM 노드나 `null`과 같은 빈값 또는 Virtual DOM node 배열입니다. 아래 두 경우는 `children`을 있는 그대로 사용하거나 리턴할 수 있기 때문에 가장 간단하고 흔한 경우입니다.
+`Children` API는 `props.children`의 값을 사용하기 위해 전문화된 메소드의 집합입니다. Preact에서는 일반적으로 불필요하며, 대신 내장 배열 메소드를 사용하기를 권장합니다. Preact에서 `props.children`은 Virtual DOM 노드나 `null`과 같은 빈값 또는 Virtual DOM node 배열입니다. 아래 두 경우는 `children`을 있는 그대로 사용하거나 리턴할 수 있기 때문에 가장 간단하고 흔한 경우입니다.
 
 ```jsx
 // React:
@@ -204,7 +204,7 @@ function App(props) {
 }
 ```
 
-기존의 컴포넌트 라이브러리와의 원활한 통합을 위한 React 호환 `Children` API는 `preact/compat`에서 사용할 수 있습니다. 
+React와 호환되는 `Children` API는 `preact/compat`에서 제공되며 기존의 컴포넌트 라이브러리와 원활하게 통합할 수 있습니다.
 
 ### 특수한 목적의 컴포넌트
 
