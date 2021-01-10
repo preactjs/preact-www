@@ -54,6 +54,20 @@ If you use TypeScript within a Babel toolchain, set `jsx` to `preserve` and let 
 }
 ```
 
+In your `.babelrc`:
+
+```javascript
+{
+  presets: [
+    "@babel/env",
+    ["@babel/typescript", { jsxPragma: "h" }],
+  ],
+  plugins: [
+    ["@babel/transform-react-jsx", { pragma: "h" }]
+  ],
+}
+```
+
 Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
 ## Typing components
