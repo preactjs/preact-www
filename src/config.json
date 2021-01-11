@@ -10,7 +10,8 @@
 		"tr": "Turkish",
 		"pt-br": "Brazilian Portuguese",
 		"de": "German",
-		"it": "Italian"
+		"it": "Italian",
+		"kr": "Korean"
 	},
 	"repo": "preact",
 	"docsearch": {
@@ -27,7 +28,8 @@
 			"tr": "Sonraki Sayfa",
 			"it": "Pagina Successiva",
 			"pt-br": "Próxima Página",
-			"zh": "下一页"
+			"zh": "下一页",
+			"kr": "다음"
 		},
 		"previous": {
 			"en": "Previous Page",
@@ -38,7 +40,8 @@
 			"tr": "Önceki Sayfa",
 			"it": "Pagina Precedente",
 			"pt-br": "Página Anterior",
-			"zh": "上一页"
+			"zh": "上一页",
+			"kr": "이전"
 		}
 	},
 	"nav": [
@@ -376,7 +379,8 @@
 						"en": "Unit Testing with Enzyme",
 						"pt-br": "Teste unitario com Enzyme",
 						"ja": "Enzymeを使った単体テスト",
-						"de": "Unit-Tests mit Enzyme"
+						"de": "Unit-Tests mit Enzyme",
+						"kr": "Enzyme를 이용한 유닛 테스트"
 					}
 				}
 			]
@@ -392,7 +396,8 @@
 						"en": "Differences to React",
 						"pt-br": "Diferenças do React",
 						"ja": "Reactとの違い",
-						"de": "Unterschiede zu React"
+						"de": "Unterschiede zu React",
+						"kr": "React와의 차이점"
 					}
 				},
 				{
@@ -401,7 +406,8 @@
 						"en": "Switching to Preact",
 						"pt-br": "Mudando para Preact",
 						"ja": "Preactへの移行",
-						"de": "Wechsel zu Preact"
+						"de": "Wechsel zu Preact",
+						"kr": "Preact로 전환"
 					}
 				}
 			]
