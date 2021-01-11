@@ -27,6 +27,7 @@ React의 합성 이벤트 시스템과 네이티브 브라우저 이벤트에는
 - `<Portal>` 컴포넌트를 통해 이벤트 버블이 발생하지 않습니다.
 - IE11에서 `<input type=”search”>`의 초기화 "x" 버튼에 대한 `input` 이벤트가 발생하지 않습니다. 대신 `onSearch`를 사용합니다.
 - `<input>` 요소들에 `onChange` 대신 `onInput`을 사용합니다. (**`preact/compat`를 사용하지 않는 경우에만 해당**)
+- `onDoubleClick` 대신 `onDblClick`을 사용합니다. (**`preact/compat`를 사용하지 않는 경우에만 해당**)
 
 또 다른 차이점은 Preact가 DOM의 사양을 React보다 더 많이 따르고 있다는 점입니다. 예를 들어 `className` 대신 `class`를 사용할 수 있습니다.
 
