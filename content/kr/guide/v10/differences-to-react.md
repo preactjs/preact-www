@@ -28,7 +28,7 @@ React의 합성 이벤트 시스템과 네이티브 브라우저 이벤트에는
 - IE11에서 `<input type=”search”>`의 초기화 "x" 버튼에 대한 `input` 이벤트가 발생하지 않습니다. 대신 `onSearch`를 사용합니다.
 - `<input>` 요소들에 `onChange` 대신 `onInput`을 사용합니다. (**`preact/compat`를 사용하지 않는 경우에만 해당**)
 
-또 다른 차이점은 Preact기 DOM의 사양을 React보다 더 많이 따르고 있다는 점입니다. 예를 들어 `className` 대신 `class`를 사용할 수 있습니다.
+또 다른 차이점은 Preact가 DOM의 사양을 React보다 더 많이 따르고 있다는 점입니다. 예를 들어 `className` 대신 `class`를 사용할 수 있습니다.
 
 ## 버전 호환성
 
@@ -120,7 +120,7 @@ React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시
 
 ### `onChange` 대신 `onInput` 사용
 
-대게 역사적 이유로, 사실 React에서 `onChange` 이벤트의 의미는 모든 브라우저에서 지원하는 `onInput` 이벤트와 같습니다. `input` 이벤트는 폼 컨트롤이 수정되었을 때 반응할 주된 경우들에 있어 최적의 이벤트입니다. Preact core에서 `onChange`는 표준 [DOM 변경 이벤트](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)로, 요소의 값이 사용자에 의해 _변경될 때_ 실행됩니다.
+대개 역사적 이유로, 사실 React에서 `onChange` 이벤트의 의미는 모든 브라우저에서 지원하는 `onInput` 이벤트와 같습니다. `input` 이벤트는 폼 컨트롤이 수정되었을 때 반응할 주된 경우들에 있어 최적의 이벤트입니다. Preact core에서 `onChange`는 표준 [DOM 변경 이벤트](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)로, 요소의 값이 사용자에 의해 _변경될 때_ 실행됩니다.
 
 ```jsx
 // React
@@ -162,11 +162,11 @@ React.createElement(
 );
 ```
 
-최종적으로 생성된 Preact 어플리케이션 출력 코드를 살펴보면, 이름이 없는 짧은 “JSX pragma”가 더 읽기 쉽고 minification과 같은 최적화에 더 적합하다는 것을 명확하게 알 수 있습니다. 대부분의 Preact 앱에서 `h()`를 마주치지만, `createElement` 별칭 내보내기도 제공하기 때문에 어떤 이름을 사용하는지는 중요하지 않습니다.
+최종적으로 생성된 Preact 애플리케이션 출력 코드를 살펴보면, 이름이 없는 짧은 “JSX pragma”가 더 읽기 쉽고 minification과 같은 최적화에 더 적합하다는 것을 명확하게 알 수 있습니다. 대부분의 Preact 앱에서 `h()`를 마주치지만, `createElement` 별칭 내보내기도 제공하기 때문에 어떤 이름을 사용하는지는 중요하지 않습니다.
 
 ### contextTypes가 필요하지 않습니다
 
-레거시 `Context` API는 해당 값을 받기 위해 React의 `contextTypes`나 `childContextTypes`를 사용해 특정 속성을 선언해야 합니다. 하지만 Preact는 그럴 필요가 없습니다. 모든 Components들은 기본적으로 `getChildContext()`를 통해 만들어진 모든 `context` 속성들을 전달받습니다.
+레거시 `Context` API는 컴포넌트가 해당 값을 받기 위해 React의 `contextTypes`나 `childContextTypes`를 사용해 특정 프로퍼티를 선언해야 합니다. 하지만 Preact는 그럴 필요가 없습니다. 모든 컴포넌트는 기본적으로 `getChildContext()`를 통해 만들어진 모든 `context` 프로퍼티를 전달받습니다.
 
 ## `preact/compat` 전용 기능
 
