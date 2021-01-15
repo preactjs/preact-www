@@ -9,7 +9,7 @@ import { useLanguage } from '../../lib/i18n';
  * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
  * $$('.contrib-person [data-hovercard-type="user"]:nth-of-type(2)').map(p=>p.textContent).filter(x => !/-bot$/.test(x)).join(' ')
  */
-const CONTRIBS = 'developit marvinhagemeister andrewiggins k1r0s cristianbote sventschui JoviDeCroock AlexGalays rpetrich valotas robertknight wardpeet kruczy pmkroeker NekR ForsakenHarmony jviide juicelink billneff79 yaodingyd prateekbh vutran rmacklin impronunciable zouhir scurker SolarLiner mseddon vaneenige lukeed kristoferbaxter reznord'.split(
+const CONTRIBS = 'developit marvinhagemeister andrewiggins JoviDeCroock jviide prateekbh ForsakenHarmony AlexGalays cristianbote pmkroeker rpetrich 38elements sventschui k1r0s robertknight mochiya98 mkxml NekR valotas AimWhy wardpeet braddunbar natevw gpoitch tanhauhau mhmdanas Rafi993 garybernhardt zouhir jmrog Download vutran yaodingyd harish2704 billneff79 mxstbr staeke ouzhenkun ivantm guybedford jridgewell Connormiha aralroca calebeby Alexendoo paranoidjk vkentta kitten yuqianma programbo Almo7aya LukasBombach btk5h hbroer jakearchibald hadeeb ngyikp johakr intrnl JiLiZART futantan jamesb3ll impronunciable feross btm6084 ddayguerrero namankheterpal KevinDoughty andybons gcraftyg jdanford egdbear niedzielski matthewp juicelink mseddon mitranim utkarshkukreti jmfirth 4cm4k1 vaneenige sangupta kruczy jackmoore scurker polemius amilajack lukeed teodragovic asolove rmacklin siddharthkp bmeurer jrf0110 wojtczal jeremy-coleman afzalsayed96 SomethingSexy'.split(
 	' '
 );
 
