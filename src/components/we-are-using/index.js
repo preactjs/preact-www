@@ -252,6 +252,11 @@ const companies = [
 		name: 'Hugo Insurance',
 		href: 'https://withhugo.com/',
 		logo: 'hugo.svg'
+	},
+	{
+		name: 'Datapedia',
+		href: 'https://datapedia.info/',
+		logo: 'datapedia.png'
 	}
 ];
 
