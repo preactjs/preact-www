@@ -104,6 +104,11 @@ const companies = [
 		logo: 'thepracticaldev.png'
 	},
 	{
+		name: 'Deno',
+		href: 'https://deno.land/',
+		logo: 'deno.svg'
+	},
+	{
 		name: 'inSided',
 		href: 'https://insided.com/',
 		logo: 'insided.svg'
