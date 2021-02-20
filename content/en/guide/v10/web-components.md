@@ -182,7 +182,7 @@ Usage:
 
 ```html
 <text-section>
-  <span slot="heading">Nice heading</slot>
-  <span slot="content">Great content</slot>
+  <span slot="heading">Nice heading</span>
+  <span slot="content">Great content</span>
 </text-section>
 ```
