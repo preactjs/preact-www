@@ -158,7 +158,7 @@ function generateToc(markdown) {
 		// Note: character range in regex is roughly "word characters including accented" (eg: bublé)
 		const id = text
 			.toLowerCase()
-			.replace(/[\s-!()<>`'"&,]+/g, '-')
+			.replace(/[\s-!()<>`'"&,]+/g, '-');
 		toc.push({ text, id, level });
 	}
 	return toc;
