@@ -73,7 +73,7 @@ urlsToCache.push({url: '/favicon.ico', revision: null});
 setupPrecaching(urlsToCache);
 ```
 
-> The revision in the above example is used to invalidate the resource if it changes. It the URL has this info(e.g. a hash) then feel free to leave it `null`.
+> The revision in the above example is used to invalidate the resource if it changes. If the URL has this info(e.g. a hash) then feel free to leave it `null`.
 
 **5. Add your custom service worker logic**
 
