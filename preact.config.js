@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve, join } from 'path';
 import fs from 'fs';
 import delve from 'dlv';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -119,5 +119,9 @@ export default function (config, env, helpers) {
 		netlifyPlugin(config, {
 			redirects: fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
 		});
+
+		// For some reason, webpack CopyPlugin throws an error when trying to copy this using that plugin
+		fs.mkdirSync(join(__dirname, 'build'), { recursive: true });
+		fs.copyFileSync(join(__dirname, 'src/_headers'), join(__dirname, 'build/_headers'));
 	}
 }

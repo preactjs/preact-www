@@ -10,19 +10,18 @@
     "url": "https://github.com/preactjs/preact-www.git"
   },
   "scripts": {
-    "dev": "concurrently 'npm run dev:client' 'npm run dev:lambda'",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
     "dev:client": "preact watch --template src/template.html",
     "dev:lambda": "netlify-lambda serve src/lambda",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
     "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --template src/template.html",
-    "postbuild": "cat src/_headers >> build/_headers",
-    "prebuild": "rm -rf build/assets build/content && mkdir -p build",
+    "prebuild": "rimraf build/assets && rimraf build/content",
     "pretest": "npm run -s lint && npm run -s build",
-    "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
+    "test": "cross-env JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
     "lint": "eslint src test",
-    "format": "prettier --write '{src,test}/**/*.{less,js,json}'"
+    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\""
   },
   "keywords": [
     "preact"
@@ -78,6 +77,7 @@
     "@babel/polyfill": "^7.7.0",
     "concurrently": "^5.2.0",
     "critters-webpack-plugin": "^2.5.0",
+    "cross-env": "^7.0.3",
     "dlv": "^1.1.3",
     "eslint": "^6.8.0",
     "eslint-config-developit": "^1.1.1",
@@ -97,6 +97,7 @@
     "prettier": "^1.19.1",
     "promise-polyfill": "^8.1.3",
     "puppeteer": "^2.0.0",
+    "rimraf": "^3.0.2",
     "size-plugin": "^2.0.1",
     "workerize-loader": "^1.1.0"
   },
