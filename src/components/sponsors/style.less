@@ -16,28 +16,19 @@
 	justify-content: center;
 	align-items: center;
 	padding: 0 !important;
-	margin: .5rem 0 0;
+	margin: 0.5rem 0 0;
 }
 
 .sponsorItem {
 	flex: 1 1 auto;
 	list-style: none;
-	opacity: 0.5;
 	transition: all 0.3s;
-	filter: grayscale(1) contrast(5);
+	filter: contrast(0);
 	text-align: center;
-	padding: .5rem 1.5rem 0;
+	padding: 0.5rem 1.5rem 0;
 	margin: 0;
 
-	@media (prefers-color-scheme: dark) {
-		filter: brightness(0) invert(1);
-		&:hover {
-			filter: grayscale(0) contrast(1);
-		}
-	}
-
 	&:hover {
-		opacity: 1;
 		filter: none;
 	}
 
