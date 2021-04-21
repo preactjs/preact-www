@@ -22,7 +22,7 @@ import { useLanguage } from '../../lib/i18n';
 
 /**
  * Display a random contributor of the list above.
- * @param {any[] deps
+ * @param {any[]} deps
  */
 function useContributors(deps) {
 	const [contributors, setContributors] = useState([]);
