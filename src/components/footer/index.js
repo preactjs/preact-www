@@ -6,7 +6,7 @@ import style from './style';
 import { useLanguage } from '../../lib/i18n';
 
 /*
- * To update this list, run:
+ * To update the list, run:
  *
  * const api = u => fetch(`https://api.github.com${u}`).then(r=>r.json());
  * async function getContribs(org, repo, page=1) {
@@ -17,6 +17,7 @@ import { useLanguage } from '../../lib/i18n';
  * const repos = await api('/orgs/preactjs/repos?per_page=100');
  * new Set((await Promise.all(repos.map(r => getContribs(r.owner.login, r.name)))).flat().filter(n => !n.endsWith('-bot') && !n.endsWith('[bot]'));
  *
+ * And copy the results into /assets/contributors.json
  */
 
 /**
