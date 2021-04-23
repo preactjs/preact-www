@@ -1,7 +1,7 @@
 # Preact Documentation Website
 
 [![Build Status](https://travis-ci.org/preactjs/preact-www.svg?branch=master)](https://travis-ci.org/preactjs/preact-www)
-[![Preact Slack Community](https://preact-slack.now.sh/badge.svg)](https://chat.preactjs.com/)
+[![Preact Slack Community](https://img.shields.io/badge/slack-Preact%20Slack%20Community-blue?logo=slack)](https://chat.preactjs.com/)
 
 Built with [preact-cli](https://github.com/preactjs/preact-cli)
 
