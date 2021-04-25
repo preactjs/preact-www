@@ -68,23 +68,17 @@ For more information on HTM, check out its [documentation][htm].
 
 [Preact CLI] is an off-the-shelf solution for building Preact applications that is optimized for modern web development. It's built on standard tooling projects like Webpack, Babel and PostCSS. Preact CLI does not require any configuration or prior knowledge to get started, and this simplicity makes it the most popular way to use Preact.
 
-As the name implies, Preact CLI is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
+As the name implies, Preact CLI is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Using it, you can create a new application by running `npx preact-cli create`:
 
 ```bash
-npm install -g preact-cli
-```
-
-After that, you'll have a new command in your terminal called `preact`. Using it, you can create a new application by running the `preact create` command:
-
-```bash
-preact create default my-project
+npx preact-cli create default my-project
 ```
 
 This will create a new application based on our [default template](https://github.com/preactjs-templates/default). You will be asked for some information about your project, which will then be generated in the directory you specified (`my-project` in this case).
 
 > **Tip:** Any GitHub repository with a `template/` folder can be used as a custom template:
 >
-> `preact create <username>/<repository> <project-name>`
+> `npx preact-cli create <username>/<repository> <project-name>`
 
 ### Getting ready for development
 
