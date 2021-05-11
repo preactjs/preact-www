@@ -193,14 +193,14 @@ function TextSection({ heading, content }) {
 	);
 }
 
-registerElement(Foo, 'text-section', [], { shadow: true });
+register(TextSection, 'text-section', [], { shadow: true });
 ```
 
 使い方:
 
 ```html
 <text-section>
-  <slot name="heading">Nice heading</slot>
-  <slot name="content">Great content</slot>
+  <span slot="heading">Nice heading</span>
+  <span slot="content">Great content</span>
 </text-section>
 ```
