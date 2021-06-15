@@ -81,7 +81,7 @@ In order to have the clock's time update every second, we need to know when `<Cl
 | `getDerivedStateFromProps(nextProps)` | just before `shouldComponentUpdate`. Use with care.
 | `shouldComponentUpdate(nextProps, nextState)` | before `render()`. Return `false` to skip render
 | `componentWillUpdate(nextProps, nextState)` | before `render()` _(deprecated)_
-| `getSnapshotBeforeUpdate(prevProps, prevState)` | called just before `render()`. return value is passed to `componentDidUpdate`.
+| `getSnapshotBeforeUpdate(prevProps, prevState)` | called just after `render()`, but before changes are flushed to the DOM. Return value is passed to `componentDidUpdate`.
 | `componentDidUpdate(prevProps, prevState, snapshot)` | after `render()`
 
 > See [this diagram](https://twitter.com/dan_abramov/status/981712092611989509) to get a visual overview of how they relate to each other.
