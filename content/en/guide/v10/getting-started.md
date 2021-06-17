@@ -77,7 +77,7 @@ npm install --save-dev preact-cli
 After that, you'll have a new command in your project called `preact`. Using it, you can create a new application by running the `preact create` command:
 
 ```bash
-npx preact create default my-project
+npx preact-cli create default my-project
 ```
 
 This will create a new application based on our [default template](https://github.com/preactjs-templates/default). You will be asked for some information about your project, which will then be generated in the directory you specified (`my-project` in this case).
