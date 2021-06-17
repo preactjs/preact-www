@@ -84,7 +84,7 @@ This will create a new application based on our [default template](https://githu
 
 > **Tip:** Any GitHub repository with a `template/` folder can be used as a custom template:
 >
-> `npx preact create <username>/<repository> <project-name>`
+> `npx preact-cli create <username>/<repository> <project-name>`
 
 ### Getting ready for development
 
