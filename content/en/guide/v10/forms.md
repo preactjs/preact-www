@@ -17,7 +17,7 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ## Controlled & Uncontrolled Components
 
-When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled. The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update it's value when a user typed into it.
+When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled. The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update its value when a user typed into it.
 
 A framework like Preact in contrast generally has a unidirectional data flow. The component doesn't manage the value itself there, but something else higher up in the component tree.
 
