@@ -1,8 +1,8 @@
 import styles from './style.less';
 import AMPSvg from './amp.svg';
 import TrivagoSvg from './trivago.svg';
-import WebflowSvg from './webflow.svg';
 import SubstackSvg from './substack.svg';
+import MovaviSvg from './movavi.svg';
 
 /**
  * Sponsors on the main page is a unique selling point of our
@@ -63,16 +63,16 @@ export default function Sponsors() {
 			</li>
 			<li class={styles.sponsorItem}>
 				<a
-					href="https://webflow.com/"
-					title="Webflow"
+					href="https://www.movavi.com/screen-recorder-mac/"
+					title="Movavi screen recorder for Mac"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					<img
-						src={WebflowSvg}
-						alt="Webflow"
+						src={MovaviSvg}
+						alt="Movavi screen recorder for Mac"
 						width="100"
-						height="25"
+						height="100"
 						style="height: 3rem; width: auto;"
 					/>
 				</a>
