@@ -159,7 +159,7 @@ function generateToc(markdown) {
 		const id = text
 			.toLowerCase()
 			.replace(/[\s-!()<>`'",]+/g, '-')
-			.replace(/(?:^-|-$|[/&])/g, '');
+			.replace(/^-|-$|[/&]/g, '');
 		toc.push({ text, id, level });
 	}
 	return toc;
