@@ -19,6 +19,8 @@ export function useLanguage() {
 		[url]
 	);
 
+	setLang(lang);
+
 	return [lang, setLang];
 }
 
