@@ -138,8 +138,8 @@ Prior to the introduction of hooks, class components were required anywhere stat
 ### useState
 
 This hook accepts an argument, this will be the initial state. When
-invoking this hook returns an array of two variables. The first being
-the current state and the second one being the setter for our state.
+invoked this hook returns an array of two variables. The first being
+the current state and the second being the setter for our state.
 
 Our setter behaves similar to the setter of our classic state.
 It accepts a value or a function with the currentState as argument.
