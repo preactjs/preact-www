@@ -20,10 +20,6 @@ This template is a great starting point for most applications. It comes with `pr
 
 A "bare-bones" template, starting from a "Hello World" application. If you're looking to choose your own tools or already have a setup in mind, this is a good way to start.
 
-- **Material**
-
-This template comes pre-configured with [preact-material-components](https://material.preactjs.com) and a small example app to get you started quickly and easily.
-
 - **Netlify CMS**
 
 Looking to set up a blog? Look no further! This template gives you a simple and elegant Preact-powered blog that you can edit using [Netlify CMS](https://www.netlifycms.org/).
