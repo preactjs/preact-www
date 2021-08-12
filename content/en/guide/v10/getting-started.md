@@ -181,6 +181,7 @@ module.exports = {
     alias({
       entries: [
         { find: 'react', replacement: 'preact/compat' },
+        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
         { find: 'react-dom', replacement: 'preact/compat' },
         { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
       ]
@@ -214,6 +215,7 @@ To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package 
 {
   alias: {
     "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
     "react-dom": "preact/compat",
     "react/jsx-runtime": "preact/jsx-runtime",
   }
