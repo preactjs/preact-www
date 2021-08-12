@@ -145,8 +145,8 @@ const config = {
     "alias": { 
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",
-     // Must be below test-utils
+      "react-dom": "preact/compat",     // Must be below test-utils
+      "react/jsx-runtime": "preact/jsx-runtime"
     },
   }
 }
@@ -162,7 +162,8 @@ an `alias` key.
   "alias": {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime"
   },
 }
 ```
@@ -180,7 +181,9 @@ module.exports = {
     alias({
       entries: [
         { find: 'react', replacement: 'preact/compat' },
-        { find: 'react-dom', replacement: 'preact/compat' }
+        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+        { find: 'react-dom', replacement: 'preact/compat' },
+        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
       ]
     })
   ]
@@ -197,21 +200,24 @@ These rewrites are configured using regular expressions in your Jest configurati
   "moduleNameMapper": {
     "^react$": "preact/compat",
     "^react-dom/test-utils$": "preact/test-utils",
-    "^react-dom$": "preact/compat"
+    "^react-dom$": "preact/compat",
+    "^react/jsx-runtime$": "preact/jsx-runtime"
   }
 }
 ```
 
 #### Aliasing in Snowpack
 
-To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.json` file.
+To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.mjs` file.
 
 ```js
-// snowpack.config.json
+// snowpack.config.mjs
 {
   alias: {
     "react": "preact/compat",
-    "react-dom": "preact/compat"
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime",
   }
 }
 ```
