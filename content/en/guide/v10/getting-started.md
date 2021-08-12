@@ -208,10 +208,10 @@ These rewrites are configured using regular expressions in your Jest configurati
 
 #### Aliasing in Snowpack
 
-To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.json` file.
+To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.mjs` file.
 
 ```js
-// snowpack.config.json
+// snowpack.config.mjs
 {
   alias: {
     "react": "preact/compat",
