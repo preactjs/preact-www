@@ -97,7 +97,7 @@ Now you're ready to start coding your app!
 
 ### Making a production build
 
-Your project certainly reach a phase when you need to deploy it to a server. The CLI ships with a handy `build` command which will generate a highly-optimized production build.
+Your project will certainly reach a phase when you need to deploy it to a server. The CLI ships with a handy `build` command which will generate a highly-optimized production build.
 
 ```bash
 npm run build
