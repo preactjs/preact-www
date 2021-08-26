@@ -38,7 +38,7 @@ The primary drawback of developing this way is the lack of JSX, which requires a
 
 Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. JSX requires a build step though, so we highly recommend an alternative called [HTM][htm].
 
-[HTM][htm] is a JSX-like syntax that works in standard JavaScript. Instead of requiring a build step, it uses JavaScript's own [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, which was added in 2015 and is supported in [all modern browsers](https://caniuse.com/#feat=template-literals). This is an increasingly popular way to write Preact apps, since there are fewer moving parts to understand than a traditional front-end build tooling setup.
+[HTM][htm] is a JSX-like syntax that works in standard JavaScript. Instead of requiring a build step, it uses JavaScript's own [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, which was added in 2015 and is supported in [all modern browsers](https://caniuse.com/#feat=template-literals). This is an increasingly popular way to write Preact apps; owing to fewer moving parts, it is easier to understand than a traditional front-end build tooling setup.
 
 ```html
 <script type="module">
@@ -97,7 +97,7 @@ Now you're ready to start coding your app!
 
 ### Making a production build
 
-There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly-optimized production build.
+Your project certainly reach a phase when you need to deploy it to a server. The CLI ships with a handy `build` command which will generate a highly-optimized production build.
 
 ```bash
 npm run build
@@ -130,7 +130,7 @@ To transpile JSX, you need a Babel plugin that converts it to valid JavaScript c
 
 ### Aliasing React to Preact
 
-At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing._
+At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing_.
 
 #### Aliasing in webpack
 
