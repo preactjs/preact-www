@@ -1,7 +1,6 @@
 import { h } from 'preact';
-import style from './style.less';
 import { getCurrentUrl, route } from 'preact-router';
-import { useStore } from '../store-adapter';
+import { useStore } from './store-adapter';
 
 function onChange(e) {
 	const url = getCurrentUrl().replace(/(v\d{1,2})/, `v${e.target.value}`);
@@ -17,9 +16,9 @@ export default function DocVersion() {
 	const { docVersion } = useStore(['docVersion']).state;
 
 	return (
-		<label class={style.root}>
+		<label class="doc-version">
 			Version:{' '}
-			<select value={docVersion} class={style.select} onChange={onChange}>
+			<select value={docVersion} class="doc-version-select" onChange={onChange}>
 				{AVAILABLE_DOCS.map(v => {
 					const suffix = v === 10 ? ' (current)' : '';
 					return (

@@ -1,5 +1,4 @@
 import { createRef, Component } from 'preact';
-import style from './style';
 import config from '../../config';
 import { lazily, cancelLazily } from '../../lib/lazily';
 
@@ -65,14 +64,9 @@ export default class Search extends Component {
 
 	render() {
 		return (
-			<div class={style.search}>
+			<div class="search">
 				<label aria-label="Search">
-					<input
-						ref={this.input}
-						id={this.id}
-						class={style.searchBox}
-						required
-					/>
+					<input ref={this.input} id={this.id} class="seach-box" required />
 				</label>
 			</div>
 		);

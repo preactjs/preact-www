@@ -24,25 +24,30 @@ export default function Header() {
 	}, [url]);
 
 	return (
-		<header class={cx(style.header, open && style.open)}>
-			<div class={style.inner}>
+		<header class="header" data-open={open}>
+			<div class="header-inner">
 				<Nav class={style.nav} routes={config.nav} current={url} />
 				<Search />
-				<div class={style.social}>
-					<ReleaseLink class={cx(style.socialItem, style.release)} />
+				<div class="social">
+					<ReleaseLink class="social-item header-release" />
 					<a
-						class={style.socialItem}
+						class="social-item"
 						aria-label="Browse the code on GitHub"
 						href="https://github.com/preactjs/preact"
 					>
 						<img src="/assets/github.svg" alt="GitHub" width="34" height="33" />
 					</a>
 					<a
-						class={style.socialItem}
+						class="social-item"
 						aria-label="Follow us on Twitter"
 						href="https://twitter.com/preactjs"
 					>
-						<img src="/assets/twitter.svg" alt="Twitter" width="34" height="28" />
+						<img
+							src="/assets/twitter.svg"
+							alt="Twitter"
+							width="34"
+							height="28"
+						/>
 					</a>
 				</div>
 				<Hamburger open={open} onClick={toggle} />

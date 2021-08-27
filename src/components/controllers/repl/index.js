@@ -170,7 +170,7 @@ export default class Repl extends Component {
 
 const ReplWrapper = ({ loading, children }) => (
 	<div class={style.repl}>
-		<progress-bar showing={!!loading} />
+		<div class="progress-bar" showing={!!loading} />
 		<style>{`
 			main {
 				height: 100% !important;

@@ -1,5 +1,3 @@
-import styles from './style.less';
-
 // Add your company to this array. The logo should be placed
 // in `src/assets/we-are-using/my-logo.svg`.
 const companies = [
@@ -268,9 +266,9 @@ const companies = [
 // Grid of companies using Preact
 export default function WeAreUsing() {
 	return (
-		<ul class={styles.root}>
+		<ul class="we-are-using">
 			{companies.map(c => (
-				<li key={c.name} class={styles.item}>
+				<li key={c.name} class="we-are-using-item">
 					<a
 						href={c.href}
 						title={c.name}

@@ -1,9 +1,8 @@
 import { h } from 'preact';
-import config from '../../config';
+import config from '../config.json';
 import { useState, useEffect, useCallback } from 'preact/hooks';
-import { useStore } from '../store-adapter';
-import style from './style';
-import { useLanguage } from '../../lib/i18n';
+import { useStore } from './store-adapter';
+import { useLanguage } from '../lib/i18n';
 
 /*
  * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
@@ -33,10 +32,10 @@ export default function Footer() {
 	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
 
 	return (
-		<footer class={style.footer}>
-			<div class={style.inner}>
+		<footer class="footer">
+			<div>
 				<p>
-					<label class={style.lang}>
+					<label>
 						Language:{' '}
 						<select value={lang || 'en'} onInput={onSelect}>
 							{Object.keys(config.languages).map(id => (

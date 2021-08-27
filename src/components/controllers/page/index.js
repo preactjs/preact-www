@@ -162,7 +162,7 @@ export default function Page({ route, prev, next }, ctx) {
 
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
-			<progress-bar showing={loading} />
+			<div class="progress-bar" showing={loading} />
 			<div class={style.outer}>
 				<Hydrator
 					wrapperProps={{ class: style.sidebarWrap }}

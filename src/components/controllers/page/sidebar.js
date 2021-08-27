@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import style from './sidebar.less';
-import DocVersion from './../../doc-version';
+import DocVersion from '../../doc-version';
 import SidebarNav from './sidebar-nav';
 import { useCallback } from 'preact/hooks';
 import config from '../../../config.json';

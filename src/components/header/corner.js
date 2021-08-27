@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import style from './corner.less';
 
 export default function Corner() {
 	return (
@@ -7,9 +6,9 @@ export default function Corner() {
 			href="https://opencollective.com/preact"
 			target="_blank"
 			rel="noopener noreferrer"
-			class={style.corner}
+			class="corner"
 		>
-			<div class={style.cornerText}>
+			<div class="corner-text">
 				Help
 				<br />
 				Support Us

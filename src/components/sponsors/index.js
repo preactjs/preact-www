@@ -1,4 +1,3 @@
-import styles from './style.less';
 import AMPSvg from './amp.svg';
 import TrivagoSvg from './trivago.svg';
 import SubstackSvg from './substack.svg';
@@ -12,8 +11,8 @@ import MovaviSvg from './movavi.svg';
  */
 export default function Sponsors() {
 	return (
-		<ul class={styles.sponsorList}>
-			<li class={styles.sponsorItem}>
+		<ul class="sponsor-list">
+			<li class="sponsor-item">
 				<a
 					href="https://amp.dev/"
 					title="AMP"
@@ -29,7 +28,7 @@ export default function Sponsors() {
 					/>
 				</a>
 			</li>
-			<li class={styles.sponsorItem}>
+			<li class="sponsor-item">
 				<a
 					href="https://tech.trivago.com/opensource/"
 					title="Trivago"
@@ -45,7 +44,7 @@ export default function Sponsors() {
 					/>
 				</a>
 			</li>
-			<li class={styles.sponsorItem}>
+			<li class="sponsor-item">
 				<a
 					href="https://substack.com/"
 					title="Substack"
@@ -61,7 +60,7 @@ export default function Sponsors() {
 					/>
 				</a>
 			</li>
-			<li class={styles.sponsorItem}>
+			<li class="sponsor-item">
 				<a
 					href="https://www.movavi.com/screen-recorder-mac/"
 					title="Movavi screen recorder for Mac"
