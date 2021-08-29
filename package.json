@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
+    "dev2": "wmr start",
     "dev:client": "preact watch --template src/template.html",
     "dev:lambda": "netlify-lambda serve src/lambda",
     "start": "npm run -s server",
@@ -86,6 +87,7 @@
     "jest": "^26.6.3",
     "jest-puppeteer": "^4.4.0",
     "jsdom": "^15.2.1",
+    "less": "^4.1.1",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
     "netlify-lambda": "^1.6.3",
@@ -99,6 +101,7 @@
     "puppeteer": "^2.0.0",
     "rimraf": "^3.0.2",
     "size-plugin": "^2.0.1",
+    "wmr": "^3.5.1",
     "workerize-loader": "^1.1.0"
   },
   "dependencies": {
@@ -109,7 +112,6 @@
     "encoding": "^0.1.13",
     "flatmap": "0.0.3",
     "htm": "^2.2.1",
-    "less": "^3.10.3",
     "linkstate": "^1.1.1",
     "marked": "^0.8.0",
     "node-fetch": "^2.6.1",
