@@ -1,6 +1,6 @@
 import { createRef, Component } from 'preact';
 import style from './style';
-import config from '../../config';
+import config from '../../config.json';
 import { lazily, cancelLazily } from '../../lib/lazily';
 
 let docsearchInstance;

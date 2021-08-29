@@ -4,7 +4,7 @@ import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style';
 import { useStore } from '../store-adapter';
-import config from '../../config';
+import config from '../../config.json';
 import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
@@ -42,7 +42,12 @@ export default function Header() {
 						aria-label="Follow us on Twitter"
 						href="https://twitter.com/preactjs"
 					>
-						<img src="/assets/twitter.svg" alt="Twitter" width="34" height="28" />
+						<img
+							src="/assets/twitter.svg"
+							alt="Twitter"
+							width="34"
+							height="28"
+						/>
 					</a>
 				</div>
 				<Hamburger open={open} onClick={toggle} />

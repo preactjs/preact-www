@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo, useRef } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import { getContentOnServer, getContent } from '../../../lib/content';
-import config from '../../../config';
+import config from '../../../config.json';
 import style from './style';
 import Footer from '../../footer';
 import Sidebar from './sidebar';
