@@ -3,7 +3,7 @@ import linkState from 'linkstate';
 import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
-import style from './style';
+import style from './style.module.less';
 import './examples.less';
 import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';

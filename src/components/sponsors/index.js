@@ -1,4 +1,4 @@
-import styles from './style.less';
+import styles from './style.module.less';
 import AMPSvg from './amp.svg';
 import TrivagoSvg from './trivago.svg';
 import SubstackSvg from './substack.svg';
