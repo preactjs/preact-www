@@ -1,5 +1,5 @@
 import { useStore } from '../store-adapter';
-import style from './style.less';
+import style from './style.module.less';
 import { Fragment } from 'preact';
 
 export default function EditThisPage({ show, isFallback }) {

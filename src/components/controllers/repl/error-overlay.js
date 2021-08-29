@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './error-overlay.less';
+import style from './error-overlay.module.less';
 
 export function ErrorOverlay({ name, message, stack }) {
 	return (

@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';
-import style from './style';
+import style from './style.module.less';
 import { useStore } from '../store-adapter';
 import config from '../../config.json';
 import { useCallback, useEffect } from 'preact/hooks';

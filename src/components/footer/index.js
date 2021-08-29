@@ -2,7 +2,7 @@ import { h } from 'preact';
 import config from '../../config.json';
 import { useState, useEffect, useCallback } from 'preact/hooks';
 import { useStore } from '../store-adapter';
-import style from './style';
+import style from './style.module.less';
 import { useLanguage } from '../../lib/i18n';
 
 /*

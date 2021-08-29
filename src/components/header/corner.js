@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './corner.less';
+import style from './corner.module.less';
 
 export default function Corner() {
 	return (

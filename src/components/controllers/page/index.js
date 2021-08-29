@@ -4,7 +4,7 @@ import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import { getContentOnServer, getContent } from '../../../lib/content';
 import config from '../../../config.json';
-import style from './style';
+import style from './style.module.less';
 import Footer from '../../footer';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';

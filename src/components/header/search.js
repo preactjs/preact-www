@@ -1,5 +1,5 @@
 import { createRef, Component } from 'preact';
-import style from './style';
+import style from './style.module.less';
 import config from '../../config.json';
 import { lazily, cancelLazily } from '../../lib/lazily';
 

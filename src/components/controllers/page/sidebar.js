@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './sidebar.less';
+import style from './sidebar.module.less';
 import DocVersion from './../../doc-version';
 import SidebarNav from './sidebar-nav';
 import { useCallback } from 'preact/hooks';
