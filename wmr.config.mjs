@@ -1,7 +1,3 @@
 import { defineConfig } from 'wmr';
 
-export default defineConfig({
-	alias: {
-		'~/*': 'src/'
-	}
-});
+export default defineConfig({});
