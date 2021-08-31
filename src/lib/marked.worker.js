@@ -1,5 +1,8 @@
 import marked from 'marked';
+import { expose } from 'comlink';
 
-export function convert(markdown) {
-	return marked(markdown);
-}
+expose({
+	convert(markdown) {
+		return marked(markdown);
+	}
+});
