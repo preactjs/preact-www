@@ -22,7 +22,8 @@
     "pretest": "npm run -s lint && npm run -s build",
     "test": "cross-env JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
     "lint": "eslint src test",
-    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\""
+    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\"",
+    "postinstall": "patch-package"
   },
   "keywords": [
     "preact"
@@ -92,6 +93,7 @@
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
     "netlify-lambda": "^1.6.3",
+    "patch-package": "^6.4.7",
     "per-env": "^1.0.2",
     "postcss-custom-properties": "^9.0.2",
     "preact-cli": "^3.0.0-rc.16",
