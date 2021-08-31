@@ -16,3 +16,5 @@ if (import.meta.env.PRERENDER) {
 	const jsdom = __non_webpack_require__('jsdom');
 	globalThis.DOMParser = new jsdom.JSDOM().window.DOMParser;
 }
+
+preact.render(<App />, document.getElementById('app'));
