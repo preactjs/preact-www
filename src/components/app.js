@@ -5,6 +5,7 @@ import Routes from './routes';
 import Header from './header';
 import { storeCtx } from './store-adapter';
 import { getCurrentDocVersion } from '../lib/docs';
+import { LocationProvider } from 'preact-iso';
 
 export default class App extends Component {
 	store = createStore({
@@ -32,14 +33,16 @@ export default class App extends Component {
 	render() {
 		const { url } = this.store.getState();
 		return (
-			<Provider store={this.store}>
-				<storeCtx.Provider value={this.store}>
-					<div id="app">
-						<Header url={url} />
-						<Routes url={url} onChange={this.handleUrlChange} />
-					</div>
-				</storeCtx.Provider>
-			</Provider>
+			<LocationProvider>
+				<Provider store={this.store}>
+					<storeCtx.Provider value={this.store}>
+						<div id="app">
+							<Header url={url} />
+							<Routes url={url} onChange={this.handleUrlChange} />
+						</div>
+					</storeCtx.Provider>
+				</Provider>
+			</LocationProvider>
 		);
 	}
 }
