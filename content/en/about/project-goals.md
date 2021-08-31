@@ -11,7 +11,7 @@ description: "Read more about Preact's project goals"
 Preact aims to deliver on a few key goals:
 
 - **Performance:** Render quickly & efficiently
-- **Size:** Small size, lightweight _(approximately 3.5kb)_
+- **Size:** Small size, lightweight _(approximately 3.5 kB)_
 - **Efficiency:** Effective memory usage _(avoiding GC thrash)_
 - **Understandability:** Understanding the codebase should take no more than a few hours
 - **Compatibility:** Preact aims to be _largely compatible_ with the React API. [preact/compat] attempts to achieve as much compatibility with React as possible.
