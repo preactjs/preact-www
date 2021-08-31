@@ -5,7 +5,10 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export default defineConfig({
-	// eslint-disable-next-line new-cap
+	alias: {
+		react: 'preact/compat',
+		'react-dom': 'preact/compat'
+	},
 	plugins: [
 		{
 			name: 'markdown-plugin',
@@ -55,6 +58,7 @@ export default defineConfig({
 				};
 			}
 		},
+		// eslint-disable-next-line new-cap
 		OMT({ silenceESMWorkerWarning: true })
 	]
 });
