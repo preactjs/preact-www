@@ -109,6 +109,7 @@
     "babel-standalone": "^6.26.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.50.2",
+    "comlink": "^4.3.1",
     "decko": "^1.2.0",
     "encoding": "^0.1.13",
     "flatmap": "0.0.3",
