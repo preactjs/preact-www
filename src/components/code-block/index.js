@@ -7,10 +7,7 @@ const PrismWorker = new Worker(new URL('./prism.worker.js', import.meta.url), {
 });
 
 // @TODO this should work in development, but Preact CLI transforms to CommonJS.
-const { highlight } =
-	PRERENDER || process.env.NODE_ENV === 'development'
-		? require('./prism.worker')
-		: new PrismWorker();
+const { highlight } = PrismWorker;
 
 function useFuture(initializer, params) {
 	const getInitialState = () => {
