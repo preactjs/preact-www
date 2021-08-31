@@ -9,10 +9,10 @@ import 'preact/devtools';
 export default App;
 
 // allows users to play with preact in the browser developer console
-global.preact = { ...preact, ...hooks };
+globalThis.preact = { ...preact, ...hooks };
 
 // Install JSDOM's DOMParser globally. Used by <Markup> component's parser.
-if (PRERENDER) {
+if (import.meta.env.PRERENDER) {
 	const jsdom = __non_webpack_require__('jsdom');
-	global.DOMParser = new jsdom.JSDOM().window.DOMParser;
+	globalThis.DOMParser = new jsdom.JSDOM().window.DOMParser;
 }
