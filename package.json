@@ -76,6 +76,7 @@
   "author": "Preact Authors <core@preactjs.com>",
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
+    "@surma/rollup-plugin-off-main-thread": "^2.2.2",
     "concurrently": "^5.2.0",
     "critters-webpack-plugin": "^2.5.0",
     "cross-env": "^7.0.3",

@@ -1,4 +1,9 @@
-import MarkedWorker from 'workerize-loader?name=markdown.[hash:5]!./marked.worker';
+const MarkedWorker = new Worker(
+	new URL('./marked.worker.js', import.meta.url),
+	{
+		type: 'module'
+	}
+);
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
