@@ -1,10 +1,13 @@
 import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
 import { Link } from 'preact-router';
+import { wrap } from 'comlink';
 import cx from '../../lib/cx';
 
-const PrismWorker = new Worker(new URL('./prism.worker.js', import.meta.url), {
-	type: 'module'
-});
+const PrismWorker = wrap(
+	new Worker(new URL('./prism.worker.js', import.meta.url), {
+		type: 'module'
+	})
+);
 
 // @TODO this should work in development, but Preact CLI transforms to CommonJS.
 const { highlight } = PrismWorker;
