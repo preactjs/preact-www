@@ -17,4 +17,4 @@ if (import.meta.env.PRERENDER) {
 	globalThis.DOMParser = new jsdom.JSDOM().window.DOMParser;
 }
 
-preact.render(<App />, document.getElementById('app'));
+preact.render(<App />, document.getElementById('root'));
