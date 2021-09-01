@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
-import { Link } from 'preact-router';
 import { wrap } from 'comlink';
 import cx from '../../lib/cx';
 
@@ -81,9 +80,9 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 				<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
 			</pre>
 			{repl && (
-				<Link class="repl-link" href={`/repl?code=${encodeURIComponent(code)}`}>
+				<a class="repl-link" href={`/repl?code=${encodeURIComponent(code)}`}>
 					Run in REPL
-				</Link>
+				</a>
 			)}
 		</div>
 	);
