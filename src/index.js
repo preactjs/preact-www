@@ -1,4 +1,5 @@
 import './style/index.less';
+import './style/prism.css';
 import './analytics';
 import './pwa';
 import App from './components/app';
