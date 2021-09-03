@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useMemo, useState, useRef, useEffect } from 'preact/hooks';
 import {
 	useRoute,
 	ErrorBoundary,
@@ -7,55 +7,98 @@ import {
 	useLocation
 } from 'preact-iso';
 import config from '../config.json';
-import Page from './controllers/page';
+import controllers from './controllers';
+import { getContent } from '../lib/content';
+import { useLanguage } from '../lib/i18n';
+import ContentRegion from './content-region';
 
-/** @type {string[]} */
-const routes = [];
+function flattenRoutes(routes) {
+	let out = {};
 
-const stack = [...config.docs].reverse();
-let item;
-while ((item = stack.pop())) {
-	if (item.routes) {
-		for (let i = item.routes.length - 1; i >= 0; i--) {
-			stack.push(item.routes[i]);
+	const stack = [...routes];
+	let item;
+	while ((item = stack.pop())) {
+		if (item.routes) {
+			for (let i = item.routes.length - 1; i >= 0; i--) {
+				stack.push(item.routes[i]);
+			}
+		} else {
+			out[item.path.slice(1)] = item;
 		}
-	} else {
-		routes.push(item.path);
 	}
+
+	return out;
 }
 
-const Foo = () => {
-	const route = useRoute();
-	console.log('page', route);
-	return (
-		<div>
-			<h2>it works</h2>
-		</div>
-	);
-};
-
 export function DocPage() {
-	const { params, path } = useRoute();
-	// const r = useRoute();
-	// const loc = useLocation();
+	const { params } = useRoute();
+	const { version, name } = params;
 	const [loading, setLoading] = useState(true);
-	console.log('hey', params);
+
+	const routes = useMemo(() => {
+		const docRoutes = {};
+		for (const k in config.docs) {
+			docRoutes[k] = flattenRoutes(config.docs[k]);
+		}
+		return docRoutes;
+	}, [config.docs]);
+
+	if (!routes[version][name]) {
+		return <controllers.error route={{ content: '404', title: '404' }} />;
+	}
+
 	return (
 		<div>
 			<h1 id="foo">Docpage</h1>
-			<progress-bar showing={!!loading} />
-			<ErrorBoundary>
-				<Router
-					onLoadStart={() => setLoading(true)}
-					onLoadEnd={() => setLoading(false)}
-				>
-					{routes.map(p => (
-						<Route key={p} path={p} component={Foo} />
-					))}
-					{/* <Route path="/guide/v10/getting-started" component={Page} />
-					<Route path="/guide/v10/switching-to-preact" component={Foo} /> */}
-				</Router>
-			</ErrorBoundary>
+			<MarkdownRegion />
 		</div>
 	);
+}
+
+const CACHE = new Map();
+
+function readResource(fn, deps) {
+	const cacheKey = '' + fn + JSON.stringify(deps);
+
+	let state = CACHE.get(cacheKey);
+	if (!state) {
+		state = { promise: null, status: 'pending', result: undefined };
+		state.promise = fn()
+			.then(r => {
+				state.status = 'success';
+				state.result = r;
+			})
+			.catch(err => {
+				state.status = 'error';
+				state.result = err;
+			});
+
+		CACHE.set(cacheKey, state);
+	}
+
+	if (state.status === 'pending') {
+		throw state.promise;
+	} else if (state.status === 'error') {
+		throw state.result;
+	}
+
+	return state.result;
+}
+
+function MarkdownRegion() {
+	const route = useRoute();
+	const loc = useLocation();
+	const [lang] = useLanguage();
+
+	const { name, version } = route.params;
+
+	console.log('--> markdown', lang, loc.path);
+	const content = readResource(
+		() => getContent([lang, `/guide/${version}/${name}`]),
+		[name, version]
+	);
+
+	console.log('--> done', content);
+
+	return <ContentRegion name={name} content={content.html} />;
 }
