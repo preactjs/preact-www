@@ -32,7 +32,14 @@ export default defineConfig({
 								return next(err);
 							}
 
-							let content = await fs.readFile(filePath, 'utf-8');
+							let content;
+							try {
+								content = await fs.readFile(filePath, 'utf-8');
+							} catch (_) {
+								const err = new Error('Not found');
+								err.code = 404;
+								return next(err);
+							}
 
 							const matches = content.match(FRONT_MATTER_REG);
 							if (!matches) return content;
