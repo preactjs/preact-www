@@ -57,8 +57,8 @@ export default defineConfig({
 					]
 				};
 			}
-		},
+		}
 		// eslint-disable-next-line new-cap
-		OMT({ silenceESMWorkerWarning: true })
+		// OMT({ silenceESMWorkerWarning: true })
 	]
 });

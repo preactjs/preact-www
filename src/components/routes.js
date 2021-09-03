@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-iso';
+import { Router, Route } from 'preact-iso';
 import config from '../config.json';
+import { DocPage } from './doc-page';
 import controllers from './controllers';
 
 let { pushState } = history;
@@ -82,7 +83,7 @@ export default class Routes extends Component {
 		return (
 			<main>
 				<Router url={url} onChange={this.handleRoute}>
-					{this.getNavRoutes(config.docs)}
+					<Route path="/guide/:version/*" component={DocPage} />
 					{this.getNavRoutes(config.nav)}
 					<controllers.error route={{ content: '404', title: '404' }} default />
 				</Router>
