@@ -1,4 +1,4 @@
-import CodeBlock from './code-block';
+import { CodeBlock } from './code-block';
 import Jumbotron from './jumbotron';
 import GithubStars from './github-stars';
 import TodoList from './todo-list';
