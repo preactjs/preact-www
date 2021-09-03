@@ -1,12 +1,17 @@
-import { h } from 'preact';
-import { useStore } from '../store-adapter';
-import { useMemo, useRef } from 'preact/hooks';
+import { createContext, h } from 'preact';
+import { useContext, useMemo, useRef } from 'preact/hooks';
+import { useLocation } from 'preact-iso';
+
+/** @type {import('preact').Context<{ toc: any}} */
+export const TocContext = createContext({ toc: null });
 
 export default function Toc() {
 	const ref = useRef(null);
 	const cache = useRef([]);
 
-	const { toc, url } = useStore(['url', 'toc']).state;
+	const { url } = useLocation();
+	const { toc } = useContext(TocContext);
+
 	// eslint-disable-next-line
 	const items = useMemo(() => {
 		return toc !== null
