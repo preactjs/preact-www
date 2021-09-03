@@ -16,7 +16,7 @@ const CACHE = {};
 
 /**
  * Fetch and parse a markdown document with optional JSON FrontMatter.
- * @returns {{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string} }}
+ * @returns {{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string}, html: string }}
  */
 export function getContent([lang, name]) {
 	let path = `/content/${lang}`,
