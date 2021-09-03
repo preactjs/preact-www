@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Router, Route } from 'preact-iso';
+import { Router, Route, ErrorBoundary } from 'preact-iso';
 import config from '../config.json';
 import { DocPage } from './doc-page';
 import controllers from './controllers';
@@ -21,6 +21,7 @@ function isValidSiblingRoute(sibling, route) {
 }
 
 export default class Routes extends Component {
+	state = { loading: true };
 	/**
 	 * Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
@@ -31,7 +32,11 @@ export default class Routes extends Component {
 		if (onChange) onChange(event);
 	};
 
-	shouldComponentUpdate() {
+	shouldComponentUpdate(_, nextState) {
+		if (this.state.loading !== nextState.loading) {
+			return true;
+		}
+		console.log(this.state, nextState);
 		return false;
 	}
 
@@ -82,11 +87,22 @@ export default class Routes extends Component {
 	render({ url }) {
 		return (
 			<main>
-				<Router url={url} onChange={this.handleRoute}>
-					<Route path="/guide/:version/*" component={DocPage} />
-					{this.getNavRoutes(config.nav)}
-					<controllers.error route={{ content: '404', title: '404' }} default />
-				</Router>
+				<progress-bar showing={!!this.state.loading} />
+				<ErrorBoundary>
+					<Router
+						url={url}
+						onLoadStart={() => this.setState({ loading: true })}
+						onLoadEnd={() => {
+							this.setState({ loading: false });
+						}}
+					>
+						<Route path="/guide/:version/:name" component={DocPage} />
+						<controllers.error
+							route={{ content: '404', title: '404' }}
+							default
+						/>
+					</Router>
+				</ErrorBoundary>
 			</main>
 		);
 	}

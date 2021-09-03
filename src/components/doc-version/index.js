@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import style from './style.module.less';
-import { useLocation } from 'preact-iso';
-import { useStore } from '../store-adapter';
+import { useLocation, useRoute } from 'preact-iso';
+import { useCallback } from 'preact/hooks';
 
 export const AVAILABLE_DOCS = [10, 8];
 
@@ -9,24 +9,25 @@ export const AVAILABLE_DOCS = [10, 8];
  * Select box to switch the currently displayed docs version
  */
 export default function DocVersion() {
-	const location = useLocation();
-	const { docVersion } = useStore(['docVersion']).state;
+	const { path, route } = useLocation();
+	const { version } = useRoute().params;
+
+	const onChange = useCallback(
+		e => {
+			const url = path.replace(/(v\d{1,2})/, `v${e.target.value}`);
+			route(url);
+		},
+		[path, route]
+	);
 
 	return (
 		<label class={style.root}>
 			Version:{' '}
-			<select
-				value={docVersion}
-				class={style.select}
-				onChange={e => {
-					const url = location.path.replace(/(v\d{1,2})/, `v${e.target.value}`);
-					location.route(url);
-				}}
-			>
+			<select value={version} class={style.select} onChange={onChange}>
 				{AVAILABLE_DOCS.map(v => {
 					const suffix = v === 10 ? ' (current)' : '';
 					return (
-						<option value={v}>
+						<option key={v} value={v}>
 							{v}.x{suffix}
 						</option>
 					);
