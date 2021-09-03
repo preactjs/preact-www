@@ -20,80 +20,38 @@ function isValidSiblingRoute(sibling, route) {
 	return sibling && sibling.path.substring(0, common.length) === common;
 }
 
+let i = 0;
+
 export default class Routes extends Component {
 	state = { loading: true };
-	/**
-	 * Gets fired when the route changes.
-	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
-	 *	@param {string} event.url	The newly routed URL
-	 */
-	handleRoute = event => {
-		let { onChange } = this.props;
-		if (onChange) onChange(event);
-	};
 
 	shouldComponentUpdate(_, nextState) {
 		if (this.state.loading !== nextState.loading) {
 			return true;
 		}
 		console.log(this.state, nextState);
-		return false;
+		return true;
 	}
 
-	getNavRoutes(nav) {
-		const routes = [];
-		const stack = [...nav];
-		let route;
-		while ((route = stack.pop())) {
-			if (route.routes) {
-				stack.push(...route.routes);
-			} else {
-				routes.push(route);
-			}
+	render() {
+		if (i++ > 30) {
+			console.log('poop');
+			throw new Error('poop');
 		}
-
-		return routes.reverse().reduce((out, route, i, routes) => {
-			if (route.path) {
-				const skip = route.path === '/' || /^\/about/.test(route.path);
-				const prev = !skip && i - 1 > 0 ? routes[i - 1] : null;
-				const next = !skip && i + 1 < routes.length ? routes[i + 1] : null;
-
-				const view = this.buildRoute(
-					route,
-					isValidSiblingRoute(prev, route) ? prev : null,
-					isValidSiblingRoute(next, route) ? next : null
-				);
-				out.push(view);
-			}
-			return out;
-		}, []);
-	}
-
-	buildRoute(route, prev, next) {
-		let Ctrl = controllers.default;
-		if (route.controller) {
-			// eslint-disable-next-line no-unused-vars
-			for (let i in controllers) {
-				if (i.toLowerCase() === route.controller.toLowerCase()) {
-					Ctrl = controllers[i];
-				}
-			}
-		}
-		return (
-			<Ctrl path={route.path || ''} route={route} prev={prev} next={next} />
-		);
-	}
-
-	render({ url }) {
 		return (
 			<main>
 				<progress-bar showing={!!this.state.loading} />
 				<ErrorBoundary>
 					<Router
-						url={url}
-						onLoadStart={() => this.setState({ loading: true })}
+						onLoadStart={() => {
+							if (!this.state.loading) {
+								this.setState({ loading: true });
+							}
+						}}
 						onLoadEnd={() => {
-							this.setState({ loading: false });
+							if (this.state.loading) {
+								this.setState({ loading: false });
+							}
 						}}
 					>
 						<Route path="/guide/:version/:name" component={DocPage} />

@@ -1,11 +1,6 @@
-import { useMemo, useState, useRef, useEffect } from 'preact/hooks';
-import {
-	useRoute,
-	ErrorBoundary,
-	Router,
-	Route,
-	useLocation
-} from 'preact-iso';
+import { useRoute } from 'preact-iso';
+import { useTitle, useMeta, useTitleTemplate } from 'hoofd/preact';
+import { useResource } from './use-resource';
 import config from '../config.json';
 import controllers from './controllers';
 import { getContent } from '../lib/content';
@@ -30,20 +25,16 @@ function flattenRoutes(routes) {
 	return out;
 }
 
+const docRoutes = {};
+for (const k in config.docs) {
+	docRoutes[k] = flattenRoutes(config.docs[k]);
+}
+
 export function DocPage() {
 	const { params } = useRoute();
 	const { version, name } = params;
-	const [loading, setLoading] = useState(true);
 
-	const routes = useMemo(() => {
-		const docRoutes = {};
-		for (const k in config.docs) {
-			docRoutes[k] = flattenRoutes(config.docs[k]);
-		}
-		return docRoutes;
-	}, [config.docs]);
-
-	if (!routes[version][name]) {
+	if (!docRoutes[version][name]) {
 		return <controllers.error route={{ content: '404', title: '404' }} />;
 	}
 
@@ -55,50 +46,22 @@ export function DocPage() {
 	);
 }
 
-const CACHE = new Map();
-
-function readResource(fn, deps) {
-	const cacheKey = '' + fn + JSON.stringify(deps);
-
-	let state = CACHE.get(cacheKey);
-	if (!state) {
-		state = { promise: null, status: 'pending', result: undefined };
-		state.promise = fn()
-			.then(r => {
-				state.status = 'success';
-				state.result = r;
-			})
-			.catch(err => {
-				state.status = 'error';
-				state.result = err;
-			});
-
-		CACHE.set(cacheKey, state);
-	}
-
-	if (state.status === 'pending') {
-		throw state.promise;
-	} else if (state.status === 'error') {
-		throw state.result;
-	}
-
-	return state.result;
-}
-
 function MarkdownRegion() {
 	const route = useRoute();
-	const loc = useLocation();
 	const [lang] = useLanguage();
 
 	const { name, version } = route.params;
 
-	console.log('--> markdown', lang, loc.path);
-	const content = readResource(
+	const data = useResource(
 		() => getContent([lang, `/guide/${version}/${name}`]),
 		[name, version]
 	);
 
-	console.log('--> done', content);
+	useTitleTemplate(
+		'%s | Preact: Fast 3kb React alternative with the same ES6 API. Components & Virtual DOM.'
+	);
+	useTitle(data.meta.title);
+	useMeta({ name: 'description', content: data.meta.description });
 
-	return <ContentRegion name={name} content={content.html} />;
+	return <ContentRegion name={name} content={data.html} toc={data.meta.toc} />;
 }
