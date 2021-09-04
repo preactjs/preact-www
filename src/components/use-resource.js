@@ -14,7 +14,7 @@ export function useResource(fn, deps) {
 
 	let state = CACHE.get(cacheKey);
 	if (!state) {
-		state = { promise: null, status: 'pending', result: undefined, users: 1 };
+		state = { promise: null, status: 'pending', result: undefined, users: 0 };
 		state.promise = fn()
 			.then(r => {
 				state.status = 'success';
@@ -29,6 +29,8 @@ export function useResource(fn, deps) {
 	}
 
 	useEffect(() => {
+		state.users++;
+
 		return () => {
 			// Delete cached Promise if nobody uses it anymore
 			if (state.users-- <= 0) {
