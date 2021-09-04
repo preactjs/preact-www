@@ -2,7 +2,6 @@ import { h } from 'preact';
 import style from './sidebar.module.less';
 import DocVersion from './../../doc-version';
 import SidebarNav from './sidebar-nav';
-import { useCallback } from 'preact/hooks';
 import config from '../../../config.json';
 import { useStore } from '../../store-adapter';
 import { useOverlayToggle } from '../../../lib/toggle-overlay';
@@ -10,8 +9,6 @@ import { getRouteName } from '../../header';
 
 export default function Sidebar() {
 	const [open, setOpen] = useOverlayToggle(false);
-	const toggle = useCallback(() => setOpen(!open), [open]);
-	const close = useCallback(() => setOpen(false), []);
 	const { lang } = useStore(['lang']).state;
 
 	const navItems = [];
@@ -46,13 +43,17 @@ export default function Sidebar() {
 
 	return (
 		<div class={style.wrapper} data-open={open}>
-			<button class={style.toggle} onClick={toggle} value="sidebar">
+			<button
+				class={style.toggle}
+				onClick={() => setOpen(v => !v)}
+				value="sidebar"
+			>
 				{sectionName}
 			</button>
 			<aside class={style.sidebar}>
 				<div class={style.sidebarInner}>
 					<DocVersion />
-					<SidebarNav items={navItems} onClick={close} />
+					<SidebarNav items={navItems} onClick={() => setOpen(false)} />
 				</div>
 			</aside>
 		</div>
