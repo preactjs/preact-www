@@ -1,3 +1,4 @@
+/guide /guide/v10/getting-started
 /guide/v8 /guide/v8/getting-started
 /guide/v10 /guide/v10/getting-started
 /guide/getting-started /guide/v10/getting-started
@@ -11,4 +12,3 @@
 /guide/extending-component /guide/v8/extending-component
 /guide/unit-testing-with-enzyme /guide/v10/unit-testing-with-enzyme
 /guide/progressive-web-apps /guide/v10/progressive-web-apps
-/content/* /content/*
