@@ -1,5 +1,4 @@
 import '@babel/polyfill';
-import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
 
 const PREPEND = `(function(module,exports,require,fetch){`;
@@ -25,20 +24,23 @@ export function process(code) {
 
 	let out = {};
 	try {
-		out = transform(code, {
-			filePath: 'repl.js',
-			sourceMapOptions: {
-				compiledFilename: 'repl.js'
-			},
-			transforms: ['jsx', 'typescript', 'imports'],
-			// omit _jsxSource junk
-			production: true,
-			// .default fixing since we're using shim modules
-			enableLegacyTypeScriptModuleInterop: true,
-			enableLegacyBabel5ModuleInterop: true,
-			jsxPragma: 'h',
-			jsxFragmentPragma: 'Fragment'
-		});
+		// FIXME: Sucrase imports a bunch of react-specific stuff which breaks
+		out.code = "console.log('it doesn't work')";
+		// in WMR.
+		// out = transform(code, {
+		// 	filePath: 'repl.js',
+		// 	sourceMapOptions: {
+		// 		compiledFilename: 'repl.js'
+		// 	},
+		// 	transforms: ['jsx', 'typescript', 'imports'],
+		// 	// omit _jsxSource junk
+		// 	production: true,
+		// 	// .default fixing since we're using shim modules
+		// 	enableLegacyTypeScriptModuleInterop: true,
+		// 	enableLegacyBabel5ModuleInterop: true,
+		// 	jsxPragma: 'h',
+		// 	jsxFragmentPragma: 'Fragment'
+		// });
 	} catch (err) {
 		if (err.name !== 'SyntaxError' && /unexpected\stoken/i.test(err.message)) {
 			let old = err;

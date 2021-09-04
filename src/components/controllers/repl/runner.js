@@ -29,14 +29,14 @@ export default class Runner extends Component {
 	run = debounce(1000, () => {
 		let { code, onSuccess, onError } = this.props;
 
-		worker
-			.process(code, {})
-			.then(transpiled => this.execute(transpiled))
-			.then(onSuccess)
-			.catch(error => {
-				patchErrorLocation(error);
-				if (onError) onError({ error });
-			});
+		// worker
+		// 	.process(code, {})
+		// 	.then(transpiled => this.execute(transpiled))
+		// 	.then(onSuccess)
+		// 	.catch(error => {
+		// 		patchErrorLocation(error);
+		// 		if (onError) onError({ error });
+		// 	});
 	});
 
 	execute(transpiled, isFallback) {
