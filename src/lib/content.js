@@ -1,9 +1,7 @@
 import { wrap } from 'comlink';
 
 const MarkedWorker = wrap(
-	new Worker(new URL('./marked.worker.js', import.meta.url), {
-		type: 'module'
-	})
+	new Worker(new URL('./marked.worker.js', import.meta.url))
 );
 
 // Find YAML FrontMatter preceeding a markdown document
