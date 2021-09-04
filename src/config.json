@@ -170,8 +170,7 @@
 		},
 		{
 			"path": "/repl",
-			"title": "REPL",
-			"controller": "Repl"
+			"title": "REPL"
 		}
 	],
 	"docs": {
