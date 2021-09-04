@@ -1,12 +1,12 @@
 import { h, Component, render, hydrate } from 'preact';
-import { debounce, memoize } from 'decko';
+import { debounce, memoOne } from './utils';
 import { patchErrorLocation } from './errors';
 
 const ReplWorker = new Worker(new URL('./repl.worker.js', import.meta.url), {
 	type: 'module'
 });
 
-let cachedFetcher = memoize(fetch);
+let cachedFetcher = memoOne(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
 
 const worker = new ReplWorker();
