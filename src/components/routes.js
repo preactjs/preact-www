@@ -27,7 +27,7 @@ export default function Routes() {
 					onLoadEnd={() => setLoading(false)}
 				>
 					<Route path="/about/we-are-using" component={DocPage} />
-					<Route path="/guide/:version/:name?" component={DocPage} />
+					<Route path="/guide/:version/:name" component={DocPage} />
 					<Route path="/repl" component={Repl} />
 					<Route default component={NotFound} />
 				</Router>
