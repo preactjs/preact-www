@@ -5,19 +5,19 @@ import Search from './search';
 import style from './style.module.less';
 import { useStore } from '../store-adapter';
 import config from '../../config.json';
-import { useCallback, useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { useLocation } from 'preact-iso';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
 export default function Header() {
-	const { url } = useStore(['url']).state;
+	const { url } = useLocation();
 	const [open, setOpen] = useOverlayToggle(false);
-	const toggle = useCallback(() => setOpen(!open), [open]);
 
 	useEffect(() => {
 		if (open) setOpen(false);
@@ -50,21 +50,20 @@ export default function Header() {
 						/>
 					</a>
 				</div>
-				<Hamburger open={open} onClick={toggle} />
+				<div
+					class={style.hamburger}
+					open={open}
+					onClick={() => setOpen(v => !v)}
+				>
+					<div class={style.hb1} />
+					<div class={style.hb2} />
+					<div class={style.hb3} />
+				</div>
 				<Corner />
 			</div>
 		</header>
 	);
 }
-
-// hamburger menu
-const Hamburger = ({ open, ...props }) => (
-	<div class={style.hamburger} open={open} {...props}>
-		<div class={style.hb1} />
-		<div class={style.hb2} />
-		<div class={style.hb3} />
-	</div>
-);
 
 // nested nav renderer
 const Nav = ({ routes, current, ...props }) => (
