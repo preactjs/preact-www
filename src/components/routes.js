@@ -1,8 +1,8 @@
-import { h, Component } from 'preact';
-import { Router, Route, ErrorBoundary } from 'preact-iso';
-import config from '../config.json';
-import { DocPage } from './doc-page';
-import controllers from './controllers';
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
+import { Router, Route, ErrorBoundary, lazy } from 'preact-iso';
+import { DocPage } from './controllers/doc-page';
+import { NotFound } from './controllers/not-found';
 
 let { pushState } = history;
 history.pushState = (a, b, url) => {
@@ -14,54 +14,24 @@ history.pushState = (a, b, url) => {
 	}
 };
 
-function isValidSiblingRoute(sibling, route) {
-	const idx = route.path.lastIndexOf('/');
-	const common = idx > 1 ? route.path.slice(0, idx) : route.path;
-	return sibling && sibling.path.substring(0, common.length) === common;
-}
+const Repl = lazy(() => import('./controllers/repl'));
 
-let i = 0;
-
-export default class Routes extends Component {
-	state = { loading: true };
-
-	shouldComponentUpdate(_, nextState) {
-		if (this.state.loading !== nextState.loading) {
-			return true;
-		}
-		console.log(this.state, nextState);
-		return true;
-	}
-
-	render() {
-		if (i++ > 30) {
-			console.log('poop');
-			throw new Error('poop');
-		}
-		return (
-			<main>
-				<progress-bar showing={!!this.state.loading} />
-				<ErrorBoundary>
-					<Router
-						onLoadStart={() => {
-							if (!this.state.loading) {
-								this.setState({ loading: true });
-							}
-						}}
-						onLoadEnd={() => {
-							if (this.state.loading) {
-								this.setState({ loading: false });
-							}
-						}}
-					>
-						<Route path="/guide/:version/:name" component={DocPage} />
-						<controllers.error
-							route={{ content: '404', title: '404' }}
-							default
-						/>
-					</Router>
-				</ErrorBoundary>
-			</main>
-		);
-	}
+export default function Routes() {
+	const [loading, setLoading] = useState(true);
+	return (
+		<main>
+			<progress-bar showing={loading} />
+			<ErrorBoundary>
+				<Router
+					onLoadStart={() => setLoading(true)}
+					onLoadEnd={() => setLoading(false)}
+				>
+					<Route path="/about/we-are-using" component={DocPage} />
+					<Route path="/guide/:version/:name?" component={DocPage} />
+					<Route path="/repl" component={Repl} />
+					<Route default component={NotFound} />
+				</Router>
+			</ErrorBoundary>
+		</main>
+	);
 }
