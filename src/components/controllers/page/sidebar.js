@@ -12,44 +12,33 @@ export default function Sidebar() {
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 	const close = useCallback(() => setOpen(false), []);
-	const { docVersion, lang } = useStore(['docVersion', 'lang']).state;
+	const { lang } = useStore(['lang']).state;
 
-	// Get menu items for the current version of the docs (guides)
-	// TODO: allow multiple sections - config[meta.section]
-	// const docNav = config.docs
-	// 	.filter(item => {
-	// 		// We know that nested routes are part of the same
-	// 		// doc version, so we just need to check the first
-	// 		// route.
-	// 		if (item.routes) {
-	// 			item = item.routes[0];
-	// 		}
-
-	// 		return item.path.indexOf(`/v${docVersion}`) > -1;
-	// 	})
-	// 	.reduce((acc, item) => {
-	// 		if (item.routes) {
-	// 			acc.push({
-	// 				text: getRouteName(item, lang),
-	// 				level: 2,
-	// 				href: null,
-	// 				routes: item.routes.map(nested => ({
-	// 					text: getRouteName(nested, lang),
-	// 					level: 3,
-	// 					href: nested.path
-	// 				}))
-	// 			});
-	// 		} else {
-	// 			acc.push({
-	// 				text: getRouteName(item, lang),
-	// 				level: 2,
-	// 				href: item.path
-	// 			});
-	// 		}
-	// 		return acc;
-	// 	}, []);
-
-	const docNav = [];
+	const navItems = [];
+	for (const version in config.docs) {
+		const routes = config.docs[version];
+		for (let i = 0; i < routes.length; i++) {
+			const item = routes[i];
+			if (item.routes) {
+				navItems.push({
+					text: getRouteName(item, lang),
+					level: 2,
+					href: null,
+					routes: item.routes.map(nested => ({
+						text: getRouteName(nested, lang),
+						level: 3,
+						href: `/guide/${version}${nested.path}`
+					}))
+				});
+			} else {
+				navItems.push({
+					text: getRouteName(item, lang),
+					level: 2,
+					href: `/guide/${version}${item.path}`
+				});
+			}
+		}
+	}
 
 	// TODO: use URL match instead of .content
 	const guide = config.nav.filter(item => item.content === 'guide')[0];
@@ -63,7 +52,7 @@ export default function Sidebar() {
 			<aside class={style.sidebar}>
 				<div class={style.sidebarInner}>
 					<DocVersion />
-					<SidebarNav items={docNav} onClick={close} />
+					<SidebarNav items={navItems} onClick={close} />
 				</div>
 			</aside>
 		</div>
