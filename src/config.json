@@ -393,88 +393,88 @@
 					}
 				]
 			}
+		],
+		"v8": [
+			{
+				"path": "/getting-started",
+				"name": {
+					"en": "Getting Started",
+					"pt-br": "Começando",
+					"de": "Los geht's"
+				}
+			},
+			{
+				"path": "/differences-to-react",
+				"name": {
+					"en": "Differences to React",
+					"pt-br": "Diferenças do React",
+					"de": "Unterschiede zu React"
+				}
+			},
+			{
+				"path": "/switching-to-preact",
+				"name": {
+					"en": "Switching to Preact",
+					"pt-br": "Mudando para Preact",
+					"de": "Wechsel zu Preact"
+				}
+			},
+			{
+				"path": "/types-of-components",
+				"name": {
+					"en": "Types of Components",
+					"pt-br": "Tipos de Componentes",
+					"de": "Komponenten-Typen"
+				}
+			},
+			{
+				"path": "/api-reference",
+				"name": {
+					"en": "API Reference",
+					"pt-br": "Referência da API",
+					"de": "API Referenz"
+				}
+			},
+			{
+				"path": "/forms",
+				"name": {
+					"en": "Forms",
+					"pt-br": "Formulários",
+					"de": "Formulare"
+				}
+			},
+			{
+				"path": "/linked-state",
+				"name": "Linked State"
+			},
+			{
+				"path": "/external-dom-mutations",
+				"name": {
+					"en": "External DOM Mutations",
+					"pt-br": "Mutações do DOM externas",
+					"de": "Externe DOM Mutationen"
+				}
+			},
+			{
+				"path": "/extending-component",
+				"name": {
+					"en": "Extending Component",
+					"pt-br": "Extendendo Componentes",
+					"de": "Komponente Erweitern"
+				}
+			},
+			{
+				"path": "/unit-testing-with-enzyme",
+				"name": {
+					"en": "Unit Testing with Enzyme",
+					"pt-br": "Teste unitado com Enzyme",
+					"de": "Unit-Tests mit Enzyme"
+				}
+			},
+			{
+				"path": "/progressive-web-apps",
+				"name": "Progressive Web Apps"
+			}
 		]
-	},
-	"v8": [
-		{
-			"path": "/getting-started",
-			"name": {
-				"en": "Getting Started",
-				"pt-br": "Começando",
-				"de": "Los geht's"
-			}
-		},
-		{
-			"path": "/differences-to-react",
-			"name": {
-				"en": "Differences to React",
-				"pt-br": "Diferenças do React",
-				"de": "Unterschiede zu React"
-			}
-		},
-		{
-			"path": "/switching-to-preact",
-			"name": {
-				"en": "Switching to Preact",
-				"pt-br": "Mudando para Preact",
-				"de": "Wechsel zu Preact"
-			}
-		},
-		{
-			"path": "/types-of-components",
-			"name": {
-				"en": "Types of Components",
-				"pt-br": "Tipos de Componentes",
-				"de": "Komponenten-Typen"
-			}
-		},
-		{
-			"path": "/api-reference",
-			"name": {
-				"en": "API Reference",
-				"pt-br": "Referência da API",
-				"de": "API Referenz"
-			}
-		},
-		{
-			"path": "/forms",
-			"name": {
-				"en": "Forms",
-				"pt-br": "Formulários",
-				"de": "Formulare"
-			}
-		},
-		{
-			"path": "/linked-state",
-			"name": "Linked State"
-		},
-		{
-			"path": "/external-dom-mutations",
-			"name": {
-				"en": "External DOM Mutations",
-				"pt-br": "Mutações do DOM externas",
-				"de": "Externe DOM Mutationen"
-			}
-		},
-		{
-			"path": "/extending-component",
-			"name": {
-				"en": "Extending Component",
-				"pt-br": "Extendendo Componentes",
-				"de": "Komponente Erweitern"
-			}
-		},
-		{
-			"path": "/unit-testing-with-enzyme",
-			"name": {
-				"en": "Unit Testing with Enzyme",
-				"pt-br": "Teste unitado com Enzyme",
-				"de": "Unit-Tests mit Enzyme"
-			}
-		},
-		{
-			"path": "/progressive-web-apps",
-			"name": "Progressive Web Apps"
-		}
-	]
+	}
 }

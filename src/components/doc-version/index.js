@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import config from '../../config.json';
 import style from './style.module.less';
 import { useLocation, useRoute } from 'preact-iso';
 import { useCallback } from 'preact/hooks';
@@ -10,11 +11,14 @@ export const AVAILABLE_DOCS = [10, 8];
  */
 export default function DocVersion() {
 	const { path, route } = useLocation();
-	const { version } = useRoute().params;
+	const { version, name } = useRoute().params;
 
 	const onChange = useCallback(
 		e => {
-			const url = path.replace(/(v\d{1,2})/, `v${e.target.value}`);
+			const version = `v${e.target.value}`;
+			const url = config.docs[version]?.[name]
+				? path.replace(/(v\d{1,2})/, `v${e.target.value}`)
+				: '/guide/v8';
 			route(url);
 		},
 		[path, route]
