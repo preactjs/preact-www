@@ -42,21 +42,22 @@ export default defineConfig({
 							}
 
 							const matches = content.match(FRONT_MATTER_REG);
-							if (!matches) return content;
-
-							const meta =
-								yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') ||
-								{};
-							content = content.replace(FRONT_MATTER_REG, '');
-							if (!meta.title) {
-								let [, title] = content.match(TITLE_REG) || [];
-								if (title) {
-									content = content.replace(TITLE_REG, '');
-									meta.title = title;
+							if (matches) {
+								const meta =
+									yaml.parse(
+										'---\n' + matches[1].replace(/^/gm, '  ') + '\n'
+									) || {};
+								content = content.replace(FRONT_MATTER_REG, '');
+								if (!meta.title) {
+									let [, title] = content.match(TITLE_REG) || [];
+									if (title) {
+										content = content.replace(TITLE_REG, '');
+										meta.title = title;
+									}
 								}
-							}
 
-							content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
+								content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
+							}
 
 							res.statusCode = 200;
 							res.end(content);
