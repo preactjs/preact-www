@@ -1,13 +1,15 @@
 import config from '../config.json';
 import { useCallback } from 'preact/hooks';
 import { useStore } from '../components/store-adapter';
+import { useLocation } from 'preact-iso';
 
 /**
  * Handles all logic related to language settings
  */
 export function useLanguage() {
-	const store = useStore(['lang', 'url']);
-	const { lang, url } = store.state;
+	const { url } = useLocation();
+	const store = useStore(['lang']);
+	const { lang } = store.state;
 
 	const setLang = useCallback(
 		next => {
