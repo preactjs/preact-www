@@ -17,8 +17,8 @@ export default function DocVersion() {
 		e => {
 			const version = `v${e.target.value}`;
 			const url = config.docs[version]?.[name]
-				? path.replace(/(v\d{1,2})/, `v${e.target.value}`)
-				: '/guide/v8';
+				? path.replace(/(v\d{1,2})/, version)
+				: `/guide/${version}/getting-started`;
 			route(url);
 		},
 		[path, route]
