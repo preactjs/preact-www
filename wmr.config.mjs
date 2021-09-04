@@ -203,8 +203,21 @@ function netlifyPlugin({ redirectFile, lambdaDir } = {}) {
 	};
 }
 
+function txtPlugin() {
+	return {
+		name: 'txt',
+		async load(id) {
+			if (!/\.txt$/.test(id)) return;
+
+			const text = await fs.readFile(id, 'utf-8');
+			return `export default ${JSON.stringify(text)}`;
+		}
+	};
+}
+
 export default defineConfig(opts => ({
 	plugins: [
+		txtPlugin(),
 		markdownPlugin(),
 		netlifyPlugin({
 			redirectFile: path.join(opts.cwd, 'src', '_redirects'),
