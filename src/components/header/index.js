@@ -3,13 +3,13 @@ import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style.module.less';
-import { useStore } from '../store-adapter';
 import config from '../../config.json';
 import { useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
+import { useLanguage } from '../../lib/i18n';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -134,7 +134,7 @@ class NavItem extends Component {
 
 // depending on the type of nav link, use <a>
 const NavLink = ({ to, isOpen, route, ...props }) => {
-	const { lang } = useStore(['lang']).state;
+	const [lang] = useLanguage();
 	let Flair = to.flair && LINK_FLAIR[to.flair];
 
 	if (!to.path) {
