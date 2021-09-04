@@ -33,14 +33,12 @@ function HighlightedCodeBlock({ code, lang, repl }) {
 		repl !== 'false';
 
 	// Show unhighlighted code as a fallback until we're reary
-	const fallback = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	const fallback = <code class={`language-${lang}`}>{code}</code>;
 
 	return (
 		<div class="highlight-container">
 			<pre class="highlight">
-				<FakeSuspense
-					fallback={<code class={`language-${lang}`}>{fallback}</code>}
-				>
+				<FakeSuspense fallback={fallback}>
 					<HighlightedCode code={code} lang={lang} />
 				</FakeSuspense>
 			</pre>
