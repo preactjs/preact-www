@@ -140,14 +140,22 @@ function netlifyPlugin({ redirectFile, lambdaDir } = {}) {
 								return acc;
 							}, {});
 
-							const json = await fn({ queryStringParameters: queryParams });
+							try {
+								const json = await fn({ queryStringParameters: queryParams });
 
-							res.writeHead(json.statusCode, {
-								'Content-type': 'application/json',
-								...json.headers
-							});
-							res.write(json.body);
-							res.end();
+								res.writeHead(json.statusCode, {
+									'Content-type': 'application/json',
+									...json.headers
+								});
+								res.write(json.body);
+								res.end();
+							} catch (err) {
+								// eslint-disable-next-line no-console
+								console.log(err);
+
+								res.writeHead(500);
+								res.end('Internal Server Error');
+							}
 							return;
 						}
 
