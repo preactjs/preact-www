@@ -66,8 +66,6 @@ export default class Runner extends Component {
 				'react-dom': () => require('preact/compat'),
 				htm: () => require('htm'),
 				'preact-custom-element': () => require('preact-custom-element')
-				// unistore: require('unistore'),
-				// 'unistore/preact': require('unistore/preact')
 			},
 			moduleCache = {},
 			fn,

@@ -3,13 +3,13 @@ import style from './sidebar.module.less';
 import DocVersion from './../../doc-version';
 import SidebarNav from './sidebar-nav';
 import config from '../../../config.json';
-import { useStore } from '../../store-adapter';
 import { useOverlayToggle } from '../../../lib/toggle-overlay';
 import { getRouteName } from '../../header';
+import { useLanguage } from '../../../lib/i18n';
 
 export default function Sidebar() {
 	const [open, setOpen] = useOverlayToggle(false);
-	const { lang } = useStore(['lang']).state;
+	const [lang] = useLanguage();
 
 	const navItems = [];
 	for (const version in config.docs) {

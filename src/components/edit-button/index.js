@@ -1,10 +1,10 @@
-import { useStore } from '../store-adapter';
 import style from './style.module.less';
 import { useLocation } from 'preact-iso';
+import { useLanguage } from '../../lib/i18n';
 
 export default function EditThisPage({ isFallback }) {
 	const { url } = useLocation();
-	const { lang } = useStore(['lang']).state;
+	const [lang] = useLanguage();
 
 	let path = url.replace(/\/$/, '') || '/index';
 	path = !isFallback ? path + '.md' : '';
