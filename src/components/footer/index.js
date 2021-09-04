@@ -1,9 +1,9 @@
 import { h } from 'preact';
 import config from '../../config.json';
 import { useState, useEffect, useCallback } from 'preact/hooks';
-import { useStore } from '../store-adapter';
 import style from './style.module.less';
 import { useLanguage } from '../../lib/i18n';
+import { useLocation } from 'preact-iso';
 
 /*
  * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
@@ -26,7 +26,7 @@ export function useContributors(deps) {
 }
 
 export default function Footer() {
-	const { url } = useStore(['url']).state;
+	const { url } = useLocation();
 	const contrib = useContributors([url]);
 	const [lang, setLang] = useLanguage();
 
