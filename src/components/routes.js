@@ -1,8 +1,9 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Router, Route, ErrorBoundary, lazy } from 'preact-iso';
-import { DocPage } from './controllers/doc-page';
+import { Page } from './controllers/page';
 import { NotFound } from './controllers/not-found';
+import { navRoutes } from './route-utils';
 
 let { pushState } = history;
 history.pushState = (a, b, url) => {
@@ -15,6 +16,7 @@ history.pushState = (a, b, url) => {
 };
 
 const Repl = lazy(() => import('./controllers/repl'));
+const DocPage = lazy(() => import('./controllers/doc-page'));
 
 export default function Routes() {
 	const [loading, setLoading] = useState(true);
@@ -26,7 +28,11 @@ export default function Routes() {
 					onLoadStart={() => setLoading(true)}
 					onLoadEnd={() => setLoading(false)}
 				>
-					<Route path="/about/we-are-using" component={DocPage} />
+					{Object.keys(navRoutes)
+						.filter(route => !route.startsWith('/guide'))
+						.map(route => {
+							return <Route key={route} path={route} component={Page} />;
+						})}
 					<Route path="/guide/:version/:name" component={DocPage} />
 					<Route path="/repl" component={Repl} />
 					<Route default component={NotFound} />

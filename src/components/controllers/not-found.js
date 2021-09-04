@@ -3,7 +3,7 @@ import { getContent } from '../../lib/content';
 import { useLanguage } from '../../lib/i18n';
 import { useResource } from '../use-resource';
 import Footer from '../footer/index';
-import style from './page/style.module.less';
+import style from './style.module.less';
 import { MarkdownRegion } from './markdown-region';
 
 export function NotFound() {

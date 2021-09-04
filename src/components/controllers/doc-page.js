@@ -7,49 +7,30 @@ import { LATEST_MAJOR, isDocPage } from '../../lib/docs';
 import { getContent } from '../../lib/content';
 import { useLanguage } from '../../lib/i18n';
 import { MarkdownRegion } from './markdown-region';
-import style from './page/style.module.less';
-import Sidebar from './page/sidebar';
+import style from './style.module.less';
+import Sidebar from './sidebar/sidebar';
 import Footer from '../footer/index';
+import { docRoutes } from '../route-utils';
 
-function flattenRoutes(routes) {
-	let out = {};
-
-	const stack = [...routes];
-	let item;
-	while ((item = stack.pop())) {
-		if (item.routes) {
-			for (let i = item.routes.length - 1; i >= 0; i--) {
-				stack.push(item.routes[i]);
-			}
-		} else {
-			out[item.path.slice(1)] = item;
-		}
-	}
-
-	return out;
-}
-
-const docRoutes = {};
-for (const k in config.docs) {
-	docRoutes[k] = flattenRoutes(config.docs[k]);
-}
-
-export function DocPage() {
+export default function DocPage() {
 	const { params } = useRoute();
 	const { version, name } = params;
 
-	if (!docRoutes[version][name]) {
+	if (!docRoutes[version]['/' + name]) {
 		return <NotFound />;
 	}
 
 	return <DocLayout />;
 }
 
-function DocLayout() {
+export function DocLayout() {
 	const { url } = useLocation();
 	const [lang] = useLanguage();
 
-	const { html, meta } = useResource(() => getContent([lang, url]), [url]);
+	const { html, meta } = useResource(
+		() => getContent([lang, url === '/' ? 'index' : url]),
+		[url]
+	);
 
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
