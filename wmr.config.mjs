@@ -84,21 +84,77 @@ async function readRedirects(file) {
 	);
 }
 
-/** @returns {import('wmr').Plugin} */
-function netlifyPlugin({ redirectFile } = {}) {
+/**
+ * @param {{redirectFile?: string, lambdaDir?: string}}
+ * @returns {import('wmr').Plugin}
+ */
+function netlifyPlugin({ redirectFile, lambdaDir } = {}) {
 	let redirects = { exact: {}, partial: {} };
 
 	function redirect(req, res, to) {
+		// eslint-disable-next-line no-console
 		console.log(`Redirecting ${req.url} -> ${to}`, redirects);
 		res.writeHead(302, { Location: to });
 		res.end();
 	}
+
+	let handlers;
 
 	return {
 		name: 'netlify',
 		config() {
 			return {
 				middleware: [
+					async (req, res, next) => {
+						const url = path.posix.normalize(req.url);
+
+						if (!url.startsWith('/.netlify/functions/')) {
+							return next();
+						}
+
+						if (!handlers) {
+							const dir = path.join(lambdaDir);
+							let files = await fs.readdir(dir);
+							files = files.filter(file => /\.[cm]?js$/.test(file));
+
+							handlers = {};
+							await Promise.all(
+								files.map(async file => {
+									const name = path.basename(file, path.extname(file));
+									const mod = await import(path.posix.join(lambdaDir, file));
+									handlers[name] = mod.handler;
+								})
+							);
+						}
+
+						const parsed = new URL(url, 'http://localhost');
+						const name = parsed.pathname.replace('/.netlify/functions/', '');
+
+						if (typeof handlers[name] === 'function') {
+							const fn = handlers[name];
+
+							const queryParams = Array.from(
+								parsed.searchParams.entries()
+							).reduce((acc, param) => {
+								acc[param[0]] = param[1];
+								return acc;
+							}, {});
+
+							const json = await fn({ queryStringParameters: queryParams });
+
+							res.writeHead(json.statusCode, {
+								'Content-type': 'application/json',
+								...json.headers
+							});
+							res.write(json.body);
+							res.end();
+							return;
+						}
+
+						const err = new Error('Not found');
+						err.code = 404;
+						return next(err);
+					},
 					(req, res, next) => {
 						let to = redirects.exact[req.url];
 						if (to !== undefined) {
@@ -143,7 +199,8 @@ export default defineConfig(opts => ({
 	plugins: [
 		markdownPlugin(),
 		netlifyPlugin({
-			redirectFile: path.join(opts.cwd, 'src', '_redirects')
+			redirectFile: path.join(opts.cwd, 'src', '_redirects'),
+			lambdaDir: path.join(opts.cwd, 'src', 'lambda')
 		})
 	],
 	alias: {
