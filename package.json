@@ -93,7 +93,7 @@
     "puppeteer": "^2.0.0",
     "rimraf": "^3.0.2",
     "size-plugin": "^2.0.1",
-    "wmr": "^3.6.1"
+    "wmr": "^3.7.0"
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",
@@ -109,7 +109,7 @@
     "node-fetch": "^2.6.1",
     "preact": "^10.4.4",
     "preact-custom-element": "^4.0.0",
-    "preact-iso": "^2.1.0",
+    "preact-iso": "^2.2.0",
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.1.9",
     "preact-router": "^3.1.0",
