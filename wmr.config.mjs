@@ -123,10 +123,10 @@ async function readRedirects(file) {
 }
 
 /**
- * @param {{redirectFile?: string, lambdaDir?: string}}
+ * @param {{redirectFile?: string, lambdaDir?: string, headerFile?: string}}
  * @returns {import('wmr').Plugin}
  */
-function netlifyPlugin({ redirectFile, lambdaDir } = {}) {
+function netlifyPlugin({ redirectFile, headerFile, lambdaDir } = {}) {
 	let redirects = { exact: {}, partial: {} };
 
 	function redirect(req, res, to) {
@@ -138,9 +138,19 @@ function netlifyPlugin({ redirectFile, lambdaDir } = {}) {
 
 	let handlers;
 
+	/** @type {import("wmr").Options} */
+	let config;
+
 	return {
 		name: 'netlify',
-		config() {
+		config(opts) {
+			if (redirectFile && !path.isAbsolute(redirectFile)) {
+				redirectFile = path.join(opts.cwd, redirectFile);
+			}
+			if (headerFile && !path.isAbsolute(headerFile)) {
+				headerFile = path.join(opts.cwd, headerFile);
+			}
+
 			return {
 				middleware: [
 					async (req, res, next) => {
@@ -223,10 +233,22 @@ function netlifyPlugin({ redirectFile, lambdaDir } = {}) {
 				]
 			};
 		},
+		configResolved(opts) {
+			config = opts;
+		},
 		async buildStart() {
 			if (redirectFile) {
 				redirects = await readRedirects(redirectFile);
 				this.addWatchFile(redirectFile);
+			}
+		},
+		async writeBundle() {
+			if (redirectFile) {
+				await fs.copyFile(redirectFile, path.join(config.out, '_redirects'));
+			}
+
+			if (headerFile) {
+				await fs.copyFile(headerFile, path.join(config.out, '_headers'));
 			}
 		},
 		async watchChange(id, ev) {
@@ -259,6 +281,7 @@ export default defineConfig(opts => ({
 		markdownPlugin(),
 		netlifyPlugin({
 			redirectFile: path.join(opts.cwd, 'src', '_redirects'),
+			headerFile: path.join(opts.cwd, 'src', '_headers'),
 			lambdaDir: path.join(opts.cwd, 'src', 'lambda')
 		})
 	],
