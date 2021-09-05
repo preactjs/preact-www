@@ -2,16 +2,40 @@ import { defineConfig } from 'wmr';
 import yaml from 'yaml';
 import { promises as fs } from 'fs';
 import path from 'path';
+import glob from 'glob';
+
+/**
+ * @param {string} content
+ * @returns {string}
+ */
+function preCompileMarkdown(content) {
+	// Find YAML FrontMatter preceeding a markdown document
+	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
+
+	// Find a leading title in a markdown document
+	const TITLE_REG = /^\s*#\s+(.+)\n+/;
+	const matches = content.match(FRONT_MATTER_REG);
+	if (matches) {
+		const meta =
+			yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
+		content = content.replace(FRONT_MATTER_REG, '');
+		if (!meta.title) {
+			let [, title] = content.match(TITLE_REG) || [];
+			if (title) {
+				content = content.replace(TITLE_REG, '');
+				meta.title = title;
+			}
+		}
+
+		content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
+	}
+
+	return content;
+}
 
 function markdownMiddleware(opts) {
 	return async (req, res, next) => {
 		if (!req.url.endsWith('.md')) return next();
-
-		// Find YAML FrontMatter preceeding a markdown document
-		const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
-
-		// Find a leading title in a markdown document
-		const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
 		// FIXME:
 		const filePath = path.join(opts.cwd, req.url);
@@ -24,40 +48,54 @@ function markdownMiddleware(opts) {
 		let content;
 		try {
 			content = await fs.readFile(filePath, 'utf-8');
+			content = preCompileMarkdown(content);
+			res.statusCode = 200;
+			res.end(content);
 		} catch (_) {
 			const err = new Error('Not found');
 			err.code = 404;
 			return next(err);
 		}
-
-		const matches = content.match(FRONT_MATTER_REG);
-		if (matches) {
-			const meta =
-				yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
-			content = content.replace(FRONT_MATTER_REG, '');
-			if (!meta.title) {
-				let [, title] = content.match(TITLE_REG) || [];
-				if (title) {
-					content = content.replace(TITLE_REG, '');
-					meta.title = title;
-				}
-			}
-
-			content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
-		}
-
-		res.statusCode = 200;
-		res.end(content);
 	};
 }
 
+/**
+ * @returns {import('wmr').Plugin}
+ */
 function markdownPlugin() {
+	/** @type {import('wmr').Options} */
+	let config;
+
 	return {
 		name: 'markdown-plugin',
 		config(opts) {
 			return {
-				middleware: [markdownMiddleware(opts)]
+				middleware: [opts.mode === 'start' && markdownMiddleware(opts)].filter(
+					Boolean
+				)
 			};
+		},
+		configResolved(opts) {
+			config = opts;
+		},
+		async writeBundle() {
+			const files = await new Promise((resolve, reject) => {
+				glob('content/**/*.md', { cwd: config.cwd }, (err, matches) => {
+					err ? reject(err) : resolve(matches);
+				});
+			});
+
+			await Promise.all(
+				files.map(async file => {
+					const from = path.join(config.cwd, file);
+					let content = await fs.readFile(from, 'utf-8');
+					content = preCompileMarkdown(content);
+
+					const target = path.join(config.cwd, 'build', file);
+					await fs.mkdir(path.dirname(target), { recursive: true });
+					await fs.writeFile(target, content);
+				})
+			);
 		}
 	};
 }
