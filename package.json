@@ -13,7 +13,7 @@
     "dev": "wmr start",
     "start": "npm run -s server2",
     "prestart": "npm run -s build",
-    "server2": "wmr serve --out './build'",
+    "server": "wmr serve --out './build'",
     "build": "netlify-lambda build src/lambda && wmr build --out './build'",
     "pretest": "npm run -s lint && npm run -s build",
     "test": "cross-env JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
