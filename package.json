@@ -14,13 +14,11 @@
     "start": "npm run -s server2",
     "prestart": "npm run -s build",
     "server2": "wmr serve --out './build'",
-    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "netlify-lambda build src/lambda && wmr build --out './build'",
     "pretest": "npm run -s lint && npm run -s build",
     "test": "cross-env JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
     "lint": "eslint src test",
-    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\"",
-    "postinstall": "patch-package"
+    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\""
   },
   "keywords": [
     "preact"
@@ -86,10 +84,7 @@
     "less": "^4.1.1",
     "lint-staged": "^11.1.2",
     "netlify-lambda": "^1.6.3",
-    "patch-package": "^6.4.7",
     "per-env": "^1.0.2",
-    "postcss-custom-properties": "^9.0.2",
-    "preact-render-spy": "^1.3.0",
     "prettier": "^1.19.1",
     "puppeteer": "^2.0.0",
     "rimraf": "^3.0.2",
@@ -98,11 +93,8 @@
   },
   "dependencies": {
     "babel-standalone": "^6.26.0",
-    "classnames": "^2.2.6",
     "codemirror": "^5.50.2",
     "comlink": "^4.3.1",
-    "encoding": "^0.1.13",
-    "flatmap": "0.0.3",
     "hoofd": "^1.4.0",
     "htm": "^2.2.1",
     "linkstate": "^1.1.1",
@@ -113,10 +105,7 @@
     "preact-iso": "^2.2.0",
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.1.9",
-    "preact-router": "^3.1.0",
     "sucrase": "^3.20.1",
-    "superstatic": "^6.0.4",
-    "window-or-global": "^1.0.1",
     "yaml": "^1.7.2"
   }
 }
