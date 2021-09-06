@@ -5,15 +5,17 @@ import { Page } from './controllers/page';
 import { NotFound } from './controllers/not-found';
 import { navRoutes } from './route-utils';
 
-let { pushState } = history;
-history.pushState = (a, b, url) => {
-	pushState.call(history, a, b, url);
-	if (url.indexOf('#') < 0) {
-		// next time content loads, scroll to top:
-		window.nextStateToTop = true;
-		// scrollTo(0, 0);
-	}
-};
+if (typeof history !== 'undefined') {
+	let { pushState } = history;
+	history.pushState = (a, b, url) => {
+		pushState.call(history, a, b, url);
+		if (url.indexOf('#') < 0) {
+			// next time content loads, scroll to top:
+			window.nextStateToTop = true;
+			// scrollTo(0, 0);
+		}
+	};
+}
 
 const Repl = lazy(() => import('./controllers/repl'));
 const DocPage = lazy(() => import('./controllers/doc-page'));

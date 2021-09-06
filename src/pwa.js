@@ -18,7 +18,7 @@ function sw() {
 	}
 }
 
-if (!import.meta.env.PRERENDER) {
+if (typeof window !== 'undefined') {
 	addEventListener(
 		'click',
 		e => {

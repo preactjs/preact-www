@@ -1,4 +1,4 @@
-if (!import.meta.env.PRERENDER) {
+if (!globalThis.wmr.ssr) {
 	const ga = (window.ga =
 		window.ga || ((...args) => (ga.q = ga.q || []).push(args)));
 

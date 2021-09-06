@@ -1,5 +1,10 @@
 import { wrap } from 'comlink';
 
+if (typeof wmr !== 'undefined' && wmr.ssr) {
+	globalThis.Worker = require('worker_threads').Worker;
+}
+
+console.log(typeof Worker);
 const MarkedWorker = wrap(
 	new Worker(new URL('./marked.worker.js', import.meta.url))
 );

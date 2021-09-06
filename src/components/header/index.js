@@ -102,11 +102,11 @@ class NavItem extends Component {
 	};
 
 	componentDidMount() {
-		addEventListener('click', this.handleClickOutside);
+		window.addEventListener('click', this.handleClickOutside);
 	}
 
 	componentWillUnmount() {
-		removeEventListener('click', this.handleClickOutside);
+		window.removeEventListener('click', this.handleClickOutside);
 	}
 
 	componentDidUpdate({ current }) {
