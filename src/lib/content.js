@@ -1,4 +1,12 @@
-import MarkedWorker from 'workerize-loader?name=markdown.[hash:5]!./marked.worker';
+import { wrap } from 'comlink';
+
+if (typeof wmr !== 'undefined' && wmr.ssr) {
+	globalThis.Worker = require('worker_threads').Worker;
+}
+
+const MarkedWorker = wrap(
+	new Worker(new URL('./marked.worker.js', import.meta.url))
+);
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
@@ -10,7 +18,7 @@ const CACHE = {};
 
 /**
  * Fetch and parse a markdown document with optional JSON FrontMatter.
- * @returns {{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string} }}
+ * @returns {{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string}, html: string }}
  */
 export function getContent([lang, name]) {
 	let path = `/content/${lang}`,
@@ -53,7 +61,7 @@ export function getContent([lang, name]) {
  * Synchronous version for use during prerendering.
  * Note: noop on the client to avoid pulling in libs.
  */
-export const getContentOnServer = PRERENDER
+export const getContentOnServer = import.meta.env.PRERENDER
 	? (route, lang) => {
 			if (route == '/') route = '/index';
 
@@ -110,7 +118,7 @@ export function parseContent(text) {
 	};
 }
 
-const markedWorker = !PRERENDER && new MarkedWorker();
+const markedWorker = !import.meta.env.PRERENDER && MarkedWorker;
 function parseMarkdownContent(data) {
 	return markedWorker.convert(data.content).then(html => {
 		data.html = html;

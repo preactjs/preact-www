@@ -1,19 +1,16 @@
-import '@babel/polyfill';
-import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
+import { transform, parse } from 'escorn';
+import { expose } from 'comlink';
+import babelHtm from 'babel-plugin-transform-jsx-to-htm';
 
 const PREPEND = `(function(module,exports,require,fetch){`;
 
 const IMPORTS = `
-const {render,hydrate,h,createElement,Fragment,createRef,Component,cloneElement,createContext,toChildArray,options} = require('preact');
-const {useState,useReducer,useEffect,useLayoutEffect,useRef,useImperativeHandle,useMemo,useCallback,useContext,useDebugValue} = require('preact/hooks');\n
+import {render,hydrate,h,createElement,Fragment,createRef,Component,cloneElement,createContext,toChildArray,options} from 'preact';
+import {useState,useReducer,useEffect,useLayoutEffect,useRef,useImperativeHandle,useMemo,useCallback,useContext,useDebugValue} from 'preact/hooks';\n
 `;
 
-export function ping() {
-	return true;
-}
-
-export function process(code) {
+function process(code) {
 	code = `${IMPORTS}${code}`;
 
 	if (!code.match(/[\s\b;,]export[{ ]/)) {
@@ -25,20 +22,12 @@ export function process(code) {
 
 	let out = {};
 	try {
-		out = transform(code, {
-			filePath: 'repl.js',
-			sourceMapOptions: {
-				compiledFilename: 'repl.js'
-			},
-			transforms: ['jsx', 'typescript', 'imports'],
-			// omit _jsxSource junk
-			production: true,
-			// .default fixing since we're using shim modules
-			enableLegacyTypeScriptModuleInterop: true,
-			enableLegacyBabel5ModuleInterop: true,
-			jsxPragma: 'h',
-			jsxFragmentPragma: 'Fragment'
+		// FIXME: Sucrase imports a bunch of react-specific stuff which breaks
+		const result = transform(code, {
+			parse,
+			plugins: [babelHtm]
 		});
+		out.code = result.code;
 	} catch (err) {
 		if (err.name !== 'SyntaxError' && /unexpected\stoken/i.test(err.message)) {
 			let old = err;
@@ -94,3 +83,10 @@ export function process(code) {
 
 	return transpiled;
 }
+
+expose({
+	ping() {
+		return true;
+	},
+	process
+});

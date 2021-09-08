@@ -1,7 +1,7 @@
 import { h, Fragment } from 'preact';
+import { useLocation } from 'preact-iso';
 import cx from '../../../lib/cx';
 import style from './sidebar-nav.module.less';
-import { getCurrentUrl } from 'preact-router';
 
 /**
  * @typedef {object} SidebarNavProps
@@ -18,9 +18,8 @@ export default function SidebarNav({ items, onClick }) {
 	// Note that netlify will always append a slash to the url so that we end
 	// up with something like "foo/bar/?lang=de". That's why we first remove
 	// the search params before removing the trailing slash.
-	const url = getCurrentUrl()
-		.replace(/\?.*/, '')
-		.replace(/\/$/, '');
+	const location = useLocation();
+	const url = location.path.replace(/\?.*/, '').replace(/\/$/, '');
 
 	return (
 		<nav

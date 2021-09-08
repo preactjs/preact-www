@@ -3,7 +3,7 @@ const TYPE = 'text/pd';
 const noop = () => {};
 
 const prerenderNodes =
-	!PRERENDER && document.querySelectorAll(`[type="${TYPE}"]`);
+	!import.meta.env.PRERENDER && document.querySelectorAll(`[type="${TYPE}"]`);
 const prerenderData = {};
 
 export function getPrerenderData(name) {
@@ -25,7 +25,7 @@ export function getPrerenderData(name) {
 	}
 }
 
-export const InjectPrerenderData = PRERENDER
+export const InjectPrerenderData = import.meta.env.PRERENDER
 	? function InjectPrerenderData({ name, data }) {
 			const content = JSON.stringify(data).replace(
 				/<(_*)\/script>/g,

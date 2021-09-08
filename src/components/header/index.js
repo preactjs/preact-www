@@ -3,21 +3,21 @@ import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style.module.less';
-import { useStore } from '../store-adapter';
 import config from '../../config.json';
-import { useCallback, useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { useLocation } from 'preact-iso';
+import { useLanguage } from '../../lib/i18n';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
 export default function Header() {
-	const { url } = useStore(['url']).state;
+	const { url } = useLocation();
 	const [open, setOpen] = useOverlayToggle(false);
-	const toggle = useCallback(() => setOpen(!open), [open]);
 
 	useEffect(() => {
 		if (open) setOpen(false);
@@ -50,21 +50,20 @@ export default function Header() {
 						/>
 					</a>
 				</div>
-				<Hamburger open={open} onClick={toggle} />
+				<div
+					class={style.hamburger}
+					open={open}
+					onClick={() => setOpen(v => !v)}
+				>
+					<div class={style.hb1} />
+					<div class={style.hb2} />
+					<div class={style.hb3} />
+				</div>
 				<Corner />
 			</div>
 		</header>
 	);
 }
-
-// hamburger menu
-const Hamburger = ({ open, ...props }) => (
-	<div class={style.hamburger} open={open} {...props}>
-		<div class={style.hb1} />
-		<div class={style.hb2} />
-		<div class={style.hb3} />
-	</div>
-);
 
 // nested nav renderer
 const Nav = ({ routes, current, ...props }) => (
@@ -103,11 +102,11 @@ class NavItem extends Component {
 	};
 
 	componentDidMount() {
-		addEventListener('click', this.handleClickOutside);
+		window.addEventListener('click', this.handleClickOutside);
 	}
 
 	componentWillUnmount() {
-		removeEventListener('click', this.handleClickOutside);
+		window.removeEventListener('click', this.handleClickOutside);
 	}
 
 	componentDidUpdate({ current }) {
@@ -135,7 +134,7 @@ class NavItem extends Component {
 
 // depending on the type of nav link, use <a>
 const NavLink = ({ to, isOpen, route, ...props }) => {
-	const { lang } = useStore(['lang']).state;
+	const [lang] = useLanguage();
 	let Flair = to.flair && LINK_FLAIR[to.flair];
 
 	if (!to.path) {

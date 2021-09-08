@@ -1,86 +1,51 @@
-import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
-import { Link } from 'preact-router';
-import cx from '../../lib/cx';
-import PrismWorker from 'workerize-loader?name=prism.[hash:5]!./prism.worker';
+import { useMemo } from 'preact/hooks';
+import { wrap } from 'comlink';
+import { FakeSuspense, useResource } from '../use-resource';
 
-// @TODO this should work in development, but Preact CLI transforms to CommonJS.
-const { highlight } =
-	PRERENDER || process.env.NODE_ENV === 'development'
-		? require('./prism.worker')
-		: new PrismWorker();
+const PrismWorker = wrap(
+	new Worker(new URL('./prism.worker.js', import.meta.url), {
+		type: 'module'
+	})
+);
 
-function useFuture(initializer, params) {
-	const getInitialState = () => {
-		try {
-			const value = initializer();
-			if (value && value.then) {
-				if ('_value' in value) return [value._value];
-				if ('_error' in value) return [undefined, value._error];
-				return [undefined, undefined, value];
-			}
-			return [value];
-		} catch (err) {
-			return [undefined, err];
-		}
-	};
+/**
+ * @param {{ code: string, lang: string }} props
+ * @returns {import('preact').ComponentChild}
+ */
+function HighlightedCode({ code, lang }) {
+	const highlighted = useResource(() => PrismWorker.highlight(code, lang), [
+		code,
+		lang
+	]);
 
-	const [pair, setValue] = useState(getInitialState);
-
-	// only run on changes, not initial mount
-	const isFirstRun = useRef(true);
-	useEffect(() => {
-		if (isFirstRun.current) return (isFirstRun.current = false);
-		setValue(getInitialState());
-	}, params || []);
-
-	const pending = pair[2];
-	if (pending) {
-		if (!pending._processing) {
-			pending._processing = true;
-			pending
-				.then(value => {
-					pending._value = value;
-					setValue([value]);
-				})
-				.catch(err => {
-					pending._error = err;
-					setValue([undefined, err]);
-				});
-		}
-	}
-	return pair;
+	const htmlObj = useMemo(() => ({ __html: highlighted }), [highlighted]);
+	return <code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />;
 }
 
-const CACHE = {};
-function cachedHighlight(code, lang) {
-	const id = lang + '\n' + code;
-	return CACHE[id] || (CACHE[id] = highlight(code, lang));
-}
-
-function HighlightedCodeBlock({ code, lang, ...props }) {
-	const [highlighted, error, pending] = useFuture(
-		() => cachedHighlight(code, lang),
-		[code, lang]
-	);
-	const repl =
+/**
+ * @param {{ code: string, lang: string, repl?: string }} props
+ * @returns {import('preact').ComponentChild}
+ */
+function HighlightedCodeBlock({ code, lang, repl }) {
+	const replLink =
 		(lang === 'js' || lang === 'jsx') &&
 		code.split('\n').length > 2 &&
-		props.repl !== 'false';
-	const canHighlight = !!pending || !error;
-	const html =
-		(canHighlight && highlighted) ||
-		code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	const htmlObj = useMemo(() => ({ __html: html }), [html]);
+		repl !== 'false';
+
+	// Show unhighlighted code as a fallback until we're reary
+	const fallback = <code class={`language-${lang}`}>{code}</code>;
 
 	return (
-		<div class={cx('highlight-container', props.class)}>
+		<div class="highlight-container">
 			<pre class="highlight">
-				<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
+				<FakeSuspense fallback={fallback}>
+					<HighlightedCode code={code} lang={lang} />
+				</FakeSuspense>
 			</pre>
-			{repl && (
-				<Link class="repl-link" href={`/repl?code=${encodeURIComponent(code)}`}>
+			{replLink && (
+				<a class="repl-link" href={`/repl?code=${encodeURIComponent(code)}`}>
 					Run in REPL
-				</Link>
+				</a>
 			)}
 		</div>
 	);
@@ -89,7 +54,7 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 const getChild = props =>
 	Array.isArray(props.children) ? props.children[0] : props.children;
 
-const CodeBlock = props => {
+export const CodeBlock = props => {
 	let child = getChild(props);
 	let isHighlight = child && child.type === 'code';
 
@@ -104,5 +69,3 @@ const CodeBlock = props => {
 
 	return <pre {...props} />;
 };
-
-export default CodeBlock;

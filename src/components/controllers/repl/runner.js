@@ -1,15 +1,21 @@
 import { h, Component, render, hydrate } from 'preact';
-import { debounce, memoize } from 'decko';
-import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
+import * as preact from 'preact';
+import { debounce, memoOne } from './utils';
 import { patchErrorLocation } from './errors';
+import { wrap } from 'comlink';
 
-let cachedFetcher = memoize(fetch);
+export const ReplWorker = wrap(
+	new Worker(new URL('./repl.worker.js', import.meta.url), {
+		type: 'module'
+	})
+);
+
+let cachedFetcher = memoOne(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
 
-const worker = new ReplWorker();
-
 export default class Runner extends Component {
-	static worker = worker;
+	// FIXME: Wait for WMR 3.7.2
+	// static worker = worker;
 
 	shouldComponentUpdate() {
 		return false;
@@ -26,8 +32,7 @@ export default class Runner extends Component {
 	run = debounce(1000, () => {
 		let { code, onSuccess, onError } = this.props;
 
-		worker
-			.process(code, {})
+		ReplWorker.process(code, {})
 			.then(transpiled => this.execute(transpiled))
 			.then(onSuccess)
 			.catch(error => {
@@ -38,7 +43,7 @@ export default class Runner extends Component {
 
 	execute(transpiled, isFallback) {
 		const PREACT = {
-			...require('preact'),
+			...preact,
 			render: (v, a, b) => {
 				if (!vnode) vnode = v;
 				else if (this.base.contains(a)) {
@@ -56,15 +61,13 @@ export default class Runner extends Component {
 		let module = { exports: {} },
 			modules = {
 				preact: () => PREACT,
-				'preact/hooks': () => require('preact/hooks'),
-				'preact/debug': () => require('preact/debug'),
-				'preact/compat': () => require('preact/compat'),
-				react: () => require('preact/compat'),
-				'react-dom': () => require('preact/compat'),
-				htm: () => require('htm'),
-				'preact-custom-element': () => require('preact-custom-element')
-				// unistore: require('unistore'),
-				// 'unistore/preact': require('unistore/preact')
+				'preact/hooks': () => import('preact/hooks'),
+				'preact/debug': () => import('preact/debug'),
+				'preact/compat': () => import('preact/compat'),
+				react: () => import('preact/compat'),
+				'react-dom': () => import('preact/compat'),
+				htm: () => import('htm'),
+				'preact-custom-element': () => import('preact-custom-element')
 			},
 			moduleCache = {},
 			fn,

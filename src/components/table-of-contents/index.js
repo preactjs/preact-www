@@ -1,14 +1,17 @@
-import { h } from 'preact';
-import cx from '../../lib/cx';
-import style from './style.module.less';
-import { useStore } from '../store-adapter';
-import { useMemo, useRef } from 'preact/hooks';
+import { createContext, h } from 'preact';
+import { useContext, useMemo, useRef } from 'preact/hooks';
+import { useLocation } from 'preact-iso';
+
+/** @type {import('preact').Context<{ toc: any}} */
+export const TocContext = createContext({ toc: null });
 
 export default function Toc() {
 	const ref = useRef(null);
 	const cache = useRef([]);
 
-	const { toc, url } = useStore(['url', 'toc']).state;
+	const { url } = useLocation();
+	const { toc } = useContext(TocContext);
+
 	// eslint-disable-next-line
 	const items = useMemo(() => {
 		return toc !== null
@@ -21,7 +24,7 @@ export default function Toc() {
 	const loc = url.slice(url.indexOf('#') >>> 0);
 
 	return (
-		<div ref={ref} class={cx(style.toc, !(items.length > 1) && style.disabled)}>
+		<div ref={ref}>
 			<nav tabIndex="0" onFocus={this.open}>
 				<ul>
 					{items.map(entry => (
@@ -59,17 +62,10 @@ export function listToTree(arr) {
 }
 
 export function TocItem(props) {
-	const { id, text, level, children, loc } = props;
-	let activeCss = loc ? style.linkActive : undefined;
-
+	const { id, text, children } = props;
 	return (
 		<li>
-			<a
-				href={'#' + id}
-				class={cx(style.link, activeCss, style['level-' + level])}
-			>
-				{text}
-			</a>
+			<a href={'#' + id}>{text}</a>
 			{children.length > 0 && (
 				<ul>
 					{children.map(entry => (

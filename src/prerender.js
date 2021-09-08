@@ -1,52 +1,32 @@
-const fs = require('fs');
-const path = require('path');
-const marked = require('marked');
-const flatMap = require('flatmap');
-const config = require('./config.json');
+import { prerender as render } from 'preact-iso';
+import { toStatic } from 'hoofd/preact';
 
-// https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup
-const MAX_DESCRIPTION_LENGTH = 200;
+let initialized = false;
+// install a fetch+DOMParser "polyfills" for Node (used by content & <Markup>)
+async function init() {
+	const fs = (await eval('u=>import(u)')('fs')).promises;
+	globalThis.fetch = async url => {
+		const text = () =>
+			fs.readFile('dist/' + String(url).replace(/^\//, ''), 'utf-8');
+		return { text, json: () => text().then(JSON.parse) };
+	};
 
-if (process.env.PRERENDER_HOME) {
-	module.exports = [
-		{
-			url: config.nav[0].path,
-			title: config.nav[0].title
-		}
-	];
-} else {
-	const routes = flatMap(config.nav.concat(config.docs), arr =>
-		arr.path ? { path: arr.path, name: arr.name } : arr.routes
-	);
+	globalThis.DOMParser = new (require('jsdom').JSDOM)('').window.DOMParser;
+}
 
-	module.exports = routes.map(route => {
-		const content = fs.readFileSync(
-			path.resolve(
-				__dirname,
-				'../',
-				`content/en/${route.path == '/' ? 'index' : route.path}.md`
-			),
-			{ encoding: 'utf8' }
-		);
-		const name = (route.name && route.name.en) || route.name;
-		const packageName = route.path.substring(0, 4) === '/cli' ? 'Preact CLI' : 'Preact';
-		const title = !name || name === 'Preact' ? 'Preact' : `${name} – ${packageName}`;
-		const contentBody = content.split('---')[2];
-		let description;
-		if (title === 'Preact' || contentBody === undefined) {
-			description = 'Fast 3kB alternative to React with the same modern API.';
-		} else {
-			const _contentBody = contentBody.replace(/#.*\n/, '');
-			description = marked(_contentBody)
-				.replace(/<[^>]*>?/gm, '')
-				.trimStart()
-				.replace(/\n/gm, ' ')
-				.substring(0, MAX_DESCRIPTION_LENGTH);
-		}
-		return {
-			url: route.path,
-			title,
-			description
-		};
-	});
+export async function prerender(vnode) {
+	if (!initialized) {
+		initialized = true;
+		await init();
+	}
+	const res = await render(vnode);
+
+	const head = toStatic();
+	const elements = new Set([
+		...head.links.map(props => ({ type: 'link', props })),
+		...head.metas.map(props => ({ type: 'meta', props })),
+		...head.scripts.map(props => ({ type: 'script', props }))
+	]);
+
+	return { ...res, head: { lang: head.lang, title: head.title, elements } };
 }

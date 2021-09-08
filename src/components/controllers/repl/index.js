@@ -1,13 +1,14 @@
 import { h, Component } from 'preact';
 import linkState from 'linkstate';
-import { debounce } from 'decko';
 import codeExample from './code-example.txt';
 import todoExample from './todo-example.txt';
 import style from './style.module.less';
-import './examples.less';
+import './examples.module.less';
 import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
+import { debounce } from './utils';
+import { ReplWorker } from './runner';
 
 const EXAMPLES = [
 	{
@@ -42,7 +43,7 @@ export default class Repl extends Component {
 
 			// Load transpiler
 			this.setState({ loading: 'Initializing REPL...' });
-			this.Runner.worker.ping().then(() => {
+			ReplWorker.ping().then(() => {
 				this.setState({ loading: false });
 			});
 		});
