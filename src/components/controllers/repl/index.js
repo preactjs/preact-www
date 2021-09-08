@@ -8,6 +8,7 @@ import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
 import { debounce } from './utils';
+import { ReplWorker } from './runner';
 
 const EXAMPLES = [
 	{
@@ -42,7 +43,7 @@ export default class Repl extends Component {
 
 			// Load transpiler
 			this.setState({ loading: 'Initializing REPL...' });
-			this.Runner.worker.ping().then(() => {
+			ReplWorker.ping().then(() => {
 				this.setState({ loading: false });
 			});
 		});

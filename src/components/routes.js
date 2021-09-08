@@ -33,10 +33,10 @@ export default function Routes() {
 					{Object.keys(navRoutes)
 						.filter(route => !route.startsWith('/guide'))
 						.map(route => {
-							return <Route key={route} path={route} component={Page} />;
+							const component = route === '/repl' ? Repl : Page;
+							return <Route key={route} path={route} component={component} />;
 						})}
 					<Route path="/guide/:version/:name" component={DocPage} />
-					<Route path="/repl" component={Repl} />
 					<Route default component={NotFound} />
 				</Router>
 			</ErrorBoundary>
