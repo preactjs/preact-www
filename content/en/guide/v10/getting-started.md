@@ -212,7 +212,7 @@ To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package 
 
 ```js
 // snowpack.config.mjs
-{
+export default {
   alias: {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
