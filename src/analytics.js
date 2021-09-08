@@ -1,4 +1,4 @@
-if (!globalThis.wmr.ssr) {
+if (false) {
 	const ga = (window.ga =
 		window.ga || ((...args) => (ga.q = ga.q || []).push(args)));
 
