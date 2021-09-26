@@ -54,7 +54,7 @@ class Foo extends Component {
 }
 ```
 
-> If the ref callback is defined as an inline function it will be called twice. Once with `null` and than with the actual reference. This is a common error and the `createRef` API makes this a little easier by forcing user to check if `ref.current` is defined.
+> If the ref callback is defined as an inline function it will be called twice. Once with `null` and then with the actual reference. This is a common error and the `createRef` API makes this a little easier by forcing user to check if `ref.current` is defined.
 
 ## Putting it all together
 
