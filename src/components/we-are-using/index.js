@@ -262,6 +262,11 @@ const companies = [
 		name: 'Datapedia',
 		href: 'https://datapedia.info/',
 		logo: 'datapedia.png'
+	},
+	{
+		name: 'Glance',
+		href: 'https://glance.com/',
+		logo: 'glance.png'
 	}
 ];
 
