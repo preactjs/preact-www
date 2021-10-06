@@ -2,7 +2,7 @@ import styles from './style.module.less';
 import AMPSvg from './amp.svg';
 import TrivagoSvg from './trivago.svg';
 import SubstackSvg from './substack.svg';
-import MovaviSvg from './movavi.svg';
+import AdyenSvg from './adyen.svg';
 
 /**
  * Sponsors on the main page is a unique selling point of our
@@ -63,16 +63,16 @@ export default function Sponsors() {
 			</li>
 			<li class={styles.sponsorItem}>
 				<a
-					href="https://www.movavi.com/screen-recorder-mac/"
-					title="Movavi screen recorder for Mac"
+					href="https://careers.adyen.com/"
+					title="Adyen"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					<img
-						src={MovaviSvg}
-						alt="Movavi screen recorder for Mac"
-						width="100"
-						height="100"
+						src={AdyenSvg}
+						alt="Adyen"
+						width="90"
+						height="30"
 						style="height: 3rem; width: auto;"
 					/>
 				</a>
