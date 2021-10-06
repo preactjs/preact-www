@@ -267,6 +267,11 @@ const companies = [
 		name: 'Glance',
 		href: 'https://glance.com/',
 		logo: 'glance.png'
+	},
+	{
+		name: 'Snapp!',
+		href: 'https://snapp.ir/',
+		logo: 'snapp.png'
 	}
 ];
 
