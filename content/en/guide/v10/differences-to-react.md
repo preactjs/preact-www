@@ -22,12 +22,12 @@ The main difference when comparing Preact and React apps is that we don't ship o
 
 For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintenance overhead and a larger API surface area for us.
 
-We've come across the following differences between React's synthetic event system and native browser events:
+We've come across the following differences between Preact's use of native browser events vs. React's synthetic event system. Preact uses:
 
-- Events don't bubble through `<Portal>` components
-- The clear "x" button for `<input type="search">` does not fire an `input` event in IE11 - use `onSearch` instead
-- Use `onInput` instead of `onChange` for `<input>` elements (**only if `preact/compat` is not used**)
-- Use `onDblClick` instead of `onDoubleClick` (**only if `preact/compat` is not used**)
+- Native browser events which don't bubble up through `<Portal>` components
+- `onSearch` instead of `<input type="search">`, since the clear "x" button otherwise does not fire an `input` event in IE11
+- `onInput` instead of `onChange` for `<input>` elements (**only if `preact/compat` is not used**)
+- `onDblClick` instead of `onDoubleClick` (**only if `preact/compat` is not used**)
 
 The other main difference is that Preact follows the DOM specification more closely. An example of this is the ability to use `class` instead of `className`.
 
