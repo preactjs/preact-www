@@ -24,10 +24,10 @@ For us it doesn't make sense as the browser's event system supports all features
 
 We've come across the following differences that Preact has to React. Preact uses:
 
-- Native browser events which don't bubble up through `<Portal>` components.
-- `onSearch` instead of `<input type="search">`, since the clear "x" button otherwise does not fire an `input` event in IE11.
-- `onInput` instead of `onChange` for `<input>` elements (**only if `preact/compat` is not used**).
-- `onDblClick` instead of `onDoubleClick` (**only if `preact/compat` is not used**).
+- Native browser events which don't bubble up through `<Portal>` components
+- `onSearch` instead of `<input type="search">`, since the clear "x" button otherwise does not fire an `input` event in IE11
+- `onInput` instead of `onChange` for `<input>` elements (**only if `preact/compat` is not used**)
+- `onDblClick` instead of `onDoubleClick` (**only if `preact/compat` is not used**)
 
 The other main difference is that Preact follows the DOM specification more closely. An example of this is the ability to use `class` instead of `className`.
 
