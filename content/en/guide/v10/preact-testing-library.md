@@ -66,7 +66,9 @@ describe('Counter', () => {
 
     fireEvent.click(screen.getByText('Increment'));
     await waitFor(() => {
-      expect(screen.textContent).toMatch('Current value: 6');
+      // .toBeInTheDocument() is an assertion that comes from jest-dom.
+      // Otherwise you could use .toBeDefined().
+      expect(screen.getByText("Current value: 6")).toBeInTheDocument();
     });
   });
 });
@@ -80,7 +82,7 @@ test('should increment counter", async () => {
 
   fireEvent.click(screen.getByText('Increment'));
   // WRONG: Preact likely won't have finished rendering here
-  expect(screen.textContent).toMatch('Current value: 6');
+  expect(screen.getByText("Current value: 6")).toBeInTheDocument();
 });
 ```
 
@@ -96,7 +98,7 @@ test('should increment counter", async () => {
 
   await findByText('Current value: 6'); // waits for changed element
   
-  expect(screen.textContent).toMatch('Current value: 6'); // passes
+  expect(screen.getByText("Current value: 6")).toBeInTheDocument(); // passes
 });
 ```
 
