@@ -267,6 +267,11 @@ const companies = [
 		name: 'Glance',
 		href: 'https://glance.com/',
 		logo: 'glance.png'
+	},
+	{
+		name: 'Etsy',
+		href: 'https://etsy.com',
+		logo: 'etsy.svg'
 	}
 ];
 
