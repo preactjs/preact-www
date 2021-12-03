@@ -169,6 +169,11 @@
 			]
 		},
 		{
+			"path": "/tutorial",
+			"title": "Tutorial",
+			"controller": "Tutorial"
+		},
+		{
 			"path": "/repl",
 			"title": "REPL",
 			"controller": "Repl"
