@@ -37,14 +37,14 @@ const MyButton = (props) => {
 	return <button>{props.children}</button>
 }`}
 			</code>
-			<p>
-				What you use is your own preference, a lot will depend on what paradigm
-				of state management clicks best with you. So now to put this to
-				practice, let's create a "Button" abstraction that we can pass a
-				"style", "onClick" and "children" property into and that will apply this
-				to the underlying button dom-element.
-			</p>
 		</CodeBlock>
+		<p>
+			What you use is your own preference, a lot will depend on what paradigm of
+			state management clicks best with you. So now to put this to practice,
+			let's create a "Button" abstraction that we can pass a "style", "onClick"
+			and "children" property into and that will apply this to the underlying
+			button dom-element.
+		</p>
 	</Fragment>
 );
 
