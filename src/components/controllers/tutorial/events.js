@@ -77,7 +77,7 @@ export default function App() {
 	return (
 		<div style={{ padding: 8 }}>
 			<p style={{ color: 'red' }}>Count:</p>
-			<button>Click me</button>
+			<button onClick={onClick}>Click me</button>
 		</div>
 	)
 }

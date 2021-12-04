@@ -54,6 +54,11 @@
 			"content": "index"
 		},
 		{
+			"path": "/tutorial",
+			"title": "Tutorial",
+			"controller": "Tutorial"
+		},
+		{
 			"name": {
 				"en": "Guide",
 				"de": "Anleitung",
@@ -167,11 +172,6 @@
 					}
 				}
 			]
-		},
-		{
-			"path": "/tutorial",
-			"title": "Tutorial",
-			"controller": "Tutorial"
 		},
 		{
 			"path": "/repl",

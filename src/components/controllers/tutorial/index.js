@@ -7,6 +7,7 @@ import { parseStackTrace } from '../repl/errors';
 // Steps
 import VDomTutorial from './vdom';
 import EventsTutorial from './events';
+import ComponentsTutorial from './components';
 
 export default class Tutorial extends Component {
 	state = {
@@ -46,6 +47,13 @@ export default class Tutorial extends Component {
 				});
 				break;
 			}
+			case 2: {
+				this.setState({
+					step: 3,
+					code: ComponentsTutorial.initialCode
+				});
+				break;
+			}
 		}
 	};
 
@@ -55,6 +63,13 @@ export default class Tutorial extends Component {
 				this.setState({
 					step: 1,
 					code: VDomTutorial.finalCode
+				});
+				break;
+			}
+			case 2: {
+				this.setState({
+					step: 2,
+					code: EventsTutorial.finalCode
 				});
 				break;
 			}
@@ -79,6 +94,9 @@ export default class Tutorial extends Component {
 				break;
 			case 2:
 				step = <EventsTutorial />;
+				break;
+			case 3:
+				step = <ComponentsTutorial />;
 				break;
 		}
 
