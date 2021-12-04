@@ -32,7 +32,7 @@ const VDomTutorial = () => (
 
 		<p>An example:</p>
 
-		<CodeBlock noStrip>
+		<CodeBlock>
 			<code class="language-jsx">
 				{`import { createElemnt } from 'preact';
 
@@ -51,7 +51,7 @@ export default function App() {
 			in this case. If we'd translate this to JSX we'd see:
 		</p>
 
-		<CodeBlock noStrip>
+		<CodeBlock>
 			<code class="language-jsx">
 				{`import { createElemnt } from 'preact';
 
