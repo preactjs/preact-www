@@ -32,11 +32,13 @@ const VDomTutorial = () => (
 
 		<p>An example:</p>
 
-		<CodeBlock>
+		<CodeBlock noStrip>
 			<code class="language-jsx">
-				import &#123; createElement &#125; from 'preact'; export default
-				function App() &#123; return createElement('p', &#123; class:
-				'my-paragraph' &#125;, 'hello world') &#125;
+				{`import { createElemnt } from 'preact';
+
+export default function App() {
+	return createElement('p', { class: 'my-paragraph' }, 'hello world')
+}`}
 			</code>
 		</CodeBlock>
 
@@ -49,11 +51,13 @@ const VDomTutorial = () => (
 			in this case. If we'd translate this to JSX we'd see:
 		</p>
 
-		<CodeBlock>
+		<CodeBlock noStrip>
 			<code class="language-jsx">
-				import &#123; createElement &#125; from 'preact'; export default
-				function App() &#123; return &lt;p class="my-paragraph"&gt;Hello
-				world&lt;/p&gt; &#125; &#125;
+				{`import { createElemnt } from 'preact';
+
+export default function App() {
+	return <p class="my-paragraph">Hello world</p>
+}`}
 			</code>
 		</CodeBlock>
 

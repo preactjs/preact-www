@@ -98,7 +98,10 @@ const CodeBlock = props => {
 			/(?:lang|language)-([a-z]+)/
 		)[1];
 		const firstChild = getChild(child.props);
-		const code = String(firstChild || '').replace(/(^\s+|\s+$)/g, '');
+		const code = props.noStrip
+			? String(firstChild || '')
+			: String(firstChild || '').replace(/(^\s+|\s+$)/g, '');
+		console.log(code, props.noStrip);
 		return <HighlightedCodeBlock {...props} code={code} lang={lang} />;
 	}
 

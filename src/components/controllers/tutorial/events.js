@@ -35,8 +35,8 @@ const EventsTutorial = () => {
 
 			<CodeBlock>
 				<code class="language-js">
-					document.getElementById('my-button').addEventListener('click',
-					function() &#123; console.log('clicked') &#125;)
+					{`const myButton = document.getElementById('my-button')
+myButton.addEventListener('click', function() { console.log('clicked') })`}
 				</code>
 			</CodeBlock>
 
