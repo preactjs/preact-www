@@ -19,7 +19,7 @@ const ComponentsTutorial = () => (
 			chapter. Here you'll find an example of each component:
 		</p>
 		<CodeBlock>
-			<code class="language-js">
+			<code class="language-jsx">
 				{`import { Component } from 'preact';
 
 // The class component way
@@ -66,7 +66,7 @@ export default function App() {
 
 ComponentsTutorial.finalCode = `import { createElement } from 'preact';
 
-const MyButton = (props) => {
+const Button = (props) => {
 	return (
 		<button style={props.style} onClick={props.onClick}>
 			{props.children}
