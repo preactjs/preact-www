@@ -67,9 +67,7 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<Thrower />
-		)
+		return <Thrower />
 	}
 }
 `;
@@ -91,9 +89,7 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			{this.state.errored ? <p>Oh no!</p> : <Thrower />}
-		)
+		return this.state.errored ? <p>Oh no!</p> : <Thrower />
 	}
 }
 `;
