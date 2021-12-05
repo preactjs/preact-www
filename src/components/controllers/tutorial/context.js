@@ -87,7 +87,6 @@ const Counter = () => {
 			<p style={{ color: 'red' }}>Count: {'MISSING'}</p>
 			<button
 				style={{ background: 'transparent' }}
-				onClick={onClick}
 			>Click me</button>
 		</div>
 	);
@@ -132,7 +131,7 @@ export default function App() {
 			<Counter />
 			<Counter />
 			<Counter />
-		</CounterContext>
+		</CounterContext.Provider>
 	)
 }`;
 

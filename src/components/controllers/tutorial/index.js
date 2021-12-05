@@ -43,6 +43,60 @@ export default class Tutorial extends Component {
 		this.setState({ error: null });
 	};
 
+	previousStep = () => {
+		switch (this.state.step) {
+			case 2: {
+				this.setState({
+					step: 1,
+					code: VDomTutorial.initialCode
+				});
+				break;
+			}
+			case 3: {
+				this.setState({
+					step: 2,
+					code: EventsTutorial.initialCode
+				});
+				break;
+			}
+			case 4: {
+				this.setState({
+					step: 3,
+					code: ComponentsTutorial.initialCode
+				});
+				break;
+			}
+			case 5: {
+				this.setState({
+					step: 4,
+					code: StateTutorial.initialCode
+				});
+				break;
+			}
+			case 6: {
+				this.setState({
+					step: 5,
+					code: RefsTutorial.initialCode
+				});
+				break;
+			}
+			case 7: {
+				this.setState({
+					step: 6,
+					code: ContextTutorial.initialCode
+				});
+				break;
+			}
+			case 8: {
+				this.setState({
+					step: 7,
+					code: ErrorsTutorial.initialCode
+				});
+				break;
+			}
+		}
+	};
+
 	nextStep = () => {
 		switch (this.state.step) {
 			case 1: {
@@ -204,6 +258,11 @@ export default class Tutorial extends Component {
 						{step}
 
 						<div class={style.buttonContainer}>
+							{this.state.step > 1 ? (
+								<button class={style.nextButton} onClick={this.previousStep}>
+									previous
+								</button>
+							) : null}
 							<button class={style.helpButton} onClick={this.help}>
 								Help
 							</button>
@@ -225,12 +284,14 @@ export default class Tutorial extends Component {
 						<div class={style.output}>
 							{error && (
 								<ErrorOverlay
+									key={this.state.step}
 									name={error.name}
 									message={error.message}
 									stack={parseStackTrace(error)}
 								/>
 							)}
 							<this.Runner
+								key={this.state.step}
 								onError={linkState(this, 'error', 'error')}
 								onSuccess={this.onSuccess}
 								code={code}

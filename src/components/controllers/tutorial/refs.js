@@ -58,9 +58,9 @@ export default function App() {
 	return (
 		<div>
 			<input initialValue="hello-world" />
-			<Button id="focus-input" onClick={onClick}>Focus input</Button>
+			<button id="focus-input" onClick={onClick}>Focus input</button>
 		</div>
-		);
+	);
 }
 `;
 
@@ -76,7 +76,7 @@ export default function App() {
 	return (
 		<div>
 			<input ref={input} initialValue="hello-world" />
-			<Button id="focus-input" onClick={onClick}>Focus input</Button>
+			<button id="focus-input" onClick={onClick}>Focus input</button>
 		</div>
 		);
 }
