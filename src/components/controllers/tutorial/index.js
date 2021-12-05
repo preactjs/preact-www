@@ -9,6 +9,10 @@ import VDomTutorial from './vdom';
 import EventsTutorial from './events';
 import ComponentsTutorial from './components';
 import StateTutorial from './state';
+import RefsTutorial from './refs';
+import ContextTutorial from './context';
+import SideEffectsTutorial from './side-effects';
+import ErrorsTutorial from './errors';
 
 export default class Tutorial extends Component {
 	state = {
@@ -62,6 +66,34 @@ export default class Tutorial extends Component {
 				});
 				break;
 			}
+			case 4: {
+				this.setState({
+					step: 5,
+					code: RefsTutorial.initialCode
+				});
+				break;
+			}
+			case 5: {
+				this.setState({
+					step: 6,
+					code: ContextTutorial.initialCode
+				});
+				break;
+			}
+			case 6: {
+				this.setState({
+					step: 7,
+					code: ErrorsTutorial.initialCode
+				});
+				break;
+			}
+			case 7: {
+				this.setState({
+					step: 8,
+					code: SideEffectsTutorial.initialCode
+				});
+				break;
+			}
 		}
 	};
 
@@ -95,6 +127,34 @@ export default class Tutorial extends Component {
 				});
 				break;
 			}
+			case 5: {
+				this.setState({
+					step: 5,
+					code: RefsTutorial.finalCode
+				});
+				break;
+			}
+			case 6: {
+				this.setState({
+					step: 6,
+					code: ContextTutorial.finalCode
+				});
+				break;
+			}
+			case 7: {
+				this.setState({
+					step: 7,
+					code: ErrorsTutorial.finalCode
+				});
+				break;
+			}
+			case 8: {
+				this.setState({
+					step: 8,
+					code: SideEffectsTutorial.finalCode
+				});
+				break;
+			}
 		}
 	};
 
@@ -123,6 +183,18 @@ export default class Tutorial extends Component {
 			case 4:
 				step = <StateTutorial />;
 				break;
+			case 5:
+				step = <RefsTutorial />;
+				break;
+			case 6:
+				step = <ContextTutorial />;
+				break;
+			case 7:
+				step = <ErrorsTutorial />;
+				break;
+			case 8:
+				step = <SideEffectsTutorial />;
+				break;
 		}
 
 		return (
@@ -135,9 +207,11 @@ export default class Tutorial extends Component {
 							<button class={style.helpButton} onClick={this.help}>
 								Help
 							</button>
-							<button class={style.nextButton} onClick={this.nextStep}>
-								Next
-							</button>
+							{this.state.step < 8 ? (
+								<button class={style.nextButton} onClick={this.nextStep}>
+									Next
+								</button>
+							) : null}
 						</div>
 					</div>
 

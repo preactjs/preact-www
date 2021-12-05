@@ -1,5 +1,6 @@
 import { Fragment } from 'preact';
 import CodeBlock from '../../code-block';
+import style from './style.module.less';
 
 const VDomTutorial = () => (
 	<Fragment>
@@ -32,7 +33,7 @@ const VDomTutorial = () => (
 
 		<p>An example:</p>
 
-		<CodeBlock>
+		<CodeBlock repl="false" class={style.codeContainer}>
 			<code class="language-jsx">
 				{`import { createElemnt } from 'preact';
 
@@ -51,7 +52,7 @@ export default function App() {
 			in this case. If we'd translate this to JSX we'd see:
 		</p>
 
-		<CodeBlock>
+		<CodeBlock repl="false" class={style.codeContainer}>
 			<code class="language-jsx">
 				{`import { createElemnt } from 'preact';
 

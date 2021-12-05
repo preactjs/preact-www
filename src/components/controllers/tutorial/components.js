@@ -1,6 +1,6 @@
-/* eslint-disable no-console  */
 import { Fragment } from 'preact';
 import CodeBlock from '../../code-block';
+import style from './style.module.less';
 
 const ComponentsTutorial = () => (
 	<Fragment>
@@ -18,7 +18,7 @@ const ComponentsTutorial = () => (
 			difference is how they handle state, but we'll look at that in a later
 			chapter. Here you'll find an example of each component:
 		</p>
-		<CodeBlock>
+		<CodeBlock repl="false" class={style.codeContainer}>
 			<code class="language-jsx">
 				{`import { Component } from 'preact';
 

@@ -2,6 +2,7 @@
 import { Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import CodeBlock from '../../code-block';
+import style from './style.module.less';
 
 const EventsTutorial = () => {
 	const [called, setCalled] = useState(false);
@@ -33,7 +34,7 @@ const EventsTutorial = () => {
 				occurs. Similar to doing the following yourself:
 			</p>
 
-			<CodeBlock>
+			<CodeBlock repl="false" class={style.codeContainer}>
 				<code class="language-js">
 					{`const myButton = document.getElementById('my-button')
 myButton.addEventListener('click', function() { console.log('clicked') })`}

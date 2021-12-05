@@ -1,6 +1,6 @@
-/* eslint-disable no-console  */
 import { Fragment } from 'preact';
 import CodeBlock from '../../code-block';
+import style from './style.module.less';
 
 const StateTutorial = () => (
 	<Fragment>
@@ -16,7 +16,7 @@ const StateTutorial = () => (
 			recalculate the component with the new state, let's look at an example of
 			each. Let's start with the way for class-components
 		</p>
-		<CodeBlock>
+		<CodeBlock repl="false" class={style.codeContainer}>
 			<code class="language-jsx">
 				{`import { Component } from 'preact';
 
@@ -47,7 +47,7 @@ class MyButton extends Component {
 			When we want to do this with functional components we'll leverage hooks
 			which is imported from "preact/hooks" rather than just "preact".
 		</p>
-		<CodeBlock>
+		<CodeBlock repl="false" class={style.codeContainer}>
 			<code class="language-jsx">
 				{`import { useState } from 'preact/hooks';
 
