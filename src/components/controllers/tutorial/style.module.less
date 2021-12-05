@@ -26,6 +26,7 @@
 			.codeContainer {
 				background: #282c34;
 				color: #abb2bf;
+				margin-bottom: 0;
 			}
 
 			.buttonContainer {
@@ -34,21 +35,29 @@
 
 				.helpButton {
 					cursor: pointer;
-					margin: 0 5px 0 0.5rem;
-					padding: 5px 10px;
+					margin-right: 12px;
+					padding: 8px 16px;
 					border: 1px solid #673ab8;
 					border-radius: 3px;
 					font-size: 100%;
+					transform: scale(1);
+					&:hover {
+						transform: scale(1.2) perspective(1px);
+					}
 				}
 
 				.nextButton {
 					cursor: pointer;
-					margin: 0 5px 0 0.5rem;
-					padding: 5px 10px;
+					padding: 8px 16px;
 					border-radius: 3px;
 					font-size: 100%;
 					background: #673ab8;
+					border: 1px solid #fff;
 					color: #fff;
+					transform: scale(1);
+					&:hover {
+						transform: scale(1.2) perspective(1px);
+					}
 				}
 			}
 		}

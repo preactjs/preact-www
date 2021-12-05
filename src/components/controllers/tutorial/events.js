@@ -43,7 +43,7 @@ myButton.addEventListener('click', function() { console.log('clicked') })`}
 
 			<p>
 				To complete this let's assign a click-handler through jsx on our Button
-				and then click it.
+				and then click it, make the click-handler perform a "console.log" call.
 			</p>
 
 			{called && (

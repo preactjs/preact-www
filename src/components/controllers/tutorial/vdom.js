@@ -44,7 +44,7 @@ export default function App() {
 		</CodeBlock>
 
 		<p>
-			So what does the above code snipper do? Well we tell Preact to render a
+			So what does the above code snippet do? Well we tell Preact to render a
 			paragraph element with the text hello-world. As the first-prop is the type
 			of element we want, the second are the attributes we want to assign to it,
 			in this case we are assigning it a class named "my-paragraph" and the last
