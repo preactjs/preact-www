@@ -17,7 +17,7 @@ import ErrorsTutorial from './errors';
 export default class Tutorial extends Component {
 	state = {
 		loading: 'Loading Tutorial...',
-		step: 1
+		step: 6
 	};
 
 	componentDidMount() {
