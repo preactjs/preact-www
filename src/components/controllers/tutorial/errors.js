@@ -1,6 +1,6 @@
 import { Fragment } from 'preact';
 import CodeBlock from '../../code-block';
-import style from './stylle.module.less';
+import style from './style.module.less';
 
 const ErrorsTutorial = () => (
 	<Fragment>
