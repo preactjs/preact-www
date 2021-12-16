@@ -13,11 +13,12 @@ import RefsTutorial from './refs';
 import ContextTutorial from './context';
 import SideEffectsTutorial from './side-effects';
 import ErrorsTutorial from './errors';
+import Links from './links';
 
 export default class Tutorial extends Component {
 	state = {
 		loading: 'Loading Tutorial...',
-		step: 1
+		step: 9
 	};
 
 	componentDidMount() {
@@ -94,6 +95,13 @@ export default class Tutorial extends Component {
 				});
 				break;
 			}
+			case 9: {
+				this.setState({
+					step: 8,
+					code: SideEffectsTutorial.initialCode
+				});
+				break;
+			}
 		}
 	};
 
@@ -145,6 +153,13 @@ export default class Tutorial extends Component {
 				this.setState({
 					step: 8,
 					code: SideEffectsTutorial.initialCode
+				});
+				break;
+			}
+			case 8: {
+				this.setState({
+					step: 9,
+					code: Links.initialCode
 				});
 				break;
 			}
@@ -249,6 +264,9 @@ export default class Tutorial extends Component {
 			case 8:
 				step = <SideEffectsTutorial />;
 				break;
+			case 9:
+				step = <Links />;
+				break;
 		}
 
 		return (
@@ -266,7 +284,7 @@ export default class Tutorial extends Component {
 							<button class={style.helpButton} onClick={this.help}>
 								Help
 							</button>
-							{this.state.step < 8 ? (
+							{this.state.step < 9 ? (
 								<button class={style.nextButton} onClick={this.nextStep}>
 									Next
 								</button>
