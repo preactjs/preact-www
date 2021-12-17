@@ -18,7 +18,7 @@ import Links from './links';
 export default class Tutorial extends Component {
 	state = {
 		loading: 'Loading Tutorial...',
-		step: 9
+		step: 1
 	};
 
 	componentDidMount() {
