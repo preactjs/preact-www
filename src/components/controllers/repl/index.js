@@ -20,17 +20,24 @@ const EXAMPLES = [
 	}
 ];
 
+const REPL_CSS = `
+.list-item {
+	padding: 1rem;
+	margin: 1rem;
+	background: #ffc107;
+}
+.list-item a {
+	color: black;
+	font-weight: bold;
+	text-decoration: underline;
+}
+`;
+
 export default class Repl extends Component {
 	state = {
 		loading: 'Loading REPL...',
 		code: localStorageGet('preact-www-repl-code') || codeExample
 	};
-
-	componentWillMount() {
-		if (this.props.code) {
-			this.receiveCode(this.props.code);
-		}
-	}
 
 	componentDidMount() {
 		Promise.all([
@@ -44,13 +51,17 @@ export default class Repl extends Component {
 			this.setState({ loading: 'Initializing REPL...' });
 			this.Runner.worker.ping().then(() => {
 				this.setState({ loading: false });
+				if (this.props.code) {
+					this.receiveCode(this.props.code);
+				}
 			});
 		});
 	}
 
 	share = () => {
 		let { code } = this.state;
-		history.replaceState(null, null, `/repl?code=${encodeURIComponent(code)}`);
+		const url = `/repl?code=${encodeURIComponent(btoa(code))}`;
+		history.replaceState(null, null, url);
 
 		try {
 			let input = document.createElement('input');
@@ -69,9 +80,10 @@ export default class Repl extends Component {
 		}
 	};
 
-	loadExample = () => {
-		let example = EXAMPLES[this.state.example];
-		if (example && example.code !== this.state.code) {
+	loadExample = e => {
+		let example = EXAMPLES[e.target.value];
+		e.target.value = '';
+		if (example) {
 			this.setState({ code: example.code });
 		}
 	};
@@ -93,6 +105,9 @@ export default class Repl extends Component {
 	}
 
 	receiveCode(code) {
+		try {
+			code = atob(code);
+		} catch (e) {}
 		if (code && code !== this.state.code) {
 			if (
 				!document.referrer ||
@@ -101,8 +116,12 @@ export default class Repl extends Component {
 				this.setState({ code });
 			} else {
 				setTimeout(() => {
-					// eslint-disable-next-line no-alert
-					if (confirm('Run code from link?')) {
+					if (
+						// eslint-disable-next-line no-alert
+						confirm(
+							'Are you sure you want to run the code contained in this link?'
+						)
+					) {
 						this.setState({ code });
 					}
 				}, 20);
@@ -111,7 +130,7 @@ export default class Repl extends Component {
 	}
 
 	render(_, { loading, code, error, example, copied }) {
-		if (loading)
+		if (loading) {
 			return (
 				<ReplWrapper loading>
 					<div class={style.loading}>
@@ -119,24 +138,20 @@ export default class Repl extends Component {
 					</div>
 				</ReplWrapper>
 			);
+		}
 
 		return (
 			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
-						<select value={example} onChange={linkState(this, 'example')}>
-							<option value="">Select Example...</option>
-							{EXAMPLES.map(({ name }, index) => (
-								<option value={index}>{name}</option>
+						<select value="" onChange={this.loadExample}>
+							<option value="" disabled>
+								Select Example...
+							</option>
+							{EXAMPLES.map((example, index) => (
+								<option value={index}>{example.name}</option>
 							))}
 						</select>
-						<button
-							class={style.reset}
-							onClick={this.loadExample}
-							disabled={!example}
-						>
-							Load
-						</button>
 					</label>
 					<button class={style.share} onClick={this.share}>
 						{copied ? '🔗 Copied' : 'Share'}
@@ -160,6 +175,7 @@ export default class Repl extends Component {
 					<this.Runner
 						onError={linkState(this, 'error', 'error')}
 						onSuccess={this.onSuccess}
+						css={REPL_CSS}
 						code={code}
 					/>
 				</div>

@@ -73,7 +73,7 @@ export default class Runner extends Component {
 						this.run();
 					}
 				});
-		}, 1000);
+		}, 500);
 	}
 
 	async rebuild() {
@@ -118,11 +118,13 @@ export default class Runner extends Component {
 			frame: this.frame.current,
 			onError: this.commitError
 		});
+		this.realm.globalThis.fetch = cachedFetch;
 		let doc = this.realm.globalThis.document;
 		let style = doc.createElement('style');
 		style.appendChild(
 			doc.createTextNode(`
 				html { font: 100%/1.3 system-ui, sans-serif; background: none; }
+				${this.props.css || ''}
 			`)
 		);
 		doc.head.appendChild(style);
