@@ -159,6 +159,37 @@ function TutorialView({
 		});
 	}, []);
 
+	const splitterPointerDown = useCallback(e => {
+		let target = e.target;
+		let root = target.parentNode;
+		let x, perc, w, pid;
+		function move(e) {
+			if (x == null) {
+				pid = e.pointerId;
+				target.setPointerCapture(pid);
+				x = e.pageX;
+				perc = parseFloat(root.style.getPropertyValue('--x') || '50%');
+				w = root.offsetWidth;
+			} else {
+				let p = Math.max(20, Math.min(80, perc + ((e.pageX - x) / w) * 100));
+				root.style.setProperty('--x', `${p.toFixed(2)}%`);
+			}
+		}
+		function up(e) {
+			move(e);
+			cancel(e);
+		}
+		function cancel(e) {
+			target.releasePointerCapture(pid);
+			removeEventListener('pointermove', move);
+			removeEventListener('pointerup', up);
+			removeEventListener('pointercancel', cancel);
+		}
+		addEventListener('pointermove', move);
+		addEventListener('pointerup', up);
+		addEventListener('pointercancel', cancel);
+	}, []);
+
 	return (
 		<ReplWrapper {...{ loading, initialLoad, solvable, solved }}>
 			<div class={style.tutorialWindow} ref={content}>
@@ -191,6 +222,8 @@ function TutorialView({
 					)}
 				</div>
 			</div>
+
+			<div class={style.splitter} onPointerDown={splitterPointerDown} />
 
 			<div class={style.codeWindow}>
 				{!initialLoad && (

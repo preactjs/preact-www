@@ -41,7 +41,7 @@
 			background: var(--color-page-bg);
 			color: var(--color-heading);
 			display: flex;
-			flex: 1 1 50%;
+			flex: 1 1 var(--x, 50%);
 			flex-direction: column;
 			padding: 12px;
 			transition: opacity 1s ease;
@@ -153,20 +153,12 @@
 					}
 				}
 
-				// .prevButton {
-				// 	background: #534e5b;
-				// 	border-color: var(--color-btn-background);
-				// 	color: var(--color-btn-background);
-				// }
-
 				.nextButton {
 					background: var(--color-btn);
 					border-color: var(--color-btn-background);
 					color: var(--color-btn-background);
 				}
 
-				// .prevButton:hover,
-				// .prevButton:focus-visible,
 				.nextButton:hover,
 				.nextButton:focus-visible {
 					border-color: var(--color-btn-background);
@@ -174,10 +166,40 @@
 			}
 		}
 
+		.splitter {
+			position: absolute;
+			left: var(--x, 50%);
+			z-index: 100;
+			margin: 0 0 0 -4px;
+			width: 8px;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1s ease;
+			cursor: col-resize;
+			overflow: hidden;
+
+			&:before {
+				content: '';
+				position: absolute;
+				display: block;
+				left: 2px;
+				right: 2px;
+				top: 0;
+				height: 100%;
+				background: #48adff;
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+			}
+		}
+		.splitter:hover,
+		.splitter:focus {
+			opacity: 1;
+			transition: opacity 100ms ease;
+		}
+
 		.codeWindow {
 			display: flex;
 			flex-direction: column;
-			flex: 1 1 50%;
+			flex: 1 1 calc(100% - var(--x, 50%));
 			position: relative;
 			transition: opacity 1s ease;
 			overflow: auto;

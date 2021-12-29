@@ -180,7 +180,7 @@ export default class Runner extends Component {
 		return { vnode: this.rootVNode };
 	}
 
-	render({ onError, onSuccess, code, children, clear, ...props }) {
+	render({ onError, onSuccess, code, children, clear, css, ...props }) {
 		return <iframe class={style.runner} {...props} ref={this.frame} />;
 	}
 }
