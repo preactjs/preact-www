@@ -65,7 +65,8 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 	const repl =
 		(lang === 'js' || lang === 'jsx') &&
 		code.split('\n').length > 2 &&
-		props.repl !== 'false';
+		props.repl !== 'false' &&
+		props.repl !== false;
 	const canHighlight = !!pending || !error;
 	const html =
 		(canHighlight && highlighted) ||

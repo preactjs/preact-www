@@ -1,25 +1,70 @@
-import { h, Component } from 'preact';
+import { h, Component, createRef, createContext, options } from 'preact';
+import {
+	useState,
+	useEffect,
+	useContext,
+	useRef,
+	useMemo,
+	useCallback
+} from 'preact/hooks';
 import linkState from 'linkstate';
+import cx from '../../../lib/cx';
 import style from './style.module.less';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
+import Hydrator from '../../../lib/hydrator';
+import ContentRegion from '../../content-region';
+import widgets from '../../widgets';
+import { usePage } from '../page';
+import { useStore, storeCtx } from '../../store-adapter';
 
-// Steps
-import VDomTutorial from './vdom';
-import EventsTutorial from './events';
-import ComponentsTutorial from './components';
-import StateTutorial from './state';
-import RefsTutorial from './refs';
-import ContextTutorial from './context';
-import SideEffectsTutorial from './side-effects';
-import ErrorsTutorial from './errors';
-import Links from './links';
+const TutorialContext = createContext(null);
+
+const TUTORIAL_COMPONENTS = {
+	pre: TutorialCodeBlock,
+	Solution
+};
 
 export default class Tutorial extends Component {
 	state = {
-		loading: 'Loading Tutorial...',
-		step: 1
+		loading: true,
+		code: '',
+		error: null,
+		'repl-initial': '',
+		'repl-final': ''
 	};
+
+	content = createRef();
+	runner = createRef();
+
+	static contextType = storeCtx;
+
+	resultHandlers = new Set();
+	errorHandlers = new Set();
+	useResult = fn => {
+		useEffect(() => {
+			this.resultHandlers.add(fn);
+			return () => this.resultHandlers.delete(fn);
+		}, [fn]);
+	};
+	useError = fn => {
+		useEffect(() => {
+			this.errorHandlers.add(fn);
+			return () => this.errorHandlers.delete(fn);
+		}, [fn]);
+	};
+
+	componentWillReceiveProps({ step }) {
+		if (step !== this.props.step) {
+			this.setState({
+				code: '',
+				error: null,
+				'repl-initial': '',
+				'repl-final': ''
+			});
+			this.context.setState({ solved: false });
+		}
+	}
 
 	componentDidMount() {
 		Promise.all([
@@ -30,310 +75,293 @@ export default class Tutorial extends Component {
 			this.Runner = Runner.default;
 
 			// Load transpiler
-			this.setState({ loading: 'Initializing REPL...' });
 			this.Runner.worker.ping().then(() => {
 				this.setState({
-					loading: false,
-					code: VDomTutorial.initialCode
+					loading: false
 				});
 			});
 		});
 	}
 
-	onSuccess = () => {
-		this.setState({ error: null });
-	};
-
-	previousStep = () => {
-		switch (this.state.step) {
-			case 2: {
-				this.setState({
-					step: 1,
-					code: VDomTutorial.initialCode
-				});
-				break;
-			}
-			case 3: {
-				this.setState({
-					step: 2,
-					code: EventsTutorial.initialCode
-				});
-				break;
-			}
-			case 4: {
-				this.setState({
-					step: 3,
-					code: ComponentsTutorial.initialCode
-				});
-				break;
-			}
-			case 5: {
-				this.setState({
-					step: 4,
-					code: StateTutorial.initialCode
-				});
-				break;
-			}
-			case 6: {
-				this.setState({
-					step: 5,
-					code: RefsTutorial.initialCode
-				});
-				break;
-			}
-			case 7: {
-				this.setState({
-					step: 6,
-					code: ContextTutorial.initialCode
-				});
-				break;
-			}
-			case 8: {
-				this.setState({
-					step: 7,
-					code: ErrorsTutorial.initialCode
-				});
-				break;
-			}
-			case 9: {
-				this.setState({
-					step: 8,
-					code: SideEffectsTutorial.initialCode
-				});
-				break;
-			}
+	onError = ({ error }) => {
+		this.errorHandlers.forEach(f => f(error));
+		if (this.state.error !== error) {
+			this.setState({ error });
 		}
 	};
 
-	nextStep = () => {
-		switch (this.state.step) {
-			case 1: {
-				this.setState({
-					step: 2,
-					code: EventsTutorial.initialCode
-				});
-				break;
-			}
-			case 2: {
-				this.setState({
-					step: 3,
-					code: ComponentsTutorial.initialCode
-				});
-				break;
-			}
-			case 3: {
-				this.setState({
-					step: 4,
-					code: StateTutorial.initialCode
-				});
-				break;
-			}
-			case 4: {
-				this.setState({
-					step: 5,
-					code: RefsTutorial.initialCode
-				});
-				break;
-			}
-			case 5: {
-				this.setState({
-					step: 6,
-					code: ContextTutorial.initialCode
-				});
-				break;
-			}
-			case 6: {
-				this.setState({
-					step: 7,
-					code: ErrorsTutorial.initialCode
-				});
-				break;
-			}
-			case 7: {
-				this.setState({
-					step: 8,
-					code: SideEffectsTutorial.initialCode
-				});
-				break;
-			}
-			case 8: {
-				this.setState({
-					step: 9,
-					code: Links.initialCode
-				});
-				break;
-			}
+	onSuccess = () => {
+		if (this.resultCleanups) this.resultCleanups.forEach(f => f());
+		this.resultCleanups = [];
+		this.resultHandlers.forEach(f => {
+			let cleanup = f(this.runner.current);
+			if (cleanup) this.resultCleanups.push(cleanup);
+		});
+		if (this.state.error != null) {
+			this.setState({ error: null });
 		}
 	};
 
 	help = () => {
-		switch (this.state.step) {
-			case 1: {
-				this.setState({
-					step: 1,
-					code: VDomTutorial.finalCode
-				});
-				break;
-			}
-			case 2: {
-				this.setState({
-					step: 2,
-					code: EventsTutorial.finalCode
-				});
-				break;
-			}
-			case 3: {
-				this.setState({
-					step: 3,
-					code: ComponentsTutorial.finalCode
-				});
-				break;
-			}
-			case 4: {
-				this.setState({
-					step: 4,
-					code: StateTutorial.finalCode
-				});
-				break;
-			}
-			case 5: {
-				this.setState({
-					step: 5,
-					code: RefsTutorial.finalCode
-				});
-				break;
-			}
-			case 6: {
-				this.setState({
-					step: 6,
-					code: ContextTutorial.finalCode
-				});
-				break;
-			}
-			case 7: {
-				this.setState({
-					step: 7,
-					code: ErrorsTutorial.finalCode
-				});
-				break;
-			}
-			case 8: {
-				this.setState({
-					step: 8,
-					code: SideEffectsTutorial.finalCode
-				});
-				break;
-			}
-		}
+		const solution = this.state['repl-final'];
+		this.setState({ code: solution });
 	};
 
-	render(_, { loading, code, error, example, copied }) {
-		if (loading)
-			return (
-				<ReplWrapper loading>
-					<div class={style.loading}>
-						<h4>{loading}</h4>
-					</div>
-				</ReplWrapper>
-			);
-
-		let step;
-
-		switch (this.state.step) {
-			case 1:
-				step = <VDomTutorial />;
-				break;
-			case 2:
-				step = <EventsTutorial />;
-				break;
-			case 3:
-				step = <ComponentsTutorial />;
-				break;
-			case 4:
-				step = <StateTutorial />;
-				break;
-			case 5:
-				step = <RefsTutorial />;
-				break;
-			case 6:
-				step = <ContextTutorial />;
-				break;
-			case 7:
-				step = <ErrorsTutorial />;
-				break;
-			case 8:
-				step = <SideEffectsTutorial />;
-				break;
-			case 9:
-				step = <Links />;
-				break;
-		}
-
+	render({ route, step }, { loading, code, error }) {
+		const state = {
+			route,
+			step,
+			loading,
+			code,
+			error,
+			Runner: this.Runner,
+			CodeEditor: this.CodeEditor
+		};
 		return (
-			<ReplWrapper loading={!!loading}>
-				<div class={style.tutorialWrapper}>
-					<div class={style.tutorialWindow}>
-						{step}
-
-						<div class={style.buttonContainer}>
-							{this.state.step > 1 ? (
-								<button class={style.nextButton} onClick={this.previousStep}>
-									previous
-								</button>
-							) : null}
-							<button class={style.helpButton} onClick={this.help}>
-								Help
-							</button>
-							{this.state.step < 9 ? (
-								<button class={style.nextButton} onClick={this.nextStep}>
-									Next
-								</button>
-							) : null}
-						</div>
-					</div>
-
-					<div class={style.codeWindow}>
-						<this.CodeEditor
-							class={style.code}
-							value={code}
-							error={error}
-							onInput={linkState(this, 'code', 'value')}
-						/>
-						<div class={style.output}>
-							{error && (
-								<ErrorOverlay
-									key={this.state.step}
-									name={error.name}
-									message={error.message}
-									stack={parseStackTrace(error)}
-								/>
-							)}
-							<this.Runner
-								key={this.state.step}
-								onError={linkState(this, 'error', 'error')}
-								onSuccess={this.onSuccess}
-								code={code}
-							/>
-						</div>
-					</div>
-				</div>
-			</ReplWrapper>
+			<TutorialContext.Provider value={this}>
+				<TutorialView {...state} />
+			</TutorialContext.Provider>
 		);
 	}
 }
 
-const ReplWrapper = ({ loading, children }) => (
-	<div class={style.tutorial}>
-		<progress-bar showing={!!loading} />
-		<style>{`
-			main {
-				height: 100% !important;
-				overflow: hidden !important;
-			}
-			footer {
-				display: none !important;
-			}
-		`}</style>
-		{children}
-	</div>
-);
+function TutorialView({
+	step,
+	route,
+	loading,
+	code,
+	error,
+	Runner,
+	CodeEditor
+}) {
+	const content = useRef();
+
+	const tutorial = useContext(TutorialContext);
+
+	const { lang, solved } = useStore(['lang', 'solved']).state;
+	const fullPath = route.path.replace(':step?', step || route.first);
+	const page = usePage({ path: fullPath }, lang);
+	const title = (page && page.meta.title) || route.title;
+	const solvable = page && page.meta.solvable === true;
+	loading = !!loading || !!page.loading;
+	const initialLoad = !page.html || !Runner || !CodeEditor;
+
+	useEffect(() => {
+		if (!loading) {
+			content.current.scrollTo(0, 0);
+		}
+	}, [loading]);
+
+	const reRun = useCallback(e => {
+		let code = tutorial.state.code;
+		tutorial.setState({ code: code + ' ' }, () => {
+			tutorial.setState({ code });
+		});
+	}, []);
+
+	return (
+		<ReplWrapper {...{ loading, initialLoad, solvable, solved }}>
+			<div class={style.tutorialWindow} ref={content}>
+				<h1 class={style.title}>{title}</h1>
+
+				<Hydrator
+					component={ContentRegion}
+					boot={!loading && !!page.html}
+					name={page.current}
+					content={page.html}
+					components={TUTORIAL_COMPONENTS}
+					lang={lang}
+				/>
+
+				<div class={style.buttonContainer}>
+					{page.meta.prev && (
+						<a class={style.prevButton} href={page.meta.prev}>
+							Previous
+						</a>
+					)}
+					{tutorial.state['repl-final'] && (
+						<button class={style.helpButton} onClick={tutorial.help}>
+							Help
+						</button>
+					)}
+					{page.meta.next && (
+						<a class={style.nextButton} href={page.meta.next}>
+							Next
+						</a>
+					)}
+				</div>
+			</div>
+
+			<div class={style.codeWindow}>
+				{!initialLoad && (
+					<CodeEditor
+						key="editor"
+						class={style.code}
+						value={code}
+						error={error}
+						onInput={linkState(tutorial, 'code', 'value')}
+					/>
+				)}
+				<div class={style.output} key="output">
+					{!initialLoad && (
+						<Runner
+							key={fullPath}
+							ref={tutorial.runner}
+							onError={tutorial.onError}
+							onSuccess={tutorial.onSuccess}
+							code={code}
+							clear
+						/>
+					)}
+					{error && [
+						<ErrorOverlay
+							key={'e:' + fullPath}
+							class={style.error}
+							name={error.name}
+							message={error.message}
+							stack={parseStackTrace(error)}
+						/>,
+						<button class={style.rerun} onClick={reRun}>
+							Re-run
+						</button>
+					]}
+				</div>
+			</div>
+		</ReplWrapper>
+	);
+}
+
+const REPL_CSS = `
+	main {
+		height: 100% !important;
+		overflow: hidden !important;
+	}
+	footer {
+		display: none !important;
+	}
+`;
+
+function ReplWrapper({ loading, solvable, solved, initialLoad, children }) {
+	return (
+		<div class={style.tutorial}>
+			<progress-bar showing={!!loading} />
+			<style>{REPL_CSS}</style>
+			<div
+				class={cx(
+					style.tutorialWrapper,
+					solvable && style.solvable,
+					solved && style.solved,
+					initialLoad && style.loading
+				)}
+			>
+				{children}
+				{loading && (
+					<div key="loading" class={style.loadingOverlay}>
+						<h4>Loading...</h4>
+					</div>
+				)}
+			</div>
+		</div>
+	);
+}
+
+/** Handles all code blocks (and <pre>'s) in tutorial markup */
+function TutorialCodeBlock(props) {
+	const tutorial = useContext(TutorialContext);
+	const child = [].concat(props.children)[0];
+
+	// not a code block
+	if (!child || child.type !== 'code') {
+		return <pre {...props} />;
+	}
+
+	const text = [].concat(child.props.children).join('');
+	const code = text.replace(/(^\s+|\s+$)/g, '');
+	const cl = child.props.class || '';
+
+	// Block Type: ```js:setup
+	if (/setup/.test(cl)) {
+		return <TutorialSetupBlock code={code} />;
+	}
+
+	// Block Type: ```jsx:repl-initial  /  ```jsx:repl-final
+	const repl = cl.match(/repl-(initial|final)/g);
+	if (repl) {
+		tutorial.setState({ [repl[0]]: code });
+		if (repl[0] === 'repl-initial') tutorial.setState({ code });
+		return null;
+	}
+
+	props.repl = props.repl === true || props.repl === 'true';
+	return <widgets.CodeBlock {...props} />;
+}
+
+/** Handles running ```js:setup code blocks */
+function TutorialSetupBlock({ code }) {
+	// Only run when we get new setup code.
+	// Note: we run setup code as a component to allow hook usage:
+	const Setup = useCallback(() => {
+		const tutorial = useContext(TutorialContext);
+		const store = useContext(storeCtx);
+		const require = m => tutorial.runner.current.realm.globalThis._require(m);
+
+		const fn = new Function(
+			'options',
+			'state',
+			'setState',
+			'useState',
+			'useEffect',
+			'useRef',
+			'useMemo',
+			'useStore',
+			'useResult',
+			'useError',
+			'store',
+			'realm',
+			'require',
+			code
+		);
+
+		fn(
+			options,
+			tutorial.state,
+			tutorial.setState.bind(tutorial),
+			useState,
+			useEffect,
+			useRef,
+			useMemo,
+			useStore,
+			tutorial.useResult,
+			tutorial.useError,
+			store,
+			tutorial.runner.current.realm,
+			require
+		);
+
+		return null;
+	}, [code]);
+
+	return <Setup />;
+}
+
+/** Shows a solution banner when the chapter is solved */
+function Solution({ children }) {
+	const { solved } = useStore(['solved']).state;
+	const ref = useRef();
+
+	useEffect(() => {
+		if (solved) {
+			requestAnimationFrame(() => {
+				ref.current.scrollIntoView({ behavior: 'smooth' });
+			});
+		}
+	}, [solved]);
+
+	if (!solved) return null;
+
+	return (
+		<div ref={ref} class={style.solution}>
+			{children}
+		</div>
+	);
+}

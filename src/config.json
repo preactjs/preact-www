@@ -54,7 +54,9 @@
 			"content": "index"
 		},
 		{
-			"path": "/tutorial",
+			"path": "/tutorial/:step?",
+			"href": "/tutorial/",
+			"first": "01-vdom",
 			"title": "Tutorial",
 			"controller": "Tutorial"
 		},
@@ -67,7 +69,8 @@
 				"es": "Guía"
 			},
 			"content": "guide",
-			"path": "/guide/v10/getting-started"
+			"path": "/guide/:version?/:page?",
+			"href": "/guide/v10/getting-started"
 		},
 		{
 			"name": {
