@@ -40,11 +40,22 @@ export default class Tutorial extends Component {
 	static contextType = storeCtx;
 
 	resultHandlers = new Set();
+	realmHandlers = new Set();
 	errorHandlers = new Set();
 	useResult = fn => {
 		useEffect(() => {
 			this.resultHandlers.add(fn);
 			return () => this.resultHandlers.delete(fn);
+		}, [fn]);
+	};
+	useRealm = fn => {
+		useEffect(() => {
+			this.realmHandlers.add(fn);
+			let runner = this.runner.current;
+			if (runner && runner.realm && runner.realm.globalThis._require) {
+				this.onRealm(runner.realm);
+			}
+			return () => this.realmHandlers.delete(fn);
 		}, [fn]);
 	};
 	useError = fn => {
@@ -100,6 +111,16 @@ export default class Tutorial extends Component {
 		if (this.state.error != null) {
 			this.setState({ error: null });
 		}
+	};
+
+	onRealm = realm => {
+		if (this.realmCleanups) this.realmCleanups.forEach(f => f());
+		this.realmCleanups = [];
+		// this.realmCleanups = Array.from(this.realmHandlers).map(f => f()).filter(Boolean);
+		this.realmHandlers.forEach(f => {
+			let cleanup = f(realm);
+			if (cleanup) this.realmCleanups.push(cleanup);
+		});
 	};
 
 	help = () => {
@@ -240,8 +261,9 @@ function TutorialView({
 						<Runner
 							key={fullPath}
 							ref={tutorial.runner}
-							onError={tutorial.onError}
 							onSuccess={tutorial.onSuccess}
+							onRealm={tutorial.onRealm}
+							onError={tutorial.onError}
 							code={code}
 							clear
 						/>
@@ -348,6 +370,7 @@ function TutorialSetupBlock({ code }) {
 			'useMemo',
 			'useStore',
 			'useResult',
+			'useRealm',
 			'useError',
 			'store',
 			'realm',
@@ -365,6 +388,7 @@ function TutorialSetupBlock({ code }) {
 			useMemo,
 			useStore,
 			tutorial.useResult,
+			tutorial.useRealm,
 			tutorial.useError,
 			store,
 			tutorial.runner.current.realm,

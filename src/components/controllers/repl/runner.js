@@ -101,6 +101,10 @@ export default class Runner extends Component {
 				if (!this.rootVNode) this.rootVNode = vnode;
 				if (oldRoot) oldRoot(vnode, parent);
 			};
+
+			if (this.props.onRealm) {
+				this.props.onRealm(this.realm);
+			}
 		});
 		return this.settingUp;
 	}
@@ -180,8 +184,14 @@ export default class Runner extends Component {
 		return { vnode: this.rootVNode };
 	}
 
-	render({ onError, onSuccess, code, children, clear, css, ...props }) {
-		return <iframe class={style.runner} {...props} ref={this.frame} />;
+	render(props) {
+		return (
+			<iframe
+				class={style.runner + ' ' + (props.class || '')}
+				style={props.style}
+				ref={this.frame}
+			/>
+		);
 	}
 }
 

@@ -244,15 +244,38 @@ props, and returns an HTML `<button>` element with those props applied.
 
 
 ```js:setup
-useResult(function () {
+useRealm(function (realm) {
+  var options = require('preact').options;
   var win = realm.globalThis;
   var prevConsoleLog = win.console.log;
+  var hasComponent = false;
+  var check = false;
+
   win.console.log = function() {
-    store.setState({ solved: true });
+    if (hasComponent && check) {
+      store.setState({ solved: true });
+    }
     return prevConsoleLog.apply(win.console, arguments);
   };
 
+  var e = options.event;
+  options.event = function(e) {
+    if (e.type === 'click') {
+      check = true;
+      setTimeout(() => check = false);
+    }
+  };
+
+  var r = options.__r;
+  options.__r = function(vnode) {
+    if (typeof vnode.type === 'function' && /MyButton/.test(vnode.type)) {
+      hasComponent = true;
+    }
+  }
+
   return function () {
+    options.event = e;
+    options.__r = r;
     win.console.log = prevConsoleLog;
   };
 }, []);
