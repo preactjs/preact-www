@@ -170,10 +170,11 @@ function pathMatchesRoute(path, route) {
 	if (path === route.path) return true;
 	let segs = path.replace(/(^\/|\/$)/g, '').split('/');
 	let psegs = route.path.replace(/(^\/|\/$)/g, '').split('/');
-	for (let i = 0; i < psegs.length; i++) {
+	let len = Math.max(psegs.length, segs.length);
+	for (let i = 0; i < len; i++) {
 		let p = psegs[i];
 		let s = segs[i];
-		if (p[0] !== ':' && s !== p) return false;
+		if (!p || (p[0] !== ':' && s !== p)) return false;
 		if (!s) return /[?*]$/g.test(p);
 		if (/[*+]$/g.test(p)) return true;
 	}
