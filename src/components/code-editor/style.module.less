@@ -30,7 +30,7 @@
 			}
 		}
 	}
-
+	
 	:global {
 		.CodeMirror {
 			position: absolute;
@@ -40,6 +40,25 @@
 			height: 100%;
 			background: #282c34;
 			color: #abb2bf;
+
+			::-webkit-scrollbar {
+				height: 10px;
+				width: 12px;
+				background: rgba(150,150,150,0.25);
+			}
+			::-webkit-scrollbar-thumb {
+				background: rgba(150,150,150,0.8);
+			}
+			::-webkit-scrollbar-corner {
+				background: rgba(150,150,150,0.4);
+			}
+			&:not(:hover) ::-webkit-scrollbar {
+				background: rgba(150,150,150,0.1);
+			}
+			&:not(:hover) ::-webkit-scrollbar-thumb {
+				background: rgba(150,150,150,0.2);
+			}
+
 
 			pre,
 			code,
