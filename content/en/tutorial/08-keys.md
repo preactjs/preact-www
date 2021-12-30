@@ -259,18 +259,29 @@ export default function ToDos() {
 ```
 
 Remember: if you genuinely can't find a stable key, it's better to omit
-the `key` prop entirely than it would be to use an index as a key.
+the `key` prop entirely than it to use an index as a key.
 
 
 ## Try it!
 
-We'll keep this exercise simple: change the code sample on the right
-to log every time `count` changes, rather than only when `<App>` is
-first rendered.
+For this chapter's exercise, we'll combine what we learned about keys
+with our knowledge of side effects from the previous chapter.
+
+Use an effect to call the provided `getTodos()` function after `<TodoList>`
+is first rendered. Note that this function returns a Promise, which
+you can obtain the value of by calling `.then(value => { ... })`.
+Once you have the Promise's value, store it in the `todos` useState
+hook by calling its associated `setTodos` method.
+
+Finally, update the JSX to render each item from `todos` as an
+`<li>` containing that todo item's `.text` property value.
 
 <solution>
   <h4>🎉 Congratulations!</h4>
-  <p>You learned how to use side effects in Preact.</p>
+  <p>
+    You've completed the second last chapter,
+    and learned how to render lists effectively.
+  </p>
 </solution>
 
 
