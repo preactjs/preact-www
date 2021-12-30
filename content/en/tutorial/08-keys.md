@@ -269,9 +269,9 @@ with our knowledge of side effects from the previous chapter.
 
 Use an effect to call the provided `getTodos()` function after `<TodoList>`
 is first rendered. Note that this function returns a Promise, which
-you can obtain the value of by calling `.then(value => { ... })`.
-Once you have the Promise's value, store it in the `todos` useState
-hook by calling its associated `setTodos` method.
+you can obtain the value of by calling `.then(value => { })`. Once
+you have the Promise's value, store it in the `todos` useState hook
+by calling its associated `setTodos` method.
 
 Finally, update the JSX to render each item from `todos` as an
 `<li>` containing that todo item's `.text` property value.
