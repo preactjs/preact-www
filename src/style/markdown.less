@@ -201,6 +201,7 @@
 		background: var(--color-quote-bg);
 		color: var(--color-quote-text);
 		border-left: 0.3rem solid var(--color-quote-border);
+		overflow: auto;
 	}
 	blockquote > :first-child {
 		margin-top: 0;
@@ -376,7 +377,10 @@
 
 	h1,
 	h2,
-	h3 {
+	h3,
+	h4,
+	h5,
+	h6 {
 		&:target {
 			padding-top: @header-height;
 		}

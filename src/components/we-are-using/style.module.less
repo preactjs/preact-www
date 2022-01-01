@@ -39,19 +39,17 @@ html .root {
 			filter: grayscale(0);
 			opacity: 1;
 		}
-		
+
 		:global(.dark) &:hover img {
 			filter: invert(0) hue-rotate(0deg) grayscale(0)
-				drop-shadow(0 0 .5px #fff)
-				drop-shadow(0 5px 10px #000)
-				drop-shadow(0 0 20px rgba(255,255,255,0.5));
+				drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
+				drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 		}
 		@media (prefers-color-scheme: dark) {
 			&:hover img {
 				filter: invert(0) hue-rotate(0deg) grayscale(0)
-					drop-shadow(0 0 .5px #fff)
-					drop-shadow(0 5px 10px #000)
-					drop-shadow(0 0 20px rgba(255,255,255,0.5));
+					drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
+					drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 			}
 		}
 	}

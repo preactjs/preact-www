@@ -1,4 +1,4 @@
-import styles from './style.less';
+import styles from './style.module.less';
 
 // Add your company to this array. The logo should be placed
 // in `src/assets/we-are-using/my-logo.svg`.
@@ -262,6 +262,16 @@ const companies = [
 		name: 'Datapedia',
 		href: 'https://datapedia.info/',
 		logo: 'datapedia.png'
+	},
+	{
+		name: 'Glance',
+		href: 'https://glance.com/',
+		logo: 'glance.png'
+	},
+	{
+		name: 'Etsy',
+		href: 'https://etsy.com',
+		logo: 'etsy.svg'
 	}
 ];
 

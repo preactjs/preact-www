@@ -68,7 +68,7 @@ For more information on HTM, check out its [documentation][htm].
 
 [Preact CLI] is an off-the-shelf solution for building Preact applications that is optimized for modern web development. It's built on standard tooling projects like Webpack, Babel and PostCSS. Preact CLI does not require any configuration or prior knowledge to get started, and this simplicity makes it the most popular way to use Preact.
 
-As the name implies, Preact CLI is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Using it, you can create a new application by running the `create` command:
+As the name implies, Preact CLI is a **c**ommand-**l**ine **i**nterface that can be run in the terminal on your machine. Using it, you can create a new application by running the `create` command:
 
 ```bash
 npx preact-cli create default my-project
@@ -145,8 +145,8 @@ const config = {
     "alias": { 
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",
-     // Must be below test-utils
+      "react-dom": "preact/compat",     // Must be below test-utils
+      "react/jsx-runtime": "preact/jsx-runtime"
     },
   }
 }
@@ -162,7 +162,8 @@ an `alias` key.
   "alias": {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime"
   },
 }
 ```
@@ -180,7 +181,9 @@ module.exports = {
     alias({
       entries: [
         { find: 'react', replacement: 'preact/compat' },
-        { find: 'react-dom', replacement: 'preact/compat' }
+        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+        { find: 'react-dom', replacement: 'preact/compat' },
+        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
       ]
     })
   ]
@@ -197,21 +200,24 @@ These rewrites are configured using regular expressions in your Jest configurati
   "moduleNameMapper": {
     "^react$": "preact/compat",
     "^react-dom/test-utils$": "preact/test-utils",
-    "^react-dom$": "preact/compat"
+    "^react-dom$": "preact/compat",
+    "^react/jsx-runtime$": "preact/jsx-runtime"
   }
 }
 ```
 
 #### Aliasing in Snowpack
 
-To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.json` file.
+To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.mjs` file.
 
 ```js
-// snowpack.config.json
-{
+// snowpack.config.mjs
+export default {
   alias: {
     "react": "preact/compat",
-    "react-dom": "preact/compat"
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime",
   }
 }
 ```

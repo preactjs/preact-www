@@ -4,7 +4,7 @@ import cx from '../../lib/cx';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/lib/codemirror.css';
-import style from './style';
+import style from './style.module.less';
 
 export default class CodeEditor extends Component {
 	scratch = document.createElement('div');
