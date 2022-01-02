@@ -55,8 +55,9 @@ export default function (config, env, helpers) {
 	if (critters) {
 		config.plugins[critters.index] = new Critters({
 			preload: 'media',
-			mergeStylesheets: false,
-			pruneSource: false
+			additionalStylesheets: ['?.chunk.*.css'],
+			pruneSource: false,
+			compress: true
 		});
 	}
 

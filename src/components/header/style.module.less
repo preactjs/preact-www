@@ -46,6 +46,10 @@
 					margin: 0;
 					display: block;
 
+					& > button {
+						width: 100%;
+					}
+
 					a {
 						text-align: left;
 					}
@@ -85,6 +89,8 @@
 			font-size: 16px;
 			color: #eee;
 			cursor: pointer;
+			vertical-align: top;
+			appearance: none;
 
 			@media (max-width: @header-mobile-breakpoint) {
 				min-width: 100px;
@@ -462,7 +468,7 @@
 	}
 
 	.searchBox {
-		width: 70px;
+		width: 60px;
 		margin: 10px 5px;
 		padding: 8px 4px 8px 32px;
 		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
@@ -485,10 +491,6 @@
 
 		@media (min-width: @header-mobile-breakpoint) {
 			width: 8.75rem;
-		}
-
-		@media (min-width: 800px) {
-			width: 10rem;
 		}
 
 		@media (min-width: 1024px) {

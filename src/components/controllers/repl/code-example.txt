@@ -22,13 +22,12 @@ export default function Example() {
 }
 
 const Result = result => (
-	<div class="repl-list-item">
+	<div class="list-item">
 		<div>
 			<a
 				href={result.html_url}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="repl-link"
 			>
 				{result.full_name}
 			</a>

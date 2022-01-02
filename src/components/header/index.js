@@ -76,7 +76,7 @@ const Nav = ({ routes, current, ...props }) => (
 				data-route={getRouteIdent(route)}
 				class={cx(
 					route.class,
-					(route.path === current ||
+					(pathMatchesRoute(current, route) ||
 						(route.content === 'guide' && /^\/guide\//.test(current))) &&
 						style.current
 				)}
@@ -152,7 +152,7 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	}
 
 	return (
-		<a href={to.path} {...props} data-route={route}>
+		<a href={to.href || to.path} {...props} data-route={route}>
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>
@@ -163,6 +163,22 @@ export function getRouteName(route, lang) {
 	return typeof route.name === 'object'
 		? route.name[lang] || route.name.en
 		: route.name || route.title;
+}
+
+function pathMatchesRoute(path, route) {
+	if (!route || !route.path) return false;
+	if (path === route.path) return true;
+	let segs = path.replace(/(^\/|\/$)/g, '').split('/');
+	let psegs = route.path.replace(/(^\/|\/$)/g, '').split('/');
+	let len = Math.max(psegs.length, segs.length);
+	for (let i = 0; i < len; i++) {
+		let p = psegs[i];
+		let s = segs[i];
+		if (!p || (p[0] !== ':' && s !== p)) return false;
+		if (!s) return /[?*]$/g.test(p);
+		if (/[*+]$/g.test(p)) return true;
+	}
+	return true;
 }
 
 // get a CSS-addressable identifier for a given route

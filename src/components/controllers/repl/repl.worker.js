@@ -4,16 +4,16 @@ import { parseStackTrace } from './errors';
 
 const PREPEND = `(function(module,exports,require,fetch){`;
 
-const IMPORTS = `
-const {render,hydrate,h,createElement,Fragment,createRef,Component,cloneElement,createContext,toChildArray,options} = require('preact');
-const {useState,useReducer,useEffect,useLayoutEffect,useRef,useImperativeHandle,useMemo,useCallback,useContext,useDebugValue} = require('preact/hooks');\n
+const IMPORTS = `\
+import {render,hydrate,h,createElement,Fragment,createRef,Component,cloneElement,createContext,toChildArray,options} from 'preact';\
+import {useState,useReducer,useEffect,useLayoutEffect,useRef,useImperativeHandle,useMemo,useCallback,useContext,useDebugValue} from 'preact/hooks';
 `;
 
 export function ping() {
 	return true;
 }
 
-export function process(code) {
+export async function process(code, setup) {
 	code = `${IMPORTS}${code}`;
 
 	if (!code.match(/[\s\b;,]export[{ ]/)) {
@@ -23,10 +23,14 @@ export function process(code) {
 		);
 	}
 
+	let codeUrl = `data:text/javascript;base64,${btoa(
+		unescape(encodeURIComponent(code))
+	)}`;
 	let out = {};
 	try {
 		out = transform(code, {
-			filePath: 'repl.js',
+			// prettier-ignore
+			filePath: codeUrl,
 			sourceMapOptions: {
 				compiledFilename: 'repl.js'
 			},
@@ -49,7 +53,9 @@ export function process(code) {
 		}
 
 		if (err.name === 'SyntaxError') {
+			err.message = err.message.replace(codeUrl, 'repl.js');
 			const fileName = err.message.match(/([A-Za-z0-9_-]*\.js)/);
+			// const fileName = 'repl.js';
 			const loc = err.message.match(/(\d+):(\d+)\)/) || [0, 0, 0];
 			err.message = err.message
 				.replace(/Error\stransforming\s.*\.js:/, '')
@@ -62,7 +68,7 @@ export function process(code) {
 			// sucrase's line mappings are not correct even with this fix.
 			// It seems like don't generate correct mappings
 			if (line > 0) {
-				line = /\sexpected/.test(err.message) ? line - 4 : line;
+				line = /\sexpected/.test(err.message) ? line - 2 : line;
 			}
 
 			stack.splice(1, 0, `    at ${fileName[1]} (:${line}:${column})\n`);
@@ -80,13 +86,13 @@ export function process(code) {
 
 	// wrap & append sourceMap
 	let transpiled = (out && out.code) || '';
-	transpiled = `${PREPEND}\n${transpiled}\n})`;
+	transpiled = `${PREPEND}${setup || ''}\n${transpiled}\n})`;
 
-	if (transpiled && out.map) {
+	if (transpiled && out.sourceMap) {
 		try {
 			// Do not format this line or worker-loader will fail for some reason!
 			// prettier-ignore
-			transpiled += `\n//@ sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.map))))}`;
+			transpiled += `\n//# sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.sourceMap))))}`;
 		} catch (e) {
 			console.error(`Source Map generation failed: ${e}`);
 		}
