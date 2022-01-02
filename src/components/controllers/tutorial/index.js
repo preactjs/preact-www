@@ -176,12 +176,14 @@ function TutorialView({
 		!page.html || (showCode && (!!page.loading || !Runner || !CodeEditor));
 	const initialLoad = !page.html || !Runner || !CodeEditor;
 
+	// Scroll to the top after loading
 	useEffect(() => {
 		if (!loading && !initialLoad) {
 			content.current.scrollTo(0, 0);
 		}
-	}, [loading, initialLoad]);
+	}, [fullPath, loading, initialLoad]);
 
+	// Preload the next chapter
 	useEffect(() => {
 		if (page.meta && page.meta.next) {
 			getContent([lang, page.meta.next]);
