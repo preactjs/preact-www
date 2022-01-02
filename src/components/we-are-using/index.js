@@ -9,29 +9,29 @@ const companies = [
 		logo: 'groupon.svg'
 	},
 	{
-		name: 'Uber',
-		href: 'https://uber.com/',
-		logo: 'uber.png'
-	},
-	{
 		name: 'Tencent QQ',
 		href: 'https://im.qq.com/',
 		logo: 'qq.png'
 	},
-  {
+	{
 		name: 'Etsy',
 		href: 'https://etsy.com',
 		logo: 'etsy.svg'
 	},
 	{
-		name: 'Sogou wenwen',
-		href: 'https://wenwen.sogou.com/',
-		logo: 'sogou.png'
-	},
-	{
 		name: 'Housing.com',
 		href: 'https://housing.com/',
 		logo: 'housing.png'
+	},
+	{
+		name: 'Deno',
+		href: 'https://deno.land/',
+		logo: 'deno.svg'
+	},
+	{
+		name: 'The New York Times',
+		href: 'https://nytimes.com/',
+		logo: 'nytimes.png'
 	},
 	{
 		name: 'Lyft',
@@ -49,9 +49,19 @@ const companies = [
 		logo: 'huayang.png'
 	},
 	{
+		name: 'Uber',
+		href: 'https://uber.com/',
+		logo: 'uber.png'
+	},
+	{
 		name: 'Treebo',
 		href: 'https://www.treebo.com/',
 		logo: 'treebo.svg'
+	},
+	{
+		name: 'dailymotion',
+		href: 'https://dailymotion.com/',
+		logo: 'dailymotion.svg'
 	},
 	{
 		name: 'Smashing Magazine',
@@ -59,14 +69,14 @@ const companies = [
 		logo: 'smashingmagazine.png'
 	},
 	{
-		name: 'The New York Times',
-		href: 'https://nytimes.com/',
-		logo: 'nytimes.png'
-	},
-	{
 		name: 'Bustle',
 		href: 'https://bustle.com/',
 		logo: 'bustle.svg'
+	},
+	{
+		name: 'Financial Times',
+		href: 'https://ft.com/',
+		logo: 'financial-times.svg'
 	},
 	{
 		name: 'IRCTC Ecatering',
@@ -84,9 +94,9 @@ const companies = [
 		logo: 'broadway.png'
 	},
 	{
-		name: 'Financial Times',
-		href: 'https://ft.com/',
-		logo: 'financial-times.svg'
+		name: 'Sogou wenwen',
+		href: 'https://wenwen.sogou.com/',
+		logo: 'sogou.png'
 	},
 	{
 		name: 'Algolia Instantsearch.js',
@@ -109,11 +119,6 @@ const companies = [
 		logo: 'thepracticaldev.png'
 	},
 	{
-		name: 'Deno',
-		href: 'https://deno.land/',
-		logo: 'deno.svg'
-	},
-	{
 		name: 'inSided',
 		href: 'https://insided.com/',
 		logo: 'insided.svg'
@@ -122,11 +127,6 @@ const companies = [
 		name: "Domino's",
 		href: 'https://www.dominos.com/',
 		logo: 'dominos.svg'
-	},
-	{
-		name: 'Transformers',
-		href: 'https://www.transformersmovie.com/',
-		logo: 'transformers.png'
 	},
 	{
 		name: 'Neo4j',
@@ -144,29 +144,14 @@ const companies = [
 		logo: 'synacor.png'
 	},
 	{
-		name: 'ski school courchevel',
-		href: 'https://skiscool.com/',
-		logo: 'skiscool.svg'
-	},
-	{
 		name: 'The Coral Project',
 		href: 'https://coralproject.net/',
 		logo: 'thecoralproject.png'
 	},
 	{
-		name: 'Omroep West',
-		href: 'https://m.omroepwest.nl/',
-		logo: 'omroepwest.svg'
-	},
-	{
 		name: 'NAMSHI',
 		href: 'https://en-ae.namshi.com/',
 		logo: 'namshi.png'
-	},
-	{
-		name: 'Instant Domain Search',
-		href: 'https://instantdomainsearch.com/',
-		logo: 'instantdomainsearch.svg'
 	},
 	{
 		name: 'WELL Messenger',
@@ -187,16 +172,6 @@ const companies = [
 		name: 'Tradeshift',
 		href: 'https://tradeshift.com/',
 		logo: 'tradeshift.png'
-	},
-	{
-		name: 'slowtec',
-		href: 'https://slowtec.de/',
-		logo: 'slowtec.svg'
-	},
-	{
-		name: 'Sierra Nevada',
-		href: 'https://sierranevada.co/',
-		logo: 'sierranevada.svg'
 	},
 	{
 		name: 'Bakken & Baeck',
@@ -239,11 +214,6 @@ const companies = [
 		logo: 'bluehive.svg'
 	},
 	{
-		name: 'dailymotion',
-		href: 'https://dailymotion.com/',
-		logo: 'dailymotion.svg'
-	},
-	{
 		name: 'Bodybuilding.com',
 		href: 'https://bodybuilding.com/',
 		logo: 'bodybuildingcom.svg'
@@ -277,7 +247,7 @@ const companies = [
 		name: 'Snapp!',
 		href: 'https://snapp.ir/',
 		logo: 'snapp.png'
-  }
+	}
 ];
 
 // Grid of companies using Preact
