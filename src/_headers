@@ -13,3 +13,5 @@
     Link:""
 /*.png
     Link:""
+/*.map
+    Content-Type: application/json
