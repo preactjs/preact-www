@@ -265,7 +265,7 @@ function TutorialView({
 					)}
 					{page.meta.next && (
 						<a class={style.nextButton} href={page.meta.next}>
-							Next
+							{page.meta.nextText || 'Next'}
 						</a>
 					)}
 				</div>
