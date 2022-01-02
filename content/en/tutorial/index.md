@@ -8,11 +8,12 @@ solvable: false
 
 Have you ever wondered what Preact is all about, or how it works?
 
-Maybe you've been creating awesome websites using Wordpress, slick graphics
-with D3, or helpful interactivity to forms with jQuery. At some point, the
-JavaScript you've written became complex enough that it was difficult to
-manage - remembering which file controls part of a page, or debugging an
-interaction between two plugins trying to enhance the same element.
+Maybe you've been creating awesome websites using Wordpress, designing
+graphics with D3, or building helpful interactive forms with jQuery.
+At some point, the JavaScript you've written became complex enough that
+it was difficult to manage - remembering which file controls part of a
+page, or debugging an interaction between two plugins trying to enhance
+the same element.
 
 Perhaps you've come across Preact at some point, and wondered what's so
 special about it? Why do high-traffic sites like IKEA, Bing, Etsy and
