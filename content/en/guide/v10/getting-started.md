@@ -5,9 +5,10 @@ description: "How to get started with Preact. We'll learn how to setup the tooli
 
 # Getting Started
 
-This guide helps you get up and running to start developing Preact apps.
+New to Preact? New to Virtual DOM? Check out the [tutorial](/tutorial).
 
-There are 3 popular options. If you're new to Preact, we recommend starting with [Preact CLI](#best-practices-powered-by-preact-cli).
+This guide helps you get up and running to start developing Preact apps, using 3 popular options.
+If you're new to Preact, we recommend starting with [Preact CLI](#best-practices-powered-by-preact-cli).
 
 ---
 

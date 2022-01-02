@@ -54,6 +54,13 @@
 			"content": "index"
 		},
 		{
+			"path": "/tutorial/:step?",
+			"href": "/tutorial/",
+			"first": "index",
+			"name": "Tutorial",
+			"controller": "Tutorial"
+		},
+		{
 			"name": {
 				"en": "Guide",
 				"de": "Anleitung",
@@ -62,7 +69,8 @@
 				"es": "Guía"
 			},
 			"content": "guide",
-			"path": "/guide/v10/getting-started"
+			"path": "/guide/:version?/:page?",
+			"href": "/guide/v10/getting-started"
 		},
 		{
 			"name": {

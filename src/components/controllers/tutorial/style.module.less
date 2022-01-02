@@ -1,0 +1,425 @@
+@import '~style/helpers';
+
+.tutorial {
+	position: absolute;
+	left: 0;
+	top: 56px;
+	bottom: 0;
+	height: auto;
+	width: 100%;
+	background: #eee;
+	overflow: hidden;
+
+	:global(.markup) {
+		p:first-of-type {
+			font-size: inherit;
+			font-weight: inherit;
+			line-height: inherit;
+			margin-bottom: inherit;
+		}
+	}
+
+	.tutorialWrapper {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-content: stretch;
+		justify-content: stretch;
+
+		&.solvable:not(&.solved) .nextButton,
+		&.solvable:not(&.solved) .nextButton:hover {
+			background: #534e5b;
+			transform: none;
+		}
+
+		.tutorialWindow {
+			position: relative;
+			background: var(--color-page-bg);
+			color: var(--color-heading);
+			display: flex;
+			flex: 1 1 var(--x, 50%);
+			flex-direction: column;
+			padding: 12px;
+			transition: opacity 1s ease;
+			box-shadow: 1px 0 0 var(--color-brand);
+			overflow-y: scroll;
+			z-index: 10;
+
+			&::-webkit-scrollbar {
+				height: 8px;
+				width: 12px;
+				background: rgba(150, 150, 150, 0.25);
+			}
+			&::-webkit-scrollbar-thumb {
+				background: rgba(150, 150, 150, 0.8);
+			}
+			&::-webkit-scrollbar-thumb:hover {
+				background: rgba(150, 150, 150, 1);
+			}
+			&::-webkit-scrollbar-corner {
+				background: rgba(150, 150, 150, 0.4);
+			}
+			&:not(:hover)::-webkit-scrollbar {
+				background: rgba(150, 150, 150, 0.2);
+			}
+			&:not(:hover)::-webkit-scrollbar-thumb {
+				background: rgba(150, 150, 150, 0.6);
+			}
+
+			& > h1 {
+				margin: 0;
+				padding: 0.25em 0;
+				font-size: 2.5rem;
+				font-weight: 200;
+				line-height: 1.2;
+				border-bottom: 5px solid var(--color-code-inline-border);
+			}
+
+			h2 {
+				margin: 2rem 0 0;
+				padding: 0;
+				font-size: 2rem;
+				color: var(--color-heading);
+			}
+
+			h3 {
+				margin: 2rem 0 0;
+				padding: 1rem 0 0;
+				border-top: 2px solid var(--color-hr);
+				font-size: 1.8rem;
+				font-weight: 300;
+				color: var(--color-brand);
+			}
+
+			hr + h3 {
+				margin-top: 1rem;
+				border-top: none;
+			}
+
+			abbr {
+				cursor: help;
+				text-decoration-style: dotted;
+				text-decoration-skip-ink: all;
+				text-decoration-thickness: 1px;
+				text-decoration-color: var(--color-brand);
+			}
+
+			.solution {
+				margin: 10px 10px 20px;
+				padding: 10px;
+				background: rgba(70, 173, 33, 0.2);
+				border: 1px solid rgba(70, 173, 33, 0.5);
+				border-radius: 5px;
+				animation: yay 500ms cubic-bezier(0.4, 1.7, 0.6, 0.9) forwards 1;
+
+				h4 {
+					margin: 0 0 -0.5em;
+					font-size: 1.3rem;
+				}
+				& > :last-child {
+					padding-bottom: 0;
+					margin-bottom: 0;
+				}
+			}
+			@keyframes yay {
+				from {
+					opacity: 0;
+					transform: scale(0.6);
+				}
+			}
+
+			.codeContainer {
+				background: #282c34;
+				color: #abb2bf;
+				margin-bottom: 0;
+			}
+
+			:global(.highlight) {
+				padding: 12px;
+				font-size: 85%;
+
+				code {
+					font-size: inherit;
+				}
+			}
+
+			table :global(.highlight) {
+				padding: 8px;
+				margin: 0 -8px;
+			}
+
+			.buttonContainer {
+				align-self: flex-end;
+				margin: 12px;
+				display: flex;
+				justify-content: stretch;
+
+				.helpButton,
+				.prevButton,
+				.nextButton {
+					padding: 6px 16px;
+					margin: 0 12px;
+					border: 1px solid var(--color-btn);
+					border-radius: 5px;
+					font-size: 100%;
+					transition: box-shadow 300ms ease, border-color 300ms ease;
+					outline: none;
+					background: var(--color-btn-background);
+					color: var(--color-btn);
+					cursor: pointer;
+					&:hover,
+					&:focus-visible {
+						box-shadow: 0 0 0 5px @color-brand-light;
+					}
+
+					&[disabled] {
+						visibility: hidden;
+						cursor: not-allowed;
+					}
+				}
+
+				.nextButton {
+					background: var(--color-btn);
+					border-color: var(--color-btn-background);
+					color: var(--color-btn-background);
+				}
+
+				.nextButton:hover,
+				.nextButton:focus-visible {
+					border-color: var(--color-btn-background);
+				}
+			}
+		}
+
+		&:not(.showCode) {
+			--x: 100% !important;
+		}
+
+		&:not(.showCode) {
+			.splitter {
+				display: none;
+			}
+			.tutorialWindow {
+				flex-basis: 100%;
+
+				& > * {
+					max-width: 700px;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+			.codeWindow {
+				flex-basis: 0%;
+			}
+		}
+		&.showCode .codeWindow {
+			animation: slideFromRight 250ms ease forwards 1;
+		}
+		@keyframes slideFromRight {
+			0% {
+				transform: translateX(100%);
+				opacity: 0;
+			}
+		}
+
+		.splitter {
+			position: absolute;
+			left: var(--x, 50%);
+			z-index: 100;
+			margin: 0 0 0 -4px;
+			width: 8px;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1s ease;
+			cursor: col-resize;
+			overflow: hidden;
+
+			&:before {
+				content: '';
+				position: absolute;
+				display: block;
+				left: 2px;
+				right: 2px;
+				top: 0;
+				height: 100%;
+				background: #48adff;
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+			}
+		}
+		.splitter:hover,
+		.splitter:focus {
+			opacity: 1;
+			transition: opacity 100ms ease;
+		}
+
+		.codeWindow {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1 calc(100% - var(--x, 50%));
+			position: relative;
+			transition: opacity 1s ease;
+			overflow: auto;
+
+			.error {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: 0;
+				height: auto;
+				border-top: 2px solid var(--color-error-heading);
+				padding: 10px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+				animation: slideUp 300ms ease forwards 1;
+			}
+			@keyframes slideUp {
+				from {
+					opacity: 0;
+					transform: translateY(50%);
+				}
+			}
+
+			.rerun {
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				z-index: 999;
+				background: var(--color-btn);
+				border: 1px solid var(--color-btn);
+				color: var(--color-btn-background);
+				padding: 6px 8px;
+				line-height: 1;
+				border-radius: 5px;
+				transition: box-shadow 150ms ease;
+
+				&:before {
+					content: '↩';
+					position: relative;
+					display: inline-block;
+					top: 0.2em;
+					padding-right: 0.4em;
+					opacity: 0.8;
+				}
+				&:focus,
+				&:hover {
+					box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+					cursor: pointer;
+				}
+			}
+
+			.code {
+				width: 100%;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 50%;
+			}
+
+			.output {
+				background: var(--color-btn-background);
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				top: 50%;
+			}
+		}
+
+		.toggleCode {
+			position: fixed;
+			bottom: 10px;
+			left: 100%;
+			background: var(--color-btn);
+			border: 1px solid var(--color-btn);
+			color: var(--color-btn-background);
+			padding: 6px 10px;
+			line-height: 1;
+			border-radius: 5px;
+			transform: translateX(-100%) translateX(-24px);
+			transition: left 250ms ease, transform 250ms ease, color 10ms ease,
+				background 250ms ease, border 250ms ease, box-shadow 250ms ease;
+			font-size: 1rem;
+			z-index: 1001;
+			cursor: pointer;
+
+			> span {
+				display: none;
+			}
+
+			&:hover,
+			&:focus-visible {
+				box-shadow: 0 0 1px 0.5px var(--color-btn-background),
+					0 0 0 5px @color-brand-light;
+			}
+
+			&:before {
+				content: '►';
+				position: relative;
+				display: inline-block;
+				will-change: transform;
+				transform: rotate(180deg);
+				transform-origin: center;
+				transition: all 300ms ease 200ms;
+			}
+		}
+
+		.splitter ~ .toggleCode {
+			transition: box-shadow 250ms ease;
+		}
+
+		&.showCode .toggleCode {
+			left: var(--x, 50%);
+			transform: translateX(14px);
+			background: var(--color-btn-background);
+			border: 1px solid var(--color-btn);
+			color: var(--color-btn);
+
+			&:before {
+				transform: rotate(0deg);
+			}
+		}
+	}
+
+	.loadingOverlay {
+		position: absolute;
+		left: 75%;
+		top: 75%;
+		width: 160px;
+		margin: -40px 0 0 -80px;
+		background: var(--color-page-bg);
+		color: var(--color-heading);
+		box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+		text-align: center;
+		opacity: 0;
+		transform: translateY(50%);
+		transition: all 500ms ease;
+		z-index: 100;
+		pointer-events: none;
+
+		&.loading {
+			opacity: 0.75;
+			transform: none;
+			transition: all 150ms ease;
+		}
+
+		h4 {
+			color: #999;
+			font-size: 16px;
+			font-weight: normal;
+		}
+	}
+
+	&:not(.showCode) .loadingOverlay,
+	&.initialLoad .loadingOverlay {
+		left: 50%;
+		top: 50%;
+	}
+}
+
+.output {
+	color: #444;
+
+	h1 {
+		color: #444;
+	}
+}
