@@ -7,12 +7,12 @@ import { parseStackTrace } from './errors';
 import style from './style.module.less';
 import REPL_CSS from '!!raw-loader!./examples.css';
 
-import simpleCounterExample from '!!file-loader!./examples/simple-counter.js';
-import counterWithHtmExample from '!!file-loader!./examples/counter-with-htm.js';
-import todoExample from '!!file-loader!./examples/todo-list.js';
-import repoListExample from '!!file-loader!./examples/github-repo-list.js';
-import contextExample from '!!file-loader!./examples/context.js';
-import spiralExample from '!!file-loader!./examples/spiral.js';
+import simpleCounterExample from '!!file-loader!./examples/simple-counter.txt';
+import counterWithHtmExample from '!!file-loader!./examples/counter-with-htm.txt';
+import todoExample from '!!file-loader!./examples/todo-list.txt';
+import repoListExample from '!!file-loader!./examples/github-repo-list.txt';
+import contextExample from '!!file-loader!./examples/context.txt';
+import spiralExample from '!!file-loader!./examples/spiral.txt';
 
 const EXAMPLES = [
 	{
