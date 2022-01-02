@@ -1,6 +1,7 @@
 import { h, Component, createRef, createContext, options } from 'preact';
 import {
 	useState,
+	useReducer,
 	useEffect,
 	useContext,
 	useRef,
@@ -12,11 +13,14 @@ import cx from '../../../lib/cx';
 import style from './style.module.less';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
-import Hydrator from '../../../lib/hydrator';
 import ContentRegion from '../../content-region';
 import widgets from '../../widgets';
 import { usePage } from '../page';
 import { useStore, storeCtx } from '../../store-adapter';
+import { InjectPrerenderData } from '../../../lib/prerender-data';
+import { getContent } from '../../../lib/content';
+
+const IS_PRERENDERING = typeof window === 'undefined';
 
 const TutorialContext = createContext(null);
 
@@ -159,21 +163,32 @@ function TutorialView({
 
 	const tutorial = useContext(TutorialContext);
 
+	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
+
 	const { lang, solved } = useStore(['lang', 'solved']).state;
 	const fullPath = route.path.replace(':step?', step || route.first);
 	const page = usePage({ path: fullPath }, lang);
 	const title = (page && page.meta.title) || route.title;
 	const solvable = page && page.meta.solvable === true;
-	loading = !!loading || !!page.loading;
+	const hasCode = page && page.meta.code !== false && step && step !== 'index';
+	const showCode = showCodeOverride && hasCode;
+	loading =
+		!page.html || (showCode && (!!page.loading || !Runner || !CodeEditor));
 	const initialLoad = !page.html || !Runner || !CodeEditor;
 
 	useEffect(() => {
-		if (!loading) {
+		if (!loading && !initialLoad) {
 			content.current.scrollTo(0, 0);
 		}
-	}, [loading]);
+	}, [loading, initialLoad]);
 
-	const reRun = useCallback(e => {
+	useEffect(() => {
+		if (page.meta && page.meta.next) {
+			getContent([lang, page.meta.next]);
+		}
+	}, [page.meta && page.meta.next, fullPath]);
+
+	const reRun = useCallback(() => {
 		let code = tutorial.state.code;
 		tutorial.setState({ code: code + ' ' }, () => {
 			tutorial.setState({ code });
@@ -212,13 +227,18 @@ function TutorialView({
 	}, []);
 
 	return (
-		<ReplWrapper {...{ loading, initialLoad, solvable, solved }}>
+		<ReplWrapper
+			loading={loading}
+			subtleLoading={page.loading}
+			initialLoad={initialLoad}
+			solvable={solvable}
+			solved={solved}
+			showCode={showCode}
+		>
 			<div class={style.tutorialWindow} ref={content}>
 				<h1 class={style.title}>{title}</h1>
 
-				<Hydrator
-					component={ContentRegion}
-					boot={!loading && !!page.html}
+				<ContentRegion
 					name={page.current}
 					content={page.html}
 					components={TUTORIAL_COMPONENTS}
@@ -232,7 +252,12 @@ function TutorialView({
 						</a>
 					)}
 					{tutorial.state['repl-final'] && (
-						<button class={style.helpButton} onClick={tutorial.help}>
+						<button
+							class={style.helpButton}
+							onClick={tutorial.help}
+							disabled={!showCode}
+							title="Get help with this example"
+						>
 							Help
 						</button>
 					)}
@@ -282,6 +307,24 @@ function TutorialView({
 					]}
 				</div>
 			</div>
+
+			{hasCode && (
+				<button
+					class={style.toggleCode}
+					title="Toggle Code"
+					onClick={toggleCode}
+				>
+					<span>Toggle Code</span>
+				</button>
+			)}
+
+			<InjectPrerenderData
+				name={fullPath}
+				data={{
+					html: page.html,
+					meta: { ...page.meta }
+				}}
+			/>
 		</ReplWrapper>
 	);
 }
@@ -296,25 +339,32 @@ const REPL_CSS = `
 	}
 `;
 
-function ReplWrapper({ loading, solvable, solved, initialLoad, children }) {
+function ReplWrapper({
+	loading,
+	subtleLoading,
+	solvable,
+	solved,
+	initialLoad,
+	showCode,
+	children
+}) {
 	return (
 		<div class={style.tutorial}>
-			<progress-bar showing={!!loading} />
+			<progress-bar showing={!!(loading || subtleLoading)} />
 			<style>{REPL_CSS}</style>
 			<div
 				class={cx(
 					style.tutorialWrapper,
 					solvable && style.solvable,
 					solved && style.solved,
-					initialLoad && style.loading
+					initialLoad && style.loading,
+					showCode && style.showCode
 				)}
 			>
 				{children}
-				{loading && (
-					<div key="loading" class={style.loadingOverlay}>
-						<h4>Loading...</h4>
-					</div>
-				)}
+			</div>
+			<div class={cx(style.loadingOverlay, loading && style.loading)}>
+				<h4>Loading...</h4>
 			</div>
 		</div>
 	);
@@ -356,6 +406,8 @@ function TutorialSetupBlock({ code }) {
 	// Only run when we get new setup code.
 	// Note: we run setup code as a component to allow hook usage:
 	const Setup = useCallback(() => {
+		if (IS_PRERENDERING) return () => {};
+
 		const tutorial = useContext(TutorialContext);
 		const store = useContext(storeCtx);
 		const require = m => tutorial.runner.current.realm.globalThis._require(m);
@@ -391,7 +443,7 @@ function TutorialSetupBlock({ code }) {
 			tutorial.useRealm,
 			tutorial.useError,
 			store,
-			tutorial.runner.current.realm,
+			tutorial.runner.current && tutorial.runner.current.realm,
 			require
 		);
 
