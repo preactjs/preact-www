@@ -408,7 +408,7 @@ function TutorialSetupBlock({ code }) {
 	// Only run when we get new setup code.
 	// Note: we run setup code as a component to allow hook usage:
 	const Setup = useCallback(() => {
-		if (IS_PRERENDERING) return () => {};
+		if (IS_PRERENDERING) return null;
 
 		const tutorial = useContext(TutorialContext);
 		const store = useContext(storeCtx);
