@@ -10,14 +10,15 @@ import { useLanguage } from '../../lib/i18n';
  *
  * const api = u => fetch(`https://api.github.com${u}`).then(r=>r.json());
  * async function getContribs(org, repo, page=1) {
- *   let c = (await api(`/repos/${org}/${repo}/contributors?per_page=100&page=${page}`)).map(u => u.login);
+ *   let c = (await api(`/repos/${org}/${repo}/contributors?per_page=100&page=${page}`)).filter(u => u.contributions>1).map(u => u.login);
  *   if (c.length===100) c = c.concat(await getContribs(org, repo, page+1));
  *   return c;
  * }
  * const repos = await api('/orgs/preactjs/repos?per_page=100');
- * new Set((await Promise.all(repos.map(r => getContribs(r.owner.login, r.name)))).flat().filter(n => !n.endsWith('-bot') && !n.endsWith('[bot]'));
+ * const list = new Set((await Promise.all(repos.map(r => getContribs(r.owner.login, r.name)))).flat().filter(n => !n.endsWith('-bot') && !n.endsWith('[bot]')));
+ * copy(JSON.stringify(list, null, 2));
  *
- * And copy the results into /assets/contributors.json
+ * And paste the results into src/assets/contributors.json
  */
 
 /**
