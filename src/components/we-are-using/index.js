@@ -18,6 +18,11 @@ const companies = [
 		href: 'https://im.qq.com/',
 		logo: 'qq.png'
 	},
+  {
+		name: 'Etsy',
+		href: 'https://etsy.com',
+		logo: 'etsy.svg'
+	},
 	{
 		name: 'Sogou wenwen',
 		href: 'https://wenwen.sogou.com/',
@@ -269,10 +274,10 @@ const companies = [
 		logo: 'glance.png'
 	},
 	{
-		name: 'Etsy',
-		href: 'https://etsy.com',
-		logo: 'etsy.svg'
-	}
+		name: 'Snapp!',
+		href: 'https://snapp.ir/',
+		logo: 'snapp.png'
+  }
 ];
 
 // Grid of companies using Preact
