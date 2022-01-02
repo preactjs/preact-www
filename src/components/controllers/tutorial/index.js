@@ -365,7 +365,12 @@ function ReplWrapper({
 			>
 				{children}
 			</div>
-			<div class={cx(style.loadingOverlay, loading && style.loading)}>
+			<div
+				class={cx(
+					style.loadingOverlay,
+					!IS_PRERENDERING && loading && style.loading
+				)}
+			>
 				<h4>Loading...</h4>
 			</div>
 		</div>
