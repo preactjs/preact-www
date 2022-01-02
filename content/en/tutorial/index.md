@@ -19,11 +19,11 @@ Perhaps you've come across Preact at some point, and wondered what's so
 special about it? Why do high-traffic sites like IKEA, Bing, Etsy and
 [others] use Preact?
 
-The simplest answer is that Preact provides an effective architecture for
-building web applications in a uniquely small package. In just 3kb of
-JavaScript code ([1 page of text](https://unpkg.com/preact)),
-Preact provides the tools needed to construct complex applications by
-creating and assembling smaller reusable pieces.
+The simplest answer is that Preact provides the tools needed to construct
+complex web applications out of small reusable pieces called Components.
+What makes Preact unique is that it provides these tools in a uniquely
+small package: just 3kb of JavaScript code, or around
+[one page of text](https://unpkg.com/preact).
 
 If that sounds compelling to you, this tutorial is a great place to start.
 You'll learn not only how to build applications using Preact, but also how
