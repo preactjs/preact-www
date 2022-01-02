@@ -7,10 +7,14 @@
 }
 
 .link() {
-	background: linear-gradient(currentColor, currentColor);
-	background-position: center bottom;
-	background-size: 100% 0.09rem;
-	background-repeat: no-repeat;
+	text-decoration-skip-ink: auto;
+	text-decoration: underline;
+	text-decoration-color: var(--color-table-border);
+	text-decoration-thickness: 1px;
+	
+	&:hover, &:focus {
+		text-decoration-color: currentColor;
+	}
 }
 
 .scroll() {

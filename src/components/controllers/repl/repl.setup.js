@@ -3,6 +3,7 @@ import * as hooks from 'preact/hooks';
 import * as debug from 'preact/debug';
 import * as compat from 'preact/compat';
 import * as htm from 'htm';
+import * as htmPreact from 'htm/preact';
 import * as preactCustomElement from 'preact-custom-element';
 
 let modules = {};
@@ -14,6 +15,7 @@ let moduleCache = {
 	react: compat,
 	'react-dom': compat,
 	htm,
+	'htm/preact': htmPreact,
 	'preact-custom-element': preactCustomElement
 };
 

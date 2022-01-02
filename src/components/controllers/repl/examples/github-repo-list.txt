@@ -24,14 +24,10 @@ export default function Example() {
 const Result = result => (
 	<div class="list-item">
 		<div>
-			<a
-				href={result.html_url}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
+			<a href={result.html_url} target="_blank" rel="noopener noreferrer">
 				{result.full_name}
 			</a>
-			{" - "}
+			{' - '}
 			<strong>{result.stargazers_count}</strong>
 		</div>
 		<p>{result.description}</p>
