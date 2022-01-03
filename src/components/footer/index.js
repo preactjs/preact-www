@@ -6,22 +6,39 @@ import style from './style.module.less';
 import { useLanguage } from '../../lib/i18n';
 
 /*
- * To update this list, on https://github.com/preactjs/preact/graphs/contributors run:
- * $$('.contrib-person [data-hovercard-type="user"]:nth-of-type(2)').map(p=>p.textContent).filter(x => !/-bot$/.test(x)).join(' ')
+ * To update the list, run:
+ *
+ * const api = u => fetch(`https://api.github.com${u}`).then(r=>r.json());
+ * async function getContribs(org, repo, page=1) {
+ *   let c = (await api(`/repos/${org}/${repo}/contributors?per_page=100&page=${page}`)).filter(u => u.contributions>1).map(u => u.login);
+ *   if (c.length===100) c = c.concat(await getContribs(org, repo, page+1));
+ *   return c;
+ * }
+ * const repos = await api('/orgs/preactjs/repos?per_page=100');
+ * const list = new Set((await Promise.all(repos.map(r => getContribs(r.owner.login, r.name)))).flat().filter(n => !n.endsWith('-bot') && !n.endsWith('[bot]')));
+ * copy(JSON.stringify(list, null, 2));
+ *
+ * And paste the results into src/assets/contributors.json
  */
-const CONTRIBS = 'developit marvinhagemeister andrewiggins k1r0s cristianbote sventschui JoviDeCroock AlexGalays rpetrich valotas robertknight wardpeet kruczy pmkroeker NekR ForsakenHarmony jviide juicelink billneff79 yaodingyd prateekbh vutran rmacklin impronunciable zouhir scurker SolarLiner mseddon vaneenige lukeed kristoferbaxter reznord'.split(
-	' '
-);
 
 /**
  * Display a random contributor of the list above.
  * @param {any[]} deps
  */
-export function useContributors(deps) {
-	const [value, setValue] = useState(CONTRIBS[new Date().getMonth()]);
+function useContributors(deps) {
+	const [contributors, setContributors] = useState([]);
+	const [value, setValue] = useState(
+		contributors ? contributors[new Date().getMonth()] : undefined
+	);
 	useEffect(() => {
-		setValue(CONTRIBS[(Math.random() * (CONTRIBS.length - 1)) | 0]);
-	}, deps);
+		fetch('/assets/contributors.json')
+			.then(r => r.json())
+			.then(d => setContributors(d));
+	}, []);
+	useEffect(() => {
+		if (contributors)
+			setValue(contributors[(Math.random() * (contributors.length - 1)) | 0]);
+	}, [...deps, contributors]);
 	return value;
 }
 
@@ -56,15 +73,17 @@ export default function Footer() {
 						rel="noopener noreferrer"
 					>
 						lovely people
-					</a>{' '}
-					like{' '}
-					<a
-						href={'https://github.com/' + contrib}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						@{contrib}
 					</a>
+					{contrib && [
+						' like ',
+						<a
+							href={'https://github.com/' + contrib}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							@{contrib}
+						</a>
+					]}
 					.
 				</p>
 			</div>
