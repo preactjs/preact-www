@@ -132,7 +132,7 @@ first rendered.
 
 
 ```js:setup
-useResult(function () {
+useRealm(function (realm) {
   var win = realm.globalThis;
   var prevConsoleLog = win.console.log;
   win.console.log = function(m, s) {
