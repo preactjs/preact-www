@@ -4,7 +4,7 @@ title: Congratulations!
 solvable: false
 ---
 
-You've completed the Preact tutorial.
+You've completed the Preact tutorial, all feedback is welcome in [this discussion](https://github.com/preactjs/preact-www/discussions/815).
 
 Feel free to play around a bit more!
 
