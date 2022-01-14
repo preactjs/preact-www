@@ -4,13 +4,21 @@ title: Congratulations!
 solvable: false
 ---
 
-You've completed the Preact tutorial, all feedback is welcome in [this discussion](https://github.com/preactjs/preact-www/discussions/815).
+You've completed the Preact tutorial!
 
-Feel free to play around a bit more!
+Feel free to play around a more with the demo code.
+
+### Next Steps
 
 - [Learn more about class components](/guide/v10/components)
 - [Learn more about hooks](/guide/v10/hooks)
 - [Create your own project](https://vite.new/preact)
+
+> **We want your feedback!**
+>
+> Do you feel like you learned Preact? Did you get stuck?
+>
+> Feedback is welcome in [this discussion](https://github.com/preactjs/preact-www/discussions/815).
 
 
 
@@ -51,7 +59,7 @@ export default function ToDos() {
         if (todo.id === id) {
           todo = { ...todo, done: !todo.done }
         }
-        return todo;
+        return todo
       })
     })
   }
