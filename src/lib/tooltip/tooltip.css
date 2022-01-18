@@ -11,11 +11,25 @@
 
 .tooltip-content {
 	position: absolute;
-	transform: translate(-25%, -175%);
+	transform: translate(-50%, -110%);
 	width: 220px;
 	background-color: black;
 	border-radius: 4px;
 	padding: 6px;
 	text-align: center;
 	z-index: 1;
+}
+
+.tooltip-content:before {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-top: 8px solid black;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	transform: translate(-50%, 0);
+	left: 50%;
+	bottom: -8px;
 }

@@ -9,7 +9,10 @@ export const WithTooltip = ({ children, tooltip, showTooltip = true }) => {
 
 	function handleMouseOver() {
 		const rect = wrapper.current.getBoundingClientRect();
-		setPos({ top: rect.top, left: rect.left });
+		const header = document
+			.querySelector('#app > header')
+			.getBoundingClientRect();
+		setPos({ top: rect.y - header.height, left: rect.left + rect.width / 2 });
 	}
 
 	return (
