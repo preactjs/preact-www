@@ -1,16 +1,9 @@
-.tooltip-wrapper {
-	position: relative;
-}
-
-.tooltip-enabled:hover .tooltip-container {
+.tooltip-enabled:hover + .tooltip-container {
 	opacity: 1;
 }
 
 .tooltip-container {
 	position: absolute;
-	top: -100%;
-	left: 50%;
-	transform: translate(-50%, 0);
 	pointer-events: none;
 	opacity: 0;
 	transition: 200ms ease-in-out opacity;
@@ -18,7 +11,7 @@
 
 .tooltip-content {
 	position: absolute;
-	transform: translate(-50%, -75%);
+	transform: translate(-25%, -175%);
 	width: 220px;
 	background-color: black;
 	border-radius: 4px;

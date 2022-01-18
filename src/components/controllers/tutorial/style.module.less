@@ -25,6 +25,7 @@
 		display: flex;
 		align-content: stretch;
 		justify-content: stretch;
+		position: relative;
 
 		&.solvable:not(&.solved) .nextButton,
 		&.solvable:not(&.solved) .nextButton:hover {
@@ -41,7 +42,6 @@
 		}
 
 		.tutorialWindow {
-			position: relative;
 			background: var(--color-page-bg);
 			color: var(--color-heading);
 			display: flex;
