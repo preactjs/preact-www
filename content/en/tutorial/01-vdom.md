@@ -119,7 +119,7 @@ can make it clearer what parts of your code are HTM/JSX elements, and what
 parts are plain JavaScript:
 
 ```js
-import html from 'htm/preact';
+import {html} from 'htm/preact';
 
 let maybeBig = Math.random() > .5 ? 'big' : 'small';
 
