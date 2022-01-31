@@ -24,7 +24,7 @@ not track changes to ref objects, so they can be used to store information
 during rendering, which can then be accessed later by any function with
 access to the ref object.
 
-We can see waht direct usage of the ref feature looks like without rendering
+We can see what direct usage of the ref feature looks like without rendering
 anything:
 
 ```js
@@ -88,7 +88,7 @@ export default class App extends Component {
 For function components, a `useRef()` hook provides a convenient way
 to create a ref and access that same ref on subsequent renders. The
 following example also shows how to use the `useEffect()` hook to
-invokes a callback after our component is rendered, in which our
+invoke a callback after our component is rendered, in which our
 ref's current value will then be set to the HTML input element:
 
 ```jsx
