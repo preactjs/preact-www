@@ -15,6 +15,15 @@ When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit 
 
 ---
 
+## Setting up new project
+
+Spinning up a new Preact app that uses TypeScript couldn't be more straightforward that it is thanks to [Preact CLI](https://github.com/preactjs/preact-cli). There's a dedicated [typescript template](https://github.com/preactjs-templates/typescript) that provides you with all necessary config so that you don't need to play with compiler options and can start coding right away.
+
+
+```
+npx preact-cli create typescript my-preact-typescript-project
+```
+
 ## TypeScript configuration
 
 TypeScript includes a full-fledged JSX compiler that you can use instead of Babel. Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
