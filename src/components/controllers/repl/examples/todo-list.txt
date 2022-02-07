@@ -1,6 +1,6 @@
 export default class TodoList extends Component {
 	state = { todos: [], text: '' };
-	setText = e => {
+	setText = (e) => {
 		this.setState({ text: e.target.value });
 	};
 	addTodo = () => {
@@ -11,11 +11,22 @@ export default class TodoList extends Component {
 	render({}, { todos, text }) {
 		return (
 			<form onSubmit={this.addTodo} action="javascript:">
-				<input value={text} onInput={this.setText} />
+				<label>
+					<span>Add Todo </span>
+					<input value={text} onInput={this.setText} />
+				</label>
 				<button type="submit">Add</button>
 				<ul>
-					{todos.map(todo => (
-						<li>{todo.text}</li>
+					{todos.map((todo, i) => (
+						<li
+							onDoubleClick={() => {
+								this.setState((oldState) => {
+									oldState.todos.splice(i, 1);
+									return oldState;
+								});
+							}}>
+							{todo.text}
+						</li>
 					))}
 				</ul>
 			</form>
