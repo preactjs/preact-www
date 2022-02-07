@@ -1,6 +1,6 @@
 export default class TodoList extends Component {
 	state = { todos: [], text: '' };
-	setText = (e) => {
+	setText = e => {
 		this.setState({ text: e.target.value });
 	};
 	addTodo = () => {
@@ -20,7 +20,7 @@ export default class TodoList extends Component {
 					{todos.map((todo, i) => (
 						<li
 							onDoubleClick={() => {
-								this.setState((oldState) => {
+								this.setState(oldState => {
 									oldState.todos.splice(i, 1);
 									return oldState;
 								});
