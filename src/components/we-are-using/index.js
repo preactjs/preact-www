@@ -34,6 +34,11 @@ const companies = [
 		logo: 'nytimes.png'
 	},
 	{
+		name: 'Globo',
+		href: 'https://globo.com/',
+		logo: 'globo.png'
+	},
+	{
 		name: 'Lyft',
 		href: 'https://lyft.com/',
 		logo: 'lyft.svg'
