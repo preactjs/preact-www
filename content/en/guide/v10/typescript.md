@@ -466,7 +466,7 @@ function Counter({ initialCount = 0 }) {
   // the initial state is of type Statetype.
   // Furthermore:
   // - state is of type StateType
-  // - dispatch is a function to dispath ActionType
+  // - dispatch is a function to dispatch ActionType
   const [state, dispatch] = useReducer(reducer, { count: initialCount });
 
   return (
