@@ -139,7 +139,7 @@ for now it's important to know that HTML elements like `<p>` are just one of
 _two_ types of Virtual DOM elements. The other type is a Component, which is
 a Virtual DOM element where the type is a function instead of a string like `p`.
 
-Components are the building block of Virtual DOM applications. For now, we'll
+Components are the building blocks of Virtual DOM applications. For now, we'll
 create a very simple component by moving our JSX into a function, which will be
 rendered for us so we don't need to write that last `render()` line anymore:
 

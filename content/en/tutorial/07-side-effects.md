@@ -76,7 +76,7 @@ Class components can also define side effects, by implementing any of
 the available [lifecycle methods] provided by Preact. Here are a
 few of the most commonly used lifecycle methods:
 
-| Lifecycle Method | When it runs: |
+| Lifecycle method | When it runs: |
 |:-----------------|:--------------|
 | `componentWillMount` | just before a component is first rendered
 | `componentDidMount` | after a component is first rendered
@@ -106,10 +106,10 @@ export default class App extends Component {
   render(props, state) {
     const { user } = state;
 
-    // If we haven't received data yet, show a loading indicator:
+    // if we haven't received data yet, show a loading indicator:
     if (!user) return <div>Loading...</div>
 
-    // We have data! Show the username we got back from the API:
+    // we have data! show the username we got back from the API:
     return (
       <div>
         <h2>Hello, {user.username}!</h2>

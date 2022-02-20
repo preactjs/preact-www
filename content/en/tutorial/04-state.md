@@ -45,7 +45,7 @@ class MyButton extends Component {
 ```
 
 Clicking the button calls `this.setState()`, which causes Preact to
-call the class' `render()` method again. Now that`this.state.clicked`
+call the class' `render()` method again. Now that `this.state.clicked`
 is `true`, the `render()` method returns a Virtual DOM tree containing
 the text "Clicked" instead of "No clicks yet", causing Preact to update
 the button's text in the DOM.
@@ -84,7 +84,7 @@ will return the exact same Array each time.
 > }
 > ```
 >
-> This is called callsite ordering, and it's the reason why hooks must
+> This is called call site ordering, and it's the reason why hooks must
 > always be called in the same order within a component, and cannot be
 > called conditionally or within loops.
 
@@ -125,7 +125,7 @@ chapter. We'll need to store a `count` number in state, and increment its value
 by `1` when a button is clicked.
 
 Since we used a function component in the previous chapter, it may be easiest to
-use Hooks, though you can pick whichever method of storing state you prefer.
+use hooks, though you can pick whichever method of storing state you prefer.
 
 
 <solution>

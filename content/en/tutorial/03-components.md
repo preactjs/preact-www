@@ -5,8 +5,8 @@ title: Components
 solvable: true
 ---
 
-As we aluded to in part one of this tutorial, the key building block
-in Virtual DOM applications is the Component. A Component is self-contained
+As we alluded to in part one of this tutorial, the key building block
+in Virtual DOM applications is the Component. A Component is a self-contained
 piece of an application that can be rendered as part of the Virtual DOM
 tree just like an HTML element. You can think of a Component like a function
 call: both are mechanisms that allow code reuse and indirection.
@@ -89,7 +89,7 @@ render(<MediaPlayer playing={true} />, document.body)
 
 > **Remember:** `{curly}` braces in JSX let us jump back into plain JavaScript.
 > Here we're using a [ternary] expression to show different buttons based on
-> on the value of a `playing` prop.
+> the value of the `playing` prop.
 
 
 ### Component Children

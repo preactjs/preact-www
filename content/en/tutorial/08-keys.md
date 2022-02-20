@@ -8,7 +8,7 @@ solvable: true
 In chapter one, we saw how Preact uses a Virtual DOM to calculate what
 changed between two trees described by our JSX, then applies those
 changes to the HTML DOM to update pages. This works well for most
-scenarios, but occasionally requires that Preact "guess" about how
+scenarios, but occasionally requires that Preact "guesses" how
 the shape of the tree has changed between two renders.
 
 The most common scenario where Preact's guess is likely to be different
@@ -259,7 +259,7 @@ export default function ToDos() {
 ```
 
 Remember: if you genuinely can't find a stable key, it's better to omit
-the `key` prop entirely than it to use an index as a key.
+the `key` prop entirely than to use an index as a key.
 
 
 ## Try it!

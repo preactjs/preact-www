@@ -101,11 +101,11 @@ authentication state (whether the user is logged in or not).
 To do this, we can create a context to hold the information, which
 we'll call `AuthContext`. The value for AuthContext will be an object
 with a `user` property containing our signed-in user, along with
-`login(user)` and `logout()` methods to modify that state.
+a `setUser` method to modify that state.
 
 ```jsx
 import { createContext } from 'preact'
-import { useState, useContext } from 'preact/hooks'
+import { useState, useMemo, useContext } from 'preact/hooks'
 
 const AuthContext = createContext()
 
@@ -155,10 +155,10 @@ context providers can be nested to "override" their value within a Virtual DOM
 subtree. Imagine a web-based email app, where various parts of the user interface
 are shown based on URL paths:
 
-> `/inbox`: show the inbox
-> `/inbox/compose`: show inbox and a new message
-> `/settings`: show settings
-> `/settings/forwarding`: show forwarding settings
+> - `/inbox`: show the inbox
+> - `/inbox/compose`: show inbox and a new message
+> - `/settings`: show settings
+> - `/settings/forwarding`: show forwarding settings
 
 We can create a `<Route path="..">` component that renders a Virtual DOM tree
 only when the current path matches a given path segment. To simplify defining
@@ -167,6 +167,7 @@ within its subtree to exclude the part of the path that was matched.
 
 ```jsx
 import { createContext } from 'preact'
+import { useContext } from 'preact/hooks'
 
 const Path = createContext(location.pathname)
 
