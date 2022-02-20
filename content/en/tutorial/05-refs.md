@@ -30,17 +30,17 @@ anything:
 ```js
 import { createRef } from 'preact'
 
-// Create a ref:
+// create a ref:
 const ref = createRef('initial value')
 // { current: 'initial value' }
 
-// Read a ref's current value:
+// read a ref's current value:
 ref.current === 'initial value'
 
-// Update a ref's current value:
+// update a ref's current value:
 ref.current = 'new value'
 
-// Pass refs around:
+// pass refs around:
 console.log(ref) // { current: 'new value' }
 ```
 
@@ -52,13 +52,13 @@ we can use the ref's current value to access and modify the HTML element:
 ```jsx
 import { createRef } from 'preact';
 
-// Create a ref:
+// create a ref:
 const input = createRef()
 
-// Pass the ref as a prop on a Virtual DOM element:
+// pass the ref as a prop on a Virtual DOM element:
 render(<input ref={input} />, document.body)
 
-// Access the associated DOM element:
+// access the associated DOM element:
 input.current // an HTML <input> element
 input.current.focus() // focus the input!
 ```

@@ -6,7 +6,7 @@ solvable: true
 ---
 
 JavaScript is a flexible interpreted language, which means it's possible (and even easy)
-encounter errors at runtime. Whether the result of an unexpected scenario or a mistake
+to encounter errors at runtime. Whether the result of an unexpected scenario or a mistake
 in code we've written, it's important to be able to monitor errors and implement some form
 of recovery or graceful error handling.
 

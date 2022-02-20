@@ -8,7 +8,7 @@ solvable: false
 
 Have you ever wondered what Preact is all about, or how it works?
 
-Maybe you've been creating awesome websites using Wordpress, designing
+Maybe you've been creating awesome websites using WordPress, designing
 graphics with D3, or building helpful interactive forms with jQuery.
 At some point, the JavaScript you've written became complex enough that
 it was difficult to manage - remembering which file controls part of a

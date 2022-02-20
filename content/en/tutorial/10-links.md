@@ -6,7 +6,7 @@ solvable: false
 
 You've completed the Preact tutorial!
 
-Feel free to play around a more with the demo code.
+Feel free to play around a bit more with the demo code.
 
 ### Next Steps
 
@@ -47,7 +47,7 @@ export default function ToDos() {
 
   // every time todos changes...
   useEffect(() => {
-    // ... save the list to localStorage:
+    // ...save the list to localStorage:
     localStorage.todos = JSON.stringify(todos)
     // (try reloading the page to see saved todos!)
   }, [todos])
