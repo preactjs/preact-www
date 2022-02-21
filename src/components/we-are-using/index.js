@@ -251,7 +251,7 @@ const companies = [
 	{
 		name: 'SQL Frames',
 		href: 'https://sqlframes.com/',
-		logo: 'sqlframes.png'
+		logo: 'sqlframes.svg'
 	}
 ];
 
