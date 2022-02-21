@@ -247,6 +247,11 @@ const companies = [
 		name: 'Snapp!',
 		href: 'https://snapp.ir/',
 		logo: 'snapp.png'
+	},
+	{
+		name: 'SQL Frames',
+		href: 'https://sqlframes.com/',
+		logo: 'sqlframes.png'
 	}
 ];
 
