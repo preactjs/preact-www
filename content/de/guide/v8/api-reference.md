@@ -75,8 +75,6 @@ class MeineKomponente extends Component {
 
 ## `Preact.render()`
 
-> No
-
 `render(component, containerNode, [replaceNode])`
 
 Rendere eine Preact-Komponente in den `containerNode` DOM-Knoten. Gibt eine Referenz zum gerenderten DOM-Knoten aus.
