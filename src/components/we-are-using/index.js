@@ -247,6 +247,11 @@ const companies = [
 		name: 'Snapp!',
 		href: 'https://snapp.ir/',
 		logo: 'snapp.png'
+	},
+	{
+		name: 'Adyen',
+		href: 'https://www.adyen.com/',
+		logo: 'adyen.svg'
 	}
 ];
 
