@@ -1,19 +1,46 @@
 @import '~style/helpers';
 
+.banner {
+	background: #38235c;
+	color: white;
+
+	padding: 0.5rem;
+
+	a {
+		color: white;
+	}
+
+	b {
+		color: #ffd600;
+	}
+}
+
+.outer {
+	display: flex;
+	justify-content: center;
+	height: @header-height;
+	transition: all 250ms ease;
+	transform: translateZ(0);
+
+	.open & {
+		justify-content: space-between;
+		overflow-scrolling: touch;
+		height: var(--vh);
+	}
+}
+
 .header {
 	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
-	height: @header-height;
 	padding: 0;
 	background: var(--color-brand);
 	z-index: 500;
 	overflow: visible;
 	text-align: center;
-	transition: all 250ms ease;
-	transform: translateZ(0);
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 
 	@media (max-width: @header-mobile-breakpoint) {
@@ -21,7 +48,7 @@
 
 		&.open {
 			background: #222;
-			height: var(--vh);
+
 			overflow: auto;
 			justify-content: space-between;
 			overflow-scrolling: touch;
