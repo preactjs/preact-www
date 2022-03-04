@@ -7,7 +7,7 @@ permalink: '/about/addons-libraries'
 
 Preact ile oluşturulmuş mükemmel modül koleksiyonu.
 > :information_desk_person: _Kendin için bir tane oluşturdun mu?
-> [Sende Ekle!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
+> [Sende Ekle!](https://github.com/developit/preact-www/blob/master/content/tr/about/libraries-addons.md)_
 
 ### Eklentiler
 - :raised_hands: [**preact-compat**](https://git.io/preact-compat): Herhangi React kütüphanesini Preact ile kullan *([tam örnek](http://git.io/preact-compat-example))*

@@ -9,7 +9,7 @@ Essa página lista diversos <i>demos</i> e exemplos que você pode utilizar para
 
 
 > :information_desk_person: _Criou algo com Preact?
-> [Adicione aqui!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Adicione aqui!](https://github.com/developit/preact-www/blob/master/content/pt-br/about/demos-examples.md)_
 
 
 ## Aplicações completos

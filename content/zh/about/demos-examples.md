@@ -8,7 +8,7 @@ permalink: '/about/demos-examples'
 此页列出了一些你可以用来学习 Preact 的示例
 
 > :information_desk_person: _构建一个你自己的模块?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Add it!](https://github.com/developit/preact-www/blob/master/content/zh/about/demos-examples.md)_
 
 
 ## 完整的 app

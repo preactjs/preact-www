@@ -8,7 +8,7 @@ permalink: '/about/demos-examples'
 Diese Seite zeigt einige Demos und Beispiele, die zum Erlernen von Preact benutzt werden können.
 
 > :information_desk_person: _Eigenes Beispiel erstellt?
-> [Einfach hinzufügen!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Einfach hinzufügen!](https://github.com/developit/preact-www/blob/master/content/de/about/demos-examples.md)_
 
 
 ## Vollständige Apps
