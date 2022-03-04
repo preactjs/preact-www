@@ -8,14 +8,14 @@ permalink: '/about/demos-examples'
 Bu sayfada Preact öğrenmek için kullanabileceğiniz demolar ve örnekler listelenmiştir.
 
 > :information_desk_person: _Sizin de mi bir örneğiniz var ?
-> [Ekleyin!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Ekleyin!](https://github.com/preactjs/preact-www/blob/master/content/tr/about/demos-examples.md)_
 
 
 ## Tamamlanmış Uygulamalar
 
 [**Preact İnternet Sitesi** _(preactjs.com)_](https://preactjs.com)  
 Tabii ki de bu site Preact ile geliştirildi.  
-[Github Projesi](https://github.com/developit/preact-www)
+[Github Projesi](https://github.com/preactjs/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Preact & Material Design Lite kullanarak geliştirildi.

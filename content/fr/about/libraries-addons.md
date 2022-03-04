@@ -8,7 +8,7 @@ permalink: '/about/addons-libraries'
 Une liste de modules construit pour fonctionner parfaitement avec Preact.
 
 > :information_desk_person: _Vous avez construit le vôtre ?
-> [ajoutez-le !](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
+> [ajoutez-le !](https://github.com/preactjs/preact-www/blob/master/content/fr/about/libraries-addons.md)_
 
 
 ### Modules complémentaires

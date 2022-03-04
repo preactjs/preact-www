@@ -24,4 +24,4 @@ Algumas funcionalidade do React foram intencionalmente omitidas do Preact, ou po
     - Children, já que o Preact sempre compacta _children_ como um `Array`
     - Eventos Sintéticos, já que o Preact não tenta resolver problemas em browsers mais velhos, como IE8
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/

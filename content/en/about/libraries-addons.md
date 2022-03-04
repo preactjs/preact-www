@@ -9,7 +9,7 @@ description: 'Collection of libraries and addons that work well with Preact'
 A collection of modules built to work wonderfully with Preact.
 
 > :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
+> [Add it!](https://github.com/preactjs/preact-www/blob/master/content/en/about/libraries-addons.md)_
 
 ## Add-Ons
 

@@ -24,5 +24,5 @@ Algunas funcionalidades de React son omitidas intencionalmente en Preact, ya que
     - Children, ya que Preact siempre empaqueta los children como un Array
     - Synthetic Events, ya que Preact no tiene soporte para navegadores antiguos como IE8
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/
 [¿Qué falta?]: /guide/differences-to-react#whats-missing
