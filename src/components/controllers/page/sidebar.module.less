@@ -105,10 +105,10 @@
 	@media @sidebar-break {
 		@supports (position: sticky) {
 			position: sticky;
-			height: calc(100vh - @header-height);
+			height: calc(100vh - @header-and-banner-height);
 			overflow: auto;
 		}
-		top: @header-height;
+		top: @header-and-banner-height;
 		padding-bottom: 0;
 		width: 100%;
 	}
