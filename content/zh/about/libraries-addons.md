@@ -8,7 +8,7 @@ permalink: '/about/addons-libraries'
 
 此页收集了一些 Preact 的库与插件.
 > :information_desk_person: _构建一个你自己的库？
-> [把它加到这里！](https://github.com/developit/preact-www/blob/master/content/zh/about/libraries-addons.md)_
+> [把它加到这里！](https://github.com/preactjs/preact-www/blob/master/content/zh/about/libraries-addons.md)_
 
 
 ### 插件（Add-Ons）

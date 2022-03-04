@@ -22,4 +22,4 @@ Preact 实现的几个关键目标:
     - Children，由于 Preact 总是将子节点作为数组
     - Synthetic Events，由于 Preact 不需要去兼容老板本的浏览器，如 IE8
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/

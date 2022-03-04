@@ -5,7 +5,7 @@ permalink: '/guide/progressive-web-apps'
 
 # Progressive Web Apps
 
-Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://developers.google.com/web/progressive-web-apps/), für die schnelles Laden und rasche Interaktivitätsmöglichkeiten erwünscht sind. [Preact CLI](https://github.com/developit/preact-cli) kodifiziert dies in einem schnellen Baukastenwerkzeug, dass von Grund auf eine PWA (Progressive Web App) mit einem [Lighthouse][LH]-Score von 100 schafft.
+Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://developers.google.com/web/progressive-web-apps/), für die schnelles Laden und rasche Interaktivitätsmöglichkeiten erwünscht sind. [Preact CLI](https://github.com/preactjs/preact-cli) kodifiziert dies in einem schnellen Baukastenwerkzeug, dass von Grund auf eine PWA (Progressive Web App) mit einem [Lighthouse][LH]-Score von 100 schafft.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 
@@ -94,7 +94,7 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
 ## Preact CLI
 
-[Preact CLI](https://github.com/developit/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, das eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten konzentrieren kann.
+[Preact CLI](https://github.com/preactjs/preact-cli/) ist das offizielle Baukastenwerkzeug für Preact-Projekte. Es besteht aus einem minimalstabhängigen Kommandozeilenwerkzeug, das eigenen Preact-Code in eine hochoptimierte Progressive Web App verpackt. Preact CLI zielt darauf ab, alle obengenannten Empfehlungen zu automatisieren, damit man sich einzig und allein auf das Erstellen von großartigen Komponenten konzentrieren kann.
 
 Anbei einige Funktionen, die Preact CLI mitliefert:
 
@@ -105,4 +105,4 @@ Anbei einige Funktionen, die Preact CLI mitliefert:
 - Vorzeitiges Rendern, dass zu schnellen "Time To First Paint"-Resultaten führt
 - Bedingungsweises Laden von Polyfills, falls diese benötigt werden
 
-Da [Preact CLI](https://github.com/developit/preact-cli/) im Inneren von [Webpack](https://webpack.js.org) angetrieben wird, kann man eine `preact.config.js`-Datei definieren und somit den Build-Prozess auf seine eigenen Anforderungen genau abstimmen. Sollte man also Anpassungen vornehmen, kann man immer noch die Vorteile einzelner wundervollen Standardeinstellungen nutzen. Außerdem kann man so einfach Aktualisierungen vornehmen, sollte eine neue Version von `preact-cli` veröffentlich werden.
+Da [Preact CLI](https://github.com/preactjs/preact-cli/) im Inneren von [Webpack](https://webpack.js.org) angetrieben wird, kann man eine `preact.config.js`-Datei definieren und somit den Build-Prozess auf seine eigenen Anforderungen genau abstimmen. Sollte man also Anpassungen vornehmen, kann man immer noch die Vorteile einzelner wundervollen Standardeinstellungen nutzen. Außerdem kann man so einfach Aktualisierungen vornehmen, sollte eine neue Version von `preact-cli` veröffentlich werden.

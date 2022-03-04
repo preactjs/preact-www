@@ -9,14 +9,14 @@ Essa página lista diversos <i>demos</i> e exemplos que você pode utilizar para
 
 
 > :information_desk_person: _Criou algo com Preact?
-> [Adicione aqui!](https://github.com/developit/preact-www/blob/master/content/pt-br/about/demos-examples.md)_
+> [Adicione aqui!](https://github.com/preactjs/preact-www/blob/master/content/pt-br/about/demos-examples.md)_
 
 
 ## Aplicações completos
 
 [**Webiste do Preact ** _(preactjs.com)_](https://preactjs.com)
 Logicamente, esse <i>website</i> é construído com Preact.
-[Github Project](https://github.com/developit/preact-www)
+[Github Project](https://github.com/preactjs/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:
 Construído com Preact & Material Design Lite.

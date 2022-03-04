@@ -8,14 +8,14 @@ permalink: '/about/demos-examples'
 此页列出了一些你可以用来学习 Preact 的示例
 
 > :information_desk_person: _构建一个你自己的模块?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/zh/about/demos-examples.md)_
+> [Add it!](https://github.com/preactjs/preact-www/blob/master/content/zh/about/demos-examples.md)_
 
 
 ## 完整的 app
 
 [**Preact Website** _(preactjs.com)_](https://preactjs.com)  
 该网站基于 Preact。
-[Github Project](https://github.com/developit/preact-www)
+[Github Project](https://github.com/preactjs/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
 基于 Preact & Material Design Lite
