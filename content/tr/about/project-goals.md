@@ -25,4 +25,4 @@ amaçlarını karşılamıyor ya da Preact'in core işlev setine uymuyor.
     - Children (alt component'ler), Preact children component'lere Array muamelesi yapıyor
     - Synthetic Events, Preact IE8 gibi eski tarayıcılardaki sorunları patch'lemeye çalışmıyor
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/
