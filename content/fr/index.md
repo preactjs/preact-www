@@ -220,7 +220,7 @@ render(
 
 
 <section class="home-top">
-    <h1>Pret à vous lancer ?</h1>
+    <h1>Prêt à vous lancer ?</h1>
 </section>
 
 
