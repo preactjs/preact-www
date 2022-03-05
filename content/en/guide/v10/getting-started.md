@@ -133,7 +133,7 @@ To transpile JSX, you need a Babel plugin that converts it to valid JavaScript c
 
 At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing._
 
-If You're using [Preact CLI]() This is automatically done for you.
+> **Note:** If You're using [Preact CLI], these aliases are automatically handled for you by default.
 
 #### Aliasing in webpack
 
