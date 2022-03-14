@@ -3,6 +3,7 @@ import AMPSvg from './amp.svg';
 import TrivagoSvg from './trivago.svg';
 import SubstackSvg from './substack.svg';
 import AdyenSvg from './adyen.svg';
+import UploadIOSvg from './upload-io.svg';
 
 /**
  * Sponsors on the main page is a unique selling point of our
@@ -74,6 +75,22 @@ export default function Sponsors() {
 						width="90"
 						height="30"
 						style="height: 3rem; width: auto;"
+					/>
+				</a>
+			</li>
+			<li class={styles.sponsorItem}>
+				<a
+					href="https://upload.io/uploader"
+					title="Uploader"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<img
+						src={UploadIOSvg}
+						alt="Uploader"
+						width="170"
+						height="32"
+						style="height: 2.5rem; width: auto;"
 					/>
 				</a>
 			</li>
