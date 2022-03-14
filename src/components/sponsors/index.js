@@ -81,16 +81,16 @@ export default function Sponsors() {
 			<li class={styles.sponsorItem}>
 				<a
 					href="https://upload.io/uploader"
-					title="Upload"
+					title="Uploader"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					<img
 						src={UploadIOSvg}
-						alt="Upload"
-						width="90"
-						height="30"
-						style="height: 3rem; width: auto;"
+						alt="Uploader"
+						width="170"
+						height="32"
+						style="height: 2.5rem; width: auto;"
 					/>
 				</a>
 			</li>
