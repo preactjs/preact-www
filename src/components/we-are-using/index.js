@@ -258,6 +258,11 @@ const companies = [
 		href: 'https://sqlframes.com/',
 		logo: 'sqlframes.svg'
 	}
+	{
+		name: 'BestForAndroid',
+		href: 'https://bestforandroid.com/',
+		logo: 'https://bestforandroid.com/wp-content/uploads/2020/03/cropped-bestforandroid-1.png'
+	}
 ];
 
 // Grid of companies using Preact
