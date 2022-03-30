@@ -1,4 +1,4 @@
-if (!PRERENDER) {
+if (!import.meta.env.PRERENDER) {
 	const ga = (window.ga =
 		window.ga || ((...args) => (ga.q = ga.q || []).push(args)));
 

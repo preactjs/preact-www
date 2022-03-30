@@ -5,14 +5,14 @@ import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
 import style from './style.module.less';
-import REPL_CSS from '!!raw-loader!./examples.css';
+import REPL_CSS from './examples.css?raw';
 
-import simpleCounterExample from '!!file-loader!./examples/simple-counter.txt';
-import counterWithHtmExample from '!!file-loader!./examples/counter-with-htm.txt';
-import todoExample from '!!file-loader!./examples/todo-list.txt';
-import repoListExample from '!!file-loader!./examples/github-repo-list.txt';
-import contextExample from '!!file-loader!./examples/context.txt';
-import spiralExample from '!!file-loader!./examples/spiral.txt';
+import simpleCounterExample from './examples/simple-counter.txt?raw';
+import counterWithHtmExample from './examples/counter-with-htm.txt?raw';
+import todoExample from './examples/todo-list.txt?raw';
+import repoListExample from './examples/github-repo-list.txt?raw';
+import contextExample from './examples/context.txt?raw';
+import spiralExample from './examples/spiral.txt?raw';
 
 const EXAMPLES = [
 	{

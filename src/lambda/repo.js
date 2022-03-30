@@ -9,7 +9,7 @@ exports.handler = async event => {
 		body: JSON.stringify(result),
 		headers: {
 			'Cache-Control': 'public, s-maxage=1800',
-			'Access-Control-Allow-Origin': 'http://localhost:8080'
+			'Access-Control-Allow-Origin': 'http://localhost:3000'
 		}
 	};
 };

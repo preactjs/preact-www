@@ -1,4 +1,4 @@
-import MarkedWorker from 'workerize-loader?name=markdown.[hash:5]!./marked.worker';
+import MarkedWorker from './marked.worker?worker';
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
@@ -53,7 +53,7 @@ export function getContent([lang, name]) {
  * Synchronous version for use during prerendering.
  * Note: noop on the client to avoid pulling in libs.
  */
-export const getContentOnServer = PRERENDER
+export const getContentOnServer = import.meta.env.PRERENDER
 	? (route, lang) => {
 			if (route == '/') route = '/index';
 
@@ -110,7 +110,7 @@ export function parseContent(text) {
 	};
 }
 
-const markedWorker = !PRERENDER && new MarkedWorker();
+const markedWorker = !import.meta.env.PRERENDER && new MarkedWorker();
 function parseMarkdownContent(data) {
 	return markedWorker.convert(data.content).then(html => {
 		data.html = html;

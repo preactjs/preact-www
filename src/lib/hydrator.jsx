@@ -104,4 +104,4 @@ class Hydrator extends Component {
 	}
 }
 
-export default PRERENDER ? ServerHydrator : Hydrator;
+export default import.meta.envPRERENDER ? ServerHydrator : Hydrator;

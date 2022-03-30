@@ -46,7 +46,7 @@ export function useDescription(text) {
 
 export function usePage(route, lang) {
 	// on the server, pass data down through the tree to avoid repeated FS lookups
-	if (PRERENDER) {
+	if (import.meta.env.PRERENDER) {
 		const { content, html, meta } = getContentOnServer(route.path, lang);
 		return {
 			current: null,

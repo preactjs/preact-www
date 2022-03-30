@@ -1,8 +1,8 @@
 import { h, Component, createRef } from 'preact';
 import { memoize } from 'decko';
 import style from './style.module.less';
-import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
-import bundledModulesUrl from 'worker-plugin/loader?name=repl.setup&esModule!./repl.setup.js';
+import ReplWorker from './repl.worker?worker';
+import bundledModulesUrl from './repl.setup.js?url';
 import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
