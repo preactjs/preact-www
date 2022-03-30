@@ -1,9 +1,10 @@
 import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
 import { Link } from 'preact-router';
 import cx from '../../lib/cx';
+import * as comlink from 'comlink';
 import PrismWorker from './prism.worker?worker';
 
-const { highlight } = PrismWorker;
+const { highlight } = comlink.wrap(new PrismWorker());
 // @TODO this should work in development, but Preact CLI transforms to CommonJS.
 // const { highlight } =
 // 	import.meta.env.PRERENDER || process.env.NODE_ENV === 'development'

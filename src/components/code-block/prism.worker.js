@@ -1,4 +1,5 @@
 import 'promise-polyfill/lib/polyfill';
+import * as comlink from 'comlink';
 import * as prism from '../../lib/prism';
 
 export function highlight(code, lang) {
@@ -8,3 +9,7 @@ export function highlight(code, lang) {
 	}
 	throw Error(`Unknown language: ${lang}`);
 }
+
+comlink.expose({
+	highlight
+});
