@@ -1,6 +1,9 @@
 import { defineConfig, Plugin } from 'vite';
 import preact from '@preact/preset-vite';
 import inspect from 'vite-plugin-inspect';
+import yaml from 'yaml';
+import path from 'path';
+import fs from 'fs/promises';
 
 export default defineConfig({
 	build: {
@@ -9,30 +12,44 @@ export default defineConfig({
 	plugins: [inspect(), preact(), markdown()]
 });
 
-function markdown(): Plugin {
-	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n(.*)/i;
+const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n\n?([\S\s]*)/i;
 
+function markdown(): Plugin {
 	return {
 		name: 'md',
 		configureServer(server) {
-			server.middlewares.use((req, res, next) => {
+			server.middlewares.use(async (req, res, next) => {
 				const url = req.url;
 				if (url && url.endsWith('.md')) {
-					const [, lang, file] = url.match(/^\/content\/(.*)\/(.*)\.md$/);
-					console.log(url, lang, file);
+					const file = path.resolve(
+						__dirname,
+						url
+							.slice(1)
+							.split(path.posix.sep)
+							.join(path.sep)
+					);
+
+					if (
+						path.relative(path.join(__dirname, 'content'), file).startsWith('.')
+					) {
+						throw new Error(`Url "${url}" outside allowed folders`);
+					}
+
+					const md = await fs.readFile(file, 'utf-8');
+
+					// We'll replace the yaml frontmatter with json frontmatter
+					// to avoid the need to ship a yaml parser to the client
+					const jsonMd = md.replace(FRONT_MATTER_REG, (s, y, rest) => {
+						const meta =
+							yaml.parse('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
+						return '---\n' + JSON.stringify(meta) + '\n---\n\n' + rest;
+					});
+
+					res.end(jsonMd);
+					return;
 				}
 				next();
 			});
-		},
-		transform(code, id) {
-			if (!id.includes('.md')) return;
-			console.log('transform', id);
-
-			let [, frontMatter] = code.match(FRONT_MATTER_REG) || [];
-
-			return;
-			meta = (frontMatter && JSON.parse(frontMatter)) || {};
-			console.error(code);
 		}
 	};
 }

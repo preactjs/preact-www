@@ -1,4 +1,5 @@
 import MarkedWorker from './marked.worker?worker';
+import * as comlink from 'comlink';
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
@@ -110,7 +111,8 @@ export function parseContent(text) {
 	};
 }
 
-const markedWorker = !import.meta.env.PRERENDER && new MarkedWorker();
+const markedWorker = comlink.wrap(new MarkedWorker());
+
 function parseMarkdownContent(data) {
 	return markedWorker.convert(data.content).then(html => {
 		data.html = html;
