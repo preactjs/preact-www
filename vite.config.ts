@@ -9,7 +9,7 @@ export default defineConfig({
 	build: {
 		manifest: true
 	},
-	plugins: [inspect(), preact(), markdown()]
+	plugins: [inspect(), preact(), netlify(), markdown()]
 });
 
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n\n?([\S\s]*)/i;
@@ -49,6 +49,71 @@ function markdown(): Plugin {
 					return;
 				}
 				next();
+			});
+		}
+	};
+}
+
+export interface NetlifyFnResult {
+	statusCode?: number;
+	// eslint-disable-next-line no-undef
+	headers?: Record<string, string>;
+	body?: string;
+}
+
+function netlify(): Plugin {
+	return {
+		name: 'netlify',
+		configureServer(server) {
+			server.middlewares.use(async (req, res, next) => {
+				if (!req.url) {
+					return next();
+				}
+
+				const url = new URL(req.url, 'http://localhost:3000');
+
+				if (!url.pathname.startsWith('/.netlify/functions/')) {
+					return next();
+				}
+
+				const dir = path.join(__dirname, 'src', 'lambda');
+				const file = path.join(
+					dir,
+					url.pathname
+						.slice('/.netlify/functions/'.length)
+						.split(path.posix.sep)
+						.join(path.sep)
+				);
+
+				// Avoid directory traversal
+				if (path.relative(dir, file).startsWith('.')) {
+					return next();
+				}
+
+				const mod = await server.ssrLoadModule(file);
+
+				const fnResult: NetlifyFnResult | undefined = await mod.handler({
+					queryStringParameters: Array.from(url.searchParams.entries()).reduce(
+						(acc, [key, value]) => {
+							acc[key] = value;
+							return acc;
+						},
+						{}
+					)
+				});
+
+				if (!fnResult) {
+					return next();
+				}
+
+				res.statusCode = fnResult.statusCode || 200;
+				if (fnResult.headers) {
+					for (const [key, value] of Object.entries(fnResult.headers)) {
+						res.setHeader(key, value);
+					}
+				}
+
+				res.end(fnResult.body || '');
 			});
 		}
 	};

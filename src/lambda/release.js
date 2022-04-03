@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-exports.handler = async event => {
+export const handler = async event => {
 	const { version, url } = await fetchRelease(
 		`preactjs/${event.queryStringParameters.repo || 'preact'}`
 	);
