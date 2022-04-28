@@ -14,17 +14,17 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 
 ### Add-Ons
 
-- :raised_hands: [**preact-compat**](https://git.io/preact-compat): Jegliche React-Bibliothek mit Preact benutzen *([Vollständiges Beispiel](http://git.io/preact-compat-example))*
-- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Funktionalreaktives Paradigma für Preact
-- :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Universelles Rendering.
+- :raised_hands: [**preact-compat**](https://github.com/preactjs/preact-compat): Jegliche React-Bibliothek mit Preact benutzen *([Vollständiges Beispiel](https://github.com/developit/preact-compat-example))*
+- :repeat: [**preact-cycle**](https://github.com/developit/preact-cycle): Funktionalreaktives Paradigma für Preact
+- :page_facing_up: [**preact-render-to-string**](https://github.com/preactjs/preact-render-to-string): Universelles Rendering.
 
 
 ### Komponenten
 
-- :earth_americas: [**preact-router**](https://git.io/preact-router): URL-Routing für eigene Komponenten
-- :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): HTML & eigene Elemente als JSX & Komponenten rendern
-- :satellite: [**preact-portal**](https://git.io/preact-portal): Rendern von Preact-Komponenten im (Welt-)Raum :milky_way:
-- :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Simple HTML-Editor-Komponente
+- :earth_americas: [**preact-router**](https://github.com/preactjs/preact-router): URL-Routing für eigene Komponenten
+- :bookmark_tabs: [**preact-markup**](https://github.com/developit/preact-markup): HTML & eigene Elemente als JSX & Komponenten rendern
+- :satellite: [**preact-portal**](https://github.com/developit/preact-portal): Rendern von Preact-Komponenten im (Welt-)Raum :milky_way:
+- :pencil: [**preact-richtextarea**](https://github.com/developit/preact-richtextarea): Simple HTML-Editor-Komponente
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Textfeld, dass Eingabe für Zwecke wie z.B. Tags in Tokens übersetzt
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Listen mit Millionen Reihen einfach rendern([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Kleine und simple Layout-Bibliothek
@@ -41,13 +41,13 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 
 ### GUI Toolkits
 
-- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): [MDL](https://getmdl.io) als Preact-Komponenten benutzen
-- :rocket: [**preact-photon**](https://git.io/preact-photon): Schöne Desktop UIs mit [photon](http://photonkit.com) erstellen
+- :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): [MDL](https://getmdl.io) als Preact-Komponenten benutzen
+- :rocket: [**preact-photon**](https://github.com/developit/preact-photon): Schöne Desktop UIs mit [photon](http://photonkit.com) erstellen
 
 
 ### Testen
 
-- :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): JSX-Behauptungen testen _(kein DOM, direkt in Node)_
+- :microscope: [**preact-jsx-chai**](https://github.com/developit/preact-jsx-chai): JSX-Behauptungen testen _(kein DOM, direkt in Node)_
 - :white_check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX-Behauptungen, Ereignisse, Momentaufnahmen in Jest _(DOM, funktioniert mit Node jsdom oder direkt von der Stange mit Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
 
 

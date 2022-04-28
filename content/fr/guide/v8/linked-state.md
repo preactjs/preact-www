@@ -30,7 +30,7 @@ class Foo extends Component {
 
 Bien que cela offre de meilleures performances à l'exécution, cela nécessite toujours beaucoup de code non nécessaire pour lier le state à l'interface utilisateur.
 
-> Une autre solution est de lié les méthodes du composant de manière _déclarative_, en utilisant les décorateurs d'ES7, comme le `@bind` de [decko](http://git.io/decko)
+> Une autre solution est de lié les méthodes du composant de manière _déclarative_, en utilisant les décorateurs d'ES7, comme le `@bind` de [decko](https://github.com/developit/decko)
 
 
 ## Etat lié à la rescousse
