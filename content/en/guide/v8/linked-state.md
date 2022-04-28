@@ -30,7 +30,7 @@ class Foo extends Component {
 
 While this achieves much better runtime performance, it's still a lot of unnecessary code to wire up state to UI.
 
-> Another solution is to bind component methods _declaratively_, using ES7 decorators, such as [decko's](http://git.io/decko) `@bind`:
+> Another solution is to bind component methods _declaratively_, using ES7 decorators, such as [decko's](https://github.com/developit/decko) `@bind`:
 
 
 ## Linked State to the Rescue
