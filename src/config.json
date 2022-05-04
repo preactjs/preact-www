@@ -502,7 +502,7 @@
 						"pt-br": "Mutações do DOM externas",
 						"ja": "Preactのステート管理の範囲外のDOMとの連携",
 						"de": "Externe DOM Mutationen",
-						"zh": "在 Preact 中使用外部 DOM 变化"
+						"zh": "在 Preact 中使用外部 DOM 突变"
 					}
 				},
 				{
