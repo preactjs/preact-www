@@ -231,12 +231,19 @@ export default {
 ## TypeScript preact/compat configuration
 
 Your project could need support for the wider React ecosystem.  To make your application
-compile, you'll need to disable type checking on your `node_modules` like this.  This way,
-your alias will work properly when libraries import React.
+compile, you might need to disable type checking on your `node_modules` and add paths to the types
+like this.  This way, your alias will work properly when libraries import React.
 
 ```json
 {
-  ...
-  "skipLibCheck": true,
+  "compilerOptions": {
+    ...
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    }
+  }
 }
 ```
