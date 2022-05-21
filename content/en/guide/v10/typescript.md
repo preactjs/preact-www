@@ -70,6 +70,26 @@ In your `.babelrc`:
 
 Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
 
+## TypeScript preact/compat configuration
+
+Your project could need support for the wider React ecosystem.  To make your application
+compile, you might need to disable type checking on your `node_modules` and add paths to the types
+like this.  This way, your alias will work properly when libraries import React.
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    }
+  }
+}
+```
+
 ## Typing components
 
 There are different ways to type components in Preact. Class components have generic type variables to ensure type safety. TypeScript sees a function as functional component as long as it returns JSX. There are multiple solutions to define props for functional components.
