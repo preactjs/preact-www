@@ -18,6 +18,7 @@ A collection of modules built to work wonderfully with Preact.
 - :timer_clock: [**relaks**](https://github.com/trambarhq/relaks): Create components with render methods that return asynchronously.
 - :nut_and_bolt: [**express-preact-views**](https://github.com/edwjusti/express-preact-views): Express View Engine.
 - :floppy_disk: [**Prefresh**](https://github.com/JoviDeCroock/prefresh): Fast-Refresh for Preact.
+- :bookmark_tabs: [**adonis-preact**](https://github.com/DonsWayo/adonis-preact): Use Preact in Adonisjs
 
 ## Components
 
