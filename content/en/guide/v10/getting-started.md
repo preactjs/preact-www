@@ -155,6 +155,22 @@ const config = {
 }
 ```
 
+#### Aliasing in Node
+
+When we are on a Node.JS server our webpack aliases won't work, this is seen in Next/...
+here we will have to use an alias in our `package.json`.
+
+```json
+{
+  "dependencies": {
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+  }
+}
+```
+
+Now Node will correctly use Preact in place of React.
+
 #### Aliasing in Parcel
 
 Parcel uses the standard `package.json` file to read configuration options under
