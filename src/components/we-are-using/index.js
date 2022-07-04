@@ -248,7 +248,7 @@ const companies = [
 		href: 'https://snapp.ir/',
 		logo: 'snapp.png'
 	},
-  {
+	{
 		name: 'Adyen',
 		href: 'https://www.adyen.com/',
 		logo: 'adyen.svg'
@@ -257,6 +257,11 @@ const companies = [
 		name: 'SQL Frames',
 		href: 'https://sqlframes.com/',
 		logo: 'sqlframes.svg'
+	},
+	{
+		name: 'System Group',
+		href: 'https://www.tsg.bz/',
+		logo: 'systemgroup.png'
 	}
 ];
 
