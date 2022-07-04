@@ -204,7 +204,7 @@ When a `vnode` has the property `dangerouslySetInnerHTML` set Preact will skip d
 ```jsx
 <div dangerouslySetInnerHTML="foo">
   <span>I will be skipped</span>
-  <p>So do I</p>
+  <p>So will I</p>
 </div>
 ```
 
