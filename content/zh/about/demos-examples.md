@@ -57,7 +57,6 @@ Dropbox 的桌面 app，基于 Preact、Electron 和 Photon。
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
 **[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
-The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
 货币兑换小工具,灵感来自于一个流行的移动应用程序，使用Preact、Meiosis、HTML标签模板和本地ES模块实现。
 [Github Project](https://github.com/sgtpep/exchange-widget)
 
@@ -104,7 +103,6 @@ The currency exchange widget inspired by a popular mobile app implemented using 
 怎么在没有 Babel、ES2015 或 JSX 的情况下使用 Preact。
 
 **[preact-minimal](https://github.com/aganglada/preact-minimal)** :rocket:  
-Minimal Preact structure with all the necessary tools to start your project right away.
 一个只包含必要组件的 Preact 脚手架,让你可以马上开始你的项目
 
 **[preact-typescript-webpack4-less](https://github.com/lexey111/preact-typescript-webpack4-boilerplate)**
