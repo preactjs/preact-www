@@ -257,6 +257,11 @@ const companies = [
 		name: 'SQL Frames',
 		href: 'https://sqlframes.com/',
 		logo: 'sqlframes.svg'
+	},
+	{
+		name: 'Refract',
+		href: 'https://refractbot.com/',
+		logo: 'refract.svg'
 	}
 ];
 
