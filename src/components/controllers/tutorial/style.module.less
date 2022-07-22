@@ -25,15 +25,23 @@
 		display: flex;
 		align-content: stretch;
 		justify-content: stretch;
+		position: relative;
 
 		&.solvable:not(&.solved) .nextButton,
 		&.solvable:not(&.solved) .nextButton:hover {
-			background: #534e5b;
+			background-color: transparent;
+			color: #fff;
 			transform: none;
+			box-shadow: none;
+			border-width: 2px;
+			border-color: var(--color-brand);
+
+			@media all and (prefers-color-scheme: light) {
+				color: black;
+			}
 		}
 
 		.tutorialWindow {
-			position: relative;
 			background: var(--color-page-bg);
 			color: var(--color-heading);
 			display: flex;
@@ -43,6 +51,7 @@
 			transition: opacity 1s ease;
 			box-shadow: 1px 0 0 var(--color-brand);
 			overflow-y: scroll;
+			overflow-x: hidden;
 			z-index: 10;
 
 			&::-webkit-scrollbar {
@@ -166,6 +175,8 @@
 					outline: none;
 					background: var(--color-btn-background);
 					color: var(--color-btn);
+					border-width: 2px;
+
 					cursor: pointer;
 					&:hover,
 					&:focus-visible {
@@ -178,10 +189,22 @@
 					}
 				}
 
+				.helpButton,
+				.prevButton {
+					background-color: transparent;
+					color: #fff;
+
+					@media all and (prefers-color-scheme: light) {
+						color: black;
+					}
+				}
+
 				.nextButton {
-					background: var(--color-btn);
-					border-color: var(--color-btn-background);
-					color: var(--color-btn-background);
+					background-color: var(--color-brand);
+					border-width: 0;
+					color: white;
+					display: flex;
+					align-items: center;
 				}
 
 				.nextButton:hover,

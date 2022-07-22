@@ -19,6 +19,7 @@ import { usePage } from '../page';
 import { useStore, storeCtx } from '../../store-adapter';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { getContent } from '../../../lib/content';
+import { WithTooltip } from '../../../lib/tooltip/tooltip';
 
 const IS_PRERENDERING = typeof window === 'undefined';
 
@@ -264,9 +265,14 @@ function TutorialView({
 						</button>
 					)}
 					{page.meta.next && (
-						<a class={style.nextButton} href={page.meta.next}>
-							{page.meta.nextText || 'Next'}
-						</a>
+						<WithTooltip
+							showTooltip={solvable ? !solved : undefined}
+							tooltip={`The challenge is not solved yet! Try to solve it before moving to the next chapter`}
+						>
+							<a class={style.nextButton} href={page.meta.next}>
+								{page.meta.nextText || 'Next'}
+							</a>
+						</WithTooltip>
 					)}
 				</div>
 			</div>
