@@ -152,7 +152,7 @@ pre[data-line] {
 	vertical-align: 0.3em;
 	border-radius: 999px;
 	text-shadow: none;
-	box-shadow: 0 1px white;
+	box-shadow: 0 1px grey;
 }
 
 .line-highlight[data-end]:after {
