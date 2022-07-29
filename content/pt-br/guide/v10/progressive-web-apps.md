@@ -6,7 +6,7 @@ description: 'Os Progressive Web Apps (PWA) permitem enviar seu aplicativo offli
 
 # Progressive Web Apps
 
-O Preact é uma excelente opção para os [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) que desejam carregar e se tornar interativos rapidamente. [Preact CLI](https://github.com/preactjs/preact-cli/) codifica isso em uma ferramenta de compilação instantânea que fornece um PWA com uma pontuação de 100 [Lighthouse][LH] imediatamente.
+O Preact é uma excelente opção para os [Progressive Web Apps](https://web.dev/learn/pwa/) que desejam carregar e se tornar interativos rapidamente. [Preact CLI](https://github.com/preactjs/preact-cli/) codifica isso em uma ferramenta de compilação instantânea que fornece um PWA com uma pontuação de 100 [Lighthouse][LH] imediatamente.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 
