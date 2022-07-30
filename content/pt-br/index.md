@@ -106,8 +106,8 @@ function Counter() {
         O "leve" fica muito mais divertido quando você não tem que sacrificar produtividade para alcançá-lo. Preact te torna produtivo imediatamente. Tem até mesmo alguns recursos bônus:
     </p>
     <ul>
-        <li>`props`, `state` e `context` são passados pro `render()` como parâmetro</li>
-        <li>Uso de atributos HTML padrão como `class` e `for`</li>
+        <li><code>props</code>, <code>state</code> e <code>context</code> são passados pro <code>render()</code> como parâmetro</li>
+        <li>Uso de atributos HTML padrão como <code>class</code> e <code>for</code></li>
     </ul>
   </div>
 </section>

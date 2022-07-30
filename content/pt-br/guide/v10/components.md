@@ -154,7 +154,7 @@ Você também pode retornar arrays de seus componentes:
 function Columns() {
   return [
     <td>Olá</td>,
-    <td>Mundi</td>
+    <td>Mundo</td>
   ];
 }
 ```

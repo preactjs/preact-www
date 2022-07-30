@@ -102,7 +102,7 @@ Preact works out of the box with all of them. No changes needed!
 
 ## Integrando em um pipeline existente
 
-Se você já possui um pipeline de ferramentas existente, é muito provável que isso inclua um bundler. As opções mais populares são [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) ou [parcel](https://parceljs.org/). Prreact funciona imediatamente com todos eles. Não são necessárias alterações!
+Se você já possui um pipeline de ferramentas existente, é muito provável que isso inclua um bundler. As opções mais populares são [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) ou [parcel](https://parceljs.org/). Preact funciona imediatamente com todos eles. Não são necessárias alterações!
 
 ### Configurando JSX
 
@@ -125,9 +125,11 @@ Para transpilar JSX, você precisa de um plug-in babel que o converta em código
 
 Em algum momento, você provavelmente desejará fazer uso do vasto ecossistema de reação. Bibliotecas e componentes originalmente escritos para o React funcionam perfeitamente com a nossa camada de compatibilidade. Para usá-lo, precisamos apontar todas as importações `react` e `react-dom` para o Preact. Esta etapa é chamada de alias.
 
-#### Alias no webpack
+> **Nota:** se você estiver usando [Preact CLI], esses aliases são configurados automaticamente para você por padrão.
 
-Para criar um pseudônimo de qualquer pacote no webpack, você precisa adicionar a seção `resolve.alias`
+#### Alias no Webpack
+
+Para criar um pseudônimo de qualquer pacote no Webpack, você precisa adicionar a seção `resolve.alias`
 para sua configuração. Dependendo da configuração que você está usando, esta seção pode
 já está presente, mas faltam os aliases para Preact.
 
@@ -138,17 +140,55 @@ const config = {
     "alias": {
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",
-     // Must be below test-utils
+      "react-dom": "preact/compat", // 👈 Deve ficar abaixo de `test-utils`
+      "react/jsx-runtime": "preact/jsx-runtime"
     },
   }
 }
 ```
 
-#### Aliasing no parcel
+#### Alias no Node
+
+Quando estamos em um server Node.js nossos aliases do Webpack não funcionarão, isso pode ser visto em Next/...
+aqui teremos que usar um alias no nosso `package.json` 
+
+```json
+{
+  "dependencies": {
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+  }
+}
+```
+
+Agora o Node irá usar corretamente o Preact no lugar do REact.
+
+#### Alias no Rollup
+
+Para usar um alias com o Rollup, você precisará instalar [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias).
+Esse plugin precisar ser colocado antes do [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
+
+```js
+import alias from '@rollup/plugin-alias';
+
+module.exports = {
+  plugins: [
+    alias({
+      entries: [
+        { find: 'react', replacement: 'preact/compat' },
+        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+        { find: 'react-dom', replacement: 'preact/compat' },
+        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
+      ]
+    })
+  ]
+};
+```
+
+#### Alias no Parcel
 
 O Parcel usa o arquivo `package.json` padrão para ler as opções de configuração em
-uma chave `alias '.
+uma chave `alias`.
 
 ```json
 {
@@ -160,20 +200,57 @@ uma chave `alias '.
 }
 ```
 
-#### Aliasing no jest
+#### Alias no Jest
 
-Semelhante aos empacotadores, [jest](https://jestjs.io/) permite reescrever os caminhos do módulo. A sintaxe é um pouco
-diferente, por exemplo, webpack, porque é baseado em regex. Adicione isto ao seu
-configuração jest:
+Semelhante aos empacotadores, [Jest](https://jestjs.io/) permite reescrever os caminhos do módulo. A sintaxe é um pouco
+diferente, por exemplo, Webpack, porque é baseado em regex. Adicione isso na configuração do jest:
 
 ```json
 {
   "moduleNameMapper": {
+    "^react$": "preact/compat",
+    "^react-dom/test-utils$": "preact/test-utils",
+    "^react-dom$": "preact/compat",
+    "^react/jsx-runtime$": "preact/jsx-runtime"
+  }
+}
+```
+
+#### Alias no Snowpack
+
+Para configurar um alias com o [Snowpack](https://www.snowpack.dev/), você precisará adicionar um package import alias ao arquivo `snowpack.config.mjs`.
+
+```js
+// snowpack.config.mjs
+export default {
+  alias: {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime",
+  }
+}
+```
+
+## Configuração TypeScript + preact/compat
+
+Seu projeto pode precisar de um suporte amplo para o ecossistema React. Para fazer sua aplicação compilar, é aconselhável desabilitar a checagem de tipos no seu 
+`node_modules` e adicionar paths para os tipos, como no exemplo. Dessa maneira, seu alias irá funcionar corretamente quando 
+as bibliotecas importarem o React.
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    }
   }
 }
 ```
 
 [htm]: https://github.com/developit/htm
+[Preact CLI]: https://github.com/preactjs/preact-cli

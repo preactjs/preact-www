@@ -22,7 +22,7 @@ Existem duas maneiras de importá-las, você pode importá-las de
 
 ## Introdução
 
-É mais fácil mostrar como eles são e comparar com os componentes da classe para ter uma idéia das vantagens deles. Pegue um aplicativo simples de contador, por exemplo:
+É mais fácil mostrar como eles são e comparar com os componentes da classe para ter uma ideia das vantagens deles. Pegue um aplicativo simples de contador, por exemplo:
 
 ```jsx
 class Counter extends Component {

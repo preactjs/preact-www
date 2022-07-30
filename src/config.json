@@ -127,7 +127,7 @@
 					"name": {
 						"en": "Browser Support",
 						"de": "Browserunterstützung",
-						"pt-br": "Suporte do navegador",
+						"pt-br": "Suporte de navegadores",
 						"ja": "ブラウザのサポート",
 						"es": "Soporte de navegadores"
 					}
@@ -162,6 +162,7 @@
 					"path": "/cli/service-worker",
 					"name": {
 						"en": "Service Workers",
+						"pt-br": "Service Worker",
 						"ja": "Service Worker"
 					}
 				},
@@ -255,7 +256,7 @@
 			"path": "/guide/v8/unit-testing-with-enzyme",
 			"name": {
 				"en": "Unit Testing with Enzyme",
-				"pt-br": "Teste unitado com Enzyme",
+				"pt-br": "Testes unitários com Enzyme",
 				"de": "Unit-Tests mit Enzyme"
 			}
 		},
@@ -266,6 +267,7 @@
 		{
 			"name": {
 				"en": "Introduction",
+				"pt-br": "Introdução",
 				"de": "Einführung"
 			},
 			"routes": [
@@ -283,7 +285,7 @@
 					"name": {
 						"en": "What's new?",
 						"ja": "Preact Xの新機能",
-						"pt-br": "o que há de novo"
+						"pt-br": "O que há de novo?"
 					}
 				},
 				{
@@ -308,7 +310,8 @@
 		},
 		{
 			"name": {
-				"en": "Essentials"
+				"en": "Essentials",
+				"pt-br": "Essenciais"
 			},
 			"routes": [
 				{
@@ -360,7 +363,8 @@
 		},
 		{
 			"name": {
-				"en": "Debug & Test"
+				"en": "Debug & Test",
+				"pt-br": "Depuração & Testes"
 			},
 			"routes": [
 				{
@@ -385,7 +389,7 @@
 					"path": "/guide/v10/unit-testing-with-enzyme",
 					"name": {
 						"en": "Unit Testing with Enzyme",
-						"pt-br": "Teste unitario com Enzyme",
+						"pt-br": "Testes unitários com Enzyme",
 						"ja": "Enzymeを使った単体テスト",
 						"de": "Unit-Tests mit Enzyme",
 						"kr": "Enzyme를 이용한 유닛 테스트"
@@ -395,7 +399,8 @@
 		},
 		{
 			"name": {
-				"en": "React compatibility"
+				"en": "React compatibility",
+				"pt-br": "Compartibilidade com React"
 			},
 			"routes": [
 				{
@@ -423,6 +428,7 @@
 		{
 			"name": {
 				"en": "Advanced",
+				"pt-br": "Avançado",
 				"de": "Fortgeschritten"
 			},
 			"routes": [
@@ -470,6 +476,7 @@
 					"path": "/guide/v10/options",
 					"name": {
 						"en": "Option Hooks",
+						"pt-br": "Option Hooks",
 						"ja": "オプションフック",
 						"de": "Optionen"
 					}

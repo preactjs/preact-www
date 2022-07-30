@@ -12,7 +12,7 @@ Ao criar a versão para produção, o Preact CLI renderiza seus componentes e sa
 
 > **⚠️ Importante:** Ao pré-renderizar, seu módulo como componentes é executado em um ambiente Node.js., onde a maioria das APIs da Web não está disponível. Para explicar isso, envolva esse código em uma verificação como `if (typeof window! == 'undefined')`.
 
-## Mutiplas URLs e dados personalizados
+## Múltiplas URLs e dados personalizados
 
 Por padrão, apenas a página inicial é pré-renderizada. Para pré-renderizar URLs (rotas) adicionais, você deve adicionar um arquivo `prerender-urls.json` ao seu projeto. Este arquivo também pode passar dados adicionais como props para o componente `<App />` para cada URL.
 
@@ -137,7 +137,7 @@ export default function MyRoute(props) {
 
   return (
     <div>
-      // use data here
+      // use `data` aqui
     </div>
   );
 }
