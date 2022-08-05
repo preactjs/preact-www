@@ -62,9 +62,13 @@
 	padding: 0.75rem 1rem;
 	color: #444;
 	text-align: center;
+	position: sticky;
+	top: @header-and-banner-height;
+	z-index: 100; // Else code blocks would layer on top
 
 	a {
 		.link;
+		font-weight: bold;
 		color: var(--color-brand);
 	}
 }
