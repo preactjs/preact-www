@@ -376,6 +376,9 @@
 		&:target {
 			padding-top: @header-and-banner-height;
 		}
+		content-region[name*='v8'] &:target {
+			padding-top: calc(@header-and-banner-height + 3.25rem);
+		}
 	}
 
 	* {
