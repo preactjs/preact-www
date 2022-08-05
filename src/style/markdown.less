@@ -46,15 +46,6 @@
 		&:hover a.anchor {
 			text-decoration: none;
 		}
-
-		// fix anchor target positioning to account for fixed header
-		&:before {
-			content: '';
-			display: block;
-			position: absolute;
-			height: @header-and-banner-height;
-			margin: -@header-and-banner-height 0 0;
-		}
 	}
 
 	h1,
@@ -381,6 +372,7 @@
 	h4,
 	h5,
 	h6 {
+		// fix anchor target positioning to account for fixed header
 		&:target {
 			padding-top: @header-and-banner-height;
 		}
