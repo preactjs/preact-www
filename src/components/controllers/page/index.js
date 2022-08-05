@@ -173,7 +173,7 @@ export default function Page({ route, prev, next }, ctx) {
 				<div class={style.inner}>
 					{isDocPage(url) && +store.state.docVersion !== AVAILABLE_DOCS[0] && (
 						<div class={style.oldDocsWarning}>
-							You are viewing the documentation for an older version of Preact.
+							You are viewing the documentation for an older version of Preact.{' '}
 							<a href={docsUrl}>Switch to the current version →</a>
 						</div>
 					)}
