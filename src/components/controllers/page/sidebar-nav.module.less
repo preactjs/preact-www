@@ -18,8 +18,8 @@
 .link {
 	display: block;
 	position: relative;
-	padding: 0.4em 0.75em 0.4em 1em;
-	transition: background 0.3s;
+	padding: 0.25rem 0.75em 0.25rem 1em;
+	transition: font-weight 0.3s;
 	color: var(--color-sidebar-link);
 
 	&::before {
@@ -36,32 +36,25 @@
 
 .linkActive {
 	color: var(--color-link);
-	background: var(--color-sidebar-bg-active);
-	color: var(--color-sidebar-link-active);
-
-	&::before {
-		.fadeIn;
-	}
+	font-weight: bold;
 }
 
 .category {
-	color: var(--color-sidebar-link-active);
-	text-transform: uppercase;
-	letter-spacing: 0.125em;
+	color: var(--color-sidebar-heading);
 	display: block;
 	margin-top: 1rem;
 	background: none;
 	border: none;
-	padding: 0.5rem 0;
+	padding: 1rem 0 0.25rem 0;
 	width: 100%;
 	text-align: left;
 	cursor: pointer;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 0.1rem;
-	font-weight: normal;
+	margin-bottom: 0;
+	font-weight: bold;
 	line-height: normal;
 }
 

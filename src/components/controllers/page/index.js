@@ -184,7 +184,14 @@ export default function Page({ route, prev, next }, ctx) {
 						isFallback={isFallback}
 					/>
 					{showTitle && (
-						<h1 class={style.title}>{meta.title || route.title}</h1>
+						<h1
+							class={cx(
+								style.title,
+								meta.permalink === '/about/we-are-using' && style.center
+							)}
+						>
+							{meta.title || route.title}
+						</h1>
 					)}
 					<Hydrator
 						component={ContentRegion}
