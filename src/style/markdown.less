@@ -18,6 +18,10 @@
 	ol a {
 		.link;
 		color: var(--color-link);
+
+		&:hover {
+			color: #ff89ff;
+		}
 	}
 
 	a.anchor {
@@ -323,13 +327,15 @@
 	code,
 	tt {
 		margin: 0 2px;
-		padding: 0 5px;
+		padding: 2px 7px;
 		white-space: nowrap;
-		border-radius: 3px;
-		border-width: 0.0625rem;
-		border-style: solid;
+		border-radius: 4px;
 		background: var(--color-code-inline-bg);
-		border-color: var(--color-code-inline-border);
+	}
+
+	td > code,
+	p > code {
+		color: var(--color-code-inline-color);
 	}
 
 	pre code {

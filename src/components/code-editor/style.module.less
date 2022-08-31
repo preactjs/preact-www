@@ -30,7 +30,7 @@
 			}
 		}
 	}
-	
+
 	:global {
 		.CodeMirror {
 			position: absolute;
@@ -38,27 +38,26 @@
 			top: 0;
 			width: 100%;
 			height: 100%;
-			background: #282c34;
+			background: var(--color-code-bg);
 			color: #abb2bf;
 
 			::-webkit-scrollbar {
 				height: 10px;
 				width: 12px;
-				background: rgba(150,150,150,0.25);
+				background: rgba(150, 150, 150, 0.25);
 			}
 			::-webkit-scrollbar-thumb {
-				background: rgba(150,150,150,0.8);
+				background: rgba(150, 150, 150, 0.8);
 			}
 			::-webkit-scrollbar-corner {
-				background: rgba(150,150,150,0.4);
+				background: rgba(150, 150, 150, 0.4);
 			}
 			&:not(:hover) ::-webkit-scrollbar {
-				background: rgba(150,150,150,0.1);
+				background: rgba(150, 150, 150, 0.1);
 			}
 			&:not(:hover) ::-webkit-scrollbar-thumb {
-				background: rgba(150,150,150,0.2);
+				background: rgba(150, 150, 150, 0.2);
 			}
-
 
 			pre,
 			code,
@@ -129,7 +128,7 @@
 
 			.cm-string,
 			.cm-string-2 {
-				color: #98c379;
+				color: #c6f4a7;
 			}
 
 			.cm-variable {
