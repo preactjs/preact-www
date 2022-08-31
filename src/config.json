@@ -135,48 +135,6 @@
 			]
 		},
 		{
-			"name": {
-				"en": "CLI"
-			},
-			"content": "cli",
-			"routes": [
-				{
-					"path": "/cli",
-					"name": {
-						"en": "Introduction",
-						"pt-br": "Introdução",
-						"ja": "Preact CLI",
-						"es": "Introducción"
-					}
-				},
-				{
-					"path": "/cli/getting-started",
-					"name": {
-						"en": "Getting started",
-						"pt-br": "Começando",
-						"ja": "はじめに",
-						"es": "Empezando"
-					}
-				},
-				{
-					"path": "/cli/service-worker",
-					"name": {
-						"en": "Service Workers",
-						"ja": "Service Worker"
-					}
-				},
-				{
-					"path": "/cli/pre-rendering",
-					"name": {
-						"en": "Pre-rendering",
-						"pt-br": "Pré-renderização",
-						"ja": "プリレンダリング",
-						"es": "Pre-renderización"
-					}
-				}
-			]
-		},
-		{
 			"path": "/repl",
 			"title": "REPL",
 			"controller": "Repl"
@@ -477,6 +435,48 @@
 				{
 					"path": "/guide/v10/typescript",
 					"name": "TypeScript"
+				}
+			]
+		},
+		{
+			"name": {
+				"en": "CLI"
+			},
+			"content": "cli",
+			"routes": [
+				{
+					"path": "/guide/v10/cli",
+					"name": {
+						"en": "Introduction",
+						"pt-br": "Introdução",
+						"ja": "Preact CLI",
+						"es": "Introducción"
+					}
+				},
+				{
+					"path": "/guide/v10/cli/getting-started",
+					"name": {
+						"en": "Getting started",
+						"pt-br": "Começando",
+						"ja": "はじめに",
+						"es": "Empezando"
+					}
+				},
+				{
+					"path": "/guide/v10/cli/service-worker",
+					"name": {
+						"en": "Service Workers",
+						"ja": "Service Worker"
+					}
+				},
+				{
+					"path": "/guide/v10/cli/pre-rendering",
+					"name": {
+						"en": "Pre-rendering",
+						"pt-br": "Pré-renderização",
+						"ja": "プリレンダリング",
+						"es": "Pre-renderización"
+					}
 				}
 			]
 		}
