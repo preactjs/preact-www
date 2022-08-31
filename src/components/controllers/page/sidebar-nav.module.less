@@ -22,6 +22,10 @@
 	transition: font-weight 0.3s;
 	color: var(--color-sidebar-link);
 
+	&:hover {
+		background-color: fade(@color-brand, 50%);
+	}
+
 	&::before {
 		.fadeOut;
 		content: '';
