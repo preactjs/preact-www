@@ -12,7 +12,7 @@ exports.handler = async event => {
 			url
 		}),
 		headers: {
-			'Cache-Control': 'public, s-maxage=1800',
+			'Cache-Control': 'public, max-age=3600, stale-if-error=86400',
 			'Access-Control-Allow-Origin': 'http://localhost:8080'
 		}
 	};
