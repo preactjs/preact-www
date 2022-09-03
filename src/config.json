@@ -299,6 +299,12 @@
 					}
 				},
 				{
+					"path": "/guide/v10/signals",
+					"name": {
+						"en": "Signals"
+					}
+				},
+				{
 					"path": "/guide/v10/forms",
 					"name": {
 						"en": "Forms",
