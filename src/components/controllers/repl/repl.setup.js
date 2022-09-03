@@ -5,6 +5,7 @@ import * as compat from 'preact/compat';
 import * as htm from 'htm';
 import * as htmPreact from 'htm/preact';
 import * as preactCustomElement from 'preact-custom-element';
+import * as preactSignals from '@preact/signals';
 
 let modules = {};
 let moduleCache = {
@@ -15,6 +16,7 @@ let moduleCache = {
 	react: compat,
 	'react-dom': compat,
 	htm,
+	'@preact/signals': preactSignals,
 	'htm/preact': htmPreact,
 	'preact-custom-element': preactCustomElement
 };

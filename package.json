@@ -103,6 +103,7 @@
     "workerize-loader": "^1.1.0"
   },
   "dependencies": {
+    "@preact/signals": "^0.0.4",
     "babel-standalone": "^6.26.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.50.2",
