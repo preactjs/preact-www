@@ -1,4 +1,11 @@
-import { h, Component, createRef, createContext, options } from 'preact';
+import {
+	h,
+	Component,
+	createRef,
+	createContext,
+	options,
+	Fragment
+} from 'preact';
 import {
 	useState,
 	useReducer,
@@ -19,6 +26,7 @@ import { usePage } from '../page';
 import { useStore, storeCtx } from '../../store-adapter';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { getContent } from '../../../lib/content';
+import { Splitter } from '../../splitter';
 
 const IS_PRERENDERING = typeof window === 'undefined';
 
@@ -197,37 +205,6 @@ function TutorialView({
 		});
 	}, []);
 
-	const splitterPointerDown = useCallback(e => {
-		let target = e.target;
-		let root = target.parentNode;
-		let x, perc, w, pid;
-		function move(e) {
-			if (x == null) {
-				pid = e.pointerId;
-				target.setPointerCapture(pid);
-				x = e.pageX;
-				perc = parseFloat(root.style.getPropertyValue('--x') || '50%');
-				w = root.offsetWidth;
-			} else {
-				let p = Math.max(20, Math.min(80, perc + ((e.pageX - x) / w) * 100));
-				root.style.setProperty('--x', `${p.toFixed(2)}%`);
-			}
-		}
-		function up(e) {
-			move(e);
-			cancel(e);
-		}
-		function cancel(e) {
-			target.releasePointerCapture(pid);
-			removeEventListener('pointermove', move);
-			removeEventListener('pointerup', up);
-			removeEventListener('pointercancel', cancel);
-		}
-		addEventListener('pointermove', move);
-		addEventListener('pointerup', up);
-		addEventListener('pointercancel', cancel);
-	}, []);
-
 	return (
 		<ReplWrapper
 			loading={loading}
@@ -237,88 +214,99 @@ function TutorialView({
 			solved={solved}
 			showCode={showCode}
 		>
-			<div class={style.tutorialWindow} ref={content}>
-				<h1 class={style.title}>{title}</h1>
+			<Splitter
+				orientation="horizontal"
+				force={!showCode ? '100%' : undefined}
+				other={
+					<Splitter
+						orientation="vertical"
+						other={
+							<Fragment>
+								<div class={style.output} key="output">
+									{!initialLoad && (
+										<Runner
+											key={fullPath}
+											ref={tutorial.runner}
+											onSuccess={tutorial.onSuccess}
+											onRealm={tutorial.onRealm}
+											onError={tutorial.onError}
+											code={code}
+											clear
+										/>
+									)}
+									{error && [
+										<ErrorOverlay
+											key={'e:' + fullPath}
+											class={style.error}
+											name={error.name}
+											message={error.message}
+											stack={parseStackTrace(error)}
+										/>,
+										<button class={style.rerun} onClick={reRun}>
+											Re-run
+										</button>
+									]}
+								</div>
+								{hasCode && (
+									<button
+										class={style.toggleCode}
+										title="Toggle Code"
+										onClick={toggleCode}
+									>
+										<span>Toggle Code</span>
+									</button>
+								)}
+							</Fragment>
+						}
+					>
+						<div class={style.codeWindow}>
+							{!initialLoad && (
+								<CodeEditor
+									key="editor"
+									class={style.code}
+									value={code}
+									error={error}
+									onInput={linkState(tutorial, 'code', 'value')}
+								/>
+							)}
+						</div>
+					</Splitter>
+				}
+			>
+				<div class={style.tutorialWindow} ref={content}>
+					<h1 class={style.title}>{title}</h1>
 
-				<ContentRegion
-					name={page.current}
-					content={page.html}
-					components={TUTORIAL_COMPONENTS}
-					lang={lang}
-				/>
-
-				<div class={style.buttonContainer}>
-					{page.meta.prev && (
-						<a class={style.prevButton} href={page.meta.prev}>
-							Previous
-						</a>
-					)}
-					{tutorial.state['repl-final'] && (
-						<button
-							class={style.helpButton}
-							onClick={tutorial.help}
-							disabled={!showCode}
-							title="Get help with this example"
-						>
-							Help
-						</button>
-					)}
-					{page.meta.next && (
-						<a class={style.nextButton} href={page.meta.next}>
-							{page.meta.nextText || 'Next'}
-						</a>
-					)}
-				</div>
-			</div>
-
-			<div class={style.splitter} onPointerDown={splitterPointerDown} />
-
-			<div class={style.codeWindow}>
-				{!initialLoad && (
-					<CodeEditor
-						key="editor"
-						class={style.code}
-						value={code}
-						error={error}
-						onInput={linkState(tutorial, 'code', 'value')}
+					<ContentRegion
+						name={page.current}
+						content={page.html}
+						components={TUTORIAL_COMPONENTS}
+						lang={lang}
 					/>
-				)}
-				<div class={style.output} key="output">
-					{!initialLoad && (
-						<Runner
-							key={fullPath}
-							ref={tutorial.runner}
-							onSuccess={tutorial.onSuccess}
-							onRealm={tutorial.onRealm}
-							onError={tutorial.onError}
-							code={code}
-							clear
-						/>
-					)}
-					{error && [
-						<ErrorOverlay
-							key={'e:' + fullPath}
-							class={style.error}
-							name={error.name}
-							message={error.message}
-							stack={parseStackTrace(error)}
-						/>,
-						<button class={style.rerun} onClick={reRun}>
-							Re-run
-						</button>
-					]}
-				</div>
-			</div>
 
-			{hasCode && (
-				<button
-					class={style.toggleCode}
-					title="Toggle Code"
-					onClick={toggleCode}
-				>
-					<span>Toggle Code</span>
-				</button>
-			)}
+					<div class={style.buttonContainer}>
+						{page.meta.prev && (
+							<a class={style.prevButton} href={page.meta.prev}>
+								Previous
+							</a>
+						)}
+						{tutorial.state['repl-final'] && (
+							<button
+								class={style.helpButton}
+								onClick={tutorial.help}
+								disabled={!showCode}
+								title="Get help with this example"
+							>
+								Help
+							</button>
+						)}
+						{page.meta.next && (
+							<a class={style.nextButton} href={page.meta.next}>
+								{page.meta.nextText || 'Next'}
+							</a>
+						)}
+					</div>
+				</div>
+			</Splitter>
 
 			<InjectPrerenderData
 				name={fullPath}
