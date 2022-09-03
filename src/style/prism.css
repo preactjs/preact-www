@@ -8,7 +8,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
 
 code[class*='language-'],
 pre[class*='language-'] {
-	color: #ddd;
+	color: var(--color-code-text);
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -43,39 +43,39 @@ pre[class*='language-'] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #999;
+	color: var(--color-code-comment);
 }
 
 .token.punctuation {
-	color: #ccc;
+	color: var(--color-code-punctuation);
 }
 
 .token.tag,
 .token.attr-name,
 .token.namespace,
 .token.deleted {
-	color: #ff696d;
+	color: var(--color-code-tag);
 }
 
 .token.interpolation-punctuation {
-	color: #ec6368;
+	color: var(--color-code-interpolation-punctuation);
 }
 
 .token.function-name {
-	color: #6196cc;
+	color: var(--color-code-function-name);
 }
 
 .token.boolean,
 .token.number,
 .token.function {
-	color: #ffcb6b;
+	color: var(--color-code-function);
 }
 
 .token.property,
 .token.class-name,
 .token.constant,
 .token.symbol {
-	color: #f8c555;
+	color: var(--color-code-symbol);
 }
 
 .token.selector,
@@ -83,7 +83,7 @@ pre[class*='language-'] {
 .token.atrule,
 .token.keyword,
 .token.builtin {
-	color: #c792ea;
+	color: var(--color-code-keyword);
 }
 
 .token.string,
@@ -91,13 +91,13 @@ pre[class*='language-'] {
 .token.attr-value,
 .token.regex,
 .token.variable {
-	color: #c6f4a7;
+	color: var(--color-code-string);
 }
 
 .token.operator,
 .token.entity,
 .token.url {
-	color: #67cdcc;
+	color: var(--color-code-operator);
 }
 
 .token.important,
