@@ -13,6 +13,7 @@ import todoExample from '!!file-loader!./examples/todo-list.txt';
 import repoListExample from '!!file-loader!./examples/github-repo-list.txt';
 import contextExample from '!!file-loader!./examples/context.txt';
 import spiralExample from '!!file-loader!./examples/spiral.txt';
+import { Splitter } from '../../splitter';
 
 const EXAMPLES = [
 	{
@@ -210,28 +211,35 @@ export default class Repl extends Component {
 						{copied ? '🔗 Copied' : 'Share'}
 					</button>
 				</header>
-
-				<this.CodeEditor
-					class={style.code}
-					value={code}
-					error={error}
-					onInput={linkState(this, 'code', 'value')}
-				/>
-				<div class={style.output}>
-					{error && (
-						<ErrorOverlay
-							name={error.name}
-							message={error.message}
-							stack={parseStackTrace(error)}
+				<div class={style.replWrapper}>
+					<Splitter
+						orientation="horizontal"
+						other={
+							<div class={style.output}>
+								{error && (
+									<ErrorOverlay
+										name={error.name}
+										message={error.message}
+										stack={parseStackTrace(error)}
+									/>
+								)}
+								<this.Runner
+									onRealm={this.onRealm}
+									onError={linkState(this, 'error', 'error')}
+									onSuccess={this.onSuccess}
+									css={REPL_CSS}
+									code={code}
+								/>
+							</div>
+						}
+					>
+						<this.CodeEditor
+							class={style.code}
+							value={code}
+							error={error}
+							onInput={linkState(this, 'code', 'value')}
 						/>
-					)}
-					<this.Runner
-						onRealm={this.onRealm}
-						onError={linkState(this, 'error', 'error')}
-						onSuccess={this.onSuccess}
-						css={REPL_CSS}
-						code={code}
-					/>
+					</Splitter>
 				</div>
 			</ReplWrapper>
 		);
