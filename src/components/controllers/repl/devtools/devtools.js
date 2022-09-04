@@ -4,7 +4,17 @@ import cx from '../../../../lib/cx';
 import s from './devtools.less';
 import { flattenMsg } from './serialize';
 
-export const DevtoolsCtx = createContext(new EventTarget());
+function isPrimitive(v) {
+	switch (typeof v) {
+		case 'boolean':
+		case 'number':
+		case 'string':
+		case 'undefined':
+			return true;
+		default:
+			return v === null;
+	}
+}
 
 /**
  * @param {{ hub: EventTarget }} props
@@ -12,14 +22,39 @@ export const DevtoolsCtx = createContext(new EventTarget());
 export function Console({ hub }) {
 	const [msgs, setMsgs] = useState([]);
 	useEffect(() => {
+		let last;
 		const listenToConsole = type => event => {
-			setMsgs(prev => [...prev, { type, value: event.detail }]);
+			const args = event.detail;
+			if (args.length === 1 && isPrimitive(args[0].value)) {
+				if (
+					last !== undefined &&
+					last.type === type &&
+					last.value === args[0].value
+				) {
+					setMsgs(prev => {
+						if (!prev.length) return prev;
+						const l = prev[prev.length - 1];
+						l.count++;
+						return prev.slice();
+					});
+				} else {
+					last = { type, value: args[0].value };
+					setMsgs(prev => [...prev, { type, value: args, count: 0 }]);
+				}
+			} else {
+				last = undefined;
+				setMsgs(prev => [...prev, { type, value: args, count: 0 }]);
+			}
 		};
 
 		hub.addEventListener('log', listenToConsole('log'));
+		hub.addEventListener('info', listenToConsole('info'));
 		hub.addEventListener('warn', listenToConsole('warn'));
 		hub.addEventListener('error', listenToConsole('error'));
-		hub.addEventListener('console-clear', () => setMsgs([]));
+		hub.addEventListener('console-clear', () => {
+			setMsgs([]);
+			last = undefined;
+		});
 	}, []);
 
 	return (
@@ -33,7 +68,14 @@ export function Console({ hub }) {
 						</div>
 					)}
 					{msgs.map((msg, i) => {
-						return <Message key={i} type={msg.type} value={msg.value[0]} />;
+						return (
+							<Message
+								key={i}
+								type={msg.type}
+								value={msg.value[0]}
+								count={msg.count}
+							/>
+						);
 					})}
 				</div>
 			</div>
@@ -42,9 +84,9 @@ export function Console({ hub }) {
 }
 
 /**
- * @param {{ type: string, value: any[]} } props
+ * @param {{ type: string, value: any[], count: number} } props
  */
-function Message({ type, value }) {
+function Message({ type, value, count }) {
 	const [collapsed, setCollapsed] = useState(new Set());
 
 	return (
@@ -55,7 +97,9 @@ function Message({ type, value }) {
 			)}
 		>
 			<MessageItem
+				type={type}
 				value={value}
+				count={count}
 				level={0}
 				collapsed={collapsed}
 				setCollapsed={setCollapsed}
@@ -64,12 +108,25 @@ function Message({ type, value }) {
 	);
 }
 
-function MessageItem({ value, level, collapsed, setCollapsed }) {
+function MessageItem({ type, value, level, count, collapsed, setCollapsed }) {
 	const collapsible =
 		value !== null && value !== undefined && typeof value === 'object';
 
 	return (
 		<div class={cx(s.consoleMsg, collapsible && s.consoleMsgCollapsible)}>
+			<span
+				class={cx(
+					s.consoleCount,
+					count > 0 &&
+						(type === 'error'
+							? s.consoleCountError
+							: type === 'warn'
+							? s.consoleCountWarn
+							: s.consoleCountInfo)
+				)}
+			>
+				{count > 0 ? count + 1 : ''}
+			</span>
 			{collapsible ? (
 				<button
 					class={s.collapseBtn}
