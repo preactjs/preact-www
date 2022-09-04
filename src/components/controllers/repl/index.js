@@ -15,6 +15,7 @@ import repoListExample from '!!file-loader!./examples/github-repo-list.txt';
 import contextExample from '!!file-loader!./examples/context.txt';
 import spiralExample from '!!file-loader!./examples/spiral.txt';
 import { Splitter } from '../../splitter';
+import { Console } from './devtools/devtools';
 
 const EXAMPLES = [
 	{
@@ -111,6 +112,8 @@ export default class Repl extends Component {
 	}
 
 	componentDidMount() {
+		this.eventHub = new EventTarget();
+
 		Promise.all([
 			import(/* webpackChunkName: "editor" */ '../../code-editor'),
 			import(/* webpackChunkName: "runner" */ './runner')
@@ -233,6 +236,10 @@ export default class Repl extends Component {
 		}
 	}
 
+	forwardMessage = (name, args) => {
+		this.eventHub.dispatchEvent(new CustomEvent(name, { detail: args }));
+	};
+
 	render(_, { loading, code, error, exampleSlug, copied }) {
 		if (loading) {
 			return (
@@ -244,6 +251,7 @@ export default class Repl extends Component {
 			);
 		}
 
+		const eventHub = this.eventHub;
 		return (
 			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
@@ -273,22 +281,28 @@ export default class Repl extends Component {
 					<Splitter
 						orientation="horizontal"
 						other={
-							<div class={style.output}>
-								{error && (
-									<ErrorOverlay
-										name={error.name}
-										message={error.message}
-										stack={parseStackTrace(error)}
+							<Splitter
+								orientation="vertical"
+								other={<Console hub={eventHub} />}
+							>
+								<div class={style.output}>
+									{error && (
+										<ErrorOverlay
+											name={error.name}
+											message={error.message}
+											stack={parseStackTrace(error)}
+										/>
+									)}
+									<this.Runner
+										onRealm={this.onRealm}
+										onError={linkState(this, 'error', 'error')}
+										onSuccess={this.onSuccess}
+										onConsole={this.forwardMessage}
+										css={REPL_CSS}
+										code={code}
 									/>
-								)}
-								<this.Runner
-									onRealm={this.onRealm}
-									onError={linkState(this, 'error', 'error')}
-									onSuccess={this.onSuccess}
-									css={REPL_CSS}
-									code={code}
-								/>
-							</div>
+								</div>
+							</Splitter>
 						}
 					>
 						<this.CodeEditor

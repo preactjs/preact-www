@@ -4,6 +4,7 @@ import style from './style.module.less';
 import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
 import bundledModulesUrl from 'worker-plugin/loader?name=repl.setup&esModule!./repl.setup.js';
 import { patchErrorLocation } from './errors';
+import { serialize } from './devtools/serialize';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
@@ -118,7 +119,8 @@ export default class Runner extends Component {
 
 		this.realm = new Realm({
 			frame: this.frame.current,
-			onError: this.commitError
+			onError: this.commitError,
+			onConsole: this.props.onConsole
 		});
 		this.realm.globalThis.fetch = cachedFetch;
 		let doc = this.realm.globalThis.document;
@@ -179,7 +181,7 @@ export default class Runner extends Component {
 	}
 }
 
-function Realm({ frame, onError }) {
+function Realm({ frame, onError, onConsole }) {
 	if (!frame) {
 		frame = document.createElement('iframe');
 		frame.style.cssText =
@@ -191,9 +193,10 @@ function Realm({ frame, onError }) {
 	this.onError = onError || console.error;
 
 	const catchError = (m, fileName, lineNumber, columnNumber, err) => {
+		console.log(err);
 		if (err) return this.onError(err);
 		let e = new Error(m);
-		// lineNumber -= 5;
+		// lineN</div>umber -= 5;
 		let stack = `${m}\n  repl.js (:${lineNumber}:${columnNumber})`;
 		Object.defineProperty(e, 'fileName', { value: fileName });
 		Object.defineProperty(e, 'lineNumber', { value: lineNumber });
@@ -206,6 +209,21 @@ function Realm({ frame, onError }) {
 	};
 	this.globalThis.onerror = catchError;
 	this.globalThis.addEventListener('unhandledrejection', catchRejection);
+
+	// Patch console and forward it to parent frame
+	if (onConsole) {
+		const iframeConsole = frame.contentWindow.console;
+		for (const k in iframeConsole) {
+			const original = iframeConsole[k];
+			iframeConsole[k] = (...args) => {
+				original.apply(original, args);
+				onConsole(
+					k,
+					args.map(item => serialize(item, 20))
+				);
+			};
+		}
+	}
 
 	this.destroy = () => {
 		this.globalThis.removeEventListener('unhandledrejection', catchRejection);

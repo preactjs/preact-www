@@ -1,0 +1,66 @@
+.devtools {
+	background: var(--color-page-bg);
+	height: 100%;
+}
+
+.console {
+	font-size: 0.75rem;
+}
+
+.consoleWrapper {
+	overflow: auto;
+	height: 100%;
+}
+
+.consoleMsg {
+	padding: 0.125rem 0.5rem;
+}
+
+.consoleMsg + .consoleMsg {
+	border-top: 0.0625rem solid var(--color-table-border);
+}
+
+.consoleWarn {
+	color: var(--console-warn);
+	background: var(--console-warn-bg);
+	border-top: 0.0625rem solid var(--console-warn-border);
+	border-bottom: 0.0625rem solid var(--console-warn-border);
+}
+
+.consoleError {
+	color: var(--console-error);
+	background: var(--console-error-bg);
+	border-top: 0.0625rem solid var(--console-error-border);
+	border-bottom: 0.0625rem solid var(--console-error-border);
+}
+
+.consoleData {
+	font-family: var(--monospace);
+}
+
+.consoleSingleGray {
+	color: red;
+}
+
+.collapseBtn {
+	border: none;
+	background: none;
+	display: inline-block;
+	cursor: pointer;
+	font-family: var(--monospace);
+	color: var(--color-text);
+}
+
+.collapseIcon {
+	display: inline-block;
+	width: 1rem;
+	font-size: 0.75rem;
+}
+
+.primitive {
+	color: var(--console-primitive);
+}
+
+.string {
+	color: var(--color-code-string);
+}
