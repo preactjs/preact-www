@@ -18,14 +18,17 @@ import { Splitter } from '../../splitter';
 const EXAMPLES = [
 	{
 		name: 'Simple Counter',
+		slug: 'counter',
 		url: simpleCounterExample
 	},
 	{
 		name: 'Todo List',
+		slug: 'todo',
 		url: todoExample
 	},
 	{
 		name: 'Github Repo List',
+		slug: 'github-repo-list',
 		url: repoListExample
 	},
 	{
@@ -33,10 +36,12 @@ const EXAMPLES = [
 		items: [
 			{
 				name: 'Counter using HTM',
+				slug: 'counter-htm',
 				url: counterWithHtmExample
 			},
 			{
 				name: 'Context',
+				slug: 'context',
 				url: contextExample
 			}
 		]
@@ -46,19 +51,20 @@ const EXAMPLES = [
 		items: [
 			{
 				name: 'Spiral',
+				slug: 'spiral',
 				url: spiralExample
 			}
 		]
 	}
 ];
 
-function getExample(name, list = EXAMPLES) {
+function getExample(slug, list) {
 	for (let i = 0; i < list.length; i++) {
 		let item = list[i];
 		if (item.group) {
-			let found = getExample(name, item.items);
+			let found = getExample(slug, item.items);
 			if (found) return found;
-		} else if (item.name.toLowerCase() === name.toLowerCase()) {
+		} else if (item.slug.toLowerCase() === slug.toLowerCase()) {
 			return item;
 		}
 	}
@@ -67,8 +73,36 @@ function getExample(name, list = EXAMPLES) {
 export default class Repl extends Component {
 	state = {
 		loading: 'Loading REPL...',
-		code: localStorageGet('preact-www-repl-code')
+		code: '',
+		exampleSlug: ''
 	};
+
+	constructor(props) {
+		super(props);
+
+		// Only load from local storage if no url param is set
+		if (typeof window !== 'undefined') {
+			const params = new URLSearchParams(window.location.search);
+			const exampleParam = params.get('example');
+			let example = exampleParam ? getExample(exampleParam, EXAMPLES) : null;
+
+			if (example) {
+				this.state.exampleSlug = example.slug;
+			} else if (!example) {
+				// Remove ?example param
+				history.replaceState(null, null, '/repl');
+
+				// No example param was present, try to load from localStorage
+				const code = localStorageGet('preact-www-repl-code');
+				if (code) {
+					this.state.code = code;
+				} else {
+					// Nothing found in localStorage either, pick first example
+					this.state.exampleSlug = EXAMPLES[0].slug;
+				}
+			}
+		}
+	}
 
 	componentDidMount() {
 		Promise.all([
@@ -82,13 +116,13 @@ export default class Repl extends Component {
 			this.setState({ loading: 'Initializing REPL...' });
 			this.Runner.worker.ping().then(() => {
 				this.setState({ loading: false });
-				let example = this.props.example && getExample(this.props.example);
+				let example = this.state.exampleSlug;
 				if (this.props.code) {
 					this.receiveCode(this.props.code);
 				} else if (example) {
-					this.applyExample(example.name);
+					this.applyExample(example);
 				} else if (!this.state.code) {
-					this.applyExample(EXAMPLES[0].name);
+					this.applyExample(EXAMPLES[0].slug);
 				}
 			});
 		});
@@ -118,11 +152,10 @@ export default class Repl extends Component {
 
 	loadExample = e => {
 		this.applyExample(e.target.value);
-		e.target.value = '';
 	};
 
 	async applyExample(name) {
-		let example = getExample(name);
+		let example = getExample(name, EXAMPLES);
 		if (!example) return;
 		if (!example.code) {
 			if (example.url) {
@@ -131,7 +164,13 @@ export default class Repl extends Component {
 				example.code = await example.load();
 			}
 		}
-		this.setState({ code: example.code });
+
+		history.replaceState(
+			null,
+			null,
+			`/repl?example=${encodeURIComponent(example.slug)}`
+		);
+		this.setState({ code: example.code, exampleSlug: example.slug });
 	}
 
 	onRealm = realm => {
@@ -145,6 +184,15 @@ export default class Repl extends Component {
 	componentDidUpdate = debounce(500, () => {
 		let { code } = this.state;
 		if (code === repoListExample) code = '';
+		// Reset select when code is changed from example
+		if (this.state.exampleSlug) {
+			const example = getExample(this.state.exampleSlug, EXAMPLES);
+			if (code !== example.code && this.state.exampleSlug !== '') {
+				// eslint-disable-next-line react/no-did-update-set-state
+				this.setState({ exampleSlug: '' });
+				history.replaceState(null, null, '/repl');
+			}
+		}
 		localStorageSet('preact-www-repl-code', code || '');
 	});
 
@@ -179,7 +227,7 @@ export default class Repl extends Component {
 		}
 	}
 
-	render(_, { loading, code, error, example, copied }) {
+	render(_, { loading, code, error, exampleSlug, copied }) {
 		if (loading) {
 			return (
 				<ReplWrapper loading>
@@ -194,15 +242,19 @@ export default class Repl extends Component {
 			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
-						<select value="" onChange={this.loadExample}>
+						<select value={exampleSlug} onChange={this.loadExample}>
 							<option value="" disabled>
 								Select Example...
 							</option>
 							{EXAMPLES.map(function item(ex) {
+								const selected =
+									ex.slug !== undefined && ex.slug === exampleSlug;
 								return ex.group ? (
 									<optgroup label={ex.group}>{ex.items.map(item)}</optgroup>
 								) : (
-									<option value={ex.name}>{ex.name}</option>
+									<option selected={selected} value={ex.slug}>
+										{ex.name}
+									</option>
 								);
 							})}
 						</select>
