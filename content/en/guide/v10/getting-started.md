@@ -241,6 +241,27 @@ export default {
 }
 ```
 
+#### Aliasing in Vite
+
+To alias in [Vite](https://vitejs.dev/), you'll need to add a package import alias to the `vite.config.js` file.
+This will be passed to `@rollup/plugin-alias` as its [entries option](https://github.com/rollup/plugins/tree/master/packages/alias#entries).
+
+```js
+import { defineConfig } from 'vite'
+
+// vite.config.js
+export default defineConfig({
+  resolve: {
+    alias: {
+      "react": "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat",
+      "react/jsx-runtime": "preact/jsx-runtime",
+    }
+  }
+})
+```
+
 [htm]: https://github.com/developit/htm
 [Preact CLI]: https://github.com/preactjs/preact-cli
 
