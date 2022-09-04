@@ -136,6 +136,7 @@ export default class Runner extends Component {
 	}
 
 	async execute(transpiled, isFallback) {
+		if (this.props.onExecute) this.props.onExecute();
 		if (this.didError && !isFallback) {
 			await this.rebuild();
 		} else {
@@ -193,7 +194,6 @@ function Realm({ frame, onError, onConsole }) {
 	this.onError = onError || console.error;
 
 	const catchError = (m, fileName, lineNumber, columnNumber, err) => {
-		console.log(err);
 		if (err) return this.onError(err);
 		let e = new Error(m);
 		// lineN</div>umber -= 5;

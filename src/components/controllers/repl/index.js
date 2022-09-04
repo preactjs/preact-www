@@ -240,6 +240,9 @@ export default class Repl extends Component {
 		this.eventHub.dispatchEvent(new CustomEvent(name, { detail: args }));
 	};
 
+	clearConsole = () =>
+		this.eventHub.dispatchEvent(new CustomEvent('console-clear'));
+
 	render(_, { loading, code, error, exampleSlug, copied }) {
 		if (loading) {
 			return (
@@ -298,6 +301,7 @@ export default class Repl extends Component {
 										onError={linkState(this, 'error', 'error')}
 										onSuccess={this.onSuccess}
 										onConsole={this.forwardMessage}
+										onExecute={this.clearConsole}
 										css={REPL_CSS}
 										code={code}
 									/>

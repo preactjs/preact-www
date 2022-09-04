@@ -19,12 +19,19 @@ export function Console({ hub }) {
 		hub.addEventListener('log', listenToConsole('log'));
 		hub.addEventListener('warn', listenToConsole('warn'));
 		hub.addEventListener('error', listenToConsole('error'));
+		hub.addEventListener('console-clear', () => setMsgs([]));
 	}, []);
 
 	return (
 		<div class={s.devtools}>
+			<div class={s.devtoolsBar}>Console</div>
 			<div class={s.consoleWrapper}>
 				<div class={s.console}>
+					{msgs.length === 0 && (
+						<div class={cx(s.italic, s.consoleMsg, s.consoleHint)}>
+							Console was cleared
+						</div>
+					)}
 					{msgs.map((msg, i) => {
 						return <Message key={i} type={msg.type} value={msg.value[0]} />;
 					})}
@@ -43,7 +50,6 @@ function Message({ type, value }) {
 	return (
 		<div
 			class={cx(
-				s.consoleMsg,
 				type == 'warn' && s.consoleWarn,
 				type == 'error' && s.consoleError
 			)}
@@ -63,7 +69,7 @@ function MessageItem({ value, level, collapsed, setCollapsed }) {
 		value !== null && value !== undefined && typeof value === 'object';
 
 	return (
-		<div class={s.consoleData}>
+		<div class={cx(s.consoleMsg, collapsible && s.consoleMsgCollapsible)}>
 			{collapsible ? (
 				<button
 					class={s.collapseBtn}
@@ -88,7 +94,7 @@ function MessageItem({ value, level, collapsed, setCollapsed }) {
 	);
 }
 
-export function generatePreview(value, end = false) {
+export function generatePreview(value, level = 0, end = false) {
 	if (value === null || value === undefined) {
 		return String(value);
 	}
@@ -98,27 +104,38 @@ export function generatePreview(value, end = false) {
 		case 'boolean':
 			return <span class={s.primitive}>{String(value)}</span>;
 		case 'string':
-			return <span class={s.string}>'{value}'</span>;
+			return level === 0 ? value : <span class={s.string}>'{value}'</span>;
+	}
+
+	if (Array.isArray(value)) {
+		if (end) return `Array(${value.length})`;
+		return `[TODO]`;
 	}
 
 	const keys = Object.keys(value);
 
 	if (end) {
-		return `{${keys.length > 0 ? '...' : ''}}`;
+		return (
+			<span class={cx(level === 0 && s.italic)}>
+				<span class={s.bright}>{'{'}</span>
+				{keys.length > 0 ? '…' : ''}
+				<span class={s.bright}>{'}'}</span>
+			</span>
+		);
 	}
 
 	return (
-		<>
-			{'{'}
+		<span class={cx(level === 0 && s.italic)}>
+			<span class={s.bright}>{'{'}</span>
 			{keys.map(k => {
 				return (
 					<>
 						<span class={s.consoleDim}>{k}</span>:{' '}
-						{generatePreview(value[k], true)}
+						{generatePreview(value[k], level + 1, true)}
 					</>
 				);
 			})}
-			{'}'}
-		</>
+			<span class={s.bright}>{'}'}</span>
+		</span>
 	);
 }

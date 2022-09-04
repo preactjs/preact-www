@@ -37,7 +37,7 @@ export function serialize(value, limit = 20) {
 	}
 
 	return Object.keys(value).reduce((acc, key) => {
-		acc[key] = serialize(key, limit - 1);
+		acc[key] = serialize(value[key], limit - 1);
 		return acc;
 	}, {});
 }
