@@ -10,6 +10,7 @@ import REPL_CSS from '!!raw-loader!./examples.css';
 import simpleCounterExample from '!!file-loader!./examples/simple-counter.txt';
 import counterWithHtmExample from '!!file-loader!./examples/counter-with-htm.txt';
 import todoExample from '!!file-loader!./examples/todo-list.txt';
+import todoExampleSignal from '!!file-loader!./examples/todo-list-signal.txt';
 import repoListExample from '!!file-loader!./examples/github-repo-list.txt';
 import contextExample from '!!file-loader!./examples/context.txt';
 import spiralExample from '!!file-loader!./examples/spiral.txt';
@@ -25,6 +26,11 @@ const EXAMPLES = [
 		name: 'Todo List',
 		slug: 'todo',
 		url: todoExample
+	},
+	{
+		name: 'Todo List (Signals)',
+		slug: 'todo-list-signals',
+		url: todoExampleSignal
 	},
 	{
 		name: 'Github Repo List',
