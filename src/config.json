@@ -139,16 +139,16 @@
 			]
 		},
 		{
-			"path": "/repl",
-			"title": "REPL",
-			"controller": "Repl"
-		},
-		{
 			"path": "/blog",
 			"title": "Blog",
 			"first": "index",
 			"content": "blog",
 			"controller": "Blog"
+		},
+		{
+			"path": "/repl",
+			"title": "REPL",
+			"controller": "Repl"
 		}
 	],
 	"docs": [
