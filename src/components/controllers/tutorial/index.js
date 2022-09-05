@@ -140,6 +140,10 @@ export default class Tutorial extends Component {
 		this.setState({ code: solution });
 	};
 
+	clearError = () => {
+		this.setState({ error: null });
+	};
+
 	render({ route, step }, { loading, code, error }) {
 		const state = {
 			route,
@@ -152,7 +156,7 @@ export default class Tutorial extends Component {
 		};
 		return (
 			<TutorialContext.Provider value={this}>
-				<TutorialView {...state} />
+				<TutorialView {...state} clearError={this.clearError} />
 			</TutorialContext.Provider>
 		);
 	}
@@ -165,7 +169,8 @@ function TutorialView({
 	code,
 	error,
 	Runner,
-	CodeEditor
+	CodeEditor,
+	clearError
 }) {
 	const content = useRef();
 
@@ -234,18 +239,23 @@ function TutorialView({
 											clear
 										/>
 									)}
-									{error && [
-										<ErrorOverlay
-											key={'e:' + fullPath}
-											class={style.error}
-											name={error.name}
-											message={error.message}
-											stack={parseStackTrace(error)}
-										/>,
-										<button class={style.rerun} onClick={reRun}>
-											Re-run
-										</button>
-									]}
+									{error && (
+										<div class={style.errorOverlayWrapper}>
+											<button class={style.close} onClick={clearError}>
+												close
+											</button>
+											<ErrorOverlay
+												key={'e:' + fullPath}
+												class={style.error}
+												name={error.name}
+												message={error.message}
+												stack={parseStackTrace(error)}
+											/>
+											<button class={style.rerun} onClick={reRun}>
+												Re-run
+											</button>
+										</div>
+									)}
 								</div>
 								{hasCode && (
 									<button
@@ -387,8 +397,8 @@ function TutorialCodeBlock(props) {
 	// Block Type: ```jsx:repl-initial  /  ```jsx:repl-final
 	const repl = cl.match(/repl-(initial|final)/g);
 	if (repl) {
-		tutorial.setState({ [repl[0]]: code });
-		if (repl[0] === 'repl-initial') tutorial.setState({ code });
+		tutorial.setState({ [repl[0]]: code + '\n' });
+		if (repl[0] === 'repl-initial') tutorial.setState({ code: code + '\n' });
 		return null;
 	}
 
