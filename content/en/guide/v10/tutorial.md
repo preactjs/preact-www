@@ -31,10 +31,12 @@ This alone doesn't do anything and we need a way to inject our Hello-World app i
 
 ```jsx
 // --repl
+import { render } from 'preact';
+
 const App = <h1>Hello World!</h1>;
 
 // Inject our app into the DOM
-render(App, document.getElementById("app"));
+render(App, document.getElementById('app'));
 ```
 
 Congratulations, you've build your first Preact app!
