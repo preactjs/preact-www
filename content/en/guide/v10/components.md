@@ -21,6 +21,9 @@ Functional components are plain functions that receive `props` as the first argu
 
 ```jsx
 // --repl
+import { render } from 'preact';
+
+// --repl-before
 function MyComponent(props) {
   return <div>My name is {props.name}.</div>;
 }
