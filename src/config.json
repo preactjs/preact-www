@@ -58,6 +58,11 @@
 			"content": "index"
 		},
 		{
+			"path": "/branding",
+			"title": "Branding",
+			"skipHeader": true
+		},
+		{
 			"path": "/tutorial/:step?",
 			"href": "/tutorial/",
 			"first": "index",
