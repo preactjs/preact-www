@@ -7,9 +7,7 @@ description: 'Fast 3kB alternative to React with the same modern API.'
 ---
 
 <jumbotron>
-    <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
-    </h1>
+    <logo height="10.625em" title="Preact" text inverted>Preact</logo>
     <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
