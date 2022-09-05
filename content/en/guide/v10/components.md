@@ -45,6 +45,9 @@ Here we have a simple class component called `<Clock>` that displays the current
 
 ```jsx
 // --repl
+import { Component, render } from 'preact';
+
+// --repl-before
 class Clock extends Component {
 
   constructor() {
@@ -71,6 +74,8 @@ class Clock extends Component {
     return <span>{time}</span>;
   }
 }
+// --repl-after
+render(<Clock />, document.getElementById('app'));
 ```
 
 ### Lifecycle Methods
@@ -99,6 +104,8 @@ When an error is caught, we can use this lifecycle to react to any errors and di
 
 ```jsx
 // --repl
+import { Component, render } from 'preact';
+// --repl-before
 class Catcher extends Component {
   
   constructor() {
@@ -117,6 +124,8 @@ class Catcher extends Component {
     return props.children;
   }
 }
+// --repl-after
+render(<Catcher />, document.getElementById('app'));
 ```
 
 ## Fragments
