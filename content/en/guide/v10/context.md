@@ -20,6 +20,11 @@ There are two different ways to use context: Via the newer `createContext` API a
 First we need to create a context object we can pass around. This is done via the `createContext(initialValue)` function. It returns a `Provider` component that is used to set the context value and a `Consumer` one which retrieves the value from the context.
 
 ```jsx
+// --repl
+import { render, createContext } from 'preact';
+
+const SomeComponent = props => props.children;
+// --repl-before
 const Theme = createContext('light');
 
 function ThemedButton(props) {
@@ -41,6 +46,8 @@ function App() {
     </Theme.Provider>
   );
 }
+// --repl-after
+render(<App />, document.getElementById("app"));
 ```
 
 > An easier way to use context is via the [useContext](/guide/v10/hooks#usecontext) hook.
@@ -52,11 +59,16 @@ We include the legacy API mainly for backwards-compatibility reasons. It has bee
 To pass down a custom variable through the context, a component needs to have the `getChildContext` method. There you return the new values you want to store in the context. The context can be accessed via the second argument in function components or `this.context` in a class-based component.
 
 ```jsx
+// --repl
+import { render } from 'preact';
+
+const SomeOtherComponent = props => props.children;
+// --repl-before
 function ThemedButton(props, context) {
   return (
     <button {...props} class={'btn ' + context.theme}>
       Themed Button
-    </button>;
+    </button>
   );
 }
 
@@ -77,4 +89,6 @@ class App extends Component {
     );
   }
 }
+// --repl-after
+render(<App />, document.getElementById("app"));
 ```

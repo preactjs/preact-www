@@ -53,6 +53,7 @@ To learn more about components and how they can be used, check out the [Componen
 Render a Virtual DOM Element into a parent DOM element `containerNode`. Does not return anything.
 
 ```jsx
+// --repl
 // DOM tree before render:
 // <div id="container"></div>
 
@@ -115,6 +116,7 @@ render(<App />, rootElement); // success
 If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
+// --repl
 import { hydrate } from 'preact';
 
 const Foo = () => <div>foo</div>;
@@ -213,6 +215,7 @@ A special kind of component that can have children, but is not rendered as a DOM
 Fragments make it possible to return multiple sibling children without needing to wrap them in a DOM container:
 
 ```jsx
+// --repl
 import { Fragment, render } from 'preact';
 
 render(

@@ -20,6 +20,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 Functional components are plain functions that receive `props` as the first argument. The function name **must** start with an uppercase letter in order for them to work in JSX.
 
 ```jsx
+// --repl
 function MyComponent(props) {
   return <div>My name is {props.name}.</div>;
 }
@@ -40,6 +41,7 @@ Class components can have state and lifecycle methods. The latter are special me
 Here we have a simple class component called `<Clock>` that displays the current time:
 
 ```jsx
+// --repl
 class Clock extends Component {
 
   constructor() {
@@ -93,6 +95,7 @@ There is one lifecycle method that deserves a special recognition and that is `c
 When an error is caught, we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
 
 ```jsx
+// --repl
 class Catcher extends Component {
   
   constructor() {
@@ -118,6 +121,7 @@ class Catcher extends Component {
 A `Fragment` allows you to return multiple elements at once. They solve the limitation of JSX where every "block" must have a single root element. You'll often encounter them in combination with lists, tables or with CSS flexbox where any intermediate element would otherwise affect styling.
 
 ```jsx
+// --repl
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
