@@ -22,6 +22,7 @@ In a nutshell Preact X is what we always wanted Preact to be: A tiny, fast and f
 [Fragment docs →](/guide/v10/components#fragments)
 
 ```jsx
+// --repl
 function Foo() {
   return (
     <>
@@ -39,6 +40,7 @@ We all wish errors wouldn't happen in our applications, but sometimes they do. W
 [Lifecycle docs →](/guide/v10/components#componentdidcatch)
 
 ```jsx
+// --repl
 class Catcher extends Component {
   state = { errored: false }
 
@@ -62,6 +64,7 @@ class Catcher extends Component {
 [Hooks Docs →](/guide/v10/hooks)
 
 ```jsx
+// --repl
 function Counter() {
   const [value, setValue] = useState(0);
   const increment = useCallback(() => setValue(value + 1), [value]);
