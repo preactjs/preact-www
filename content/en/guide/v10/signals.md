@@ -379,7 +379,7 @@ name.value = "John";
 > :bulb: Tip: Don't forget to clean up effects if you're using them extensively. Otherwise your app will consume more memory than needed.
 
 
-## Reading signals without writing to them
+## Reading signals without subscribing to them
 
 On the rare occasion that you need to write to a signal inside [`effect(fn)`](#effectfn), but don't want the effect to re-run when that signal changes, you can use `.peek()` to get the signal's current value without subscribing.
 
