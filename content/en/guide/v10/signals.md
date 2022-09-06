@@ -94,7 +94,7 @@ Signals can be installed by adding the `@preact/signals` package to your project
 npm install @preact/signals
 ```
 
-Once installed via your package manager of choice, you're ready to import them in your app.
+Once installed via your package manager of choice, you're ready to import it in your app.
 
 ## Usage Example
 
