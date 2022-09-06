@@ -1,4 +1,7 @@
-export function Counter() {
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
+
+function Counter() {
 	const [value, setValue] = useState(0);
 
 	return (
@@ -9,3 +12,5 @@ export function Counter() {
 		</>
 	);
 }
+
+render(<Counter />, document.getElementById('app'));

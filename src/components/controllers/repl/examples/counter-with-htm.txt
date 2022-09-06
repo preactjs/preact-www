@@ -1,3 +1,5 @@
+import { render } from 'preact';
+import { useReducer } from 'preact/hooks';
 import { html } from 'htm/preact';
 
 export function Counter() {
@@ -17,3 +19,5 @@ export function Counter() {
 		</style>
 	`;
 }
+
+render(<Counter />, document.getElementById('app'));
