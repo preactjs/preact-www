@@ -42,6 +42,10 @@
 			"pt-br": "Página Anterior",
 			"zh": "上一页",
 			"kr": "이전"
+		},
+		"continueReading": {
+			"en": "Continue reading",
+			"de": "Weiter lesen"
 		}
 	},
 	"nav": [
@@ -133,6 +137,13 @@
 					}
 				}
 			]
+		},
+		{
+			"path": "/blog",
+			"title": "Blog",
+			"first": "index",
+			"content": "blog",
+			"controller": "Blog"
 		},
 		{
 			"path": "/repl",
@@ -285,6 +296,12 @@
 						"pt-br": "Hooks",
 						"ja": "フック(Hooks)",
 						"de": "Hooks"
+					}
+				},
+				{
+					"path": "/guide/v10/signals",
+					"name": {
+						"en": "Signals"
 					}
 				},
 				{
@@ -479,6 +496,18 @@
 					}
 				}
 			]
+		}
+	],
+	"blog": [
+		{
+			"path": "/blog/introducing-signals",
+			"name": {
+				"en": "Introducing Signals"
+			},
+			"date": "2022-09-06",
+			"excerpt": {
+				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions."
+			}
 		}
 	]
 }
