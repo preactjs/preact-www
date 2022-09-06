@@ -1,12 +1,7 @@
 import s from './time.less';
 
-const formatter = new Intl.DateTimeFormat();
-
 export function Time({ value }) {
-	const date = new Date(value);
-	return (
-		<time class={s.time} dateTime={date}>
-			{formatter.format(date)}
-		</time>
-	);
+	const date = new Date(value + 'T00:00');
+	const day = date.toLocaleDateString ? date.toLocaleDateString() : date.toDateString();
+	return <time class={s.time} dateTime={date}>{day}</time>;
 }
