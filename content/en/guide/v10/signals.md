@@ -130,12 +130,12 @@ function addTodo() {
 ```
 
 > :bulb: Tip: A signal will only update if you assign a new value to it. If the value you assign to a signal is equal to its current value, it won't update.
-> 
+>
 > ```js
 > const count = signal(0);
-> 
+>
 > count.value = 0; // does nothing - value is already 0
-> 
+>
 > count.value = 1; // updates - value is different
 > ```
 
@@ -309,12 +309,12 @@ function Counter() {
 Those two hooks are thin wrappers around [`signal()`](#signalinitialvalue) and [`computed()`](#computedfn) that construct a signal the first time a component runs, and simply that same signal on subsequent renders.
 
 > :bulb: Behind the scenes, this is the implementation:
-
-```js
-function useSignal(value) {
-  return useMemo(() => signal(value), []);
-}
-```
+>
+> ```js
+> function useSignal(value) {
+>  return useMemo(() => signal(value), []);
+> }
+> ```
 
 ## Advanced signals usage
 
