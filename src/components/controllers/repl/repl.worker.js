@@ -4,7 +4,7 @@ import { parseStackTrace } from './errors';
 
 const PREPEND = `(function(module,exports,require,fetch){`;
 
-const IMPORTS = `import {h} from 'preact';`;
+const IMPORTS = `import {h, Fragment} from 'preact';`;
 
 export function ping() {
 	return true;
