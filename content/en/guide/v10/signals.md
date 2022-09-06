@@ -11,6 +11,12 @@ What makes Signals unique is that state changes automatically update components 
 
 Signals are effective in applications of any size, with ergonomics that speed up the development of small apps, and performance characteristics that ensure apps of any size are fast by default.
 
+---
+
+<div><toc></toc></div>
+
+---
+
 ## Introduction
 
 Much of the pain of state management in JavaScript is reacting to changes for a given value, because values are not directly observable. Solutions typically work around this by storing values in a variable and continuously checking to see if they have changed, which is cumbersome and not ideal for performance. Ideally, we want a way to express a value that tells us when it changes. That's what Signals do.
@@ -124,12 +130,12 @@ function addTodo() {
 ```
 
 > :bulb: Tip: A signal will only update if you assign a new value to it. If the value you assign to a signal is equal to its current value, it won't update.
-> 
+>
 > ```js
 > const count = signal(0);
-> 
+>
 > count.value = 0; // does nothing - value is already 0
-> 
+>
 > count.value = 1; // updates - value is different
 > ```
 
@@ -303,12 +309,12 @@ function Counter() {
 Those two hooks are thin wrappers around [`signal()`](#signalinitialvalue) and [`computed()`](#computedfn) that construct a signal the first time a component runs, and simply that same signal on subsequent renders.
 
 > :bulb: Behind the scenes, this is the implementation:
-
-```js
-function useSignal(value) {
-  return useMemo(() => signal(value), []);
-}
-```
+>
+> ```js
+> function useSignal(value) {
+>  return useMemo(() => signal(value), []);
+> }
+> ```
 
 ## Advanced signals usage
 
