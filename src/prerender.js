@@ -10,7 +10,6 @@ const groups = {
 	'/v8': 'Preact Version 8',
 	'/tutorial': 'Preact Tutorial',
 	'/guide': 'Preact Guide',
-	'/cli': 'Preact CLI',
 	'': 'Preact'
 };
 
