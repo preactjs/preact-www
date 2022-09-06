@@ -11,6 +11,12 @@ What makes Signals unique is that state changes automatically update components 
 
 Signals are effective in applications of any size, with ergonomics that speed up the development of small apps, and performance characteristics that ensure apps of any size are fast by default.
 
+---
+
+<div><toc></toc></div>
+
+---
+
 ## Introduction
 
 Much of the pain of state management in JavaScript is reacting to changes for a given value, because values are not directly observable. Solutions typically work around this by storing values in a variable and continuously checking to see if they have changed, which is cumbersome and not ideal for performance. Ideally, we want a way to express a value that tells us when it changes. That's what Signals do.
