@@ -1,3 +1,6 @@
+import { render, createContext } from 'preact';
+import { useState, useMemo, useContext } from 'preact/hooks';
+
 const CounterContext = createContext(null);
 
 function Counter() {
@@ -11,7 +14,7 @@ function Counter() {
 	);
 }
 
-export default function App() {
+function App() {
 	const [count, setCount] = useState(0);
 
 	function increment() {
@@ -32,3 +35,5 @@ export default function App() {
 		</CounterContext.Provider>
 	);
 }
+
+render(<App />, document.getElementById('app'));

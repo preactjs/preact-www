@@ -1,6 +1,9 @@
+import { render } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
+
 const SEARCH = 'https://api.github.com/search/repositories';
 
-export default function Example() {
+function Example() {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -33,3 +36,5 @@ const Result = result => (
 		<p>{result.description}</p>
 	</div>
 );
+
+render(<Example />, document.getElementById('app'));
