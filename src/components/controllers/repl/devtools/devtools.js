@@ -28,6 +28,7 @@ export function Console({ hub }) {
 		/** @type {import("./devtools-types").ConsoleItem | undefined} */
 		let last;
 		const listenToConsole = type => event => {
+			console.log(type, event.detail);
 			const args = event.detail;
 			if (args.length === 1 && isPrimitive(args[0].value)) {
 				if (
@@ -60,6 +61,8 @@ export function Console({ hub }) {
 			last = undefined;
 		});
 	}, []);
+
+	console.log(msgs);
 
 	return (
 		<div class={s.devtools}>
@@ -125,7 +128,7 @@ export function Console({ hub }) {
  */
 function Message({ type, value, count }) {
 	const [collapsed, setCollapsed] = useState(new Set());
-
+	console.log('msg', type, value);
 	return (
 		<div
 			class={cx(
