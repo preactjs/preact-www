@@ -28,13 +28,14 @@ export function Console({ hub }) {
 		/** @type {import("./devtools-types").ConsoleItem | undefined} */
 		let last;
 		const listenToConsole = type => event => {
-			console.log(type, event.detail);
+			console.log('listen', type, event.detail);
 			const args = event.detail;
-			if (args.length === 1 && isPrimitive(args[0].value)) {
+			if (args.length === 1 && isPrimitive(args[0])) {
+				console.log('yeah', args[0]);
 				if (
 					last !== undefined &&
 					last.type === type &&
-					last.value === args[0].value
+					last.value === args[0]
 				) {
 					setMsgs(prev => {
 						if (!prev.length) return prev;
@@ -43,12 +44,15 @@ export function Console({ hub }) {
 						return prev.slice();
 					});
 				} else {
-					last = { type, value: args[0].value };
+					last = { type, value: args[0] };
 					setMsgs(prev => [...prev, { type, value: args, count: 0 }]);
 				}
 			} else {
 				last = undefined;
-				setMsgs(prev => [...prev, { type, value: args, count: 0 }]);
+				setMsgs(prev => {
+					console.log([...prev, { type, value: args, count: 0 }]);
+					return [...prev, { type, value: args, count: 0 }];
+				});
 			}
 		};
 
@@ -128,7 +132,6 @@ export function Console({ hub }) {
  */
 function Message({ type, value, count }) {
 	const [collapsed, setCollapsed] = useState(new Set());
-	console.log('msg', type, value);
 	return (
 		<div
 			class={cx(
