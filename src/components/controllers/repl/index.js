@@ -286,6 +286,7 @@ export default class Repl extends Component {
 						other={
 							<Splitter
 								orientation="vertical"
+								max={90}
 								other={<Console hub={eventHub} />}
 							>
 								<div class={style.output}>

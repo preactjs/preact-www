@@ -3,11 +3,13 @@ import cx from '../../lib/cx';
 import s from './splitter.less';
 
 /**
- * @param {{orientation: "horizontal" | "vertical", initial?: string, children: any, other: any, force?: boolean}} props
+ * @param {{orientation: "horizontal" | "vertical", initial?: string, children: any, other: any, force?: boolean, min?: number, max?: number}} props
  */
 export function Splitter({
 	orientation,
 	initial = '50%',
+	min = 20,
+	max = 80,
 	children,
 	other,
 	force
@@ -27,7 +29,7 @@ export function Splitter({
 				perc = parseFloat(root.style.getPropertyValue('--size') || initial);
 				w = isHorizontal ? root.offsetWidth : root.offsetHeight;
 			} else {
-				let p = Math.max(20, Math.min(80, perc + ((pos - v) / w) * 100));
+				let p = Math.max(min, Math.min(max, perc + ((pos - v) / w) * 100));
 				root.style.setProperty('--size', `${p.toFixed(2)}%`);
 			}
 		}

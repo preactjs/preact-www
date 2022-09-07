@@ -13,6 +13,53 @@
 	border-bottom: 0.125rem solid var(--color-table-border);
 }
 
+.devtoolsActions {
+	background: var(--console-header-bg);
+	display: flex;
+	align-items: center;
+	padding: 0.25rem 0;
+
+	svg {
+		fill: var(--color-text);
+	}
+}
+
+.devtoolsBtn {
+	border: none;
+	background: none;
+	cursor: pointer;
+	transform: translate3d(0, 0, 0);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:active {
+		transform: translate3d(0, 0.05rem, 0);
+	}
+}
+
+.filter {
+	display: flex;
+	align-items: center;
+}
+
+.filterBtn {
+	cursor: pointer;
+	font-size: 0.75rem;
+	padding: 0 0.5rem;
+	border: none;
+	background: none;
+	border-radius: 0.5rem;
+}
+
+.filterBtn + .filterBtn {
+	margin-left: 0.25rem;
+}
+
+.filterBtnActive {
+	background: black;
+}
+
 .console {
 	font-size: 0.75rem;
 }

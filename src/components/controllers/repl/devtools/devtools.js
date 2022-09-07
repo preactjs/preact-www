@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'preact/hooks';
 import cx from '../../../../lib/cx';
 import s from './devtools.less';
 import { flattenMsg } from './serialize';
+import { Icon } from '../../../icon/icon';
 
 function isPrimitive(v) {
 	switch (typeof v) {
@@ -21,7 +22,10 @@ function isPrimitive(v) {
  */
 export function Console({ hub }) {
 	const [msgs, setMsgs] = useState([]);
+	const [filters, setFilters] = useState({ error: false, warn: false });
+
 	useEffect(() => {
+		/** @type {import("./devtools-types").ConsoleItem | undefined} */
 		let last;
 		const listenToConsole = type => event => {
 			const args = event.detail;
@@ -61,6 +65,39 @@ export function Console({ hub }) {
 		<div class={s.devtools}>
 			<div class={s.devtoolsBar}>Console</div>
 			<div class={s.consoleWrapper}>
+				<div class={s.devtoolsActions}>
+					<button class={s.devtoolsBtn} onClick={() => setMsgs([])}>
+						<Icon icon="block" />
+					</button>
+					<div class={s.filter} aria-label="Console Filters">
+						<button
+							onClick={() => {
+								const isAll = !filters.error && !filters.warn;
+								if (!isAll) {
+									setFilters({ error: false, warn: false });
+								}
+							}}
+							class={cx(
+								s.filterBtn,
+								!filters.error && !filters.warn && s.filterBtnActive
+							)}
+						>
+							All
+						</button>
+						<button
+							class={cx(s.filterBtn, filters.error && s.filterBtnActive)}
+							onClick={() => setFilters(p => ({ error: true, warn: false }))}
+						>
+							Errors
+						</button>
+						<button
+							class={cx(s.filterBtn, filters.warn && s.filterBtnActive)}
+							onClick={() => setFilters(p => ({ error: false, warn: true }))}
+						>
+							Warnings
+						</button>
+					</div>
+				</div>
 				<div class={s.console}>
 					{msgs.length === 0 && (
 						<div class={cx(s.italic, s.consoleMsg, s.consoleHint)}>
