@@ -121,7 +121,7 @@ Ideally, we wouldn't need to know about selectors or wrapper functions and could
 
 ```jsx
 // Imagine this is some global state and the whole app needs access to:
-const count = 0;
+let count = 0;
  
 function Counter() {
  return (
