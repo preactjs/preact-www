@@ -237,7 +237,6 @@ export default class Repl extends Component {
 	}
 
 	forwardMessage = (name, args) => {
-		console.log('FORWARD', name, args);
 		this.eventHub.dispatchEvent(new CustomEvent(name, { detail: args }));
 	};
 

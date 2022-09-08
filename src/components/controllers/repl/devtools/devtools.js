@@ -28,10 +28,8 @@ export function Console({ hub }) {
 		/** @type {import("./devtools-types").ConsoleItem | undefined} */
 		let last;
 		const listenToConsole = type => event => {
-			console.log('listen', type, event.detail);
 			const args = event.detail;
 			if (args.length === 1 && isPrimitive(args[0])) {
-				console.log('yeah', args[0]);
 				if (
 					last !== undefined &&
 					last.type === type &&
@@ -50,7 +48,6 @@ export function Console({ hub }) {
 			} else {
 				last = undefined;
 				setMsgs(prev => {
-					console.log([...prev, { type, value: args, count: 0 }]);
 					return [...prev, { type, value: args, count: 0 }];
 				});
 			}
@@ -65,8 +62,6 @@ export function Console({ hub }) {
 			last = undefined;
 		});
 	}, []);
-
-	console.log(msgs);
 
 	return (
 		<div class={s.devtools}>
