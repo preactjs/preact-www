@@ -34,4 +34,4 @@ Preact CLIは以下の機能をデフォルトで使うことができます。
 - preact-router
 - 必要に応じてロードされる1.5kbのfetchとPromiseのpolyfill
 
-詳しく知りたい場合は[はじめに](/cli/getting-started)を読んでください。
+詳しく知りたい場合は[はじめに](/guide/v10/cli/getting-started)を読んでください。

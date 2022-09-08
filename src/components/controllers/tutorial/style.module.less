@@ -1,5 +1,22 @@
 @import '~style/helpers';
 
+.errorOverlayWrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	display: flex;
+}
+
+.close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index: 10;
+}
+
 .tutorial {
 	position: absolute;
 	left: 0;
@@ -34,8 +51,9 @@
 
 		.tutorialWindow {
 			position: relative;
-			background: var(--color-page-bg);
-			color: var(--color-heading);
+			height: 100%;
+			background: var(--color-sidebar-bg);
+			color: var(--color-text);
 			display: flex;
 			flex: 1 1 var(--x, 50%);
 			flex-direction: column;
@@ -71,6 +89,7 @@
 				padding: 0.25em 0;
 				font-size: 2.5rem;
 				font-weight: 200;
+				font-weight: bold;
 				line-height: 1.2;
 				border-bottom: 5px solid var(--color-code-inline-border);
 			}
@@ -87,8 +106,8 @@
 				padding: 1rem 0 0;
 				border-top: 2px solid var(--color-hr);
 				font-size: 1.8rem;
-				font-weight: 300;
-				color: var(--color-brand);
+				font-weight: bold;
+				color: var(--color-heading);
 			}
 
 			hr + h3 {
@@ -192,13 +211,6 @@
 		}
 
 		&:not(.showCode) {
-			--x: 100% !important;
-		}
-
-		&:not(.showCode) {
-			.splitter {
-				display: none;
-			}
 			.tutorialWindow {
 				flex-basis: 100%;
 
@@ -222,37 +234,8 @@
 			}
 		}
 
-		.splitter {
-			position: absolute;
-			left: var(--x, 50%);
-			z-index: 100;
-			margin: 0 0 0 -4px;
-			width: 8px;
-			height: 100%;
-			opacity: 0;
-			transition: opacity 1s ease;
-			cursor: col-resize;
-			overflow: hidden;
-
-			&:before {
-				content: '';
-				position: absolute;
-				display: block;
-				left: 2px;
-				right: 2px;
-				top: 0;
-				height: 100%;
-				background: #48adff;
-				box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
-			}
-		}
-		.splitter:hover,
-		.splitter:focus {
-			opacity: 1;
-			transition: opacity 100ms ease;
-		}
-
 		.codeWindow {
+			height: 100%;
 			display: flex;
 			flex-direction: column;
 			flex: 1 1 calc(100% - var(--x, 50%));
@@ -309,6 +292,7 @@
 
 			.code {
 				width: 100%;
+				height: 100%;
 				position: absolute;
 				top: 0;
 				right: 0;
@@ -326,9 +310,9 @@
 		}
 
 		.toggleCode {
-			position: fixed;
+			position: absolute;
 			bottom: 10px;
-			left: 100%;
+			left: 0;
 			background: var(--color-btn);
 			border: 1px solid var(--color-btn);
 			color: var(--color-btn-background);
@@ -363,12 +347,7 @@
 			}
 		}
 
-		.splitter ~ .toggleCode {
-			transition: box-shadow 250ms ease;
-		}
-
 		&.showCode .toggleCode {
-			left: var(--x, 50%);
 			transform: translateX(14px);
 			background: var(--color-btn-background);
 			border: 1px solid var(--color-btn);
@@ -418,6 +397,7 @@
 
 .output {
 	color: #444;
+	height: 100%;
 
 	h1 {
 		color: #444;

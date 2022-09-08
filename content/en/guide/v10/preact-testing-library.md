@@ -96,7 +96,7 @@ test('should increment counter", async () => {
 
   fireEvent.click(screen.getByText('Increment'));
 
-  await findByText('Current value: 6'); // waits for changed element
+  await screen.findByText('Current value: 6'); // waits for changed element
   
   expect(screen.getByText("Current value: 6")).toBeInTheDocument(); // passes
 });

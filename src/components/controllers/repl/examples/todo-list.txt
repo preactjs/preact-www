@@ -1,4 +1,6 @@
-export default class TodoList extends Component {
+import { render, Component } from 'preact';
+
+class TodoList extends Component {
 	state = { todos: [], text: '' };
 	setText = e => {
 		this.setState({ text: e.target.value });
@@ -22,3 +24,5 @@ export default class TodoList extends Component {
 		);
 	}
 }
+
+render(<TodoList />, document.getElementById('app'));

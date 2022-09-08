@@ -33,7 +33,7 @@ rather than _imperatively_. Instead of describing _how_ to update the DOM in
 response to things like keyboard or mouse input, we only need to describe _what_
 the DOM should look like after that input is received. It means we can repeatedly
 give Preact descriptions of tree structures, and it will update the browser's DOM
-tree to match each new description – regardles of its current structure. 
+tree to match each new description – regardless of its current structure. 
 
 In this chapter, we'll learn how to create Virtual DOM trees, and how to tell
 Preact to update the DOM to match those trees.
@@ -185,25 +185,29 @@ useResult(function(result) {
 
 
 ```jsx:repl-initial
-import { createElement } from 'preact';
+import { render } from 'preact';
 
-export default function App() {
+function App() {
   return (
     <p class="big">Hello World!</p>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-import { createElement } from 'preact';
+import { render } from 'preact';
 
-export default function App() {
+function App() {
   return (
     <p class="big" style={{ color: 'purple' }}>
       Hello <em>World</em>!
     </p>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 [JSX]: https://en.wikipedia.org/wiki/JSX_(JavaScript)

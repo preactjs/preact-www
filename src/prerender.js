@@ -10,7 +10,6 @@ const groups = {
 	'/v8': 'Preact Version 8',
 	'/tutorial': 'Preact Tutorial',
 	'/guide': 'Preact Guide',
-	'/cli': 'Preact CLI',
 	'': 'Preact'
 };
 
@@ -27,8 +26,9 @@ if (process.env.PRERENDER_HOME) {
 		}
 	];
 } else {
-	const routes = flatMap(config.nav.concat(config.docs), arr =>
-		arr.path ? { path: arr.path, name: arr.name } : arr.routes
+	const routes = flatMap(
+		config.nav.concat(config.docs).concat(config.blog),
+		arr => (arr.path ? { path: arr.path, name: arr.name } : arr.routes)
 	);
 
 	module.exports = flatMap(routes, function map(route) {

@@ -6,5 +6,6 @@ export default {
 	default: Page,
 	error: Page,
 	Repl,
+	Blog: Page,
 	Tutorial
 };

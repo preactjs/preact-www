@@ -155,6 +155,22 @@ const config = {
 }
 ```
 
+#### Aliasing in Node
+
+When we are on a Node.JS server our webpack aliases won't work, this is seen in Next/...
+here we will have to use an alias in our `package.json`.
+
+```json
+{
+  "dependencies": {
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+  }
+}
+```
+
+Now Node will correctly use Preact in place of React.
+
 #### Aliasing in Parcel
 
 Parcel uses the standard `package.json` file to read configuration options under
@@ -231,12 +247,19 @@ export default {
 ## TypeScript preact/compat configuration
 
 Your project could need support for the wider React ecosystem.  To make your application
-compile, you'll need to disable type checking on your `node_modules` like this.  This way,
-your alias will work properly when libraries import React.
+compile, you might need to disable type checking on your `node_modules` and add paths to the types
+like this.  This way, your alias will work properly when libraries import React.
 
 ```json
 {
-  ...
-  "skipLibCheck": true,
+  "compilerOptions": {
+    ...
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    }
+  }
 }
 ```

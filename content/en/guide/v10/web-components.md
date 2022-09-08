@@ -96,9 +96,9 @@ const Greeting = ({ name = 'World' }) => (
   <p>Hello, {name}!</p>
 );
 
-register(Greeting, 'x-greeting', ['name']);
-//          ^            ^           ^
-//          |      HTML tag name     |
+register(Greeting, 'x-greeting', ['name'], { shadow: false });
+//          ^            ^           ^             ^
+//          |      HTML tag name     |       use shadow-dom
 //   Component definition      Observed attributes
 ```
 

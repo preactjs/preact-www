@@ -4,10 +4,7 @@ import { parseStackTrace } from './errors';
 
 const PREPEND = `(function(module,exports,require,fetch){`;
 
-const IMPORTS = `\
-import {render,hydrate,h,createElement,Fragment,createRef,Component,cloneElement,createContext,toChildArray,options} from 'preact';\
-import {useState,useReducer,useEffect,useLayoutEffect,useRef,useImperativeHandle,useMemo,useCallback,useContext,useDebugValue} from 'preact/hooks';
-`;
+const IMPORTS = `import {h, Fragment} from 'preact';`;
 
 export function ping() {
 	return true;

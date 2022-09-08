@@ -42,6 +42,10 @@
 			"pt-br": "Página Anterior",
 			"zh": "上一页",
 			"kr": "이전"
+		},
+		"continueReading": {
+			"en": "Continue reading",
+			"de": "Weiter lesen"
 		}
 	},
 	"nav": [
@@ -188,6 +192,11 @@
 					}
 				}
 			]
+			"path": "/blog",
+			"title": "Blog",
+			"first": "index",
+			"content": "blog",
+			"controller": "Blog"
 		},
 		{
 			"path": "/repl",
@@ -348,6 +357,12 @@
 						"ja": "フック(Hooks)",
 						"de": "Hooks",
 						"zh": "钩子 (Hooks)"
+					}
+				},
+				{
+					"path": "/guide/v10/signals",
+					"name": {
+						"en": "Signals"
 					}
 				},
 				{
@@ -519,6 +534,60 @@
 					"name": "TypeScript"
 				}
 			]
+		},
+		{
+			"name": {
+				"en": "CLI"
+			},
+			"content": "cli",
+			"routes": [
+				{
+					"path": "/guide/v10/cli",
+					"name": {
+						"en": "Introduction",
+						"pt-br": "Introdução",
+						"ja": "Preact CLI",
+						"es": "Introducción"
+					}
+				},
+				{
+					"path": "/guide/v10/cli/getting-started",
+					"name": {
+						"en": "Getting started",
+						"pt-br": "Começando",
+						"ja": "はじめに",
+						"es": "Empezando"
+					}
+				},
+				{
+					"path": "/guide/v10/cli/service-worker",
+					"name": {
+						"en": "Service Workers",
+						"ja": "Service Worker"
+					}
+				},
+				{
+					"path": "/guide/v10/cli/pre-rendering",
+					"name": {
+						"en": "Pre-rendering",
+						"pt-br": "Pré-renderização",
+						"ja": "プリレンダリング",
+						"es": "Pre-renderización"
+					}
+				}
+			]
+		}
+	],
+	"blog": [
+		{
+			"path": "/blog/introducing-signals",
+			"name": {
+				"en": "Introducing Signals"
+			},
+			"date": "2022-09-06",
+			"excerpt": {
+				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions."
+			}
 		}
 	]
 }

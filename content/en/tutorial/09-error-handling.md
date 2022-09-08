@@ -26,7 +26,7 @@ to render a fallback or alternative tree, which will "catch" the error and mark
 it as handled. Or, the method could simply log the error somewhere and allow it
 to continue unhandled (to crash).
 
-**getDerivedStateFromProps** is a static method that gets passed an `Error`,
+**getDerivedStateFromError** is a static method that gets passed an `Error`,
 and returns a state update object, which is applied to the component via
 `setState()`. Since this method always produces a state change that results
 in its component being re-rendered, it always marks errors as handled.
@@ -110,7 +110,7 @@ useResult(function(result) {
 
 
 ```jsx:repl-initial
-import { Component } from 'preact';
+import { render, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 function Clicker() {
@@ -130,10 +130,12 @@ class App extends Component {
     return <Clicker />;
   }
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-import { Component } from 'preact';
+import { render, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 function Clicker() {
@@ -161,4 +163,6 @@ class App extends Component {
     return <Clicker />;
   }
 }
+
+render(<App />, document.getElementById("app"));
 ```

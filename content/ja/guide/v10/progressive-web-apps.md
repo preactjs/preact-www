@@ -6,7 +6,7 @@ description: 'Progressive Web Apps (PWA)はアプリケーションをオフラ�
 
 # Progressive Web Apps
 
-Preactはすぐにロードされ操作が可能になることを求められる[Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)に向いています。
+Preactはすぐにロードされ操作が可能になることを求められる[Progressive Web Apps](https://web.dev/learn/pwa/)に向いています。
 [Preact CLI](https://github.com/preactjs/preact-cli/)を使うと、[Lighthouse][LH]で100点を記録するPWAとそのビルド環境をすぐに構築できます。
 
 

@@ -5,7 +5,7 @@ permalink: '/guide/progressive-web-apps'
 
 # Progressive Web Apps
 
-Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://developers.google.com/web/progressive-web-apps/), für die schnelles Laden und rasche Interaktivitätsmöglichkeiten erwünscht sind. [Preact CLI](https://github.com/preactjs/preact-cli) kodifiziert dies in einem schnellen Baukastenwerkzeug, dass von Grund auf eine PWA (Progressive Web App) mit einem [Lighthouse][LH]-Score von 100 schafft.
+Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://web.dev/learn/pwa/), für die schnelles Laden und rasche Interaktivitätsmöglichkeiten erwünscht sind. [Preact CLI](https://github.com/preactjs/preact-cli) kodifiziert dies in einem schnellen Baukastenwerkzeug, dass von Grund auf eine PWA (Progressive Web App) mit einem [Lighthouse][LH]-Score von 100 schafft.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 

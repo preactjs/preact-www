@@ -12,6 +12,12 @@ const bundledModules = fetch(bundledModulesUrl).then(r => r.text());
 
 const worker = new ReplWorker();
 
+function createRoot(doc) {
+	const root = doc.createElement('div');
+	root.id = 'app';
+	doc.body.appendChild(root);
+}
+
 export default class Runner extends Component {
 	static worker = worker;
 
@@ -94,14 +100,6 @@ export default class Runner extends Component {
 			await this.realm.eval(code);
 			this.require = await this.realm.eval('window._require');
 
-			// Intercept VNodes passed to render/hydrate for automatic re-rendering:
-			const preact = this.require('preact');
-			let oldRoot = preact.options.__;
-			preact.options.__ = function(vnode, parent) {
-				if (!this.rootVNode) this.rootVNode = vnode;
-				if (oldRoot) oldRoot(vnode, parent);
-			};
-
 			if (this.props.onRealm) {
 				this.props.onRealm(this.realm);
 			}
@@ -132,6 +130,7 @@ export default class Runner extends Component {
 			`)
 		);
 		doc.head.appendChild(style);
+		createRoot(doc);
 	}
 
 	async execute(transpiled, isFallback) {
@@ -149,9 +148,9 @@ export default class Runner extends Component {
 		} else if (this.props.clear === true || isFallback === true) {
 			this.root = render(null, base);
 			base.innerHTML = '';
+			createRoot(this.realm.globalThis.document);
 		}
 
-		this.rootVNode = null;
 		this.didError = undefined;
 
 		let module = { exports: {} };
@@ -167,21 +166,6 @@ export default class Runner extends Component {
 			}
 			throw error;
 		}
-
-		let exported =
-			module.exports &&
-			(module.exports.default ||
-				module.exports[Object.keys(module.exports)[0]] ||
-				module.exports);
-
-		if (!this.rootVNode && typeof exported === 'function') {
-			this.rootVNode = h(exported, null);
-		}
-		if (this.rootVNode) {
-			this.root = render(this.rootVNode, base);
-		}
-
-		return { vnode: this.rootVNode };
 	}
 
 	render(props) {

@@ -317,6 +317,9 @@ useResult(function (result) {
 
 
 ```jsx:repl-initial
+import { render } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
+
 const wait = ms => new Promise(r => setTimeout(r, ms))
 
 const getTodos = async () => {
@@ -327,7 +330,7 @@ const getTodos = async () => {
   ]
 }
 
-export default function TodoList() {
+function TodoList() {
   const [todos, setTodos] = useState([])
 
   return (
@@ -335,9 +338,14 @@ export default function TodoList() {
     </ul>
   )
 }
+
+render(<TodoList />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
+import { render } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
+
 const wait = ms => new Promise(r => setTimeout(r, ms))
 
 const getTodos = async () => {
@@ -348,7 +356,7 @@ const getTodos = async () => {
   ]
 }
 
-export default function TodoList() {
+function TodoList() {
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
@@ -367,4 +375,6 @@ export default function TodoList() {
     </ul>
   )
 }
+
+render(<TodoList />, document.getElementById("app"));
 ```

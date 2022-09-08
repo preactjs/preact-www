@@ -89,7 +89,8 @@ const Nav = ({ routes, current, ...props }) => (
 				class={cx(
 					route.class,
 					(pathMatchesRoute(current, route) ||
-						(route.content === 'guide' && /^\/guide\//.test(current))) &&
+						(route.content === 'guide' && /^\/guide\//.test(current)) ||
+						(route.content === 'blog' && /^\/blog\//.test(current))) &&
 						style.current
 				)}
 			/>
