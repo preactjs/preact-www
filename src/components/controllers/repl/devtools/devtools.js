@@ -280,6 +280,8 @@ export function generatePreview(value, kind, level = 0, end = false) {
 					{' }'}
 				</span>
 			);
+		} else if (kind === 'entry-item-set') {
+			return `Array(${value.length})`;
 		}
 
 		return (
@@ -303,7 +305,7 @@ export function generatePreview(value, kind, level = 0, end = false) {
 				const size = value.entries.length;
 				if (size > 0) {
 					const items = value.entries.map(v =>
-						generatePreview(v, kind, level + 1)
+						generatePreview(v, kind, level + 1, true)
 					);
 					tail = (
 						<span class={cx(level === 0 && s.italic)}>

@@ -86,7 +86,8 @@ export function flattenMsg(value, show, out, key, label = '', level = 0) {
 	}
 
 	if (Array.isArray(value)) {
-		out.push(newTreeItem(key, level, label, value, 'array', value.length > 0));
+		const kind = /\.entries\.\d+$/.test(key) ? 'entry-item-set' : 'array';
+		out.push(newTreeItem(key, level, label, value, kind, value.length > 0));
 
 		if (show.has(key) && value.length > 0) {
 			for (let i = 0; i < value.length; i++) {
@@ -104,8 +105,41 @@ export function flattenMsg(value, show, out, key, label = '', level = 0) {
 				out.push(newTreeItem(key, level, label, value, 'set', size));
 
 				if (show.has(key) && size > 0) {
-					for (let i = 0; i < entries.length; i++) {
-						flattenMsg(entries[i], show, out, `${key}.${i}`, i, level + 1);
+					out.push(
+						newTreeItem(
+							`${key}.entries`,
+							level + 1,
+							'[[Entries]]',
+							value,
+							'entries',
+							true
+						)
+					);
+
+					if (show.has(`${key}.entries`)) {
+						for (let i = 0; i < entries.length; i++) {
+							out.push(
+								newTreeItem(
+									`${key}.entries.${i}`,
+									level + 2,
+									i,
+									entries[i],
+									'entry-item',
+									true
+								)
+							);
+
+							if (show.has(`${key}.entries.${i}`)) {
+								flattenMsg(
+									entries[i],
+									show,
+									out,
+									`${key}.entries.${i}.value`,
+									'value',
+									level + 3
+								);
+							}
+						}
 					}
 				}
 				return;
