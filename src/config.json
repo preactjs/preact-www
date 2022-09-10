@@ -58,6 +58,11 @@
 			"content": "index"
 		},
 		{
+			"path": "/branding",
+			"title": "Branding",
+			"skipHeader": true
+		},
+		{
 			"path": "/tutorial/:step?",
 			"href": "/tutorial/",
 			"first": "index",
@@ -508,6 +513,24 @@
 			"excerpt": {
 				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions."
 			}
+    }
+  ],
+	"branding": [
+		{
+			"name": "logo-text",
+			"alt": "Full Logo"
+		},
+		{
+			"name": "logo-text-inverted",
+			"alt": "Full Logo with Inverted Colors"
+		},
+		{
+			"name": "symbol",
+			"alt": "Preact Symbol"
+		},
+		{
+			"name": "symbol-inverted",
+			"alt": "Preact Symbol with Inverted Colors"
 		}
 	]
 }
