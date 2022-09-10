@@ -1,9 +1,10 @@
 import { h } from 'preact';
-import config from '../config.json';
+import style from './style.module.less';
+import config from '../../config.json';
 
 export default function Branding() {
 	return (
-		<section class="logos">
+		<section class={style.logos}>
 			{config.branding.map(asset => (
 				<LogoVariation name={asset.name} alt={asset.alt} />
 			))}
@@ -13,14 +14,14 @@ export default function Branding() {
 
 function LogoVariation({ name, alt }) {
 	return (
-		<div class="variation">
+		<div class={style.variation}>
 			<img
 				src={`/assets/branding/${name}.svg`}
 				alt={alt}
 				loading="lazy"
 				height="64"
 			/>
-			<div>
+			<div class={style.links}>
 				<a href={`/assets/branding/${name}.svg`} native>
 					SVG
 				</a>
