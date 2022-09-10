@@ -7,6 +7,7 @@ import Toc from './table-of-contents';
 import BlogOverview from './blog-overview';
 import Sponsors from './sponsors';
 import WeAreUsing from './we-are-using';
+import Branding from './branding';
 
 export default {
 	Toc,
@@ -17,5 +18,6 @@ export default {
 	TodoList,
 	Sponsors,
 	Logo,
-	WeAreUsing
+	WeAreUsing,
+	Branding
 };
