@@ -217,6 +217,11 @@ function Realm({ frame, onError, onConsole }) {
 			const original = iframeConsole[k];
 			iframeConsole[k] = (...args) => {
 				original.apply(original, args);
+				console.log(
+					'try',
+					args,
+					args.map(item => serialize(item, 20))
+				);
 				onConsole(
 					k,
 					args.map(item => serialize(item, 20))

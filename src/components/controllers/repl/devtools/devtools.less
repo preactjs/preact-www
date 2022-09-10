@@ -69,20 +69,36 @@
 	height: 100%;
 }
 
+.consoleMsgWrapper {
+	display: block;
+}
+
 .consoleMsg {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	font-family: var(--monospace);
-	padding: 0.125rem 0.5rem;
+	padding: 0.125rem 0.25rem;
 	border-bottom: 0.0625rem solid var(--color-table-border);
+}
+
+.consoleMsgItem {
+	display: flex;
+	align-items: center;
+	padding-left: var(--indent, 0);
+}
+
+.consoleMsgProperty {
+	font-weight: bold;
+	color: var(--console-msg-property);
+}
+
+.consoleMsgPropertyDim {
+	color: var(--color-text-dim);
+	font-weight: bold;
 }
 
 .consoleHint {
 	color: var(--console-message);
-}
-
-.consoleMsgCollapsible {
-	padding-left: 0;
 }
 
 .consoleWarn {
@@ -103,7 +119,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	margin-right: 0.5rem;
+	margin-right: 0.125rem;
 	color: var(--console-info);
 }
 
@@ -157,6 +173,7 @@
 	background: none;
 	display: inline-block;
 	cursor: pointer;
+	padding-left: 0;
 	font-family: var(--monospace);
 	color: var(--color-text);
 }

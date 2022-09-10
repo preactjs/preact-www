@@ -1,8 +1,8 @@
-import { createContext, Fragment } from 'preact';
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { Fragment } from 'preact';
+import { useCallback, useEffect, useState } from 'preact/hooks';
 import cx from '../../../../lib/cx';
 import s from './devtools.less';
-import { flattenMsg } from './serialize';
+import { flattenMsg, isSerialized } from './serialize';
 import { Icon } from '../../../icon/icon';
 
 function isPrimitive(v) {
@@ -22,7 +22,7 @@ function isPrimitive(v) {
  */
 export function Console({ hub }) {
 	const [msgs, setMsgs] = useState([]);
-	const [filter, setFilters] = useState('*');
+	const [filter, setFilter] = useState('*');
 
 	useEffect(() => {
 		/** @type {import("./devtools-types").ConsoleItem | undefined} */
@@ -47,9 +47,7 @@ export function Console({ hub }) {
 				}
 			} else {
 				last = undefined;
-				setMsgs(prev => {
-					return [...prev, { type, value: args, count: 0 }];
-				});
+				setMsgs(prev => [...prev, { type, value: args, count: 0 }]);
 			}
 		};
 
@@ -70,30 +68,36 @@ export function Console({ hub }) {
 		return false;
 	});
 
+	const onClear = useCallback(() => setMsgs([]), []);
+
+	const setAll = useCallback(() => setFilter('*'), []);
+	const setError = useCallback(() => setFilter('error'), []);
+	const setWarn = useCallback(() => setFilter('warn'), []);
+
 	return (
 		<div class={s.devtools}>
 			<div class={s.devtoolsBar}>Console</div>
 			<div class={s.consoleWrapper}>
 				<div class={s.devtoolsActions}>
-					<button class={s.devtoolsBtn} onClick={() => setMsgs([])}>
+					<button class={s.devtoolsBtn} onClick={onClear}>
 						<Icon icon="block" />
 					</button>
 					<div class={s.filter} aria-label="Console Filters">
 						<button
-							onClick={() => setFilters('*')}
+							onClick={setAll}
 							class={cx(s.filterBtn, filter === '*' && s.filterBtnActive)}
 						>
 							All
 						</button>
 						<button
 							class={cx(s.filterBtn, filter === 'error' && s.filterBtnActive)}
-							onClick={() => setFilters('error')}
+							onClick={setError}
 						>
 							Errors
 						</button>
 						<button
 							class={cx(s.filterBtn, filter === 'warn' && s.filterBtnActive)}
-							onClick={() => setFilters('warn')}
+							onClick={setWarn}
 						>
 							Warnings
 						</button>
@@ -105,16 +109,18 @@ export function Console({ hub }) {
 							Console was cleared
 						</div>
 					)}
-					{filtered.map((msg, i) => {
-						return (
-							<Message
-								key={i}
-								type={msg.type}
-								value={msg.value[0]}
-								count={msg.count}
-							/>
-						);
-					})}
+					{filtered.map((msg, i) => (
+						<div
+							key={i}
+							class={cx(
+								s.consoleMsg,
+								msg.type == 'warn' && s.consoleWarn,
+								msg.type == 'error' && s.consoleError
+							)}
+						>
+							<Message type={msg.type} value={msg.value[0]} count={msg.count} />
+						</div>
+					))}
 				</div>
 			</div>
 		</div>
@@ -158,79 +164,98 @@ function ConsoleIcon({ type, value }) {
  * @param {{ type: string, value: any[], count: number} } props
  */
 function Message({ type, value, count }) {
+	const [show, setShow] = useState(new Set([]));
 	const out = [];
-	const [show, setShow] = useState(new Set(['']));
-	flattenMsg(value, show, out);
-
-	console.log({ out, value, shown: show });
+	flattenMsg(value, show, out, 'root');
 
 	return (
-		<div
-			class={cx(
-				type == 'warn' && s.consoleWarn,
-				type == 'error' && s.consoleError
-			)}
-		>
-			{out.map(row => {
-				return (
-					<MessageItem
-						key={row.key}
-						type={type}
-						id={row.key}
-						value={row.value}
-						count={count}
-						level={row.level}
-						show={show}
-						setShow={setShow}
-					/>
-				);
-			})}
-		</div>
+		<>
+			{out.map(msg => (
+				<MessageItem
+					key={msg.key}
+					type={type}
+					msg={msg}
+					count={count}
+					show={show}
+					setShow={setShow}
+				/>
+			))}
+		</>
 	);
 }
 
-function MessageItem({ type, id, value, level, count, show, setShow }) {
-	const collapsible =
-		value !== null && value !== undefined && typeof value === 'object';
+/**
+ * @param {{dim?: boolean, children: any, preview: any}} props
+ */
+function Property({ dim, children, preview }) {
+	return (
+		<>
+			<span class={cx(dim ? s.consoleMsgPropertyDim : s.consoleMsgProperty)}>
+				{children}
+			</span>
+			{preview ? <>: {preview}</> : ''}
+		</>
+	);
+}
+
+function MessageItem({ type, msg, count, show, setShow }) {
+	const { value, key, label, kind, level } = msg;
+	const collapsible = !isPrimitive(value);
+
+	const onClick = useCallback(() => {
+		setShow(p => {
+			const next = new Set(p);
+			if (next.has(key)) {
+				next.delete(key);
+			} else {
+				next.add(key);
+			}
+			return next;
+		});
+	}, [key, setShow]);
+
+	const isBuiltIn = label === '[[Entries]]';
+	const preview = !isBuiltIn ? generatePreview(value, kind) : null;
 
 	return (
 		<div
 			class={cx(
-				s.consoleMsg,
+				s.consoleMsgItem,
 				collapsible && count === 0 && s.consoleMsgCollapsible
 			)}
+			style={`--indent: calc(1rem * ${level})`}
 		>
 			<ConsoleIcon value={count} type={type} />
-			<span class={s.consolePreview}>
+			<div class={s.consoleMsgWrapper}>
 				{collapsible ? (
-					<button
-						class={s.collapseBtn}
-						onClick={() => {
-							setShow(p => {
-								console.log(id, new Set(p).has(id));
-								const next = new Set(p);
-								if (next.has(id)) {
-									next.delete(id);
-								} else {
-									next.add(id);
-								}
-								return next;
-							});
-						}}
-					>
-						<span class={s.collapseIcon}>{show.has(id) ? '▶' : '▼'}</span>
-
-						{generatePreview(value)}
+					<button class={s.collapseBtn} onClick={onClick}>
+						<span class={s.collapseIcon}>{show.has(key) ? '▼' : '▶'}</span>
+						{level > 0 ? (
+							<Property dim={isBuiltIn} preview={preview}>
+								{label}
+							</Property>
+						) : (
+							preview
+						)}
 					</button>
 				) : (
-					generatePreview(value)
+					<>
+						<span class={s.collapseIcon} />
+						{level > 0 ? (
+							<Property dim={isBuiltIn} preview={preview}>
+								{label}
+							</Property>
+						) : (
+							preview
+						)}
+					</>
 				)}
-			</span>
+			</div>
 		</div>
 	);
 }
 
-export function generatePreview(value, level = 0, end = false) {
+export function generatePreview(value, kind, level = 0, end = false) {
 	if (value === null || value === undefined) {
 		return String(value);
 	}
@@ -245,7 +270,91 @@ export function generatePreview(value, level = 0, end = false) {
 
 	if (Array.isArray(value)) {
 		if (end) return `Array(${value.length})`;
-		return `[TODO]`;
+		if (kind === 'entry-item') {
+			return (
+				<span>
+					{'{ '}
+					{generatePreview(value[0], '', level + 1)}
+					{' => '}
+					{generatePreview(value[1], '', level + 1)}
+					{' }'}
+				</span>
+			);
+		}
+
+		return (
+			<span class={cx(level === 0 && s.italic)}>
+				({value.length}) [
+				{value.map((v, i) => (
+					<>
+						{generatePreview(v, kind, level + 1)}
+						{i < value.length - 1 ? ', ' : ''}
+					</>
+				))}
+				]
+			</span>
+		);
+	}
+
+	if (isSerialized(value)) {
+		switch (value.__type) {
+			case 'set': {
+				let tail = null;
+				const size = value.entries.length;
+				if (size > 0) {
+					const items = value.entries.map(v =>
+						generatePreview(v, kind, level + 1)
+					);
+					tail = (
+						<span class={cx(level === 0 && s.italic)}>
+							{' {'}
+							{items.map((item, i) => (
+								<>
+									{item}
+									{i < items.length - 1 ? ', ' : ''}
+								</>
+							))}
+							{'}'}
+						</span>
+					);
+				}
+				return (
+					<span class={cx(level === 0 && s.italic)}>
+						Set({size}){tail}
+					</span>
+				);
+			}
+			case 'map': {
+				let tail = null;
+				const size = value.entries.length;
+				if (size > 0) {
+					const items = value.entries.map(v => (
+						<>
+							{generatePreview(v[0], kind, level + 1)}
+							{' => '}
+							{generatePreview(v[1], kind, level + 1)}
+						</>
+					));
+					tail = (
+						<span class={cx(level === 0 && s.italic)}>
+							{' {'}
+							{items.map((item, i) => (
+								<>
+									{item}
+									{i < items.length - 1 ? ', ' : ''}
+								</>
+							))}
+							{'}'}
+						</span>
+					);
+				}
+				return (
+					<span class={cx(level === 0 && s.italic)}>
+						Map({size}){tail}
+					</span>
+				);
+			}
+		}
 	}
 
 	const keys = Object.keys(value);
@@ -263,14 +372,12 @@ export function generatePreview(value, level = 0, end = false) {
 	return (
 		<span class={cx(level === 0 && s.italic)}>
 			<span class={s.bright}>{'{'}</span>
-			{keys.map(k => {
-				return (
-					<>
-						<span class={s.consoleDim}>{k}</span>:{' '}
-						{generatePreview(value[k], level + 1, true)}
-					</>
-				);
-			})}
+			{keys.map(k => (
+				<Fragment key={k}>
+					<span class={s.consoleDim}>{k}</span>:{' '}
+					{generatePreview(value[k], kind, level + 1, true)}
+				</Fragment>
+			))}
 			<span class={s.bright}>{'}'}</span>
 		</span>
 	);
