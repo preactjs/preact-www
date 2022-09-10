@@ -45,9 +45,15 @@ export function serialize(value, limit = 20) {
 /**
  *
  * @param {any} value
- * @return {Array<{ key: string, level: number, value: any, collapsible: boolean}>}
+ * @param {Set<string>} show
+ * @param {Array<{ key: string, level: number, value: any, collapsible: boolean}>} out
  */
-export function flattenMsg(value, out, key = '.', level = 0) {
+export function flattenMsg(value, show, out, key = '.', level = 0) {
+	if (key !== '.' && !show.has(key)) {
+		return;
+	}
+	console.log(' shown', key, show);
+
 	if (value === null || value === undefined) {
 		out.push({ key, level, value, collapsible: false });
 		return;
@@ -57,17 +63,28 @@ export function flattenMsg(value, out, key = '.', level = 0) {
 		case 'number':
 		case 'string':
 		case 'boolean':
-			out.push({ level, value, collapsible: false });
+			out.push({ key, level, value, collapsible: false });
 			return;
 	}
 
 	const keys = Object.keys(value);
 	const hasProps = keys.length > 0;
 	out.push({ key, level, value, collapsible: hasProps });
+
 	if (hasProps) {
 		for (let i = 0; i < keys.length; i++) {
 			const k = keys[i];
-			flattenMsg();
+			const nextKey = key + '.' + k;
+			out.push({
+				key: nextKey,
+				level: level + 1,
+				value: value[k],
+				collapsible: false
+			});
+
+			if (show.has(nextKey)) {
+				flattenMsg(value[k], show, out, nextKey, level + 1);
+			}
 		}
 	}
 }

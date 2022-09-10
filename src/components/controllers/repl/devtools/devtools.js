@@ -22,7 +22,7 @@ function isPrimitive(v) {
  */
 export function Console({ hub }) {
 	const [msgs, setMsgs] = useState([]);
-	const [filters, setFilters] = useState({ error: false, warn: false });
+	const [filter, setFilters] = useState('*');
 
 	useEffect(() => {
 		/** @type {import("./devtools-types").ConsoleItem | undefined} */
@@ -63,6 +63,13 @@ export function Console({ hub }) {
 		});
 	}, []);
 
+	const filtered = msgs.filter(msg => {
+		if (filter === '*') return true;
+		if (filter === 'error' && msg.type === 'error') return true;
+		if (filter === 'warn' && msg.type === 'warn') return true;
+		return false;
+	});
+
 	return (
 		<div class={s.devtools}>
 			<div class={s.devtoolsBar}>Console</div>
@@ -73,40 +80,32 @@ export function Console({ hub }) {
 					</button>
 					<div class={s.filter} aria-label="Console Filters">
 						<button
-							onClick={() => {
-								const isAll = !filters.error && !filters.warn;
-								if (!isAll) {
-									setFilters({ error: false, warn: false });
-								}
-							}}
-							class={cx(
-								s.filterBtn,
-								!filters.error && !filters.warn && s.filterBtnActive
-							)}
+							onClick={() => setFilters('*')}
+							class={cx(s.filterBtn, filter === '*' && s.filterBtnActive)}
 						>
 							All
 						</button>
 						<button
-							class={cx(s.filterBtn, filters.error && s.filterBtnActive)}
-							onClick={() => setFilters(p => ({ error: true, warn: false }))}
+							class={cx(s.filterBtn, filter === 'error' && s.filterBtnActive)}
+							onClick={() => setFilters('error')}
 						>
 							Errors
 						</button>
 						<button
-							class={cx(s.filterBtn, filters.warn && s.filterBtnActive)}
-							onClick={() => setFilters(p => ({ error: false, warn: true }))}
+							class={cx(s.filterBtn, filter === 'warn' && s.filterBtnActive)}
+							onClick={() => setFilters('warn')}
 						>
 							Warnings
 						</button>
 					</div>
 				</div>
 				<div class={s.console}>
-					{msgs.length === 0 && (
+					{filtered.length === 0 && (
 						<div class={cx(s.italic, s.consoleMsg, s.consoleHint)}>
 							Console was cleared
 						</div>
 					)}
-					{msgs.map((msg, i) => {
+					{filtered.map((msg, i) => {
 						return (
 							<Message
 								key={i}
@@ -123,10 +122,48 @@ export function Console({ hub }) {
 }
 
 /**
+ * @param {{type: import("./devtools-types").ConsoleMethod, value: number}} props
+ */
+function ConsoleIcon({ type, value }) {
+	let children = (
+		<span
+			class={cx(
+				s.consoleCount,
+				type === 'warn'
+					? s.consoleCountWarn
+					: type === 'error'
+					? s.consoleCountError
+					: s.consoleCountInfo
+			)}
+		>
+			<span>{value + 1}</span>
+		</span>
+	);
+	if (value === 0) {
+		if (type === 'error') {
+			children = <Icon class={s.consoleIconError} icon="error" size="small" />;
+		} else if (type === 'warn') {
+			children = <Icon class={s.consoleIconWarn} icon="warn" size="small" />;
+		} else if (type === 'info') {
+			children = <Icon class={s.consoleIconInfo} icon="info" size="small" />;
+		} else {
+			children = <span class={s.consoleCountEmpty} />;
+		}
+	}
+
+	return <span class={s.consoleIcon}>{children}</span>;
+}
+
+/**
  * @param {{ type: string, value: any[], count: number} } props
  */
 function Message({ type, value, count }) {
-	const [collapsed, setCollapsed] = useState(new Set());
+	const out = [];
+	const [show, setShow] = useState(new Set(['']));
+	flattenMsg(value, show, out);
+
+	console.log({ out, value, shown: show });
+
 	return (
 		<div
 			class={cx(
@@ -134,57 +171,61 @@ function Message({ type, value, count }) {
 				type == 'error' && s.consoleError
 			)}
 		>
-			<MessageItem
-				type={type}
-				value={value}
-				count={count}
-				level={0}
-				collapsed={collapsed}
-				setCollapsed={setCollapsed}
-			/>
+			{out.map(row => {
+				return (
+					<MessageItem
+						key={row.key}
+						type={type}
+						id={row.key}
+						value={row.value}
+						count={count}
+						level={row.level}
+						show={show}
+						setShow={setShow}
+					/>
+				);
+			})}
 		</div>
 	);
 }
 
-function MessageItem({ type, value, level, count, collapsed, setCollapsed }) {
+function MessageItem({ type, id, value, level, count, show, setShow }) {
 	const collapsible =
 		value !== null && value !== undefined && typeof value === 'object';
 
 	return (
-		<div class={cx(s.consoleMsg, collapsible && s.consoleMsgCollapsible)}>
-			<span
-				class={cx(
-					s.consoleCount,
-					count > 0 &&
-						(type === 'error'
-							? s.consoleCountError
-							: type === 'warn'
-							? s.consoleCountWarn
-							: s.consoleCountInfo)
-				)}
-			>
-				{count > 0 ? count + 1 : ''}
-			</span>
-			{collapsible ? (
-				<button
-					class={s.collapseBtn}
-					onClick={() => {
-						const next = new Set(collapsed);
-						if (next.has(value)) {
-							next.delete(value);
-						} else {
-							next.add(value);
-						}
-						setCollapsed(next);
-					}}
-				>
-					<span class={s.collapseIcon}>{collapsed.has(value) ? '▼' : '▶'}</span>
-
-					{generatePreview(value)}
-				</button>
-			) : (
-				generatePreview(value)
+		<div
+			class={cx(
+				s.consoleMsg,
+				collapsible && count === 0 && s.consoleMsgCollapsible
 			)}
+		>
+			<ConsoleIcon value={count} type={type} />
+			<span class={s.consolePreview}>
+				{collapsible ? (
+					<button
+						class={s.collapseBtn}
+						onClick={() => {
+							setShow(p => {
+								console.log(id, new Set(p).has(id));
+								const next = new Set(p);
+								if (next.has(id)) {
+									next.delete(id);
+								} else {
+									next.add(id);
+								}
+								return next;
+							});
+						}}
+					>
+						<span class={s.collapseIcon}>{show.has(id) ? '▶' : '▼'}</span>
+
+						{generatePreview(value)}
+					</button>
+				) : (
+					generatePreview(value)
+				)}
+			</span>
 		</div>
 	);
 }

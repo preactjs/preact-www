@@ -70,6 +70,8 @@
 }
 
 .consoleMsg {
+	display: flex;
+	align-items: center;
 	font-family: var(--monospace);
 	padding: 0.125rem 0.5rem;
 	border-bottom: 0.0625rem solid var(--color-table-border);
@@ -97,16 +99,38 @@
 	border-bottom: 0.0625rem solid var(--console-error-border);
 }
 
-.consoleCount {
-	min-width: 1rem;
+.consoleIcon {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	margin-right: 0.5rem;
+	color: var(--console-info);
+}
+
+.consoleCountEmpty {
+	width: 1rem;
+	display: inline-flex;
+}
+
+.consoleCount {
+	display: inline-flex;
 	border-radius: 0.5rem;
 	line-height: 1;
 	padding: 0.125rem 0.25rem;
-	margin-right: 0.5rem;
 	font-weight: bold;
+	align-items: center;
+	justify-content: center;
+	min-width: 1rem;
+}
+
+.consoleIconWarn {
+	color: var(--console-warn);
+}
+.consoleIconError {
+	color: var(--console-error);
+}
+.consoleIconInfo {
+	color: var(--console-info);
 }
 
 .consoleCountInfo {
