@@ -86,7 +86,7 @@ export default class Logo extends Component {
 				width={!text && '34px'}
 				height="34px"
 				viewBox={`-256 -256 ${text ? 1800 : 512} 512`}
-				style="display:inline-block; vertical-align:middle;"
+				style="display:inline-block; margin:-.25em 0 0; vertical-align:middle;"
 				onMouseover={!touch && this.hover}
 				onMouseout={!touch && this.hoverOut}
 				onContextMenu={this.contextMenu}
