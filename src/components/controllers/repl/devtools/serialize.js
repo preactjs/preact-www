@@ -1,4 +1,4 @@
-export function serialize(value, limit = 20) {
+export function serialize(value, limit = 7) {
 	if (limit === 0) return { __type: 'limit' };
 
 	if (value === null) return null;
@@ -41,10 +41,49 @@ export function serialize(value, limit = 20) {
 		};
 	}
 
-	return Object.keys(value).reduce((acc, key) => {
-		acc[key] = serialize(value[key], limit - 1);
-		return acc;
-	}, {});
+	const props = [];
+	const foundProps = new Set();
+
+	const proto2 = Object.getPrototypeOf(value);
+	const desc = Object.getOwnPropertyDescriptors(proto2);
+	for (const k in desc) {
+		foundProps.add(k);
+		const getter = typeof desc[k].get === 'function';
+		const prop = {
+			__type: 'property',
+			name: k,
+			get: getter,
+			set: typeof desc[k].set === 'function',
+			readValue: !getter,
+			value: getter ? undefined : serialize(value[k], limit - 1)
+		};
+		props.push(prop);
+	}
+
+	const keys = [];
+	for (const k in value) {
+		if (!foundProps.has(k)) {
+			props.push({
+				__type: 'property',
+				name: k,
+				get: false,
+				set: false,
+				readValue: true,
+				value: serialize(value[k], limit - 1)
+			});
+		}
+		keys.push(k);
+	}
+
+	// Classes
+	if ('constructor' in value && proto2 !== Object.prototype) {
+		const name =
+			value.constructor.displayName || value.constructor.name || 'Class';
+
+		return { __type: 'class', name, props };
+	}
+
+	return { __type: 'object', props };
 }
 
 function newTreeItem(key, level, label, value, kind, collapsible) {
@@ -59,6 +98,9 @@ const SERIALIZED = new Set([
 	'function',
 	'bigint',
 	'symbol',
+	'object',
+	'class',
+	'property',
 	'limit'
 ]);
 
@@ -197,17 +239,83 @@ export function flattenMsg(value, show, out, key, label = '', level = 0) {
 				}
 				return;
 			}
-		}
-	} else {
-		const keys = Object.keys(value);
-		const hasProps = keys.length > 0;
-		out.push(newTreeItem(key, level, label, value, 'object', hasProps));
+			case 'function': {
+				out.push(newTreeItem(key, level, label, value, 'function', false));
+				return;
+			}
+			case 'object':
+			// eslint-disable-next-line no-fallthrough
+			case 'class': {
+				const hasProps = value.props.length > 0;
+				out.push(newTreeItem(key, level, label, value, value.__type, hasProps));
 
-		if (show.has(key) && hasProps) {
-			for (let i = 0; i < keys.length; i++) {
-				const k = keys[i];
-				flattenMsg(value[k], show, out, `${key}.${k}`, k, level + 1);
+				if (show.has(key) && hasProps) {
+					const props = value.props.sort(sortProperties);
+					for (let i = 0; i < props.length; i++) {
+						const prop = props[i];
+						flattenMsg(
+							prop,
+							show,
+							out,
+							`${key}.${prop.name}`,
+							prop.name,
+							level + 1
+						);
+					}
+				}
+
+				return;
+			}
+			case 'property': {
+				out.push(
+					newTreeItem(key, level, value.name, value.value, value.__type, false)
+				);
+				console.log(value);
+				return;
 			}
 		}
 	}
+
+	console.error(value);
+	throw new Error('No serializer for value found value');
+}
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @returns {-1 | 0 | 1}
+ */
+function sortProperties(aProp, bProp) {
+	const a = aProp.name;
+	const b = bProp.name;
+	const aPrivate = a.startsWith('_');
+	const bPrivate = b.startsWith('_');
+	if (aPrivate && !bPrivate) return 1;
+	if (!aPrivate && bPrivate) return -1;
+
+	if (aPrivate && bPrivate) {
+		const aMatch = a.match(/^(_+)/);
+		const bMatch = b.match(/^(_+)/);
+		if (aMatch !== null && bMatch === null) return 1;
+		if (aMatch === null && bMatch !== null) return -1;
+		if (aMatch !== null && bMatch !== null) {
+			// With more underscores is last
+			if (aMatch[1].length !== bMatch[1].length) {
+				return aMatch[1].length - bMatch[1].length;
+			}
+
+			const aUpper = /^_+[A-Z]/.test(a);
+			const bUpper = /^_+[A-Z]/.test(b);
+			if (aUpper && !bUpper) return -1;
+			if (!aUpper && bUpper) return 1;
+			return a.localeCompare(b);
+		}
+	}
+
+	const aUpper = /^[A-Z]/.test(a);
+	const bUpper = /^[A-Z]/.test(b);
+	if (aUpper && !bUpper) return -1;
+	if (!aUpper && bUpper) return 1;
+
+	return a.localeCompare(b);
 }

@@ -168,6 +168,8 @@ function Message({ type, value, count }) {
 	const out = [];
 	flattenMsg(value, show, out, 'root');
 
+	console.log(out);
+
 	return (
 		<>
 			{out.map(msg => (
@@ -193,14 +195,21 @@ function Property({ dim, children, preview }) {
 			<span class={cx(dim ? s.consoleMsgPropertyDim : s.consoleMsgProperty)}>
 				{children}
 			</span>
-			{preview ? <>: {preview}</> : ''}
+			{preview ? (
+				<>
+					{': '}
+					<span class={s.preview}>{preview}</span>
+				</>
+			) : (
+				''
+			)}
 		</>
 	);
 }
 
 function MessageItem({ type, msg, count, show, setShow }) {
 	const { value, key, label, kind, level } = msg;
-	const collapsible = !isPrimitive(value);
+	const collapsible = !isPrimitive(value) && kind !== 'function';
 
 	const onClick = useCallback(() => {
 		setShow(p => {
@@ -215,7 +224,16 @@ function MessageItem({ type, msg, count, show, setShow }) {
 	}, [key, setShow]);
 
 	const isBuiltIn = label === '[[Entries]]';
-	const preview = !isBuiltIn ? generatePreview(value, kind) : null;
+	const preview = !isBuiltIn ? generatePreview(value, kind, level) : null;
+
+	const previewJsx =
+		level > 0 ? (
+			<Property dim={isBuiltIn} preview={preview}>
+				{label}
+			</Property>
+		) : (
+			<span class={s.preview}>{preview}</span>
+		);
 
 	return (
 		<div
@@ -230,24 +248,12 @@ function MessageItem({ type, msg, count, show, setShow }) {
 				{collapsible ? (
 					<button class={s.collapseBtn} onClick={onClick}>
 						<span class={s.collapseIcon}>{show.has(key) ? '▼' : '▶'}</span>
-						{level > 0 ? (
-							<Property dim={isBuiltIn} preview={preview}>
-								{label}
-							</Property>
-						) : (
-							preview
-						)}
+						{previewJsx}
 					</button>
 				) : (
 					<>
 						<span class={s.collapseIcon} />
-						{level > 0 ? (
-							<Property dim={isBuiltIn} preview={preview}>
-								{label}
-							</Property>
-						) : (
-							preview
-						)}
+						{previewJsx}
 					</>
 				)}
 			</div>
@@ -356,16 +362,34 @@ export function generatePreview(value, kind, level = 0, end = false) {
 					</span>
 				);
 			}
+			case 'function': {
+				if (level === 0) {
+					return <span class={s.italic}>{value.str}</span>;
+				}
+
+				const name = value.name ? <>{value.name}()</> : null;
+				return (
+					<>
+						<span class={s.bright}>ƒ </span>
+						{name}
+					</>
+				);
+			}
 		}
 	}
 
-	const keys = Object.keys(value);
+	let keys = Object.keys(value);
+	const len = keys.length;
+	// Only show max of 5 keys like DevTools
+	if (len > 5) {
+		keys = keys.slice(0, 5);
+	}
 
 	if (end) {
 		return (
 			<span class={cx(level === 0 && s.italic)}>
 				<span class={s.bright}>{'{'}</span>
-				{keys.length > 0 ? '…' : ''}
+				{len > 0 ? '…' : ''}
 				<span class={s.bright}>{'}'}</span>
 			</span>
 		);
@@ -374,10 +398,11 @@ export function generatePreview(value, kind, level = 0, end = false) {
 	return (
 		<span class={cx(level === 0 && s.italic)}>
 			<span class={s.bright}>{'{'}</span>
-			{keys.map(k => (
+			{keys.map((k, i) => (
 				<Fragment key={k}>
 					<span class={s.consoleDim}>{k}</span>:{' '}
 					{generatePreview(value[k], kind, level + 1, true)}
+					{i < keys.length - 1 ? ', ' : keys.length < len ? ', …' : ''}
 				</Fragment>
 			))}
 			<span class={s.bright}>{'}'}</span>
