@@ -9,6 +9,7 @@ import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { route as reroute } from 'preact-router';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -151,6 +152,8 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
 
+	if (to.skipHeader) return;
+
 	if (!to.path) {
 		return (
 			<button
@@ -164,8 +167,20 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 		);
 	}
 
+	function BrandingRedirect(e) {
+		if (to.href == '/' || to.path == '/') {
+			e.preventDefault();
+			reroute('/branding', false);
+		}
+	}
+
 	return (
-		<a href={to.href || to.path} {...props} data-route={route}>
+		<a
+			href={to.href || to.path}
+			{...props}
+			data-route={route}
+			onContextMenu={BrandingRedirect}
+		>
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>
