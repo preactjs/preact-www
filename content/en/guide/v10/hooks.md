@@ -459,4 +459,4 @@ const App = props => {
 };
 ```
 
-> This hook was introduced with Preact 10.11.0 .
+> This hook was introduced with Preact 10.11.0 and needs preact-render-to-string 5.2.4.
