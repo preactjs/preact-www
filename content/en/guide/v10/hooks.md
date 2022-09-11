@@ -432,9 +432,7 @@ const App = props => {
 
 ### useId
 
-This hook will generate a unique identifier for each invocation, these will be
-consistent across the server- and client-render. These id's can be used to
-have consistent and unique identifiers for dom-nodes, ...
+This hook will generate a unique identifier for each invocation and guarantees that these will be consistent when rendering both [on the server](/guide/v10/server-side-rendering) and the client. A common use case for consistent id's are forms, where `<label>`-elements use the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for) attribute to associate them with a specific `<input>`-element. The `useId` hook isn't tied to just forms though and can be used whenever you need a unique id.
 
 > To make the hook consistent you will need to use Preact on both the server
 > as well as on the client.
