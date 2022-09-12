@@ -429,3 +429,34 @@ const App = props => {
 
 > If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) lifecycle method.
 > This hook was introduced with Preact 10.2.0 .
+
+## Utility hooks
+
+### useId
+
+This hook will generate a unique identifier for each invocation and guarantees that these will be consistent when rendering both [on the server](/guide/v10/server-side-rendering) and the client. A common use case for consistent IDs are forms, where `<label>`-elements use the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for) attribute to associate them with a specific `<input>`-element. The `useId` hook isn't tied to just forms though and can be used whenever you need a unique ID.
+
+> To make the hook consistent you will need to use Preact on both the server
+> as well as on the client.
+
+A full usage example may look like this:
+
+```jsx
+const App = props => {
+  const mainId = useId();
+  const inputId = useId();
+
+  useLayoutEffect(() => {
+    document.getElementById(inputId).focus()
+  }, [])
+  
+  // Display a nice error message
+  return (
+    <main id={mainId}>
+      <input id={inputId}>
+    </main>
+  )
+};
+```
+
+> This hook was introduced with Preact 10.11.0 and needs preact-render-to-string 5.2.4.
