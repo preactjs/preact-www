@@ -10,6 +10,7 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { route as reroute } from 'preact-router';
+import { useLanguage } from '../../lib/i18n';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -61,6 +62,7 @@ export default function Header() {
 								height="28"
 							/>
 						</a>
+						<NavItem />
 					</div>
 					<Hamburger open={open} onClick={toggle} />
 				</div>
@@ -131,6 +133,15 @@ class NavItem extends Component {
 	}
 
 	render({ to, current, ...props }, { open }) {
+		if (!to)
+			return (
+				<LanguageSelector
+					isOpen={open}
+					toggle={this.toggle}
+					close={this.close}
+					{...props}
+				/>
+			);
 		if (!to.routes) return <NavLink to={to} {...props} />;
 
 		return (
@@ -184,6 +195,40 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>
+	);
+};
+
+const LanguageSelector = ({ isOpen, toggle, close, ...props }) => {
+	const [lang, setLang] = useLanguage();
+	const onClick = useCallback(
+		e => {
+			setLang(e.target.dataset.value);
+			close();
+		},
+		[setLang]
+	);
+
+	return (
+		<div
+			{...props}
+			data-open={isOpen}
+			class={cx(style.navGroup, style.translation)}
+		>
+			<button {...props} onClick={toggle} aria-haspopup aria-expanded={isOpen}>
+				<img src="/assets/i18n.svg" alt="Twitter" width="34" height="28" />
+			</button>
+			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>
+				{Object.keys(config.languages).map(id => (
+					<span
+						class={cx(id == lang && style.current)}
+						data-value={id}
+						onClick={onClick}
+					>
+						{config.languages[id]}
+					</span>
+				))}
+			</nav>
+		</div>
 	);
 };
 
