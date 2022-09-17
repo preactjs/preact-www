@@ -215,7 +215,12 @@ const LanguageSelector = ({ isOpen, toggle, close, ...props }) => {
 			class={cx(style.navGroup, style.translation)}
 		>
 			<button {...props} onClick={toggle} aria-haspopup aria-expanded={isOpen}>
-				<img src="/assets/i18n.svg" alt="Twitter" width="34" height="28" />
+				<img
+					src="/assets/i18n.svg"
+					alt="Translate Page"
+					width="34"
+					height="28"
+				/>
 			</button>
 			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>
 				{Object.keys(config.languages).map(id => (
