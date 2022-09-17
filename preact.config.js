@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import fs from 'fs';
 import delve from 'dlv';
-import CopyPlugin from 'copy-webpack-plugin';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
@@ -68,8 +67,9 @@ export default function (config, env, helpers) {
 		const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
 		// Converts YAML FrontMatter to JSON FrontMatter for easy client-side parsing.
-		config.plugins.push(new CopyPlugin({
-			patterns: [{
+		const { plugin: copyPlugin } = helpers.getPluginsByName(config, 'CopyPlugin')[0];
+		copyPlugin.patterns = copyPlugin.patterns.concat([
+			{
 				context: __dirname,
 				from: 'content',
 				to: 'content',
@@ -105,7 +105,7 @@ export default function (config, env, helpers) {
 				// Copy-Webpack-Plugin otherwise assumes it's a directory, which results in errors
 				toType: 'file'
 			}]
-		}));
+		);
 
 		netlifyPlugin(config, {
 			redirects: fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
