@@ -1,6 +1,5 @@
 import { resolve } from 'path';
 import fs from 'fs';
-import delve from 'dlv';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
@@ -34,12 +33,6 @@ export default function (config, env, helpers) {
 
 	const babel = helpers.getLoadersByName(config, 'babel-loader')[0].rule;
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
-
-	// something broke in less
-	config.module.rules.forEach(loader => {
-		const opts = delve(loader, 'use.0.options.options');
-		if (opts && opts.paths) delete opts.paths;
-	});
 
 	// Add CSS Custom Property fallback
 	const cssConfig = config.module.rules.filter(d => d.test.test('foo.less'));
