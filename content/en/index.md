@@ -54,6 +54,14 @@ function Counter() {
   </section>
 
   <section class="home-section">
+    <h2>Community!!!</h2>
+    <p>
+      TODO
+    </p>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
+
+  <section class="home-section">
     <h2>Instantly productive</h2>
     <p>
       We provide battle proven primitives to manage application logic in - SOMETHING SIGNALS
