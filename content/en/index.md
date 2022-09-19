@@ -19,13 +19,13 @@ description: 'Fast 3kB alternative to React with the same modern API.'
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
+  const count = useSignal(0);
 
   return (
     <>
-      <div>Counter: {value}</div>
-      <button onClick={() => setValue(value + 1)}>Increment</button>
-      <button onClick={() => setValue(value - 1)}>Decrement</button>
+      <div>Counter: {count}</div>
+      <button onClick={() => count.value += 1}>Increment</button>
+      <button onClick={() => count.value -= 1}>Decrement</button>
     </>
   )
 }
@@ -36,99 +36,55 @@ function Counter() {
   <sponsors></sponsors>
 </section>
 
-<section class="home-top">
-    <h1>A different kind of library</h1>
-</section>
-
-<section class="home-section">
-  <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
-
-  <div>
-    <h2>Closer to the DOM</h2>
-    <p>
-      Preact provides the thinnest possible Virtual DOM abstraction on top of the DOM.
-      It builds on stable platform features, registers real event handlers and plays nicely with other libraries.
-    </p>
-    <p>
-      Preact can be used directly in the browser without any transpilation steps.
-    </p>
-  </div>
-</section>
-
-<section class="home-section">
-  <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
-
-  <div>
+<div class="foo">
+  <section class="home-section">
     <h2>Small Size</h2>
     <p>
-      Most UI frameworks are large enough to be the majority of an app's JavaScript size.
-      Preact is different: it's small enough that <em>your code</em> is the largest part of your application.
+      Preact is small enough that <em>your code</em> is the largest part of your application. That means less JavaScript to download, parse and execute.
     </p>
-    <p>
-      That means less JavaScript to download, parse and execute - leaving more time for your code, so you can build an experience you define without fighting to keep a framework under control.
-    </p>
-  </div>
-</section>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
 
-<section class="home-section">
-  <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
-
-  <div>
+  <section class="home-section">
     <h2>Big Performance</h2>
     <p>
-      Preact is fast, and not just because of its size. It's one of the fastest Virtual DOM libraries out there, thanks to a simple and predictable diff implementation.
+      We tune Preact to the extreme and work closely with browser engineers together. Preact is one of the fastest Virtual DOM libraries out there.
     </p>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
+
+  <section class="home-section">
+    <h2>Instantly productive</h2>
     <p>
-      We automatically batch updates and tune Preact to the extreme when it comes to performance. We work closely with
-      browser engineers to get the maximum performance possible out of Preact.
+      We provide battle proven primitives to manage application logic in - SOMETHING SIGNALS
     </p>
-  </div>
-</section>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
 
-<section class="home-section">
-  <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
-
-  <div>
-    <h2>Portable &amp; Embeddable</h2>
-    <p>
-      Preact's tiny footprint means you can take the powerful Virtual DOM Component paradigm to new places it couldn't otherwise go.
-    </p>
-    <p>
-      Use Preact to build parts of an app without complex integration. Embed Preact into a widget and apply the same tools and techniques that you would to build a full app.
-    </p>
-  </div>
-</section>
-
-<section class="home-section">
-  <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
-
-  <div>
-    <h2>Instantly Productive</h2>
-    <p>
-      Lightweight is a lot more fun when you don't have to sacrifice productivity to get there. Preact gets you productive right away. It even has a few bonus features:
-    </p>
-    <ul>
-      <li><code>props</code>, <code>state</code> and <code>context</code> are passed to <code>render()</code></li>
-      <li>Use standard HTML attributes like <code>class</code> and <code>for</code></li>
-    </ul>
-  </div>
-</section>
-
-<section class="home-section">
-  <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
-
-  <div>
+  <section class="home-section">
     <h2>Ecosystem Compatible</h2>
     <p>
-      Virtual DOM Components make it easy to share reusable things - everything from buttons to data providers.
-      Preact's design means you can seamlessly use thousands of Components available in the React ecosystem.
+      Seamlessly use thousands of components available in the React ecosystem natively in Preact.
     </p>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
+
+  <section class="home-section">
+    <h2>Learn for the web</h2>
     <p>
-      Adding a simple <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> alias to your bundler provides a compatibility layer
-      that enables even the most complex React components to be used in your application.
+      Knowledge you gain from working with Preact applies to the web in general. We keep Preact specific things to a minimum.
     </p>
-  </div>
-</section>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
+
+  <section class="home-section">
+    <h2>Portable &amp; Embeddable</h2>
+    <p>
+      With Preact's tiny footprint you can embed it anywhere and use the same tools that you would use to build a full app.
+    </p>
+    <a href="#" class="link">Tell me more &rarr;</a>
+  </section>
+</div>
 
 <section class="home-top">
     <h1>See it in action!</h1>

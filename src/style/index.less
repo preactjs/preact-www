@@ -247,67 +247,20 @@ main .markup {
 
 @break-s: ~'(min-width: 700px)';
 
-// Styles for a typical media/flag layout where you have one image on the left
-// or right and text in the other column.
+.foo {
+	display: grid;
+	grid-template-columns: repeat();
+	gap: 4%;
+	width: 80%;
+	max-width: none !important;
+	grid-template-columns: repeat(3, 1fr);
+	grid-auto-rows: minmax(100px, auto);
+}
+
 .home-section {
-	display: flex;
-	flex-direction: column;
-	max-width: @home-width !important; // TODO: Fix markup page styles
+	max-width: 20rem;
 
-	@media @break-s {
-		flex-direction: row;
-	}
-
-	& + .home-section {
-		margin: 1.6rem 0;
-
-		@media @break-s {
-			margin: 3.75rem 0;
-		}
-	}
-
-	// The following nodes are created inside the markdown files.
-	// To make the authoring experience easier we select and style them
-	// based on the type instead of forcing content creators to add classes.
-	h2 {
-		font-size: 220%;
-		letter-spacing: 0.01em;
-		font-weight: 300;
-		text-align: center;
-		line-height: 1.2;
-		margin-bottom: 0.5em;
-
-		@media @break-s {
-			margin-top: 0;
-			text-align: left;
-		}
-	}
-
-	// TODO: Inline SVGs instead of using images to allow more styling options
-	// via CSS. We could play with subtle gradients for the stroke-color, etc.
-	img {
-		display: block;
-		width: 25%;
-		align-self: center;
-		height: auto; // override intrinsic size
-		max-height: 13rem; // IE11 fix
-
-		@media @break-s {
-			width: 100%;
-			flex: 22% 0 0;
-			margin-right: 4%;
-		}
-	}
-
-	@media @break-s {
-		// Variant: Right aligned image
-		&:nth-of-type(2n + 1) {
-			flex-direction: row-reverse;
-
-			img {
-				margin-right: 0;
-				margin-left: 4%;
-			}
-		}
+	a {
+		display: none;
 	}
 }
