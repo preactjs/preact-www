@@ -18,6 +18,9 @@
 		<meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
 		<meta property="og:description" content="<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.description %>" />
 		<meta property="og:image" content="https://preactjs.com/assets/app-icon.png" />
+		<% if (htmlWebpackPlugin.options.url.includes('/v8/')) { %>
+			<meta name="robots" content="noindex" />
+		<% } %>
 		<% if (process.env.BRANCH) { %>
 			<script>ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga('set','dimension1','<%= process.env.BRANCH %>');onerror=function(e,f,l,c){ga('send','event','exception',e,f+':'+l+':'+c)}</script>
 		<% } %>
