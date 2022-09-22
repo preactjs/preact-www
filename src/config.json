@@ -505,6 +505,16 @@
 	],
 	"blog": [
 		{
+			"path": "/blog/signal-boosting",
+			"name": {
+				"en": "Signal Boosting"
+			},
+			"date": "2022-09-23",
+			"excerpt": {
+				"en": "The new release of Preact Signals brings significant performance updates to the underpinnings of the reactive system. Read on to learn what kinds of tricks we employed to make this happen."
+			}
+    },
+		{
 			"path": "/blog/introducing-signals",
 			"name": {
 				"en": "Introducing Signals"
