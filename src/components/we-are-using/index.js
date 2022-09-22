@@ -267,6 +267,11 @@ const companies = [
 		name: 'Refract',
 		href: 'https://refractbot.com/',
 		logo: 'refract.svg'
+	},
+	{
+		name: 'Zeplin',
+		href: 'https://zeplin.io',
+		logo: 'zeplin.svg'
 	}
 ];
 
