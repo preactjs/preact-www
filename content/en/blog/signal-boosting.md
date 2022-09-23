@@ -59,13 +59,13 @@ const c = computed(() => {
 });
 ```
 
-The compute function given to `computed(...)` won't run immediately, so the `"I'm computing!` text won't get printed to the console. That's because computed signals are evaluated _lazily_, i.e. when their values are read.
+The compute function given to `computed(...)` won't run immediately. That's because computed signals are evaluated _lazily_, i.e. when their values are read.
 
 ```ts
 console.log(c.value); // Console: Hello World
 ```
 
-Computed values are also _cached_. A compute function can potentially be expensive, so we want to recompute only when it matters. A running compute function tracks which signal values are actually accessed during its run. When none of the signals have changed, then we can skip recomputation. In the above example, we can just reuse the previously calculated `c.value` indefinitely until either `a` or `b` changes. After that the compute function needs to be evaluated again on next read. Facilitating this _dependency tracking_ is the reason why we need to wrap the primitive values into signals in the first place.
+Computed values are also _cached_. Their compute functions can potentially be very expensive, so we want to rerun them only when it matters. A running compute function tracks which signal values are actually read during its run. If none of the values have changed, then we can skip recomputation. In the above example, we can just reuse the previously calculated `c.value` indefinitely as long as both `a.value` and `b.value` stay the same. Facilitating this _dependency tracking_ is the reason why we need to wrap the primitive values into signals in the first place.
 
 ```ts
 // s1 and s2 haven't changed, no recomputation here
@@ -73,11 +73,11 @@ console.log(c.value); // Console: Hello World
 
 s2.value = "darkness my old friend";
 
-// s2 has changed, so the computation function runs now
+// s2 has changed, so the computation function runs again
 console.log(c.value); // Console: Hello darkness, my old friend
 ```
 
-As it happens, computed signals are themselves signals. A computed signal can depend on another computed signals:
+As it happens, computed signals are themselves signals. A computed signal can depend on other computed signals.
 
 ```ts
 const count = signal(1);
@@ -89,16 +89,16 @@ count.value = 20;
 console.log(quadruple.value); // Console: 80
 ```
 
-The set of dependencies doesn't have to stay static. The computed signal will only react to changes in the current dependencies:
+The set of dependencies doesn't have to stay static. The computed signal will only react to changes in the latest set of dependencies.
 
 ```ts
 const choice = signal(true);
-const uptown = signal("Funk");
+const funk = signal("Uptown");
 const purple = signal("Haze");
 
 const c = computed(() => {
   if (choice.value) {
-    console.log("Uptown", uptown.value);
+    console.log(uptown.value, "Funk");
   } else {
     console.log("Purple", purple.value);
   }
@@ -106,13 +106,13 @@ const c = computed(() => {
 c.value;           // Console: Uptown Funk
 
 s3.value = "Rain"; // s3 is not a dependency, so
-c.value;           // nothing gets printed here
+c.value;           // effect doesn't run
 
 s1.value = false;
 c.value;           // Console: Purple Rain
 
-s2.value = "Girl"; // s2 not a dependency anymore, so
-c.value;           // nothing gets printed here
+s2.value = "Da";   // s2 not a dependency anymore, so
+c.value;           // effect doesn't run
 ```
 
 These three things - dependency tracking, laziness and caching - are common features in reactivity libraries. Vue's _computed properties_ are [one prominent example](https://dev.to/linusborg/vue-when-a-computed-property-can-be-the-wrong-tool-195j).
