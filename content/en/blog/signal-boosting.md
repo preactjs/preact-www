@@ -98,7 +98,7 @@ const purple = signal("Haze");
 
 const c = computed(() => {
   if (choice.value) {
-    console.log(uptown.value, "Funk");
+    console.log(funk.value, "Funk");
   } else {
     console.log("Purple", purple.value);
   }
