@@ -227,11 +227,11 @@ But hey, dependencies and dependents come in pairs. For every source Node there 
 
 ![Each Node becomes a sort of quad-linked monstrosity that the dependent can use as a part of its dependency list, and vice versa](/assets/signals/signal-boosting-04.png)
 
-Each Node can have additional stuff attached to it for bookkeeping purposes. Before each compute/effect function we iterate through the previous dependencies and set the "unused" flag of each Node. We also temporarily store the Node to its `.source.node` property for later. The function can now start its run.
+Each Node can have additional stuff attached to it for bookkeeping purposes. Before each compute/effect function we iterate through the previous dependencies and set the "unused" flag of each Node. We also temporarily store the Node to its `.source.node` property for later. The function can then start its run.
 
 During the run, each time a dependency is read, the bookkeeping values can be used to discover whether that dependency has already been seen during this or the previous run. If the dependency is from the previous run, we can recycle its Node. For previously unseen dependencies we create new Nodes. The Nodes are then shuffled around to keep them in reverse order of use. At the end of the run we walk through the dependency list again, purging Nodes that are still hanging around with the "unused" flag set. Then we reverse the list of remaining nodes to keep it all neat for later consumption.
 
-This dance of death allows us to allocate only one Node per each dependency-dependent pair and then use that Node indefinitely as long as the dependency relationship exists. If the dependency tree stays stable, memory consumption also stays effectively stable after the initial build phase. All the while dependency lists stay up to date and in order of use. With a constant O(1) amount of work per Node. Nice!
+This delicate dance of death allows us to allocate only one Node per each dependency-dependent pair and then use that Node indefinitely as long as the dependency relationship exists. If the dependency tree stays stable, memory consumption also stays effectively stable after the initial build phase. All the while dependency lists stay up to date and in order of use. With a constant O(1) amount of work per Node. Nice!
 
 ### Eager Effects
 
@@ -239,7 +239,7 @@ With the dependency tracking taken care of, eager effects are relatively straigh
 
 We added a couple of optimizations here. If the receiving end of a notification has already been notified before, and it hasn't yet had a chance to run, then it won't pass the notification forward. This mitigates cascading notification stampedes when the dependency tree fans out or in. Plain signals also don't notify their dependents if the signal's value doesn't actually change (e.g. `s.value = s.value`). But that's just being polite.
 
-For effects to be able to schedule themselves there needs to be some sort of a list of scheduled effects. We added an dedicated attribute `.nextBatchedEffect` to each Effect object, letting Effect objects do double duty as nodes in a singly-linked scheduling list. This reduces memory churn, because scheduling the same effect again and again requires no additional memory allocations or deallocations.
+For effects to be able to schedule themselves there needs to be some sort of a list of scheduled effects. We added an dedicated attribute `.nextBatchedEffect` to each Effect instance, letting Effect instances do double duty as nodes in a singly-linked scheduling list. This reduces memory churn, because scheduling the same effect again and again requires no additional memory allocations or deallocations.
 
 ### Interlude: Notification Subscriptions vs. GC
 
