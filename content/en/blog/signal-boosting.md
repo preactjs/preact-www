@@ -266,7 +266,7 @@ The easiest way to implement a lazy computed signal would be to just recompute e
 
 Each plain and computed signal has their own _version number_. They increment their version numbers every time they've noticed their own value change. When a compute function is run, it also jots down the version numbers of its dependencies (stored in the Nodes). We could have chosen to store the previous dependency values in the nodes instead of version numbers. However, since computed signals are lazy, they could therefore hang on to outdated and potentially expensive values indefinitely. So we felt version numbering was a safe compromise.
 
-We ended up with the following algorithm for figuring out whether a computed signal can wiggle itself out of work and reuse its cached value:
+We ended up with the following algorithm for figuring out when a computed signal can take the day off and reuse its cached value:
 
  1. If the no signal anywhere has changed values since the last run, then bail out & return the cached value.
 
