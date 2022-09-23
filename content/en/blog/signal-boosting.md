@@ -103,16 +103,16 @@ const c = computed(() => {
     console.log("Purple", purple.value);
   }
 });
-c.value;           // Console: Uptown Funk
+c.value;               // Console: Uptown Funk
 
-s3.value = "Rain"; // s3 is not a dependency, so
-c.value;           // effect doesn't run
+purple.value = "Rain"; // purple is not a dependency, so
+c.value;               // effect doesn't run
 
-s1.value = false;
-c.value;           // Console: Purple Rain
+choice.value = false;
+c.value;               // Console: Purple Rain
 
-s2.value = "Da";   // s2 not a dependency anymore, so
-c.value;           // effect doesn't run
+funk.value = "Da";     // funk not a dependency anymore, so
+c.value;               // effect doesn't run
 ```
 
 These three things - dependency tracking, laziness and caching - are common features in reactivity libraries. Vue's _computed properties_ are [one prominent example](https://dev.to/linusborg/vue-when-a-computed-property-can-be-the-wrong-tool-195j).
