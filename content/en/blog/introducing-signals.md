@@ -1,6 +1,9 @@
 ---
 title: Introducing Signals
 date: 2022-09-06
+authors:
+  - Marvin Hagemeister
+  - Jason Miller
 ---
 
 Signals are a way of expressing state that ensure apps stay fast regardless of how complex they get. Signals are based on reactive principles and provide excellent developer ergonomics, with a unique implementation optimized for Virtual DOM.
