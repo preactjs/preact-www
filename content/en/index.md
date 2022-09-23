@@ -38,7 +38,7 @@ function Counter() {
 
 <div class="foo">
   <section class="home-section">
-    <h2>Small Size</h2>
+    <h2>Small</h2>
     <p>
       Preact is small enough that <em>your code</em> is the largest part of your application. That means less JavaScript to download, parse and execute.
     </p>
@@ -46,7 +46,7 @@ function Counter() {
   </section>
 
   <section class="home-section">
-    <h2>Big Performance</h2>
+    <h2>Performant</h2>
     <p>
       We tune Preact to the extreme and work closely with browser engineers together. Preact is one of the fastest Virtual DOM libraries out there.
     </p>
@@ -54,15 +54,7 @@ function Counter() {
   </section>
 
   <section class="home-section">
-    <h2>Community!!!</h2>
-    <p>
-      TODO
-    </p>
-    <a href="#" class="link">Tell me more &rarr;</a>
-  </section>
-
-  <section class="home-section">
-    <h2>Instantly productive</h2>
+    <h2>Approachable</h2>
     <p>
       We provide battle proven primitives to manage application logic in - SOMETHING SIGNALS
     </p>
@@ -70,7 +62,7 @@ function Counter() {
   </section>
 
   <section class="home-section">
-    <h2>Ecosystem Compatible</h2>
+    <h2>Compatible</h2>
     <p>
       Seamlessly use thousands of components available in the React ecosystem natively in Preact.
     </p>
@@ -78,7 +70,7 @@ function Counter() {
   </section>
 
   <section class="home-section">
-    <h2>Learn for the web</h2>
+    <h2>Web first</h2>
     <p>
       Knowledge you gain from working with Preact applies to the web in general. We keep Preact specific things to a minimum.
     </p>
@@ -86,7 +78,7 @@ function Counter() {
   </section>
 
   <section class="home-section">
-    <h2>Portable &amp; Embeddable</h2>
+    <h2>Portable</h2>
     <p>
       With Preact's tiny footprint you can embed it anywhere and use the same tools that you would use to build a full app.
     </p>
