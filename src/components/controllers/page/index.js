@@ -186,39 +186,41 @@ export default function Page({ route, prev, next }, ctx) {
 					/>
 					{showTitle && (
 						<div class={style.pageTitle}>
-							{meta.date && (
-								<div class={style.time}>
-									<Time value={meta.date} />
-								</div>
-							)}
-							{Array.isArray(meta.authors) && meta.authors.length > 0 && (
-								<p style="margin: 0">
-									Written by:{' '}
-									<address class={style.authors}>
-										{meta.authors.map((author, i, arr) => {
-											const authorData = config.blogAuthors.find(
-												data => data.name === author
-											);
-											return (
-												<span key={author} class={style.author}>
-													{authorData ? (
-														<a
-															href={authorData.link}
-															target="_blank"
-															rel="noopener noreferrer"
-														>
-															{author}
-														</a>
-													) : (
-														<span>{author}</span>
-													)}
-													{i < arr.length - 1 ? ', ' : null}
-												</span>
-											);
-										})}
-									</address>
-								</p>
-							)}
+							<div>
+								{meta.date && <Time value={meta.date} />}
+								{Array.isArray(meta.authors) && meta.authors.length > 0 && (
+									<>
+										, written by{' '}
+										<address class={style.authors}>
+											{meta.authors.map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<span key={author} class={style.author}>
+														{authorData ? (
+															<a
+																href={authorData.link}
+																target="_blank"
+																rel="noopener noreferrer"
+															>
+																{author}
+															</a>
+														) : (
+															<span>{author}</span>
+														)}
+														{i < arr.length - 2
+															? ', '
+															: i === arr.length - 2
+															? ' and '
+															: null}
+													</span>
+												);
+											})}
+										</address>
+									</>
+								)}
+							</div>
 							<h1
 								class={cx(
 									style.title,
