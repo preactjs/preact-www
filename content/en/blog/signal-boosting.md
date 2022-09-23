@@ -159,7 +159,7 @@ There are other functions, like [`batch`](https://preactjs.com/guide/v10/signals
 
 # Implementation Notes
 
-When we set out to implement more performant versions of the above primitives, we had to find out snappy ways to do all the following subtasks:
+When we set out to implement more performant versions of the above primitives, we had to find snappy ways to do all the following subtasks:
 
  * Dependency tracking: Keep track of used signals (plain or computed). The dependencies may change dynamically.
  * Laziness: Compute functions should only run on demand.
@@ -184,7 +184,7 @@ However, we were wondering whether there are some alternative approaches. Sets c
 
 ![Set iteration is just a tad slower than Array iteration](/assets/signals/signal-boosting-01b.png)
 
-Sets also have the property that they're kept in insertion order. Which is cool - that's just what we need later when we deal with caching. But there's the possibility that the order doesn't always stay the same. Observe the following scenario:
+Sets also have the property they're iterated in insertion order. Which is cool - that's just what we need later when we deal with caching. But there's the possibility that the order doesn't always stay the same. Observe the following scenario:
 
 ```ts
 const s1 = signal(0);
@@ -201,7 +201,7 @@ const c = computed(() => {
 });
 ```
 
-Depending on `s1` the order of dependencies is either `s1, s2, s3` or `s1, s3, s2`. Special steps have to be taken to keep Sets in order: either remove and then add back items, empty the set before a function run, or create a new set for each run. Each approach downsides and has the potential to cause memory churn. And all this just to account for the theoretical-but-probably-rare case that the order of dependencies changes.
+Depending on `s1` the order of dependencies is either `s1, s2, s3` or `s1, s3, s2`. Special steps have to be taken to keep Sets in order: either remove and then add back items, empty the set before a function run, or create a new set for each run. Each approach has the potential to cause memory churn. And all this just to account for the theoretical, but probably rare, case that the order of dependencies changes.
 
 There are multiple other ways to deal with this. For example numbering and then sorting the dependencies. We ended up exploring [linked lists](https://en.wikipedia.org/wiki/Linked_list).
 
@@ -268,7 +268,7 @@ Each signal, plain or computed, has their own _version number_. They increment t
 
 Each time a plain signal changes it also increments a _global version number_, shared between all plain signals. Each computed signal keeps track of the last global version number they've seen. If the global version hasn't changed since last computation, then recomputation can be skipped early. There couldn't be any changes to any computed value anyway in that case.
 
-When a computed signal gets notified by its dependencies it flags its cached value as (possibly) outdated. As described earlier, computed signals don't always get notifications. But when they do, we can take advantage of it.
+When a computed signal gets a notification from its dependencies it flags its cached value as (possibly) outdated. As described earlier, computed signals don't always get notifications. But when they do we can take advantage of it.
 
 Putting this all together we end up with the following algorithm for trying to wiggle out of working too hard:
 
@@ -276,7 +276,9 @@ Putting this all together we end up with the following algorithm for trying to w
 
  1. If the computed signal is listening to notifications, and hasn't been notified since the last run, then bail out & return the cached value.
 
- 1. Re-evaluate the dependencies in the order of use. Check their version numbers. If no dependency has changed its version number, even after re-evaluation, then bail out & return the cached value.
+ 1. Re-evaluate the dependencies in order. Check their version numbers. If no dependency has changed its version number, even after re-evaluation, then bail out & return the cached value.
+
+  This step is the reason why we paid special attention to keeping dependencies in their order of use. If a dependency changes, then we don't want to re-evaluate dependencies coming later in the list because it might just be unnecessary work. Who knows, maybe the change in that first dependency causes the next compute function run to drop the latter dependencies.
 
  1. Run the computation function. If the returned value is different from the cached one, then increment the computed signal's version number. Cache and return the new value.
 
