@@ -3,7 +3,7 @@ title: Signal Boosting
 date: 2022-09-24
 ---
 
-The new release of Preact Signals brings significant performance updates to the underpinnings of the reactive system. Read on to learn what kinds of tricks we employed to make this happen.
+The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen.
 
 We recently [announced](https://twitter.com/jviide/status/1572570215350964224) new versions of the Preact Signals packages:
 
