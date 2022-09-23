@@ -191,6 +191,34 @@ export default function Page({ route, prev, next }, ctx) {
 									<Time value={meta.date} />
 								</div>
 							)}
+							{Array.isArray(meta.authors) && meta.authors.length > 0 && (
+								<p style="margin: 0">
+									Written by:{' '}
+									<address class={style.authors}>
+										{meta.authors.map((author, i, arr) => {
+											const authorData = config.blogAuthors.find(
+												data => data.name === author
+											);
+											return (
+												<span key={author} class={style.author}>
+													{authorData ? (
+														<a
+															href={authorData.link}
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															{author}
+														</a>
+													) : (
+														<span>{author}</span>
+													)}
+													{i < arr.length - 1 ? ', ' : null}
+												</span>
+											);
+										})}
+									</address>
+								</p>
+							)}
 							<h1
 								class={cx(
 									style.title,
