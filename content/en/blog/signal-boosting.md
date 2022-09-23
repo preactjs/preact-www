@@ -139,7 +139,7 @@ count.value = 20; // Console: quadruple value is now 20
 
 These reactions are triggered by _notifications_. When a plain signal changes, it notifies its immediate dependents. They in turn notify their own immediate dependents, and so on. As is [common](https://mobx.js.org/computeds.html) in reactive systems, computed signals along the notification's path mark themselves to be outdated and ready be recomputed. If the notification trickles all the way down to an effect, then that effect schedules itself to be run as soon as all previously scheduled effects have finished.
 
-When you're done with an effect, call _disposer_ returned when the effect was first created:
+When you're done with an effect, call the _disposer_ that got returned when the effect was first created:
 
 ```ts
 const count = signal(1);
