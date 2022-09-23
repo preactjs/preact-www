@@ -264,7 +264,7 @@ In those cases where a computed signal **has** subscribed to notifications we ca
 
 The easiest way to implement a lazy computed signal would be to just recompute each time its value is read. It wouldn't be very efficient, though. That's where caching and dependency tracking help a bunch.
 
-Each plain and computed signal has their own _version number_. They increment their version numbers every time they've noticed their own value change. When a compute function is run, it also jots down the version numbers of its dependencies (stored in the Nodes). We could have chosen to store the previous dependency values in the nodes instead of version numbers. However, since computed signals are lazy, they could therefore hang on to outdated and potentially expensive values indefinitely. So we felt version numbering was a safe compromise.
+Each plain and computed signal has their own _version number_. They increment their version numbers every time they've noticed their own value change. When a compute function is run, it stores in the Nodes the last seen version numbers of its dependencies. We could have chosen to store the previous dependency values in the nodes instead of version numbers. However, since computed signals are lazy, they could therefore hang on to outdated and potentially expensive values indefinitely. So we felt version numbering was a safe compromise.
 
 We ended up with the following algorithm for figuring out when a computed signal can take the day off and reuse its cached value:
 
