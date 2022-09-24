@@ -33,7 +33,8 @@ Plain _signals_ are the fundamental root values which our reactive system is bas
 Signals represent arbitrary JavaScript values wrapped into a reactive shell. You provide a signal with an initial value, and can later read and update it as you go.
 
 ```js
-import { signal } from "@preact/signals-core";
+// --repl
+import { signal } from "@preact/signals";
 
 const s = signal(0);
 console.log(s.value); // Console: 0
@@ -50,7 +51,7 @@ _Computed signals_ derive new values from other signals using _compute functions
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
 const s1 = signal("Hello");
 const s2 = signal("World");
@@ -62,7 +63,7 @@ const c = computed(() => {
 
 The compute function given to `computed(...)` won't run immediately. That's because computed signals are evaluated _lazily_, i.e. when their values are read.
 
-```ts
+```js
 console.log(c.value); // Console: Hello World
 ```
 
@@ -82,7 +83,7 @@ As it happens, computed signals are themselves signals. A computed signal can de
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -97,7 +98,7 @@ The set of dependencies doesn't have to stay static. The computed signal will on
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
 const choice = signal(true);
 const funk = signal("Uptown");
@@ -132,7 +133,7 @@ Like computed signals, effects are also created with a function (_effect functio
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal, computed, effect } from "@preact/signals";
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -151,7 +152,7 @@ When you're done with an effect, call the _disposer_ that got returned when the 
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -199,7 +200,7 @@ Sets also have the property they're iterated in insertion order. Which is cool -
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
 const s1 = signal(0);
 const s2 = signal(0);
