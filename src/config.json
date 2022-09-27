@@ -240,7 +240,8 @@
 		{
 			"name": {
 				"en": "Introduction",
-				"de": "Einführung"
+				"de": "Einführung",
+				"zh": "概览"
 			},
 			"routes": [
 				{
@@ -249,7 +250,8 @@
 						"en": "Getting Started",
 						"pt-br": "Começando",
 						"ja": "はじめに",
-						"de": "Los geht's"
+						"de": "Los geht's",
+						"zh": "快速开始"
 					}
 				},
 				{
@@ -524,7 +526,7 @@
 			"excerpt": {
 				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen."
 			}
-    },
+		},
 		{
 			"path": "/blog/introducing-signals",
 			"name": {
