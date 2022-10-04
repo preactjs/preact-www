@@ -74,7 +74,7 @@ console.log(c.value); // Console: Hello World
 s2.value = "darkness my old friend";
 
 // s2 has changed, so the computation function runs again
-console.log(c.value); // Console: Hello darkness, my old friend
+console.log(c.value); // Console: Hello darkness my old friend
 ```
 
 As it happens, computed signals are themselves signals. A computed signal can depend on other computed signals.
@@ -146,7 +146,7 @@ const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
-const disposer = effect(() => {
+const dispose = effect(() => {
   console.log("quadruple is now", quadruple.value);
 });                 // Console: quadruple value is now 4
 
