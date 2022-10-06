@@ -193,4 +193,4 @@ function App(props) {
 [Projectの目的]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[MDN's Event Reference]: https://developer.mozilla.org/en-US/docs/Web/Events
+[MDN's Event Reference]: https://developer.mozilla.org/ja/docs/Web/Events
