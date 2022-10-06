@@ -18,7 +18,7 @@ Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pe
 
 ## Principais diferenças
 
-A principal diferença ao comparar os aplicativos Preact e React é que não enviamos nosso próprio sistema de evento sintético. O Preact usa o `addEventlistener` nativo do navegador para manipulação de eventos internamente. Consulte [Manipuladores de Evento Globais] para obter uma lista completa dos manipuladores de eventos DOM.
+A principal diferença ao comparar os aplicativos Preact e React é que não enviamos nosso próprio sistema de evento sintético. O Preact usa o `addEventlistener` nativo do navegador para manipulação de eventos internamente. Consulte [MDN's Event Reference] para obter uma lista completa dos manipuladores de eventos DOM.
 
 Para nós, não faz sentido, pois o sistema de eventos do navegador suporta todos os recursos que precisamos. Uma implementação completa de eventos personalizados significaria mais sobrecarga de manutenção e uma maior área de superfície da API para nós.
 
@@ -152,4 +152,4 @@ function App(props) {
 [Objetivos do projeto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[Manipuladores de Evento Globais]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[MDN's Event Reference]: https://developer.mozilla.org/pt-BR/docs/Web/Events
