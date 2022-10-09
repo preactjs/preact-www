@@ -178,7 +178,7 @@ When you're done with an effect, call the _disposer_ that got returned when the 
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals";
+import { signal, computed, effect } from "@preact/signals";
 
 // --repl-before
 const count = signal(1);
