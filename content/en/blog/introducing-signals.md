@@ -174,7 +174,7 @@ const count = signal(0);
 <p>Value: {count}</p>
  
 // … or even passing them as DOM properties:
-<input value={count} />
+<input value={count} onInput={...} />
 ```
 
 So yeah, we did that too. You can pass a signal directly into the JSX anywhere you'd normally use a string. The signal's value will be rendered as text, and it will automatically update itself when the signal changes. This also works for props.
