@@ -184,7 +184,7 @@ const dispose = effect(() => {
   console.log("quadruple is now", quadruple.value);
 });                 // Console: quadruple value is now 4
 
-disposer();
+dispose();
 count.value = 20;  // nothing gets printed to the console
 ```
 
