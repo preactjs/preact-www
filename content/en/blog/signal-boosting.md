@@ -64,12 +64,36 @@ const c = computed(() => {
 The compute function given to `computed(...)` won't run immediately. That's because computed signals are evaluated _lazily_, i.e. when their values are read.
 
 ```js
+// --repl
+import { signal, computed } from "@preact/signals";
+
+const s1 = signal("Hello");
+const s2 = signal("World");
+
+const c = computed(() => {
+  return s1.value + " " + s2.value;
+});
+
+// --repl-before
 console.log(c.value); // Console: Hello World
 ```
 
 Computed values are also _cached_. Their compute functions can potentially be very expensive, so we want to rerun them only when it matters. A running compute function tracks which signal values are actually read during its run. If none of the values have changed, then we can skip recomputation. In the above example, we can just reuse the previously calculated `c.value` indefinitely as long as both `a.value` and `b.value` stay the same. Facilitating this _dependency tracking_ is the reason why we need to wrap the primitive values into signals in the first place.
 
 ```js
+// --repl
+import { signal, computed } from "@preact/signals";
+
+const s1 = signal("Hello");
+const s2 = signal("World");
+
+const c = computed(() => {
+  return s1.value + " " + s2.value;
+});
+
+console.log(c.value); // Console: Hello World
+
+// --repl-before
 // s1 and s2 haven't changed, no recomputation here
 console.log(c.value); // Console: Hello World
 
@@ -85,6 +109,7 @@ As it happens, computed signals are themselves signals. A computed signal can de
 // --repl
 import { signal, computed } from "@preact/signals";
 
+// --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
@@ -100,6 +125,7 @@ The set of dependencies doesn't have to stay static. The computed signal will on
 // --repl
 import { signal, computed } from "@preact/signals";
 
+// --repl-before
 const choice = signal(true);
 const funk = signal("Uptown");
 const purple = signal("Haze");
@@ -154,6 +180,7 @@ When you're done with an effect, call the _disposer_ that got returned when the 
 // --repl
 import { signal, computed } from "@preact/signals";
 
+// --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
@@ -202,6 +229,7 @@ Sets also have the property they're iterated in insertion order. Which is cool -
 // --repl
 import { signal, computed } from "@preact/signals";
 
+// --repl-before
 const s1 = signal(0);
 const s2 = signal(0);
 const s3 = signal(0);
