@@ -34,7 +34,7 @@ Signals represent arbitrary JavaScript values wrapped into a reactive shell. You
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal } from "@preact/signals-core";
 
 const s = signal(0);
 console.log(s.value); // Console: 0
@@ -51,7 +51,7 @@ _Computed signals_ derive new values from other signals using _compute functions
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals";
+import { signal, computed } from "@preact/signals-core";
 
 const s1 = signal("Hello");
 const s2 = signal("World");
@@ -64,27 +64,49 @@ const c = computed(() => {
 The compute function given to `computed(...)` won't run immediately. That's because computed signals are evaluated _lazily_, i.e. when their values are read.
 
 ```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+
+const s1 = signal("Hello");
+const s2 = signal("World");
+
+const c = computed(() => {
+  return s1.value + " " + s2.value;
+});
+// --repl-before
 console.log(c.value); // Console: Hello World
 ```
 
 Computed values are also _cached_. Their compute functions can potentially be very expensive, so we want to rerun them only when it matters. A running compute function tracks which signal values are actually read during its run. If none of the values have changed, then we can skip recomputation. In the above example, we can just reuse the previously calculated `c.value` indefinitely as long as both `a.value` and `b.value` stay the same. Facilitating this _dependency tracking_ is the reason why we need to wrap the primitive values into signals in the first place.
 
 ```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+
+const s1 = signal("Hello");
+const s2 = signal("World");
+
+const c = computed(() => {
+  return s1.value + " " + s2.value;
+});
+
+console.log(c.value); // Console: Hello World
+// --repl-before
 // s1 and s2 haven't changed, no recomputation here
 console.log(c.value); // Console: Hello World
 
 s2.value = "darkness my old friend";
 
 // s2 has changed, so the computation function runs again
-console.log(c.value); // Console: Hello darkness, my old friend
+console.log(c.value); // Console: Hello darkness my old friend
 ```
 
 As it happens, computed signals are themselves signals. A computed signal can depend on other computed signals.
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals";
-
+import { signal, computed } from "@preact/signals-core";
+// --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
@@ -98,8 +120,8 @@ The set of dependencies doesn't have to stay static. The computed signal will on
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals";
-
+import { signal, computed } from "@preact/signals-core";
+// --repl-before
 const choice = signal(true);
 const funk = signal("Uptown");
 const purple = signal("Haze");
@@ -133,7 +155,7 @@ Like computed signals, effects are also created with a function (_effect functio
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals";
+import { signal, computed, effect } from "@preact/signals-core";
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -152,17 +174,17 @@ When you're done with an effect, call the _disposer_ that got returned when the 
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals";
-
+import { signal, computed, effect } from "@preact/signals-core";
+// --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
-const disposer = effect(() => {
+const dispose = effect(() => {
   console.log("quadruple is now", quadruple.value);
 });                 // Console: quadruple value is now 4
 
-disposer();
+dispose();
 count.value = 20;  // nothing gets printed to the console
 ```
 
@@ -200,8 +222,8 @@ Sets also have the property they're iterated in insertion order. Which is cool -
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals";
-
+import { signal, computed } from "@preact/signals-core";
+// --repl-before
 const s1 = signal(0);
 const s2 = signal(0);
 const s3 = signal(0);
