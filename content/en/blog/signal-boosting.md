@@ -32,7 +32,8 @@ Plain _signals_ are the fundamental root values which our reactive system is bas
 
 Signals represent arbitrary JavaScript values wrapped into a reactive shell. You provide a signal with an initial value, and can later read and update it as you go.
 
-```ts
+```js
+// --repl
 import { signal } from "@preact/signals-core";
 
 const s = signal(0);
@@ -48,7 +49,8 @@ By themselves signals are not terribly interesting until combined with the two o
 
 _Computed signals_ derive new values from other signals using _compute functions_.
 
-```ts
+```js
+// --repl
 import { signal, computed } from "@preact/signals-core";
 
 const s1 = signal("Hello");
@@ -61,13 +63,35 @@ const c = computed(() => {
 
 The compute function given to `computed(...)` won't run immediately. That's because computed signals are evaluated _lazily_, i.e. when their values are read.
 
-```ts
+```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+
+const s1 = signal("Hello");
+const s2 = signal("World");
+
+const c = computed(() => {
+  return s1.value + " " + s2.value;
+});
+// --repl-before
 console.log(c.value); // Console: Hello World
 ```
 
 Computed values are also _cached_. Their compute functions can potentially be very expensive, so we want to rerun them only when it matters. A running compute function tracks which signal values are actually read during its run. If none of the values have changed, then we can skip recomputation. In the above example, we can just reuse the previously calculated `c.value` indefinitely as long as both `a.value` and `b.value` stay the same. Facilitating this _dependency tracking_ is the reason why we need to wrap the primitive values into signals in the first place.
 
-```ts
+```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+
+const s1 = signal("Hello");
+const s2 = signal("World");
+
+const c = computed(() => {
+  return s1.value + " " + s2.value;
+});
+
+console.log(c.value); // Console: Hello World
+// --repl-before
 // s1 and s2 haven't changed, no recomputation here
 console.log(c.value); // Console: Hello World
 
@@ -79,7 +103,10 @@ console.log(c.value); // Console: Hello darkness my old friend
 
 As it happens, computed signals are themselves signals. A computed signal can depend on other computed signals.
 
-```ts
+```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+// --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
@@ -91,7 +118,10 @@ console.log(quadruple.value); // Console: 80
 
 The set of dependencies doesn't have to stay static. The computed signal will only react to changes in the latest set of dependencies.
 
-```ts
+```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+// --repl-before
 const choice = signal(true);
 const funk = signal("Uptown");
 const purple = signal("Haze");
@@ -123,7 +153,8 @@ Computed signals lend themselves well to [pure functions](https://en.wikipedia.o
 
 Like computed signals, effects are also created with a function (_effect function_) and also track their dependencies. However, instead of being lazy, effects are _eager_. The effect function gets run immediately when the effect gets created, and then again and again whenever the dependency values change.
 
-```ts
+```js
+// --repl
 import { signal, computed, effect } from "@preact/signals-core";
 
 const count = signal(1);
@@ -141,7 +172,10 @@ These reactions are triggered by _notifications_. When a plain signal changes, i
 
 When you're done with an effect, call the _disposer_ that got returned when the effect was first created:
 
-```ts
+```js
+// --repl
+import { signal, computed, effect } from "@preact/signals-core";
+// --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
@@ -151,7 +185,7 @@ const dispose = effect(() => {
 });                 // Console: quadruple value is now 4
 
 dispose();
-count.change = 20;  // nothing gets printed to the console
+count.value = 20;  // nothing gets printed to the console
 ```
 
 There are other functions, like [`batch`](https://preactjs.com/guide/v10/signals/#batch-fn), but these three are the most relevant to the implementation notes that follow.
@@ -186,10 +220,14 @@ However, we were wondering whether there are some alternative approaches. Sets c
 
 Sets also have the property they're iterated in insertion order. Which is cool - that's just what we need later when we deal with caching. But there's the possibility that the order doesn't always stay the same. Observe the following scenario:
 
-```ts
+```js
+// --repl
+import { signal, computed } from "@preact/signals-core";
+// --repl-before
 const s1 = signal(0);
 const s2 = signal(0);
 const s3 = signal(0);
+
 const c = computed(() => {
   if (s1.value) {
     s2.value;
@@ -245,7 +283,7 @@ For effects to be able to schedule themselves there needs to be some sort of a l
 
 We haven't been completely truthful. Computed signals don't actually _always_ get notifications from their dependencies. A computed signal subscribes to dependency notifications only when there's something, like an effect, listening to the signal itself. This avoids problems in situations like this:
 
-```ts
+```js
 const s = signal(0);
 
 {
