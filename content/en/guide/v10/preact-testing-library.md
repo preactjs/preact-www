@@ -51,7 +51,7 @@ We want to verify that our Counter displays the initial count and that clicking 
 ```jsx
 import { expect } from 'expect';
 import { h } from 'preact';
-import { render, fireEvent, screen } from '@testing-library/preact';
+import { render, fireEvent, screen, waitFor } from '@testing-library/preact';
 
 import Counter from '../src/Counter';
 
