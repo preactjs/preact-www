@@ -185,4 +185,4 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-[lifecycle methods]: http://localhost:8080/guide/v10/components#lifecycle-methods
+[lifecycle methods]: /guide/v10/components#lifecycle-methods
