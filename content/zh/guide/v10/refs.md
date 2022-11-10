@@ -72,7 +72,7 @@ render(<Foo />, document.getElementById("app"));
 
 ```jsx
 class Foo extends Component {
-  // We want to use the real width from the DOM node here
+  // 我们需要在此处使用 DOM 节点的实际宽度替换
   state = {
     width: 0,
     height: 0,
