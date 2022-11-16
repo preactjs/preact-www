@@ -4,3 +4,5 @@
 .DS_Store
 dist
 *.sw[op]
+# docker
+compose-dev.yaml
