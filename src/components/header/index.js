@@ -30,11 +30,12 @@ export default function Header() {
 
 	return (
 		// Adding rtl directtion if persian
+		// TODO: Auto RTL language detection
 		<header
 			class={cx(
 				style.header,
 				open && style.open,
-				lang === 'fa' && style.dirRTL
+				lang === 'fa' && style['dir-rtl']
 			)}
 		>
 			<div class={style.banner}>
