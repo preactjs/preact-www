@@ -11,7 +11,8 @@
 		"pt-br": "Brazilian Portuguese",
 		"de": "German",
 		"it": "Italian",
-		"kr": "Korean"
+		"kr": "Korean",
+		"fa": "Persian"
 	},
 	"repo": "preact",
 	"docsearch": {
@@ -29,7 +30,8 @@
 			"it": "Pagina Successiva",
 			"pt-br": "Próxima Página",
 			"zh": "下一页",
-			"kr": "다음"
+			"kr": "다음",
+			"fa": "صفحه بعدی"
 		},
 		"previous": {
 			"en": "Previous Page",
@@ -41,12 +43,14 @@
 			"it": "Pagina Precedente",
 			"pt-br": "Página Anterior",
 			"zh": "上一页",
-			"kr": "이전"
+			"kr": "이전",
+			"fa": "صفحه قبلی"
 		},
 		"continueReading": {
 			"en": "Continue reading",
 			"de": "Weiter lesen",
-			"zh": "继续阅读"
+			"zh": "继续阅读",
+			"fa": "ادامه خواندن"
 		}
 	},
 	"nav": [
@@ -69,7 +73,8 @@
 			"first": "index",
 			"name": {
 				"en": "Tutorial",
-				"zh": "教程"
+				"zh": "教程",
+				"fa": "آموزش"
 			},
 			"controller": "Tutorial"
 		},
@@ -80,7 +85,8 @@
 				"pt-br": "Guia",
 				"ja": "ガイド",
 				"es": "Guía",
-				"zh": "指南"
+				"zh": "指南",
+				"fa": "راهنما"
 			},
 			"content": "guide",
 			"path": "/guide/:version?/:page?",
@@ -93,7 +99,8 @@
 				"pt-br": "Sobre",
 				"ja": "Preactについて",
 				"es": "Sobre",
-				"zh": "关于"
+				"zh": "关于",
+				"fa": "درباره ما"
 			},
 			"content": "about",
 			"routes": [
@@ -105,7 +112,8 @@
 						"pt-br": "Empresas que usam Preact",
 						"ja": "Preactを使っている企業",
 						"es": "Empresas que usan Preact",
-						"zh": "使用 Preact 的企业"
+						"zh": "使用 Preact 的企业",
+						"fa": "شرکت های استفاده کننده Preact"
 					}
 				},
 				{
@@ -116,7 +124,8 @@
 						"pt-br": "Bibliotecas e Complementos",
 						"ja": "ライブラリとアドオン",
 						"es": "Librerías y complementos",
-						"zh": "第三方库和附加组件"
+						"zh": "第三方库和附加组件",
+						"fa": "کتابخانه ها و افزونه ها"
 					}
 				},
 				{
@@ -127,7 +136,8 @@
 						"pt-br": "Demonstrações e exemplos",
 						"ja": "デモと例",
 						"es": "Demostraciones y ejemplos",
-						"zh": "示例"
+						"zh": "示例",
+						"fa": "دمو و نمونه ها"
 					}
 				},
 				{
@@ -138,7 +148,8 @@
 						"pt-br": "Objetivos do Projeto",
 						"ja": "Preactの目的",
 						"es": "Objetivos del proyecto",
-						"zh": "项目目标"
+						"zh": "项目目标",
+						"fa": "اهداف پر‍وژه"
 					}
 				},
 				{
@@ -149,7 +160,8 @@
 						"pt-br": "Suporte do navegador",
 						"ja": "ブラウザのサポート",
 						"es": "Soporte de navegadores",
-						"zh": "浏览器支持"
+						"zh": "浏览器支持",
+						"fa": "پشتیبانی مرورگر"
 					}
 				}
 			]
@@ -158,7 +170,8 @@
 			"path": "/blog",
 			"name": {
 				"en": "Blog",
-				"zh": "博客"
+				"zh": "博客",
+				"fa": "بلاگ"
 			},
 			"first": "index",
 			"content": "blog",
@@ -180,7 +193,8 @@
 				"en": "Getting Started",
 				"pt-br": "Começando",
 				"de": "Los geht's",
-				"zh": "开始上手"
+				"zh": "开始上手",
+				"fa": "شروع"
 			}
 		},
 		{
@@ -189,7 +203,8 @@
 				"en": "Differences to React",
 				"pt-br": "Diferenças do React",
 				"de": "Unterschiede zu React",
-				"zh": "与 React 的区别"
+				"zh": "与 React 的区别",
+				"fa": "تفاوت ها با React"
 			}
 		},
 		{
@@ -198,7 +213,8 @@
 				"en": "Switching to Preact",
 				"pt-br": "Mudando para Preact",
 				"de": "Wechsel zu Preact",
-				"zh": "从 React 转到 Preact"
+				"zh": "从 React 转到 Preact",
+				"fa": "عوض کردن به Preact"
 			}
 		},
 		{
@@ -207,7 +223,8 @@
 				"en": "Types of Components",
 				"pt-br": "Tipos de Componentes",
 				"de": "Komponenten-Typen",
-				"zh": "组件类型"
+				"zh": "组件类型",
+				"fa": "انواع کام‍پوننت ها"
 			}
 		},
 		{
@@ -216,7 +233,8 @@
 				"en": "API Reference",
 				"pt-br": "Referência da API",
 				"de": "API Referenz",
-				"zh": "API 参考"
+				"zh": "API 参考",
+				"fa": "مرجع API"
 			}
 		},
 		{
