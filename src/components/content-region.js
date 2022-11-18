@@ -48,28 +48,22 @@ export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
 
-	console.log(props);
-
 	// sometimes props.name has / in it, this gets the last word after /
-	const rtlClassName = props.name
-		? props.name
-				.replace(/\//g, ' ')
-				.split(' ')
-				.pop()
-		: '';
-
-	console.log(rtlClassName);
+	if (typeof window !== 'undefined' && props.lang === 'fa') {
+		const rtlClassName = props.name
+			? props.name
+					.replace(/\//g, ' ')
+					.split(' ')
+					.pop() + '-rtl'
+			: '';
+	}
 
 	return (
 		// Adds 'props.name-rtl' (excluding index) class if lang is 'fa'
 		<content-region
 			name={props.name}
 			data-page-nav={hasNav}
-			class={
-				rtlClassName != 'index' && props.lang == 'fa'
-					? rtlClassName + '-rtl'
-					: ''
-			}
+			class={props.name != 'index' && props.lang == 'fa' ? rtlClassName : ''}
 		>
 			{content && (
 				<Markup
