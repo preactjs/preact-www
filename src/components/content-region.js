@@ -48,11 +48,17 @@ export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
 
+	console.log(props);
+
 	// sometimes props.name has / in it, this gets the last word after /
 	const rtlClassName = props.name
-		.replace(/\//g, ' ')
-		.split(' ')
-		.pop();
+		? props.name
+				.replace(/\//g, ' ')
+				.split(' ')
+				.pop()
+		: '';
+
+	console.log(rtlClassName);
 
 	return (
 		// Adds 'props.name-rtl' (excluding index) class if lang is 'fa'
