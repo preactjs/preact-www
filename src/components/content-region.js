@@ -48,23 +48,10 @@ export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
 
-	// sometimes props.name has / in it, this gets the last word after /
-	if (typeof window !== 'undefined' && props.lang === 'fa') {
-		const rtlClassName = props.name
-			? props.name
-					.replace(/\//g, ' ')
-					.split(' ')
-					.pop() + '-rtl'
-			: '';
-	}
+	// TODO: Add props.name + '-rtl' class if lang is RTL
 
 	return (
-		// Adds 'props.name-rtl' (excluding index) class if lang is 'fa'
-		<content-region
-			name={props.name}
-			data-page-nav={hasNav}
-			class={props.name != 'index' && props.lang == 'fa' ? rtlClassName : ''}
-		>
+		<content-region name={props.name} data-page-nav={hasNav}>
 			{content && (
 				<Markup
 					// key={content}
