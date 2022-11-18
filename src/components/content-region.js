@@ -47,13 +47,22 @@ function SiblingNav({ route, lang, start }) {
 export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
+
+	// sometimes props.name has / in it, this gets the last word after /
+	const rtlClassName = props.name
+		.replace(/\//g, ' ')
+		.split(' ')
+		.pop();
+
 	return (
 		// Adds 'props.name-rtl' (excluding index) class if lang is 'fa'
 		<content-region
 			name={props.name}
 			data-page-nav={hasNav}
 			class={
-				props.name != 'index' && props.lang == 'fa' ? props.name + '-rtl' : ''
+				rtlClassName != 'index' && props.lang == 'fa'
+					? rtlClassName + '-rtl'
+					: ''
 			}
 		>
 			{content && (
