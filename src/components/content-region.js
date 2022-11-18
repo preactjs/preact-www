@@ -48,7 +48,14 @@ export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
 	return (
-		<content-region name={props.name} data-page-nav={hasNav}>
+		// Adds 'props.name-rtl' (excluding index) class if lang is 'fa'
+		<content-region
+			name={props.name}
+			data-page-nav={hasNav}
+			class={
+				props.name != 'index' && props.lang == 'fa' ? props.name + '-rtl' : ''
+			}
+		>
 			{content && (
 				<Markup
 					// key={content}
