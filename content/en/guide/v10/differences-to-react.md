@@ -18,7 +18,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ## Main differences
 
-The main difference between Preact and React is that Preact does not implement a synthetic event system for size and performance reasons. Preact uses the browser's standard `addEventListener` to register event handlers, which means event naming and behavior works the same in Preact as it does in plain JavaScript / DOM. See [MDN's Event Reference] for a full list of DOM event handlers.
+The main difference between Preact and React is that Preact does not implement a synthetic event system for size and performance reasons. Preact does not use event delegation by default like React. Preact uses the browser's standard `addEventListener` to register event handlers, which means event naming and behavior works the same in Preact as it does in plain JavaScript / DOM. See [MDN's Event Reference] for a full list of DOM event handlers. 
 
 Standard browser events work very similarly to how events work in React, with a few small differences. In Preact:
 
