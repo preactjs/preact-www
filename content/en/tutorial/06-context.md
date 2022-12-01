@@ -61,7 +61,7 @@ Function components can choose to instead use Preact's `useContext()` hook,
 which returns the value of a `Context` at the component's location in the
 Virtual DOM tree.
 
-Here's the previous example again, this time split split into two components
+Here's the previous example again, this time split into two components
 and using `useContext()` to get the context's current value:
 
 ```jsx
