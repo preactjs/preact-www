@@ -5,9 +5,7 @@ description: "Como começar com o Preact. Vamos aprender a configurar as ferrame
 
 # Começando
 
-Este guia ajuda você a começar a desenvolver aplicativos Preact. Existem três maneiras populares de fazer isso.
-
-Se você está apenas começando, é altamente recomendável usar o [preact-cli](#best-practices-powered-with-preact-cli).
+Este guia ajuda você a começar a desenvolver aplicativos Preact. Existem duas maneiras populares de fazer isso.
 
 ---
 
@@ -50,55 +48,6 @@ render(app, document.getElementById('app'));
 ```
 
 É uma maneira muito popular de escrever aplicativos Preact e é altamente recomendável verificar o arquivo [README][htm] da htm se você estiver interessado em seguir essa rota.
-
-## Práticas recomendadas com `preact-cli`
-
-O projeto `preact-cli` é uma solução pronta para agrupar aplicativos Preact com a configuração ideal de empacotador, melhor para aplicativos web modernos. Ele é construído em projetos de ferramentas padrão como `webpack`, `babel` e `postcss`. Por causa da simplicidade, é a maneira mais popular de usar o Preact entre nossos usuários.
-
-Como o nome indica, `preact-cli` é uma ferramenta **c**ommand-**li** ne que pode ser executada no terminal da sua máquina. Instale-o globalmente executando:
-
-```bash
-npm install -g preact-cli
-```
-
-Depois disso, você terá um novo comando no seu terminal chamado `preact`. Com ele, você pode criar um novo aplicativo executando o seguinte comando:
-
-```bash
-preact create default my-project
-```
-
-O comando acima extrai o modelo de `preactjs-templates/default`, solicita algumas informações e gera o projeto em `./ my-project/`.
-
-> Dica: Qualquer repositório do Github com uma pasta `template` pode ser usado como um modelo personalizado: `preact create <username> / <repository> <project-name>`
-
-
-### Preparando-se para o desenvolvimento
-
-Agora estamos prontos para iniciar nosso aplicativo. Para iniciar o servidor de desenvolvimento, execute o seguinte comando dentro da pasta do projeto recém-gerada (`my-project` neste exemplo):
-
-```bash
-# Vá para a pasta do projeto gerado
-cd my-project/
-
-# iniciar o servidor em dev
-npm run dev
-```
-
-Depois que o servidor estiver ativo, você poderá acessar seu aplicativo no URL que foi impresso no console. Agora você está pronto para desenvolver seu aplicativo!
-
-### Criando uma construção de produção
-
-Chega um momento em que você precisa implantar seu aplicativo em algum lugar. A CLI é fornecida com um comando útil `build` que irá gerar uma compilação altamente otimizada
-
-```bash
-npm run build
-```
-
-Após a conclusão, você terá uma nova pasta `build /` que pode ser implantada diretamente em um servidor.
-
-> Para obter uma lista completa de todos os comandos disponíveis, consulte a lista na documentação do preact-cli [README file](https://github.com/preactjs/preact-cli#cli-options).
-
-Preact works out of the box with all of them. No changes needed!
 
 ## Integrando em um pipeline existente
 
