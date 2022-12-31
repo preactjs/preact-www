@@ -74,3 +74,5 @@ const fetchRelease = repo =>
 				url: releases.length ? releases[0].html_url : '#'
 			};
 		});
+
+exports.fetchRelease = fetchRelease;
