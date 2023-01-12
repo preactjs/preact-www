@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'preact/hooks';
 import cx from '../../lib/cx';
-import s from './splitter.less';
+import s from './splitter.module.less';
 
 /**
  * @param {{orientation: "horizontal" | "vertical", initial?: string, children: any, other: any, force?: boolean}} props
