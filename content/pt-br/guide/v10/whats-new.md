@@ -69,7 +69,7 @@ function Counter() {
   return (
     <div>
       Counter: {value}
-      <button onClick={increment}>Icrementar</button>
+      <button onClick={increment}>Incrementar</button>
     </div>
   );
 }

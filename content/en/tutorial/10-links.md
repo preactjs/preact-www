@@ -23,6 +23,7 @@ Feel free to play around a bit more with the demo code.
 
 
 ```jsx:repl-initial
+import { render } from 'preact';
 import { useState, useEffect } from 'preact/hooks'
 
 const getTodos = async () => {
@@ -36,7 +37,7 @@ const getTodos = async () => {
   }
 }
 
-export default function ToDos() {
+function ToDos() {
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
@@ -95,4 +96,6 @@ export default function ToDos() {
     </div>
   )
 }
+
+render(<ToDos />, document.getElementById("app"));
 ```

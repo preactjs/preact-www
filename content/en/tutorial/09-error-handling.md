@@ -110,7 +110,7 @@ useResult(function(result) {
 
 
 ```jsx:repl-initial
-import { Component } from 'preact';
+import { render, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 function Clicker() {
@@ -130,10 +130,12 @@ class App extends Component {
     return <Clicker />;
   }
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-import { Component } from 'preact';
+import { render, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 function Clicker() {
@@ -161,4 +163,6 @@ class App extends Component {
     return <Clicker />;
   }
 }
+
+render(<App />, document.getElementById("app"));
 ```

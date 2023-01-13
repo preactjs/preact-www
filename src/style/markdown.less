@@ -18,6 +18,10 @@
 	ol a {
 		.link;
 		color: var(--color-link);
+
+		&:hover {
+			color: #ff89ff;
+		}
 	}
 
 	a.anchor {
@@ -46,15 +50,6 @@
 		&:hover a.anchor {
 			text-decoration: none;
 		}
-
-		// fix anchor target positioning to account for fixed header
-		&:before {
-			content: '';
-			display: block;
-			position: absolute;
-			height: @header-height;
-			margin: -@header-height 0 0;
-		}
 	}
 
 	h1,
@@ -78,7 +73,7 @@
 	}
 
 	h3 {
-		font-size: 18px;
+		font-size: 1.4rem;
 	}
 
 	h4 {
@@ -332,13 +327,15 @@
 	code,
 	tt {
 		margin: 0 2px;
-		padding: 0 5px;
+		padding: 2px 7px;
 		white-space: nowrap;
-		border-radius: 3px;
-		border-width: 0.0625rem;
-		border-style: solid;
+		border-radius: 4px;
 		background: var(--color-code-inline-bg);
-		border-color: var(--color-code-inline-border);
+	}
+
+	td > code,
+	p > code {
+		color: var(--color-code-inline-color);
 	}
 
 	pre code {
@@ -381,8 +378,12 @@
 	h4,
 	h5,
 	h6 {
+		// fix anchor target positioning to account for fixed header
 		&:target {
 			padding-top: @header-and-banner-height;
+		}
+		content-region[name*='v8'] &:target {
+			padding-top: calc(@header-and-banner-height + 3.25rem);
 		}
 	}
 

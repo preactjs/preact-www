@@ -30,4 +30,4 @@ Preact CLI comes with the following features out of the box.
 - preact-router.
 - 1.5kb of conditionally-loaded polyfills for fetch & Promise.
 
-If that sounds something that interests you read our [Getting started](/cli/getting-started) section.
+If that sounds something that interests you read our [Getting started](/guide/v10/cli/getting-started) section.

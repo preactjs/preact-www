@@ -84,6 +84,7 @@ export default class Routes extends Component {
 				<Router url={url} onChange={this.handleRoute}>
 					{this.getNavRoutes(config.docs)}
 					{this.getNavRoutes(config.nav)}
+					{this.getNavRoutes(config.blog)}
 					<controllers.error route={{ content: '404', title: '404' }} default />
 				</Router>
 			</main>

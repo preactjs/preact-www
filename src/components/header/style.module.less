@@ -102,7 +102,8 @@
 		}
 
 		a,
-		button {
+		button,
+		span {
 			display: inline-block;
 			position: relative;
 			height: @header-height;
@@ -171,136 +172,143 @@
 				}
 			}
 		}
+	}
 
-		.navGroup {
-			display: inline-block;
-			position: relative;
-			overflow: visible;
+	.navGroup {
+		display: inline-block;
+		position: relative;
+		overflow: visible;
+
+		& > a,
+		& > button {
+			transition: all 0.3s;
+
+			&::after {
+				content: '▼';
+				position: relative;
+				left: 7px;
+				top: -1px;
+				font-size: 60%;
+				color: #fff;
+			}
+		}
+
+		@media (max-width: @header-mobile-breakpoint) {
+			& {
+				display: none;
+			}
 
 			& > a,
 			& > button {
-				transition: all 0.3s;
+				display: block;
+			}
+		}
 
-				&::after {
-					content: '▼';
-					position: relative;
-					left: 7px;
-					top: -1px;
-					font-size: 60%;
-					vertical-align: middle;
+		& > nav {
+			display: none;
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			margin: 0;
+			padding: 3px 0;
+			transform: translateX(-50%) perspective(1000px) translateX(0.5px); // .5 fixes blur issue
+			background: #fff;
+			border-radius: 0 0 3px 3px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+			border: 1px solid #673ab7;
+			border-top: none;
+			animation: menuOpen 150ms ease-out forwards 1;
+			transform-origin: 50% 0;
+			z-index: 750;
+
+			@keyframes menuOpen {
+				from {
+					opacity: 0;
+					transform: translateX(-50%) perspective(1000px) translateX(0.5px)
+						rotateX(-45deg);
 				}
+			}
+
+			a,
+			button,
+			span {
+				display: block;
+				padding: 10px 20px;
+				height: auto;
+				line-height: 1.5;
+				font-size: 15px;
+				color: #444;
+				white-space: nowrap;
+				text-align: left;
+
+				&.current {
+					background-color: #eee;
+					color: #222;
+				}
+
+				&:hover,
+				&:active,
+				&:focus {
+					background-color: #ddd;
+					color: #000;
+				}
+			}
+		}
+
+		&[data-open] {
+			& > a,
+			& > button {
+				background: #fff;
+				color: #555;
+				z-index: 101;
+
+				img {
+					filter: invert(40%) sepia(0%) saturate(3773%) hue-rotate(315deg)
+						brightness(73%) contrast(81%);
+				}
+			}
+
+			nav {
+				display: inline-block;
 			}
 
 			@media (max-width: @header-mobile-breakpoint) {
-				& {
-					display: none;
-				}
-
 				& > a,
 				& > button {
-					display: block;
-				}
-			}
-
-			& > nav {
-				display: none;
-				position: absolute;
-				left: 50%;
-				top: 100%;
-				margin: 0;
-				padding: 3px 0;
-				transform: translateX(-50%) perspective(1000px) translateX(0.5px); // .5 fixes blur issue
-				background: #fff;
-				border-radius: 0 0 3px 3px;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-				border: 1px solid #673ab7;
-				border-top: none;
-				animation: menuOpen 150ms ease-out forwards 1;
-				transform-origin: 50% 0;
-				z-index: 750;
-
-				@keyframes menuOpen {
-					from {
-						opacity: 0;
-						transform: translateX(-50%) perspective(1000px) translateX(0.5px)
-							rotateX(-45deg);
-					}
-				}
-
-				a,
-				button {
-					display: block;
-					padding: 10px 20px;
-					height: auto;
-					line-height: 1.5;
-					font-size: 15px;
-					color: #444;
-					white-space: nowrap;
-					text-align: left;
-
-					&.current {
-						background-color: #eee;
-						color: #222;
-					}
-
-					&:hover,
-					&:active,
-					&:focus {
-						background-color: #ddd;
-						color: #000;
-					}
-				}
-			}
-
-			&[data-open] {
-				& > a,
-				& > button {
-					background: #fff;
-					color: #555;
-					z-index: 101;
+					color: #fff;
+					background: #333;
+					width: 100%;
 				}
 
 				nav {
-					display: inline-block;
+					display: block;
 				}
 
-				@media (max-width: @header-mobile-breakpoint) {
-					& > a,
-					& > button {
-						color: #fff;
-						background: #333;
-						width: 100%;
-					}
+				& > nav {
+					position: relative;
+					left: 0;
+					top: 0;
+					padding: 0;
+					background: #333;
+					transform: none;
+					animation: menuExpand 250ms ease forwards 1;
 
-					nav {
-						display: block;
-					}
-
-					& > nav {
-						position: relative;
-						left: 0;
-						top: 0;
-						padding: 0;
-						background: #333;
-						transform: none;
-						animation: menuExpand 250ms ease forwards 1;
-
-						@keyframes menuExpand {
-							from {
-								opacity: 0;
-								transform: scaleY(0.0001);
-							}
+					@keyframes menuExpand {
+						from {
+							opacity: 0;
+							transform: scaleY(0.0001);
 						}
+					}
 
-						a,
-						button {
-							color: #eee;
+					a,
+					button,
+					span {
+						color: #eee;
 
-							&:hover,
-							&:active,
-							&.current {
-								background-color: rgba(255, 255, 255, 0.2);
-							}
+						&:hover,
+						&:active,
+						&.current {
+							background-color: rgba(255, 255, 255, 0.2);
 						}
 					}
 				}
@@ -346,7 +354,8 @@
 	}
 }
 
-.socialItem {
+.socialItem,
+.translation {
 	display: flex;
 	padding: 0 0.5rem;
 	height: 100%;
@@ -359,6 +368,10 @@
 		padding: 0 1rem;
 	}
 
+	&.translation {
+		padding: 0;
+	}
+
 	&:hover,
 	&:active,
 	&:focus {
@@ -369,6 +382,18 @@
 		width: 1.6rem;
 		height: auto;
 	}
+}
+
+.translation button {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	border: none;
+	background-color: #0000;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.3s;
+	padding: 0 1.25rem;
 }
 
 .release {

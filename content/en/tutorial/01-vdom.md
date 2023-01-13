@@ -185,25 +185,29 @@ useResult(function(result) {
 
 
 ```jsx:repl-initial
-import { createElement } from 'preact';
+import { render } from 'preact';
 
-export default function App() {
+function App() {
   return (
     <p class="big">Hello World!</p>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-import { createElement } from 'preact';
+import { render } from 'preact';
 
-export default function App() {
+function App() {
   return (
     <p class="big" style={{ color: 'purple' }}>
       Hello <em>World</em>!
     </p>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 [JSX]: https://en.wikipedia.org/wiki/JSX_(JavaScript)

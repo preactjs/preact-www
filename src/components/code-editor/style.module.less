@@ -30,7 +30,7 @@
 			}
 		}
 	}
-	
+
 	:global {
 		.CodeMirror {
 			position: absolute;
@@ -38,34 +38,32 @@
 			top: 0;
 			width: 100%;
 			height: 100%;
-			background: #282c34;
-			color: #abb2bf;
+			background: var(--color-code-bg);
+			color: var(--color-code-text);
 
 			::-webkit-scrollbar {
 				height: 10px;
 				width: 12px;
-				background: rgba(150,150,150,0.25);
+				background: rgba(150, 150, 150, 0.25);
 			}
 			::-webkit-scrollbar-thumb {
-				background: rgba(150,150,150,0.8);
+				background: rgba(150, 150, 150, 0.8);
 			}
 			::-webkit-scrollbar-corner {
-				background: rgba(150,150,150,0.4);
+				background: rgba(150, 150, 150, 0.4);
 			}
 			&:not(:hover) ::-webkit-scrollbar {
-				background: rgba(150,150,150,0.1);
+				background: rgba(150, 150, 150, 0.1);
 			}
 			&:not(:hover) ::-webkit-scrollbar-thumb {
-				background: rgba(150,150,150,0.2);
+				background: rgba(150, 150, 150, 0.2);
 			}
-
 
 			pre,
 			code,
 			.CodeMirror-linenumber {
 				font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
 					'Courier New', monospace;
-				font-size: 13px;
 				line-height: 1.4;
 			}
 
@@ -101,7 +99,7 @@
 			}
 
 			.cm-comment {
-				color: #667689;
+				color: var(--color-code-comment);
 			}
 
 			.cm-atom {
@@ -109,31 +107,27 @@
 			}
 
 			.cm-number {
-				color: #d19a66;
+				color: var(--color-code-symbol);
 			}
 
 			.cm-property {
-				color: #82a7be;
-				// color: #A687DE;
+				color: var(--color-code-function);
 			}
 			.cm-attribute {
-				// color: #C7C483;
-				// color: #82A7BE;
-				color: #a483e0;
-				// color: #A687DE;
+				color: var(--color-code-symbol);
 			}
 
 			.cm-keyword {
-				color: #d86c74;
+				color: var(--color-code-keyword);
 			}
 
 			.cm-string,
 			.cm-string-2 {
-				color: #98c379;
+				color: var(--color-code-string);
 			}
 
 			.cm-variable {
-				color: #abb2bf;
+				color: var(--color-code-symbol);
 			}
 
 			.cm-variable-2 {
@@ -145,15 +139,16 @@
 			}
 
 			.cm-def {
-				color: #6caff2;
+				color: var(--color-code-function);
 			}
 
-			.cm-bracket {
+			.cm-bracket,
+			.cm-bracket.cm-tag {
 				color: #abb2bf;
 			}
 
 			.cm-tag {
-				color: #d86c74;
+				color: var(--color-code-tag);
 			}
 
 			.cm-header {

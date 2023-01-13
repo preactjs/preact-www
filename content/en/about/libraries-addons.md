@@ -60,3 +60,4 @@ A collection of modules built to work wonderfully with Preact.
 - :tophat: [**preact-classless-component**](https://github.com/ld0rman/preact-classless-component): create preact components without the class keyword
 - :hammer: [**preact-hyperscript**](https://github.com/queckezz/preact-hyperscript): Hyperscript-like syntax for creating elements
 - :white_check_mark: [**shallow-compare**](https://github.com/tkh44/shallow-compare): simplified `shouldComponentUpdate` helper.
+- :signal_strength: [**@deepsignal/preact**](https://github.com/EthanStandel/deepsignal/tree/main/packages/preact): Extension of `@preact/signals` for full state management

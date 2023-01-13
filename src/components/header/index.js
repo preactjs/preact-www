@@ -9,13 +9,15 @@ import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { route as reroute } from 'preact-router';
+import { useLanguage } from '../../lib/i18n';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
 export default function Header() {
-	const { url } = useStore(['url']).state;
+	const { url, preactVersion } = useStore(['url', 'preactVersion']).state;
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
@@ -35,7 +37,10 @@ export default function Header() {
 					<Nav class={style.nav} routes={config.nav} current={url} />
 					<Search />
 					<div class={style.social}>
-						<ReleaseLink class={cx(style.socialItem, style.release)} />
+						<ReleaseLink
+							class={cx(style.socialItem, style.release)}
+							preactVersion={preactVersion}
+						/>
 						<a
 							class={style.socialItem}
 							aria-label="Browse the code on GitHub"
@@ -60,6 +65,7 @@ export default function Header() {
 								height="28"
 							/>
 						</a>
+						<NavItem />
 					</div>
 					<Hamburger open={open} onClick={toggle} />
 				</div>
@@ -89,7 +95,8 @@ const Nav = ({ routes, current, ...props }) => (
 				class={cx(
 					route.class,
 					(pathMatchesRoute(current, route) ||
-						(route.content === 'guide' && /^\/guide\//.test(current))) &&
+						(route.content === 'guide' && /^\/guide\//.test(current)) ||
+						(route.content === 'blog' && /^\/blog\//.test(current))) &&
 						style.current
 				)}
 			/>
@@ -129,6 +136,15 @@ class NavItem extends Component {
 	}
 
 	render({ to, current, ...props }, { open }) {
+		if (!to)
+			return (
+				<LanguageSelector
+					isOpen={open}
+					toggle={this.toggle}
+					close={this.close}
+					{...props}
+				/>
+			);
 		if (!to.routes) return <NavLink to={to} {...props} />;
 
 		return (
@@ -150,6 +166,8 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
 
+	if (to.skipHeader) return;
+
 	if (!to.path) {
 		return (
 			<button
@@ -163,11 +181,62 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 		);
 	}
 
+	function BrandingRedirect(e) {
+		if (to.href == '/' || to.path == '/') {
+			e.preventDefault();
+			reroute('/branding', false);
+		}
+	}
+
 	return (
-		<a href={to.href || to.path} {...props} data-route={route}>
+		<a
+			href={to.href || to.path}
+			{...props}
+			data-route={route}
+			onContextMenu={BrandingRedirect}
+		>
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>
+	);
+};
+
+const LanguageSelector = ({ isOpen, toggle, close, ...props }) => {
+	const [lang, setLang] = useLanguage();
+	const onClick = useCallback(
+		e => {
+			setLang(e.target.dataset.value);
+			close();
+		},
+		[setLang]
+	);
+
+	return (
+		<div
+			{...props}
+			data-open={isOpen}
+			class={cx(style.navGroup, style.translation)}
+		>
+			<button {...props} onClick={toggle} aria-haspopup aria-expanded={isOpen}>
+				<img
+					src="/assets/i18n.svg"
+					alt="Translate Page"
+					width="34"
+					height="28"
+				/>
+			</button>
+			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>
+				{Object.keys(config.languages).map(id => (
+					<span
+						class={cx(id == lang && style.current)}
+						data-value={id}
+						onClick={onClick}
+					>
+						{config.languages[id]}
+					</span>
+				))}
+			</nav>
+		</div>
 	);
 };
 

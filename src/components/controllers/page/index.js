@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { Fragment, h } from 'preact';
 import { useEffect, useState, useMemo, useRef } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
@@ -16,6 +16,7 @@ import {
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
 import { AVAILABLE_DOCS } from '../../doc-version';
+import { Time } from '../../time';
 
 const getContentId = route => route.content || route.path;
 
@@ -157,7 +158,7 @@ export default function Page({ route, prev, next }, ctx) {
 	// "current" is the currently *displayed* page ID.
 
 	const showTitle = current != 'index' && meta.show_title !== false;
-	const canEdit = showTitle && current != '404';
+	const canEdit = showTitle && current != '404' && current !== '/blog';
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
 	return (
@@ -173,8 +174,8 @@ export default function Page({ route, prev, next }, ctx) {
 				<div class={style.inner}>
 					{isDocPage(url) && +store.state.docVersion !== AVAILABLE_DOCS[0] && (
 						<div class={style.oldDocsWarning}>
-							You are viewing the documentation for an older version of Preact.
-							Switch to the <a href={docsUrl}>current version</a>.
+							You are viewing the documentation for an older version of Preact.{' '}
+							<a href={docsUrl}>Switch to the current version →</a>
 						</div>
 					)}
 					<Hydrator
@@ -184,7 +185,51 @@ export default function Page({ route, prev, next }, ctx) {
 						isFallback={isFallback}
 					/>
 					{showTitle && (
-						<h1 class={style.title}>{meta.title || route.title}</h1>
+						<div class={style.pageTitle}>
+							<div>
+								{meta.date && <Time value={meta.date} />}
+								{Array.isArray(meta.authors) && meta.authors.length > 0 && (
+									<>
+										, written by{' '}
+										<address class={style.authors}>
+											{meta.authors.map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<span key={author} class={style.author}>
+														{authorData ? (
+															<a
+																href={authorData.link}
+																target="_blank"
+																rel="noopener noreferrer"
+															>
+																{author}
+															</a>
+														) : (
+															<span>{author}</span>
+														)}
+														{i < arr.length - 2
+															? ', '
+															: i === arr.length - 2
+															? ' and '
+															: null}
+													</span>
+												);
+											})}
+										</address>
+									</>
+								)}
+							</div>
+							<h1
+								class={cx(
+									style.title,
+									meta.permalink === '/about/we-are-using' && style.center
+								)}
+							>
+								{meta.title || route.title}
+							</h1>
+						</div>
 					)}
 					<Hydrator
 						component={ContentRegion}

@@ -11,7 +11,7 @@
 	overflow: hidden;
 
 	.toolbar {
-		position: absolute;
+		position: relative;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -108,9 +108,10 @@
 
 	.code,
 	.output {
-		position: absolute;
-		width: 50%;
-		top: 40px;
+		height: 100%;
+		left: 0;
+		right: 0;
+		top: 0;
 		bottom: 0;
 	}
 	.code {
@@ -129,6 +130,11 @@
 			height: 50%;
 		}
 	}
+}
+
+.replWrapper {
+	position: relative;
+	height: calc(100% - 40px);
 }
 
 .output {

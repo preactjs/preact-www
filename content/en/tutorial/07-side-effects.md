@@ -150,9 +150,10 @@ useRealm(function (realm) {
 
 
 ```jsx:repl-initial
+import { render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
-export default function App() {
+function App() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -162,12 +163,15 @@ export default function App() {
 
   return <button onClick={() => setCount(count+1)}>{count}</button>
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
+import { render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
-export default function App() {
+function App() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -177,6 +181,8 @@ export default function App() {
 
   return <button onClick={() => setCount(count+1)}>{count}</button>
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
-[lifecycle methods]: http://localhost:8080/guide/v10/components#lifecycle-methods
+[lifecycle methods]: /guide/v10/components#lifecycle-methods

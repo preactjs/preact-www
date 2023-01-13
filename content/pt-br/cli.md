@@ -30,4 +30,4 @@ Preact CLI vem com os seguintes recursos prontos para uso.
 - preact-router.
 - 1,5kb de polyfills condicionalmente carregados para busca e promises.
 
-Se isso soa algo que lhe interessa, leia nossa sessão [Começando](/cli/getting-started)
+Se isso soa algo que lhe interessa, leia nossa sessão [Começando](/guide/v10/cli/getting-started)

@@ -7,7 +7,7 @@ permalink: '/guide/progressive-web-apps'
 
 ## Genel Bakış
 
-Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) için mükemmel bir seçimdir. [Preact CLI](https://github.com/preactjs/preact-cli/), size 100 [Lighthouse][LH] puanlı bir PWA yaratabileceğiniz bir araç sağlar.
+Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progressive Web Apps](https://web.dev/learn/pwa/) için mükemmel bir seçimdir. [Preact CLI](https://github.com/preactjs/preact-cli/), size 100 [Lighthouse][LH] puanlı bir PWA yaratabileceğiniz bir araç sağlar.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 
