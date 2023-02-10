@@ -272,6 +272,11 @@ const companies = [
 		name: 'Zeplin',
 		href: 'https://zeplin.io',
 		logo: 'zeplin.svg'
+	},
+	{
+		name: 'Loveholidays',
+		href: 'https://loveholidays.com',
+		logo: 'loveholidays.svg'
 	}
 ];
 
