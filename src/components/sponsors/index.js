@@ -32,7 +32,7 @@ export default function Sponsors() {
 			</li>
 			<li class={styles.sponsorItem}>
 				<a
-					href="https://tech.trivago.com/opensource/"
+					href="https://tech.trivago.com/categories/open-source/"
 					title="Trivago"
 					target="_blank"
 					rel="noopener noreferrer"
