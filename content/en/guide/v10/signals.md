@@ -306,7 +306,7 @@ function Counter() {
 }
 ```
 
-Those two hooks are thin wrappers around [`signal()`](#signalinitialvalue) and [`computed()`](#computedfn) that construct a signal the first time a component runs, and simply that same signal on subsequent renders.
+Those two hooks are thin wrappers around [`signal()`](#signalinitialvalue) and [`computed()`](#computedfn) that construct a signal the first time a component runs, and simply use that same signal on subsequent renders.
 
 > :bulb: Behind the scenes, this is the implementation:
 >
