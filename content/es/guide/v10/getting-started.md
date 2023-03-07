@@ -32,7 +32,7 @@ Preact se ha empaquetado fácilmente para usarlo directamente en el navegador. E
 
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
+import { h, Component, render } from 'https://esm.sh/preact';
 
 // Create your app
 const app = h('div', null, 'Hello World!');
@@ -52,8 +52,8 @@ Escribir llamadas sin formato `h` o `createElement` todo el tiempo es mucho meno
 En pocas palabras, [htm](https://github.com/developit/htm) se puede describir mejor como: sintaxis similar a JSX en JavaScript sin necesidad de un transpilador. En lugar de usar una sintaxis personalizada, se basa en cadenas de plantillas con etiquetas nativas que se agregaron a JavaScript hace un tiempo.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact';
-import htm from 'https://unpkg.com/htm';
+import { h, Component, render } from 'https://esm.sh/preact';
+import htm from 'https://esm.sh/htm';
 
 // Initialize htm with Preact
 const html = htm.bind(h);
