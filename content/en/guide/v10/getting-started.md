@@ -22,7 +22,7 @@ Preact is packaged to be used directly in the browser, and doesn't require any b
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://unpkg.com/preact?module';
+  import { h, Component, render } from 'https://esm.sh/preact';
 
   // Create your app
   const app = h('h1', null, 'Hello World!');
@@ -43,8 +43,8 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://unpkg.com/preact?module';
-  import htm from 'https://unpkg.com/htm?module';
+  import { h, Component, render } from 'https://esm.sh/preact';
+  import htm from 'https://esm.sh/htm';
 
   // Initialize htm with Preact
   const html = htm.bind(h);
@@ -61,7 +61,7 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 > **Tip:** HTM also provides a convenient single-import Preact version:
 >
-> `import { html, render } from 'https://unpkg.com/htm/preact/index.mjs?module'`
+> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
 For more information on HTM, check out its [documentation][htm].
 
