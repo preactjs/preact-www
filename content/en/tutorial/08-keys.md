@@ -286,8 +286,9 @@ Finally, update the JSX to render each item from `todos` as an
 
 
 ```js:setup
-useResult(function (result) {
-  var out = result.output;
+useRealm(function (realm) {
+  // the app element
+  var out = realm.globalThis.document.body.firstElementChild;
   var options = require('preact').options;
 
   var oldRender = options.__r;
