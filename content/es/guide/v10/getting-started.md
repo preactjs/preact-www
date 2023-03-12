@@ -1,5 +1,5 @@
 ---
-name: Getting Started
+name: Primeros pasos
 permalink: '/guide/getting-started'
 ---
 
@@ -34,11 +34,11 @@ Preact se ha empaquetado fácilmente para usarlo directamente en el navegador. E
 ```js
 import { h, Component, render } from 'https://esm.sh/preact';
 
-// Create your app
+// Cree su aplicación
 const app = h('div', null, 'Hello World!');
 
-// Inject your application into the an element with the id `app`.
-// Make sure that such an element exists in the dom ;)
+// Inyecta tu aplicación en el elemento an con el id `app`.
+// Asegúrese de que dicho elemento existe en el dom ;)
 render(app, document.getElementById('app'));
 ```
 
@@ -55,7 +55,7 @@ En pocas palabras, [htm](https://github.com/developit/htm) se puede describir me
 import { h, Component, render } from 'https://esm.sh/preact';
 import htm from 'https://esm.sh/htm';
 
-// Initialize htm with Preact
+// Inicializar htm con Preact
 const html = htm.bind(h);
 
 const app = html`<div>Hello World!</div>`
@@ -159,7 +159,7 @@ const config = {
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
       "react-dom": "preact/compat",
-     // Must be below test-utils
+     // Debe estar por debajo de test-utils
     },
   }
 }
