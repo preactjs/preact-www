@@ -279,7 +279,7 @@ Finally, update the JSX to render each item from `todos` as an
 <solution>
   <h4>🎉 Congratulations!</h4>
   <p>
-    You've completed the second last chapter,
+    You've completed the second to last chapter,
     and learned how to render lists effectively.
   </p>
 </solution>
