@@ -177,7 +177,7 @@ function App() {
 
   return (
     <div>
-      <input initialValue="Hello World!" />
+      <input value="Hello World!" />
       <button onClick={onClick}>Focus input</button>
     </div>
   );
@@ -199,7 +199,7 @@ function App() {
 
   return (
     <div>
-      <input ref={input} initialValue="Hello World!" />
+      <input ref={input} value="Hello World!" />
       <button onClick={onClick}>Focus input</button>
     </div>
   );
