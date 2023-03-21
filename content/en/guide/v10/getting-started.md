@@ -148,7 +148,8 @@ const config = {
     "alias": { 
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",     // Must be below test-utils
+      "react-dom/client": "preact/compat/client", // Must be below test-utils
+      "react-dom": "preact/compat",
       "react/jsx-runtime": "preact/jsx-runtime"
     },
   }
@@ -181,6 +182,7 @@ an `alias` key.
   "alias": {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
+    "react-dom/client": "preact/compat/client",
     "react-dom": "preact/compat",
     "react/jsx-runtime": "preact/jsx-runtime"
   },
@@ -201,6 +203,7 @@ module.exports = {
       entries: [
         { find: 'react', replacement: 'preact/compat' },
         { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+        { find: 'react-dom/client', replacement: 'preact/compat/client' },
         { find: 'react-dom', replacement: 'preact/compat' },
         { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
       ]
@@ -219,6 +222,7 @@ These rewrites are configured using regular expressions in your Jest configurati
   "moduleNameMapper": {
     "^react$": "preact/compat",
     "^react-dom/test-utils$": "preact/test-utils",
+    "^react-dom/client$": "preact/compat/client",
     "^react-dom$": "preact/compat",
     "^react/jsx-runtime$": "preact/jsx-runtime"
   }
@@ -235,6 +239,7 @@ export default {
   alias: {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
+    "react-dom/client": "preact/compat/client",
     "react-dom": "preact/compat",
     "react/jsx-runtime": "preact/jsx-runtime",
   }
