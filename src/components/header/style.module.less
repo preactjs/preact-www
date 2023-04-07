@@ -128,7 +128,7 @@
 			}
 
 			@media @sidebar-break {
-				padding: 0 1.25rem;
+				padding: 0 1.1rem;
 			}
 
 			&:global(.home) {
@@ -189,7 +189,7 @@
 				left: 7px;
 				top: -1px;
 				font-size: 60%;
-				vertical-align: middle;
+				color: #fff;
 			}
 		}
 
@@ -339,7 +339,7 @@
 	position: absolute;
 	height: 2rem;
 	top: calc(var(--vh) - 3rem); // TODO: Why does bottom not work?
-	padding: 0 1rem;
+	padding: 0 .5rem;
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
@@ -393,7 +393,7 @@
 	font-size: 16px;
 	cursor: pointer;
 	transition: all 0.3s;
-	padding: 0 1.25rem;
+	padding: 0 0.5rem;
 }
 
 .release {
@@ -519,6 +519,26 @@
 		}
 	}
 
+	@media (max-width: 1024px) {
+		&:focus-within :global(.algolia-autocomplete) {
+			position: fixed !important;
+			left: 4rem;
+			right: 4rem;
+			top: 0;
+			height: @header-height;
+			z-index: 2;
+
+			& input {
+				width: 100% !important;
+			}
+		}
+	}
+	@media (max-width: @header-mobile-breakpoint) {
+		&:focus-within :global(.algolia-autocomplete) {
+			left: 1rem !important;
+		}
+	}
+
 	.searchBox {
 		width: 60px;
 		margin: 10px 5px;
@@ -533,8 +553,8 @@
 		box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
 		color: var(--color-brand);
 		font-size: 100%;
-		will-change: width;
-		transition: width 250ms ease;
+		// will-change: width;
+		// transition: width 250ms ease;
 
 		@media (max-width: @header-mobile-breakpoint) {
 			width: 100%;
@@ -542,7 +562,7 @@
 		}
 
 		@media (min-width: @header-mobile-breakpoint) {
-			width: 8.75rem;
+			width: 8rem;
 		}
 
 		@media (min-width: 1024px) {

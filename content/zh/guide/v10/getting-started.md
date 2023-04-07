@@ -21,7 +21,7 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://unpkg.com/preact?module';
+  import { h, Component, render } from 'https://esm.sh/preact';
 
   // Create your app
   const app = h('h1', null, 'Hello World!');
@@ -42,8 +42,8 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://unpkg.com/preact?module';
-  import htm from 'https://unpkg.com/htm?module';
+  import { h, Component, render } from 'https://esm.sh/preact';
+  import htm from 'https://esm.sh/htm';
 
   // 为 Preact 初始化 htm
   const html = htm.bind(h);
@@ -60,7 +60,7 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
 
 > **小提示：**HTM 还提供了一键 import 的 Preact 版本：
 >
-> `import { html, render } from 'https://unpkg.com/htm/preact/index.mjs?module'`
+> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
 要了解有关 HTM 的更多信息，请参阅其[文档][htm]。
 

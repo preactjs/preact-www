@@ -1,42 +1,35 @@
 import '@babel/polyfill';
+import { rollup } from '@rollup/browser';
 import { transform } from 'sucrase';
 import { parseStackTrace } from './errors';
 
-const PREPEND = `(function(module,exports,require,fetch){`;
+const PREPEND = `(function(module,exports){`;
 
-const IMPORTS = `import {h, Fragment} from 'preact';`;
+// These are used by the Tutorial to inject solution detection.
+const IMPORTS = `import * as $preact from 'preact';
+import * as $hooks from 'preact/hooks';
+Object.assign(self, {$preact:$preact,$hooks:$hooks},$preact);
+self._require = m => self['$'+m];
+`;
 
 export function ping() {
 	return true;
 }
 
-export async function process(code, setup) {
-	code = `${IMPORTS}${code}`;
-
-	if (!code.match(/[\s\b;,]export[{ ]/)) {
-		code = code.replace(
-			/([\s\b;,])((async )?(function|class)[\s{])/g,
-			'$1export default $2'
-		);
-	}
-
+function transpile(code) {
 	let codeUrl = `data:text/javascript;base64,${btoa(
 		unescape(encodeURIComponent(code))
 	)}`;
-	let out = {};
 	try {
-		out = transform(code, {
+		return transform(code, {
 			// prettier-ignore
 			filePath: codeUrl,
 			sourceMapOptions: {
 				compiledFilename: 'repl.js'
 			},
-			transforms: ['jsx', 'typescript', 'imports'],
+			transforms: ['jsx', 'typescript'],
 			// omit _jsxSource junk
 			production: true,
-			// .default fixing since we're using shim modules
-			enableLegacyTypeScriptModuleInterop: true,
-			enableLegacyBabel5ModuleInterop: true,
 			jsxPragma: 'h',
 			jsxFragmentPragma: 'Fragment'
 		});
@@ -80,16 +73,75 @@ export async function process(code, setup) {
 		}
 		throw err;
 	}
+}
+
+async function bundle(sources) {
+	const isSource = Object.prototype.hasOwnProperty.bind(sources);
+	const bundle = await rollup({
+		input: Object.keys(sources),
+		treeshake: 'smallest',
+		plugins: [
+			{
+				name: 'repl',
+				resolveId(id, importer) {
+					if (isSource(id)) return id;
+					if (id[0] === '/') return new URL(id, importer).href;
+					if (!importer || isSource(importer) || /(^\.\/|:\/\/)/.test(id))
+						return id;
+					return new URL(id, new URL(importer + '/', 'file:')).pathname.slice(
+						1
+					);
+				},
+				async load(id) {
+					if (isSource(id)) {
+						const code = sources[id];
+						const out = transpile(code);
+						return out;
+					}
+					if (id.startsWith('https://esm.sh/')) return get(id);
+					const [, mod, v, path] =
+						id.match(/^((?:@[^@/]+\/)?[^@/]+)(?:@(\d[^@/]*))?(?:\/(.*))?$/) ||
+						[];
+					return dep(mod, v, path);
+				}
+			}
+		]
+	});
+	const result = await bundle.generate({ format: 'cjs' });
+	await bundle.close();
+	return result.output[0];
+}
+
+// helper: fetch a dependency from esm.sh
+function dep(mod, version, path) {
+	path = (path || '').replace(/(?:^\/|\/$)/g, '');
+	if (path) path = '/' + path;
+	return get(`https://esm.sh/${mod}${version ? '@' + version : ''}${path}`);
+}
+
+// helper: cached http get text
+const cache = new Map();
+function get(url) {
+	url = new URL(url).href;
+	if (cache.has(url)) return cache.get(url);
+	const p = fetch(url).then(r => (cache.set(r.url, p), r.text()));
+	cache.set(url, p);
+	return p;
+}
+
+export async function process(code, setup) {
+	code = `${IMPORTS}${setup || ''}${code}`;
+
+	const out = await bundle({
+		'repl.js': code
+	});
 
 	// wrap & append sourceMap
-	let transpiled = (out && out.code) || '';
-	transpiled = `${PREPEND}${setup || ''}\n${transpiled}\n})`;
+	let transpiled = `${PREPEND}\n${(out && out.code) || ''}\n})`;
 
-	if (transpiled && out.sourceMap) {
+	if (transpiled && out.map) {
 		try {
-			// Do not format this line or worker-loader will fail for some reason!
-			// prettier-ignore
-			transpiled += `\n//# sourceMappingURL=data:application/json;base64,${btoa(unescape(encodeURIComponent(JSON.stringify(out.sourceMap))))}`;
+			transpiled += `\n//# sourceMappingURL=${out.map.toUrl()}`;
 		} catch (e) {
 			console.error(`Source Map generation failed: ${e}`);
 		}
