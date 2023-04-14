@@ -54,7 +54,7 @@ console.log(shallow(App));
 Se você precisar obter a saída renderizada de uma maneira mais amigável para o ser humano, temos tudo o que você precisa! Ao passar a opção `pretty`, preservaremos os espaços em branco e indentaremos a saída conforme o esperado.
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
