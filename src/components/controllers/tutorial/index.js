@@ -27,6 +27,7 @@ import { useStore, storeCtx } from '../../store-adapter';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { getContent } from '../../../lib/content';
 import { Splitter } from '../../splitter';
+import EditThisPage from '../../edit-button';
 
 const IS_PRERENDERING = typeof window === 'undefined';
 
@@ -284,7 +285,8 @@ function TutorialView({
 				}
 			>
 				<div class={style.tutorialWindow} ref={content}>
-					<h1 class={style.title}>{title}</h1>
+					<EditThisPage show={title != 'Error'} isFallback={page.isFallback} />
+					<h1>{title}</h1>
 
 					<ContentRegion
 						name={page.current}
