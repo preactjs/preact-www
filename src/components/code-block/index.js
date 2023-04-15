@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
 import { Link } from 'preact-router';
 import cx from '../../lib/cx';
-import PrismWorker from 'workerize-loader?name=prism.[hash:5]!./prism.worker';
+import PrismWorker from 'workerize-loader?name=prism.[chunkhash:5]!./prism.worker';
 
 // @TODO this should work in development, but Preact CLI transforms to CommonJS.
 const { highlight } =
