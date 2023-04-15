@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import fs from 'fs';
+import { Compilation, sources } from 'webpack';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import postcssImport from 'postcss-import';
@@ -26,6 +27,28 @@ export default function (config, env, helpers) {
 		style: resolve(__dirname, 'src/style'),
 		lib: resolve(__dirname, 'src/lib')
 	});
+
+	// TODO: fix me
+	config.module.rules[4].resourceQuery = {
+		not: [/raw/]
+	};
+	config.module.rules.push({
+		resourceQuery: /raw/,
+		type: 'asset/source'
+	});
+
+	config.module.rules[7].resourceQuery = {
+		not: [/file/]
+	};
+	config.module.rules.push({
+		resourceQuery: /file/,
+		type: 'asset/resource'
+	});
+
+	//config.module.rules.push({
+	//	resourceQuery: /worker/,
+	//	loader: 'worker-plugin/loader'
+	//});
 
 	// Use our custom polyfill entry
 	if (!env.isServer) {
@@ -64,8 +87,8 @@ export default function (config, env, helpers) {
 
 	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
 	if (env.isProd && !env.isServer) {
-		const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
-		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
+		//const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
+		//optimizeCss.options.cssProcessorOptions.reduceIdents = false;
 	}
 
 	config.optimization.splitChunks.minSize = 1000;
@@ -130,74 +153,59 @@ export default function (config, env, helpers) {
 
 	class RssFeedPlugin {
 		apply(compiler) {
-			const handler = (compilation, callback) => {
-				const feed = new Feed({
-					title: 'Preact Blog',
-					description: 'Preact news and articles',
-					id: 'https://preactjs.com',
-					link: 'https://preactjs.com',
-					language: 'en',
-					image: 'https://preactjs.com/assets/branding/symbol.png',
-					favicon: 'https://preactjs.com/favicon.ico',
-					copyright: 'All rights reserved 2022, the Preact team',
-					feedLinks: {
-						json: 'https://preactjs.com/json',
-						atom: 'https://preactjs.com/atom'
-					}
-				});
-
-				pageConfig.blog.forEach(post => {
-					feed.addItem({
-							title: post.name.en,
-							id: `https://preactjs.com${post.path}`,
-							link: `https://preactjs.com${post.path}`,
-							description: post.excerpt.en,
-							date: new Date(post.date)
+			compiler.hooks.thisCompilation.tap('RssFeedPlugin', compilation => {
+				compilation.hooks.processAssets.tapAsync({
+					name: 'RssFeedPlugin',
+					stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
+				}, (_assets, callback) => {
+					const feed = new Feed({
+						title: 'Preact Blog',
+						description: 'Preact news and articles',
+						id: 'https://preactjs.com',
+						link: 'https://preactjs.com',
+						language: 'en',
+						image: 'https://preactjs.com/assets/branding/symbol.png',
+						favicon: 'https://preactjs.com/favicon.ico',
+						copyright: 'All rights reserved 2022, the Preact team',
+						feedLinks: {
+							json: 'https://preactjs.com/json',
+							atom: 'https://preactjs.com/atom'
+						}
 					});
+
+					pageConfig.blog.forEach(post => {
+						feed.addItem({
+								title: post.name.en,
+								id: `https://preactjs.com${post.path}`,
+								link: `https://preactjs.com${post.path}`,
+								description: post.excerpt.en,
+								date: new Date(post.date)
+						});
+					});
+
+					function removeDefaultGenerator(str) {
+						return str
+							.split('\n')
+							.filter(
+								line =>
+									line !==
+									'<generator>https://github.com/jpmonette/feed</generator>'
+							)
+							.join('\n');
+					}
+
+					compilation.emitAsset(
+						'feed.xml',
+						new sources.RawSource(removeDefaultGenerator(feed.rss2()))
+					);
+					compilation.emitAsset(
+						'feed.atom',
+						new sources.RawSource(removeDefaultGenerator(feed.atom1()))
+					);
+
+					callback();
 				});
-
-				class RawSource {
-					constructor(str) {
-						this.str = str;
-					}
-
-					source() {
-						return this.str;
-					}
-
-					size() {
-						return this.str.length;
-					}
-				}
-
-				function removeDefaultGenerator(str) {
-					return str
-						.split('\n')
-						.filter(
-							line =>
-								line !==
-								'<generator>https://github.com/jpmonette/feed</generator>'
-						)
-						.join('\n');
-				}
-
-				compilation.assets['feed.xml'] = new RawSource(
-					removeDefaultGenerator(feed.rss2())
-				);
-				compilation.assets['feed.atom'] = new RawSource(
-					removeDefaultGenerator(feed.atom1())
-				);
-
-				callback();
-				return compilation;
-			};
-
-
-			if (compiler.hooks) {
-				compiler.hooks.emit.tapAsync('RssFeedPlugin', handler);
-			} else {
-				compiler.plugin('emit', handler);
-			}
+			});
 		}
 	}
 
