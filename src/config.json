@@ -414,6 +414,25 @@
 		},
 		{
 			"name": {
+				"en": "TypeScript"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/configuring-typescript",
+					"name": {
+						"en": "Configuring TypeScript"
+					}
+				},
+				{
+					"path": "/guide/v10/using-typescript",
+					"name": {
+						"en": "Using TypeScript"
+					}
+				}
+			]
+		},
+		{
+			"name": {
 				"en": "Debug & Test",
 				"zh": "调试与测试"
 			},
@@ -513,10 +532,6 @@
 						"de": "Optionen",
 						"zh": "选项钩子"
 					}
-				},
-				{
-					"path": "/guide/v10/typescript",
-					"name": "TypeScript"
 				}
 			]
 		},
