@@ -18,6 +18,9 @@ This pages lists a bunch of demos and examples you can use to learn Preact.
 Of course this website is built with Preact.  
 [Github Project](https://github.com/preactjs/preact-www)
 
+[**ShrtMemory**](https://kurz.itch.io/shrt-memory) :game_die:  
+Casual memory game.  
+
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.
 
