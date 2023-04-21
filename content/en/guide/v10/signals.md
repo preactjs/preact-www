@@ -519,7 +519,7 @@ name.value = "John";
 // Logs: "Hello John"
 ```
 
-When using effects tracking signals within a component, use the hook variant: `useSignalEffect(fn)`.
+When responding to signal changes within a component, use the hook variant: `useSignalEffect(fn)`.
 
 ### batch(fn)
 
