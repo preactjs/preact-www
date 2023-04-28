@@ -55,7 +55,6 @@
 			background: var(--color-sidebar-bg);
 			color: var(--color-text);
 			display: flex;
-			flex: 1 1 var(--x, 50%);
 			flex-direction: column;
 			padding: 12px;
 			transition: opacity 1s ease;
@@ -212,16 +211,16 @@
 
 		&:not(.showCode) {
 			.tutorialWindow {
-				flex-basis: 100%;
-
 				& > :not(:first-child) {
+					// Fixes content region whilst keeping
+					// title & button container centered
+					&:nth-child(2) {
+						width: 100%;
+					}
+
 					max-width: 700px;
-					margin-left: auto;
-					margin-right: auto;
+					margin: 0 auto;
 				}
-			}
-			.codeWindow {
-				flex-basis: 0%;
 			}
 		}
 		&.showCode .codeWindow {
@@ -238,7 +237,6 @@
 			height: 100%;
 			display: flex;
 			flex-direction: column;
-			flex: 1 1 calc(100% - var(--x, 50%));
 			position: relative;
 			transition: opacity 1s ease;
 			overflow: auto;

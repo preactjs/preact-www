@@ -519,6 +519,8 @@ name.value = "John";
 // Logs: "Hello John"
 ```
 
+When responding to signal changes within a component, use the hook variant: `useSignalEffect(fn)`.
+
 ### batch(fn)
 
 The `batch(fn)` function can be used to combine multiple value updates into one "commit" at the end of the provided callback. Batches can be nested and changes are only flushed once the outermost batch callback completes. Accessing a signal that has been modified within a batch will reflect its updated value.
