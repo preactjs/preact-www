@@ -15,7 +15,7 @@ Um caso de uso típico para medir o tamanho real de um nó DOM. Embora seja poss
 
 ---
 
-## `createRef`
+## createRef
 
 A função `createRef` retornará um objeto simples com apenas uma propriedade: `current`. Sempre que o método `render` é chamado, o Preact atribui o nó ou componente DOM ao `atual`.
 

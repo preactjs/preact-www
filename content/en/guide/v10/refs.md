@@ -15,7 +15,7 @@ A typical use case for it is measuring the actual size of a DOM node. While it's
 
 ---
 
-## `createRef`
+## createRef
 
 The `createRef` function will return a plain object with just one property: `current`. Whenever the `render` method is called, Preact will assign the DOM node or component to `current`.
 

@@ -19,7 +19,7 @@ PreactがレンダリングしたDOM要素やコンポーネントを直接参�
 
 ---
 
-## `createRef`
+## createRef
 
 `createRef`関数は`current`プロパティが`null`にセットされたオブジェクトを返します。
 以下のように`createRef`関数の戻り値を`ref`属性にセットすると、`render`メソッドが実行されるたびに、DOM Nodeもしくはコンポーネントインスタンスが`current`プロパティに代入されます。
