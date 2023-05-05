@@ -149,6 +149,24 @@ main .markup {
 		}
 	}
 
+	// RTL version
+	.home-top-rtl {
+		direction: rtl;
+		margin: 60px auto;
+		max-width: 984px;
+
+		h1 {
+			font-size: 7.3vw;
+			text-align: center;
+			font-weight: lighter;
+			letter-spacing: 0.02em;
+
+			@media (min-width: 1024px) {
+				font-size: 400%;
+			}
+		}
+	}
+
 	.intro-buttons {
 		display: flex;
 		flex-direction: column;
@@ -307,6 +325,75 @@ main .markup {
 			img {
 				margin-right: 0;
 				margin-left: 4%;
+			}
+		}
+	}
+}
+
+// RTL home-section
+.home-section-rtl {
+	direction: rtl;
+	display: flex;
+	flex-direction: column;
+	max-width: @home-width !important; // TODO: Fix markup page styles
+
+	@media @break-s {
+		flex-direction: row;
+	}
+
+	& + .home-section {
+		margin: 1.6rem 0;
+
+		@media @break-s {
+			margin: 3.75rem 0;
+		}
+	}
+
+	// The following nodes are created inside the markdown files.
+	// To make the authoring experience easier we select and style them
+	// based on the type instead of forcing content creators to add classes.
+	h2 {
+		font-size: 220%;
+		letter-spacing: 0.01em;
+		font-weight: 300;
+		text-align: center;
+		line-height: 1.2;
+		margin-bottom: 0.5em;
+
+		@media @break-s {
+			margin-top: 0;
+			text-align: right;
+		}
+	}
+
+	// TODO: Inline SVGs instead of using images to allow more styling options
+	// via CSS. We could play with subtle gradients for the stroke-color, etc.
+	img {
+		display: block;
+		width: 25%;
+		align-self: center;
+		height: auto; // override intrinsic size
+		max-height: 13rem; // IE11 fix
+
+		@media @break-s {
+			width: 100%;
+			flex: 22% 0 0;
+			margin-left: 4%;
+		}
+	}
+
+	code {
+		direction: ltr;
+	}
+
+	@media @break-s {
+		// Variant: Right aligned image
+		&:nth-of-type(2n + 1) {
+			flex-direction: row-reverse;
+
+			img {
+				margin-left: 0;
+				margin-right: 4%;
 			}
 		}
 	}

@@ -21,12 +21,23 @@ export default function Header() {
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
+	// change to RTL based on language
+	const { lang } = useStore(['lang']).state;
+
 	useEffect(() => {
 		if (open) setOpen(false);
 	}, [url]);
 
 	return (
-		<header class={cx(style.header, open && style.open)}>
+		// Adding rtl directtion if persian
+		// TODO: Auto RTL language detection
+		<header
+			class={cx(
+				style.header,
+				open && style.open,
+				lang === 'fa' && style['dir-rtl']
+			)}
+		>
 			<div class={style.banner}>
 				<a href="https://www.stopputin.net/">
 					We stand with Ukraine. <b>Show your support</b> 🇺🇦

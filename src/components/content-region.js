@@ -47,6 +47,9 @@ function SiblingNav({ route, lang, start }) {
 export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
+
+	// TODO: Add props.name + '-rtl' class if lang is RTL
+
 	return (
 		<content-region name={props.name} data-page-nav={hasNav}>
 			{content && (
