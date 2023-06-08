@@ -30,6 +30,7 @@ A collection of modules built to work wonderfully with Preact.
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Small and simple layout library
 - :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): A document head manager for Preact
 - :arrow_up_down: [**preact-custom-scrollbars**](https://github.com/lucafalasco/preact-custom-scrollbars): Fully customizable scrollbars, for frictionless native browser scrolling
+- 🧱 [**@modular-forms/preact**](https://modularforms.dev/): Modular and type-safe form library
 
 ## Integrations
 
