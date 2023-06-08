@@ -1,7 +1,9 @@
 ---
 title: Introduciendo los Signals
-date: 2023-06-07
+date: 2022-09-06
 authors:
+  - Marvin Hagemeister
+  - Jason Miller
   - Ivan Ulloque
 ---
 
