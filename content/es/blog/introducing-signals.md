@@ -4,6 +4,7 @@ date: 2022-09-06
 authors:
   - Marvin Hagemeister
   - Jason Miller
+translation_by:
   - Ivan Ulloque
 ---
 
