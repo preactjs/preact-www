@@ -46,7 +46,8 @@
 		"continueReading": {
 			"en": "Continue reading",
 			"de": "Weiter lesen",
-			"zh": "继续阅读"
+			"zh": "继续阅读",
+			"es": "Seguir leyendo"
 		}
 	},
 	"nav": [
@@ -568,7 +569,10 @@
 		}
 	],
 	"blogAuthors": [
-		{ "name": "Jason Miller", "link": "https://twitter.com/_developit" },
+		{
+			"name": "Jason Miller",
+			"link": "https://twitter.com/_developit"
+		},
 		{
 			"name": "Marvin Hagemeister",
 			"link": "https://twitter.com/marvinhagemeist"
@@ -576,6 +580,10 @@
 		{
 			"name": "Joachim Viide",
 			"link": "https://infosec.exchange/@jviide"
+		},
+		{
+			"name": "Ivan Ulloque",
+			"link": "https://github.com/ZUR1C4T0"
 		}
 	],
 	"blog": [
@@ -595,12 +603,14 @@
 			"path": "/blog/introducing-signals",
 			"name": {
 				"en": "Introducing Signals",
-				"zh": "初见信号"
+				"zh": "初见信号",
+				"es": "Introduciendo los Signals"
 			},
 			"date": "2022-09-06",
 			"excerpt": {
 				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions.",
-				"zh": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。"
+				"zh": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。",
+				"es": "Los Signals son una forma más fácil de administrar el estado de tu aplicación en comparación con los hooks. Un signal es un objeto contenedor con una propiedad especial \"value\" que contiene algún valor. Leer la propiedad value de un signal desde un componente o una función computada se suscribe automáticamente a las actualizaciones, y escribir en la propiedad value activa las suscripciones."
 			}
 		}
 	],
