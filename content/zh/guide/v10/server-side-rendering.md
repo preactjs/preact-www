@@ -55,7 +55,7 @@ console.log(shallow(App));
 如果您需要格式化/美化输出结果的话，没问题！您可以传入 `pretty` 选项来保留输出结果的空格和缩进。
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
