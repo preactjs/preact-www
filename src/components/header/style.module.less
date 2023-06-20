@@ -178,6 +178,7 @@
 		display: inline-block;
 		position: relative;
 		overflow: visible;
+		height: 100%;
 
 		& > a,
 		& > button {
@@ -189,7 +190,6 @@
 				left: 7px;
 				top: -1px;
 				font-size: 60%;
-				color: #fff;
 			}
 		}
 
@@ -335,11 +335,11 @@
 	}
 }
 
-.social {
+.social,
+.translation {
 	position: absolute;
 	height: 2rem;
 	top: calc(var(--vh) - 3rem); // TODO: Why does bottom not work?
-	padding: 0 .5rem;
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
@@ -354,10 +354,17 @@
 	}
 }
 
-.socialItem,
-.translation {
-	display: flex;
+.socialItem {
 	padding: 0 0.5rem;
+}
+
+.translation button {
+	padding: 0 0.6rem 0 0.5rem;
+}
+
+.socialItem,
+.translation button {
+	display: flex;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
@@ -366,10 +373,6 @@
 
 	@media (min-width: 1024px) {
 		padding: 0 1rem;
-	}
-
-	&.translation {
-		padding: 0;
 	}
 
 	&:hover,
@@ -385,15 +388,9 @@
 }
 
 .translation button {
-	display: flex;
-	height: 100%;
-	align-items: center;
 	border: none;
 	background-color: #0000;
-	font-size: 16px;
 	cursor: pointer;
-	transition: all 0.3s;
-	padding: 0 0.5rem;
 }
 
 .release {
@@ -501,11 +498,11 @@
 
 .search {
 	display: inline-block;
-	vertical-align: top;
 	height: 56px;
 	min-width: 80px;
 	overflow: visible;
 	background: var(--color-brand);
+	padding-right: 0.5rem;
 
 	@media (max-width: @header-mobile-breakpoint) {
 		flex-grow: 1;
