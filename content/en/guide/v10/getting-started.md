@@ -8,7 +8,7 @@ description: "How to get started with Preact. We'll learn how to setup the tooli
 New to Preact? New to Virtual DOM? Check out the [tutorial](/tutorial).
 
 This guide helps you get up and running to start developing Preact apps, using 3 popular options.
-If you're new to Preact, we recommend starting with [Preact CLI](#best-practices-powered-by-preact-cli).
+If you're new to Preact, we recommend starting with [Vite](#create-a-vite-powered-preact-app).
 
 ---
 
@@ -65,29 +65,29 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 For more information on HTM, check out its [documentation][htm].
 
-## Best practices powered by Preact CLI
+[htm]: https://github.com/developit/htm
 
-[Preact CLI] is an off-the-shelf solution for building Preact applications that is optimized for modern web development. It's built on standard tooling projects like Webpack, Babel and PostCSS. Preact CLI does not require any configuration or prior knowledge to get started, and this simplicity makes it the most popular way to use Preact.
+## Create a Vite-Powered Preact App
 
-As the name implies, Preact CLI is a **c**ommand-**l**ine **i**nterface that can be run in the terminal on your machine. Using it, you can create a new application by running the `create` command:
+[Vite](https://vitejs.dev) has become an incredibly popular tool for building applications across many frameworks in the past couple of years, and Preact is no exception. It's built upon popular tooling like ES modules, Rollup, and ESBuild. Vite, through our initializer or their Preact template, requires no configuration or prior knowledge to get started and this simplicity makes it a very popular way to use Preact.
+
+To get up and running with Vite quickly, you can use our initializer `create-preact`. This is an interactive command-line interface (CLI) app that can be run in the terminal on your machine. Using it, you can create a new application by running the following:
 
 ```bash
-npx preact-cli create default my-project
+npm init preact
 ```
 
-This will create a new application based on our [default template](https://github.com/preactjs-templates/default). You will be asked for some information about your project, which will then be generated in the directory you specified (`my-project` in this case).
+This will walk you through creating a new Preact app and gives you some options such as TypeScript, routing (via `preact-iso`), and ESLint support.
 
-> **Tip:** Any GitHub repository with a `template/` folder can be used as a custom template:
->
-> `npx preact-cli create <username>/<repository> <project-name>`
+> **Tip:**: None of these decisions need to be final, you can always add or remove them from your project later if you change your mind.
 
 ### Getting ready for development
 
-Now we're ready to start our application. To start a development server, run the following command inside your newly generated project folder (`my-project` from above):
+Now we're ready to start our application. To start a development server, run the following command inside your newly generated project folder:
 
 ```bash
 # Go into the generated project folder
-cd my-project
+cd my-preact-app
 
 # Start a development server
 npm run dev
@@ -98,15 +98,15 @@ Now you're ready to start coding your app!
 
 ### Making a production build
 
-There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly-optimized production build.
+There comes a time when you need to deploy your app somewhere. Vite ships with a handy `build` command which will generate a highly-optimized production build.
 
 ```bash
 npm run build
 ```
 
-Upon completion, you'll have a new `build/` folder which can be deployed directly to a server.
+Upon completion, you'll have a new `dist/` folder which can be deployed directly to a server.
 
-> For a full list of all available commands, check out the [Preact CLI Documentation](https://github.com/preactjs/preact-cli#cli-options).
+> For a full list of all available commands and their options, check out the [Vite CLI Documentation](https://vitejs.dev/guide/cli.html).
 
 ## Integrating Into An Existing Pipeline
 
@@ -133,7 +133,7 @@ To transpile JSX, you need a Babel plugin that converts it to valid JavaScript c
 
 At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing._
 
-> **Note:** If you're using [Preact CLI], these aliases are automatically handled for you by default.
+> **Note:** If you're using Vite, Preact CLI, or WMR, these aliases are automatically handled for you by default.
 
 #### Aliasing in webpack
 
@@ -142,10 +142,10 @@ to your config. Depending on the configuration you're using, this section may
 already be present, but missing the aliases for Preact.
 
 ```js
-const config = { 
+const config = {
    //...snip
-  "resolve": { 
-    "alias": { 
+  "resolve": {
+    "alias": {
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
       "react-dom": "preact/compat",     // Must be below test-utils
@@ -240,9 +240,6 @@ export default {
   }
 }
 ```
-
-[htm]: https://github.com/developit/htm
-[Preact CLI]: https://github.com/preactjs/preact-cli
 
 ## TypeScript preact/compat configuration
 
