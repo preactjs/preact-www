@@ -79,7 +79,7 @@ npm init preact
 
 This will walk you through creating a new Preact app and gives you some options such as TypeScript, routing (via `preact-iso`), and ESLint support.
 
-> **Tip:**: None of these decisions need to be final, you can always add or remove them from your project later if you change your mind.
+> **Tip:** None of these decisions need to be final, you can always add or remove them from your project later if you change your mind.
 
 ### Getting ready for development
 
