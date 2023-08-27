@@ -85,9 +85,14 @@ async function bundle(sources) {
 				name: 'repl',
 				resolveId(id, importer) {
 					if (isSource(id)) return id;
-					if (id[0] === '/') return new URL(id, importer).href;
-					if (!importer || isSource(importer) || /(^\.\/|:\/\/)/.test(id))
+					if (id[0] === '/') {
+						try {
+							return new URL(id, importer).href;
+						} catch (e) {}
+					}
+					if (!importer || isSource(importer) || /(^\.\/|:\/\/)/.test(id)) {
 						return id;
+					}
 					return new URL(id, new URL(importer + '/', 'file:')).pathname.slice(
 						1
 					);
