@@ -140,8 +140,7 @@ _two_ types of Virtual DOM elements. The other type is a Component, which is
 a Virtual DOM element where the type is a function instead of a string like `p`.
 
 Components are the building blocks of Virtual DOM applications. For now, we'll
-create a very simple component by moving our JSX into a function, which will be
-rendered for us so we don't need to write that last `render()` line anymore:
+create a very simple component by moving our JSX into a function:
 
 ```jsx
 import { createElement } from 'preact';
@@ -151,6 +150,24 @@ export default function App() {
 		<p class="big">Hello World!</p>
 	)
 }
+
+render(<App />, document.getElementById("app"));
+```
+
+When passing a component to `render()`, it's important to let Preact do the
+instantiation rather than invoking your component directly, which will break
+in unexpected ways:
+
+```jsx
+const App = () => <div>foo</div>;
+
+// DON'T: Invoking components directly breaks hooks and update ordering:
+render(App(), rootElement); // ERROR
+render(App, rootElement); // ERROR
+
+// DO: Passing components using createElement() or JSX allows Preact to render correctly:
+render(createElement(App), rootElement); // success
+render(<App />, rootElement); // success
 ```
 
 ## Try it!
@@ -185,26 +202,26 @@ useResult(function(result) {
 
 
 ```jsx:repl-initial
-import { render } from 'preact';
+import { createElement, render } from 'preact';
 
 function App() {
   return (
     <p class="big">Hello World!</p>
-  )
+  );
 }
 
 render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-import { render } from 'preact';
+import { createElement, render } from 'preact';
 
 function App() {
   return (
     <p class="big" style={{ color: 'purple' }}>
       Hello <em>World</em>!
     </p>
-  )
+  );
 }
 
 render(<App />, document.getElementById("app"));
