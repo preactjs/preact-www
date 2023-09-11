@@ -42,6 +42,7 @@ export function getContent([lang, name]) {
 		.then(parseContent)
 		.then(applyEmojiToContent)
 		.then(parseMarkdownContent)
+		.then(addFragmentLinksToHeadings)
 		.then(data => {
 			data.fallback = fallback;
 			return data;
@@ -72,7 +73,7 @@ export const getContentOnServer = PRERENDER
 			const marked = __non_webpack_require__('marked');
 			data.html = marked(data.content);
 
-			return data;
+			return addFragmentLinksToHeadings(data);
 	  }
 	: (route, lang) => {};
 
@@ -116,6 +117,14 @@ function parseMarkdownContent(data) {
 		data.html = html;
 		return data;
 	});
+}
+
+function addFragmentLinksToHeadings(data) {
+	data.html = data.html.replaceAll(
+		/(<h[1-6] id="([^"]+)">)([^\n]+)/g,
+		'$1<a href="#$2"></a>$3'
+	);
+	return data;
 }
 
 let processEmojis, pendingEmojiProcessor;
