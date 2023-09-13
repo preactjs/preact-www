@@ -120,7 +120,7 @@ function parseMarkdownContent(data) {
 }
 
 function addFragmentLinksToHeadings(data) {
-	data.html = data.html.replaceAll(
+	data.html = data.html.replace(
 		/(<h[1-6] id="([^"]+)">)([^\n]+)/g,
 		'$1<a href="#$2"></a>$3'
 	);
