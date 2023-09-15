@@ -18,12 +18,13 @@ const COMPONENTS = {
 	}
 };
 
-for (let i=1; i<=6; i++) {
+for (let i = 1; i <= 6; i++) {
 	const Tag = 'h' + i;
-	COMPONENTS[tag] = (props) => {
-		const heading = <Tag {...props} />;
-		if (!props.id) return heading;
-		return [heading, <a href={'#'+props.id} />];
+	COMPONENTS[Tag] = function header(props) {
+		props.children = props.id
+			? [<a href={'#' + props.id} />, props.children]
+			: props.children;
+		return <Tag {...props} />;
 	};
 }
 
