@@ -96,25 +96,28 @@ In order to have the clock's time update every second, we need to know when `<Cl
 
 > See [this diagram](https://twitter.com/dan_abramov/status/981712092611989509) to get a visual overview of how they relate to each other.
 
-#### componentDidCatch
+### Error Boundaries
 
-There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happened in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
+An error boundary is a component that implements either `componentDidCatch()` or the static method `getDerivedStateFromError()` (or both). These are special methods that allow you to catch any errors that happen during rendering and are typically used to provide nicer error messages or other fallback content and save information for logging purposes. It's important to note that error boundaries cannot catch all errors and those thrown in event handlers or asynchronous code (like a `fetch()` call) need to be handled separately.
 
-When an error is caught, we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
+When an error is caught, we can use these methods to react to any errors and display a nice error message or any other fallback content.
 
 ```jsx
 // --repl
 import { Component, render } from 'preact';
 // --repl-before
-class Catcher extends Component {
-  
+class ErrorBoundary extends Component {
   constructor() {
     super();
     this.state = { errored: false };
   }
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
+  static getDerivedStateFromError(error) {
+    return { errored: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    errorReportingService(error, errorInfo);
   }
 
   render(props, state) {
@@ -125,7 +128,7 @@ class Catcher extends Component {
   }
 }
 // --repl-after
-render(<Catcher />, document.getElementById('app'));
+render(<ErrorBoundary />, document.getElementById('app'));
 ```
 
 ## Fragments
