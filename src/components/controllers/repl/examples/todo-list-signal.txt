@@ -34,18 +34,18 @@ function TodoList() {
         {todos.value.map((todo, index) => {
           return (
             <li>
-							<label>
-								<input
-									type="checkbox"
-									checked={todo.completed}
-									onInput={() => {
-										todo.completed = !todo.completed
-										todos.value = [...todos.value];
-									}}
-								/>
-								{todo.completed ? <s>{todo.text}</s> : todo.text}
-							</label>
-							{' '}
+              <label>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onInput={() => {
+                    todo.completed = !todo.completed
+                    todos.value = [...todos.value];
+                  }}
+                />
+                {todo.completed ? <s>{todo.text}</s> : todo.text}
+              </label>
+              {' '}
               <button onClick={() => removeTodo(index)}>❌</button>
             </li>
           );
