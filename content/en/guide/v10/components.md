@@ -106,7 +106,7 @@ When an error is caught, we can use these methods to react to any errors and dis
 // --repl
 import { Component, render } from 'preact';
 // --repl-before
-class Catcher extends Component {
+class ErrorBoundary extends Component {
   constructor() {
     super();
     this.state = { errored: false };
@@ -128,7 +128,7 @@ class Catcher extends Component {
   }
 }
 // --repl-after
-render(<Catcher />, document.getElementById('app'));
+render(<ErrorBoundary />, document.getElementById('app'));
 ```
 
 ## Fragments
