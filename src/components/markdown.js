@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import marked from 'marked';
 import Markup from 'preact-markup';
 

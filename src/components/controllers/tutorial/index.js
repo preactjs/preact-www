@@ -1,11 +1,4 @@
-import {
-	h,
-	Component,
-	createRef,
-	createContext,
-	options,
-	Fragment
-} from 'preact';
+import { Component, createRef, createContext, options, Fragment } from 'preact';
 import {
 	useState,
 	useReducer,

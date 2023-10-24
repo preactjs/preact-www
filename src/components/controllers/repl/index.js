@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import linkState from 'linkstate';
 import { debounce } from 'decko';
 import { ErrorOverlay } from './error-overlay';

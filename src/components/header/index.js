@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';

@@ -1,4 +1,4 @@
-import { h, Component, createRef } from 'preact';
+import { Component, createRef } from 'preact';
 import { memoize } from 'decko';
 import style from './style.module.css';
 import ReplWorker from 'workerize-loader?name=repl.[chunkhash:5]!./repl.worker';
