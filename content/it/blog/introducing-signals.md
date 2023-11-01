@@ -1,9 +1,11 @@
 ---
-title: Introducing Signals
-date: 2022-09-06
+title: Introduzione ai Signals
+date: 2023-11-01
 authors:
   - Marvin Hagemeister
   - Jason Miller
+  translation_by:
+  - Francesco Luca Labianca
 ---
 
 I Signals sono un modo di esprimere uno state che assicuri la velocità dell'applicazione a prescindere dalla sua complessità.
@@ -61,55 +63,58 @@ In pratica, via via che il codice cresce, diventa complesso capire dove vadano i
 
 ## Context chaos
 
-Another common workaround teams reach for state sharing is to place state into context. This allows short-circuiting rendering by potentially skipping render for components between the context provider and consumers. There is a catch though: only the value passed to the context provider can be updated, and only as a whole. Updating a property on an object exposed via context does not update consumers of that context - granular updates aren’t possible. The available options for dealing with this are to split state into multiple contexts, or over invalidate the context object by cloning it when any of its properties change.
+Un altro modo che i teams spesso utilizzano per aggirare il problema della condivisione dello state è quello di inserirlo dentro un context. Questo permette, potenzialmente, di saltare il rendering per i componenti in mezzo al provider e ai consumatori del context, ma c'è un problema: solo il valore che viene passato al context può essere aggiornato, e solo nel suo complesso. Aggiornare una proprietà di un oggetto esposto via context non aggiorna i suoi consumatori, aggiornamenti granulari non sono possibili.
+Le opzioni disponibili sono quelle di dividere lo state in context multipli, o "sovra-modificare" l'oggetto clonandolo quando una qualsiasi delle sue proprietà cambi.
 
-![Context can skip updating components until you read the value out of it. Then it's back to memoization.](/assets/signals/context-chaos.png)
+![Un context può saltare l'aggiornamento dei componenti fino a che si legge il suo valore, altrimenti si torna alla memoizzazione.](/assets/signals/context-chaos.png)
 
-Moving values into context seems like a worthwhile tradeoff at first, but the downsides of increasing component tree size just to share values eventually become a problem. Business logic inevitably ends up depending on multiple context values, which can force it to be implemented at a specific location in the tree. Adding a component that subscribes to context in the middle of the tree is costly, as it reduces the number of components that can be skipped when updating context. What’s more, any components beneath the subscriber must now be rendered again. The only solution to this problem is heavy use of memoization, which brings us back to the problems inherent to memoization.
+Spostare i valori nei context può sembrare un buon compromesso all'inizio, ma la necessità di aumentare l'albero dei componenti solo per condividere dei valori prima o poi diventa un problema. La logica di business finisce inevitabilmente per dipendere da più context, il che ci costringe ad inserirlo in un punto specifico dell'albero. Aggiungere un componente che consumi un context nel mezzo dell'albero non è gratis in quanto riduce il numero di componenti per cui il rendering viene saltato quando il context viene aggiornato, in più, qualsiasi componente che sia discendente del consumatore adesso deve nuovamente essere renderizzato. L'unica soluzione a questo problema è un uso massiccio della memoizzazioni, il che ci riporta indietro ai problemi ad essa relativi.
 
-## In search of a better way to manage state
+## Alla ricerca di un modo migliore per gestire lo state
 
-We went back to the drawing board in search of a next generation state primitive. We wanted to create something that simultaneously addressed the problems in current solutions. Manual framework integration, over-reliance on memoization, suboptimal use of context, and lack of programmatic observability felt backwards.
+Siamo tornati alla lavagna per la ricerca di uno state primitivo di prossima generazione. Volevamo creare qualcosa che affrontasse simultaneamente tutti i problemi incontrati nelle attuali soluzioni: integrazioni manuali nel framework, sovra-dipendenza dalla memoizzazione, usi non ottimali dei context e la mancanza di osservabilità programmatica sono considerati come aspetti negativi.
 
-Developers need to "opt in" to performance with these strategies. What if we could reverse that and provide a system that was **fast by default**, making best-case performance something you have to work to opt out of?
+Con queste strategie gli sviluppatori devono ricercare attivamente modi per ottimizzare le prestazioni. E se potessimo invertire questa situazione e fornire un sistema che fosse **veloce a prescindere**, rendendo le ottimizzazioni qualcosa da cui tirarsi fuori?
 
-Our answer to these questions is Signals. It’s a system that is fast by default without requiring memoization or tricks throughout your app. Signals provide the benefits of fine-grained state updates regardless of whether that state is global, passed via props or context, or local to a component.
+La nostra risposta a queste domande sono i Signals. È un sistema che è "veloce a prescindere" senza richiedere l'utilizzo di memoizzazione o trucchetti e stratagemmi nella tua app. I Signal forniscono i benefici degli aggiornamenti granulari dello state a prescindere che lo state sia globale, passato come prop, in un componente o nello state locale di un componente.
 
-## Signals to the future
+## Segnali verso il futuro
 
-The main idea behind signals is that instead of passing a value directly through the component tree, we pass a signal object containing the value (similar to a `ref`). When a signal's value changes, the signal itself stays the same. As a result, signals can be updated without re-rendering the components they've been passed through, since components see the signal and not its value. This lets us skip all of the expensive work of rendering components and jump immediately to the specific components in the tree that actually access the signal's value.
+L 'idea principale dietro ai Signals è che invece di passare un valore attraverso l'albero dei componenti, passiamo un oggetto signal contentente il valore (in modo simile a come funzioni un `ref`). Quando il valore di questo oggetto viene modificato, il signal rimanga lo stesso oggetto, risultando nella possibilità di poter aggiornarlo senza che i componenti attraverso cui questo venga passato debbano essere aggiornati, dal momento che i componenti vedono il signal e non il suo valore. Questo ci permette di saltare il re-rendering dei componenti intermedi e di saltare al rendering dei soli componenti che effettivamente utilizzino il suo valore.
 
-![Signals can continue to skip Virtual DOM diffing, regardless of where in the tree they are accessed.](/assets/signals/signals-update.png)
+![I Signals eludono l'algoritmo di diffing del Virtual DOM, a prescindere dal punto dell'albero dei componenti in cui si acceda al loro valore.](/assets/signals/signals-update.png)
 
-We’re exploiting the fact that an application's state graph is generally much shallower than its component tree. This leads to faster rendering, because far less work is required to update the state graph compared to the component tree. This difference is most apparent when measured in the browser - the screenshot below shows a DevTools Profiler trace for the same app measured twice: once using hooks as the state primitive and a second time using signals:
+Stiamo sfruttando il fatto che il grafico dello state di un'applicazione è generalmente molto meno profondo del suo albero dei componenti. Il che ci porta a rendering più rapidi perché aggiornare il grafico dello state di un'applicazione richiede molto meno lavoro che aggiornare il suo albero dei componenti. Questa differenza è particolarmente evidente quando misarata nel browser - lo screenshot mostra il profiler del DevTools tracciare la stessa app misurata due volte: una che utilizzi gli hooks come "primitivi di stato" ed una che utilizza i signals:
 
-![Showing a comparison of profiling Virtual DOM updates vs updates through signals which bypasses nearly all of the Virtual DOM diffing.](/assets/signals/virtual-dom-vs-signals-update.png)
+![Mostra una comparazione del tracciamento degli aggiornamenti del Virtual DOM e degli aggiornamenti attraverso i Signals, che saltano praticamente tutti i "diffing" del Virtual DOM.](/assets/signals/virtual-dom-vs-signals-update.png)
 
-The signals version vastly outperforms the update mechanism of any traditional Virtual DOM based framework. In some apps we've tested, signals are so much faster that it becomes difficult to find them in the flamegraph at all.
+La versione con i Signal è decisamente più rapida di un qualsiasi meccanismo di update di qualsiasi framework basato sul Virtual DOM tradizionale. In alcune app testate, i Signals erano così veloci da essere difficile identificarli nei grafici.
 
-Signals flip the performance pitch around: instead of opting-in to performance via memoization or selectors, signals are fast by default. With signals, performance is opt-out (by not using signals).
+I Signals ribaltano il paradigma della performance: invece di doversi impegnare per migliorare le performance tramite memoizzazione o altri stratagemmi, con i Signals ci si deve impegnare per peggiorarle, (non utilizzandoli).
 
-To achieve this level of performance, signals were built on these key principles:
+Per raggiungere questo livello di performance, i Signals sono stati costruiti seguendo questi principi cardine:
 
-* **Lazy by default:** Only signals that are currently used somewhere are observed and updated - disconnected signals don't affect performance.
-* **Optimal updates:** If a signal's value hasn't changed, components and effects that use that signal's value won't be updated, even if the signal's dependencies have changed.
-* **Optimal dependency tracking:** The framework tracks which signals everything depends on for you - no dependency arrays like with hooks.
-* **Direct access:** Accessing a signal's value in a component automatically subscribes to updates, without the need for selectors or hooks.
+* **Lazy di default:** Solo i Signals che vengono effettivamente utilizzati da qualche componente vengono osservati e aggiornati - i Signals disconnessi non incidono sulla performance.
+* **Aggiornamenti ottimali:** Se il valore di un Signal non è cambiato, i componenti e gli "effetti" che lo usano non vengono aggiornati, persino se le dipendenze del Signal stesso siano state aggiornate.
+* **Tracciamento ottimale delle dipendenze:** È il framework a gestire le dipendenze del Signal per te, basta agli array di dipendenze come con gli hooks.
+* **Accesso diretto:** L'accesso al valore di un Signal ti registra automaticamente come osservatore di quel Signal, senza la necessità di hooks o selettori.
 
-These principles make signals well-suited to a broad range of use cases, even scenarios that have nothing to do with rendering user interfaces.
+Questi principi fanno sì che i Signal siano adatti ad un ampio spettro di casid'uso, persino scenari che non prevedano il rendering di interfacce grafiche.
 
-## Bringing signals to Preact
 
-Having identified the right state primitive, we set about wiring it up to Preact. The thing we've always loved about hooks is that they can be used directly inside components. This is an ergonomic advantage compared to third-party state management solutions, which usually rely on "selector" functions or wrapping components in a special function to subscribe to state updates.
+## Portare i signals in Preact
+
+Avendo identificato il "primitivo di state" corretto, abbiamo dovuto inserirlo in Preact. La cosa che abbiamo sempre amato degli hooks è la possibilità di utilizzarli direttamente all'interno del componente.
+Questo è un vantaggio ergonomico se comparato alle soluzioni per la gestione dello state di terze parti, che normalmente si basano sull'utilizzo di funzioni "selettore" o sul wrapping di un componente all'interno di una funzione che lo "abboni" agli aggiornamenti dello state.
 
 ```js
-// Selector based subscription :(
+// Abbonamento basato sui Selettori :(
 function Counter() {
   const value = useSelector(state => state.count);
   // ...
 }
  
-// Wrapper function based subscription :(
+// Abbonamento basato sulle funzioni Wrapper :(
 const counterState = new Counter();
  
 const Counter = observe(props => {
@@ -118,14 +123,14 @@ const Counter = observe(props => {
 });
 ```
 
-Neither approach felt satisfactory to us. The selector approach requires wrapping all state access in a selector, which becomes tedious for complex or nested state. The approach of wrapping components in a function requires manual effort to wrap components, which brings with it a host of issues like missing component names and static properties.
+Nessuno dei due approcci ci è sembrato soddisfacente. L'approccio del "selettore" richiede che tutti i punti di accesso allo state vengano wrappati, il che diventa tedioso per state complessi o indentati. L'approccio del "wrapper" richiede del lavoro manuale, che porta con sè la possibilità di errori come la dimenticanza di alcuni nomi o proprietà statiche.
 
-We've had the opportunity to work closely with many developers over the past few years. One common struggle, particularly for those new to (p)react, is that concepts like selectors and wrappers are additional paradigms that must be learned before feeling productive with each state management solution.
+Abbiamo avuto l'opportunità di lavorare a stretto contatto con tanti sviluppatori nel corso degli anni. Uno dei punti dolenti in comune, soprattutto per coloro che affrontavano per la prima volta (p)react, è che concetti come selettori e wrappers fossero paradigmi addizionali che devono essere appresi prima di sentirsi produttivi con qualsiasi soluzione di gestione dello state.
 
-Ideally, we wouldn't need to know about selectors or wrapper functions and could simply access state directly within components:
+Idealmente, non vorremmo aver bisogno di conoscere selettori o wrapper, ma semplicemente poter avere accesso diretto allo state.
 
 ```jsx
-// Imagine this is some global state and the whole app needs access to:
+// Immagina se questo fosse uno state globale e l'intera app avesse la necessità di accedervi:
 let count = 0;
  
 function Counter() {
@@ -136,17 +141,16 @@ function Counter() {
  );
 }
 ```
+Il codice è chiaro ed è semplice capire cosa stia succedendo, ma sfortunatamente non funziona. Il componente non si aggiorna quando si clicca perché non vi è modo di sapere che `count` sia cambiato.
 
-The code is clear and it's easy to understand what is going on, but unfortunately it doesn't work. The component doesn't update when clicking the button because there is no way to know that `count` has changed.
-
-We couldn’t get this scenario out of our heads though. What could we do to make a model this clear into a reality? We began to prototype various ideas and implementations using Preact's [pluggable renderer](/guide/v10/options). It took time, but we eventually landed on a way to make it happen:
+Però non riuscivamo a toglierci questo scenario dalla testa. Cosa avremmo potuto fare per rendere questo modello realtà? Abbiamo iniziato a prototipare alcune idee e implementazioni utilizzando i [pluggable renderer](/guide/v10/options) di Preact. Ci è voluto tempo, ma siamo finalmente riusciti a realizzarlo.
 
 ```jsx
 // --repl
 import { render } from "preact";
 import { signal } from "@preact/signals";
 // --repl-before
-// Imagine this is some global state that the whole app needs access to:
+// Immagina se questo fosse uno state globale e l'intera app avesse la necessità di accedervi:
 const count = signal(0);
  
 function Counter() {
@@ -160,11 +164,11 @@ function Counter() {
 render(<Counter />, document.getElementById("app"));
 ```
 
-There are no selectors, no wrapper functions, nothing. Accessing the signal's value is enough for the component to know that it needs to update when that signal’s value changes. After testing out the prototype in a few apps, it was clear we were onto something. Writing code this way felt intuitive and didn't require any mental gymnastics to keep things working optimally.
+Non ci sono selettori o funzioni wrapper, niente. Accedere al valore del Signal è abbastanza perché il componente sappia che deve aggiornarsi quando il valore del signal cambi. Dopo aver provato i prototipi in alcune app, era chiaro che fosse la soluzione giusta. Scrivere codice in questo modo ci è subito risultato intuitivo e non richiedeva alcuna "ginnastica mentale" per continuare a far funzionare le app in modo ottimale.
 
-## Can we go even faster?
+## Possiamo renderli ancora più veloci?
 
-We could have stopped here and released signals as is, but this is the Preact team: we were needed to see how far we could push the Preact integration. In the Counter example above, the value of `count` is only used to display text, which really shouldn't require re-rendering a whole component. Instead of automatically re-rendering the component when the signal's value changes, what if we only re-rendered the text? Better still, what if we bypassed the Virtual DOM entirely and updated the text directly in the DOM?
+Avremmo potuto fermarci quì e rilasciare i Signals così com'erano, ma questo è il team di Preact: Era fondamentale per noi vedere quanto in là avremmo potuto spingere l'integrazione di Preact. Nell'esempio del contatore precedente, il valore di `count` è utilizzato solo per la visualizzazione del testo, che non dovrebbe richiedere il re-rendering dell' intero componente. Invece di renderizzare automaticamente tutto il componente quando il valore del Signal cambi, cosa succederebbe se renderizzassimo solamento il testo? Ancora meglio, che succederebbe se bypassassimo in toto il Virtual DOM e aggiornassimo direttamente il DOM?
 
 ```jsx
 const count = signal(0);
@@ -179,10 +183,16 @@ const count = signal(0);
 <input value={count} onInput={...} />
 ```
 
-So yeah, we did that too. You can pass a signal directly into the JSX anywhere you'd normally use a string. The signal's value will be rendered as text, and it will automatically update itself when the signal changes. This also works for props.
+Quindi, sì, abbiamo fatto anche quello.
 
-## Next Steps
+Puoi passare un signal direttamente nel JSX in un posto qualsiasi in cui normalmente useresti una stringa, il suo valore verrà renderizzato come semplice testo e si aggiornerà automaticamente ogni qual volta il suo valore cambi.
 
-If you’re curious and want to jump right in, head over to our [documentation](/guide/v10/signals) for signals. We’d love to hear how you're going to use them.
+Questo funziona anche per le props.
 
-Remember that there is no rush to switch to signals. Hooks will continue to be supported, and they work great with signals too! We recommend gradually trying out signals, starting with a few components to get used to the concepts.
+
+## Prossimi passi
+
+Se non vedi l'ora di provarli, puoi andare direttamente sulla nostra [documentazione](/guide/v10/signals) per i Signals, ci piacerebbe molto sapere come li userai.
+
+Ricorda, non c'è alcuna fretta nel passari ai Signals. Gli Hooks continueranno ad essere supportati e funzionano molto bene anche in congiunzione con i Signals!
+Raccomandiamo un passaggio graduale ai Signals provandoli su pochi componenti alla volta, per abituarti ai nuovi concetti.
