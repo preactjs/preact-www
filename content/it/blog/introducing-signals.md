@@ -173,13 +173,13 @@ Avremmo potuto fermarci quì e rilasciare i Signals così com'erano, ma questo �
 ```jsx
 const count = signal(0);
  
-// Instead of this:
+// Invece di questo:
 <p>Value: {count.value}</p>
  
-// … we can pass the signal directly into JSX:
+// … possiamo utilizzare l'intero Signal nel JSX:
 <p>Value: {count}</p>
  
-// … or even passing them as DOM properties:
+// … o addirittura passarli come attributi del DOM:
 <input value={count} onInput={...} />
 ```
 
