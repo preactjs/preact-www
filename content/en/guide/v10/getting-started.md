@@ -22,7 +22,7 @@ Preact is packaged to be used directly in the browser, and doesn't require any b
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://esm.sh/preact';
+  import { h, render } from 'https://esm.sh/preact';
 
   // Create your app
   const app = h('h1', null, 'Hello World!');
@@ -43,7 +43,7 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://esm.sh/preact';
+  import { h, render } from 'https://esm.sh/preact';
   import htm from 'https://esm.sh/htm';
 
   // Initialize htm with Preact
@@ -110,7 +110,7 @@ Upon completion, you'll have a new `dist/` folder which can be deployed directly
 
 ## Integrating Into An Existing Pipeline
 
-If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them. No changes needed!
+If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them, no major changes needed!
 
 ### Setting up JSX
 
@@ -135,9 +135,9 @@ At some point, you'll probably want to make use of the vast React ecosystem. Lib
 
 > **Note:** If you're using Vite, Preact CLI, or WMR, these aliases are automatically handled for you by default.
 
-#### Aliasing in webpack
+#### Aliasing in Webpack
 
-To alias any package in webpack, you need to add the `resolve.alias` section
+To alias any package in Webpack, you need to add the `resolve.alias` section
 to your config. Depending on the configuration you're using, this section may
 already be present, but missing the aliases for Preact.
 
@@ -157,8 +157,8 @@ const config = {
 
 #### Aliasing in Node
 
-When we are on a Node.JS server our webpack aliases won't work, this is seen in Next/...
-here we will have to use an alias in our `package.json`.
+When running in Node, bundler aliases (Webpack, Rollup, etc.) will not work, as can
+be seen in NextJS. To fix this, we can use aliases directly in our `package.json`:
 
 ```json
 {
@@ -168,8 +168,6 @@ here we will have to use an alias in our `package.json`.
   }
 }
 ```
-
-Now Node will correctly use Preact in place of React.
 
 #### Aliasing in Parcel
 
@@ -225,27 +223,12 @@ These rewrites are configured using regular expressions in your Jest configurati
 }
 ```
 
-#### Aliasing in Snowpack
+#### Aliasing in TypeScript
 
-To alias in [Snowpack](https://www.snowpack.dev/), you'll need to add a package import alias to the `snowpack.config.mjs` file.
+TypeScript, even when used alongside a bundler, has its own process of resolving types.
+In order to ensure Preact's types are used in place of React's, you will want to add the
+following configuration to your `tsconfig.json` (or `jsconfig.json`):
 
-```js
-// snowpack.config.mjs
-export default {
-  alias: {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime",
-  }
-}
-```
-
-## TypeScript preact/compat configuration
-
-Your project could need support for the wider React ecosystem.  To make your application
-compile, you might need to disable type checking on your `node_modules` and add paths to the types
-like this.  This way, your alias will work properly when libraries import React.
 
 ```json
 {
@@ -260,3 +243,10 @@ like this.  This way, your alias will work properly when libraries import React.
   }
 }
 ```
+
+Additionally, you may want to enable `skipLibCheck` as we do in the example above. Some
+React libraries make use of types that may not be provided by `preact/compat` (though we do
+our best to fix these), and as such, these libraries could be the source of TypeScript compilation
+errors. By setting `skipLibCheck`, you can tell TS that it doesn't need to do a full check of all
+`.d.ts` files (usually these are limited to your libraries in `node_modules`) which will fix these errors.
+
