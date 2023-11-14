@@ -4,7 +4,7 @@ date: 2023-11-01
 authors:
   - Marvin Hagemeister
   - Jason Miller
-  translation_by:
+translation_by:
   - Francesco Luca Labianca
 ---
 
