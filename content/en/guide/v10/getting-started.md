@@ -272,7 +272,7 @@ Here's an example of a import map in use:
 </script>
 
 <script type="module">
-  import { h, render } from 'preact';
+  import { render } from 'preact';
   import { useReducer } from 'preact/hooks';
   import { html } from 'htm/preact';
 
