@@ -63,7 +63,7 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 >
 > `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
-For more information on HTM, check out its [documentation][htm].
+For a more full example, see [Using Preact with HTM and ImportMaps](#using-preact-with-htm-and-importmaps), and for more information on HTM, check out its [documentation][htm].
 
 [htm]: https://github.com/developit/htm
 
@@ -250,3 +250,61 @@ our best to fix these), and as such, these libraries could be the source of Type
 errors. By setting `skipLibCheck`, you can tell TS that it doesn't need to do a full check of all
 `.d.ts` files (usually these are limited to your libraries in `node_modules`) which will fix these errors.
 
+### Using Preact with HTM and ImportMaps
+
+An [Import Map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) is a newer feature
+that allows you to control how browsers resolve module specifiers, usually to convert bare specifiers such as `preact`
+to a CDN URL like `https://esm.sh/preact`. While many do prefer the aesthetics import maps can provide, there are also
+real advantages to using them, such as more control over module resolution (read on to see how to alias) and solving
+the burden (as well as possible bugs) that comes with copying CDN URLs from file to file.
+
+Here's an example of a import map in use:
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "preact": "https://esm.sh/preact@10.19.2",
+      "preact/": "https://esm.sh/preact@10.19.2/",
+      "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+    }
+  }
+</script>
+
+<script type="module">
+  import { h, render } from 'preact';
+  import { useReducer } from 'preact/hooks';
+  import { html } from 'htm/preact';
+
+  export function App() {
+    const [count, add] = useReducer((a, b) => a + b, 0);
+
+    return html`
+      <button onClick=${() => add(-1)}>Decrement</button>
+      <input readonly size="4" value=${count} />
+      <button onClick=${() => add(1)}>Increment</button>
+    `;
+  }
+
+  render(html`<${App} />`, document.body);
+</script>
+```
+
+> **Note:** We use `?external=preact` in the example above as many CDNs will helpfully provide the
+> module you're asking for as well as its dependencies. However, this can trip up Preact as it (and
+> React too) expect to be loaded as singletons (only 1 instance active at a time). Using `?external`
+> tells `esm.sh` that it doesn't need to provide a copy of `preact`, we can handle that ourselves with
+> our import map
+
+You can even use import maps to support aliasing:
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/preact@10.19.2/compat",
+      "react-dom": "https://esm.sh/preact@10.19.2/compat"
+    }
+  }
+</script>
+```
