@@ -234,11 +234,11 @@ render(<MyComponent />)
 ## フックをテストする
 
 Testing Libraryプロジェクトは[フック](/guide/v10/hooks)を単体でテストするためのモジュールも提供しています。
-それは[@testing-library/preact-hooks](https://github.com/testing-library/preact-hooks-testing-library)です。
+それは[@testing-library/preact](https://github.com/testing-library/preact-testing-library)です。
 これを使うにはTesting Libraryとは別にインストールする必要があります。
 
 ```bash
-npm install --save-dev @testing-library/preact-hooks
+npm install --save-dev @testing-library/preact
 ```
 
 複数のコンポーネントでカウンターの機能を再利用するために、それをフックにして切り出します。
@@ -260,7 +260,7 @@ const useCounter = () => {
 `renderHook()`関数は、フックの最新の値を、戻り値の`result.current`として返します。テストではこの値を検証します。
 
 ```jsx
-import { renderHook, act } from '@testing-library/preact-hooks';
+import { renderHook, act } from '@testing-library/preact';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
@@ -279,4 +279,4 @@ test('should increment counter', () => {
 });
 ```
 
-@testing-library/preact-hooks のより詳しい情報は https://github.com/testing-library/preact-hooks-testing-library を参照してください。
+@testing-library/preact のより詳しい情報は https://github.com/testing-library/preact-testing-library を参照してください。

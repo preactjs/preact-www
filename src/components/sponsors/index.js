@@ -4,6 +4,7 @@ import DenoSvg from './deno.svg';
 import ChromeSvg from './chrome.svg';
 import SongsterrSvg from './songsterr.svg';
 import ScamsInfo from './scamsinfo.png';
+import LoveholidaysSvg from './loveholidays.svg';
 
 /**
  * Sponsors on the main page is a unique selling point of our
@@ -90,6 +91,22 @@ export default function Sponsors() {
 						alt="Songsterr"
 						width="26"
 						height="30"
+						style="height: 3rem; width: auto;"
+					/>
+				</a>
+			</li>
+			<li class={styles.sponsorItem}>
+				<a
+					href="https://tech.loveholidays.com"
+					title="loveholidays"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<img
+						src={LoveholidaysSvg}
+						alt="loveholidays"
+						width="102"
+						height="32"
 						style="height: 3rem; width: auto;"
 					/>
 				</a>
