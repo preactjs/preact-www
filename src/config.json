@@ -385,6 +385,55 @@
 		},
 		{
 			"name": {
+				"en": "React compatibility",
+				"zh": "React 兼容性"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/differences-to-react",
+					"name": {
+						"en": "Differences to React",
+						"pt-br": "Diferenças do React",
+						"ja": "Reactとの違い",
+						"de": "Unterschiede zu React",
+						"kr": "React와의 차이점",
+						"zh": "与 React 的区别"
+					}
+				},
+				{
+					"path": "/guide/v10/switching-to-preact",
+					"name": {
+						"en": "Switching to Preact",
+						"pt-br": "Mudando para Preact",
+						"ja": "Preactへの移行",
+						"de": "Wechsel zu Preact",
+						"kr": "Preact로 전환",
+						"zh": "从 React 转到 Preact"
+					}
+				}
+			]
+		},
+		{
+			"name": {
+				"en": "TypeScript"
+			},
+			"routes": [
+				{
+					"path": "/guide/v10/configuring-typescript",
+					"name": {
+						"en": "Configuring TypeScript"
+					}
+				},
+				{
+					"path": "/guide/v10/using-typescript",
+					"name": {
+						"en": "Using TypeScript"
+					}
+				}
+			]
+		},
+		{
+			"name": {
 				"en": "Debug & Test",
 				"zh": "调试与测试"
 			},
@@ -418,36 +467,6 @@
 						"de": "Unit-Tests mit Enzyme",
 						"kr": "Enzyme를 이용한 유닛 테스트",
 						"zh": "使用 Enzyme 进行单元测试"
-					}
-				}
-			]
-		},
-		{
-			"name": {
-				"en": "React compatibility",
-				"zh": "React 兼容性"
-			},
-			"routes": [
-				{
-					"path": "/guide/v10/differences-to-react",
-					"name": {
-						"en": "Differences to React",
-						"pt-br": "Diferenças do React",
-						"ja": "Reactとの違い",
-						"de": "Unterschiede zu React",
-						"kr": "React와의 차이점",
-						"zh": "与 React 的区别"
-					}
-				},
-				{
-					"path": "/guide/v10/switching-to-preact",
-					"name": {
-						"en": "Switching to Preact",
-						"pt-br": "Mudando para Preact",
-						"ja": "Preactへの移行",
-						"de": "Wechsel zu Preact",
-						"kr": "Preact로 전환",
-						"zh": "从 React 转到 Preact"
 					}
 				}
 			]
@@ -514,10 +533,6 @@
 						"de": "Optionen",
 						"zh": "选项钩子"
 					}
-				},
-				{
-					"path": "/guide/v10/typescript",
-					"name": "TypeScript"
 				}
 			]
 		}

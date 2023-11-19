@@ -1,94 +1,19 @@
 ---
-name: TypeScript
+name: Using TypeScript
 description: "Preact has built-in TypeScript support. Learn how to make use of it!"
 ---
 
 # TypeScript
 
-Preact ships TypeScript type definitions, which are used by the library itself! 
+Preact ships TypeScript type definitions, which are used by the library itself!
 
-When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit from the added type information while writing regular JavaScript. If you want to add type information to your own applications, you can use [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/), or write TypeScript and transpile to regular JavaScript. This section will focus on the latter.
+When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit from the added type information even while writing regular JavaScript. If you want to add type information to your own applications, you can use [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/), or write TypeScript and transpile to regular JavaScript. These docs will focus on the latter.
 
 ---
 
 <div><toc></toc></div>
 
 ---
-
-## TypeScript configuration
-
-TypeScript includes a full-fledged JSX compiler that you can use instead of Babel. Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
-
-```json
-// TypeScript < 4.1.1
-{
-  "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
-    //...
-  }
-}
-```
-```json
-// TypeScript >= 4.1.1
-{
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    //...
-  }
-}
-```
-
-If you use TypeScript within a Babel toolchain, set `jsx` to `preserve` and let Babel handle the transpilation. You still need to specify `jsxFactory` and `jsxFragmentFactory` to get the correct types.
-
-```json
-{
-  "compilerOptions": {
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
-    //...
-  }
-}
-```
-
-In your `.babelrc`:
-
-```javascript
-{
-  presets: [
-    "@babel/env",
-    ["@babel/typescript", { jsxPragma: "h" }],
-  ],
-  plugins: [
-    ["@babel/transform-react-jsx", { pragma: "h" }]
-  ],
-}
-```
-
-Rename your `.jsx` files to `.tsx` for TypeScript to correctly parse your JSX.
-
-## TypeScript preact/compat configuration
-
-Your project could need support for the wider React ecosystem.  To make your application
-compile, you might need to disable type checking on your `node_modules` and add paths to the types
-like this.  This way, your alias will work properly when libraries import React.
-
-```json
-{
-  "compilerOptions": {
-    ...
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "react": ["./node_modules/preact/compat/"],
-      "react-dom": ["./node_modules/preact/compat/"]
-    }
-  }
-}
-```
 
 ## Typing components
 
