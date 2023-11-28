@@ -18,7 +18,7 @@ Preact가 React의 모든 기능을 하나하나 포함하지 않으려는 이�
 
 ## 주요 차이점
 
-Preact 앱과 React 앱을 비교할 때 주요 차이점은 Preact에서는 자체 이벤트 시스템을 제공하지 않는다는 점입니다. Preact는 내부에서 모든 이벤트를 핸들링할 때 브라우저에서 제공하는 `addEventListner`를 사용합니다. 모든 DOM 이벤트 핸들러에 대한 리스트를 보려면 [GlobalEventHandlers]를 보세요.
+Preact 앱과 React 앱을 비교할 때 주요 차이점은 Preact에서는 자체 이벤트 시스템을 제공하지 않는다는 점입니다. Preact는 내부에서 모든 이벤트를 핸들링할 때 브라우저에서 제공하는 `addEventListner`를 사용합니다. 모든 DOM 이벤트 핸들러에 대한 리스트를 보려면 [MDN's Event Reference]를 보세요.
 
 브라우저의 이벤트 시스템에서 우리가 필요로 하는 모든 기능을 지원합니다. 자체적인 커스텀 이벤트를 구현하는 건 유지보수 비용 증대와 API 영역의 확장을 의미합니다.
 
@@ -221,4 +221,4 @@ React와 호환되는 `Children` API는 `preact/compat`에서 제공되며 기�
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[MDN's Event Reference]: https://developer.mozilla.org/ko/docs/Web/Events

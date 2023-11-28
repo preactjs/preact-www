@@ -10,6 +10,7 @@ export default class App extends Component {
 	store = createStore({
 		url: this.props.url || location.pathname + location.search,
 		lang: 'en',
+		preactVersion: this.props.CLI_DATA.preRenderData.preactVersion || '10.11.3',
 		docVersion: getCurrentDocVersion(location.pathname),
 		toc: null
 	});

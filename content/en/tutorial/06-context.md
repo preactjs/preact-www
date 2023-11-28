@@ -61,7 +61,7 @@ Function components can choose to instead use Preact's `useContext()` hook,
 which returns the value of a `Context` at the component's location in the
 Virtual DOM tree.
 
-Here's the previous example again, this time split split into two components
+Here's the previous example again, this time split into two components
 and using `useContext()` to get the context's current value:
 
 ```jsx
@@ -318,8 +318,8 @@ useResult(function (result) {
 
 
 ```jsx:repl-initial
-import { createContext } from 'preact';
-import { useState, useContext } from 'preact/hooks';
+import { render, createContext } from 'preact';
+import { useState, useContext, useMemo } from 'preact/hooks';
 
 const CounterContext = createContext(null);
 
@@ -332,7 +332,7 @@ function Counter() {
   );
 }
 
-export default function App() {
+function App() {
   const [count, setCount] = useState(0);
 
   return (
@@ -343,11 +343,13 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-import { createContext } from 'preact';
-import { useState, useContext } from 'preact/hooks';
+import { render, createContext } from 'preact';
+import { useState, useContext, useMemo } from 'preact/hooks';
 
 const CounterContext = createContext(null);
 
@@ -362,7 +364,7 @@ function Counter() {
   );
 }
 
-export default function App() {
+function App() {
   const [count, setCount] = useState(0);
 
   function increment() {
@@ -383,4 +385,6 @@ export default function App() {
     </CounterContext.Provider>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```

@@ -20,7 +20,7 @@ PreactがReactの機能をすべて含まない理由は**小さい**、**集中
 
 PreactとReactの主な違いはPreactには合成イベント(Synthetic Event)がないことです。
 Preactはイベント処理に内部でブラウザネイティブの`addEventListener`を使用しています。
-DOMイベントハンドラの完全なリストは[GlobalEventHandlers]を見てください。
+DOMイベントハンドラの完全なリストは[MDN's Event Reference]を見てください。
 
 ブラウザのイベントシステムは必要なすべての機能を満たしているので、Preactにとって合成イベントは意味がありません。
 合成イベントのようなカスタムイベントを完全に実装するとメンテナンスのオーバーヘッドが増加しAPIが複雑になってしまいます。
@@ -193,4 +193,4 @@ function App(props) {
 [Projectの目的]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[MDN's Event Reference]: https://developer.mozilla.org/ja/docs/Web/Events

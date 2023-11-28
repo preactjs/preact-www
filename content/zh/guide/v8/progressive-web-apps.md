@@ -7,7 +7,7 @@ permalink: '/guide/progressive-web-apps'
 
 ## 概述
  
-Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://developers.google.com/web/progressive-web-apps/) 的绝佳选择。
+Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://web.dev/learn/pwa/) 的绝佳选择。
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">

@@ -21,7 +21,7 @@ Preactはビルドやツールなしでブラウザで直に使うためのパ�
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://unpkg.com/preact?module';
+  import { h, Component, render } from 'https://esm.sh/preact';
 
   // アプリケーションを作成する。
   const app = h('h1', null, 'Hello World!');
@@ -47,8 +47,8 @@ HTMは今までのフロントエンドのビルドツールよりシンプル�
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://unpkg.com/preact?module';
-  import htm from 'https://unpkg.com/htm?module';
+  import { h, Component, render } from 'https://esm.sh/preact';
+  import htm from 'https://esm.sh/htm';
 
   // htmをPreactで使う用意をする。
   const html = htm.bind(h);
