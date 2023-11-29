@@ -8,22 +8,22 @@ permalink: '/about/addons-libraries'
 Uma coleção de módulos construídos para trabalhar maravilhosamente com Preact.
 
 > :information_desk_person: _Criou algo com preact?
-> [Adicione aqui!](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
+> [Adicione aqui!](https://github.com/preactjs/preact-www/blob/master/content/pt-br/about/libraries-addons.md)_
 
 
 ### Add-Ons
 
-- :raised_hands: [**preact-compat**](https://git.io/preact-compat): use qualqer biblioteca React com Preact *([exemplo completo](http://git.io/preact-compat-example))*
-- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Paradigma funcional-reativo para Preact.
-- :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Renderização universal.
+- :raised_hands: [**preact-compat**](https://github.com/preactjs/preact-compat): use qualqer biblioteca React com Preact *([exemplo completo](https://github.com/developit/preact-compat-example))*
+- :repeat: [**preact-cycle**](https://github.com/developit/preact-cycle): Paradigma funcional-reativo para Preact.
+- :page_facing_up: [**preact-render-to-string**](https://github.com/preactjs/preact-render-to-string): Renderização universal.
 
 
 ### Componentes
 
-- :earth_americas: [**preact-router**](https://git.io/preact-router): Rotas de URL para seus componentes
-- :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): Renderize HTML & Elementos Customizados como JSX & Componentes
-- :satellite: [**preact-portal**](https://git.io/preact-portal): Renderize componentes Preact no (um) ESPAÇO :milky_way:
-- :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Componente de edição HTML simples
+- :earth_americas: [**preact-router**](https://github.com/preactjs/preact-router): Rotas de URL para seus componentes
+- :bookmark_tabs: [**preact-markup**](https://github.com/developit/preact-markup): Renderize HTML & Elementos Customizados como JSX & Componentes
+- :satellite: [**preact-portal**](https://github.com/developit/preact-portal): Renderize componentes Preact no (um) ESPAÇO :milky_way:
+- :pencil: [**preact-richtextarea**](https://github.com/developit/preact-richtextarea): Componente de edição HTML simples
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Campo de texto que <i>tokeniza</i> a entrada, pra coisas como <i>tags</i>
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Renderize facilmente listas com milhões de linhas ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Biblioteca de layout simples e pequena.
@@ -39,13 +39,13 @@ Uma coleção de módulos construídos para trabalhar maravilhosamente com Preac
 
 ### Ferramentas para Interfaces Gráficas (GUI)
 
-- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Use o [MDL](https://getmdl.io) como componentes Preact.
-- :rocket: [**preact-photon**](https://git.io/preact-photon): crie lindas UIs para aplicações desktop com [photon](http://photonkit.com)
+- :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): Use o [MDL](https://getmdl.io) como componentes Preact.
+- :rocket: [**preact-photon**](https://github.com/developit/preact-photon): crie lindas UIs para aplicações desktop com [photon](http://photonkit.com)
 
 
 ### Testes
 
-- :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): Testes de <i>Assertion</i> pra JSX  _(sem DOM, direto no Node)_
+- :microscope: [**preact-jsx-chai**](https://github.com/developit/preact-jsx-chai): Testes de <i>Assertion</i> pra JSX  _(sem DOM, direto no Node)_
 
 
 ### Utilitários

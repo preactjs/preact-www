@@ -9,7 +9,7 @@ O `React` fornece um módulo `reag-addons-test-utils` para testar componentes, e
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

@@ -3,6 +3,7 @@ layout: home
 title: Preact
 show_title: false
 toc: false
+description: 'React 的 3kb 轻量级替代方案，拥有相同的现代 API。'
 ---
 
 
@@ -10,14 +11,10 @@ toc: false
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>React 的 3kb 轻量化方案，拥有同样的 ES6 API</p>
-    <p>
-        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 preact</a>
-    </p>
-    <p>
-        <github-stars user="developit" repo="preact">5,000+</github-stars>
+    <p class="tagline">3kb 大小的 React 轻量、快速替代方案，拥有相同的现代 API。</p>
+    <p class="intro-buttons">
+        <a href="/guide/v10/getting-started" class="btn primary">开始上手</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 preact</a>
     </p>
 </jumbotron>
 
@@ -28,117 +25,121 @@ function Counter() {
   return (
     <>
       <div>Counter: {value}</div>
-      <button onClick={() => setValue(value + 1)}>Increment</button>
-      <button onClick={() => setValue(value - 1)}>Decrement</button>
+      <button onClick={() => setValue(value + 1)}>增加</button>
+      <button onClick={() => setValue(value - 1)}>减少</button>
     </>
   )
 }
 ```
 
+<section class="sponsors">
+  <p>骄傲地由<a href="https://opencollective.com/preact">以下组织</a>赞助：</p>
+  <sponsors></sponsors>
+</section>
+
 <section class="home-top">
     <h1>与众不同的库</h1>
 </section>
 
-
 <section class="home-section">
-  <img src="/assets/home/metal.svg">
+  <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
+
   <div>
-    <h2>更接近于实质</h2>
+    <h2>贴近实质</h2>
     <p>
-		Preact 在 DOM 上实现一个可能是最薄的一层虚拟 DOM 实现。web 是一个稳定的平台，我们是时候停止以安全的名义重新去实现它（一套新的 DOM 实现框架）。
+      Preact 在 DOM 之上提供了最薄的虚拟 DOM 抽象，在提供稳定的平台特性和注册事件处理程序的同时还确保与其他库无缝兼容。
     </p>
     <p>
-		Preact也是web平台的一等公民，它将真实 dom 对应的 虚拟 dom 进行 diff，注册非虚拟的事件处理函数，并能很好地与其它库一起工作。
+      Preact 无需转译即可在浏览器中直接使用。
     </p>
   </div>
 </section>
 
 
 <section class="home-section">
-  <img src="/assets/home/size.svg">
+  <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>小体积</h2>
+    <h2>微小体积</h2>
     <p>
-		大多数 UI 框架是相当大的，是应用程序 javascript 体积的大部份。Preact 不同：它足够小，<em > 你的代码</em > 是你的应用程序最大的部分。
+    大多数 UI 框架占了应用 JavaScript 大小的半边天，Preact 却不一样：它的微小让<b>您写的代码</b>成为您应用中占比最大的部分。
     </p>
     <p>
-		这将意味可以下载更少的 javascript 代码，解析和执行 - 为您的代码节省更多的时间，所以你可以构建一个你定义的体验，而不需要受一个框架的控制.
+      这也就意味着下载、解析、执行更少的 JavaScript——您可以专心构建绝佳用户体验，而无需花更多的时间在框架本身。
     </p>
   </div>
 </section>
 
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg">
+  <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>高性能</h2>
+    <h2>性能卓越</h2>
     <p>
-		Preact 是快速的，不仅是因为它的体积，因为一个简单和可预测的 diff 实现，使它成为最快的虚拟 DOM 框架之一。
+      Preact 很快，不只是因为其体量微小，更是因为其基于树差异的简单、可预测而极快的虚拟 DOM 实现。
     </p>
     <p>
-        它甚至包含额外的性能特性，如 批量自定义更新，可选的 异步渲染，DOM 回收和通过[关联状态](/guide/linked-state) 优化的事件处理。
+      我们会与浏览器工程师密切合作，将 Preact 的性能调校到极限，压榨出其每一分性能。
     </p>
   </div>
 </section>
 
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg">
+  <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>轻量 &amp; 可嵌入</h2>
+    <h2>轻松嵌入</h2>
     <p>
-        Preact 是轻量的意味着你可以把一个强大的虚拟 DOM 组件范例带到一个新的地方。
+      Preact 的轻量让您可以将强大的虚拟 DOM 实现移植到其他框架无法进入的领域。
     </p>
     <p>
-        使用 Preact 构建应用程序的各个部分，而无需复杂的集成。将 Preact 嵌入到窗口小部件中并应用相同的工具或技术，你将可以构建一个完整的应用程序。
+      无需复杂集成即可使用 Preact 来构建应用组件，使用构建应用的相同工具与技巧将 Preact 嵌入一个小部件中。
     </p>
   </div>
 </section>
 
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg">
+  <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>即时生产</h2>
+    <h2>即刻生产</h2>
     <p>
-        轻量可以让你在不需要牺牲生产力的前提下得到更多的乐趣。Preact 让你立即获得生产力。他甚至有一些额外的功能：
+      轻量在不牺牲生产性的情况下才有意义。Preact 可让您即刻部署到生产环境，甚至还提供了一些附加功能：
     </p>
     <ul>
-        <li>`props`, `state` 和 `context` 可以被传递给 `render()`</li>
-        <li>可以使用标准的 HTML 属性，如 `class` 和 `for`</li>
-        <li>可以使用 React 开发工具</li>
+      <li>将 <code>props</code>、<code>state</code> 和 <code>context</code> 传递进 <code>render()</code></li>
+      <li>使用 <code>class</code> 和 <code>for</code> 一类的标准 HTML 属性</li>
     </ul>
   </div>
 </section>
 
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg">
+  <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>生态系统兼容</h2>
+    <h2>生态兼容</h2>
     <p>
-        虚拟 DOM 组件使得易于共享可重用的事物 —— 从按钮到数据提供程序。Preact 的设计意味着您可以无缝使用 React 生态系统中可用的数千个组件。
+      虚拟 DOM 组件让其复用易如反掌——无论是按钮，还是数据提供方，Preact 的设计都能让您轻松、无缝地借用来自 React 生态中的许多组件。
     </p>
     <p>
-        增加一个简单的兼容层 <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> 到你的绑定库中，你甚至可以在你的系统中使用非常复杂的 React 组件。
+      为您的打包工具添加一行简单的 <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> 替名即可为即便是最为复杂的 React 组件提供一层无缝兼容。
     </p>
   </div>
 </section>
 
 
 <section class="home-top">
-    <h1>『码』上见分晓</h1>
+    <h1>『码』上见分晓！</h1>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>Todo List 组件</h2>
+        <h2>待办事项</h2>
         <pre><code class="lang-jsx">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
@@ -154,9 +155,10 @@ export default class TodoList extends Component {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;label&gt;
-                  &lt;span&gt;Add Todo&lt;span&gt;
+                  &lt;span&gt;Add Todo&lt;/span&gt;
                   &lt;input value={text} onInput={this.setText} /&gt;
                 &lt;/label&gt;
+                &lt;button type="submit"&gt;Add&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -169,7 +171,7 @@ export default class TodoList extends Component {
         </code></pre>
     </div>
     <div>
-        <h2>运行例子</h2>
+        <h2>实际示例</h2>
         <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
@@ -181,10 +183,9 @@ render(&lt;TodoList /&gt;, document.body);
     </div>
 </section>
 
-
 <section class="home-split">
     <div>
-        <h2>获取 Github Stars</h2>
+        <h2>获取 GitHub 标星数</h2>
         <pre><code class="lang-jsx">
 export default class Stars extends Component {
     async componentDidMount() {
@@ -192,7 +193,7 @@ export default class Stars extends Component {
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = &#96;https://github.com/${repo}&#96;;
+        let url = `https://github.com/${repo}`;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Stars
@@ -203,17 +204,17 @@ export default class Stars extends Component {
         </code></pre>
     </div>
     <div>
-        <h2>运行例子</h2>
+        <h2>实际示例</h2>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
 render(
-    &lt;Stars repo="developit/preact" /&gt;,
+    &lt;Stars repo="preactjs/preact" /&gt;,
     document.body
 );
         </code></pre>
         <div class="home-demo">
-            <github-stars simple user="developit" repo="preact"></github-stars>
+            <github-stars simple user="preactjs" repo="preact"></github-stars>
         </div>
     </div>
 </section>
@@ -226,13 +227,12 @@ render(
 
 <section style="text-align:center;">
     <p>
-        我们将根据您是否有 Preact 的经验提供不同的指导。
+        根据您对 React 的经验，我们提供了不同的指南。
         <br>
-        选取最适合您的指导规范！
+        来看看哪个指南最适合您吧！
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">如何开始</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">切换到 Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">开始上手</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 Preact</a>
     </p>
 </section>

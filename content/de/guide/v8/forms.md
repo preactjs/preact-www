@@ -11,7 +11,7 @@ Eingabemasken funktionieren in Preact fast genauso wie in React, allerdings gibt
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

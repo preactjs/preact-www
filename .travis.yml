@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 10
+  - 12
 script: npm t
 
 # We do not test pushes to branches, since they are redundant with the pull_request build

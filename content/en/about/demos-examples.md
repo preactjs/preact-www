@@ -9,14 +9,14 @@ description: 'Collection of demos and example Preact applications'
 This pages lists a bunch of demos and examples you can use to learn Preact.
 
 > :information_desk_person: _Built one of your own?
-> [Add it!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Add it!](https://github.com/preactjs/preact-www/blob/master/content/en/about/demos-examples.md)_
 
 
 ## Full Apps
 
 [**Preact Website** _(preactjs.com)_](https://preactjs.com)  
 Of course this website is built with Preact.  
-[Github Project](https://github.com/developit/preact-www)
+[Github Project](https://github.com/preactjs/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Built with Preact & Material Design Lite.
@@ -57,13 +57,17 @@ A site that allows you to search through [Akamai State of the Internet Connectiv
 Desktop App for uploading assets to Contentful (API based CMS)
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
-**[Code and Comment](https://code-and-comment.github.io/code-and-comment/)** :memo:
-An application for adding comments to any file on Github.
-[Github Project](https://github.com/code-and-comment/code-and-comment)
-
 **[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
 The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
 [Github Project](https://github.com/sgtpep/exchange-widget)
+
+**[Blaze](https://blaze.now.sh)** :zap:  
+Modern peer-to-peer file sharing Progressive Web App.  
+[Github Project](https://github.com/blenderskool/blaze)
+
+**[1tuner](https://1tuner.com)** :radio:  
+Listen to radio and podcasts.  
+[Github Project](https://github.com/robinbakker/1tuner)
 
 ## Full Demos & Examples
 

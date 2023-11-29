@@ -1,6 +1,6 @@
 import { createRef, Component } from 'preact';
-import style from './style';
-import config from '../../config';
+import style from './style.module.less';
+import config from '../../config.json';
 import { lazily, cancelLazily } from '../../lib/lazily';
 
 let docsearchInstance;
@@ -33,10 +33,17 @@ export default class Search extends Component {
 		let docsearch = window.docsearch;
 		if (docsearch && !docsearchInstance) {
 			this.lazy = lazily(() => {
+				const parent = document.createElement('span');
+				parent.style.position = 'relative';
+				parent.id = 'alsearch';
+				document.body.appendChild(parent);
 				docsearchInstance = docsearch({
 					apiKey: config.docsearch.apiKey,
 					indexName: config.docsearch.indexName,
-					inputSelector: this.input.current
+					inputSelector: this.input.current,
+					autocompleteOptions: {
+						dropdownMenuContainer: '#alsearch'
+					}
 				});
 			});
 		}

@@ -36,12 +36,14 @@ export function useStore(keys = [], actions) {
 	useLayoutEffect(() => {
 		const update = () => {
 			let mapped = mapStateToProps(keys, store.getState());
+			// eslint-disable-next-line no-unused-vars
 			for (let i in mapped) {
 				if (mapped[i] !== currentState[i]) {
 					return setCurrentState(mapped);
 				}
 			}
 
+			// eslint-disable-next-line no-unused-vars
 			for (let i in currentState) {
 				if (!(i in mapped)) {
 					return setCurrentState(mapped);

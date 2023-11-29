@@ -10,7 +10,7 @@ permalink: '/guide/forms'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

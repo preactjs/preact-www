@@ -11,7 +11,7 @@ Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -72,9 +72,9 @@ Preact 和 React 还有一些细微的差别：
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[3.0]: https://github.com/developit/preact/milestones/3.0
-[4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
+[3.0]: https://github.com/preactjs/preact/milestones/3.0
+[4.0]: https://github.com/preactjs/preact/milestones/4.0
+[preact-compat]: https://github.com/preactjs/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contexts]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html

@@ -11,7 +11,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -20,6 +20,10 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 Functional components are plain functions that receive `props` as the first argument. The function name **must** start with an uppercase letter in order for them to work in JSX.
 
 ```jsx
+// --repl
+import { render } from 'preact';
+
+// --repl-before
 function MyComponent(props) {
   return <div>My name is {props.name}.</div>;
 }
@@ -39,9 +43,17 @@ Class components can have state and lifecycle methods. The latter are special me
 
 Here we have a simple class component called `<Clock>` that displays the current time:
 
-```js
+```jsx
+// --repl
+import { Component, render } from 'preact';
+
+// --repl-before
 class Clock extends Component {
-  state = { time: Date.now() }
+
+  constructor() {
+    super();
+    this.state = { time: Date.now() };
+  }
 
   // Lifecycle: Called whenever our component is created
   componentDidMount() {
@@ -62,6 +74,8 @@ class Clock extends Component {
     return <span>{time}</span>;
   }
 }
+// --repl-after
+render(<Clock />, document.getElementById('app'));
 ```
 
 ### Lifecycle Methods
@@ -70,30 +84,40 @@ In order to have the clock's time update every second, we need to know when `<Cl
 
 | Lifecycle method            | When it gets called                              |
 |-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | (deprecated) before the component gets mounted to the DOM     |
-| `componentDidMount`         | after the component gets mounted to the DOM      |
-| `componentWillUnmount`      | prior to removal from the DOM                    |
-| `componentWillReceiveProps` | (deprecated) before new props get accepted                    |
-| `getDerivedStateFromProps` | just before `shouldComponentUpdate`. Use with care. |
-| `shouldComponentUpdate`     | before `render()`. Return `false` to skip render |
-| `componentWillUpdate`       | (deprecated) before `render()`                                |
-| `getSnapshotBeforeUpdate` | called just before `render()` |
-| `componentDidUpdate`        | after `render()`                                 |
+| `componentWillMount()`        | (deprecated) before the component gets mounted to the DOM
+| `componentDidMount()`         | after the component gets mounted to the DOM
+| `componentWillUnmount()`      | prior to removal from the DOM
+| `componentWillReceiveProps(nextProps, nextState)` | before new props get accepted _(deprecated)_
+| `getDerivedStateFromProps(nextProps)` | just before `shouldComponentUpdate`. Use with care.
+| `shouldComponentUpdate(nextProps, nextState)` | before `render()`. Return `false` to skip render
+| `componentWillUpdate(nextProps, nextState)` | before `render()` _(deprecated)_
+| `getSnapshotBeforeUpdate(prevProps, prevState)` | called just before `render()`. return value is passed to `componentDidUpdate`.
+| `componentDidUpdate(prevProps, prevState, snapshot)` | after `render()`
 
 > See [this diagram](https://twitter.com/dan_abramov/status/981712092611989509) to get a visual overview of how they relate to each other.
 
-#### componentDidCatch
+### Error Boundaries
 
-There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happened in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
+An error boundary is a component that implements either `componentDidCatch()` or the static method `getDerivedStateFromError()` (or both). These are special methods that allow you to catch any errors that happen during rendering and are typically used to provide nicer error messages or other fallback content and save information for logging purposes. It's important to note that error boundaries cannot catch all errors and those thrown in event handlers or asynchronous code (like a `fetch()` call) need to be handled separately.
 
-When an error is caught we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
+When an error is caught, we can use these methods to react to any errors and display a nice error message or any other fallback content.
 
 ```jsx
-class Catcher extends Component {
-  state = { errored: false }
+// --repl
+import { Component, render } from 'preact';
+// --repl-before
+class ErrorBoundary extends Component {
+  constructor() {
+    super();
+    this.state = { errored: false };
+  }
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
+  static getDerivedStateFromError(error) {
+    return { errored: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    errorReportingService(error, errorInfo);
   }
 
   render(props, state) {
@@ -103,6 +127,8 @@ class Catcher extends Component {
     return props.children;
   }
 }
+// --repl-after
+render(<ErrorBoundary />, document.getElementById('app'));
 ```
 
 ## Fragments
@@ -110,6 +136,7 @@ class Catcher extends Component {
 A `Fragment` allows you to return multiple elements at once. They solve the limitation of JSX where every "block" must have a single root element. You'll often encounter them in combination with lists, tables or with CSS flexbox where any intermediate element would otherwise affect styling.
 
 ```jsx
+// --repl
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
@@ -146,4 +173,34 @@ Note that most modern transpilers allow you to use a shorter syntax for `Fragmen
 const Foo = <Fragment>foo</Fragment>;
 // ...is the same as this:
 const Bar = <>foo</>;
+```
+
+You can also return arrays from your components:
+
+```jsx
+function Columns() {
+  return [
+    <td>Hello</td>,
+    <td>World</td>
+  ];
+}
+```
+
+Don't forget to add keys to `Fragments` if you create them in a loop:
+
+```jsx
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
+        // Without a key, Preact has to guess which elements have
+        // changed when re-rendering.
+        <Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </Fragment>
+      ))}
+    </dl>
+  );
+}
 ```

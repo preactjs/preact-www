@@ -7,7 +7,7 @@ permalink: '/guide/external-dom-mutations'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

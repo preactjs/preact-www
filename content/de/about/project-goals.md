@@ -25,4 +25,4 @@ Einige Features von React wurden absichtlich nicht in Preact integriert, da sie 
     - Children, da Preact immer children als Array verpackt
     - Synthetic Events, da Preact nicht versucht, Fehler in älteren Browsern (z.B. IE8) zu beheben
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/

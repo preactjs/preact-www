@@ -23,7 +23,7 @@ export function parseStackTrace(err) {
 
 /**
  * Correct the location if available
- * @param {Error} err
+ * @param {Error & { loc: { line: number, column: number } }} err
  */
 export function patchErrorLocation(err) {
 	const match = err.stack.match(/\(.*:(\d+):(\d+)\)/);
@@ -33,8 +33,10 @@ export function patchErrorLocation(err) {
 
 	err.loc = { line: 0, column: 0 };
 	let line = +match[1];
-	if (err.name === 'ReferenceError') {
-		line -= 5;
+	if (err.name === 'SyntaxError') {
+		line -= 1;
+	} else {
+		line -= 2;
 	}
 	err.loc.line = line;
 	err.loc.column = +match[2];

@@ -11,7 +11,7 @@ permalink: '/guide/getting-started'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

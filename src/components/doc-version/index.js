@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './style.less';
+import style from './style.module.less';
 import { getCurrentUrl, route } from 'preact-router';
 import { useStore } from '../store-adapter';
 
@@ -8,7 +8,7 @@ function onChange(e) {
 	route(url);
 }
 
-const AVAILABLE_DOCS = [10, 8];
+export const AVAILABLE_DOCS = [10, 8];
 
 /**
  * Select box to switch the currently displayed docs version

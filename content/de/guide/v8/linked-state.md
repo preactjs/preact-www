@@ -9,7 +9,7 @@ Ein Bereich, den Preact ausführlicher als React behandelt ist das Optimieren de
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -30,7 +30,7 @@ class Foo extends Component {
 
 Während dies zu deutlich besseren Laufzeitleistungen führt, beinhaltet dieser Ansatz immer noch eine Menge unnötigen Code, der gebraucht wird, um State und UI zu verbinden.
 
-> Ein anderer Ansatuz wäre es, Komponentenmethoden mithilfe von ES7-Decorators  _deklarativ_ anzubinden. Ein Beispiel hierfür wäre [decko's](http://git.io/decko) `@bind`:
+> Ein anderer Ansatuz wäre es, Komponentenmethoden mithilfe von ES7-Decorators  _deklarativ_ anzubinden. Ein Beispiel hierfür wäre [decko's](https://github.com/developit/decko) `@bind`:
 
 
 ## Verlinkter State eilt zur Rettung

@@ -11,13 +11,13 @@ Server-Side Rendering (often abbreviated as "SSR") allows you to render your app
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
 ## Installation
 
-The server-side renderer for Preact lives in it's [own repository](https://github.com/preactjs/preact-render-to-string/) and can be installed via your packager of choice:
+The server-side renderer for Preact lives in its [own repository](https://github.com/preactjs/preact-render-to-string/) and can be installed via your packager of choice:
 
 ```sh
 npm install -S preact-render-to-string
@@ -55,13 +55,13 @@ console.log(shallow(App));
 If you need to get the rendered output in a more human friendly way, we've got you covered! By passing the `pretty` option, we'll preserve whitespace and indent the output as expected.
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
 const App = <div class="foo"><Foo /></div>;
 
-console.log(render(App, { pretty: true }));
+console.log(render(App, {}, { pretty: true }));
 // Logs:
 // <div class="foo">
 //   <div>foo</div>
@@ -73,11 +73,11 @@ console.log(render(App, { pretty: true }));
 The JSX rendering mode is especially useful if you're doing any kind of snapshot testing. It renders the output as if it was written in JSX.
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const App = <div data-foo={true} />;
 
-console.log(render(App, { jsx: true }));
+console.log(render(App));
 // Logs: <div data-foo={true} />
 ```

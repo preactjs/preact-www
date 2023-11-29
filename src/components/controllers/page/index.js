@@ -1,10 +1,10 @@
-import { h } from 'preact';
+import { Fragment, h } from 'preact';
 import { useEffect, useState, useMemo, useRef } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import { getContentOnServer, getContent } from '../../../lib/content';
-import config from '../../../config';
-import style from './style';
+import config from '../../../config.json';
+import style from './style.module.less';
 import Footer from '../../footer';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
@@ -15,6 +15,8 @@ import {
 } from '../../../lib/prerender-data';
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
+import { AVAILABLE_DOCS } from '../../doc-version';
+import { Time } from '../../time';
 
 const getContentId = route => route.content || route.path;
 
@@ -64,7 +66,7 @@ export function usePage(route, lang) {
 	const [content, setContent] = useState(
 		hydrated && bootData && bootData.content
 	);
-	const [html, setHtml] = useState();
+	const [html, setHtml] = useState(hydrated && bootData && bootData.html);
 
 	const [loading, setLoading] = useState(true);
 	const [isFallback, setFallback] = useState(false);
@@ -110,8 +112,7 @@ export function usePage(route, lang) {
 			window.nextStateToTop = false;
 			scrollTo({
 				top: 0,
-				left: 0,
-				behavior: 'smooth'
+				left: 0
 			});
 		}
 	}
@@ -126,14 +127,19 @@ export function usePage(route, lang) {
 	};
 }
 
-export default function Page({ route }, ctx) {
-	const store = useStore(['url', 'lang']);
+export default function Page({ route, prev, next }, ctx) {
+	const store = useStore(['url', 'lang', 'docVersion']);
 	const { loading, meta, content, html, current, isFallback } = usePage(
 		route,
 		store.state.lang
 	);
 	const urlState = store.state;
 	const url = useMemo(() => urlState.url, [current]);
+
+	const docsUrl = useMemo(
+		() => url.replace(/(v\d{1,2})/, `v${AVAILABLE_DOCS[0]}`),
+		[url]
+	);
 
 	const layout = `${meta.layout || 'default'}Layout`;
 	const name = getContentId(route);
@@ -152,8 +158,19 @@ export default function Page({ route }, ctx) {
 	// "current" is the currently *displayed* page ID.
 
 	const showTitle = current != 'index' && meta.show_title !== false;
-	const canEdit = showTitle && current != '404';
+	const canEdit = showTitle && current != '404' && current !== '/blog';
 	const hasSidebar = meta.toc !== false && isDocPage(url);
+
+	useEffect(() => {
+		if (location.hash) {
+			const anchor = document.querySelector(location.hash);
+			if (anchor) {
+				// Do not use scrollIntoView as it will cause
+				// the heading to be covered by the header
+				scrollTo({ top: anchor.offsetTop });
+			}
+		}
+	}, [html]);
 
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
@@ -166,6 +183,12 @@ export default function Page({ route }, ctx) {
 					show={hasSidebar}
 				/>
 				<div class={style.inner}>
+					{isDocPage(url) && +store.state.docVersion !== AVAILABLE_DOCS[0] && (
+						<div class={style.oldDocsWarning}>
+							You are viewing the documentation for an older version of Preact.{' '}
+							<a href={docsUrl}>Switch to the current version →</a>
+						</div>
+					)}
 					<Hydrator
 						boot={isReady}
 						component={EditThisPage}
@@ -173,13 +196,88 @@ export default function Page({ route }, ctx) {
 						isFallback={isFallback}
 					/>
 					{showTitle && (
-						<h1 class={style.title}>{meta.title || route.title}</h1>
+						<div class={style.pageTitle}>
+							<div>
+								{meta.date && <Time value={meta.date} />}
+								{Array.isArray(meta.authors) && meta.authors.length > 0 && (
+									<>
+										, written by{' '}
+										<address class={style.authors}>
+											{meta.authors.map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<span key={author} class={style.author}>
+														{authorData ? (
+															<a
+																href={authorData.link}
+																target="_blank"
+																rel="noopener noreferrer"
+															>
+																{author}
+															</a>
+														) : (
+															<span>{author}</span>
+														)}
+														{i < arr.length - 2
+															? ', '
+															: i === arr.length - 2
+															? ' and '
+															: null}
+													</span>
+												);
+											})}
+											{(meta.translation_by || []).map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<>
+														{', translated by '}
+														<span key={author} class={style.author}>
+															{authorData ? (
+																<a
+																	href={authorData.link}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																>
+																	{author}
+																</a>
+															) : (
+																<span>{author}</span>
+															)}
+															{i < arr.length - 2
+																? ', '
+																: i === arr.length - 2
+																? ' and '
+																: null}
+														</span>
+													</>
+												);
+											})}
+										</address>
+									</>
+								)}
+							</div>
+							<h1
+								class={cx(
+									style.title,
+									meta.permalink === '/about/we-are-using' && style.center
+								)}
+							>
+								{meta.title || route.title}
+							</h1>
+						</div>
 					)}
 					<Hydrator
 						component={ContentRegion}
 						boot={!!html}
 						name={name}
 						content={html}
+						prev={prev}
+						next={next}
+						lang={store.state.lang}
 					/>
 					<Footer />
 				</div>

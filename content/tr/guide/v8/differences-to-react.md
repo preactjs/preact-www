@@ -11,7 +11,7 @@ Preact’ın React’ın her bir özelliğini içermemesinin nedeni, **küçük*
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -68,9 +68,9 @@ Preact ve React arasında ince farkları vardır:
 
 [Proje Hedefleri]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[3.0]: https://github.com/developit/preact/milestones/3.0
-[4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
+[3.0]: https://github.com/preactjs/preact/milestones/3.0
+[4.0]: https://github.com/preactjs/preact/milestones/4.0
+[preact-compat]: https://github.com/preactjs/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contexts]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html

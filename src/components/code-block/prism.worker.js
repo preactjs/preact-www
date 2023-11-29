@@ -1,3 +1,4 @@
+import 'promise-polyfill/lib/polyfill';
 import * as prism from '../../lib/prism';
 
 export function highlight(code, lang) {

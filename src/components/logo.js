@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { route } from 'preact-router';
 
 export default class Logo extends Component {
 	state = { i: 0, hover: false };
@@ -21,6 +22,11 @@ export default class Logo extends Component {
 		let { hover } = this.state;
 		if (!this.mounted || !hover || this.timer) return;
 		this.timer = (requestAnimationFrame || setTimeout)(this.frame, 15);
+	};
+
+	contextMenu = e => {
+		e.preventDefault();
+		route('/branding', false);
 	};
 
 	componentDidMount() {
@@ -76,12 +82,14 @@ export default class Logo extends Component {
 
 		return (
 			<svg
+				class="logo"
 				width={!text && '34px'}
 				height="34px"
 				viewBox={`-256 -256 ${text ? 1800 : 512} 512`}
 				style="display:inline-block; margin:-.25em 0 0; vertical-align:middle;"
 				onMouseover={!touch && this.hover}
 				onMouseout={!touch && this.hoverOut}
+				onContextMenu={this.contextMenu}
 				{...props}
 			>
 				<path

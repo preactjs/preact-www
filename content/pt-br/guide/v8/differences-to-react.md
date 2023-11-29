@@ -11,7 +11,7 @@ Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pe
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -73,9 +73,9 @@ Preact e React tem algumas diferenças sutis:
 
 [Objetivos do Projeto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[3.0]: https://github.com/developit/preact/milestones/3.0
-[4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
+[3.0]: https://github.com/preactjs/preact/milestones/3.0
+[4.0]: https://github.com/preactjs/preact/milestones/4.0
+[preact-compat]: https://github.com/preactjs/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contextos]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html

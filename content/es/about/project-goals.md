@@ -3,16 +3,16 @@ name: Project Goals
 permalink: '/about/project-goals'
 ---
 
-# Metas del proyecto
+# Objetivos del proyecto
 
-## Metas
+## Objetivos
 
 Preact tiene como objetivo cumplir con los siguientes puntos:
 
 - **Performance:** Renderizar rápido y eficientemente
 - **Tamaño:** Tamaño pequeño y liviano _(aproximadamente 3.5kb)_
 - **Eficiencia:** Uso eficiente de la memoria
-- **Comprensibilidad:** Entender el código fuente debería llevar muy poco tiempo, a penas unas horas
+- **Comprensibilidad:** Entender el código fuente debería llevar muy poco tiempo, apenas unas horas
 - **Compatibilidad:** Preact apunta ser _compatible en gran medida_ con la API React. [preact-compat] intenta lograr la mayor compatibilidad posible con React.
 
 ## Funcionalidades excluidas
@@ -24,5 +24,5 @@ Algunas funcionalidades de React son omitidas intencionalmente en Preact, ya que
     - Children, ya que Preact siempre empaqueta los children como un Array
     - Synthetic Events, ya que Preact no tiene soporte para navegadores antiguos como IE8
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/
 [¿Qué falta?]: /guide/differences-to-react#whats-missing

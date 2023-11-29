@@ -1,6 +1,6 @@
 import createStore from 'unistore';
 import { getDefaultLanguage } from './lib/language';
-import config from './config';
+import config from './config.json';
 import { localStorageSet, localStorageGet } from './lib/localstorage';
 
 const SAVE = ['lang'];

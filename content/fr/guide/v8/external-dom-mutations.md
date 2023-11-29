@@ -9,7 +9,7 @@ Parfois vous avez besoin de travailler avec des bibliothèques externes qui ont 
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

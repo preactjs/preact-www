@@ -1,6 +1,6 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import cx from '../../../lib/cx';
-import style from './sidebar-nav.less';
+import style from './sidebar-nav.module.less';
 import { getCurrentUrl } from 'preact-router';
 
 /**
@@ -27,18 +27,60 @@ export default function SidebarNav({ items, onClick }) {
 			tabIndex="0"
 			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 		>
-			{items.map(({ text, level, href }) => {
-				let activeCss = href === url ? style.linkActive : undefined;
+			{items.map(({ text, level, href, routes }) => {
+				if (!href) {
+					return (
+						<Fragment>
+							<SidebarGroup level={level}>{text}</SidebarGroup>
+							<div class={style.accordionBody}>
+								{routes.map(route => {
+									const { href, text } = route;
+									return (
+										<SidebarNavLink
+											key={href}
+											href={href}
+											onClick={onClick}
+											isActive={href === url}
+										>
+											{text}
+										</SidebarNavLink>
+									);
+								})}
+							</div>
+						</Fragment>
+					);
+				}
 				return (
-					<a
+					<SidebarNavLink
+						key={href}
 						href={href}
 						onClick={onClick}
-						class={cx(style.link, activeCss, style['level-' + level])}
+						isActive={href === url}
 					>
 						{text}
-					</a>
+					</SidebarNavLink>
 				);
 			})}
 		</nav>
+	);
+}
+
+function SidebarGroup({ level, children }) {
+	return (
+		<h3 className={cx(style.category, style['level-' + level])}>{children}</h3>
+	);
+}
+
+function SidebarNavLink(props) {
+	const { href, onClick, level, isActive, children } = props;
+	let activeCss = isActive ? style.linkActive : undefined;
+	return (
+		<a
+			href={href}
+			onClick={onClick}
+			class={cx(style.link, activeCss, style['level-' + level])}
+		>
+			{children}
+		</a>
 	);
 }

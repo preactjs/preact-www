@@ -9,7 +9,7 @@ State değişikliklerini optimize etmede, React’tan biraz daha kolaylık sağl
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -30,7 +30,7 @@ class Foo extends Component {
 
 Çok daha iyi çalışma performansı sağlarken, state kullanıcı arayüzüne enjecte etmek için gereksiz bir koddur.
 
->Bir diğer çözüm, ES7 dekaratörü kullanarak  component methodlarını _bildirimli_ olarak bind etmesidir. [decko's](http://git.io/decko) `@bind` gibi:
+>Bir diğer çözüm, ES7 dekaratörü kullanarak  component methodlarını _bildirimli_ olarak bind etmesidir. [decko's](https://github.com/developit/decko) `@bind` gibi:
 
 
 ## Linked State'i Kurtarmak İçin

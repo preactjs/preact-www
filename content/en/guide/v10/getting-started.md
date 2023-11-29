@@ -5,105 +5,116 @@ description: "How to get started with Preact. We'll learn how to setup the tooli
 
 # Getting Started
 
-This guide helps you get up and running to start developing Preact apps. There are 3 popular ways to do so.
+New to Preact? New to Virtual DOM? Check out the [tutorial](/tutorial).
 
-If you're just starting out we highly recommend going with [preact-cli](#best-practices-powered-with-preact-cli).
+This guide helps you get up and running to start developing Preact apps, using 3 popular options.
+If you're new to Preact, we recommend starting with [Vite](#create-a-vite-powered-preact-app).
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
 ## No build tools route
 
-Preact has always been readily packaged to be used right in the browser. This doesn't require any build tools at all.
+Preact is packaged to be used directly in the browser, and doesn't require any build or tools:
 
-```js
-import { h, Component, render } from 'https://unpkg.com/preact';
+```html
+<script type="module">
+  import { h, render } from 'https://esm.sh/preact';
 
-// Create your app
-const app = h('div', null, 'Hello World!');
+  // Create your app
+  const app = h('h1', null, 'Hello World!');
 
-// Inject your application into the an element with the id `app`.
-// Make sure that such an element exists in the dom ;)
-render(app, document.getElementById('app'));
+  render(app, document.body);
+</script>
 ```
 
-The only difference is that you cannot use JSX, because JSX needs to be transpiled. We got you covered with an alternative in the next section. So keep reading.
+[🔨 Edit on Glitch](https://glitch.com/~preact-no-build-tools)
+
+The primary drawback of developing this way is the lack of JSX, which requires a build step. An ergonomic and performant alternative to JSX is documented in the next section.
 
 ### Alternatives to JSX
 
-Writing raw `h` or `createElement` calls all the time is much less fun than using something JSX-like. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. It requires a built-step though, so we highly recommend an alternative called [htm].
+Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage of looking similar to HTML, which makes it easier to understand for many developers in our experience. JSX requires a build step though, so we highly recommend an alternative called [HTM][htm].
 
-In a nutshell [htm] can be best described as: JSX-like syntax in plain JavaScript without a need for a transpiler. Instead of using a custom syntax it relies on native tagged template strings which were added to JavaScript a while back.
+[HTM][htm] is a JSX-like syntax that works in standard JavaScript. Instead of requiring a build step, it uses JavaScript's own [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, which was added in 2015 and is supported in [all modern browsers](https://caniuse.com/#feat=template-literals). This is an increasingly popular way to write Preact apps, since there are fewer moving parts to understand than a traditional front-end build tooling setup.
 
-```js
-import { h, Component, render } from 'https://unpkg.com/preact';
-import htm from 'https://unpkg.com/htm';
+```html
+<script type="module">
+  import { h, render } from 'https://esm.sh/preact';
+  import htm from 'https://esm.sh/htm';
 
-// Initialize htm with Preact
-const html = htm.bind(h);
+  // Initialize htm with Preact
+  const html = htm.bind(h);
 
-const app = html`<div>Hello World!</div>`
-render(app, document.getElementById('app'));
+  function App (props) {
+    return html`<h1>Hello ${props.name}!</h1>`;
+  }
+
+  render(html`<${App} name="World" />`, document.body);
+</script>
 ```
 
-It's a very popular way of writing Preact apps and we highly recommend checking out htm's [README][htm] file if you're interested in going with this route.
+[🔨 Edit on Glitch](https://glitch.com/~preact-with-htm)
 
-## Best practices powered with `preact-cli`
+> **Tip:** HTM also provides a convenient single-import Preact version:
+>
+> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
-The `preact-cli` project is a ready made solution to bundle Preact applications with the optimal bundler configuration that's best for modern web application. It's build on standard tooling projects like `webpack`, `babel` and `postcss`. Because of the simplicity this is the most popular way to use Preact among our users.
+For a more full example, see [Using Preact with HTM and ImportMaps](#using-preact-with-htm-and-importmaps), and for more information on HTM, check out its [documentation][htm].
 
-As the name implies, `preact-cli` is a **c**ommand-**li**ne tool that can be run in the terminal on your machine. Install it globally by running:
+[htm]: https://github.com/developit/htm
+
+## Create a Vite-Powered Preact App
+
+[Vite](https://vitejs.dev) has become an incredibly popular tool for building applications across many frameworks in the past couple of years, and Preact is no exception. It's built upon popular tooling like ES modules, Rollup, and ESBuild. Vite, through our initializer or their Preact template, requires no configuration or prior knowledge to get started and this simplicity makes it a very popular way to use Preact.
+
+To get up and running with Vite quickly, you can use our initializer `create-preact`. This is an interactive command-line interface (CLI) app that can be run in the terminal on your machine. Using it, you can create a new application by running the following:
 
 ```bash
-npm install -g preact-cli
+npm init preact
 ```
 
-After that you'll have a new command in your terminal called `preact`. With it you can create a new application by executing the following command:
+This will walk you through creating a new Preact app and gives you some options such as TypeScript, routing (via `preact-iso`), and ESLint support.
 
-```bash
-preact create default my-project
-```
-
-The above command pulls the template from `preactjs-templates/default`, prompts for some information, and generates the project at `./my-project/`.
-
-> Tip: Any Github repo with a `'template'` folder can be used as a custom template: `preact create <username>/<repository> <project-name>`
+> **Tip:** None of these decisions need to be final, you can always add or remove them from your project later if you change your mind.
 
 ### Getting ready for development
 
-Now we're ready to start our application. To fire up the development server run the following command inside the freshly generated project folder (`my-project` in this example):
+Now we're ready to start our application. To start a development server, run the following command inside your newly generated project folder:
 
 ```bash
 # Go into the generated project folder
-cd my-project/
+cd my-preact-app
 
-# Start the devserver
+# Start a development server
 npm run dev
 ```
 
-Once the server is up you can access your app at the URL that was printed in the console. Now you're ready to develop your app!
+Once the server has started, it will print a local development URL to open in your browser.
+Now you're ready to start coding your app!
 
 ### Making a production build
 
-There comes a time when you need to deploy your app somewhere. The CLI ships with a handy `build` command which will generate a highly optimized build.
+There comes a time when you need to deploy your app somewhere. Vite ships with a handy `build` command which will generate a highly-optimized production build.
 
 ```bash
 npm run build
 ```
 
-Upon completion you'll have a new `build/` folder which can be deployed directly to a server.
+Upon completion, you'll have a new `dist/` folder which can be deployed directly to a server.
 
-> For a full list of all available commands check out the list in preact-cli's [README file](https://github.com/preactjs/preact-cli#cli-options).
+> For a full list of all available commands and their options, check out the [Vite CLI Documentation](https://vitejs.dev/guide/cli.html).
 
 ## Integrating Into An Existing Pipeline
 
-If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them. No changes needed!
+If you already have an existing tooling pipeline set up, it's very likely that this includes a bundler. The most popular choices are [webpack](https://webpack.js.org/), [rollup](https://rollupjs.org) or [parcel](https://parceljs.org/). Preact works out of the box with all of them, no major changes needed!
 
 ### Setting up JSX
 
-To transpile JSX you need a babel plugin that converts it to valid JavaScript code. The one we all use is [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx). Once installed you need to specify the function for JSX that should be used:
+To transpile JSX, you need a Babel plugin that converts it to valid JavaScript code. The one we all use is [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx). Once installed, you need to specify the function for JSX that should be used:
 
 ```json
 {
@@ -116,31 +127,49 @@ To transpile JSX you need a babel plugin that converts it to valid JavaScript co
 }
 ```
 
-> [babeljs](https://babeljs.io/) has one of the best documentation out there. We highly recommend checking it out for questions surrounding babel and how to set it up.
+> [Babel](https://babeljs.io/) has some of the best documentation out there. We highly recommend checking it out for questions surrounding Babel and how to set it up.
 
 ### Aliasing React to Preact
 
-At some point you'll probably want to make use of the vast react ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it we need to point all `react` and `react-dom` imports to Preact. This step is called aliasing.
+At some point, you'll probably want to make use of the vast React ecosystem. Libraries and Components originally written for React work seamlessly with our compatibility layer. To make use of it, we need to point all `react` and `react-dom` imports to Preact. This step is called _aliasing._
 
-#### Aliasing in webpack
+> **Note:** If you're using Vite, Preact CLI, or WMR, these aliases are automatically handled for you by default.
 
-To alias any package in webpack you need to add the `resolve.alias` section
-to your config. Depending on the configuration you're using this section may
+#### Aliasing in Webpack
+
+To alias any package in Webpack, you need to add the `resolve.alias` section
+to your config. Depending on the configuration you're using, this section may
 already be present, but missing the aliases for Preact.
 
 ```js
 const config = {
-  //...snip
-  resolve: {
-    alias: {
-        'react': 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat', // Must be below test-utils
+   //...snip
+  "resolve": {
+    "alias": {
+      "react": "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat",     // Must be below test-utils
+      "react/jsx-runtime": "preact/jsx-runtime"
     },
+  }
 }
 ```
 
-#### Aliasing in parcel
+#### Aliasing in Node
+
+When running in Node, bundler aliases (Webpack, Rollup, etc.) will not work, as can
+be seen in NextJS. To fix this, we can use aliases directly in our `package.json`:
+
+```json
+{
+  "dependencies": {
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+  }
+}
+```
+
+#### Aliasing in Parcel
 
 Parcel uses the standard `package.json` file to read configuration options under
 an `alias` key.
@@ -150,26 +179,132 @@ an `alias` key.
   "alias": {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime"
   },
 }
 ```
 
-#### Aliasing in jest
+#### Aliasing in Rollup
 
-Similar to bundlers, [jest](https://jestjs.io/) allows to rewrite module paths. The syntax is a bit
-different, than in say webpack, because it's based on regex. Add this to your
-jest configuration:
+To alias within Rollup, you'll need to install [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias).
+The plugin will need to be placed before your [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
 
 ```js
+import alias from '@rollup/plugin-alias';
+
+module.exports = {
+  plugins: [
+    alias({
+      entries: [
+        { find: 'react', replacement: 'preact/compat' },
+        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+        { find: 'react-dom', replacement: 'preact/compat' },
+        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
+      ]
+    })
+  ]
+};
+```
+
+#### Aliasing in Jest
+
+[Jest](https://jestjs.io/) allows the rewriting of module paths similar to bundlers.
+These rewrites are configured using regular expressions in your Jest configuration:
+
+```json
 {
   "moduleNameMapper": {
-    "react": "preact/compat"
-    "react-dom/test-utils": "preact/test-utils"
-    "react-dom": "preact/compat"
+    "^react$": "preact/compat",
+    "^react-dom/test-utils$": "preact/test-utils",
+    "^react-dom$": "preact/compat",
+    "^react/jsx-runtime$": "preact/jsx-runtime"
   }
 }
 ```
 
-[htm]: https://github.com/developit/htm
+#### Aliasing in TypeScript
 
+TypeScript, even when used alongside a bundler, has its own process of resolving types.
+In order to ensure Preact's types are used in place of React's, you will want to add the
+following configuration to your `tsconfig.json` (or `jsconfig.json`):
+
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    }
+  }
+}
+```
+
+Additionally, you may want to enable `skipLibCheck` as we do in the example above. Some
+React libraries make use of types that may not be provided by `preact/compat` (though we do
+our best to fix these), and as such, these libraries could be the source of TypeScript compilation
+errors. By setting `skipLibCheck`, you can tell TS that it doesn't need to do a full check of all
+`.d.ts` files (usually these are limited to your libraries in `node_modules`) which will fix these errors.
+
+### Using Preact with HTM and ImportMaps
+
+An [Import Map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) is a newer feature
+that allows you to control how browsers resolve module specifiers, usually to convert bare specifiers such as `preact`
+to a CDN URL like `https://esm.sh/preact`. While many do prefer the aesthetics import maps can provide, there are also
+real advantages to using them, such as more control over module resolution (read on to see how to alias) and solving
+the burden (as well as possible bugs) that comes with copying CDN URLs from file to file.
+
+Here's an example of a import map in use:
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "preact": "https://esm.sh/preact@10.19.2",
+      "preact/": "https://esm.sh/preact@10.19.2/",
+      "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+    }
+  }
+</script>
+
+<script type="module">
+  import { render } from 'preact';
+  import { useReducer } from 'preact/hooks';
+  import { html } from 'htm/preact';
+
+  export function App() {
+    const [count, add] = useReducer((a, b) => a + b, 0);
+
+    return html`
+      <button onClick=${() => add(-1)}>Decrement</button>
+      <input readonly size="4" value=${count} />
+      <button onClick=${() => add(1)}>Increment</button>
+    `;
+  }
+
+  render(html`<${App} />`, document.body);
+</script>
+```
+
+> **Note:** We use `?external=preact` in the example above as many CDNs will helpfully provide the
+> module you're asking for as well as its dependencies. However, this can trip up Preact as it (and
+> React too) expect to be loaded as singletons (only 1 instance active at a time). Using `?external`
+> tells `esm.sh` that it doesn't need to provide a copy of `preact`, we can handle that ourselves with
+> our import map
+
+You can even use import maps to support aliasing:
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/preact@10.19.2/compat",
+      "react-dom": "https://esm.sh/preact@10.19.2/compat"
+    }
+  }
+</script>
+```

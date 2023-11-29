@@ -14,7 +14,7 @@ Within these two types, there are also a few different ways to implement compone
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 

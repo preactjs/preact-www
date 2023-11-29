@@ -5,64 +5,90 @@ description: 'Hooks in Preact allow you to compose behaviours together and re-us
 
 # Hooks
 
-Hooks is a new concept that allows you to compose state and side effects. They allow you to reuse stateful logic between components.
+The Hooks API is a new concept that allows you to compose state and side effects. Hooks allow you to reuse stateful logic between components.
 
-If you've worked with Preact for a while you may be familiar with patterns like `render-props` and `high-order-components` that try to solve the same. But they've always made code harder to follow whereas with hooks you can neatly extract that logic and make it easy to unit test it independently.
+If you've worked with Preact for a while, you may be familiar with patterns like "render props" and "higher order components" that try to solve these challenges. These solutions have tended to make code harder to follow and more abstract. The hooks API makes it possible to neatly extract the logic for state and side effects, and also simplifies unit testing that logic independently from the components that rely on it.
 
-Due to their functional nature they can be used in functional components and avoid many pitfalls of the `this` keyword that's present in classes. Instead they rely on closures which makes them value-bound and eliminates a whole bag of bugs when it comes to async state updates.
+Hooks can be used in any component, and avoid many pitfalls of the `this` keyword relied on by the class components API. Instead of accessing properties from the component instance, hooks rely on closures. This makes them value-bound and eliminates a number of stale data problems that can occur when dealing with asynchronous state updates.
 
-There are two ways to import these, you can import them from
-`preact/hooks` or `preact/compat`.
+There are two ways to import hooks: from `preact/hooks` or `preact/compat`.
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
 ## Introduction
 
-It's easier to show you what they look like and compare that to class components to get a grasp of the advantages of them. Take a simple counter app for example:
+The easiest way to understand hooks is to compare them to equivalent class-based Components.
+
+We'll use a simple counter component as our example, which renders a number and a button that increases it by one:
 
 ```jsx
+// --repl
+import { render, Component } from "preact";
+// --repl-before
 class Counter extends Component {
-  state = { value: 0 };
+  state = {
+    value: 0
+  };
 
-  increment = () => this.setState(prev => ({ value: prev.value +1 }));
+  increment = () => {
+    this.setState(prev => ({ value: prev.value +1 }));
+  };
 
-  render(_, { value }) {
+  render(props, state) {
     return (
       <div>
-        Counter: {value}
+        <p>Counter: {state.value}</p>
         <button onClick={this.increment}>Increment</button>
       </div>
     );
   }
 }
+// --repl-after
+render(<Counter />, document.getElementById("app"));
 ```
 
-All the component does is render a div and a button to increment the counter. Let's rewrite it to be based on hooks:
+Now, here's an equivalent function component built with hooks:
 
 ```jsx
+// --repl
+import { useState, useCallback } from "preact/hooks";
+import { render } from "preact";
+// --repl-before
 function Counter() {
   const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+  const increment = useCallback(() => {
+    setValue(value + 1);
+  }, [value]);
 
   return (
     <div>
-      Counter: {value}
+      <p>Counter: {value}</p>
       <button onClick={increment}>Increment</button>
     </div>
   );
 }
+// --repl-after
+render(<Counter />, document.getElementById("app"));
 ```
 
-At this point they seem pretty similar. So let's take it one step further. Now we can extract the counter logic into a custom hook to make it reusable across components.
+At this point they seem pretty similar, however we can further simplify the hooks version.
+
+Let's extract the counter logic into a custom hook, making it easily reusable across components:
 
 ```jsx
+// --repl
+import { useState, useCallback } from "preact/hooks";
+import { render } from "preact";
+// --repl-before
 function useCounter() {
   const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+  const increment = useCallback(() => {
+    setValue(value + 1);
+  }, [value]);
   return { value, increment };
 }
 
@@ -71,7 +97,7 @@ function CounterA() {
   const { value, increment } = useCounter();
   return (
     <div>
-      Counter A: {value}
+      <p>Counter A: {value}</p>
       <button onClick={increment}>Increment</button>
     </div>
   );
@@ -88,42 +114,55 @@ function CounterB() {
     </div>
   );
 }
+// --repl-after
+render(
+  <div>
+    <CounterA />
+    <CounterB />
+  </div>,
+  document.getElementById("app")
+);
 ```
 
-Note how both `CounterA` and `CounterB` are completely independent of each other.
+Note that both `CounterA` and `CounterB` are completely independent of each other. They both use the `useCounter()` custom hook, but each has its own instance of that hook's associated state.
 
-> If you're thinking that they may look a bit weird, than you're not alone. It took everybody a while to rethink our learned habits.
+> Thinking this looks a little strange? You're not alone!
+>
+> It took many of us a while to grow accustomed to this approach.
 
 ## The dependency argument
 
-Many hooks feature an argument that can be used to limit when a hook should be updated. Preact will walk over the dependency array and check for referential equality. In the previous Counter example we've used it on `useCallback`:
+Many hooks accept an argument that can be used to limit when a hook should be updated. Preact inspects each value in a dependency array and checks to see if it has changed since the last time a hook was called. When the dependency argument is not specified, the hook is always executed.
+
+In our `useCounter()` implementation above, we passed an array of dependencies to `useCallback()`:
 
 ```jsx
 function useCounter() {
   const [value, setValue] = useState(0);
-  const increment = useCallback(
-    () => setValue(value + 1),
-    // This is the dependency array
-    [value]
-  );
+  const increment = useCallback(() => {
+    setValue(value + 1);
+  }, [value]);  // <-- the dependency array
   return { value, increment };
 }
 ```
 
-In this example we always want to update the function reference to the callback whenever `value` changes. This is necessary because otherwise the callback would still reference the `value` variable of the time the callback was created in.
+Passing `value` here causes `useCallback` to return a new function reference whenever `value` changes.
+This is necessary in order to avoid "stale closures", where the callback would always reference the first render's `value` variable from when it was created, causing `increment` to always set a value of `1`.
+
+> This creates a new `increment` callback every time `value` changes.
+> For performance reasons, it's often better to use a [callback](#usestate) to update state values rather than retaining the current value using dependencies.
 
 ## Stateful hooks
 
-Here we'll see how we can introduce stateful logic into these
-functional components.
-Before hooks we had to make a class component every time we needed
-state. Now times have changed.
+Here we'll see how we can introduce stateful logic into functional components.
+
+Prior to the introduction of hooks, class components were required anywhere state was needed.
 
 ### useState
 
 This hook accepts an argument, this will be the initial state. When
-invoking this hook returns an array of two variables. The first being
-the current state and the second one being the setter for our state.
+invoked this hook returns an array of two variables. The first being
+the current state and the second being the setter for our state.
 
 Our setter behaves similar to the setter of our classic state.
 It accepts a value or a function with the currentState as argument.
@@ -132,7 +171,9 @@ When you call the setter and the state is different, it will trigger
 a rerender starting from the component where that useState has been used.
 
 ```jsx
-import { h } from 'preact';
+// --repl
+import { render } from 'preact';
+// --repl-before
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
@@ -149,15 +190,22 @@ const Counter = () => {
     </div>
   )
 }
+// --repl-after
+render(<Counter />, document.getElementById("app"));
 ```
 
 > When our initial state is expensive it's better to pass a function instead of a value.
 
 ### useReducer
 
-The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestateinitialstate) it's easier to use when you have complex state logic where the next state depends on the previous one.
+The `useReducer` hook has a close resemblance to [redux](https://redux.js.org/). Compared to [useState](#usestate) it's easier to use when you have complex state logic where the next state depends on the previous one.
 
 ```jsx
+// --repl
+import { render } from 'preact';
+// --repl-before
+import { useReducer } from 'preact/hooks';
+
 const initialState = 0;
 const reducer = (state, action) => {
   switch (action) {
@@ -181,6 +229,8 @@ function Counter() {
     </div>
   );
 }
+// --repl-after
+render(<Counter />, document.getElementById("app"));
 ```
 
 ## Memoization
@@ -208,8 +258,8 @@ The `useCallback` hook can be used to ensure that the returned function will rem
 
 ```jsx
 const onClick = useCallback(
-  () => console.log(a, b);
-  [a, b],
+  () => console.log(a, b),
+  [a, b]
 );
 ```
 
@@ -217,9 +267,13 @@ const onClick = useCallback(
 
 ## useRef
 
-To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createrefs).
+To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createref).
 
 ```jsx
+// --repl
+import { useRef } from 'preact/hooks';
+import { render } from 'preact';
+// --repl-before
 function Foo() {
   // Initialize useRef with an initial value of `null`
   const input = useRef(null);
@@ -232,15 +286,23 @@ function Foo() {
     </>
   );
 }
+// --repl-after
+render(<Foo />, document.getElementById("app"));
 ```
 
 > Be careful not to confuse `useRef` with `createRef`.
 
 ## useContext
 
-To access context in a functional component we can use the `useContext` hook, without any high-order or wrapper components. The first argument must be the context object that's created from a `createContext` call.
+To access context in a functional component we can use the `useContext` hook, without any higher-order or wrapper components. The first argument must be the context object that's created from a `createContext` call.
 
 ```jsx
+// --repl
+import { render, createContext } from 'preact';
+import { useContext } from 'preact/hooks';
+
+const OtherComponent = props => props.children;
+// --repl-before
 const Theme = createContext('light');
 
 function DisplayTheme() {
@@ -258,6 +320,8 @@ function App() {
     </Theme.Provider>
   )
 }
+// --repl-after
+render(<Foo />, document.getElementById("app"));
 ```
 
 ## Side-Effects
@@ -266,7 +330,7 @@ Side-Effects are at the heart of many modern Apps. Whether you want to fetch som
 
 ### useEffect
 
-As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect one if needed.
+As the name implies, `useEffect` is the main way to trigger various side-effects. You can even return a cleanup function from your effect if one is needed.
 
 ```jsx
 useEffect(() => {
@@ -283,7 +347,7 @@ We'll start with a `Title` component which should reflect the title to the docum
 function PageTitle(props) {
   useEffect(() => {
     document.title = props.title;
-  }, [prop.title]);
+  }, [props.title]);
 
   return <h1>{props.title}</h1>;
 }
@@ -294,6 +358,10 @@ The first argument to `useEffect` is an argument-less callback that triggers the
 But sometimes we have a more complex use case. Think of a component which needs to subscribe to some data when it mounts and needs to unsubscribe when it unmounts. This can be accomplished with `useEffect` too. To run any cleanup code we just need to return a function in our callback.
 
 ```jsx
+// --repl
+import { useState, useEffect } from 'preact/hooks';
+import { render } from 'preact';
+// --repl-before
 // Component that will always display the current window width
 function WindowWidth(props) {
   const [width, setWidth] = useState(0);
@@ -307,8 +375,10 @@ function WindowWidth(props) {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  return <div>Window width: {width}</div>;
+  return <p>Window width: {width}</p>;
 }
+// --repl-after
+render(<WindowWidth />, document.getElementById("app"));
 ```
 
 > The cleanup function is optional. If you don't need to run any cleanup code, you don't need to return anything in the callback that's passed to `useEffect`.
@@ -316,3 +386,77 @@ function WindowWidth(props) {
 ### useLayoutEffect
 
 The signature is identical to [useEffect](#useeffect), but it will fire as soon as the component is diffed and the browser has a chance to paint.
+
+### useErrorBoundary
+
+Whenever a child component throws an error you can use this hook to catch it and display a custom error UI to the user.
+
+```jsx
+// error = The error that was caught or `undefined` if nothing errored.
+// resetError = Call this function to mark an error as resolved. It's
+//   up to your app to decide what that means and if it is possible
+//   to recover from errors.
+const [error, resetError] = useErrorBoundary();
+```
+
+For monitoring purposes it's often incredibly useful to notify a service of any errors. For that we can leverage an optional callback and pass that as the first argument to `useErrorBoundary`.
+
+```jsx
+const [error] = useErrorBoundary(error => callMyApi(error.message));
+```
+
+A full usage example may look like this:
+
+```jsx
+const App = props => {
+  const [error, resetError] = useErrorBoundary(
+    error => callMyApi(error.message)
+  );
+  
+  // Display a nice error message
+  if (error) {
+    return (
+      <div>
+        <p>{error.message}</p>
+        <button onClick={resetError}>Try again</button>
+      </div>
+    );
+  } else {
+    return <div>{props.children}</div>
+  }
+};
+```
+
+> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](/guide/v10/whats-new/#componentdidcatch) lifecycle method.
+> This hook was introduced with Preact 10.2.0.
+
+## Utility hooks
+
+### useId
+
+This hook will generate a unique identifier for each invocation and guarantees that these will be consistent when rendering both [on the server](/guide/v10/server-side-rendering) and the client. A common use case for consistent IDs are forms, where `<label>`-elements use the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for) attribute to associate them with a specific `<input>`-element. The `useId` hook isn't tied to just forms though and can be used whenever you need a unique ID.
+
+> To make the hook consistent you will need to use Preact on both the server
+> as well as on the client.
+
+A full usage example may look like this:
+
+```jsx
+const App = props => {
+  const mainId = useId();
+  const inputId = useId();
+
+  useLayoutEffect(() => {
+    document.getElementById(inputId).focus()
+  }, [])
+  
+  // Display a nice error message
+  return (
+    <main id={mainId}>
+      <input id={inputId}>
+    </main>
+  )
+};
+```
+
+> This hook was introduced with Preact 10.11.0 and needs preact-render-to-string 5.2.4.

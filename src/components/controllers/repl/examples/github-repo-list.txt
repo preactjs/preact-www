@@ -1,0 +1,40 @@
+import { render } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
+
+const SEARCH = 'https://api.github.com/search/repositories';
+
+function Example() {
+	const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		fetch(`${SEARCH}?q=preact`)
+			.then(res => res.json())
+			.then(data => setItems((data && data.items) || []));
+	}, []);
+
+	return (
+		<div>
+			<h1 style="text-align:center; font-weight: 200">Example</h1>
+			<div class="list">
+				{items.map(result => (
+					<Result {...result} />
+				))}
+			</div>
+		</div>
+	);
+}
+
+const Result = result => (
+	<div class="list-item">
+		<div>
+			<a href={result.html_url} target="_blank" rel="noopener noreferrer">
+				{result.full_name}
+			</a>
+			{' - '}
+			<strong>{result.stargazers_count}</strong>
+		</div>
+		<p>{result.description}</p>
+	</div>
+);
+
+render(<Example />, document.getElementById('app'));

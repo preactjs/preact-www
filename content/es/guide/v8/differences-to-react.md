@@ -11,7 +11,7 @@ La raz√≥n por la que Preact no intenta incluir absolutamente todas las caracter√
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -75,9 +75,9 @@ Preact y React tienen algunas otras diferencias sutiles:
 
 [Metas del proyecto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[3.0]: https://github.com/developit/preact/milestones/3.0
-[4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
+[3.0]: https://github.com/preactjs/preact/milestones/3.0
+[4.0]: https://github.com/preactjs/preact/milestones/4.0
+[preact-compat]: https://github.com/preactjs/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contextos]: https://facebook.github.io/react/docs/context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html

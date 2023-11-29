@@ -3,21 +3,17 @@ layout: home
 title: Preact
 show_title: false
 toc: false
-description: 'Preact is a fast 3kB alternative to React with the same modern API'
+description: 'Fast 3kB alternative to React with the same modern API.'
 ---
 
 <jumbotron>
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p>Fast 3kB alternative to React with the same modern API.</p>
-    <p>
-        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; &nbsp; &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
-    </p>
-    <p>
-        <github-stars user="preactjs" repo="preact">20,000+</github-stars>
+    <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
+    <p class="intro-buttons">
+        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </jumbotron>
 
@@ -35,12 +31,17 @@ function Counter() {
 }
 ```
 
+<section class="sponsors">
+  <p>Proudly <a href="https://opencollective.com/preact">sponsored by:</a></p>
+  <sponsors></sponsors>
+</section>
+
 <section class="home-top">
-    <h1>A different kind of library.</h1>
+    <h1>A different kind of library</h1>
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Closer to the DOM</h2>
@@ -55,7 +56,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/size.svg" alt="size">
+  <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Small Size</h2>
@@ -70,7 +71,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg" alt="performance">
+  <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Big Performance</h2>
@@ -85,7 +86,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg" alt="portable">
+  <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Portable &amp; Embeddable</h2>
@@ -99,7 +100,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg" alt="productive">
+  <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Instantly Productive</h2>
@@ -107,15 +108,14 @@ function Counter() {
       Lightweight is a lot more fun when you don't have to sacrifice productivity to get there. Preact gets you productive right away. It even has a few bonus features:
     </p>
     <ul>
-      <li>`props`, `state` and `context` are passed to `render()`</li>
-      <li>Use standard HTML attributes like `class` and `for`</li>
-      <li>Works with React DevTools right out of the box</li>
+      <li><code>props</code>, <code>state</code> and <code>context</code> are passed to <code>render()</code></li>
+      <li>Use standard HTML attributes like <code>class</code> and <code>for</code></li>
     </ul>
   </div>
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg" alt="compatible">
+  <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Ecosystem Compatible</h2>
@@ -131,12 +131,12 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>See it in action.</h1>
+    <h1>See it in action!</h1>
 </section>
 
 <section class="home-split">
     <div>
-        <h2>Todo List Component</h2>
+        <h2>Todo List</h2>
         <pre><code class="lang-jsx">
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
@@ -227,8 +227,7 @@ render(
         Pick the guide that works best for you!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="home-button">Get Started</a>
-        <span class="home-button-sep">&nbsp; • &nbsp;</span>
-        <a href="/guide/v10/switching-to-preact" class="home-button">Switch to Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </section>

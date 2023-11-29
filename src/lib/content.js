@@ -63,7 +63,7 @@ export const getContentOnServer = PRERENDER
 			// convert frontmatter from yaml to json:
 			const yaml = __non_webpack_require__('yaml');
 			sourceData = sourceData.replace(FRONT_MATTER_REG, (s, y) => {
-				const meta = yaml.eval('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
+				const meta = yaml.parse('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
 				return '---\n' + JSON.stringify(meta) + '\n---\n';
 			});
 
@@ -158,8 +158,8 @@ function generateToc(markdown) {
 		// Note: character range in regex is roughly "word characters including accented" (eg: bublé)
 		const id = text
 			.toLowerCase()
-			.replace(/[\s-]+/g, '-')
-			.replace(/[^a-z0-9\u00C0-\u024F-]/g, '');
+			.replace(/[\s-!<>`",]+/g, '-')
+			.replace(/^-|-$|[/&.()[\]']/g, '');
 		toc.push({ text, id, level });
 	}
 	return toc;

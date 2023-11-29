@@ -8,14 +8,14 @@ permalink: '/about/demos-examples'
 Cette page liste un certain nombre de démos et d'exemples utiles pour apprendre Preact.
 
 > :information_desk_person: _Vous avez écrit le/la vôtre ?
-> [Ajoutez le/la!](https://github.com/developit/preact-www/blob/master/content/about/demos-examples.md)_
+> [Ajoutez le/la!](https://github.com/preactjs/preact-www/blob/master/content/fr/about/demos-examples.md)_
 
 
 ## Applications complètes
 
 [**Site web de Preact** _(preactjs.com)_](https://preactjs.com)  
 Bien sûr ce site web est construit avec Preact.
-[Projet Github](https://github.com/developit/preact-www)
+[Projet Github](https://github.com/preactjs/preact-www)
 
 **[ESBench](http://esbench.com)** :alarm_clock:  
 Construit avec Preact et Material Design Lite.

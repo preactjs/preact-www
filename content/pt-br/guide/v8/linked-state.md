@@ -9,7 +9,7 @@ Uma área que o Preact leva um pouco mais além do que o React é na otimizaçã
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -30,7 +30,7 @@ class Foo extends Component {
 
 Apesar de alcançar performance muito melhor em _runtime_, é ainda muito código desnecessário para conectar estado a UI.
 
-> Outra solução é vincular os métodos de componente _declarativamente_, utilizando decoradores ES7, como [`@bind` do decko](http://git.io/decko):
+> Outra solução é vincular os métodos de componente _declarativamente_, utilizando decoradores ES7, como [`@bind` do decko](https://github.com/developit/decko):
 
 
 ## Estado Associado ao Resgate

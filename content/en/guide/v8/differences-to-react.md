@@ -11,7 +11,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -26,12 +26,12 @@ For both Preact and [preact-compat], version compatibility is measured against t
 
 - [ES6 Class Components]
     - _classes provide an expressive way to define stateful components_
-- [High-Order Components]  
+- [Higher-Order Components]  
     - _components that return other components from `render()`, effectively wrappers_
 - [Stateless Pure Functional Components]  
     - _functions that receive `props` as arguments and return JSX/VDOM_
 - [Contexts]: Support for the legacy `context API` was added in Preact [3.0].
-    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/developit/preact/pull/963)._
+    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/preactjs/preact/pull/963)._
 - [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
     - _Refs provide a way to refer to rendered elements and child components._
 - Virtual DOM Diffing
@@ -72,16 +72,16 @@ Preact and React have some more subtle differences:
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[3.0]: https://github.com/developit/preact/milestones/3.0
-[4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
+[3.0]: https://github.com/preactjs/preact/milestones/3.0
+[4.0]: https://github.com/preactjs/preact/milestones/4.0
+[preact-compat]: https://github.com/preactjs/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contexts]: https://reactjs.org/docs/legacy-context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html
 [Children]: https://facebook.github.io/react/docs/top-level-api.html#reactchildren
 [GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
 [ES6 Class Components]: https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-[High-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
+[Higher-Order Components]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Stateless Pure Functional Components]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
 [destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
 [Linked State]: /guide/linked-state

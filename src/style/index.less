@@ -1,78 +1,12 @@
 @import './helpers';
 @import './reset';
+@import './buttons';
 @import './markdown';
 @import './gh-btn';
 @import './list-view';
 @import './prism.css';
 @import './variables';
-
-// The following two classes may seem redundant, but they allow us to overwrite
-// the scheme defined by the browser if the user wants to.
-html.light {
-	--color-page-bg: white;
-	--color-text: #444;
-	--color-home-btn: #673ab8;
-	--color-heading: black;
-	--color-link: #673ab8;
-	--color-hr: #f8f8f8;
-	--color-quote-bg: #ebf6ff;
-	--color-quote-border: #5aa8ff;
-	--color-quote-text: #444;
-	--color-warn-bg: #ffee5b;
-	--color-table-border: #ccc;
-	--color-table-even-bg: white;
-	--color-table-odd-bg: #f8f8f8;
-	--color-table-border: #ccc;
-	--color-code-inline-bg: #f8f8f8;
-	--color-code-inline-border: #eaeaea;
-	--color-code-bg: #252931;
-	--color-repl-bg: #666;
-	--color-repl-hover: #999;
-	--color-sidebar-divider: #eee;
-	--color-sidebar-bg: #fafafa;
-	--color-sidebar-bg-active: #f3f3f3;
-	--color-sidebar-link-active: #673ab8;
-	--color-sidebar-link: #555;
-	--color-footer-lang-divider: #aaa;
-	--color-footer-lang: #673ab8;
-	--color-footer-link: #673ab8;
-	--color-footer-text: #555;
-	--color-footer-bg: #f2f2f2;
-	--color-footer-border: #ddd;
-}
-
-// Same for this one
-html.dark {
-	--color-page-bg: #242424;
-	--color-text: #b0b0b0;
-	--color-heading: #c5c5c5;
-	--color-link: #ae80ff;
-	--color-home-btn: #673ab8;
-	--color-hr: #444;
-	--color-quote-bg: #29475f;
-	--color-quote-border: #3f6b9c;
-	--color-quote-text: #c5c5c5;
-	--color-warn-bg: #f2d900;
-	--color-table-border: #575757;
-	--color-table-even-bg: #242424;
-	--color-table-odd-bg: #2f2f2f;
-	--color-code-inline-bg: #2b313c;
-	--color-code-inline-border: #5e5e5e;
-	--color-code-bg: #252931;
-	--color-repl-bg: #414141;
-	--color-repl-hover: #555;
-	--color-sidebar-divider: #4f4f4f;
-	--color-sidebar-bg: #171717;
-	--color-sidebar-bg-active: #242424;
-	--color-sidebar-link-active: #ae80ff;
-	--color-sidebar-link: #b0b0b0;
-	--color-footer-lang-divider: #444;
-	--color-footer-lang: #ae80ff;
-	--color-footer-link: #ae80ff;
-	--color-footer-text: #999;
-	--color-footer-bg: #1b1b1b;
-	--color-footer-border: #1b1b1b;
-}
+@import './home';
 
 html,
 body {
@@ -90,7 +24,7 @@ body {
 body {
 	// Sets overflowing background color when scrolled past the page in
 	// MacOS or in iOS.
-	background: @color-brand;
+	background: var(--color-brand);
 }
 
 * {
@@ -118,14 +52,20 @@ code {
 	font-size: 0.9rem;
 }
 
-pre.highlight {
+div.highlight-container {
+	padding: 0 !important;
 	position: relative;
-	border: none;
 	margin-bottom: 2.5rem;
-	line-height: 1.5;
-	padding: 20px;
+
+	pre.highlight {
+		position: relative;
+		border: none;
+		line-height: 1.5;
+		padding: 20px;
+	}
 
 	a.repl-link {
+		font-size: 13px;
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -134,7 +74,7 @@ pre.highlight {
 		color: #fff;
 		border: none;
 		background: var(--color-repl-bg);
-		border-radius: 0 0 0 3px;
+		border-radius: 0 3px 0 3px;
 		text-align: center;
 		text-decoration: none;
 
@@ -144,17 +84,13 @@ pre.highlight {
 	}
 }
 
-content-region {
-	display: block;
-}
-
 #app {
 	min-height: 100%;
 	background: var(--color-page-bg);
 
 	& > main {
 		min-height: 95%;
-		padding-top: @header-height;
+		padding-top: @header-and-banner-height;
 		display: block; // Fix IE11 layout
 	}
 }
@@ -213,21 +149,17 @@ main .markup {
 		}
 	}
 
-	.home-button {
-		margin: 0 1rem;
-	}
+	.intro-buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 3rem;
 
-	.home-button-sep {
-		display: none;
-	}
-
-	@media (max-width: 600px) {
-		.home-button-sep {
-			display: block;
-			height: 0;
-			width: auto;
-			margin-bottom: 1.3em;
-			overflow: hidden;
+		@media (min-width: 600px) {
+			flex-direction: row-reverse;
+			justify-content: center;
+			align-items: initial;
+			margin-bottom: 4.5rem;
 		}
 	}
 
@@ -245,7 +177,7 @@ main .markup {
 
 		input,
 		button {
-			margin: 0 5px 0 0.5re;
+			margin: 0 5px 0 0.5rem;
 			padding: 5px 10px;
 			border: 1px solid #673ab8;
 			border-radius: 3px;
@@ -254,6 +186,10 @@ main .markup {
 		button {
 			background: #673ab8;
 			color: #fff;
+		}
+		input {
+			box-sizing: border-box;
+			width: 75%;
 		}
 	}
 }
@@ -309,20 +245,6 @@ main .markup {
 	}
 }
 
-.home-button {
-	display: inline-block;
-	min-width: 12em;
-	padding: 0.5em 0.9em;
-	background: #eee !important;
-	box-shadow: 0 2px 0 rgba(@color-brand, 0.3);
-	border: none;
-	border-radius: 4px;
-	color: var(--color-home-btn) !important;
-	font-weight: bold;
-	text-transform: uppercase;
-	white-space: nowrap;
-}
-
 @break-s: ~'(min-width: 700px)';
 
 // Styles for a typical media/flag layout where you have one image on the left
@@ -367,6 +289,7 @@ main .markup {
 		display: block;
 		width: 25%;
 		align-self: center;
+		height: auto; // override intrinsic size
 		max-height: 13rem; // IE11 fix
 
 		@media @break-s {

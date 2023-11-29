@@ -24,4 +24,4 @@ Certaines fonctionnalités de React sont volontairement absentes de Preact, soit
     - les Children, puisque Preact place toujours les children dans un tableau
     - les événements synthétiques, puisque Preact n'essaye pas de réparer les problèmes dans les anciens navigateurs comme IE8
 
-[preact-compat]: https://github.com/developit/preact-compat/
+[preact-compat]: https://github.com/preactjs/preact-compat/

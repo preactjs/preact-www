@@ -9,7 +9,7 @@ permalink: '/guide/linked-state'
 
 ---
 
-<toc></toc>
+<div><toc></toc></div>
 
 ---
 
@@ -32,7 +32,7 @@ class Foo extends Component {
 
 尽管这样做获得了更优异的运行性能，但是它还是需要编写许多不必要的代码来关联 state 和 UI。
 
-> 另一个解决方案是使用 ES7 的装饰器，声明式地绑定组件方法。例如 [decko's](http://git.io/decko) `@bind`。
+> 另一个解决方案是使用 ES7 的装饰器，声明式地绑定组件方法。例如 [decko's](https://github.com/developit/decko) `@bind`。
 
 ## 让关联状态（Linked State）来拯救你
 
