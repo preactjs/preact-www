@@ -161,6 +161,17 @@ export default function Page({ route, prev, next }, ctx) {
 	const canEdit = showTitle && current != '404' && current !== '/blog';
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
+	useEffect(() => {
+		if (location.hash) {
+			const anchor = document.querySelector(location.hash);
+			if (anchor) {
+				// Do not use scrollIntoView as it will cause
+				// the heading to be covered by the header
+				scrollTo({ top: anchor.offsetTop });
+			}
+		}
+	}, [html]);
+
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
