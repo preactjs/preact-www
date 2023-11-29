@@ -324,7 +324,7 @@ function App() {
 }
 ```
 
-Или вы работаете без значений по умолчанию и используете привязку переменной универсального типа для привязки контекста к определенному типу:
+Или вы работаете без значений по умолчанию и используете привязку переменной универсального типа для привязки контекста к определённому типу:
 
 ```tsx
 type AppContextValues = {
@@ -361,8 +361,8 @@ function App() {
 const Counter = ({ initial = 0 }) => {
   // поскольку начальное значение — это число (значение по умолчанию!), clicks — это число.
   // setClicks — это функция, которая принимает
-  // - число
-  // - функция возвращает число
+  // — число
+  // — функция возвращает число
   const [clicks, setClicks] = useState(initial);
   return (
     <>
@@ -475,8 +475,8 @@ function reducer(state: StateType, action: ActionType) {
 function Counter({ initialCount = 0 }) {
   // TypeScript гарантирует, что редуктор имеет максимум два аргумента и что начальное состояние имеет тип Statetype.
   // Более того:
-  // - state имеет тип StateType
-  // - dispatch это функция для отправки ActionType
+  // — state имеет тип StateType
+  // — dispatch это функция для отправки ActionType
   const [state, dispatch] = useReducer(reducer, { count: initialCount });
 
   return (

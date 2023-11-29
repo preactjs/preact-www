@@ -8,8 +8,8 @@ description: 'Коллекция библиотек и дополнений, к�
 
 Набор модулей, предназначенных для совместной работы с Preact.
 
-> :information*desk_person: \_У вас есть свой модуль?
-> [Добавьте его!](https://github.com/preactjs/preact-www/blob/master/content/en/about/libraries-addons.md)*
+> :information_desk_person: _У вас есть свой модуль?
+> [Добавьте его!](https://github.com/preactjs/preact-www/blob/master/content/en/about/libraries-addons.md)_
 
 ## Дополнения
 
@@ -48,12 +48,12 @@ description: 'Коллекция библиотек и дополнений, к�
 - :rocket: [**preact-photon**](https://github.com/developit/preact-photon): Создание красивых пользовательских интерфейсов на рабочем столе с помощью [photon](http://photonkit.com)
 - :penguin: [**preact-weui**](https://github.com/afeiship/preact-weui): [Weui](https://github.com/afeiship/preact-weui) для Preact
 - 💅 [**preact-fluid**](https://github.com/ajainvivek/preact-fluid): [Fluid](https://github.com/ajainvivek/preact-fluid) — минимальный набор пользовательских интерфейсов для Preact
-- :book: [**storybook-preact**](https://github.com/storybooks/storybook/tree/next/app/preact): Storybook for Preact - это среда разработки пользовательского интерфейса для компонентов Preact.
+- :book: [**storybook-preact**](https://github.com/storybooks/storybook/tree/next/app/preact): Storybook for Preact — это среда разработки пользовательского интерфейса для компонентов Preact.
 
 ### Тестирование
 
 - :microscope: [**preact-jsx-chai**](https://github.com/developit/preact-jsx-chai): Тестирование утверждений JSX _(без DOM, прямо в Node)_.
-- :white*check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX утверждения, события, снимки в Jest *(DOM, работает под Node jsdom или «из коробки» в Jest)\_ - [docs](https://bruderstein.github.io/unexpected-preact/)
+- :white*check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): JSX утверждения, события, снимки в Jest *(DOM, работает под Node jsdom или «из коробки» в Jest)\_ — [docs](https://bruderstein.github.io/unexpected-preact/)
 
 ## Утилиты
 
