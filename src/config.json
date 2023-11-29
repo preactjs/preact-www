@@ -74,7 +74,8 @@
 			"first": "index",
 			"name": {
 				"en": "Tutorial",
-				"zh": "教程"
+				"zh": "教程",
+				"ru": "Учебник"
 			},
 			"controller": "Tutorial"
 		},
@@ -443,7 +444,8 @@
 						"pt-br": "Preact Testing Library",
 						"ja": "Preact Testing Library",
 						"de": "Preact Testing Library",
-						"zh": "Preact 测试库"
+						"zh": "Preact 测试库",
+						"ru": "Preact Testing Library"
 					}
 				},
 				{
@@ -476,7 +478,7 @@
 						"de": "Unterschiede zu React",
 						"kr": "React와의 차이점",
 						"zh": "与 React 的区别",
-						"ru": "Различия с React"
+						"ru": "Отличия от React"
 					}
 				},
 				{
