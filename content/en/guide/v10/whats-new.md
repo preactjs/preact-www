@@ -37,7 +37,7 @@ function Foo() {
 
 We all wish errors wouldn't happen in our applications, but sometimes they do. With `componentDidCatch`, it's now possible to catch and handle any errors that occur within lifecycle methods like `render`, including exceptions deep in the component tree. This can be used to display user-friendly error messages, or write a log entry to an external service in case something goes wrong.
 
-[Lifecycle docs →](/guide/v10/components#componentdidcatch)
+[Lifecycle docs →](/guide/v10/components#error-boundaries)
 
 ```jsx
 // --repl

@@ -17,7 +17,7 @@ const LINK_FLAIR = {
 };
 
 export default function Header() {
-	const { url } = useStore(['url']).state;
+	const { url, preactVersion } = useStore(['url', 'preactVersion']).state;
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
@@ -37,7 +37,10 @@ export default function Header() {
 					<Nav class={style.nav} routes={config.nav} current={url} />
 					<Search />
 					<div class={style.social}>
-						<ReleaseLink class={cx(style.socialItem, style.release)} />
+						<ReleaseLink
+							class={cx(style.socialItem, style.release)}
+							preactVersion={preactVersion}
+						/>
 						<a
 							class={style.socialItem}
 							aria-label="Browse the code on GitHub"
@@ -62,9 +65,11 @@ export default function Header() {
 								height="28"
 							/>
 						</a>
-						<NavItem />
 					</div>
-					<Hamburger open={open} onClick={toggle} />
+					<div class={style.translation}>
+						<NavMenu language />
+					</div>
+					<HamburgerMenu open={open} onClick={toggle} />
 				</div>
 			</div>
 			<Corner />
@@ -72,8 +77,7 @@ export default function Header() {
 	);
 }
 
-// hamburger menu
-const Hamburger = ({ open, ...props }) => (
+const HamburgerMenu = ({ open, ...props }) => (
 	<div class={style.hamburger} open={open} {...props}>
 		<div class={style.hb1} />
 		<div class={style.hb2} />
@@ -84,25 +88,31 @@ const Hamburger = ({ open, ...props }) => (
 // nested nav renderer
 const Nav = ({ routes, current, ...props }) => (
 	<nav {...props}>
-		{routes.map(route => (
-			<NavItem
-				to={route}
-				current={current}
-				data-route={getRouteIdent(route)}
-				class={cx(
-					route.class,
-					(pathMatchesRoute(current, route) ||
-						(route.content === 'guide' && /^\/guide\//.test(current)) ||
-						(route.content === 'blog' && /^\/blog\//.test(current))) &&
-						style.current
-				)}
-			/>
-		))}
+		{routes.map(route =>
+			route.routes ? (
+				<NavMenu
+					to={route}
+					current={current}
+					data-route={getRouteIdent(route)}
+				/>
+			) : (
+				<NavLink
+					to={route}
+					class={cx(
+						route.class,
+						(pathMatchesRoute(current, route) ||
+							(route.content === 'guide' && /^\/guide\//.test(current)) ||
+							(route.content === 'blog' && /^\/blog\//.test(current))) &&
+							style.current
+					)}
+				/>
+			)
+		)}
 	</nav>
 );
 
 // nav items are really the only complex bit for menuing, since they handle click events.
-class NavItem extends Component {
+class NavMenu extends Component {
 	state = { open: false };
 
 	close = () => (this.setState({ open: false }), false);
@@ -132,27 +142,32 @@ class NavItem extends Component {
 		}
 	}
 
-	render({ to, current, ...props }, { open }) {
-		if (!to)
-			return (
-				<LanguageSelector
-					isOpen={open}
-					toggle={this.toggle}
-					close={this.close}
-					{...props}
-				/>
-			);
-		if (!to.routes) return <NavLink to={to} {...props} />;
-
+	render({ to, current, language, ...props }, { open }) {
 		return (
 			<div {...props} data-open={open} class={style.navGroup}>
-				<NavLink to={to} onClick={this.toggle} aria-haspopup isOpen={open} />
-				<Nav
-					routes={to.routes}
-					current={current}
-					aria-label="submenu"
-					aria-hidden={'' + !open}
-				/>
+				{language ? (
+					<LanguageSelectorMenu
+						isOpen={open}
+						toggle={this.toggle}
+						close={this.close}
+						{...props}
+					/>
+				) : (
+					<>
+						<NavLink
+							to={to}
+							onClick={this.toggle}
+							aria-haspopup
+							isOpen={open}
+						/>
+						<Nav
+							routes={to.routes}
+							current={current}
+							aria-label="submenu"
+							aria-hidden={'' + !open}
+						/>
+					</>
+				)}
 			</div>
 		);
 	}
@@ -198,7 +213,7 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	);
 };
 
-const LanguageSelector = ({ isOpen, toggle, close, ...props }) => {
+const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
 	const [lang, setLang] = useLanguage();
 	const onClick = useCallback(
 		e => {
@@ -209,11 +224,7 @@ const LanguageSelector = ({ isOpen, toggle, close, ...props }) => {
 	);
 
 	return (
-		<div
-			{...props}
-			data-open={isOpen}
-			class={cx(style.navGroup, style.translation)}
-		>
+		<>
 			<button {...props} onClick={toggle} aria-haspopup aria-expanded={isOpen}>
 				<img
 					src="/assets/i18n.svg"
@@ -233,7 +244,7 @@ const LanguageSelector = ({ isOpen, toggle, close, ...props }) => {
 					</span>
 				))}
 			</nav>
-		</div>
+		</>
 	);
 };
 

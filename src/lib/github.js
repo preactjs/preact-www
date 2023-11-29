@@ -21,8 +21,4 @@ export const fetchRelease = repo =>
 		.then(d => ({
 			version: d.version || '??',
 			url: d.url || 'https://github.com/preactjs/preact'
-		}))
-		.catch(() => ({
-			url: '#',
-			version: '??'
 		}));

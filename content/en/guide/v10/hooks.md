@@ -5,7 +5,7 @@ description: 'Hooks in Preact allow you to compose behaviours together and re-us
 
 # Hooks
 
-Hooks is a new concept that allows you to compose state and side effects. They allow you to reuse stateful logic between components.
+The Hooks API is a new concept that allows you to compose state and side effects. Hooks allow you to reuse stateful logic between components.
 
 If you've worked with Preact for a while, you may be familiar with patterns like "render props" and "higher order components" that try to solve these challenges. These solutions have tended to make code harder to follow and more abstract. The hooks API makes it possible to neatly extract the logic for state and side effects, and also simplifies unit testing that logic independently from the components that rely on it.
 
@@ -427,8 +427,8 @@ const App = props => {
 };
 ```
 
-> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) lifecycle method.
-> This hook was introduced with Preact 10.2.0 .
+> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](/guide/v10/whats-new/#componentdidcatch) lifecycle method.
+> This hook was introduced with Preact 10.2.0.
 
 ## Utility hooks
 

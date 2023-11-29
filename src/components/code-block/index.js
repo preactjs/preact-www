@@ -135,7 +135,14 @@ const CodeBlock = props => {
 		)[1];
 		const firstChild = getChild(child.props);
 		const code = String(firstChild || '').replace(/(^\s+|\s+$)/g, '');
-		return <HighlightedCodeBlock {...props} code={code} lang={lang} />;
+		return (
+			<HighlightedCodeBlock
+				{...props}
+				code={code}
+				lang={lang}
+				key={lang + '\n' + code}
+			/>
+		);
 	}
 
 	return <pre {...props} />;

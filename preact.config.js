@@ -5,25 +5,33 @@ import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
 import pageConfig from './src/config.json';
 import { Feed } from 'feed';
+
+// Enables some options that make local debugging easier
+const LOCAL_DEBUG = false;
+
 // prettier-ignore
 
+/**
+ * @param {import('preact-cli').Config} config
+ * @param {import('preact-cli').Env} env
+ * @param {import('preact-cli').Helpers} helpers
+ */
 export default function (config, env, helpers) {
 	// aliases from before the beginning of time
 	Object.assign(config.resolve.alias, {
 		src: resolve(__dirname, 'src'),
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
-		lib: resolve(__dirname, 'src/lib'),
-		'promise-polyfill$': resolve(__dirname, 'src/promise-polyfill.js')
+		lib: resolve(__dirname, 'src/lib')
 	});
 
 	// Use our custom polyfill entry
-	if (!config.entry['ssr-bundle']) {
+	if (!env.isServer) {
 		config.entry.polyfills = resolve(__dirname, 'src/polyfills.js');
 	}
 
 	const { plugin: definePlugin } = helpers.getPluginsByName(config, 'DefinePlugin')[0];
-	definePlugin.definitions.PRERENDER = String(env.ssr===true);
+	definePlugin.definitions.PRERENDER = String(env.isServer);
 	definePlugin.definitions['process.env.BRANCH'] = JSON.stringify(process.env.BRANCH);
 
 	// web worker HMR requires it
@@ -33,28 +41,32 @@ export default function (config, env, helpers) {
 		/babel-standalone/
 	].concat(config.module.noParse || []);
 
-	const babel = helpers.getLoadersByName(config, 'babel-loader')[0].rule;
+	const { rule: babel } = helpers.getLoadersByName(config, 'babel-loader')[0];
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
 
+	if (LOCAL_DEBUG) {
+		// When debugging locally, compile for higher browser versions to avoid
+		// having to debug through polyfills and overly transpiled code.
+		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
+		envPresetConfig.targets = {
+			browsers: ["fully supports es6-module"],
+		};
+		// config.devtool = 'cheap-source-map';
+	}
+
 	// Add CSS Custom Property fallback
-	const cssConfig = config.module.rules.filter(d => d.test.test('foo.less'));
-	cssConfig.forEach(c => {
-		c.use.filter(d => d.loader == 'postcss-loader').forEach(x => {
-			x.options.plugins.push(customProperties({ preserve: true }));
-		});
-	});
+	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
+	postcssLoader.options.postcssOptions.plugins.push(customProperties({ preserve: true }));
 
 	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
-	const optimizeCss = config.optimization && (config.optimization.minimizer || []).filter(plugin => /^OptimizeCssAssets(Webpack)?Plugin$/.test(plugin.constructor.name))[0];
-	if (optimizeCss) {
+	if (env.isProd && !env.isServer) {
+		const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
 		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
 	}
 
-	Object.assign(config.optimization.splitChunks || (config.optimization.splitChunks = {}), {
-		minSize: 1000
-	});
+	config.optimization.splitChunks.minSize = 1000;
 
-	if (!env.ssr) {
+	if (!env.isServer) {
 		// Find YAML FrontMatter preceeding a markdown document
 		const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
