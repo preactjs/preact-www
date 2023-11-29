@@ -520,52 +520,6 @@
 					"name": "TypeScript"
 				}
 			]
-		},
-		{
-			"name": {
-				"en": "CLI"
-			},
-			"content": "cli",
-			"routes": [
-				{
-					"path": "/guide/v10/cli",
-					"name": {
-						"en": "Introduction",
-						"pt-br": "Introdução",
-						"ja": "Preact CLI",
-						"es": "Introducción",
-						"zh": "介绍"
-					}
-				},
-				{
-					"path": "/guide/v10/cli/getting-started",
-					"name": {
-						"en": "Getting started",
-						"pt-br": "Começando",
-						"ja": "はじめに",
-						"es": "Empezando",
-						"zh": "快速入门"
-					}
-				},
-				{
-					"path": "/guide/v10/cli/service-worker",
-					"name": {
-						"en": "Service Workers",
-						"ja": "Service Worker",
-						"zh": "Service Worker"
-					}
-				},
-				{
-					"path": "/guide/v10/cli/pre-rendering",
-					"name": {
-						"en": "Pre-rendering",
-						"pt-br": "Pré-renderização",
-						"ja": "プリレンダリング",
-						"es": "Pre-renderización",
-						"zh": "预渲染"
-					}
-				}
-			]
 		}
 	],
 	"blogAuthors": [
