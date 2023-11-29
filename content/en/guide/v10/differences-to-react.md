@@ -6,7 +6,7 @@ description: 'What are the differences between Preact and React. This document d
 
 # Differences to React
 
-Preact itself is not intended to be a reimplementation of React. There are differences. Many of these differences are trivial, or can be completely removed by using [preact/compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
+Preact is not intended to be a reimplementation of React. There are differences. Many of these differences are trivial, or can be completely removed by using [preact/compat], which is a thin layer over Preact that attempts to achieve 100% compatibility with React.
 
 The reason Preact does not attempt to include every single feature of React is in order to remain **small** and **focused** - otherwise it would make more sense to simply submit optimizations to the React project, which is already a very complex and well-architected codebase.
 
@@ -18,31 +18,44 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ## Main differences
 
-The main difference when comparing Preact and React apps is that we don't ship our own Synthetic Event system. Preact uses the browser's native `addEventlistener` for event handling internally. See [GlobalEventHandlers] for a full list of DOM event handlers.
+The main difference between Preact and React is that Preact does not implement a synthetic event system for size and performance reasons. Preact uses the browser's standard `addEventListener` to register event handlers, which means event naming and behavior works the same in Preact as it does in plain JavaScript / DOM. See [MDN's Event Reference] for a full list of DOM event handlers.
 
-For us it doesn't make sense as the browser's event system supports all features we need. A full custom event implementation would mean more maintenance overhead and a larger API surface area for us.
+Standard browser events work very similarly to how events work in React, with a few small differences. In Preact:
 
-We've come across the following differences between React's synthetic event system and native browser events:
+- events don't bubble up through `<Portal>` components
+- standard `onInput` should be used instead of React's `onChange` for form inputs (**only if `preact/compat` is not used**)
+- standard `onDblClick` should be used instead of React's `onDoubleClick` (**only if `preact/compat` is not used**)
+- `onSearch` should generally be used for `<input type="search">`, since the clear "x" button does not fire `onInput` in IE11
 
-- Browser events don't bubble through `<Portal>`-Components
-- The clear "x" button in IE11 for `<input type="search">` elements does not fire an `input` event.
-- Use `onInput` instead `onChange` for `<input>`-elements (**only if `preact/compat` is not used**)
-
-The other main difference is that we follow a bit more closely the DOM specification. One example of that is that you can use `class` instead of `className`.
+Another notable difference is that Preact follows the DOM specification more closely. Custom elements are supported like any other element, and custom events are supported with case-sensitive names (as they are in the DOM).
 
 ## Version Compatibility
 
-For both Preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
+For both preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
-> Thus, the website and documentation reflect React `0.16.x` and `15.x` when discussing compatibility or making comparisons.
+> Thus, the website and documentation reflect React `15.x` through `17.x` when discussing compatibility or making comparisons.
+
+## Debug messages and errors
+
+Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](https://preactjs.com/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
+
+```js
+import "preact/debug"; // <-- Add this line at the top of your main entry file
+```
+
+This is different from React which requires a bundler being present that strips out debugging messages at build time by checking for `NODE_ENV != "production"`.
 
 ## Features unique to Preact
 
 Preact actually adds a few convenient features inspired by work in the (P)React community:
 
+### Native support for ES Modules
+
+Preact was built with ES Modules in mind from the beginning, and was one of the first frameworks to support them. You can load Preact via the `import` keyword directly in browsers without having it to pass through a bundler first.
+
 ### Arguments in `Component.render()`
 
-For convenience we pass `this.props` and `this.state` of a class component to the `render()`. Take a look at this component which uses one prop and one state property.
+For convenience, we pass `this.props` and `this.state` to the `render()` method on class components. Take a look at this component which uses one prop and one state property.
 
 ```jsx
 // Works in both Preact and React
@@ -55,7 +68,7 @@ class Foo extends Component {
 }
 ```
 
-In Preact this is can be also written like this:
+In Preact this can be also written like this:
 
 ```jsx
 // Only works in Preact
@@ -68,11 +81,11 @@ class Foo extends Component {
 }
 ```
 
-Both snippets render the exact same thing. It's just a matter of stylistic preference.
+Both snippets render the exact same thing, render arguments are provided for convenience.
 
 ### Raw HTML attribute/property names
 
-With Preact we follow more closely the DOM specification supported by all major browsers. One prominent difference is that you can use the standard `class` attribute instead of `className`.
+Preact aims to closely match the DOM specification supported by all major browsers. When applying `props` to an element, Preact _detects_ whether each prop should be set as a property or HTML attribute. This makes it possible to set complex properties on Custom Elements, but it also means you can use attribute names like `class` in JSX:
 
 ```jsx
 // This:
@@ -88,9 +101,7 @@ Most Preact developers prefer to use `class` because it's shorter to write, but 
 
 SVG is pretty interesting when it comes to the names of its properties and attributes. Some properties (and their attributes) on SVG objects are camelCased (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes)), some attributes are kebab-case (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), and other attributes (usually ones inherited from the DOM, e.g. `oninput`) are all lowercase.
 
-Preact forwards SVG-Attributes as is. This allows you to copy and paste unmodified SVG snippets right into your code and have them work out of the box. This allows greater interoperability with tools designers tend to use to generate icons or SVG illustrations.
-
-If you're coming from React you're likely used to specify every attribute in camelCase. If you'd like to continue using the camelCase'd attribute names you can use our [preact/compat] compatibility layer. It mirrors the React API and normalizes these attributes.
+Preact applies SVG attributes as-written. This means you can copy and paste unmodified SVG snippets right into your code and have them work out of the box. This allows greater interoperability with tools designers tend to use to generate icons or SVG illustrations.
 
 ```jsx
 // React
@@ -103,9 +114,11 @@ If you're coming from React you're likely used to specify every attribute in cam
 </svg>
 ```
 
+If you're coming from React, you may be used to specifying all attributes in camelCase. You can continue to use always-camelCase SVG attribute names by adding [preact/compat] to your project, which mirrors the React API and normalizes these attributes.
+
 ### Use `onInput` instead of `onChange`
 
-Largely for historical reasons, the semantics of React's `onChange` event are actually the same as the `onInput` event provided by browsers, which is supported everywhere. The `input` event is the best-suited event for the majority of cases where you want react when a form control is modified. In Preact core, `onChange` is the standard [DOM change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) that gets fired when an element's value is _committed_ by the user.
+Largely for historical reasons, the semantics of React's `onChange` event are actually the same as the `onInput` event provided by browsers, which is supported everywhere. The `input` event is the best-suited event for the majority of cases where you want to react when a form control is modified. In Preact core, `onChange` is the standard [DOM change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) that gets fired when an element's value is _committed_ by the user.
 
 ```jsx
 // React
@@ -119,7 +132,7 @@ If you're using [preact/compat], most `onChange` events are internally converted
 
 ### JSX Constructor
 
-JSX is a syntax extension for JavaScript that is converted to nested function calls. The idea of using these nested calls to build up tree structures long predates JSX, and was previously popularized in JavaScript by the [hyperscript] project. This approach has value well beyond the scope of the React ecosystem, so Preact promotes the original generalized community-standard. For a more in-depth discussion of how JSX works and its relationship to Hyperscript, [read this article](http://jasonformat.com/wtf-is-jsx).
+JSX is a syntax extension for JavaScript that is converted to nested function calls. The idea of using these nested calls to build up tree structures long predates JSX, and was previously popularized in JavaScript by the [hyperscript] project. This approach has value well beyond the scope of the React ecosystem, so Preact promotes the original generalized community-standard. For a more in-depth discussion of JSX and its relationship to Hyperscript, [read this article on how JSX works](https://jasonformat.com/wtf-is-jsx).
 
 **Source:** (JSX)
 
@@ -197,12 +210,12 @@ A React-compatible `Children` API is available from `preact/compat` to make inte
 
 - [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
 - [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
-- [forwardRef](/guide/v10/switching-to-preact#forwardRef): Supply a `ref` to a specified child component.
+- [forwardRef](/guide/v10/switching-to-preact#forwardref): Supply a `ref` to a specified child component.
 - [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
-- [Suspense](/guide/v10/switching-to-preact#suspense): **experimental** Allows to display fallback content in case the tree is not ready
-- [lazy](/guide/v10/switching-to-preact#suspense): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
+- [Suspense](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Allows to display fallback content in case the tree is not ready
+- [lazy](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[MDN's Event Reference]: https://developer.mozilla.org/en-US/docs/Web/Events

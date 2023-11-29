@@ -57,13 +57,17 @@ A site that allows you to search through [Akamai State of the Internet Connectiv
 Desktop App for uploading assets to Contentful (API based CMS)
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
-**[Code and Comment](https://code-and-comment.github.io/code-and-comment/)** :memo:
-An application for adding comments to any file on Github.
-[Github Project](https://github.com/code-and-comment/code-and-comment)
-
 **[Exchange Widget](https://sgtpep.github.io/exchange-widget/dist/)** :currency_exchange:
 The currency exchange widget inspired by a popular mobile app implemented using Preact, Meiosis, HTML tagged templates and native ES modules.
 [Github Project](https://github.com/sgtpep/exchange-widget)
+
+**[Blaze](https://blaze.now.sh)** :zap:  
+Modern peer-to-peer file sharing Progressive Web App.  
+[Github Project](https://github.com/blenderskool/blaze)
+
+**[1tuner](https://1tuner.com)** :radio:  
+Listen to radio and podcasts.  
+[Github Project](https://github.com/robinbakker/1tuner)
 
 ## Full Demos & Examples
 
@@ -110,6 +114,9 @@ Quickly spin up a new personal webpage by only needing to modify JSON data.
 
 **[Parcel + Preact + Unistore Starter](https://github.com/hwclass/parcel-preact-unistore-starter)**
 Starter pack for lightning-fast prototyping and small/medium size project structure
+
+**[buildless-preact-starter](https://github.com/ttntm/buildless-preact-starter)** :rocket:
+A starter/template for using Preact in buildless environments
 
 ## Codepens
 

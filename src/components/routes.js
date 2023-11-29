@@ -22,7 +22,7 @@ function isValidSiblingRoute(sibling, route) {
 export default class Routes extends Component {
 	/**
 	 * Gets fired when the route changes.
-	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
+	 *	@param {Object} event		"change" event from [preact-router](https://github.com/preactjs/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = event => {
@@ -84,6 +84,7 @@ export default class Routes extends Component {
 				<Router url={url} onChange={this.handleRoute}>
 					{this.getNavRoutes(config.docs)}
 					{this.getNavRoutes(config.nav)}
+					{this.getNavRoutes(config.blog)}
 					<controllers.error route={{ content: '404', title: '404' }} default />
 				</Router>
 			</main>

@@ -2,20 +2,22 @@ import { h, Component } from 'preact';
 import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';
-import style from './style';
+import style from './style.module.less';
 import { useStore } from '../store-adapter';
-import config from '../../config';
+import config from '../../config.json';
 import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
+import { route as reroute } from 'preact-router';
+import { useLanguage } from '../../lib/i18n';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
 export default function Header() {
-	const { url } = useStore(['url']).state;
+	const { url, preactVersion } = useStore(['url', 'preactVersion']).state;
 	const [open, setOpen] = useOverlayToggle(false);
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
@@ -25,35 +27,57 @@ export default function Header() {
 
 	return (
 		<header class={cx(style.header, open && style.open)}>
-			<div class={style.inner}>
-				<Nav class={style.nav} routes={config.nav} current={url} />
-				<Search />
-				<div class={style.social}>
-					<ReleaseLink class={cx(style.socialItem, style.release)} />
-					<a
-						class={style.socialItem}
-						aria-label="Browse the code on GitHub"
-						href="https://github.com/preactjs/preact"
-					>
-						<img src="/assets/github.svg" alt="GitHub" />
-					</a>
-					<a
-						class={style.socialItem}
-						aria-label="Follow us on Twitter"
-						href="https://twitter.com/preactjs"
-					>
-						<img src="/assets/twitter.svg" alt="Twitter" />
-					</a>
-				</div>
-				<Hamburger open={open} onClick={toggle} />
-				<Corner />
+			<div class={style.banner}>
+				<a href="https://www.stopputin.net/">
+					We stand with Ukraine. <b>Show your support</b> 🇺🇦
+				</a>
 			</div>
+			<div class={style.outer}>
+				<div class={style.inner}>
+					<Nav class={style.nav} routes={config.nav} current={url} />
+					<Search />
+					<div class={style.social}>
+						<ReleaseLink
+							class={cx(style.socialItem, style.release)}
+							preactVersion={preactVersion}
+						/>
+						<a
+							class={style.socialItem}
+							aria-label="Browse the code on GitHub"
+							href="https://github.com/preactjs/preact"
+						>
+							<img
+								src="/assets/github.svg"
+								alt="GitHub"
+								width="34"
+								height="33"
+							/>
+						</a>
+						<a
+							class={style.socialItem}
+							aria-label="Follow us on Twitter"
+							href="https://twitter.com/preactjs"
+						>
+							<img
+								src="/assets/twitter.svg"
+								alt="Twitter"
+								width="34"
+								height="28"
+							/>
+						</a>
+					</div>
+					<div class={style.translation}>
+						<NavMenu language />
+					</div>
+					<HamburgerMenu open={open} onClick={toggle} />
+				</div>
+			</div>
+			<Corner />
 		</header>
 	);
 }
 
-// hamburger menu
-const Hamburger = ({ open, ...props }) => (
+const HamburgerMenu = ({ open, ...props }) => (
 	<div class={style.hamburger} open={open} {...props}>
 		<div class={style.hb1} />
 		<div class={style.hb2} />
@@ -64,24 +88,31 @@ const Hamburger = ({ open, ...props }) => (
 // nested nav renderer
 const Nav = ({ routes, current, ...props }) => (
 	<nav {...props}>
-		{routes.map(route => (
-			<NavItem
-				to={route}
-				current={current}
-				data-route={getRouteIdent(route)}
-				class={cx(
-					route.class,
-					(route.path === current ||
-						(route.content === 'guide' && /^\/guide\//.test(current))) &&
-						style.current
-				)}
-			/>
-		))}
+		{routes.map(route =>
+			route.routes ? (
+				<NavMenu
+					to={route}
+					current={current}
+					data-route={getRouteIdent(route)}
+				/>
+			) : (
+				<NavLink
+					to={route}
+					class={cx(
+						route.class,
+						(pathMatchesRoute(current, route) ||
+							(route.content === 'guide' && /^\/guide\//.test(current)) ||
+							(route.content === 'blog' && /^\/blog\//.test(current))) &&
+							style.current
+					)}
+				/>
+			)
+		)}
 	</nav>
 );
 
 // nav items are really the only complex bit for menuing, since they handle click events.
-class NavItem extends Component {
+class NavMenu extends Component {
 	state = { open: false };
 
 	close = () => (this.setState({ open: false }), false);
@@ -111,18 +142,32 @@ class NavItem extends Component {
 		}
 	}
 
-	render({ to, current, ...props }, { open }) {
-		if (!to.routes) return <NavLink to={to} {...props} />;
-
+	render({ to, current, language, ...props }, { open }) {
 		return (
 			<div {...props} data-open={open} class={style.navGroup}>
-				<NavLink to={to} onClick={this.toggle} aria-haspopup isOpen={open} />
-				<Nav
-					routes={to.routes}
-					current={current}
-					aria-label="submenu"
-					aria-hidden={'' + !open}
-				/>
+				{language ? (
+					<LanguageSelectorMenu
+						isOpen={open}
+						toggle={this.toggle}
+						close={this.close}
+						{...props}
+					/>
+				) : (
+					<>
+						<NavLink
+							to={to}
+							onClick={this.toggle}
+							aria-haspopup
+							isOpen={open}
+						/>
+						<Nav
+							routes={to.routes}
+							current={current}
+							aria-label="submenu"
+							aria-hidden={'' + !open}
+						/>
+					</>
+				)}
 			</div>
 		);
 	}
@@ -132,6 +177,8 @@ class NavItem extends Component {
 const NavLink = ({ to, isOpen, route, ...props }) => {
 	const { lang } = useStore(['lang']).state;
 	let Flair = to.flair && LINK_FLAIR[to.flair];
+
+	if (to.skipHeader) return;
 
 	if (!to.path) {
 		return (
@@ -146,11 +193,58 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 		);
 	}
 
+	function BrandingRedirect(e) {
+		if (to.href == '/' || to.path == '/') {
+			e.preventDefault();
+			reroute('/branding', false);
+		}
+	}
+
 	return (
-		<a href={to.path} {...props} data-route={route}>
+		<a
+			href={to.href || to.path}
+			{...props}
+			data-route={route}
+			onContextMenu={BrandingRedirect}
+		>
 			{Flair && <Flair />}
 			{getRouteName(to, lang)}
 		</a>
+	);
+};
+
+const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
+	const [lang, setLang] = useLanguage();
+	const onClick = useCallback(
+		e => {
+			setLang(e.target.dataset.value);
+			close();
+		},
+		[setLang]
+	);
+
+	return (
+		<>
+			<button {...props} onClick={toggle} aria-haspopup aria-expanded={isOpen}>
+				<img
+					src="/assets/i18n.svg"
+					alt="Translate Page"
+					width="34"
+					height="28"
+				/>
+			</button>
+			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>
+				{Object.keys(config.languages).map(id => (
+					<span
+						class={cx(id == lang && style.current)}
+						data-value={id}
+						onClick={onClick}
+					>
+						{config.languages[id]}
+					</span>
+				))}
+			</nav>
+		</>
 	);
 };
 
@@ -158,6 +252,22 @@ export function getRouteName(route, lang) {
 	return typeof route.name === 'object'
 		? route.name[lang] || route.name.en
 		: route.name || route.title;
+}
+
+function pathMatchesRoute(path, route) {
+	if (!route || !route.path) return false;
+	if (path === route.path) return true;
+	let segs = path.replace(/(^\/|\/$)/g, '').split('/');
+	let psegs = route.path.replace(/(^\/|\/$)/g, '').split('/');
+	let len = Math.max(psegs.length, segs.length);
+	for (let i = 0; i < len; i++) {
+		let p = psegs[i];
+		let s = segs[i];
+		if (!p || (p[0] !== ':' && s !== p)) return false;
+		if (!s) return /[?*]$/g.test(p);
+		if (/[*+]$/g.test(p)) return true;
+	}
+	return true;
 }
 
 // get a CSS-addressable identifier for a given route

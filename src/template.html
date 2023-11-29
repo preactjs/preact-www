@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title><%= htmlWebpackPlugin.options.title %></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+		<meta name="color-scheme" content="dark light" />
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-touch-icon" content="/assets/app-icon.png" sizes="512x512">
@@ -12,6 +13,8 @@
 		<% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
 			<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
 		<% } %>
+		<link rel="alternate" type="application/rss+xml" href="https://preactjs.com/feed.xml" />
+		<link rel="alternate" type="application/atom+xml" href="https://preactjs.com/feed.atom" />
 		<meta name="twitter:card" content="summary" />
 		<meta property="og:url" content="https://preactjs.com<%= htmlWebpackPlugin.options.url %>" />
 		<meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
@@ -34,7 +37,7 @@
 		<script nomodule>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks.polyfills.entry %>"><\/script>')</script>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin="anonymous">
 	</head>
-	<body class="blacklivesmatter">
+	<body class="banner">
 		<%= htmlWebpackPlugin.options.ssr({
 			url: htmlWebpackPlugin.options.url || '/'
 		}) %>

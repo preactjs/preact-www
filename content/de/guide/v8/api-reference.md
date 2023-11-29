@@ -81,6 +81,8 @@ Rendere eine Preact-Komponente in den `containerNode` DOM-Knoten. Gibt eine Refe
 
 Wenn der optionale `replaceNode` DOM-Knoten gegeben ist und ein Child von `containerNode` ist, wird Preact dieses Element aktualisieren oder mit seinem Differenzierungsalgorithmus ersetzen. Andernfalls wird Preact das gerenderte Element zu `containerNode` hinzufügen.
 
+> ⚠️ Das `replaceNode`-Argument wird in der zukünftigen Preact `v11` Version entfernt. Es führt zu zu vielen Extrawürsten und Fehlern, die in anderen Teilen des Preact Codes berücksichtigt werden müssen. Dieser Teil der Dokumentation dient mehr zu historischen Zwecken, daher empfehlen wir die `render`-Funktion ohne dieses Argument zu benutzen.
+
 ```js
 import { render } from 'preact';
 

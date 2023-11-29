@@ -53,6 +53,7 @@ To learn more about components and how they can be used, check out the [Componen
 Render a Virtual DOM Element into a parent DOM element `containerNode`. Does not return anything.
 
 ```jsx
+// --repl
 // DOM tree before render:
 // <div id="container"></div>
 
@@ -69,6 +70,8 @@ render(<Foo />, document.getElementById('container'));
 ```
 
 If the optional `replaceNode` parameter is provided, it must be a child of `containerNode`. Instead of inferring where to start rendering, Preact will update or replace the passed element using its diffing algorithm.
+
+> ⚠️ The `replaceNode`-argument will be removed with Preact `v11`. It introduces too many edge cases and bugs which need to be accounted for in the rest of Preact's source code. We're leaving this section up for historical reasons, but we don't recommend anyone to use the third `replaceNode` argument.
 
 ```jsx
 // DOM tree before render:
@@ -110,9 +113,10 @@ render(<App />, rootElement); // success
 
 ## hydrate()
 
-If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This only when used in conjunction with [pre-rendering](/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
+If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with [pre-rendering](/guide/v10/cli/pre-rendering) or [Server-Side Rendering](/guide/v10/server-side-rendering).
 
 ```jsx
+// --repl
 import { hydrate } from 'preact';
 
 const Foo = () => <div>foo</div>;
@@ -123,9 +127,9 @@ hydrate(<Foo />, document.getElementById('container'));
 
 `h(type, props, ...children)`
 
-Returns a Virtual DOM Element with the given `props`. Virtual DOM Elements are lightweight descriptions of a node in your application's UI heirarchy, essentially an object of the form `{ type, props }`.
+Returns a Virtual DOM Element with the given `props`. Virtual DOM Elements are lightweight descriptions of a node in your application's UI hierarchy, essentially an object of the form `{ type, props }`.
 
-After `type` and `props`, any remaining parameters are collected into a `children` Array.
+After `type` and `props`, any remaining parameters are collected into a `children` property.
 Children may be any of the following:
 
 - Scalar values (string, number, boolean, null, undefined, etc)
@@ -201,7 +205,7 @@ See the section in the [Context documentation](/guide/v10/context#createcontext)
 
 ## createRef
 
-Creates a `ref` object, with a `current` property pointing to the `ref`'s most recently set value.
+Provides a way to reference an element or component once it has been rendered.
 
 See the [References documentation](/guide/v10/refs#createref) for more details.
 
@@ -211,6 +215,7 @@ A special kind of component that can have children, but is not rendered as a DOM
 Fragments make it possible to return multiple sibling children without needing to wrap them in a DOM container:
 
 ```jsx
+// --repl
 import { Fragment, render } from 'preact';
 
 render(

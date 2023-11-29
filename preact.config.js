@@ -1,31 +1,38 @@
 import { resolve } from 'path';
 import fs from 'fs';
-import delve from 'dlv';
-import CopyPlugin from 'copy-webpack-plugin';
-import Critters from 'critters-webpack-plugin';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
-import SizePlugin from 'size-plugin';
+import pageConfig from './src/config.json';
+import { Feed } from 'feed';
+
+// Enables some options that make local debugging easier
+const LOCAL_DEBUG = false;
+
 // prettier-ignore
 
+/**
+ * @param {import('preact-cli').Config} config
+ * @param {import('preact-cli').Env} env
+ * @param {import('preact-cli').Helpers} helpers
+ */
 export default function (config, env, helpers) {
 	// aliases from before the beginning of time
 	Object.assign(config.resolve.alias, {
 		src: resolve(__dirname, 'src'),
 		components: resolve(__dirname, 'src/components'),
 		style: resolve(__dirname, 'src/style'),
-		lib: resolve(__dirname, 'src/lib'),
-		'promise-polyfill$': resolve(__dirname, 'src/promise-polyfill.js')
+		lib: resolve(__dirname, 'src/lib')
 	});
 
 	// Use our custom polyfill entry
-	if (!config.entry['ssr-bundle']) {
+	if (!env.isServer) {
 		config.entry.polyfills = resolve(__dirname, 'src/polyfills.js');
 	}
 
-	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions.PRERENDER = String(env.ssr===true);
-	helpers.getPluginsByName(config, 'DefinePlugin')[0].plugin.definitions['process.env.BRANCH'] = JSON.stringify(process.env.BRANCH);
+	const { plugin: definePlugin } = helpers.getPluginsByName(config, 'DefinePlugin')[0];
+	definePlugin.definitions.PRERENDER = String(env.isServer);
+	definePlugin.definitions['process.env.BRANCH'] = JSON.stringify(process.env.BRANCH);
 
 	// web worker HMR requires it
 	config.output.globalObject = 'self';
@@ -34,50 +41,32 @@ export default function (config, env, helpers) {
 		/babel-standalone/
 	].concat(config.module.noParse || []);
 
-	const babel = helpers.getLoadersByName(config, 'babel-loader')[0].rule;
+	const { rule: babel } = helpers.getLoadersByName(config, 'babel-loader')[0];
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
 
-	// something broke in less
-	config.module.rules.forEach(loader => {
-		const opts = delve(loader, 'use.0.options.options');
-		if (opts && opts.paths) delete opts.paths;
-	});
-
-	// Add CSS Custom Property fallback
-	const cssConfig = config.module.rules.filter(d => d.test.test('foo.less'));
-	cssConfig.forEach(c => {
-		c.use.filter(d => d.loader == 'postcss-loader').forEach(x => {
-			x.options.plugins.push(customProperties({ preserve: true }));
-		});
-	});
-
-	const critters = helpers.getPluginsByName(config, 'Critters')[0];
-	if (critters) {
-		config.plugins[critters.index] = new Critters({
-			preload: 'media',
-			mergeStylesheets: false,
-			pruneSource: false
-		});
+	if (LOCAL_DEBUG) {
+		// When debugging locally, compile for higher browser versions to avoid
+		// having to debug through polyfills and overly transpiled code.
+		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
+		envPresetConfig.targets = {
+			browsers: ["fully supports es6-module"],
+		};
+		// config.devtool = 'cheap-source-map';
 	}
 
+	// Add CSS Custom Property fallback
+	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
+	postcssLoader.options.postcssOptions.plugins.push(customProperties({ preserve: true }));
+
 	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
-	const optimizeCss = config.optimization && (config.optimization.minimizer || []).filter(plugin => /^OptimizeCssAssets(Webpack)?Plugin$/.test(plugin.constructor.name))[0];
-	if (optimizeCss) {
+	if (env.isProd && !env.isServer) {
+		const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
 		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
 	}
 
-	Object.assign(config.optimization.splitChunks || (config.optimization.splitChunks = {}), {
-		minSize: 1000
-	});
+	config.optimization.splitChunks.minSize = 1000;
 
-	const sizePlugin = helpers.getPluginsByName(config, 'SizePlugin')[0];
-	if (sizePlugin) {
-		config.plugins[sizePlugin.index] = new SizePlugin({
-			publish: true,
-			filename: `size-plugin-${env.ssr?'ssr':'browser'}.json`
-		});
-	}
-	if (!env.ssr) {
+	if (!env.isServer) {
 		// Find YAML FrontMatter preceeding a markdown document
 		const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
@@ -85,39 +74,123 @@ export default function (config, env, helpers) {
 		const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
 		// Converts YAML FrontMatter to JSON FrontMatter for easy client-side parsing.
-		config.plugins.push(new CopyPlugin([{
-			context: __dirname,
-			from: 'content',
-			to: 'content',
-			transform(content, path) {
-				if (typeof content !== 'string') {
-					content = content.toString('utf8');
-				}
-
-				const matches = content.match(FRONT_MATTER_REG);
-				if (!matches) return content;
-
-				const meta = yaml.parse('---\n'+matches[1].replace(/^/gm,'  ')+'\n') || {};
-				content = content.replace(FRONT_MATTER_REG, '');
-				if (!meta.title) {
-					let [,title] = content.match(TITLE_REG) || [];
-					if (title) {
-						content = content.replace(TITLE_REG, '');
-						meta.title = title;
+		const { plugin: copyPlugin } = helpers.getPluginsByName(config, 'CopyPlugin')[0];
+		copyPlugin.patterns = copyPlugin.patterns.concat([
+			{
+				context: __dirname,
+				from: 'content',
+				to: 'content',
+				transform(content, path) {
+					if (typeof content !== 'string') {
+						content = content.toString('utf8');
 					}
-				}
 
-				content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
-				return content;
-			}
-		}, {
-			context: __dirname,
-			from: 'src/robots.txt',
-			to: 'robots.txt'
-		}]));
+					const matches = content.match(FRONT_MATTER_REG);
+					if (!matches) return content;
+
+					const meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
+					content = content.replace(FRONT_MATTER_REG, '');
+					if (!meta.title) {
+						let [, title] = content.match(TITLE_REG) || [];
+						if (title) {
+							content = content.replace(TITLE_REG, '');
+							meta.title = title;
+						}
+					}
+
+					content = '---\n' + JSON.stringify(meta) + '\n---\n' + content;
+					return content;
+				}
+			}, {
+				context: __dirname,
+				from: 'src/robots.txt',
+				to: 'robots.txt'
+			}, {
+				context: __dirname,
+				from: 'src/_headers',
+				to: '_headers',
+				// Copy-Webpack-Plugin otherwise assumes it's a directory, which results in errors
+				toType: 'file'
+			}]
+		);
 
 		netlifyPlugin(config, {
 			redirects: fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
 		});
 	}
+
+	class RssFeedPlugin {
+		apply(compiler) {
+			const handler = (compilation, callback) => {
+				const feed = new Feed({
+					title: 'Preact Blog',
+					description: 'Preact news and articles',
+					id: 'https://preactjs.com',
+					link: 'https://preactjs.com',
+					language: 'en',
+					image: 'https://preactjs.com/assets/branding/symbol.png',
+					favicon: 'https://preactjs.com/favicon.ico',
+					copyright: 'All rights reserved 2022, the Preact team',
+					feedLinks: {
+						json: 'https://preactjs.com/json',
+						atom: 'https://preactjs.com/atom'
+					}
+				});
+
+				pageConfig.blog.forEach(post => {
+					feed.addItem({
+							title: post.name.en,
+							id: `https://preactjs.com${post.path}`,
+							link: `https://preactjs.com${post.path}`,
+							description: post.excerpt.en,
+							date: new Date(post.date)
+					});
+				});
+
+				class RawSource {
+					constructor(str) {
+						this.str = str;
+					}
+
+					source() {
+						return this.str;
+					}
+
+					size() {
+						return this.str.length;
+					}
+				}
+
+				function removeDefaultGenerator(str) {
+					return str
+						.split('\n')
+						.filter(
+							line =>
+								line !==
+								'<generator>https://github.com/jpmonette/feed</generator>'
+						)
+						.join('\n');
+				}
+
+				compilation.assets['feed.xml'] = new RawSource(
+					removeDefaultGenerator(feed.rss2())
+				);
+				compilation.assets['feed.atom'] = new RawSource(
+					removeDefaultGenerator(feed.atom1())
+				);
+
+				callback();
+				return compilation;
+			};
+
+
+			if (compiler.hooks) {
+				compiler.hooks.emit.tapAsync('RssFeedPlugin', handler);
+			} else {
+				compiler.plugin('emit', handler);
+			}
+		}
+	}
+
+	config.plugins.push(new RssFeedPlugin());
 }

@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './style.less';
+import style from './style.module.less';
 import { getCurrentUrl, route } from 'preact-router';
 import { useStore } from '../store-adapter';
 

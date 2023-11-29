@@ -48,7 +48,7 @@ Most bundlers allow you strip out code when they detect that a branch inside an 
 // Must be the first import
 if (process.env.NODE_ENV==='development') {
   // Must use require here as import statements are only allowed
-  // to exist at the top of a file.
+  // to exist at top-level.
   require("preact/debug");
 }
 
@@ -62,7 +62,7 @@ Make sure to set the `NODE_ENV` variable to the correct value in your build tool
 
 ## Debug Warnings and Errors
 
-Sometimes you'll may get warnings or errors whenever Preact detects invalid code. These should all be fixed to ensure that your app works flawlessly.
+Sometimes you may get warnings or errors when Preact detects invalid code. These should be fixed to ensure that your app works flawlessly.
 
 ### `undefined` parent passed to `render()`
 

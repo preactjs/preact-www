@@ -25,7 +25,7 @@ Comece a criar um PWA [Preact] em segundos
 - 1,5kb de polyfills condicionalmente carregados para busca e promises.
 
 ### [Iniciando](https://github.com/preactjs/preact-cli)
-[![Build Status](https://travis-ci.org/preactjs/preact-cli.svg?branch=master)](https://travis-ci.org/preactjs/preact-cli) [![NPM Downloads](https://img.shields.io/npm/dm/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![NPM Version](https://img.shields.io/npm/v/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100)](https://github.com/developit/preact-cli)
+[![Build Status](https://travis-ci.org/preactjs/preact-cli.svg?branch=master)](https://travis-ci.org/preactjs/preact-cli) [![NPM Downloads](https://img.shields.io/npm/dm/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![NPM Version](https://img.shields.io/npm/v/preact-cli.svg?style=flat)](https://www.npmjs.com/package/preact-cli) [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100)](https://github.com/preactjs/preact-cli)
 
 [Promise]: https://npm.im/promise-polyfill
 [fetch]: https://github.com/developit/unfetch
@@ -37,4 +37,4 @@ Comece a criar um PWA [Preact] em segundos
 [PRPL]: https://developers.google.com/web/fundamentals/performance/prpl-pattern
 [proof]: https://googlechrome.github.io/lighthouse/viewer/?gist=142af6838482417af741d966e7804346
 [Service Workers]: https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
-[`async!`]: https://github.com/developit/preact-cli/blob/222e7018dd360e40f7db622191aeca62d6ef0c9a/examples/full/src/components/app.js#L7
+[`async!`]: https://github.com/preactjs/preact-cli/blob/222e7018dd360e40f7db622191aeca62d6ef0c9a/examples/full/src/components/app.js#L7

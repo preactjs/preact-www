@@ -3,14 +3,14 @@ layout: home
 title: Preact
 show_title: false
 toc: false
-description: 'Preact is a fast 3kB alternative to React with the same modern API'
+description: 'Fast 3kB alternative to React with the same modern API.'
 ---
 
 <jumbotron>
     <h1>
         <logo height="1.5em" title="Preact" text inverted>Preact</logo>
     </h1>
-    <p class="tagline">Fast 3kB alternative to React with the same modern API.</p>
+    <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
         <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
@@ -37,11 +37,11 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>A different kind of library.</h1>
+    <h1>A different kind of library</h1>
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Closer to the DOM</h2>
@@ -56,7 +56,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/size.svg" alt="size">
+  <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Small Size</h2>
@@ -71,7 +71,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg" alt="performance">
+  <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Big Performance</h2>
@@ -86,7 +86,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg" alt="portable">
+  <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Portable &amp; Embeddable</h2>
@@ -100,7 +100,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg" alt="productive">
+  <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Instantly Productive</h2>
@@ -115,7 +115,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg" alt="compatible">
+  <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
     <h2>Ecosystem Compatible</h2>
@@ -131,7 +131,7 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>See it in action.</h1>
+    <h1>See it in action!</h1>
 </section>
 
 <section class="home-split">

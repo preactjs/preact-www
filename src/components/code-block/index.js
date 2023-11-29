@@ -58,14 +58,47 @@ function cachedHighlight(code, lang) {
 }
 
 function HighlightedCodeBlock({ code, lang, ...props }) {
+	let repl = false;
+	let source = code;
+	if (code.startsWith('// --repl')) {
+		repl = true;
+		const idx = code.indexOf('\n');
+		if (idx > -1) {
+			code = code.slice(idx + 1);
+			source = source.slice(idx + 1);
+		}
+
+		const beforeMarker = '// --repl-before';
+		const beforeIdx = code.indexOf(beforeMarker);
+		if (beforeIdx > -1) {
+			const pos = beforeIdx + beforeMarker.length + 1;
+			code = code.slice(pos);
+			// Only replace comment line with newline in source
+			source = source.slice(0, beforeIdx) + '\n' + source.slice(pos);
+		}
+
+		const afterMarker = '// --repl-after';
+		const afterIdx = code.indexOf(afterMarker);
+		if (afterIdx > -1) {
+			code = code.slice(0, afterIdx);
+
+			// Only replace comment line with newline in source
+			// ATTENTION: We cannot reuse the index from `code`
+			// as the content and thereby offsets are different
+			const sourceAfterIdx = source.indexOf(afterMarker);
+			source =
+				source.slice(0, sourceAfterIdx) +
+				'\n' +
+				source.slice(sourceAfterIdx + afterMarker.length + 1) +
+				'\n';
+		}
+	}
+
 	const [highlighted, error, pending] = useFuture(
 		() => cachedHighlight(code, lang),
 		[code, lang]
 	);
-	const repl =
-		(lang === 'js' || lang === 'jsx') &&
-		code.split('\n').length > 2 &&
-		props.repl !== 'false';
+
 	const canHighlight = !!pending || !error;
 	const html =
 		(canHighlight && highlighted) ||
@@ -73,14 +106,19 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 	const htmlObj = useMemo(() => ({ __html: html }), [html]);
 
 	return (
-		<pre class={cx('highlight', props.class)}>
-			<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
+		<div class={cx('highlight-container', props.class)}>
+			<pre class="highlight">
+				<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
+			</pre>
 			{repl && (
-				<Link class="repl-link" href={`/repl?code=${encodeURIComponent(code)}`}>
+				<Link
+					class="repl-link"
+					href={`/repl?code=${encodeURIComponent(source)}`}
+				>
 					Run in REPL
 				</Link>
 			)}
-		</pre>
+		</div>
 	);
 }
 
@@ -97,7 +135,14 @@ const CodeBlock = props => {
 		)[1];
 		const firstChild = getChild(child.props);
 		const code = String(firstChild || '').replace(/(^\s+|\s+$)/g, '');
-		return <HighlightedCodeBlock {...props} code={code} lang={lang} />;
+		return (
+			<HighlightedCodeBlock
+				{...props}
+				code={code}
+				lang={lang}
+				key={lang + '\n' + code}
+			/>
+		);
 	}
 
 	return <pre {...props} />;

@@ -1,10 +1,10 @@
-import { h } from 'preact';
+import { Fragment, h } from 'preact';
 import { useEffect, useState, useMemo, useRef } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import { getContentOnServer, getContent } from '../../../lib/content';
-import config from '../../../config';
-import style from './style';
+import config from '../../../config.json';
+import style from './style.module.less';
 import Footer from '../../footer';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
@@ -16,7 +16,7 @@ import {
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
 import { AVAILABLE_DOCS } from '../../doc-version';
-import { BlackLivesMatterBanner } from './campaigns/black-lives-matter';
+import { Time } from '../../time';
 
 const getContentId = route => route.content || route.path;
 
@@ -66,7 +66,7 @@ export function usePage(route, lang) {
 	const [content, setContent] = useState(
 		hydrated && bootData && bootData.content
 	);
-	const [html, setHtml] = useState();
+	const [html, setHtml] = useState(hydrated && bootData && bootData.html);
 
 	const [loading, setLoading] = useState(true);
 	const [isFallback, setFallback] = useState(false);
@@ -158,13 +158,23 @@ export default function Page({ route, prev, next }, ctx) {
 	// "current" is the currently *displayed* page ID.
 
 	const showTitle = current != 'index' && meta.show_title !== false;
-	const canEdit = showTitle && current != '404';
+	const canEdit = showTitle && current != '404' && current !== '/blog';
 	const hasSidebar = meta.toc !== false && isDocPage(url);
+
+	useEffect(() => {
+		if (location.hash) {
+			const anchor = document.querySelector(location.hash);
+			if (anchor) {
+				// Do not use scrollIntoView as it will cause
+				// the heading to be covered by the header
+				scrollTo({ top: anchor.offsetTop });
+			}
+		}
+	}, [html]);
 
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
-			{url === '/' && <BlackLivesMatterBanner />}
 			<div class={style.outer}>
 				<Hydrator
 					wrapperProps={{ class: style.sidebarWrap }}
@@ -175,8 +185,8 @@ export default function Page({ route, prev, next }, ctx) {
 				<div class={style.inner}>
 					{isDocPage(url) && +store.state.docVersion !== AVAILABLE_DOCS[0] && (
 						<div class={style.oldDocsWarning}>
-							You are viewing the documentation for an older version of Preact.
-							Switch to the <a href={docsUrl}>current version</a>.
+							You are viewing the documentation for an older version of Preact.{' '}
+							<a href={docsUrl}>Switch to the current version →</a>
 						</div>
 					)}
 					<Hydrator
@@ -186,7 +196,79 @@ export default function Page({ route, prev, next }, ctx) {
 						isFallback={isFallback}
 					/>
 					{showTitle && (
-						<h1 class={style.title}>{meta.title || route.title}</h1>
+						<div class={style.pageTitle}>
+							<div>
+								{meta.date && <Time value={meta.date} />}
+								{Array.isArray(meta.authors) && meta.authors.length > 0 && (
+									<>
+										, written by{' '}
+										<address class={style.authors}>
+											{meta.authors.map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<span key={author} class={style.author}>
+														{authorData ? (
+															<a
+																href={authorData.link}
+																target="_blank"
+																rel="noopener noreferrer"
+															>
+																{author}
+															</a>
+														) : (
+															<span>{author}</span>
+														)}
+														{i < arr.length - 2
+															? ', '
+															: i === arr.length - 2
+															? ' and '
+															: null}
+													</span>
+												);
+											})}
+											{(meta.translation_by || []).map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<>
+														{', translated by '}
+														<span key={author} class={style.author}>
+															{authorData ? (
+																<a
+																	href={authorData.link}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																>
+																	{author}
+																</a>
+															) : (
+																<span>{author}</span>
+															)}
+															{i < arr.length - 2
+																? ', '
+																: i === arr.length - 2
+																? ' and '
+																: null}
+														</span>
+													</>
+												);
+											})}
+										</address>
+									</>
+								)}
+							</div>
+							<h1
+								class={cx(
+									style.title,
+									meta.permalink === '/about/we-are-using' && style.center
+								)}
+							>
+								{meta.title || route.title}
+							</h1>
+						</div>
 					)}
 					<Hydrator
 						component={ContentRegion}

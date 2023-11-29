@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact';
 import cx from '../../../lib/cx';
-import style from './sidebar-nav.less';
+import style from './sidebar-nav.module.less';
 import { getCurrentUrl } from 'preact-router';
 
 /**

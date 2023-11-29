@@ -1,3 +1,2 @@
 size-files:
-- size-plugin-browser.json
-- size-plugin-ssr.json
+- size-plugin.json

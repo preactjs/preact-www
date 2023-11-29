@@ -18,6 +18,10 @@
 	ol a {
 		.link;
 		color: var(--color-link);
+
+		&:hover {
+			color: #ff89ff;
+		}
 	}
 
 	a.anchor {
@@ -46,15 +50,6 @@
 		&:hover a.anchor {
 			text-decoration: none;
 		}
-
-		// fix anchor target positioning to account for fixed header
-		&:before {
-			content: '';
-			display: block;
-			position: absolute;
-			height: @header-height;
-			margin: -@header-height 0 0;
-		}
 	}
 
 	h1,
@@ -78,7 +73,7 @@
 	}
 
 	h3 {
-		font-size: 18px;
+		font-size: 1.4rem;
 	}
 
 	h4 {
@@ -201,6 +196,7 @@
 		background: var(--color-quote-bg);
 		color: var(--color-quote-text);
 		border-left: 0.3rem solid var(--color-quote-border);
+		overflow: auto;
 	}
 	blockquote > :first-child {
 		margin-top: 0;
@@ -331,13 +327,15 @@
 	code,
 	tt {
 		margin: 0 2px;
-		padding: 0 5px;
+		padding: 2px 7px;
 		white-space: nowrap;
-		border-radius: 3px;
-		border-width: 0.0625rem;
-		border-style: solid;
+		border-radius: 4px;
 		background: var(--color-code-inline-bg);
-		border-color: var(--color-code-inline-border);
+	}
+
+	td > code,
+	p > code {
+		color: var(--color-code-inline-color);
 	}
 
 	pre code {
@@ -373,6 +371,39 @@
 		vertical-align: super;
 		line-height: 0;
 	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		// fix anchor target positioning to account for fixed header
+		&:target {
+			padding-top: @header-and-banner-height;
+		}
+		content-region[name*='v8'] &:target {
+			padding-top: calc(@header-and-banner-height + 3.25rem);
+		}
+
+		a {
+			opacity: 0;
+			display: inline-flex;
+			width: 1.5rem;
+			margin-left: -1.5rem;
+
+			&::before {
+				content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg>');
+			}
+		}
+
+		content-region[name*='guide'] &:hover {
+			a {
+				opacity: 1;
+			}
+		}
+	}
+
 	* {
 		-webkit-print-color-adjust: exact;
 	}

@@ -22,7 +22,7 @@ To set up `preact/compat` you need to alias `react` and `react-dom` to `preact/c
 
 ## PureComponent
 
-The `PureComponent` class works similarily to `Component`. The difference is that `PureComponent` will skip rendering when the new props are equal to the old ones. To do this we compare the old and new props via a shallow comparison where we check each props property for referential equality. This can speed up applications a lot by avoiding unnecessary re-renders. It works by adding a default `shouldComponentUpdate` lifecycle hook.
+The `PureComponent` class works similar to `Component`. The difference is that `PureComponent` will skip rendering when the new props are equal to the old ones. To do this we compare the old and new props via a shallow comparison where we check each props property for referential equality. This can speed up applications a lot by avoiding unnecessary re-renders. It works by adding a default `shouldComponentUpdate` lifecycle hook.
 
 ```jsx
 import { render } from 'preact';

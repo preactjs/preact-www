@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import cx from '../../lib/cx';
-import style from './style.less';
+import style from './style.module.less';
 import { useStore } from '../store-adapter';
 import { useMemo, useRef } from 'preact/hooks';
 

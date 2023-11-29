@@ -1,6 +1,6 @@
 import Markup from 'preact-markup';
 import widgets from './widgets';
-import style from './content-region.less';
+import style from './content-region.module.less';
 import { useTranslation } from '../lib/i18n';
 
 const COMPONENTS = {
@@ -17,6 +17,16 @@ const COMPONENTS = {
 		return <a {...props} />;
 	}
 };
+
+for (let i = 1; i <= 6; i++) {
+	const Tag = 'h' + i;
+	COMPONENTS[Tag] = function header(props) {
+		props.children = props.id
+			? [<a href={'#' + props.id} />, props.children]
+			: props.children;
+		return <Tag {...props} />;
+	};
+}
 
 function SiblingNav({ route, lang, start }) {
 	let title = '';
@@ -44,8 +54,9 @@ function SiblingNav({ route, lang, start }) {
 	);
 }
 
-export default function ContentRegion({ content, ...props }) {
+export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
+	components = Object.assign({}, COMPONENTS, components);
 	return (
 		<content-region name={props.name} data-page-nav={hasNav}>
 			{content && (
@@ -54,7 +65,7 @@ export default function ContentRegion({ content, ...props }) {
 					markup={content}
 					type="html"
 					trim={false}
-					components={COMPONENTS}
+					components={components}
 				/>
 			)}
 			{hasNav && (

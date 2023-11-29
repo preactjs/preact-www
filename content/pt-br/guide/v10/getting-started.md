@@ -20,7 +20,7 @@ Se você está apenas começando, é altamente recomendável usar o [preact-cli]
 O Preact sempre foi prontamente empacotado para ser usado diretamente no navegador. Isso não requer nenhuma ferramenta de construção.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact?module';
+import { h, Component, render } from 'https://esm.sh/preact';
 
 // Crie seu aplicativo
 const app = h('div', null, 'Olá Mundo!');
@@ -39,8 +39,8 @@ Escrever chamadas brutas `h` ou `createElement` o tempo todo é muito menos dive
 Em poucas palavras, [htm] pode ser melhor descrito como: sintaxe semelhante a JSX em JavaScript comum, sem a necessidade de um transpiler. Em vez de usar uma sintaxe personalizada, ele se baseia em seqüências de modelos com tags nativas que foram adicionadas ao JavaScript há algum tempo.
 
 ```js
-import { h, Component, render } from 'https://unpkg.com/preact?module';
-import htm from 'https://unpkg.com/htm?module';
+import { h, Component, render } from 'https://esm.sh/preact';
+import htm from 'https://esm.sh/htm';
 
 // Inicialize htm com Preact
 const html = htm.bind(h);

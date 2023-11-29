@@ -31,7 +31,7 @@ For both Preact and [preact-compat], version compatibility is measured against t
 - [Stateless Pure Functional Components]  
     - _functions that receive `props` as arguments and return JSX/VDOM_
 - [Contexts]: Support for the legacy `context API` was added in Preact [3.0].
-    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/developit/preact/pull/963)._
+    - _Support for the [new api](https://reactjs.org/docs/context.html) is discussed [as PR #963](https://github.com/preactjs/preact/pull/963)._
 - [Refs]: Support for function refs was added in Preact in [4.0]. String refs are supported in `preact-compat`.
     - _Refs provide a way to refer to rendered elements and child components._
 - Virtual DOM Diffing
@@ -72,9 +72,9 @@ Preact and React have some more subtle differences:
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[3.0]: https://github.com/developit/preact/milestones/3.0
-[4.0]: https://github.com/developit/preact/milestones/4.0
-[preact-compat]: https://github.com/developit/preact-compat
+[3.0]: https://github.com/preactjs/preact/milestones/3.0
+[4.0]: https://github.com/preactjs/preact/milestones/4.0
+[preact-compat]: https://github.com/preactjs/preact-compat
 [PropType]: https://github.com/developit/proptypes
 [Contexts]: https://reactjs.org/docs/legacy-context.html
 [Refs]: https://facebook.github.io/react/docs/more-about-refs.html

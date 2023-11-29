@@ -1,6 +1,6 @@
 {
   "name": "preact-www",
-  "version": "0.3.0",
+  "private": true,
   "description": "Preact website.",
   "engines": {
     "node": ">=12"
@@ -10,23 +10,17 @@
     "url": "https://github.com/preactjs/preact-www.git"
   },
   "scripts": {
-    "dev": "concurrently 'npm run dev:client' 'npm run dev:lambda'",
-    "dev:client": "preact watch --template src/template.html",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
+    "dev:client": "preact watch",
     "dev:lambda": "netlify-lambda serve src/lambda",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
     "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
-    "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --template src/template.html",
-    "postbuild": "cat src/_headers >> build/_headers",
-    "prebuild": "rm -rf build/assets build/content && mkdir -p build",
-    "pretest": "npm run -s lint && npm run -s build",
-    "test": "JEST_PUPPETEER_CONFIG=test/jest-puppeteer.config.js jest --runInBand --no-coverage  test/browser/.*\\.js",
+    "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --inline-css false",
+    "prebuild": "rimraf build/assets && rimraf build/content",
     "lint": "eslint src test",
-    "format": "prettier --write '{src,test}/**/*.{less,js,json}'"
+    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\""
   },
-  "keywords": [
-    "preact"
-  ],
   "eslintConfig": {
     "extends": "developit",
     "rules": {
@@ -52,9 +46,6 @@
   "eslintIgnore": [
     "prism.js"
   ],
-  "jest": {
-    "preset": "jest-puppeteer"
-  },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "none",
@@ -77,45 +68,45 @@
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
     "concurrently": "^5.2.0",
-    "critters-webpack-plugin": "^2.5.0",
-    "dlv": "^1.1.3",
+    "cross-env": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-config-developit": "^1.1.1",
+    "feed": "^4.2.2",
     "husky": "^4.0.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.9.0",
-    "jest-puppeteer": "^4.4.0",
     "jsdom": "^15.2.1",
-    "less-loader": "^5.0.0",
+    "less-loader": "^7.3.0",
     "lint-staged": "^9.5.0",
     "netlify-lambda": "^1.6.3",
-    "per-env": "^1.0.2",
     "postcss-custom-properties": "^9.0.2",
-    "preact-cli": "^3.0.0-rc.16",
+    "preact-cli": "^3.4.1",
     "preact-cli-plugin-netlify": "^1.5.0",
-    "preact-render-spy": "^1.3.0",
     "prettier": "^1.19.1",
     "promise-polyfill": "^8.1.3",
-    "puppeteer": "^2.0.0",
-    "size-plugin": "^2.0.1",
+    "rimraf": "^3.0.2",
+    "worker-plugin": "^5.0.1",
     "workerize-loader": "^1.1.0"
   },
   "dependencies": {
+    "@preact/signals": "^1.1.3",
+    "@preact/signals-core": "^1.2.3",
+    "@rollup/browser": "^3.18.0",
     "babel-standalone": "^6.26.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.50.2",
     "decko": "^1.2.0",
     "encoding": "^0.1.13",
-    "flatmap": "0.0.3",
     "htm": "^2.2.1",
     "less": "^3.10.3",
     "linkstate": "^1.1.1",
+    "magic-string": "^0.25.7",
     "marked": "^0.8.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "preact": "^10.4.4",
+    "preact-custom-element": "^4.0.0",
     "preact-markup": "^2.0.0",
     "preact-render-to-string": "^5.1.9",
     "preact-router": "^3.1.0",
+    "rollup": "^1.32.1",
     "sucrase": "^3.12.0",
     "superstatic": "^6.0.4",
     "unistore": "^3.5.1",

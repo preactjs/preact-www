@@ -17,7 +17,7 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ## Controlled & Uncontrolled Components
 
-When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled. The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update it's value when a user typed into it.
+When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled. The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update its value when a user typed into it.
 
 A framework like Preact in contrast generally has a unidirectional data flow. The component doesn't manage the value itself there, but something else higher up in the component tree.
 
@@ -38,6 +38,9 @@ Generally, you should try to use _Controlled_ Components at all times.  However,
 Let's create a simple form to submit todo items. For this we create a `<form>`-Element and bind an event handler that is called whenever the form is submitted. We do a similar thing for the text input field, but note that we are storing the value in our class ourselves. You guessed it, we're using a _controlled_ input here. In this example it's very useful, because we need to display the input's value in another element.
 
 ```jsx
+// --repl
+import { render, Component } from "preact";
+// --repl-before
 class TodoForm extends Component {
   state = { value: '' };
 
@@ -47,8 +50,7 @@ class TodoForm extends Component {
   }
 
   onInput = e => {
-    const { value } = e.target;
-    this.setState({ value })
+    this.setState({ value: e.target.value })
   }
 
   render(_, { value }) {
@@ -61,6 +63,8 @@ class TodoForm extends Component {
     );
   }
 }
+// --repl-after
+render(<TodoForm />, document.getElementById("app"));
 ```
 
 ## Select Input
@@ -68,6 +72,10 @@ class TodoForm extends Component {
 A `<select>`-Element is a little more involved, but works similar to all other form controls:
 
 ```jsx
+// --repl
+import { render, Component } from "preact";
+
+// --repl-before
 class MySelect extends Component {
   state = { value: '' };
 
@@ -93,6 +101,8 @@ class MySelect extends Component {
     );
   }
 }
+// --repl-after
+render(<MySelect />, document.getElementById("app"));
 ```
 
 ## Checkboxes & Radio Buttons
@@ -106,6 +116,9 @@ So, instead of listening for a `input` event we should listen for a `click` even
 ### Checkbox Example
 
 ```jsx
+// --repl
+import { render, Component } from "preact";
+// --repl-before
 class MyForm extends Component {
   toggle = e => {
       let checked = !this.state.checked;
@@ -120,8 +133,11 @@ class MyForm extends Component {
           checked={checked}
           onClick={this.toggle}
         />
+        check this box
       </label>
     );
   }
 }
+// --repl-after
+render(<MyForm />, document.getElementById("app"));
 ```

@@ -7,7 +7,7 @@ permalink: '/guide/progressive-web-apps'
 
 ## Genel Bakış
 
-Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) için mükemmel bir seçimdir. [Preact CLI](https://github.com/developit/preact-cli/), size 100 [Lighthouse][LH] puanlı bir PWA yaratabileceğiniz bir araç sağlar.
+Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progressive Web Apps](https://web.dev/learn/pwa/) için mükemmel bir seçimdir. [Preact CLI](https://github.com/preactjs/preact-cli/), size 100 [Lighthouse][LH] puanlı bir PWA yaratabileceğiniz bir araç sağlar.
 
 [LH]: https://developers.google.com/web/tools/lighthouse/
 
@@ -96,7 +96,7 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
 
 ## Preact CLI (Komut Satırı Arayüzü)
 
-[Preact CLI](https://github.com/developit/preact-cli/), Preact projeleri için resmi yapım aracıdır. Preact kodunuzu yüksek düzeyde optimize edilmiş bir PWA'e bağlayan single-dependency komut satırı araçcıdır. Yukarıdaki tavsiyelerin tümünü otomatik hale getirmeyi amaçlamaktadır. Böylece siz, mükemmel bileşenler yazmaya odaklanabilirsiniz.
+[Preact CLI](https://github.com/preactjs/preact-cli/), Preact projeleri için resmi yapım aracıdır. Preact kodunuzu yüksek düzeyde optimize edilmiş bir PWA'e bağlayan single-dependency komut satırı araçcıdır. Yukarıdaki tavsiyelerin tümünü otomatik hale getirmeyi amaçlamaktadır. Böylece siz, mükemmel bileşenler yazmaya odaklanabilirsiniz.
 
 İşte Preact CLI'nin yapacağı birkaç şey:
 
@@ -106,4 +106,4 @@ Preact, PWA'iniz için iyi çalışması gereken bir kütüphane olsa da, bir di
 - Hızlı bir ilk görüntü için ön işlem uygular
 - Gerekirse koşullu olarak polyfilller yükler
 
-[Preact CLI](https://github.com/developit/preact-cli/) dahili olarak [Webpack](https://webpack.js.org) tarafından desteklendiğinden, bir `preact.config.js` tanımlayabilir ve oluşturma işlemini gereksinimlerinize göre özelleştirebilirsiniz. Bazı şeyleri özelleştirseniz bile, yine de harika varsayılan özelliklerden faydalanabilirsiniz ve yeni sürümler yayınlandıkça `preact-cli`'ı güncelleyebilirsiniz.
+[Preact CLI](https://github.com/preactjs/preact-cli/) dahili olarak [Webpack](https://webpack.js.org) tarafından desteklendiğinden, bir `preact.config.js` tanımlayabilir ve oluşturma işlemini gereksinimlerinize göre özelleştirebilirsiniz. Bazı şeyleri özelleştirseniz bile, yine de harika varsayılan özelliklerden faydalanabilirsiniz ve yeni sürümler yayınlandıkça `preact-cli`'ı güncelleyebilirsiniz.

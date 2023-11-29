@@ -8,22 +8,22 @@ permalink: '/about/addons-libraries'
 Une liste de modules construit pour fonctionner parfaitement avec Preact.
 
 > :information_desk_person: _Vous avez construit le vôtre ?
-> [ajoutez-le !](https://github.com/developit/preact-www/blob/master/content/about/libraries-addons.md)_
+> [ajoutez-le !](https://github.com/preactjs/preact-www/blob/master/content/fr/about/libraries-addons.md)_
 
 
 ### Modules complémentaires
 
-- :raised_hands: [**preact-compat**](https://git.io/preact-compat): utilisez n'importe quelle bibliothèque créée pour React avec Preact *([full example](http://git.io/preact-compat-example))*
-- :repeat: [**preact-cycle**](https://git.io/preact-cycle): Le paradigme de programmation fonctionnelle réactive pour Preact
-- :page_facing_up: [**preact-render-to-string**](https://git.io/preact-render-to-string): Rendu universel.
+- :raised_hands: [**preact-compat**](https://github.com/preactjs/preact-compat): utilisez n'importe quelle bibliothèque créée pour React avec Preact *([full example](https://github.com/developit/preact-compat-example))*
+- :repeat: [**preact-cycle**](https://github.com/developit/preact-cycle): Le paradigme de programmation fonctionnelle réactive pour Preact
+- :page_facing_up: [**preact-render-to-string**](https://github.com/preactjs/preact-render-to-string): Rendu universel.
 
 
 ### Composants
 
-- :earth_americas: [**preact-router**](https://git.io/preact-router): Un routeur d'URL pour vos composants
-- :bookmark_tabs: [**preact-markup**](https://git.io/preact-markup): Affichez du HTML et des Custom Elements comme du JSX et des composants
-- :satellite: [**preact-portal**](https://git.io/preact-portal): Affichez des composants Preact dans l'ESPACE :milky_way:
-- :pencil: [**preact-richtextarea**](https://git.io/preact-richtextarea): Un composant d'éditeur HTML simple
+- :earth_americas: [**preact-router**](https://github.com/preactjs/preact-router): Un routeur d'URL pour vos composants
+- :bookmark_tabs: [**preact-markup**](https://github.com/developit/preact-markup): Affichez du HTML et des Custom Elements comme du JSX et des composants
+- :satellite: [**preact-portal**](https://github.com/developit/preact-portal): Affichez des composants Preact dans l'ESPACE :milky_way:
+- :pencil: [**preact-richtextarea**](https://github.com/developit/preact-richtextarea): Un composant d'éditeur HTML simple
 - :bookmark: [**preact-token-input**](https://github.com/developit/preact-token-input): Un champ de texte qui transforme son contenu en tokens, pour créer un système de tags, par exemple
 - :card_index: [**preact-virtual-list**](https://github.com/developit/preact-virtual-list): Affichez facilement des listes de plusieurs millions de lignes ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Une bibliothèque de mise en page légère et simple d'utilisation
@@ -39,13 +39,13 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 
 ### Outils pour créer des interfaces graphiques
 
-- :white_square_button: [**preact-mdl**](https://git.io/preact-mdl): Utilisez [MDL](https://getmdl.io) comme des composants Preact
-- :rocket: [**preact-photon**](https://git.io/preact-photon): créez de belles interfaces utilisateurs pour bureau avec [photon](http://photonkit.com)
+- :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): Utilisez [MDL](https://getmdl.io) comme des composants Preact
+- :rocket: [**preact-photon**](https://github.com/developit/preact-photon): créez de belles interfaces utilisateurs pour bureau avec [photon](http://photonkit.com)
 
 
 ### Tests
 
-- :microscope: [**preact-jsx-chai**](https://git.io/preact-jsx-chai): Test d'assertions en JSX _(pas de DOM, directement dans Node)_
+- :microscope: [**preact-jsx-chai**](https://github.com/developit/preact-jsx-chai): Test d'assertions en JSX _(pas de DOM, directement dans Node)_
 - :white_check_mark: [**unexpected-preact**](https://github.com/bruderstein/unexpected-preact): Assertions, événements, snapshots en JSX dans Jest _(DOM, fonctionne avec le module Node jsdom ou directement avec Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
 
 

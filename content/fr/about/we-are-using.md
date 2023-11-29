@@ -9,4 +9,6 @@ Vous trouverez ci-dessous un petit échantillon d'entreprises qui utilisent Prea
 
 Votre entreprise utilise Preact ? [Ajoutez-la à la liste !](https://github.com/preactjs/preact-www/blob/master/src/components/we-are-using/index.js)
 
-<we-are-using></we-are-using>
+<div class="breaker">
+  <we-are-using></we-are-using>
+</div>
