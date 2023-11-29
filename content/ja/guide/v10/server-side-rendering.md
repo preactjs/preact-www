@@ -61,7 +61,7 @@ console.log(shallow(App));
 `pretty`オプションを渡すと適切にインデントされた文字列を返します。
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;

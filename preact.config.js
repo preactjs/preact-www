@@ -5,6 +5,10 @@ import netlifyPlugin from 'preact-cli-plugin-netlify';
 import customProperties from 'postcss-custom-properties';
 import pageConfig from './src/config.json';
 import { Feed } from 'feed';
+
+// Enables some options that make local debugging easier
+const LOCAL_DEBUG = false;
+
 // prettier-ignore
 
 /**
@@ -39,6 +43,16 @@ export default function (config, env, helpers) {
 
 	const { rule: babel } = helpers.getLoadersByName(config, 'babel-loader')[0];
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
+
+	if (LOCAL_DEBUG) {
+		// When debugging locally, compile for higher browser versions to avoid
+		// having to debug through polyfills and overly transpiled code.
+		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
+		envPresetConfig.targets = {
+			browsers: ["fully supports es6-module"],
+		};
+		// config.devtool = 'cheap-source-map';
+	}
 
 	// Add CSS Custom Property fallback
 	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];

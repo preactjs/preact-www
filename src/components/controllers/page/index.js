@@ -228,6 +228,34 @@ export default function Page({ route, prev, next }, ctx) {
 													</span>
 												);
 											})}
+											{(meta.translation_by || []).map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<>
+														{', translated by '}
+														<span key={author} class={style.author}>
+															{authorData ? (
+																<a
+																	href={authorData.link}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																>
+																	{author}
+																</a>
+															) : (
+																<span>{author}</span>
+															)}
+															{i < arr.length - 2
+																? ', '
+																: i === arr.length - 2
+																? ' and '
+																: null}
+														</span>
+													</>
+												);
+											})}
 										</address>
 									</>
 								)}
