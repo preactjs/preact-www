@@ -18,6 +18,16 @@ const COMPONENTS = {
 	}
 };
 
+for (let i = 1; i <= 6; i++) {
+	const Tag = 'h' + i;
+	COMPONENTS[Tag] = function header(props) {
+		props.children = props.id
+			? [<a href={'#' + props.id} />, props.children]
+			: props.children;
+		return <Tag {...props} />;
+	};
+}
+
 function SiblingNav({ route, lang, start }) {
 	let title = '';
 	let url = '';
