@@ -4,6 +4,11 @@ import styles from './style.module.less';
 // in `src/assets/we-are-using/my-logo.svg`.
 const companies = [
 	{
+		name: 'Babbel',
+		href: 'https://www.babbel.com/',
+		logo: 'babbel.svg'
+	},
+	{
 		name: 'Groupon',
 		href: 'https://groupon.com/',
 		logo: 'groupon.svg'
@@ -248,7 +253,7 @@ const companies = [
 		href: 'https://snapp.ir/',
 		logo: 'snapp.png'
 	},
-  {
+	{
 		name: 'Adyen',
 		href: 'https://www.adyen.com/',
 		logo: 'adyen.svg'
@@ -257,6 +262,21 @@ const companies = [
 		name: 'SQL Frames',
 		href: 'https://sqlframes.com/',
 		logo: 'sqlframes.svg'
+	},
+	{
+		name: 'Refract',
+		href: 'https://refractbot.com/',
+		logo: 'refract.svg'
+	},
+	{
+		name: 'Zeplin',
+		href: 'https://zeplin.io',
+		logo: 'zeplin.svg'
+	},
+	{
+		name: 'Loveholidays',
+		href: 'https://loveholidays.com',
+		logo: 'loveholidays.svg'
 	}
 ];
 

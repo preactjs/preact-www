@@ -419,7 +419,7 @@ Just like `createRef`, `useRef` benefits from binding a generic type variable to
 
 ```tsx
 import { h } from "preact";
-import { useRef } from "preact/hoooks";
+import { useRef } from "preact/hooks";
 
 function TextInputWithFocusButton() {
   // initialise with null, but tell TypeScript we are looking for an HTMLInputElement

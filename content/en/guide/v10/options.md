@@ -84,7 +84,7 @@ Controls the scheduling of effects and effect-based based functionality in `prea
 
 A timing "deferral" function that is used to batch processing of updates in the global component rendering queue.
 
-By default, Preact uses a Microtask tick via `Promise.resolve()`, or `setTimeout` when Promise is not available.
+By default, Preact uses a zero duration `setTimeout`.
 
 #### `options.useDebugValue`
 

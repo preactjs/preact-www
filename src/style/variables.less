@@ -27,7 +27,7 @@
 	--color-btn: #673ab8;
 	--color-btn-secondary: #673ab8;
 	--color-btn-background: #eee;
-	--color-hr: #f8f8f8;
+	--color-hr: #f0f0f0;
 	--color-quote-bg: #ebf6ff;
 	--color-quote-border: #5aa8ff;
 	--color-quote-text: #444;
@@ -35,9 +35,6 @@
 	--color-table-border: #ccc;
 	--color-table-even-bg: white;
 	--color-table-odd-bg: #f8f8f8;
-	--color-code-inline-bg: #f8f8f8;
-	--color-code-inline-border: #eaeaea;
-	--color-code-bg: #252931;
 	--color-repl-bg: #666;
 	--color-repl-hover: #999;
 	--color-next-link: #aaa;
@@ -55,31 +52,47 @@
 	--color-error-bg: #ffeddb;
 	--color-error-heading: #f43678;
 
+	// Code snippets
+	--color-code-inline-color: black;
+	--color-code-inline-bg: #e4e4e4;
+	--color-code-inline-border: #eaeaea;
+	--color-code-bg: #101725;
+	--color-code-text: #ddd;
+	--color-code-string: #c6f4a7;
+	--color-code-symbol: #f8c555;
+	--color-code-function: #ffcb6b;
+	--color-code-function-name: #6196cc;
+	--color-code-punctuation: #ccc;
+	--color-code-interpolation-punctuation: #ec6368;
+	--color-code-tag: #ff696d;
+	--color-code-keyword: #c792ea;
+	--color-code-operator: #67cdcc;
+	--color-code-comment: #999;
+
 	// Modern browsers allow to specify the preferred color scheme
 	@media (prefers-color-scheme: dark) {
 		--color-page-bg: #242424;
-		--color-text: #b0b0b0;
-		--color-heading: #c5c5c5;
+		--color-text: #cccccc;
+		--color-heading: white;
 		--color-link: #ae80ff;
 		--color-btn: #673ab8;
 		--color-btn-secondary: white;
 		--color-btn-background: #eee;
 		--color-hr: #444;
-		--color-quote-bg: #29475f;
-		--color-quote-border: #3f6b9c;
+		--color-quote-bg: #152038;
+		--color-quote-border: #1069cc;
 		--color-quote-text: #c5c5c5;
 		--color-warn-bg: #f2d900;
-		--color-table-border: #575757;
-		--color-table-even-bg: #242424;
-		--color-table-odd-bg: #2f2f2f;
-		--color-code-inline-bg: #2b313c;
-		--color-code-inline-border: #5e5e5e;
-		--color-code-bg: #252931;
+		--color-table-border: #3c3c3c;
+		--color-table-even-bg: #1c2027;
+		--color-table-even-bg: #171a20;
+		--color-table-odd-bg: #1c2027;
 		--color-repl-bg: #414141;
 		--color-repl-hover: #555;
 		--color-next-link: #666;
+		--color-sidebar-heading: white;
 		--color-sidebar-divider: #4f4f4f;
-		--color-sidebar-bg: #171717;
+		--color-sidebar-bg: #1a1a1a;
 		--color-sidebar-bg-active: #242424;
 		--color-sidebar-link-active: #ae80ff;
 		--color-sidebar-link: #b0b0b0;
@@ -91,5 +104,11 @@
 		--color-footer-border: #1b1b1b;
 		--color-error-bg: #230c07;
 		--color-error-heading: #f43678;
+
+		// Code snippets
+		--color-code-inline-color: white;
+		--color-code-inline-bg: #404040;
+		--color-code-inline-border: #5e5e5e;
+		--color-code-bg: #1c2027;
 	}
 }

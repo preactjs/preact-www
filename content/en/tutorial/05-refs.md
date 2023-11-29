@@ -167,26 +167,30 @@ useResult(function (result) {
 
 
 ```jsx:repl-initial
+import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 
-export default function App() {
+function App() {
   function onClick() {
 
   }
 
   return (
     <div>
-      <input initialValue="Hello World!" />
+      <input defaultValue="Hello World!" />
       <button onClick={onClick}>Focus input</button>
     </div>
   );
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
+import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 
-export default function App() {
+function App() {
   const input = useRef();
 
   function onClick() {
@@ -195,9 +199,11 @@ export default function App() {
 
   return (
     <div>
-      <input ref={input} initialValue="Hello World!" />
+      <input ref={input} defaultValue="Hello World!" />
       <button onClick={onClick}>Focus input</button>
     </div>
   );
 }
+
+render(<App />, document.getElementById("app"));
 ```

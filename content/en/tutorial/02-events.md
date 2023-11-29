@@ -72,7 +72,9 @@ useRealm(function (realm) {
 
 
 ```jsx:repl-initial
-export default function App() {
+import { render } from "preact";
+
+function App() {
   return (
     <div>
       <p class="count">Count:</p>
@@ -80,10 +82,14 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
-export default function App() {
+import { render } from "preact";
+
+function App() {
   const clicked = () => {
     console.log('hi')
   }
@@ -95,6 +101,8 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 [MDN]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events

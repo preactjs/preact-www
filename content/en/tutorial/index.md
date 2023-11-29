@@ -1,7 +1,7 @@
 ---
 next: /tutorial/01-vdom
 nextText: 'Begin Tutorial'
-title: Learn Preact in 10 minutes
+title: Learn Preact
 code: false
 solvable: false
 ---

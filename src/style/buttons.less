@@ -39,3 +39,29 @@
 		margin-top: 0;
 	}
 }
+
+.btn-small {
+	display: inline-block;
+	padding: 0.25rem 1rem;
+	font-size: 1rem;
+	box-shadow: 0 0.125rem 0 rgba(var(--color-brand), 0.3);
+	border: 0.2rem solid var(--color-brand);
+	border-radius: 0.25rem;
+	text-decoration: none;
+	white-space: nowrap;
+	background: var(--color-brand);
+	text-decoration: none;
+	color: white;
+	transform: translate3d(0, 0, 0);
+	transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+
+	&:active {
+		transform: translate3d(0, 5%, 0);
+	}
+
+	&:hover {
+		background: white;
+		color: black;
+		border-color: white;
+	}
+}

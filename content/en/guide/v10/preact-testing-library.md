@@ -51,7 +51,7 @@ We want to verify that our Counter displays the initial count and that clicking 
 ```jsx
 import { expect } from 'expect';
 import { h } from 'preact';
-import { render, fireEvent, screen } from '@testing-library/preact';
+import { render, fireEvent, screen, waitFor } from '@testing-library/preact';
 
 import Counter from '../src/Counter';
 
@@ -218,12 +218,7 @@ render(<MyComponent />)
 
 ## Testing Preact Hooks
 
-The testing-library project hosts another module that can be used to test [hooks](/guide/v10/hooks) in isolation. It's called [@testing-library/preact-hooks](https://github.com/testing-library/preact-hooks-testing-library) and it needs to be installed separately.
-
-```bash
-npm install --save-dev @testing-library/preact-hooks
-```
-
+With `@testing-library/preact` we can also test the implementation of our hooks!
 Imagine that we want to re-use the counter functionality for multiple components (I know we love counters!) and have extracted it to a hook. And we now want to test it.
 
 ```jsx
@@ -239,7 +234,7 @@ const useCounter = () => {
 Like before, the approach behind it is similar: We want to verify that we can increment our counter. So we need to somehow call our hook. This can be done with the `renderHook()`-function, which automatically creates a surrounding component internally. The function returns the current hook return value under `result.current`, which we can use to do our verifications:
 
 ```jsx
-import { renderHook, act } from '@testing-library/preact-hooks';
+import { renderHook, act } from '@testing-library/preact';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
@@ -258,4 +253,4 @@ test('should increment counter', () => {
 });
 ```
 
-For more information about `@testing-library/preact-hooks` check out https://github.com/testing-library/preact-hooks-testing-library .
+For more information about `@testing-library/preact` check out https://github.com/testing-library/preact-testing-library .

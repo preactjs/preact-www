@@ -25,8 +25,6 @@ can call `this.setState()` to update its `state` property and request that
 it be re-rendered by Preact.
 
 ```jsx
-import { Component } from 'preact'
-
 class MyButton extends Component {
   state = { clicked: false }
 
@@ -175,11 +173,14 @@ useResult(function () {
 
 
 ```jsx:repl-initial
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
+
 function MyButton(props) {
   return <button style={props.style} onClick={props.onClick}>{props.children}</button>
 }
 
-export default function App() {
+function App() {
   const clicked = () => {
     // increment count by 1 here
   }
@@ -191,14 +192,19 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
+
 function MyButton(props) {
   return <button style={props.style} onClick={props.onClick}>{props.children}</button>
 }
 
-export default function App() {
+function App() {
   const [count, setCount] = useState(0)
 
   const clicked = () => {
@@ -212,6 +218,8 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 [ternary]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

@@ -7,7 +7,7 @@ permalink: '/guide/progressive-web-apps'
 
 ## Visão Geral
 
-Preact é uma excelente escolha para [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) que desejam carregar e tornarem-se interativos rapidamente.
+Preact é uma excelente escolha para [Progressive Web Apps](https://web.dev/learn/pwa/) que desejam carregar e tornarem-se interativos rapidamente.
 
 <ol class="list-view">
     <li class="list-item">

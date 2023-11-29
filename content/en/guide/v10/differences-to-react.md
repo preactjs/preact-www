@@ -18,7 +18,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ## Main differences
 
-The main difference between Preact and React is that Preact does not implement a synthetic event system for size and performance reasons. Preact uses the browser's standard `addEventListener` to register event handlers, which means event naming and behavior works the same in Preact as it does in plain JavaScript / DOM. See [GlobalEventHandlers] for a full list of DOM event handlers.
+The main difference between Preact and React is that Preact does not implement a synthetic event system for size and performance reasons. Preact uses the browser's standard `addEventListener` to register event handlers, which means event naming and behavior works the same in Preact as it does in plain JavaScript / DOM. See [MDN's Event Reference] for a full list of DOM event handlers.
 
 Standard browser events work very similarly to how events work in React, with a few small differences. In Preact:
 
@@ -33,7 +33,7 @@ Another notable difference is that Preact follows the DOM specification more clo
 
 For both preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
-> Thus, the website and documentation reflect React `16.x` and `15.x` when discussing compatibility or making comparisons.
+> Thus, the website and documentation reflect React `15.x` through `17.x` when discussing compatibility or making comparisons.
 
 ## Debug messages and errors
 
@@ -210,12 +210,12 @@ A React-compatible `Children` API is available from `preact/compat` to make inte
 
 - [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
 - [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
-- [forwardRef](/guide/v10/switching-to-preact#forwardRef): Supply a `ref` to a specified child component.
+- [forwardRef](/guide/v10/switching-to-preact#forwardref): Supply a `ref` to a specified child component.
 - [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
-- [Suspense](/guide/v10/switching-to-preact#suspense): **experimental** Allows to display fallback content in case the tree is not ready
-- [lazy](/guide/v10/switching-to-preact#suspense): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
+- [Suspense](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Allows to display fallback content in case the tree is not ready
+- [lazy](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
 
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[GlobalEventHandlers]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+[MDN's Event Reference]: https://developer.mozilla.org/en-US/docs/Web/Events

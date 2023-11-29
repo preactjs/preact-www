@@ -279,15 +279,16 @@ Finally, update the JSX to render each item from `todos` as an
 <solution>
   <h4>🎉 Congratulations!</h4>
   <p>
-    You've completed the second last chapter,
+    You've completed the second to last chapter,
     and learned how to render lists effectively.
   </p>
 </solution>
 
 
 ```js:setup
-useResult(function (result) {
-  var out = result.output;
+useRealm(function (realm) {
+  // the app element
+  var out = realm.globalThis.document.body.firstElementChild;
   var options = require('preact').options;
 
   var oldRender = options.__r;
@@ -317,6 +318,9 @@ useResult(function (result) {
 
 
 ```jsx:repl-initial
+import { render } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
+
 const wait = ms => new Promise(r => setTimeout(r, ms))
 
 const getTodos = async () => {
@@ -327,7 +331,7 @@ const getTodos = async () => {
   ]
 }
 
-export default function TodoList() {
+function TodoList() {
   const [todos, setTodos] = useState([])
 
   return (
@@ -335,9 +339,14 @@ export default function TodoList() {
     </ul>
   )
 }
+
+render(<TodoList />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
+import { render } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
+
 const wait = ms => new Promise(r => setTimeout(r, ms))
 
 const getTodos = async () => {
@@ -348,7 +357,7 @@ const getTodos = async () => {
   ]
 }
 
-export default function TodoList() {
+function TodoList() {
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
@@ -367,4 +376,6 @@ export default function TodoList() {
     </ul>
   )
 }
+
+render(<TodoList />, document.getElementById("app"));
 ```

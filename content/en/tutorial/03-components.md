@@ -283,11 +283,13 @@ useRealm(function (realm) {
 
 
 ```jsx:repl-initial
+import { render } from "preact";
+
 function MyButton(props) {
   // start here!
 }
 
-export default function App() {
+function App() {
   const clicked = () => {
     console.log('Hello!')
   }
@@ -299,14 +301,18 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 ```jsx:repl-final
+import { render } from "preact";
+
 function MyButton(props) {
   return <button style={props.style} onClick={props.onClick}>{props.children}</button>
 }
 
-export default function App() {
+function App() {
   const clicked = () => {
     console.log('Hello!')
   }
@@ -318,6 +324,8 @@ export default function App() {
     </div>
   )
 }
+
+render(<App />, document.getElementById("app"));
 ```
 
 [ternary]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

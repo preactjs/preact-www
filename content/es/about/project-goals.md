@@ -9,7 +9,7 @@ permalink: '/about/project-goals'
 
 Preact tiene como objetivo cumplir con los siguientes puntos:
 
-- **Performante:** Renderizar rápido y eficientemente
+- **Performance:** Renderizar rápido y eficientemente
 - **Tamaño:** Tamaño pequeño y liviano _(aproximadamente 3.5kb)_
 - **Eficiencia:** Uso eficiente de la memoria
 - **Comprensibilidad:** Entender el código fuente debería llevar muy poco tiempo, apenas unas horas
