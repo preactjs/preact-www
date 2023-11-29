@@ -84,18 +84,40 @@ async function bundle(sources) {
 			{
 				name: 'repl',
 				resolveId(id, importer) {
+					// Handle local source files
 					if (isSource(id)) return id;
+
+					// Resolve absolute path ids relative to their importer. For example,
+					// esm.sh will return this internally. `https://esm.sh/preact` returns
+					// `exports * from "/stable/preact@10.18.0/es2022/preact.mjs"`
 					if (id[0] === '/') {
+						if (!importer.match(/^https?:/)) {
+							throw new Error(`Cannot resolve ${id} from ${importer}`);
+						}
+
 						try {
 							return new URL(id, importer).href;
 						} catch (e) {}
 					}
-					if (!importer || isSource(importer) || /(^\.\/|:\/\/)/.test(id)) {
+
+					// If id is already an esm.sh url, add `?external=*` to it and return
+					if (id.includes('://esm.sh/')) {
+						const url = new URL(id);
+						url.searchParams.set('external', '*');
+						return url.href;
+					}
+
+					// Leave initial import, relative imports, & other http imports alone
+					if (!importer || /(^\.\/|:\/\/)/.test(id)) {
 						return id;
 					}
-					return new URL(id, new URL(importer + '/', 'file:')).pathname.slice(
-						1
-					);
+
+					// For everything else (i.e. bare module specifiers), resolve to a
+					// package on esm.sh. We'll support any syntax & options that esm.sh
+					// supports
+					const url = new URL(id, 'https://esm.sh/');
+					url.searchParams.set('external', '*');
+					return url.href;
 				},
 				async load(id) {
 					if (isSource(id)) {
@@ -103,11 +125,7 @@ async function bundle(sources) {
 						const out = transpile(code);
 						return out;
 					}
-					if (id.startsWith('https://esm.sh/')) return get(id);
-					const [, mod, v, path] =
-						id.match(/^((?:@[^@/]+\/)?[^@/]+)(?:@(\d[^@/]*))?(?:\/(.*))?$/) ||
-						[];
-					return dep(mod, v, path);
+					return get(id);
 				}
 			}
 		]
@@ -115,13 +133,6 @@ async function bundle(sources) {
 	const result = await bundle.generate({ format: 'cjs' });
 	await bundle.close();
 	return result.output[0];
-}
-
-// helper: fetch a dependency from esm.sh
-function dep(mod, version, path) {
-	path = (path || '').replace(/(?:^\/|\/$)/g, '');
-	if (path) path = '/' + path;
-	return get(`https://esm.sh/${mod}${version ? '@' + version : ''}${path}`);
 }
 
 // helper: cached http get text
