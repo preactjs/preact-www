@@ -88,7 +88,12 @@ export default function (config, env, helpers) {
 					const matches = content.match(FRONT_MATTER_REG);
 					if (!matches) return content;
 
-					const meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
+					let meta;
+					try {
+						meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
+					} catch (e) {
+						throw new Error(`Error parsing YAML FrontMatter in ${path}`);
+					}
 					content = content.replace(FRONT_MATTER_REG, '');
 					if (!meta.title) {
 						let [, title] = content.match(TITLE_REG) || [];
