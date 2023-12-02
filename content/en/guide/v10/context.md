@@ -19,6 +19,8 @@ There are two different ways to use context: Via the newer `createContext` API a
 
 First we need to create a context object we can pass around. This is done via the `createContext(initialValue)` function. It returns a `Provider` component that is used to set the context value and a `Consumer` one which retrieves the value from the context.
 
+The `initialValue` argument is only used when a context does not have a matching `Provider` above it in the tree. This may be helpful for testing components in isolation, as it avoids the need for creating a wrapping `Provider`.
+
 ```jsx
 // --repl
 import { render, createContext } from 'preact';

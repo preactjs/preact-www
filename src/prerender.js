@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 const yaml = require('yaml');
-const flatMap = require('flatmap');
 const config = require('./config.json');
+const { fetchRelease } = require('./lambda/release');
 
 // Titles for various content areas
 const groups = {
@@ -18,20 +18,20 @@ const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 // https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup
 const MAX_DESCRIPTION_LENGTH = 200;
 
-if (process.env.PRERENDER_HOME) {
-	module.exports = [
-		{
-			url: config.nav[0].path,
-			title: config.nav[0].title
-		}
-	];
-} else {
-	const routes = flatMap(
-		config.nav.concat(config.docs).concat(config.blog),
-		arr => (arr.path ? { path: arr.path, name: arr.name } : arr.routes)
-	);
+module.exports = async () => {
+	const routes = config.nav
+		.concat(config.docs)
+		.concat(config.blog)
+		.flatMap(arr =>
+			arr.path ? { path: arr.path, name: arr.name } : arr.routes
+		);
 
-	module.exports = flatMap(routes, function map(route) {
+	let preactVersion;
+	try {
+		preactVersion = (await fetchRelease('preactjs/preact')).version;
+	} catch {}
+
+	const pageData = routes.flatMap(function map(route) {
 		const url = route.path;
 		// Expand `/:x?` fields in URLs to prerender all URLs
 		const FIELD = /\/:([\w.-]+)([*+?]?)/i;
@@ -43,7 +43,7 @@ if (process.env.PRERENDER_HOME) {
 				.readdirSync(dir)
 				.filter(rep => rep[0] !== '.' && rep.match(/\.md$/i))
 				.map(rep => rep.replace(/(^index)?\.md$/i, ''));
-			return flatMap(paths, rep => {
+			return paths.flatMap(rep => {
 				let path = url.replace(FIELD, '/' + rep).replace(/\/$/, '');
 				return map(Object.assign({}, route, { path }));
 			});
@@ -81,14 +81,17 @@ if (process.env.PRERENDER_HOME) {
 		return {
 			url: route.path,
 			title,
-			description
+			description,
+			preactVersion
 		};
 	});
 
 	console.log(
 		'Routes:\n ',
-		module.exports
+		pageData
 			.map(r => `\x1B[94m${r.url}\x1B[0m \x1B[2m\x1B[3m(${r.title})\x1B[0m`)
 			.join('\n  ')
 	);
-}
+
+	return pageData;
+};

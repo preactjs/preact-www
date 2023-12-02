@@ -18,6 +18,7 @@ A collection of modules built to work wonderfully with Preact.
 - :timer_clock: [**relaks**](https://github.com/trambarhq/relaks): Create components with render methods that return asynchronously.
 - :nut_and_bolt: [**express-preact-views**](https://github.com/edwjusti/express-preact-views): Express View Engine.
 - :floppy_disk: [**Prefresh**](https://github.com/JoviDeCroock/prefresh): Fast-Refresh for Preact.
+- :bookmark_tabs: [**adonis-preact**](https://github.com/DonsWayo/adonis-preact): Use Preact in Adonisjs
 
 ## Components
 
@@ -30,6 +31,7 @@ A collection of modules built to work wonderfully with Preact.
 - :triangular_ruler: [**preact-layout**](https://download.github.io/preact-layout/): Small and simple layout library
 - :construction_worker: [**preact-helmet**](https://github.com/download/preact-helmet): A document head manager for Preact
 - :arrow_up_down: [**preact-custom-scrollbars**](https://github.com/lucafalasco/preact-custom-scrollbars): Fully customizable scrollbars, for frictionless native browser scrolling
+- 🧱 [**@modular-forms/preact**](https://modularforms.dev/): Modular and type-safe form library
 
 ## Integrations
 
@@ -37,11 +39,12 @@ A collection of modules built to work wonderfully with Preact.
 - :rowboat: [**preact-flyd**](https://github.com/xialvjun/preact-flyd): Use [flyd](https://github.com/paldepind/flyd) FRP streams in Preact + JSX
 - :speech_balloon: [**preact-i18nline**](https://github.com/download/preact-i18nline): Integrates the ecosystem around [i18n-js](https://github.com/everydayhero/i18n-js) with Preact via [i18nline](https://github.com/download/i18nline).
 - :diamond_shape_with_a_dot_inside: [**Capacitor**](https://capacitorjs.com/solution/preact): Turn your Preact app into a Native iOS/Android App and PWA.
+- :ice_cube: [**Kretes**](https://kretes.dev/docs/howtos/preact-setup/): Build full-stack TypeScript apps using Preact and Node.js
 - 🏝: [**preact-island**](https://github.com/mwood23/preact-island): Run your Preact widget on any website with reactive props.
 
 ## GUI Toolkits
 
-- 🎴 [**@mui/material**](https://github.com/mui-org/material-ui/tree/master/examples/preact): the React UI library you always wanted. Follow your own design system, or start with Material Design.
+- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-preact): the React UI library you always wanted. Follow your own design system, or start with Material Design.
 - :thumbsup: [**preact-material-components**](https://github.com/prateekbh/preact-material-components): Material Components for the Web (supersedes MDL)
 - :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): Use [MDL](https://getmdl.io) as Preact components
 - :rocket: [**preact-photon**](https://github.com/developit/preact-photon): build beautiful desktop UI with [photon](http://photonkit.com)
