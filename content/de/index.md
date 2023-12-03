@@ -141,7 +141,8 @@ function Counter() {
     <div>
         <h2>To Do-Listen-Komponente</h2>
         <pre><code class="lang-jsx">
-export default class ToDoList extends Component {
+// --repl
+export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
         this.setState({ text: e.target.value });
@@ -153,11 +154,12 @@ export default class ToDoList extends Component {
     };
     render({ }, { todos, text }) {
         return (
-            &lt;form onSubmit={this.addToDo} action="javascript:"&gt;
+            &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;label&gt;
                   &lt;span&gt;Add Todo&lt;/span&gt;
                   &lt;input value={text} onInput={this.setText} /&gt;
                 &lt;/label&gt;
+                &lt;button type="submit"&gt;Add&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -167,6 +169,8 @@ export default class ToDoList extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
@@ -187,13 +191,14 @@ render(&lt;ToDoList /&gt;, document.body);
     <div>
         <h2>Zeige GitHub-Stars</h2>
         <pre><code class="lang-jsx">
+// --repl
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = \`https://github.com/${repo}\`;
+        let url = `https://github.com/${repo}`;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Stars
@@ -201,6 +206,8 @@ export default class Stars extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
