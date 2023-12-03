@@ -147,7 +147,7 @@ export default class TodoList extends Component {
     setText = e =&gt; {
         this.setState({ text: e.target.value });
     };
-    addToDo = () =&gt; {
+    addTodo = () =&gt; {
         let { todos, text } = this.state;
         todos = todos.concat({ text });
         this.setState({ todos, text: '' });
