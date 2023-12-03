@@ -46,24 +46,18 @@ export default function Header() {
 							aria-label="Browse the code on GitHub"
 							href="https://github.com/preactjs/preact"
 						>
-							<img
-								src="/assets/github.svg"
-								alt="GitHub"
-								width="34"
-								height="33"
-							/>
+							<svg aria-hidden height="24" width="24">
+								<use href="/assets/header-icons.svg#github" />
+							</svg>
 						</a>
 						<a
 							class={style.socialItem}
 							aria-label="Follow us on Twitter"
 							href="https://twitter.com/preactjs"
 						>
-							<img
-								src="/assets/twitter.svg"
-								alt="Twitter"
-								width="34"
-								height="28"
-							/>
+							<svg aria-hidden height="24" width="24">
+								<use href="/assets/header-icons.svg#twitter" />
+							</svg>
 						</a>
 					</div>
 					<div class={style.translation}>
@@ -225,13 +219,16 @@ const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
 
 	return (
 		<>
-			<button {...props} onClick={toggle} aria-haspopup aria-expanded={isOpen}>
-				<img
-					src="/assets/i18n.svg"
-					alt="Translate Page"
-					width="34"
-					height="28"
-				/>
+			<button
+				{...props}
+				onClick={toggle}
+				aria-label="Select your language"
+				aria-haspopup
+				aria-expanded={isOpen}
+			>
+				<svg aria-hidden height="24" width="24">
+					<use href="/assets/header-icons.svg#i18n" />
+				</svg>
 			</button>
 			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>
 				{Object.keys(config.languages).map(id => (
