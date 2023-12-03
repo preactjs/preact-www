@@ -46,7 +46,7 @@ export default function Header() {
 							aria-label="Browse the code on GitHub"
 							href="https://github.com/preactjs/preact"
 						>
-							<svg aria-hidden height="24" width="24">
+							<svg aria-hidden viewBox="0 0 24 24">
 								<use href="/assets/header-icons.svg#github" />
 							</svg>
 						</a>
@@ -55,7 +55,7 @@ export default function Header() {
 							aria-label="Follow us on Twitter"
 							href="https://twitter.com/preactjs"
 						>
-							<svg aria-hidden height="24" width="24">
+							<svg aria-hidden viewBox="0 0 34 27.646">
 								<use href="/assets/header-icons.svg#twitter" />
 							</svg>
 						</a>
@@ -226,7 +226,7 @@ const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
 				aria-haspopup
 				aria-expanded={isOpen}
 			>
-				<svg aria-hidden height="24" width="24">
+				<svg aria-hidden viewBox="0 0 24 24">
 					<use href="/assets/header-icons.svg#i18n" />
 				</svg>
 			</button>
