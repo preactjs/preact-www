@@ -158,7 +158,7 @@ export default function Page({ route, prev, next }, ctx) {
 	// "current" is the currently *displayed* page ID.
 
 	const showTitle = current != 'index' && meta.show_title !== false;
-	const canEdit = showTitle && current != '404' && current !== '/blog';
+	const canEdit = showTitle && current != '404';
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
 	useEffect(() => {

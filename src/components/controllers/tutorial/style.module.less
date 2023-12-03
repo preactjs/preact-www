@@ -84,7 +84,7 @@
 			}
 
 			& > h1 {
-				margin: 0;
+				margin: 2.5rem 0 0;
 				padding: 0.25em 0;
 				font-size: 2.5rem;
 				font-weight: 200;
@@ -211,7 +211,7 @@
 
 		&:not(.showCode) {
 			.tutorialWindow {
-				& > * {
+				& > :not(:first-child) {
 					// Fixes content region whilst keeping
 					// title & button container centered
 					&:nth-child(2) {
