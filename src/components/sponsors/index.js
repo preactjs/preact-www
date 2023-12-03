@@ -76,7 +76,7 @@ function SponsorItem({ link, title, source, width, height, id }) {
 						height={height}
 					/>
 				) : (
-					<svg aria-hidden height={height} width={width}>
+					<svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
 						<use href={`/assets/sponsor-icons.svg#${id}`} />
 					</svg>
 				)}
