@@ -138,6 +138,7 @@ function Counter() {
     <div>
         <h2>Todo List</h2>
         <pre><code class="lang-jsx">
+// --repl
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
@@ -165,6 +166,8 @@ export default class TodoList extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
@@ -184,6 +187,7 @@ render(&lt;TodoList /&gt;, document.body);
     <div>
         <h2>Fetch GitHub Stars</h2>
         <pre><code class="lang-jsx">
+// --repl
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
@@ -198,6 +202,8 @@ export default class Stars extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
