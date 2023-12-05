@@ -1,7 +1,5 @@
-@import '~style/helpers';
-
 .wrapper {
-	// Force children to have a know height for `position:sticky` to work
+	/* Force children to have a know height for `position:sticky` to work */
 	display: flex;
 }
 
@@ -37,19 +35,19 @@
 			center/contain;
 	}
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		display: none;
 	}
 
 	&:focus {
 		outline: none;
-		// Use box shadow to draw an outline because outline has no radius
-		box-shadow: 0 0 2px 2px lighten(@color-brand, 40%),
-			0 3px 8px rgba(0, 0, 0, 0.5);
+		/* Use box shadow to draw an outline because outline has no radius */
+		box-shadow: 0 0 2px 2px #dacef0,
+			/* --color-brand 40% lighter */ 0 3px 8px rgba(0, 0, 0, 0.5);
 	}
 
 	[data-open] & {
-		background: @color-corner;
+		background: var(--color-brand-light);
 
 		&:after {
 			background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white"><path d="M38 13l-3-3-11 12-11-11-3 3 11 11-11 11 3 3 11-11 11 11 3-3-11-11z"/></svg>');
@@ -72,7 +70,7 @@
 	overflow-y: auto;
 	background: var(--color-sidebar-bg);
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		height: auto;
 		overflow-y: initial;
 		position: relative;
@@ -82,7 +80,7 @@
 		flex-shrink: 0;
 		flex-grow: 0;
 		top: 0;
-		width: @sidebar-width;
+		width: 20rem;
 		background: transparent;
 	}
 
@@ -102,13 +100,13 @@
 		border-top: 0.0625rem solid var(--color-sidebar-divider);
 	}
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		@supports (position: sticky) {
 			position: sticky;
-			height: calc(100vh - @header-and-banner-height);
+			height: calc(100vh - var(--header-and-banner-height));
 			overflow: auto;
 		}
-		top: @header-and-banner-height;
+		top: var(--header-and-banner-height);
 		padding-bottom: 0;
 		width: 100%;
 	}

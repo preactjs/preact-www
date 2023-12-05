@@ -1,6 +1,6 @@
 import { h, Component, createRef } from 'preact';
 import { memoize } from 'decko';
-import style from './style.module.less';
+import style from './style.module.css';
 import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
 import { patchErrorLocation } from './errors';
 

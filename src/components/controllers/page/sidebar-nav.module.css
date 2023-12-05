@@ -1,12 +1,10 @@
-@import '~style/helpers';
-
 .toc {
 	display: block;
 	position: relative;
 	padding: 1rem 2rem 1.5rem;
 	border-radius: 2px;
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		padding: 1.5rem 1rem 2rem 2rem;
 	}
 
@@ -25,12 +23,13 @@
 
 	&:hover {
 		color: var(--color-heading);
-		background-color: fade(@color-brand, 15%);
-		box-shadow: inset 0 0 0 1px fade(@color-brand, 25%);
+		background-color: rgba(var(--color-brand-triplet), 0.15);
+		box-shadow: inset 0 0 0 1px rgba(var(--color-brand-triplet), 0.25);
 	}
 
 	&::before {
-		.fadeOut;
+		visibility: hidden;
+		opacity: 0;
 		content: '';
 		position: absolute;
 		top: 0;

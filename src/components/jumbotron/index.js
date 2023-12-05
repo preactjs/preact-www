@@ -1,5 +1,5 @@
 import cx from '../../lib/cx';
-import style from './style.module.less';
+import style from './style.module.css';
 
 const Jumbotron = ({ children, class: c, ...props }) => (
 	<header class={cx(style.jumbotron, 'full-width', c)} {...props}>

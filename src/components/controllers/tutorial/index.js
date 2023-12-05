@@ -17,7 +17,7 @@ import {
 } from 'preact/hooks';
 import linkState from 'linkstate';
 import cx from '../../../lib/cx';
-import style from './style.module.less';
+import style from './style.module.css';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import ContentRegion from '../../content-region';

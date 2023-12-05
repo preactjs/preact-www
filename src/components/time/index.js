@@ -1,4 +1,4 @@
-import s from './time.module.less';
+import s from './time.module.css';
 
 export function Time({ value }) {
 	const date = new Date(value + 'T00:00');

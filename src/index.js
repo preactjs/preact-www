@@ -1,4 +1,4 @@
-import './style/index.less';
+import './style/index.css';
 import './analytics';
 import './pwa';
 import App from './components/app';
