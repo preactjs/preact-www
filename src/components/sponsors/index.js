@@ -1,10 +1,51 @@
 import styles from './style.module.less';
-import TrivagoSvg from './trivago.svg';
-import DenoSvg from './deno.svg';
-import ChromeSvg from './chrome.svg';
-import SongsterrSvg from './songsterr.svg';
-import ScamsInfo from './scamsinfo.png';
-import LoveholidaysSvg from './loveholidays.svg';
+import ScamsInfo from '../../assets/sponsors/scamsinfo.png';
+
+// If you're adding your company to this list, SVGs are greatly preferred!
+const sponsors = [
+	{
+		link: 'https://opencollective.com/2021-frameworks-fund',
+		title: 'Chrome Frameworks Fund',
+		width: '63',
+		height: '63',
+		id: 'chrome'
+	},
+	{
+		link: 'https://tech.trivago.com/categories/open-source/',
+		title: 'Trivago',
+		width: '102',
+		height: '32',
+		id: 'trivago'
+	},
+	{
+		link: 'https://scams.info',
+		title: 'scams.info',
+		source: ScamsInfo,
+		width: '240',
+		height: '240'
+	},
+	{
+		link: 'https://deno.land',
+		title: 'Deno',
+		width: '813',
+		height: '813',
+		id: 'deno'
+	},
+	{
+		link: 'https://songsterr.com',
+		title: 'Songsterr',
+		width: '26',
+		height: '30',
+		id: 'songsterr'
+	},
+	{
+		link: 'https://tech.loveholidays.com',
+		title: 'loveholidays',
+		width: '160',
+		height: '32',
+		id: 'loveholidays'
+	}
+];
 
 /**
  * Sponsors on the main page is a unique selling point of our
@@ -15,102 +56,31 @@ import LoveholidaysSvg from './loveholidays.svg';
 export default function Sponsors() {
 	return (
 		<ul class={styles.sponsorList}>
-			<li class={styles.sponsorItem}>
-				<a
-					href="https://opencollective.com/2021-frameworks-fund"
-					title="Chrome Frameworks Fund"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src={ChromeSvg}
-						alt="Chrome Frameworks Fund"
-						width="63"
-						height="63"
-						style="height: 3rem; width: auto;"
-					/>
-				</a>
-			</li>
-			<li class={styles.sponsorItem}>
-				<a
-					href="https://tech.trivago.com/categories/open-source/"
-					title="Trivago"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src={TrivagoSvg}
-						alt="Trivago"
-						width="102"
-						height="32"
-						style="height: 3rem; width: auto;"
-					/>
-				</a>
-			</li>
-			<li class={styles.sponsorItem}>
-				<a
-					href="https://scams.info"
-					title="scams.info"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src={ScamsInfo}
-						alt="Scams.info"
-						width="240"
-						height="240"
-						style="height: 3rem; width: auto;"
-					/>
-				</a>
-			</li>
-			<li class={styles.sponsorItem}>
-				<a
-					href="https://deno.land"
-					title="Deno"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src={DenoSvg}
-						alt="Deno"
-						width="813"
-						height="813"
-						style="height: 3rem; width: auto;"
-					/>
-				</a>
-			</li>
-			<li class={styles.sponsorItem}>
-				<a
-					href="https://songsterr.com"
-					title="Songsterr"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src={SongsterrSvg}
-						alt="Songsterr"
-						width="26"
-						height="30"
-						style="height: 3rem; width: auto;"
-					/>
-				</a>
-			</li>
-			<li class={styles.sponsorItem}>
-				<a
-					href="https://tech.loveholidays.com"
-					title="loveholidays"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src={LoveholidaysSvg}
-						alt="loveholidays"
-						width="102"
-						height="32"
-						style="height: 3rem; width: auto;"
-					/>
-				</a>
-			</li>
+			{sponsors.map(sponsor => (
+				<SponsorItem {...sponsor} />
+			))}
 		</ul>
+	);
+}
+
+function SponsorItem({ link, title, source, width, height, id }) {
+	return (
+		<li class={styles.sponsorItem}>
+			<a href={link} title={title} target="_blank" rel="noopener noreferrer">
+				{source ? (
+					<img
+						aria-hidden
+						src={source}
+						alt={title}
+						width={width}
+						height={height}
+					/>
+				) : (
+					<svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
+						<use href={`/assets/sponsor-icons.svg#${id}`} />
+					</svg>
+				)}
+			</a>
+		</li>
 	);
 }
