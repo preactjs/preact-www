@@ -13,7 +13,7 @@ main .markup {
 		margin: 60px auto;
 		max-width: 984px;
 
-		& h1 {
+		h1 {
 			font-size: 7.3vw;
 			text-align: center;
 			font-weight: lighter;
@@ -50,7 +50,7 @@ main .markup {
 			flex-direction: row;
 		}
 
-		& + .home-section {
+		+ .home-section {
 			margin: 1.6rem auto;
 
 			@media (min-width: 700px) {
@@ -61,7 +61,7 @@ main .markup {
 		/* The following nodes are created inside the markdown files.
 		To make the authoring experience easier we select and style them
 		based on the type instead of forcing content creators to add classes. */
-		& h2 {
+		h2 {
 			font-size: 220%;
 			letter-spacing: 0.01em;
 			font-weight: 300;
@@ -77,7 +77,7 @@ main .markup {
 
 		/* TODO: Inline SVGs instead of using images to allow more styling options
 		via CSS. We could play with subtle gradients for the stroke-color, etc. */
-		& img {
+		img {
 			display: block;
 			width: 25%;
 			align-self: center;
@@ -96,7 +96,7 @@ main .markup {
 			&:nth-of-type(2n + 1) {
 				flex-direction: row-reverse;
 
-				& img {
+				img {
 					margin-right: 0;
 					margin-left: 4%;
 				}
@@ -114,7 +114,7 @@ main .markup {
 			flex-direction: row;
 		}
 
-		& h2 {
+		h2 {
 			font-weight: inherit;
 		}
 
@@ -142,7 +142,7 @@ main .markup {
 				border-bottom: none;
 			}
 
-			& pre {
+			pre {
 				margin: 10px 0;
 			}
 
@@ -158,16 +158,16 @@ main .markup {
 		background: #f8f8f8;
 		border: 2px solid #ddd;
 
-		& label {
+		label {
 			color: #444;
 
-			& span:first-child {
+			span:first-child {
 				display: block;
 			}
 		}
 
-		& input,
-		& button {
+		input,
+		button {
 			margin: 0 5px 0 0.5rem;
 			padding: 5px 10px;
 			border: 1px solid #673ab8;
@@ -175,12 +175,12 @@ main .markup {
 			font-size: 100%;
 		}
 
-		& button {
+		button {
 			background: #673ab8;
 			color: #fff;
 		}
 
-		& input {
+		input {
 			box-sizing: border-box;
 			width: 75%;
 		}
