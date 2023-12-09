@@ -2,7 +2,8 @@ import { resolve } from 'path';
 import fs from 'fs';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
-import customProperties from 'postcss-custom-properties';
+import postcssCustomProperties from 'postcss-custom-properties';
+import postcssNesting from 'postcss-nesting';
 import pageConfig from './src/config.json';
 import { Feed } from 'feed';
 
@@ -49,14 +50,16 @@ export default function (config, env, helpers) {
 		// having to debug through polyfills and overly transpiled code.
 		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
 		envPresetConfig.targets = {
-			browsers: ["fully supports es6-module"],
+			browsers: ['fully supports es6-module']
 		};
 		// config.devtool = 'cheap-source-map';
 	}
 
 	// Add CSS Custom Property fallback
 	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
-	postcssLoader.options.postcssOptions.plugins.push(customProperties({ preserve: true }));
+	postcssLoader.options.postcssOptions.plugins.push(
+		...[postcssCustomProperties({ preserve: true }), postcssNesting()]
+	);
 
 	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
 	if (env.isProd && !env.isServer) {
