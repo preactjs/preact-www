@@ -27,6 +27,11 @@
 
 	font-size: 0.9rem;
 
+	@media (min-width: /* --sidebar-break */ 900px) {
+		right: 1.25rem;
+		top: 1rem;
+	}
+
 	@media (min-width: 74rem) {
 		right: 0;
 	}
