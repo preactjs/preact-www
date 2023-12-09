@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import fs from 'fs';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
+import postcssImport from 'postcss-import';
 import postcssCustomProperties from 'postcss-custom-properties';
 import postcssNesting from 'postcss-nesting';
 import pageConfig from './src/config.json';
@@ -55,8 +56,8 @@ export default function (config, env, helpers) {
 		// config.devtool = 'cheap-source-map';
 	}
 
-	// Add CSS Custom Property fallback
 	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
+	postcssLoader.options.postcssOptions.plugins.unshift(postcssImport());
 	postcssLoader.options.postcssOptions.plugins.push(
 		...[postcssCustomProperties({ preserve: true }), postcssNesting()]
 	);
