@@ -1,6 +1,7 @@
 import '@babel/polyfill';
 import { rollup } from '@rollup/browser';
 import { transform } from 'sucrase';
+import * as Comlink from 'comlink';
 import { parseStackTrace } from './errors';
 
 const PREPEND = `(function(module,exports){`;
@@ -157,7 +158,10 @@ export async function process(code, setup) {
 
 	if (transpiled && out.map) {
 		try {
-			transpiled += `\n//# sourceMappingURL=${out.map.toUrl()}`;
+			// Use string concatentation here else `source-map-loader` will think it,
+			// even with expression in the literal, is a legitimate source map identifier
+			// and will try to load it.
+			transpiled += '\n//# sourceMappingURL=' + out.map.toUrl();
 		} catch (e) {
 			console.error(`Source Map generation failed: ${e}`);
 		}
@@ -165,3 +169,5 @@ export async function process(code, setup) {
 
 	return transpiled;
 }
+
+Comlink.expose({ ping, process });
