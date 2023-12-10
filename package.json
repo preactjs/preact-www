@@ -111,10 +111,5 @@
     "unistore": "^3.5.1",
     "window-or-global": "^1.0.1",
     "yaml": "^1.7.2"
-  },
-  "overrides": {
-    "preact-cli": {
-      "source-map": "^0.7.4"
-    }
   }
 }
