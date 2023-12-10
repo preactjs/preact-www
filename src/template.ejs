@@ -18,7 +18,7 @@
 		<meta property="og:title" content="<%= cli.title %>" />
 		<meta property="og:description" content="<%= cli.CLI_DATA.prerenderData?.description %>" />
 		<meta property="og:image" content="https://preactjs.com/assets/app-icon.png" />
-		<% if (htmlWebpackPlugin.options.url.includes('/v8/')) { %>
+		<% if (cli.url.includes('/v8/')) { %>
 			<meta name="robots" content="noindex" />
 		<% } %>
 		<% if (process.env.BRANCH) { %>
