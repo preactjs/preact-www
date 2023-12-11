@@ -16,7 +16,7 @@
     "start": "npm run -s server",
     "prestart": "npm run -s build",
     "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
-    "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js",
+    "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --inline-css false",
     "prebuild": "rimraf build/assets && rimraf build/content",
     "lint": "eslint src test",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\""
