@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
-    "dev:client": "preact watch --refresh false",
+    "dev:client": "preact watch",
     "dev:lambda": "netlify-lambda serve src/lambda",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
