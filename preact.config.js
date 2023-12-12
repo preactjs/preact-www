@@ -9,9 +9,6 @@ import postcssNesting from 'postcss-nesting';
 import pageConfig from './src/config.json';
 import { Feed } from 'feed';
 
-// Enables some options that make local debugging easier
-const LOCAL_DEBUG = false;
-
 // prettier-ignore
 
 /**
@@ -37,9 +34,6 @@ export default function (config, env, helpers) {
 	definePlugin.definitions.PRERENDER = String(env.isServer);
 	definePlugin.definitions['process.env.BRANCH'] = JSON.stringify(process.env.BRANCH);
 
-	// web worker HMR requires it
-	config.output.globalObject = 'self';
-
 	config.module.noParse = [
 		/babel-standalone/
 	].concat(config.module.noParse || []);
@@ -47,27 +41,11 @@ export default function (config, env, helpers) {
 	const { rule: babel } = helpers.getLoadersByName(config, 'babel-loader')[0];
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
 
-	if (LOCAL_DEBUG) {
-		// When debugging locally, compile for higher browser versions to avoid
-		// having to debug through polyfills and overly transpiled code.
-		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
-		envPresetConfig.targets = {
-			browsers: ['fully supports es6-module']
-		};
-		// config.devtool = 'cheap-source-map';
-	}
-
 	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
 	postcssLoader.options.postcssOptions.plugins.unshift(postcssImport());
 	postcssLoader.options.postcssOptions.plugins.push(
 		...[postcssCustomProperties({ preserve: true }), postcssNesting()]
 	);
-
-	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
-	if (env.isProd && !env.isServer) {
-		//const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
-		//optimizeCss.options.cssProcessorOptions.reduceIdents = false;
-	}
 
 	for (const rule of config.module.rules) {
 		rule.resourceQuery = {
