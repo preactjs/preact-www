@@ -28,28 +28,6 @@ export default function (config, env, helpers) {
 		lib: resolve(__dirname, 'src/lib')
 	});
 
-	// TODO: fix me
-	config.module.rules[4].resourceQuery = {
-		not: [/raw/]
-	};
-	config.module.rules.push({
-		resourceQuery: /raw/,
-		type: 'asset/source'
-	});
-
-	config.module.rules[7].resourceQuery = {
-		not: [/file/]
-	};
-	config.module.rules.push({
-		resourceQuery: /file/,
-		type: 'asset/resource'
-	});
-
-	//config.module.rules.push({
-	//	resourceQuery: /worker/,
-	//	loader: 'worker-plugin/loader'
-	//});
-
 	// Use our custom polyfill entry
 	if (!env.isServer) {
 		config.entry.polyfills = resolve(__dirname, 'src/polyfills.js');
@@ -90,6 +68,23 @@ export default function (config, env, helpers) {
 		//const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
 		//optimizeCss.options.cssProcessorOptions.reduceIdents = false;
 	}
+
+	for (const rule of config.module.rules) {
+		rule.resourceQuery = {
+			not: [/raw/, /file/]
+		};
+	}
+
+	config.module.rules.push(
+		{
+			resourceQuery: /raw/,
+			type: 'asset/source'
+		},
+		{
+			resourceQuery: /file/,
+			type: 'asset/resource'
+		},
+	);
 
 	config.optimization.splitChunks.minSize = 1000;
 
