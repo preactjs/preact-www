@@ -54,17 +54,9 @@
 			"ru": "Продолжить чтение"
 		},
 		"tutorial": {
-			"previous": {
-				"en": "Previous",
-				"kr": "이전"
-			},
 			"help": {
 				"en": "Help",
 				"kr": "정답 확인"
-			},
-			"next": {
-				"en": "Next",
-				"kr": "다음"
 			}
 		}
 	},

@@ -297,8 +297,7 @@ function TutorialView({
 					<div class={style.buttonContainer}>
 						{page.meta.prev && (
 							<a class={style.prevButton} href={page.meta.prev}>
-								{config.i18n.tutorial.previous[lang] ||
-									config.i18n.tutorial.previous.en}
+								{config.i18n.previous[lang] || config.i18n.previous.en}
 							</a>
 						)}
 						{tutorial.state['repl-final'] && (
@@ -315,8 +314,8 @@ function TutorialView({
 						{page.meta.next && (
 							<a class={style.nextButton} href={page.meta.next}>
 								{page.meta.nextText ||
-									config.i18n.tutorial.next[lang] ||
-									config.i18n.tutorial.next.en}
+									config.i18n.next[lang] ||
+									config.i18n.next.en}
 							</a>
 						)}
 					</div>
