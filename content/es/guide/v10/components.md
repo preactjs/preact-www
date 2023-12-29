@@ -5,7 +5,7 @@ descriptions: 'Los componentes son el corazón de cualquier aplicación de Preac
 
 # Componentes
 
-Los componentes representa el elemento mas básicos en preact. Son lo fundamental para facilitar la creación de Uis complejas a partir de pequeños bloques de construcción. Ellos también son responsables de acoplar el estado hacia a nuestra salida renderizada. 
+Los componentes representa el elemento mas básicos en Preact. Son lo fundamental para facilitar la creación de Uis complejas a partir de pequeños bloques de construcción. Ellos también son responsables de acoplar el estado hacia a nuestra salida renderizada. 
 
 Existen dos tipos de componentes en Preact, de los que hablaremos en esta guía.
 
@@ -22,8 +22,10 @@ Los componentes funcionales son funciones simples que reciben `props` como prime
 
 
 ```jsx
+// --repl
 import { render } from 'preact';
 
+// --repl-before
 function MyComponent(props) {
   return <div>Mi nombre es {props.name}.</div>;
 }
@@ -43,8 +45,10 @@ render(App, document.body);
 Aquí tenemos un simple componente de clase llamado `<Clock>` que muestra la hora actual:
 
 ```jsx
+// --repl
 import { Component, render } from 'preact';
 
+// --repl-before
 class Clock extends Component {
 
   constructor() {
@@ -71,7 +75,7 @@ class Clock extends Component {
     return <span>{time}</span>;
   }
 }
-
+// --repl-after
 render(<Clock />, document.getElementById('app'));
 ```
 
@@ -101,8 +105,9 @@ Un error boundary es un componente que implementa `componentDidCatch()` o el mé
  Cuando un error es atrapado, podemos usar estos métodos para reaccionar a cualquier error y  mostrar un buen mensaje de error o cualquier contenido alternativo.
 
 ```jsx
+// --repl
 import { Component, render } from 'preact';
-
+// --repl-before
 class ErrorBoundary extends Component {
   constructor() {
     super();
@@ -124,7 +129,7 @@ class ErrorBoundary extends Component {
     return props.children;
   }
 }
-
+// --repl-after
 render(<ErrorBoundary />, document.getElementById('app'));
 ```
 
@@ -134,7 +139,7 @@ render(<ErrorBoundary />, document.getElementById('app'));
 Ellos resuelven la limitación del JSX donde cada "bloque" debe tener un único elemento raíz. frecuentemente  los encontraras en combinación con listas, tablas o con un CSS flexbox donde cualquier elemento intermedio podría afectar  los estilos
 
 ```jsx
-
+// --repl
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
