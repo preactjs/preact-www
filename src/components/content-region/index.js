@@ -1,7 +1,7 @@
 import Markup from 'preact-markup';
-import widgets from './widgets';
-import style from './content-region.module.less';
-import { useTranslation } from '../lib/i18n';
+import widgets from '../widgets';
+import style from './style.module.css';
+import { useTranslation } from '../../lib/i18n';
 
 const COMPONENTS = {
 	...widgets,

@@ -1,28 +1,17 @@
-@header-height: 3.5rem; // 56px
-@header-and-banner-height: @header-height + 2.5rem; // 96px with banner
-@header-mobile-breakpoint: 50rem;
-@sidebar-width: 20rem;
-@sidebar-break: ~'(min-width: 900px)';
-@content-width: 50rem;
-@home-width: 61.5rem;
-@full-width: 80rem;
-
-@color-brand: #673ab8;
-@color-brand-light: #8f61e1;
-@color-corner: #f2777a;
-@color-corner2: #e57676;
-@color-complementary: #ffeb3b;
-@blockquote-border: #5aa8ff;
-@blockquote-bg: #ebf6ff;
-
 :root {
-	// Default variables that will be used by postcss-css-variables to generate
-	// fallback styles for IE11.
 	--vh: 100vh;
+	--header-height: 3.5rem;
+	--header-mobile-breakpoint: 50rem;
+	--header-and-banner-height: calc(var(--header-height) + 2.5rem);
+	--content-width: 50rem;
+	--sidebar-break: 900px;
+
 	--color-page-bg: white;
 	--color-text: #444;
 	--color-heading: black;
 	--color-brand: #673ab8;
+	--color-brand-triplet: 103, 58, 184;
+	--color-brand-light: #8f61e1;
 	--color-link: #673ab8;
 	--color-btn: #673ab8;
 	--color-btn-secondary: #673ab8;
@@ -52,7 +41,7 @@
 	--color-error-bg: #ffeddb;
 	--color-error-heading: #f43678;
 
-	// Code snippets
+	/* Code snippets */
 	--color-code-inline-color: black;
 	--color-code-inline-bg: #e4e4e4;
 	--color-code-inline-border: #eaeaea;
@@ -69,7 +58,6 @@
 	--color-code-operator: #67cdcc;
 	--color-code-comment: #999;
 
-	// Modern browsers allow to specify the preferred color scheme
 	@media (prefers-color-scheme: dark) {
 		--color-page-bg: #242424;
 		--color-text: #cccccc;
@@ -105,7 +93,7 @@
 		--color-error-bg: #230c07;
 		--color-error-heading: #f43678;
 
-		// Code snippets
+		/* Code snippets */
 		--color-code-inline-color: white;
 		--color-code-inline-bg: #404040;
 		--color-code-inline-border: #5e5e5e;

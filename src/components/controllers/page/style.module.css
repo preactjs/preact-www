@@ -1,5 +1,3 @@
-@import '~style/helpers';
-
 .page {
 	position: relative;
 	margin-left: auto;
@@ -10,8 +8,8 @@
 	}
 
 	:global .markup {
-		// Necessary to prevent the background stripes of
-		// jumpotron/hero to affect the scrolling area.
+		/* Necessary to prevent the background stripes of
+		   jumpotron/hero to affect the scrolling area. */
 		overflow: hidden;
 
 		& > *,
@@ -20,7 +18,7 @@
 			padding-right: 20px;
 			margin-left: auto;
 			margin-right: auto;
-			max-width: @content-width;
+			max-width: var(--content-width);
 		}
 
 		& > ul,
@@ -42,7 +40,7 @@
 .pageTitle {
 	margin: 2.5rem auto 0 auto;
 	padding: 0.5em 1rem 0.25rem;
-	max-width: @content-width;
+	max-width: var(--content-width);
 
 	@media (max-width: 600px) {
 		margin-top: 2rem;
@@ -51,8 +49,8 @@
 
 .title {
 	margin: 0 auto;
-	// margin: 1.5rem auto 0 auto;
-	// padding: 0.5em 1rem 0.25rem;
+	/* margin: 1.5rem auto 0 auto;
+	   padding: 0.5em 1rem 0.25rem; */
 	font-size: 3rem;
 	font-weight: 200;
 	font-weight: bold;
@@ -79,13 +77,22 @@
 	color: #444;
 	text-align: center;
 	position: sticky;
-	top: @header-and-banner-height;
-	z-index: 100; // Else code blocks would layer on top
+	top: var(--header-and-banner-height);
+	z-index: 100; /* Else code blocks would layer on top */
 
 	a {
-		.link;
 		font-weight: bold;
 		color: var(--color-brand);
+
+		text-decoration-skip-ink: auto;
+		text-decoration: underline;
+		text-decoration-color: var(--color-table-border);
+		text-decoration-thickness: 1px;
+
+		&:hover,
+		&:focus {
+			text-decoration-color: currentColor;
+		}
 	}
 }
 
@@ -106,13 +113,13 @@
 		display: flex;
 	}
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		background: var(--color-sidebar-bg);
 
 		.outer {
 			margin-left: auto;
 			margin-right: auto;
-			max-width: @full-width;
+			max-width: 80rem;
 		}
 
 		.inner {
