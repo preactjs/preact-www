@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { useReducer } from 'preact/hooks';
-import style from './error-overlay.module.less';
+import style from './error-overlay.module.css';
 
 export function ErrorOverlay({ class: c, name, message, stack }) {
 	const [showStack, toggleStack] = useReducer(s => !s, false);

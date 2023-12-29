@@ -4,7 +4,7 @@ import { debounce } from 'decko';
 import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
-import style from './style.module.less';
+import style from './style.module.css';
 import REPL_CSS from '!!raw-loader!./examples.css';
 
 import simpleCounterExample from '!!file-loader!./examples/simple-counter.txt';
