@@ -1,4 +1,4 @@
-import styles from './style.module.less';
+import styles from './style.module.css';
 import ScamsInfo from '../../assets/sponsors/scamsinfo.png';
 
 // If you're adding your company to this list, SVGs are greatly preferred!

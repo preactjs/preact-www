@@ -16,10 +16,19 @@
 	p > em > a,
 	ul a,
 	ol a {
-		.link;
 		color: var(--color-link);
+		text-decoration-skip-ink: auto;
+		text-decoration: underline;
+		text-decoration-color: var(--color-table-border);
+		text-decoration-thickness: 1px;
 
-		&:hover {
+		&:hover,
+		&:focus {
+			text-decoration-color: currentColor;
+		}
+
+		&:hover,
+		&:focus {
 			color: #ff89ff;
 		}
 	}
@@ -104,7 +113,7 @@
 		border: 0 none;
 		background: var(--color-hr);
 
-		// Assume that any sibling lists are a TOC
+		/* Assume that any sibling lists are a TOC */
 		& + ul,
 		& + ol {
 			padding-left: calc(1rem + 20px) !important;
@@ -378,12 +387,12 @@
 	h4,
 	h5,
 	h6 {
-		// fix anchor target positioning to account for fixed header
+		/* fix anchor target positioning to account for fixed header */
 		&:target {
-			padding-top: @header-and-banner-height;
+			padding-top: var(--header-and-banner-height);
 		}
 		content-region[name*='v8'] &:target {
-			padding-top: calc(@header-and-banner-height + 3.25rem);
+			padding-top: calc(var(--header-and-banner-height) + 3.25rem);
 		}
 
 		a {
@@ -405,6 +414,7 @@
 	}
 
 	* {
+		print-color-adjust: exact;
 		-webkit-print-color-adjust: exact;
 	}
 	@media screen and (min-width: 914px) {

@@ -1,5 +1,3 @@
-@import '~style/helpers';
-
 .logos {
 	margin: 3rem 0 4rem;
 
@@ -35,7 +33,7 @@
 		color: var(--color-btn-background);
 		&:hover,
 		&:focus-visible {
-			box-shadow: 0 0 0 5px @color-brand-light;
+			box-shadow: 0 0 0 5px var(--color-brand-light);
 			border-color: var(--color-btn-background);
 		}
 	}

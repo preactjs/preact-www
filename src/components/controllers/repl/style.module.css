@@ -1,9 +1,7 @@
-@import '~style/helpers';
-
 .repl {
 	position: absolute;
 	left: 0;
-	top: @header-and-banner-height;
+	top: var(--header-and-banner-height);
 	bottom: 0;
 	height: auto;
 	width: 100%;
@@ -18,7 +16,7 @@
 		height: 2.5rem;
 		display: flex;
 		align-items: center;
-		// line-height: 2.5rem;
+		/* line-height: 2.5rem; */
 		background: var(--color-brand);
 		color: #fff;
 		z-index: 100;

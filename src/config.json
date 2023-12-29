@@ -51,6 +51,7 @@
 			"de": "Weiter lesen",
 			"zh": "继续阅读",
 			"es": "Seguir leyendo",
+			"kr": "계속 읽기",
 			"ru": "Продолжить чтение"
 		},
 		"tutorial": {
@@ -81,6 +82,7 @@
 			"name": {
 				"en": "Tutorial",
 				"zh": "教程",
+				"kr": "튜토리얼",
 				"ru": "Учебник"
 			},
 			"controller": "Tutorial"
@@ -93,6 +95,7 @@
 				"ja": "ガイド",
 				"es": "Guía",
 				"zh": "指南",
+				"kr": "가이드",
 				"ru": "Руководство"
 			},
 			"content": "guide",
@@ -107,6 +110,7 @@
 				"ja": "Preactについて",
 				"es": "Sobre",
 				"zh": "关于",
+				"kr": "소개",
 				"ru": "Разное"
 			},
 			"content": "about",
@@ -120,6 +124,7 @@
 						"ja": "Preactを使っている企業",
 						"es": "Empresas que usan Preact",
 						"zh": "使用 Preact 的企业",
+						"kr": "Preact를 사용하는 기업",
 						"ru": "Используют Preact"
 					}
 				},
@@ -132,6 +137,7 @@
 						"ja": "ライブラリとアドオン",
 						"es": "Librerías y complementos",
 						"zh": "第三方库和附加组件",
+						"kr": "라이브러리 & 애드온",
 						"ru": "Библиотеки и дополнения"
 					}
 				},
@@ -144,6 +150,7 @@
 						"ja": "デモと例",
 						"es": "Demostraciones y ejemplos",
 						"zh": "示例",
+						"kr": "데모 & 예제",
 						"ru": "Демонстрации и примеры"
 					}
 				},
@@ -156,6 +163,7 @@
 						"ja": "Preactの目的",
 						"es": "Objetivos del proyecto",
 						"zh": "项目目标",
+						"kr": "프로젝트 목표",
 						"ru": "Цели проекта"
 					}
 				},
@@ -168,6 +176,7 @@
 						"ja": "ブラウザのサポート",
 						"es": "Soporte de navegadores",
 						"zh": "浏览器支持",
+						"kr": "브라우저 지원",
 						"ru": "Поддержка браузеров"
 					}
 				}
@@ -178,6 +187,7 @@
 			"name": {
 				"en": "Blog",
 				"zh": "博客",
+				"kr": "블로그",
 				"ru": "Блог"
 			},
 			"first": "index",
@@ -305,6 +315,7 @@
 				"en": "Introduction",
 				"de": "Einführung",
 				"zh": "介绍",
+				"kr": "개요",
 				"ru": "Введение"
 			},
 			"routes": [
@@ -316,6 +327,7 @@
 						"ja": "はじめに",
 						"de": "Los geht's",
 						"zh": "开始上手",
+						"kr": "시작하기",
 						"ru": "Первые шаги"
 					}
 				},
@@ -326,6 +338,7 @@
 						"ja": "Preact Xの新機能",
 						"pt-br": "o que há de novo",
 						"zh": "新鲜功能",
+						"kr": "새로운 기능",
 						"ru": "Что нового?"
 					}
 				},
@@ -337,6 +350,7 @@
 						"ja": "Preact 8.xからのアップグレード",
 						"de": "Migration von 8.x",
 						"zh": "从 8.x 版本更新",
+						"kr": "8.x에서 업그레이드하기",
 						"ru": "Обновление с 8.x"
 					}
 				},
@@ -348,6 +362,7 @@
 						"ja": "チュートリアル",
 						"de": "Tutorial",
 						"zh": "教程",
+						"kr": "튜토리얼",
 						"ru": "Учебник"
 					}
 				}
@@ -357,6 +372,7 @@
 			"name": {
 				"en": "Essentials",
 				"zh": "基础",
+				"kr": "필수 항목",
 				"ru": "Основы"
 			},
 			"routes": [
@@ -368,6 +384,7 @@
 						"ja": "コンポーネント",
 						"de": "Komponenten",
 						"zh": "组件",
+						"kr": "컴포넌트",
 						"ru": "Компоненты"
 					}
 				},
@@ -379,6 +396,7 @@
 						"ja": "フック(Hooks)",
 						"de": "Hooks",
 						"zh": "钩子",
+						"kr": "훅",
 						"ru": "Хуки"
 					}
 				},
@@ -387,6 +405,7 @@
 					"name": {
 						"en": "Signals",
 						"zh": "信号",
+						"kr": "시그널",
 						"ru": "Сигналы"
 					}
 				},
@@ -398,6 +417,7 @@
 						"ja": "フォーム",
 						"de": "Formulare",
 						"zh": "表单",
+						"kr": "폼",
 						"ru": "Формы"
 					}
 				},
@@ -409,6 +429,7 @@
 						"ja": "リファレンス(Ref)",
 						"de": "Referenzen",
 						"zh": "引用",
+						"kr": "레퍼런스",
 						"ru": "Ссылки"
 					}
 				},
@@ -420,6 +441,7 @@
 						"ja": "コンテキスト(Context)",
 						"de": "Kontext",
 						"zh": "上下文",
+						"kr": "컨텍스트",
 						"ru": "Контекст"
 					}
 				}
@@ -429,6 +451,7 @@
 			"name": {
 				"en": "Debug & Test",
 				"zh": "调试与测试",
+				"kr": "디버그 & 테스트",
 				"ru": "Отладка и тестирование"
 			},
 			"routes": [
@@ -440,6 +463,7 @@
 						"ja": "デバッグツール",
 						"de": "Entwickler-Tools",
 						"zh": "调试工具",
+						"kr": "디버깅 도구",
 						"ru": "Инструменты отладки"
 					}
 				},
@@ -451,6 +475,7 @@
 						"ja": "Preact Testing Library",
 						"de": "Preact Testing Library",
 						"zh": "Preact 测试库",
+						"kr": "Preact 테스팅 라이브러리",
 						"ru": "Preact Testing Library"
 					}
 				},
@@ -472,6 +497,7 @@
 			"name": {
 				"en": "React compatibility",
 				"zh": "React 兼容性",
+				"kr": "React 호환성",
 				"ru": "Совместимость с React"
 			},
 			"routes": [
@@ -506,6 +532,7 @@
 				"en": "Advanced",
 				"de": "Fortgeschritten",
 				"zh": "进阶",
+				"kr": "고급",
 				"ru": "Дополнительно"
 			},
 			"routes": [
@@ -517,6 +544,7 @@
 						"ja": "APIリファレンス",
 						"de": "API Referenz",
 						"zh": "API 参考",
+						"kr": "API 참조",
 						"ru": "Справочник по API"
 					}
 				},
@@ -528,6 +556,7 @@
 						"ja": "Webコンポーネント",
 						"de": "Web Components",
 						"zh": "Web 组件",
+						"kr": "웹 컴포넌트",
 						"ru": "Веб-компоненты"
 					}
 				},
@@ -536,6 +565,7 @@
 					"name": {
 						"en": "Progressive Web Apps",
 						"zh": "渐进式 Web 应用",
+						"kr": "점진적 웹 앱 (PWA)",
 						"ru": "Прогрессивные веб-приложения"
 					}
 				},
@@ -547,6 +577,7 @@
 						"ja": "サーバーサイドレンダリング",
 						"de": "Server-Side Rendering",
 						"zh": "服务端渲染",
+						"kr": "서버 측 렌더링",
 						"ru": "Рендеринг на стороне сервера"
 					}
 				},
@@ -558,6 +589,7 @@
 						"ja": "Preactのステート管理の範囲外のDOMとの連携",
 						"de": "Externe DOM Mutationen",
 						"zh": "外部 DOM 修改",
+						"kr": "외부 DOM 변경",
 						"ru": "Внешние мутации DOM"
 					}
 				},
@@ -568,6 +600,7 @@
 						"ja": "オプションフック",
 						"de": "Optionen",
 						"zh": "选项钩子",
+						"kr": "옵션 훅",
 						"ru": "Опционные хуки"
 					}
 				},
@@ -602,12 +635,14 @@
 			"name": {
 				"en": "Signal Boosting",
 				"zh": "信号增强",
+				"kr": "시그널 부스팅",
 				"ru": "Усиление сигналов"
 			},
 			"date": "2022-09-23",
 			"excerpt": {
 				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen.",
 				"zh": "全新版本 Preact 信号为反应系统带来了显著的性能提升，阅读本文来了解其背后的工作原理。",
+				"kr": "Preact 시그널의 새로운 릴리스는 반응형 시스템의 기초에 중요한 성능 업데이트를 가져왔습니다. 이를 실현하기 위해 사용한 트릭에 대해 알아보세요.",
 				"ru": "Новая версия Preact Signals вносит значительные улучшения производительности в основы реактивной системы. Читайте дальше, чтобы узнать, какие трюки мы использовали, чтобы это произошло."
 			}
 		},
@@ -617,6 +652,7 @@
 				"en": "Introducing Signals",
 				"zh": "初见信号",
 				"es": "Introduciendo los Signals",
+				"kr": "시그널 소개",
 				"ru": "Знакомство с сигналами"
 			},
 			"date": "2022-09-06",
@@ -624,6 +660,7 @@
 				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions.",
 				"zh": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。",
 				"es": "Los Signals son una forma más fácil de administrar el estado de tu aplicación en comparación con los hooks. Un signal es un objeto contenedor con una propiedad especial \"value\" que contiene algún valor. Leer la propiedad value de un signal desde un componente o una función computada se suscribe automáticamente a las actualizaciones, y escribir en la propiedad value activa las suscripciones.",
+				"kr": "시그널은 훅에 비해 애플리케이션의 상태를 관리하는 더 쉬운 방법입니다. 시그널은 어떤 값을 저장하는 특수한 \"value\" 속성을 가진 컨테이너 객체입니다. 컴포넌트나 computed 함수 내에서 시그널의 value 속성을 읽으면 자동으로 업데이트를 구독하고, value 속성에 임의의 값을 쓰는 경우 구독을 트리거합니다.",
 				"ru": "Сигналы — это более простой способ управления состоянием вашего приложения по сравнению с хуками. Сигнал — это объект-контейнер со специальным свойством «value», которое содержит некоторое значение. Чтение свойства значения сигнала из компонента или вычисляемой функции автоматически подписывается на обновления, а запись в свойство значения запускает подписку."
 			}
 		}

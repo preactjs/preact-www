@@ -1,18 +1,16 @@
-@import '~style/helpers';
-
 content-region {
 	display: block;
 }
 
 .nextWrapper {
-	max-width: @content-width;
+	max-width: var(--content-width);
 	margin: 2rem auto 0;
 	padding: 0 0 4rem 0;
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
