@@ -19,7 +19,7 @@
     "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --inline-css false",
     "prebuild": "rimraf build/assets && rimraf build/content",
     "lint": "eslint src test",
-    "format": "prettier --write \"{src,test}/**/*.{less,js,json}\""
+    "format": "prettier --write \"{src,test}/**/*.{css,js,json}\""
   },
   "eslintConfig": {
     "extends": "developit",
@@ -58,7 +58,7 @@
     }
   },
   "lint-staged": {
-    "{src,test}/**/*.{less,js,json}": [
+    "{src,test}/**/*.{css,js,json}": [
       "prettier --write",
       "git add"
     ]
@@ -74,10 +74,11 @@
     "feed": "^4.2.2",
     "husky": "^4.0.0",
     "jsdom": "^15.2.1",
-    "less-loader": "^7.3.0",
     "lint-staged": "^9.5.0",
     "netlify-lambda": "^1.6.3",
-    "postcss-custom-properties": "^9.0.2",
+    "postcss-custom-properties": "^13.3.2",
+    "postcss-import": "^14.0.0",
+    "postcss-nesting": "^12.0.1",
     "preact-cli": "^3.4.1",
     "preact-cli-plugin-netlify": "^1.5.0",
     "prettier": "^1.19.1",
@@ -96,7 +97,6 @@
     "decko": "^1.2.0",
     "encoding": "^0.1.13",
     "htm": "^2.2.1",
-    "less": "^3.10.3",
     "linkstate": "^1.1.1",
     "magic-string": "^0.25.7",
     "marked": "^0.8.0",

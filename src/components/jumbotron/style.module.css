@@ -1,19 +1,17 @@
-@import '~style/helpers';
-
 .jumbotron {
 	position: relative;
 	display: block;
 	overflow: visible;
 	text-align: center;
 
-	// TODO: Fix specifity
+	/* TODO: Fix specifity */
 	padding: 0 !important;
 
 	h1 {
 		color: #fff;
 		text-transform: uppercase;
 
-		@media @sidebar-break {
+		@media (min-width: /* --sidebar-break */ 900px) {
 			padding: 1.5rem 0 0 0 !important;
 		}
 
@@ -29,7 +27,7 @@
 		margin-right: 1rem;
 		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
 
-		@media @sidebar-break {
+		@media (min-width: /* --sidebar-break */ 900px) {
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -46,23 +44,23 @@
 	transform: skewY(-10deg) scale(2.6) translate3d(-50%, 12%, 0);
 	background: var(--color-brand);
 
-	@media @sidebar-break {
+	@media (min-width: /* --sidebar-break */ 900px) {
 		transform: skewY(-6deg) scale(2.6) translate3d(-50%, 22%, 0);
 	}
 
-	// TODO: Fix specifity
+	/* TODO: Fix specifity */
 	max-width: none !important;
 	margin: 0 !important;
 	padding: 0 !important;
 }
 
 .content {
-	// Force element on composite layer to position it above the
-	// previous sibling
+	/* Force element on composite layer to position it above the
+	   previous sibling */
 	transform: translate3d(0, 0, 0);
 }
 
-// GitHub star button
+/* GitHub star button */
 :global(.github-btn) {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
