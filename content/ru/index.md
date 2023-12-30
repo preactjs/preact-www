@@ -12,8 +12,8 @@ description: 'Быстрая 3КБ-альтернатива React с тем же
     </h1>
     <p class="tagline">Быстрая альтернатива React весом 3 КБ с тем же современным API.</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Switch to Preact</a>
+        <a href="/guide/v10/getting-started" class="btn primary">Начать</a>
+        <a href="/guide/v10/switching-to-preact" class="btn secondary">Перейти на Preact</a>
     </p>
 </jumbotron>
 
