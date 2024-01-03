@@ -41,7 +41,7 @@ Preact — отличный выбор для [прогрессивных веб
           <div class="_title-block">
             <h3>Строительный блок, который отлично работает с экосистемой React</h3>
           </div>
-          <p class="_summary">Нужно ли вам использовать <a href="https://facebook.github.io/react/docs/react-dom-server.html">серверный рендеринг</a> React для быстрого вывода пикселей на экран или использовать <a href="https://github.com/ReactTraining/react-router">React Router</a> для навигации? Неважно! Preact хорошо работает со многими библиотеками в экосистеме. </p>
+          <p class="_summary">Нужно ли вам использовать <a href="https://facebook.github.io/react/docs/react-dom-server.html">серверный рендеринг</a> React для быстрого вывода пикселей на экран или использовать <a href="https://github.com/ReactTraining/react-router">React Router</a> для навигации? Неважно! Preact хорошо работает со многими библиотеками в экосистеме.</p>
         </div>
     </li>
 </ol>
@@ -80,7 +80,7 @@ Preact — отличный выбор для [прогрессивных веб
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> поощряет упреждающую отправку или предварительную загрузку ресурсов в браузер, ускоряя загрузку последующих страниц. Он основан на разделении кода и программном кэшировании.. </p>
+          <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> поощряет упреждающую отправку или предварительную загрузку ресурсов в браузер, ускоряя загрузку последующих страниц. Он основан на разделении кода и программном кэшировании.</p>
         </div>
     </li>
     <li class="list-item">
@@ -88,7 +88,7 @@ Preact — отличный выбор для [прогрессивных веб
           <div class="_bubble" style="background-image: url(/assets/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
-          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> позволяет вам проверять производительность и лучшие практики вашего прогрессивного веб-приложения, чтобы вы знали, насколько хорошо работает ваше приложение..</p>
+          <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> позволяет вам проверять производительность и лучшие практики вашего прогрессивного веб-приложения, чтобы вы знали, насколько хорошо работает ваше приложение.</p>
         </div>
     </li>
 </ol>
