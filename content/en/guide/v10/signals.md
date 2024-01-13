@@ -356,6 +356,16 @@ name.value = "John";
 // Logs: "John Doe"
 ```
 
+You can return a function from the function provided to [`effect()`](#effectfn) that will be run right before the next update takes place. The purpose of the returned function is to clean up the side effect before the next update.
+
+```js
+effect(() => {
+  Chat.connect(username.value)
+
+  return () => Chat.disconnect(username.value)
+})
+```
+
 You can destroy an effect and unsubscribe from all signals it accessed by calling the returned function.
 
 ```js
@@ -506,7 +516,7 @@ When creating computed signals within a component, use the hook variant: `useCom
 
 ### effect(fn)
 
-To run arbitrary code in response to signal changes, we can use `effect(fn)`. Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. Unlike computed signals, `effect()` does not return a signal - it's the end of a sequence of changes.
+To run arbitrary code in response to signal changes, we can use `effect(fn)`. Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. If `fn` returns a function, this function will be run right before the next value update. Unlike computed signals, `effect()` does not return a signal - it's the end of a sequence of changes.
 
 ```js
 const name = signal("Jane");
