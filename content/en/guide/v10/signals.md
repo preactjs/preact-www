@@ -356,7 +356,7 @@ name.value = "John";
 // Logs: "John Doe"
 ```
 
-You can return a function from the function provided to [`effect()`](#effectfn) that will be run right before the next update takes place. The purpose of the returned function is to clean up the side effect before the next update.
+Optionally, you can return a cleanup function from the callback provided to [`effect()`](#effectfn) that will be run before the next update takes place. This allows you to "clean up" the side effect and potentially reset any state for the subsequent trigger of the callback.
 
 ```js
 effect(() => {
