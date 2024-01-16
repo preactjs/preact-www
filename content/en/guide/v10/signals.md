@@ -516,7 +516,7 @@ When creating computed signals within a component, use the hook variant: `useCom
 
 ### effect(fn)
 
-To run arbitrary code in response to signal changes, we can use `effect(fn)`. Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. If `fn` returns a function, this function will be run right before the next value update. Unlike computed signals, `effect()` does not return a signal - it's the end of a sequence of changes.
+To run arbitrary code in response to signal changes, we can use `effect(fn)`. Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. If the callback returns a function, this function will be run before the next value update. Unlike computed signals, `effect()` does not return a signal - it's the end of a sequence of changes.
 
 ```js
 const name = signal("Jane");
