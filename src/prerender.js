@@ -3,7 +3,6 @@ const path = require('path');
 const marked = require('marked');
 const yaml = require('yaml');
 const config = require('./config.json');
-const { fetchRelease } = require('./lambda/release');
 
 // Titles for various content areas
 const groups = {
@@ -28,6 +27,7 @@ module.exports = async () => {
 
 	let preactVersion;
 	try {
+		const { fetchRelease } = await import('./lambda/release.mjs');
 		preactVersion = (await fetchRelease('preactjs/preact')).version;
 	} catch {}
 
