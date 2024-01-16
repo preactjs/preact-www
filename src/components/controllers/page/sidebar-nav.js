@@ -1,4 +1,3 @@
-import { Fragment } from 'preact';
 import cx from '../../../lib/cx';
 import style from './sidebar-nav.module.css';
 import { getCurrentUrl } from 'preact-router';
@@ -30,7 +29,7 @@ export default function SidebarNav({ items, onClick }) {
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
 					return (
-						<Fragment>
+						<>
 							<SidebarGroup level={level}>{text}</SidebarGroup>
 							<div class={style.accordionBody}>
 								{routes.map(route => {
@@ -47,7 +46,7 @@ export default function SidebarNav({ items, onClick }) {
 									);
 								})}
 							</div>
-						</Fragment>
+						</>
 					);
 				}
 				return (
