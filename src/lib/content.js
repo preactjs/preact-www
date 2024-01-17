@@ -103,12 +103,9 @@ export function parseContent(text) {
 const markedWorker =
 	!PRERENDER &&
 	Comlink.wrap(
-		new Worker(
-			/* webpackChunkName: "marked-worker" */ new URL(
-				'./marked.worker.js',
-				import.meta.url
-			)
-		)
+		new Worker(new URL('./marked.worker.js', import.meta.url), {
+			type: 'module'
+		})
 	);
 function parseMarkdownContent(data) {
 	return markedWorker.convert(data.content).then(html => {

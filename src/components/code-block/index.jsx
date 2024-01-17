@@ -6,12 +6,11 @@ const { highlight } = PRERENDER
 	? require('./prism.worker.js')
 	: Comlink.wrap(
 			new Worker(
-				/* webpackChunkName: "prism-worker" */ new URL(
-					'./prism.worker.js',
-					import.meta.url
-				)
+				new URL('./prism.worker.js', import.meta.url), {
+					type: 'module'
+				}
 			)
-	  );
+	);
 
 /**
  * @param {{ code: string, lang: string }} props
