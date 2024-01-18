@@ -1,5 +1,6 @@
-import * as Comlink from 'comlink';
+import 'promise-polyfill/lib/polyfill';
 import * as prism from '../../lib/prism';
+import * as Comlink from 'comlink';
 
 export function highlight(code, lang) {
 	if (lang == 'sh') lang = 'bash';
