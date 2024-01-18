@@ -15,7 +15,7 @@ Preactはすぐにロードされ操作が可能になることを求められ�
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/load-less-script.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/load-less-script.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -31,7 +31,7 @@ Preactはすぐにロードされ操作が可能になることを求められ�
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/faster-tti.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/faster-tti.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -46,7 +46,7 @@ Preactはすぐにロードされ操作が可能になることを求められ�
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/building-block.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/building-block.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -64,7 +64,7 @@ Preactはすぐにロードされ操作が可能になることを求められ�
 あなたが見ているこのサイトは、実は、Progressive Web Appです。
 このサイトは3G回線のNexus 5Xで5秒以内に操作可能になります。
 
-<img src="/assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X" style="display: block;" />
+<img src="/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X" style="display: block;" />
 
 静的なサイトのコンテンツは(Service Worker) Cache Storage APIに保存されます。そして、再び訪問した時にすぐにロードされます。
 
@@ -76,7 +76,7 @@ PreactはPWAにとても適しているだけではなく、それ以外のパ�
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary">
@@ -88,7 +88,7 @@ PreactはPWAにとても適しているだけではなく、それ以外のパ�
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary">
@@ -100,7 +100,7 @@ PreactはPWAにとても適しているだけではなく、それ以外のパ�
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/prpl.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary">
@@ -112,7 +112,7 @@ PreactはPWAにとても適しているだけではなく、それ以外のパ�
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/lighthouse.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary">

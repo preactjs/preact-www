@@ -15,21 +15,21 @@ function LogoVariation({ name, alt }) {
 	return (
 		<div class={style.variation}>
 			<img
-				src={`/assets/branding/${name}.svg`}
+				src={`/branding/${name}.svg`}
 				alt={alt}
 				loading="lazy"
 				height="64"
 			/>
 			<div class={style.links}>
 				<a
-					href={`/assets/branding/${name}.svg`}
+					href={`/branding/${name}.svg`}
 					target="_blank"
 					rel="noreferrer"
 				>
 					SVG
 				</a>
 				<a
-					href={`/assets/branding/${name}.png`}
+					href={`/branding/${name}.png`}
 					target="_blank"
 					rel="noreferrer"
 				>

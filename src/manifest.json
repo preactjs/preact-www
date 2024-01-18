@@ -7,12 +7,12 @@
 	"start_url": "/",
 	"icons": [
 		{
-			"src": "/assets/app-icon.png",
+			"src": "/app-icon.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		},
 		{
-			"src": "/assets/app-icon-maskable.png",
+			"src": "/app-icon-maskable.png",
 			"sizes": "512x512",
 			"type": "image/png",
 			"purpose": "maskable"
