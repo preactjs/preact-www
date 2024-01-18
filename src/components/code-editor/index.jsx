@@ -5,6 +5,8 @@ import 'codemirror/mode/jsx/jsx';
 import 'codemirror/addon/comment/comment';
 import 'codemirror/lib/codemirror.css';
 import style from './style.module.css';
+// TODO: Fix me, Vite doesn't seem to like :global in CSS Modules
+import './temp.css';
 
 export default class CodeEditor extends Component {
 	scratch = document.createElement('div');
