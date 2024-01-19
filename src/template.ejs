@@ -37,8 +37,6 @@
 		<% } %>
 		<script crossorigin="anonymous" type="module" src="<%= cli.entrypoints['bundle'] %>"></script>
 		<% if (cli.env.isProd) { %>
-			<script nomodule src="<%= cli.entrypoints['es-polyfills'] %>"></script>
-			<script nomodule defer src="<%= cli.entrypoints['legacy-bundle'] %>"></script>
 			<script async defer src="https://www.google-analytics.com/analytics.js"></script>
 		<% } %>
 	</body>
