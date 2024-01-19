@@ -26,7 +26,10 @@ module.exports = async () => {
 			arr.path ? { path: arr.path, name: arr.name } : arr.routes
 		);
 
-	const preactVersion = (await fetchRelease('preactjs/preact')).version;
+	let preactVersion;
+	try {
+		preactVersion = (await fetchRelease('preactjs/preact')).version;
+	} catch {}
 
 	const pageData = routes.flatMap(function map(route) {
 		const url = route.path;

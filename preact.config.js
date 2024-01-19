@@ -2,9 +2,15 @@ import { resolve } from 'path';
 import fs from 'fs';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
-import customProperties from 'postcss-custom-properties';
+import postcssImport from 'postcss-import';
+import postcssCustomProperties from 'postcss-custom-properties';
+import postcssNesting from 'postcss-nesting';
 import pageConfig from './src/config.json';
 import { Feed } from 'feed';
+
+// Enables some options that make local debugging easier
+const LOCAL_DEBUG = false;
+
 // prettier-ignore
 
 /**
@@ -40,9 +46,21 @@ export default function (config, env, helpers) {
 	const { rule: babel } = helpers.getLoadersByName(config, 'babel-loader')[0];
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
 
-	// Add CSS Custom Property fallback
+	if (LOCAL_DEBUG) {
+		// When debugging locally, compile for higher browser versions to avoid
+		// having to debug through polyfills and overly transpiled code.
+		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
+		envPresetConfig.targets = {
+			browsers: ['fully supports es6-module']
+		};
+		// config.devtool = 'cheap-source-map';
+	}
+
 	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
-	postcssLoader.options.postcssOptions.plugins.push(customProperties({ preserve: true }));
+	postcssLoader.options.postcssOptions.plugins.unshift(postcssImport());
+	postcssLoader.options.postcssOptions.plugins.push(
+		...[postcssCustomProperties({ preserve: true }), postcssNesting()]
+	);
 
 	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
 	if (env.isProd && !env.isServer) {
@@ -74,7 +92,12 @@ export default function (config, env, helpers) {
 					const matches = content.match(FRONT_MATTER_REG);
 					if (!matches) return content;
 
-					const meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
+					let meta;
+					try {
+						meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n') || {};
+					} catch (e) {
+						throw new Error(`Error parsing YAML FrontMatter in ${path}`);
+					}
 					content = content.replace(FRONT_MATTER_REG, '');
 					if (!meta.title) {
 						let [, title] = content.match(TITLE_REG) || [];

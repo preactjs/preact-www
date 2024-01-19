@@ -17,7 +17,7 @@ import {
 } from 'preact/hooks';
 import linkState from 'linkstate';
 import cx from '../../../lib/cx';
-import style from './style.module.less';
+import style from './style.module.css';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import ContentRegion from '../../content-region';
@@ -27,6 +27,7 @@ import { useStore, storeCtx } from '../../store-adapter';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { getContent } from '../../../lib/content';
 import { Splitter } from '../../splitter';
+import config from '../../../config.json';
 
 const IS_PRERENDERING = typeof window === 'undefined';
 
@@ -296,7 +297,7 @@ function TutorialView({
 					<div class={style.buttonContainer}>
 						{page.meta.prev && (
 							<a class={style.prevButton} href={page.meta.prev}>
-								Previous
+								{config.i18n.previous[lang] || config.i18n.previous.en}
 							</a>
 						)}
 						{tutorial.state['repl-final'] && (
@@ -306,12 +307,15 @@ function TutorialView({
 								disabled={!showCode}
 								title="Get help with this example"
 							>
-								Help
+								{config.i18n.tutorial.help[lang] ||
+									config.i18n.tutorial.help.en}
 							</button>
 						)}
 						{page.meta.next && (
 							<a class={style.nextButton} href={page.meta.next}>
-								{page.meta.nextText || 'Next'}
+								{page.meta.nextText ||
+									config.i18n.next[lang] ||
+									config.i18n.next.en}
 							</a>
 						)}
 					</div>

@@ -1,4 +1,4 @@
-import styles from './style.module.less';
+import styles from './style.module.css';
 
 // Add your company to this array. The logo should be placed
 // in `src/assets/we-are-using/my-logo.svg`.
@@ -272,6 +272,11 @@ const companies = [
 		name: 'Zeplin',
 		href: 'https://zeplin.io',
 		logo: 'zeplin.svg'
+	},
+	{
+		name: 'Loveholidays',
+		href: 'https://loveholidays.com',
+		logo: 'loveholidays.svg'
 	}
 ];
 

@@ -1,0 +1,139 @@
+.page {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+
+	content-region:not([data-page-nav]) :global(.markup) {
+		margin-bottom: 4rem;
+	}
+
+	:global .markup {
+		/* Necessary to prevent the background stripes of
+		   jumpotron/hero to affect the scrolling area. */
+		overflow: hidden;
+
+		& > *,
+		.full-width > * {
+			padding-left: 20px;
+			padding-right: 20px;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: var(--content-width);
+		}
+
+		& > ul,
+		& > ol {
+			padding-left: 50px;
+		}
+
+		.full-width {
+			max-width: none;
+			width: 100%;
+		}
+	}
+}
+
+.center {
+	text-align: center;
+}
+
+.pageTitle {
+	margin: 2.5rem auto 0 auto;
+	padding: 0.5em 1rem 0.25rem;
+	max-width: var(--content-width);
+
+	@media (max-width: 600px) {
+		margin-top: 2rem;
+	}
+}
+
+.title {
+	margin: 0 auto;
+	/* margin: 1.5rem auto 0 auto;
+	   padding: 0.5em 1rem 0.25rem; */
+	font-size: 3rem;
+	font-weight: 200;
+	font-weight: bold;
+	line-height: 1.2;
+
+	@media (max-width: 600px) {
+		font-size: 2em;
+	}
+}
+
+.authors {
+	display: inline-block;
+}
+
+.inner {
+	position: relative;
+	min-height: 200px;
+	width: 100%;
+}
+
+.oldDocsWarning {
+	background: var(--color-warn-bg);
+	padding: 0.75rem 1rem;
+	color: #444;
+	text-align: center;
+	position: sticky;
+	top: var(--header-and-banner-height);
+	z-index: 100; /* Else code blocks would layer on top */
+
+	a {
+		font-weight: bold;
+		color: var(--color-brand);
+
+		text-decoration-skip-ink: auto;
+		text-decoration: underline;
+		text-decoration-color: var(--color-table-border);
+		text-decoration-thickness: 1px;
+
+		&:hover,
+		&:focus {
+			text-decoration-color: currentColor;
+		}
+	}
+}
+
+.withEdit {
+	margin-top: 2rem;
+}
+
+.outer {
+	display: flex;
+}
+
+.sidebarWrap {
+	display: none;
+}
+
+.withSidebar {
+	.sidebarWrap {
+		display: flex;
+	}
+
+	@media (min-width: /* --sidebar-break */ 900px) {
+		background: var(--color-sidebar-bg);
+
+		.outer {
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 80rem;
+		}
+
+		.inner {
+			flex-shrink: 1;
+			flex-grow: 1;
+			flex-basis: auto;
+			max-width: calc(100% - 20rem);
+		}
+	}
+}
+
+.contentWrapper {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	min-height: calc(100vh - 12rem);
+}

@@ -1,0 +1,581 @@
+.banner {
+	background: #38235c;
+	color: white;
+
+	padding: 0.5rem;
+
+	a {
+		color: white;
+	}
+
+	b {
+		color: #ffd600;
+	}
+}
+
+.outer {
+	display: flex;
+	justify-content: center;
+	height: var(--header-height);
+	transition: all 250ms ease;
+	transform: translateZ(0);
+
+	.open & {
+		justify-content: space-between;
+		-webkit-overflow-scrolling: touch;
+		height: var(--vh);
+	}
+}
+
+.header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 0;
+	background: var(--color-brand);
+	z-index: 500;
+	overflow: visible;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		overflow: hidden;
+
+		&.open {
+			background: #222;
+
+			overflow: auto;
+			justify-content: space-between;
+			-webkit-overflow-scrolling: touch;
+
+			nav {
+				margin-right: 0;
+				position: absolute;
+				width: 100%;
+				text-align: left;
+				padding: 0;
+
+				a:global(.home) {
+					text-align: left;
+					padding-left: 26px;
+				}
+
+				a {
+					display: block;
+				}
+
+				.navGroup {
+					margin: 0;
+					display: block;
+
+					& > button {
+						width: 100%;
+					}
+
+					a {
+						text-align: left;
+					}
+				}
+			}
+
+			:global(.home).current {
+				visibility: visible;
+			}
+		}
+	}
+
+	nav {
+		position: relative;
+		display: inline-block;
+		font-size: 100%;
+		user-select: none;
+		-webkit-user-drag: none;
+
+		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+			display: block;
+			padding: 0 23px;
+		}
+
+		a,
+		button,
+		span {
+			display: inline-block;
+			position: relative;
+			height: var(--header-height);
+			line-height: var(--header-height);
+			padding: 0 0.6rem;
+			min-width: 50px;
+			border: none;
+			text-align: center;
+			background-color: rgba(255, 255, 255, 0);
+			text-decoration: none;
+			font-size: 16px;
+			color: #eee;
+			cursor: pointer;
+			vertical-align: top;
+			appearance: none;
+
+			@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+				min-width: 100px;
+				text-align: left;
+				padding-left: 26px;
+				display: none;
+			}
+
+			@media (min-width: /* --sidebar-break */ 900px) {
+				padding: 0 1.1rem;
+			}
+
+			&:global(.home) {
+				text-transform: uppercase;
+				padding: 0 15px;
+
+				@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+					display: block;
+					padding: 0;
+				}
+
+				&.current {
+					visibility: hidden;
+				}
+
+				svg {
+					position: relative;
+					padding-right: 5px;
+				}
+			}
+
+			&.current {
+				background-size: 100% 0.3rem;
+				background-position: center top;
+				background-repeat: no-repeat;
+				background-image: linear-gradient(#ad80ff, #ad80ff);
+			}
+
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: rgba(255, 255, 255, 0.3);
+			}
+
+			@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+				&,
+				&.current,
+				&:hover,
+				&:active {
+					background-color: transparent;
+				}
+			}
+		}
+	}
+
+	.navGroup {
+		display: inline-block;
+		position: relative;
+		overflow: visible;
+		height: 100%;
+
+		& > a,
+		& > button {
+			transition: all 0.3s;
+
+			&::after {
+				content: '▼';
+				position: relative;
+				left: 7px;
+				top: -1px;
+				font-size: 60%;
+			}
+		}
+
+		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+			& {
+				display: none;
+			}
+
+			& > a,
+			& > button {
+				display: block;
+			}
+		}
+
+		& > nav {
+			display: none;
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			margin: 0;
+			padding: 3px 0;
+			transform: translateX(-50%) perspective(1000px) translateX(0.5px); /* .5 fixes blur issue */
+			background: #fff;
+			border-radius: 0 0 3px 3px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+			border: 1px solid #673ab7;
+			border-top: none;
+			animation: menuOpen 150ms ease-out forwards 1;
+			transform-origin: 50% 0;
+			z-index: 750;
+
+			@keyframes menuOpen {
+				from {
+					opacity: 0;
+					transform: translateX(-50%) perspective(1000px) translateX(0.5px)
+						rotateX(-45deg);
+				}
+			}
+
+			a,
+			button,
+			span {
+				display: block;
+				padding: 10px 20px;
+				height: auto;
+				line-height: 1.5;
+				font-size: 15px;
+				color: #444;
+				white-space: nowrap;
+				text-align: left;
+
+				&.current {
+					background-color: #eee;
+					color: #222;
+				}
+
+				&:hover,
+				&:active,
+				&:focus {
+					background-color: #ddd;
+					color: #000;
+				}
+			}
+		}
+
+		&[data-open] {
+			& > a,
+			& > button {
+				background: #fff;
+				color: #555;
+				z-index: 101;
+
+				svg {
+					filter: invert(40%) sepia(0%) saturate(3773%) hue-rotate(315deg)
+						brightness(73%) contrast(81%);
+				}
+			}
+
+			nav {
+				display: inline-block;
+			}
+
+			@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+				& > a,
+				& > button {
+					color: #fff;
+					background: #333;
+					width: 100%;
+				}
+
+				nav {
+					display: block;
+				}
+
+				& > nav {
+					position: relative;
+					left: 0;
+					top: 0;
+					padding: 0;
+					background: #333;
+					transform: none;
+					animation: menuExpand 250ms ease forwards 1;
+
+					@keyframes menuExpand {
+						from {
+							opacity: 0;
+							transform: scaleY(0.0001);
+						}
+					}
+
+					a,
+					button,
+					span {
+						color: #eee;
+
+						&:hover,
+						&:active,
+						&.current {
+							background-color: rgba(255, 255, 255, 0.2);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.inner {
+	max-width: 80rem;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	@media (min-width: /* --content-width */ 50rem) {
+		justify-content: center;
+		justify-content: flex-start;
+	}
+
+	@media (min-width: /* --sidebar-break */ 900px) {
+		justify-content: center;
+	}
+}
+
+.social,
+.translation {
+	position: absolute;
+	height: 2rem;
+	top: calc(var(--vh) - 3rem); /* TODO: Why does bottom not work? */
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+
+	@media (min-width: /* --content-width */ 50rem) {
+		top: initial;
+		height: 100%;
+		left: initial;
+		position: relative;
+		width: initial;
+	}
+}
+
+.socialItem {
+	padding: 0 0.5rem;
+}
+
+.translation button {
+	padding: 0 0.6rem 0 0.5rem;
+}
+
+.socialItem,
+.translation button {
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	color: #f0f0f0;
+	transition: all 0.3s;
+
+	@media (min-width: 1024px) {
+		padding: 0 1rem;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: rgba(255, 255, 255, 0.3);
+	}
+
+	svg {
+		width: 1.5rem;
+		height: auto;
+	}
+}
+
+.translation button {
+	border: none;
+	background-color: #0000;
+	cursor: pointer;
+}
+
+.release {
+	font-size: 0.9rem;
+	padding: 0 0.5rem !important;
+}
+
+/* hamburger menu */
+.hamburger {
+	display: none;
+	position: absolute;
+	box-sizing: initial;
+	right: 0;
+	top: 0;
+	margin: 3px;
+	width: 20px;
+	height: 20px;
+	padding: 18px 23px 12px;
+	line-height: var(--header-height);
+	text-align: center;
+	z-index: 100;
+	opacity: 0.7;
+	cursor: pointer;
+	transition: opacity 250ms ease;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		display: block;
+		position: relative;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 40px;
+		transform-origin: center;
+		background: rgba(255, 255, 255, 0.2);
+		transform: scale(0);
+	}
+
+	&:active:before {
+		animation: pop 200ms forwards cubic-bezier(0.15, 1.05, 0.54, 1.29) 1;
+	}
+
+	@keyframes pop {
+		to {
+			transform: scale(1);
+		}
+	}
+
+	.hb1,
+	.hb2,
+	.hb3 {
+		position: relative;
+		width: 20px;
+		height: 3px;
+		border-width: 1px 0;
+		margin: 0 auto 3px;
+		padding: 0;
+		background: #fff;
+		border-radius: 1px;
+		font-size: 1px;
+		transition: all 200ms ease;
+		transform-origin: 0 0;
+	}
+
+	&[open] {
+		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+			position: absolute;
+		}
+
+		.hb1 {
+			transform: translate(4px, -1px) rotate(45deg);
+		}
+
+		.hb2 {
+			opacity: 0;
+		}
+
+		.hb3 {
+			transform: translate(2px, 1px) rotate(-45deg);
+		}
+	}
+}
+
+:global {
+	.aa-dropdown-menu {
+		position: fixed !important;
+		top: 60px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+
+		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+			width: 90% !important;
+		}
+	}
+}
+
+.search {
+	display: inline-block;
+	height: 56px;
+	min-width: 80px;
+	overflow: visible;
+	background: var(--color-brand);
+	padding-right: 0.5rem;
+
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		flex-grow: 1;
+
+		.open & {
+			display: none;
+		}
+
+		.searchBox {
+			width: 0;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		&:focus-within :global(.algolia-autocomplete) {
+			position: fixed !important;
+			left: 4rem;
+			right: 4rem;
+			top: 0;
+			height: var(--header-height);
+			z-index: 2;
+
+			& input {
+				width: 100% !important;
+			}
+		}
+	}
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		&:focus-within :global(.algolia-autocomplete) {
+			left: 1rem !important;
+		}
+	}
+
+	.searchBox {
+		width: 60px;
+		margin: 10px 5px;
+		padding: 8px 4px 8px 32px;
+		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
+		background-position: 10px center;
+		background-repeat: no-repeat;
+		background-color: #58319d !important; /* --color-brand 7% darker */
+		border: 1px solid #7447c5; /* --color-brand 5% lighter */
+		border-bottom-color: #825acb; /* --color-brand 10% lighter */
+		border-radius: 5px;
+		box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+		color: var(--color-brand);
+		font-size: 100%;
+		/* will-change: width;
+		   transition: width 250ms ease; */
+
+		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+			width: 100%;
+			margin: 10px 0;
+		}
+
+		@media (min-width: /* --header-mobile-breakpoint */ 50rem) {
+			width: 8rem;
+		}
+
+		@media (min-width: 1024px) {
+			width: 13rem;
+		}
+
+		&::-webkit-input-placeholder {
+			color: #7447c5; /* --color-brand 5% lighter */
+		}
+
+		&:focus,
+		&:valid {
+			@media (min-width: /* --header-mobile-breakpoint */ 50rem) and (max-width: 800px) {
+				width: 12rem;
+			}
+
+			color: #d1c3ea;
+			outline: none;
+		}
+	}
+}

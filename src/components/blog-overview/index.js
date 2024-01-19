@@ -3,7 +3,7 @@ import { useTranslation } from '../../lib/i18n';
 import { getRouteName } from '../header';
 import { useStore } from '../store-adapter';
 import { Time } from '../time';
-import s from './blog.module.less';
+import s from './style.module.css';
 
 export default function BlogOverview() {
 	const { lang } = useStore(['lang']).state;

@@ -4,7 +4,7 @@ import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
 import { getContentOnServer, getContent } from '../../../lib/content';
 import config from '../../../config.json';
-import style from './style.module.less';
+import style from './style.module.css';
 import Footer from '../../footer';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
@@ -161,6 +161,17 @@ export default function Page({ route, prev, next }, ctx) {
 	const canEdit = showTitle && current != '404' && current !== '/blog';
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
+	useEffect(() => {
+		if (location.hash) {
+			const anchor = document.querySelector(location.hash);
+			if (anchor) {
+				// Do not use scrollIntoView as it will cause
+				// the heading to be covered by the header
+				scrollTo({ top: anchor.offsetTop });
+			}
+		}
+	}, [html]);
+
 	return (
 		<div class={cx(style.page, style[layout], hasSidebar && style.withSidebar)}>
 			<progress-bar showing={loading} />
@@ -215,6 +226,34 @@ export default function Page({ route, prev, next }, ctx) {
 															? ' and '
 															: null}
 													</span>
+												);
+											})}
+											{(meta.translation_by || []).map((author, i, arr) => {
+												const authorData = config.blogAuthors.find(
+													data => data.name === author
+												);
+												return (
+													<>
+														{', translated by '}
+														<span key={author} class={style.author}>
+															{authorData ? (
+																<a
+																	href={authorData.link}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																>
+																	{author}
+																</a>
+															) : (
+																<span>{author}</span>
+															)}
+															{i < arr.length - 2
+																? ', '
+																: i === arr.length - 2
+																? ' and '
+																: null}
+														</span>
+													</>
 												);
 											})}
 										</address>

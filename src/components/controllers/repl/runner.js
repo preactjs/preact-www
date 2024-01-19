@@ -1,14 +1,11 @@
 import { h, Component, createRef } from 'preact';
 import { memoize } from 'decko';
-import style from './style.module.less';
+import style from './style.module.css';
 import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
-import bundledModulesUrl from 'worker-plugin/loader?name=repl.setup&esModule!./repl.setup.js';
 import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
-
-const bundledModules = fetch(bundledModulesUrl).then(r => r.text());
 
 const worker = new ReplWorker();
 
@@ -67,8 +64,10 @@ export default class Runner extends Component {
 		if (this.timer) return;
 		this.timer = setTimeout(() => {
 			let { code, setup } = this.props;
+			// onRealm must be called after imports but before user code:
+			const fullSetup = `if (self._onRealm) self._onRealm();${setup || ''}\n`;
 			this.running = worker
-				.process(code, setup)
+				.process(code, fullSetup)
 				.then(transpiled => this.execute(transpiled))
 				.then(this.commitResult)
 				.catch(this.commitError)
@@ -94,17 +93,9 @@ export default class Runner extends Component {
 
 	setup(fresh) {
 		if (this.settingUp && fresh !== true) return this.settingUp;
-		this.settingUp = bundledModules.then(async code => {
-			this.setupRealm();
-
-			await this.realm.eval(code);
-			this.require = await this.realm.eval('window._require');
-
-			if (this.props.onRealm) {
-				this.props.onRealm(this.realm);
-			}
-		});
-		return this.settingUp;
+		this.setupRealm();
+		// silly leftover promise stuff
+		return (this.settingUp = Promise.resolve());
 	}
 
 	setupRealm() {
@@ -141,12 +132,18 @@ export default class Runner extends Component {
 		}
 
 		const base = this.output;
-		const { render } = this.require('preact');
+		const render = this.realm?.globalThis?.$preact?.render;
 
 		if (this.didError) {
 			// no need to reset, this is a fresh frame
-		} else if (this.props.clear === true || isFallback === true) {
-			this.root = render(null, base);
+		} else if (render || this.props.clear === true || isFallback === true) {
+			if (render) {
+				try {
+					this.root = render(null, base);
+				} catch (e) {
+					console.error('Failed to unmount previous code: ', e);
+				}
+			}
 			base.innerHTML = '';
 			createRoot(this.realm.globalThis.document);
 		}
@@ -155,10 +152,18 @@ export default class Runner extends Component {
 
 		let module = { exports: {} };
 
+		// inject onRealm so it can be called after imports but before user code:
+		this.realm.globalThis._onRealm = () => {
+			this.realm.globalThis._onRealm = null;
+			if (this.props.onRealm) {
+				this.props.onRealm(this.realm);
+			}
+		};
+
 		let fn = await this.realm.eval(transpiled);
 
 		try {
-			fn(module, module.exports, this.require, cachedFetch);
+			fn(module, module.exports);
 		} catch (error) {
 			// try once more without DOM reuse:
 			if (isFallback !== true) {
