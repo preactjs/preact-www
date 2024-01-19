@@ -102,7 +102,7 @@ class App extends Component {
   onInput = ev => {
     // This will schedule a state update. Once updated the component
     // will automatically re-render itself.
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   render() {
@@ -134,7 +134,7 @@ class App extends Component {
   state = { value: '', name: 'world' }
 
   onInput = ev => {
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   // Add a submit handler that updates the `name` with the latest input value

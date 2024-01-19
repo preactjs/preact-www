@@ -118,10 +118,10 @@ Reactとの主な違いの1つは`className`属性の代わりに標準の`class
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 [preact/compat]では、Reactの挙動を再現するために、`onChange`が`onInput`と同じ動作になるよう内部で変換されます。

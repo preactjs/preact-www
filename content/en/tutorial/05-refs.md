@@ -146,9 +146,9 @@ useResult(function (result) {
 
   var oe = options.event;
   options.event = function(e) {
-    if (e.target.localName !== 'button') return;
+    if (e.currentTarget.localName !== 'button') return;
     clearTimeout(timer);
-    var input = e.target.parentNode.parentNode.querySelector('input');
+    var input = e.currentTarget.parentNode.parentNode.querySelector('input');
     expectedInput = input;
     if (input) patch(input);
     timer = setTimeout(function() {

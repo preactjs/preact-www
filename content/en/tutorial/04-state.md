@@ -140,8 +140,8 @@ useResult(function () {
   options.event = function(e) {
     if (oe) oe.apply(this, arguments);
 
-    if (e.target.localName !== 'button') return;
-    var root = e.target.parentNode.parentNode;
+    if (e.currentTarget.localName !== 'button') return;
+    var root = e.currentTarget.parentNode.parentNode;
     var text = root.innerText.match(/Count:\s*([\w.-]*)/i);
     if (!text) return;
     if (!text[1].match(/^-?\d+$/)) {

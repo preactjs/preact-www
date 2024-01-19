@@ -151,7 +151,7 @@ function Counter() {
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
-        this.setState({ text: e.target.value });
+        this.setState({ text: e.currentTarget.value });
     };
     addTodo = () =&gt; {
         let { todos, text } = this.state;

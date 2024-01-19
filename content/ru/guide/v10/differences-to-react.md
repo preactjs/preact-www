@@ -131,10 +131,10 @@ Preact применяет атрибуты SVG в том виде, в котор
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 Если вы используете [preact/compat], то большинство событий `onChange` внутренне преобразуются в `onInput` для эмуляции поведения React. Это один из приемов, который мы используем для обеспечения максимальной совместимости с экосистемой React.

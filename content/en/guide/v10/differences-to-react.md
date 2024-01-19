@@ -122,10 +122,10 @@ Largely for historical reasons, the semantics of React's `onChange` event are ac
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 If you're using [preact/compat], most `onChange` events are internally converted to `onInput` to emulate React's behavior. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.

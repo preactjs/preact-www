@@ -180,7 +180,7 @@ function removeTodo(todo) {
 
 ```jsx
 function TodoList() {
-  const onInput = (event) => (text.value = event.target.value);
+  const onInput = (event) => (text.value = event.currentTarget.value);
 
   return (
     <>

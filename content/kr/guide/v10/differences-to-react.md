@@ -125,10 +125,10 @@ React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 [preact/compat]를 사용하는 경우, 대부분의 `onChange` 이벤트가 내부적으로 `onInput`으로 변환되어 React의 동작을 모방합니다. 이것은 React의 생태계와 최대한의 호환성을 보장하기 위해 사용하는 Preact의 트릭 중 하나입니다. 
