@@ -96,7 +96,7 @@ class App extends Component {
   onInput = ev => {
     // Isso agendará uma atualização de estado. Uma vez atualizado o componente
      // será automaticamente renderizado automaticamente.
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   render() {
@@ -127,7 +127,7 @@ class App extends Component {
   state = { value: '', name: 'world' }
 
   onInput = ev => {
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   // Adicione um manipulador de envio que atualize o `name` com o valor de entrada mais recente

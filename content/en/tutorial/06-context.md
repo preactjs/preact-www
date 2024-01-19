@@ -294,7 +294,7 @@ useResult(function (result) {
 
   var oe = options.event;
   options.event = function(e) {
-    if (e.target.localName !== 'button') return;
+    if (e.currentTarget.localName !== 'button') return;
     clearTimeout(timer);
     timer = setTimeout(function() {
       var counts = getCounts();

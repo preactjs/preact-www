@@ -122,10 +122,10 @@ Preact 按原样应用 SVG 属性。这意味着可以直接复制未修改的 S
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 如果你使用 [preact/compat]，大多数 `onChange` 事件会在内部被转换为 `onInput` 来模拟 React 行为。这是我们用来确保与 React 生态系统最大兼容性的技巧之一。

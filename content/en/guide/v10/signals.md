@@ -187,7 +187,7 @@ Now that we've modeled our application's state, it's time to wire in up to a nic
 
 ```jsx
 function TodoList() {
-  const onInput = event => (text.value = event.target.value);
+  const onInput = event => (text.value = event.currentTarget.value);
 
   return (
     <>

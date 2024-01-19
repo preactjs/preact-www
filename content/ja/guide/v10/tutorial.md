@@ -107,7 +107,7 @@ class App extends Component {
 
   onInput = ev => {
     // stateを更新してコンポーネントの再レンダリングを行います。
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   render() {
@@ -139,7 +139,7 @@ class App extends Component {
   state = { value: '', name: 'world' }
 
   onInput = ev => {
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   // nameに最新のinput要素の値をセットするためのsubmitイベントハンドラを追加します。

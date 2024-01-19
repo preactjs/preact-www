@@ -101,7 +101,7 @@ class App extends Component {
 
   onInput = (ev) => {
     // Это запланирует обновление состояния. После обновления компонент автоматически перерисовывается
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   };
 
   render() {
@@ -133,7 +133,7 @@ class App extends Component {
   state = { value: '', name: 'мир' };
 
   onInput = (ev) => {
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   };
 
   // Добавляем обработчик отправки, который обновляет `name` последним входным значением.
