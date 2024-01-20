@@ -12,11 +12,11 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
     "dev:client": "preact watch",
-    "dev:lambda": "netlify-lambda serve src/lambda",
+    "dev:lambda": "netlify functions:serve -f src/lambda -p 9000",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
     "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
-    "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --inline-css false",
+    "build": "netlify functions:build -s src/lambda && preact build --prerenderUrls src/prerender.js --inline-css false",
     "prebuild": "rimraf build/assets && rimraf build/content",
     "lint": "eslint src test",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\""
@@ -75,7 +75,7 @@
     "husky": "^4.0.0",
     "jsdom": "^15.2.1",
     "lint-staged": "^9.5.0",
-    "netlify-lambda": "^1.6.3",
+    "netlify-cli": "^17.14.0",
     "postcss-custom-properties": "^13.3.2",
     "postcss-import": "^14.0.0",
     "postcss-nesting": "^12.0.1",
