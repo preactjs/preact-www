@@ -45,7 +45,7 @@ export default function Page({ route, prev, next }, ctx) {
 	// "name" is the exact page ID from the URL
 	// "current" is the currently *displayed* page ID.
 
-	const isHome = current === 'index';
+	const isHome = route.path === '/';
 	const showTitle = meta.show_title !== false;
 	const canEdit = !isHome;
 	const hasSidebar = meta.toc !== false && isDocPage(url);
