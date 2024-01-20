@@ -1,131 +1,19 @@
 import { Fragment, h } from 'preact';
-import { useEffect, useState, useMemo, useRef } from 'preact/hooks';
+import { useEffect, useMemo } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';
-import { getContentOnServer, getContent } from '../../../lib/content';
 import config from '../../../config.json';
 import style from './style.module.css';
 import Footer from '../../footer';
 import Sidebar from './sidebar';
 import Hydrator from '../../../lib/hydrator';
 import EditThisPage from '../../edit-button';
-import {
-	getPrerenderData,
-	InjectPrerenderData
-} from '../../../lib/prerender-data';
+import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { isDocPage } from '../../../lib/docs';
 import { useStore } from '../../store-adapter';
 import { AVAILABLE_DOCS } from '../../doc-version';
 import { Time } from '../../time';
-
-const getContentId = route => route.content || route.path;
-
-/**
- * Set `document.title`
- * @param {string} title
- */
-export function useTitle(title) {
-	useEffect(() => {
-		if (title) {
-			document.title = `${title} | ${config.title}`;
-		}
-	}, [title]);
-}
-
-/**
- * Set the meta description tag content
- * @param {string} text
- */
-export function useDescription(text) {
-	useEffect(() => {
-		const el = document.querySelector('meta[name=description]');
-		if (text && el) {
-			el.setAttribute('content', text);
-		}
-	}, [text]);
-}
-
-export function usePage(route, lang) {
-	// on the server, pass data down through the tree to avoid repeated FS lookups
-	if (PRERENDER) {
-		const { content, html, meta } = getContentOnServer(route.path, lang);
-		return {
-			current: null,
-			content,
-			html,
-			meta,
-			loading: true // this is important since the client will initialize in a loading state.
-		};
-	}
-
-	const [current, setCurrent] = useState(getContentId(route));
-
-	const bootData = getPrerenderData(current);
-
-	const [hydrated, setHydrated] = useState(!!bootData);
-	const [content, setContent] = useState(
-		hydrated && bootData && bootData.content
-	);
-	const [html, setHtml] = useState(hydrated && bootData && bootData.html);
-
-	const [loading, setLoading] = useState(true);
-	const [isFallback, setFallback] = useState(false);
-	let [meta, setMeta] = useState(hydrated ? bootData.meta : undefined);
-	if (!meta) meta = (hydrated && bootData.meta) || {};
-
-	const lock = useRef();
-	useEffect(() => {
-		if (!didLoad) {
-			setLoading(true);
-		}
-		const contentId = getContentId(route);
-		lock.current = contentId;
-		getContent([lang, contentId]).then(data => {
-			// Discard old load events
-			if (lock.current !== contentId) return;
-			onLoad(data);
-		});
-	}, [getContentId(route), lang]);
-
-	useTitle(meta.title);
-	useDescription(meta.description);
-
-	let didLoad = false;
-	function onLoad(data) {
-		const { content, html, meta, fallback } = data;
-		didLoad = true;
-
-		// Don't show loader forever in case of an error
-		if (!meta) return;
-
-		setContent(content);
-		setMeta(meta);
-		setHtml(html);
-		setLoading(false);
-		setFallback(fallback);
-		const current = getContentId(route);
-		const bootData = getPrerenderData(current);
-		setHydrated(!!bootData);
-		setCurrent(current);
-		// content was loaded. if this was a forward route transition, animate back to top
-		if (window.nextStateToTop) {
-			window.nextStateToTop = false;
-			scrollTo({
-				top: 0,
-				left: 0
-			});
-		}
-	}
-
-	return {
-		current,
-		content,
-		html,
-		meta,
-		loading,
-		isFallback
-	};
-}
+import { usePage, getContentId } from '../utils';
 
 export default function Page({ route, prev, next }, ctx) {
 	const store = useStore(['url', 'lang', 'docVersion']);
@@ -157,8 +45,9 @@ export default function Page({ route, prev, next }, ctx) {
 	// "name" is the exact page ID from the URL
 	// "current" is the currently *displayed* page ID.
 
-	const showTitle = current != 'index' && meta.show_title !== false;
-	const canEdit = showTitle && current != '404' && current !== '/blog';
+	const isHome = current === 'index';
+	const showTitle = meta.show_title !== false;
+	const canEdit = !isHome;
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
 	useEffect(() => {
@@ -195,7 +84,7 @@ export default function Page({ route, prev, next }, ctx) {
 						show={canEdit}
 						isFallback={isFallback}
 					/>
-					{showTitle && (
+					{!isHome && (
 						<div class={style.pageTitle}>
 							<div>
 								{meta.date && <Time value={meta.date} />}
@@ -266,7 +155,7 @@ export default function Page({ route, prev, next }, ctx) {
 									meta.permalink === '/about/we-are-using' && style.center
 								)}
 							>
-								{meta.title || route.title}
+								{showTitle ? meta.title || route.title : ''}
 							</h1>
 						</div>
 					)}

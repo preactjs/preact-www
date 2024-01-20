@@ -1,3 +1,8 @@
+---
+title: Blog
+show_title: false
+---
+
 了解 Preact 团队的研究重心。
 
 <div><blog-overview></blog-overview></div>

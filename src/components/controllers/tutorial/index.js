@@ -22,7 +22,7 @@ import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import ContentRegion from '../../content-region';
 import widgets from '../../widgets';
-import { usePage } from '../page';
+import { usePage } from '../utils';
 import { useStore, storeCtx } from '../../store-adapter';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { getContent } from '../../../lib/content';
