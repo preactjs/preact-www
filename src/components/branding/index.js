@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import style from './style.module.css';
 import config from '../../config.json';
 

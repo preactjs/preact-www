@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import cx from '../../lib/cx';
 import style from './style.module.css';
 import { useStore } from '../store-adapter';

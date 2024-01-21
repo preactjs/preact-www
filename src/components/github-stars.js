@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { localStorageGet, localStorageSet } from '../lib/localstorage';
 import { repoInfo } from '../lib/github';
 

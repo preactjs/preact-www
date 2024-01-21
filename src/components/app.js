@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { Provider } from 'unistore/preact';
 import createStore from '../store';
 import Routes from './routes';
@@ -10,7 +10,7 @@ export default class App extends Component {
 	store = createStore({
 		url: this.props.url || location.pathname + location.search,
 		lang: 'en',
-		preactVersion: this.props.CLI_DATA.preRenderData.preactVersion || '10.11.3',
+		preactVersion: this.props.preactVersion || '10.11.3',
 		docVersion: getCurrentDocVersion(location.pathname),
 		toc: null
 	});

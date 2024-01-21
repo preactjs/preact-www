@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useReducer } from 'preact/hooks';
 import style from './error-overlay.module.css';
 

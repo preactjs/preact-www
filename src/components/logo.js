@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { route } from 'preact-router';
 
 export default class Logo extends Component {

@@ -1,13 +1,21 @@
 import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
 import { Link } from 'preact-router';
+import * as Comlink from 'comlink';
 import cx from '../../lib/cx';
-import PrismWorker from 'workerize-loader?name=prism.[hash:5]!./prism.worker';
 
-// @TODO this should work in development, but Preact CLI transforms to CommonJS.
-const { highlight } =
-	PRERENDER || process.env.NODE_ENV === 'development'
-		? require('./prism.worker')
-		: new PrismWorker();
+let highlight;
+(async function initHighlight() {
+	({ highlight } = PRERENDER
+		? import('./prism.worker.js')
+		: Comlink.wrap(
+				new Worker(
+					/* webpackChunkName: "prism-worker" */ new URL(
+						'./prism.worker.js',
+						import.meta.url
+					)
+				)
+		  ));
+})();
 
 function useFuture(initializer, params) {
 	const getInitialState = () => {

@@ -1,13 +1,20 @@
-import { h, Component, createRef } from 'preact';
+import { Component, createRef } from 'preact';
 import { memoize } from 'decko';
 import style from './style.module.css';
-import ReplWorker from 'workerize-loader?name=repl.[hash:5]!./repl.worker';
+import * as Comlink from 'comlink';
 import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
 
-const worker = new ReplWorker();
+const worker = Comlink.wrap(
+	new Worker(
+		/* webpackChunkName: "repl-worker" */ new URL(
+			'./repl.worker.js',
+			import.meta.url
+		)
+	)
+);
 
 function createRoot(doc) {
 	const root = doc.createElement('div');

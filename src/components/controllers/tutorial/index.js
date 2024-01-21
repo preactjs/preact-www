@@ -1,11 +1,4 @@
-import {
-	h,
-	Component,
-	createRef,
-	createContext,
-	options,
-	Fragment
-} from 'preact';
+import { Component, createRef, createContext, options } from 'preact';
 import {
 	useState,
 	useReducer,
@@ -227,7 +220,7 @@ function TutorialView({
 					<Splitter
 						orientation="vertical"
 						other={
-							<Fragment>
+							<>
 								<div class={style.output} key="output">
 									{!initialLoad && (
 										<Runner
@@ -267,7 +260,7 @@ function TutorialView({
 										<span>Toggle Code</span>
 									</button>
 								)}
-							</Fragment>
+							</>
 						}
 					>
 						<div class={style.codeWindow}>

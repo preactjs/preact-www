@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { fetchRelease } from '../../lib/github';
 import config from '../../config.json';
