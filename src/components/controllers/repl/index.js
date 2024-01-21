@@ -6,6 +6,7 @@ import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from '!!raw-loader!./examples.css';
+import { useTitle } from '../utils';
 
 import simpleCounterExample from '!!file-loader!./examples/simple-counter.txt';
 import counterWithHtmExample from '!!file-loader!./examples/counter-with-htm.txt';
@@ -234,6 +235,8 @@ export default class Repl extends Component {
 	}
 
 	render(_, { loading, code, error, exampleSlug, copied }) {
+		useTitle('REPL: Try Preact in the browser');
+
 		if (loading) {
 			return (
 				<ReplWrapper loading>

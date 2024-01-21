@@ -3,15 +3,8 @@ const path = require('path');
 const marked = require('marked');
 const yaml = require('yaml');
 const config = require('./config.json');
+const { createTitle } = require('./lib/page-title');
 const { fetchRelease } = require('./lambda/release');
-
-// Titles for various content areas
-const groups = {
-	'/v8': 'Preact Version 8',
-	'/tutorial': 'Preact Tutorial',
-	'/guide': 'Preact Guide',
-	'': 'Preact'
-};
 
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
@@ -56,15 +49,7 @@ module.exports = async () => {
 		const fm = (content.match(FRONT_MATTER_REG) || [])[1];
 		const meta = (fm && yaml.parse(`---\n${fm.replace(/^/gm, '  ')}\n`)) || {};
 		const contentBody = content.replace(FRONT_MATTER_REG, '');
-		let suffix = '';
-		for (let pattern in groups) {
-			if (url.match(pattern)) {
-				suffix = groups[pattern];
-				break;
-			}
-		}
-		let title = meta.title || meta.name || name || 'Preact';
-		if (suffix !== title) title += ' – ' + suffix;
+		const title = createTitle(meta.title || meta.name || name || 'Preact', url);
 		let description;
 		if (meta.description) {
 			description = meta.description;
@@ -86,6 +71,7 @@ module.exports = async () => {
 		};
 	});
 
+	// eslint-disable-next-line no-console
 	console.log(
 		'Routes:\n ',
 		pageData
