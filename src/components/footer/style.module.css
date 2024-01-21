@@ -6,6 +6,8 @@
 	border-top: 0.0625rem solid var(--color-footer-border);
 	padding: 1.25rem;
 
+	margin-top: auto;
+
 	code {
 		margin-left: 0.625rem;
 	}

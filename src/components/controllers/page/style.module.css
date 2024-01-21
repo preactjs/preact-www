@@ -40,6 +40,7 @@
 .pageTitle {
 	margin: 2.5rem auto 0 auto;
 	padding: 0.5em 1rem 0.25rem;
+	width: 100%;
 	max-width: var(--content-width);
 
 	@media (max-width: 600px) {
@@ -66,8 +67,10 @@
 }
 
 .inner {
+	display: flex;
+	flex-direction: column;
 	position: relative;
-	min-height: 200px;
+	min-height: calc(100vh - var(--header-and-banner-height));
 	width: 100%;
 }
 
