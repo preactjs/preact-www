@@ -46,7 +46,7 @@
 }
 
 .blogMeta {
-	/* Negative bottom margin negats content-region's top margin */
+	/* Negative bottom margin negates content-region's top margin */
 	margin: 2.5rem auto -3rem;
 	padding: 0.5em 1rem 0.25rem;
 	width: 100%;
