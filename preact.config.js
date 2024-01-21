@@ -98,7 +98,6 @@ export default function (config, env, helpers) {
 					if (!meta.title) {
 						let [, title] = content.match(TITLE_REG) || [];
 						if (title) {
-							content = content.replace(TITLE_REG, '');
 							meta.title = title;
 						}
 					}
