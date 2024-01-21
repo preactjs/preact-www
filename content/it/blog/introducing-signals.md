@@ -8,6 +8,8 @@ translation_by:
   - Francesco Luca Labianca
 ---
 
+# Introduzione ai Signals
+
 I Signals sono un modo di esprimere uno state che assicuri la velocità dell'applicazione a prescindere dalla sua complessità.
 Si basano su principi di reattività, con un'implementazione unica ottimizzata per il Virtual DOM, fornendo un'eccellente esperienza per lo sviluppatore.
 

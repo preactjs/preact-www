@@ -5,6 +5,8 @@ permalink: '/about/we-are-using'
 description: 'Preactを使っている企業'
 ---
 
+# Preactを使っている企業
+
 Preactはオープンソースから大きな多国籍企業まで幅広いウェブサイトに使われています。
 以下は一般公開しているプロジェクトでPreactを使用している組織の例です。
 

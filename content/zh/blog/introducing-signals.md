@@ -8,6 +8,8 @@ translation_by:
   - Louis Tsang (Adjusted based on ChatGPT translation)
 ---
 
+# 介绍 Signals
+
 Signals 是一种表示状态的方式，它能确保应用程序即便在复杂度提升时依然保持高性能。Signals 的设计基于响应性原则，并提供了出色的开发者体验，其独特的实现是为虚拟 DOM 优化的。
 
 在其核心，signal 是一个带有 `.value` 属性的对象，该属性保存了某个值。在组件内部访问 signal 的 value 属性会在该 signal 的值改变时自动更新该组件。
