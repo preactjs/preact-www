@@ -1,6 +1,5 @@
 ---
 title: Blog
-show_title: false
 ---
 
 Узнайте больше о том, над чем работает команда Preact.
