@@ -117,8 +117,6 @@
 	}
 
 	@media (min-width: /* --sidebar-break */ 900px) {
-		background: var(--color-sidebar-bg);
-
 		.outer {
 			margin-left: auto;
 			margin-right: auto;
