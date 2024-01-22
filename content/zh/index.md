@@ -38,14 +38,14 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>与众不同的库</h1>
+    <h2>与众不同的库</h2>
 </section>
 
 <section class="home-section">
   <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>贴近实质</h2>
+    <h3>贴近实质</h3>
     <p>
       Preact 在 DOM 之上提供了最薄的虚拟 DOM 抽象，在提供稳定的平台特性和注册事件处理程序的同时还确保与其他库无缝兼容。
     </p>
@@ -60,7 +60,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>微小体积</h2>
+    <h3>微小体积</h3>
     <p>
     大多数 UI 框架占了应用 JavaScript 大小的半边天，Preact 却不一样：它的微小让<b>您写的代码</b>成为您应用中占比最大的部分。
     </p>
@@ -75,7 +75,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>性能卓越</h2>
+    <h3>性能卓越</h3>
     <p>
       Preact 很快，不只是因为其体量微小，更是因为其基于树差异的简单、可预测而极快的虚拟 DOM 实现。
     </p>
@@ -90,7 +90,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>轻松嵌入</h2>
+    <h3>轻松嵌入</h3>
     <p>
       Preact 的轻量让您可以将强大的虚拟 DOM 实现移植到其他框架无法进入的领域。
     </p>
@@ -105,7 +105,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>即刻生产</h2>
+    <h3>即刻生产</h3>
     <p>
       轻量在不牺牲生产性的情况下才有意义。Preact 可让您即刻部署到生产环境，甚至还提供了一些附加功能：
     </p>
@@ -121,7 +121,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>生态兼容</h2>
+    <h3>生态兼容</h3>
     <p>
       虚拟 DOM 组件让其复用易如反掌——无论是按钮，还是数据提供方，Preact 的设计都能让您轻松、无缝地借用来自 React 生态中的许多组件。
     </p>
@@ -133,13 +133,13 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>『码』上见分晓！</h1>
+    <h2>『码』上见分晓！</h2>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>待办事项</h2>
+        <h3>待办事项</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class TodoList extends Component {
@@ -174,7 +174,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>实际示例</h2>
+        <h3>实际示例</h3>
         <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
@@ -188,7 +188,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>获取 GitHub 标星数</h2>
+        <h3>获取 GitHub 标星数</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class Stars extends Component {
@@ -210,7 +210,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>实际示例</h2>
+        <h3>实际示例</h3>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -227,7 +227,7 @@ render(
 
 
 <section class="home-top">
-    <h1>准备入坑了？</h1>
+    <h2>准备入坑了？</h2>
 </section>
 
 
