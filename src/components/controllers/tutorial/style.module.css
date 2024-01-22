@@ -22,7 +22,6 @@
 	bottom: 0;
 	height: auto;
 	width: 100%;
-	background: #eee;
 	overflow: hidden;
 
 	:global(.markup) {
@@ -50,8 +49,6 @@
 		.tutorialWindow {
 			position: relative;
 			height: 100%;
-			background: var(--color-sidebar-bg);
-			color: var(--color-text);
 			display: flex;
 			flex-direction: column;
 			padding: 12px;
@@ -393,10 +390,5 @@
 }
 
 .output {
-	color: #444;
 	height: 100%;
-
-	h1 {
-		color: #444;
-	}
 }
