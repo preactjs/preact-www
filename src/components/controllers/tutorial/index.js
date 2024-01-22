@@ -281,7 +281,7 @@ function TutorialView({
 					<h1 class={style.title}>{title}</h1>
 
 					<ContentRegion
-						name={page.current}
+						current={page.current}
 						content={page.html}
 						components={TUTORIAL_COMPONENTS}
 						lang={lang}

@@ -44,7 +44,9 @@ export default function Page({ route, prev, next }, ctx) {
 	// "name" is the exact page ID from the URL
 	// "current" is the currently *displayed* page ID.
 
-	const canEdit = route.path !== '/';
+	// `current` is null during SSR
+	const canEdit =
+		(current && current !== 'index') || (!current && route.path !== '/');
 	const isBlog = route.path.startsWith('/blog/');
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
@@ -86,7 +88,7 @@ export default function Page({ route, prev, next }, ctx) {
 					<Hydrator
 						component={ContentRegion}
 						boot={!!html}
-						name={name}
+						current={current}
 						content={html}
 						prev={prev}
 						next={next}
