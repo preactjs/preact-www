@@ -1,4 +1,3 @@
-import { Fragment, h } from 'preact';
 import { useEffect, useMemo } from 'preact/hooks';
 import cx from '../../../lib/cx';
 import ContentRegion from '../../content-region';

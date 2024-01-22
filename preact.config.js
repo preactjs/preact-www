@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import fs from 'fs';
+import { Compilation, sources } from 'webpack';
 import yaml from 'yaml';
 import netlifyPlugin from 'preact-cli-plugin-netlify';
 import postcssImport from 'postcss-import';
@@ -7,9 +8,6 @@ import postcssCustomProperties from 'postcss-custom-properties';
 import postcssNesting from 'postcss-nesting';
 import pageConfig from './src/config.json';
 import { Feed } from 'feed';
-
-// Enables some options that make local debugging easier
-const LOCAL_DEBUG = false;
 
 // prettier-ignore
 
@@ -36,9 +34,6 @@ export default function (config, env, helpers) {
 	definePlugin.definitions.PRERENDER = String(env.isServer);
 	definePlugin.definitions['process.env.BRANCH'] = JSON.stringify(process.env.BRANCH);
 
-	// web worker HMR requires it
-	config.output.globalObject = 'self';
-
 	config.module.noParse = [
 		/babel-standalone/
 	].concat(config.module.noParse || []);
@@ -46,27 +41,28 @@ export default function (config, env, helpers) {
 	const { rule: babel } = helpers.getLoadersByName(config, 'babel-loader')[0];
 	babel.exclude = [/babel-standalone/].concat(babel.exclude || []);
 
-	if (LOCAL_DEBUG) {
-		// When debugging locally, compile for higher browser versions to avoid
-		// having to debug through polyfills and overly transpiled code.
-		const envPresetConfig = babel.options.presets.find(preset => preset[0].includes('@babel/preset-env'))[1];
-		envPresetConfig.targets = {
-			browsers: ['fully supports es6-module']
-		};
-		// config.devtool = 'cheap-source-map';
-	}
-
 	const { loader: postcssLoader } = helpers.getLoadersByName(config, 'postcss-loader')[0];
 	postcssLoader.options.postcssOptions.plugins.unshift(postcssImport());
 	postcssLoader.options.postcssOptions.plugins.push(
 		...[postcssCustomProperties({ preserve: true }), postcssNesting()]
 	);
 
-	// Fix keyframes being minified to colliding names when using lazy-loaded CSS chunks
-	if (env.isProd && !env.isServer) {
-		const optimizeCss = config.optimization.minimizer.find(plugin => plugin.constructor.name == 'OptimizeCssAssetsWebpackPlugin');
-		optimizeCss.options.cssProcessorOptions.reduceIdents = false;
+	for (const rule of config.module.rules) {
+		rule.resourceQuery = {
+			not: [/raw/, /file/]
+		};
 	}
+
+	config.module.rules.push(
+		{
+			resourceQuery: /raw/,
+			type: 'asset/source'
+		},
+		{
+			resourceQuery: /file/,
+			type: 'asset/resource'
+		},
+	);
 
 	config.optimization.splitChunks.minSize = 1000;
 
@@ -130,74 +126,59 @@ export default function (config, env, helpers) {
 
 	class RssFeedPlugin {
 		apply(compiler) {
-			const handler = (compilation, callback) => {
-				const feed = new Feed({
-					title: 'Preact Blog',
-					description: 'Preact news and articles',
-					id: 'https://preactjs.com',
-					link: 'https://preactjs.com',
-					language: 'en',
-					image: 'https://preactjs.com/assets/branding/symbol.png',
-					favicon: 'https://preactjs.com/favicon.ico',
-					copyright: 'All rights reserved 2022, the Preact team',
-					feedLinks: {
-						json: 'https://preactjs.com/json',
-						atom: 'https://preactjs.com/atom'
-					}
-				});
-
-				pageConfig.blog.forEach(post => {
-					feed.addItem({
-							title: post.name.en,
-							id: `https://preactjs.com${post.path}`,
-							link: `https://preactjs.com${post.path}`,
-							description: post.excerpt.en,
-							date: new Date(post.date)
+			compiler.hooks.thisCompilation.tap('RssFeedPlugin', compilation => {
+				compilation.hooks.processAssets.tapAsync({
+					name: 'RssFeedPlugin',
+					stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
+				}, (_assets, callback) => {
+					const feed = new Feed({
+						title: 'Preact Blog',
+						description: 'Preact news and articles',
+						id: 'https://preactjs.com',
+						link: 'https://preactjs.com',
+						language: 'en',
+						image: 'https://preactjs.com/assets/branding/symbol.png',
+						favicon: 'https://preactjs.com/favicon.ico',
+						copyright: 'All rights reserved 2022, the Preact team',
+						feedLinks: {
+							json: 'https://preactjs.com/json',
+							atom: 'https://preactjs.com/atom'
+						}
 					});
+
+					pageConfig.blog.forEach(post => {
+						feed.addItem({
+								title: post.name.en,
+								id: `https://preactjs.com${post.path}`,
+								link: `https://preactjs.com${post.path}`,
+								description: post.excerpt.en,
+								date: new Date(post.date)
+						});
+					});
+
+					function removeDefaultGenerator(str) {
+						return str
+							.split('\n')
+							.filter(
+								line =>
+									line !==
+									'<generator>https://github.com/jpmonette/feed</generator>'
+							)
+							.join('\n');
+					}
+
+					compilation.emitAsset(
+						'feed.xml',
+						new sources.RawSource(removeDefaultGenerator(feed.rss2()))
+					);
+					compilation.emitAsset(
+						'feed.atom',
+						new sources.RawSource(removeDefaultGenerator(feed.atom1()))
+					);
+
+					callback();
 				});
-
-				class RawSource {
-					constructor(str) {
-						this.str = str;
-					}
-
-					source() {
-						return this.str;
-					}
-
-					size() {
-						return this.str.length;
-					}
-				}
-
-				function removeDefaultGenerator(str) {
-					return str
-						.split('\n')
-						.filter(
-							line =>
-								line !==
-								'<generator>https://github.com/jpmonette/feed</generator>'
-						)
-						.join('\n');
-				}
-
-				compilation.assets['feed.xml'] = new RawSource(
-					removeDefaultGenerator(feed.rss2())
-				);
-				compilation.assets['feed.atom'] = new RawSource(
-					removeDefaultGenerator(feed.atom1())
-				);
-
-				callback();
-				return compilation;
-			};
-
-
-			if (compiler.hooks) {
-				compiler.hooks.emit.tapAsync('RssFeedPlugin', handler);
-			} else {
-				compiler.plugin('emit', handler);
-			}
+			});
 		}
 	}
 

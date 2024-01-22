@@ -1,4 +1,4 @@
-import { h, Component, render } from 'preact';
+import { Component, render } from 'preact';
 import codemirror from 'codemirror';
 import cx from '../../lib/cx';
 import 'codemirror/mode/jsx/jsx';

@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import style from './corner.module.css';
 
 export default function Corner() {

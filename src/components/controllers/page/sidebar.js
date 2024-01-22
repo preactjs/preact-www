@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import style from './sidebar.module.css';
 import DocVersion from './../../doc-version';
 import SidebarNav from './sidebar-nav';

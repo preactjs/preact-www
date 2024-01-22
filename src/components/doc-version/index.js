@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import style from './style.module.css';
 import { getCurrentUrl, route } from 'preact-router';
 import { useStore } from '../store-adapter';

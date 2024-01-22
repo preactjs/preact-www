@@ -1,4 +1,4 @@
-import MarkedWorker from 'workerize-loader?name=markdown.[hash:5]!./marked.worker';
+import * as Comlink from 'comlink';
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
@@ -110,7 +110,16 @@ export function parseContent(text) {
 	};
 }
 
-const markedWorker = !PRERENDER && new MarkedWorker();
+const markedWorker =
+	!PRERENDER &&
+	Comlink.wrap(
+		new Worker(
+			/* webpackChunkName: "marked-worker" */ new URL(
+				'./marked.worker.js',
+				import.meta.url
+			)
+		)
+	);
 function parseMarkdownContent(data) {
 	return markedWorker.convert(data.content).then(html => {
 		data.html = html;

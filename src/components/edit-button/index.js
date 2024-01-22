@@ -1,6 +1,5 @@
 import { useStore } from '../store-adapter';
 import style from './style.module.css';
-import { Fragment } from 'preact';
 
 export default function EditThisPage({ show, isFallback }) {
 	const store = useStore(['lang', 'url']);
@@ -10,7 +9,7 @@ export default function EditThisPage({ show, isFallback }) {
 	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${path}`;
 	return (
 		show && (
-			<Fragment>
+			<>
 				<div class={style.wrapper}>
 					<a
 						class={style.edit}
@@ -30,7 +29,7 @@ export default function EditThisPage({ show, isFallback }) {
 						</div>
 					)}
 				</div>
-			</Fragment>
+			</>
 		)
 	);
 }
