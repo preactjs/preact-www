@@ -44,10 +44,8 @@ export default function Page({ route, prev, next }, ctx) {
 	// "name" is the exact page ID from the URL
 	// "current" is the currently *displayed* page ID.
 
-	// `current` is null during SSR
-	const canEdit =
-		(current && current !== 'index') || (!current && route.path !== '/');
-	const isBlog = route.path.startsWith('/blog/');
+	const canEdit = current !== 'index';
+	const isBlogArticle = current.startsWith('/blog/');
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
 	useEffect(() => {
@@ -84,7 +82,7 @@ export default function Page({ route, prev, next }, ctx) {
 						show={canEdit}
 						isFallback={isFallback}
 					/>
-					{isBlog && <BlogMeta meta={meta} />}
+					{isBlogArticle && <BlogMeta meta={meta} />}
 					<Hydrator
 						component={ContentRegion}
 						boot={!!html}

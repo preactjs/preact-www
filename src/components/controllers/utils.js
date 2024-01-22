@@ -35,7 +35,7 @@ export function usePage(route, lang) {
 	if (PRERENDER) {
 		const { content, html, meta } = getContentOnServer(route.path, lang);
 		return {
-			current: null,
+			current: getContentId(route),
 			content,
 			html,
 			meta,
