@@ -37,7 +37,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Una Libreria differente</h1>
+    <h2>Una Libreria differente</h2>
 </section>
 
 
@@ -45,7 +45,7 @@ function Counter() {
   <img src="/assets/home/metal.svg" alt="metal">
 
   <div>
-    <h2>Più vicino alla macchina</h2>
+    <h3>Più vicino alla macchina</h3>
     <p>
         Preact fornisce la più leggera astrazione possibile del Virtual DOM.
         Il web è una piattaforma stabile, è giunto il momento in cui dobbiamo smettere di reimplementarlo in nome della sicurezza.
@@ -62,7 +62,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size">
 
   <div>
-    <h2>Piccolo nelle dimensioni</h2>
+    <h3>Piccolo nelle dimensioni</h3>
     <p>
         Molti degli UI framework sono grandi abbastanza per essere la parte più pesante del Javascript di un applicazione.
         Preact è differente: è così piccolo che il tuo codice sarà la parte più grande nella tua applicazione
@@ -79,7 +79,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance">
 
   <div>
-    <h2>Grandi Perfomance</h2>
+    <h3>Grandi Perfomance</h3>
     <p>
         Preact è veloce, e non solo per il suo peso. Ha una delle implementazioni più veloci per rilevare le differenze tra il DOM sulla pagina e il DOM virtuale.
     </p>
@@ -94,7 +94,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable">
 
   <div>
-    <h2>Portatile ed Integrabile</h2>
+    <h3>Portatile ed Integrabile</h3>
     <p>
         La minuscola impronta di Preact permette di usare il potente paradigma dei Componenti del Virtual DOM in posti dove altrimenti non avresti potuto.
     </p>
@@ -109,7 +109,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive">
 
   <div>
-    <h2>Immediatamente Produttivo</h2>
+    <h3>Immediatamente Produttivo</h3>
     <p>
         La leggerezza è molto più divertente quando non si deve sacrificare la produttività. Preact ti rende subito
         produttivo. Ha anche alcune caratteristiche bonus:
@@ -126,7 +126,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="compatible">
 
   <div>
-    <h2>Compatibile con l'Ecosistema</h2>
+    <h3>Compatibile con l'Ecosistema</h3>
     <p>
         I componenti DOM virtuali facilitano la condivisione di cose riutilizzabili - qualsiasi cosa dai bottoni ai fornitori di dati.
         Il design di Preact ti permette di utilizzare senza problemi migliaia di componenti disponibili nell'ecosistema React.
@@ -139,13 +139,13 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Guardalo in azione!</h1>
+    <h2>Guardalo in azione!</h2>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>Componente Lista delle attività</h2>
+        <h3>Componente Lista delle attività</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class TodoList extends Component {
@@ -180,7 +180,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Esempio in esecuzione</h2>
+        <h3>Esempio in esecuzione</h3>
         <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
@@ -195,7 +195,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Visualizzare le stelle su GitHub</h2>
+        <h3>Visualizzare le stelle su GitHub</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class Stars extends Component {
@@ -217,7 +217,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Esempio in esecuzione</h2>
+        <h3>Esempio in esecuzione</h3>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -234,7 +234,7 @@ render(
 
 
 <section class="home-top">
-    <h1>Pronto a tuffarti?</h1>
+    <h2>Pronto a tuffarti?</h2>
 </section>
 
 
