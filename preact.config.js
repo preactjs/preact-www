@@ -1,8 +1,6 @@
 import { resolve } from 'path';
-import fs from 'fs';
 import { Compilation, sources } from 'webpack';
 import yaml from 'yaml';
-import netlifyPlugin from 'preact-cli-plugin-netlify';
 import postcssImport from 'postcss-import';
 import postcssCustomProperties from 'postcss-custom-properties';
 import postcssNesting from 'postcss-nesting';
@@ -113,14 +111,14 @@ export default function (config, env, helpers) {
 				context: __dirname,
 				from: 'src/_headers',
 				to: '_headers',
-				// Copy-Webpack-Plugin otherwise assumes it's a directory, which results in errors
+				toType: 'file'
+			}, {
+				context: __dirname,
+				from: 'src/_redirects',
+				to: '_redirects',
 				toType: 'file'
 			}]
 		);
-
-		netlifyPlugin(config, {
-			redirects: fs.readFileSync('src/_redirects', 'utf-8').trim().split('\n')
-		});
 	}
 
 	class RssFeedPlugin {

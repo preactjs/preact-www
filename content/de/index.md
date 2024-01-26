@@ -36,7 +36,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Eine Bibliothek der anderen Art</h1>
+    <h2>Eine Bibliothek der anderen Art</h2>
 </section>
 
 
@@ -44,7 +44,7 @@ function Counter() {
   <img src="/assets/home/metal.svg" alt="metal">
 
   <div>
-    <h2>Näher am Geschehen</h2>
+    <h3>Näher am Geschehen</h3>
     <p>
         Preact bietet die kleinstmögliche Virtual DOM Abstraktion auf dem DOM.
         Das Web ist eine stabile Plattform und es ist an der Zeit, dass wir es im Namen der Sicherheit neu implementieren.
@@ -60,7 +60,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="größe">
 
   <div>
-    <h2>Kleine Größe</h2>
+    <h3>Kleine Größe</h3>
     <p>
         Die meisten UI-Frameworks sind so riesig, dass sie den Großteil einer JavaScript-App ausmachen.
         Mit Preact ist das anders: Es ist winzig genug, damit <em>eigener Code</em> den Großteil der Application ausmacht.
@@ -76,7 +76,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="leistung">
 
   <div>
-    <h2>Große Leistung</h2>
+    <h3>Große Leistung</h3>
     <p>
         Preact ist schnell, was nicht nur an seiner Größe liegt. Dank einer simplen und vorhersehbaren Differenzierungsimplementation ist es eine der schnellsten Virtual DOM-Bibliotheken überhaupt.
     </p>
@@ -90,7 +90,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/portable.svg" alt="portabel">
   <div>
-    <h2>Portabel &amp; Einbettbar</h2>
+    <h3>Portabel &amp; Einbettbar</h3>
     <p>
         Preacts winziger Fußabdruck ermöglicht dem ressourcenreichen Virtual DOM-Komponentenparadigma Dinge, von dem es sonst nur träumen könnte.
     </p>
@@ -104,7 +104,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/productive.svg" alt="produktiv">
   <div>
-    <h2>Sofort produktiv</h2>
+    <h3>Sofort produktiv</h3>
     <p>
         Leichtigkeit ist deutlich spaßiger, wenn man dafür Produktivität nicht einbüßen muss. Preacts macht dich von Anfang an produktiv! Es hat sogar einige Bonusfunktionen:
     </p>
@@ -119,7 +119,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/compatible.svg" alt="kompatibel">
   <div>
-    <h2>Ökosystem-kompatibel</h2>
+    <h3>Ökosystem-kompatibel</h3>
     <p>
         Virtual DOM-Komponenten machen es einfach, Dinge wieder zu verwenden - alles vom Knopf bis hin zu Datenquellen.
         Preacts Gestaltung lässt dich tausende Komponenten, die bereits im React-Ökosystem verfügbar sind, verwenden.
@@ -132,13 +132,13 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Erlebe es in freier Wildbahn!</h1>
+    <h2>Erlebe es in freier Wildbahn!</h2>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>To Do-Listen-Komponente</h2>
+        <h3>To Do-Listen-Komponente</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class TodoList extends Component {
@@ -173,7 +173,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Laufendes Beispiel</h2>
+        <h3>Laufendes Beispiel</h3>
         <pre repl="false"><code class="lang-jsx">
 import ToDoList from './todo-list';
 
@@ -188,7 +188,7 @@ render(&lt;ToDoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Zeige GitHub-Stars</h2>
+        <h3>Zeige GitHub-Stars</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class Stars extends Component {
@@ -210,7 +210,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Laufendes Beispiel</h2>
+        <h3>Laufendes Beispiel</h3>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -227,7 +227,7 @@ render(
 
 
 <section class="home-top">
-    <h1>Bereit einzutauchen?</h1>
+    <h2>Bereit einzutauchen?</h2>
 </section>
 
 

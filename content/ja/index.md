@@ -36,14 +36,14 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>Preactの特徴</h1>
+    <h2>Preactの特徴</h2>
 </section>
 
 <section class="home-section">
   <img src="/assets/home/metal.svg" alt="metal">
 
   <div>
-    <h2>よりDOMに近い</h2>
+    <h3>よりDOMに近い</h3>
     <p>
       Preact(プリアクト)はDOM上に薄い仮想DOMによる抽象化を提供します。
       ブラウザの安定した機能の上に構築され、素のイベントハンドラをそのまま使います。他のライブラリとの連携もスムーズに行えます。
@@ -58,7 +58,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size">
 
   <div>
-    <h2>サイズが小さい</h2>
+    <h3>サイズが小さい</h3>
     <p>
       ほとんどのUIフレームワークはアプリケーションを構成するJavaScriptのサイズの大部分を占めてしまうくらいの大きさです。
       Preactは違います。あなたが書いたコードがアプリケーションの大部分を占めるようになるくらいの小ささです。
@@ -73,7 +73,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance">
 
   <div>
-    <h2>卓越したパフォーマンス</h2>
+    <h3>卓越したパフォーマンス</h3>
     <p>
       Preactが高速な理由は単にサイズだけではありません。 Preactはシンプルで安定した差分アルゴリズムの実装によって最も高速な仮想DOMライブラリの1つになりました。
     </p>
@@ -87,7 +87,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable">
 
   <div>
-    <h2>ポータブル &amp; 組み込みやすい</h2>
+    <h3>ポータブル &amp; 組み込みやすい</h3>
     <p>
       Preactのサイズの小ささは、強力な仮想DOMコンポーネントの枠組みを新しい用途に広げることを可能にしました。
     </p>
@@ -102,7 +102,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive">
 
   <div>
-    <h2>高い生産性</h2>
+    <h3>高い生産性</h3>
     <p>
       生産性を犠牲にすることなくアプリケーションを軽量化することができるので、Preactでの開発はより楽しいものになるでしょう。Preactを使うとすぐに生産性が上がります。以下のおまけの機能もあります。
     </p>
@@ -117,7 +117,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="compatible">
 
   <div>
-    <h2>エコシステムの互換性</h2>
+    <h3>エコシステムの互換性</h3>
     <p>
       仮想DOMコンポーネントは、ボタンからデータプロバイダまですべての再利用可能なコンポーネントの共有を簡単にします。
       PreactはReactのエコシステムにある何千ものコンポーネントをシームレスに利用できるように設計されています。
@@ -129,12 +129,12 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>動くものを見てみましょう。</h1>
+    <h2>動くものを見てみましょう。</h2>
 </section>
 
 <section class="home-split">
     <div>
-        <h2>Todoリスト</h2>
+        <h3>Todoリスト</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class TodoList extends Component {
@@ -169,7 +169,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>実行結果</h2>
+        <h3>実行結果</h3>
         <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
@@ -183,7 +183,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>GitHubのスター数を取得</h2>
+        <h3>GitHubのスター数を取得</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class Stars extends Component {
@@ -205,7 +205,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>実行結果</h2>
+        <h3>実行結果</h3>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -221,7 +221,7 @@ render(
 </section>
 
 <section class="home-top">
-    <h1>もっと詳しく知りたいですか？</h1>
+    <h2>もっと詳しく知りたいですか？</h2>
 </section>
 
 <section style="text-align:center;">

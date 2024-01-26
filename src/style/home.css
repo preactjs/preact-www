@@ -13,7 +13,8 @@ main .markup {
 		margin: 60px auto;
 		max-width: 984px;
 
-		h1 {
+		h1,
+		h2 {
 			font-size: 7.3vw;
 			text-align: center;
 			font-weight: lighter;
@@ -61,7 +62,7 @@ main .markup {
 		/* The following nodes are created inside the markdown files.
 		To make the authoring experience easier we select and style them
 		based on the type instead of forcing content creators to add classes. */
-		h2 {
+		h3 {
 			font-size: 220%;
 			letter-spacing: 0.01em;
 			font-weight: 300;
@@ -114,7 +115,8 @@ main .markup {
 			flex-direction: row;
 		}
 
-		h2 {
+		h3 {
+			font-size: 1.8rem;
 			font-weight: inherit;
 		}
 
@@ -136,7 +138,7 @@ main .markup {
 			max-width: 600px;
 			margin: auto;
 
-			> div:last-child > h2 {
+			> div:last-child > h3 {
 				margin-bottom: 0;
 				font-size: 20px;
 				border-bottom: none;

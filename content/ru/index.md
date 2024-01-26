@@ -36,14 +36,14 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>Библиотека другого типа</h1>
+    <h2>Библиотека другого типа</h2>
 </section>
 
 <section class="home-section">
   <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Ближе к DOM</h2>
+    <h3>Ближе к DOM</h3>
     <p>
       Preact предоставляет максимально тонкую абстракцию Virtual DOM поверх DOM.
       Она опирается на стабильные возможности платформы, регистрирует реальные обработчики событий и хорошо взаимодействует с другими библиотеками.
@@ -58,7 +58,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Малый размер</h2>
+    <h3>Малый размер</h3>
     <p>
       Большинство UI-фреймворков достаточно велики и составляют большую часть объема JavaScript в приложении.
       Preact — это совсем другое: он достаточно мал, чтобы <em>ваш код</em> был самой большой частью вашего приложения.
@@ -73,7 +73,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Большая производительность</h2>
+    <h3>Большая производительность</h3>
     <p>
       Preact работает быстро, и не только благодаря своим размерам. Это одна из самых быстрых библиотек Virtual DOM, благодаря простой и предсказуемой реализации diff.
     </p>
@@ -87,7 +87,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Портативная и встраиваемая</h2>
+    <h3>Портативная и встраиваемая</h3>
     <p>
       Небольшой размер Preact позволяет использовать мощную парадигму компонентов Virtual DOM в новых местах, куда иначе не попасть.
     </p>
@@ -101,7 +101,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Мгновенная продуктивность</h2>
+    <h3>Мгновенная продуктивность</h3>
     <p>
       Легкий вес гораздо интереснее, когда для его достижения не приходится жертвовать производительностью. Preact позволяет сразу же повысить производительность труда. В нем даже есть несколько бонусов:
     </p>
@@ -116,7 +116,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Совместимость с экосистемой</h2>
+    <h3>Совместимость с экосистемой</h3>
     <p>
       Компоненты Virtual DOM упрощают совместное использование многократно используемых элементов — от кнопок до поставщиков данных.
       Дизайн Preact позволяет легко использовать тысячи компонентов, доступных в экосистеме React.
@@ -128,12 +128,12 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>Посмотрите в действии!</h1>
+    <h2>Посмотрите в действии!</h2>
 </section>
 
 <section class="home-split">
     <div>
-        <h2>Список дел</h2>
+        <h3>Список дел</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class TodoList extends Component {
@@ -168,7 +168,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Пример выполнения</h2>
+        <h3>Пример выполнения</h3>
         <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
@@ -184,7 +184,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Получение звёзд GitHub</h2>
+        <h3>Получение звёзд GitHub</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class Stars extends Component {
@@ -206,7 +206,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Пример выполнения</h2>
+        <h3>Пример выполнения</h3>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -224,7 +224,7 @@ document.body
 </section>
 
 <section class="home-top">
-    <h1>Готовы к погружению?</h1>
+    <h2>Готовы к погружению?</h2>
 </section>
 
 <section style="text-align:center;">

@@ -36,14 +36,14 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>다른 종류의 라이브러리</h1>
+    <h2>다른 종류의 라이브러리</h2>
 </section>
 
 <section class="home-section">
   <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>DOM에 더 가까이</h2>
+    <h3>DOM에 더 가까이</h3>
     <p>
     Preact는 DOM 위에 가능한 가장 얇은 가상 DOM 추상화를 제공합니다. 안정적인 플랫폼 기능을 기반으로 하며 실제 이벤트 핸들러를 등록할 수 있고, 다른 라이브러리들과 잘 어울립니다.
     </p>
@@ -57,7 +57,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>작은 크기</h2>
+    <h3>작은 크기</h3>
     <p>
       대부분의 UI 프레임워크는 프레임워크 자체의 JavaScript 크기가 애플리케이션의 대부분을 차지할 만큼 매우 큽니다. Preact는 다릅니다. 프레임워크 자체의 JavaScript 크기가 아닌, <em>여러분이 작성한 코드</em> 가 애플리케이션의 가장 큰 부분을 차지할 만큼 매우 가볍습니다.
     </p>
@@ -71,7 +71,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>놀라운 성능</h2>
+    <h3>놀라운 성능</h3>
     <p>
       Preact가 빠른 이유는 단순히 크기 뿐만이 아닙니다 간단하고 예측 가능한 diff 구현 덕분에 세상에서 가장 빠른 Virtual DOM 라이브러리 중 하나입니다.
     </p>
@@ -85,7 +85,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>휴대 가능 &amp; 삽입 가능</h2>
+    <h3>휴대 가능 &amp; 삽입 가능</h3>
     <p>
       Preact의 작은 설치 공간은 강력한 Virtual DOM 구성 요소 패러다임을 다른 방법으로는 갈 수 없는 새로운 장소로 가져갈 수 있음을 의미합니다.
     </p>
@@ -99,7 +99,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>즉각적인 생산성</h2>
+    <h3>즉각적인 생산성</h3>
     <p>
      경량화는 거기에 도달하기 위해 생산성을 희생할 필요가 없을 때 훨씬 더 재미있습니다. Preact는 즉시 생산성을 높여줍니다. 몇 가지 보너스 기능도 있습니다.
     </p>
@@ -114,7 +114,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>생태계 호환</h2>
+    <h3>생태계 호환</h3>
     <p>
       가상 DOM 구성 요소를 사용하면 버튼에서 데이터 공급자에 이르기까지 재사용 가능한 모든 것을 쉽게 공유할 수 있습니다. Preact의 디자인은 React 생태계에서 사용 가능한 수천 개의 구성 요소를 원활하게 사용할 수 있음을 의미합니다.
     </p>
@@ -125,12 +125,12 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>직접 확인하세요!</h1>
+    <h2>직접 확인하세요!</h2>
 </section>
 
 <section class="home-split">
     <div>
-        <h2>Todo 리스트</h2>
+        <h3>Todo 리스트</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class TodoList extends Component {
@@ -165,7 +165,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>실행 예시</h2>
+        <h3>실행 예시</h3>
         <pre repl="false"><code class="lang-jsx">
 import TodoList from './todo-list';
 
@@ -179,7 +179,7 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>GitHub Star 가져오기</h2>
+        <h3>GitHub Star 가져오기</h3>
         <pre><code class="lang-jsx">
 // --repl
 export default class Stars extends Component {
@@ -201,7 +201,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>실행 예시</h2>
+        <h3>실행 예시</h3>
         <pre repl="false"><code class="lang-jsx">
 import Stars from './stars';
 
@@ -217,7 +217,7 @@ render(
 </section>
 
 <section class="home-top">
-    <h1>뛰어들 준비가 되셨나요?</h1>
+    <h2>뛰어들 준비가 되셨나요?</h2>
 </section>
 
 <section style="text-align:center;">

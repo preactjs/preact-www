@@ -1,13 +1,9 @@
 {
-  "name": "preact-www",
   "private": true,
-  "description": "Preact website.",
+  "author": "Preact Authors <core@preactjs.com>",
+  "license": "MIT",
   "engines": {
-    "node": ">=12"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/preactjs/preact-www.git"
+    "node": ">=18"
   },
   "scripts": {
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
@@ -15,11 +11,12 @@
     "dev:lambda": "netlify-lambda serve src/lambda",
     "start": "npm run -s server",
     "prestart": "npm run -s build",
-    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --gzip -c '{\"rewrites\": [{\"source\":\"**\",\"destination\":\"index.html\"}],\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
+    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --compression -c '{\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
     "build": "netlify-lambda build src/lambda && preact build --prerenderUrls src/prerender.js --inline-css false",
     "prebuild": "rimraf build/assets && rimraf build/content",
     "lint": "eslint src test",
-    "format": "prettier --write \"{src,test}/**/*.{css,js,json}\""
+    "format": "prettier --write \"{src,test}/**/*.{css,js,json}\"",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "developit",
@@ -52,38 +49,29 @@
     "useTabs": true,
     "tabWidth": 2
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "{src,test}/**/*.{css,js,json}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
-  "license": "MIT",
-  "author": "Preact Authors <core@preactjs.com>",
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
-    "concurrently": "^5.2.0",
-    "cross-env": "^7.0.3",
+    "concurrently": "^8.2.2",
     "eslint": "^6.8.0",
     "eslint-config-developit": "^1.1.1",
     "feed": "^4.2.2",
-    "husky": "^4.0.0",
+    "husky": "^8.0.3",
     "jsdom": "^15.2.1",
-    "lint-staged": "^9.5.0",
-    "netlify-lambda": "^1.6.3",
+    "lint-staged": "^15.2.0",
+    "netlify-lambda": "^2.0.16",
     "postcss-custom-properties": "^13.3.2",
     "postcss-import": "^14.0.0",
     "postcss-nesting": "^12.0.1",
     "preact-cli": "^4.0.0-next.6",
-    "preact-cli-plugin-netlify": "^1.5.0",
     "prettier": "^1.19.1",
     "promise-polyfill": "^8.1.3",
-    "rimraf": "^3.0.2"
+    "rimraf": "^5.0.5",
+    "superstatic": "^9.0.3"
   },
   "dependencies": {
     "@preact/signals": "^1.1.3",
@@ -91,10 +79,8 @@
     "@rollup/browser": "^3.18.0",
     "babel-standalone": "^6.26.0",
     "comlink": "^4.4.1",
-    "classnames": "^2.2.6",
     "codemirror": "^5.50.2",
     "decko": "^1.2.0",
-    "encoding": "^0.1.13",
     "htm": "^2.2.1",
     "linkstate": "^1.1.1",
     "magic-string": "^0.25.7",
@@ -107,9 +93,7 @@
     "preact-router": "^3.1.0",
     "rollup": "^2.79.1",
     "sucrase": "^3.32.0",
-    "superstatic": "^6.0.4",
     "unistore": "^3.5.1",
-    "window-or-global": "^1.0.1",
     "yaml": "^1.7.2"
   }
 }
