@@ -8,6 +8,8 @@ translation_by:
   - Ivan Ulloque
 ---
 
+# Introduciendo los Signals
+
 Los signals son una forma de expresar el estado que garantiza la rapidez de las aplicaciones, independientemente de su complejidad. Las señales se basan en principios reactivos y proporcionan una excelente ergonomía al desarrollador, con una implementación única optimizada para el Virtual DOM.
 
 En esencia, un signal es un objeto con una propiedad `.value` que contiene algún valor. Al acceder a la propiedad value de un signal desde un componente, éste se actualiza automáticamente cuando cambia su valor.

@@ -4,6 +4,8 @@ title: ¿Quién está usando Preact?
 permalink: '/about/we-are-using'
 ---
 
+# We Are Using
+
 Preact es utilizado por muchos sitios web, desde proyectos de código abierto hasta grandes corporaciones multinacionales.
 A continuación hay una pequeña muestra de organizaciones que dependen de Preact para proyectos públicos.
 

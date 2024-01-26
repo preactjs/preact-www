@@ -44,9 +44,8 @@ export default function Page({ route, prev, next }, ctx) {
 	// "name" is the exact page ID from the URL
 	// "current" is the currently *displayed* page ID.
 
-	const isHome = route.path === '/';
-	const showTitle = meta.show_title !== false;
-	const canEdit = !isHome;
+	const canEdit = current !== 'index';
+	const isBlogArticle = current.startsWith('/blog/');
 	const hasSidebar = meta.toc !== false && isDocPage(url);
 
 	useEffect(() => {
@@ -83,85 +82,11 @@ export default function Page({ route, prev, next }, ctx) {
 						show={canEdit}
 						isFallback={isFallback}
 					/>
-					{!isHome && (
-						<div class={style.pageTitle}>
-							<div>
-								{meta.date && <Time value={meta.date} />}
-								{Array.isArray(meta.authors) && meta.authors.length > 0 && (
-									<>
-										, written by{' '}
-										<address class={style.authors}>
-											{meta.authors.map((author, i, arr) => {
-												const authorData = config.blogAuthors.find(
-													data => data.name === author
-												);
-												return (
-													<span key={author} class={style.author}>
-														{authorData ? (
-															<a
-																href={authorData.link}
-																target="_blank"
-																rel="noopener noreferrer"
-															>
-																{author}
-															</a>
-														) : (
-															<span>{author}</span>
-														)}
-														{i < arr.length - 2
-															? ', '
-															: i === arr.length - 2
-															? ' and '
-															: null}
-													</span>
-												);
-											})}
-											{(meta.translation_by || []).map((author, i, arr) => {
-												const authorData = config.blogAuthors.find(
-													data => data.name === author
-												);
-												return (
-													<>
-														{', translated by '}
-														<span key={author} class={style.author}>
-															{authorData ? (
-																<a
-																	href={authorData.link}
-																	target="_blank"
-																	rel="noopener noreferrer"
-																>
-																	{author}
-																</a>
-															) : (
-																<span>{author}</span>
-															)}
-															{i < arr.length - 2
-																? ', '
-																: i === arr.length - 2
-																? ' and '
-																: null}
-														</span>
-													</>
-												);
-											})}
-										</address>
-									</>
-								)}
-							</div>
-							<h1
-								class={cx(
-									style.title,
-									meta.permalink === '/about/we-are-using' && style.center
-								)}
-							>
-								{showTitle ? meta.title || route.title : ''}
-							</h1>
-						</div>
-					)}
+					{isBlogArticle && <BlogMeta meta={meta} />}
 					<Hydrator
 						component={ContentRegion}
 						boot={!!html}
-						name={name}
+						current={current}
 						content={html}
 						prev={prev}
 						next={next}
@@ -177,6 +102,74 @@ export default function Page({ route, prev, next }, ctx) {
 					meta: { ...meta, toc: undefined }
 				}}
 			/>
+		</div>
+	);
+}
+
+function BlogMeta({ meta }) {
+	return (
+		<div class={style.blogMeta}>
+			{meta.date && <Time value={meta.date} />}
+			{Array.isArray(meta.authors) && meta.authors.length > 0 && (
+				<>
+					, written by{' '}
+					<address class={style.authors}>
+						{meta.authors.map((author, i, arr) => {
+							const authorData = config.blogAuthors.find(
+								data => data.name === author
+							);
+							return (
+								<span key={author} class={style.author}>
+									{authorData ? (
+										<a
+											href={authorData.link}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{author}
+										</a>
+									) : (
+										<span>{author}</span>
+									)}
+									{i < arr.length - 2
+										? ', '
+										: i === arr.length - 2
+										? ' and '
+										: null}
+								</span>
+							);
+						})}
+						{(meta.translation_by || []).map((author, i, arr) => {
+							const authorData = config.blogAuthors.find(
+								data => data.name === author
+							);
+							return (
+								<>
+									{', translated by '}
+									<span key={author} class={style.author}>
+										{authorData ? (
+											<a
+												href={authorData.link}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												{author}
+											</a>
+										) : (
+											<span>{author}</span>
+										)}
+										{i < arr.length - 2
+											? ', '
+											: i === arr.length - 2
+											? ' and '
+											: null}
+									</span>
+								</>
+							);
+						})}
+					</address>
+				</>
+			)}
 		</div>
 	);
 }

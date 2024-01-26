@@ -58,7 +58,7 @@ export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
 	return (
-		<content-region name={props.name} data-page-nav={hasNav}>
+		<content-region name={props.current} data-page-nav={hasNav}>
 			{content && (
 				<Markup
 					// key={content}

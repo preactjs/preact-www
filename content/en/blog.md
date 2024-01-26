@@ -1,6 +1,5 @@
 ---
 title: Blog
-show_title: false
 ---
 
 Find out more about what the Preact team is working on.

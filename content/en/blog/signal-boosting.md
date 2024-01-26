@@ -5,6 +5,8 @@ authors:
   - Joachim Viide
 ---
 
+# Signal Boosting
+
 The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen.
 
 We recently [announced](https://twitter.com/jviide/status/1572570215350964224) new versions of the Preact Signals packages:
@@ -20,7 +22,7 @@ Signals are the Preact team's take on reactive programming. If you want a gentle
 It should be noted that none of these concepts are invented by us. Reactive programming has quite a history, and has already been popularized widely in the JavaScript world by [Vue.js](https://vuejs.org/), [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/), [RxJS](https://rxjs.dev/) and too many others to name. Kudos to all of them!
 
 
-# A Whirlwind Tour of the Signals Core
+## A Whirlwind Tour of the Signals Core
 
 Let's start with an overview of the fundamental features in the **@preact/signals-core** package.
 

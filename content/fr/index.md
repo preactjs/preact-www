@@ -1,7 +1,6 @@
 ---
 layout: home
 title: Preact
-show_title: false
 toc: false
 ---
 
