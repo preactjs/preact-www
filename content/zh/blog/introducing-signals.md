@@ -155,11 +155,6 @@ function Counter() {
    </button>
  );
 }
-// --re
-
-续上文：
-
-```jsx
 // --repl-after
 render(<Counter />, document.getElementById("app"));
 ```
