@@ -98,7 +98,7 @@ TypeScript включает в себя полноценный JSX-компил�
 Типизация компонентов регулярных функций осуществляется просто — добавлением информации о типе к аргументам функции.
 
 ```tsx
-type MyComponentProps = {
+interface MyComponentProps {
   name: string;
   age: number;
 };
@@ -115,7 +115,7 @@ function MyComponent({ name, age }: MyComponentProps) {
 Параметры по умолчанию можно установить, задав в сигнатуре функции значение по умолчанию.
 
 ```tsx
-type GreetingProps = {
+interface GreetingProps {
   name?: string; // необязательный параметр!
 };
 
@@ -145,7 +145,7 @@ const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
 ```tsx
 import { h, ComponentChildren } from 'preact';
 
-type ChildrenProps = {
+interface ChildrenProps {
   title: string;
   children: ComponentChildren;
 };
@@ -166,12 +166,12 @@ function Card({ title, children }: ChildrenProps) {
 
 ```tsx
 // Типы для props
-type ExpandableProps = {
+interface ExpandableProps {
   title: string;
 };
 
 // Типы для state
-type ExpandableState = {
+interface ExpandableState {
   toggled: boolean;
 };
 
@@ -327,7 +327,7 @@ function App() {
 Или вы работаете без значений по умолчанию и используете привязку переменной универсального типа для привязки контекста к определённому типу:
 
 ```tsx
-type AppContextValues = {
+interface AppContextValues {
   authenticated: boolean;
   lang: string;
   theme: string;
@@ -440,13 +440,13 @@ function TextInputWithFocusButton() {
 
 ```typescript
 // Тип состояния для функции редуктора
-type StateType = {
+interface StateType {
   count: number;
 };
 
 // Тип действия, где `type` может быть любым
 // "reset", "decrement", "increment"
-type ActionType = {
+interface ActionType {
   type: 'reset' | 'decrement' | 'increment';
 };
 
