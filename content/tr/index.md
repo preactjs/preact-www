@@ -7,7 +7,7 @@ toc: false
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Aynı modern API ile React'e hızlı ve 3kB'lık alternatif</p>
     <p class="intro-buttons">

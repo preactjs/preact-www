@@ -253,7 +253,7 @@
 			}
 		}
 
-		&[data-open] {
+		&[data-open='true'] {
 			& > a,
 			& > button {
 				background: #fff;

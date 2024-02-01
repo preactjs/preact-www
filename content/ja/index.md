@@ -7,7 +7,7 @@ description: 'Preact is a fast 3kB alternative to React with the same modern API
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
