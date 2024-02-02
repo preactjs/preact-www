@@ -59,6 +59,15 @@ export default function Header() {
 								<use href="/assets/header-icons.svg#twitter" />
 							</svg>
 						</a>
+						<a
+							class={style.socialItem}
+							aria-label="Chat with us on Slack"
+							href="http://chat.preactjs.com/"
+						>
+							<svg aria-hidden viewBox="0 0 512 512">
+								<use href="/assets/header-icons.svg#slack" />
+							</svg>
+						</a>
 					</div>
 					<div class={style.translation}>
 						<NavMenu language />
