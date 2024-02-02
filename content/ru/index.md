@@ -7,7 +7,7 @@ description: 'Быстрая 3КБ-альтернатива React с тем же
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Быстрая альтернатива React весом 3 КБ с тем же современным API.</p>
     <p class="intro-buttons">

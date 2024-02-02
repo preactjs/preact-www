@@ -8,7 +8,7 @@ description: 'React 的 3kb 轻量级替代方案，拥有相同的现代 API。
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">3kb 大小的 React 轻量、快速替代方案，拥有相同的现代 API。</p>
     <p class="intro-buttons">
