@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/02-events
 next: /tutorial/04-state
-title: Components
 solvable: true
 ---
+
+# Components
 
 As we alluded to in part one of this tutorial, the key building block
 in Virtual DOM applications is the Component. A Component is a self-contained

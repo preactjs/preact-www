@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/06-context
 next: /tutorial/08-keys
-title: Side Effects
 solvable: true
 ---
+
+# Side Effects
 
 Side effects are bits of code that run when changes happen in the Virtual
 DOM tree. They don't follow the standard approach of accepting `props`
