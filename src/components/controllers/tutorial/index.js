@@ -175,7 +175,6 @@ function TutorialView({
 	const { lang, solved } = useStore(['lang', 'solved']).state;
 	const fullPath = route.path.replace(':step?', step || route.first);
 	const page = usePage({ path: fullPath }, lang);
-	const title = (page && page.meta.title) || route.title;
 	const solvable = page && page.meta.solvable === true;
 	const hasCode = page && page.meta.code !== false && step && step !== 'index';
 	const showCode = showCodeOverride && hasCode;
@@ -278,8 +277,6 @@ function TutorialView({
 				}
 			>
 				<div class={style.tutorialWindow} ref={content}>
-					<h1 class={style.title}>{title}</h1>
-
 					<ContentRegion
 						current={page.current}
 						content={page.html}
