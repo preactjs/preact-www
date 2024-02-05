@@ -125,6 +125,7 @@ A starter/template for using Preact in buildless environments
 - [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
 - [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
+- [Endless Horse](https://codepen.io/youkwhd/pen/zYbjepj) _(@ CodePen)_
 
 ## Templates
 
