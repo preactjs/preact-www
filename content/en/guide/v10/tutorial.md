@@ -7,7 +7,7 @@ description: 'Write your first Preact application'
 
 This guide walks through building a simple "ticking clock" component. If you're new to Virtual DOM, try the [full Preact tutorial](/tutorial).
 
-> :information_desk_person: This guide assumes that you completed the [Getting Started](/guide/v10/getting-started) document and have successfully set up your tooling. If not, start with [vite](/guide/v10/getting-started#create-a-vite-powered-preact-app).
+> :information_desk_person: This guide assumes that you completed the [Getting Started](/guide/v10/getting-started) document and have successfully set up your tooling. If not, start with [Vite](/guide/v10/getting-started#create-a-vite-powered-preact-app).
 
 ---
 
