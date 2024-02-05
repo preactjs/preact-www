@@ -46,7 +46,7 @@
 			/* --color-brand 40% lighter */ 0 3px 8px rgba(0, 0, 0, 0.5);
 	}
 
-	[data-open] & {
+	[data-open='true'] & {
 		background: var(--color-brand-light);
 
 		&:after {
@@ -84,7 +84,7 @@
 		background: transparent;
 	}
 
-	[data-open] & {
+	[data-open='true'] & {
 		visibility: visible;
 		transform: translateY(0);
 		opacity: 1;
