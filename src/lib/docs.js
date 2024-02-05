@@ -1,6 +1,4 @@
-// `preact-router` doesn't support url paths like `/docs/:version/*`
-// so we'll just use a plain regex for now.
-const LATEST_MAJOR = 10;
+export const LATEST_MAJOR = 'v10';
 const DOC_REG = /^\/guide\/v(\d+)\//;
 
 /**

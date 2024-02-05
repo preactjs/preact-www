@@ -196,7 +196,7 @@ useResult(function(result) {
   var p = result.output.querySelector('p');
   var hasColor = p && p.style && p.style.color === 'purple';
   if (hasEm && hasColor) {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
   }
 }, []);
 ```

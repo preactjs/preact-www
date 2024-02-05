@@ -113,7 +113,7 @@ useResult(function () {
       }
 
       if (Number(text2[1]) === Number(text[1]) + 1) {
-        store.setState({ solved: true });
+        solutionCtx.setSolved(true);
       }
     }, 10);
   }

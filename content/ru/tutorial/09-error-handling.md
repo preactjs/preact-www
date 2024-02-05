@@ -73,7 +73,7 @@ useResult(function(result) {
     oe.apply(this, arguments);
     setTimeout(function() {
       if (result.output.textContent.match(/ошибка/i)) {
-        store.setState({ solved: true });
+        solutionCtx.setSolved(true);
       }
     }, 10);
   };

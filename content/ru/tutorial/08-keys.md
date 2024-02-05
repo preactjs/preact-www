@@ -240,7 +240,7 @@ useRealm(function (realm) {
       /изучить preact/i.test(c[0].textContent) &&
       /сделать крутое приложение/i.test(c[1].textContent)
     ) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
   }
 

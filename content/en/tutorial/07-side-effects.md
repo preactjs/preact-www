@@ -138,7 +138,7 @@ useRealm(function (realm) {
   var prevConsoleLog = win.console.log;
   win.console.log = function(m, s) {
     if (/Count is now/.test(m) && s === 1) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
     return prevConsoleLog.apply(win.console, arguments);
   };

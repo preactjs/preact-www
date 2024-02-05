@@ -1,6 +1,6 @@
 import config from '../../config.json';
 import { useState, useEffect, useCallback } from 'preact/hooks';
-import { useStore } from '../store-adapter';
+import { useLocation } from 'preact-iso';
 import style from './style.module.css';
 import { useLanguage } from '../../lib/i18n';
 
@@ -42,7 +42,7 @@ function useContributors(deps) {
 }
 
 export default function Footer() {
-	const { url } = useStore(['url']).state;
+	const { url } = useLocation();
 	const contrib = useContributors([url]);
 	const [lang, setLang] = useLanguage();
 
@@ -72,7 +72,7 @@ export default function Footer() {
 						rel="noopener noreferrer"
 					>
 						lovely people
-					</a>
+					</a>{' '}
 					{contrib && [
 						' like ',
 						<a

@@ -3,6 +3,8 @@ let hasInteracted, shouldReload;
 function sw() {
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.getRegistration().then(reg => {
+			if (!reg) return;
+
 			reg.onupdatefound = () => {
 				const w = reg.installing;
 				w.onstatechange = () => {

@@ -8,19 +8,42 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
+import { useLocation, useRoute } from 'preact-iso';
 import linkState from 'linkstate';
 import cx from '../../../lib/cx';
 import style from './style.module.css';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
-import ContentRegion from '../../content-region';
 import widgets from '../../widgets';
-import { usePage } from '../utils';
-import { useStore, storeCtx } from '../../store-adapter';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
-import { getContent } from '../../../lib/content';
+//import { getContent } from '../../../lib/content';
+import { useLanguage } from '../../../lib/i18n';
+import { useContent } from '../../../lib/use-resource';
+import { useTitle, useDescription } from '../utils';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
+import { MarkdownRegion } from '../markdown-region.js';
+
+/**
+ * @typedef SolutionContext
+ * @property {boolean} solved
+ * @property {(boolean) => void} setSolved
+ */
+
+/**
+ * @type {import('preact').Context<SolutionContext>}
+ */
+const SolutionContext = createContext(/** @type {SolutionContext} */ ({}));
+
+export function SolutionProvider({ children }) {
+	const [solved, setSolved] = useState(false);
+
+	return (
+		<SolutionContext.Provider value={{ solved, setSolved }}>
+			{children}
+		</SolutionContext.Provider>
+	);
+}
 
 const IS_PRERENDERING = typeof window === 'undefined';
 
@@ -43,7 +66,7 @@ export default class Tutorial extends Component {
 	content = createRef();
 	runner = createRef();
 
-	static contextType = storeCtx;
+	static contextType = SolutionContext;
 
 	resultHandlers = new Set();
 	realmHandlers = new Set();
@@ -79,7 +102,7 @@ export default class Tutorial extends Component {
 				'repl-initial': '',
 				'repl-final': ''
 			});
-			this.context.setState({ solved: false });
+			this.context.setSolved(false);
 		}
 	}
 
@@ -138,9 +161,8 @@ export default class Tutorial extends Component {
 		this.setState({ error: null });
 	};
 
-	render({ route, step }, { loading, code, error }) {
+	render({ step }, { loading, code, error }) {
 		const state = {
-			route,
 			step,
 			loading,
 			code,
@@ -158,7 +180,6 @@ export default class Tutorial extends Component {
 
 function TutorialView({
 	step,
-	route,
 	loading,
 	code,
 	error,
@@ -166,35 +187,45 @@ function TutorialView({
 	CodeEditor,
 	clearError
 }) {
-	const content = useRef();
+	const content = useRef(null);
 
 	const tutorial = useContext(TutorialContext);
 
 	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
 
-	const { lang, solved } = useStore(['lang', 'solved']).state;
-	const fullPath = route.path.replace(':step?', step || route.first);
-	const page = usePage({ path: fullPath }, lang);
-	const solvable = page && page.meta.solvable === true;
-	const hasCode = page && page.meta.code !== false && step && step !== 'index';
+	const { url } = useLocation();
+	const { params } = useRoute();
+	const [lang] = useLanguage();
+	const { solved } = useContext(SolutionContext);
+
+	const { html, meta } = useContent([
+		lang,
+		!params.step ? 'tutorial/index' : url
+	]);
+	useTitle(meta.title);
+	useDescription(meta.description);
+
+	const solvable = meta.solvable === true;
+	const hasCode = meta.code !== false && step && step !== 'index';
 	const showCode = showCodeOverride && hasCode;
-	loading =
-		!page.html || (showCode && (!!page.loading || !Runner || !CodeEditor));
-	const initialLoad = !page.html || !Runner || !CodeEditor;
+	loading = !html || (showCode && (!Runner || !CodeEditor));
+	const initialLoad = !html || !Runner || !CodeEditor;
 
 	// Scroll to the top after loading
 	useEffect(() => {
 		if (!loading && !initialLoad) {
 			content.current.scrollTo(0, 0);
 		}
-	}, [fullPath, loading, initialLoad]);
+	}, [url, loading, initialLoad]);
 
 	// Preload the next chapter
-	useEffect(() => {
-		if (page.meta && page.meta.next) {
-			getContent([lang, page.meta.next]);
-		}
-	}, [page.meta && page.meta.next, fullPath]);
+	// TODO: Webpack creates a circular dependency that
+	// it cannot resolve. Temporarily disabled
+	//useEffect(() => {
+	//	if (meta && meta.next) {
+	//		getContent([lang, meta.next]);
+	//	}
+	//}, [meta && meta.next, url]);
 
 	const reRun = useCallback(() => {
 		let code = tutorial.state.code;
@@ -206,7 +237,6 @@ function TutorialView({
 	return (
 		<ReplWrapper
 			loading={loading}
-			subtleLoading={page.loading}
 			initialLoad={initialLoad}
 			solvable={solvable}
 			solved={solved}
@@ -223,7 +253,7 @@ function TutorialView({
 								<div class={style.output} key="output">
 									{!initialLoad && (
 										<Runner
-											key={fullPath}
+											key={url}
 											ref={tutorial.runner}
 											onSuccess={tutorial.onSuccess}
 											onRealm={tutorial.onRealm}
@@ -238,7 +268,7 @@ function TutorialView({
 												close
 											</button>
 											<ErrorOverlay
-												key={'e:' + fullPath}
+												key={'e:' + url}
 												class={style.error}
 												name={error.name}
 												message={error.message}
@@ -277,16 +307,15 @@ function TutorialView({
 				}
 			>
 				<div class={style.tutorialWindow} ref={content}>
-					<ContentRegion
-						current={page.current}
-						content={page.html}
+					<MarkdownRegion
+						html={html}
+						meta={meta}
 						components={TUTORIAL_COMPONENTS}
-						lang={lang}
 					/>
 
 					<div class={style.buttonContainer}>
-						{page.meta.prev && (
-							<a class={style.prevButton} href={page.meta.prev}>
+						{meta.prev && (
+							<a class={style.prevButton} href={meta.prev}>
 								{config.i18n.previous[lang] || config.i18n.previous.en}
 							</a>
 						)}
@@ -301,11 +330,9 @@ function TutorialView({
 									config.i18n.tutorial.help.en}
 							</button>
 						)}
-						{page.meta.next && (
-							<a class={style.nextButton} href={page.meta.next}>
-								{page.meta.nextText ||
-									config.i18n.next[lang] ||
-									config.i18n.next.en}
+						{meta.next && (
+							<a class={style.nextButton} href={meta.next}>
+								{meta.nextText || config.i18n.next[lang] || config.i18n.next.en}
 							</a>
 						)}
 					</div>
@@ -313,10 +340,10 @@ function TutorialView({
 			</Splitter>
 
 			<InjectPrerenderData
-				name={fullPath}
+				name={url}
 				data={{
-					html: page.html,
-					meta: { ...page.meta }
+					html,
+					meta
 				}}
 			/>
 		</ReplWrapper>
@@ -335,7 +362,6 @@ const REPL_CSS = `
 
 function ReplWrapper({
 	loading,
-	subtleLoading,
 	solvable,
 	solved,
 	initialLoad,
@@ -344,7 +370,7 @@ function ReplWrapper({
 }) {
 	return (
 		<div class={style.tutorial}>
-			<progress-bar showing={!!(loading || subtleLoading)} />
+			<progress-bar showing={!!loading} />
 			<style>{REPL_CSS}</style>
 			<div
 				class={cx(
@@ -408,7 +434,7 @@ function TutorialSetupBlock({ code }) {
 		if (IS_PRERENDERING) return null;
 
 		const tutorial = useContext(TutorialContext);
-		const store = useContext(storeCtx);
+		const solutionCtx = useContext(SolutionContext);
 		const require = m => tutorial.runner.current.realm.globalThis._require(m);
 
 		const fn = new Function(
@@ -419,11 +445,10 @@ function TutorialSetupBlock({ code }) {
 			'useEffect',
 			'useRef',
 			'useMemo',
-			'useStore',
 			'useResult',
 			'useRealm',
 			'useError',
-			'store',
+			'solutionCtx',
 			'realm',
 			'require',
 			code
@@ -437,11 +462,10 @@ function TutorialSetupBlock({ code }) {
 			useEffect,
 			useRef,
 			useMemo,
-			useStore,
 			tutorial.useResult,
 			tutorial.useRealm,
 			tutorial.useError,
-			store,
+			solutionCtx,
 			tutorial.runner.current && tutorial.runner.current.realm,
 			require
 		);
@@ -454,8 +478,8 @@ function TutorialSetupBlock({ code }) {
 
 /** Shows a solution banner when the chapter is solved */
 function Solution({ children }) {
-	const { solved } = useStore(['solved']).state;
-	const ref = useRef();
+	const { solved } = useContext(SolutionContext);
+	const ref = useRef(null);
 
 	useEffect(() => {
 		if (solved) {

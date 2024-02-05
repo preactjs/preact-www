@@ -1,72 +1,29 @@
-import { useState, useMemo, useRef, useEffect } from 'preact/hooks';
-import { Link } from 'preact-router';
+import { useMemo } from 'preact/hooks';
 import * as Comlink from 'comlink';
-import cx from '../../lib/cx';
+import { FakeSuspense, useResource } from '../../lib/use-resource';
 
-let highlight;
-(async function initHighlight() {
-	({ highlight } = PRERENDER
-		? import('./prism.worker.js')
-		: Comlink.wrap(
-				new Worker(
-					/* webpackChunkName: "prism-worker" */ new URL(
-						'./prism.worker.js',
-						import.meta.url
-					)
+const { highlight } = PRERENDER
+	? require('./prism.worker.js')
+	: Comlink.wrap(
+			new Worker(
+				/* webpackChunkName: "prism-worker" */ new URL(
+					'./prism.worker.js',
+					import.meta.url
 				)
-		  ));
-})();
+			)
+	  );
 
-function useFuture(initializer, params) {
-	const getInitialState = () => {
-		try {
-			const value = initializer();
-			if (value && value.then) {
-				if ('_value' in value) return [value._value];
-				if ('_error' in value) return [undefined, value._error];
-				return [undefined, undefined, value];
-			}
-			return [value];
-		} catch (err) {
-			return [undefined, err];
-		}
-	};
+/**
+ * @param {{ code: string, lang: string }} props
+ */
+function HighlightedCode({ code, lang }) {
+	const highlighted = useResource(() => highlight(code, lang), [code, lang]);
 
-	const [pair, setValue] = useState(getInitialState);
-
-	// only run on changes, not initial mount
-	const isFirstRun = useRef(true);
-	useEffect(() => {
-		if (isFirstRun.current) return (isFirstRun.current = false);
-		setValue(getInitialState());
-	}, params || []);
-
-	const pending = pair[2];
-	if (pending) {
-		if (!pending._processing) {
-			pending._processing = true;
-			pending
-				.then(value => {
-					pending._value = value;
-					setValue([value]);
-				})
-				.catch(err => {
-					pending._error = err;
-					setValue([undefined, err]);
-				});
-		}
-	}
-	return pair;
+	const htmlObj = useMemo(() => ({ __html: highlighted }), [highlighted]);
+	return <code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />;
 }
 
-const CACHE = {};
-function cachedHighlight(code, lang) {
-	const id = lang + '\n' + code;
-	return CACHE[id] || (CACHE[id] = highlight(code, lang));
-}
-
-function HighlightedCodeBlock({ code, lang, ...props }) {
-	let repl = false;
+function processRepl(code, repl) {
 	let source = code;
 	if (code.startsWith('// --repl')) {
 		repl = true;
@@ -102,29 +59,32 @@ function HighlightedCodeBlock({ code, lang, ...props }) {
 		}
 	}
 
-	const [highlighted, error, pending] = useFuture(
-		() => cachedHighlight(code, lang),
-		[code, lang]
-	);
+	return [code, source, repl];
+}
 
-	const canHighlight = !!pending || !error;
-	const html =
-		(canHighlight && highlighted) ||
-		code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	const htmlObj = useMemo(() => ({ __html: html }), [html]);
+/**
+ * @param {{ code: string, lang: string, repl?: string }} props
+ */
+function HighlightedCodeBlock({ code, lang }) {
+	let repl = false,
+		source = code;
+
+	[code, source, repl] = processRepl(source, repl);
+
+	// Show unhighlighted code as a fallback until we're ready
+	const fallback = <code class={`language-${lang}`}>{code}</code>;
 
 	return (
-		<div class={cx('highlight-container', props.class)}>
+		<div class="highlight-container">
 			<pre class="highlight">
-				<code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />
+				<FakeSuspense fallback={fallback}>
+					<HighlightedCode code={code} lang={lang} />
+				</FakeSuspense>
 			</pre>
 			{repl && (
-				<Link
-					class="repl-link"
-					href={`/repl?code=${encodeURIComponent(source)}`}
-				>
+				<a class="repl-link" href={`/repl?code=${encodeURIComponent(source)}`}>
 					Run in REPL
-				</Link>
+				</a>
 			)}
 		</div>
 	);
@@ -143,14 +103,7 @@ const CodeBlock = props => {
 		)[1];
 		const firstChild = getChild(child.props);
 		const code = String(firstChild || '').replace(/(^\s+|\s+$)/g, '');
-		return (
-			<HighlightedCodeBlock
-				{...props}
-				code={code}
-				lang={lang}
-				key={lang + '\n' + code}
-			/>
-		);
+		return <HighlightedCodeBlock {...props} code={code} lang={lang} />;
 	}
 
 	return <pre {...props} />;

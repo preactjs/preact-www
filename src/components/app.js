@@ -1,46 +1,24 @@
-import { Component } from 'preact';
-import { Provider } from 'unistore/preact';
-import createStore from '../store';
-import Routes from './routes';
+import { LocationProvider, ErrorBoundary } from 'preact-iso';
+import { LanguageProvider } from '../lib/i18n';
+// TODO: SolutionProvider should really just wrap the tutorial,
+// but that requires a bit of refactoring
+import { SolutionProvider } from './controllers/tutorial/index.js';
 import Header from './header';
-import { storeCtx } from './store-adapter';
-import { getCurrentDocVersion } from '../lib/docs';
+import Routes from './routes';
 
-export default class App extends Component {
-	store = createStore({
-		url: this.props.url || location.pathname + location.search,
-		lang: 'en',
-		preactVersion: this.props.preactVersion || '10.11.3',
-		docVersion: getCurrentDocVersion(location.pathname),
-		toc: null
-	});
-
-	handleUrlChange = ({ url }) => {
-		let prev = this.store.getState().url || '/';
-		if (url !== prev) {
-			this.store.setState({
-				...this.store.getState(),
-				toc: null,
-				url,
-				docVersion: getCurrentDocVersion(url)
-			});
-			if (typeof ga === 'function') {
-				ga('send', 'pageview', url);
-			}
-		}
-	};
-
-	render() {
-		const { url } = this.store.getState();
-		return (
-			<Provider store={this.store}>
-				<storeCtx.Provider value={this.store}>
-					<div id="app">
-						<Header url={url} />
-						<Routes url={url} onChange={this.handleUrlChange} />
-					</div>
-				</storeCtx.Provider>
-			</Provider>
-		);
-	}
+export default function App({ preactVersion }) {
+	return (
+		<ErrorBoundary>
+			<LocationProvider>
+				<LanguageProvider>
+					<SolutionProvider>
+						<div id="app">
+							<Header preactVersion={preactVersion || '10.19.3'} />
+							<Routes />
+						</div>
+					</SolutionProvider>
+				</LanguageProvider>
+			</LocationProvider>
+		</ErrorBoundary>
+	);
 }

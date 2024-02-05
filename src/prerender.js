@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 const yaml = require('yaml');
-const config = require('./config.json');
+const { navRoutes, docRoutes, blogRoutes } = require('./lib/route-utils');
 const { createTitle } = require('./lib/page-title');
 const { fetchRelease } = require('./lambda/release');
 
@@ -12,12 +12,17 @@ const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 const MAX_DESCRIPTION_LENGTH = 200;
 
 module.exports = async () => {
-	const routes = config.nav
-		.concat(config.docs)
-		.concat(config.blog)
-		.flatMap(arr =>
-			arr.path ? { path: arr.path, name: arr.name } : arr.routes
-		);
+	const guideRoutes = [];
+	for (const version of Object.keys(docRoutes)) {
+		for (const route of Object.values(docRoutes[version])) {
+			route.path = `/guide/${version}${route.path}`;
+			guideRoutes.push(route);
+		}
+	}
+	const routes = Object.values(navRoutes)
+		.concat(Object.values(blogRoutes))
+		.concat(guideRoutes)
+		.sort((a, b) => a.path.localeCompare(b.path));
 
 	let preactVersion;
 	try {
@@ -36,10 +41,12 @@ module.exports = async () => {
 				.readdirSync(dir)
 				.filter(rep => rep[0] !== '.' && rep.match(/\.md$/i))
 				.map(rep => rep.replace(/(^index)?\.md$/i, ''));
-			return paths.flatMap(rep => {
-				let path = url.replace(FIELD, '/' + rep).replace(/\/$/, '');
-				return map(Object.assign({}, route, { path }));
-			});
+			return paths
+				.flatMap(rep => {
+					let path = url.replace(FIELD, '/' + rep).replace(/\/$/, '');
+					return map(Object.assign({}, route, { path }));
+				})
+				.sort((a, b) => a.url.localeCompare(b.url));
 		}
 		const content = fs.readFileSync(
 			path.resolve(__dirname, `../content/en/${url == '/' ? 'index' : url}.md`),
