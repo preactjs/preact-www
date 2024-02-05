@@ -1,9 +1,10 @@
 ---
 prev: /tutorial
 next: /tutorial/02-events
-title: Virtual DOM
 solvable: true
 ---
+
+# Virtual DOM
 
 You might have heard people refer to "Virtual DOM", and wondered:
 what makes it "virtual"? How is a "virtual" DOM different from

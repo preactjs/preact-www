@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/03-components
 next: /tutorial/05-refs
-title: State
 solvable: true
 ---
+
+# State
 
 Now that we know how to create HTML elements and components, and how to
 pass props and event handlers to both using JSX, it's time to learn how

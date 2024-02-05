@@ -1,10 +1,11 @@
 ---
 next: /tutorial/01-vdom
 nextText: '开始教程'
-title: 了解 Preact
 code: false
 solvable: false
 ---
+
+# 了解 Preact
 
 您有没有好奇过 Preact 是什么，或是其工作原理？
 

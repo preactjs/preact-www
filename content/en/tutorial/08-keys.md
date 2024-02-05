@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/07-side-effects
 next: /tutorial/09-error-handling
-title: Keys
 solvable: true
 ---
+
+# Keys
 
 In chapter one, we saw how Preact uses a Virtual DOM to calculate what
 changed between two trees described by our JSX, then applies those

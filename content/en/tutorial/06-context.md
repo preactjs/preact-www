@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/05-refs
 next: /tutorial/07-side-effects
-title: Context
 solvable: true
 ---
+
+# Context
 
 As an application grows larger, its Virtual DOM tree often becomes deeply
 nested and composed of many different components. Components at various

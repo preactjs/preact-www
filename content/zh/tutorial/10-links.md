@@ -1,8 +1,9 @@
 ---
 prev: /tutorial/09-error-handling
-title: 恭喜您！
 solvable: false
 ---
+
+# 恭喜您！
 
 您完成了 Preact 教程！
 

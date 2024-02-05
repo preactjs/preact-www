@@ -1,9 +1,10 @@
 ---
 prev: /tutorial
 next: /tutorial/02-events
-title: 虚拟 DOM
 solvable: true
 ---
+
+# 虚拟 DOM
 
 你可能已经听到不少人提到过 "虚拟 DOM"，你想知道:
 它到底是怎么"虚拟"的？ 虚拟 DOM 与我们在编程时使用的真实 DOM 有什么不同？

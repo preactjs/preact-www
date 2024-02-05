@@ -1,8 +1,9 @@
 ---
 prev: /tutorial/09-error-handling
-title: Поздравляем!
 solvable: false
 ---
+
+# Поздравляем!
 
 Вы завершили обучение Preact!
 

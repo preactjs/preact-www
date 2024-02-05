@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/01-vdom
 next: /tutorial/03-components
-title: Events
 solvable: true
 ---
+
+# Events
 
 Events are how we make applications interactive, responding to inputs like
 keyboard and mouse, and reacting to changes like an image loading. Events

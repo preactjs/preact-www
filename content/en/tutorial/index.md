@@ -1,10 +1,11 @@
 ---
 next: /tutorial/01-vdom
 nextText: 'Begin Tutorial'
-title: Learn Preact
 code: false
 solvable: false
 ---
+
+# Learn Preact
 
 Have you ever wondered what Preact is all about, or how it works?
 
