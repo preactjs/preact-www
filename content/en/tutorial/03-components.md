@@ -254,7 +254,7 @@ useRealm(function (realm) {
 
   win.console.log = function() {
     if (hasComponent && check) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
     return prevConsoleLog.apply(win.console, arguments);
   };

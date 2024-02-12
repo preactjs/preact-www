@@ -1,8 +1,9 @@
 import { Component } from 'preact';
-import { route } from 'preact-router';
+import { useLocation } from 'preact-iso';
 
 export default class Logo extends Component {
 	state = { i: 0, hover: false };
+	route = null;
 
 	hover = () => {
 		this.setState({ hover: true });
@@ -26,7 +27,7 @@ export default class Logo extends Component {
 
 	contextMenu = e => {
 		e.preventDefault();
-		route('/branding', false);
+		this.route('/branding');
 	};
 
 	componentDidMount() {
@@ -79,6 +80,7 @@ export default class Logo extends Component {
 		let touch =
 			typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1;
 		if (inverted) [bg, fg] = [fg, bg];
+		this.route = useLocation().route;
 
 		return (
 			<svg

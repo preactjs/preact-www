@@ -38,7 +38,7 @@
 }
 
 .fallback {
-	padding-top: 4rem;
+	padding-top: 2rem;
 }
 
 .fallbackInner {
@@ -47,7 +47,9 @@
 	color: #444;
 
 	a {
-		color: var(--color-link);
+		font-weight: bold;
+		color: var(--color-brand);
+
 		text-decoration-skip-ink: auto;
 		text-decoration: underline;
 		text-decoration-color: var(--color-table-border);

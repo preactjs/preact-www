@@ -2,6 +2,7 @@ import Markup from 'preact-markup';
 import widgets from '../widgets';
 import style from './style.module.css';
 import { useTranslation } from '../../lib/i18n';
+import { TocContext } from '../table-of-contents';
 
 const COMPONENTS = {
 	...widgets,
@@ -60,13 +61,15 @@ export default function ContentRegion({ content, components, ...props }) {
 	return (
 		<content-region name={props.current} data-page-nav={hasNav}>
 			{content && (
-				<Markup
-					// key={content}
-					markup={content}
-					type="html"
-					trim={false}
-					components={components}
-				/>
+				<TocContext.Provider value={{ toc: props.toc }}>
+					<Markup
+						// key={content}
+						markup={content}
+						type="html"
+						trim={false}
+						components={components}
+					/>
+				</TocContext.Provider>
 			)}
 			{hasNav && (
 				<div class={style.nextWrapper}>

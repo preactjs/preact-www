@@ -5,26 +5,18 @@ const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 const MARKDOWN_TITLE = /(?:^|\n\n)\s*(#{1,6})\s+(.+)\n+/g;
 
-// Store URL-keyed cached Promise return values from getContent in production.
-const CACHE = {};
-
 /**
  * Fetch and parse a markdown document with optional JSON FrontMatter.
- * @returns {{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string} }}
+ * @returns {Promise<{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string}, html: string }>}
  */
-export function getContent([lang, name]) {
+export async function getContent([lang, name]) {
 	let path = `/content/${lang}`,
 		url = `${path}/${name.replace(/^\//, '')}`,
 		ext = (url.match(/\.([a-z]+)$/i) || [])[1];
-	if (!ext) url += '.md';
-
-	// In prod, never re-fetch the content (url is just a convenient compound cache key)
-	if (process.env.NODE_ENV === 'production' && url in CACHE) {
-		return CACHE[url];
-	}
+	if (!ext) url = url.endsWith('/') ? url.replace(/\/$/, '.md') : url + '.md';
 
 	let fallback = false;
-	const res = fetch(url)
+	return await fetch(url)
 		.then(r => {
 			// fall back to english
 			if (!r.ok && lang != 'en') {
@@ -43,10 +35,9 @@ export function getContent([lang, name]) {
 		.then(applyEmojiToContent)
 		.then(parseMarkdownContent)
 		.then(data => {
-			data.fallback = fallback;
+			data.meta.isFallback = fallback;
 			return data;
 		});
-	return (CACHE[url] = res);
 }
 
 /**
@@ -54,11 +45,11 @@ export function getContent([lang, name]) {
  * Note: noop on the client to avoid pulling in libs.
  */
 export const getContentOnServer = PRERENDER
-	? (route, lang) => {
-			if (route == '/') route = '/index';
+	? ([lang, name]) => {
+			if (name == '/') name = '/index';
 
 			const fs = __non_webpack_require__('fs');
-			let sourceData = fs.readFileSync(`content/${lang}/${route}.md`, 'utf8');
+			let sourceData = fs.readFileSync(`content/${lang}/${name}.md`, 'utf8');
 
 			// convert frontmatter from yaml to json:
 			const yaml = __non_webpack_require__('yaml');
@@ -67,14 +58,14 @@ export const getContentOnServer = PRERENDER
 				return '---\n' + JSON.stringify(meta) + '\n---\n';
 			});
 
-			const data = parseContent(sourceData, 'md');
+			const data = parseContent(sourceData);
 
 			const marked = __non_webpack_require__('marked');
 			data.html = marked(data.content);
 
 			return data;
 	  }
-	: (route, lang) => {};
+	: ([lang, name]) => {};
 
 /**
  * Parse Markdown with "JSON FrontMatter" (think YAML FrontMatter, with less YAML)

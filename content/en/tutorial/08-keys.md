@@ -307,7 +307,7 @@ useRealm(function (realm) {
       /learn preact/i.test(c[0].textContent) &&
       /make an awesome app/i.test(c[1].textContent)
     ) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
   }
 

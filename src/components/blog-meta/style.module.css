@@ -1,0 +1,12 @@
+.blogMeta {
+	/* Negative bottom margin negates content-region's top margin */
+	margin: 2.5rem auto -3rem;
+	z-index: 10;
+	padding: 0.5em 1rem 0.25rem;
+	width: 100%;
+	max-width: var(--content-width);
+
+	.authors {
+		display: inline-block;
+	}
+}

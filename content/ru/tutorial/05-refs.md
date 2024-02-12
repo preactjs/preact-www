@@ -103,7 +103,7 @@ function patch(input) {
   input.__patched = true;
   var old = input.focus;
   input.focus = function() {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
     return old.call(this);
   };
 }

@@ -18,6 +18,7 @@ export const localStorageSet = (key, value) => {
  * Automatically sync a value to localStorage
  * @param {string} key The key to store the data in
  * @param {any} initial Initial value when no localStorage entry was found
+ * @returns {[any, (v: any) => void]}
  */
 export function useStoredValue(key, initial) {
 	let stored = localStorageGet(key);

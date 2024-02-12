@@ -1,6 +1,6 @@
-import cx from '../../../lib/cx';
+import { useLocation } from 'preact-iso';
+import cx from '../../lib/cx';
 import style from './sidebar-nav.module.css';
-import { getCurrentUrl } from 'preact-router';
 
 /**
  * @typedef {object} SidebarNavProps
@@ -13,17 +13,17 @@ import { getCurrentUrl } from 'preact-router';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
+	let { url } = useLocation();
+
 	// Remove trailing slash to fix activeCss check below.
 	// Note that netlify will always append a slash to the url so that we end
 	// up with something like "foo/bar/?lang=de". That's why we first remove
 	// the search params before removing the trailing slash.
-	const url = getCurrentUrl()
-		.replace(/\?.*/, '')
-		.replace(/\/$/, '');
+	url = url.replace(/\?.*/, '').replace(/\/$/, '');
 
 	return (
 		<nav
-			tabIndex="0"
+			tabIndex={0}
 			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
 		>
 			{items.map(({ text, level, href, routes }) => {
