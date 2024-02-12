@@ -1,7 +1,8 @@
-import config from '../config.json';
-import { useContext, useState } from 'preact/hooks';
 import { createContext } from 'preact';
+import { useContext, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
+import { useStoredValue } from './localstorage';
+import config from '../config.json';
 
 /**
  * @typedef LanguageContext
@@ -42,7 +43,8 @@ export function getDefaultLanguage(available, override) {
 export function LanguageProvider({ children }) {
 	const location = useLocation();
 
-	const [lang, setLang] = useState(
+	const [lang, setLang] = useStoredValue(
+		'lang',
 		getDefaultLanguage(config.languages, location.query.lang) || 'en'
 	);
 
