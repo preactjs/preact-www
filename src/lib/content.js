@@ -13,7 +13,7 @@ export async function getContent([lang, name]) {
 	let path = `/content/${lang}`,
 		url = `${path}/${name.replace(/^\//, '')}`,
 		ext = (url.match(/\.([a-z]+)$/i) || [])[1];
-	if (!ext) url += '.md';
+	if (!ext) url = url.endsWith('/') ? url.replace(/\/$/, '.md') : url + '.md';
 
 	let fallback = false;
 	return await fetch(url)
