@@ -35,7 +35,7 @@ export async function getContent([lang, name]) {
 		.then(applyEmojiToContent)
 		.then(parseMarkdownContent)
 		.then(data => {
-			data.fallback = fallback;
+			data.meta.isFallback = fallback;
 			return data;
 		});
 }

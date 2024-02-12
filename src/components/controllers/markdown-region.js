@@ -17,7 +17,7 @@ export function MarkdownRegion({ html, meta, components }) {
 
 	return (
 		<>
-			{canEdit && <EditThisPage isFallback={false} />}
+			{canEdit && <EditThisPage isFallback={meta.isFallback} />}
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
 				current={url}
