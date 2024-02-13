@@ -22,7 +22,7 @@ import { useContent } from '../../../lib/use-resource';
 import { useTitle, useDescription } from '../utils';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
-import { MarkdownRegion } from '../markdown-region.js';
+import { MarkdownRegion } from '../markdown-region';
 
 /**
  * @typedef SolutionContext

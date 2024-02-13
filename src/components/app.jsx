@@ -2,7 +2,7 @@ import { LocationProvider, ErrorBoundary } from 'preact-iso';
 import { LanguageProvider } from '../lib/i18n';
 // TODO: SolutionProvider should really just wrap the tutorial,
 // but that requires a bit of refactoring
-import { SolutionProvider } from './controllers/tutorial/index.js';
+import { SolutionProvider } from './controllers/tutorial';
 import Header from './header';
 import Routes from './routes';
 
