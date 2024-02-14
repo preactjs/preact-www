@@ -18,8 +18,8 @@ if (typeof history !== 'undefined') {
 }
 
 const Repl = lazy(() => import('./controllers/repl'));
-const Tutorial = lazy(() => import('./controllers/tutorial-page'));
 const BlogPage = lazy(() => import('./controllers/blog-page'));
+const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 
 export default function Routes() {
 	const [loading, setLoading] = useState(false);
@@ -35,18 +35,12 @@ export default function Routes() {
 			>
 				{Object.keys(navRoutes)
 					.filter(route => !route.startsWith('/guide'))
+					.filter(route => !route.startsWith('/tutorial'))
 					.map(route => {
-						let component;
-						if (route === '/repl') {
-							component = Repl;
-						} else if (route.startsWith('/tutorial')) {
-							component = Tutorial;
-						} else {
-							component = Page;
-						}
+						const component = route === '/repl' ? Repl : Page;
 						return <Route key={route} path={route} component={component} />;
 					})}
-				<Route path="/tutorial/:step?" component={Tutorial} />
+				<Route path="/tutorial/:step?" component={TutorialPage} />
 				<Route path="/guide/:version/:name" component={DocPage} />
 				<Route path="/blog/:slug" component={BlogPage} />
 				<Route default component={NotFound} />

@@ -2,7 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 const yaml = require('yaml');
-const { navRoutes, docRoutes, blogRoutes } = require('./lib/route-utils');
+const {
+	navRoutes,
+	docRoutes,
+	blogRoutes,
+	tutorialRoutes
+} = require('./lib/route-utils');
 const { createTitle } = require('./lib/page-title');
 const { fetchRelease } = require('./lambda/release');
 
@@ -21,7 +26,9 @@ module.exports = async () => {
 	}
 	const routes = Object.values(navRoutes)
 		.concat(Object.values(blogRoutes))
+		.concat(Object.values(tutorialRoutes))
 		.concat(guideRoutes)
+		.filter(route => !/\/:/.test(route.path))
 		.sort((a, b) => a.path.localeCompare(b.path));
 
 	let preactVersion;
@@ -29,25 +36,8 @@ module.exports = async () => {
 		preactVersion = (await fetchRelease('preactjs/preact')).version;
 	} catch {}
 
-	const pageData = routes.flatMap(function map(route) {
+	const pageData = routes.flatMap(route => {
 		const url = route.path;
-		// Expand `/:x?` fields in URLs to prerender all URLs
-		const FIELD = /\/:([\w.-]+)([*+?]?)/i;
-		const field = FIELD.exec(url);
-		if (field) {
-			let start = url.substring(1, field.index);
-			let dir = path.resolve(__dirname, '../content/en', start);
-			const paths = fs
-				.readdirSync(dir)
-				.filter(rep => rep[0] !== '.' && rep.match(/\.md$/i))
-				.map(rep => rep.replace(/(^index)?\.md$/i, ''));
-			return paths
-				.flatMap(rep => {
-					let path = url.replace(FIELD, '/' + rep).replace(/\/$/, '');
-					return map(Object.assign({}, route, { path }));
-				})
-				.sort((a, b) => a.url.localeCompare(b.url));
-		}
 		const content = fs.readFileSync(
 			path.resolve(__dirname, `../content/en/${url == '/' ? 'index' : url}.md`),
 			{ encoding: 'utf8' }
