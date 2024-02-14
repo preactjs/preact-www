@@ -1,7 +1,5 @@
-import { useEffect } from 'preact/hooks';
 import { useRoute, useLocation } from 'preact-iso';
 import { SolutionProvider } from './tutorial/contexts';
-import { getContent } from '../../lib/content';
 import { useContent } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
 import { NotFound } from './not-found';
@@ -30,11 +28,13 @@ function TutorialLayout() {
 	useDescription(meta.description);
 
 	// Preload the next chapter
-	useEffect(() => {
-		if (meta && meta.next) {
-			getContent([lang, meta.next]);
-		}
-	}, [meta && meta.next, url]);
+	// TODO: Webpack creates a circular dependency that
+	// it cannot resolve. Temporarily disabled
+	//useEffect(() => {
+	//	if (meta && meta.next) {
+	//		getContent([lang, meta.next]);
+	//	}
+	//}, [meta && meta.next, url]);
 
 	return (
 		<SolutionProvider>
