@@ -1,4 +1,4 @@
-import { Component, createRef, createContext, options } from 'preact';
+import { Component, createRef, options } from 'preact';
 import {
 	useState,
 	useReducer,
@@ -8,53 +8,26 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import linkState from 'linkstate';
+import { TutorialContext, SolutionContext } from './contexts';
 import cx from '../../../lib/cx';
 import style from './style.module.css';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import widgets from '../../widgets';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
-//import { getContent } from '../../../lib/content';
 import { useLanguage } from '../../../lib/i18n';
-import { useContent } from '../../../lib/use-resource';
-import { useTitle, useDescription } from '../utils';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
 import { MarkdownRegion } from '../markdown-region';
-
-/**
- * @typedef SolutionContext
- * @property {boolean} solved
- * @property {(boolean) => void} setSolved
- */
-
-/**
- * @type {import('preact').Context<SolutionContext>}
- */
-const SolutionContext = createContext(/** @type {SolutionContext} */ ({}));
-
-export function SolutionProvider({ children }) {
-	const [solved, setSolved] = useState(false);
-
-	return (
-		<SolutionContext.Provider value={{ solved, setSolved }}>
-			{children}
-		</SolutionContext.Provider>
-	);
-}
-
-const IS_PRERENDERING = typeof window === 'undefined';
-
-const TutorialContext = createContext(null);
 
 const TUTORIAL_COMPONENTS = {
 	pre: TutorialCodeBlock,
 	Solution
 };
 
-export default class Tutorial extends Component {
+export class Tutorial extends Component {
 	state = {
 		loading: true,
 		code: '',
@@ -161,9 +134,10 @@ export default class Tutorial extends Component {
 		this.setState({ error: null });
 	};
 
-	render({ step }, { loading, code, error }) {
+	render({ html, meta }, { loading, code, error }) {
 		const state = {
-			step,
+			html,
+			meta,
 			loading,
 			code,
 			error,
@@ -178,8 +152,9 @@ export default class Tutorial extends Component {
 	}
 }
 
-function TutorialView({
-	step,
+export function TutorialView({
+	html,
+	meta,
 	loading,
 	code,
 	error,
@@ -194,19 +169,11 @@ function TutorialView({
 	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
 
 	const { url } = useLocation();
-	const { params } = useRoute();
 	const [lang] = useLanguage();
 	const { solved } = useContext(SolutionContext);
 
-	const { html, meta } = useContent([
-		lang,
-		!params.step ? 'tutorial/index' : url
-	]);
-	useTitle(meta.title);
-	useDescription(meta.description);
-
 	const solvable = meta.solvable === true;
-	const hasCode = meta.code !== false && step && step !== 'index';
+	const hasCode = meta.code !== false;
 	const showCode = showCodeOverride && hasCode;
 	loading = !html || (showCode && (!Runner || !CodeEditor));
 	const initialLoad = !html || !Runner || !CodeEditor;
@@ -217,15 +184,6 @@ function TutorialView({
 			content.current.scrollTo(0, 0);
 		}
 	}, [url, loading, initialLoad]);
-
-	// Preload the next chapter
-	// TODO: Webpack creates a circular dependency that
-	// it cannot resolve. Temporarily disabled
-	//useEffect(() => {
-	//	if (meta && meta.next) {
-	//		getContent([lang, meta.next]);
-	//	}
-	//}, [meta && meta.next, url]);
 
 	const reRun = useCallback(() => {
 		let code = tutorial.state.code;
@@ -386,7 +344,7 @@ function ReplWrapper({
 			<div
 				class={cx(
 					style.loadingOverlay,
-					!IS_PRERENDERING && loading && style.loading
+					!PRERENDER && loading && style.loading
 				)}
 			>
 				<h4>Loading...</h4>
@@ -431,7 +389,7 @@ function TutorialSetupBlock({ code }) {
 	// Only run when we get new setup code.
 	// Note: we run setup code as a component to allow hook usage:
 	const Setup = useCallback(() => {
-		if (IS_PRERENDERING) return null;
+		if (PRERENDER) return null;
 
 		const tutorial = useContext(TutorialContext);
 		const solutionCtx = useContext(SolutionContext);

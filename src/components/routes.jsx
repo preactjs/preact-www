@@ -18,7 +18,7 @@ if (typeof history !== 'undefined') {
 }
 
 const Repl = lazy(() => import('./controllers/repl'));
-const Tutorial = lazy(() => import('./controllers/tutorial'));
+const Tutorial = lazy(() => import('./controllers/tutorial-page'));
 const BlogPage = lazy(() => import('./controllers/blog-page'));
 
 export default function Routes() {

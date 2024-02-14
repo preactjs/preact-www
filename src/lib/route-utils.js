@@ -36,3 +36,5 @@ for (const k in config.docs) {
 }
 
 export const blogRoutes = flattenRoutes(config.blog);
+
+export const tutorialRoutes = flattenRoutes(config.tutorial);
