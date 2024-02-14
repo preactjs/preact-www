@@ -67,8 +67,8 @@ export class Tutorial extends Component {
 		}, [fn]);
 	};
 
-	componentWillReceiveProps({ step }) {
-		if (step !== this.props.step) {
+	componentWillReceiveProps({ html }) {
+		if (html !== this.props.html) {
 			this.setState({
 				code: '',
 				error: null,
@@ -152,7 +152,7 @@ export class Tutorial extends Component {
 	}
 }
 
-export function TutorialView({
+function TutorialView({
 	html,
 	meta,
 	loading,
