@@ -663,6 +663,74 @@
 			}
 		}
 	],
+	"tutorial": [
+		{
+			"path": "/tutorial",
+			"name": {
+				"en": "Learn Preact"
+			}
+		},
+		{
+			"path": "/tutorial/01-vdom",
+			"name": {
+				"en": "Virtual DOM"
+			}
+		},
+		{
+			"path": "/tutorial/02-events",
+			"name": {
+				"en": "Events"
+			}
+		},
+		{
+			"path": "/tutorial/03-components",
+			"name": {
+				"en": "Components"
+			}
+		},
+		{
+			"path": "/tutorial/04-state",
+			"name": {
+				"en": "State"
+			}
+		},
+		{
+			"path": "/tutorial/05-refs",
+			"name": {
+				"en": "Refs"
+			}
+		},
+		{
+			"path": "/tutorial/06-context",
+			"name": {
+				"en": "Context"
+			}
+		},
+		{
+			"path": "/tutorial/07-side-effects",
+			"name": {
+				"en": "Side Effects"
+			}
+		},
+		{
+			"path": "/tutorial/08-keys",
+			"name": {
+				"en": "Keys"
+			}
+		},
+		{
+			"path": "/tutorial/09-error-handling",
+			"name": {
+				"en": "Error Handling"
+			}
+		},
+		{
+			"path": "/tutorial/10-links",
+			"name": {
+				"en": "Congratulations!"
+			}
+		}
+	],
 	"branding": [
 		{
 			"name": "logo-text",
