@@ -25,4 +25,4 @@ Algunas funcionalidades de React son omitidas intencionalmente en Preact, ya que
     - Synthetic Events, ya que Preact no tiene soporte para navegadores antiguos como IE8
 
 [preact-compat]: https://github.com/preactjs/preact-compat/
-[¿Qué falta?]: /guide/differences-to-react#whats-missing
+[¿Qué falta?]: /guide/v8/differences-to-react#whats-missing
