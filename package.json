@@ -32,10 +32,8 @@
       "no-prototype-builtins": 0
     },
     "globals": {
-      "PRERENDER": true,
-      "__non_webpack_require__": true,
-      "ga": true,
-      "globalThis": true
+      "globalThis": true,
+      "ga": true
     },
     "settings": {
       "react": {
