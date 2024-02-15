@@ -481,16 +481,14 @@
 	}
 }
 
-:global {
-	.aa-dropdown-menu {
-		position: fixed !important;
-		top: 60px !important;
-		left: 50% !important;
-		transform: translateX(-50%) !important;
+:global(.aa-dropdown-menu) {
+	position: fixed !important;
+	top: 60px !important;
+	left: 50% !important;
+	transform: translateX(-50%) !important;
 
-		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
-			width: 90% !important;
-		}
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		width: 90% !important;
 	}
 }
 
