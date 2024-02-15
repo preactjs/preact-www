@@ -76,16 +76,14 @@
 			"skipHeader": true
 		},
 		{
-			"path": "/tutorial/:step?",
-			"href": "/tutorial/",
-			"first": "index",
+			"path": "/tutorial/:step",
+			"href": "/tutorial",
 			"name": {
 				"en": "Tutorial",
 				"zh": "教程",
 				"kr": "튜토리얼",
 				"ru": "Учебник"
-			},
-			"controller": "Tutorial"
+			}
 		},
 		{
 			"name": {
@@ -189,428 +187,428 @@
 				"zh": "博客",
 				"kr": "블로그",
 				"ru": "Блог"
-			},
-			"first": "index",
-			"content": "blog",
-			"controller": "Blog"
+			}
 		},
 		{
 			"path": "/repl",
 			"name": {
 				"en": "REPL",
 				"zh": "在线试用"
-			},
-			"controller": "Repl"
+			}
 		}
 	],
-	"docs": [
-		{
-			"path": "/guide/v8/getting-started",
-			"name": {
-				"en": "Getting Started",
-				"pt-br": "Começando",
-				"de": "Los geht's",
-				"zh": "开始上手",
-				"ru": "Первые шаги"
-			}
-		},
-		{
-			"path": "/guide/v8/differences-to-react",
-			"name": {
-				"en": "Differences to React",
-				"pt-br": "Diferenças do React",
-				"de": "Unterschiede zu React",
-				"zh": "与 React 的区别",
-				"ru": "Отличия от React"
-			}
-		},
-		{
-			"path": "/guide/v8/switching-to-preact",
-			"name": {
-				"en": "Switching to Preact",
-				"pt-br": "Mudando para Preact",
-				"de": "Wechsel zu Preact",
-				"zh": "从 React 转到 Preact",
-				"ru": "Переход на Preact"
-			}
-		},
-		{
-			"path": "/guide/v8/types-of-components",
-			"name": {
-				"en": "Types of Components",
-				"pt-br": "Tipos de Componentes",
-				"de": "Komponenten-Typen",
-				"zh": "组件类型",
-				"ru": "Типы компонентов"
-			}
-		},
-		{
-			"path": "/guide/v8/api-reference",
-			"name": {
-				"en": "API Reference",
-				"pt-br": "Referência da API",
-				"de": "API Referenz",
-				"zh": "API 参考",
-				"ru": "Справочник по API"
-			}
-		},
-		{
-			"path": "/guide/v8/forms",
-			"name": {
-				"en": "Forms",
-				"pt-br": "Formulários",
-				"de": "Formulare",
-				"zh": "表单",
-				"ru": "Формы"
-			}
-		},
-		{
-			"path": "/guide/v8/linked-state",
-			"name": {
-				"en": "Linked State",
-				"zh": "关联状态",
-				"ru": "Связанное состояние"
-			}
-		},
-		{
-			"path": "/guide/v8/external-dom-mutations",
-			"name": {
-				"en": "External DOM Mutations",
-				"pt-br": "Mutações do DOM externas",
-				"de": "Externe DOM Mutationen",
-				"zh": "外部 DOM 修改",
-				"ru": "Внешние мутации DOM"
-			}
-		},
-		{
-			"path": "/guide/v8/extending-component",
-			"name": {
-				"en": "Extending Component",
-				"pt-br": "Extendendo Componentes",
-				"de": "Komponente Erweitern",
-				"zh": "扩展组件",
-				"ru": "Расширение компонентов"
-			}
-		},
-		{
-			"path": "/guide/v8/unit-testing-with-enzyme",
-			"name": {
-				"en": "Unit Testing with Enzyme",
-				"pt-br": "Teste unitado com Enzyme",
-				"de": "Unit-Tests mit Enzyme",
-				"zh": "使用 Enzyme 进行单元测试",
-				"ru": "Модульное тестирование с помощью Enzyme"
-			}
-		},
-		{
-			"path": "/guide/v8/progressive-web-apps",
-			"name": {
-				"en": "Progressive Web Apps",
-				"zh": "渐进式 Web 应用",
-				"ru": "Прогрессивные веб-приложения"
-			}
-		},
-		{
-			"name": {
-				"en": "Introduction",
-				"de": "Einführung",
-				"zh": "介绍",
-				"kr": "개요",
-				"ru": "Введение"
+	"docs": {
+		"v10": [
+			{
+				"name": {
+					"en": "Introduction",
+					"de": "Einführung",
+					"zh": "介绍",
+					"kr": "개요",
+					"ru": "Введение"
+				},
+				"routes": [
+					{
+						"path": "/getting-started",
+						"name": {
+							"en": "Getting Started",
+							"pt-br": "Começando",
+							"ja": "はじめに",
+							"de": "Los geht's",
+							"zh": "开始上手",
+							"kr": "시작하기",
+							"ru": "Первые шаги"
+						}
+					},
+					{
+						"path": "/whats-new",
+						"name": {
+							"en": "What's new?",
+							"ja": "Preact Xの新機能",
+							"pt-br": "o que há de novo",
+							"zh": "新鲜功能",
+							"kr": "새로운 기능",
+							"ru": "Что нового?"
+						}
+					},
+					{
+						"path": "/upgrade-guide",
+						"name": {
+							"en": "Upgrading from 8.x",
+							"pt-br": "Fazendo upgrade do 8.x",
+							"ja": "Preact 8.xからのアップグレード",
+							"de": "Migration von 8.x",
+							"zh": "从 8.x 版本更新",
+							"kr": "8.x에서 업그레이드하기",
+							"ru": "Обновление с 8.x"
+						}
+					},
+					{
+						"path": "/tutorial",
+						"name": {
+							"en": "Tutorial",
+							"pt-br": "Tutorial",
+							"ja": "チュートリアル",
+							"de": "Tutorial",
+							"zh": "教程",
+							"kr": "튜토리얼",
+							"ru": "Учебник"
+						}
+					}
+				]
 			},
-			"routes": [
-				{
-					"path": "/guide/v10/getting-started",
-					"name": {
-						"en": "Getting Started",
-						"pt-br": "Começando",
-						"ja": "はじめに",
-						"de": "Los geht's",
-						"zh": "开始上手",
-						"kr": "시작하기",
-						"ru": "Первые шаги"
-					}
+			{
+				"name": {
+					"en": "Essentials",
+					"zh": "基础",
+					"kr": "필수 항목",
+					"ru": "Основы"
 				},
-				{
-					"path": "/guide/v10/whats-new",
-					"name": {
-						"en": "What's new?",
-						"ja": "Preact Xの新機能",
-						"pt-br": "o que há de novo",
-						"zh": "新鲜功能",
-						"kr": "새로운 기능",
-						"ru": "Что нового?"
+				"routes": [
+					{
+						"path": "/components",
+						"name": {
+							"en": "Components",
+							"pt-br": "Componentes",
+							"ja": "コンポーネント",
+							"de": "Komponenten",
+							"zh": "组件",
+							"kr": "컴포넌트",
+							"ru": "Компоненты"
+						}
+					},
+					{
+						"path": "/hooks",
+						"name": {
+							"en": "Hooks",
+							"pt-br": "Hooks",
+							"ja": "フック(Hooks)",
+							"de": "Hooks",
+							"zh": "钩子",
+							"kr": "훅",
+							"ru": "Хуки"
+						}
+					},
+					{
+						"path": "/signals",
+						"name": {
+							"en": "Signals",
+							"zh": "信号",
+							"kr": "시그널",
+							"ru": "Сигналы"
+						}
+					},
+					{
+						"path": "/forms",
+						"name": {
+							"en": "Forms",
+							"pt-br": "Formulários",
+							"ja": "フォーム",
+							"de": "Formulare",
+							"zh": "表单",
+							"kr": "폼",
+							"ru": "Формы"
+						}
+					},
+					{
+						"path": "/refs",
+						"name": {
+							"en": "References",
+							"pt-br": "Referências",
+							"ja": "リファレンス(Ref)",
+							"de": "Referenzen",
+							"zh": "引用",
+							"kr": "레퍼런스",
+							"ru": "Ссылки"
+						}
+					},
+					{
+						"path": "/context",
+						"name": {
+							"en": "Context",
+							"pt-br": "Contexto",
+							"ja": "コンテキスト(Context)",
+							"de": "Kontext",
+							"zh": "上下文",
+							"kr": "컨텍스트",
+							"ru": "Контекст"
+						}
 					}
-				},
-				{
-					"path": "/guide/v10/upgrade-guide",
-					"name": {
-						"en": "Upgrading from 8.x",
-						"pt-br": "Fazendo upgrade do 8.x",
-						"ja": "Preact 8.xからのアップグレード",
-						"de": "Migration von 8.x",
-						"zh": "从 8.x 版本更新",
-						"kr": "8.x에서 업그레이드하기",
-						"ru": "Обновление с 8.x"
-					}
-				},
-				{
-					"path": "/guide/v10/tutorial",
-					"name": {
-						"en": "Tutorial",
-						"pt-br": "Tutorial",
-						"ja": "チュートリアル",
-						"de": "Tutorial",
-						"zh": "教程",
-						"kr": "튜토리얼",
-						"ru": "Учебник"
-					}
-				}
-			]
-		},
-		{
-			"name": {
-				"en": "Essentials",
-				"zh": "基础",
-				"kr": "필수 항목",
-				"ru": "Основы"
+				]
 			},
-			"routes": [
-				{
-					"path": "/guide/v10/components",
-					"name": {
-						"en": "Components",
-						"pt-br": "Componentes",
-						"ja": "コンポーネント",
-						"de": "Komponenten",
-						"zh": "组件",
-						"kr": "컴포넌트",
-						"ru": "Компоненты"
-					}
+			{
+				"name": {
+					"en": "Debug & Test",
+					"zh": "调试与测试",
+					"kr": "디버그 & 테스트",
+					"ru": "Отладка и тестирование"
 				},
-				{
-					"path": "/guide/v10/hooks",
-					"name": {
-						"en": "Hooks",
-						"pt-br": "Hooks",
-						"ja": "フック(Hooks)",
-						"de": "Hooks",
-						"zh": "钩子",
-						"kr": "훅",
-						"ru": "Хуки"
+				"routes": [
+					{
+						"path": "/debugging",
+						"name": {
+							"en": "Debugging Tools",
+							"pt-br": "Ferramentas de depuração",
+							"ja": "デバッグツール",
+							"de": "Entwickler-Tools",
+							"zh": "调试工具",
+							"kr": "디버깅 도구",
+							"ru": "Инструменты отладки"
+						}
+					},
+					{
+						"path": "/preact-testing-library",
+						"name": {
+							"en": "Preact Testing Library",
+							"pt-br": "Preact Testing Library",
+							"ja": "Preact Testing Library",
+							"de": "Preact Testing Library",
+							"zh": "Preact 测试库",
+							"kr": "Preact 테스팅 라이브러리",
+							"ru": "Preact Testing Library"
+						}
+					},
+					{
+						"path": "/unit-testing-with-enzyme",
+						"name": {
+							"en": "Unit Testing with Enzyme",
+							"pt-br": "Teste unitario com Enzyme",
+							"ja": "Enzymeを使った単体テスト",
+							"de": "Unit-Tests mit Enzyme",
+							"kr": "Enzyme를 이용한 유닛 테스트",
+							"zh": "使用 Enzyme 进行单元测试",
+							"ru": "Модульное тестирование с помощью Enzyme"
+						}
 					}
-				},
-				{
-					"path": "/guide/v10/signals",
-					"name": {
-						"en": "Signals",
-						"zh": "信号",
-						"kr": "시그널",
-						"ru": "Сигналы"
-					}
-				},
-				{
-					"path": "/guide/v10/forms",
-					"name": {
-						"en": "Forms",
-						"pt-br": "Formulários",
-						"ja": "フォーム",
-						"de": "Formulare",
-						"zh": "表单",
-						"kr": "폼",
-						"ru": "Формы"
-					}
-				},
-				{
-					"path": "/guide/v10/refs",
-					"name": {
-						"en": "References",
-						"pt-br": "Referências",
-						"ja": "リファレンス(Ref)",
-						"de": "Referenzen",
-						"zh": "引用",
-						"kr": "레퍼런스",
-						"ru": "Ссылки"
-					}
-				},
-				{
-					"path": "/guide/v10/context",
-					"name": {
-						"en": "Context",
-						"pt-br": "Contexto",
-						"ja": "コンテキスト(Context)",
-						"de": "Kontext",
-						"zh": "上下文",
-						"kr": "컨텍스트",
-						"ru": "Контекст"
-					}
-				}
-			]
-		},
-		{
-			"name": {
-				"en": "Debug & Test",
-				"zh": "调试与测试",
-				"kr": "디버그 & 테스트",
-				"ru": "Отладка и тестирование"
+				]
 			},
-			"routes": [
-				{
-					"path": "/guide/v10/debugging",
-					"name": {
-						"en": "Debugging Tools",
-						"pt-br": "Ferramentas de depuração",
-						"ja": "デバッグツール",
-						"de": "Entwickler-Tools",
-						"zh": "调试工具",
-						"kr": "디버깅 도구",
-						"ru": "Инструменты отладки"
-					}
+			{
+				"name": {
+					"en": "React compatibility",
+					"zh": "React 兼容性",
+					"kr": "React 호환성",
+					"ru": "Совместимость с React"
 				},
-				{
-					"path": "/guide/v10/preact-testing-library",
-					"name": {
-						"en": "Preact Testing Library",
-						"pt-br": "Preact Testing Library",
-						"ja": "Preact Testing Library",
-						"de": "Preact Testing Library",
-						"zh": "Preact 测试库",
-						"kr": "Preact 테스팅 라이브러리",
-						"ru": "Preact Testing Library"
+				"routes": [
+					{
+						"path": "/differences-to-react",
+						"name": {
+							"en": "Differences to React",
+							"pt-br": "Diferenças do React",
+							"ja": "Reactとの違い",
+							"de": "Unterschiede zu React",
+							"kr": "React와의 차이점",
+							"zh": "与 React 的区别",
+							"ru": "Отличия от React"
+						}
+					},
+					{
+						"path": "/switching-to-preact",
+						"name": {
+							"en": "Switching to Preact",
+							"pt-br": "Mudando para Preact",
+							"ja": "Preactへの移行",
+							"de": "Wechsel zu Preact",
+							"kr": "Preact로 전환",
+							"zh": "从 React 转到 Preact",
+							"ru": "Переход на Preact"
+						}
 					}
-				},
-				{
-					"path": "/guide/v10/unit-testing-with-enzyme",
-					"name": {
-						"en": "Unit Testing with Enzyme",
-						"pt-br": "Teste unitario com Enzyme",
-						"ja": "Enzymeを使った単体テスト",
-						"de": "Unit-Tests mit Enzyme",
-						"kr": "Enzyme를 이용한 유닛 테스트",
-						"zh": "使用 Enzyme 进行单元测试",
-						"ru": "Модульное тестирование с помощью Enzyme"
-					}
-				}
-			]
-		},
-		{
-			"name": {
-				"en": "React compatibility",
-				"zh": "React 兼容性",
-				"kr": "React 호환성",
-				"ru": "Совместимость с React"
+				]
 			},
-			"routes": [
-				{
-					"path": "/guide/v10/differences-to-react",
-					"name": {
-						"en": "Differences to React",
-						"pt-br": "Diferenças do React",
-						"ja": "Reactとの違い",
-						"de": "Unterschiede zu React",
-						"kr": "React와의 차이점",
-						"zh": "与 React 的区别",
-						"ru": "Отличия от React"
-					}
+			{
+				"name": {
+					"en": "Advanced",
+					"de": "Fortgeschritten",
+					"zh": "进阶",
+					"kr": "고급",
+					"ru": "Дополнительно"
 				},
-				{
-					"path": "/guide/v10/switching-to-preact",
-					"name": {
-						"en": "Switching to Preact",
-						"pt-br": "Mudando para Preact",
-						"ja": "Preactへの移行",
-						"de": "Wechsel zu Preact",
-						"kr": "Preact로 전환",
-						"zh": "从 React 转到 Preact",
-						"ru": "Переход на Preact"
+				"routes": [
+					{
+						"path": "/api-reference",
+						"name": {
+							"en": "API Reference",
+							"pt-br": "Referência da API",
+							"ja": "APIリファレンス",
+							"de": "API Referenz",
+							"zh": "API 参考",
+							"kr": "API 참조",
+							"ru": "Справочник по API"
+						}
+					},
+					{
+						"path": "/web-components",
+						"name": {
+							"en": "Web Components",
+							"pt-br": "Web Components",
+							"ja": "Webコンポーネント",
+							"de": "Web Components",
+							"zh": "Web 组件",
+							"kr": "웹 컴포넌트",
+							"ru": "Веб-компоненты"
+						}
+					},
+					{
+						"path": "/progressive-web-apps",
+						"name": {
+							"en": "Progressive Web Apps",
+							"zh": "渐进式 Web 应用",
+							"kr": "점진적 웹 앱 (PWA)",
+							"ru": "Прогрессивные веб-приложения"
+						}
+					},
+					{
+						"path": "/server-side-rendering",
+						"name": {
+							"en": "Server-Side Rendering",
+							"pt-br": "Server-Side Rendering",
+							"ja": "サーバーサイドレンダリング",
+							"de": "Server-Side Rendering",
+							"zh": "服务端渲染",
+							"kr": "서버 측 렌더링",
+							"ru": "Рендеринг на стороне сервера"
+						}
+					},
+					{
+						"path": "/external-dom-mutations",
+						"name": {
+							"en": "External DOM Mutations",
+							"pt-br": "Mutações do DOM externas",
+							"ja": "Preactのステート管理の範囲外のDOMとの連携",
+							"de": "Externe DOM Mutationen",
+							"zh": "外部 DOM 修改",
+							"kr": "외부 DOM 변경",
+							"ru": "Внешние мутации DOM"
+						}
+					},
+					{
+						"path": "/options",
+						"name": {
+							"en": "Option Hooks",
+							"ja": "オプションフック",
+							"de": "Optionen",
+							"zh": "选项钩子",
+							"kr": "옵션 훅",
+							"ru": "Опционные хуки"
+						}
+					},
+					{
+						"path": "/typescript",
+						"name": "TypeScript"
 					}
+				]
+			}
+		],
+		"v8": [
+			{
+				"path": "/getting-started",
+				"name": {
+					"en": "Getting Started",
+					"pt-br": "Começando",
+					"de": "Los geht's",
+					"zh": "开始上手",
+					"ru": "Первые шаги"
 				}
-			]
-		},
-		{
-			"name": {
-				"en": "Advanced",
-				"de": "Fortgeschritten",
-				"zh": "进阶",
-				"kr": "고급",
-				"ru": "Дополнительно"
 			},
-			"routes": [
-				{
-					"path": "/guide/v10/api-reference",
-					"name": {
-						"en": "API Reference",
-						"pt-br": "Referência da API",
-						"ja": "APIリファレンス",
-						"de": "API Referenz",
-						"zh": "API 参考",
-						"kr": "API 참조",
-						"ru": "Справочник по API"
-					}
-				},
-				{
-					"path": "/guide/v10/web-components",
-					"name": {
-						"en": "Web Components",
-						"pt-br": "Web Components",
-						"ja": "Webコンポーネント",
-						"de": "Web Components",
-						"zh": "Web 组件",
-						"kr": "웹 컴포넌트",
-						"ru": "Веб-компоненты"
-					}
-				},
-				{
-					"path": "/guide/v10/progressive-web-apps",
-					"name": {
-						"en": "Progressive Web Apps",
-						"zh": "渐进式 Web 应用",
-						"kr": "점진적 웹 앱 (PWA)",
-						"ru": "Прогрессивные веб-приложения"
-					}
-				},
-				{
-					"path": "/guide/v10/server-side-rendering",
-					"name": {
-						"en": "Server-Side Rendering",
-						"pt-br": "Server-Side Rendering",
-						"ja": "サーバーサイドレンダリング",
-						"de": "Server-Side Rendering",
-						"zh": "服务端渲染",
-						"kr": "서버 측 렌더링",
-						"ru": "Рендеринг на стороне сервера"
-					}
-				},
-				{
-					"path": "/guide/v10/external-dom-mutations",
-					"name": {
-						"en": "External DOM Mutations",
-						"pt-br": "Mutações do DOM externas",
-						"ja": "Preactのステート管理の範囲外のDOMとの連携",
-						"de": "Externe DOM Mutationen",
-						"zh": "外部 DOM 修改",
-						"kr": "외부 DOM 변경",
-						"ru": "Внешние мутации DOM"
-					}
-				},
-				{
-					"path": "/guide/v10/options",
-					"name": {
-						"en": "Option Hooks",
-						"ja": "オプションフック",
-						"de": "Optionen",
-						"zh": "选项钩子",
-						"kr": "옵션 훅",
-						"ru": "Опционные хуки"
-					}
-				},
-				{
-					"path": "/guide/v10/typescript",
-					"name": "TypeScript"
+			{
+				"path": "/differences-to-react",
+				"name": {
+					"en": "Differences to React",
+					"pt-br": "Diferenças do React",
+					"de": "Unterschiede zu React",
+					"zh": "与 React 的区别",
+					"ru": "Отличия от React"
 				}
-			]
-		}
-	],
+			},
+			{
+				"path": "/switching-to-preact",
+				"name": {
+					"en": "Switching to Preact",
+					"pt-br": "Mudando para Preact",
+					"de": "Wechsel zu Preact",
+					"zh": "从 React 转到 Preact",
+					"ru": "Переход на Preact"
+				}
+			},
+			{
+				"path": "/types-of-components",
+				"name": {
+					"en": "Types of Components",
+					"pt-br": "Tipos de Componentes",
+					"de": "Komponenten-Typen",
+					"zh": "组件类型",
+					"ru": "Типы компонентов"
+				}
+			},
+			{
+				"path": "/api-reference",
+				"name": {
+					"en": "API Reference",
+					"pt-br": "Referência da API",
+					"de": "API Referenz",
+					"zh": "API 参考",
+					"ru": "Справочник по API"
+				}
+			},
+			{
+				"path": "/forms",
+				"name": {
+					"en": "Forms",
+					"pt-br": "Formulários",
+					"de": "Formulare",
+					"zh": "表单",
+					"ru": "Формы"
+				}
+			},
+			{
+				"path": "/linked-state",
+				"name": {
+					"en": "Linked State",
+					"zh": "关联状态",
+					"ru": "Связанное состояние"
+				}
+			},
+			{
+				"path": "/external-dom-mutations",
+				"name": {
+					"en": "External DOM Mutations",
+					"pt-br": "Mutações do DOM externas",
+					"de": "Externe DOM Mutationen",
+					"zh": "外部 DOM 修改",
+					"ru": "Внешние мутации DOM"
+				}
+			},
+			{
+				"path": "/extending-component",
+				"name": {
+					"en": "Extending Component",
+					"pt-br": "Extendendo Componentes",
+					"de": "Komponente Erweitern",
+					"zh": "扩展组件",
+					"ru": "Расширение компонентов"
+				}
+			},
+			{
+				"path": "/unit-testing-with-enzyme",
+				"name": {
+					"en": "Unit Testing with Enzyme",
+					"pt-br": "Teste unitado com Enzyme",
+					"de": "Unit-Tests mit Enzyme",
+					"zh": "使用 Enzyme 进行单元测试",
+					"ru": "Модульное тестирование с помощью Enzyme"
+				}
+			},
+			{
+				"path": "/progressive-web-apps",
+				"name": {
+					"en": "Progressive Web Apps",
+					"zh": "渐进式 Web 应用",
+					"ru": "Прогрессивные веб-приложения"
+				}
+			}
+		]
+	},
 	"blogAuthors": [
 		{
 			"name": "Jason Miller",
@@ -664,6 +662,74 @@
 				"es": "Los Signals son una forma más fácil de administrar el estado de tu aplicación en comparación con los hooks. Un signal es un objeto contenedor con una propiedad especial \"value\" que contiene algún valor. Leer la propiedad value de un signal desde un componente o una función computada se suscribe automáticamente a las actualizaciones, y escribir en la propiedad value activa las suscripciones.",
 				"kr": "시그널은 훅에 비해 애플리케이션의 상태를 관리하는 더 쉬운 방법입니다. 시그널은 어떤 값을 저장하는 특수한 \"value\" 속성을 가진 컨테이너 객체입니다. 컴포넌트나 computed 함수 내에서 시그널의 value 속성을 읽으면 자동으로 업데이트를 구독하고, value 속성에 임의의 값을 쓰는 경우 구독을 트리거합니다.",
 				"ru": "Сигналы — это более простой способ управления состоянием вашего приложения по сравнению с хуками. Сигнал — это объект-контейнер со специальным свойством «value», которое содержит некоторое значение. Чтение свойства значения сигнала из компонента или вычисляемой функции автоматически подписывается на обновления, а запись в свойство значения запускает подписку."
+			}
+		}
+	],
+	"tutorial": [
+		{
+			"path": "/tutorial",
+			"name": {
+				"en": "Learn Preact"
+			}
+		},
+		{
+			"path": "/tutorial/01-vdom",
+			"name": {
+				"en": "Virtual DOM"
+			}
+		},
+		{
+			"path": "/tutorial/02-events",
+			"name": {
+				"en": "Events"
+			}
+		},
+		{
+			"path": "/tutorial/03-components",
+			"name": {
+				"en": "Components"
+			}
+		},
+		{
+			"path": "/tutorial/04-state",
+			"name": {
+				"en": "State"
+			}
+		},
+		{
+			"path": "/tutorial/05-refs",
+			"name": {
+				"en": "Refs"
+			}
+		},
+		{
+			"path": "/tutorial/06-context",
+			"name": {
+				"en": "Context"
+			}
+		},
+		{
+			"path": "/tutorial/07-side-effects",
+			"name": {
+				"en": "Side Effects"
+			}
+		},
+		{
+			"path": "/tutorial/08-keys",
+			"name": {
+				"en": "Keys"
+			}
+		},
+		{
+			"path": "/tutorial/09-error-handling",
+			"name": {
+				"en": "Error Handling"
+			}
+		},
+		{
+			"path": "/tutorial/10-links",
+			"name": {
+				"en": "Congratulations!"
 			}
 		}
 	],

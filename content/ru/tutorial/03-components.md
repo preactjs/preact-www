@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/02-events
 next: /tutorial/04-state
-title: Компоненты
 solvable: true
 ---
+
+# Компоненты
 
 Как мы уже упоминали в первой части этого учебника, ключевым элементом приложений Virtual DOM является компонент. Компонент — это самостоятельная часть приложения, которая может быть отображена как часть дерева Virtual DOM, подобно элементу HTML. Компонент можно рассматривать как вызов функции: оба являются механизмами, обеспечивающими повторное использование и перенаправление кода.
 
@@ -187,7 +188,7 @@ useRealm(function (realm) {
 
   win.console.log = function() {
     if (hasComponent && check) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
     return prevConsoleLog.apply(win.console, arguments);
   };

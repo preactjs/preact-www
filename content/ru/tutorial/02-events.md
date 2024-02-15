@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/01-vdom
 next: /tutorial/03-components
-title: События
 solvable: true
 ---
+
+# События
 
 События — это то, с помощью чего мы делаем приложения интерактивными, реагируя на вводимые данные, такие как клавиатура и мышь, и на изменения, например, загрузку изображения. События в Preact работают так же, как и в DOM — любой тип события или поведение, которые вы можете найти в [MDN], могут быть использованы в Preact. В качестве примера приведем, как обычно регистрируются обработчики событий с использованием императивного DOM API:
 
@@ -47,7 +48,7 @@ useRealm(function (realm) {
   var win = realm.globalThis;
   var prevConsoleLog = win.console.log;
   win.console.log = function() {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
     return prevConsoleLog.apply(win.console, arguments);
   };
 

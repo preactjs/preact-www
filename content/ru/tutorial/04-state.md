@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/03-components
 next: /tutorial/05-refs
-title: Состояние
 solvable: true
 ---
+
+# Состояние
 
 Теперь, когда мы знаем, как создавать HTML-элементы и компоненты, как передавать им параметры и обработчики событий с помощью JSX, пришло время научиться обновлять дерево Virtual DOM.
 
@@ -112,7 +113,7 @@ useResult(function () {
       }
 
       if (Number(text2[1]) === Number(text[1]) + 1) {
-        store.setState({ solved: true });
+        solutionCtx.setSolved(true);
       }
     }, 10);
   }

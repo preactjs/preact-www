@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/07-side-effects
 next: /tutorial/09-error-handling
-title: Ключи
 solvable: true
 ---
+
+# Ключи
 
 В первой главе мы рассмотрели, как Preact использует Virtual DOM для вычисления того, что изменилось между двумя деревьями, описанными нашим JSX, а затем применяет эти изменения к HTML DOM для обновления страниц. Это хорошо работает для большинства сценариев, но иногда требуется, чтобы Preact «угадывал», как изменилась форма дерева между двумя рендерами.
 
@@ -239,7 +240,7 @@ useRealm(function (realm) {
       /изучить preact/i.test(c[0].textContent) &&
       /сделать крутое приложение/i.test(c[1].textContent)
     ) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
   }
 

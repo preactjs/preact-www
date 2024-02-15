@@ -16,7 +16,8 @@
     "prebuild": "rimraf build/assets && rimraf build/content",
     "lint": "eslint src test",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": "developit",
@@ -64,6 +65,7 @@
     "jsdom": "^15.2.1",
     "lint-staged": "^15.2.0",
     "netlify-lambda": "^2.0.16",
+    "patch-package": "^8.0.0",
     "postcss-custom-properties": "^13.3.2",
     "postcss-import": "^14.0.0",
     "postcss-nesting": "^12.0.1",
@@ -78,22 +80,21 @@
     "@preact/signals-core": "^1.2.3",
     "@rollup/browser": "^3.18.0",
     "babel-standalone": "^6.26.0",
-    "comlink": "^4.4.1",
     "codemirror": "^5.50.2",
+    "comlink": "^4.4.1",
     "decko": "^1.2.0",
-    "htm": "^2.2.1",
+    "htm": "^3.1.1",
     "linkstate": "^1.1.1",
     "magic-string": "^0.25.7",
     "marked": "^0.8.0",
     "node-fetch": "^2.6.1",
-    "preact": "^10.4.4",
-    "preact-custom-element": "^4.0.0",
-    "preact-markup": "^2.0.0",
+    "preact": "10.15.1",
+    "preact-custom-element": "^4.3.0",
+    "preact-iso": "2.2.0",
+    "preact-markup": "^2.1.1",
     "preact-render-to-string": "^5.2.6",
-    "preact-router": "^3.1.0",
     "rollup": "^2.79.1",
     "sucrase": "^3.32.0",
-    "unistore": "^3.5.1",
     "yaml": "^1.7.2"
   }
 }

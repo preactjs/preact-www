@@ -1,9 +1,10 @@
 ---
 prev: /tutorial
 next: /tutorial/02-events
-title: Virtual DOM
 solvable: true
 ---
+
+# Virtual DOM
 
 Возможно, вы слышали, как люди упоминают «Virtual DOM», и задавались вопросом: что делает его «виртуальным»? Чем «виртуальный» DOM отличается от реального DOM, который мы используем при программировании для браузера?
 
@@ -151,7 +152,7 @@ useResult(function(result) {
   var p = result.output.querySelector('p');
   var hasColor = p && p.style && p.style.color === 'purple';
   if (hasEm && hasColor) {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
   }
 }, []);
 ```

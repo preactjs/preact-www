@@ -26,7 +26,7 @@ content-region {
 	display: flex;
 	text-decoration: none;
 
-	&[data-dir-end] {
+	&[data-dir-end='true'] {
 		flex-direction: row-reverse;
 	}
 }

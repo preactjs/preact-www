@@ -1,9 +1,10 @@
 ---
 prev: /tutorial
 next: /tutorial/02-events
-title: Virtual DOM
 solvable: true
 ---
+
+# Virtual DOM
 
 You might have heard people refer to "Virtual DOM", and wondered:
 what makes it "virtual"? How is a "virtual" DOM different from
@@ -195,7 +196,7 @@ useResult(function(result) {
   var p = result.output.querySelector('p');
   var hasColor = p && p.style && p.style.color === 'purple';
   if (hasEm && hasColor) {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
   }
 }, []);
 ```

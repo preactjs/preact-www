@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/08-keys
 next: /tutorial/10-links
-title: Обработка ошибок
 solvable: true
 ---
+
+# Обработка ошибок
 
 JavaScript — гибкий интерпретируемый язык, а значит, на нём можно очень легко встретить ошибки во время выполнения. Будь то результат непредвиденного сценария или ошибка в написанном нами коде, важно уметь отслеживать ошибки и реализовывать некоторую форму восстановления или изящной обработки ошибок.
 
@@ -72,7 +73,7 @@ useResult(function(result) {
     oe.apply(this, arguments);
     setTimeout(function() {
       if (result.output.textContent.match(/ошибка/i)) {
-        store.setState({ solved: true });
+        solutionCtx.setSolved(true);
       }
     }, 10);
   };

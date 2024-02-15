@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/04-state
 next: /tutorial/06-context
-title: Refs
 solvable: true
 ---
+
+# Refs
 
 Как мы узнали в первой главе, DOM предоставляет императивный API, позволяющий вносить изменения путем вызова функций для элементов. Одним из примеров, когда нам может потребоваться доступ к императивному DOM API из компонента Preact, является автоматическое перемещение фокуса на элемент ввода.
 
@@ -102,7 +103,7 @@ function patch(input) {
   input.__patched = true;
   var old = input.focus;
   input.focus = function() {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
     return old.call(this);
   };
 }

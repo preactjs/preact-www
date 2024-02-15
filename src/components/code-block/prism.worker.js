@@ -7,7 +7,8 @@ export function highlight(code, lang) {
 	if (prism.languages[lang] != null) {
 		return prism.highlight(code, prism.languages[lang], lang);
 	}
-	throw Error(`Unknown language: ${lang}`);
+	//console.error(`Unknown language: ${lang}`);
+	return code;
 }
 
 // .expose will throw in SSR env

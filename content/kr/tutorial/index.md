@@ -1,10 +1,11 @@
 ---
 next: /tutorial/01-vdom
 nextText: '튜토리얼 시작'
-title: Preact 배우기
 code: false
 solvable: false
 ---
+
+# Preact 배우기
 
 Preact가 무엇이며, 어떻게 동작하는지 궁금했던 적이 있나요?
 

@@ -1,9 +1,10 @@
 ---
 prev: /tutorial
 next: /tutorial/02-events
-title: 가상 DOM
 solvable: true
 ---
+
+# 가상 DOM
 
 사람들이 "가상 DOM"을 언급하는 것을 듣고 "가상"으로 만드는 것이 무엇인지 궁금했을 것입니다. 브라우저용으로 프로그래밍할 때 사용하는 실제 DOM과 "가상" DOM은 어떻게 다릅니까?
 
@@ -144,7 +145,7 @@ useResult(function(result) {
   var p = result.output.querySelector('p');
   var hasColor = p && p.style && p.style.color === 'purple';
   if (hasEm && hasColor) {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
   }
 }, []);
 ```

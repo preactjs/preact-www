@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/06-context
 next: /tutorial/08-keys
-title: Побочные эффекты
 solvable: true
 ---
+
+# Побочные эффекты
 
 Побочные эффекты — это фрагменты кода, которые выполняются при изменениях в дереве Virtual DOM. Они не следуют стандартному подходу, заключающемуся в приеме `props` и возврате нового дерева Virtual DOM, и часто выходят за пределы дерева для изменения состояния или вызова императивного кода, например, для обращения к API DOM. Побочные эффекты также часто используются в качестве способа инициирования выборки данных.
 
@@ -112,7 +113,7 @@ useRealm(function (realm) {
   var prevConsoleLog = win.console.log;
   win.console.log = function(m, s) {
     if (/Счётчик: /.test(m) && s === 1) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
     return prevConsoleLog.apply(win.console, arguments);
   };

@@ -2,7 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 const yaml = require('yaml');
-const config = require('./config.json');
+const {
+	navRoutes,
+	docRoutes,
+	blogRoutes,
+	tutorialRoutes
+} = require('./lib/route-utils');
 const { createTitle } = require('./lib/page-title');
 const { fetchRelease } = require('./lambda/release');
 
@@ -12,35 +17,27 @@ const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 const MAX_DESCRIPTION_LENGTH = 200;
 
 module.exports = async () => {
-	const routes = config.nav
-		.concat(config.docs)
-		.concat(config.blog)
-		.flatMap(arr =>
-			arr.path ? { path: arr.path, name: arr.name } : arr.routes
-		);
+	const guideRoutes = [];
+	for (const version of Object.keys(docRoutes)) {
+		for (const route of Object.values(docRoutes[version])) {
+			route.path = `/guide/${version}${route.path}`;
+			guideRoutes.push(route);
+		}
+	}
+	const routes = Object.values(navRoutes)
+		.concat(Object.values(blogRoutes))
+		.concat(Object.values(tutorialRoutes))
+		.concat(guideRoutes)
+		.filter(route => !/\/:/.test(route.path))
+		.sort((a, b) => a.path.localeCompare(b.path));
 
 	let preactVersion;
 	try {
 		preactVersion = (await fetchRelease('preactjs/preact')).version;
 	} catch {}
 
-	const pageData = routes.flatMap(function map(route) {
+	const pageData = routes.flatMap(route => {
 		const url = route.path;
-		// Expand `/:x?` fields in URLs to prerender all URLs
-		const FIELD = /\/:([\w.-]+)([*+?]?)/i;
-		const field = FIELD.exec(url);
-		if (field) {
-			let start = url.substring(1, field.index);
-			let dir = path.resolve(__dirname, '../content/en', start);
-			const paths = fs
-				.readdirSync(dir)
-				.filter(rep => rep[0] !== '.' && rep.match(/\.md$/i))
-				.map(rep => rep.replace(/(^index)?\.md$/i, ''));
-			return paths.flatMap(rep => {
-				let path = url.replace(FIELD, '/' + rep).replace(/\/$/, '');
-				return map(Object.assign({}, route, { path }));
-			});
-		}
 		const content = fs.readFileSync(
 			path.resolve(__dirname, `../content/en/${url == '/' ? 'index' : url}.md`),
 			{ encoding: 'utf8' }

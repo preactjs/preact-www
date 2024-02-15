@@ -3,22 +3,21 @@ import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style.module.css';
-import { useStore } from '../store-adapter';
 import config from '../../config.json';
 import { useCallback, useEffect } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { route as reroute } from 'preact-router';
+import { useLocation } from 'preact-iso';
 import { useLanguage } from '../../lib/i18n';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
-export default function Header() {
-	const { url, preactVersion } = useStore(['url', 'preactVersion']).state;
-	const [open, setOpen] = useOverlayToggle(false);
+export default function Header({ preactVersion }) {
+	const { url } = useLocation();
+	const [open, setOpen] = useOverlayToggle();
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
 	useEffect(() => {
@@ -57,6 +56,15 @@ export default function Header() {
 						>
 							<svg aria-hidden viewBox="0 0 34 27.646">
 								<use href="/assets/header-icons.svg#twitter" />
+							</svg>
+						</a>
+						<a
+							class={style.socialItem}
+							aria-label="Chat with us on Slack"
+							href="http://chat.preactjs.com/"
+						>
+							<svg aria-hidden viewBox="0 0 512 512">
+								<use href="/assets/header-icons.svg#slack" />
 							</svg>
 						</a>
 					</div>
@@ -169,7 +177,8 @@ class NavMenu extends Component {
 
 // depending on the type of nav link, use <a>
 const NavLink = ({ to, isOpen, route, ...props }) => {
-	const { lang } = useStore(['lang']).state;
+	const location = useLocation();
+	const [lang] = useLanguage();
 	let Flair = to.flair && LINK_FLAIR[to.flair];
 
 	if (to.skipHeader) return;
@@ -190,7 +199,7 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	function BrandingRedirect(e) {
 		if (to.href == '/' || to.path == '/') {
 			e.preventDefault();
-			reroute('/branding', false);
+			location.route('/branding');
 		}
 	}
 

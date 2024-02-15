@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/01-vdom
 next: /tutorial/03-components
-title: 事件
 solvable: true
 ---
+
+# 事件
 
 事件是应用对用户交互 (如键盘、鼠标输入或图像载入) 做出反馈的关键，您可以在 Preact 中使用所有 DOM 事件或行为 (参见 [MDN])。举个例子，下面是使用 DOM API 注册事件处理程序的方式：
 
@@ -47,7 +48,7 @@ useRealm(function (realm) {
   var win = realm.globalThis;
   var prevConsoleLog = win.console.log;
   win.console.log = function() {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
     return prevConsoleLog.apply(win.console, arguments);
   };
 

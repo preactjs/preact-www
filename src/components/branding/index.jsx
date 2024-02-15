@@ -21,10 +21,18 @@ function LogoVariation({ name, alt }) {
 				height="64"
 			/>
 			<div class={style.links}>
-				<a href={`/assets/branding/${name}.svg`} native>
+				<a
+					href={`/assets/branding/${name}.svg`}
+					target="_blank"
+					rel="noreferrer"
+				>
 					SVG
 				</a>
-				<a href={`/assets/branding/${name}.png`} native>
+				<a
+					href={`/assets/branding/${name}.png`}
+					target="_blank"
+					rel="noreferrer"
+				>
 					PNG
 				</a>
 			</div>

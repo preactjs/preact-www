@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/07-side-effects
 next: /tutorial/09-error-handling
-title: Keys
 solvable: true
 ---
+
+# Keys
 
 In chapter one, we saw how Preact uses a Virtual DOM to calculate what
 changed between two trees described by our JSX, then applies those
@@ -306,7 +307,7 @@ useRealm(function (realm) {
       /learn preact/i.test(c[0].textContent) &&
       /make an awesome app/i.test(c[1].textContent)
     ) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
   }
 
