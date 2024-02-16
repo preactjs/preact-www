@@ -4,8 +4,8 @@ import config from '../../config.json';
 
 export default function ReleaseLink({ ...props }) {
 	const [release, setRelease] = useState({
-		url: globalThis.preactReleaseUrl || fallbackData.preactReleaseUrl,
-		version: globalThis.preactVersion || fallbackData.preactVersion
+		url: globalThis.prerenderPreactReleaseUrl || fallbackData.preactReleaseUrl,
+		version: globalThis.prerenderPreactVersion || fallbackData.preactVersion
 	});
 
 	useEffect(() => {

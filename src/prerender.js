@@ -33,8 +33,8 @@ module.exports = async () => {
 
 	try {
 		const preactRelease = await fetchRelease('preactjs/preact');
-		globalThis.preactVersion = preactRelease.version;
-		globalThis.preactReleaseUrl = preactRelease.url;
+		globalThis.prerenderPreactVersion = preactRelease.version;
+		globalThis.prerenderPreactReleaseUrl = preactRelease.url;
 	} catch {}
 
 	const pageData = routes.flatMap(route => {
