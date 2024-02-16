@@ -3,13 +3,13 @@ import { LanguageProvider } from '../lib/i18n';
 import Header from './header';
 import Routes from './routes';
 
-export default function App({ preactVersion }) {
+export default function App() {
 	return (
 		<ErrorBoundary>
 			<LocationProvider>
 				<LanguageProvider>
 					<div id="app">
-						<Header preactVersion={preactVersion || '10.19.3'} />
+						<Header />
 						<Routes />
 					</div>
 				</LanguageProvider>

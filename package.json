@@ -33,7 +33,7 @@
       "PRERENDER": true,
       "__non_webpack_require__": true,
       "ga": true,
-      "page": true
+      "globalThis": true
     },
     "settings": {
       "react": {
@@ -42,7 +42,8 @@
     }
   },
   "eslintIgnore": [
-    "prism.js"
+    "prism.js",
+    "**/*.d.ts"
   ],
   "prettier": {
     "singleQuote": true,
@@ -87,7 +88,6 @@
     "linkstate": "^1.1.1",
     "magic-string": "^0.25.7",
     "marked": "^0.8.0",
-    "node-fetch": "^2.6.1",
     "preact": "10.15.1",
     "preact-custom-element": "^4.3.0",
     "preact-iso": "2.2.0",

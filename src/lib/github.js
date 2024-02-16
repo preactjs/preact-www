@@ -1,4 +1,19 @@
-import { checkStatus } from './request';
+/**
+ * Throw if the response status is in the error range
+ * @param {Response} r
+ */
+function checkStatus(r) {
+	if (!r.ok) {
+		throw new Error(`${r.status}: Request failed for '${r.url}'`);
+	}
+	return r;
+}
+
+export const fallbackData = {
+	preactVersion: '10.19.4',
+	preactReleaseUrl: 'https://github.com/preactjs/preact/releases/tag/10.19.4',
+	preactStargazers: 35781
+};
 
 const baseUrl =
 	process.env.NODE_ENV === 'production'
@@ -10,15 +25,14 @@ export const repoInfo = repo =>
 		.then(checkStatus)
 		.then(r => r.json())
 		.catch(() => ({
-			stargazers_count: 9999,
-			watchers_count: 9999
+			stargazers_count: fallbackData.preactStargazers
 		}));
 
 export const fetchRelease = repo =>
 	fetch(`${baseUrl}release?repo=${repo}`, { credentials: 'omit' })
 		.then(checkStatus)
 		.then(r => r.json())
-		.then(d => ({
-			version: d.version || '??',
-			url: d.url || 'https://github.com/preactjs/preact'
+		.catch(() => ({
+			version: fallbackData.preactVersion,
+			url: fallbackData.preactReleaseUrl
 		}));

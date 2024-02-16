@@ -1,9 +1,9 @@
 import { Component } from 'preact';
 import { localStorageGet, localStorageSet } from '../lib/localstorage';
-import { repoInfo } from '../lib/github';
+import { fallbackData, repoInfo } from '../lib/github';
 
 const githubStars = repo =>
-	repoInfo(repo).then(d => d.stargazers_count || d.watchers_count);
+	repoInfo(repo).then(d => d.stargazers_count);
 
 const formatNumber = num => (num + '').replace(/(\d{3})$/g, ',$1');
 
@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') window.githubStars = githubStars;
 
 export default class GithubStars extends Component {
 	state = {
-		stars: localStorageGet('_stars') || ''
+		stars: localStorageGet('_stars') || fallbackData.preactStargazers
 	};
 
 	setStars = stars => {

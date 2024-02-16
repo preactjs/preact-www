@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 exports.handler = async event => {
 	const result = await repoInfo(
 		event.queryStringParameters.repo || 'preactjs/preact'
