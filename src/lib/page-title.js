@@ -1,9 +1,8 @@
 /**
  * @param {string} title
- * @param {string} [url]
  */
-export function createTitle(title, url) {
-	url = url || window.location.pathname;
+export function createTitle(title) {
+	const url = location.pathname;
 
 	// Titles for various content areas
 	let suffix = '';
