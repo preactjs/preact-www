@@ -113,7 +113,7 @@ render(<App />, rootElement); // 成功
 
 ## hydrate()
 
-若您已经通过预渲染或服务端渲染的方式将应用转换为 HTML，Preact 可以在浏览器加载时跳过大部分渲染流程。您可以通过将 `render()` 替换为 `hydrate()` 的方式跳过大部分差异对比流程，而事件监听器和组件树仍能正常使用。此函数仅能与[预渲染](/guide/v10/cli/pre-rendering)或[服务端渲染](/guide/v10/server-side-rendering)搭配使用。
+若您已经通过预渲染或服务端渲染的方式将应用转换为 HTML，Preact 可以在浏览器加载时跳过大部分渲染流程。您可以通过将 `render()` 替换为 `hydrate()` 的方式跳过大部分差异对比流程，而事件监听器和组件树仍能正常使用。此函数仅能与预渲染或[服务端渲染](/guide/v10/server-side-rendering)搭配使用。
 
 ```jsx
 // --repl

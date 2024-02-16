@@ -87,4 +87,4 @@ Preact y React tienen algunas otras diferencias sutiles:
 [Componentes de Alto Orden]: https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
 [Componentes funcionales puros sin estado]: https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
 [destructuring]: http://www.2ality.com/2015/01/es6-destructuring.html
-[Estado conectado]: /guide/linked-state
+[Estado conectado]: /guide/v8/linked-state

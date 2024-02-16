@@ -7,7 +7,6 @@ description: 'Renderize seu aplicativo Preact no servidor para mostrar o conteú
 
 A renderização no servidor (geralmente abreviada como "SSR") permite renderizar seu aplicativo em uma string HTML que pode ser enviada ao cliente para melhorar o tempo de carregamento. Fora isso, existem outros cenários, como testes, nos quais o SSR se mostra realmente útil.
 
-> Nota: O SSR é ativado automaticamente com `preact-cli`: tada:
 ---
 
 <div><toc></toc></div>

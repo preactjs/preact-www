@@ -29,7 +29,7 @@ Preact is an excellent choice for [Progressive Web Apps](https://web.dev/learn/p
           <div class="_title-block">
             <h3>Faster time to interactivity</h3>
           </div>
-          <p class="_summary">If you're aiming to be <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">interactive in under 5s</a>, every KB matters. <a href="/guide/switching-to-preact">Switching React for Preact</a> in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p>
+          <p class="_summary">If you're aiming to be <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">interactive in under 5s</a>, every KB matters. <a href="/guide/v8/switching-to-preact">Switching React for Preact</a> in your projects can shave multiple KBs off and enable you to get interactive in one RTT. This makes it a great fit for Progressive Web Apps trying to trim down as much code as possible for each route.</p>
         </div>
     </li>
     <li class="list-item">
