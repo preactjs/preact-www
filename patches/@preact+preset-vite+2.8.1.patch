@@ -1,0 +1,13 @@
+diff --git a/node_modules/@preact/preset-vite/dist/esm/prerender.mjs b/node_modules/@preact/preset-vite/dist/esm/prerender.mjs
+index 4ecb921..dbd9c74 100644
+--- a/node_modules/@preact/preset-vite/dist/esm/prerender.mjs
++++ b/node_modules/@preact/preset-vite/dist/esm/prerender.mjs
+@@ -120,7 +120,7 @@ export function PrerenderPlugin({ prerenderScript, renderTarget, additionalPrere
+             globalThis.fetch = async (url, opts) => {
+                 if (/^\//.test(url)) {
+                     const text = () => fs.readFile(`${path.join(viteConfig.root, viteConfig.build.outDir)}/${url.replace(/^\//, "")}`, "utf-8");
+-                    return { text, json: () => text().then(JSON.parse) };
++                    return { text, json: () => text().then(JSON.parse), ok: true };
+                 }
+                 return nodeFetch(url, opts);
+             };

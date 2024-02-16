@@ -1,9 +1,11 @@
-import * as Comlink from 'comlink';
+import { wrap } from 'comlink';
 
 // Find YAML FrontMatter preceeding a markdown document
 const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 const MARKDOWN_TITLE = /(?:^|\n\n)\s*(#{1,6})\s+(.+)\n+/g;
+
+let markedWorker;
 
 /**
  * Fetch and parse a markdown document with optional JSON FrontMatter.
@@ -41,33 +43,6 @@ export async function getContent([lang, name]) {
 }
 
 /**
- * Synchronous version for use during prerendering.
- * Note: noop on the client to avoid pulling in libs.
- */
-export const getContentOnServer = PRERENDER
-	? ([lang, name]) => {
-			if (name == '/') name = '/index';
-
-			const fs = __non_webpack_require__('fs');
-			let sourceData = fs.readFileSync(`content/${lang}/${name}.md`, 'utf8');
-
-			// convert frontmatter from yaml to json:
-			const yaml = __non_webpack_require__('yaml');
-			sourceData = sourceData.replace(FRONT_MATTER_REG, (s, y) => {
-				const meta = yaml.parse('---\n' + y.replace(/^/gm, '  ') + '\n') || {};
-				return '---\n' + JSON.stringify(meta) + '\n---\n';
-			});
-
-			const data = parseContent(sourceData);
-
-			const marked = __non_webpack_require__('marked');
-			data.html = marked(data.content);
-
-			return data;
-	  }
-	: ([lang, name]) => {};
-
-/**
  * Parse Markdown with "JSON FrontMatter" (think YAML FrontMatter, with less YAML)
  * into a data structure that can be reasoned about:
  * {
@@ -100,18 +75,27 @@ export function parseContent(text) {
 	};
 }
 
-const markedWorker =
-	!PRERENDER &&
-	Comlink.wrap(
-		new Worker(new URL('./marked.worker.js', import.meta.url), {
-			type: 'module'
-		})
-	);
-function parseMarkdownContent(data) {
-	return markedWorker.convert(data.content).then(html => {
-		data.html = html;
-		return data;
-	});
+async function parseMarkdownContent(data) {
+	// lazy init to ensure `globalThis.markedWorker` is available w/ prerendering
+	if (!markedWorker) {
+		markedWorker =
+			typeof window === 'undefined'
+				? globalThis.markedWorker
+				: wrap(
+						new Worker(new URL('./marked.worker.js', import.meta.url), {
+							type: 'module'
+						})
+				  );
+	}
+
+	const res = markedWorker.convert(data.content);
+	if (res.then)
+		return res.then(html => {
+			data.html = html;
+			return data;
+		});
+	data.html = res;
+	return data;
 }
 
 let processEmojis, pendingEmojiProcessor;

@@ -18,7 +18,7 @@ function sw() {
 	}
 }
 
-if (!PRERENDER) {
+if (typeof window !== 'undefined') {
 	addEventListener(
 		'click',
 		e => {

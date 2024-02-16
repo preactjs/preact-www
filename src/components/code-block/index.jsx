@@ -1,22 +1,21 @@
 import { useMemo } from 'preact/hooks';
-import * as Comlink from 'comlink';
+import { wrap } from 'comlink';
 import { FakeSuspense, useResource } from '../../lib/use-resource';
 
-const { highlight } = PRERENDER
-	? require('./prism.worker.js')
-	: Comlink.wrap(
-			new Worker(
-				new URL('./prism.worker.js', import.meta.url), {
-					type: 'module'
-				}
-			)
-	);
+let prismWorker;
 
 /**
  * @param {{ code: string, lang: string }} props
  */
 function HighlightedCode({ code, lang }) {
-	const highlighted = useResource(() => highlight(code, lang), [code, lang]);
+	// lazy init to ensure `globalThis.markedWorker` is available w/ prerendering
+	if (!prismWorker) {
+		prismWorker = typeof window === 'undefined'
+			? globalThis.prismWorker
+			: wrap(new Worker(new URL('./prism.worker.js', import.meta.url), { type: 'module' }));
+	}
+
+	const highlighted = useResource(() => prismWorker.highlight(code, lang), [code, lang]);
 
 	const htmlObj = useMemo(() => ({ __html: highlighted }), [highlighted]);
 	return <code class={`language-${lang}`} dangerouslySetInnerHTML={htmlObj} />;

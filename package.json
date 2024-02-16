@@ -58,12 +58,12 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
+    "@xmldom/xmldom": "^0.8.10",
     "concurrently": "^8.2.2",
     "eslint": "^6.8.0",
     "eslint-config-developit": "^1.1.1",
     "feed": "^4.2.2",
     "husky": "^8.0.3",
-    "jsdom": "^15.2.1",
     "lint-staged": "^15.2.0",
     "netlify-lambda": "^2.0.16",
     "patch-package": "^8.0.0",

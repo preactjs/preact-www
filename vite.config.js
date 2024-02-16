@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import replace from '@rollup/plugin-replace';
 
 import yaml from 'yaml';
 
@@ -13,17 +12,18 @@ const TITLE_REG = /^\s*#\s+(.+)\n+/;
 
 export default defineConfig({
 	publicDir: 'src/assets',
+	build: {
+		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
+		outDir: 'build'
+	},
 	plugins: [
-		replace({
-			PRERENDER: JSON.stringify(false),
-			preventAssignment: true
-		}),
 		preact({
-			//prerender: {
-			//	enabled: true,
-			//	renderTarget: '#app',
-			//	additionalPrerenderRoutes: ['/404']
-			//}
+			prerender: {
+				enabled: true,
+				renderTarget: '#app',
+				// The routes that will not be discovered automatically
+				additionalPrerenderRoutes: ['/404', '/guide/v8/getting-started', '/branding']
+			},
 			devToolsEnabled: false
 		}),
 		viteStaticCopy({
