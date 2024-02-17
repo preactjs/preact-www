@@ -88,7 +88,7 @@ In order to have the clock's time update every second, we need to know when `<Cl
 | `componentDidMount()`         | after the component gets mounted to the DOM
 | `componentWillUnmount()`      | prior to removal from the DOM
 | `componentWillReceiveProps(nextProps, nextContext)` | before new props get accepted _(deprecated)_
-| `getDerivedStateFromProps(nextProps, prevState)` | just before `shouldComponentUpdate`. Use with care.
+| `getDerivedStateFromProps(nextProps, prevState)` | just before `shouldComponentUpdate`. Return object to update state or `null` to skip update. Use with care.
 | `shouldComponentUpdate(nextProps, nextState, nextContext)` | before `render()`. Return `false` to skip render
 | `componentWillUpdate(nextProps, nextState, nextContext)` | before `render()` _(deprecated)_
 | `getSnapshotBeforeUpdate(prevProps, prevState)` | called just before `render()`. return value is passed to `componentDidUpdate`.
