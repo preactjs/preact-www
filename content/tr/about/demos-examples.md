@@ -45,6 +45,10 @@ Arama yapmanıza izin veren bir site [Akamia şirketinin ülke verilerine göre 
 **[Embed Hacker News](https://github.com/TXTPEN/hn)** :kissing_closed_eyes:
 Embed Hacker News ile blog yazınızın altına yorumlar bırakın
 
+**[ColoGuessr](https://cologuessr.com)** :rainbow:
+Renklerinizi ne kadar iyi tanıdığınızı test edin
+[Github Project](https://github.com/jackpordi/cologuessr)
+
 ## Demolar & Örnekler
 
 **[Dökümantasyon görüntüleyici](https://documentation-viewer.firebaseapp.com)**  

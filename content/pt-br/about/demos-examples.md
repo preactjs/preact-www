@@ -44,6 +44,10 @@ Desktop App for uploading assets to Contentful (API based CMS)
 Aplicativo de Desktop para upload de assets para o Contentful (CMS com base em API)
 [Github Project](https://github.com/contentful-labs/file-upload-example)
 
+**[ColoGuessr](https://cologuessr.com)** :rainbow:
+Teste o quão bem você conhece suas cores
+[Github Project](https://github.com/jackpordi/cologuessr)
+
 ## Demos completos & Exemplos
 
 **[Documentation Viewer](https://documentation-viewer.firebaseapp.com)**  
