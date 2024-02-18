@@ -10,9 +10,9 @@ function checkStatus(r) {
 }
 
 export const fallbackData = {
-	preactVersion: '10.19.4',
-	preactReleaseUrl: 'https://github.com/preactjs/preact/releases/tag/10.19.4',
-	preactStargazers: 35781
+	preactVersion: '10.19.5',
+	preactReleaseUrl: 'https://github.com/preactjs/preact/releases/tag/10.19.5',
+	preactStargazers: 35783
 };
 
 const baseUrl =
