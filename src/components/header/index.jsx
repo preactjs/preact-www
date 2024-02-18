@@ -15,7 +15,7 @@ const LINK_FLAIR = {
 	logo: InvertedLogo
 };
 
-export default function Header({ preactVersion }) {
+export default function Header() {
 	const { url } = useLocation();
 	const [open, setOpen] = useOverlayToggle();
 	const toggle = useCallback(() => setOpen(!open), [open]);
@@ -36,10 +36,7 @@ export default function Header({ preactVersion }) {
 					<Nav class={style.nav} routes={config.nav} current={url} />
 					<Search />
 					<div class={style.social}>
-						<ReleaseLink
-							class={cx(style.socialItem, style.release)}
-							preactVersion={preactVersion}
-						/>
+						<ReleaseLink class={cx(style.socialItem, style.release)} />
 						<a
 							class={style.socialItem}
 							aria-label="Browse the code on GitHub"

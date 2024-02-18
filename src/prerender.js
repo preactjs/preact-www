@@ -31,9 +31,10 @@ module.exports = async () => {
 		.filter(route => !/\/:/.test(route.path))
 		.sort((a, b) => a.path.localeCompare(b.path));
 
-	let preactVersion;
 	try {
-		preactVersion = (await fetchRelease('preactjs/preact')).version;
+		const preactRelease = await fetchRelease('preactjs/preact');
+		globalThis.prerenderPreactVersion = preactRelease.version;
+		globalThis.prerenderPreactReleaseUrl = preactRelease.url;
 	} catch {}
 
 	const pageData = routes.flatMap(route => {
@@ -63,8 +64,7 @@ module.exports = async () => {
 		return {
 			url: route.path,
 			title,
-			description,
-			preactVersion
+			description
 		};
 	});
 

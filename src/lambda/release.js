@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 exports.handler = async event => {
 	const { version, url } = await fetchRelease(
 		`preactjs/${event.queryStringParameters.repo || 'preact'}`
@@ -70,8 +68,8 @@ const fetchRelease = repo =>
 			});
 
 			return {
-				version: releases.length ? releases[0].tag_name : 'unknown',
-				url: releases.length ? releases[0].html_url : '#'
+				version: releases[0].tag_name,
+				url: releases[0].html_url
 			};
 		});
 

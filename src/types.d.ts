@@ -5,3 +5,6 @@ declare module '*.module.css' {
 
 declare var PRERENDER: boolean;
 declare var __non_webpack_require__: (id: string) => any;
+
+declare var prerenderPreactVersion: string;
+declare var prerenderPreactReleaseUrl: string;
