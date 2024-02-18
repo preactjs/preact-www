@@ -1,7 +1,6 @@
 import styles from './style.module.css';
-import ScamsInfo from '../../assets/sponsors/scamsinfo.png';
 
-// If you're adding your company to this list, SVGs are greatly preferred!
+// If you're adding your company to this list, add your logo to `src/assets/sponsor-icons.svg`
 const sponsors = [
 	{
 		link: 'https://opencollective.com/2021-frameworks-fund',
@@ -20,9 +19,9 @@ const sponsors = [
 	{
 		link: 'https://scams.info',
 		title: 'scams.info',
-		source: ScamsInfo,
-		width: '240',
-		height: '240'
+		width: '63.5',
+		height: '63.5',
+		id: 'scamsinfo'
 	},
 	{
 		link: 'https://deno.land',
@@ -63,23 +62,13 @@ export default function Sponsors() {
 	);
 }
 
-function SponsorItem({ link, title, source, width, height, id }) {
+function SponsorItem({ link, title, width, height, id }) {
 	return (
 		<li class={styles.sponsorItem}>
 			<a href={link} title={title} target="_blank" rel="noopener noreferrer">
-				{source ? (
-					<img
-						aria-hidden
-						src={source}
-						alt={title}
-						width={width}
-						height={height}
-					/>
-				) : (
-					<svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
-						<use href={`/assets/sponsor-icons.svg#${id}`} />
-					</svg>
-				)}
+				<svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
+					<use href={`/assets/sponsor-icons.svg#${id}`} />
+				</svg>
 			</a>
 		</li>
 	);
