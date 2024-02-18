@@ -217,7 +217,7 @@ document.body
 </code></pre>
 
 <div class="home-demo">
-<github-stars simple user="preactjs" repo="preact"></github-stars>
+<github-stars simple="true" user="preactjs" repo="preact"></github-stars>
 </div>
 </div>
 

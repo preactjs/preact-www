@@ -20,7 +20,7 @@ Preact birkaç temel hedefe ulaşmayı hedefliyor:
 Bazı React özellikleri kasıtlı olarak ihmal edilmiştir çünkü bu özellikler yukarıda listelenen proje
 amaçlarını karşılamıyor ya da Preact'in core işlev setine uymuyor.
 
-- [Farklı olan nedir?](/guide/differences-to-react#whats-missing) başlığındaki kısıtlı ögeler:
+- [Farklı olan nedir?](/guide/v8/differences-to-react#whats-missing) başlığındaki kısıtlı ögeler:
     - PropTypes, ayrı bir kütüphane olarak kolayca kullanılabilir
     - Children (alt component'ler), Preact children component'lere Array muamelesi yapıyor
     - Synthetic Events, Preact IE8 gibi eski tarayıcılardaki sorunları patch'lemeye çalışmıyor

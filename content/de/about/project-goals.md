@@ -19,7 +19,7 @@ Preact zielt darauf ab, Leistung aufgrund folgender Ziele zu liefern:
 
 Einige Features von React wurden absichtlich nicht in Preact integriert, da sie entweder mit Berücksichtigung der oben genannten primären Projektziele nicht umsetzbar sind oder aber nicht in den Umfang von Preacts Grundausstattung an Funktionalitäten passen.
 
-- Die beabsichtigten Artikel unter [Was fehlt?](/guide/differences-to-react#whats-missing):
+- Die beabsichtigten Artikel unter [Was fehlt?](/guide/v8/differences-to-react#whats-missing):
 
     - PropTypes, die leicht als separate Bibliothek verwendet werden können
     - Children, da Preact immer children als Array verpackt
