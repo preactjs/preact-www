@@ -1,5 +1,5 @@
 diff --git a/node_modules/@preact/preset-vite/dist/esm/prerender.mjs b/node_modules/@preact/preset-vite/dist/esm/prerender.mjs
-index 4ecb921..dbd9c74 100644
+index 4ecb921..8847595 100644
 --- a/node_modules/@preact/preset-vite/dist/esm/prerender.mjs
 +++ b/node_modules/@preact/preset-vite/dist/esm/prerender.mjs
 @@ -120,7 +120,7 @@ export function PrerenderPlugin({ prerenderScript, renderTarget, additionalPrere
@@ -11,3 +11,12 @@ index 4ecb921..dbd9c74 100644
                  }
                  return nodeFetch(url, opts);
              };
+@@ -203,7 +203,7 @@ export function PrerenderPlugin({ prerenderScript, renderTarget, additionalPrere
+                 if (result.links) {
+                     for (let url of result.links) {
+                         const parsed = new URL(url, "http://localhost");
+-                        url = parsed.pathname;
++                        url = parsed.pathname.replace(/\/$/, '') || '/';
+                         // ignore external links and ones we've already picked up
+                         if (seen.has(url) || parsed.origin !== "http://localhost")
+                             continue;
