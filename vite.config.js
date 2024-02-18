@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import replace from '@rollup/plugin-replace';
 
 import yaml from 'yaml';
 import { Feed } from 'feed';
@@ -19,6 +20,10 @@ export default defineConfig({
 		outDir: 'build'
 	},
 	plugins: [
+		replace({
+			'process.env.BRANCH': JSON.stringify(process.env.BRANCH),
+			preventAssignment: true
+		}),
 		preact({
 			prerender: {
 				enabled: true,
