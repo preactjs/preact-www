@@ -7,8 +7,6 @@ description: '通过服务端渲染来向用户快速呈现您的 Preact 应用�
 
 服务端渲染 (Server-Side Rendering， 或简称为 “SSR”) 将应用先渲染成 HTML 再发送给客户端以加快加载时间。除此之外，服务端渲染还能在测试中大显身手。
 
-> 注：`preact-cli` 会自动为您开启服务端渲染 :tada:
-
 ---
 
 <div><toc></toc></div>

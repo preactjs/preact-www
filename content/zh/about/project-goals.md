@@ -17,7 +17,7 @@ Preact 实现的几个关键目标:
 
 有些 React 特性在 Preact 是有意的没有被实现，因为要满足上面列出的主要项目目标，或者因为它们不适合作为 Preact 的核心功能。
 
-- 如下是没有被实现的功能 [缺少了哪些？](/guide/differences-to-react#whats-missing)：
+- 如下是没有被实现的功能 [缺少了哪些？](/guide/v8/differences-to-react#whats-missing)：
     - PropTypes，方便作为一个分开库使用 
     - Children，由于 Preact 总是将子节点作为数组
     - Synthetic Events，由于 Preact 不需要去兼容老板本的浏览器，如 IE8

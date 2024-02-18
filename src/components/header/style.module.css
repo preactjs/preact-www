@@ -483,7 +483,7 @@
 
 :global(.aa-dropdown-menu) {
 	position: fixed !important;
-	top: 60px !important;
+	top: var(--header-height) !important;
 	left: 50% !important;
 	transform: translateX(-50%) !important;
 

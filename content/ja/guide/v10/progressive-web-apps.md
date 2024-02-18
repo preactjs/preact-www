@@ -39,7 +39,7 @@ Preactはすぐにロードされ操作が可能になることを求められ�
           </div>
           <p class="_summary">
 	    <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">5秒以内で操作可能な状態</a>を目指すならkB単位で注意する必要があります。
-	    <a href="/guide/switching-to-preact">ReactからPreactに移行する</a>ことで数kB削減することができます。そして、アプリケーションを1回のラウンドトリップタイム(RTT)で操作可能な状態にすることができます。
+	    <a href="/guide/v10/switching-to-preact">ReactからPreactに移行する</a>ことで数kB削減することができます。そして、アプリケーションを1回のラウンドトリップタイム(RTT)で操作可能な状態にすることができます。
 	    これは各ページで可能な限り容量を削減しようとしているProgressive Web Appsに適しています。
 	  </p>
         </div>

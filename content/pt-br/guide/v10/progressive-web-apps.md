@@ -35,7 +35,7 @@ O Preact é uma excelente opção para os [Progressive Web Apps](https://web.dev
           </div>
           <p class="_summary">
             Se você busca ser <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">interativo em menos 5 segundos</a>, cada KB importa.
-            <a href="/guide/switching-to-preact">Trocar React pelo Preact</a> em seus projetos pode cortar múltiplos KB e permitir a você oferecer interatividade imediata.
+            <a href="/guide/v10/switching-to-preact">Trocar React pelo Preact</a> em seus projetos pode cortar múltiplos KB e permitir a você oferecer interatividade imediata.
             Isso é muito adequado para Progressive Web Apps que tentam remover o máximo de código possível para cada rota.</p>
         </div>
     </li>

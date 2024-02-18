@@ -30,7 +30,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
           <div class="_title-block">
             <h3>更快开始交互</h3>
           </div>
-          <p class="_summary">若您期望在 <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">5 秒内就能开始交互</a>，那么每一个字节都很重要。通过将您的项目<a href="/guide/switching-to-preact">从 React 转到 Preact</a>，您可以节约几千字节，在一个往返时间内即可开始交互。尽可能大地缩减您的代码大小让 Preact 成为渐进式 Web 应用的不二之选。</p>
+          <p class="_summary">若您期望在 <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">5 秒内就能开始交互</a>，那么每一个字节都很重要。通过将您的项目<a href="/guide/v10/switching-to-preact">从 React 转到 Preact</a>，您可以节约几千字节，在一个往返时间内即可开始交互。尽可能大地缩减您的代码大小让 Preact 成为渐进式 Web 应用的不二之选。</p>
         </div>
     </li>
     <li class="list-item">
