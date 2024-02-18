@@ -1,4 +1,3 @@
-
 /*.json
     Link:""
 /*.js
@@ -7,6 +6,7 @@
     Link:""
 /*.md
     Link:""
+	Content-Type:"text/x-markdown"
 /*.ico
     Link:""
 /*.svg
