@@ -634,14 +634,16 @@
 				"en": "Signal Boosting",
 				"zh": "信号增强",
 				"kr": "시그널 부스팅",
-				"ru": "Усиление сигналов"
+				"ru": "Усиление сигналов",
+				"es": "El impulso de signal"
 			},
 			"date": "2022-09-23",
 			"excerpt": {
 				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen.",
 				"zh": "全新版本 Preact 信号为反应系统带来了显著的性能提升，阅读本文来了解其背后的工作原理。",
 				"kr": "Preact 시그널의 새로운 릴리스는 반응형 시스템의 기초에 중요한 성능 업데이트를 가져왔습니다. 이를 실현하기 위해 사용한 트릭에 대해 알아보세요.",
-				"ru": "Новая версия Preact Signals вносит значительные улучшения производительности в основы реактивной системы. Читайте дальше, чтобы узнать, какие трюки мы использовали, чтобы это произошло."
+				"ru": "Новая версия Preact Signals вносит значительные улучшения производительности в основы реактивной системы. Читайте дальше, чтобы узнать, какие трюки мы использовали, чтобы это произошло.",
+				"es": "La nueva versión de Preact Signals aporta importantes actualizaciones de rendimiento a los fundamentos del sistema reactivo. Sigue leyendo para saber qué tipo de trucos hemos empleado para conseguirlo."
 			}
 		},
 		{
