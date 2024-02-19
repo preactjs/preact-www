@@ -175,8 +175,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
     <div>
         <h3>Laufendes Beispiel</h3>
         <pre repl="false"><code class="lang-jsx">
-import ToDoList from './todo-list';
-
+import ToDoList from './todo-list';<br>
 render(&lt;ToDoList /&gt;, document.body);
         </code></pre>
         <div class="home-demo">
@@ -212,8 +211,7 @@ render(&lt;Stars /&gt;, document.getElementById("app"));
     <div>
         <h3>Laufendes Beispiel</h3>
         <pre repl="false"><code class="lang-jsx">
-import Stars from './stars';
-
+import Stars from './stars';<br>
 render(
     &lt;Stars repo="developit/preact" /&gt;,
     document.body
