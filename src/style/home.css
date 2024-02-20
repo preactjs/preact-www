@@ -160,9 +160,12 @@ main .markup {
 		background: #f8f8f8;
 		border: 2px solid #ddd;
 
-		label {
-			color: #444;
+		@media (prefers-color-scheme: dark) {
+			background: #2c3037;
+			border-color: #555;
+		}
 
+		label {
 			span:first-child {
 				display: block;
 			}

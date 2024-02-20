@@ -101,8 +101,11 @@ const CodeBlock = props => {
 		const lang = (child.props.class || '').match(
 			/(?:lang|language)-([a-z]+)/
 		)[1];
-		const firstChild = getChild(child.props);
-		const code = String(firstChild || '').replace(/(^\s+|\s+$)/g, '');
+		// Slight hack to facilitate multi-line code blocks, w/ blank lines, in HTML in Markdown.
+		// Blank lines are an end condition to the code block, so we instead use a `<br>`
+		// which then requires a conversion back to `\n` for the code content.
+		const children = child.props.children.map(el => el.type == 'br' ? '\n' : el).join('');
+		const code = children.replace(/(^\s+|\s+$)/g, '');
 		return <HighlightedCodeBlock {...props} code={code} lang={lang} />;
 	}
 
