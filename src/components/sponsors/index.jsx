@@ -65,7 +65,7 @@ export default function Sponsors() {
 function SponsorItem({ link, title, width, height, id }) {
 	return (
 		<li class={styles.sponsorItem}>
-			<a href={link} title={title} target="_blank" rel="noopener noreferrer">
+			<a href={link} title={title} target="_blank" rel="noopener noreferrer nofollow sponsored">
 				<svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
 					<use href={`/assets/sponsor-icons.svg#${id}`} />
 				</svg>
