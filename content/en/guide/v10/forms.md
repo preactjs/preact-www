@@ -29,7 +29,7 @@ A framework like Preact in contrast generally has a unidirectional data flow. Th
 <input value={someValue} onInput={myEventHandler} />;
 ```
 
-Generally, you should try to use _Controlled_ Components at all times.  However, when building standalone Components or wrapping third-party UI libraries, it can still be useful to simply use your component as a mount point for non-preact functionality. In these cases, "Uncontrolled" Components are nicely suited to the task.
+Generally, you should try to use _Uncontrolled_ Components whenever possible. The DOM is fully capable of handling `<input>`'s state. However, there are situations in which you may need to have tighter control over the input value, in which case, "Controlled" Components can be used.
 
 > One gotcha to note here is that setting the value to `undefined` or `null` will essentially become uncontrolled.
 
