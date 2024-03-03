@@ -17,13 +17,6 @@ const sponsors = [
 		id: 'trivago'
 	},
 	{
-		link: 'https://scams.info',
-		title: 'scams.info',
-		width: '63.5',
-		height: '63.5',
-		id: 'scamsinfo'
-	},
-	{
 		link: 'https://deno.land',
 		title: 'Deno',
 		width: '813',
@@ -43,6 +36,13 @@ const sponsors = [
 		width: '160',
 		height: '32',
 		id: 'loveholidays'
+	},
+	{
+		link: 'https://www.airbnb.com',
+		title: 'Airbnb',
+		width: '102',
+		height: '32',
+		id: 'airbnb'
 	}
 ];
 
