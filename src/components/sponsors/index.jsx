@@ -36,13 +36,6 @@ const sponsors = [
 		width: '160',
 		height: '32',
 		id: 'loveholidays'
-	},
-	{
-		link: 'https://www.airbnb.com',
-		title: 'Airbnb',
-		width: '102',
-		height: '32',
-		id: 'airbnb'
 	}
 ];
 
