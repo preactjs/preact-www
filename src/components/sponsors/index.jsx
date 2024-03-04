@@ -17,13 +17,6 @@ const sponsors = [
 		id: 'trivago'
 	},
 	{
-		link: 'https://scams.info',
-		title: 'scams.info',
-		width: '63.5',
-		height: '63.5',
-		id: 'scamsinfo'
-	},
-	{
 		link: 'https://deno.land',
 		title: 'Deno',
 		width: '813',
