@@ -80,13 +80,6 @@ export default defineConfig({
 				reloadPageOnChange: true
 			}
 		}),
-		viteStaticCopy({
-			targets: [
-				{ src: 'src/robots.txt', dest: './' },
-				{ src: 'src/_headers', dest: './' },
-				{ src: 'src/_redirects', dest: './' }
-			]
-		}),
 		vitePWA({
 			registerType: 'autoUpdate',
 			manifest: false,
