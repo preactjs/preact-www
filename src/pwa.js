@@ -1,3 +1,5 @@
+import { registerSW } from 'virtual:pwa-register';
+
 let hasInteracted, shouldReload;
 
 function sw() {
@@ -19,6 +21,10 @@ function sw() {
 }
 
 if (typeof window !== 'undefined') {
+	if ('serviceWorker' in navigator) {
+		registerSW();
+	}
+
 	addEventListener(
 		'click',
 		e => {

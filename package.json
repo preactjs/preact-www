@@ -92,6 +92,7 @@
     "preact-render-to-string": "^5.2.6",
     "rollup": "^2.79.1",
     "sucrase": "^3.32.0",
+    "vite-plugin-pwa": "^0.19.3",
     "yaml": "^1.7.2"
   }
 }

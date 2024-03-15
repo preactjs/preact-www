@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { VitePWA as vitePWA } from 'vite-plugin-pwa';
 import replace from '@rollup/plugin-replace';
 import yaml from 'yaml';
 import { Feed } from 'feed';
@@ -85,6 +86,17 @@ export default defineConfig({
 				{ src: 'src/_headers', dest: './' },
 				{ src: 'src/_redirects', dest: './' }
 			]
+		}),
+		vitePWA({
+			registerType: 'autoUpdate',
+			manifest: false,
+			devOptions: {
+				enabled: true,
+				type: 'module'
+			},
+			workbox: {
+				globPatterns: ['**/*.{html,css,js,ico,png,svg}']
+			}
 		}),
 		rssFeedPlugin()
 	]

@@ -1,6 +1,7 @@
 {
 	"name": "Preact",
 	"short_name": "Preact",
+	"description": "Fast 3kB alternative to React with the same modern API",
 	"theme_color": "#673AB8",
 	"background_color": "#F9F9F9",
 	"display": "standalone",
