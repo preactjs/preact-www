@@ -4,7 +4,6 @@ import { hydrate, prerender as ssr } from 'preact-iso';
 
 import App from './components/app';
 import './analytics';
-import './pwa';
 import './style/index.css';
 
 // allows users to play with preact in the browser developer console

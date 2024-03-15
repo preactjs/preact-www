@@ -3,5 +3,4 @@
 /build
 .DS_Store
 dist
-dev-dist
 *.sw[op]
