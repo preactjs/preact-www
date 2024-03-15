@@ -15,7 +15,7 @@
 		}
 	}
 
-	:global .markup {
+	:global(.markup) {
 		/* Necessary to prevent the background stripes of
 		   jumpotron/hero to affect the scrolling area. */
 		overflow: hidden;
@@ -34,7 +34,7 @@
 			padding-left: 50px;
 		}
 
-		.full-width {
+		:global(.full-width) {
 			max-width: none;
 			width: 100%;
 		}
