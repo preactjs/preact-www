@@ -96,7 +96,7 @@ In order to have the clock's time update every second, we need to know when `<Cl
 
 Here's a visual overview of how they relate to each other (originally posted in [a tweet](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) by Dan Abramov):
 
-![Diagram of lifecycle methods, depicting mounting, updating, and unmounting on the x-axis, and render phase, pre-commit phase, and commit phase on the y-axis](https://github.com/tinymachine/preact-www/assets/171986/ea5fd5d1-0b9e-4125-9ca0-b94d544c0318)
+![Diagram of component lifecycle methods](/assets/guide/components-lifecycle-diagram.png)
 
 ### Error Boundaries
 
