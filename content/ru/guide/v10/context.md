@@ -56,7 +56,7 @@ function App() {
 render(<App />, document.getElementById('app'));
 ```
 
-> Более простой способ использовать контекст — использовать хук [useContext](/guide/v10/hooks#usecontext).
+> Более простой способ использовать контекст — использовать хук [useContext](/guide/v10/hooks/#usecontext).
 
 ## Устаревший API контекста
 

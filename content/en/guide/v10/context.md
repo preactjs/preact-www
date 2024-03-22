@@ -52,7 +52,7 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-> An easier way to use context is via the [useContext](/guide/v10/hooks#usecontext) hook.
+> An easier way to use context is via the [useContext](/guide/v10/hooks/#usecontext) hook.
 
 ## Legacy Context API
 

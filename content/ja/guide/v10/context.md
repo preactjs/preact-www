@@ -47,7 +47,7 @@ function App() {
 }
 ```
 
-> [useContext](/guide/v10/hooks#context)フックを使うと簡単にコンテキストを扱うことができます。
+> [useContext](/guide/v10/hooks/#usecontext)フックを使うと簡単にコンテキストを扱うことができます。
 
 ## 古いコンテキストAPI
 

@@ -50,7 +50,7 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-> 另一种简单的方法是使用 [useContext](/guide/v10/hooks#usecontext) 钩子。
+> 另一种简单的方法是使用 [useContext](/guide/v10/hooks/#usecontext) 钩子。
 
 ## 旧版上下文 API
 
