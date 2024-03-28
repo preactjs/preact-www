@@ -16,7 +16,7 @@ At this point, you should have the site running at `http://localhost:8080`, read
 
 ## Writing Content
 
-The written content on the site is authored in Markdown, found in the [`content`](./content) directory. Each page is a separate Markdown file, split up by language, and [`src/config.js`](./src/config.js) contains both the routing layout as well as general i18n labels. More information about how the site is built can be found in the [README.md](./README.md).
+The written content on the site is authored in Markdown, found in the [`content`](./content) directory. Each page is a separate Markdown file, split up by language, and [`src/config.json`](./src/config.json) contains both the routing layout as well as general i18n labels. More information about how the site is built can be found in the [README.md](./README.md).
 
 Please author and submit content **only in one language** _(generally your primary written language)_ to facilitate translation.
 
