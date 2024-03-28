@@ -388,11 +388,10 @@
 	h5,
 	h6 {
 		/* fix anchor target positioning to account for fixed header */
-		&:target {
-			padding-top: var(--header-and-banner-height);
-		}
-		content-region[name*='v8'] &:target {
-			padding-top: calc(var(--header-and-banner-height) + 3.25rem);
+		scroll-margin-top: var(--header-and-banner-height);
+
+		content-region[name*='v8'] & {
+			scroll-margin-top: calc(var(--header-and-banner-height) + 3.25rem);
 		}
 
 		content-region[name*='guide'] & {
