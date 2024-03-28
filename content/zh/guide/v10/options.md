@@ -7,7 +7,7 @@ description: 'Preact 提供可附加到对比树差异过程的选项钩子。'
 
 为修改 Preact 渲染流程的插件提供的回调函数。
 
-Preact 支持多种观察或修改渲染流程的回调函数，即“选项钩子” (请勿与[钩子](https://preactjs.com/guide/v10/hooks)混淆)。这些函数常用于扩展 Preact 功能和打造专门的测试工具。我们的附加组件 (如 `preact/hooks` 和 `preact/compat`) 和开发工具扩展都基于此功能。
+Preact 支持多种观察或修改渲染流程的回调函数，即“选项钩子” (请勿与[钩子](/guide/v10/hooks)混淆)。这些函数常用于扩展 Preact 功能和打造专门的测试工具。我们的附加组件 (如 `preact/hooks` 和 `preact/compat`) 和开发工具扩展都基于此功能。
 
 此 API 主要为扩展 Preact 功能的工具或库作者打造。
 
