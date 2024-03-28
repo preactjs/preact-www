@@ -40,7 +40,7 @@ Preact와 [preact/compat]의 버전 호환성은 React의 _최신_ 메이저 버
 
 ## 디버그 메세지와 오류
 
-Preact의 유연한 구조는 개발 경험을 향상시키기 위한 애드온을 어떤 방식으로든 허용합니다. 이런 애드온 중 하나가 `preact/debug`입니다. 만약 설치되어있다면 [유용한 경고와 오류](https://preactjs.com/guide/v10/debugging)를 추가하고 브라우저 확장 프로그램 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/)를 연결해줍니다. 이는 Preact 애플리케이션을 개발할 때 도움을 주고 무슨 일이 일어나고 있는지 조사하는 것을 매우 쉽게 해줄 것입니다. preact/debug는 다음의 import 문을 통해 추가할 수 있습니다.
+Preact의 유연한 구조는 개발 경험을 향상시키기 위한 애드온을 어떤 방식으로든 허용합니다. 이런 애드온 중 하나가 `preact/debug`입니다. 만약 설치되어있다면 [유용한 경고와 오류](/guide/v10/debugging)를 추가하고 브라우저 확장 프로그램 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/)를 연결해줍니다. 이는 Preact 애플리케이션을 개발할 때 도움을 주고 무슨 일이 일어나고 있는지 조사하는 것을 매우 쉽게 해줄 것입니다. preact/debug는 다음의 import 문을 통해 추가할 수 있습니다.
 
 ```js
 import "preact/debug"; // <-- 이 문장을 메인 엔트리 파일의 최상단에 추가하세요
@@ -171,7 +171,7 @@ React.createElement(
 
 ## `preact/compat` 전용 기능
 
-`preact/compat` 는 React 코드를 Preact로 번역해주는 Preact의 호환성 레이어(**compat**ibility layer)입니다. React 사용자가 코드를 수정하지 않고 Preact를 시도해볼 수 있는 쉬운 방법입니다. 번들러 환경 설정에 [몇가지 별칭을 세팅](https://preactjs.com/guide/v10/getting-started#aliasing-react-to-preact)하면 됩니다. 
+`preact/compat` 는 React 코드를 Preact로 번역해주는 Preact의 호환성 레이어(**compat**ibility layer)입니다. React 사용자가 코드를 수정하지 않고 Preact를 시도해볼 수 있는 쉬운 방법입니다. 번들러 환경 설정에 [몇가지 별칭을 세팅](/guide/v10/getting-started#aliasing-react-to-preact)하면 됩니다.
 
 ### Children API
 
