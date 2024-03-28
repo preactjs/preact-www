@@ -9,6 +9,7 @@ const CACHE = new Map();
  * @returns {{ html: string, meta: any }}
  */
 export function useContent([lang, url]) {
+	url = url.split('#')[0];
 	return useResource(
 		() => (PRERENDER ? getContentOnServer : getContent)([lang, url]),
 		[lang, url]
