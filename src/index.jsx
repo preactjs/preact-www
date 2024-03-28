@@ -12,27 +12,35 @@ globalThis.preact = { ...preact, ...hooks };
 
 if (typeof window !== 'undefined') {
 	hydrate(<App />, document.getElementById('app'));
+
+	// Might need to keep this around indefinitely, unfortunately
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.getRegistrations().then(registrations => {
+			for (const registration of registrations) {
+				registration.unregister();
+			}
+		});
+	}
 }
 
 let initialized = false;
-async function init() {
-	globalThis.prismWorker = await import('./components/code-block/prism.worker.js');
-	globalThis.markedWorker = await import('./lib/marked.worker.js');
-
-	// DOMParser polyfill for `preact-markup`
-	const { DOMParser } = await import('@xmldom/xmldom');
-	globalThis.DOMParser = DOMParser;
-
-	// fetch latest release data
-	const { handler } = await import('./lambda/release.js');
-	const { version, url } = JSON.parse((await handler()).body);
-	globalThis.prerenderPreactVersion = version;
-	globalThis.prerenderPreactReleaseUrl = url;
-
-	initialized = true;
-}
-
 export async function prerender() {
+	const init = async () => {
+		globalThis.prismWorker = await import('./components/code-block/prism.worker.js');
+		globalThis.markedWorker = await import('./lib/marked.worker.js');
+
+		// DOMParser polyfill for `preact-markup`
+		const { DOMParser } = await import('@xmldom/xmldom');
+		globalThis.DOMParser = DOMParser;
+
+		// fetch latest release data
+		const { handler } = await import('./lambda/release.js');
+		const { version, url } = JSON.parse((await handler()).body);
+		globalThis.prerenderPreactVersion = version;
+		globalThis.prerenderPreactReleaseUrl = url;
+
+		initialized = true;
+	};
 	if (!initialized) await init();
 
 	const res = await ssr(<App />);
