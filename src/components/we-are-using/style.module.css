@@ -1,6 +1,8 @@
-[name='/about/we-are-using'] h1,
-[name='/about/we-are-using'] p {
-	text-align: center;
+content-region[name*='/about/we-are-using'] {
+	h1,
+	p {
+		text-align: center;
+	}
 }
 
 html .root {

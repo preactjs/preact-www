@@ -17,7 +17,7 @@ We recently [announced](https://twitter.com/jviide/status/1572570215350964224) n
 
 This post will outline the steps that we took to optimize **@preact/signals-core**. It's the package that acts as a base for the framework specific bindings, but can also be used independently.
 
-Signals are the Preact team's take on reactive programming. If you want a gentle introduction on what Signals are all about and how they tie in with Preact, [the Signals announcement blog post](https://preactjs.com/blog/introducing-signals) has got you covered. For a deeper dive check out the [official documentation](https://preactjs.com/guide/v10/signals).
+Signals are the Preact team's take on reactive programming. If you want a gentle introduction on what Signals are all about and how they tie in with Preact, [the Signals announcement blog post](/blog/introducing-signals) has got you covered. For a deeper dive check out the [official documentation](/guide/v10/signals).
 
 It should be noted that none of these concepts are invented by us. Reactive programming has quite a history, and has already been popularized widely in the JavaScript world by [Vue.js](https://vuejs.org/), [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/), [RxJS](https://rxjs.dev/) and too many others to name. Kudos to all of them!
 
@@ -190,7 +190,7 @@ dispose();
 count.value = 20;  // nothing gets printed to the console
 ```
 
-There are other functions, like [`batch`](https://preactjs.com/guide/v10/signals/#batch-fn), but these three are the most relevant to the implementation notes that follow.
+There are other functions, like [`batch`](/guide/v10/signals/#batch-fn), but these three are the most relevant to the implementation notes that follow.
 
 
 # Implementation Notes

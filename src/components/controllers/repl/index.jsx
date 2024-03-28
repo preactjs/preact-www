@@ -124,8 +124,8 @@ export default class Repl extends Component {
 			this.Runner.worker.ping().then(() => {
 				this.setState({ loading: false });
 				let example = this.state.exampleSlug;
-				if (this.props.code) {
-					this.receiveCode(this.props.code);
+				if (this.props.query.code) {
+					this.receiveCode(this.props.query.code);
 				} else if (example) {
 					this.applyExample(example);
 				} else if (!this.state.code) {
@@ -204,7 +204,7 @@ export default class Repl extends Component {
 	});
 
 	componentWillReceiveProps({ code }) {
-		if (code && code !== this.props.code) {
+		if (code && code !== this.props.query.code) {
 			this.receiveCode(code);
 		}
 	}

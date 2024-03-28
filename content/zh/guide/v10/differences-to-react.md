@@ -37,7 +37,7 @@ Preact 与 React 的主要差别是 Preact 并没有实现一个为了大小和�
 
 ## 调试信息和错误
 
-我们灵活的架构允许插件以任何他们想要的方式增强 Preact 体验。其中一个插件 `preact/debug` 添加了 [帮助性的警告和错误信息](https://preactjs.com/guide/v10/debugging)且附加了 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) 浏览器插件。这些能帮助你在开发 Preact 应用时更容易发现问题。你可以通过以下代码启用这些：
+我们灵活的架构允许插件以任何他们想要的方式增强 Preact 体验。其中一个插件 `preact/debug` 添加了 [帮助性的警告和错误信息](/guide/v10/debugging)且附加了 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) 浏览器插件。这些能帮助你在开发 Preact 应用时更容易发现问题。你可以通过以下代码启用这些：
 
 ```js
 import "preact/debug"; // <-- 在主入口文件的顶部添加此行
@@ -168,7 +168,7 @@ React.createElement(
 
 ## `preact/compat` 的功能
 
-`preact/compat` 是我们用来翻译 React 代码为 Preact 的 **兼容** 层。对于现有的 React 用户来说，通过在你的打包工具配置中[设置一些别名](https://preactjs.com/guide/v10/getting-started#aliasing-react-to-preact)，这是一种无需更改任何代码即可尝试 Preact 的简单方法。
+`preact/compat` 是我们用来翻译 React 代码为 Preact 的 **兼容** 层。对于现有的 React 用户来说，通过在你的打包工具配置中[设置一些别名](/guide/v10/getting-started#aliasing-react-to-preact)，这是一种无需更改任何代码即可尝试 Preact 的简单方法。
 
 ### Children API
 

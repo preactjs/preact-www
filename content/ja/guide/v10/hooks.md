@@ -394,5 +394,5 @@ const App = props => {
 };
 ```
 
-> クラスコンポーネントでは[componentDidCatch](https://preactjs.com/guide/v10/whats-new/#componentdidcatch)がこのフックに該当します。
+> クラスコンポーネントでは[componentDidCatch](/guide/v10/whats-new/#componentdidcatch)がこのフックに該当します。
 > このフックはPreact 10.2.0で導入されました。

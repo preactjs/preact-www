@@ -37,7 +37,7 @@ For both preact and [preact/compat], version compatibility is measured against t
 
 ## Debug messages and errors
 
-Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](https://preactjs.com/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
+Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
 
 ```js
 import "preact/debug"; // <-- Add this line at the top of your main entry file
@@ -168,7 +168,7 @@ The legacy `Context` API requires Components to declare specific properties usin
 
 ## Features exclusive to `preact/compat`
 
-`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](https://preactjs.com/guide/v10/getting-started#aliasing-react-to-preact) in your bundler configuration.
+`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](/guide/v10/getting-started#aliasing-react-to-preact) in your bundler configuration.
 
 ### Children API
 

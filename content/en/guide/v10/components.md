@@ -94,7 +94,9 @@ In order to have the clock's time update every second, we need to know when `<Cl
 | `getSnapshotBeforeUpdate(prevProps, prevState)` | called just before `render()`. return value is passed to `componentDidUpdate`.
 | `componentDidUpdate(prevProps, prevState, snapshot)` | after `render()`
 
-> See [this diagram](https://twitter.com/dan_abramov/status/981712092611989509) to get a visual overview of how they relate to each other.
+Here's a visual overview of how they relate to each other (originally posted in [a tweet](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) by Dan Abramov):
+
+![Diagram of component lifecycle methods](/assets/guide/components-lifecycle-diagram.png)
 
 ### Error Boundaries
 

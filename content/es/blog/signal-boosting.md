@@ -19,7 +19,7 @@ Recientemente hemos [anunciado](https://twitter.com/jviide/status/15725702153509
 
 Esta publicación describirá los pasos que tomamos para optimizar **@preact/signals-core**. Es el paquete que actúa como base para los vinculos específicos del framework, pero también se puede utilizar de forma independiente.
 
-Los Signals son la propuesta del equipo de Preact para la programación reactiva. Si quieres una pequeña introducción sobre qué son los Signals y cómo se relacionan con Preact, [la publicación del blog sobre el anuncio de los Signals](https://preactjs.com/blog/introducing-signals) lo tiene cubierto. Para una inmersión más profunda, consulta la [documentación oficial](https://preactjs.com/guide/v10/signals).
+Los Signals son la propuesta del equipo de Preact para la programación reactiva. Si quieres una pequeña introducción sobre qué son los Signals y cómo se relacionan con Preact, [la publicación del blog sobre el anuncio de los Signals](/blog/introducing-signals) lo tiene cubierto. Para una inmersión más profunda, consulta la [documentación oficial](/guide/v10/signals).
 
 Cabe señalar que ninguno de estos conceptos los hemos inventado nosotros. La programación reactiva tiene bastante historia, y ya ha sido popularizada ampliamente en el mundo de JavaScript por [Vue.js](https://vuejs.org/), [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/), [RxJS](https://rxjs.dev/) y demasiados otros para nombrarlos. ¡Felicitaciones a todos ellos!
 
@@ -192,7 +192,7 @@ dispose();
 count.value = 20;  // no se imprime nada en la consola
 ```
 
-Existen otras funciones, como [`batch`](https://preactjs.com/guide/v10/signals/#batch-fn), pero estas tres son las más relevantes para las notas de implementación que siguen.
+Existen otras funciones, como [`batch`](/guide/v10/signals/#batch-fn), pero estas tres son las más relevantes para las notas de implementación que siguen.
 
 
 # Notas de implementación
