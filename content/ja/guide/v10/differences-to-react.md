@@ -45,7 +45,7 @@ preactと[preact/compat]の両方で、バーションの互換性はReactの現
 ## デバッグメッセージとエラー
 
 Preactのアーキテクチャは柔軟性が高いので、アドオンを使用して自由自在にPreactの開発体験を向上させることができます。
-`preact/debug`というアドオンを追加すると、[有益な警告とエラー](https://preactjs.com/guide/v10/debugging)が表示されるようになり、
+`preact/debug`というアドオンを追加すると、[有益な警告とエラー](/guide/v10/debugging)が表示されるようになり、
 また、[Preact Devtools](https://preactjs.github.io/preact-devtools/) がインストールされていれば、連携が有効化されます。
 これらはPreactアプリケーションを開発する際のガイドになります。そして、何が起きているか調査することをとても簡単にします。
 `preact/debug`アドオンは、次の`import`文により追加できます。
