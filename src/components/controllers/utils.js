@@ -7,6 +7,9 @@ import { createTitle } from '../../lib/page-title';
  * @param {string} title
  */
 export function useTitle(title) {
+	if (typeof window === 'undefined') {
+		globalThis.title = createTitle(title);
+	}
 	useEffect(() => {
 		if (title) {
 			document.title = createTitle(title);
@@ -19,6 +22,9 @@ export function useTitle(title) {
  * @param {string} text
  */
 export function useDescription(text) {
+	if (typeof window === 'undefined') {
+		globalThis.description = text;
+	}
 	useEffect(() => {
 		const el = document.querySelector('meta[name=description]');
 		if (text && el) {

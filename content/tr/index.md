@@ -41,7 +41,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/home/metal.svg" alt="metal">
 
   <div>
     <h3>Metal'e yakın</h3>
@@ -58,7 +58,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/size.svg" alt="boyut">
+  <img src="/home/size.svg" alt="boyut">
 
   <div>
     <h3>Küçük Boyutlu</h3>
@@ -74,7 +74,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg" alt="performans">
+  <img src="/home/performance.svg" alt="performans">
 
   <div>
     <h3>Büyük Performans</h3>
@@ -90,7 +90,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg" alt="taşınabilir">
+  <img src="/home/portable.svg" alt="taşınabilir">
 
   <div>
     <h3>Taşınabilir &amp; Gömülebilir</h3>
@@ -106,7 +106,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg" alt="üretken">
+  <img src="/home/productive.svg" alt="üretken">
 
   <div>
     <h3>Anlık Üretkenlik</h3>
@@ -124,7 +124,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg" alt="uyumlu">
+  <img src="/home/compatible.svg" alt="uyumlu">
 
   <div>
     <h3>Ekosistem Uyumluluğu</h3>

@@ -41,7 +41,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/metal.svg">
+  <img src="/home/metal.svg">
 
   <div>
     <h3>Más cerca del DOM</h3>
@@ -57,7 +57,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/size.svg">
+  <img src="/home/size.svg">
 
   <div>
     <h3>Tamaño reducido</h3>
@@ -73,7 +73,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg">
+  <img src="/home/performance.svg">
 
   <div>
     <h3>Gran Rendimiento</h3>
@@ -88,7 +88,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg">
+  <img src="/home/portable.svg">
 
   <div>
     <h3>Portable y embebible</h3>
@@ -103,7 +103,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg">
+  <img src="/home/productive.svg">
 
   <div>
     <h3>Productividad instantánea</h3>
@@ -121,7 +121,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg">
+  <img src="/home/compatible.svg">
 
   <div>
     <h3>Ecosistema compatible</h3>

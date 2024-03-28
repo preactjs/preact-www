@@ -43,7 +43,7 @@ export default function Header() {
 							href="https://github.com/preactjs/preact"
 						>
 							<svg aria-hidden viewBox="0 0 24 24">
-								<use href="/assets/header-icons.svg#github" />
+								<use href="/header-icons.svg#github" />
 							</svg>
 						</a>
 						<a
@@ -52,7 +52,7 @@ export default function Header() {
 							href="https://twitter.com/preactjs"
 						>
 							<svg aria-hidden viewBox="0 0 34 27.646">
-								<use href="/assets/header-icons.svg#twitter" />
+								<use href="/header-icons.svg#twitter" />
 							</svg>
 						</a>
 						<a
@@ -61,7 +61,7 @@ export default function Header() {
 							href="http://chat.preactjs.com/"
 						>
 							<svg aria-hidden viewBox="0 0 512 512">
-								<use href="/assets/header-icons.svg#slack" />
+								<use href="/header-icons.svg#slack" />
 							</svg>
 						</a>
 					</div>
@@ -233,7 +233,7 @@ const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
 				aria-expanded={isOpen}
 			>
 				<svg aria-hidden viewBox="0 0 24 24">
-					<use href="/assets/header-icons.svg#i18n" />
+					<use href="/header-icons.svg#i18n" />
 				</svg>
 			</button>
 			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>

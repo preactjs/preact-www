@@ -1,0 +1,141 @@
+.CodeMirror {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--color-code-bg);
+	color: var(--color-code-text);
+	scrollbar-color: rgba(150, 150, 150, 0.8) rgba(150, 150, 150, 0.25);
+
+	::-webkit-scrollbar {
+		height: 10px;
+		width: 12px;
+		background: rgba(150, 150, 150, 0.25);
+	}
+	::-webkit-scrollbar-thumb {
+		background: rgba(150, 150, 150, 0.8);
+	}
+	::-webkit-scrollbar-corner {
+		background: rgba(150, 150, 150, 0.4);
+	}
+	&:not(:hover) ::-webkit-scrollbar {
+		background: rgba(150, 150, 150, 0.1);
+	}
+	&:not(:hover) ::-webkit-scrollbar-thumb {
+		background: rgba(150, 150, 150, 0.2);
+	}
+
+	pre,
+	code,
+	.CodeMirror-linenumber {
+		font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
+			'Courier New', monospace;
+		line-height: 1.4;
+	}
+
+	.CodeMirror-selected {
+		background: #3e4451;
+	}
+
+	.CodeMirror-line::selection,
+	.CodeMirror-line > span::selection,
+	.CodeMirror-line > span > span::selection {
+		background: rgba(73, 72, 62, 0.99);
+	}
+
+	.CodeMirror-gutters {
+		background: #282c34;
+		border-right: 1px solid #282c34;
+	}
+
+	.CodeMirror-guttermarker {
+		color: white;
+	}
+
+	.CodeMirror-guttermarker-subtle {
+		color: #d0d0d0;
+	}
+
+	.CodeMirror-linenumber {
+		color: #4b5363;
+	}
+
+	.CodeMirror-cursor {
+		border-left: 1px solid #528bff;
+	}
+
+	.cm-comment {
+		color: var(--color-code-comment);
+	}
+
+	.cm-atom {
+		color: #64b6c3;
+	}
+
+	.cm-number {
+		color: var(--color-code-symbol);
+	}
+
+	.cm-property {
+		color: var(--color-code-function);
+	}
+	.cm-attribute {
+		color: var(--color-code-symbol);
+	}
+
+	.cm-keyword {
+		color: var(--color-code-keyword);
+	}
+
+	.cm-string,
+	.cm-string-2 {
+		color: var(--color-code-string);
+	}
+
+	.cm-variable {
+		color: var(--color-code-symbol);
+	}
+
+	.cm-variable-2 {
+		color: #c678dd;
+	}
+
+	.cm-variable-3 {
+		color: #64b6c3;
+	}
+
+	.cm-def {
+		color: var(--color-code-function);
+	}
+
+	.cm-bracket,
+	.cm-bracket.cm-tag {
+		color: #abb2bf;
+	}
+
+	.cm-tag {
+		color: var(--color-code-tag);
+	}
+
+	.cm-header {
+		color: #abb2bf;
+	}
+
+	.cm-link {
+		color: #98c379;
+	}
+
+	.cm-error {
+		border-bottom: 2px solid #c94b55;
+	}
+
+	.CodeMirror-activeline-background {
+		background: #2c323b;
+	}
+
+	.CodeMirror-matchingbracket {
+		text-decoration: underline;
+		color: #abb2bf !important;
+	}
+}

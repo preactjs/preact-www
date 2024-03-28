@@ -1,0 +1,35 @@
+diff --git a/node_modules/netlify-lambda/lib/build.js b/node_modules/netlify-lambda/lib/build.js
+index 4397356..e07c889 100644
+--- a/node_modules/netlify-lambda/lib/build.js
++++ b/node_modules/netlify-lambda/lib/build.js
+@@ -163,7 +163,7 @@ async function webpackConfig(
+     ],
+     output: {
+       path: functionsPath,
+-      filename: '[name].js',
++      filename: '[name].cjs',
+       libraryTarget: 'commonjs',
+     },
+     optimization: {
+diff --git a/node_modules/netlify-lambda/lib/serve.js b/node_modules/netlify-lambda/lib/serve.js
+index edeb89d..7487655 100644
+--- a/node_modules/netlify-lambda/lib/serve.js
++++ b/node_modules/netlify-lambda/lib/serve.js
+@@ -113,7 +113,7 @@ function createHandler(dir, isStatic, timeout) {
+         `Something went wrong and the function directory ${dir} was undefined. Please doublecheck your toml configuration.`,
+       );
+     }
+-    var module = path.join(process.cwd(), dir, func);
++    var module = path.join(process.cwd(), dir, `${func}.cjs`);
+     if (isStatic) {
+       delete require.cache[require.resolve(module)];
+     }
+@@ -207,7 +207,7 @@ exports.listen = async function (port, isStatic, timeout) {
+ 
+   return {
+     clearCache: function (chunk) {
+-      var module = path.join(process.cwd(), dir, chunk);
++      var module = path.join(process.cwd(), dir, `${chunk}.cjs`);
+       delete require.cache[require.resolve(module)];
+     },
+     stopServer: () => server.close(),

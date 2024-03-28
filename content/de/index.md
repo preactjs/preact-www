@@ -41,7 +41,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/metal.svg" alt="metal">
+  <img src="/home/metal.svg" alt="metal">
 
   <div>
     <h3>Näher am Geschehen</h3>
@@ -57,7 +57,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/size.svg" alt="größe">
+  <img src="/home/size.svg" alt="größe">
 
   <div>
     <h3>Kleine Größe</h3>
@@ -73,7 +73,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/performance.svg" alt="leistung">
+  <img src="/home/performance.svg" alt="leistung">
 
   <div>
     <h3>Große Leistung</h3>
@@ -88,7 +88,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/portable.svg" alt="portabel">
+  <img src="/home/portable.svg" alt="portabel">
   <div>
     <h3>Portabel &amp; Einbettbar</h3>
     <p>
@@ -102,7 +102,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/productive.svg" alt="produktiv">
+  <img src="/home/productive.svg" alt="produktiv">
   <div>
     <h3>Sofort produktiv</h3>
     <p>
@@ -117,7 +117,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/assets/home/compatible.svg" alt="kompatibel">
+  <img src="/home/compatible.svg" alt="kompatibel">
   <div>
     <h3>Ökosystem-kompatibel</h3>
     <p>

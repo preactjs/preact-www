@@ -53,7 +53,7 @@ We built Signals to be a compelling solution that combines optimal performance a
 
 Application state usually starts out small and simple, perhaps a few simple `useState` hooks. As an app grows and more components need to access the same piece of state, that state is eventually lifted up to a common ancestor component. This pattern repeats multiple times until the majority of state ends up living close to the root of the component tree.
 
-![Image showing how the depth of the component tree directly affects rendering performance when using standard state updates.](/assets/signals/state-updates.png)
+![Image showing how the depth of the component tree directly affects rendering performance when using standard state updates.](/signals/state-updates.png)
 
 This scenario poses a challenge for traditional Virtual DOM based frameworks, which must update the entire tree affected by a state invalidation. In essence, rendering performance is a function of the number of components in that tree. We can work around this by memoizing parts of the component tree using `memo` or `useMemo` so that the framework receives the same objects. When nothing has changed, this lets the framework skip rendering some parts of the tree.
 
@@ -63,7 +63,7 @@ Whilst this sounds reasonable in theory, the reality is often a lot messier. In 
 
 Another common workaround teams reach for state sharing is to place state into context. This allows short-circuiting rendering by potentially skipping render for components between the context provider and consumers. There is a catch though: only the value passed to the context provider can be updated, and only as a whole. Updating a property on an object exposed via context does not update consumers of that context - granular updates aren’t possible. The available options for dealing with this are to split state into multiple contexts, or over invalidate the context object by cloning it when any of its properties change.
 
-![Context can skip updating components until you read the value out of it. Then it's back to memoization.](/assets/signals/context-chaos.png)
+![Context can skip updating components until you read the value out of it. Then it's back to memoization.](/signals/context-chaos.png)
 
 Moving values into context seems like a worthwhile tradeoff at first, but the downsides of increasing component tree size just to share values eventually become a problem. Business logic inevitably ends up depending on multiple context values, which can force it to be implemented at a specific location in the tree. Adding a component that subscribes to context in the middle of the tree is costly, as it reduces the number of components that can be skipped when updating context. What’s more, any components beneath the subscriber must now be rendered again. The only solution to this problem is heavy use of memoization, which brings us back to the problems inherent to memoization.
 
@@ -79,11 +79,11 @@ Our answer to these questions is Signals. It’s a system that is fast by defaul
 
 The main idea behind signals is that instead of passing a value directly through the component tree, we pass a signal object containing the value (similar to a `ref`). When a signal's value changes, the signal itself stays the same. As a result, signals can be updated without re-rendering the components they've been passed through, since components see the signal and not its value. This lets us skip all of the expensive work of rendering components and jump immediately to the specific components in the tree that actually access the signal's value.
 
-![Signals can continue to skip Virtual DOM diffing, regardless of where in the tree they are accessed.](/assets/signals/signals-update.png)
+![Signals can continue to skip Virtual DOM diffing, regardless of where in the tree they are accessed.](/signals/signals-update.png)
 
 We’re exploiting the fact that an application's state graph is generally much shallower than its component tree. This leads to faster rendering, because far less work is required to update the state graph compared to the component tree. This difference is most apparent when measured in the browser - the screenshot below shows a DevTools Profiler trace for the same app measured twice: once using hooks as the state primitive and a second time using signals:
 
-![Showing a comparison of profiling Virtual DOM updates vs updates through signals which bypasses nearly all of the Virtual DOM diffing.](/assets/signals/virtual-dom-vs-signals-update.png)
+![Showing a comparison of profiling Virtual DOM updates vs updates through signals which bypasses nearly all of the Virtual DOM diffing.](/signals/virtual-dom-vs-signals-update.png)
 
 The signals version vastly outperforms the update mechanism of any traditional Virtual DOM based framework. In some apps we've tested, signals are so much faster that it becomes difficult to find them in the flamegraph at all.
 

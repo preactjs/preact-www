@@ -30,7 +30,7 @@ function useContributors(deps) {
 		contributors ? contributors[new Date().getMonth()] : undefined
 	);
 	useEffect(() => {
-		fetch('/assets/contributors.json')
+		fetch('/contributors.json')
 			.then(r => r.json())
 			.then(d => setContributors(d));
 	}, []);

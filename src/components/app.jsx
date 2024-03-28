@@ -8,10 +8,8 @@ export default function App() {
 		<ErrorBoundary>
 			<LocationProvider>
 				<LanguageProvider>
-					<div id="app">
-						<Header />
-						<Routes />
-					</div>
+					<Header />
+					<Routes />
 				</LanguageProvider>
 			</LocationProvider>
 		</ErrorBoundary>

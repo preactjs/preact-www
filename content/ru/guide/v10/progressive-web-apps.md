@@ -13,7 +13,7 @@ Preact — отличный выбор для [прогрессивных веб
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/load-less-script.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/load-less-script.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -24,7 +24,7 @@ Preact — отличный выбор для [прогрессивных веб
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/faster-tti.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/faster-tti.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -35,7 +35,7 @@ Preact — отличный выбор для [прогрессивных веб
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/building-block.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/building-block.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -50,7 +50,7 @@ Preact — отличный выбор для [прогрессивных веб
 
 Сайт, на котором вы сейчас находитесь, также является прогрессивным веб-приложением! Здесь он работает в интерактивном режиме менее 5 секунд в трассировке с Nexus 5X через 3G:
 
-<img src="/assets/pwa-guide/timeline.jpg" style="display: block;" alt="Трассировка DevTools Timeline сайта preactjs.com на Nexus 5X"/>
+<img src="/pwa-guide/timeline.jpg" style="display: block;" alt="Трассировка DevTools Timeline сайта preactjs.com на Nexus 5X"/>
 
 Статический контент сайта хранится в (Service Worker) Cache Storage API, что обеспечивает его мгновенную загрузку при повторных посещениях.
 
@@ -61,7 +61,7 @@ Preact — отличный выбор для [прогрессивных веб
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://webpack.js.org/guides/code-splitting/">Разделение кода</a></strong> разбивает ваш код таким образом, что вы поставляете на страницу только то, что нужно пользователю. Ленивая загрузка остальной части по мере необходимости улучшает время загрузки страницы. Поддержка через webpack или Rollup.</p>
@@ -69,7 +69,7 @@ Preact — отличный выбор для [прогрессивных веб
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Кэширование Service Worker</a></strong> позволяет кэшировать статические и динамические ресурсы в автономном режиме в вашем приложении, обеспечивая мгновенную загрузку и более быструю интерактивность при повторных посещениях. Сделайте это с помощью <a href="https://developers.google.com/web/tools/workbox">Workbox</a>.</p>
@@ -77,7 +77,7 @@ Preact — отличный выбор для [прогрессивных веб
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/prpl.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> поощряет упреждающую отправку или предварительную загрузку ресурсов в браузер, ускоряя загрузку последующих страниц. Он основан на разделении кода и программном кэшировании.</p>
@@ -85,7 +85,7 @@ Preact — отличный выбор для [прогрессивных веб
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/lighthouse.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> позволяет вам проверять производительность и лучшие практики вашего прогрессивного веб-приложения, чтобы вы знали, насколько хорошо работает ваше приложение.</p>

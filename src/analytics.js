@@ -1,4 +1,4 @@
-if (!PRERENDER) {
+if (typeof window !== 'undefined') {
 	const ga = (window.ga =
 		window.ga || ((...args) => (ga.q = ga.q || []).push(args)));
 

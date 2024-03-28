@@ -344,7 +344,7 @@ function ReplWrapper({
 			<div
 				class={cx(
 					style.loadingOverlay,
-					!PRERENDER && loading && style.loading
+					typeof window !== 'undefined' && loading && style.loading
 				)}
 			>
 				<h4>Loading...</h4>
@@ -389,7 +389,7 @@ function TutorialSetupBlock({ code }) {
 	// Only run when we get new setup code.
 	// Note: we run setup code as a component to allow hook usage:
 	const Setup = useCallback(() => {
-		if (PRERENDER) return null;
+		if (typeof window === 'undefined') return null;
 
 		const tutorial = useContext(TutorialContext);
 		const solutionCtx = useContext(SolutionContext);

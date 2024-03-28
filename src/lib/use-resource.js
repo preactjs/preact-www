@@ -1,5 +1,5 @@
 import { useEffect } from 'preact/hooks';
-import { getContent, getContentOnServer } from './content.js';
+import { getContent } from './content.js';
 
 /** @type {Map<string, Promise<any>>} */
 const CACHE = new Map();
@@ -10,10 +10,7 @@ const CACHE = new Map();
  */
 export function useContent([lang, url]) {
 	url = url.split('#')[0];
-	return useResource(
-		() => (PRERENDER ? getContentOnServer : getContent)([lang, url]),
-		[lang, url]
-	);
+	return useResource(() => getContent([lang, url]), [lang, url]);
 }
 
 export function useResource(fn, deps) {

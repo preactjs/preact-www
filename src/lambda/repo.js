@@ -1,4 +1,4 @@
-exports.handler = async event => {
+export const handler = async event => {
 	const result = await repoInfo(
 		event.queryStringParameters.repo || 'preactjs/preact'
 	);

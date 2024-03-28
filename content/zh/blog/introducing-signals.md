@@ -54,7 +54,7 @@ render(<Counter />, document.getElementById("app"));
 
 应用状态通常以小而简单的方式开始，可能只有几个简单的 `useState` 钩子。随着应用的增长和更多的组件需要访问相同的状态片段，该状态最终会被提升到一个公共的祖先组件。这种模式重复多次，直到大部分状态都靠近组件树的根部。
 
-![Image showing how the depth of the component tree directly affects rendering performance when using standard state updates.](/assets/signals/state-updates.png)
+![Image showing how the depth of the component tree directly affects rendering performance when using standard state updates.](/signals/state-updates.png)
 
 这种情况对于传统的基于虚拟 DOM 的框架来说是一个挑战，因为它们必须更新由状态无效化影响的整个树。本质上，渲染性能是树中组件数量的函数。我们可以通过使用 `memo` 或 `useMemo` 对组件树的部分进行记忆化来解决这个问题，这样框架就会接收到相同的对象。当没有任何变化时，这让框架可以跳过渲染树的一部分。
 
@@ -64,7 +64,7 @@ render(<Counter />, document.getElementById("app"));
 
 团队寻求状态共享的另一个常见解决方案是将状态放入 context 中。这允许通过可能跳过对 context provider 和 consumers 之间的组件的渲染来缩短渲染时间。但是有个问题：只有传递给 context provider的值可以被更新，而且只能整体更新。更新通过 context 暴露的对象上的一个属性并不会更新该 context 的 consumers - 无法进行粒度更新。处理这个问题的可用选项是将状态分割成多个 context，或者在其任何属性更改时通过克隆它来过度使 context 对象失效。
 
-![Context can skip updating components until you read the value out of it. Then it's back to memoization.](/assets/signals/context-chaos.png)
+![Context can skip updating components until you read the value out of it. Then it's back to memoization.](/signals/context-chaos.png)
 
 把值放入 context 一开始看起来是有意义的，但是为了共享值而增加组件树大小的缺点最终会成为问题。业务逻辑不可避免地依赖于多个 context 值，这可能会强迫它在树中的特定位置实现。在树的中间添加一个订阅 context 的组件是代价高昂的，因为它减少了在更新 context 时可以跳过的组件数量。更糟糕的是，订阅者下面的任何组件现在都必须重新渲染。解决这个问题的唯一方法是大量使用 memoization，这将我们带回到 memoization 所固有的问题。
 
@@ -80,11 +80,11 @@ render(<Counter />, document.getElementById("app"));
 
 Signals背后的主要理念是，我们不直接通过组件树传递值，而是传递一个包含值的 signal 对象（类似于 `ref`）。当一个 signal 的值改变时，signal 本身保持不变。因此，signals 可以在不重新渲染它们已经传递过的组件的情况下更新，因为组件看到的是 signal 而不是它的值。这让我们跳过渲染组件的昂贵工作，直接跳到实际访问 signal 值的树中的特定组件。
 
-![Signals can continue to skip Virtual DOM diffing, regardless of where in the tree they are accessed.](/assets/signals/signals-update.png)
+![Signals can continue to skip Virtual DOM diffing, regardless of where in the tree they are accessed.](/signals/signals-update.png)
 
 我们正在利用一个事实，那就是应用程序的状态图通常比其组件树要浅得多。这导致了更快的渲染，因为更新状态图所需的工作远少于更新组件树。这种差异在浏览器中测量时最为明显 - 下面的屏幕截图显示了相同应用的 DevTools Profiler 跟踪两次测量：一次使用 hooks 作为状态管理机制，第二次使用 signals：
 
-![Showing a comparison of profiling Virtual DOM updates vs updates through signals which bypasses nearly all of the Virtual DOM diffing.](/assets/signals/virtual-dom-vs-signals-update.png)
+![Showing a comparison of profiling Virtual DOM updates vs updates through signals which bypasses nearly all of the Virtual DOM diffing.](/signals/virtual-dom-vs-signals-update.png)
 
 使用 signals 的版本在性能上远超任何传统的基于 Virtual DOM 的框架的更新机制。在我们测试的一些应用程序中，Signals 的运行速度快到在火焰图中难以找到它们。
 

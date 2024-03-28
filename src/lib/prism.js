@@ -9,7 +9,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
 
 var _self = typeof self!=='undefined' ? self : {};
 
-var Prism = module.exports = function(e) {
+export var Prism = function(e) {
     var n = 0, a = {
         util: {
             encode: function e(t) {

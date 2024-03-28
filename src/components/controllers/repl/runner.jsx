@@ -8,12 +8,9 @@ let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
 
 const worker = Comlink.wrap(
-	new Worker(
-		/* webpackChunkName: "repl-worker" */ new URL(
-			'./repl.worker.js',
-			import.meta.url
-		)
-	)
+	new Worker(new URL('./repl.worker.js', import.meta.url), {
+		type: 'module'
+	})
 );
 
 function createRoot(doc) {

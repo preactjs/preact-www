@@ -1,0 +1,14 @@
+diff --git a/node_modules/preact-iso/prerender.js b/node_modules/preact-iso/prerender.js
+index aaeba33..538096c 100644
+--- a/node_modules/preact-iso/prerender.js
++++ b/node_modules/preact-iso/prerender.js
+@@ -46,7 +46,8 @@ export default async function prerender(vnode, options) {
+ 	};
+ 
+ 	try {
+-		const html = await render();
++		let html = await render();
++		html += `<script type="isodata"></script>`;
+ 		return { html, links };
+ 	} finally {
+ 		vnodeHook = null;

@@ -3,8 +3,15 @@ declare module '*.module.css' {
 	export default mapping;
 }
 
-declare var PRERENDER: boolean;
-declare var __non_webpack_require__: (id: string) => any;
+declare module "*?raw" {
+    const content: string;
+    export default content;
+}
+
+declare module "*?url" {
+    const content: string;
+    export default content;
+}
 
 declare var prerenderPreactVersion: string;
 declare var prerenderPreactReleaseUrl: string;
