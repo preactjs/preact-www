@@ -1,3 +1,4 @@
+import { useEffect } from 'preact/hooks';
 import Markup from 'preact-markup';
 import widgets from '../widgets';
 import style from './style.module.css';
@@ -58,12 +59,21 @@ function SiblingNav({ route, lang, start }) {
 export default function ContentRegion({ content, components, ...props }) {
 	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
+
+	useEffect(() => {
+		const hash = location.hash;
+		if (hash) {
+			// Hack to force a scroll
+			location.hash = '';
+			location.hash = hash;
+		}
+	}, [props.current]);
+
 	return (
 		<content-region name={props.current} data-page-nav={hasNav}>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup
-						// key={content}
 						markup={content}
 						type="html"
 						trim={false}
