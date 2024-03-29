@@ -41,11 +41,12 @@ export function getDefaultLanguage(available, override) {
 }
 
 export function LanguageProvider({ children }) {
-	const location = useLocation();
+	const { query } = useLocation();
 
 	const [lang, setLang] = useStoredValue(
 		'lang',
-		getDefaultLanguage(config.languages, location.query.lang) || 'en'
+		getDefaultLanguage(config.languages, query.lang) || 'en',
+		!!query.lang
 	);
 
 	useEffect(() => {

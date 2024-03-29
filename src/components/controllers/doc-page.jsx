@@ -24,14 +24,14 @@ export function DocPage() {
 }
 
 export function DocLayout() {
-	const { url } = useLocation();
+	const { path } = useLocation();
 	const [lang] = useLanguage();
 
-	const { html, meta } = useContent([lang, url === '/' ? 'index' : url]);
+	const { html, meta } = useContent([lang, path === '/' ? 'index' : path]);
 	useTitle(meta.title);
 	useDescription(meta.description);
 
-	const hasSidebar = meta.toc !== false && isDocPage(url);
+	const hasSidebar = meta.toc !== false && isDocPage(path);
 
 	return (
 		<div class={cx(style.page, hasSidebar && style.withSidebar)}>
@@ -53,9 +53,9 @@ export function DocLayout() {
 
 function OldDocsWarning() {
 	const { name, version } = useRoute().params;
-	const { url } = useLocation();
+	const { path } = useLocation();
 
-	if (!isDocPage(url) || version === LATEST_MAJOR) {
+	if (!isDocPage(path) || version === LATEST_MAJOR) {
 		return null;
 	}
 

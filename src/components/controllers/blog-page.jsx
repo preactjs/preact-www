@@ -20,10 +20,10 @@ export default function BlogPage() {
 }
 
 function BlogLayout() {
-	const { url } = useLocation();
+	const { path } = useLocation();
 	const [lang] = useLanguage();
 
-	const { html, meta } = useContent([lang, url === '/' ? 'index' : url]);
+	const { html, meta } = useContent([lang, path === '/' ? 'index' : path]);
 	useTitle(meta.title);
 	useDescription(meta.description);
 

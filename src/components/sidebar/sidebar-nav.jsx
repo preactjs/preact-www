@@ -13,13 +13,7 @@ import style from './sidebar-nav.module.css';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
-	let { url } = useLocation();
-
-	// Remove trailing slash to fix activeCss check below.
-	// Note that netlify will always append a slash to the url so that we end
-	// up with something like "foo/bar/?lang=de". That's why we first remove
-	// the search params before removing the trailing slash.
-	url = url.replace(/\?.*/, '').replace(/\/$/, '');
+	const { path } = useLocation();
 
 	return (
 		<nav
@@ -39,7 +33,7 @@ export default function SidebarNav({ items, onClick }) {
 											key={href}
 											href={href}
 											onClick={onClick}
-											isActive={href === url}
+											isActive={href === path}
 										>
 											{text}
 										</SidebarNavLink>
@@ -54,7 +48,7 @@ export default function SidebarNav({ items, onClick }) {
 						key={href}
 						href={href}
 						onClick={onClick}
-						isActive={href === url}
+						isActive={href === path}
 					>
 						{text}
 					</SidebarNavLink>

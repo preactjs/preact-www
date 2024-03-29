@@ -19,11 +19,11 @@ export default function TutorialPage() {
 }
 
 function TutorialLayout() {
-	const { url } = useLocation();
+	const { path } = useLocation();
 	const { params } = useRoute();
 	const [lang] = useLanguage();
 
-	const { html, meta } = useContent([lang, !params.step ? 'tutorial/index' : url]);
+	const { html, meta } = useContent([lang, !params.step ? 'tutorial/index' : path]);
 	useTitle(meta.title);
 	useDescription(meta.description);
 

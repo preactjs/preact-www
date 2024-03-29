@@ -10,17 +10,17 @@ import BlogMeta from '../blog-meta';
  * @propery {any} [components]
  */
 export function MarkdownRegion({ html, meta, components }) {
-	const { url } = useLocation();
+	const { path } = useLocation();
 
-	const canEdit = url !== '/' && !url.startsWith('/tutorial');
-	const isBlogArticle = url.startsWith('/blog/');
+	const canEdit = path !== '/' && !path.startsWith('/tutorial');
+	const isBlogArticle = path.startsWith('/blog/');
 
 	return (
 		<>
 			{canEdit && <EditThisPage isFallback={meta.isFallback} />}
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
-				current={url}
+				current={path}
 				content={html}
 				toc={meta.toc}
 				components={components}
