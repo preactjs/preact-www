@@ -5,14 +5,13 @@ import { getContent, getContentOnServer } from './content.js';
 const CACHE = new Map();
 
 /**
- * @param {[ lang: string, url: string ]} args
+ * @param {[ lang: string, path: string ]} args
  * @returns {{ html: string, meta: any }}
  */
-export function useContent([lang, url]) {
-	url = url.split('#')[0];
+export function useContent([lang, path]) {
 	return useResource(
-		() => (PRERENDER ? getContentOnServer : getContent)([lang, url]),
-		[lang, url]
+		() => (PRERENDER ? getContentOnServer : getContent)([lang, path]),
+		[lang, path]
 	);
 }
 

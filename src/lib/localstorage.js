@@ -18,11 +18,12 @@ export const localStorageSet = (key, value) => {
  * Automatically sync a value to localStorage
  * @param {string} key The key to store the data in
  * @param {any} initial Initial value when no localStorage entry was found
+ * @param {boolean} [force] Ignore stored value, use initial instead
  * @returns {[any, (v: any) => void]}
  */
-export function useStoredValue(key, initial) {
+export function useStoredValue(key, initial, force) {
 	let stored = localStorageGet(key);
-	if (stored == null) stored = initial;
+	if (force || stored == null) stored = initial;
 
 	const [value, setValue] = useState(stored);
 

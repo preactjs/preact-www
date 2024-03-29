@@ -3,10 +3,9 @@ import { useLanguage } from '../../lib/i18n';
 import style from './style.module.css';
 
 export default function EditThisPage({ isFallback }) {
-	const { url } = useLocation();
+	let { path } = useLocation();
 	const [lang] = useLanguage();
 
-	let path = url.replace(/\/$/, '') || '/index';
 	path = !isFallback ? path + '.md' : '';
 	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${path}`;
 	return (
