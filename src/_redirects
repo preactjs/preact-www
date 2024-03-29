@@ -10,7 +10,4 @@
 /guide/unit-testing-with-enzyme /guide/v10/unit-testing-with-enzyme
 /guide/progressive-web-apps /guide/v10/progressive-web-apps
 /content/* /content/*
-/cli /guide/v10/cli
-/cli/getting-started /guide/v10/cli/getting-started
-/cli/service-worker /guide/v10/cli/service-worker
-/cli/pre-rendering /guide/v10/cli/pre-rendering
+/* /index.html 200

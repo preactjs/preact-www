@@ -1,14 +1,13 @@
 ---
 layout: home
 title: Preact
-show_title: false
 toc: false
 ---
 
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Schnelle 3kB-Alternative zu React mit der gleichen ES6-API</p>
     <p class="intro-buttons">
@@ -37,7 +36,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Eine Bibliothek der anderen Art</h1>
+    <h2>Eine Bibliothek der anderen Art</h2>
 </section>
 
 
@@ -45,7 +44,7 @@ function Counter() {
   <img src="/assets/home/metal.svg" alt="metal">
 
   <div>
-    <h2>Näher am Geschehen</h2>
+    <h3>Näher am Geschehen</h3>
     <p>
         Preact bietet die kleinstmögliche Virtual DOM Abstraktion auf dem DOM.
         Das Web ist eine stabile Plattform und es ist an der Zeit, dass wir es im Namen der Sicherheit neu implementieren.
@@ -61,7 +60,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="größe">
 
   <div>
-    <h2>Kleine Größe</h2>
+    <h3>Kleine Größe</h3>
     <p>
         Die meisten UI-Frameworks sind so riesig, dass sie den Großteil einer JavaScript-App ausmachen.
         Mit Preact ist das anders: Es ist winzig genug, damit <em>eigener Code</em> den Großteil der Application ausmacht.
@@ -77,7 +76,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="leistung">
 
   <div>
-    <h2>Große Leistung</h2>
+    <h3>Große Leistung</h3>
     <p>
         Preact ist schnell, was nicht nur an seiner Größe liegt. Dank einer simplen und vorhersehbaren Differenzierungsimplementation ist es eine der schnellsten Virtual DOM-Bibliotheken überhaupt.
     </p>
@@ -91,7 +90,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/portable.svg" alt="portabel">
   <div>
-    <h2>Portabel &amp; Einbettbar</h2>
+    <h3>Portabel &amp; Einbettbar</h3>
     <p>
         Preacts winziger Fußabdruck ermöglicht dem ressourcenreichen Virtual DOM-Komponentenparadigma Dinge, von dem es sonst nur träumen könnte.
     </p>
@@ -105,7 +104,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/productive.svg" alt="produktiv">
   <div>
-    <h2>Sofort produktiv</h2>
+    <h3>Sofort produktiv</h3>
     <p>
         Leichtigkeit ist deutlich spaßiger, wenn man dafür Produktivität nicht einbüßen muss. Preacts macht dich von Anfang an produktiv! Es hat sogar einige Bonusfunktionen:
     </p>
@@ -120,7 +119,7 @@ function Counter() {
 <section class="home-section">
   <img src="/assets/home/compatible.svg" alt="kompatibel">
   <div>
-    <h2>Ökosystem-kompatibel</h2>
+    <h3>Ökosystem-kompatibel</h3>
     <p>
         Virtual DOM-Komponenten machen es einfach, Dinge wieder zu verwenden - alles vom Knopf bis hin zu Datenquellen.
         Preacts Gestaltung lässt dich tausende Komponenten, die bereits im React-Ökosystem verfügbar sind, verwenden.
@@ -133,31 +132,33 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Erlebe es in freier Wildbahn!</h1>
+    <h2>Erlebe es in freier Wildbahn!</h2>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>To Do-Listen-Komponente</h2>
+        <h3>To Do-Listen-Komponente</h3>
         <pre><code class="lang-jsx">
-export default class ToDoList extends Component {
+// --repl
+export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
-        this.setState({ text: e.target.value });
+        this.setState({ text: e.currentTarget.value });
     };
-    addToDo = () =&gt; {
+    addTodo = () =&gt; {
         let { todos, text } = this.state;
         todos = todos.concat({ text });
         this.setState({ todos, text: '' });
     };
     render({ }, { todos, text }) {
         return (
-            &lt;form onSubmit={this.addToDo} action="javascript:"&gt;
+            &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;label&gt;
                   &lt;span&gt;Add Todo&lt;/span&gt;
                   &lt;input value={text} onInput={this.setText} /&gt;
                 &lt;/label&gt;
+                &lt;button type="submit"&gt;Add&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -167,13 +168,14 @@ export default class ToDoList extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Laufendes Beispiel</h2>
+        <h3>Laufendes Beispiel</h3>
         <pre repl="false"><code class="lang-jsx">
-import ToDoList from './todo-list';
-
+import ToDoList from './todo-list';<br>
 render(&lt;ToDoList /&gt;, document.body);
         </code></pre>
         <div class="home-demo">
@@ -185,15 +187,16 @@ render(&lt;ToDoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Zeige GitHub-Stars</h2>
+        <h3>Zeige GitHub-Stars</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = \`https://github.com/${repo}\`;
+        let url = `https://github.com/${repo}`;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Stars
@@ -201,27 +204,28 @@ export default class Stars extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Laufendes Beispiel</h2>
+        <h3>Laufendes Beispiel</h3>
         <pre repl="false"><code class="lang-jsx">
-import Stars from './stars';
-
+import Stars from './stars';<br>
 render(
     &lt;Stars repo="developit/preact" /&gt;,
     document.body
 );
         </code></pre>
         <div class="home-demo">
-            <github-stars simple user="developit" repo="preact"></github-stars>
+            <github-stars simple="true" user="preactjs" repo="preact"></github-stars>
         </div>
     </div>
 </section>
 
 
 <section class="home-top">
-    <h1>Bereit einzutauchen?</h1>
+    <h2>Bereit einzutauchen?</h2>
 </section>
 
 

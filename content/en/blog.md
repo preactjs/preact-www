@@ -1,3 +1,7 @@
+---
+title: Blog
+---
+
 Find out more about what the Preact team is working on.
 
 <div><blog-overview></blog-overview></div>

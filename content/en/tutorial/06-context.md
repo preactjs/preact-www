@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/05-refs
 next: /tutorial/07-side-effects
-title: Context
 solvable: true
 ---
+
+# Context
 
 As an application grows larger, its Virtual DOM tree often becomes deeply
 nested and composed of many different components. Components at various
@@ -294,7 +295,7 @@ useResult(function (result) {
 
   var oe = options.event;
   options.event = function(e) {
-    if (e.target.localName !== 'button') return;
+    if (e.currentTarget.localName !== 'button') return;
     clearTimeout(timer);
     timer = setTimeout(function() {
       var counts = getCounts();

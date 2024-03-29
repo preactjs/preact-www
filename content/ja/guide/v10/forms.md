@@ -59,8 +59,7 @@ class TodoForm extends Component {
   }
 
   onInput = e => {
-    const { value } = e.target;
-    this.setState({ value })
+    this.setState({ value: e.currentTarget.value })
   }
 
   render(_, { value }) {
@@ -84,7 +83,7 @@ class MySelect extends Component {
   state = { value: '' };
 
   onChange = e => {
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.currentTarget.value });
   }
 
   onSubmit = e => {

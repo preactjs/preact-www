@@ -1,13 +1,12 @@
 ---
 layout: home
 title: Preact
-show_title: false
 toc: false
 ---
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Alternative légère et rapide à React avec le même API en seulement 3Ko</p>
     <p class="intro-buttons">
@@ -36,7 +35,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Un concept différent</h1>
+    <h2>Un concept différent</h2>
 </section>
 
 
@@ -44,7 +43,7 @@ function Counter() {
   <img src="/assets/home/metal.svg" alt="metal">
 
   <div>
-    <h2>Plus proche de la machine</h2>
+    <h3>Plus proche de la machine</h3>
     <p>
         Preact possède l'abstraction du DOM virtuel la plus fine.
         Le web est une plateforme stable, il est temps d'arrêter de réinventer la roue.
@@ -60,7 +59,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size">
 
   <div>
-    <h2>Petite taille</h2>
+    <h3>Petite taille</h3>
     <p>
         La plupart des frameworks UI sont très larges et possèdent généralement plus de code que votre application. Preact est différent : la majorité du code de votre application sera le vôtre.
     </p>
@@ -75,7 +74,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance">
 
   <div>
-    <h2>Grande performance</h2>
+    <h3>Grande performance</h3>
     <p>
         Preact est performant, non seulement à cause de sa taille, mais aussi parce qu'il possède une des implémentations les plus rapides pour détecter les différences entre le DOM du navigateur et le DOM virtuel.
     </p>
@@ -90,7 +89,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable">
 
   <div>
-    <h2>Portable &amp; embarquable</h2>
+    <h3>Portable &amp; embarquable</h3>
     <p>
         Contrairement aux autres frameworks, Preact ne représente pas un énorme surcoût. Il vous permettra de bénéficier de la puissance du DOM virtuel.
     </p>
@@ -105,7 +104,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive">
 
   <div>
-    <h2>Productif instantanément</h2>
+    <h3>Productif instantanément</h3>
     <p>
         La légereté est plus amusante quand vous n'avez pas à sacrifier la productivité pour y arriver. Avec Preact vous serez productif en quelques instants. Vous aurez même droit aux fonctionnalités supplémentaires suivantes :
     </p>
@@ -120,7 +119,7 @@ function Counter() {
 <section class="home-section">
   <div>
     <img src="/assets/home/compatible.svg" alt="compatible">
-    <h2>Compatible avec l'écosystème</h2>
+    <h3>Compatible avec l'écosystème</h3>
     <p>
         Les composants du DOM virtuel vous permettent de réutiliser des briques de votre application. Grâce à la conception de Preact, vous avez à votre disposition les composants de l'écosystème React.
     </p>
@@ -132,18 +131,19 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Voir en action!</h1>
+    <h2>Voir en action!</h2>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>Composant liste de tâches</h2>
+        <h3>Composant liste de tâches</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
-        this.setState({ text: e.target.value });
+        this.setState({ text: e.currentTarget.value });
     };
     addTodo = () =&gt; {
         let { todos, text } = this.state;
@@ -154,9 +154,10 @@ export default class TodoList extends Component {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;label&gt;
-                  &lt;span&gt;Add Todo&lt;span&gt;
+                  &lt;span&gt;Add Todo&lt;/span&gt;
                   &lt;input value={text} onInput={this.setText} /&gt;
                 &lt;/label&gt;
+                &lt;button type="submit"&gt;Add&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -166,13 +167,14 @@ export default class TodoList extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Exemple interactif</h2>
+        <h3>Exemple interactif</h3>
         <pre repl="false"><code class="lang-jsx">
-import TodoList from './todo-list';
-
+import TodoList from './todo-list';<br>
 render(&lt;TodoList /&gt;, document.body);
         </code></pre>
         <div class="home-demo">
@@ -184,15 +186,16 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Récupérer les Stars Github</h2>
+        <h3>Récupérer les Stars Github</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = \`https://github.com/${repo}\`;
+        let url = `https://github.com/${repo}`;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Stars
@@ -200,27 +203,28 @@ export default class Stars extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Exemple fonctionnel</h2>
+        <h3>Exemple fonctionnel</h3>
         <pre repl="false"><code class="lang-jsx">
-import Stars from './stars';
-
+import Stars from './stars';<br>
 render(
     &lt;Stars repo="developit/preact" /&gt;,
     document.body
 );
         </code></pre>
         <div class="home-demo">
-            <github-stars simple user="developit" repo="preact"></github-stars>
+            <github-stars simple="true" user="preactjs" repo="preact"></github-stars>
         </div>
     </div>
 </section>
 
 
 <section class="home-top">
-    <h1>Prêt à vous lancer ?</h1>
+    <h2>Prêt à vous lancer ?</h2>
 </section>
 
 

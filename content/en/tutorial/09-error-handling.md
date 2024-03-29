@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/08-keys
 next: /tutorial/10-links
-title: Error Handling
 solvable: true
 ---
+
+# Error Handling
 
 JavaScript is a flexible interpreted language, which means it's possible (and even easy)
 to encounter errors at runtime. Whether the result of an unexpected scenario or a mistake
@@ -97,7 +98,7 @@ useResult(function(result) {
     oe.apply(this, arguments);
     setTimeout(function() {
       if (result.output.textContent.match(/error/i)) {
-        store.setState({ solved: true });
+        solutionCtx.setSolved(true);
       }
     }, 10);
   };

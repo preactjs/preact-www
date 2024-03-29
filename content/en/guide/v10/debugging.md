@@ -62,7 +62,7 @@ Make sure to set the `NODE_ENV` variable to the correct value in your build tool
 
 ## Debug Warnings and Errors
 
-Sometimes you'll may get warnings or errors whenever Preact detects invalid code. These should all be fixed to ensure that your app works flawlessly.
+Sometimes you may get warnings or errors when Preact detects invalid code. These should be fixed to ensure that your app works flawlessly.
 
 ### `undefined` parent passed to `render()`
 

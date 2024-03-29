@@ -15,7 +15,7 @@ description: '引用可用于访问 Preact 渲染的 DOM 节点'
 
 ---
 
-## `createRef`
+## createRef
 
 `createRef` 函数将返回只有一个 `current` 属性的对象。当调用 `render` 方法时，Preact 会自动为 `current` 属性赋值当前 DOM 节点或组件。
 

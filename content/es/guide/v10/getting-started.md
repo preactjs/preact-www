@@ -7,7 +7,6 @@ permalink: '/guide/getting-started'
 
 Esta guía lo ayuda a comenzar a desarrollar aplicaciones Preact. Hay 3 formas populares de hacerlo.
 
-##
 
 Si recién está comenzando, le recomendamos ir con [preact-cli](#best-practices-powered-with-preact-cli).
 

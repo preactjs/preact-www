@@ -1,0 +1,40 @@
+.logos {
+	margin: 3rem 0 4rem;
+
+	@media (min-width: 600px) {
+		display: grid;
+		column-gap: 1rem;
+		row-gap: 5rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.variation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@media (max-width: 600px) {
+		margin-top: 5rem;
+	}
+
+	.links {
+		margin-top: 2rem;
+	}
+
+	a {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		margin: 0.5rem 1rem;
+		border: 1px solid var(--color-btn-background);
+		border-radius: 5px;
+		transition: box-shadow 300ms ease, border-color 300ms ease;
+		background: var(--color-btn);
+		color: var(--color-btn-background);
+		&:hover,
+		&:focus-visible {
+			box-shadow: 0 0 0 5px var(--color-brand-light);
+			border-color: var(--color-btn-background);
+		}
+	}
+}

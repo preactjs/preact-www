@@ -9,7 +9,7 @@ permalink: '/about/project-goals'
 
 Preact tiene como objetivo cumplir con los siguientes puntos:
 
-- **Performante:** Renderizar rápido y eficientemente
+- **Performance:** Renderizar rápido y eficientemente
 - **Tamaño:** Tamaño pequeño y liviano _(aproximadamente 3.5kb)_
 - **Eficiencia:** Uso eficiente de la memoria
 - **Comprensibilidad:** Entender el código fuente debería llevar muy poco tiempo, apenas unas horas
@@ -25,4 +25,4 @@ Algunas funcionalidades de React son omitidas intencionalmente en Preact, ya que
     - Synthetic Events, ya que Preact no tiene soporte para navegadores antiguos como IE8
 
 [preact-compat]: https://github.com/preactjs/preact-compat/
-[¿Qué falta?]: /guide/differences-to-react#whats-missing
+[¿Qué falta?]: /guide/v8/differences-to-react#whats-missing

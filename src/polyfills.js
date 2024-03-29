@@ -1,6 +1,5 @@
-// This file contains polyfills that are necessary to make our
-// site work in older browsers like IE11
-require('preact-cli/lib/lib/webpack/polyfills');
+// Adds fetch and Promise polyfills
+require('preact-cli/src/lib/webpack/polyfills');
 
 if (typeof window !== 'undefined') {
 	if (!Element.prototype.matches) {

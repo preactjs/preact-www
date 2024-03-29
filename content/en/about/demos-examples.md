@@ -119,6 +119,9 @@ Quickly spin up a new personal webpage by only needing to modify JSON data.
 **[Parcel + Preact + Unistore Starter](https://github.com/hwclass/parcel-preact-unistore-starter)**
 Starter pack for lightning-fast prototyping and small/medium size project structure
 
+**[buildless-preact-starter](https://github.com/ttntm/buildless-preact-starter)** :rocket:
+A starter/template for using Preact in buildless environments
+
 ## Codepens
 
 - [Flickr Browser](http://codepen.io/developit/full/VvMZwK/) _(@ CodePen)_
@@ -126,6 +129,7 @@ Starter pack for lightning-fast prototyping and small/medium size project struct
 - [60FPS Rainbow Spiral](http://codepen.io/developit/full/xGoagz/) _(@ CodePen)_
 - [Simple Clock](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) _(@ JSFiddle)_
 - [3D + ThreeJS](http://codepen.io/developit/pen/PPMNjd?editors=0010) _(@ CodePen)_
+- [Endless Horse](https://codepen.io/youkwhd/pen/zYbjepj) _(@ CodePen)_
 
 ## Templates
 

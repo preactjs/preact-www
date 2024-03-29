@@ -1,14 +1,13 @@
 ---
 layout: home
 title: Preact
-show_title: false
 toc: false
 ---
 
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Aynı modern API ile React'e hızlı ve 3kB'lık alternatif</p>
     <p class="intro-buttons">
@@ -37,7 +36,7 @@ function Counter() {
 </div>
 
 <section class="home-top">
-    <h1>Başka bir tür kütüphane</h1>
+    <h2>Başka bir tür kütüphane</h2>
 </section>
 
 
@@ -45,7 +44,7 @@ function Counter() {
   <img src="/assets/home/metal.svg" alt="metal">
 
   <div>
-    <h2>Metal'e yakın</h2>
+    <h3>Metal'e yakın</h3>
     <p>
         Preact, DOM'un üzerinde mümkün olabilecek en ince Sanal DOM soyutlamasını sağlar.
         Web stabil bir platform, emniyet adına sürekli yeniden icat etmeyi bırakmamızın zamanı geldi.
@@ -62,7 +61,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="boyut">
 
   <div>
-    <h2>Küçük Boyutlu</h2>
+    <h3>Küçük Boyutlu</h3>
     <p>
         Çoğu UI framework'ü, uygulamanın Javascript boyutunun çoğunluğunu oluşturacak kadar büyüktür.
         Preact ise farklı: <em>sizin kodunuz</em> uygulamanın çoğunluğunu oluşturacak kadar büyük kalır.
@@ -78,7 +77,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performans">
 
   <div>
-    <h2>Büyük Performans</h2>
+    <h3>Büyük Performans</h3>
     <p>
         Preact hızlıdır, fakat sadece boyutu yüzünden değil.
         Basit ve öngörülebilir fark algoritması sayesinde en hızlı Sanal DOM kütüphanelerine sahipdir.
@@ -94,7 +93,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="taşınabilir">
 
   <div>
-    <h2>Taşınabilir &amp; Gömülebilir</h2>
+    <h3>Taşınabilir &amp; Gömülebilir</h3>
     <p>
         Preact'in küçük boyutlu kod tabanı, güçlü bir Sanal DOM Bileşeni paradigmasını alıp erişilmez denizlere yelken açabileceğiniz manasına gelir.
     </p>
@@ -110,7 +109,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="üretken">
 
   <div>
-    <h2>Anlık Üretkenlik</h2>
+    <h3>Anlık Üretkenlik</h3>
     <p>
         Hafiflik, üretkenlikten feda ederek oraya ulaşmak zorunda kalmadığınızda daha çok eğlencelidir.
         Preact sizi anlık üretken yapar.
@@ -128,7 +127,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="uyumlu">
 
   <div>
-    <h2>Ekosistem Uyumluluğu</h2>
+    <h3>Ekosistem Uyumluluğu</h3>
     <p>
         Sanal DOM Component'leri, butonlardan data sağlayıcılarına kadar yeniden kullanılabilir şeyleri paylaşmayı kolaylaştırır.
         Preact'ın tasarımı, halihazırda React'ın ekosisteminde bulunan yüzlerce Component'i sorunsuz bir şekilde kullanabileceğiniz manasına gelir.
@@ -141,18 +140,19 @@ function Counter() {
 
 
 <section class="home-top">
-    <h1>Örneğe gözatın!</h1>
+    <h2>Örneğe gözatın!</h2>
 </section>
 
 
 <section class="home-split">
     <div>
-        <h2>TodoList (yapılacaklar listesi) Component'i</h2>
+        <h3>TodoList (yapılacaklar listesi) Component'i</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
-        this.setState({ text: e.target.value });
+        this.setState({ text: e.currentTarget.value });
     };
     addTodo = () =&gt; {
         let { todos, text } = this.state;
@@ -163,9 +163,10 @@ export default class TodoList extends Component {
         return (
             &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
                 &lt;label&gt;
-                  &lt;span&gt;Add Todo&lt;span&gt;
+                  &lt;span&gt;Add Todo&lt;/span&gt;
                   &lt;input value={text} onInput={this.setText} /&gt;
                 &lt;/label&gt;
+                &lt;button type="submit"&gt;Add&lt;/button&gt;
                 &lt;ul&gt;
                     { todos.map( todo =&gt; (
                         &lt;li&gt;{todo.text}&lt;/li&gt;
@@ -175,13 +176,14 @@ export default class TodoList extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Çalışan Örnek</h2>
+        <h3>Çalışan Örnek</h3>
         <pre repl="false"><code class="lang-jsx">
-import TodoList from './todo-list';
-
+import TodoList from './todo-list';<br>
 render(&lt;TodoList /&gt;, document.body);
         </code></pre>
         <div class="home-demo">
@@ -193,15 +195,16 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Github Yıldız Sayısını Çekmek</h2>
+        <h3>Github Yıldız Sayısını Çekmek</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
         this.setState({ stars });
     }
     render({ repo }, { stars=0 }) {
-        let url = \`https://github.com/${repo}\`;
+        let url = `https://github.com/${repo}`;
         return (
             &lt;a href={url} class="stars"&gt;
                 ⭐️ {stars} Yıldız
@@ -209,27 +212,28 @@ export default class Stars extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Çalışan Örnek</h2>
+        <h3>Çalışan Örnek</h3>
         <pre repl="false"><code class="lang-jsx">
-import Stars from './stars';
-
+import Stars from './stars';<br>
 render(
     &lt;Stars repo="developit/preact" /&gt;,
     document.body
 );
         </code></pre>
         <div class="home-demo">
-            <github-stars simple user="developit" repo="preact"></github-stars>
+            <github-stars simple="true" user="preactjs" repo="preact"></github-stars>
         </div>
     </div>
 </section>
 
 
 <section class="home-top">
-    <h1>Kolları sıvamaya hazır mısın?</h1>
+    <h2>Kolları sıvamaya hazır mısın?</h2>
 </section>
 
 

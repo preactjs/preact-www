@@ -85,10 +85,10 @@ Por razões históricas, o React basicamente aliava `onChange` a `onInput`. O ú
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 Se você estiver usando [preact/compat], configuraremos esse alias para `onChange` e `onInput` globalmente semelhante ao React. Esse é um dos truques que usamos para garantir a máxima compatibilidade com o ecossistema React.

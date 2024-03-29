@@ -1,14 +1,13 @@
 ---
 layout: home
 title: Preact
-show_title: false
 toc: false
 description: 'Fast 3kB alternative to React with the same modern API.'
 ---
 
 <jumbotron>
     <h1>
-        <logo height="1.5em" title="Preact" text inverted>Preact</logo>
+        <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
     </h1>
     <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
@@ -37,14 +36,14 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>A different kind of library</h1>
+    <h2>A different kind of library</h2>
 </section>
 
 <section class="home-section">
   <img src="/assets/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Closer to the DOM</h2>
+    <h3>Closer to the DOM</h3>
     <p>
       Preact provides the thinnest possible Virtual DOM abstraction on top of the DOM.
       It builds on stable platform features, registers real event handlers and plays nicely with other libraries.
@@ -59,7 +58,7 @@ function Counter() {
   <img src="/assets/home/size.svg" alt="size" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Small Size</h2>
+    <h3>Small Size</h3>
     <p>
       Most UI frameworks are large enough to be the majority of an app's JavaScript size.
       Preact is different: it's small enough that <em>your code</em> is the largest part of your application.
@@ -74,7 +73,7 @@ function Counter() {
   <img src="/assets/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Big Performance</h2>
+    <h3>Big Performance</h3>
     <p>
       Preact is fast, and not just because of its size. It's one of the fastest Virtual DOM libraries out there, thanks to a simple and predictable diff implementation.
     </p>
@@ -89,7 +88,7 @@ function Counter() {
   <img src="/assets/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Portable &amp; Embeddable</h2>
+    <h3>Portable &amp; Embeddable</h3>
     <p>
       Preact's tiny footprint means you can take the powerful Virtual DOM Component paradigm to new places it couldn't otherwise go.
     </p>
@@ -103,7 +102,7 @@ function Counter() {
   <img src="/assets/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Instantly Productive</h2>
+    <h3>Instantly Productive</h3>
     <p>
       Lightweight is a lot more fun when you don't have to sacrifice productivity to get there. Preact gets you productive right away. It even has a few bonus features:
     </p>
@@ -118,7 +117,7 @@ function Counter() {
   <img src="/assets/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
 
   <div>
-    <h2>Ecosystem Compatible</h2>
+    <h3>Ecosystem Compatible</h3>
     <p>
       Virtual DOM Components make it easy to share reusable things - everything from buttons to data providers.
       Preact's design means you can seamlessly use thousands of Components available in the React ecosystem.
@@ -131,17 +130,18 @@ function Counter() {
 </section>
 
 <section class="home-top">
-    <h1>See it in action!</h1>
+    <h2>See it in action!</h2>
 </section>
 
 <section class="home-split">
     <div>
-        <h2>Todo List</h2>
+        <h3>Todo List</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
     setText = e =&gt; {
-        this.setState({ text: e.target.value });
+        this.setState({ text: e.currentTarget.value });
     };
     addTodo = () =&gt; {
         let { todos, text } = this.state;
@@ -165,13 +165,14 @@ export default class TodoList extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;TodoList /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Running Example</h2>
+        <h3>Running Example</h3>
         <pre repl="false"><code class="lang-jsx">
-import TodoList from './todo-list';
-
+import TodoList from './todo-list';<br>
 render(&lt;TodoList /&gt;, document.body);
         </code></pre>
         <div class="home-demo">
@@ -182,8 +183,9 @@ render(&lt;TodoList /&gt;, document.body);
 
 <section class="home-split">
     <div>
-        <h2>Fetch GitHub Stars</h2>
+        <h3>Fetch GitHub Stars</h3>
         <pre><code class="lang-jsx">
+// --repl
 export default class Stars extends Component {
     async componentDidMount() {
         let stars = await githubStars(this.props.repo);
@@ -198,26 +200,27 @@ export default class Stars extends Component {
         );
     }
 }
+// --repl-after
+render(&lt;Stars /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
-        <h2>Running Example</h2>
+        <h3>Running Example</h3>
         <pre repl="false"><code class="lang-jsx">
-import Stars from './stars';
-
+import Stars from './stars';<br>
 render(
     &lt;Stars repo="preactjs/preact" /&gt;,
     document.body
 );
         </code></pre>
         <div class="home-demo">
-            <github-stars simple user="preactjs" repo="preact"></github-stars>
+            <github-stars simple="true" user="preactjs" repo="preact"></github-stars>
         </div>
     </div>
 </section>
 
 <section class="home-top">
-    <h1>Ready to dive in?</h1>
+    <h2>Ready to dive in?</h2>
 </section>
 
 <section style="text-align:center;">

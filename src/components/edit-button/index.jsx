@@ -1,0 +1,36 @@
+import { useLocation } from 'preact-iso';
+import { useLanguage } from '../../lib/i18n';
+import style from './style.module.css';
+
+export default function EditThisPage({ isFallback }) {
+	const { url } = useLocation();
+	const [lang] = useLanguage();
+
+	let path = url.replace(/\/$/, '') || '/index';
+	path = !isFallback ? path + '.md' : '';
+	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${path}`;
+	return (
+		<div class={style.wrapper}>
+			{!isFallback ? (
+				<a
+					class={style.edit}
+					href={editUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Edit this Page
+				</a>
+			) : (
+				<div class={style.fallback}>
+					<div class={style.fallbackInner}>
+						Could not find a translation for this page. You can help us out by{' '}
+						<a href={editUrl} target="_blank" rel="noopener noreferrer">
+							adding one here
+						</a>
+						.
+					</div>
+				</div>
+			)}
+		</div>
+	);
+}

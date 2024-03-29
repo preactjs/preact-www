@@ -33,11 +33,11 @@ Another notable difference is that Preact follows the DOM specification more clo
 
 For both preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
-> Thus, the website and documentation reflect React `16.x` and `15.x` when discussing compatibility or making comparisons.
+> Thus, the website and documentation reflect React `15.x` through `17.x` when discussing compatibility or making comparisons.
 
 ## Debug messages and errors
 
-Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](https://preactjs.com/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
+Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
 
 ```js
 import "preact/debug"; // <-- Add this line at the top of your main entry file
@@ -122,10 +122,10 @@ Largely for historical reasons, the semantics of React's `onChange` event are ac
 
 ```jsx
 // React
-<input onChange={e => console.log(e.target.value)} />
+<input onChange={e => console.log(e.currentTarget.value)} />
 
 // Preact
-<input onInput={e => console.log(e.target.value)} />
+<input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
 If you're using [preact/compat], most `onChange` events are internally converted to `onInput` to emulate React's behavior. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
@@ -168,7 +168,7 @@ The legacy `Context` API requires Components to declare specific properties usin
 
 ## Features exclusive to `preact/compat`
 
-`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](https://preactjs.com/guide/v10/getting-started#aliasing-react-to-preact) in your bundler configuration.
+`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](/guide/v10/getting-started#aliasing-react-to-preact) in your bundler configuration.
 
 ### Children API
 

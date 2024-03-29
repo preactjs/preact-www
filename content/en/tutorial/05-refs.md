@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/04-state
 next: /tutorial/06-context
-title: Refs
 solvable: true
 ---
+
+# Refs
 
 As we learned in the first chapter, the DOM provides an imperative API,
 which lets us make changes by calling functions on elements. One example
@@ -132,7 +133,7 @@ function patch(input) {
   input.__patched = true;
   var old = input.focus;
   input.focus = function() {
-    store.setState({ solved: true });
+    solutionCtx.setSolved(true);
     return old.call(this);
   };
 }
@@ -146,9 +147,9 @@ useResult(function (result) {
 
   var oe = options.event;
   options.event = function(e) {
-    if (e.target.localName !== 'button') return;
+    if (e.currentTarget.localName !== 'button') return;
     clearTimeout(timer);
-    var input = e.target.parentNode.parentNode.querySelector('input');
+    var input = e.currentTarget.parentNode.parentNode.querySelector('input');
     expectedInput = input;
     if (input) patch(input);
     timer = setTimeout(function() {

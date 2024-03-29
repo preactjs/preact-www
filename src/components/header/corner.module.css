@@ -1,0 +1,37 @@
+.corner {
+	--corner-size: 8em;
+	/* The responsiveness can be controlled via this variable */
+	font-size: 1.4vw;
+	max-width: 8.75rem;
+	display: flex;
+	justify-content: center;
+	color: #fff;
+	background: linear-gradient(
+		-39deg,
+		#773fda,
+		/* --color-brand-light 8% darker */ #ff0000 74%
+	);
+	height: var(--corner-size);
+	width: var(--corner-size);
+	position: absolute;
+	right: calc(var(--corner-size) * -0.5);
+	top: calc(var(--corner-size) * -0.5);
+	transform: rotate(45deg);
+	box-shadow: 1px 0 9px 1px rgba(0, 0, 0, 0.4);
+
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		display: none;
+	}
+
+	@media (min-width: /* --sidebar-break */ 900px) {
+		font-size: 1rem;
+	}
+}
+
+.cornerText {
+	align-self: flex-end;
+	display: inline-block;
+	font-size: 1em;
+	padding: 0 0.2em 0.3em;
+	line-height: 1.3;
+}

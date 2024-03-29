@@ -427,8 +427,8 @@ const App = props => {
 };
 ```
 
-> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](https://preactjs.com/guide/v10/whats-new/#componentdidcatch) lifecycle method.
-> This hook was introduced with Preact 10.2.0 .
+> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](/guide/v10/whats-new/#componentdidcatch) lifecycle method.
+> This hook was introduced with Preact 10.2.0.
 
 ## Utility hooks
 

@@ -9,8 +9,6 @@ description: 'サーバでPreactアプリケーションをレンダリングし
 これによってロード時間を短くすることができます。
 それ以外にも、テストに役立てることができます。
 
-> SSRは`preact-cli`ではデフォルトで有効です。 :tada:
-
 ---
 
 <div><toc></toc></div>
@@ -61,7 +59,7 @@ console.log(shallow(App));
 `pretty`オプションを渡すと適切にインデントされた文字列を返します。
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;

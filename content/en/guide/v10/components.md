@@ -1,6 +1,6 @@
 ---
 name: Components
-descriptions: 'Components are the heart of any Preact application. Learn how to create them and use them to compose UIs together'
+description: 'Components are the heart of any Preact application. Learn how to create them and use them to compose UIs together'
 ---
 
 # Components
@@ -87,34 +87,39 @@ In order to have the clock's time update every second, we need to know when `<Cl
 | `componentWillMount()`        | (deprecated) before the component gets mounted to the DOM
 | `componentDidMount()`         | after the component gets mounted to the DOM
 | `componentWillUnmount()`      | prior to removal from the DOM
-| `componentWillReceiveProps(nextProps, nextState)` | before new props get accepted _(deprecated)_
-| `getDerivedStateFromProps(nextProps)` | just before `shouldComponentUpdate`. Use with care.
-| `shouldComponentUpdate(nextProps, nextState)` | before `render()`. Return `false` to skip render
-| `componentWillUpdate(nextProps, nextState)` | before `render()` _(deprecated)_
+| `componentWillReceiveProps(nextProps, nextContext)` | before new props get accepted _(deprecated)_
+| `getDerivedStateFromProps(nextProps, prevState)` | just before `shouldComponentUpdate`. Return object to update state or `null` to skip update. Use with care.
+| `shouldComponentUpdate(nextProps, nextState, nextContext)` | before `render()`. Return `false` to skip render
+| `componentWillUpdate(nextProps, nextState, nextContext)` | before `render()` _(deprecated)_
 | `getSnapshotBeforeUpdate(prevProps, prevState)` | called just before `render()`. return value is passed to `componentDidUpdate`.
 | `componentDidUpdate(prevProps, prevState, snapshot)` | after `render()`
 
-> See [this diagram](https://twitter.com/dan_abramov/status/981712092611989509) to get a visual overview of how they relate to each other.
+Here's a visual overview of how they relate to each other (originally posted in [a tweet](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) by Dan Abramov):
 
-#### componentDidCatch
+![Diagram of component lifecycle methods](/assets/guide/components-lifecycle-diagram.png)
 
-There is one lifecycle method that deserves a special recognition and that is `componentDidCatch`. It's special because it allows you to handle any errors that happen during rendering. This includes errors that happened in a lifecycle hook but excludes any asynchronously thrown errors, like after a `fetch()` call.
+### Error Boundaries
 
-When an error is caught, we can use this lifecycle to react to any errors and display a nice error message or any other fallback content.
+An error boundary is a component that implements either `componentDidCatch()` or the static method `getDerivedStateFromError()` (or both). These are special methods that allow you to catch any errors that happen during rendering and are typically used to provide nicer error messages or other fallback content and save information for logging purposes. It's important to note that error boundaries cannot catch all errors and those thrown in event handlers or asynchronous code (like a `fetch()` call) need to be handled separately.
+
+When an error is caught, we can use these methods to react to any errors and display a nice error message or any other fallback content.
 
 ```jsx
 // --repl
 import { Component, render } from 'preact';
 // --repl-before
-class Catcher extends Component {
-  
+class ErrorBoundary extends Component {
   constructor() {
     super();
     this.state = { errored: false };
   }
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
+  static getDerivedStateFromError(error) {
+    return { errored: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    errorReportingService(error, errorInfo);
   }
 
   render(props, state) {
@@ -125,7 +130,7 @@ class Catcher extends Component {
   }
 }
 // --repl-after
-render(<Catcher />, document.getElementById('app'));
+render(<ErrorBoundary />, document.getElementById('app'));
 ```
 
 ## Fragments

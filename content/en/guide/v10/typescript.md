@@ -20,7 +20,7 @@ When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit 
 TypeScript includes a full-fledged JSX compiler that you can use instead of Babel. Add the following configuration to your `tsconfig.json` to transpile JSX to Preact-compatible JavaScript:
 
 ```json
-// TypeScript < 4.1.1
+// Classic Transform
 {
   "compilerOptions": {
     "jsx": "react",
@@ -31,7 +31,7 @@ TypeScript includes a full-fledged JSX compiler that you can use instead of Babe
 }
 ```
 ```json
-// TypeScript >= 4.1.1
+// Automatic Transform, available in TypeScript >= 4.1.1
 {
   "compilerOptions": {
     "jsx": "react-jsx",
@@ -99,7 +99,7 @@ There are different ways to type components in Preact. Class components have gen
 Typing regular function components is as easy as adding type information to the function arguments.
 
 ```tsx
-type MyComponentProps = {
+interface MyComponentProps {
   name: string;
   age: number;
 };
@@ -116,7 +116,7 @@ function MyComponent({ name, age }: MyComponentProps) {
 You can set default props by setting a default value in the function signature.
 
 ```tsx
-type GreetingProps = {
+interface GreetingProps {
   name?: string; // name is optional!
 }
 
@@ -147,7 +147,7 @@ const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
 ```tsx
 import { h, ComponentChildren } from "preact";
 
-type ChildrenProps = {
+interface ChildrenProps {
   title: string;
   children: ComponentChildren;
 }
@@ -168,12 +168,12 @@ Preact's `Component` class is typed as a generic with two generic type variables
 
 ```tsx
 // Types for props
-type ExpandableProps = {
+interface ExpandableProps {
   title: string;
 };
 
 // Types for state
-type ExpandableState = {
+interface ExpandableState {
   toggled: boolean;
 };
 
@@ -335,7 +335,7 @@ function App() {
 Or you work without default values and use bind the generic type variable to bind context to a certain type:
 
 ```tsx
-type AppContextValues = {
+interface AppContextValues {
   authenticated: boolean;
   lang: string;
   theme: string;
@@ -448,13 +448,13 @@ For the `useReducer` hook, TypeScript tries to infer as many types as possible f
 
 ```typescript
 // The state type for the reducer function
-type StateType = {
+interface StateType {
   count: number;
 }
 
 // An action type, where the `type` can be either
 // "reset", "decrement", "increment"
-type ActionType = {
+interface ActionType {
   type: "reset" | "decrement" | "increment";
 }
 

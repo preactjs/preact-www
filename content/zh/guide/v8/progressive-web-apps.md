@@ -31,7 +31,7 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://we
             <h3>更快速进行交互</h3>
           </div>
           <p class="_summary">
-          如果你的目标是在 <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">5 秒内进行交互</a>，每个 KB 都很重要，在您的项目中<a href="/guide/switching-to-preact">切换 React 到 Preact</a> 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p>
+          如果你的目标是在 <a href="https://infrequently.org/2016/09/what-exactly-makes-something-a-progressive-web-app/">5 秒内进行交互</a>，每个 KB 都很重要，在您的项目中<a href="/guide/v8/switching-to-preact">切换 React 到 Preact</a> 可以节省多个 KB，并使您能够在一个 RTT 中获得交互。这使它非常适合渐进式 Web 应用程序，尽量减少更多代码的每个传送路程。</p>
         </div>
     </li>
     <li class="list-item">

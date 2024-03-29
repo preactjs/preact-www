@@ -7,8 +7,6 @@ description: 'Render your Preact application on the server to show content to us
 
 Server-Side Rendering (often abbreviated as "SSR") allows you to render your application to an HTML string that can be sent to the client to improve load time. Outside of that there are other scenarios, like testing, where SSR proves really useful.
 
-> Note: SSR is automatically enabled with `preact-cli` :tada:
-
 ---
 
 <div><toc></toc></div>
@@ -55,7 +53,7 @@ console.log(shallow(App));
 If you need to get the rendered output in a more human friendly way, we've got you covered! By passing the `pretty` option, we'll preserve whitespace and indent the output as expected.
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;

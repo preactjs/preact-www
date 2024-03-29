@@ -102,7 +102,7 @@ class App extends Component {
   onInput = ev => {
     // Esto programará una actualización del estado. Una vez actualizado, el componente
     // volverá a renderizarse automáticamente.
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   render() {
@@ -134,7 +134,7 @@ class App extends Component {
   state = { value: '', name: 'world' }
 
   onInput = ev => {
-    this.setState({ value: ev.target.value });
+    this.setState({ value: ev.currentTarget.value });
   }
 
   // Añade un gestor de envíos que actualice `name` con el último valor introducido.

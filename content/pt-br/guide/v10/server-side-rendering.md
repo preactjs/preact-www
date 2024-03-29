@@ -7,7 +7,6 @@ description: 'Renderize seu aplicativo Preact no servidor para mostrar o conteú
 
 A renderização no servidor (geralmente abreviada como "SSR") permite renderizar seu aplicativo em uma string HTML que pode ser enviada ao cliente para melhorar o tempo de carregamento. Fora isso, existem outros cenários, como testes, nos quais o SSR se mostra realmente útil.
 
-> Nota: O SSR é ativado automaticamente com `preact-cli`: tada:
 ---
 
 <div><toc></toc></div>
@@ -54,7 +53,7 @@ console.log(shallow(App));
 Se você precisar obter a saída renderizada de uma maneira mais amigável para o ser humano, temos tudo o que você precisa! Ao passar a opção `pretty`, preservaremos os espaços em branco e indentaremos a saída conforme o esperado.
 
 ```jsx
-import render from 'preact-render-to-string';
+import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;

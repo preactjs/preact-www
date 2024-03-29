@@ -26,7 +26,7 @@ export function useOverlayToggle() {
 		return () => window.removeEventListener('resize', onResize);
 	}, [open]);
 
-	return [open, setOpen];
+	return /** @type {const} */ ([open, setOpen]);
 }
 
 function setHeight() {

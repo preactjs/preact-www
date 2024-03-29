@@ -1,9 +1,10 @@
 ---
 prev: /tutorial/06-context
 next: /tutorial/08-keys
-title: Side Effects
 solvable: true
 ---
+
+# Side Effects
 
 Side effects are bits of code that run when changes happen in the Virtual
 DOM tree. They don't follow the standard approach of accepting `props`
@@ -137,7 +138,7 @@ useRealm(function (realm) {
   var prevConsoleLog = win.console.log;
   win.console.log = function(m, s) {
     if (/Count is now/.test(m) && s === 1) {
-      store.setState({ solved: true });
+      solutionCtx.setSolved(true);
     }
     return prevConsoleLog.apply(win.console, arguments);
   };
