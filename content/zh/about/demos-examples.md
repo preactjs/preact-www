@@ -68,6 +68,9 @@ Dropbox 的桌面 app，基于 Preact、Electron 和 Photon。
 收听广播和博客
 [Github Project](https://github.com/robinbakker/1tuner)
 
+**[ColoGuessr](https://cologuessr.com)** :rainbow:
+测试你对自己的颜色有多了解
+[Github Project](https://github.com/jackpordi/cologuessr)
 
 ## 完整的示例
 

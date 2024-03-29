@@ -236,8 +236,8 @@ const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
 					<use href="/assets/header-icons.svg#i18n" />
 				</svg>
 			</button>
-			<nav aria-label="submenu" aria-hidden={'' + !isOpen}>
-				{Object.keys(config.languages).map(id => (
+			<nav aria-label="submenu" aria-hidden={!isOpen}>
+				{typeof window !== 'undefined' && Object.keys(config.languages).map(id => (
 					<span
 						class={cx(id == lang && style.current)}
 						data-value={id}

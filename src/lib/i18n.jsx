@@ -1,5 +1,5 @@
 import { createContext } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext, useEffect } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 import { useStoredValue } from './localstorage';
 import config from '../config.json';
@@ -49,8 +49,17 @@ export function LanguageProvider({ children }) {
 		!!query.lang
 	);
 
+	useEffect(() => {
+		document.documentElement.lang = lang;
+	}, []);
+
+	const setAndUpdateHtmlAttr = (lang) => {
+		setLang(lang);
+		document.documentElement.lang = lang;
+	};
+
 	return (
-		<LanguageContext.Provider value={{ lang, setLang }}>
+		<LanguageContext.Provider value={{ lang, setLang: setAndUpdateHtmlAttr }}>
 			{children}
 		</LanguageContext.Provider>
 	);
