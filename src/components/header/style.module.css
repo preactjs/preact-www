@@ -131,7 +131,6 @@
 
 			&:global(.home) {
 				text-transform: uppercase;
-				padding: 0 15px;
 
 				@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 					display: block;
@@ -477,103 +476,6 @@
 
 		.hb3 {
 			transform: translate(2px, 1px) rotate(-45deg);
-		}
-	}
-}
-
-:global(.aa-dropdown-menu) {
-	position: fixed !important;
-	top: var(--header-height) !important;
-	left: 50% !important;
-	transform: translateX(-50%) !important;
-
-	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
-		width: 90% !important;
-	}
-}
-
-.search {
-	display: inline-block;
-	height: 56px;
-	min-width: 80px;
-	overflow: visible;
-	background: var(--color-brand);
-	padding-right: 0.5rem;
-
-	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
-		flex-grow: 1;
-
-		.open & {
-			display: none;
-		}
-
-		.searchBox {
-			width: 0;
-		}
-	}
-
-	@media (max-width: 1024px) {
-		&:focus-within :global(.algolia-autocomplete) {
-			position: fixed !important;
-			left: 4rem;
-			right: 4rem;
-			top: 0;
-			height: var(--header-height);
-			z-index: 2;
-
-			& input {
-				width: 100% !important;
-			}
-		}
-	}
-	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
-		&:focus-within :global(.algolia-autocomplete) {
-			left: 1rem !important;
-		}
-	}
-
-	.searchBox {
-		width: 60px;
-		margin: 10px 5px;
-		padding: 8px 4px 8px 32px;
-		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
-		background-position: 10px center;
-		background-repeat: no-repeat;
-		background-color: #58319d !important; /* --color-brand 7% darker */
-		border: 1px solid #7447c5; /* --color-brand 5% lighter */
-		border-bottom-color: #825acb; /* --color-brand 10% lighter */
-		border-radius: 5px;
-		box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-		color: var(--color-brand);
-		font-size: 100%;
-		/* will-change: width;
-		   transition: width 250ms ease; */
-
-		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
-			width: 100%;
-			margin: 10px 0;
-		}
-
-		@media (min-width: /* --header-mobile-breakpoint */ 50rem) {
-			width: 8rem;
-		}
-
-		@media (min-width: 1024px) {
-			width: 13rem;
-		}
-
-		&::-webkit-input-placeholder {
-			color: #7447c5; /* --color-brand 5% lighter */
-		}
-
-		&:focus,
-		&:valid {
-			@media (min-width: /* --header-mobile-breakpoint */ 50rem) and (max-width: 800px) {
-				width: 12rem;
-			}
-
-			color: #d1c3ea;
-			outline: none;
 		}
 	}
 }
