@@ -1,3 +1,5 @@
+@import '@docsearch/css';
+
 :root {
 	--vh: 100vh;
 	--header-height: 3.5rem;
@@ -58,6 +60,17 @@
 	--color-code-operator: #67cdcc;
 	--color-code-comment: #999;
 
+	/* DocSearch customizations */
+	--docsearch-container-background: #444d;
+	--docsearch-primary-color: #673ab8;
+
+	--docsearch-modal-background: white;
+	--docsearch-footer-background: white;
+	--docsearch-highlight-color: #673ab8;
+	--docsearch-muted-color: #666;
+	--docsearch-hit-color: #444;
+	--docsearch-hit-background: #e4e4e4;
+
 	@media (prefers-color-scheme: dark) {
 		--color-page-bg: #242424;
 		--color-text: #cccccc;
@@ -98,5 +111,15 @@
 		--color-code-inline-bg: #404040;
 		--color-code-inline-border: #5e5e5e;
 		--color-code-bg: #1c2027;
+
+		/* DocSearch customizations */
+		--docsearch-modal-background: #333;
+		--docsearch-footer-background: #333;
+		--docsearch-text-color: #ccc;
+		--docsearch-searchbox-focus-background: #2b2a33;
+		--docsearch-highlight-color: #ae80ff;
+		--docsearch-muted-color: #ccc;
+		--docsearch-hit-color: #ddd;
+		--docsearch-hit-background: #3c4047;
 	}
 }

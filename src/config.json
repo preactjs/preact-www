@@ -17,7 +17,8 @@
 	"repo": "preact",
 	"docsearch": {
 		"apiKey": "2a2ff54c5bfa1eea173cdfbe8a0bcace",
-		"indexName": "preact"
+		"indexName": "preact",
+		"appId": "BH4D9OD16A"
 	},
 	"i18n": {
 		"next": {
