@@ -4,6 +4,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import replace from '@rollup/plugin-replace';
 import yaml from 'yaml';
 import path from 'path';
+import { promises as fs } from 'fs';
 import { Feed } from 'feed';
 import config from './src/config.json';
 
@@ -81,9 +82,50 @@ export default defineConfig({
 			}
 		}),
 		netlifyPlugin(),
+		servePrerenderedHTML(),
 		rssFeedPlugin()
 	]
 });
+
+/**
+ * @returns {import('vite').Plugin}
+ */
+function servePrerenderedHTML() {
+	let outDir;
+
+	return {
+		name: 'serve-prerendered-html',
+		config(config) {
+			outDir = path.join(__dirname, config.build.outDir);
+		},
+		configurePreviewServer(server) {
+			server.middlewares.use(async (req, _res, next) => {
+				if (!req.url) return next();
+
+				const url = new URL(req.url, `http://${req.headers.host}`);
+				// If URL has a file extension, bail
+				if (url.pathname != url.pathname.split('.').pop()) return next();
+
+				const file = path.join(
+					outDir,
+					url.pathname
+						.split(path.posix.sep)
+						.join(path.sep),
+					'index.html'
+				);
+
+				try {
+					await fs.access(file);
+					req.url += '/index.html';
+				} catch {
+					req.url = '/404/index.html';
+				}
+
+				return next();
+			});
+		}
+	};
+}
 
 /**
  * @returns {import('vite').Plugin}
