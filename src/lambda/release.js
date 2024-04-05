@@ -10,8 +10,8 @@ export const handler = async event => {
 			url
 		}),
 		headers: {
-			'Cache-Control': 'public, max-age=3600, stale-if-error=86400',
-			'Access-Control-Allow-Origin': 'http://localhost:8080'
+			'Content-Type': 'application/json',
+			'Cache-Control': 'public, max-age=3600, stale-if-error=86400'
 		}
 	};
 };
