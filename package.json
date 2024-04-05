@@ -7,13 +7,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:lambda\"",
-    "dev:client": "vite --port 8080",
-    "dev:lambda": "netlify-lambda serve src/lambda",
-    "start": "npm run -s server",
-    "prestart": "npm run -s build",
-    "server": "superstatic build -p ${PORT:-8080} --host 0.0.0.0 --compression -c '{\"headers\":[{\"source\":\"**\",\"headers\":[{\"key\":\"Cache-Control\",\"value\":\"max-age=31536000\"}]}]}'",
-    "build": "netlify-lambda build src/lambda && vite build",
+    "dev": "vite --port 8080",
+    "server": "vite preview --port 8080",
+    "build": "vite build",
     "lint": "eslint src test",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\"",
     "prepare": "husky install",
@@ -63,11 +59,9 @@
     "feed": "^4.2.2",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "netlify-lambda": "^2.0.16",
     "patch-package": "^8.0.0",
     "prettier": "^1.19.1",
     "rimraf": "^5.0.5",
-    "superstatic": "^9.0.3",
     "vite": "^5.0.11",
     "vite-plugin-static-copy": "1.0.2"
   },

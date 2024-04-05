@@ -6,8 +6,8 @@ export const handler = async event => {
 		statusCode: 200,
 		body: JSON.stringify(result),
 		headers: {
-			'Cache-Control': 'public, s-maxage=1800',
-			'Access-Control-Allow-Origin': 'http://localhost:8080'
+			'Content-Type': 'application/json',
+			'Cache-Control': 'public, max-age=3600, stale-if-error=86400'
 		}
 	};
 };

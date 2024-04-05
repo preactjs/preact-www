@@ -15,10 +15,7 @@ export const fallbackData = {
 	preactStargazers: 35783
 };
 
-const baseUrl =
-	process.env.NODE_ENV === 'production'
-		? '/.netlify/functions/'
-		: 'http://localhost:9000/.netlify/functions/';
+const baseUrl = '/.netlify/functions/';
 
 export const repoInfo = repo =>
 	fetch(`${baseUrl}repo?repo=${repo}`, { credentials: 'omit' })
