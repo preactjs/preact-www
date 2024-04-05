@@ -1,20 +1,20 @@
-export const handler = async event => {
-	const { version, url } = await fetchRelease(
-		`preactjs/${event?.queryStringParameters.repo || 'preact'}`
-	);
+/*
+ * @param {Request} [req]
+ * @param {unknown} [_context]
+ */
+export default async function releaseLambda(req, _context) {
+	const repo = req?.url ? new URL(req.url).searchParams.get('repo') : 'preact';
 
-	return {
-		statusCode: 200,
-		body: JSON.stringify({
-			version,
-			url
-		}),
+	const { version, url } = await fetchRelease(`preactjs/${repo}`);
+
+	return new Response(JSON.stringify({ version, url }), {
+		status: 200,
 		headers: {
 			'Content-Type': 'application/json',
 			'Cache-Control': 'public, max-age=3600, stale-if-error=86400'
 		}
-	};
-};
+	});
+}
 
 function checkStatus(r) {
 	if (!r.ok) {
