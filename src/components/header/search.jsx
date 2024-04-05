@@ -2,8 +2,6 @@ import style from './style.module.css';
 import config from '../../config.json';
 import { DocSearch } from '@docsearch/react';
 
-import './docsearch.css';
-
 // Might be a problem with the Algolia data, but it appends `#app` to all URLs without a hash fragment
 const transformItems = (items) =>
 	items.map(i =>
