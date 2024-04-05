@@ -1,6 +1,6 @@
-export const handler = async event => {
+export default async function handler(req, _context) {
 	const { version, url } = await fetchRelease(
-		`preactjs/${event?.queryStringParameters.repo || 'preact'}`
+		`preactjs/${req?.queryStringParameters.repo || 'preact'}`
 	);
 
 	return {
@@ -14,7 +14,7 @@ export const handler = async event => {
 			'Cache-Control': 'public, max-age=3600, stale-if-error=86400'
 		}
 	};
-};
+}
 
 function checkStatus(r) {
 	if (!r.ok) {

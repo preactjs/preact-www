@@ -1,6 +1,6 @@
-export const handler = async event => {
+export default async function handler(req, _context) {
 	const result = await repoInfo(
-		event.queryStringParameters.repo || 'preactjs/preact'
+		req.queryStringParameters.repo || 'preactjs/preact'
 	);
 	return {
 		statusCode: 200,
@@ -10,7 +10,7 @@ export const handler = async event => {
 			'Cache-Control': 'public, max-age=3600, stale-if-error=86400'
 		}
 	};
-};
+}
 
 function checkStatus(r) {
 	if (!r.ok) {

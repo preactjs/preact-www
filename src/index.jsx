@@ -34,7 +34,7 @@ export async function prerender() {
 		globalThis.DOMParser = DOMParser;
 
 		// fetch latest release data
-		const { handler } = await import('./lambda/release.js');
+		const { default: handler } = await import('./lambda/release.js');
 		const { version, url } = JSON.parse((await handler()).body);
 		globalThis.prerenderPreactVersion = version;
 		globalThis.prerenderPreactReleaseUrl = url;
