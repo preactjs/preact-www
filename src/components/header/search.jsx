@@ -2,12 +2,15 @@ import style from './style.module.css';
 import config from '../../config.json';
 import { DocSearch } from '@docsearch/react';
 
-import './docsearch.css';
-
-// Might be a problem with the Algolia data, but it appends `#app` to all URLs without a hash fragment
+// Might be a problem with the Algolia data, but it seemingly
+// appends `#app` to all URLs without a hash fragment.
+//
+// It also returns the full prod URL, which isn't ideal for dev/staging
 const transformItems = (items) =>
-	items.map(i =>
-		Object.assign(i, { url: new URL(i.url).pathname.replace(/#app$/, '') })
+	items.map(i => {
+			const url = new URL(i.url);
+			return Object.assign(i, { url: url.pathname + url.hash.replace(/#app$/, '') });
+		}
 	);
 
 export default function Search() {

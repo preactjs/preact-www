@@ -292,7 +292,7 @@ export default function WeAreUsing() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img src={`/assets/we-are-using/${c.logo}`} alt={c.name} />
+						<img src={`/we-are-using/${c.logo}`} alt={c.name} />
 					</a>
 				</li>
 			))}

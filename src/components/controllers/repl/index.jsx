@@ -8,13 +8,13 @@ import style from './style.module.css';
 import { useTitle } from '../utils';
 import REPL_CSS from './examples.css?raw';
 
-import simpleCounterExample from './examples/simple-counter.txt?file';
-import counterWithHtmExample from './examples/counter-with-htm.txt?file';
-import todoExample from './examples/todo-list.txt?file';
-import todoExampleSignal from './examples/todo-list-signal.txt?file';
-import repoListExample from './examples/github-repo-list.txt?file';
-import contextExample from './examples/context.txt?file';
-import spiralExample from './examples/spiral.txt?file';
+import simpleCounterExample from './examples/simple-counter.txt?url';
+import counterWithHtmExample from './examples/counter-with-htm.txt?url';
+import todoExample from './examples/todo-list.txt?url';
+import todoExampleSignal from './examples/todo-list-signal.txt?url';
+import repoListExample from './examples/github-repo-list.txt?url';
+import contextExample from './examples/context.txt?url';
+import spiralExample from './examples/spiral.txt?url';
 import { Splitter } from '../../splitter';
 
 const EXAMPLES = [
@@ -113,8 +113,8 @@ export default class Repl extends Component {
 
 	componentDidMount() {
 		Promise.all([
-			import(/* webpackChunkName: "editor" */ '../../code-editor'),
-			import(/* webpackChunkName: "runner" */ './runner')
+			import('../../code-editor'),
+			import('./runner')
 		]).then(([CodeEditor, Runner]) => {
 			this.CodeEditor = CodeEditor.default;
 			this.Runner = Runner.default;

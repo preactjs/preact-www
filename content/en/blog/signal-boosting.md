@@ -210,7 +210,7 @@ Whenever a compute/effect function starts evaluating, it needs a way to capture 
 
 In the end signals and effects always have an up-to-date view of their dependencies and dependents. Each signal can then notify its dependents whenever its value has changed. Effects and computed signals can refer to their dependency sets to unsubscribe from those notifications when, say, an effect is disposed.
 
-![Signals and effects always have an up-to-date view of their dependencies (sources) and dependents (targets)](/assets/signals/signal-boosting-01.png)
+![Signals and effects always have an up-to-date view of their dependencies (sources) and dependents (targets)](/signals/signal-boosting-01.png)
 
 The same signal may get read multiple times inside the same evaluation context. In such cases it would be handy to do some sort of deduplication for dependency and dependent entries. We also need a way to handle changing sets of dependencies: to either rebuild the set of dependencies on every run or incrementally add/remove dependencies/dependents.
 
@@ -218,7 +218,7 @@ JavaScript's [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 However, we were wondering whether there are some alternative approaches. Sets can be relatively expensive to create, and at least computed signals may need two separate Sets: one for dependencies and one for dependents. Jason was being a _total Jason_ again and [benchmarked](https://esbench.com/bench/6317fc2a6c89f600a5701bc9) how Set iteration fares against Arrays. There will be lots of iterating so it all adds up.
 
-![Set iteration is just a tad slower than Array iteration](/assets/signals/signal-boosting-01b.png)
+![Set iteration is just a tad slower than Array iteration](/signals/signal-boosting-01b.png)
 
 Sets also have the property they're iterated in insertion order. Which is cool - that's just what we need later when we deal with caching. But there's the possibility that the order doesn't always stay the same. Observe the following scenario:
 
@@ -257,15 +257,15 @@ Turns out that these operations are all we need for managing dependency/dependen
 
 Let's start by creating a "source Node" for each dependency relation. The Node's `source` attribute points to the signal that's being depended on. Each Node has `nextSource` and `prevSource` properties pointing to the next and previous source Nodes in the dependency list, respectively. Effects or a computed signals get a `sources` attribute pointing to the first Node of the list. Now we can iterate through the dependencies, insert a new dependency, and remove dependencies from the list for reordering.
 
-![Effects and computed signals keep their dependencies in a doubly-linked list](/assets/signals/signal-boosting-02.png)
+![Effects and computed signals keep their dependencies in a doubly-linked list](/signals/signal-boosting-02.png)
 
 Now let's do the same the other way around: For each dependent create a "target Node". The Node's `target` attribute points to the dependent effect or computed signal. `nextTarget` and `prevTarget` build a doubly linked list. Plain and computed signal get a `targets` attribute pointing to the first target Node in their dependent list.
 
-![Signals keep their dependents in a doubly-linked list](/assets/signals/signal-boosting-03.png)
+![Signals keep their dependents in a doubly-linked list](/signals/signal-boosting-03.png)
 
 But hey, dependencies and dependents come in pairs. For every source Node there **must** be a corresponding target Node. We can exploit this fact and smush "source Nodes" and "target Nodes" into just "Nodes". Each Node becomes a sort of quad-linked monstrosity that the dependent can use as a part of its dependency list, and vice versa.
 
-![Each Node becomes a sort of quad-linked monstrosity that the dependent can use as a part of its dependency list, and vice versa](/assets/signals/signal-boosting-04.png)
+![Each Node becomes a sort of quad-linked monstrosity that the dependent can use as a part of its dependency list, and vice versa](/signals/signal-boosting-04.png)
 
 Each Node can have additional stuff attached to it for bookkeeping purposes. Before each compute/effect function we iterate through the previous dependencies and set the "unused" flag of each Node. We also temporarily store the Node to its `.source.node` property for later. The function can then start its run.
 

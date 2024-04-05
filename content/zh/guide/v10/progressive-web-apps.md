@@ -13,7 +13,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/load-less-script.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/load-less-script.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -24,7 +24,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/faster-tti.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/faster-tti.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -35,7 +35,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/building-block.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/building-block.svg);"></div>
         </div>
         <div class="list-detail">
           <div class="_title-block">
@@ -50,7 +50,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
 
 实际上，您所浏览的网站就是一款渐进式 Web 应用！下图模拟了在 Nexus 5X 上通过 3G 网络于 5 秒内加载本网页的跟踪：
 
-<img src="/assets/pwa-guide/timeline.jpg" style="display: block;" alt="preactjs.com 在 Nexus 5X 上的 DevTools 时间线跟踪"/>
+<img src="/pwa-guide/timeline.jpg" style="display: block;" alt="preactjs.com 在 Nexus 5X 上的 DevTools 时间线跟踪"/>
 
 静态网站内容存储于 (Service Worker) 缓存存储 API 中，让您再度访问时即刻加载。
 
@@ -61,7 +61,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
 <ol class="list-view">
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/code-splitting.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/code-splitting.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://webpack.js.org/guides/code-splitting/">代码切割</a></strong>将您的代码分割成几个部分，用户仅需加载需要的部分。其他部分则通过懒加载来优化加载时间，此方法需要 webpack 或 Rollup。</p>
@@ -69,7 +69,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/service-worker-caching.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/service-worker-caching.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker 缓存</a></strong>在应用中离线缓存静态和动态内容，让您再次访问时得以即刻加载与交互。此方法使用 <a href="https://developers.google.com/web/tools/workbox">Workbox</a> 实现。</p>
@@ -77,7 +77,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/prpl.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/prpl.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">PRPL</a></strong> 为浏览器预先推送或预加载资源，加速页面的载入速度。此方法基于代码切割和 Service Worker 缓存。</p>
@@ -85,7 +85,7 @@ description: '渐进式 Web 应用让您的应用得以离线使用，与 Preact
     </li>
     <li class="list-item">
         <div class="list-header">
-          <div class="_bubble" style="background-image: url(/assets/pwa-guide/lighthouse.svg);"></div>
+          <div class="_bubble" style="background-image: url(/pwa-guide/lighthouse.svg);"></div>
         </div>
         <div class="list-detail">
           <p class="_summary"><strong><a href="https://github.com/GoogleChrome/lighthouse/">Lighthouse</a></strong> 让您轻松评估应用性能和您渐进式 Web 应用的最佳实践，让您知晓您应用的表现如何。</p>

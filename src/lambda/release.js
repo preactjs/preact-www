@@ -1,6 +1,6 @@
-exports.handler = async event => {
+export const handler = async event => {
 	const { version, url } = await fetchRelease(
-		`preactjs/${event.queryStringParameters.repo || 'preact'}`
+		`preactjs/${event?.queryStringParameters.repo || 'preact'}`
 	);
 
 	return {
@@ -72,5 +72,3 @@ const fetchRelease = repo =>
 				url: releases[0].html_url
 			};
 		});
-
-exports.fetchRelease = fetchRelease;

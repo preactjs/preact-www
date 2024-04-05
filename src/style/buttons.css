@@ -19,7 +19,7 @@
 		color: black !important;
 	}
 
-	&.secondary  {
+	&.secondary {
 		background: transparent !important;
 		color: var(--color-btn-secondary) !important;
 	}

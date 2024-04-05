@@ -1,0 +1,13 @@
+diff --git a/node_modules/vite-plugin-static-copy/dist/index.js b/node_modules/vite-plugin-static-copy/dist/index.js
+index 569ad79..43946d3 100644
+--- a/node_modules/vite-plugin-static-copy/dist/index.js
++++ b/node_modules/vite-plugin-static-copy/dist/index.js
+@@ -1092,7 +1092,7 @@ var buildPlugin = ({
+     buildEnd() {
+       output = false;
+     },
+-    async writeBundle() {
++    async generateBundle() {
+       if (output)
+         return;
+       output = true;
