@@ -5,6 +5,7 @@ import replace from '@rollup/plugin-replace';
 import yaml from 'yaml';
 import path from 'path';
 import { promises as fs } from 'fs';
+import { Readable } from 'stream';
 import { Feed } from 'feed';
 import config from './src/config.json';
 
@@ -133,6 +134,9 @@ function servePrerenderedHTML() {
 function netlifyPlugin() {
 	const lambdaDir = path.join(__dirname, 'src', 'lambda');
 
+	/**
+	 * @type {import('vite').Connect.NextHandleFunction}
+	 */
 	async function netlifyFunctionMiddleware(req, res, next) {
 		if (!req.url) return next();
 
@@ -147,17 +151,15 @@ function netlifyPlugin() {
 				.join(path.sep)
 		);
 
-		const m = await import(`${file}.js`);
-		const result = await m.handler({
-			queryStringParameters: Object.fromEntries(url.searchParams)
-		});
+		const { default: netlifyLambda } = await import(`${file}.js`);
+		const result = await netlifyLambda({ url });
 
-		for (const [k, v] of Object.entries(result.headers)) {
+		for (const [k, v] of result.headers.entries()) {
 			res.setHeader(k, v);
 		}
 
-		res.statusCode = result.statusCode;
-		res.end(result.body);
+		res.statusCode = result.status;
+		Readable.from(result.body).pipe(res);
 	}
 
 	return {
