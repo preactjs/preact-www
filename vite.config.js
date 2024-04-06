@@ -47,6 +47,9 @@ function compileMarkdown(content, path) {
 
 export default defineConfig({
 	publicDir: 'src/assets',
+	optimizeDeps: {
+		include: ['@babel/polyfill', '@rollup/browser', 'sucrase']
+	},
 	build: {
 		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
 		outDir: 'build'
