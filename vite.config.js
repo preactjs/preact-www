@@ -151,7 +151,7 @@ function netlifyPlugin() {
 				.join(path.sep)
 		);
 
-		const { default: netlifyLambda } = await import(`${file}.js`);
+		const { default: netlifyLambda } = await import(`${file}.js?t=${Date.now()}`);
 		const result = await netlifyLambda({ url });
 
 		for (const [k, v] of result.headers.entries()) {
