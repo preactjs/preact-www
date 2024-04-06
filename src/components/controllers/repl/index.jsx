@@ -5,7 +5,6 @@ import { ErrorOverlay } from './error-overlay';
 import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
-import { useTitle } from '../utils';
 import REPL_CSS from './examples.css?raw';
 
 import simpleCounterExample from './examples/simple-counter.txt?url';
@@ -77,7 +76,7 @@ function getExample(slug, list) {
 	}
 }
 
-export default class Repl extends Component {
+export class Repl extends Component {
 	state = {
 		loading: 'Loading REPL...',
 		code: '',
@@ -235,8 +234,6 @@ export default class Repl extends Component {
 	}
 
 	render(_, { loading, code, error, exampleSlug, copied }) {
-		useTitle('REPL: Try Preact in the browser');
-
 		if (loading) {
 			return (
 				<ReplWrapper loading>

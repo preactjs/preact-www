@@ -5,21 +5,23 @@ import { DocPage } from './controllers/doc-page';
 import { NotFound } from './controllers/not-found';
 import { navRoutes } from '../lib/route-utils';
 
-const Repl = lazy(() => import('./controllers/repl'));
+const Repl = lazy(() => import('./controllers/repl-page'));
 const BlogPage = lazy(() => import('./controllers/blog-page'));
 const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 
+// @ts-ignore
+const routeChange = url => typeof ga === 'function' && ga('send', 'pageview', url);
+
 export default function Routes() {
 	const [loading, setLoading] = useState(false);
+
 	return (
 		<main>
 			<progress-bar showing={loading} />
 			<Router
 				onLoadStart={() => setLoading(true)}
 				onLoadEnd={() => setLoading(false)}
-				onRouteChange={url =>
-					typeof ga === 'function' && ga('send', 'pageview', url)
-				}
+				onRouteChange={routeChange}
 			>
 				{Object.keys(navRoutes)
 					.filter(route => !route.startsWith('/guide'))
