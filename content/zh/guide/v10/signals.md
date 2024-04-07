@@ -206,7 +206,7 @@ function TodoList() {
 }
 ```
 
-这样我们就有了一个完全可用的待办事项应用程序！ 您可以[在这里](/repl?example=todo-list-signals) 尝试完整的应用程序：tada：
+这样我们就有了一个完全可用的待办事项应用程序！您可以[在这里](/repl?example=todo-list-signals)尝试完整的应用程序：tada：
 
 ## 使用 computed signals 驱动状态
 
@@ -262,7 +262,7 @@ const state = createAppState();
 <TodoList state={state} />
 ```
 
-这在我们的TODO列表应用程序中生效，因为状态是全局的，但是较大的应用程序通常最终会带有多个需要访问相同状态的组件。 这通常涉及“提升状态”到一个共同的共享祖先组成部分。 为了避免通过props手动通过每个组件传递状态，可以将状态放入[上下文]（/guide/v10/context）中，以便树中的任何组件都可以访问它。 这是一个通常看起来的快速示例：
+这在我们的TODO列表应用程序中生效，因为状态是全局的，但是较大的应用程序通常最终会带有多个需要访问相同状态的组件。 这通常涉及“提升状态”到一个共同的共享祖先组成部分。 为了避免通过props手动通过每个组件传递状态，可以将状态放入[上下文](/guide/v10/context)中，以便树中的任何组件都可以访问它。 这是一个通常看起来的快速示例：
 
 ```jsx
 import { createContext } from "preact";
