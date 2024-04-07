@@ -237,7 +237,7 @@ console.log(completed.value);
 
 ## 管理全局应用程序状态
 
-到目前为止，我们仅在组件树之外创建了信号。 这对于像待办事项列表这样的小应用程序来说很好，但是对于更大，更复杂的应用程序，这可能会使测试变得困难。 测试通常涉及您的应用程序状态中的变化值以重现某种情况，然后将该状态传递给组件并主张渲染的HTML。 为此，我们可以将我们的待办事项列表状态提取到一个函数中：
+到目前为止，我们仅在组件树之外创建了信号。 这对于像待办事项列表这样的小应用程序来说很好，但是对于更大，更复杂的应用程序，这可能会使测试变得困难。测试通常涉及您的应用程序状态中的变化值以重现某种情况，然后将该状态传递给组件并主张渲染的HTML。为此，我们可以将我们的待办事项列表状态提取到一个函数中：
 
 ```jsx
 function createAppState() {
@@ -251,7 +251,7 @@ function createAppState() {
 }
 ```
 
-> :bulb: Tip: 请注意，我们不包括``addodo（）`and'and removetodo（todo）`函数了。 将数据与修改它的功能分开通常有助于简化应用程序体系结构。 有关更多详细信息，请查看[面向数据的设计]（https://en.wikipedia.org/wiki/data-oriented_design）。
+> :bulb: Tip: 请注意，我们不包括``addodo（）`and'and removetodo（todo）`函数了。 将数据与修改它的功能分开通常有助于简化应用程序体系结构。有关更多详细信息，请查看[面向数据的设计]（https://en.wikipedia.org/wiki/data-oriented_design）。
 
 现在，我们可以在渲染时将待办事项状态作为 props 传递：
 
@@ -262,7 +262,7 @@ const state = createAppState();
 <TodoList state={state} />
 ```
 
-这在我们的TODO列表应用程序中生效，因为状态是全局的，但是较大的应用程序通常最终会带有多个需要访问相同状态的组件。 这通常涉及“提升状态”到一个共同的共享祖先组成部分。 为了避免通过props手动通过每个组件传递状态，可以将状态放入[上下文](/guide/v10/context)中，以便树中的任何组件都可以访问它。 这是一个通常看起来的快速示例：
+这在我们的TODO列表应用程序中生效，因为状态是全局的，但是较大的应用程序通常最终会带有多个需要访问相同状态的组件。 这通常涉及“提升状态”到一个共同的共享祖先组成部分。为了避免通过props手动通过每个组件传递状态，可以将状态放入[上下文](/guide/v10/context)中，以便树中的任何组件都可以访问它。 这是一个通常看起来的快速示例：
 
 ```jsx
 import { createContext } from "preact";
@@ -288,7 +288,7 @@ function App() {
 
 ## 带有信号的组件状态
 
-大多数应用程序状态最终使用props和context传递。 但是，在许多情况下，组件具有特定于该组件的内部状态。 没有理由将这个state存在于全局的业务逻辑中，因此应将其局限于需要它的组件。 在这些情况下，我们可以使用`useSignal()` and `useComputed()` hooks:
+大多数应用程序状态最终使用props和context传递。但是，在许多情况下，组件具有特定于该组件的内部状态。没有理由将这个state存在于全局的业务逻辑中，因此应将其局限于需要它的组件。在这些情况下，我们可以使用`useSignal()` and `useComputed()` hooks:
 
 ```jsx
 import { useSignal, useComputed } from "@preact/signals";
@@ -306,7 +306,7 @@ function Counter() {
 }
 ```
 
-这两个钩子是[`signal()`](#signalinitialvalue) and [`computed()`](#computedfn) 的简单封装，该钩子在第一次运行时构造信号，并简单地在之后的渲染器上使用相同的信号 。
+这两个钩子是[`signal()`](#signalinitialvalue) 和 [`computed()`](#computedfn) 的简单封装，该钩子在第一次运行时构造信号，并简单地在之后的渲染器上使用相同的信号。
 
 > :bulb: Behind the scenes, this is the implementation:
 >
@@ -318,11 +318,11 @@ function Counter() {
 
 ## signals 高级用法
 
-到目前为止，我们所涵盖的主题是您需要继续前进的所有主题。 以下部分针对希望通过完全掌握信号对应用程序状态建模的读者。
+到目前为止，我们所涵盖的主题是您需要继续前进的所有主题。以下部分针对希望通过完全掌握信号对应用程序状态建模的读者。
 
-### 对组件之外的signal 做出反应
+### 对组件之外的 signal 做出反应
 
-在组件树外使用信号时，您可能已经注意到，除非您读取他的 .value，否则 computed signals 不会重新计算。 这是因为默认情况下，信号是懒惰的：它们仅在访问其值时计算新值。
+在组件树外使用信号时，您可能已经注意到，除非您读取它的 .value，否则 computed signals 不会重新计算。这是因为默认情况下，信号是懒惰的：它们仅在访问其值时计算新值。
 
 ```js
 const count = signal(0);
@@ -336,9 +336,9 @@ count.value = 1;
 console.log(double.value); // Logs: 2
 ```
 
-这提出了一个问题：我们如何订阅组件树之外的信号？ 也许我们想在信号的值更改或保持时将某些内容记录到控制台上。[LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+这提出了一个问题：我们如何订阅组件树之外的信号？也许我们想在信号的值更改或保持时将某些内容记录到控制台上。[LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
-要运行任意代码来响应信号变化，我们可以使用 [`effect(fn)`](#effectfn)。 与计算信号类似，效果跟踪哪些信号被访问，并在这些信号发生变化时重新运行其回调。 与计算信号不同，[`effect()`](#effectfn) 不返回信号 - 它是一系列更改的结束。
+要运行任意代码来响应信号变化，我们可以使用 [`effect(fn)`](#effectfn)。与计算信号类似，效果跟踪哪些信号被访问，并在这些信号发生变化时重新运行其回调。 与计算信号不同，[`effect()`](#effectfn) 不返回信号 - 它是一系列更改的结束。
 
 ```js
 import { signal, computed, effect } from "@preact/signals-core";
