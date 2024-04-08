@@ -6,7 +6,7 @@ export function Time({ value }) {
 		? date.toLocaleDateString()
 		: date.toDateString();
 	return (
-		<time class={s.time} dateTime={date}>
+		<time class={s.time} dateTime={date.toISOString()}>
 			{day}
 		</time>
 	);
