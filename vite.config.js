@@ -69,8 +69,7 @@ export default defineConfig({
 					'/guide/v8/getting-started',
 					'/branding'
 				]
-			},
-			devToolsEnabled: false
+			}
 		}),
 		viteStaticCopy({
 			targets: [
