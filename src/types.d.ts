@@ -1,17 +1,4 @@
-declare module '*.module.css' {
-	const mapping: Record<string, string>;
-	export default mapping;
-}
-
-declare module "*?raw" {
-    const content: string;
-    export default content;
-}
-
-declare module "*?url" {
-    const content: string;
-    export default content;
-}
+/// <reference types="vite/client" />
 
 declare var prerenderPreactVersion: string;
 declare var prerenderPreactReleaseUrl: string;
