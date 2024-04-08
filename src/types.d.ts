@@ -1,16 +1,17 @@
-declare module '*.module.css' {
-	const mapping: Record<string, string>;
-	export default mapping;
+/// <reference types="vite/client" />
+
+import preact from 'preact';
+
+declare module "preact" {
+	namespace JSX {
+		interface IntrinsicElements {
+			'loading-bar': LoadingBarProps;
+		}
+	}
 }
 
-declare module "*?raw" {
-    const content: string;
-    export default content;
-}
-
-declare module "*?url" {
-    const content: string;
-    export default content;
+interface LoadingBarProps extends preact.JSX.HTMLAttributes<HTMLElement> {
+	showing: boolean;
 }
 
 declare var prerenderPreactVersion: string;

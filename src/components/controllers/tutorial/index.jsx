@@ -328,7 +328,7 @@ function ReplWrapper({
 }) {
 	return (
 		<div class={style.tutorial}>
-			<progress-bar showing={!!loading} />
+			<loading-bar showing={!!loading} />
 			<style>{REPL_CSS}</style>
 			<div
 				class={cx(

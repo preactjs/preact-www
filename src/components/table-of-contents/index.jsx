@@ -1,15 +1,13 @@
 import { createContext } from 'preact';
 import { useContext, useMemo, useRef } from 'preact/hooks';
-import { useLocation } from 'preact-iso';
 
-/** @type {import('preact').Context<{ toc: any}} */
+/** @type {import('preact').Context<{ toc: any}>} */
 export const TocContext = createContext({ toc: null });
 
 export default function Toc() {
 	const ref = useRef(null);
 	const cache = useRef([]);
 
-	const { url } = useLocation();
 	const { toc } = useContext(TocContext);
 
 	// eslint-disable-next-line
@@ -21,14 +19,12 @@ export default function Toc() {
 
 	if (items.length === 0) return <div ref={ref} />;
 
-	const loc = url.slice(url.indexOf('#') >>> 0);
-
 	return (
 		<div ref={ref}>
 			<nav tabIndex={0} onFocus={this.open}>
 				<ul>
 					{items.map(entry => (
-						<TocItem {...entry} loc={loc} />
+						<TocItem {...entry} />
 					))}
 				</ul>
 			</nav>
