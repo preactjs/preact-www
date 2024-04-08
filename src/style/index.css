@@ -106,7 +106,7 @@ div.highlight-container {
 	}
 }
 
-progress-bar {
+loading-bar {
 	position: fixed;
 	left: 0;
 	top: -5px;

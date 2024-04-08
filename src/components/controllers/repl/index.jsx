@@ -306,7 +306,7 @@ export class Repl extends Component {
 
 const ReplWrapper = ({ loading, children }) => (
 	<div class={style.repl}>
-		<progress-bar showing={!!loading} />
+		<loading-bar showing={!!loading} />
 		<style>{`
 			main {
 				height: 100% !important;

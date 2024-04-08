@@ -14,10 +14,9 @@ const routeChange = url => typeof ga === 'function' && ga('send', 'pageview', ur
 
 export default function Routes() {
 	const [loading, setLoading] = useState(false);
-
 	return (
 		<main>
-			<progress-bar showing={loading} />
+			<loading-bar showing={loading} />
 			<Router
 				onLoadStart={() => setLoading(true)}
 				onLoadEnd={() => setLoading(false)}
