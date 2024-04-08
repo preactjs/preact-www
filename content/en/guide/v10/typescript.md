@@ -84,6 +84,7 @@ like this.  This way, your alias will work properly when libraries import React.
     "baseUrl": "./",
     "paths": {
       "react": ["./node_modules/preact/compat/"],
+      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
       "react-dom": ["./node_modules/preact/compat/"]
     }
   }
