@@ -1,7 +1,6 @@
 ---
 layout: home
 title: Preact
-toc: false
 description: 'Быстрая 3КБ-альтернатива React с тем же современным API.'
 ---
 
