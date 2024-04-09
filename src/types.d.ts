@@ -1,18 +1,15 @@
 /// <reference types="vite/client" />
 
-import preact from 'preact';
-
-declare module "preact" {
-	namespace JSX {
+declare global {
+	namespace preact.JSX {
 		interface IntrinsicElements {
-			'loading-bar': LoadingBarProps;
+			'loading-bar': { showing: boolean };
+			'content-region': { name: string; 'data-page-nav': boolean; 'can-edit': boolean, children: any };
 		}
 	}
+	var prerenderPreactVersion: string;
+	var prerenderPreactReleaseUrl: string;
 }
 
-interface LoadingBarProps extends preact.JSX.HTMLAttributes<HTMLElement> {
-	showing: boolean;
-}
 
-declare var prerenderPreactVersion: string;
-declare var prerenderPreactReleaseUrl: string;
+export {}

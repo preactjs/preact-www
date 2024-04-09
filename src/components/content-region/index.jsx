@@ -70,7 +70,7 @@ export default function ContentRegion({ content, components, ...props }) {
 	}, [props.current]);
 
 	return (
-		<content-region name={props.current} data-page-nav={hasNav}>
+		<content-region name={props.current} data-page-nav={hasNav} can-edit={props.canEdit}>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup
