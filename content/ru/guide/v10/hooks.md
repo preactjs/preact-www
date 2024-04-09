@@ -318,7 +318,7 @@ function App() {
   );
 }
 // --repl-after
-render(<Foo />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
 ```
 
 ## Побочные эффекты
