@@ -3,14 +3,16 @@ import { useLocation, useRoute } from 'preact-iso';
 import config from '../../config.json';
 import style from './style.module.css';
 
-export const AVAILABLE_DOCS = [10, 8];
+export const LATEST_MAJOR = 'v10';
+export const AVAILABLE_DOCS = ['10', '8'];
 
 /**
  * Select box to switch the currently displayed docs version
  */
 export default function DocVersion() {
-	const { path, route } = useLocation();
-	const { version, name } = useRoute().params;
+	const { route } = useLocation();
+	const { params, path } = useRoute();
+	const { version, name } = params;
 
 	const onChange = useCallback(
 		e => {
@@ -28,7 +30,7 @@ export default function DocVersion() {
 			Version:{' '}
 			<select value={version} class={style.select} onChange={onChange}>
 				{AVAILABLE_DOCS.map(v => {
-					const suffix = v === 10 ? ' (current)' : '';
+					const suffix = LATEST_MAJOR.slice(1) == v ? ' (current)' : '';
 					return (
 						<option key={v} value={`v${v}`}>
 							{v}.x{suffix}

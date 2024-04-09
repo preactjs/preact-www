@@ -1,6 +1,7 @@
 import { useMemo } from 'preact/hooks';
+import { Suspense } from 'preact/compat';
 import { wrap } from 'comlink';
-import { FakeSuspense, useResource } from '../../lib/use-resource';
+import { useResource } from '../../lib/use-resource';
 
 let prismWorker;
 
@@ -75,9 +76,9 @@ function HighlightedCodeBlock({ code, lang }) {
 	return (
 		<div class="highlight-container">
 			<pre class="highlight">
-				<FakeSuspense fallback={fallback}>
+				<Suspense fallback={fallback}>
 					<HighlightedCode code={code} lang={lang} />
-				</FakeSuspense>
+				</Suspense>
 			</pre>
 			{repl && (
 				<a class="repl-link" href={`/repl?code=${encodeURIComponent(source)}`}>

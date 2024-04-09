@@ -1,4 +1,4 @@
-import { useRoute, useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import { useContent } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
 import { NotFound } from './not-found';
@@ -20,7 +20,7 @@ export default function BlogPage() {
 }
 
 function BlogLayout() {
-	const { path } = useLocation();
+	const { path } = useRoute();
 	const [lang] = useLanguage();
 
 	const { html, meta } = useContent([lang, path === '/' ? 'index' : path]);

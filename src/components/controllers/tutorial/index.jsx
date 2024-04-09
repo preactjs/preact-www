@@ -8,7 +8,7 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import linkState from 'linkstate';
 import { TutorialContext, SolutionContext } from './contexts';
 import cx from '../../../lib/cx';
@@ -168,7 +168,7 @@ function TutorialView({
 
 	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
 
-	const { url } = useLocation();
+	const { path } = useRoute();
 	const [lang] = useLanguage();
 	const { solved } = useContext(SolutionContext);
 
@@ -183,7 +183,7 @@ function TutorialView({
 		if (!loading && !initialLoad) {
 			content.current.scrollTo(0, 0);
 		}
-	}, [url, loading, initialLoad]);
+	}, [path, loading, initialLoad]);
 
 	const reRun = useCallback(() => {
 		let code = tutorial.state.code;
@@ -211,7 +211,7 @@ function TutorialView({
 								<div class={style.output} key="output">
 									{!initialLoad && (
 										<Runner
-											key={url}
+											key={path}
 											ref={tutorial.runner}
 											onSuccess={tutorial.onSuccess}
 											onRealm={tutorial.onRealm}
@@ -226,7 +226,7 @@ function TutorialView({
 												close
 											</button>
 											<ErrorOverlay
-												key={'e:' + url}
+												key={'e:' + path}
 												class={style.error}
 												name={error.name}
 												message={error.message}
@@ -298,7 +298,7 @@ function TutorialView({
 			</Splitter>
 
 			<InjectPrerenderData
-				name={url}
+				name={path}
 				data={{
 					html,
 					meta

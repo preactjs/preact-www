@@ -1,4 +1,4 @@
-import { useRoute, useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import { SolutionProvider } from './tutorial/contexts';
 import { useContent } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
@@ -19,8 +19,7 @@ export default function TutorialPage() {
 }
 
 function TutorialLayout() {
-	const { path } = useLocation();
-	const { params } = useRoute();
+	const { path, params } = useRoute();
 	const [lang] = useLanguage();
 
 	const { html, meta } = useContent([lang, !params.step ? 'tutorial/index' : path]);

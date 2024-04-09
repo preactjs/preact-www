@@ -1,7 +1,6 @@
 ---
 layout: home
 title: Preact
-toc: false
 description: 'React 的 3kb 轻量级替代方案，拥有相同的现代 API。'
 ---
 

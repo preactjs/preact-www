@@ -1,6 +1,6 @@
 import config from '../../config.json';
 import { useState, useEffect, useCallback } from 'preact/hooks';
-import { useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import style from './style.module.css';
 import { useLanguage } from '../../lib/i18n';
 
@@ -42,8 +42,8 @@ function useContributors(deps) {
 }
 
 export default function Footer() {
-	const { url } = useLocation();
-	const contrib = useContributors([url]);
+	const { path } = useRoute();
+	const contrib = useContributors([path]);
 	const [lang, setLang] = useLanguage();
 
 	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
