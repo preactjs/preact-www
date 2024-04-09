@@ -53,12 +53,3 @@ export function useResource(fn, deps) {
 	else if (state.status === 'error') throw state.result;
 	throw state.promise;
 }
-
-export function FakeSuspense(props) {
-	this.__c = childDidSuspend;
-	return this.state && this.state.suspended ? props.fallback : props.children;
-}
-
-function childDidSuspend(err) {
-	err.then(() => this.forceUpdate());
-}
