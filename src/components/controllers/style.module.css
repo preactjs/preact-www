@@ -7,7 +7,7 @@
 		margin-bottom: 4rem;
 	}
 
-	content-region:not([name='/']) :global(.markup) {
+	content-region[can-edit='true'] :global(.markup) {
 		margin-top: 2.5rem;
 
 		@media (max-width: 600px) {

@@ -24,6 +24,7 @@ export function MarkdownRegion({ html, meta, components }) {
 				content={html}
 				toc={meta.toc}
 				components={components}
+				canEdit={canEdit}
 			/>
 		</>
 	);
