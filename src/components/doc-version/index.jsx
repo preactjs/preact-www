@@ -10,8 +10,9 @@ export const AVAILABLE_DOCS = ['10', '8'];
  * Select box to switch the currently displayed docs version
  */
 export default function DocVersion() {
-	const { path, route } = useLocation();
-	const { version, name } = useRoute().params;
+	const { route } = useLocation();
+	const { params, path } = useRoute();
+	const { version, name } = params;
 
 	const onChange = useCallback(
 		e => {

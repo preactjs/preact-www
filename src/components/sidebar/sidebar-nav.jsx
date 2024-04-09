@@ -1,4 +1,4 @@
-import { useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import cx from '../../lib/cx';
 import style from './sidebar-nav.module.css';
 
@@ -13,7 +13,7 @@ import style from './sidebar-nav.module.css';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
-	const { path } = useLocation();
+	const { path } = useRoute();
 
 	return (
 		<nav

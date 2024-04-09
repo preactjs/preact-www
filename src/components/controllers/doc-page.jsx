@@ -1,4 +1,4 @@
-import { useRoute, useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import { useContent } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
 import config from '../../config.json';
@@ -24,7 +24,7 @@ export function DocPage() {
 }
 
 export function DocLayout({ isGuide = false }) {
-	const { path } = useLocation();
+	const { path } = useRoute();
 	const [lang] = useLanguage();
 
 	const { html, meta } = useContent([lang, path === '/' ? 'index' : path]);

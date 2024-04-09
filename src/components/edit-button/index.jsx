@@ -1,9 +1,9 @@
-import { useLocation } from 'preact-iso';
+import { useRoute } from 'preact-iso';
 import { useLanguage } from '../../lib/i18n';
 import style from './style.module.css';
 
 export default function EditThisPage({ isFallback }) {
-	let { path } = useLocation();
+	let { path } = useRoute();
 	const [lang] = useLanguage();
 
 	path = !isFallback ? path + '.md' : '';
