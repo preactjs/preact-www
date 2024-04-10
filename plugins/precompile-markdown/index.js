@@ -25,7 +25,7 @@ export function precompileMarkdown(content, path) {
  *   meta: { toc: [], title: "" }
  * }
  */
-export function parseContent(content, path) {
+function parseContent(content, path) {
 	// Find YAML FrontMatter preceeding a markdown document
 	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
@@ -63,7 +63,7 @@ function markdownToHTML(data) {
 	return data;
 }
 
-export function applyEmojiToContent(data) {
+function applyEmojiToContent(data) {
 	data.content = applyEmoji(data.content);
 	return data;
 }
