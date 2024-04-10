@@ -1,3 +1,4 @@
+import { useRoute } from 'preact-iso';
 import { Repl } from './repl';
 import { useContent } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
