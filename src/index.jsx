@@ -27,7 +27,6 @@ let initialized = false;
 export async function prerender() {
 	const init = async () => {
 		globalThis.prismWorker = await import('./components/code-block/prism.worker.js');
-		globalThis.markedWorker = await import('./lib/marked.worker.js');
 
 		// DOMParser polyfill for `preact-markup`
 		const { DOMParser } = await import('@xmldom/xmldom');
