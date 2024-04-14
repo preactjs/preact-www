@@ -93,7 +93,9 @@ render(<Clock />, document.getElementById('app'));
 | `getSnapshotBeforeUpdate(prevProps, prevState)`      | вызывается непосредственно перед `render()`. возвращаемое значение передается в `componentDidUpdate`. |
 | `componentDidUpdate(prevProps, prevState, snapshot)` | после `render()`                                                                                         |
 
-> См. [эту диаграмму](https://twitter.com/dan_abramov/status/981712092611989509), чтобы получить визуальное представление о том, как они связаны друг с другом.
+Вот наглядный обзор того, как они соотносятся друг с другом (первоначально опубликован в [твите](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) Дэном Абрамовым):
+
+![Диаграмма методов жизненного цикла компонентов](/assets/guide/components-lifecycle-diagram.png)
 
 ### Error Boundaries (Границы ошибок или предохранители)
 
