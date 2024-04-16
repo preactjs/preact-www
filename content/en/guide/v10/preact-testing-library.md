@@ -108,7 +108,7 @@ With a full DOM environment in place, we can verify our DOM nodes directly. Comm
 
 ### Using Content
 
-The Testing Library philosophy is that the "the more your tests resemble the way your software is used, the more confidence they can give you".
+The Testing Library philosophy is that "the more your tests resemble the way your software is used, the more confidence they can give you".
 
 The recommended way to interact with a page is by finding elements the way a user does, through the text content.
 
