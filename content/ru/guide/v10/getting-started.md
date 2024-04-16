@@ -233,6 +233,7 @@ TypeScript, даже если он используется вместе со с
     "baseUrl": "./",
     "paths": {
       "react": ["./node_modules/preact/compat/"],
+      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
       "react-dom": ["./node_modules/preact/compat/"]
     }
   }
