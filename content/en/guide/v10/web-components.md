@@ -163,7 +163,7 @@ register(FullName, 'full-name');
 
 ### Passing slots as props
 
-The `register()` function has a fourth parameter to pass options. Currently only the `shadow` options is supported, which attaches a shadow DOM tree to the specified element. When enabled, this allows the use of named `<slot>` elements to forward the Custom Element's children to specific places in the shadow tree.
+The `register()` function has a fourth parameter to pass options. Currently only the `shadow` option is supported, which attaches a shadow DOM tree to the specified element. When enabled, this allows the use of named `<slot>` elements to forward the Custom Element's children to specific places in the shadow tree.
 
 ```jsx
 function TextSection({ heading, content }) {
