@@ -234,7 +234,7 @@ export default {
 [htm]: https://github.com/developit/htm
 [Preact CLI]: https://github.com/preactjs/preact-cli
 
-## 为 preact/compact 配置 TypeScript
+## 为 preact/compat 配置 TypeScript
 
 您的项目可能需要更广的 React 生态的支持。为了让您的应用得以编译，您可能需要先关闭 `node_modules` 路径的类型检查，并以类似如下方式添加类型路径。这样，您的别名才能在第三方库导入 React 时正常被替换。
 
@@ -246,7 +246,9 @@ export default {
     "baseUrl": "./",
     "paths": {
       "react": ["./node_modules/preact/compat/"],
-      "react-dom": ["./node_modules/preact/compat/"]
+      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
+      "react-dom": ["./node_modules/preact/compat/"],
+      "react-dom/*": ["./node_modules/preact/compat/*"]
     }
   }
 }
