@@ -49,7 +49,6 @@ export async function prerender() {
 		{ type: 'meta', props: { property: 'og:url', content: `https://preactjs.com${location.pathname}` } },
 		{ type: 'meta', props: { property: 'og:title', content: globalThis.title } },
 		{ type: 'meta', props: { property: 'og:description', content: globalThis.description } },
-		{ type: 'meta', props: { property: 'og:image', content: 'https://preactjs.com/assets/app-icon.png' } },
 		location.pathname.includes('/v8/') && { type: 'meta', props: { name: 'robots', content: 'noindex' } },
 		process.env.BRANCH && { type: 'script', children: `ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga('set','dimension1','${process.env.BRANCH}');onerror=function(e,f,l,c){ga('send','event','exception',e,f+':'+l+':'+c)}` }
 	].filter(Boolean));
