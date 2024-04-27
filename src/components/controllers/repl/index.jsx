@@ -248,6 +248,7 @@ export class Repl extends Component {
 			<ReplWrapper loading={!!loading}>
 				<header class={style.toolbar}>
 					<label>
+						Examples:{' '}
 						<select value={exampleSlug} onChange={this.loadExample}>
 							<option value="" disabled>
 								Select Example...
