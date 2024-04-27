@@ -21,7 +21,7 @@ export default function Toc() {
 
 	return (
 		<div ref={ref}>
-			<nav tabIndex={0} onFocus={this.open}>
+			<nav onFocus={this.open}>
 				<ul>
 					{items.map(entry => (
 						<TocItem {...entry} />
