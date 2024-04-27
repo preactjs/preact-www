@@ -199,15 +199,16 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 			location.route('/branding');
 		}
 	}
+	const homeProps = to.href == '/' || to.path == '/' ? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' } : {};
 
 	return (
 		<a
 			href={to.href || to.path}
 			{...props}
 			data-route={route}
-			onContextMenu={BrandingRedirect}
+			{...homeProps}
 		>
-			{Flair && <Flair />}
+			{Flair && <Flair title="Preact Logo" />}
 			{getRouteName(to, lang)}
 		</a>
 	);
