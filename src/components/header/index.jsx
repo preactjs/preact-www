@@ -199,7 +199,9 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 			location.route('/branding');
 		}
 	}
-	const homeProps = to.href == '/' || to.path == '/' ? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' } : {};
+	const homeProps = to.href == '/' || to.path == '/'
+		? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
+		: {};
 
 	return (
 		<a
