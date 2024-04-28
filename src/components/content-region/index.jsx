@@ -20,11 +20,19 @@ const COMPONENTS = {
 	}
 };
 
-for (let i = 1; i <= 6; i++) {
-	const Tag = 'h' + i;
-	COMPONENTS[Tag] = function header(props) {
+// Skip h1, no need to link to a page title
+for (let i = 2; i <= 6; i++) {
+	const Tag = /** @type {keyof preact.JSX.IntrinsicElements} */ ('h' + i);
+	COMPONENTS[Tag] = function heading(props) {
 		props.children = props.id
-			? [<a href={'#' + props.id} />, props.children]
+			? [
+				<a class="fragment-link" href={'#' + props.id}>
+					<svg width="16" height="16" viewBox="0 0 24 24">
+						<use href="/icons.svg#link" />
+					</svg>
+				</a>,
+				<span>{props.children}</span>
+			]
 			: props.children;
 		return <Tag {...props} />;
 	};
