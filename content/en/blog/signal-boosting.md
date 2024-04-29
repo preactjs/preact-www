@@ -190,7 +190,7 @@ dispose();
 count.value = 20;  // nothing gets printed to the console
 ```
 
-There are other functions, like [`batch`](/guide/v10/signals/#batch-fn), but these three are the most relevant to the implementation notes that follow.
+There are other functions, like [`batch`](/guide/v10/signals/#batchfn), but these three are the most relevant to the implementation notes that follow.
 
 
 # Implementation Notes

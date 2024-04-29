@@ -192,7 +192,7 @@ dispose();
 count.value = 20;  // no se imprime nada en la consola
 ```
 
-Existen otras funciones, como [`batch`](/guide/v10/signals/#batch-fn), pero estas tres son las más relevantes para las notas de implementación que siguen.
+Existen otras funciones, como [`batch`](/guide/v10/signals/#batchfn), pero estas tres son las más relevantes para las notas de implementación que siguen.
 
 
 # Notas de implementación
