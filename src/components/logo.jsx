@@ -77,8 +77,6 @@ export default class Logo extends Component {
 		},
 		{ i }
 	) {
-		let touch =
-			typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1;
 		if (inverted) [bg, fg] = [fg, bg];
 		this.route = useLocation().route;
 
@@ -89,8 +87,8 @@ export default class Logo extends Component {
 				height="34px"
 				viewBox={`-256 -256 ${text ? 1800 : 512} 512`}
 				style="display:inline-block; margin:-.25em 0 0; vertical-align:middle;"
-				onMouseover={!touch && this.hover}
-				onMouseout={!touch && this.hoverOut}
+				onMouseOver={this.hover}
+				onMouseOut={this.hoverOut}
 				onContextMenu={this.contextMenu}
 				{...props}
 			>
