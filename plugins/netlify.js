@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { pathToFileURL } from 'node:url'
 import { Readable } from 'stream';
 
 /**
@@ -16,12 +17,14 @@ export function netlifyPlugin() {
 		const url = new URL(req.url, `http://${req.headers.host}`);
 		if (!url.pathname.startsWith('/.netlify/functions/')) return next();
 
-		const file = path.join(
-			lambdaDir,
-			url.pathname
-				.slice('/.netlify/functions/'.length)
-				.split(path.posix.sep)
-				.join(path.sep)
+		const file = pathToFileURL(
+			path.join(
+				lambdaDir,
+				url.pathname
+					.slice('/.netlify/functions/'.length)
+					.split(path.posix.sep)
+					.join(path.sep)
+			)
 		);
 
 		const { default: netlifyLambda } = await import(`${file}.js?t=${Date.now()}`);
