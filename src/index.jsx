@@ -46,7 +46,7 @@ export async function prerender() {
 
 	const elements = new Set([
 		{ type: 'meta', props: { name: 'description', content: globalThis.description } },
-		{ type: 'meta', props: { property: 'og:url', content: `https://preactjs.com${location.pathname}` } },
+		{ type: 'meta', props: { property: 'og:url', content: `${import.meta.env.NETLIFY_DEPLOY_URL}${location.pathname}` } },
 		{ type: 'meta', props: { property: 'og:title', content: globalThis.title } },
 		{ type: 'meta', props: { property: 'og:description', content: globalThis.description } },
 		location.pathname.includes('/v8/') && { type: 'meta', props: { name: 'robots', content: 'noindex' } },

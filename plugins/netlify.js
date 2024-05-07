@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { pathToFileURL } from 'node:url'
+import { pathToFileURL } from 'node:url';
 import { Readable } from 'stream';
 
 /**

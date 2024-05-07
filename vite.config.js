@@ -10,6 +10,10 @@ import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.j
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 
+const NETLIFY_DEPLOY_URL = process.env.CONTEXT === 'deploy-preview'
+	? process.env.DEPLOY_PRIME_URL
+	: 'https://preactjs.com';
+
 export default defineConfig({
 	publicDir: 'src/assets',
 	optimizeDeps: {
@@ -19,7 +23,11 @@ export default defineConfig({
 		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
 		outDir: 'build'
 	},
+	define: {
+		'import.meta.env.NETLIFY_DEPLOY_URL': JSON.stringify(NETLIFY_DEPLOY_URL)
+	},
 	plugins: [
+		// @ts-ignore
 		replace({
 			'process.env.BRANCH': JSON.stringify(process.env.BRANCH),
 			preventAssignment: true
@@ -53,6 +61,6 @@ export default defineConfig({
 		netlifyPlugin(),
 		spaFallbackMiddlewarePlugin(),
 		htmlRoutingMiddlewarePlugin(),
-		rssFeedPlugin()
+		rssFeedPlugin(NETLIFY_DEPLOY_URL)
 	]
 });
