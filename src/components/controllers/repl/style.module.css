@@ -43,7 +43,8 @@
 			font-size: 100%;
 			outline: none;
 			cursor: pointer;
-			&:hover {
+			&:hover,
+			&:focus {
 				background: linear-gradient(to bottom, #404650, #323640);
 				background-color: #424854;
 				color: #d5dce8;

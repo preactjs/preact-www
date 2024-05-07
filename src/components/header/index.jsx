@@ -194,20 +194,21 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	}
 
 	function BrandingRedirect(e) {
-		if (to.href == '/' || to.path == '/') {
-			e.preventDefault();
-			location.route('/branding');
-		}
+		e.preventDefault();
+		location.route('/branding');
 	}
+	const homeProps = to.href == '/' || to.path == '/'
+		? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
+		: {};
 
 	return (
 		<a
 			href={to.href || to.path}
 			{...props}
 			data-route={route}
-			onContextMenu={BrandingRedirect}
+			{...homeProps}
 		>
-			{Flair && <Flair />}
+			{Flair && <Flair title="Preact Logo" />}
 			{getRouteName(to, lang)}
 		</a>
 	);

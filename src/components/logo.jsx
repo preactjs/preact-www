@@ -73,6 +73,7 @@ export default class Logo extends Component {
 			fg = 'white',
 			bg = '#673ab8',
 			component,
+			title,
 			...props
 		},
 		{ i }
@@ -82,7 +83,7 @@ export default class Logo extends Component {
 
 		return (
 			<svg
-				class="logo"
+				aria-label={title}
 				width={!text && '34px'}
 				height="34px"
 				viewBox={`-256 -256 ${text ? 1800 : 512} 512`}

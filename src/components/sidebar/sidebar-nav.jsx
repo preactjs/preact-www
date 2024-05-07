@@ -16,10 +16,7 @@ export default function SidebarNav({ items, onClick }) {
 	const { path } = useRoute();
 
 	return (
-		<nav
-			tabIndex={0}
-			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
-		>
+		<nav class={cx(style.toc, !(items && items.length > 1) && style.disabled)}>
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
 					return (

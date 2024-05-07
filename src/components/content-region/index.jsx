@@ -27,7 +27,7 @@ for (let i = 2; i <= 6; i++) {
 		props.children = props.id
 			? [
 				<a class="fragment-link" href={'#' + props.id}>
-					<svg width="16" height="16" viewBox="0 0 24 24">
+					<svg width="16" height="16" viewBox="0 0 24 24" aria-label={`Link to: ${props.children} (#${props.id})`}>
 						<use href="/icons.svg#link" />
 					</svg>
 				</a>,

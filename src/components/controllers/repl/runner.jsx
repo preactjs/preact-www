@@ -183,6 +183,7 @@ export default class Runner extends Component {
 				class={style.runner + ' ' + (props.class || '')}
 				style={props.style}
 				ref={this.frame}
+				title="REPL Result"
 			/>
 		);
 	}

@@ -9,6 +9,7 @@
 	text-decoration: none !important;
 	white-space: nowrap;
 	letter-spacing: 0.075em;
+	transition: filter 0.3s;
 
 	@media (min-width: 600px) {
 		padding: 0.75rem 2rem;
@@ -28,6 +29,11 @@
 		&.secondary {
 			color: white !important;
 		}
+	}
+
+	&:hover,
+	&:focus {
+		filter: brightness(0.8);
 	}
 }
 
