@@ -18,11 +18,17 @@
 .tutorial {
 	position: absolute;
 	left: 0;
-	top: 96px;
+	top: var(--header-and-banner-height);
 	bottom: 0;
 	height: auto;
 	width: 100%;
 	overflow: hidden;
+
+	@media (max-height: 431px) {
+		& {
+			top: var(--header-height);
+		}
+	}
 
 	:global(.markup) {
 		p:first-of-type {
