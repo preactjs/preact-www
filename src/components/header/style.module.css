@@ -11,6 +11,12 @@
 	b {
 		color: #ffd600;
 	}
+
+	@media (max-height: 431px) {
+		& {
+			display: none;
+		}
+	}
 }
 
 .outer {
