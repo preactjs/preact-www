@@ -33,24 +33,8 @@
 		color: transparent !important;
 		/* Fix IE 11 border */
 		background: none !important;
-
-		&:hover svg,
-		&:focus svg {
-			filter: grayscale(0);
-			opacity: 1;
-		}
-
-		@media (prefers-color-scheme: dark) {
-			&:hover svg,
-			&:focus svg {
-				filter: invert(0) hue-rotate(0deg) grayscale(0)
-					drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
-					drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
-			}
-		}
 	}
 
-	img,
 	svg {
 		height: 3rem;
 		width: auto;
@@ -63,6 +47,21 @@
 		/* Invert based on luminosity */
 		@media (prefers-color-scheme: dark) {
 			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+		}
+
+		&:hover,
+		&:focus {
+			filter: grayscale(0);
+			opacity: 1;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			&:hover,
+			&:focus {
+				filter: invert(0) hue-rotate(0deg) grayscale(0)
+					drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
+					drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+			}
 		}
 	}
 }
