@@ -450,7 +450,7 @@ const App = props => {
     document.getElementById(inputId).focus()
   }, [])
   
-  // Display a nice error message
+  // Display an input with a unique ID.
   return (
     <main id={mainId}>
       <input id={inputId}>
