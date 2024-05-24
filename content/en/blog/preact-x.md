@@ -96,6 +96,21 @@ In 10.19.0 Marvin applied his research from [fresh](https://fresh.deno.dev/) to 
 this basically allows you to pre-compile your components during transpilation, when render-to-string is running we just have to concatenate the strings rather
 than allocating memory for the whole VNode tree. The transform for this is exclusive to Deno at the moment but the general concept is present in Preact!
 
+### 10.20.2
+
+We have faced a number of issues where an event could bubble up to a newly inserted VNode which would result in undesired behaviour, this was fixed
+[by adding an event-clock](https://github.com/preactjs/preact/pull/4322). In the following scenario, you would click the button which sets state, the browser
+interleaves event bubbling with micro-ticks, which is also what Preact uses to schedule updates. This combination means that Preact will update the UI, meaning
+that the `<div>` will get that `onClick` handler which we'll bubble up to and invoke the `click` again toggling this state immediately off again.
+
+```jsx
+const App = () => {
+  const [toggled, setToggled] = useState(false);
+
+  return toggled ? <div onClick={() => setToggled(false)}><span>clear</span></div> : <div><button onClick={() => setToggled(true)}>toggle on</button></div>
+}
+```
+
 ## Stability
 
 The above are some cherry-picked releases of things that our community received _without_ breaking changes, but there is so much more... Adding a new major
