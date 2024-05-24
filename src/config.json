@@ -627,9 +627,23 @@
 		{
 			"name": "Ivan Ulloque",
 			"link": "https://github.com/ZUR1C4T0"
+		},
+		{
+			"name": "Jovi De Croock",
+			"link": "https://twitter.com/JoviDeC"
 		}
 	],
 	"blog": [
+		{
+			"path": "/blog/preact-x",
+			"date": "2024-05-24",
+			"name": {
+				"en": "Preact X"
+			},
+			"excerpt": {
+				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen."
+			}
+		},
 		{
 			"path": "/blog/signal-boosting",
 			"name": {

@@ -115,8 +115,10 @@ const App = () => {
 ## Stability
 
 The above are some cherry-picked releases of things that our community received _without_ breaking changes, but there is so much more... Adding a new major
-version always leaves a part of the community behind and we don't want to do that. Stability is great, we as the Preact team love stability. That being said
-during this whole adventure of releases we actually released so much more...
+version always leaves a part of the community behind and we don't want to do that. If we look at the Preact 8 release line we can see that there's still 100.000
+downloads in the past week, the last 8.x release was 5 years ago, just to show that a part of the community gets left behind.
+
+Stability is great, we as the Preact team love stability. That being said during this whole adventure of releases we actually released so much more...
 
 - [Signals](https://github.com/preactjs/signals)
 - [Async rendering](https://github.com/preactjs/preact-render-to-string/pull/333)
@@ -127,8 +129,8 @@ We value our ecoystem and we value the extensions being built through our `optio
 breaking changes but instead, allow you all to benefit from our research without a painful migration path.
 
 This doesn't mean that Preact 11 won't happen but it might not be the thing that we initially promised, instead we might just drop IE11 support and give you
-those performance improvments, all while giving you the stability of Preact X. We could work on more ecosystem projects, meta-frameworks, ... however we'd love
-for y'all to express your opinion, what does preact need according to you?
+those performance improvments, all while giving you the stability of Preact X. We could instead work on a meta-framework for Node to accompany Deno as a great
+way to write Preact, we could bet more on signals, ... There are a lot of options while avoiding leaving a part of the community behind.
 
 We aren't gone, we are here to listen to you and we want to grow this community together, I'm sorry it's been this long since you heard from us and we'll do
 our very best to improve... Feel free to remind us, but keep in mind that we are only a few people serving a lot.
