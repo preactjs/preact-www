@@ -7,9 +7,9 @@ authors:
 
 # Preact X, a story of stability
 
-A lot of you have been waiting for [the infamous Preact 11](https://github.com/preactjs/preact/issues/2621), an issue started
+A lot of you have been waiting for [Preact 11](https://github.com/preactjs/preact/issues/2621), an issue started
 back in July 2020, and to be clear I was one of the most excited people for v11.
-When we started thinking about Preact 11 we believed that there was no way to introduce the stuff we had in mind
+When we started thinking about Preact 11 we believed that there was no way to introduce the changes we had in mind
 in Preact X without breaking changes, some of the things we had in mind:
 
 - Using a backing VNode structure to reduce GC, by doing this we'd only use the result of `h()` to update our backing-node.
@@ -21,13 +21,14 @@ The above were our goals, when breaking these down we can clearly see that there
 be a breaking change for our consumers while point 1 would have a huge impact to folks building extensions like Preact Signals,
 Preact devtools, ... This could break a lot of the cool stuff our community is working on to extend Preact.
 
-As we were exploring Preact 11 we experimented with a new type of diffing, named [skew based diffing](https://github.com/preactjs/preact/pull/3388),
-this landed in Preact 11 and we saw real performance improvements as well as this fixing a bunch of long-running bugs. As time went on
-and we invested more time in Preact 11 we started noticing that the improvements we were landing weren't exclusive to Preact 11...
+As we were [experimenting](https://github.com/preactjs/preact/tree/v11) we went a new type of diffing, named
+[skew based diffing](https://github.com/preactjs/preact/pull/3388), we saw real performance
+improvements as well as this fixing a bunch of long-running bugs. As time went on and we invested more time in
+these experiemnts for Preact 11, we started noticing that the improvements we were landing weren't exclusive to Preact 11...
 
 ## Releases
 
-Since our Preact 11 announceement there have been 18 (!!) minor versions of Preact, a lot of these have been largely inspired by the work
+Since the aforementioned Preact 11 issue there have been 18 (!!) minor versions of Preact, a lot of these have been largely inspired by the work
 that we have been doing on Preact X. Let's go over a few of these and look at the impact.
 
 ### 10.5.0
@@ -35,8 +36,8 @@ that we have been doing on Preact X. Let's go over a few of these and look at th
 The introduction of [resumed hydration](https://github.com/preactjs/preact/pull/2754) this functionality basically allows suspending during
 the re-hydration of your component tree. This means that for instance in the following component tree we'll re-hydrate and make the `Header`
 interactive while the `LazyArticleHeader` suspends, in the meanwhile the server-rendered DOM will stay on screeen. When the lazy-load finishes
-we'll continue re-hdyrating, our `Header` and `LazyArticleHeader` can be interacted with while our `LazyContents` resolve. This is a pretty
-powereful feature to make your most important stuff interactive while not overloading the bundle-size/download-size of your initial bundle.
+we'll continue re-hydrating, our `Header` and `LazyArticleHeader` can be interacted with while our `LazyContents` resolve. This is a pretty
+powerful feature to make your most important stuff interactive while not overloading the bundle-size/download-size of your initial bundle.
 
 ```jsx
 const App = () => {
@@ -61,13 +62,13 @@ const App = () => {
 ### 10.8.0
 
 In 10.8.0 we introduced [state settling](https://github.com/preactjs/preact/pull/3553), this would ensure that if a component updates hook-state
-during render that we'd pick this up, cancel prior effects and render on. We'd ofcourse have to ensure that this didn't loop but this feature
-reduces the amount of renders are queued up because of in-render state invocations, this feature also increased our compatability with the
+during render that we'd pick this up, cancel prior effects and render on. We'd of course have to ensure that this didn't loop but this feature
+reduces the amount of renders that are queued up because of in-render state invocations, this feature also increased our compatability with the
 React ecosystem as a lot of libraries relied on effects not being called multiple times due to in-render state updates.
 
 ### 10.11.0
 
-After a lot of research we found a way to introduce [useId](https://github.com/preactjs/preact/pull/3583) into Preact, this required at on of research
+After a lot of research we found a way to introduce [useId](https://github.com/preactjs/preact/pull/3583) into Preact, this required a ton of research
 of how we could go about adding unique values for a given tree-structure. One of our maintainers wrote about
 [our research at the time](https://www.jovidecroock.com/blog/preact-use-id) and we've iterated on it ever since trying to make it as collission free as possible...
 
@@ -80,7 +81,8 @@ batches these updates up as well as increased our alignment for React libraries.
 
 ### 10.16.0
 
-In our research for v11 we went deep on child-diffing as we were aware that there were a few cases where our current algorithm would fail, just listing a few
+In our research for v11 we went deep on child-diffing as we were aware that there were a few cases where our current algorithm would fall short, just listing a few
+of these issues:
 
 - [https://github.com/preactjs/preact/issues/3973](removing an element before another would cause re-insertion)
 - [https://github.com/preactjs/preact/issues/2622](re-insertiosn when removing more than 1 child)
