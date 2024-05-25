@@ -13,6 +13,12 @@ Signals are effective in applications of any size, with ergonomics that speed up
 
 ---
 
+**Important**
+
+This guide will go over using Signals in Preact, and while this is largely applicable to both the Core and React libraries, there will be some usage differences. The best references for their usage is in their respective docs: [`@preact/signals-core`](https://github.com/preactjs/signals), [`@preact/signals-react`](https://github.com/preactjs/signals/tree/main/packages/react)
+
+---
+
 <div><toc></toc></div>
 
 ---
@@ -341,7 +347,7 @@ This poses a question: how can we subscribe to signals outside of the component 
 To run arbitrary code in response to signal changes, we can use [`effect(fn)`](#effectfn). Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. Unlike computed signals, [`effect()`](#effectfn) does not return a signal - it's the end of a sequence of changes.
 
 ```js
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from "@preact/signals";
 
 const name = signal("Jane");
 const surname = signal("Doe");
@@ -369,7 +375,7 @@ effect(() => {
 You can destroy an effect and unsubscribe from all signals it accessed by calling the returned function.
 
 ```js
-import { signal, effect } from "@preact/signals-core";
+import { signal, effect } from "@preact/signals";
 
 const name = signal("Jane");
 const surname = signal("Doe");
@@ -441,7 +447,7 @@ Accessing a signal that has been modified within a batch will reflect its update
 
 ```js
 // --repl
-import { signal, computed, effect, batch } from "@preact/signals-core";
+import { signal, computed, effect, batch } from "@preact/signals";
 
 const count = signal(0);
 const double = computed(() => count.value * 2);
