@@ -127,6 +127,8 @@ Stability is great, we as the Preact team love stability. We actually released m
 - [Streaming rendering](https://github.com/preactjs/preact-render-to-string/pull/354)
 - [Prefresh](https://github.com/preactjs/prefresh)
 - [The vite preset with pre-rendering](https://github.com/preactjs/preset-vite#prerendering-configuration)
+- [A new async router](https://github.com/preactjs/preact-iso)
+- [Create Preact](https://github.com/preactjs/create-preact)
 
 We value our ecosystem and we value the extensions being built through our [`options API`](https://marvinh.dev/blog/preact-options/),
 this is one of the main drivers behind not wanting to introduce these breaking changes but instead, allow you all to benefit
