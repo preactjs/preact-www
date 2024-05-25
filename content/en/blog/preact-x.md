@@ -7,15 +7,15 @@ authors:
 
 # Preact X, a story of stability
 
-A lot of you have been waiting for [Preact 11](https://github.com/preactjs/preact/issues/2621), an issue started
-back in July 2020, and to be clear I was one of the most excited people for v11.
+A lot of you have been waiting for [Preact 11](https://github.com/preactjs/preact/issues/2621), announced in an issue opened
+way back in July 2020, and to be clear I was one of the most excited people for v11.
 When we started thinking about Preact 11 we believed that there was no way to introduce the changes we had in mind
 in Preact X without breaking changes, some of the things we had in mind:
 
 - Using a backing VNode structure to reduce GC, by doing this we'd only use the result of `h()` to update our backing-node.
-- Reconciler performance, adding fast routes for mounting/...
+- Reconciler performance, adding fast paths for mounting/...
 - Some changes like removing `px` suffixing, `forwardRef` and breaking IE11 support.
-- Addressing event/child-diffing bugs.
+- Addressing event/child diffing bugs.
 
 The above were our goals, when breaking these down we can clearly see that there's a distinction here, only point 3 would
 be a breaking change for our consumers while point 1 would have a huge impact to folks building extensions like Preact Signals,
@@ -23,13 +23,13 @@ Preact devtools, ... This could break a lot of the cool stuff our community is w
 
 As we were [experimenting](https://github.com/preactjs/preact/tree/v11) we went a new type of diffing, named
 [skew based diffing](https://github.com/preactjs/preact/pull/3388), we saw real performance
-improvements as well as this fixing a bunch of long-running bugs. As time went on and we invested more time in
-these experiemnts for Preact 11, we started noticing that the improvements we were landing weren't exclusive to Preact 11...
+improvements as well as it fixing a bunch of long-running bugs. As time went on and we invested more time in
+these experiemnts for Preact 11, we started noticing that the improvements we were landing didn't need to be exclusive to Preact 11...
 
 ## Releases
 
-Since the aforementioned Preact 11 issue there have been 18 (!!) minor versions of Preact, a lot of these have been largely inspired by the work
-that we have been doing on Preact X. Let's go over a few of these and look at the impact.
+Since the aforementioned Preact 11 issue there have been 18 (!!) minor versions of Preact X.
+Many of them have been directly inspired by work done on Preact 11. Let's go over a few and look at the impact.
 
 ### 10.5.0
 
@@ -81,7 +81,7 @@ batches these updates up as well as increased our alignment for React libraries.
 
 ### 10.16.0
 
-In our research for v11 we went deep on child-diffing as we were aware that there were a few cases where our current algorithm would fall short, just listing a few
+In our research for v11 we went deep on child diffing as we were aware that there were a few cases where our current algorithm would fall short, just listing a few
 of these issues:
 
 - [https://github.com/preactjs/preact/issues/3973](removing an element before another would cause re-insertion)
@@ -120,19 +120,19 @@ The above are some cherry-picked releases of things that our community received 
 version always leaves a part of the community behind and we don't want to do that. If we look at the Preact 8 release line we can see that there's still 100.000
 downloads in the past week, the last 8.x release was 5 years ago, just to show that a part of the community gets left behind.
 
-Stability is great, we as the Preact team love stability. That being said during this whole adventure of releases we actually released so much more...
+Stability is great, we as the Preact team love stability. We actually released multiple major features on other ecosystem projects:
 
 - [Signals](https://github.com/preactjs/signals)
 - [Async rendering](https://github.com/preactjs/preact-render-to-string/pull/333)
 - [Streaming rendering](https://github.com/preactjs/preact-render-to-string/pull/354)
 - [Prefresh](https://github.com/preactjs/prefresh)
 
-We value our ecoystem and we value the extensions being built through our `options API`, this is one of the main drivers behind not wanting to introduce these
-breaking changes but instead, allow you all to benefit from our research without a painful migration path.
+We value our ecosystem and we value the extensions being built through our [`options API`](https://marvinh.dev/blog/preact-options/),
+this is one of the main drivers behind not wanting to introduce these breaking changes but instead, allow you all to benefit
+from our research without a painful migration path.
 
-This doesn't mean that Preact 11 won't happen but it might not be the thing that we initially promised, instead we might just drop IE11 support and give you
+This doesn't mean that Preact 11 won't happen but it might not be the thing that we initially thought it would be, instead we might just drop IE11 support and give you
 those performance improvments, all while giving you the stability of Preact X. We could instead work on a meta-framework for Node to accompany Deno as a great
-way to write Preact, we could bet more on signals, ... There are a lot of options while avoiding leaving a part of the community behind.
+way to write Preact, we could bet more on signals... There are a lot of options while avoiding leaving a part of the community behind.
 
-We aren't gone, we are here to listen to you and we want to grow this community together, I'm sorry it's been this long since you heard from us and we'll do
-our very best to improve... Feel free to remind us, but keep in mind that we are only a few people serving a lot.
+We aren't gone, we are here to listen to you and we want to grow this community together.
