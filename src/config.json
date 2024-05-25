@@ -638,10 +638,10 @@
 			"path": "/blog/preact-x",
 			"date": "2024-05-24",
 			"name": {
-				"en": "Preact X"
+				"en": "Preact X, a story of stability"
 			},
 			"excerpt": {
-				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen."
+				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened."
 			}
 		},
 		{
