@@ -452,15 +452,6 @@
 						}
 					},
 					{
-						"path": "/progressive-web-apps",
-						"name": {
-							"en": "Progressive Web Apps",
-							"zh": "渐进式 Web 应用",
-							"kr": "점진적 웹 앱 (PWA)",
-							"ru": "Прогрессивные веб-приложения"
-						}
-					},
-					{
 						"path": "/server-side-rendering",
 						"name": {
 							"en": "Server-Side Rendering",
