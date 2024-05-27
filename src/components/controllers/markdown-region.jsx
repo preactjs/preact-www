@@ -1,3 +1,4 @@
+import { Fragment } from 'preact';
 import { useRoute } from 'preact-iso';
 import EditThisPage from '../edit-button';
 import ContentRegion from '../content-region';
@@ -16,7 +17,7 @@ export function MarkdownRegion({ html, meta, components }) {
 	const isBlogArticle = path.startsWith('/blog/');
 
 	return (
-		<>
+		<Fragment key={path}>
 			{canEdit && <EditThisPage isFallback={meta.isFallback} />}
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
@@ -26,6 +27,6 @@ export function MarkdownRegion({ html, meta, components }) {
 				components={components}
 				canEdit={canEdit}
 			/>
-		</>
+		</Fragment>
 	);
 }
