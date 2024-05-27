@@ -146,7 +146,5 @@ this is one of the main drivers behind not wanting to introduce these breaking c
 from our research without a painful migration path.
 
 This doesn't mean that Preact 11 won't happen but it might not be the thing that we initially thought it would be, instead we might just drop IE11 support and give you
-those performance improvments, all while giving you the stability of Preact X. We could instead work on a meta-framework for Node to accompany Deno as a great
+those performance improvments, all while giving you the stability of Preact X. We could instead work on a meta-framework for Node like [Fresh](https://fresh.deno.dev/) as a great
 way to write Preact, we could bet more on signals... There are a lot of options while avoiding leaving a part of the community behind.
-
-We aren't gone, we are here to listen to you and we want to grow this community together.
