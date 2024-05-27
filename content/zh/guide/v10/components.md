@@ -17,7 +17,7 @@ description: '组件是所有 Preact 应用的核心，了解学习如何构建�
 
 ## 函数组件
 
-函数组件是接受 `props` 作为参数的函数，其名称**必须**以大写字母开头才能在 JSX 中使用。
+函数组件是第一个参数为 `props` 的普通函数，其名称**必须**以大写字母开头才能在 JSX 中使用。
 
 ```jsx
 // --repl
@@ -39,7 +39,7 @@ render(App, document.body);
 
 ## 类组件
 
-类组件可以拥有状态及生命周期方法，后者指组件被加到 DOM /从 DOM 中删除时会调用的特殊方法。
+类组件可以拥有状态及生命周期方法，后者是当组件添加到 DOM 或销毁时调用的特殊方法。
 
 下面是一个显示当前时间的简单类组件 `<Clock>`：
 
@@ -63,7 +63,7 @@ class Clock extends Component {
     }, 1000);
   }
 
-  // 生命周期：在组件被摧毁时调用
+  // 生命周期：在组件销毁时调用
   componentWillUnmount() {
     // 在无法渲染时停止时钟
     clearInterval(this.timer);
@@ -94,43 +94,48 @@ render(<Clock />, document.getElementById('app'));
 | `getSnapshotBeforeUpdate(prevProps, prevState)` | 在 `render()` 前调用，返回值将传递进 `componentDidUpdate`
 | `componentDidUpdate(prevProps, prevState, snapshot)` | 在 `render()` 后调用
 
-> 您可以参阅[此图例](https://twitter.com/dan_abramov/status/981712092611989509)来了解各个方法的关系。
+这是它们之间关系的可视概览（源自 Dan Abramov 发布的[推文](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509)）：
 
-#### componentDidCatch
+![Diagram of component lifecycle methods](/guide/components-lifecycle-diagram.png)
 
-有一个生命周期方法需要您特别注意，那就是 `componentDidCatch`。其特别之处是您可以使用此方法处理渲染中的错误，包括生命周期钩子中的错误，但不包括如 `fetch()` 在内的异步调用所产生的错误。
+### 错误边界
 
-当捕获到错误时，我们可以使用此生命周期方法处理错误、显示错误信息或其他备用内容。
+错误边界是至少实现了 `componentDidCatch()` 和 `getDerivedStateFromError()` 两者之一的组件。这些特殊方法允许捕获渲染过程中发生的任何错误，通常用于提供更好的错误信息或默认内容并保存日志信息。需要注意的是，错误边界不能捕获所有的错误，事件处理程序和异步代码（如 `fetch()` 调用）需要单独处理。
+
+当捕获到错误时，我们可以使用这些方法对错误做出响应并展示错误信息或默认内容。
 
 ```jsx
 // --repl
 import { Component, render } from 'preact';
 // --repl-before
-class Catcher extends Component {
-  
+class ErrorBoundary extends Component {
   constructor() {
     super();
     this.state = { errored: false };
   }
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
+  static getDerivedStateFromError(error) {
+    return { errored: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    errorReportingService(error, errorInfo);
   }
 
   render(props, state) {
     if (state.errored) {
-      return <p>出现严重错误</p>;
+      return <p>Something went badly wrong</p>;
     }
     return props.children;
   }
 }
 // --repl-after
-render(<Catcher />, document.getElementById('app'));
+render(<ErrorBoundary />, document.getElementById('app'));
 ```
 
 ## 片段 (Fragment)
 
-`Fragment` 可以让您一次返回多个元素，解决了 JSX 每个“代码块”只能有一个根元素的限制。您可能会在列表、表格或任何中间元素均会影响样式的 CSS Flexbox 中经常遇到它。
+`Fragment` 允许一次返回多个元素，解决了 JSX 每个“代码块”只能有一个根元素的限制。你将会经常在列表、表格、flexbox 等中间元素会影响样式的情况遇到它。
 
 ```jsx
 // --repl
@@ -163,7 +168,7 @@ render(App, container);
 // </ul>
 ```
 
-请注意，大部分现代转译器支持 `Fragments` 更为常见的简短语法：
+请注意，大部分现代转译器支持 `Fragments` 的简写语法，这种语法更为常见：
 
 ```jsx
 // 如下代码
@@ -183,7 +188,7 @@ function Columns() {
 }
 ```
 
-若要在循环中创建 `Fragments`，别忘了为其添加键值：
+若要在循环中创建 `Fragments`，别忘了为其添加键：
 
 ```jsx
 function Glossary(props) {

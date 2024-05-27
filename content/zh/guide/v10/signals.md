@@ -3,13 +3,13 @@ name: Signals
 description: 'Signals: composable reactive state with automatic rendering'
 ---
 
-# Signals
+# 信号
 
-Signals 是用于管理应用程序状态的响应原始概念。
+信号是用于管理应用程序状态的响应原始概念。
 
-Signals的独特之处在于，状态变化会自动更新组件和UI,以实现尽可能高效的操作。自动状态绑定和依赖跟踪使Signals提供了出色的人体工程学和生产力，同时消除了最常见的状态管理陷阱。
+信号的独特之处在于，状态变化会自动更新组件和UI，以实现尽可能高效的操作。自动状态绑定和依赖跟踪使Signals提供了出色的人体工程学和生产力，同时消除了最常见的状态管理陷阱。
 
-Signals 在任何规模的应用中都有效，符合人体工程学的设计可以加快小型应用的开发速度，性能特征确保在任何规模的应用中,默认设置都是快速的
+信号在任何规模的应用中都有效，符合人体工程学的设计可以加快小型应用的开发速度，性能特征确保在任何规模的应用中,默认设置都是快速的
 
 ---
 
@@ -39,7 +39,7 @@ count.value += 1;
 console.log(count.value);  // 1
 ```
 
-在Preact中，当信号通过组件树树作为props或上下文传递时，我们只传递信号的引用。信号可以在不重新渲染任何组件的情况下更新，因为组件看到信号而不是其值。这让我们跳过所有昂贵的渲染工作，并立即跳转到实际访问信号的.value属性的树中的任何组件。
+在Preact中，当信号通过组件树作为props或上下文传递时，我们只传递信号的引用。信号可以在不重新渲染任何组件的情况下更新，因为组件看到信号而不是其值。这让我们跳过所有昂贵的渲染工作，并立即跳转到实际访问信号的.value属性的树中的任何组件。
 
 信号还有一个重要的特性，那就是它们跟踪它们的值何时被访问以及何时更新。在 Preact 中，当从组件内部访问一个信号的 .value 属性时，该信号的值发生变化时，会自动重新渲染组件。
 
@@ -233,7 +233,7 @@ console.log(completed.value);
 
 我们简单的TODO LIST应用程序不需要很多计算的信号，但是更复杂的应用程序倾向于依靠computed()来避免在多个位置重复状态。
 
-> :bulb: Tip: Deriving as much state as possible ensures that your state always has a single source of truth. It is a key principle of signals. This makes debugging a lot easier in case there is a flaw in application logic later on, as there are less places to worry about.
+> :bulb: Tip: 尽可能地派生状态以确保状态只有单一真实来源。这是信号的一个关键准则。这在以后应用出现逻辑缺陷时更容易调试，因为需要关心的地方更少。
 
 ## 管理全局应用程序状态
 
@@ -251,7 +251,7 @@ function createAppState() {
 }
 ```
 
-> :bulb: Tip: 请注意，我们不包括``addodo（）`and'and removetodo（todo）`函数了。 将数据与修改它的功能分开通常有助于简化应用程序体系结构。有关更多详细信息，请查看[面向数据的设计]（https://en.wikipedia.org/wiki/data-oriented_design）。
+> :bulb: Tip: 请注意，我们故意没有使用 `addTodo()` 和 `removeTodo(todo)` 函数。 分离数据与修改它的函数通常有助于简化应用架构。详情请参阅[面向数据设计](https://en.wikipedia.org/wiki/data-oriented_design)。
 
 现在，我们可以在渲染时将待办事项状态作为 props 传递：
 
@@ -262,7 +262,7 @@ const state = createAppState();
 <TodoList state={state} />
 ```
 
-这在我们的TODO列表应用程序中生效，因为状态是全局的，但是较大的应用程序通常最终会带有多个需要访问相同状态的组件。 这通常涉及“提升状态”到一个共同的共享祖先组成部分。为了避免通过props手动通过每个组件传递状态，可以将状态放入[上下文](/guide/v10/context)中，以便树中的任何组件都可以访问它。 这是一个通常看起来的快速示例：
+这在我们的TODO列表应用程序中可行，因为状态是全局的，但大型应用通常会有多个需要访问相同状态的组件。 这通常需要“状态提升”到一个共同的祖先组件。为了避免使用props在每个组件中手动传递状态，可以将状态放入[上下文](/guide/v10/context)中，以便树中的任何组件都可以访问它。 下面是一个典型例子：
 
 ```jsx
 import { createContext } from "preact";
@@ -284,11 +284,11 @@ function App() {
 }
 ```
 
-如果您想了解有关上下文工作原理的更多信息，请转到[上下文文档]（/guide/v10/context）。
+如果你想了解更多有关上下文的更信息，请参阅[上下文](/guide/v10/context)。
 
-## 带有信号的组件状态
+## 使用信号的本地状态
 
-大多数应用程序状态最终使用props和context传递。但是，在许多情况下，组件具有特定于该组件的内部状态。没有理由将这个state存在于全局的业务逻辑中，因此应将其局限于需要它的组件。在这些情况下，我们可以使用`useSignal()` and `useComputed()` hooks:
+应用的大部分状态最终都是使用props和context传递的。但是，在许多情况下，组件具有特定于该组件的内部状态。没有理由让这些状态称为全局业务逻辑的一部分，因此应将其限制于需要它的组件中。在这些情况下，我们可以使用`useSignal()` 和 `useComputed()` 钩子：
 
 ```jsx
 import { useSignal, useComputed } from "@preact/signals";
@@ -306,9 +306,9 @@ function Counter() {
 }
 ```
 
-这两个钩子是[`signal()`](#signalinitialvalue) 和 [`computed()`](#computedfn) 的简单封装，该钩子在第一次运行时构造信号，并简单地在之后的渲染器上使用相同的信号。
+这两个钩子是[`signal()`](#signalinitialvalue) 和 [`computed()`](#computedfn) 的简单封装，它们在组件首次运行时构造信号，并简单地在之后的渲染中使用相同的信号。
 
-> :bulb: Behind the scenes, this is the implementation:
+> :bulb: 以下是幕后的实现：
 >
 > ```js
 > function useSignal(value) {
@@ -318,7 +318,7 @@ function Counter() {
 
 ## signals 高级用法
 
-到目前为止，我们所涵盖的主题是您需要继续前进的所有主题。以下部分针对希望通过完全掌握信号对应用程序状态建模的读者。
+到目前为止，我们所涵盖的主题是已经可以满足需求。以下部分针对希望通过完全使用信号对应用程序状态建模来获得更多益处的读者。
 
 ### 对组件之外的 signal 做出反应
 
@@ -338,7 +338,7 @@ console.log(double.value); // Logs: 2
 
 这提出了一个问题：我们如何订阅组件树之外的信号？也许我们想在信号的值更改或保持时将某些内容记录到控制台上。[LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
-要运行任意代码来响应信号变化，我们可以使用 [`effect(fn)`](#effectfn)。与计算信号类似，效果跟踪哪些信号被访问，并在这些信号发生变化时重新运行其回调。 与计算信号不同，[`effect()`](#effectfn) 不返回信号 - 它是一系列更改的结束。
+要运行任意代码来响应信号变化，我们可以使用 [`effect(fn)`](#effectfn)。与计算信号类似，effect 跟踪访问了哪些信号，并在这些信号发生变化时重新运行其回调。 与计算信号不同，[`effect()`](#effectfn) 不返回信号 - 它是一系列更改的结束。
 
 ```js
 import { signal, computed, effect } from "@preact/signals-core";
@@ -356,7 +356,7 @@ name.value = "John";
 // Logs: "John Doe"
 ```
 
-You can destroy an effect and unsubscribe from all signals it accessed by calling the returned function.
+可以调用返回的函数来清除 effect 并取消订阅它访问的信号。
 
 ```js
 import { signal, effect } from "@preact/signals-core";
@@ -376,14 +376,12 @@ dispose();
 name.value = "John";
 ```
 
-> :bulb: Tip: Don't forget to clean up effects if you're using them extensively. Otherwise your app will consume more memory than needed.
+> :bulb: Tip: 如果你大量使用 effect，不要忘了清理。否则会浪费内存。
 
 
 ## 读取signal而无需订阅它们
 
-On the rare occasion that you need to write to a signal inside [`effect(fn)`](#effectfn), but don't want the effect to re-run when that signal changes, you can use `.peek()` to get the signal's current value without subscribing.
-
-在极少数情况下，您需要在 [`effect(fn)`](#effectfn) 内写入signal，但不希望signal更改时重新运行effect，您可以使用 `.peek() `获取当前 signal的value 无需订阅
+在极少数情况下，您需要在 [`effect(fn)`](#effectfn) 内写入signal，但不希望signal更改时重新运行effect，您可以使用 `.peek()` 获取 signal 当前值而不订阅它们。
 
 ```js
 const delta = signal(0);
@@ -401,7 +399,7 @@ delta.value = 1;
 count.value = 10;
 ```
 
-> :bulb: Tip: The scenarios in which you don't want to subscribe to a signal are rare. In most cases you want your effect to subscribe to all signals. Only use `.peek()` when you really need to.
+> :bulb: Tip: 不想订阅信号的情况很少见。大多数情况下你都希望 effect 订阅所有信号。只有在真正需要的时候才使用 `.peek()`。
 
 
 ## 批更新
@@ -419,7 +417,7 @@ function addTodo() {
 ```
 
 
-请注意，该函数触发两个单独的更新：一个是在设置“todos.value”时，另一个是在设置“text”的值时。 有时，这可能是不可取的，并且出于性能或其他原因，需要将这两种更新合并为一个。 [`batch(fn)`](#batchfn) 函数可用于在回调结束时将多个值更新合并为一个“提交”：
+请注意，该函数触发两个单独的更新：一个是在设置 `todos.value` 时，另一个是在设置 `text` 的值时。 出于性能或其他原因，这种情况有时并不理想，需要将这两个更新合并为一个。 [`batch(fn)`](#batchfn) 函数可用于在回调结束时将多个值更新合并为一个“提交”：
 
 ```js
 function addTodo() {
@@ -430,7 +428,7 @@ function addTodo() {
 }
 ```
 
-访问批次内已修改的信号将反映其更新值。 访问已被批次内的另一个信号无效的计算信号将仅重新计算必要的依赖关系，以返回该计算信号的最新值。 任何其他无效信号均不受影响，并且仅在批量回调结束时更新。
+访问批处理内已修改的信号将反映其更新值。访问已被批处理内的另一个信号无效的计算信号时，将仅重新计算必要的依赖关系，以返回该计算信号的最新值。任何其他无效信号均不受影响，并且仅在批处理结束时更新。
 
 ```js
 // --repl
@@ -453,12 +451,12 @@ batch(() => {
 ```
 
 
-> :bulb: Tip: Batches can also be nested, in which case batched updates are flushed only after the outermost batch callback has completed.
+> :bulb: Tip: 批处理也可以嵌套，这种情况下只有最外层的批处理完成时才会进行更新。
 
 
 ### 渲染优化
 
-使用 signals，我们可以绕过虚拟DOM渲染并结合信号直接变为DOM突变。 如果您将 signals 传递到文本位置中的JSX中，它将以文本为单位，并自动更新 而无需虚拟DOM diffing计算
+通过信号我们可以绕过虚拟DOM渲染，将信号变化直接绑定到DOM操作。如果将 signals 传递到JSX的文本位置，它就会以文本形式自动就地更新，无需虚拟DOM差分计算：
 
 ```jsx
 const count = signal(0);
@@ -475,17 +473,17 @@ function Optimized() {
 ```
 
 
-要启用此优化，请将 signal 传递到JSX，而不是访问其“ .value”属性。
+要启用此优化，请将信号传递到JSX，而不是访问其 `.value` 属性。
 
-当将信号作为 DOM 元素上的 props 传递时，也支持类似的渲染优化。
+将信号作为 props 传递给 DOM 元素时，也支持类似的渲染优化。
 
 ## API
 
-本节概述了signal API。 它的目的是为已经知道如何使用 signal 的人提供快速参考。
+本节是信号 API 概览。它的目的是为已经知道如何使用 signal 的人提供快速参考。
 
 ### signal(initialValue)
 
-以给定参数为其初始值创建一个新 signal：
+以给定参数为初始值创建一个新的信号：
 
 ```js
 const count = signal(0);
@@ -493,11 +491,11 @@ const count = signal(0);
 
 在组件内创建信号时，请使用hook变体：`useSignal(initialValue)`。
 
-返回的信号具有“.value”属性，可以获取或设置该属性来读取和写入其值。 要读取信号而不订阅它，请使用“signal.peek()”。
+返回的信号具有 `.value` 属性，可以获取或设置该属性来读取和写入其值。 要读取信号而不订阅它，请使用 `signal.peek()`。
 
 ### computed(fn)
 
-创建一个根据其他signal的值计算的新signal。 返回的计算signal是只读的，当从回调函数内访问的任何signal发生变化时，其值会自动更新。
+创建一个根据其他信号的值计算的新信号。返回的计算信号是只读的，当回调函数内访问的任何信号发生变化时，其值会自动更新。
 
 ```js
 const name = signal("Jane");
@@ -510,7 +508,7 @@ const fullName = computed(() => `${name.value} ${surname.value}`);
 
 ### effect(fn)
 
-要运行任意代码来响应信号变化，我们可以使用“effect(fn)”。 与计算信号类似，效果是跟踪哪些信号被访问，并在这些信号发生变化时重新运行其回调。 与计算信号不同，“effect()”不返回信号 - 它是一系列更改的结束。
+要根据信号变化运行任意代码，可以使用 `effect(fn)`。与计算信号类似，effect 会跟踪哪些信号被访问，并在这些信号发生变化时重新运行其回调。与计算信号不同的是，`effect()` 不返回信号 - 它是一系列更改的结束。
 
 ```js
 const name = signal("Jane");
@@ -523,11 +521,11 @@ name.value = "John";
 // Logs: "Hello John"
 ```
 
-当响应组件内的信号变化时，请使用挂钩变体：`useignalealeffect（fn）`。
+当响应组件内的信号变化时，请使用钩子变体：`useSignalEffect(fn)`。
 
 ### batch(fn)
 
-`batch(fn)` 函数可用于在提供的回调结束时将多个值更新合并为一个“提交”。 批次可以嵌套，并且只有在最外面的批次回调完成后才会刷新更改。 访问批次内已修改的信号将反映其更新值。
+`batch(fn)` 函数可用于在提供的回调结束时将多个值更新合并为一个“提交”。 批处理可以嵌套，并且只有在最外面的批处理回调完成后才会刷新更改。 访问批处理内已修改的信号将反映其更新值。
 
 ```js
 const name = signal("Jane");
