@@ -15,6 +15,7 @@ in Preact X without breaking changes, some of the things we had in mind:
 - Using a backing VNode structure to reduce GC, by doing this we'd only use the result of `h()` to update our backing-node.
 - Reconciler performance, adding fast paths for mounting/...
 - Some changes like removing `px` suffixing, `forwardRef` and breaking IE11 support.
+- Keeping ref in props.
 - Addressing event/child diffing bugs.
 
 The above were our goals, when breaking these down we can clearly see that there's a distinction here, only point 3 would
