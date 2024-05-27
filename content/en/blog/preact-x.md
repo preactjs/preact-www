@@ -24,7 +24,7 @@ Preact devtools, ... This could break a lot of the cool stuff our community is w
 As we were [experimenting](https://github.com/preactjs/preact/tree/v11) we went a new type of diffing, named
 [skew based diffing](https://github.com/preactjs/preact/pull/3388), we saw real performance
 improvements as well as it fixing a bunch of long-running bugs. As time went on and we invested more time in
-these experiemnts for Preact 11, we started noticing that the improvements we were landing didn't need to be exclusive to Preact 11...
+these experiments for Preact 11, we started noticing that the improvements we were landing didn't need to be exclusive to Preact 11.
 
 ## Releases
 
