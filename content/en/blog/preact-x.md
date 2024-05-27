@@ -110,7 +110,17 @@ that the `<div>` will get that `onClick` handler which we'll bubble up to and in
 const App = () => {
   const [toggled, setToggled] = useState(false);
 
-  return toggled ? <div onClick={() => setToggled(false)}><span>clear</span></div> : <div><button onClick={() => setToggled(true)}>toggle on</button></div>
+  return toggled ? (
+    <div onClick={() => setToggled(false)}>
+      <span>clear</span>
+    </div> 
+  ) : (
+    <div>
+      <button
+        onClick={() => setToggled(true)}
+      >toggle on</button>
+    </div>
+  )
 }
 ```
 
