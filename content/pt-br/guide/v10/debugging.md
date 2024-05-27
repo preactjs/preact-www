@@ -27,7 +27,7 @@ O [Preact Devtools] pode ser instalado no loja de extensões do seu navegador.
 
 Uma vez instalado, precisamos importar o `preact / debug` em algum lugar para inicializar a conexão com a extensão. Verifique se essa importação é **a primeira** importação em todo o aplicativo.
 
-> O `preact-cli` inclui o pacote `preact/debug` automaticamente. Você pode pular com segurança o próximo passo se estiver usando!
+> O `@preact/preset-vite` inclui o pacote `preact/debug` automaticamente. Você pode pular com segurança o próximo passo se estiver usando!
 
 Aqui está um exemplo de como pode ser o arquivo de entrada principal do seu aplicativo.
 

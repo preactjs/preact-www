@@ -28,7 +28,7 @@ Preactにはデバックを容易にするツールが付属しています。�
 インストールした後、`preact/debug`を`import`して拡張との接続を初期化する必要があります。
 この`import`はアプリケーション全体で**一番最初に**行われる必要があります。
 
-> `preact-cli`は`preact/debug`を自動的に導入します。`preact-cli`を使っている場合、次のステップをスキップして大丈夫です。
+> `@preact/preset-vite`は`preact/debug`を自動的に導入します。`@preact/preset-vite`を使っている場合、次のステップをスキップして大丈夫です。
 
 アプリケーションのメインエントリーファイルに以下のように`preact/debug`を`import`します。
 

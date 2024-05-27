@@ -49,8 +49,6 @@ npm remove preact-compat
 Be careful not to introduce any spelling errors here. A common one seems to be to write `compact` instead of `compat`. If you're having trouble with that, think of `compat` as the `compatibility` layer for react. That's where the name is coming from.
 Будьте осторожны, чтобы не допустить здесь орфографических ошибок. Чаще всего пишут `compact` вместо `compat`. Если у вас с этим проблемы, вспомните, что `compat` от слова `compatibility` («совместимость»), а не от слова `compact` («компактный»). Отсюда и название.
 
-> Если вы используете `preact-cli`, то этот шаг для вас уже выполнен :tada:
-
 ### Сторонние библиотеки
 
 Из-за характера критических изменений некоторые существующие библиотеки могут перестать работать с X. Большинство из них были обновлены уже в соответствии с нашим графиком бета-тестирования, но вы можете столкнуться с библиотекой, в которой это не так.

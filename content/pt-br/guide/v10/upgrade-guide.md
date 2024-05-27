@@ -48,8 +48,6 @@ Para fazer com que as bibliotecas React de terceiros funcionem com o Preact, env
 
 Cuidado para não introduzir erros de ortografia aqui. Um comum parece ser escrever `compact 'em vez de` compat`.`Se você está tendo problemas com isso, pense em `compat` como a camada de `compatibilidade` para reagir. É daí que o nome vem.
 
-> Se você estiver usando o `preact-cli`, esta etapa já será executada para você: tada:
-
 ### Bibliotecas de terceiros
 
 Devido à natureza das alterações mais recentes, algumas bibliotecas existentes podem deixar de funcionar com o X. A maioria delas já foi atualizada após a programação beta, mas você pode encontrar uma onde esse não é o caso.
