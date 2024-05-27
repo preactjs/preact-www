@@ -27,7 +27,7 @@ The [Preact Devtools] can be installed in the extension store of your browser.
 
 Once installed we need to import `preact/debug` somewhere to initialize the connection to the extension. Make sure that this import is **the first** import in your whole app.
 
-> `preact-cli` does include the `preact/debug` package automatically. You can safely skip the next step if you're using it!
+> `@preact/preset-vite` includes the `preact/debug` package automatically. You can safely skip the setup & strip steps if you're using it!
 
 Here is an example of how your main entry file to your application may look like.
 

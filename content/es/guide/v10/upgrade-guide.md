@@ -48,8 +48,6 @@ Para hacer que las librerías React de terceros funcionen con Preact enviamos un
 
 Tenga cuidado de no cometer errores ortográficos. Uno común parece ser escribir `compact` en lugar de `compat`. Si tienes problemas con eso, piensa en `compat` como la capa de `compatibilidad` para react. De ahí viene el nombre.
 
-> Si estás usando `preact-cli` este paso ya está hecho por ti :tada:
-
 ### Bibliotecas de terceros
 
 Debido a la naturaleza de los cambios de última hora, es posible que algunas bibliotecas existentes dejen de funcionar con X. La mayoría de ellas ya se han actualizado siguiendo nuestro calendario beta, pero es posible que te encuentres con alguna en la que no sea así.
