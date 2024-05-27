@@ -48,8 +48,6 @@ To make third-party React libraries work with Preact we ship a **compat**ibility
 
 Be careful not to introduce any spelling errors here. A common one seems to be to write `compact` instead of `compat`. If you're having trouble with that, think of `compat` as the `compatibility` layer for react. That's where the name is coming from.
 
-> If you're using `preact-cli` than this step is already done for you :tada:
-
 ### Third party libraries
 
 Due to the nature of the breaking changes, some existing libraries may cease to work with X. Most of them have been updated already following our beta schedule but you may encounter one where this is not the case.
