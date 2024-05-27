@@ -33,7 +33,7 @@ Many of them have been directly inspired by work done on Preact 11. Let's go ove
 
 ### 10.5.0
 
-The introduction of [resumed hydration](https://github.com/preactjs/preact/pull/2754) this functionality basically allows suspending during
+The introduction of [resumed hydration](https://github.com/preactjs/preact/pull/2754) -- this functionality basically allows suspending during
 the re-hydration of your component tree. This means that for instance in the following component tree we'll re-hydrate and make the `Header`
 interactive while the `LazyArticleHeader` suspends, in the meanwhile the server-rendered DOM will stay on screeen. When the lazy-load finishes
 we'll continue re-hydrating, our `Header` and `LazyArticleHeader` can be interacted with while our `LazyContents` resolve. This is a pretty
