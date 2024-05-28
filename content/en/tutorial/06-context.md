@@ -186,7 +186,7 @@ function Route(props) {
 
 Now we can use this new `Route` component to define the email app's interface.
 Notice how the `Inbox` component doesn't need to know its own path in order
-to define `<Route path"..">` matching for its children:
+to define `<Route path="..">` matching for its children:
 
 ```jsx
 export default function App() {
