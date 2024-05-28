@@ -29,13 +29,13 @@ import { signal } from "@preact/signals";
 
 const count = signal(0);
 
-// Read a signal’s value by accessing .value:
+// 访问 .value 以读取信号的值
 console.log(count.value);   // 0
 
-// Update a signal’s value:
+// 更新信号值
 count.value += 1;
 
-// The signal's value has changed:
+// 信号已改变
 console.log(count.value);  // 1
 ```
 
@@ -49,15 +49,15 @@ import { render } from "preact";
 // --repl-before
 import { signal } from "@preact/signals";
 
-// Create a signal that can be subscribed to:
+// 创建一个可以订阅的信号
 const count = signal(0);
 
 function Counter() {
-  // Accessing .value in a component automatically re-renders when it changes:
+  // 在组件中访问 .value 将会在信号改变时自动重渲染：
   const value = count.value;
 
   const increment = () => {
-    // A signal is updated by assigning to the `.value` property:
+    // 通过赋值 `.value` 属性更新信号
     count.value++;
   }
 
@@ -120,12 +120,12 @@ const todos = signal([
 为了让用户为新的待办事项输入文本，我们还需要一个 signal，表明我们很快就会连接到“input”元素。 现在，我们已经可以使用这个signal来创建一个函数，将待办事项添加到我们的列表中。 请记住，我们可以通过分配信号的“.value”属性来更新信号的值：
 
 ```jsx
-// We'll use this for our input later
+// 在后面我们会使用这个作为输入
 const text = signal("");
 
 function addTodo() {
   todos.value = [...todos.value, { text: text.value }];
-  text.value = ""; // Clear input value on add
+  text.value = ""; // 在添加时清空输入值
 }
 ```
 
@@ -134,9 +134,9 @@ function addTodo() {
 > ```js
 > const count = signal(0);
 >
-> count.value = 0; // does nothing - value is already 0
+> count.value = 0; // 什么也不会发生 - 值已经是 0
 >
-> count.value = 1; // updates - value is different
+> count.value = 1; // 更新 - 值不同
 > ```
 
 让我们检查一下到目前为止我们的逻辑是否正确。 当我们更新“text”信号并调用“addTodo()”时，我们应该看到一个新项目被添加到“todos”信号中。 我们可以通过直接调用这些函数来模拟这种场景 - 不需要用户界面！
@@ -154,23 +154,23 @@ const text = signal("");
 
 function addTodo() {
   todos.value = [...todos.value, { text: text.value }];
-  text.value = ""; // Reset input value on add
+  text.value = ""; // 在添加时重置输入值
 }
 
-// Check if our logic works
+// 检查逻辑是否正确
 console.log(todos.value);
-// Logs: [{text: "Buy groceries"}, {text: "Walk the dog"}]
+// 输出: [{text: "Buy groceries"}, {text: "Walk the dog"}]
 
 
-// Simulate adding a new todo
+// 模拟添加新的待办
 text.value = "Tidy up";
 addTodo();
 
-// Check that it added the new item and cleared the `text` signal:
+// 查看是否添加了新的项目且 `text` 信号已被清空
 console.log(todos.value);
-// Logs: [{text: "Buy groceries"}, {text: "Walk the dog"}, {text: "Tidy up"}]
+// 输出: [{text: "Buy groceries"}, {text: "Walk the dog"}, {text: "Tidy up"}]
 
-console.log(text.value);  // Logs: ""
+console.log(text.value);  // 输出: ""
 ```
 
 我们要添加的最后一个功能是能够从列表中删除待办事项。 为此，我们将添加一个函数，用于从 todos 数组中删除给定的待办事项：
@@ -221,13 +221,13 @@ const todos = signal([
   { text: "Walk the dog", completed: false },
 ]);
 
-// create a signal computed from other signals
+// 创建从其他信号计算而来的信号
 const completed = computed(() => {
-  // When `todos` changes, this re-runs automatically:
+  // 当 `todos` 改变时，这将会自动重新运行
   return todos.value.filter(todo => todo.completed).length;
 });
 
-// Logs: 1, because one todo is marked as being completed
+// 输出: 1，因为有一个标记为完成的待办
 console.log(completed.value);
 ```
 
@@ -258,7 +258,7 @@ function createAppState() {
 ```jsx
 const state = createAppState();
 
-// ...later:
+// ...然后:
 <TodoList state={state} />
 ```
 
@@ -277,7 +277,7 @@ render(
   </AppState.Provider>
 );
 
-// ...later when you need access to your app state
+// ...然后当你需要访问应用的状态时
 function App() {
   const state = useContext(AppState);
   return <p>{state.completed}</p>;
@@ -328,12 +328,12 @@ function Counter() {
 const count = signal(0);
 const double = computed(() => count.value * 2);
 
-// Despite updating the `count` signal on which the `double` signal depends,
-// `double` does not yet update because nothing has used its value.
+// 尽管更新了 `double` 信号依赖的 `count` 信号，
+// 但此时 `double` 的值不会更新，因为没有读取它的值。
 count.value = 1;
 
-// Reading the value of `double` triggers it to be re-computed:
-console.log(double.value); // Logs: 2
+// 读取 `double` 的值会触发它重新计算：
+console.log(double.value); // 输出: 2
 ```
 
 这提出了一个问题：我们如何订阅组件树之外的信号？也许我们想在信号的值更改或保持时将某些内容记录到控制台上。[LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
@@ -347,13 +347,13 @@ const name = signal("Jane");
 const surname = signal("Doe");
 const fullName = computed(() => `${name.value} ${surname.value}`);
 
-// Logs name every time it changes:
+// 每次改变时输出它的值：
 effect(() => console.log(fullName.value));
-// Logs: "Jane Doe"
+// 输出: "Jane Doe"
 
-// Updating `name` updates `fullName`, which triggers the effect again:
+// 更新 `name` 会更新 `fullName`，然后会触发执行作用：
 name.value = "John";
-// Logs: "John Doe"
+// 输出: "John Doe"
 ```
 
 可以调用返回的函数来清除 effect 并取消订阅它访问的信号。
@@ -366,13 +366,13 @@ const surname = signal("Doe");
 const fullName = computed(() => name.value + " " + surname.value);
 
 const dispose = effect(() => console.log(fullName.value));
-// Logs: "Jane Doe"
+// 输出: "Jane Doe"
 
-// Destroy effect and subscriptions:
+// 销毁作用和订阅：
 dispose();
 
-// Updating `name` does not run the effect because it has been disposed.
-// It also doesn't re-compute `fullName` now that nothing is observing it.
+// 更新 `name` 不会运行作用，因为它已经销毁了。
+// 也不会重新计算 `fullName`，因为此时它已经没有订阅了。
 name.value = "John";
 ```
 
@@ -388,14 +388,14 @@ const delta = signal(0);
 const count = signal(0);
 
 effect(() => {
-  // Update `count` without subscribing to `count`:
+  // 更新 `count` 但不订阅它：
   count.value = count.peek() + delta.value;
 });
 
-// Setting `delta` reruns the effect:
+// 设置 `delta` 会重新运行作用：
 delta.value = 1;
 
-// This won't rerun the effect because it didn't access `.value`:
+// 这不会重新云心作用，因为它没有访问 `.value`：
 count.value = 10;
 ```
 
@@ -441,12 +441,12 @@ const triple = computed(() => count.value * 3);
 effect(() => console.log(double.value, triple.value));
 
 batch(() => {
-  // set `count`, invalidating `double` and `triple`:
+  // 设置 `count` 会使 `double` 和 `triple` 失效：
   count.value = 1;
 
-  // Despite being batched, `double` reflects the new computed value.
-  // However, `triple` will only update once the callback completes.
-  console.log(double.value); // Logs: 2
+  // 尽管正在批处理中，`double` 仍然反应新的计算值。
+  // 然而，`triple` 只有在回调结束后在会更新。
+  console.log(double.value); // 输出: 2
 });
 ```
 
@@ -462,12 +462,12 @@ batch(() => {
 const count = signal(0);
 
 function Unoptimized() {
-  // Re-renders the component when `count` changes:
+  // 当 `count` 变化时重新渲染组件：
   return <p>{count.value}</p>;
 }
 
 function Optimized() {
-  // Text automatically updates without re-rendering the component:
+  // 文本将自动更新而无需重新渲染组件：
   return <p>{count}</p>;
 }
 ```
@@ -513,12 +513,12 @@ const fullName = computed(() => `${name.value} ${surname.value}`);
 ```js
 const name = signal("Jane");
 
-// Log to console when `name` changes:
+// 当 `name` 改变时输出到控制台：
 effect(() => console.log('Hello', name.value));
-// Logs: "Hello Jane"
+// 输出: "Hello Jane"
 
 name.value = "John";
-// Logs: "Hello John"
+// 输出: "Hello John"
 ```
 
 当响应组件内的信号变化时，请使用钩子变体：`useSignalEffect(fn)`。
@@ -531,7 +531,7 @@ name.value = "John";
 const name = signal("Jane");
 const surname = signal("Doe");
 
-// Combine both writes into one update
+// 将两次写组合为一次更新
 batch(() => {
   name.value = "John";
   surname.value = "Smith";

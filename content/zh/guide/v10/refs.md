@@ -28,7 +28,7 @@ class Foo extends Component {
 
   componentDidMount() {
     console.log(this.ref.current);
-    // Logs: [HTMLDivElement]
+    // 输出: [HTMLDivElement]
   }
   
   render() {
@@ -53,7 +53,7 @@ class Foo extends Component {
 
   componentDidMount() {
     console.log(this.ref);
-    // Logs: [HTMLDivElement]
+    // 输出: [HTMLDivElement]
   }
   
   render() {
