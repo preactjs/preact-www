@@ -85,9 +85,9 @@ batches these updates up as well as increased our alignment for React libraries.
 In our research for v11 we went deep on child diffing as we were aware that there were a few cases where our current algorithm would fall short, just listing a few
 of these issues:
 
-- [https://github.com/preactjs/preact/issues/3973](removing an element before another would cause re-insertion)
-- [https://github.com/preactjs/preact/issues/2622](re-insertiosn when removing more than 1 child)
-- [https://github.com/preactjs/preact/issues/2783](unnecessary unmounting of keyed nodes)
+- [removing an element before another would cause re-insertion](https://github.com/preactjs/preact/issues/3973)
+- [re-insertiosn when removing more than 1 child](https://github.com/preactjs/preact/issues/2622)
+- [unnecessary unmounting of keyed nodes](https://github.com/preactjs/preact/issues/2783)
 
 Not all of these resulted in a bad state, some just meant decreased performance... When we found out that we could port skew-based diffing to Preact X we
 were thrilled, not only would we fix a lot of cases we could see how this algorithm behaves in the wild! Which in retrospect, it did great, at times I would
