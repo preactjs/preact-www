@@ -18,9 +18,9 @@ in Preact X without breaking changes, some of the things we had in mind:
 - Keeping ref in props.
 - Addressing event/child diffing bugs.
 
-The above were our goals, when breaking these down we can clearly see that there's a distinction here, only point 3 would
-be a breaking change for our consumers while point 1 would have a huge impact to folks building extensions like Preact Signals,
-Preact devtools, ... This could break a lot of the cool stuff our community is working on to extend Preact.
+These were our initial goals for v11, but upon going down this path, we realised that many of those changes weren't actually breaking changes and could be released directly in v10 in a non-breaking way. Only the third point, removing the `px` suffix and passing `ref` directly in props as well as dropping IE11, fall into the breaking changes category. We went with releasing the other features in the stable v10 release line, which allows any Preact user to benefit from them immediately without having to change their code.
+
+Preact has a much bigger userbase today compared to when we made the original plans for v11. It enjoys wide usage in many small to big companies for mission critical software. We really want to be sure that any breaking changes we may introduce are absolutely worth the cost of moving the whole ecosystem over to it.
 
 As we were [experimenting](https://github.com/preactjs/preact/tree/v11) we went a new type of diffing, named
 [skew based diffing](https://github.com/preactjs/preact/pull/3388), we saw real performance
