@@ -618,9 +618,23 @@
 		{
 			"name": "Ivan Ulloque",
 			"link": "https://github.com/ZUR1C4T0"
+		},
+		{
+			"name": "Jovi De Croock",
+			"link": "https://twitter.com/JoviDeC"
 		}
 	],
 	"blog": [
+		{
+			"path": "/blog/preact-x",
+			"date": "2024-05-24",
+			"name": {
+				"en": "Preact X, a story of stability"
+			},
+			"excerpt": {
+				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened."
+			}
+		},
 		{
 			"path": "/blog/signal-boosting",
 			"name": {
