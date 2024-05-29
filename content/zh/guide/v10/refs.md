@@ -5,9 +5,9 @@ description: '引用可用于访问 Preact 渲染的 DOM 节点'
 
 # 引用
 
-您可能需要直接使用 Preact 所渲染的 DOM 元素或组件，引用正是为此而打造。
+某些场景你可能需要直接引用 Preact 所渲染的 DOM 元素或组件，引用正是为此而打造。
 
-引用的用例之一是测量 DOM 节点的实际大小。虽然您也可以通过 `ref` 获取组件示例的引用，但我们通常不推荐此方式。此方式会导致子元素和父元素之间产生硬耦合，破坏组件模型的可组合性。大多数情况下，您仅需要在组件属性中传递回调函数即可，而不必直接调用类组件的方法。
+引用的用例之一是测量 DOM 节点的实际大小。虽然您也可以通过 `ref` 获取组件示例的引用，但我们通常不推荐此方式。此方式会导致子元素和父元素之间产生硬耦合，破坏组件模型的可组合性。大多数情况下，将回调函数作为 prop 传递比直接调用类组件上的方法更自然。
 
 ---
 
@@ -28,7 +28,7 @@ class Foo extends Component {
 
   componentDidMount() {
     console.log(this.ref.current);
-    // Logs: [HTMLDivElement]
+    // 输出: [HTMLDivElement]
   }
   
   render() {
@@ -41,7 +41,7 @@ render(<Foo />, document.getElementById("app"));
 
 ## 回调引用
 
-获取元素引用的另一种方式是传递回调函数。您可能需要写更多的代码，但大致上与 `createRef` 类似。
+获取元素引用的另一种方式是传递回调函数。您可能需要写更多的代码，但工作原理与 `createRef` 类似。
 
 ```jsx
 // --repl
@@ -53,7 +53,7 @@ class Foo extends Component {
 
   componentDidMount() {
     console.log(this.ref);
-    // Logs: [HTMLDivElement]
+    // 输出: [HTMLDivElement]
   }
   
   render() {
@@ -64,7 +64,7 @@ class Foo extends Component {
 render(<Foo />, document.getElementById("app"));
 ```
 
-> 若引用的回调函数是内联函数，则此函数会被调用两次。第一次调用时引用为 `null`，另一次时传入实际的引用。这是一个常见错误，使用 `createRef` API 可自动为您检查 `ref.current` 是否存在。
+> 若引用的回调函数是内联函数，则此函数会被调用两次。第一次调用时引用为 `null`，另一次时传入实际的引用。这是一个常见错误，`createRef` 强制用户检查 `ref.current` 是否存在，使得这个问题简单了一些。
 
 ## 拼在一起
 
@@ -84,7 +84,7 @@ class Foo extends Component {
 }
 ```
 
-您只能在调用 `render` 方法且组件挂载进 DOM 后才能测量元素的宽和高。
+只有在 `render` 方法已经调用且组件挂载到 DOM 后测量才有意义。在此之前 DOM 节点并不存在，因此测量没有意义。
 
 ```jsx
 // --repl
@@ -121,4 +121,4 @@ class Foo extends Component {
 render(<Foo />, document.getElementById("app"));
 ```
 
-大功告成！现在的组件会在挂载进 DOM 后显示宽和高。
+大功告成！现在的组件会在挂载后显示宽和高。

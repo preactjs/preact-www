@@ -5,9 +5,9 @@ description: '上下文可让您通过中间组件传递属性。此文档同时
 
 # 上下文
 
-上下文可让您为语法树中的最下子元素直接传递值，无需先使用属性为树中间的每个元素传递。主题系统是最常见的用例之一。您可以将上下文想象为一种使用发布/订阅范式的主题更新方式。
+上下文允许你直接传值到组件树下方，无需使用 prop 通过中间组件传递。主题是一个最常用的的用例。简而言之，可以将上下文看作 Preact 中发布订阅模式的更新方式。
 
-您可以使用两种不同的上下文创建方式：使用新版的 `createContext` API，或是使用旧版的上下文 API。两者区别在于旧版无法在中间组件通过 `shouldComponentUpdate` 取消渲染时更新子元素。这也是我们强烈建议您使用 `createContext` 的原因。
+使用上下文有两种方式：使用新版的 `createContext` API，或是使用旧版上下文 API。两者区别在于旧版 API 无法在中间组件 `shouldComponentUpdate` 终止渲染时更新子组件。这也是我们强烈建议您使用 `createContext` 的原因。
 
 ---
 
@@ -17,7 +17,9 @@ description: '上下文可让您通过中间组件传递属性。此文档同时
 
 ## createContext
 
-首先，我们需要通过 `createContext(初始值)` 函数创建一个可以传递的上下文对象。此函数返回一个 `Provider` 组件，`Consumer` 组件可通过创建的组件从上下文中取得需要的值。
+首先，我们需要通过 `createContext(initialValue)` 函数创建一个可以传递的上下文对象。此函数返回一个用于设置上下文中值的 `Provider` 组件和用于从上下文中取回值的 `Consumer` 组件。
+
+`initialValue` 参数仅在组件树中不存在对应的 `Provider` 组件时使用，这有助于独立地测试组件，它避免了封装 `Provider`。
 
 ```jsx
 // --repl
@@ -50,13 +52,13 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-> 另一种简单的方法是使用 [useContext](/guide/v10/hooks#usecontext) 钩子。
+> 另一种使用 Context 的简单方法是使用 [useContext](/guide/v10/hooks#usecontext) 钩子。
 
 ## 旧版上下文 API
 
-我们由于向后兼容原因仍提供此旧版 API。此 API 在中间组件的 `shouldComponentUpdate` 方法返回 `false` 时会出现阻塞更新问题。若您仍需要此方法，请继续阅读。
+处于向后兼容我们仍提供此旧版 API，它已经被 `createContext` API 取代。此 API 在中间组件的 `shouldComponentUpdate` 方法返回 `false` 时会出现阻塞更新问题。若您仍需要此方法，请继续阅读。
 
-组件需要实现 `getChildContext` 才能通过上下文传递自定义变量，您可以在此方法内返回您想要在上下文中存储的值。您然后可以在函数组件的第二个参数或类组件的 `this.context` 获取存储的值。
+组件需要实现 `getChildContext` 才能通过上下文传递自定义变量，你可以在此方法内返回想在上下文中存储的值。然后可以通过函数组件的第二个参数或类组件的 `this.context` 获取存储的值。
 
 ```jsx
 // --repl
