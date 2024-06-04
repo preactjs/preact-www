@@ -29,7 +29,7 @@ export default function Routes() {
 						const component = route === '/repl' ? Repl : Page;
 						return <Route key={route} path={route} component={component} />;
 					})}
-				<Route path="/tutorial/:step?" component={TutorialPage} />
+				<Route path="/tutorial/:step?" component={() => <TutorialPage loading={loading} />} />
 				<Route path="/guide/:version/:name" component={DocPage} />
 				<Route path="/blog/:slug" component={BlogPage} />
 				<Route default component={NotFound} />
