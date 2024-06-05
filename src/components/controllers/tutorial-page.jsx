@@ -7,7 +7,7 @@ import { useLanguage } from '../../lib/i18n';
 import { tutorialRoutes } from '../../lib/route-utils';
 import { Tutorial } from './tutorial';
 
-export default function TutorialPage() {
+export default function TutorialPage({ loading }) {
 	const { params } = useRoute();
 	const { step } = params;
 
@@ -15,10 +15,10 @@ export default function TutorialPage() {
 		return <NotFound />;
 	}
 
-	return <TutorialLayout />;
+	return <TutorialLayout loading={loading} />;
 }
 
-function TutorialLayout() {
+function TutorialLayout({ loading }) {
 	const { path, params } = useRoute();
 	const [lang] = useLanguage();
 
@@ -37,7 +37,7 @@ function TutorialLayout() {
 
 	return (
 		<SolutionProvider>
-			<Tutorial html={html} meta={meta} />
+			<Tutorial html={html} meta={meta} loading={loading} />
 		</SolutionProvider>
 	);
 }

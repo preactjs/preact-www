@@ -134,7 +134,7 @@ export class Tutorial extends Component {
 		this.setState({ error: null });
 	};
 
-	render({ html, meta }, { loading, code, error }) {
+	render({ html, meta, loading }, { code, error }) {
 		const state = {
 			html,
 			meta,
@@ -175,7 +175,6 @@ function TutorialView({
 	const solvable = meta.solvable === true;
 	const hasCode = meta.code !== false;
 	const showCode = showCodeOverride && hasCode;
-	loading = !html || (showCode && (!Runner || !CodeEditor));
 	const initialLoad = !html || !Runner || !CodeEditor;
 
 	// Scroll to the top after loading
