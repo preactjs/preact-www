@@ -105,9 +105,17 @@
 			position: sticky;
 			height: calc(100vh - var(--header-and-banner-height));
 			overflow: auto;
+
+			@media (max-height: 431px) {
+				height: calc(100vh - var(--header-height));
+			}
 		}
 		top: var(--header-and-banner-height);
 		padding-bottom: 0;
 		width: 100%;
+
+		@media (max-height: 431px) {
+			top: var(--header-height);
+		}
 	}
 }

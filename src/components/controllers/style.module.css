@@ -62,6 +62,10 @@ content-region h1 {
 	position: relative;
 	min-height: calc(100vh - var(--header-and-banner-height));
 	width: 100%;
+
+	@media (max-height: 431px) {
+		min-height: calc(100vh - var(--header-height));
+	}
 }
 
 .oldDocsWarning {
@@ -72,6 +76,10 @@ content-region h1 {
 	position: sticky;
 	top: var(--header-and-banner-height);
 	z-index: 100; /* Else code blocks would layer on top */
+
+	@media (max-height: 431px) {
+		top: var(--header-height);
+	}
 
 	a {
 		font-weight: bold;
