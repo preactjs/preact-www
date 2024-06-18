@@ -143,6 +143,7 @@ export function Repl({ code }) {
 					<CodeEditor
 						class={style.code}
 						value={editorCode}
+						baseExampleSlug={exampleSlug}
 						error={error}
 						onInput={onEditorInput}
 					/>
