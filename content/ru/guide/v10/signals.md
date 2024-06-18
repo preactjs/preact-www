@@ -13,6 +13,12 @@ description: 'Сигналы: составное реактивное состо
 
 ---
 
+**Важно**
+
+В этом руководстве мы рассмотрим использование сигналов в Preact, и хотя это в значительной степени применимо как к библиотекам Core, так и к React, есть некоторые различия в использовании. Лучшие рекомендации по их использованию — в соответствующих документациях: [`@preact/signals-core`](https://github.com/preactjs/signals), [`@preact/signals-react`](https://github.com/preactjs/signals/tree/main/packages/react)
+
+---
+
 <div><toc></toc></div>
 
 ---
@@ -335,7 +341,7 @@ console.log(double.value); // Лог: 2
 Чтобы запустить произвольный код в ответ на изменение сигнала, мы можем использовать [`effect(fn)`](#effectfn). Подобно вычисляемым сигналам, эффекты отслеживают, к каким сигналам осуществляется доступ, и повторно запускают обратный вызов при изменении этих сигналов. В отличие от вычисляемых сигналов, [`effect()`](#effectfn) не возвращает сигнал — это конец последовательности изменений.
 
 ```js
-import { signal, computed, effect } from '@preact/signals-core';
+import { signal, computed, effect } from '@preact/signals';
 
 const name = signal('Джейн');
 const surname = signal('Доу');
@@ -353,7 +359,7 @@ name.value = 'Джон';
 Вы можете уничтожить эффект и отказаться от подписки на все сигналы, к которым он получил доступ, вызвав возвращаемую функцию.
 
 ```js
-import { signal, effect } from '@preact/signals-core';
+import { signal, effect } from '@preact/signals';
 
 const name = signal('Джейн');
 const surname = signal('Доу');
@@ -423,7 +429,7 @@ function addTodo() {
 
 ```js
 // --repl
-import { signal, computed, effect, batch } from '@preact/signals-core';
+import { signal, computed, effect, batch } from '@preact/signals';
 
 const count = signal(0);
 const double = computed(() => count.value * 2);
