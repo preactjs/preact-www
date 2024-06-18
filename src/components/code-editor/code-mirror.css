@@ -1,4 +1,4 @@
-.CodeMirror {
+.cm-editor {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -28,113 +28,61 @@
 
 	pre,
 	code,
-	.CodeMirror-linenumber {
+	.cm-lineNumbers {
 		font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
 			'Courier New', monospace;
-		line-height: 1.4;
 	}
 
-	.CodeMirror-selected {
+	.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground,
+	.cm-selectionBackground,
+	.cm-content ::selection {
 		background: #3e4451;
 	}
 
-	.CodeMirror-line::selection,
-	.CodeMirror-line > span::selection,
-	.CodeMirror-line > span > span::selection {
-		background: rgba(73, 72, 62, 0.99);
-	}
-
-	.CodeMirror-gutters {
+	.cm-gutters {
 		background: #282c34;
 		border-right: 1px solid #282c34;
 	}
 
-	.CodeMirror-guttermarker {
-		color: white;
-	}
-
-	.CodeMirror-guttermarker-subtle {
-		color: #d0d0d0;
-	}
-
-	.CodeMirror-linenumber {
+	.cm-gutterElement {
 		color: #8b93a3;
 	}
 
-	.CodeMirror-cursor {
-		border-left: 1px solid #528bff;
-	}
-
-	.cm-comment {
-		color: var(--color-code-comment);
-	}
-
-	.cm-atom {
-		color: #64b6c3;
-	}
-
-	.cm-number {
-		color: var(--color-code-symbol);
-	}
-
-	.cm-property {
-		color: var(--color-code-function);
-	}
-	.cm-attribute {
-		color: var(--color-code-symbol);
+	.cm-content {
+		caret-color: #528bff;
 	}
 
 	.cm-keyword {
 		color: var(--color-code-keyword);
 	}
 
-	.cm-string,
-	.cm-string-2 {
-		color: var(--color-code-string);
-	}
-
-	.cm-variable {
-		color: var(--color-code-symbol);
-	}
-
-	.cm-variable-2 {
-		color: #c678dd;
-	}
-
-	.cm-variable-3 {
-		color: #64b6c3;
-	}
-
-	.cm-def {
+	.cm-function,
+	.cm-literal {
 		color: var(--color-code-function);
 	}
 
-	.cm-bracket,
-	.cm-bracket.cm-tag {
-		color: #abb2bf;
-	}
-
-	.cm-tag {
+	.cm-tag,
+	.cm-attribute {
 		color: var(--color-code-tag);
 	}
 
-	.cm-header {
-		color: #abb2bf;
+	.cm-string {
+		color: var(--color-code-string);
 	}
 
-	.cm-link {
-		color: #98c379;
+	.cm-operator {
+		color: var(--color-code-operator);
 	}
 
-	.cm-error {
+	.cm-invalid {
 		border-bottom: 2px solid #c94b55;
 	}
 
-	.CodeMirror-activeline-background {
-		background: #2c323b;
+	.cm-activeLine {
+		background: #1f232a;
 	}
 
-	.CodeMirror-matchingbracket {
+	.cm-matchingBracket {
 		text-decoration: underline;
 		color: #abb2bf !important;
 	}
