@@ -103,6 +103,10 @@ div.highlight-container {
 		min-height: 95%;
 		padding-top: var(--header-and-banner-height);
 		display: block; /* Fix IE11 layout */
+
+		@media (max-height: 431px) {
+			padding-top: var(--header-height);
+		}
 	}
 }
 

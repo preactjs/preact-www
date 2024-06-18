@@ -52,6 +52,10 @@
 .DocSearch-Modal {
 	top: var(--header-and-banner-height) !important;
 	box-shadow: none;
+
+	@media (max-height: 431px) {
+		top: var(--header-height) !important;
+	}
 }
 
 .DocSearch-Search-Icon,

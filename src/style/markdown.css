@@ -390,8 +390,16 @@
 		/* fix anchor target positioning to account for fixed header */
 		scroll-margin-top: var(--header-and-banner-height);
 
+		@media (max-height: 431px) {
+			scroll-margin-top: var(--header-height);
+		}
+
 		content-region[name*='v8'] & {
 			scroll-margin-top: calc(var(--header-and-banner-height) + 3.25rem);
+
+			@media (max-height: 431px) {
+				scroll-margin-top: calc(var(--header-height) + 3.25rem);
+			}
 		}
 
 		a.fragment-link {

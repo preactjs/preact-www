@@ -8,6 +8,10 @@
 	background: #eee;
 	overflow: hidden;
 
+	@media (max-height: 431px) {
+		top: var(--header-height);
+	}
+
 	.toolbar {
 		position: relative;
 		top: 0;
