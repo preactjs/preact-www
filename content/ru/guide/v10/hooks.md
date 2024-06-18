@@ -444,7 +444,7 @@ const App = props => {
     document.getElementById(inputId).focus()
   }, [])
 
-  // Отображение красивого сообщения об ошибке
+  // Отображение элемента input с уникальным ID
   return (
     <main id={mainId}>
       <input id={inputId}>
