@@ -629,10 +629,12 @@
 			"path": "/blog/preact-x",
 			"date": "2024-05-24",
 			"name": {
-				"en": "Preact X, a story of stability"
+				"en": "Preact X, a story of stability",
+				"ru": "Preact X, история стабильности"
 			},
 			"excerpt": {
-				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened."
+				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened.",
+				"ru": "Preact X выпускается уже пять лет, давайте вспомним всё, что произошло за это время."
 			}
 		},
 		{
