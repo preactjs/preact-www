@@ -22,6 +22,7 @@ const highlightStyle = HighlightStyle.define([
 	{ tag: tags.attributeName, class: 'cm-attribute' },
 	{ tag: tags.string, class: 'cm-string' },
 	{ tag: [tags.operator], class: 'cm-operator' },
+	{ tag: tags.comment, class: 'cm-comment' },
 	{ tag: tags.invalid, class: 'cm-invalid' }
 ]);
 
