@@ -33,7 +33,7 @@ export default function CodeEditor(props) {
 	const [_, setEditor] = useState(null);
 
 	useEffect(() => {
-		if (editor.current && !props.baseExampleSlug) return;
+		if (editor.current && (!props.baseExampleSlug || !props.value)) return;
 		if (editor.current) editor.current.destroy();
 
 		const theme = EditorView.theme({}, { dark: true });
@@ -66,7 +66,7 @@ export default function CodeEditor(props) {
 		});
 
 		setEditor(editor.current);
-	}, [props.baseExampleSlug]);
+	}, [props.value, props.baseExampleSlug]);
 
 	useEffect(() => (
 		() => {
