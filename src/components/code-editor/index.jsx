@@ -27,11 +27,15 @@ const highlightStyle = HighlightStyle.define([
 ]);
 
 export default function CodeEditor(props) {
-	const ref = useRef(null);
+	const editorParent = useRef(null);
+	const editor = useRef(null);
 	// eslint-disable-next-line no-unused-vars
 	const [_, setEditor] = useState(null);
 
 	useEffect(() => {
+		if (editor.current && !props.baseExampleSlug) return;
+		if (editor.current) editor.current.destroy();
+
 		const theme = EditorView.theme({}, { dark: true });
 
 		const state = EditorState.create({
@@ -56,18 +60,20 @@ export default function CodeEditor(props) {
 			]
 		});
 
-		const view = new EditorView({
+		editor.current = new EditorView({
 			state,
-			parent: ref.current
+			parent: editorParent.current
 		});
 
-		setEditor(view);
-
-		return () => {
-			view.destroy();
-			setEditor(null);
-		};
+		setEditor(editor.current);
 	}, [props.baseExampleSlug]);
 
-	return <div ref={ref} class={cx(style.codeEditor, props.class)} />;
+	useEffect(() => (
+		() => {
+			editor.current.destroy();
+			setEditor(null);
+		}
+	), []);
+
+	return <div ref={editorParent} class={cx(style.codeEditor, props.class)} />;
 }
