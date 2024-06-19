@@ -74,6 +74,10 @@
 		color: var(--color-code-operator);
 	}
 
+	.cm-comment {
+		color: var(--color-code-comment);
+	}
+
 	.cm-invalid {
 		border-bottom: 2px solid #c94b55;
 	}
