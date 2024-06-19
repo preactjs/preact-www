@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef } from 'preact/hooks';
+import { useCallback } from 'preact/hooks';
 import cx from '../../lib/cx';
 import s from './splitter.module.css';
 
 /**
- * @param {{orientation: "horizontal" | "vertical", initial?: string, children: any, other: any, force?: boolean}} props
+ * @param {{orientation: "horizontal" | "vertical", initial?: string, children: any, other: any, force?: string | undefined}} props
  */
 export function Splitter({
 	orientation,
@@ -46,20 +46,9 @@ export function Splitter({
 		addEventListener('pointercancel', cancel);
 	}, []);
 
-	const ref = useRef(null);
-	useEffect(() => {
-		if (ref.current) {
-			if (force) {
-				ref.current.style.setProperty('--size', force);
-			} else {
-				ref.current.style.setProperty('--size', initial);
-			}
-		}
-	}, [force]);
-
 	return (
 		<div
-			ref={ref}
+			ref={(n) => n?.style.setProperty('--size', force || initial)}
 			class={cx(
 				s.container,
 				orientation === 'horizontal' ? s.horizontal : s.vertical
