@@ -19,6 +19,8 @@ export function Repl({ code, slug }) {
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
 
+	// TODO: CodeMirror v5 cannot load in Node, and loading only the runner
+	// causes some bad jumping/pop-in. For the moment, this is the best option
 	if (typeof window === 'undefined') return null;
 
 	const { Runner, CodeEditor } = useResource(() => Promise.all([
