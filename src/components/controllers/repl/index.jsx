@@ -1,143 +1,66 @@
-import { Component } from 'preact';
-import linkState from 'linkstate';
-import { debounce } from 'decko';
+import { useState, useEffect } from 'preact/hooks';
+import { Splitter } from '../../splitter';
+import { EXAMPLES, getExample, loadExample } from './examples';
 import { ErrorOverlay } from './error-overlay';
-import { localStorageGet, localStorageSet } from '../../../lib/localstorage';
+import { useStoredValue } from '../../../lib/localstorage';
+import { useResource } from '../../../lib/use-resource';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from './examples.css?raw';
 
-import simpleCounterExample from './examples/simple-counter.txt?url';
-import counterWithHtmExample from './examples/counter-with-htm.txt?url';
-import todoExample from './examples/todo-list.txt?url';
-import todoExampleSignal from './examples/todo-list-signal.txt?url';
-import repoListExample from './examples/github-repo-list.txt?url';
-import contextExample from './examples/context.txt?url';
-import spiralExample from './examples/spiral.txt?url';
-import { Splitter } from '../../splitter';
+/**
+ * @param {Object} props
+ * @param {string} props.code
+ * @param {string} [props.slug]
+ */
+export function Repl({ code, slug }) {
+	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code);
+	const [exampleSlug, setExampleSlug] = useState(slug || '');
+	const [error, setError] = useState(null);
+	const [copied, setCopied] = useState(false);
 
-const EXAMPLES = [
-	{
-		name: 'Simple Counter',
-		slug: 'counter',
-		url: simpleCounterExample
-	},
-	{
-		name: 'Todo List',
-		slug: 'todo',
-		url: todoExample
-	},
-	{
-		name: 'Todo List (Signals)',
-		slug: 'todo-list-signals',
-		url: todoExampleSignal
-	},
-	{
-		name: 'Github Repo List',
-		slug: 'github-repo-list',
-		url: repoListExample
-	},
-	{
-		group: 'Advanced',
-		items: [
-			{
-				name: 'Counter using HTM',
-				slug: 'counter-htm',
-				url: counterWithHtmExample
-			},
-			{
-				name: 'Context',
-				slug: 'context',
-				url: contextExample
-			}
-		]
-	},
-	{
-		group: 'Animation',
-		items: [
-			{
-				name: 'Spiral',
-				slug: 'spiral',
-				url: spiralExample
-			}
-		]
-	}
-];
+	if (typeof window === 'undefined') return null;
 
-function getExample(slug, list) {
-	for (let i = 0; i < list.length; i++) {
-		let item = list[i];
-		if (item.group) {
-			let found = getExample(slug, item.items);
-			if (found) return found;
-		} else if (item.slug.toLowerCase() === slug.toLowerCase()) {
-			return item;
-		}
-	}
-}
+	const { Runner, CodeEditor } = useResource(() => Promise.all([
+		typeof window !== 'undefined' ? import('../../code-editor') : { default: null },
+		import('./runner')
+	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
 
-export class Repl extends Component {
-	state = {
-		loading: 'Loading REPL...',
-		code: '',
-		exampleSlug: ''
+	const applyExample = (e) => {
+		const slug = e.target.value;
+		loadExample(getExample(slug).url)
+			.then(code => {
+				setEditorCode(code);
+				setExampleSlug(slug);
+				history.replaceState(
+					null,
+					null,
+					`/repl?example=${encodeURIComponent(slug)}`
+				);
+		});
 	};
 
-	constructor(props) {
-		super(props);
-
-		// Only load from local storage if no url param is set
-		if (typeof window !== 'undefined') {
-			const params = new URLSearchParams(window.location.search);
-			const exampleParam = params.get('example');
-			let example = exampleParam ? getExample(exampleParam, EXAMPLES) : null;
-
+	useEffect(() => {
+		const example = getExample(exampleSlug);
+		(async function () {
 			if (example) {
-				this.state.exampleSlug = example.slug;
-			} else if (!example) {
-				// Remove ?example param
-				history.replaceState(null, null, '/repl');
-
-				// No example param was present, try to load from localStorage
-				const code = localStorageGet('preact-www-repl-code');
-				if (code) {
-					this.state.code = code;
-				} else {
-					// Nothing found in localStorage either, pick first example
-					this.state.exampleSlug = EXAMPLES[0].slug;
+				const code = await loadExample(example.url);
+				if (location.search && code !== editorCode) {
+					setExampleSlug('');
+					history.replaceState(null, null, '/repl');
 				}
 			}
+		})();
+	}, [editorCode]);
+
+	const share = () => {
+		if (!exampleSlug) {
+			history.replaceState(
+				null,
+				null,
+				`/repl?code=${encodeURIComponent(btoa(editorCode))}`
+			);
 		}
-	}
-
-	componentDidMount() {
-		Promise.all([
-			import('../../code-editor'),
-			import('./runner')
-		]).then(([CodeEditor, Runner]) => {
-			this.CodeEditor = CodeEditor.default;
-			this.Runner = Runner.default;
-
-			// Load transpiler
-			this.setState({ loading: 'Initializing REPL...' });
-			this.Runner.worker.ping().then(() => {
-				this.setState({ loading: false });
-				let example = this.state.exampleSlug;
-				if (this.props.query.code) {
-					this.receiveCode(this.props.query.code);
-				} else if (example) {
-					this.applyExample(example);
-				} else if (!this.state.code) {
-					this.applyExample(EXAMPLES[0].slug);
-				}
-			});
-		});
-	}
-
-	share = () => {
-		let { code } = this.state;
-		const url = `/repl?code=${encodeURIComponent(btoa(code))}`;
-		history.replaceState(null, null, url);
 
 		try {
 			let input = document.createElement('input');
@@ -148,175 +71,74 @@ export class Repl extends Component {
 			document.execCommand('copy');
 			input.blur();
 			document.body.removeChild(input);
-			this.setState({ copied: true });
-			setTimeout(() => this.setState({ copied: false }), 1000);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2500);
 		} catch (err) {
 			// eslint-disable-next-line no-console
 			console.log(err);
 		}
 	};
 
-	loadExample = e => {
-		this.applyExample(e.target.value);
-	};
-
-	async applyExample(name) {
-		let example = getExample(name, EXAMPLES);
-		if (!example) return;
-		if (!example.code) {
-			if (example.url) {
-				example.code = await (await fetch(example.url)).text();
-			} else if (example.load) {
-				example.code = await example.load();
-			}
-		}
-
-		history.replaceState(
-			null,
-			null,
-			`/repl?example=${encodeURIComponent(example.slug)}`
-		);
-		this.setState({ code: example.code, exampleSlug: example.slug });
-	}
-
-	onRealm = realm => {
+	const onRealm = realm => {
 		realm.globalThis.githubStars = window.githubStars;
 	};
 
-	onSuccess = () => {
-		this.setState({ error: null });
-	};
-
-	componentDidUpdate = debounce(500, () => {
-		let { code } = this.state;
-		if (code === repoListExample) code = '';
-		// Reset select when code is changed from example
-		if (this.state.exampleSlug) {
-			const example = getExample(this.state.exampleSlug, EXAMPLES);
-			if (code !== example.code && this.state.exampleSlug !== '') {
-				// eslint-disable-next-line react/no-did-update-set-state
-				this.setState({ exampleSlug: '' });
-				history.replaceState(null, null, '/repl');
-			}
-		}
-		localStorageSet('preact-www-repl-code', code || '');
-	});
-
-	componentWillReceiveProps({ code }) {
-		if (code && code !== this.props.query.code) {
-			this.receiveCode(code);
-		}
-	}
-
-	receiveCode(code) {
-		try {
-			code = atob(code);
-		} catch (e) {}
-		if (code && code !== this.state.code) {
-			if (
-				!document.referrer ||
-				document.referrer.indexOf(location.origin) === 0
-			) {
-				this.setState({ code });
-			} else {
-				setTimeout(() => {
-					if (
-						// eslint-disable-next-line no-alert
-						confirm(
-							'Are you sure you want to run the code contained in this link?'
-						)
-					) {
-						this.setState({ code });
-					}
-				}, 20);
-			}
-		}
-	}
-
-	render(_, { loading, code, error, exampleSlug, copied }) {
-		if (loading) {
-			return (
-				<ReplWrapper loading>
-					<div class={style.loading}>
-						<h4>{loading}</h4>
-					</div>
-				</ReplWrapper>
-			);
-		}
-
-		return (
-			<ReplWrapper loading={!!loading}>
-				<header class={style.toolbar}>
-					<label>
-						Examples:{' '}
-						<select value={exampleSlug} onChange={this.loadExample}>
-							<option value="" disabled>
-								Select Example...
-							</option>
-							{EXAMPLES.map(function item(ex) {
-								const selected =
-									ex.slug !== undefined && ex.slug === exampleSlug;
-								return ex.group ? (
-									<optgroup label={ex.group}>{ex.items.map(item)}</optgroup>
-								) : (
-									<option selected={selected} value={ex.slug}>
-										{ex.name}
-									</option>
-								);
-							})}
-						</select>
-					</label>
-					<button class={style.share} onClick={this.share}>
-						{copied ? '🔗 Copied' : 'Share'}
-					</button>
-				</header>
-				<div class={style.replWrapper}>
-					<Splitter
-						orientation="horizontal"
-						other={
-							<div class={style.output}>
-								{error && (
-									<ErrorOverlay
-										name={error.name}
-										message={error.message}
-										stack={parseStackTrace(error)}
-									/>
-								)}
-								<this.Runner
-									onRealm={this.onRealm}
-									onError={linkState(this, 'error', 'error')}
-									onSuccess={this.onSuccess}
-									css={REPL_CSS}
-									code={code}
+	return (
+		<>
+			<header class={style.toolbar}>
+				<label>
+					Examples:{' '}
+					<select value={exampleSlug} onChange={applyExample}>
+						<option value="" disabled>
+							Select Example...
+						</option>
+						{EXAMPLES.map(function item(ex) {
+							const selected =
+								ex.slug !== undefined && ex.slug === exampleSlug;
+							return ex.group ? (
+								<optgroup label={ex.group}>{ex.items.map(item)}</optgroup>
+							) : (
+								<option selected={selected} value={ex.slug}>
+									{ex.name}
+								</option>
+							);
+						})}
+					</select>
+				</label>
+				<button class={style.share} onClick={share}>
+					{copied ? '🔗 Copied' : 'Share'}
+				</button>
+			</header>
+			<div class={style.replWrapper}>
+				<Splitter
+					orientation="horizontal"
+					other={
+						<div class={style.output}>
+							{error && (
+								<ErrorOverlay
+									name={error.name}
+									message={error.message}
+									stack={parseStackTrace(error)}
 								/>
-							</div>
-						}
-					>
-						<this.CodeEditor
-							class={style.code}
-							value={code}
-							error={error}
-							onInput={linkState(this, 'code', 'value')}
-						/>
-					</Splitter>
-				</div>
-			</ReplWrapper>
-		);
-	}
+							)}
+							<Runner
+								onRealm={onRealm}
+								onError={setError}
+								onSuccess={() => setError(null)}
+								css={REPL_CSS}
+								code={editorCode}
+							/>
+						</div>
+					}
+				>
+					<CodeEditor
+						class={style.code}
+						value={editorCode}
+						error={error}
+						onInput={setEditorCode}
+					/>
+				</Splitter>
+			</div>
+		</>
+	);
 }
-
-const ReplWrapper = ({ loading, children }) => (
-	<div class={style.repl}>
-		<loading-bar showing={!!loading} />
-		<style>{`
-			main {
-				height: 100% !important;
-				overflow: hidden !important;
-			}
-			footer {
-				display: none !important;
-			}
-		`}</style>
-		{children}
-	</div>
-);

@@ -7,11 +7,13 @@ import { patchErrorLocation } from './errors';
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
 
-const worker = Comlink.wrap(
-	new Worker(new URL('./repl.worker.js', import.meta.url), {
-		type: 'module'
-	})
-);
+const worker = typeof window == 'undefined'
+	? undefined
+	: Comlink.wrap(
+		new Worker(new URL('./repl.worker.js', import.meta.url), {
+			type: 'module'
+		})
+	);
 
 function createRoot(doc) {
 	const root = doc.createElement('div');
@@ -39,7 +41,7 @@ export default class Runner extends Component {
 		}
 		this.didError = true;
 		if (this.props.onError) {
-			this.props.onError({ error });
+			this.props.onError(error);
 		}
 	};
 
