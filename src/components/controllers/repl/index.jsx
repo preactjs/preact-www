@@ -24,7 +24,7 @@ export function Repl({ code, slug }) {
 	if (typeof window === 'undefined') return null;
 
 	const { Runner, CodeEditor } = useResource(() => Promise.all([
-		typeof window !== 'undefined' ? import('../../code-editor') : { default: null },
+		import('../../code-editor'),
 		import('./runner')
 	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
 
