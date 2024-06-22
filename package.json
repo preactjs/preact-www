@@ -76,7 +76,6 @@
     "comlink": "^4.4.1",
     "decko": "^1.2.0",
     "htm": "^3.1.1",
-    "linkstate": "^1.1.1",
     "magic-string": "^0.25.7",
     "marked": "^0.8.0",
     "preact": "10.15.1",
