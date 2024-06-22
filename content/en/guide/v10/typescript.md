@@ -504,3 +504,58 @@ function Counter({ initialCount = 0 }) {
 ```
 
 The only annotation needed is in the reducer function itself. The `useReducer` types also ensure that the return value of the reducer function is of type `StateType`.
+
+## Extending built-in JSX types
+
+You may have [custom elements](/guide/v10/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all HTML elements to work with a particular library. To do this, you will need to extend the `IntrinsicElements` or `HTMLAttributes` interfaces, respectively, so that TypeScript is aware and can provide correct type information.
+
+### Extending `IntrinsicElements`
+
+```tsx
+function MyComponent() {
+  return <loading-bar showing={true}></loading-bar>;
+  //      ~~~~~~~~~~~
+  //   💥 Error! Property 'loading-bar' does not exist on type 'JSX.IntrinsicElements'.
+}
+```
+
+```tsx
+// global.d.ts
+
+declare global {
+  namespace preact.JSX {
+    interface IntrinsicElements {
+      'loading-bar': { showing: boolean };
+    }
+  }
+}
+
+// This empty export is important! It tells TS to treat this as a module
+export {}
+```
+
+### Extending `HTMLAttributes`
+
+```tsx
+function MyComponent() {
+  return <div custom="foo"></div>;
+  //          ~~~~~~
+  //       💥 Error! Type '{ custom: string; }' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+  //                   Property 'custom' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+}
+```
+
+```tsx
+// global.d.ts
+
+declare global {
+  namespace preact.JSX {
+    interface HTMLAttributes {
+      custom?: string | undefined;
+    }
+  }
+}
+
+// This empty export is important! It tells TS to treat this as a module
+export {}
+```
