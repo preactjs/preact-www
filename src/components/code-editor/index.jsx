@@ -62,7 +62,7 @@ export default class CodeEditor extends Component {
 
 			this.value = this.editor.getValue();
 			let { onInput } = this.props;
-			if (onInput) onInput({ value: this.value });
+			if (onInput) onInput(this.value);
 		});
 	}
 

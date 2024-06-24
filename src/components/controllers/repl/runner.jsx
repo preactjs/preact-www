@@ -39,7 +39,7 @@ export default class Runner extends Component {
 		}
 		this.didError = true;
 		if (this.props.onError) {
-			this.props.onError({ error });
+			this.props.onError(error);
 		}
 	};
 

@@ -9,7 +9,6 @@ import {
 	useCallback
 } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
-import linkState from 'linkstate';
 import { TutorialContext, SolutionContext } from './contexts';
 import cx from '../../../lib/cx';
 import style from './style.module.css';
@@ -256,7 +255,7 @@ function TutorialView({
 									class={style.code}
 									value={code}
 									error={error}
-									onInput={linkState(tutorial, 'code', 'value')}
+									onInput={(value) => tutorial.setState({ code: value })}
 								/>
 							)}
 						</div>

@@ -33,7 +33,7 @@ export function htmlRoutingMiddlewarePlugin() {
 
 				try {
 					await fs.access(file);
-					req.url += '/index.html';
+					req.url = url.pathname + '/index.html' + url.search;
 				} catch {
 					req.url = '/404/index.html';
 				}
