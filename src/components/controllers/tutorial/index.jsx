@@ -95,7 +95,7 @@ export class Tutorial extends Component {
 		});
 	}
 
-	onError = ({ error }) => {
+	onError = error => {
 		this.errorHandlers.forEach(f => f(error));
 		if (this.state.error !== error) {
 			this.setState({ error });
