@@ -280,10 +280,10 @@ function TutorialView({
 								class={style.helpButton}
 								onClick={tutorial.help}
 								disabled={!showCode}
-								title="Get help with this example"
+								title="Show solution to this example"
 							>
-								{config.i18n.tutorial.help[lang] ||
-									config.i18n.tutorial.help.en}
+								{config.i18n.tutorial.solve[lang] ||
+									config.i18n.tutorial.solve.en}
 							</button>
 						)}
 						{meta.next && (
