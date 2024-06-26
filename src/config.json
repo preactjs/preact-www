@@ -61,9 +61,9 @@
 				"kr": "정답 확인",
 				"ru": "Помощь"
 			},
-      "solve": {
-        "en": "Solve"
-      }
+			"solve": {
+				"en": "Solve"
+			}
 		}
 	},
 	"nav": [
