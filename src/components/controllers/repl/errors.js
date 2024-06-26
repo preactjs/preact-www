@@ -1,6 +1,7 @@
 /**
  * Convert native error stack trace into an array of json-based frames.
  * @param {Error} err
+ * @returns {{ functionName: string, line: number, column: number}[]}
  */
 export function parseStackTrace(err) {
 	let include = true;

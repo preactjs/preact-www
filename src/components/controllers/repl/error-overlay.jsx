@@ -1,7 +1,14 @@
 import { useReducer } from 'preact/hooks';
 import style from './error-overlay.module.css';
 
-export function ErrorOverlay({ class: c, name, message, stack }) {
+/**
+ * @param {Object} props
+ * @param {string} props.name
+ * @param {string} props.message
+ * @param {{functionName: string, line: number, column: number}[]} props.stack
+ * @param {string} [props.class]
+ */
+export function ErrorOverlay({ name, message, stack, class: c }) {
 	const [showStack, toggleStack] = useReducer(s => !s, false);
 	const hasStack = stack && stack.length > 0;
 
