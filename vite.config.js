@@ -10,6 +10,9 @@ import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.j
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 
+// TODO: Should we do this for all routes, rely on discovery a bit less?
+import { tutorialRoutes } from './src/lib/route-utils.js';
+
 export default defineConfig({
 	publicDir: 'src/assets',
 	optimizeDeps: {
@@ -32,7 +35,8 @@ export default defineConfig({
 				additionalPrerenderRoutes: [
 					'/404',
 					'/guide/v8/getting-started',
-					'/branding'
+					'/branding',
+					...Object.keys(tutorialRoutes)
 				]
 			}
 		}),
