@@ -1,13 +1,17 @@
 import { useRoute } from 'preact-iso';
+import { useEffect } from 'preact/hooks';
+import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
-import { useContent } from '../../lib/use-resource';
-import { useTitle, useDescription } from './utils';
 import { NotFound } from './not-found';
+import { useTitle, useDescription } from './utils';
+import { getContent } from '../../lib/content';
+import { useContent } from '../../lib/use-resource';
 import { useLanguage } from '../../lib/i18n';
 import { tutorialRoutes } from '../../lib/route-utils';
-import { Tutorial } from './tutorial';
 
-export default function TutorialPage({ loading }) {
+import style from './tutorial/style.module.css';
+
+export default function TutorialPage() {
 	const { params } = useRoute();
 	const { step } = params;
 
@@ -15,10 +19,10 @@ export default function TutorialPage({ loading }) {
 		return <NotFound />;
 	}
 
-	return <TutorialLayout loading={loading} />;
+	return <TutorialLayout />;
 }
 
-function TutorialLayout({ loading }) {
+function TutorialLayout() {
 	const { path, params } = useRoute();
 	const [lang] = useLanguage();
 
@@ -27,17 +31,23 @@ function TutorialLayout({ loading }) {
 	useDescription(meta.description);
 
 	// Preload the next chapter
-	// TODO: Webpack creates a circular dependency that
-	// it cannot resolve. Temporarily disabled
-	//useEffect(() => {
-	//	if (meta && meta.next) {
-	//		getContent([lang, meta.next]);
-	//	}
-	//}, [meta && meta.next, url]);
+	useEffect(() => {
+		if (meta && meta.next) {
+			getContent([lang, meta.next]);
+		}
+	}, [meta.next, path]);
 
 	return (
-		<SolutionProvider>
-			<Tutorial html={html} meta={meta} loading={loading} />
-		</SolutionProvider>
+		<div class={style.tutorial}>
+			<style>{`
+				main {
+					height: 100% !important;
+					overflow: hidden !important;
+				}
+			`}</style>
+			<SolutionProvider>
+				<Tutorial html={html} meta={meta} />
+			</SolutionProvider>
+		</div>
 	);
 }

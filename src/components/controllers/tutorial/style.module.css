@@ -242,18 +242,6 @@
 			transition: opacity 1s ease;
 			overflow: auto;
 
-			.error {
-				position: absolute;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				margin: 0;
-				height: auto;
-				border-top: 2px solid var(--color-error-heading);
-				padding: 10px;
-				box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-				animation: slideUp 300ms ease forwards 1;
-			}
 			@keyframes slideUp {
 				from {
 					opacity: 0;
@@ -356,41 +344,6 @@
 				transform: rotate(0deg);
 			}
 		}
-	}
-
-	.loadingOverlay {
-		position: absolute;
-		left: 75%;
-		top: 75%;
-		width: 160px;
-		margin: -40px 0 0 -80px;
-		background: var(--color-page-bg);
-		color: var(--color-heading);
-		box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
-		text-align: center;
-		opacity: 0;
-		transform: translateY(50%);
-		transition: all 500ms ease;
-		z-index: 100;
-		pointer-events: none;
-
-		&.loading {
-			opacity: 0.75;
-			transform: none;
-			transition: all 150ms ease;
-		}
-
-		h4 {
-			color: #999;
-			font-size: 16px;
-			font-weight: normal;
-		}
-	}
-
-	&:not(.showCode) .loadingOverlay,
-	&.initialLoad .loadingOverlay {
-		left: 50%;
-		top: 50%;
 	}
 }
 
