@@ -52,6 +52,13 @@ function parseContent(content, path) {
 	// generate ToC from markdown
 	meta.toc = generateToc(content);
 
+	// extract tutorial setup, initial and final code blocks
+	if (/tutorial\/\d/.test(path)) {
+		const { markdown, tutorial } = extractTutorialCodeBlocks(content);
+		content = markdown;
+		meta.tutorial = tutorial;
+	}
+
 	return {
 		content,
 		meta
@@ -108,4 +115,30 @@ function generateToc(markdown) {
  */
 function sanitizeTitle(text) {
 	return text.replace(/\s*<!--.*-->\s*/, '');
+}
+
+/**
+ * Split out tutorial code blocks that will be fed into the REPL
+ *
+ * @param {string} markdown
+ */
+function extractTutorialCodeBlocks(markdown) {
+	const SETUP_CODE_REG = /```js:setup(.+?)```/s;
+	const INTITAL_CODE_REG = /```jsx:repl-initial(.+?)```/s;
+	const FINAL_CODE_REG = /```jsx:repl-final(.+?)```/s;
+
+	const tutorial = {};
+	[
+		['setup', SETUP_CODE_REG],
+		['initial', INTITAL_CODE_REG],
+		['final', FINAL_CODE_REG]
+	].forEach(([key, regex]) => {
+		const match = markdown.match(regex);
+		if (match) {
+			tutorial[key] = match[1].trim();
+			markdown = markdown.replace(regex, '');
+		}
+	});
+
+	return { markdown, tutorial };
 }

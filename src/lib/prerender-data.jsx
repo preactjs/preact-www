@@ -1,7 +1,5 @@
 const TYPE = 'text/pd';
 
-const noop = () => {};
-
 const prerenderNodes = typeof window !== 'undefined' && document.querySelectorAll(`[type="${TYPE}"]`);
 const prerenderData = {};
 
@@ -24,20 +22,19 @@ export function getPrerenderData(name) {
 	}
 }
 
-export const InjectPrerenderData = typeof window !== 'undefined'
-	? function InjectPrerenderData({ name, data }) {
-			const content = JSON.stringify(data).replace(
-				/<(_*)\/script>/g,
-				'<$1_/script>'
-			);
-			return (
-				<script
-					type={TYPE}
-					data-pd={name}
-					dangerouslySetInnerHTML={{
-						__html: content
-					}}
-				/>
-			);
-	  }
-	: noop;
+export function InjectPrerenderData({ name, data }) {
+	if (typeof window === 'undefined') return null;
+	const content = JSON.stringify(data).replace(
+		/<(_*)\/script>/g,
+		'<$1_/script>'
+	);
+	return (
+		<script
+			type={TYPE}
+			data-pd={name}
+			dangerouslySetInnerHTML={{
+				__html: content
+			}}
+		/>
+	);
+}

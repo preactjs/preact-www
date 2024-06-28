@@ -1,4 +1,4 @@
-import { Component, createRef, options } from 'preact';
+import { options } from 'preact';
 import {
 	useState,
 	useReducer,
@@ -10,380 +10,245 @@ import {
 } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import { TutorialContext, SolutionContext } from './contexts';
-import cx from '../../../lib/cx';
-import style from './style.module.css';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
-import widgets from '../../widgets';
+import cx from '../../../lib/cx';
 import { InjectPrerenderData } from '../../../lib/prerender-data';
+import { useResource } from '../../../lib/use-resource';
 import { useLanguage } from '../../../lib/i18n';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
 import { MarkdownRegion } from '../markdown-region';
+import style from './style.module.css';
 
-const TUTORIAL_COMPONENTS = {
-	pre: TutorialCodeBlock,
-	Solution
-};
+const resultHandlers = new Set();
+const realmHandlers = new Set();
+const errorHandlers = new Set();
 
-export class Tutorial extends Component {
-	state = {
-		loading: true,
-		code: '',
-		error: null,
-		'repl-initial': '',
-		'repl-final': ''
-	};
+let resultCleanups, realmCleanups;
 
-	content = createRef();
-	runner = createRef();
+/**
+ * @typedef TutorialCode
+ * @property {string} setup
+ * @property {string} initial
+ * @property {string} final
+ */
 
-	static contextType = SolutionContext;
+/**
+ * @typedef TutorialMeta
+ * @property {boolean} [code]
+ * @property {boolean} [solvable]
+ * @property {TutorialCode} [tutorial]
+ */
 
-	resultHandlers = new Set();
-	realmHandlers = new Set();
-	errorHandlers = new Set();
-	useResult = fn => {
-		useEffect(() => {
-			this.resultHandlers.add(fn);
-			return () => this.resultHandlers.delete(fn);
-		}, [fn]);
-	};
-	useRealm = fn => {
-		useEffect(() => {
-			this.realmHandlers.add(fn);
-			let runner = this.runner.current;
-			if (runner && runner.realm && runner.realm.globalThis._require) {
-				this.onRealm(runner.realm);
-			}
-			return () => this.realmHandlers.delete(fn);
-		}, [fn]);
-	};
-	useError = fn => {
-		useEffect(() => {
-			this.errorHandlers.add(fn);
-			return () => this.errorHandlers.delete(fn);
-		}, [fn]);
-	};
-
-	componentWillReceiveProps({ html }) {
-		if (html !== this.props.html) {
-			this.setState({
-				code: '',
-				error: null,
-				'repl-initial': '',
-				'repl-final': ''
-			});
-			this.context.setSolved(false);
-		}
-	}
-
-	componentDidMount() {
-		Promise.all([
-			import(/* webpackChunkName: "editor" */ '../../code-editor'),
-			import(/* webpackChunkName: "runner" */ '../repl/runner')
-		]).then(([CodeEditor, Runner]) => {
-			this.CodeEditor = CodeEditor.default;
-			this.Runner = Runner.default;
-
-			// Load transpiler
-			this.Runner.worker.ping().then(() => {
-				this.setState({
-					loading: false
-				});
-			});
-		});
-	}
-
-	onError = error => {
-		this.errorHandlers.forEach(f => f(error));
-		if (this.state.error !== error) {
-			this.setState({ error });
-		}
-	};
-
-	onSuccess = () => {
-		if (this.resultCleanups) this.resultCleanups.forEach(f => f());
-		this.resultCleanups = [];
-		this.resultHandlers.forEach(f => {
-			let cleanup = f(this.runner.current);
-			if (cleanup) this.resultCleanups.push(cleanup);
-		});
-		if (this.state.error != null) {
-			this.setState({ error: null });
-		}
-	};
-
-	onRealm = realm => {
-		if (this.realmCleanups) this.realmCleanups.forEach(f => f());
-		this.realmCleanups = [];
-		// this.realmCleanups = Array.from(this.realmHandlers).map(f => f()).filter(Boolean);
-		this.realmHandlers.forEach(f => {
-			let cleanup = f(realm);
-			if (cleanup) this.realmCleanups.push(cleanup);
-		});
-	};
-
-	help = () => {
-		const solution = this.state['repl-final'];
-		this.setState({ code: solution });
-	};
-
-	clearError = () => {
-		this.setState({ error: null });
-	};
-
-	render({ html, meta, loading }, { code, error }) {
-		const state = {
-			html,
-			meta,
-			loading,
-			code,
-			error,
-			Runner: this.Runner,
-			CodeEditor: this.CodeEditor
-		};
-		return (
-			<TutorialContext.Provider value={this}>
-				<TutorialView {...state} clearError={this.clearError} />
-			</TutorialContext.Provider>
-		);
-	}
-}
-
-function TutorialView({
-	html,
-	meta,
-	loading,
-	code,
-	error,
-	Runner,
-	CodeEditor,
-	clearError
-}) {
-	const content = useRef(null);
-
-	const tutorial = useContext(TutorialContext);
-
+/**
+ * @param {{ html: string, meta: TutorialMeta }} props
+ */
+export function Tutorial({ html, meta }) {
+	const { path } = useRoute();
+	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
+	const [error, setError] = useState(null);
 	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
 
-	const { path } = useRoute();
-	const [lang] = useLanguage();
-	const { solved } = useContext(SolutionContext);
+	const content = useRef(null);
+	const runner = useRef(null);
 
-	const solvable = meta.solvable === true;
+	const solutionCtx = useContext(SolutionContext);
+
 	const hasCode = meta.code !== false;
 	const showCode = showCodeOverride && hasCode;
-	const initialLoad = !html || !Runner || !CodeEditor;
 
-	// Scroll to the top after loading
+	// TODO: CodeMirror v5 cannot load in Node, and loading only the runner
+	// causes some bad jumping/pop-in. For the moment, this is the best option
+	if (typeof window === 'undefined') return null;
+
+	const { Runner, CodeEditor } = useResource(() => Promise.all([
+		import('../../code-editor'),
+		import('../repl/runner')
+	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
+
 	useEffect(() => {
-		if (!loading && !initialLoad) {
+		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {
+			setEditorCode(meta.tutorial.initial);
+			solutionCtx.setSolved(false);
 			content.current.scrollTo(0, 0);
 		}
-	}, [path, loading, initialLoad]);
+	}, [html]);
 
-	const reRun = useCallback(() => {
-		let code = tutorial.state.code;
-		tutorial.setState({ code: code + ' ' }, () => {
-			tutorial.setState({ code });
+
+	const useResult = fn => {
+		useEffect(() => {
+			resultHandlers.add(fn);
+			return () => resultHandlers.delete(fn);
+		}, [fn]);
+	};
+	const useRealm = fn => {
+		useEffect(() => {
+			realmHandlers.add(fn);
+			let r = runner.current;
+			if (r && r.realm && r.realm.globalThis._require) {
+				onRealm(r.realm);
+			}
+			return () => realmHandlers.delete(fn);
+		}, [fn]);
+	};
+	const useError = fn => {
+		useEffect(() => {
+			errorHandlers.add(fn);
+			return () => errorHandlers.delete(fn);
+		}, [fn]);
+	};
+
+	const onError = error => {
+		errorHandlers.forEach(f => f(error));
+		setError(error);
+	};
+
+	const onSuccess = () => {
+		if (resultCleanups) resultCleanups.forEach(f => f());
+		resultCleanups = [];
+		resultHandlers.forEach(f => {
+			let cleanup = f(runner.current);
+			if (cleanup) resultCleanups.push(cleanup);
 		});
-	}, []);
+		setError(null);
+	};
+
+	const onRealm = realm => {
+		if (realmCleanups) realmCleanups.forEach(f => f());
+		realmCleanups = [];
+		// this.realmCleanups = Array.from(this.realmHandlers).map(f => f()).filter(Boolean);
+		realmHandlers.forEach(f => {
+			let cleanup = f(realm);
+			if (cleanup) realmCleanups.push(cleanup);
+		});
+	};
+
+	const help = () => meta.tutorial?.final && setEditorCode(meta.tutorial?.final);
 
 	return (
-		<ReplWrapper
-			loading={loading}
-			initialLoad={initialLoad}
-			solvable={solvable}
-			solved={solved}
-			showCode={showCode}
-		>
-			<Splitter
-				orientation="horizontal"
-				force={!showCode ? '100%' : undefined}
-				other={
-					<Splitter
-						orientation="vertical"
-						other={
-							<>
-								<div class={style.output} key="output">
-									{!initialLoad && (
-										<Runner
-											key={path}
-											ref={tutorial.runner}
-											onSuccess={tutorial.onSuccess}
-											onRealm={tutorial.onRealm}
-											onError={tutorial.onError}
-											code={code}
-											clear
-										/>
-									)}
-									{error && (
-										<div class={style.errorOverlayWrapper}>
-											<button class={style.close} onClick={clearError}>
-												close
-											</button>
-											<ErrorOverlay
-												key={'e:' + path}
-												class={style.error}
-												name={error.name}
-												message={error.message}
-												stack={parseStackTrace(error)}
-											/>
-											<button class={style.rerun} onClick={reRun}>
-												Re-run
-											</button>
-										</div>
-									)}
-								</div>
-								{hasCode && (
-									<button
-										class={style.toggleCode}
-										title="Toggle Code"
-										onClick={toggleCode}
-									>
-										<span>Toggle Code</span>
-									</button>
-								)}
-							</>
-						}
-					>
-						<div class={style.codeWindow}>
-							{!initialLoad && (
-								<CodeEditor
-									key="editor"
-									class={style.code}
-									value={code}
-									error={error}
-									onInput={(value) => tutorial.setState({ code: value })}
-								/>
-							)}
-						</div>
-					</Splitter>
-				}
-			>
-				<div class={style.tutorialWindow} ref={content}>
-					<MarkdownRegion
-						html={html}
-						meta={meta}
-						components={TUTORIAL_COMPONENTS}
-					/>
-
-					<div class={style.buttonContainer}>
-						{meta.prev && (
-							<a class={style.prevButton} href={meta.prev}>
-								{config.i18n.previous[lang] || config.i18n.previous.en}
-							</a>
-						)}
-						{tutorial.state['repl-final'] && (
-							<button
-								class={style.helpButton}
-								onClick={tutorial.help}
-								disabled={!showCode}
-								title="Show solution to this example"
-							>
-								{config.i18n.tutorial.solve[lang] ||
-									config.i18n.tutorial.solve.en}
-							</button>
-						)}
-						{meta.next && (
-							<a class={style.nextButton} href={meta.next}>
-								{meta.nextText || config.i18n.next[lang] || config.i18n.next.en}
-							</a>
-						)}
-					</div>
-				</div>
-			</Splitter>
-
-			<InjectPrerenderData
-				name={path}
-				data={{
-					html,
-					meta
-				}}
-			/>
-		</ReplWrapper>
-	);
-}
-
-const REPL_CSS = `
-	main {
-		height: 100% !important;
-		overflow: hidden !important;
-	}
-	footer {
-		display: none !important;
-	}
-`;
-
-function ReplWrapper({
-	loading,
-	solvable,
-	solved,
-	initialLoad,
-	showCode,
-	children
-}) {
-	return (
-		<div class={style.tutorial}>
-			<loading-bar showing={!!loading} />
-			<style>{REPL_CSS}</style>
+		<TutorialContext.Provider value={this}>
 			<div
 				class={cx(
 					style.tutorialWrapper,
-					solvable && style.solvable,
-					solved && style.solved,
-					initialLoad && style.loading,
+					meta.solvable && style.solvable,
+					solutionCtx.solved && style.solved,
 					showCode && style.showCode
 				)}
 			>
-				{children}
+				<Splitter
+					orientation="horizontal"
+					force={!showCode ? '100%' : undefined}
+					other={
+						// TODO: CodeMirror v5 cannot load in Node, and loading only the runner
+						// causes some bad jumping/pop-in. For the moment, this is the best option
+						typeof window === 'undefined'
+							? null
+							: <Splitter
+									orientation="vertical"
+									other={
+										<>
+											<div class={style.output}>
+												{error && (
+													<ErrorOverlay
+														name={error.name}
+														message={error.message}
+														stack={parseStackTrace(error)}
+													/>
+												)}
+												<Runner
+													ref={runner}
+													onSuccess={onSuccess}
+													onRealm={onRealm}
+													onError={onError}
+													code={editorCode}
+												/>
+											</div>
+											{hasCode && (
+												<button
+													class={style.toggleCode}
+													title="Toggle Code"
+													onClick={toggleCode}
+												>
+													<span>Toggle Code</span>
+												</button>
+											)}
+										</>
+									}
+							  >
+								<div class={style.codeWindow}>
+									<CodeEditor
+										class={style.code}
+										value={editorCode}
+										error={error}
+										onInput={setEditorCode}
+									/>
+								</div>
+							</Splitter>
+					}
+				>
+					<div class={style.tutorialWindow} ref={content}>
+						<MarkdownRegion
+							html={html}
+							meta={meta}
+							components={TUTORIAL_COMPONENTS}
+						/>
+
+						{meta.tutorial?.setup &&
+							<TutorialSetupBlock
+								code={meta.tutorial.setup}
+								runner={runner}
+								useResult={useResult}
+								useRealm={useRealm}
+								useError={useError}
+							/>
+						}
+
+						<ButtonContainer meta={meta} showCode={showCode} help={help} />
+					</div>
+				</Splitter>
+
+				<InjectPrerenderData
+					name={path}
+					data={{ html, meta }}
+				/>
 			</div>
-			<div
-				class={cx(
-					style.loadingOverlay,
-					typeof window !== 'undefined' && loading && style.loading
-				)}
-			>
-				<h4>Loading...</h4>
-			</div>
+		</TutorialContext.Provider>
+	);
+}
+
+function ButtonContainer({ meta, showCode, help }) {
+	const [lang] = useLanguage();
+
+	return (
+		<div class={style.buttonContainer}>
+			{meta.prev && (
+				<a class={style.prevButton} href={meta.prev}>
+					{config.i18n.previous[lang] || config.i18n.previous.en}
+				</a>
+			)}
+			{meta.solvable && (
+				<button
+					class={style.helpButton}
+					onClick={help}
+					disabled={!showCode}
+					title="Show solution to this example"
+				>
+					{config.i18n.tutorial.solve[lang] ||
+						config.i18n.tutorial.solve.en}
+				</button>
+			)}
+			{meta.next && (
+				<a class={style.nextButton} href={meta.next}>
+					{meta.nextText || config.i18n.next[lang] || config.i18n.next.en}
+				</a>
+			)}
 		</div>
 	);
 }
 
-/** Handles all code blocks (and <pre>'s) in tutorial markup */
-function TutorialCodeBlock(props) {
-	const tutorial = useContext(TutorialContext);
-	const child = [].concat(props.children)[0];
-
-	// not a code block
-	if (!child || child.type !== 'code') {
-		return <pre {...props} />;
-	}
-
-	const text = [].concat(child.props.children).join('');
-	const code = text.replace(/(^\s+|\s+$)/g, '');
-	const cl = child.props.class || '';
-
-	// Block Type: ```js:setup
-	if (/setup/.test(cl)) {
-		return <TutorialSetupBlock code={code} />;
-	}
-
-	// Block Type: ```jsx:repl-initial  /  ```jsx:repl-final
-	const repl = cl.match(/repl-(initial|final)/g);
-	if (repl) {
-		tutorial.setState({ [repl[0]]: code + '\n' });
-		if (repl[0] === 'repl-initial') tutorial.setState({ code: code + '\n' });
-		return null;
-	}
-
-	props.repl = props.repl === true || props.repl === 'true';
-	return <widgets.CodeBlock {...props} />;
-}
-
 /** Handles running ```js:setup code blocks */
-function TutorialSetupBlock({ code }) {
+function TutorialSetupBlock({ code, runner, useResult, useRealm, useError }) {
 	// Only run when we get new setup code.
 	// Note: we run setup code as a component to allow hook usage:
 	const Setup = useCallback(() => {
@@ -391,7 +256,7 @@ function TutorialSetupBlock({ code }) {
 
 		const tutorial = useContext(TutorialContext);
 		const solutionCtx = useContext(SolutionContext);
-		const require = m => tutorial.runner.current.realm.globalThis._require(m);
+		const require = m => runner.current.realm.globalThis._require(m);
 
 		const fn = new Function(
 			'options',
@@ -418,11 +283,11 @@ function TutorialSetupBlock({ code }) {
 			useEffect,
 			useRef,
 			useMemo,
-			tutorial.useResult,
-			tutorial.useRealm,
-			tutorial.useError,
+			useResult,
+			useRealm,
+			useError,
 			solutionCtx,
-			tutorial.runner.current && tutorial.runner.current.realm,
+			runner.current && runner.current.realm,
 			require
 		);
 
@@ -432,6 +297,10 @@ function TutorialSetupBlock({ code }) {
 	return <Setup />;
 }
 
+const TUTORIAL_COMPONENTS = {
+	Solution
+};
+
 /** Shows a solution banner when the chapter is solved */
 function Solution({ children }) {
 	const { solved } = useContext(SolutionContext);
@@ -440,7 +309,7 @@ function Solution({ children }) {
 	useEffect(() => {
 		if (solved) {
 			requestAnimationFrame(() => {
-				ref.current.scrollIntoView({ behavior: 'smooth' });
+				ref.current && ref.current.scrollIntoView({ behavior: 'smooth' });
 			});
 		}
 	}, [solved]);
