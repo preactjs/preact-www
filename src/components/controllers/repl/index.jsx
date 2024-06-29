@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
 import { Splitter } from '../../splitter';
 import { textToBase64 } from './query-encode.js';
