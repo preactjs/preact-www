@@ -50,6 +50,12 @@ function Foo() {
 }
 ```
 
+> [!Note]
+> Preact maps camelCase JSX property names to the JS properties of the custom elements, not dash-case
+> like other other JSX compilers or runtimes may. If a custom element has a property names `someProperty`, using
+> the syntax `someProperty={value}` will work while `some-property={value}` will not (the latter will
+> set the attribute instead).
+
 When rendering static HTML using `preact-render-to-string` ("SSR"), complex property values like the object above are not automatically serialized. They are applied once the static HTML is hydrated on the client.
 
 ### Accessing Instance Methods
