@@ -50,6 +50,8 @@ function Foo() {
 }
 ```
 
+> **Note:** Preact makes no assumptions over naming schemes and will not attempt to coerce names, in JSX or otherwise, to DOM properties. If a custom element has a property name `someProperty`, it will need to be set using `someProperty=...` rather than `some-property=...`.
+
 When rendering static HTML using `preact-render-to-string` ("SSR"), complex property values like the object above are not automatically serialized. They are applied once the static HTML is hydrated on the client.
 
 ### Accessing Instance Methods
