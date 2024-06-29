@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
+=======
+import { useState } from 'preact/hooks';
+>>>>>>> 85f6ec02 (refactor: Swap effect for input handler)
 import { Splitter } from '../../splitter';
 import { EXAMPLES, fetchExample } from './examples';
 import { ErrorOverlay } from './error-overlay';
