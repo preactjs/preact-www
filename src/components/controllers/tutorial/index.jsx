@@ -62,6 +62,9 @@ export function Tutorial({ html, meta }) {
 	// causes some bad jumping/pop-in. For the moment, this is the best option
 	if (typeof window === 'undefined') return null;
 
+	/**
+	 * @type {{ Runner: import('../repl/runner').default, CodeEditor: import('../../code-editor').default }}
+	 */
 	const { Runner, CodeEditor } = useResource(() => Promise.all([
 		import('../../code-editor'),
 		import('../repl/runner')
@@ -73,7 +76,7 @@ export function Tutorial({ html, meta }) {
 			solutionCtx.setSolved(false);
 			content.current.scrollTo(0, 0);
 		}
-	}, [html]);
+	}, [meta.tutorial?.initial]);
 
 
 	const useResult = fn => {
@@ -140,42 +143,38 @@ export function Tutorial({ html, meta }) {
 					orientation="horizontal"
 					force={!showCode ? '100%' : undefined}
 					other={
-						// TODO: CodeMirror v5 cannot load in Node, and loading only the runner
-						// causes some bad jumping/pop-in. For the moment, this is the best option
-						typeof window === 'undefined'
-							? null
-							: <Splitter
-									orientation="vertical"
-									other={
-										<>
-											<div class={style.output}>
-												{error && (
-													<ErrorOverlay
-														name={error.name}
-														message={error.message}
-														stack={parseStackTrace(error)}
-													/>
-												)}
-												<Runner
-													ref={runner}
-													onSuccess={onSuccess}
-													onRealm={onRealm}
-													onError={onError}
-													code={editorCode}
-												/>
-											</div>
-											{hasCode && (
-												<button
-													class={style.toggleCode}
-													title="Toggle Code"
-													onClick={toggleCode}
-												>
-													<span>Toggle Code</span>
-												</button>
-											)}
-										</>
-									}
-							  >
+						<Splitter
+							orientation="vertical"
+							other={
+								<>
+									<div class={style.output}>
+										{error && (
+											<ErrorOverlay
+												name={error.name}
+												message={error.message}
+												stack={parseStackTrace(error)}
+											/>
+										)}
+										<Runner
+											ref={runner}
+											onSuccess={onSuccess}
+											onRealm={onRealm}
+											onError={onError}
+											code={editorCode}
+										/>
+									</div>
+									{hasCode && (
+										<button
+											class={style.toggleCode}
+											title="Toggle Code"
+											onClick={toggleCode}
+										>
+											<span>Toggle Code</span>
+										</button>
+									)}
+								</>
+							}
+						>
 								<div class={style.codeWindow}>
 									<CodeEditor
 										class={style.code}

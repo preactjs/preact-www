@@ -1,6 +1,6 @@
-import { useRoute } from 'preact-iso';
+import { useLocation, useRoute } from 'preact-iso';
 import { Repl } from './repl';
-import { useExample } from './repl/examples';
+import { fetchExample } from './repl/examples';
 import { useContent, useResource } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
 import { useLanguage } from '../../lib/i18n';
@@ -15,7 +15,7 @@ export default function ReplPage() {
 	useTitle(meta.title);
 	useDescription(meta.description);
 
-	const [code, slug] = initialCode(query);
+	const code = useResource(() => getInitialCode(query), [query]);
 
 	return (
 		<div class={style.repl}>
@@ -24,11 +24,8 @@ export default function ReplPage() {
 					height: 100% !important;
 					overflow: hidden !important;
 				}
-				footer {
-					display: none !important;
-				}
 			`}</style>
-			<Repl code={code} slug={slug} />
+			<Repl code={code} />
 		</div>
 	);
 }
@@ -38,42 +35,31 @@ export default function ReplPage() {
  *
  * ?code -> ?example -> localStorage -> simple counter example
  */
-function initialCode(query) {
-	let code, slug;
+async function getInitialCode(query) {
+	const { route } = useLocation();
+	let code;
 	if (query.code)  {
-		try {
-			code = useResource(() => querySafetyCheck(atob(query.code)), [query.code]);
-		} catch (e) {}
+		code = querySafetyCheck(atob(query.code));
 	} else if (query.example) {
-		code = useExample([query.example]);
-		if (code) {
-			slug = query.example;
-			history.replaceState(
-				null,
-				null,
-				`/repl?example=${encodeURIComponent(slug)}`
-			);
+		code = await fetchExample(query.example);
+		if (!code) {
+			route('/repl', true);
 		}
-		else history.replaceState(null, null, '/repl');
 	}
 
 	if (!code) {
 		if (typeof window !== 'undefined' && localStorage.getItem('preact-www-repl-code')) {
 			code = localStorage.getItem('preact-www-repl-code');
 		} else {
-			slug = 'counter';
+			const slug = 'counter';
 			if (typeof window !== 'undefined') {
-				history.replaceState(
-					null,
-					null,
-					`/repl?example=${encodeURIComponent(slug)}`
-				);
+				route(`/repl?example=${encodeURIComponent(slug)}`, true);
 			}
-			code = useExample([slug]);
+			code = await fetchExample(slug);
 		}
 	}
 
-	return [code, slug];
+	return code;
 }
 
 async function querySafetyCheck(code) {
