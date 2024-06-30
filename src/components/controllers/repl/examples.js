@@ -1,5 +1,3 @@
-import { useResource } from '../../../lib/use-resource';
-
 import simpleCounterExample from './examples/simple-counter.txt?url';
 import counterWithHtmExample from './examples/counter-with-htm.txt?url';
 import todoExample from './examples/todo-list.txt?url';
@@ -69,15 +67,10 @@ export function getExample(slug, list = EXAMPLES) {
 }
 
 /**
- * @param {[ slug: string ]} args
- * @returns {string | undefined}
+ * @param {string} slug
  */
-export function useExample([slug]) {
+export async function fetchExample(slug) {
 	const example = getExample(slug);
 	if (!example) return;
-	return useResource(() => loadExample(example.url), ['example', slug]);
-}
-
-export async function loadExample(exampleUrl) {
-	return await fetch(exampleUrl).then(r => r.text());
+	return await fetch(example.url).then(r => r.text());
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'preact/hooks';
+import { useLocation, useRoute } from 'preact-iso';
 import { Splitter } from '../../splitter';
-import { EXAMPLES, getExample, loadExample } from './examples';
+import { EXAMPLES, fetchExample } from './examples';
 import { ErrorOverlay } from './error-overlay';
 import { useStoredValue } from '../../../lib/localstorage';
 import { useResource } from '../../../lib/use-resource';
@@ -13,9 +14,10 @@ import REPL_CSS from './examples.css?raw';
  * @param {string} props.code
  * @param {string} [props.slug]
  */
-export function Repl({ code, slug }) {
+export function Repl({ code }) {
+	const { route } = useLocation();
+	const { query } = useRoute();
 	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code);
-	const [exampleSlug, setExampleSlug] = useState(slug || '');
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
 
@@ -23,6 +25,9 @@ export function Repl({ code, slug }) {
 	// causes some bad jumping/pop-in. For the moment, this is the best option
 	if (typeof window === 'undefined') return null;
 
+	/**
+	 * @type {{ Runner: import('../repl/runner').default, CodeEditor: import('../../code-editor').default }}
+	 */
 	const { Runner, CodeEditor } = useResource(() => Promise.all([
 		import('../../code-editor'),
 		import('./runner')
@@ -30,38 +35,28 @@ export function Repl({ code, slug }) {
 
 	const applyExample = (e) => {
 		const slug = e.target.value;
-		loadExample(getExample(slug).url)
+		fetchExample(slug)
 			.then(code => {
 				setEditorCode(code);
-				setExampleSlug(slug);
-				history.replaceState(
-					null,
-					null,
-					`/repl?example=${encodeURIComponent(slug)}`
-				);
+				route(`/repl?example=${encodeURIComponent(slug)}`, true);
 		});
 	};
 
-	useEffect(() => {
-		const example = getExample(exampleSlug);
-		(async function () {
-			if (example) {
-				const code = await loadExample(example.url);
-				if (location.search && code !== editorCode) {
-					setExampleSlug('');
-					history.replaceState(null, null, '/repl');
-				}
-			}
-		})();
-	}, [editorCode]);
+	const onEditorInput = (code) => {
+		setEditorCode(code);
+
+		// Clears the (now outdated) example & code query params
+		// when a user begins to modify the code
+		if (query.example || query.code) {
+			route('/repl', true);
+		}
+	};
 
 	const share = () => {
-		if (!exampleSlug) {
-			history.replaceState(
-				null,
-				null,
-				`/repl?code=${encodeURIComponent(btoa(editorCode))}`
-			);
+		// No reason to share semi-sketchy btoa'd code if there's
+		// a perfectly good example we can use instead
+		if (!query.example) {
+			route(`/repl?code=${encodeURIComponent(btoa(editorCode))}`, true);
 		}
 
 		try {
@@ -90,13 +85,13 @@ export function Repl({ code, slug }) {
 			<header class={style.toolbar}>
 				<label>
 					Examples:{' '}
-					<select value={exampleSlug} onChange={applyExample}>
+					<select value={query.example || ''} onChange={applyExample}>
 						<option value="" disabled>
 							Select Example...
 						</option>
 						{EXAMPLES.map(function item(ex) {
 							const selected =
-								ex.slug !== undefined && ex.slug === exampleSlug;
+								ex.slug !== undefined && ex.slug === query.example;
 							return ex.group ? (
 								<optgroup label={ex.group}>{ex.items.map(item)}</optgroup>
 							) : (
@@ -137,7 +132,7 @@ export function Repl({ code, slug }) {
 						class={style.code}
 						value={editorCode}
 						error={error}
-						onInput={setEditorCode}
+						onInput={onEditorInput}
 					/>
 				</Splitter>
 			</div>
