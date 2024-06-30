@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'preact/hooks';
+import { useRef, useEffect } from 'preact/hooks';
 import { EditorView } from 'codemirror';
 import { lineNumbers, keymap, highlightActiveLineGutter, highlightActiveLine } from '@codemirror/view';
-import { EditorState } from '@codemirror/state';
+import { EditorState, Transaction } from '@codemirror/state';
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
 import { javascript } from '@codemirror/lang-javascript';
 import { syntaxHighlighting, HighlightStyle, indentUnit, bracketMatching } from '@codemirror/language';
@@ -26,16 +26,34 @@ const highlightStyle = HighlightStyle.define([
 	{ tag: tags.invalid, class: 'cm-invalid' }
 ]);
 
+/**
+ * @param {object} props
+ * @param {string} props.value
+ * @param {(value: string) => void} props.onInput
+ * @param {string} props.slug
+ * @param {string} [props.class]
+ */
 export default function CodeEditor(props) {
 	const editorParent = useRef(null);
+	/** @type {{ current: EditorView | null }} */
 	const editor = useRef(null);
-	// eslint-disable-next-line no-unused-vars
-	const [_, setEditor] = useState(null);
+
+	const routeHasChanged = useRef(false);
 
 	useEffect(() => {
-		console.log('editor code:\n', props.value);
-		if (editor.current && !props.baseExampleSlug) return;
-		if (editor.current) editor.current.destroy();
+		if (props.slug || !editor.current) routeHasChanged.current = true;
+	}, [props.slug]);
+
+	useEffect(() => {
+		if (routeHasChanged.current === false) return;
+		routeHasChanged.current = false;
+
+		if (editor.current) {
+			editor.current.dispatch({
+				changes: { from: 0, to: editor.current.state.doc.length, insert: props.value }
+			});
+			return;
+		}
 
 		const theme = EditorView.theme({}, { dark: true });
 
@@ -54,8 +72,9 @@ export default function CodeEditor(props) {
 				keymap.of([indentWithTab, ...defaultKeymap, ...historyKeymap]),
 				[theme, syntaxHighlighting(highlightStyle, { fallback: true })],
 				EditorView.updateListener.of(update => {
-					if (update.docChanged) {
-						if (props.onInput) props.onInput({ value: update.state.doc.toString() });
+					// Ignores changes from swapping out the editor code programmatically
+					if (isViewUpdateFromUserInput(update)) {
+						props.onInput(update.state.doc.toString());
 					}
 				})
 			]
@@ -65,16 +84,23 @@ export default function CodeEditor(props) {
 			state,
 			parent: editorParent.current
 		});
-
-		setEditor(editor.current);
-	}, [props.baseExampleSlug]);
+	}, [props.value]);
 
 	useEffect(() => (
 		() => {
-			editor.current.destroy();
-			setEditor(null);
+			if (editor.current) editor.current.destroy();
 		}
 	), []);
 
 	return <div ref={editorParent} class={cx(style.codeEditor, props.class)} />;
+}
+
+/** @param {import('@codemirror/view').ViewUpdate} viewUpdate */
+function isViewUpdateFromUserInput(viewUpdate) {
+	if (viewUpdate.docChanged) {
+		for (const transaction of viewUpdate.transactions) {
+			if (transaction.annotation(Transaction.userEvent)) return true;
+		}
+	}
+	return false;
 }
