@@ -47,7 +47,7 @@ export function Repl({ code }) {
 
 		// Clears the (now outdated) example & code query params
 		// when a user begins to modify the code
-		if (query.example || query.code) {
+		if (location.search) {
 			route('/repl', true);
 		}
 	};
@@ -56,7 +56,9 @@ export function Repl({ code }) {
 		// No reason to share semi-sketchy btoa'd code if there's
 		// a perfectly good example we can use instead
 		if (!query.example) {
-			route(`/repl?code=${encodeURIComponent(btoa(editorCode))}`, true);
+			// We use `history.replaceState` here as the code is only relevant on mount.
+			// There's no need to notify the router of the change.
+			history.replaceState(null, null, `/repl?code=${encodeURIComponent(btoa(editorCode))}`);
 		}
 
 		try {
