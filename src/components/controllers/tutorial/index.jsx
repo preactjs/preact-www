@@ -47,6 +47,7 @@ let resultCleanups, realmCleanups;
 export function Tutorial({ html, meta }) {
 	const { path } = useRoute();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
+	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
 	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
 
@@ -73,10 +74,18 @@ export function Tutorial({ html, meta }) {
 	useEffect(() => {
 		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {
 			setEditorCode(meta.tutorial.initial);
+			setRunnerCode(meta.tutorial.initial);
 			solutionCtx.setSolved(false);
 			content.current.scrollTo(0, 0);
 		}
 	}, [meta.tutorial?.initial]);
+
+	useEffect(() => {
+		const delay = setTimeout(() => {
+			setRunnerCode(editorCode);
+		}, 250);
+		return () => clearTimeout(delay);
+	}, [editorCode]);
 
 
 	const useResult = fn => {
@@ -160,7 +169,7 @@ export function Tutorial({ html, meta }) {
 											onSuccess={onSuccess}
 											onRealm={onRealm}
 											onError={onError}
-											code={editorCode}
+											code={runnerCode}
 										/>
 									</div>
 									{hasCode && (
