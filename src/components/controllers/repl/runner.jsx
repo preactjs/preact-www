@@ -65,24 +65,20 @@ export default class Runner extends Component {
 	}
 
 	run() {
-		if (this.timer) return;
-		this.timer = setTimeout(() => {
-			let { code, setup } = this.props;
-			// onRealm must be called after imports but before user code:
-			const fullSetup = `if (self._onRealm) self._onRealm();${setup || ''}\n`;
-			this.running = worker
-				.process(code, fullSetup)
-				.then(transpiled => this.execute(transpiled))
-				.then(this.commitResult)
-				.catch(this.commitError)
-				.then(() => {
-					this.running = null;
-					this.timer = null;
-					if (this.props.code !== code || this.props.setup !== setup) {
-						this.run();
-					}
-				});
-		}, 500);
+		let { code, setup } = this.props;
+		// onRealm must be called after imports but before user code:
+		const fullSetup = `if (self._onRealm) self._onRealm();${setup || ''}\n`;
+		this.running = worker
+			.process(code, fullSetup)
+			.then(transpiled => this.execute(transpiled))
+			.then(this.commitResult)
+			.catch(this.commitError)
+			.then(() => {
+				this.running = null;
+				if (this.props.code !== code || this.props.setup !== setup) {
+					this.run();
+				}
+			});
 	}
 
 	async rebuild() {

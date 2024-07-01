@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
 import { Splitter } from '../../splitter';
 import { EXAMPLES, fetchExample } from './examples';
@@ -18,6 +18,7 @@ export function Repl({ code }) {
 	const { route } = useLocation();
 	const { query } = useRoute();
 	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code);
+	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
 
@@ -38,6 +39,7 @@ export function Repl({ code }) {
 		fetchExample(slug)
 			.then(code => {
 				setEditorCode(code);
+				setRunnerCode(code);
 				route(`/repl?example=${encodeURIComponent(slug)}`, true);
 		});
 	};
@@ -51,6 +53,13 @@ export function Repl({ code }) {
 			route('/repl', true);
 		}
 	};
+
+	useEffect(() => {
+		const delay = setTimeout(() => {
+			setRunnerCode(editorCode);
+		}, 250);
+		return () => clearTimeout(delay);
+	}, [editorCode]);
 
 	const share = () => {
 		// No reason to share semi-sketchy btoa'd code if there's
@@ -125,7 +134,7 @@ export function Repl({ code }) {
 								onError={setError}
 								onSuccess={() => setError(null)}
 								css={REPL_CSS}
-								code={editorCode}
+								code={runnerCode}
 							/>
 						</div>
 					}
