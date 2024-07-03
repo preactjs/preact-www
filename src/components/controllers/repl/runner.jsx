@@ -116,7 +116,6 @@ export default class Runner extends Component {
 		const insertStyles = () => {
 			const doc = this.realm.globalThis.document,
 				style = doc.createElement('style');
-
 			style.appendChild(
 				doc.createTextNode(`
 					html { font: 100%/1.3 system-ui, sans-serif; background: none; }
@@ -124,7 +123,6 @@ export default class Runner extends Component {
 				`)
 			);
 			doc.head.appendChild(style);
-
 			createRoot(doc);
 		};
 
