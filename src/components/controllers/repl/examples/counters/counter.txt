@@ -1,0 +1,21 @@
+import { Component, render } from 'preact';
+
+class Counter extends Component {
+	state = { count: 0 };
+
+	render({}, { count }) {
+		return (
+			<div class="counter-container">
+				<button onClick={() => this.setState({ count: count + 1 })}>
+					Increment
+				</button>
+				<input readonly value={count} />
+				<button onClick={() => this.setState({ count: count - 1 })}>
+					Decrement
+				</button>
+			</div>
+		);
+	}
+}
+
+render(<Counter />, document.getElementById('app'));

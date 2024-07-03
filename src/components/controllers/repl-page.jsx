@@ -52,7 +52,7 @@ async function getInitialCode(query) {
 		if (typeof window !== 'undefined' && localStorage.getItem('preact-www-repl-code')) {
 			code = localStorage.getItem('preact-www-repl-code');
 		} else {
-			const slug = 'counter';
+			const slug = 'counter-hooks';
 			if (typeof window !== 'undefined') {
 				route(`/repl?example=${encodeURIComponent(slug)}`, true);
 			}

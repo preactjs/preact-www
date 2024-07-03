@@ -1,0 +1,68 @@
+import { render, Component } from 'preact';
+
+class TodoList extends Component {
+	state = {
+		todos: [
+			{ text: "Write my first post", completed: true },
+			{ text: "Buy new groceries", completed: false },
+			{ text: "Walk the dog", completed: false },
+		],
+		newItem: ''
+	};
+
+	setNewItem = e => {
+		this.setState({ newItem: e.target.value });
+	};
+
+	addTodo = e => {
+		e.preventDefault();
+
+		let { todos, newItem } = this.state;
+		todos = todos.concat({ text: newItem, completed: false });
+		this.setState({ todos, newItem: '' });  // Reset input value on add
+	};
+
+	completeTodo = (index) => {
+		let { todos } = this.state;
+		todos[index].completed = !todos[index].completed;
+		this.setState({ todos });
+	};
+
+	removeTodo = (index) => {
+		let { todos } = this.state;
+		todos.splice(index, 1);
+		this.setState({ todos });
+	};
+
+	completedCount = () => {
+		return this.state.todos.filter(todo => todo.completed).length;
+	};
+
+	render({}, { todos, newItem }) {
+		return (
+			<form onSubmit={this.addTodo}>
+				<input type="text" value={newItem} onInput={this.setNewItem} />
+				<button onClick={this.addTodo}>Add</button>
+				<ul>
+					{todos.map((todo, index) => (
+						<li>
+							<label>
+								<input
+									type="checkbox"
+									checked={todo.completed}
+									onInput={() => this.completeTodo(index)}
+								/>
+								{todo.completed ? <s>{todo.text}</s> : todo.text}
+							</label>
+							{' '}
+							<button onClick={() => this.removeTodo(index)}>❌</button>
+						</li>
+					))}
+				</ul>
+				<p>Completed count: {this.completedCount()}</p>
+			</form>
+		);
+	}
+}
+
+render(<TodoList />, document.getElementById('app'));

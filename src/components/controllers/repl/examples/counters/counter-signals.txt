@@ -1,0 +1,16 @@
+import { render } from 'preact';
+import { signal } from '@preact/signals';
+
+const count = signal(0);
+
+function Counter() {
+	return (
+		<div class="counter-container">
+			<button onClick={() => count.value++}>Increment</button>
+			<input readonly value={count} />
+			<button onClick={() => count.value--}>Decrement</button>
+		</div>
+	);
+}
+
+render(<Counter />, document.getElementById('app'));
