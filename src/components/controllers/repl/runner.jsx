@@ -112,16 +112,25 @@ export default class Runner extends Component {
 			onError: this.commitError
 		});
 		this.realm.globalThis.fetch = cachedFetch;
-		let doc = this.realm.globalThis.document;
-		let style = doc.createElement('style');
-		style.appendChild(
-			doc.createTextNode(`
-				html { font: 100%/1.3 system-ui, sans-serif; background: none; }
-				${this.props.css || ''}
-			`)
-		);
-		doc.head.appendChild(style);
-		createRoot(doc);
+
+		const insertStyles = () => {
+			const doc = this.realm.globalThis.document,
+				style = doc.createElement('style');
+
+			style.appendChild(
+				doc.createTextNode(`
+					html { font: 100%/1.3 system-ui, sans-serif; background: none; }
+					${this.props.css || ''}
+				`)
+			);
+			doc.head.appendChild(style);
+
+			createRoot(doc);
+		};
+
+		this.frame.current.contentDocument.readyState !== 'complete'
+			? this.frame.current.onload = insertStyles
+			: insertStyles();
 	}
 
 	async execute(transpiled, isFallback) {
