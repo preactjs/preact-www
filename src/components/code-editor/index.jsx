@@ -30,6 +30,7 @@ const highlightStyle = HighlightStyle.define([
  * @param {object} props
  * @param {string} props.value
  * @param {(value: string) => void} props.onInput
+ * @param {any} props.error - Unused at this time
  * @param {string} props.slug
  * @param {string} [props.class]
  */

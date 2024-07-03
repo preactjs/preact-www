@@ -187,6 +187,7 @@ export function Tutorial({ html, meta }) {
 								<CodeEditor
 									class={style.code}
 									value={editorCode}
+									error={error}
 									slug={path}
 									onInput={setEditorCode}
 								/>

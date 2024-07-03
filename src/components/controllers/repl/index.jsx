@@ -142,6 +142,7 @@ export function Repl({ code }) {
 					<CodeEditor
 						class={style.code}
 						value={editorCode}
+						error={error}
 						slug={query.example}
 						onInput={onEditorInput}
 					/>
