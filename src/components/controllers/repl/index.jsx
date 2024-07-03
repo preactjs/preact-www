@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
 import { Splitter } from '../../splitter';
+import { textToBase64 } from './query-encode.js';
 import { EXAMPLES, fetchExample } from './examples';
 import { ErrorOverlay } from './error-overlay';
 import { useStoredValue } from '../../../lib/localstorage';
@@ -67,7 +68,7 @@ export function Repl({ code }) {
 		if (!query.example) {
 			// We use `history.replaceState` here as the code is only relevant on mount.
 			// There's no need to notify the router of the change.
-			history.replaceState(null, null, `/repl?code=${encodeURIComponent(btoa(editorCode))}`);
+			history.replaceState(null, null, `/repl?code=${encodeURIComponent(textToBase64(editorCode))}`);
 		}
 
 		try {
