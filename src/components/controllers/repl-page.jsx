@@ -1,5 +1,6 @@
 import { useLocation, useRoute } from 'preact-iso';
 import { Repl } from './repl';
+import { base64ToText } from './repl/query-encode.js';
 import { fetchExample } from './repl/examples';
 import { useContent, useResource } from '../../lib/use-resource';
 import { useTitle, useDescription } from './utils';
@@ -39,7 +40,7 @@ async function getInitialCode(query) {
 	const { route } = useLocation();
 	let code;
 	if (query.code)  {
-		code = querySafetyCheck(atob(query.code));
+		code = querySafetyCheck() && base64ToText(query.code);
 	} else if (query.example) {
 		code = await fetchExample(query.example);
 		if (!code) {
@@ -62,13 +63,11 @@ async function getInitialCode(query) {
 	return code;
 }
 
-async function querySafetyCheck(code) {
+function querySafetyCheck() {
     return (
 		!document.referrer ||
 		document.referrer.indexOf(location.origin) === 0 ||
 		// eslint-disable-next-line no-alert
 		confirm('Are you sure you want to run the code contained in this link?')
-    )
-		? code
-		: undefined;
+    );
 }
