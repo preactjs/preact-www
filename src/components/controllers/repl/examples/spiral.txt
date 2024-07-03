@@ -31,7 +31,7 @@ class Spiral extends Component {
 		cancelAnimationFrame(this.raf);
 	}
 
-	render(props, { x, y, big, count }) {
+	render({}, { x, y, big, count }) {
 		let max = (COUNT + Math.sin((count / 90) * 2 * Math.PI) * COUNT * 0.5) | 0,
 			dots = [];
 
@@ -89,7 +89,6 @@ class Dot extends Component {
 }
 
 render(<Spiral />, document.getElementById('app'));
-
 
 // Add some styles!!
 const style = document.createElement('style');

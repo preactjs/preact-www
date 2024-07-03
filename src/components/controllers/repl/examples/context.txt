@@ -1,4 +1,4 @@
-import { render, createContext } from 'preact';
+import { render, createContext } from 'preact';
 import { useState, useMemo, useContext } from 'preact/hooks';
 
 const CounterContext = createContext(null);
@@ -21,9 +21,7 @@ function App() {
 		setCount(count + 1);
 	}
 
-	const counter = useMemo(() => {
-		return { count, increment };
-	}, [count]);
+	const counter = useMemo(() => ({ count, increment }), [count]);
 
 	return (
 		<CounterContext.Provider value={counter}>
