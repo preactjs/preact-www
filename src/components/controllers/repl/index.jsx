@@ -7,7 +7,7 @@ import { useStoredValue } from '../../../lib/localstorage';
 import { useResource } from '../../../lib/use-resource';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
-import REPL_CSS from './examples.css?raw';
+import REPL_CSS from './examples/style.css?raw';
 
 /**
  * @param {Object} props
