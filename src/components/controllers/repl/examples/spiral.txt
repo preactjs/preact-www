@@ -9,12 +9,12 @@ options.debounceRendering = requestAnimationFrame;
 class Spiral extends Component {
 	state = { x: 0, y: 0, big: false, count: 0 };
 
-	handleMouseMove = e => {
+	handlePointerMove = e => {
 		this.setState({ x: e.pageX, y: e.pageY });
 	};
 
-	handleMouseDownUp = e => {
-		this.setState({ big: e.type === 'mousedown' });
+	handlePointerDownUp = e => {
+		this.setState({ big: e.type === 'pointerdown' });
 	};
 
 	increment = () => {
@@ -47,9 +47,9 @@ class Spiral extends Component {
 		return (
 			<div
 				id="spiral"
-				onMouseMove={this.handleMouseMove}
-				onMouseDown={this.handleMouseDownUp}
-				onMouseUp={this.handleMouseDownUp}
+				onPointerMove={this.handlePointerMove}
+				onPointerDown={this.handlePointerDownUp}
+				onPointerUp={this.handlePointerDownUp}
 			>
 				<Dot x={x} y={y} big={big} label />
 				{dots}
