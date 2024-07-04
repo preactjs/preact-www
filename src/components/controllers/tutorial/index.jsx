@@ -59,8 +59,7 @@ export function Tutorial({ html, meta }) {
 	const hasCode = meta.code !== false;
 	const showCode = showCodeOverride && hasCode;
 
-	// TODO: CodeMirror v5 cannot load in Node, and loading only the runner
-	// causes some bad jumping/pop-in. For the moment, this is the best option
+	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
 	/**
@@ -184,15 +183,16 @@ export function Tutorial({ html, meta }) {
 								</>
 							}
 						>
-								<div class={style.codeWindow}>
-									<CodeEditor
-										class={style.code}
-										value={editorCode}
-										error={error}
-										onInput={setEditorCode}
-									/>
-								</div>
-							</Splitter>
+							<div class={style.codeWindow}>
+								<CodeEditor
+									class={style.code}
+									value={editorCode}
+									error={error}
+									slug={path}
+									onInput={setEditorCode}
+								/>
+							</div>
+						</Splitter>
 					}
 				>
 					<div class={style.tutorialWindow} ref={content}>
