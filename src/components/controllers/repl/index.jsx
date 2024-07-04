@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
 import { Splitter } from '../../splitter';
 import { textToBase64 } from './query-encode.js';
-import { EXAMPLES, fetchExample } from './examples';
 import { ErrorOverlay } from './error-overlay';
+import { EXAMPLES, fetchExample } from './examples';
 import { useStoredValue } from '../../../lib/localstorage';
 import { useResource } from '../../../lib/use-resource';
 import { parseStackTrace } from './errors';
@@ -23,12 +23,11 @@ export function Repl({ code }) {
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
 
-	// TODO: CodeMirror v5 cannot load in Node, and loading only the runner
-	// causes some bad jumping/pop-in. For the moment, this is the best option
+	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
 	/**
-	 * @type {{ Runner: import('../repl/runner').default, CodeEditor: import('../../code-editor').default }}
+	 * @type {{ Runner: import('./runner').default, CodeEditor: import('../../code-editor').default }}
 	 */
 	const { Runner, CodeEditor } = useResource(() => Promise.all([
 		import('../../code-editor'),
@@ -144,6 +143,7 @@ export function Repl({ code }) {
 						class={style.code}
 						value={editorCode}
 						error={error}
+						slug={query.example}
 						onInput={onEditorInput}
 					/>
 				</Splitter>

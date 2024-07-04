@@ -1,6 +1,7 @@
 import { useMemo } from 'preact/hooks';
 import { Suspense } from 'preact/compat';
 import { wrap } from 'comlink';
+import { textToBase64 } from '../controllers/repl/query-encode.js';
 import { useResource } from '../../lib/use-resource';
 
 let prismWorker;
@@ -81,7 +82,7 @@ function HighlightedCodeBlock({ code, lang }) {
 				</Suspense>
 			</pre>
 			{repl && (
-				<a class="repl-link" href={`/repl?code=${encodeURIComponent(source)}`}>
+				<a class="repl-link" href={`/repl?code=${encodeURIComponent(textToBase64(source))}`}>
 					Run in REPL
 				</a>
 			)}

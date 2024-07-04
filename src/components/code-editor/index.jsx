@@ -1,99 +1,107 @@
-import { Component, render } from 'preact';
-import codemirror from 'codemirror';
+import { useRef, useEffect } from 'preact/hooks';
+import { EditorView } from 'codemirror';
+import { lineNumbers, keymap, highlightActiveLineGutter, highlightActiveLine } from '@codemirror/view';
+import { EditorState, Transaction } from '@codemirror/state';
+import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
+import { javascript } from '@codemirror/lang-javascript';
+import { syntaxHighlighting, HighlightStyle, indentUnit, bracketMatching } from '@codemirror/language';
+import { tags } from '@lezer/highlight';
+import { closeBrackets, autocompletion } from '@codemirror/autocomplete';
 import cx from '../../lib/cx';
-import 'codemirror/mode/jsx/jsx';
-import 'codemirror/addon/comment/comment';
-import 'codemirror/lib/codemirror.css';
+
 import style from './style.module.css';
 import './code-mirror.css';
 
-export default class CodeEditor extends Component {
-	scratch = document.createElement('div');
+// Custom theme that better matches our Prism config, though
+// the lexer is somewhat limited so it still deviates
+const highlightStyle = HighlightStyle.define([
+	{ tag: tags.keyword, class: 'cm-keyword' },
+	{ tag: [tags.definition(tags.function(tags.name)), tags.function(tags.name), tags.propertyName], class: 'cm-function' },
+	{ tag: tags.literal, class: 'cm-literal' },
+	{ tag: tags.tagName, class: 'cm-tag' },
+	{ tag: tags.attributeName, class: 'cm-attribute' },
+	{ tag: tags.string, class: 'cm-string' },
+	{ tag: [tags.operator], class: 'cm-operator' },
+	{ tag: tags.comment, class: 'cm-comment' },
+	{ tag: tags.invalid, class: 'cm-invalid' }
+]);
 
-	showError(error) {
-		clearTimeout(this.showErrorTimer);
-		if (this.errors) {
-			this.editor.operation(() => {
-				this.errors.forEach(e => e.clear());
+/**
+ * @param {object} props
+ * @param {string} props.value
+ * @param {(value: string) => void} props.onInput
+ * @param {any} props.error - Unused at this time
+ * @param {string} props.slug
+ * @param {string} [props.class]
+ */
+export default function CodeEditor(props) {
+	const editorParent = useRef(null);
+	/** @type {{ current: EditorView | null }} */
+	const editor = useRef(null);
+
+	const routeHasChanged = useRef(false);
+
+	useEffect(() => {
+		if (props.slug || !editor.current) routeHasChanged.current = true;
+	}, [props.slug]);
+
+	useEffect(() => {
+		if (routeHasChanged.current === false) return;
+		routeHasChanged.current = false;
+
+		if (editor.current) {
+			editor.current.dispatch({
+				changes: { from: 0, to: editor.current.state.doc.length, insert: props.value }
 			});
-			this.errors.length = 0;
+			return;
 		}
 
-		if (!error || !error.loc) return;
+		const theme = EditorView.theme({}, { dark: true });
 
-		this.showErrorTimer = setTimeout(() => {
-			this.editor.operation(() => {
-				let { left } = this.editor.cursorCoords(
-					{ line: error.loc.line - 1, ch: error.loc.column - 1 },
-					'local'
-				);
-				let ref;
-				const errorLine = (
-					<div ref={r => (ref = r)} class={style.lintError}>
-						<pre style={`padding-left:${left}px;`}>▲</pre>
-						<div>🔥 {error.message.split('\n')[0]}</div>
-					</div>
-				);
-				render(errorLine, this.scratch);
-				this.errors = [this.editor.addLineWidget(error.loc.line - 1, ref)];
-			});
-		}, 1000);
-	}
-
-	componentDidMount() {
-		let { spaces, value, tabSize } = this.props;
-
-		this.editor = codemirror(this.base, {
-			value: String(value || ''),
-			mode: 'jsx',
-			theme: 'one-dark',
-			lineNumbers: true,
-			indentWithTabs: !spaces,
-			tabSize: tabSize || 2,
-			indentUnit: spaces ? Math.round(spaces) || 2 : false,
-			showCursorWhenSelecting: true,
-			extraKeys: {
-				'Cmd-/': 'toggleComment'
-			}
+		const state = EditorState.create({
+			doc: props.value,
+			extensions: [
+				lineNumbers(),
+				highlightActiveLine(),
+				highlightActiveLineGutter(),
+				history(),
+				indentUnit.of('\t'),
+				closeBrackets(),
+				bracketMatching(),
+				autocompletion(),
+				javascript({ jsx: true }),
+				keymap.of([indentWithTab, ...defaultKeymap, ...historyKeymap]),
+				[theme, syntaxHighlighting(highlightStyle, { fallback: true })],
+				EditorView.updateListener.of(update => {
+					// Ignores changes from swapping out the editor code programmatically
+					if (isViewUpdateFromUserInput(update)) {
+						props.onInput(update.state.doc.toString());
+					}
+				})
+			]
 		});
 
-		this.editor.on('change', () => {
-			if (this.events === false) return;
-
-			this.value = this.editor.getValue();
-			let { onInput } = this.props;
-			if (onInput) onInput(this.value);
+		editor.current = new EditorView({
+			state,
+			parent: editorParent.current
 		});
-	}
+	}, [props.value]);
 
-	componentWillReceiveProps({ value, error }) {
-		let current = this.hasOwnProperty('value') ? this.value : this.props.value;
-		if (value !== current) {
-			let e = this.events;
-			this.events = false;
-			this.value = value;
-			this.editor.setValue(value);
-			this.showError(null);
-			setTimeout(() => this.editor.refresh(), 1);
-			this.events = e;
+	useEffect(() => (
+		() => {
+			if (editor.current) editor.current.destroy();
 		}
+	), []);
 
-		if (error !== this.props.error) {
-			this.showError(error);
+	return <div ref={editorParent} class={cx(style.codeEditor, props.class)} />;
+}
+
+/** @param {import('@codemirror/view').ViewUpdate} viewUpdate */
+function isViewUpdateFromUserInput(viewUpdate) {
+	if (viewUpdate.docChanged) {
+		for (const transaction of viewUpdate.transactions) {
+			if (transaction.annotation(Transaction.userEvent)) return true;
 		}
 	}
-
-	shouldComponentUpdate() {
-		return false;
-	}
-
-	componentWillUnmount() {
-		let wrapper = this.editor && this.editor.getWrapperElement();
-		if (wrapper) this.base.removeChild(wrapper);
-		this.editor = null;
-	}
-
-	render({ value, onInput, children, ...props }) {
-		return <div {...props} class={cx(style.codeEditor, props.class)} />;
-	}
+	return false;
 }
