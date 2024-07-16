@@ -17,21 +17,18 @@ The main difference is that in most cases the `value` is not controlled by the D
 
 ## Controlled & Uncontrolled Components
 
-When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled. The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update its value when a user typed into it.
+When talking about form controls you'll often encounter the words "Controlled Component" and "Uncontrolled Component". The description refers to the way data flow is handled.
 
-A framework like Preact in contrast generally has a unidirectional data flow. The component doesn't manage the value itself there, but something else higher up in the component tree.
+The DOM has a bidirectional data flow, because every form control will manage the user input themselves. A simple text input will always update its value when a user typed into it. In contrast, a framework like Preact generally has a unidirectional data flow; the component doesn't manage the value itself there, but something else higher up in the component tree.
+
+Generally, you should try to use _Uncontrolled_ Components whenever possible, the DOM is fully capable of handling `<input>`'s state:
 
 ```jsx
 // Uncontrolled, because Preact doesn't set the value
 <input onInput={myEventHandler} />;
-
-// Controlled, because Preact manages the input's value now
-<input value={someValue} onInput={myEventHandler} />;
 ```
 
-> One gotcha to note here is that setting the value to `undefined` or `null` will essentially become uncontrolled.
-
-Generally, you should try to use _Uncontrolled_ Components whenever possible, the DOM is fully capable of handling `<input>`'s state. However, there are situations in which you might need to exert tighter control over the input value, in which case, _Controlled_ Components can be used.
+However, there are situations in which you might need to exert tighter control over the input value, in which case, _Controlled_ Components can be used.
 
 To use controlled components in Preact, you will need to use [`refs`](/guide/v10/refs) to bridge the inherent gap between the DOM state and VDOM/Preact's state. Here's an example of how you might use a controlled component to limit the number of characters in an input field:
 
