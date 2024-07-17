@@ -18,7 +18,7 @@ import REPL_CSS from './examples/style.css?raw';
 export function Repl({ code }) {
 	const { route } = useLocation();
 	const { query } = useRoute();
-	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code);
+	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code, true);
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
