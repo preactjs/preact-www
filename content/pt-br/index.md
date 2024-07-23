@@ -44,11 +44,10 @@ function Counter() {
   <div>
     <h3>Mais próximo do DOM.</h3>
     <p>
-        Preact fornece a mais leve abstração de Virtual DOM possível em cima do DOM.
-        A web é uma plataforma estável - É tempo de pararmos de reimplementá-la em nome da segurança.
+        Preact fornece uma abstração de Virtual DOM mais fina possível sobre o DOM. Se baseia em recursos de plataformas estáveis, registra manipuladores de eventos reais e funciona bem com outras bibliotecas.
     </p>
     <p>
-        Preact é também um cidadão de primeira-classe da plataforma web. Compara a Virtual DOM e o próprio DOM, registra <i>event handlers</i> de verdade, e funciona bem com outras bibliotecas.
+        Preact pode ser usado diretamente no navegador, sem nenhuma etapa de transpilação.
     </p>
   </div>
 </section>
