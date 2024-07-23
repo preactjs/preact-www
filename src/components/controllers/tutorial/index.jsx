@@ -137,7 +137,7 @@ export function Tutorial({ html, meta }) {
 
 	const help = () => {
 		if (meta.tutorial?.final) {
-			route(`${url}?solved=true`, true);
+			route(`${url}?solved`, true);
 			setEditorCode(meta.tutorial?.final);
 		}
 	};
