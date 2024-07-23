@@ -44,7 +44,8 @@ function Counter() {
   <div>
     <h3>Mais próximo do DOM.</h3>
     <p>
-        Preact fornece uma abstração de Virtual DOM mais fina possível sobre o DOM. Se baseia em recursos de plataformas estáveis, registra manipuladores de eventos reais e funciona bem com outras bibliotecas.
+        Preact fornece uma abstração de Virtual DOM mais fina possível sobre o DOM.
+        Se baseia em recursos de plataformas estáveis, registra manipuladores de eventos reais e funciona bem com outras bibliotecas.
     </p>
     <p>
         Preact pode ser usado diretamente no navegador, sem nenhuma etapa de transpilação.
