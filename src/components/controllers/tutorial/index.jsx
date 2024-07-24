@@ -8,7 +8,7 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { useRoute } from 'preact-iso';
+import { useLocation, useRoute } from 'preact-iso';
 import { TutorialContext, SolutionContext } from './contexts';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
@@ -45,7 +45,7 @@ let resultCleanups, realmCleanups;
  * @param {{ html: string, meta: TutorialMeta }} props
  */
 export function Tutorial({ html, meta }) {
-	const { path } = useRoute();
+	const { route, url } = useLocation();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
@@ -135,7 +135,12 @@ export function Tutorial({ html, meta }) {
 		});
 	};
 
-	const help = () => meta.tutorial?.final && setEditorCode(meta.tutorial?.final);
+	const help = () => {
+		if (meta.tutorial?.final) {
+			route(`${url}?solved`, true);
+			setEditorCode(meta.tutorial?.final);
+		}
+	};
 
 	return (
 		<TutorialContext.Provider value={this}>
@@ -188,7 +193,7 @@ export function Tutorial({ html, meta }) {
 									class={style.code}
 									value={editorCode}
 									error={error}
-									slug={path}
+									slug={url}
 									onInput={setEditorCode}
 								/>
 							</div>
@@ -217,7 +222,7 @@ export function Tutorial({ html, meta }) {
 				</Splitter>
 
 				<InjectPrerenderData
-					name={path}
+					name={url}
 					data={{ html, meta }}
 				/>
 			</div>
