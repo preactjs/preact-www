@@ -7,9 +7,9 @@ authors:
 
 # Prerendering with Preset Vite
 
-It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large
+It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large.
 
-Those who have been in our community for a while know how much we like prerendering; it was a first-class feature in Preact-CLI, then WMR, and now our Vite preset. When it's done right, it's a pain-free addition to the typical SPA that improves the user experience greatly and this plugin aims to facilitate just that.
+Those who have been in our community for a while know how much we like prerendering; it was a first-class feature in Preact-CLI, then WMR, and now our Vite preset. When it's done right, it's a pain-free addition to the typical SPA that improves the user experience greatly and our prerender-plugin aims to facilitate just that.
 
 ## What is Prerendering?
 
