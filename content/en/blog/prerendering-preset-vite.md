@@ -41,11 +41,11 @@ For drop-in prerendering, however, we thought we could provide something a bit d
 
 Year later, we were still quite in love with the simplicity and extensibility of WMR's prerendering and felt it was sorely missing from our Vite preset, so we looked to port it over with a few minor adjustment to fix the qualms we had. A little bit of work later and voila, prerendering via a plugin!
 
-To get started with, here's an example of prerendering a "Hello World" app:
+To get started with, here's an example of prerendering a "Hello World" app.
 
 > Hint: Our Vite initializer, (`$ npm create preact`) can set this up for you along with a few other complimentary options, like routing, TypeScript, etc. If you're interested in trying out our prerendering, it's the fastest way to get up-to-speed.
 
-1. Enable prerendering by setting `prerender: { enabled: true }` in `@preact/preset-vite`'s plugin options.
+Firstly, enable prerendering by setting `prerender: { enabled: true }` in `@preact/preset-vite`'s plugin options:
 
 ```diff
 // vite.config.js
@@ -62,7 +62,7 @@ export default defineConfig({
 });
 ```
 
-2. Add a `prerender` attribute to the script containing our `prerender()` function -- this lets the plugin know where to find it. While you can set this to any script you'd like, for our examples here, it'll always be in our app root.
+...then add a `prerender` attribute to the script containing our `prerender()` function -- this lets the plugin know where to find it. While you can set this to any script you'd like, for our examples here, it'll always be in our app root.
 
 ```diff
 // index.html
@@ -70,13 +70,15 @@ export default defineConfig({
 +<script prerender type="module" src="/src/index.jsx"></script>
 ```
 
-3. Make a few adjustments to our app root:
-	1. Switch `render` to `hydrate`
-		* `hydrate` from `preact-iso` is a very small utility which decides whether to render the app or hydrate depending on if it can find existing markup on the document. In dev it'll use `render`, but in production, with prerendered HTML, it'll use `hydrate`.
-		* We do need to add a window check (`typeof window !== undefined`) to ensure we're not trying to access `document`, a browser global, in Node during SSR.
-	2. Add our `prerender()` export
-		* This is the facilitator of prerendering, and it's entirely user controlled. You decide how your app should be rendered, which props to pass in, make any adjustments to the HTML, run any post-processing you'd like, etc. All that we need is for an object to be returned containing an `html` property with your HTML string.
-		* For our examples here we'll use `prerender` from `preact-iso` which is a thin wrapper around `renderToStringAsync` from `preact-render-to-string` with one main advantage: it automatically collects and returns the relative links it finds in the pages you prerender. The prerender plugin can then use these links to "walk" your app, discovering pages itself. We'll show this off further later.
+...finally, make a couple adjustments to our app root:
+
+1. Switch `render` to `hydrate`
+	* `hydrate` from `preact-iso` is a very small utility which decides whether to render the app or hydrate depending on if it can find existing markup on the document. In dev it'll use `render`, but in production, with prerendered HTML, it'll use `hydrate`.
+	* We do need to add a window check (`typeof window !== undefined`) to ensure we're not trying to access `document`, a browser global, in Node during SSR.
+
+2. Add our `prerender()` export
+	* This is the facilitator of prerendering, and it's entirely user controlled. You decide how your app should be rendered, which props to pass in to your root component, make any adjustments to the HTML, run any post-processing you'd like, etc. All that the plugin needs is for an object to be returned containing an `html` property with your HTML string.
+	* For our examples here we'll use `prerender` from `preact-iso` which is a thin wrapper around `renderToStringAsync` from `preact-render-to-string` with one main advantage: it automatically collects and returns the relative links it finds in the pages you prerender. The prerender plugin can then use these links to "walk" your app, discovering pages itself. We'll show this off further later.
 
 ```diff
 // src/index.jsx
@@ -265,7 +267,7 @@ export async function prerender(data) {
 }
 ```
 
-You can also use this to say fetch some data on first render, and reuse it for subsequent prerenders:
+You can also use this to fetch some data on first render, and reuse it for subsequent prerenders:
 
 ```jsx
 // src/index.js
@@ -299,10 +301,10 @@ For the curious asking "How does this all work?", it can be broken into three si
 	We let Vite build your app as usual; compiling JSX, running plugins, optimizing assets, etc. Before the build finishes, however, we begin to consume the web bundles, using them to generate your HTML.
 3. Execute
 
-	During the `generateBundle` plugin stage, we move to build the HTML. Starting with `/`, we begin start rendering your app page-by-page, calling your `prerender()` function and inserting the returned HTML into your `index.html` document while using any links you return to keep on rendering additional pages.
-	 
+	During the `generateBundle` plugin stage, we move to build the HTML. Starting with `/`, we begin start rendering your app page-by-page, calling your `prerender()` function and inserting the returned HTML into your `index.html` document while using any links you return to render additional routes / pages.
+
 	`/` will be output as `dist/index.html` while other routes will be output as such: `/foo` -> `dist/foo/index.html`, `/bar` -> `dist/bar/index.html`.
-	 
+
 	Prerendering completes when we run out of URLs to feed back into your app.
 
 Following this, Vite will continue on with the build process, running any other plugins you may have.
@@ -341,4 +343,4 @@ As attempting to execute `document.getElementsByTagName` will error in Node wher
 
 However, we are very, very happy with this level of risk and have been suing it heavily for some time now without any issue, but, we are somewhat using the tool beyond what it was intended for and it's something we want to disclose.
 
-For any non-Preact users, good news: our plugin is entirely framework agnostic! To make it slightly easier to use in any other framework, this is alternatively offered as [`vite-prerender-plugin`](https://npm.im/vite-prerender-plugin). Same functionality, and kept in-sync with `@preact/preset-vite`, but drops the other Preact-specific utilities that ships in that plugin.
+For any non-Preact users, good news: our plugin is entirely framework agnostic! To make it slightly easier to use in any other framework, this is alternatively offered as [`vite-prerender-plugin`](https://npm.im/vite-prerender-plugin). Same functionality, and kept in-sync with `@preact/preset-vite`, but drops the other Preact-specific utilities that ship in the Preact preset plugin.
