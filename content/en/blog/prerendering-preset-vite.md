@@ -341,8 +341,8 @@ The patch in question is as follows:
 	 ...
 ```
 
-As attempting to execute `document.getElementsByTagName` will error in Node where there is no `document` we simply add an additional condition to the preloader so that it makes no attempt to run in Node and that's it. Just the partial change of this one line.
+As attempting to execute `document.getElementsByTagName` will error in Node where there is no `document`, we simply add an additional condition to the preloader so that it makes no attempt to run in Node, and that's it. Just the partial change of this one line.
 
-However, we are very, very happy with this level of risk and have been suing it heavily for some time now without any issue, but, we are somewhat using the tool beyond what it was intended for and it's something we want to disclose.
+We are very, very happy with this level of risk and have been using it heavily for some time now without any issue, but, this is somewhat using the tool beyond what it was intended for and it's something we want to disclose.
 
 For any non-Preact users, good news: our plugin is entirely framework agnostic! To make it slightly easier to use in any other framework, this is alternatively offered as [`vite-prerender-plugin`](https://npm.im/vite-prerender-plugin). Same functionality, and kept in-sync with `@preact/preset-vite`, but drops the other Preact-specific utilities that ship in the Preact preset plugin.
