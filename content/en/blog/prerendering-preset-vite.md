@@ -290,6 +290,7 @@ export async function prerender(data) {
 		initialized = true;
     }
     if (!initialized) await init();
+    ...
 }
 ```
 
