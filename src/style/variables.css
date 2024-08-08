@@ -57,6 +57,7 @@
 	--color-code-keyword: #c792ea;
 	--color-code-operator: #67cdcc;
 	--color-code-comment: #999;
+	--color-diff-inserted: #44c248;
 
 	/* DocSearch customizations */
 	--docsearch-container-background: #444d;
