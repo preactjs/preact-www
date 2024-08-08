@@ -7,7 +7,7 @@ authors:
 
 # Prerendering with Preset Vite
 
-It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large.
+It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, a little of our history, and the ecosystem at large.
 
 Those who have been in our community for a while know how much we like prerendering; it was a first-class feature in Preact-CLI, then WMR, and now our Vite preset. When it's done right, it's a pain-free addition to the typical SPA that improves the user experience greatly and our prerender-plugin aims to facilitate just that.
 
@@ -19,9 +19,11 @@ While we don't dive deep into the virtues of SSR here, or even argue that you sh
 
 ## Our History in the Space
 
-Since Preact-CLI first hit public release back in May of 2017, built-in prerendering has been a key part of our identity in build tooling, something we happily carried over into WMR and something that was pretty sorely missing when we switched to suggesting Vite.
+Since Preact-CLI first hit public release back in May of 2017, built-in prerendering has been a mainstay in our build tooling; we happily carried it forward into WMR in 2020 and it was something that was sorely missed by us and members of the community when we switched to suggesting Vite.
 
-We've gone through a few different iterations to fit with the change in tooling and community feedback, so let's first take a look at how it's evolved.
+While each iteration has been a little different, all have been built around the same core idea: users will more readily adopt prerendering the simpler it is to set up, including limited changes to their existing codebase. In Preact-CLI, this meant providing a default export of the root component with some JSON data to populate it; in WMR and now Vite, it means exporting a simple `prerender()` function that returns the HTML for the route, with the prerenderer walking through the app itself, replacing the need for JSON up-front.
+
+Anyone who has worked extensively with SSR at scale knows that there is a mountain of complexity that cannot ever be fully abstracted away and we wouldn't argue otherwise. However, nearly every SPA provides a better experience if prerendered and so we want to get as many users as possible on board -- reducing the barrier to entry has shown itself to be wildly successful in our community so it's been a key part of our design philosophy to aim for as "drop-in" as possible.
 
 ## Existing Vite Ecosystem
 
