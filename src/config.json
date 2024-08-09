@@ -493,6 +493,12 @@
 					{
 						"path": "/typescript",
 						"name": "TypeScript"
+					},
+					{
+						"path": "/importmaps",
+						"name": {
+							"en": "Import Maps"
+						}
 					}
 				]
 			}
