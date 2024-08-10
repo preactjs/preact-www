@@ -1,11 +1,11 @@
 ---
 name: Import Maps
-description: 'Import maps are a new feature in JavaScript that are especially useful for no-build workflows.'
+description: 'Import maps are a newer feature in JavaScript that are especially useful for no-build workflows.'
 ---
 
 # Import Maps
 
-Import maps are a new feature in JavaScript that are especially useful for no-build workflows.
+Import maps are a newer feature in JavaScript that are especially useful for no-build workflows.
 
 An [Import Map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) is a newer feature
 that allows you to control how browsers resolve module specifiers, usually to convert bare specifiers such as `preact`
@@ -14,6 +14,12 @@ real advantages to using them, such as better control over dependencies and solv
 
 This isn't to say you need import maps, but for those choosing to forgo build tooling, they are a great option that can help
 solve some issues such as dependency duplication, versioning, and allow use of more intelligent CDNs, without giving up control.
+
+---
+
+<div><toc></toc></div>
+
+---
 
 ## Basic Usage
 
@@ -82,7 +88,7 @@ than some others, but by no means are you limited to it.
       "preact": "https://esm.sh/preact@10.23.1",
       "preact/": "https://esm.sh/preact@10.23.1/",
       "@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
-      "htm/preact": "https://esm.sh/htm@3.1.1/preact"
+      "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
     }
   }
 </script>
@@ -96,28 +102,11 @@ than some others, but by no means are you limited to it.
     "imports": {
       "preact": "https://esm.sh/preact@10.23.1",
       "preact/": "https://esm.sh/preact@10.23.1/",
-      "@mui/material": "https://esm.sh/@mui/material?alias=react:preact/compat,react-dom:preact/compat&external=preact"
-    }
-  }
-</script>
-```
-
-...or, alternatively...
-
-```html
-<script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
       "react": "https://esm.sh/preact@10.23.1/compat",
       "react/": "https://esm.sh/preact@10.23.1/compat/",
       "react-dom": "https://esm.sh/preact@10.23.1/compat",
-      "@mui/material": "https://esm.sh/@mui/material?external=react,react-dom"
+      "@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
     }
   }
 </script>
 ```
-
-Both are equivalent, using slightly different methods. If you're using the many React libraries, the second
-method may be preferable, as it avoids the need to alias in every CDN URL, but ultimately, it's personal taste.
