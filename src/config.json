@@ -495,9 +495,9 @@
 						"name": "TypeScript"
 					},
 					{
-						"path": "/importmaps",
+						"path": "/no-build-workflows",
 						"name": {
-							"en": "Import Maps"
+							"en": "No-Build Workflows"
 						}
 					}
 				]
