@@ -82,7 +82,7 @@ similiar to what you'd see in Node.
 ### Recipes and Common Patterns
 
 While not an exhaustive list, here are some common patterns and recipes you may find useful when working with
-import maps. If you have a pattern you'd like to see, let us know! //TODO: Add GH issues link
+import maps. If you have a pattern you'd like to see, [let us know](https://github.com/preactjs/preact-www/issues/new)!
 
 For these examples we'll be using https://esm.sh as our CDN -- it's a brilliant, ESM-focused CDN that's a bit
 more flexible and powerful than some others, but by no means are you limited to it. However you choose to serve
