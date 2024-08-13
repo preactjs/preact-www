@@ -493,6 +493,12 @@
 					{
 						"path": "/typescript",
 						"name": "TypeScript"
+					},
+					{
+						"path": "/no-build-workflows",
+						"name": {
+							"en": "No-Build Workflows"
+						}
 					}
 				]
 			}
