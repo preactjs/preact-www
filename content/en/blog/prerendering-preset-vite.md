@@ -43,7 +43,7 @@ For drop-in prerendering, however, we thought we could provide something a bit d
 
 ## Implementation in `@preact/preset-vite`
 
-Year later, we were still quite in love with the simplicity and extensibility of WMR's prerendering and felt it was sorely missing from our Vite preset, so we looked to port it over with a few minor adjustment to fix the qualms we had. A little bit of work later and voila, prerendering via a plugin!
+Years later, we were still quite in love with the simplicity and extensibility of WMR's prerendering and felt it was sorely missing from our Vite preset, so we looked to port it over with a few minor adjustment to fix the qualms we had. A little bit of work later and voila, prerendering via a plugin!
 
 To get started with, here's an example of prerendering a "Hello World" app.
 
