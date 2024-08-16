@@ -632,9 +632,23 @@
 		{
 			"name": "Jovi De Croock",
 			"link": "https://twitter.com/JoviDeC"
+		},
+		{
+			"name": "Ryan Christian",
+			"link": "https://twitter.com/_rschristian"
 		}
 	],
 	"blog": [
+		{
+			"path": "/blog/prerendering-preset-vite",
+			"date": "2024-08-06",
+			"name": {
+				"en": "Prerendering with Preset Vite"
+			},
+			"excerpt": {
+				"en": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large"
+			}
+		},
 		{
 			"path": "/blog/preact-x",
 			"date": "2024-05-24",
