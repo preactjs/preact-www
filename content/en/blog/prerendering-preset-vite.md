@@ -15,7 +15,7 @@ Those who have been in our community for a while know how much we like prerender
 
 "Prerendering", for the context of this post, is the act of generating HTML from your app at build time using server-side rendering (SSR); sometimes this may also be referred to as static site generation (SSG).
 
-While we don't dive deep into the virtues of SSR here, or even argue that you should use it, it's generally advantageous to send a fully populated HTML document to the user on initial navigation (and perhaps upon subsequent navigations too, depending on routing strategy) rather than an empty shell that the client-side JS will eventually render into. Users will get access to the document quicker and can begin to use the page (albeit, often with reduced functionality) while the JS is still downloading in the background.
+While we won't dive deep into the virtues of SSR here, or even argue that you should use it, it's generally advantageous to send a fully populated HTML document to the user on initial navigation (and perhaps upon subsequent navigations too, depending on routing strategy) rather than an empty shell that the client-side JS will eventually render into. Users will get access to the document quicker and can begin to use the page (albeit, often with reduced functionality) while the JS is still downloading in the background.
 
 ## Our History in the Space
 
@@ -113,29 +113,29 @@ With this set up, you will have an app that prerenders. However, no app is reall
 // ...
 
 export async function prerender(data) {
-    const { html, links: discoveredLinks } = ssr(<App />);
+	const { html, links: discoveredLinks } = ssr(<App />);
 
-    return {
-        html,
-        // Optionally add additional links that should be
-        // prerendered (if they haven't already been -- these will be deduped)
-        links: new Set([...discoveredLinks, '/foo', '/bar']),
-        // Optionally configure and add elements to the `<head>` of
-        // the prerendered HTML document
-        head: {
-            // Sets the "lang" attribute: `<html lang="en">`
-            lang: 'en',
-            // Sets the title for the current page: `<title>My cool page</title>`
-            title: 'My cool page',
-            // Sets any additional elements you want injected into the `<head>`:
-            //   <link rel="stylesheet" href="foo.css">
-            //   <meta property="og:title" content="Social media title">
-            elements: new Set([
-                { type: 'link', props: { rel: 'stylesheet', href: 'foo.css' } },
-                { type: 'meta', props: { property: 'og:title', content: 'Social media title' } }
-            ])
-        }
-    }
+	return {
+		html,
+		// Optionally add additional links that should be
+		// prerendered (if they haven't already been -- these will be deduped)
+		links: new Set([...discoveredLinks, '/foo', '/bar']),
+		// Optionally configure and add elements to the `<head>` of
+		// the prerendered HTML document
+		head: {
+			// Sets the "lang" attribute: `<html lang="en">`
+			lang: 'en',
+			// Sets the title for the current page: `<title>My cool page</title>`
+			title: 'My cool page',
+			// Sets any additional elements you want injected into the `<head>`:
+			//   <link rel="stylesheet" href="foo.css">
+			//   <meta property="og:title" content="Social media title">
+			elements: new Set([
+				{ type: 'link', props: { rel: 'stylesheet', href: 'foo.css' } },
+				{ type: 'meta', props: { property: 'og:title', content: 'Social media title' } }
+			])
+		}
+	}
 }
 ```
 
@@ -180,11 +180,11 @@ import { useFetch } from './use-fetch.js';
 
 function App() {
     return (
-	    <div>
-		    <Suspense fallback={<p>Loading...</p>}>
-			    <Article />
-		    </Suspense>
-		</div>
+        <div>
+            <Suspense fallback={<p>Loading...</p>}>
+                <Article />
+            </Suspense>
+        </div>
     );
 }
 
@@ -232,64 +232,67 @@ import { useTitle } from './title-util.js'
 
 function App() {
     return (
-	    <LocationProvider>
-		    <main>
-			    <Home path="/" />
-			    <NotFound default />
-		    </main>
-		</LocationProvider>
+        <LocationProvider>
+            <main>
+                <Home path="/" />
+                <NotFound default />
+            </main>
+        </LocationProvider>
     );
 }
 
 function Home() {
-	useTitle('Preact - Home');
-	return <h1>Hello World!</h1>;
+    useTitle('Preact - Home');
+    return <h1>Hello World!</h1>;
 }
 
 function NotFound() {
-	useTitle('Preact - 404');
-	return <h1>Page Not Found</h1>;
+    useTitle('Preact - 404');
+    return <h1>Page Not Found</h1>;
 }
 
 if (typeof window !== 'undefined') {
-	hydrate(<App />, document.getElementById('app'));
+    hydrate(<App />, document.getElementById('app'));
 }
 
 export async function prerender(data) {
     const { html, links } = await ssr(<App {...data} />);
 
-	return {
-		html,
-		links,
-		head: {
-			title: globalThis.title,
-			elements: new Set([
-				{ type: 'meta', props: { property: 'og:title', content: globalThis.title } },
-			])
-		}
-	};
+    return {
+        html,
+        links,
+        head: {
+            title: globalThis.title,
+            elements: new Set([
+                { type: 'meta', props: { property: 'og:title', content: globalThis.title } },
+            ])
+        }
+    };
 }
 ```
 
-You can also use this to fetch some data on first render, and reuse it for subsequent prerenders:
+While less common of a need, you can also use a variation of this pattern to initialize and pass prerender data deep into your app, skipping the need for a global store/context.
 
 ```jsx
-// src/index.js
-
-function App() {
-	const [myData, setMyData] = useState(globalThis.myFetchData || 'some-fallback');
+// src/some/deep/Component.jsx
+function MyComponent({ myFetchData }) {
+	const [myData, setMyData] = useState(myFetchData || 'some-fallback');
 	...
 }
+```
 
+```js
 let initialized = false;
 export async function prerender(data) {
     const init = async () => {
-		const res = await fetch(myURL);
-		if (res.ok) globalThis.myFetchData = await res.json();
+        const res = await fetch(...);
+        if (res.ok) globalThis.myFetchData = await res.json();
 
-		initialized = true;
+        initialized = true;
     }
     if (!initialized) await init();
+
+    const { html, links } = await ssr(<App {...data} />);
     ...
 }
 ```
@@ -303,22 +306,20 @@ For the curious asking "How does this all work?", it can be broken into three si
 	We set the script with your exported `prerender()` function as an additional input and tell Rollup to preserve entry signatures, allowing us to access and call that function post-build.
 2. Build
 
-	We let Vite build your app as usual; compiling JSX, running plugins, optimizing assets, etc. Before the build finishes, however, we begin to consume the web bundles, using them to generate your HTML.
-3. Execute
+	We let Vite build your app as usual: compiling JSX, running plugins, optimizing assets, etc.
+3. Prerender
 
-	During the `generateBundle` plugin stage, we move to build the HTML. Starting with `/`, we begin start rendering your app page-by-page, calling your `prerender()` function and inserting the returned HTML into your `index.html` document while using any links you return to render additional routes / pages.
+  During the `generateBundle` plugin stage, we begin to generate the HTML. Starting with `/`, we begin executing the built JS bundles in Node, calling your `prerender()` function and inserting the HTML it returns into your `index.html` document, finally writing the result to the specified output directory. Any new links your `prerender()` function returns are then queued up to be processed next.
 
-	`/` will be output as `dist/index.html` while other routes will be output as such: `/foo` -> `dist/foo/index.html`, `/bar` -> `dist/bar/index.html`.
+  Prerendering completes when we run out of URLs to feed back into your app.
 
-	Prerendering completes when we run out of URLs to feed back into your app.
-
-Following this, Vite will continue on with the build process, running any other plugins you may have.
+Following this, Vite will continue to finish up the build process, running any other plugins you may have. Your prerendered app will then be available immediately, with no subsequent builds or scripts required.
 
 ### Some Neat Features
 
-- File system-based `fetch()` implementation
+- File system-based `fetch()` implementation (as shown in the "Isomorphic Fetching" example)
 	- Before you run to get your pitchfork, hear us out! During prerendering (and only during prerendering) we patch `fetch()` to allow reading files directly from the file system. This allows you to consume static files (text, JSON, Markdown, etc.) during prerendering without having to start up a server to consume it. You can use the same file paths during prerendering as you will in the browser.
-	- In fact, that's how we build the very page you're reading! `fetch('/content/blog/preact-prerender.json')`, which is what triggers when you navigate to this page, (roughly) translates to `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` during prerendering. We read the file, wrap it in a `Response` to mimic a network request, and supply it back to your app -- your app can use the same `fetch()` request during prerendering and on the client.
+	- In fact, that's how we build the very page you're reading! `fetch('/content/blog/preact-prerender.json')`, which is what triggers when you navigate to this page, roughly translates to `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` during prerendering. We read the file, wrap it in a `Response` to mimic a network request, and supply it back to your app -- your app can use the same `fetch()` request during prerendering and on the client.
 	- Pairing this with suspense and an async SSR implementation provides a really great DX.
 - Crawling Links
 	- Partly supported by the user-provided `prerender()` function export, partly by the plugin, you can return a set of links upon prerendering the page (`preact-iso` makes this wonderfully simple) which will be added to the plugin's list of URLs to prerender. This will allow the plugin to crawl your site at build time, finding more and more pages to prerender naturally.
@@ -327,7 +328,7 @@ Following this, Vite will continue on with the build process, running any other 
 ...and perhaps the biggest advantage:
 
 - Toggle it by flipping a Boolean in your config file
-	- Because we're not a wrapper, and because you don't need to alter your source code in order to support it beyond some window checks, there's no lock-in whatsoever. If you decide to move away, or you want to do some testing on your output, all you need to do is flip a Boolean and you're back to a plain SPA with Vite.
+	- Because we're not a wrapper, and because you don't need to alter your source code in order to support it (beyond some window checks), there's no lock-in whatsoever. If you decide to move away, or you want to do some testing on your output, all you need to do is flip a Boolean and you're back to a plain SPA with Vite.
 	- As we've mentioned a few times, prerendering is at its best when it is as near to "drop-in" as possible and that includes being able to drop back out on a whim. It's important to us that you can go from an SPA to prerendering and back again with minimal effort.
 
 ## Final Notes
@@ -344,7 +345,7 @@ The patch in question is as follows:
 	 ...
 ```
 
-As attempting to execute `document.getElementsByTagName` will error in Node where there is no `document`, we simply add an additional condition to the preloader so that it makes no attempt to run in Node, and that's it. Just the partial change of this one line.
+As attempting to execute `document.getElementsByTagName` will error in Node where there is no `document`, we simply add an additional condition to the preloader so that it makes no attempt to run in Node, and that's it. Just the partial change of this one line that would little purpose during prerendering anyways.
 
 We are very, very happy with this level of risk and have been using it heavily for some time now without any issue, but, this is somewhat using the tool beyond what it was intended for and it's something we want to disclose.
 
