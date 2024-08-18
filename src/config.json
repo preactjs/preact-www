@@ -643,10 +643,12 @@
 			"path": "/blog/prerendering-preset-vite",
 			"date": "2024-08-06",
 			"name": {
-				"en": "Prerendering with Preset Vite"
+				"en": "Prerendering with Preset Vite",
+				"ru": "Предварительный рендеринг с пресетом Vite"
 			},
 			"excerpt": {
-				"en": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large"
+				"en": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large",
+				"ru": "Прошло полгода с тех пор, как наш плагин для пререндеринга стал доступен в `@preact/preset-vite`, так что давайте поговорим о нем, о нашей истории и об экосистеме в целом."
 			}
 		},
 		{
