@@ -42,7 +42,7 @@ description: 'Коллекция библиотек и дополнений, к�
 
 ## Инструментальные средства графического интерфейса
 
-- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-preact): библиотека React UI, которую вы всегда хотели. Следуйте своей собственной системе дизайна или начните с Material Design.
+- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-ui-preact): библиотека React UI, которую вы всегда хотели. Следуйте своей собственной системе дизайна или начните с Material Design.
 - :thumbsup: [**preact-material-components**](https://github.com/prateekbh/preact-material-components): Материальные компоненты для Интернета (заменяют MDL)
 - :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): Используйте [MDL](https://getmdl.io) в качестве компонентов Preact
 - :rocket: [**preact-photon**](https://github.com/developit/preact-photon): Создание красивых пользовательских интерфейсов на рабочем столе с помощью [photon](http://photonkit.com)
