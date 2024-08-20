@@ -44,7 +44,7 @@ A collection of modules built to work wonderfully with Preact.
 
 ## GUI Toolkits
 
-- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-preact): the React UI library you always wanted. Follow your own design system, or start with Material Design.
+- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-ui-preact): the React UI library you always wanted. Follow your own design system, or start with Material Design.
 - :thumbsup: [**preact-material-components**](https://github.com/prateekbh/preact-material-components): Material Components for the Web (supersedes MDL)
 - :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): Use [MDL](https://getmdl.io) as Preact components
 - :rocket: [**preact-photon**](https://github.com/developit/preact-photon): build beautiful desktop UI with [photon](http://photonkit.com)

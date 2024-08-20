@@ -45,7 +45,7 @@ Preact와 훌륭하게 동작하는 모듈 모음입니다.
 
 ## GUI 툴킷
 
-- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-preact): 여러분이 늘 원하던 React UI 라이브러리. 자체 디자인 시스템을 따르거나, Material Design으로 시작하세요.
+- 🎴 [**@mui/material**](https://github.com/mui/material-ui/tree/master/examples/material-ui-preact): 여러분이 늘 원하던 React UI 라이브러리. 자체 디자인 시스템을 따르거나, Material Design으로 시작하세요.
 - :thumbsup: [**preact-material-components**](https://github.com/prateekbh/preact-material-components): 웹을 위한 Material 컴포넌트 (MDL 대용)
 - :white_square_button: [**preact-mdl**](https://github.com/developit/preact-mdl): Preact 컴포넌트로 [MDL](https://getmdl.io) 사용
 - :rocket: [**preact-photon**](https://github.com/developit/preact-photon): [photon](http://photonkit.com)으로 아름다운 데스크톱 UI 빌드
