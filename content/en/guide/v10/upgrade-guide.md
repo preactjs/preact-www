@@ -259,8 +259,6 @@ As much as we tried, we always ran into edge-cases with third-party libraries wr
 ```
  npx codemod preact/X/libraryAuthors-attribute-node-children-renaming
 ```
-
-
 ### Adjacent text nodes are not joined anymore
 
 In Preact 8.x we had this feature where we would join adjacent text notes as an optimization. This doesn't hold true for X anymore because we're not diffing directly against the dom anymore. In fact we noticed that it hurt performance in X which is why we removed it. Take the following example:
