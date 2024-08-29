@@ -78,6 +78,26 @@ The `Portal` component is now part of `preact/compat`.
 2. Import `createPortal` from `preact/compat`
 
 ## Getting your code ready
+---
+### Codemods
+
+To help with the upgrade, we've collaborated with the team at codemod.com to publish a set of codemods that will automatically update your codebase from Preact 8.x. These codemods streamline the migration process by automating common code transformations.
+
+
+Run all codemods listed in this guide with the Preact X codemod recipe:
+
+  ```     npx codemod preact/X/migration-recipe```
+
+This will run the following codemods:
+ - `replace-this-state-with-prevstate`
+  - `props-children-to-child-array`
+  - `update-preact-import-source`
+  - `default-import-to-namespace-import`
+
+Each of these codemods automates the changes listed in this migration guide.
+For a complete list of available Preact codemods and further details, 
+see the [codemod registry](https://codemod.com/registry?author=manishjha-04&q=Preact).
+
 
 ### Using named exports
 
@@ -95,6 +115,11 @@ import { h, Component } from "preact";
 ```
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
+
+**Codemod** for using named exports
+```
+  npx codemod preact/X/default-import-to-namespace-import
+```
 
 ### `render()` always diffs existing children
 
@@ -178,6 +203,11 @@ function Foo(props) {
 }
 ```
 
+**Codemod** for `props.children` to `childArray`
+```
+ npx codemod preact/X/props-children-to-child-array
+```
+
 ### Don't access `this.state` synchronously
 
 In Preact X the state of a component will no longer be mutated synchronously. This means that reading from `this.state` right after a `setState` call will return the previous values. Instead you should use a callback function to modify state that depends on the previous values.
@@ -193,6 +223,11 @@ this.setState(prevState => {
   // Alternatively return `null` here to abort the state update
   return { counter: prevState.counter + 1 };
 });
+```
+
+**Codemod** for `setState` callback
+```
+ npx codemod preact/X/replace-this-state-with-prevstate
 ```
 
 ### `dangerouslySetInnerHTML` will skip diffing of children
@@ -219,6 +254,12 @@ We renamed/moved the following properties:
 - `children` -> `props.children`
 
 As much as we tried, we always ran into edge-cases with third-party libraries written for react. This change to our `vnode` shape removed many difficult to spot bugs and makes our `compat` code a lot cleaner.
+
+**Codemod** for renaming properties
+```
+ npx codemod preact/X/libraryAuthors-attribute-node-children-renaming
+```
+
 
 ### Adjacent text nodes are not joined anymore
 
