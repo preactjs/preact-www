@@ -81,8 +81,7 @@ The `Portal` component is now part of `preact/compat`.
 ---
 ### Codemods
 
-To help with the upgrade, we've collaborated with the team at codemod.com to publish a set of codemods that will automatically update your codebase from Preact 8.x. These codemods streamline the migration process by automating common code transformations.
-
+To assist with the upgrade, a set of codemods is available to automatically update your codebase from Preact 8.x. These codemods automate common code transformations to streamline the migration process.
 
 Run all codemods listed in this guide with the Preact X codemod recipe:
 
