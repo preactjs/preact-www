@@ -96,6 +96,8 @@ import { h, Component } from "preact";
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
 
+
+
 ### `render()` always diffs existing children
 
 In Preact 8.x, the calls to `render()` would always append the elements to the container.
@@ -178,6 +180,8 @@ function Foo(props) {
 }
 ```
 
+
+
 ### Don't access `this.state` synchronously
 
 In Preact X the state of a component will no longer be mutated synchronously. This means that reading from `this.state` right after a `setState` call will return the previous values. Instead you should use a callback function to modify state that depends on the previous values.
@@ -194,6 +198,8 @@ this.setState(prevState => {
   return { counter: prevState.counter + 1 };
 });
 ```
+
+
 
 ### `dangerouslySetInnerHTML` will skip diffing of children
 
@@ -220,6 +226,7 @@ We renamed/moved the following properties:
 
 As much as we tried, we always ran into edge-cases with third-party libraries written for react. This change to our `vnode` shape removed many difficult to spot bugs and makes our `compat` code a lot cleaner.
 
+
 ### Adjacent text nodes are not joined anymore
 
 In Preact 8.x we had this feature where we would join adjacent text notes as an optimization. This doesn't hold true for X anymore because we're not diffing directly against the dom anymore. In fact we noticed that it hurt performance in X which is why we removed it. Take the following example:
@@ -237,4 +244,42 @@ console.log(<div>foo{"bar"}</div>);
 //   div
 //     text
 //     text
+```
+### Codemods
+
+To assist with the upgrade, a set of codemods is available to automatically update your codebase from Preact 8.x. These codemods automate common code transformations to streamline the migration process.
+
+Run all codemods listed in this guide with the Preact X codemod recipe:
+
+  ```bash     
+  npx codemod preact/X/migration-recipe
+  ```
+
+This will run the following codemods:
+ - `replace-this-state-with-prevstate`
+  - `props-children-to-child-array`
+  - `update-preact-import-source`
+  - `default-import-to-namespace-import`
+
+Each of these codemods automates the changes listed in this migration guide.
+For a complete list of available Preact codemods and further details, 
+see the [codemod registry](https://codemod.com/registry?author=manishjha-04&q=Preact).
+
+For using named exports
+```bash
+  npx codemod preact/X/default-import-to-namespace-import
+```
+For `props.children` to `childArray`
+```bash
+ npx codemod preact/X/props-children-to-child-array
+```
+
+For `setState` callback
+```bash
+ npx codemod preact/X/replace-this-state-with-prevstate
+```
+
+For renaming properties
+```bash
+ npx codemod preact/X/libraryAuthors-attribute-node-children-renaming
 ```
