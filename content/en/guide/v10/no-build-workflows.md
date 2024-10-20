@@ -9,7 +9,7 @@ Whilst build tools like Webpack, Rollup, and Vite are incredibly powerful and us
 applications without them.
 
 No-build workflows are a way to develop web applications while forgoing build tooling, instead relying on the browser
-to facilitate module loading and execution. This is a great way to get started wtih Preact and can continue to work
+to facilitate module loading and execution. This is a great way to get started with Preact and can continue to work
 very well at all scales, but isn't entirely without difficulties.
 
 ---
