@@ -17,10 +17,10 @@ const sponsors = [
 		id: 'trivago'
 	},
 	{
-		link: 'https://deno.land',
+		link: 'https://deno.com',
 		title: 'Deno',
-		width: '813',
-		height: '813',
+		width: '330',
+		height: '330',
 		id: 'deno'
 	},
 	{
