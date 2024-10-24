@@ -277,7 +277,13 @@ const companies = [
 		name: 'Loveholidays',
 		href: 'https://loveholidays.com',
 		logo: 'loveholidays.svg'
-	}
+	},
+	{
+		name: 'Oracle',
+		href: 'https://www.oracle.com',
+		logo: 'Oracle.svg'
+	},
+
 ];
 
 // Grid of companies using Preact
