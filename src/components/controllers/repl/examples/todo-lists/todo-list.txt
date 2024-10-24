@@ -55,7 +55,7 @@ class TodoList extends Component {
 								{todo.completed ? <s>{todo.text}</s> : todo.text}
 							</label>
 							{' '}
-							<button onClick={() => this.removeTodo(index)}>❌</button>
+							<button type="button" onClick={() => this.removeTodo(index)}>❌</button>
 						</li>
 					))}
 				</ul>
