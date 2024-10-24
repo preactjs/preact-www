@@ -136,8 +136,8 @@ export default class Runner extends Component {
 
 	async execute(transpiled, isFallback) {
 		// TODO: This is much better implemented as a dialog within the frame.
-		// `confirm` unforutnately is a window-level modal, so if there the
-		// input code is especially long, it could be hidden outside the page.
+		// `confirm` unforutnately is a window-level modal, so when/if the
+		// code extends down past the window edge, the user can't see it.
 		//
 		// Using `<dialog>` as a frame-level modal would let the user check the
 		// code in full before running it, though browser support is maybe not
