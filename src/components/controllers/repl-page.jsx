@@ -40,7 +40,7 @@ async function getInitialCode(query) {
 	const { route } = useLocation();
 	let code;
 	if (query.code)  {
-		code = querySafetyCheck() && base64ToText(query.code);
+		code = base64ToText(query.code);
 	} else if (query.example) {
 		code = await fetchExample(query.example);
 		if (!code) {
@@ -61,13 +61,4 @@ async function getInitialCode(query) {
 	}
 
 	return code;
-}
-
-function querySafetyCheck() {
-    return (
-		!document.referrer ||
-		document.referrer.indexOf(location.origin) === 0 ||
-		// eslint-disable-next-line no-alert
-		confirm('Are you sure you want to run the code contained in this link?')
-    );
 }
