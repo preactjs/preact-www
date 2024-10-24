@@ -24,6 +24,8 @@ export default class Runner extends Component {
 
 	frame = createRef();
 
+	userUpdated = false;
+
 	shouldComponentUpdate() {
 		return false;
 	}
@@ -60,6 +62,7 @@ export default class Runner extends Component {
 
 	componentWillReceiveProps({ code, setup }) {
 		if (code !== this.props.code || setup !== this.props.setup) {
+			this.userUpdated = true;
 			this.run();
 		}
 	}
@@ -132,6 +135,24 @@ export default class Runner extends Component {
 	}
 
 	async execute(transpiled, isFallback) {
+		// TODO: This is much better implemented as a dialog within the frame.
+		// `confirm` unforutnately is a window-level modal, so when/if the
+		// code extends down past the window edge, the user can't see it.
+		//
+		// Using `<dialog>` as a frame-level modal would let the user check the
+		// code in full before running it, though browser support is maybe not
+		// ideal yet.
+		if (
+			new URLSearchParams(location.search).get('code') &&
+			document.referrer &&
+			document.referrer.indexOf(location.origin) !== 0 &&
+			!this.userUpdated
+		) {
+			// eslint-disable-next-line no-alert
+			const confirmed = confirm('Are you sure you want to run the code contained in this link?');
+			if (!confirmed) return;
+		}
+
 		if (this.didError && !isFallback) {
 			await this.rebuild();
 		} else {
