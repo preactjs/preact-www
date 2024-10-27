@@ -1,6 +1,6 @@
 ---
 title: Simplifying Islands Architecture
-date: 2022-09-06
+date: 2024-10-27
 authors:
   - reaper
 ---
