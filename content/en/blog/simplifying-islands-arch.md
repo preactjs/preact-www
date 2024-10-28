@@ -4,6 +4,8 @@ date: 2024-10-27
 authors:
   - reaper
 ---
+
+> This is a slightly modified version of the original write up at https://barelyhuman.github.io/preact-islands-diy
  
 # Islands
 
