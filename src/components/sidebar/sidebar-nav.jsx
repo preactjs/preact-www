@@ -1,5 +1,7 @@
 import { useRoute } from 'preact-iso';
 import cx from '../../lib/cx';
+import { useLanguage } from '../../lib/i18n';
+import { prefetchContent } from '../../lib/use-resource';
 import style from './sidebar-nav.module.css';
 
 /**
@@ -14,6 +16,7 @@ import style from './sidebar-nav.module.css';
  */
 export default function SidebarNav({ items, onClick }) {
 	const { path } = useRoute();
+	const [lang] = useLanguage();
 
 	return (
 		<nav class={cx(style.toc, !(items && items.length > 1) && style.disabled)}>
@@ -28,6 +31,7 @@ export default function SidebarNav({ items, onClick }) {
 									return (
 										<SidebarNavLink
 											key={href}
+											lang={lang}
 											href={href}
 											onClick={onClick}
 											isActive={href === path}
@@ -43,6 +47,7 @@ export default function SidebarNav({ items, onClick }) {
 				return (
 					<SidebarNavLink
 						key={href}
+						lang={lang}
 						href={href}
 						onClick={onClick}
 						isActive={href === path}
@@ -62,12 +67,13 @@ function SidebarGroup({ level, children }) {
 }
 
 function SidebarNavLink(props) {
-	const { href, onClick, level, isActive, children } = props;
+	const { lang, href, onClick, level, isActive, children } = props;
 	let activeCss = isActive ? style.linkActive : undefined;
 	return (
 		<a
 			href={href}
 			onClick={onClick}
+			onMouseOver={() => prefetchContent([lang, href])}
 			class={cx(style.link, activeCss, style['level-' + level])}
 		>
 			{children}
