@@ -636,9 +636,23 @@
 		{
 			"name": "Ryan Christian",
 			"link": "https://twitter.com/_rschristian"
+		},
+		{
+			"name": "reaper",
+			"link": "https://twitter.com/barelyreaper"
 		}
 	],
 	"blog": [
+		{
+			"path": "/blog/simplifying-islands-arch",
+			"date": "2024-08-06",
+			"name": {
+				"en": "Build your own Island Components"
+			},
+			"excerpt": {
+				"en": "Demystifying how island architechture works and being able to setup your own, using tools you already have around you."
+			}
+		},
 		{
 			"path": "/blog/prerendering-preset-vite",
 			"date": "2024-08-06",
