@@ -19,9 +19,8 @@ const COMPONENTS = {
 		}
 
 		if (props.href && props.href.startsWith('/')) {
-			const hashIndex = props.href.indexOf('#');
-			const path = hashIndex > -1 ? props.href.substring(0, hashIndex) : props.href;
-			props.onMouseOver = () => prefetchContent(path);
+			const url = new URL(props.href, location.origin);
+			props.onMouseOver = () => prefetchContent(url.pathname);
 		}
 
 		return <a {...props} />;
