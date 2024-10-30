@@ -16,9 +16,10 @@ const CACHE = new Map();
 const createCacheKey = (fn, deps) => '' + fn + JSON.stringify(deps);
 
 /**
- * @param {[ lang: string, path: string ]} args
+ * @param {string} path
  */
-export function prefetchContent([lang, path]) {
+export function prefetchContent(path) {
+	const lang = document.documentElement.lang;
 	const cacheKey = createCacheKey(() => getContent([lang, path]), [lang, path]);
 	if (CACHE.has(cacheKey)) return;
 

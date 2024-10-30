@@ -212,7 +212,7 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	return (
 		<a
 			href={href}
-			onMouseOver={() => prefetchContent([lang, prefetchHref])}
+			onMouseOver={() => prefetchContent(prefetchHref)}
 			{...props}
 			data-route={route}
 			{...homeProps}

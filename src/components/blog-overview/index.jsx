@@ -15,7 +15,7 @@ export default function BlogOverview() {
 				{config.blog.map(post => {
 					const name = getRouteName(post, lang);
 					const excerpt = post.excerpt[lang] || post.excerpt.en;
-					const onMouseOver = () => prefetchContent([lang, post.path]);
+					const onMouseOver = () => prefetchContent(post.path);
 
 					return (
 						<article class={s.post}>
