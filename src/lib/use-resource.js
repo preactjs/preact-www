@@ -1,5 +1,7 @@
 import { useEffect } from 'preact/hooks';
+
 import { getContent } from './content.js';
+import { useLanguage } from './i18n';
 
 /**
  * @typedef {Object} CacheEntry
@@ -15,33 +17,21 @@ const createCacheKey = (fn, deps) => '' + fn + JSON.stringify(deps);
 
 /**
  * @param {[ lang: string, path: string ]} args
- * @returns {{ html: string, meta: any }}
  */
-export function useContent([lang, path]) {
-	return useResource(() => getContent([lang, path]), [lang, path]);
-}
-
 export function prefetchContent([lang, path]) {
 	const cacheKey = createCacheKey(() => getContent([lang, path]), [lang, path]);
 	if (CACHE.has(cacheKey)) return;
 
-	/** @type {CacheEntry} */
-	const state = {
-		promise: getContent([lang, path]),
-		status: 'pending',
-		result: undefined,
-		users: 0
-	};
-	state.promise
-		.then(r => {
-			state.status = 'success';
-			state.result = r;
-		})
-		.catch(err => {
-			state.status = 'error';
-			state.result = err;
-		});
-	CACHE.set(cacheKey, state);
+	setupCacheEntry(() => getContent([lang, path]), cacheKey);
+}
+
+/**
+ * @param {string} path
+ * @returns {{ html: string, meta: any }}
+ */
+export function fetchContent(path) {
+	const [lang] = useLanguage();
+	return useResource(() => getContent([lang, path]), [lang, path]);
 }
 
 export function useResource(fn, deps) {
@@ -49,24 +39,7 @@ export function useResource(fn, deps) {
 
 	let state = CACHE.get(cacheKey);
 	if (!state) {
-		state = { promise: fn(), status: 'pending', result: undefined, users: 0 };
-
-		if (state.promise.then) {
-			state.promise
-				.then(r => {
-					state.status = 'success';
-					state.result = r;
-				})
-				.catch(err => {
-					state.status = 'error';
-					state.result = err;
-				});
-		} else {
-			state.status = 'success';
-			state.result = state.promise;
-		}
-
-		CACHE.set(cacheKey, state);
+		state = setupCacheEntry(fn, cacheKey);
 	}
 
 	useEffect(() => {
@@ -83,4 +56,32 @@ export function useResource(fn, deps) {
 	if (state.status === 'success') return state.result;
 	else if (state.status === 'error') throw state.result;
 	throw state.promise;
+}
+
+/**
+ * @param {() => Promise<any>} fn
+ * @param {string} cacheKey
+ * @returns {CacheEntry}
+ */
+function setupCacheEntry(fn, cacheKey) {
+	/** @type {CacheEntry} */
+	const state = { promise: fn(), status: 'pending', result: undefined, users: 0 };
+
+	if (state.promise.then) {
+		state.promise
+			.then(r => {
+				state.status = 'success';
+				state.result = r;
+			})
+			.catch(err => {
+				state.status = 'error';
+				state.result = err;
+			});
+	} else {
+		state.status = 'success';
+		state.result = state.promise;
+	}
+
+	CACHE.set(cacheKey, state);
+	return state;
 }
