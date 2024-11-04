@@ -139,6 +139,6 @@ const SomeComponent = lazy(() => import('./SomeComponent'));
 
 In this example the UI will display the `loading...` text until `SomeComponent` is loaded and the Promise is resolved.
 
-> Suspense in both React and Preact isn't quite finalized or set it stone as of yet. While the React team still actively discourages users interfacing with it directly for data fetching, it's a pattern some Preact users have been happily using over the last few years. There are a few known issues (please see [our tracker](https://github.com/preactjs/preact/issues) for an up-to-date reference) but it's generally considered stable enough for use in production if you so wish.
+> Suspense in both React and Preact isn't quite finalized or set it stone as of yet. While the React team still actively discourages users interfacing with it directly for data fetching, it's a pattern some Preact users have been happily using over the last few years. There are a few known issues (please see [our tracker](https://github.com/preactjs/preact/issues?q=is%3Aissue+is%3Aopen+suspense) for an up-to-date reference) but it's generally considered stable enough for use in production if you so wish.
 >
 > This site, for instance, is built using a Suspense-based data fetching strategy used to load all content you see.
