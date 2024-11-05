@@ -2,6 +2,7 @@ import config from '../../config.json';
 import { useLanguage, useTranslation } from '../../lib/i18n';
 import { getRouteName } from '../header';
 import { Time } from '../time';
+import { prefetchContent } from '../../lib/use-resource';
 import s from './style.module.css';
 
 export default function BlogOverview() {
@@ -14,6 +15,7 @@ export default function BlogOverview() {
 				{config.blog.map(post => {
 					const name = getRouteName(post, lang);
 					const excerpt = post.excerpt[lang] || post.excerpt.en;
+					const onMouseOver = () => prefetchContent(post.path);
 
 					return (
 						<article class={s.post}>
@@ -21,10 +23,10 @@ export default function BlogOverview() {
 								<Time value={post.date} />
 							</div>
 							<h2 class={s.title}>
-								<a href={post.path}>{name}</a>
+								<a href={post.path} onMouseOver={onMouseOver}>{name}</a>
 							</h2>
 							<p class={s.excerpt}>{excerpt}</p>
-							<a href={post.path} class="btn-small">
+							<a href={post.path} onMouseOver={onMouseOver} class="btn-small">
 								{continueReading} &rarr;
 							</a>
 						</article>

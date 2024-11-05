@@ -1,8 +1,6 @@
 import { useRoute } from 'preact-iso';
-import { useContent } from '../../lib/use-resource';
-import { useTitle, useDescription } from './utils';
+import { useContent } from '../../lib/use-content';
 import { NotFound } from './not-found';
-import { useLanguage } from '../../lib/i18n';
 import { MarkdownRegion } from './markdown-region';
 import Footer from '../footer/index';
 import { blogRoutes } from '../../lib/route-utils';
@@ -21,11 +19,7 @@ export default function BlogPage() {
 
 function BlogLayout() {
 	const { path } = useRoute();
-	const [lang] = useLanguage();
-
-	const { html, meta } = useContent([lang, path === '/' ? 'index' : path]);
-	useTitle(meta.title);
-	useDescription(meta.description);
+	const { html, meta } = useContent(path);
 
 	return (
 		<div class={style.page}>

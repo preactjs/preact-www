@@ -4,6 +4,7 @@ import widgets from '../widgets';
 import style from './style.module.css';
 import { useTranslation } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
+import { prefetchContent } from '../../lib/use-resource';
 
 const COMPONENTS = {
 	...widgets,
@@ -16,6 +17,12 @@ const COMPONENTS = {
 			props.target = '_blank';
 			props.rel = 'noopener noreferrer';
 		}
+
+		if (props.href && props.href.startsWith('/')) {
+			const url = new URL(props.href, location.origin);
+			props.onMouseOver = () => prefetchContent(url.pathname);
+		}
+
 		return <a {...props} />;
 	}
 };

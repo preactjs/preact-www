@@ -1,10 +1,8 @@
 import { useRoute } from 'preact-iso';
-import { useContent } from '../../lib/use-resource';
-import { useTitle, useDescription } from './utils';
+import { useContent } from '../../lib/use-content';
 import config from '../../config.json';
 import { NotFound } from './not-found';
 import cx from '../../lib/cx';
-import { useLanguage } from '../../lib/i18n';
 import { MarkdownRegion } from './markdown-region';
 import Sidebar from '../sidebar';
 import Footer from '../footer/index';
@@ -25,11 +23,7 @@ export function DocPage() {
 
 export function DocLayout({ isGuide = false }) {
 	const { path } = useRoute();
-	const [lang] = useLanguage();
-
-	const { html, meta } = useContent([lang, path === '/' ? 'index' : path]);
-	useTitle(meta.title);
-	useDescription(meta.description);
+	const { html, meta } = useContent(path === '/' ? 'index' : path);
 
 	return (
 		<div class={cx(style.page, isGuide && style.withSidebar)}>

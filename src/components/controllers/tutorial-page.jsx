@@ -3,10 +3,8 @@ import { useEffect } from 'preact/hooks';
 import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
 import { NotFound } from './not-found';
-import { useTitle, useDescription } from './utils';
-import { getContent } from '../../lib/content';
-import { useContent } from '../../lib/use-resource';
-import { useLanguage } from '../../lib/i18n';
+import { useContent } from '../../lib/use-content';
+import { prefetchContent } from '../../lib/use-resource.js';
 import { tutorialRoutes } from '../../lib/route-utils';
 
 import style from './tutorial/style.module.css';
@@ -24,16 +22,12 @@ export default function TutorialPage() {
 
 function TutorialLayout() {
 	const { path, params } = useRoute();
-	const [lang] = useLanguage();
-
-	const { html, meta } = useContent([lang, !params.step ? 'tutorial/index' : path]);
-	useTitle(meta.title);
-	useDescription(meta.description);
+	const { html, meta } = useContent(!params.step ? 'tutorial/index' : path);
 
 	// Preload the next chapter
 	useEffect(() => {
 		if (meta && meta.next) {
-			getContent([lang, meta.next]);
+			prefetchContent(meta.next);
 		}
 	}, [meta.next, path]);
 
