@@ -120,7 +120,7 @@ function App() {
 
 > Keep in mind that due to Preact reusing the browser's event system, events won't bubble up through a Portal container to the other tree.
 
-## Suspense (experimental)
+## Suspense
 
 The main idea behind `Suspense` is to allow sections of your UI to display some sort of placeholder content while components further down the tree are still loading. A common use case for this is code-splitting where you'll need to load a component from the network before you can render it.
 
@@ -139,4 +139,6 @@ const SomeComponent = lazy(() => import('./SomeComponent'));
 
 In this example the UI will display the `loading...` text until `SomeComponent` is loaded and the Promise is resolved.
 
-> This feature is experimental and may contain bugs. We have included it as an early preview to increase testing visibility. We don't recommend using it in production.
+> Suspense in both React and Preact isn't quite finalized or set it stone as of yet. While the React team still actively discourages users interfacing with it directly for data fetching, it's a pattern some Preact users have been happily using over the last few years. There are a few known issues (please see [our tracker](https://github.com/preactjs/preact/issues?q=is%3Aissue+is%3Aopen+suspense) for an up-to-date reference) but it's generally considered stable enough for use in production if you so wish.
+>
+> This site, for instance, is built using a Suspense-based data fetching strategy used to load all content you see.
