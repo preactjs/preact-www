@@ -33,7 +33,7 @@ The audience participation Progressive Web App from Chrome Dev Summit 2016!
 Open-Source peach.cool app.  
 [Github Project](https://github.com/developit/nectarine)
 
-**[Web Maker](https://webmakerapp.com/app/)** :zap:
+**[Web Maker](https://webmaker.app/)** :zap:
 Blazing fast & offline frontend playground.
 [Github Project](https://github.com/chinchang/web-maker)
 

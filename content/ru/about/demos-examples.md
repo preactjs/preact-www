@@ -32,7 +32,7 @@ description: 'Коллекция демо-версий и примеров пр�
 Приложение peach.cool с открытым исходным кодом.
 [Проект Github](https://github.com/developit/nectarine)
 
-**[Web Maker](https://webmakerapp.com/app/)** :zap:
+**[Web Maker](https://webmaker.app/)** :zap:
 Удивительно быстрый и автономный фронтенд.
 [Проект Github](https://github.com/chinchang/web-maker)
 
