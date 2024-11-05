@@ -32,7 +32,7 @@ permalink: '/about/demos-examples'
 一款开源的 peach.cool app。
 [Github Project](https://github.com/developit/nectarine)
 
-**[Web Maker](https://webmakerapp.com/app/)** :zap:
+**[Web Maker](https://webmaker.app/)** :zap:
 急速并支持离线的前端游乐场。
 [Github Project](https://github.com/chinchang/web-maker)
 

@@ -33,7 +33,7 @@ Chrome Dev Summit 2016의 관중 참여형 점진적 웹 앱!
 오픈 소스 peach.cool 앱  
 [Github Project](https://github.com/developit/nectarine)
 
-**[Web Maker](https://webmakerapp.com/app/)** :zap:  
+**[Web Maker](https://webmaker.app/)** :zap:  
 매우 빠른 오프라인 프런트엔드 플레이그라운드  
 [Github Project](https://github.com/chinchang/web-maker)
 
