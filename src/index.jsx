@@ -23,7 +23,12 @@ if (typeof window !== 'undefined') {
 	}
 }
 
-let initialized = false;
+let initialized = false,
+	prerenderData = {
+		preactVersion: '',
+		preactReleaseURL: '',
+		preactStargazers: 0
+	};
 export async function prerender() {
 	const init = async () => {
 		globalThis.prismWorker = await import('./components/code-block/prism.worker.js');
@@ -35,19 +40,19 @@ export async function prerender() {
 		// fetch latest release data
 		const { default: releaseLambda } = await import('./lambda/release.js');
 		const { version, url } = await (await releaseLambda()).json();
-		globalThis.prerenderPreactVersion = version;
-		globalThis.prerenderPreactReleaseUrl = url;
+		prerenderData.preactVersion = version;
+		prerenderData.preactReleaseURL = url;
 
 		// fetch latest stargazer count
 		const { default: repoLambda } = await import('./lambda/repo.js');
 		const { stargazers_count: stargazersCount } = await (await repoLambda()).json();
-		globalThis.prerenderPreactStargazers = stargazersCount;
+		prerenderData.preactStargazers = stargazersCount;
 
 		initialized = true;
 	};
 	if (!initialized) await init();
 
-	const res = await ssr(<App />);
+	const res = await ssr(<App prerenderData={prerenderData} />);
 
 	const elements = new Set([
 		{ type: 'meta', props: { name: 'description', content: globalThis.description } },
@@ -62,11 +67,7 @@ export async function prerender() {
 
 	return {
 		...res,
-		data: {
-			prerenderPreactVersion: globalThis.prerenderPreactVersion,
-			prerenderPreactReleaseUrl: globalThis.prerenderPreactReleaseUrl,
-			prerenderPreactStargazers: globalThis.prerenderPreactStargazers
-		},
+		data: prerenderData,
 		head: {
 			lang: 'en',
 			title: globalThis.title,

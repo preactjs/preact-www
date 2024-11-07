@@ -1,40 +1,46 @@
-const TYPE = 'text/pd';
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const prerenderNodes = typeof window !== 'undefined' && document.querySelectorAll(`[type="${TYPE}"]`);
-const prerenderData = {};
+/**
+ * @typedef {import('../types.d.ts').PrerenderData} PrerenderData
+ */
 
-export function getPrerenderData(name) {
-	if (!prerenderNodes) return;
-	if (name in prerenderData) return prerenderData[name];
-	for (let i = 0; i < prerenderNodes.length; i++) {
-		if (prerenderNodes[i].getAttribute('data-pd') === name) {
-			let data;
-			try {
-				data = JSON.parse(
-					prerenderNodes[i].firstChild.data.replace(
-						/<_(_*)\/script>/g,
-						'<$1/script>'
-					)
-				);
-			} catch (e) {}
-			return (prerenderData[name] = data);
-		}
-	}
+/**
+ * @returns {PrerenderData | {}}
+ */
+export function getFallbackData() {
+	if (typeof window === 'undefined') return {};
+	const el = document.getElementById('preact-prerender-data');
+	if (!el) return {};
+	const data = JSON.parse(el.textContent);
+	return data;
 }
 
-export function InjectPrerenderData({ name, data }) {
-	if (typeof window === 'undefined') return null;
-	const content = JSON.stringify(data).replace(
-		/<(_*)\/script>/g,
-		'<$1_/script>'
-	);
+/**
+ * @type {import('preact').Context<PrerenderData>}
+ */
+const PrerenderDataContext = createContext(/** @type {PrerenderData} */ ({}));
+
+/**
+ * @param {{ value?: PrerenderData, children: any }} props
+ */
+export function PrerenderDataProvider({ value, children }) {
+	const fallbackData = getFallbackData();
+
+	const preactVersion = value?.preactVersion || fallbackData.preactVersion;
+	const preactReleaseURL = value?.preactReleaseURL || fallbackData.preactReleaseUrl;
+	const preactStargazers = value?.preactStargazers || fallbackData.preactStargazers;
+
 	return (
-		<script
-			type={TYPE}
-			data-pd={name}
-			dangerouslySetInnerHTML={{
-				__html: content
-			}}
-		/>
+		<PrerenderDataContext.Provider value={{ preactVersion, preactReleaseURL, preactStargazers }}>
+			{children}
+		</PrerenderDataContext.Provider>
 	);
+}
+
+/**
+ * @returns {PrerenderData}
+ */
+export function usePrerenderData() {
+	return useContext(PrerenderDataContext);
 }

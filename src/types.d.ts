@@ -7,10 +7,10 @@ declare global {
 			'content-region': { name: string; 'data-page-nav': boolean; 'can-edit': boolean, children: any };
 		}
 	}
-	var prerenderPreactVersion: string;
-	var prerenderPreactReleaseUrl: string;
-	var prerenderPreactStargazers: number;
 }
 
-
-export {}
+export interface PrerenderData {
+	preactVersion: string;
+	preactReleaseURL: string;
+	preactStargazers: number;
+}
