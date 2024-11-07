@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import style from './style.module.css';
 import { useLanguage } from '../../lib/i18n';
+import { useResource } from '../../lib/use-resource';
 
 /*
  * To update the list, run:
@@ -25,19 +26,20 @@ import { useLanguage } from '../../lib/i18n';
  * @param {any[]} deps
  */
 function useContributors(deps) {
-	const [contributors, setContributors] = useState([]);
+	const contributors = useResource(() =>
+		fetch('/contributors.json').then(r => r.json()),
+		['/contributors.json']
+	);
+
 	const [value, setValue] = useState(
 		contributors ? contributors[new Date().getMonth()] : undefined
 	);
-	useEffect(() => {
-		fetch('/contributors.json')
-			.then(r => r.json())
-			.then(d => setContributors(d));
-	}, []);
+
 	useEffect(() => {
 		if (contributors)
 			setValue(contributors[(Math.random() * (contributors.length - 1)) | 0]);
-	}, [...deps, contributors]);
+	}, [...deps]);
+
 	return value;
 }
 
