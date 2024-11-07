@@ -1,9 +1,8 @@
+import { useCallback } from 'preact/hooks';
 import config from '../../config.json';
-import { useState, useEffect, useCallback } from 'preact/hooks';
-import { useRoute } from 'preact-iso';
-import style from './style.module.css';
 import { useLanguage } from '../../lib/i18n';
 import { useResource } from '../../lib/use-resource';
+import style from './style.module.css';
 
 /*
  * To update the list, run:
@@ -16,36 +15,25 @@ import { useResource } from '../../lib/use-resource';
  * }
  * const repos = await api('/orgs/preactjs/repos?per_page=100');
  * const list = new Set((await Promise.all(repos.map(r => getContribs(r.owner.login, r.name)))).flat().filter(n => !n.endsWith('-bot') && !n.endsWith('[bot]')));
- * copy(JSON.stringify(list, null, 2));
+ * copy(JSON.stringify([...list], null, 2));
  *
  * And paste the results into src/assets/contributors.json
  */
 
 /**
  * Display a random contributor of the list above.
- * @param {any[]} deps
  */
-function useContributors(deps) {
+function useContributors() {
 	const contributors = useResource(() =>
 		fetch('/contributors.json').then(r => r.json()),
 		['/contributors.json']
 	);
 
-	const [value, setValue] = useState(
-		contributors ? contributors[new Date().getMonth()] : undefined
-	);
-
-	useEffect(() => {
-		if (contributors)
-			setValue(contributors[(Math.random() * (contributors.length - 1)) | 0]);
-	}, [...deps]);
-
-	return value;
+	return contributors[(Math.random() * (contributors.length - 1)) | 0];
 }
 
 export default function Footer() {
-	const { path } = useRoute();
-	const contrib = useContributors([path]);
+	const contrib = useContributors();
 	const [lang, setLang] = useLanguage();
 
 	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
