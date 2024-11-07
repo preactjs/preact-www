@@ -212,7 +212,7 @@ export default class Stars extends Component {
     }
 }
 // --repl-after
-render(&lt;Stars /&gt;, document.getElementById("app"));
+render(&lt;Stars repo="preactjs/preact" /&gt;, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
