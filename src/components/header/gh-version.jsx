@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'preact/hooks';
-import { fallbackData, fetchRelease } from '../../lib/github';
+import { injectedPrerenderData, fetchRelease } from '../../lib/github';
 import config from '../../config.json';
 
 export default function ReleaseLink({ ...props }) {
 	const [release, setRelease] = useState({
-		url: globalThis.prerenderPreactReleaseUrl || fallbackData.preactReleaseUrl,
-		version: globalThis.prerenderPreactVersion || fallbackData.preactVersion
+		url: globalThis.prerenderPreactReleaseUrl || injectedPrerenderData.preactReleaseUrl(),
+		version: globalThis.prerenderPreactVersion || injectedPrerenderData.preactVersion()
 	});
 
 	useEffect(() => {

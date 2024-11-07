@@ -9,6 +9,7 @@ declare global {
 	}
 	var prerenderPreactVersion: string;
 	var prerenderPreactReleaseUrl: string;
+	var prerenderPreactStargazers: number;
 }
 
 

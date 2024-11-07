@@ -1,6 +1,5 @@
 import { Component } from 'preact';
-import { localStorageGet, localStorageSet } from '../lib/localstorage';
-import { fallbackData, repoInfo } from '../lib/github';
+import { injectedPrerenderData, repoInfo } from '../lib/github';
 
 const githubStars = repo =>
 	repoInfo(repo).then(d => d.stargazers_count);
@@ -12,12 +11,11 @@ if (typeof window !== 'undefined') window.githubStars = githubStars;
 
 export default class GithubStars extends Component {
 	state = {
-		stars: localStorageGet('_stars') || fallbackData.preactStargazers
+		stars: globalThis.prerenderPreactStargazers || injectedPrerenderData.preactStargazers()
 	};
 
 	setStars = stars => {
 		if (stars && stars != this.state.stars) {
-			localStorageSet('_stars', stars);
 			this.setState({ stars });
 		}
 	};

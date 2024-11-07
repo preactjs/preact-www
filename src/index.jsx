@@ -38,6 +38,11 @@ export async function prerender() {
 		globalThis.prerenderPreactVersion = version;
 		globalThis.prerenderPreactReleaseUrl = url;
 
+		// fetch latest stargazer count
+		const { default: repoLambda } = await import('./lambda/repo.js');
+		const { stargazers_count: stargazersCount } = await (await repoLambda()).json();
+		globalThis.prerenderPreactStargazers = stargazersCount;
+
 		initialized = true;
 	};
 	if (!initialized) await init();
@@ -55,5 +60,17 @@ export async function prerender() {
 
 	res.html += '<script async defer src="https://www.google-analytics.com/analytics.js"></script>';
 
-	return { ...res, head: { lang: 'en', title: globalThis.title, elements } };
+	return {
+		...res,
+		data: {
+			prerenderPreactVersion: globalThis.prerenderPreactVersion,
+			prerenderPreactReleaseUrl: globalThis.prerenderPreactReleaseUrl,
+			prerenderPreactStargazers: globalThis.prerenderPreactStargazers
+		},
+		head: {
+			lang: 'en',
+			title: globalThis.title,
+			elements
+		}
+	};
 }

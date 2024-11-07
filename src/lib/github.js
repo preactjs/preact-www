@@ -9,10 +9,17 @@ function checkStatus(r) {
 	return r;
 }
 
-export const fallbackData = {
-	preactVersion: '10.19.5',
-	preactReleaseUrl: 'https://github.com/preactjs/preact/releases/tag/10.19.5',
-	preactStargazers: 35783
+const getFallbackData = (key) => {
+	const el = document.getElementById('preact-prerender-data');
+	if (!el) return null;
+	const data = JSON.parse(el.textContent);
+	return data[key];
+};
+
+export const injectedPrerenderData = {
+	preactVersion: () => getFallbackData('prerenderPreactVersion'),
+	preactReleaseUrl: () => getFallbackData('prerenderPreactReleaseUrl'),
+	preactStargazers: () => getFallbackData('prerenderPreactStargazers')
 };
 
 const baseUrl = '/.netlify/functions/';
@@ -22,7 +29,7 @@ export const repoInfo = repo =>
 		.then(checkStatus)
 		.then(r => r.json())
 		.catch(() => ({
-			stargazers_count: fallbackData.preactStargazers
+			stargazers_count: injectedPrerenderData.preactStargazers()
 		}));
 
 export const fetchRelease = repo =>
@@ -30,6 +37,6 @@ export const fetchRelease = repo =>
 		.then(checkStatus)
 		.then(r => r.json())
 		.catch(() => ({
-			version: fallbackData.preactVersion,
-			url: fallbackData.preactReleaseUrl
+			version: injectedPrerenderData.preactVersion(),
+			url: injectedPrerenderData.preactReleaseUrl()
 		}));
