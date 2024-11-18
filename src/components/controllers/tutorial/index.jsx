@@ -8,12 +8,11 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import { TutorialContext, SolutionContext } from './contexts';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { InjectPrerenderData } from '../../../lib/prerender-data';
 import { useResource } from '../../../lib/use-resource';
 import { useLanguage } from '../../../lib/i18n';
 import { Splitter } from '../../splitter';
@@ -220,11 +219,6 @@ export function Tutorial({ html, meta }) {
 						<ButtonContainer meta={meta} showCode={showCode} help={help} />
 					</div>
 				</Splitter>
-
-				<InjectPrerenderData
-					name={url}
-					data={{ html, meta }}
-				/>
 			</div>
 		</TutorialContext.Provider>
 	);
