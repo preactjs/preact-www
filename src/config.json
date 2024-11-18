@@ -615,15 +615,15 @@
 	"blogAuthors": [
 		{
 			"name": "Jason Miller",
-			"link": "https://twitter.com/_developit"
+			"link": "https://bsky.app/profile/developit.dev"
 		},
 		{
 			"name": "Marvin Hagemeister",
-			"link": "https://twitter.com/marvinhagemeist"
+			"link": "https://bsky.app/profile/marvinh.dev"
 		},
 		{
 			"name": "Joachim Viide",
-			"link": "https://infosec.exchange/@jviide"
+			"link": "https://jviide.iki.fi"
 		},
 		{
 			"name": "Ivan Ulloque",
@@ -631,11 +631,11 @@
 		},
 		{
 			"name": "Jovi De Croock",
-			"link": "https://twitter.com/JoviDeC"
+			"link": "https://bsky.app/profile/jovidecroock.com"
 		},
 		{
 			"name": "Ryan Christian",
-			"link": "https://twitter.com/_rschristian"
+			"link": "https://bsky.app/profile/rschristian.dev"
 		},
 		{
 			"name": "reaper",
