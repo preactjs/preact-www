@@ -647,10 +647,12 @@
 			"path": "/blog/simplifying-islands-arch",
 			"date": "2024-08-06",
 			"name": {
-				"en": "Build your own Island Components"
+				"en": "Build your own Island Components",
+				"ru": "Создание собственных островных компонентов"
 			},
 			"excerpt": {
-				"en": "Demystifying how island architechture works and being able to setup your own, using tools you already have around you."
+				"en": "Demystifying how island architechture works and being able to setup your own, using tools you already have around you.",
+				"ru": "Вы узнаете, как работает островная архитектура, и сможете создать свою собственную, используя инструменты, которые уже есть у вас под рукой."
 			}
 		},
 		{
