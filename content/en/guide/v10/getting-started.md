@@ -207,6 +207,30 @@ module.exports = {
 };
 ```
 
+#### Aliasing in Browserify
+
+To alias within Browserify, you'll need to install [aliasify](https://www.npmjs.com/package/aliasify) first.
+
+Then, assuming you are passing the configuration to Browserify from within JS code, you'll have to add the following configuration *after* `babelify` (or any other language transpilers) in your Browserify configuration, like so:
+
+```js
+browserify(files, {
+  // ...
+  transform: [
+    // ... other transforms like babelify go here ...
+    ["aliasify", {
+      aliases: {
+        "react": "preact/compat",
+        "react-dom": "preact/compat"
+      }
+    }],
+    // ...
+  ]
+})
+```
+
+If you are invoking Browserify in a different way (eg. configuring from a command-line or another build tool), the exact syntax may be different; in that case, follow the configuration syntax for your preferred tool instead.
+
 #### Aliasing in Jest
 
 [Jest](https://jestjs.io/) allows the rewriting of module paths similar to bundlers.
