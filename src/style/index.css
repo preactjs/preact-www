@@ -116,7 +116,7 @@ loading-bar {
 	top: -5px;
 	width: 100%;
 	height: 3px;
-	background: fade(darken(#f2777a, 10%), 50%);
+	background: #ee484c80;
 	transform: translateY(0);
 	transition: transform 1s ease, opacity 1s ease;
 	opacity: 0;
