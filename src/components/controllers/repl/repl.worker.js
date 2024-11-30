@@ -80,7 +80,7 @@ async function bundle(sources) {
 	const isSource = Object.prototype.hasOwnProperty.bind(sources);
 	const bundle = await rollup({
 		input: Object.keys(sources),
-		treeshake: 'smallest',
+		treeshake: 'recommended',
 		plugins: [
 			{
 				name: 'repl',
