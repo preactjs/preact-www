@@ -41,6 +41,7 @@ export default defineConfig({
 			}
 		}),
 		viteStaticCopy({
+			hook: 'generateBundle',
 			targets: [
 				{
 					src: './content/**/*.md',
