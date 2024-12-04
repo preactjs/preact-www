@@ -12,7 +12,25 @@
 		margin-left: 0.625rem;
 	}
 
+	/**
+	 * Ideally kept sync'd with the markdown links:
+	 * https://github.com/preactjs/preact-www/blob/f68e65aadbd19b042921cc175aa256f3aa248768/src/style/markdown.css#L18
+   */
 	a {
 		color: var(--color-footer-link);
+		text-decoration-skip-ink: auto;
+		text-decoration: underline;
+		text-decoration-color: var(--color-table-border);
+		text-decoration-thickness: 1px;
+
+		&:hover,
+		&:focus {
+			text-decoration-color: currentColor;
+		}
+
+		&:hover,
+		&:focus {
+			color: var(--color-link-hover);
+		}
 	}
 }

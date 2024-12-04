@@ -29,7 +29,7 @@
 
 		&:hover,
 		&:focus {
-			color: #ff89ff;
+			color: var(--color-link-hover);
 		}
 	}
 
