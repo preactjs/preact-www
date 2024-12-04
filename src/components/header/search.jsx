@@ -1,6 +1,8 @@
+import { lazy } from 'preact-iso';
 import style from './style.module.css';
 import config from '../../config.json';
-import { DocSearch } from '@docsearch/react';
+
+const DocSearch = lazy(() => import('@docsearch/react').then(m => m.DocSearch));
 
 // Might be a problem with the Algolia data, but it seemingly
 // appends `#app` to all URLs without a hash fragment.
