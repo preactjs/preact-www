@@ -138,7 +138,7 @@ function Counter() {
 <section class="home-split">
     <div>
         <h3>待办事项</h3>
-        <pre><code class="lang-jsx">
+        <pre><code class="language-jsx">
 // --repl
 export default class TodoList extends Component {
     state = { todos: [], text: '' };
@@ -173,7 +173,7 @@ render(&lt;TodoList /&gt;, document.getElementById("app"));
     </div>
     <div>
         <h3>实际示例</h3>
-        <pre repl="false"><code class="lang-jsx">
+        <pre repl="false"><code class="language-jsx">
 import TodoList from './todo-list';<br>
 render(&lt;TodoList /&gt;, document.body);
         </code></pre>
@@ -186,7 +186,7 @@ render(&lt;TodoList /&gt;, document.body);
 <section class="home-split">
     <div>
         <h3>获取 GitHub 标星数</h3>
-        <pre><code class="lang-jsx">
+        <pre><code class="language-jsx">
 // --repl
 export default class Stars extends Component {
     async componentDidMount() {
@@ -208,7 +208,7 @@ render(&lt;Stars repo="preactjs/preact" /&gt;, document.getElementById("app"));
     </div>
     <div>
         <h3>实际示例</h3>
-        <pre repl="false"><code class="lang-jsx">
+        <pre repl="false"><code class="language-jsx">
 import Stars from './stars';<br>
 render(
     &lt;Stars repo="preactjs/preact" /&gt;,
