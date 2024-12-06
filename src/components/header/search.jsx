@@ -1,4 +1,4 @@
-import { lazy } from 'preact-iso';
+import { lazy, ErrorBoundary } from 'preact-iso';
 import style from './style.module.css';
 import config from '../../config.json';
 
@@ -18,12 +18,14 @@ const transformItems = (items) =>
 export default function Search() {
 	return (
 		<div class={style.search}>
-			<DocSearch
-				apiKey={config.docsearch.apiKey}
-				indexName={config.docsearch.indexName}
-				appId={config.docsearch.appId}
-				transformItems={transformItems}
-			/>
+			<ErrorBoundary>
+				<DocSearch
+					apiKey={config.docsearch.apiKey}
+					indexName={config.docsearch.indexName}
+					appId={config.docsearch.appId}
+					transformItems={transformItems}
+				/>
+			</ErrorBoundary>
 		</div>
 	);
 }
