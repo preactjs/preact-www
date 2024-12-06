@@ -1,6 +1,9 @@
 import yaml from 'yaml';
 import marked from 'marked';
+import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
+import { Prism } from './prism.js';
+import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
 
 /**
  * @param {string} content
@@ -10,8 +13,9 @@ import { replace } from './gh-emoji/index.js';
 export function precompileMarkdown(content, path) {
 	const parsed = parseContent(content, path);
 	const emojified = applyEmojiToContent(parsed);
+	const htmlified = markdownToHTML(emojified);
+	const result = highlightCodeBlocks(htmlified);
 
-	const result = markdownToHTML(emojified);
 	// client only needs `.html` and `.meta` fields
 	delete result.content;
 
@@ -65,6 +69,10 @@ function parseContent(content, path) {
 	};
 }
 
+/**
+ * @param {{ content: string }} data
+ * @returns {{ html: string, content: string }}
+ */
 function markdownToHTML(data) {
 	data.html = marked(data.content);
 	return data;
@@ -141,4 +149,118 @@ function extractTutorialCodeBlocks(markdown) {
 	});
 
 	return { markdown, tutorial };
+}
+
+/**
+ * @param {{ html: string, content: string }} data
+ * @returns {{ html: string, content: string }}
+ */
+function highlightCodeBlocks(data) {
+	const doc = parse(data.html, { blockTextElements: { code: true } });
+
+	const codeBlocks = doc.querySelectorAll('pre:has(> code[class])');
+	for (const block of codeBlocks) {
+		const child = block.childNodes[0];
+
+		/**
+		 * Slight hack to facilitate blank lines in code blocks in HTML in markdown, i.e.,
+		 *
+		 * <pre repl="false"><code class="language-jsx">
+		 *   import TodoList from './todo-list';<br>
+		 *   render(&lt;TodoList /&gt;, document.body);
+		 * </code></pre>
+		 *
+		 * Blank lines are an end condition to the code block so instead we must use `<br>`
+		 * and switch it back to `\n` for the code content after marked is through with it.
+		 * We only do this on the home/index page at the moment.
+		 */
+		const rawCodeBlockText = unescapeHTML(child.innerText.trim().replace('<br>', '\n'));
+		const [code, source, runInRepl] = processRepl(rawCodeBlockText);
+
+		const lang = child.getAttribute('class').replace('language-', '');
+
+		Prism.languages[lang] == null
+			// TODO: Bash is the only missing one at the moment
+			? console.warn(`No Prism highlighter for language: ${lang}`)
+			: child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang);
+
+		// TODO: These next lines should be moved to marked but we'd need to bump it to do so.
+		block.insertAdjacentHTML('beforebegin', '<div class="highlight-container">');
+		const container = block.previousSibling;
+		container.appendChild(block);
+		block.setAttribute('class', 'highlight');
+
+		if (runInRepl) {
+			block.insertAdjacentHTML(
+				'afterend',
+				`<a class="repl-link" href="/repl?code=${encodeURIComponent(textToBase64(source))}">
+					Run in REPL
+				</a>`
+			);
+		}
+	}
+
+	data.html = doc.toString();
+	return data;
+}
+
+
+/**
+ * Marked escapes HTML entities, which is normally great,
+ * but we want to feed the raw code into Prism for highlighting.
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+function unescapeHTML(str) {
+    return str
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'");
+}
+
+/**
+ * @param {string} code
+ * @returns {[string, string, boolean]}
+ */
+function processRepl(code) {
+	let source = code,
+		runInRepl = false;
+	if (code.startsWith('// --repl')) {
+		runInRepl = true;
+		const idx = code.indexOf('\n');
+		if (idx > -1) {
+			code = code.slice(idx + 1);
+			source = source.slice(idx + 1);
+		}
+
+		const beforeMarker = '// --repl-before';
+		const beforeIdx = code.indexOf(beforeMarker);
+		if (beforeIdx > -1) {
+			const pos = beforeIdx + beforeMarker.length + 1;
+			code = code.slice(pos);
+			// Only replace comment line with newline in source
+			source = source.slice(0, beforeIdx) + '\n' + source.slice(pos);
+		}
+
+		const afterMarker = '// --repl-after';
+		const afterIdx = code.indexOf(afterMarker);
+		if (afterIdx > -1) {
+			code = code.slice(0, afterIdx);
+
+			// Only replace comment line with newline in source
+			// ATTENTION: We cannot reuse the index from `code`
+			// as the content and thereby offsets are different
+			const sourceAfterIdx = source.indexOf(afterMarker);
+			source =
+				source.slice(0, sourceAfterIdx) +
+				'\n' +
+				source.slice(sourceAfterIdx + afterMarker.length + 1) +
+				'\n';
+		}
+	}
+
+	return [code, source, runInRepl];
 }

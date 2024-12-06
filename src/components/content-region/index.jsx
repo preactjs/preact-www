@@ -8,10 +8,11 @@ import { prefetchContent } from '../../lib/use-resource';
 
 const COMPONENTS = {
 	...widgets,
-	pre: widgets.CodeBlock,
+	// TODO: Move to marked
 	img(props) {
 		return <img decoding="async" {...props} />;
 	},
+	// TODO: Move to marked
 	a(props) {
 		if (!props.target && props.href.match(/:\/\//)) {
 			props.target = '_blank';
