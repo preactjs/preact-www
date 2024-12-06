@@ -27,7 +27,7 @@ permalink: '/guide/switching-to-preact'
 Процесс установки состоит из двух шагов.
 Сначала необходимо установить preact и preact-compat (это отдельные пакеты):
 
-```sh
+```bash
 npm i -S preact preact-compat
 ```
 
@@ -105,7 +105,7 @@ Parcel поддерживает определение псевдонимов м
 
 Для целей SSR, если вы не используете бандлер вроде webpack для сборки кода на стороне сервера, вы можете использовать пакет [module-alias](https://www.npmjs.com/package/module-alias), чтобы заменить react на preact.
 
-```sh
+```bash
 npm i -S module-alias
 ```
 
@@ -166,7 +166,7 @@ API Preact практически идентичен API React, и многие 
 
 Это очень просто: чтобы использовать библиотеку, вам нужно будет установить ее!
 
-```sh
+```bash
 npm install --save preact  # или: npm i -S preact
 ```
 

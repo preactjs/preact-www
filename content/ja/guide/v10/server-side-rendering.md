@@ -20,7 +20,7 @@ description: 'サーバでPreactアプリケーションをレンダリングし
 Preact用のサーバサイドレンダラ(`preact-render-to-string`)は[こちらのレポジトリ](https://github.com/preactjs/preact-render-to-string/)にあります。
 好きなパッケージマネージャを使ってインストールできます。
 
-```sh
+```bash
 npm install -S preact-render-to-string
 ```
 

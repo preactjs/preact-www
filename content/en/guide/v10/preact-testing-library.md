@@ -19,7 +19,7 @@ Unlike [Enzyme](/guide/v10/unit-testing-with-enzyme), Preact Testing Library mus
 
 Install the testing-library Preact adapter via the following command:
 
-```sh
+```bash
 npm install --save-dev @testing-library/preact
 ```
 

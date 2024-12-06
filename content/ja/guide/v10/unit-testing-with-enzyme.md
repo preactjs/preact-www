@@ -26,7 +26,7 @@ Enzymeの詳しい使い方とAPIリファレンスは[Enzymeのドキュメン�
 
 以下のようにEnzymeとPreactアダプタをインストールします。
 
-```sh
+```bash
 npm install --save-dev enzyme enzyme-adapter-preact-pure
 ```
 

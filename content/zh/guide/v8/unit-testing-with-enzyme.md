@@ -21,7 +21,7 @@ React提供了`react-addons-test-utils`来测试组件，而Airbnb开发的`enzy
 
 `preact-test-utils`: 提供了`enzyme`所需要的`react-addons-test-utils`中的部分功能
 
-```sh
+```bash
 npm install --save-dev preact-compat-enzyme preact-test-utils
 ```
 

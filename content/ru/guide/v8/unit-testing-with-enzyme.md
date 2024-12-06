@@ -22,7 +22,7 @@ Enzyme поддерживает тесты, которые выполняютс�
 
 Установите Enzyme и адаптер Preact, используя:
 
-```sh
+```bash
 npm install --save-dev enzyme enzyme-adapter-preact-pure
 ```
 

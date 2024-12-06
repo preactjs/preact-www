@@ -21,7 +21,7 @@ Preact bileşenlerini `enzyme` kullanarak test etmek, `preact-compat`'ın üzeri
 - `preact-compat-enzyme`: dahili React property'lerini sağlamak için.
 - `preact-test-utils`: `enzyme` kullanarak `react-addons-test-utils` API'sini sağlamak için.
 
-```sh
+```bash
 npm install --save-dev preact-compat-enzyme preact-test-utils
 ```
 

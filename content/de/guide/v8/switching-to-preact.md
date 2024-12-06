@@ -26,7 +26,7 @@ Das ermöglicht es einem, mit dem Schreiben von React/ReactDOM-Code fortzufahren
 Der Installationsprozess ist in zwei Schritte unterteilt.
 Zuerst muss man `preact` und `preact-compat`, zwei separate Pakete, installieren:
 
-```sh
+```bash
 npm i -S preact preact-compat
 ```
 
@@ -89,7 +89,7 @@ Dieser Ansatz wird im nächsten Abschnitt erläutert.
 
 Beachtet man Small Screen Rendering-Funktionalitäten, kann man das [module-alias](https://npmjs.com/package/module-alias)-Paket zum Ersetzen von React mit Preact verwenden, sollte man keinen Bundler (wie z.B. Webpack) für den Build-Prozess des serverseitigen Codes verwenden.
 
-```sh
+```bash
 npm i -S module-alias
 ```
 
@@ -150,7 +150,7 @@ Generell involviert der Prozess des Wechselns zu Preact einige Schritte:
 
 Dieser Schritt ist vermutlich der Einfachste: man muss die Bibliothek lediglich installieren, um sie verwenden zu können!
 
-```sh
+```bash
 npm install --save preact  # or: npm i -S preact
 ```
 

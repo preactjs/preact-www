@@ -27,7 +27,7 @@ all the necessary tweaks on top of Preact's core to make it work just like `reac
 The process for installation is two steps.
 First, you must install preact and preact-compat (they are separate packages):
 
-```sh
+```bash
 npm i -S preact preact-compat
 ```
 
@@ -107,7 +107,7 @@ That approach is covered in the next section.
 
 For SSR purposes, if you are not using a bundler like webpack to build your server side code, you can use the [module-alias](https://www.npmjs.com/package/module-alias) package to replace react with preact.
 
-```sh
+```bash
 npm i -S module-alias
 ```
 
@@ -168,7 +168,7 @@ Generally, the process of switching to Preact involves a few steps:
 
 This one is simple: you'll need to install the library in order to use it!
 
-```sh
+```bash
 npm install --save preact  # or: npm i -S preact
 ```
 

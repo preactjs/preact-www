@@ -31,7 +31,7 @@ Preact differs from Enzyme with React.
 
 Install Enzyme and the Preact adapter using:
 
-```sh
+```bash
 npm install --save-dev enzyme enzyme-adapter-preact-pure
 ```
 

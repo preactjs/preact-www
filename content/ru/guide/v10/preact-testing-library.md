@@ -19,7 +19,7 @@ description: 'Тестирование приложений Preact стало п
 
 Установите адаптер `testing-library` с помощью следующей команды:
 
-```sh
+```bash
 npm install --save-dev @testing-library/preact
 ```
 
