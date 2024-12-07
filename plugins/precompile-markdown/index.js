@@ -1,5 +1,5 @@
 import yaml from 'yaml';
-import marked from 'marked';
+import { marked } from 'marked';
 import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { Prism } from './prism.js';
@@ -8,12 +8,12 @@ import { textToBase64 } from '../../src/components/controllers/repl/query-encode
 /**
  * @param {string} content
  * @param {string} path
- * @returns {string}
+ * @returns {Promise<string>}
  */
-export function precompileMarkdown(content, path) {
+export async function precompileMarkdown(content, path) {
 	const parsed = parseContent(content, path);
 	const emojified = applyEmojiToContent(parsed);
-	const htmlified = markdownToHTML(emojified);
+	const htmlified = await markdownToHTML(emojified);
 	const result = highlightCodeBlocks(htmlified);
 
 	// client only needs `.html` and `.meta` fields
@@ -48,7 +48,7 @@ function parseContent(content, path) {
 		if (!meta.title) {
 			let [, title] = content.match(TITLE_REG) || [];
 			if (title) {
-				meta.title = sanitizeTitle(title);
+				meta.title = title;
 			}
 		}
 	}
@@ -69,12 +69,62 @@ function parseContent(content, path) {
 	};
 }
 
+marked.use({
+	renderer: {
+		heading({ text, depth }) {
+			// No need to add links for page titles
+			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;
+
+			const id = generateHeadingId(text);
+			return `
+				<h${depth} id="${id}">
+					<a class="fragment-link" href="#${id}">
+						<svg width="16" height="16" viewBox="0 0 24 24" aria-label="Link to: ${text} (#${id})">
+							<use href="/icons.svg#link" />
+						</svg>
+					</a>
+					<span>${text}</span>
+				</h${depth}>`;
+		},
+		link({ href, text }) {
+			if (href.includes('://')) {
+				return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+			}
+
+			return `<a href="${href}">${text}</a>`;
+		},
+		image({ href, text }) {
+			return `<img decoding="async" src="${href}" alt="${text}" />`;
+		},
+		code({ text, lang }) {
+			const rawCodeBlockText = text.trim().replace('<br>', '\n');
+			const [code, source, runInRepl] = processRepl(rawCodeBlockText);
+
+			Prism.languages[lang] == null
+				// TODO: Bash is the only missing one at the moment
+				? console.warn(`No Prism highlighter for language: ${lang}`)
+				: text = Prism.highlight(code, Prism.languages[lang], lang);
+
+			const runInReplLink = runInRepl
+				? `<a class="repl-link" href="/repl?code=${encodeURIComponent(textToBase64(source))}">Run in REPL</a>`
+				: '';
+
+			return `
+				<div class="highlight-container">
+					<pre class="highlight"><code class="language-${lang}">${text}</code></pre>
+					${runInReplLink}
+				</div>
+			`;
+		}
+	}
+});
+
 /**
- * @param {{ content: string }} data
- * @returns {{ html: string, content: string }}
+ * @param {{ content: string, html: string }} data
+ * @returns {Promise<{ html: string, content: string }>}
  */
-function markdownToHTML(data) {
-	data.html = marked(data.content);
+async function markdownToHTML(data) {
+	data.html = await marked(data.content);
 	return data;
 }
 
@@ -103,26 +153,23 @@ function generateToc(markdown) {
 	MARKDOWN_TITLE.lastIndex = 0;
 	while ((token = MARKDOWN_TITLE.exec(markdown))) {
 		const level = token[1].length;
-		const text = sanitizeTitle(token[2]);
-		// Note: character range in regex is roughly "word characters including accented" (eg: bublé)
-		const id = text
-			.toLowerCase()
-			.replace(/[\s-!<>`",]+/g, '-')
-			.replace(/^-|-$|[/&.()[\]']/g, '');
+		const text = token[2];
+		const id = generateHeadingId(text);
 		toc.push({ text, id, level });
 	}
 	return toc;
 }
 
-/*
- * Many markdown formatters can generate the table of contents
- * automatically. To skip a specific heading the use an html
- * comment at the end of it. Example:
- *
- *   ## Some random title <!-- omit in toc -->
+/**
+ * @param {string} text
+ * @returns {string}
  */
-function sanitizeTitle(text) {
-	return text.replace(/\s*<!--.*-->\s*/, '');
+function generateHeadingId(text) {
+	// Note: character range in regex is roughly "word characters including accented" (eg: bublé)
+	return text
+		.toLowerCase()
+		.replace(/[\s-!<>`",]+/g, '-')
+		.replace(/^-|-$|[/&.()[\]']/g, '');
 }
 
 /**
@@ -152,13 +199,17 @@ function extractTutorialCodeBlocks(markdown) {
 }
 
 /**
+ * This is only for highlighting HTML code blocks in markdown as
+ * `marked` will ignore them
+ *
  * @param {{ html: string, content: string }} data
  * @returns {{ html: string, content: string }}
  */
 function highlightCodeBlocks(data) {
 	const doc = parse(data.html, { blockTextElements: { code: true } });
 
-	const codeBlocks = doc.querySelectorAll('pre:has(> code[class])');
+	// Only get the pre blocks that haven't already been highlighted
+	const codeBlocks = doc.querySelectorAll('pre:not([class="highlight"]):has(> code[class])');
 	for (const block of codeBlocks) {
 		const child = block.childNodes[0];
 
@@ -184,7 +235,6 @@ function highlightCodeBlocks(data) {
 			? console.warn(`No Prism highlighter for language: ${lang}`)
 			: child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang);
 
-		// TODO: These next lines should be moved to marked but we'd need to bump it to do so.
 		block.insertAdjacentHTML('beforebegin', '<div class="highlight-container">');
 		const container = block.previousSibling;
 		container.appendChild(block);
