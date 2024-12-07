@@ -22,7 +22,7 @@ description: 'Testing Libraryを使用してPreactアプリケーションのテ
 
 以下のコマンドでtesting-libraryのPreact用のアダプタをインストールします。
 
-```sh
+```bash
 npm install --save-dev @testing-library/preact
 ```
 

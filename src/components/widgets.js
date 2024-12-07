@@ -1,4 +1,3 @@
-import CodeBlock from './code-block';
 import Jumbotron from './jumbotron';
 import GithubStars from './github-stars';
 import TodoList from './todo-list';
@@ -12,7 +11,6 @@ import Branding from './branding';
 export default {
 	Toc,
 	BlogOverview,
-	CodeBlock,
 	Jumbotron,
 	GithubStars,
 	TodoList,

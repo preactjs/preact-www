@@ -20,7 +20,7 @@ Precisamos de dois módulos:
 - `Preact-compat-enzyme`: para fornecer propriedades internas adicionais do `React`.
 - `Preact-test-utils`: para fornecer partes da API do `react-addons-test-utils` usadas pelo `enzyme`.
 
-```sh
+```bash
 npm install --save-dev preact-compat-enzyme preact-test-utils
 ```
 

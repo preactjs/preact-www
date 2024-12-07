@@ -17,7 +17,7 @@ description: '通过服务端渲染来向用户快速呈现您的 Preact 应用�
 
 Preact 的服务端渲染程序有一个[独立仓库](https://github.com/preactjs/preact-render-to-string/)，您可以使用您偏好的包管理器安装：
 
-```sh
+```bash
 npm install -S preact-render-to-string
 ```
 

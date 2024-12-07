@@ -27,7 +27,7 @@ Isso te permite continuar escrevendo código React/ReactDOM sem mudanças ao seu
 O processo pra instalação é de apenas dois passos.
 Primeiro, você precisa instalar `preact` e `preact-compat` (eles são pacotes separados):
 
-```sh
+```bash
 npm i -S preact preact-compat
 ```
 
@@ -111,7 +111,7 @@ Geralmente, o processo de mudança involve alguns passos:
 
 Esta é simples: você precisará instalar a biblioteca pra utilizá-la!
 
-```sh
+```bash
 npm install --save preact  # or: npm i -S preact
 ```
 

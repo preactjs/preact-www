@@ -26,7 +26,7 @@ Tek bir modülün içerisinde Preact'ı `react` ve `react-dom` gibi çalışmas�
 Yükleme iki adımdan oluşur.
 Öncelikle preact ve preact-compat'i indirmelisiniz (ikisi farklı paketlerdir):
 
-```sh
+```bash
 npm i -S preact preact-compat
 ```
 
@@ -87,7 +87,7 @@ Bu yaklaşımı sonraki bölümde göreceksiniz.
 
 SSR için, eğer sunucu taraflı projenizde webpack gibi bir bundler kullanmıyorsanız, [module-alias](https://www.npmjs.com/package/module-alias) kullanarak react'ı preact ile değiştirebilirsiniz.
 
-```sh
+```bash
 npm i -S module-alias
 ```
 
@@ -146,7 +146,7 @@ Genelde, Preact'a geçiş birkaç adımdan oluşur.
 
 Oldukça basit, kütüphaneyi kullanabilmeniz için yüklemeniz gerekir!
 
-```sh
+```bash
 npm install --save preact  # ya da: npm i -S preact
 ```
 

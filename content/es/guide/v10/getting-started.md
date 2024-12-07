@@ -69,13 +69,13 @@ El proyecto `preact-cli` es una solución preparada para agrupar aplicaciones Pr
 
 Como su nombre lo indica, `preact-cli` es una herramienta de línea de comandos que se puede ejecutar en el terminal de su máquina. Instálelo globalmente ejecutando:
 
-```node 
+```bash
  npm install -g preact-cli
 ```
 
 Después de eso, tendrá un nuevo comando en su terminal llamado `preact`. Con él puedes crear una nueva aplicación ejecutando el siguiente comando:
 
-```node 
+```bash
  preact create default my-project
 ```
 
@@ -90,7 +90,7 @@ El comando anterior extrae la plantilla de `preactjs-templates/default`, solicit
 
 Ahora estamos listos para comenzar nuestra aplicación. Para iniciar el servidor de desarrollo, ejecute el siguiente comando dentro de la carpeta del proyecto recién generado (`my-project` en este ejemplo):
 
-```node 
+```bash
 # Go into the generated project folder
 cd my-project/
 
@@ -105,7 +105,7 @@ Una vez que el servidor está activo, puede acceder a su aplicación en la URL q
 
 Llega un momento en que debe implementar su aplicación en algún lugar. La CLI entrega un práctico comando `build` que generará una compilación altamente optimizada para su ambiente de producción.
 
-```node 
+```bash
 npm run build
 ```
 

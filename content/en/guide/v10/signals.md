@@ -104,7 +104,7 @@ render(<Counter />, document.getElementById("app"));
 
 Signals can be installed by adding the `@preact/signals` package to your project:
 
-```sh
+```bash
 npm install @preact/signals
 ```
 

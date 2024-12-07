@@ -24,7 +24,7 @@ permalink: '/guide/switching-to-preact'
 
 安装过程分为两步。第一步，安装 preact 和 preact-compat（它们是独立的包）：
 
-```sh
+```bash
 npm i -S preact preact-compat
 ```
 
@@ -94,7 +94,7 @@ npm i -S preact preact-compat
 
 这一步很简单，在使用这个库之前，你必须先安装
 
-```sh
+```bash
 npm install --save preact  # or: npm i -S preact
 ```
 

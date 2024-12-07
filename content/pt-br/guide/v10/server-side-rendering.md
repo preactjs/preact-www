@@ -17,7 +17,7 @@ A renderização no servidor (geralmente abreviada como "SSR") permite renderiza
 
 O renderizador do lado do servidor para o Preact reside em seu [próprio repositório](https://github.com/preactjs/preact-render-to-string/) e pode ser instalado através do seu gerenciador de pacotes de sua escolha:
 
-```sh
+```bash
 npm install -S preact-render-to-string
 ```
 

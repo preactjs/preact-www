@@ -86,6 +86,7 @@
     "htm": "^3.1.1",
     "magic-string": "^0.25.7",
     "marked": "^0.8.0",
+    "node-html-parser": "^6.1.13",
     "preact": "10.15.1",
     "preact-custom-element": "^4.3.0",
     "preact-iso": "^2.6.3",

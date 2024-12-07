@@ -17,7 +17,7 @@ Server-Side Rendering (сокращённо SSR) позволяет вывест
 
 Серверный рендерер для Preact находится в [собственном репозитории](https://github.com/preactjs/preact-render-to-string/) и может быть установлен с помощью выбранного вами упаковщика:
 
-```sh
+```bash
 npm install -S preact-render-to-string
 ```
 

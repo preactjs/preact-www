@@ -98,7 +98,7 @@ render(<Counter />, document.getElementById("app"));
 
 可以通过将 `@preact/signals` 包添加到您的项目来安装信号：
 
-```sh
+```bash
 npm install @preact/signals
 ```
 
