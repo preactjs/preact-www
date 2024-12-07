@@ -1,6 +1,8 @@
+import { lazy, ErrorBoundary } from 'preact-iso';
 import style from './style.module.css';
 import config from '../../config.json';
-import { DocSearch } from '@docsearch/react';
+
+const DocSearch = lazy(() => import('@docsearch/react').then(m => m.DocSearch));
 
 // Might be a problem with the Algolia data, but it seemingly
 // appends `#app` to all URLs without a hash fragment.
@@ -16,12 +18,14 @@ const transformItems = (items) =>
 export default function Search() {
 	return (
 		<div class={style.search}>
-			<DocSearch
-				apiKey={config.docsearch.apiKey}
-				indexName={config.docsearch.indexName}
-				appId={config.docsearch.appId}
-				transformItems={transformItems}
-			/>
+			<ErrorBoundary>
+				<DocSearch
+					apiKey={config.docsearch.apiKey}
+					indexName={config.docsearch.indexName}
+					appId={config.docsearch.appId}
+					transformItems={transformItems}
+				/>
+			</ErrorBoundary>
 		</div>
 	);
 }
