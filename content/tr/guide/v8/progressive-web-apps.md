@@ -51,7 +51,7 @@ Preact, hızlı bir şekilde yüklenip etkileşimli hale gelmek isteyen [Progres
 
 Aslında şu anda bulunduğunuz site bir Progressive Web App! Burada 3G ile internete bağlı Nexus 5X'inizi kullanarak 5 saniyeden daha kısa bir sürede interaktif hale gelilrsiniz:
 
-<img src="/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+![A DevTools Timeline trace of the preactjs.com site on a Nexus 5X](/pwa-guide/timeline.jpg)
 
 Statik site içeriği (Servis Çalışanı) Önbellek Depolama API'sında depolanır ve tekrar eden ziyaretlerde anında yüklenebilir.
 

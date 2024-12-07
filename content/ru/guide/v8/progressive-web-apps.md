@@ -49,7 +49,7 @@ Preact — отличный выбор для [прогрессивных веб
 
 Сайт, на котором вы сейчас находитесь, также является прогрессивным веб-приложением! Здесь он работает в интерактивном режиме менее 5 секунд в трассировке с Nexus 5X через 3G:
 
-<img src="/assets/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+![A DevTools Timeline trace of the preactjs.com site on a Nexus 5X](/pwa-guide/timeline.jpg)
 
 Статический контент сайта хранится в (Service Worker) Cache Storage API, что обеспечивает его мгновенную загрузку при повторных посещениях.
 

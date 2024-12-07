@@ -51,7 +51,7 @@ Preact est un excellent choix pour les [Progressive Web Apps](https://web.dev/le
 
 En fait, le site sur lequel vous vous trouvez actuellement est une Progressive Web App!. Il est interactif en moins de 5 secondes sur un Nexus 5X en 3G :
 
-<img src="/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+![A DevTools Timeline trace of the preactjs.com site on a Nexus 5X](/pwa-guide/timeline.jpg)
 
 Le contenu statique du site est stocké dans l'API Cache Storage (Service Worker), ce qui permet un affichage instantanné lors des visites répétées.
 

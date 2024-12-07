@@ -49,7 +49,7 @@ Preact ist eine ausgezeichnete Wahl für [progressive Web Apps](https://web.dev/
 
 In der Tat ist genau diese Website eine Progressive Web App! Hier ist zu sehen, wie die App am Beispiel einer Trace ausgehend von einem Nexus 5X über 3G in unter 5 Sekunden interaktiv wird:
 
-<img src="/pwa-guide/timeline.jpg" alt="Eine DevTools-Zeitleisten-Trace der preactjs.com-Seite auf einem Nexus 5X"/>
+![Eine DevTools-Zeitleisten-Trace der preactjs.com-Seite auf einem Nexus 5X](/pwa-guide/timeline.jpg)
 
 Statische Seiteninhalte werden in der (Service Worker) Cache Storage API gespeichert, die blitzschnelles Laden bei wiederholten Besuchen ermöglicht.
 
