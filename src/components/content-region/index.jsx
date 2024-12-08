@@ -8,17 +8,7 @@ import { prefetchContent } from '../../lib/use-resource';
 
 const COMPONENTS = {
 	...widgets,
-	// TODO: Move to marked
-	img(props) {
-		return <img decoding="async" {...props} />;
-	},
-	// TODO: Move to marked
 	a(props) {
-		if (!props.target && props.href.match(/:\/\//)) {
-			props.target = '_blank';
-			props.rel = 'noopener noreferrer';
-		}
-
 		if (props.href && props.href.startsWith('/')) {
 			const url = new URL(props.href, location.origin);
 			props.onMouseOver = () => prefetchContent(url.pathname);
@@ -27,24 +17,6 @@ const COMPONENTS = {
 		return <a {...props} />;
 	}
 };
-
-// Skip h1, no need to link to a page title
-for (let i = 2; i <= 6; i++) {
-	const Tag = /** @type {keyof preact.JSX.IntrinsicElements} */ ('h' + i);
-	COMPONENTS[Tag] = function heading(props) {
-		props.children = props.id
-			? [
-				<a class="fragment-link" href={'#' + props.id}>
-					<svg width="16" height="16" viewBox="0 0 24 24" aria-label={`Link to: ${props.children} (#${props.id})`}>
-						<use href="/icons.svg#link" />
-					</svg>
-				</a>,
-				<span>{props.children}</span>
-			]
-			: props.children;
-		return <Tag {...props} />;
-	};
-}
 
 function SiblingNav({ route, lang, start }) {
 	let title = '';

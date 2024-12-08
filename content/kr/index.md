@@ -39,7 +39,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/home/metal.svg" alt="metal" loading="lazy" width="54" height="54">
+  <img src="/home/metal.svg" alt="metal" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>DOM에 더 가까이</h3>
@@ -53,7 +53,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/home/size.svg" alt="size" loading="lazy" width="54" height="54">
+  <img src="/home/size.svg" alt="size" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>작은 크기</h3>
@@ -67,7 +67,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/home/performance.svg" alt="performance" loading="lazy" width="54" height="54">
+  <img src="/home/performance.svg" alt="performance" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>놀라운 성능</h3>
@@ -81,7 +81,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/home/portable.svg" alt="portable" loading="lazy" width="54" height="54">
+  <img src="/home/portable.svg" alt="portable" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>휴대 가능 &amp; 삽입 가능</h3>
@@ -95,7 +95,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/home/productive.svg" alt="productive" loading="lazy" width="54" height="54">
+  <img src="/home/productive.svg" alt="productive" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>즉각적인 생산성</h3>
@@ -110,7 +110,7 @@ function Counter() {
 </section>
 
 <section class="home-section">
-  <img src="/home/compatible.svg" alt="compatible" loading="lazy" width="54" height="54">
+  <img src="/home/compatible.svg" alt="compatible" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>생태계 호환</h3>

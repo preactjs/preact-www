@@ -40,7 +40,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/metal.svg" alt="metal">
+  <img src="/home/metal.svg" alt="metal" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Näher am Geschehen</h3>
@@ -56,7 +56,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/size.svg" alt="größe">
+  <img src="/home/size.svg" alt="größe" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Kleine Größe</h3>
@@ -72,7 +72,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/performance.svg" alt="leistung">
+  <img src="/home/performance.svg" alt="leistung" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Große Leistung</h3>
@@ -87,7 +87,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/portable.svg" alt="portabel">
+  <img src="/home/portable.svg" alt="portabel" loading="lazy" decoding="async" width="54" height="54">
   <div>
     <h3>Portabel &amp; Einbettbar</h3>
     <p>
@@ -101,7 +101,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/productive.svg" alt="produktiv">
+  <img src="/home/productive.svg" alt="produktiv" loading="lazy" decoding="async" width="54" height="54">
   <div>
     <h3>Sofort produktiv</h3>
     <p>
@@ -116,7 +116,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/compatible.svg" alt="kompatibel">
+  <img src="/home/compatible.svg" alt="kompatibel" loading="lazy" decoding="async" width="54" height="54">
   <div>
     <h3>Ökosystem-kompatibel</h3>
     <p>

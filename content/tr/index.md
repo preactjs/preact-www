@@ -40,7 +40,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/metal.svg" alt="metal">
+  <img src="/home/metal.svg" alt="metal" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Metal'e yakın</h3>
@@ -57,7 +57,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/size.svg" alt="boyut">
+  <img src="/home/size.svg" alt="boyut" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Küçük Boyutlu</h3>
@@ -73,7 +73,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/performance.svg" alt="performans">
+  <img src="/home/performance.svg" alt="performans" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Büyük Performans</h3>
@@ -89,7 +89,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/portable.svg" alt="taşınabilir">
+  <img src="/home/portable.svg" alt="taşınabilir" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Taşınabilir &amp; Gömülebilir</h3>
@@ -105,7 +105,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/productive.svg" alt="üretken">
+  <img src="/home/productive.svg" alt="üretken" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Anlık Üretkenlik</h3>
@@ -123,7 +123,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/compatible.svg" alt="uyumlu">
+  <img src="/home/compatible.svg" alt="uyumlu" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Ekosistem Uyumluluğu</h3>

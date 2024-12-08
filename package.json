@@ -85,7 +85,7 @@
     "decko": "^1.2.0",
     "htm": "^3.1.1",
     "magic-string": "^0.25.7",
-    "marked": "^0.8.0",
+    "marked": "^15.0.3",
     "node-html-parser": "^6.1.13",
     "preact": "10.15.1",
     "preact-custom-element": "^4.3.0",

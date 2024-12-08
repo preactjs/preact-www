@@ -52,7 +52,8 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://we
 ## 这个站点是 PWA
 
 事实上，你现在的查看的这个网站是一个渐进式 Web 应用程序！它可以在 5 秒内，在 3G 的网络环境下用 Nexus 5X 进行交互。
-<img src="/pwa-guide/timeline.jpg" alt="A DevTools Timeline trace of the preactjs.com site on a Nexus 5X"/>
+
+![A DevTools Timeline trace of the preactjs.com site on a Nexus 5X](/pwa-guide/timeline.jpg)
 
 静态站点内容存储在（Service Worker）高速缓存存储 API 中，使重复访问可以即时加载。
 

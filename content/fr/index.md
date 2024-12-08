@@ -39,7 +39,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/metal.svg" alt="metal">
+  <img src="/home/metal.svg" alt="metal" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Plus proche de la machine</h3>
@@ -55,7 +55,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/size.svg" alt="size">
+  <img src="/home/size.svg" alt="size" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Petite taille</h3>
@@ -70,7 +70,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/performance.svg" alt="performance">
+  <img src="/home/performance.svg" alt="performance" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Grande performance</h3>
@@ -85,7 +85,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/portable.svg" alt="portable">
+  <img src="/home/portable.svg" alt="portable" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Portable &amp; embarquable</h3>
@@ -100,7 +100,7 @@ function Counter() {
 
 
 <section class="home-section">
-  <img src="/home/productive.svg" alt="productive">
+  <img src="/home/productive.svg" alt="productive" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
     <h3>Productif instantanément</h3>
@@ -117,7 +117,7 @@ function Counter() {
 
 <section class="home-section">
   <div>
-    <img src="/home/compatible.svg" alt="compatible">
+    <img src="/home/compatible.svg" alt="compatible" loading="lazy" decoding="async" width="54" height="54">
     <h3>Compatible avec l'écosystème</h3>
     <p>
         Les composants du DOM virtuel vous permettent de réutiliser des briques de votre application. Grâce à la conception de Preact, vous avez à votre disposition les composants de l'écosystème React.
