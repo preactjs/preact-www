@@ -231,7 +231,6 @@ function highlightCodeBlocks(data) {
 		const lang = child.getAttribute('class').replace('language-', '');
 
 		Prism.languages[lang] == null
-			// TODO: Bash is the only missing one at the moment
 			? console.warn(`No Prism highlighter for language: ${lang}`)
 			: child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang);
 
