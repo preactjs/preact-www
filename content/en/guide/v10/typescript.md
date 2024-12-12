@@ -214,12 +214,10 @@ Class components include children by default, typed as `ComponentChildren`.
 ## Inheriting HTML properties
 
 When we write components like `<Input />` that wrap the HTML `<input>`, most of the time we'd want to inherit
-the props that can be used on the native HTML input element. To do this we can do the following
+the props that can be used on the native HTML input element. To do this we can do the following:
 
 ```tsx
 import { JSX } from 'preact';
-
-type HTMLInputProperties = ;
 
 interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
   mySpecialProp: any
