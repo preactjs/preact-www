@@ -211,6 +211,25 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 
 Class components include children by default, typed as `ComponentChildren`.
 
+## Inheriting HTML properties
+
+When we write components like `<Input />` that wrap the HTML `<input>`, most of the time we'd want to inherit
+the props that can be used on the native HTML input element. To do this we can do the following
+
+```tsx
+import { JSX } from 'preact';
+
+type HTMLInputProperties = ;
+
+interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
+  mySpecialProp: any
+}
+
+const Input = (props: InputProperties) => <input {...props} />
+```
+
+Now when we use `Input` it will know about properties like `value`, ...
+
 ## Typing events
 
 Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
