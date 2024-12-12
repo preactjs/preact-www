@@ -102,7 +102,8 @@ The first argument must be a valid Virtual DOM Element, which represents either 
 ```jsx
 const App = () => <div>foo</div>;
 
-// DON'T: Invoking components directly breaks hooks and update ordering:
+// DON'T: Invoking components directly means they won't be counted as a
+// VNode and hence not be able to use functionality relating to vnodes.
 render(App(), rootElement); // ERROR
 render(App, rootElement); // ERROR
 
