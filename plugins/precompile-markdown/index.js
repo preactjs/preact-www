@@ -1,9 +1,14 @@
 import yaml from 'yaml';
 import { marked } from 'marked';
+import Prism from 'prismjs';
+import loadLanguages from 'prismjs/components/';
 import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
-import { Prism } from './prism.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
+
+// Prism will always load `markup`, `css`, `clike` and `javascript` by default.
+// Any additional languages we need should be loaded here
+loadLanguages(['typescript', 'tsx', 'json', 'bash', 'diff']);
 
 /**
  * @param {string} content
@@ -101,7 +106,6 @@ marked.use({
 			const [code, source, runInRepl] = processRepl(rawCodeBlockText);
 
 			Prism.languages[lang] == null
-				// TODO: Bash is the only missing one at the moment
 				? console.warn(`No Prism highlighter for language: ${lang}`)
 				: text = Prism.highlight(code, Prism.languages[lang], lang);
 
