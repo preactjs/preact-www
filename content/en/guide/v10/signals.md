@@ -397,7 +397,8 @@ name.value = "John";
 
 ## Reading signals without subscribing to them
 
-On the rare occasion that you need to write to a signal inside [`effect(fn)`](#effectfn), but don't want the effect to re-run when that signal changes, you can use `.peek()` to get the signal's current value without subscribing.
+On the rare occasion that you need to write to a signal inside [`effect(fn)`](#effectfn), but don't want the effect to re-run when that signal changes,
+you can use `.peek()` to get the signal's current value without subscribing.
 
 ```js
 const delta = signal(0);
@@ -416,6 +417,22 @@ count.value = 10;
 ```
 
 > :bulb: Tip: The scenarios in which you don't want to subscribe to a signal are rare. In most cases you want your effect to subscribe to all signals. Only use `.peek()` when you really need to.
+
+As an alternative to `.peek()`, we have the `untracked` function which receives a function as an argument and returns the outcome of the function. In `untracked` you can
+reference any signal with `.value` without creating a subscription. This can come in handy when you have a reusable function that accesses `.value` or you need to access
+more than 1 signal.
+
+```js
+const delta = signal(0);
+const count = signal(0);
+
+effect(() => {
+  // Update `count` without subscribing to `count` or `delta`:
+  count.value = untracked(() => {
+    count.value + delta.value
+  });
+});
+```
 
 
 ## Combining multiple updates into one
@@ -550,4 +567,19 @@ batch(() => {
   name.value = "John";
   surname.value = "Smith";
 });
+```
+
+### untracked(fn)
+
+The `untracked(fn)` function can be used to access the value of several signals without subscribing to them.
+
+```js
+const name = signal("Jane");
+const surname = signal("Doe");
+
+effect(() => {
+  untracked(() => {
+    console.log(`${name.value} ${surname.value}`)
+  })
+})
 ```
