@@ -418,7 +418,7 @@ count.value = 10;
 
 > :bulb: Tip: The scenarios in which you don't want to subscribe to a signal are rare. In most cases you want your effect to subscribe to all signals. Only use `.peek()` when you really need to.
 
-As an alternative to `.peek()` we have the `untracked` function which receives a function as an argument and returns the outcome of the function, in `untracked` you can
+As an alternative to `.peek()`, we have the `untracked` function which receives a function as an argument and returns the outcome of the function. In `untracked` you can
 reference any signal with `.value` without creating a subscription. This can come in handy when you have a reusable function that accesses `.value` or you need to access
 more than 1 signal.
 
@@ -571,7 +571,7 @@ batch(() => {
 
 ### untracked(fn)
 
-The `untracked(fn)` function can be used to access the value of several signals without subscribing to them
+The `untracked(fn)` function can be used to access the value of several signals without subscribing to them.
 
 ```js
 const name = signal("Jane");
