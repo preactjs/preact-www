@@ -205,6 +205,22 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 
 Классовые компоненты по умолчанию включают дочерние элементы, типизированные как `ComponentChildren`.
 
+## Наследование свойств HTML
+
+Когда мы пишем компоненты, такие как `<Input />`, которые оборачивают HTML-элемент `<input>`, чаще всего мы хотим унаследовать свойства, которые могут быть использованы на нативном HTML-элементе input. Для этого мы можем сделать следующее:
+
+```tsx
+import { JSX } from 'preact';
+
+interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
+  mySpecialProp: any
+}
+
+const Input = (props: InputProperties) => <input {...props} />
+```
+
+Теперь, когда мы используем `Input`, он будет знать о таких свойствах, как `value` и т. д.
+
 ## Типизация событий
 
 Preact генерирует регулярные события DOM. Пока ваш проект TypeScript включает библиотеку `dom` (установите её в `tsconfig.json`), у вас есть доступ ко всем типам событий, которые доступны в вашей текущей конфигурации.
