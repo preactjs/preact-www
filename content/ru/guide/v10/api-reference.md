@@ -98,7 +98,8 @@ render(<Foo />, document.getElementById('container'), document.getElementById('t
 ```jsx
 const App = () => <div>foo</div>;
 
-// НЕЛЬЗЯ: вызов компонентов напрямую нарушает перехваты и порядок обновлений:
+// НЕЛЬЗЯ: Прямой вызов компонентов означает, что они не будут считаться
+// VNode и, следовательно, не смогут использовать функциональность, связанную с vnodes.
 render(App(), rootElement); // ОШИБКА
 render(App, rootElement); // ОШИБКА
 
