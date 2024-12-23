@@ -224,14 +224,6 @@
 			transform-origin: 50% 0;
 			z-index: 750;
 
-			@keyframes menuOpen {
-				from {
-					opacity: 0;
-					transform: translateX(-50%) perspective(1000px) translateX(0.5px)
-						rotateX(-45deg);
-				}
-			}
-
 			a,
 			button,
 			span {
@@ -295,13 +287,6 @@
 					background: #333;
 					transform: none;
 					animation: menuExpand 250ms ease forwards 1;
-
-					@keyframes menuExpand {
-						from {
-							opacity: 0;
-							transform: scaleY(0.0001);
-						}
-					}
 
 					a,
 					button,
@@ -445,12 +430,6 @@
 		animation: pop 200ms forwards cubic-bezier(0.15, 1.05, 0.54, 1.29) 1;
 	}
 
-	@keyframes pop {
-		to {
-			transform: scale(1);
-		}
-	}
-
 	.hb1,
 	.hb2,
 	.hb3 {
@@ -500,5 +479,26 @@
 		.open & {
 			display: none;
 		}
+	}
+}
+
+@keyframes menuOpen {
+	from {
+		opacity: 0;
+		transform: translateX(-50%) perspective(1000px) translateX(0.5px)
+			rotateX(-45deg);
+	}
+}
+
+@keyframes pop {
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes menuExpand {
+	from {
+		opacity: 0;
+		transform: scaleY(0.0001);
 	}
 }
