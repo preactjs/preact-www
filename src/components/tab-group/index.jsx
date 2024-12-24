@@ -7,6 +7,9 @@ import style from './style.module.css';
  * Class Components and Hooks. This displays either-or, not both at once,
  * so it's not necessarily meant for directly comparing API styles.
  *
+ * Primarily adopted from MDN's tabs example:
+ * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role#example
+ *
  * @param {Object} props
  * @param {string} props.tabstring - Comma-separated list of tab names
  * @param {Array<import('preact').Component | string>} props.children - Array of JSX elements
@@ -19,8 +22,6 @@ export default function TabGroup({ tabstring, children }) {
 	children = children.filter(s => typeof s !== 'string' || s.trim() !== '');
 	const tabs = tabstring.split(',').map(s => s.trim());
 
-	// Adapted from MDN tabs example:
-	// https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role#example
 	const onKeyDown = (e) => {
 		const tabContainer = e.currentTarget;
 		let focusedTabIndex = activeTab;
