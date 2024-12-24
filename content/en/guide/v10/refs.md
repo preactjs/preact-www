@@ -1,6 +1,6 @@
 ---
 name: References
-description: 'References are a way of creating stable values that are local to a component instance but exist outside of the normal component lifecycle.'
+description: 'Refs are a way of creating stable values that are local to a component instance and persist across renders.'
 ---
 
 # References
