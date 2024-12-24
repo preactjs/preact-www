@@ -1,0 +1,23 @@
+.tabs {
+	display: flex;
+
+	.tab {
+		cursor: pointer;
+		padding: .2rem .4rem;
+		font-weight: 700;
+		font-size: 1.2rem;
+		display: inline-flex;
+		background-color: transparent;
+		border: none;
+		border-bottom: 2px solid transparent;
+		border-radius: 5px;
+
+		&[aria-selected='true'] {
+			border-bottom: 2px solid var(--color-brand);
+		}
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.05);
+		}
+	}
+}

@@ -19,8 +19,9 @@ Most often you'll see refs used to facilitate imperative manipulation of the DOM
 
 There are two ways to create refs in Preact, depending on your preferred component style: `createRef` (class components) and `useRef` (function components/hooks). Both APIs fundamentally work the same way: they create a stable, plain object with a `current` property, optionally initialized to a value.
 
+<tab-group tabString="Classes, Hooks">
+
 ```jsx
-// Class components
 import { createRef } from "preact";
 
 class MyComponent extends Component {
@@ -32,7 +33,6 @@ class MyComponent extends Component {
 ```
 
 ```jsx
-// Function components
 import { useRef } from "preact/hooks";
 
 function MyComponent() {
@@ -43,9 +43,13 @@ function MyComponent() {
 }
 ```
 
+</tab-group>
+
 ## Using Refs to Access DOM Nodes
 
 The most common use case for refs is to access the underlying DOM node of a component. This is useful for imperative DOM manipulation, such as measuring elements, calling native methods on various elements (such as `.focus()` or `.play()`), and integrating with third-party libraries written in vanilla JS. In the following examples, upon rendering, Preact will assign the DOM node to the `current` property of the ref object, making it available for use after the component has mounted.
+
+<tab-group tabString="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -86,9 +90,14 @@ function MyInput() {
 render(<MyInput />, document.getElementById("app"));
 ```
 
+</tab-group>
+
 ### Callback Refs
 
 Another way to use references is by passing a function to the `ref` prop, where the DOM node will be passed as an argument.
+
+
+<tab-group tabString="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -132,6 +141,8 @@ function MyInput() {
 render(<MyInput />, document.getElementById("app"));
 ```
 
+</tab-group>
+
 > If the provided ref callback is unstable (such as one that's defined inline, as shown above), and _does not_ return a cleanup function, **it will be called twice** upon all rerenders: once with `null` and then once with the actual reference. This is a common issue and the `createRef`/`useRef` APIs make this a little easier by forcing the user to check if `ref.current` is defined.
 >
 > A stable function, for comparison, could be a method on the class component instance, a function defined outside of the component, or a function created with `useCallback`, for example.
@@ -141,6 +152,8 @@ render(<MyInput />, document.getElementById("app"));
 Refs aren't limited to storing DOM nodes, however; they can be used to store any type of value that you may need.
 
 In the following example, we store the ID of an interval in a ref to be able to start & stop it independently.
+
+<tab-group tabString="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -213,3 +226,5 @@ function SimpleClock() {
 // --repl-after
 render(<SimpleClock />, document.getElementById("app"));
 ```
+
+</tab-group>

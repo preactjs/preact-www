@@ -7,6 +7,7 @@ import BlogOverview from './blog-overview';
 import Sponsors from './sponsors';
 import WeAreUsing from './we-are-using';
 import Branding from './branding';
+import TabGroup from './tab-group';
 
 export default {
 	Toc,
@@ -17,5 +18,6 @@ export default {
 	Sponsors,
 	Logo,
 	WeAreUsing,
-	Branding
+	Branding,
+	TabGroup
 };
