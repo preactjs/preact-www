@@ -19,7 +19,7 @@ Most often you'll see refs used to facilitate imperative manipulation of the DOM
 
 There are two ways to create refs in Preact, depending on your preferred component style: `createRef` (class components) and `useRef` (function components/hooks). Both APIs fundamentally work the same way: they create a stable, plain object with a `current` property, optionally initialized to a value.
 
-<tab-group tabString="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 import { createRef } from "preact";
@@ -49,7 +49,7 @@ function MyComponent() {
 
 The most common use case for refs is to access the underlying DOM node of a component. This is useful for imperative DOM manipulation, such as measuring elements, calling native methods on various elements (such as `.focus()` or `.play()`), and integrating with third-party libraries written in vanilla JS. In the following examples, upon rendering, Preact will assign the DOM node to the `current` property of the ref object, making it available for use after the component has mounted.
 
-<tab-group tabString="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -97,7 +97,7 @@ render(<MyInput />, document.getElementById("app"));
 Another way to use references is by passing a function to the `ref` prop, where the DOM node will be passed as an argument.
 
 
-<tab-group tabString="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -153,7 +153,7 @@ Refs aren't limited to storing DOM nodes, however; they can be used to store any
 
 In the following example, we store the ID of an interval in a ref to be able to start & stop it independently.
 
-<tab-group tabString="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
