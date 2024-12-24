@@ -1,13 +1,15 @@
 ---
 name: References
-description: 'References can be used to access raw DOM nodes that Preact has rendered'
+description: 'References are a way of creating stable values that are local to a component instance but exist outside of the normal component lifecycle.'
 ---
 
 # References
 
-There will always be scenarios where you need a direct reference to the DOM-Element or Component that was rendered by Preact. Refs allow you to do just that.
+References, or refs for short, are a way of creating and referencing stable values that are local to a component instance but exist outside of the normal component lifecycle.
 
-A typical use case for it is measuring the actual size of a DOM node. While it's possible to get the reference to the component instance via `ref` we don't generally recommend it. It will create a hard coupling between a parent and a child which breaks the composability of the component model. In most cases it's more natural to just pass the callback as a prop instead of trying to call the method of a class component directly.
+There are many scenarios in which you may need to save a value within a component but updating it should not trigger rerenders like state or props would. This is where refs come in.
+
+Most often you'll see refs used with DOM nodes to facilitate imperative manipulation of the DOM, but they can also be used to store stable, local values in a component. You may track a previous state value, or keep a reference to an interval or timeout ID. Importantly, refs should not be used for rendering, instead used in event handlers or side effects in most cases.
 
 ---
 
@@ -30,7 +32,7 @@ class Foo extends Component {
     console.log(this.ref.current);
     // Logs: [HTMLDivElement]
   }
-  
+
   render() {
     return <div ref={this.ref}>foo</div>
   }
@@ -38,6 +40,8 @@ class Foo extends Component {
 // --repl-after
 render(<Foo />, document.getElementById("app"));
 ```
+
+> For those using hooks, you'll want [useRef](/guide/v10/hooks#useref) instead, which works very similarly.
 
 ## Callback Refs
 
@@ -55,7 +59,7 @@ class Foo extends Component {
     console.log(this.ref);
     // Logs: [HTMLDivElement]
   }
-  
+
   render() {
     return <div ref={this.setRef}>foo</div>
   }

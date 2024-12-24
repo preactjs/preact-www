@@ -267,7 +267,7 @@ const onClick = useCallback(
 
 ## useRef
 
-To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createref).
+To create a stable reference to a DOM node or a value that persists between renders, we can use the `useRef` hook. It works similarly to [createRef](/guide/v10/refs#createref).
 
 ```jsx
 // --repl
@@ -288,6 +288,29 @@ function Foo() {
 }
 // --repl-after
 render(<Foo />, document.getElementById("app"));
+```
+
+```jsx
+// --repl
+import { render } from 'preact';
+import { useRef } from 'preact/hooks';
+// --repl-before
+function Counter() {
+	const count = useRef(0);
+
+	const onClick = () => {
+		count.current++;
+		console.log(count.current);
+	};
+
+	return (
+		<button onClick={onClick}>
+			Increment
+		</button>
+	);
+}
+// --repl-after
+render(<Counter />, document.getElementById('app'));
 ```
 
 > Be careful not to confuse `useRef` with `createRef`.
