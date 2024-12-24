@@ -22,12 +22,12 @@
 		div {
 			padding: 0 12px;
 		}
+	}
+}
 
-		@keyframes intro {
-			from {
-				transform: scaleY(0.001);
-				opacity: 0;
-			}
-		}
+@keyframes intro {
+	from {
+		transform: scaleY(0.001);
+		opacity: 0;
 	}
 }

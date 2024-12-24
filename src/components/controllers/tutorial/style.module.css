@@ -124,12 +124,6 @@
 					margin-bottom: 0;
 				}
 			}
-			@keyframes yay {
-				from {
-					opacity: 0;
-					transform: scale(0.6);
-				}
-			}
 
 			.codeContainer {
 				background: #282c34;
@@ -210,12 +204,6 @@
 		&.showCode .codeWindow {
 			animation: slideFromRight 250ms ease forwards 1;
 		}
-		@keyframes slideFromRight {
-			0% {
-				transform: translateX(100%);
-				opacity: 0;
-			}
-		}
 
 		.codeWindow {
 			height: 100%;
@@ -224,13 +212,6 @@
 			position: relative;
 			transition: opacity 1s ease;
 			overflow: auto;
-
-			@keyframes slideUp {
-				from {
-					opacity: 0;
-					transform: translateY(50%);
-				}
-			}
 
 			.rerun {
 				position: absolute;
@@ -332,4 +313,25 @@
 
 .output {
 	height: 100%;
+}
+
+@keyframes yay {
+	from {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+}
+
+@keyframes slideFromRight {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(50%);
+	}
 }
