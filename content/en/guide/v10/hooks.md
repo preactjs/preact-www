@@ -290,30 +290,9 @@ function Foo() {
 render(<Foo />, document.getElementById("app"));
 ```
 
-```jsx
-// --repl
-import { render } from 'preact';
-import { useRef } from 'preact/hooks';
-// --repl-before
-function Counter() {
-	const count = useRef(0);
-
-	const onClick = () => {
-		count.current++;
-		console.log(count.current);
-	};
-
-	return (
-		<button onClick={onClick}>
-			Increment
-		</button>
-	);
-}
-// --repl-after
-render(<Counter />, document.getElementById('app'));
-```
-
 > Be careful not to confuse `useRef` with `createRef`.
+
+> See [Refs](/guide/v10/refs) for more information & examples.
 
 ## useContext
 
