@@ -18,7 +18,7 @@ export default function TabGroup({ tabstring, children }) {
 	const [activeTab, setActiveTab] = useState(0);
 	const id = useId();
 
-	// Removes the empty strings caused by newlines in our HTML in markdown
+	// Filters the empty lines around our codeblocks in the markdown docs
 	children = children.filter(s => typeof s !== 'string' || s.trim() !== '');
 	const tabs = tabstring.split(',').map(s => s.trim());
 
