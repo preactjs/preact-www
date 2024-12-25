@@ -267,7 +267,7 @@ const onClick = useCallback(
 
 ## useRef
 
-To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v10/refs#createref).
+To create a stable reference to a DOM node or a value that persists between renders, we can use the `useRef` hook. It works similarly to [createRef](/guide/v10/refs#createref).
 
 ```jsx
 // --repl
@@ -291,6 +291,8 @@ render(<Foo />, document.getElementById("app"));
 ```
 
 > Be careful not to confuse `useRef` with `createRef`.
+
+> See [Refs](/guide/v10/refs) for more information & examples.
 
 ## useContext
 

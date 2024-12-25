@@ -1,13 +1,13 @@
 ---
 name: References
-description: 'References can be used to access raw DOM nodes that Preact has rendered'
+description: 'Refs are a way of creating stable values that are local to a component instance and persist across renders.'
 ---
 
 # References
 
-There will always be scenarios where you need a direct reference to the DOM-Element or Component that was rendered by Preact. Refs allow you to do just that.
+References, or refs for short, are stable, local values that persist across component renders but don't trigger rerenders like state or props would when they change.
 
-A typical use case for it is measuring the actual size of a DOM node. While it's possible to get the reference to the component instance via `ref` we don't generally recommend it. It will create a hard coupling between a parent and a child which breaks the composability of the component model. In most cases it's more natural to just pass the callback as a prop instead of trying to call the method of a class component directly.
+Most often you'll see refs used to facilitate imperative manipulation of the DOM but they can be used to store any arbitrary local value that you need to be kept stable. You may use them to track a previous state value, keep a reference to an interval or timeout ID, or simply a counter value. Importantly, refs should not be used for rendering logic, instead, consumed in lifecycle methods and event handlers only.
 
 ---
 
@@ -15,110 +15,216 @@ A typical use case for it is measuring the actual size of a DOM node. While it's
 
 ---
 
-## createRef
+## Creating a Ref
 
-The `createRef` function will return a plain object with just one property: `current`. Whenever the `render` method is called, Preact will assign the DOM node or component to `current`.
+There are two ways to create refs in Preact, depending on your preferred component style: `createRef` (class components) and `useRef` (function components/hooks). Both APIs fundamentally work the same way: they create a stable, plain object with a `current` property, optionally initialized to a value.
+
+<tab-group tabstring="Classes, Hooks">
+
+```jsx
+import { createRef } from "preact";
+
+class MyComponent extends Component {
+  countRef = createRef();
+  inputRef = createRef(null);
+
+  // ...
+}
+```
+
+```jsx
+import { useRef } from "preact/hooks";
+
+function MyComponent() {
+  const countRef = useRef();
+  const inputRef = useRef(null);
+
+  // ...
+}
+```
+
+</tab-group>
+
+## Using Refs to Access DOM Nodes
+
+The most common use case for refs is to access the underlying DOM node of a component. This is useful for imperative DOM manipulation, such as measuring elements, calling native methods on various elements (such as `.focus()` or `.play()`), and integrating with third-party libraries written in vanilla JS. In the following examples, upon rendering, Preact will assign the DOM node to the `current` property of the ref object, making it available for use after the component has mounted.
+
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
 import { render, Component, createRef } from "preact";
 // --repl-before
-class Foo extends Component {
-  ref = createRef();
+class MyInput extends Component {
+  ref = createRef(null);
 
   componentDidMount() {
     console.log(this.ref.current);
-    // Logs: [HTMLDivElement]
+    // Logs: [HTMLInputElement]
   }
-  
+
   render() {
-    return <div ref={this.ref}>foo</div>
+    return <input ref={this.ref} />;
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<MyInput />, document.getElementById("app"));
 ```
 
-## Callback Refs
+```jsx
+// --repl
+import { render } from "preact";
+import { useRef, useEffect } from "preact/hooks";
+// --repl-before
+function MyInput() {
+  const ref = useRef(null);
 
-Another way to get the reference to an element can be done by passing a function callback. It's a little more to type, but it works in a similar fashion as `createRef`.
+  useEffect(() => {
+    console.log(ref.current);
+    // Logs: [HTMLInputElement]
+  }, []);
+
+  return <input ref={ref} />;
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+</tab-group>
+
+### Callback Refs
+
+Another way to use references is by passing a function to the `ref` prop, where the DOM node will be passed as an argument.
+
+
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
 import { render, Component } from "preact";
 // --repl-before
-class Foo extends Component {
-  ref = null;
-  setRef = (dom) => this.ref = dom;
-
-  componentDidMount() {
-    console.log(this.ref);
-    // Logs: [HTMLDivElement]
-  }
-  
+class MyInput extends Component {
   render() {
-    return <div ref={this.setRef}>foo</div>
-  }
-}
-// --repl-after
-render(<Foo />, document.getElementById("app"));
-```
-
-> If the ref callback is defined as an inline function it will be called twice. Once with `null` and then with the actual reference. This is a common error and the `createRef` API makes this a little easier by forcing user to check if `ref.current` is defined.
-
-## Putting it all together
-
-Let's say we have a scenario where we need to get the reference to a DOM node to measure its width and height. We have a simple component where we need to replace the placeholder values with the actual measured ones.
-
-```jsx
-class Foo extends Component {
-  // We want to use the real width from the DOM node here
-  state = {
-    width: 0,
-    height: 0,
-  };
-
-  render(_, { width, height }) {
-    return <div>Width: {width}, Height: {height}</div>;
-  }
-}
-```
-
-Measurement only makes sense once the `render` method has been called and the component is mounted into the DOM. Before that the DOM node won't exist and there wouldn't make much sense to try to measure it.
-
-```jsx
-// --repl
-import { render, Component } from "preact";
-// --repl-before
-class Foo extends Component {
-  state = {
-    width: 0,
-    height: 0,
-  };
-
-  ref = createRef();
-
-  componentDidMount() {
-    // For safety: Check if a ref was supplied
-    if (this.ref.current) {
-      const dimensions = this.ref.current.getBoundingClientRect();
-      this.setState({
-        width: dimensions.width,
-        height: dimensions.height,
-      });
-    }
-  }
-
-  render(_, { width, height }) {
     return (
-      <div ref={this.ref}>
-        Width: {width}, Height: {height}
+      <input ref={(dom) => {
+        console.log('Mounted:', dom);
+
+        // As of Preact 10.23.0, you can optionally return a cleanup function
+        return () => {
+          console.log('Unmounted:', dom);
+        };
+      }} />
+    );
+  }
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+```jsx
+// --repl
+import { render } from "preact";
+// --repl-before
+function MyInput() {
+  return (
+    <input ref={(dom) => {
+      console.log('Mounted:', dom);
+
+      // As of Preact 10.23.0, you can optionally return a cleanup function
+      return () => {
+        console.log('Unmounted:', dom);
+      };
+    }} />
+  );
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+</tab-group>
+
+> If the provided ref callback is unstable (such as one that's defined inline, as shown above), and _does not_ return a cleanup function, **it will be called twice** upon all rerenders: once with `null` and then once with the actual reference. This is a common issue and the `createRef`/`useRef` APIs make this a little easier by forcing the user to check if `ref.current` is defined.
+>
+> A stable function, for comparison, could be a method on the class component instance, a function defined outside of the component, or a function created with `useCallback`, for example.
+
+## Using Refs to Store Local Values
+
+Refs aren't limited to storing DOM nodes, however; they can be used to store any type of value that you may need.
+
+In the following example, we store the ID of an interval in a ref to be able to start & stop it independently.
+
+<tab-group tabstring="Classes, Hooks">
+
+```jsx
+// --repl
+import { render, Component, createRef } from "preact";
+// --repl-before
+class SimpleClock extends Component {
+  state = {
+    time: Date.now(),
+  };
+  intervalId = createRef(null);
+
+  startClock = () => {
+    this.setState({ time: Date.now() });
+    this.intervalId.current = setInterval(() => {
+      this.setState({ time: Date.now() });
+    }, 1000);
+  };
+
+  stopClock = () => {
+    clearInterval(this.intervalId.current);
+  };
+
+
+  render(_, { time }) {
+    const formattedTime = new Date(time).toLocaleTimeString();
+
+    return (
+      <div>
+        <button onClick={this.startClock}>Start Clock</button>
+        <time dateTime={formattedTime}>{formattedTime}</time>
+        <button onClick={this.stopClock}>Stop Clock</button>
       </div>
     );
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<SimpleClock />, document.getElementById("app"));
 ```
 
-That's it! Now the component will always display the width and height when it's mounted.
+```jsx
+// --repl
+import { render } from "preact";
+import { useState, useRef } from "preact/hooks";
+// --repl-before
+function SimpleClock() {
+  const [time, setTime] = useState(Date.now());
+  const intervalId = useRef(null);
+
+  const startClock = () => {
+    setTime(Date.now());
+    intervalId.current = setInterval(() => {
+      setTime(Date.now());
+    }, 1000);
+  };
+
+  const stopClock = () => {
+    clearInterval(intervalId.current);
+  };
+
+  const formattedTime = new Date(time).toLocaleTimeString();
+
+  return (
+    <div>
+      <button onClick={startClock}>Start Clock</button>
+      <time dateTime={formattedTime}>{formattedTime}</time>
+      <button onClick={stopClock}>Stop Clock</button>
+    </div>
+  );
+}
+// --repl-after
+render(<SimpleClock />, document.getElementById("app"));
+```
+
+</tab-group>
