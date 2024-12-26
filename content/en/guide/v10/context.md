@@ -9,7 +9,7 @@ Context is a way to pass data through the component tree without having to pass 
 
 It's not uncommon to run into situations in which a value from a grandparent component (or higher) needs to be passed down to a child, often without the intermediate component needing it. This process of passing down props is often referred to as "prop drilling" and can be cumbersome, error-prone, and just plain repetitive, especially as the application grows and more values have to be passed through more layers. This is one of the key issues Context aims to address by providing a way for a child to subscribe to a value higher up in the component tree, accessing the value without it being passed down as a prop.
 
-There are two different ways to use context in Preact: via the newer `createContext` API and the legacy context API. These days there's very few reasons to ever reach for the legacy API but it's documented here for completeness.
+There are two ways to use context in Preact: via the newer `createContext` API and the legacy context API. These days there's very few reasons to ever reach for the legacy API but it's documented here for completeness.
 
 ---
 
