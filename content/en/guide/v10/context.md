@@ -19,8 +19,6 @@ There are two ways to use context in Preact: via the newer `createContext` API a
 
 ## Modern Context API
 
-<!-- Load bearing comment, else marked eats the following heading -->
-
 ### Creating a Context
 
 To create a new context, we use the `createContext` function. This function takes an initial state as an argument and returns an object with two component properties: `Provider`, to make the context available to descendants, and `Consumer`, to access the context value (primarily in class components).
