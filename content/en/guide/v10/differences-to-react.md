@@ -33,7 +33,7 @@ Another notable difference is that Preact follows the DOM specification more clo
 
 For both preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
-> Thus, the website and documentation reflect React `15.x` through `17.x` when discussing compatibility or making comparisons.
+> Thus, the website and documentation reflect React `15.x` through `17.x`, with some `18.x` and `19.x` additions, when discussing compatibility or making comparisons.
 
 ## Debug messages and errors
 
