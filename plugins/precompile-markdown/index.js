@@ -150,7 +150,7 @@ function applyEmoji(content) {
 
 /* generate ToC from markdown */
 function generateToc(markdown) {
-	const MARKDOWN_TITLE = /(?:^|\n\n)\s*(#{1,6})\s+(.+)\n+/g;
+	const MARKDOWN_TITLE = /(?:^|\n\n)\s*(#{1,6})\s+(.+)/g;
 
 	const toc = [];
 	let token;
