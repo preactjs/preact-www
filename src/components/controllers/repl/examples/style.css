@@ -68,3 +68,9 @@
 	left: 0;
 	top: 0;
 }
+
+/* Used in examples throughout our docs */
+.form-example label {
+	display: block;
+	margin: 0.5rem 0;
+}
