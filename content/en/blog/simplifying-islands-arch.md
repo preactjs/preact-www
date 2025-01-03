@@ -11,7 +11,7 @@ authors:
 
 ## Intro
 
-This guide is a simple walkthrough to understand how island architechture works
+This guide is a simple walkthrough to understand how island architecture works
 and being able to setup your own using tools you already have around you.
 
 First off, what are islands ? You can read more about it's origin from 
@@ -39,7 +39,7 @@ apps.
 
 Here's an overview
 
-1. Intially render the view on the server as a static page.
+1. Initially render the view on the server as a static page.
 2. Hydrate the app on client
 
 To go into the details of each.
@@ -68,7 +68,7 @@ pick up. Hapi, Koa, Fastify, etc.
 import { h } from 'preact'
 import preactRenderToString from 'preact-render-to-string'
 
-// ...remainig express.js setup
+// ...remaining express.js setup
 
 const HomePage = () => {
   return h('h1', {}, 'hello')
@@ -259,7 +259,7 @@ output.
 moving on to the client side config, which does add a few more things than
 simply providing an entry and getting an output.
 
-This is shortened out to explain the relavant bits
+This is shortened out to explain the relevant bits
 
 ```js
 // webpack.config.client.js
@@ -350,7 +350,7 @@ We can now move on to each folders' significance here.
 ## `client`
 
 The `src/client` in this `main` branch is used to write the `mount` point code
-that get's sent with the rendered html.
+that gets sent with the rendered html.
 
 You add selective mounting based on pages and selectors that you wish to use,
 even though it would fetch multiple JS files, these files are never to have
