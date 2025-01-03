@@ -62,7 +62,7 @@ Par défaut, `linkState()` essayera d'extraire la bonne valeur à partir d'un é
 
 Il y a toutefois des cas où ce n'est pas ce qui est souhaité - les événements personnalisés et les boutons radios groupés sont deux exemples possibles. Dans ces cas-là, un troisième argument peut-être passé à `linkState()` pour spécifier le chemin séparé par des points dans l'objet événement où la valeur peut être trouvée.
 
-Pour comprendre cette fonctionnalité, il peut être utile de jeter un oeil sous le capot de `linkState()`. Ce qui suit illustre un gestionnaire d'événement créé manuellement et qui persiste une valeur d'un objet Event dans le state. Fonctionnellement, c'est équivalent à la version utilisant `linkState()`, sans toutefois inclure l'optimisation de mémorisation qui rend `linkState()` précieux.
+Pour comprendre cette fonctionnalité, il peut être utile de jeter un œil sous le capot de `linkState()`. Ce qui suit illustre un gestionnaire d'événement créé manuellement et qui persiste une valeur d'un objet Event dans le state. Fonctionnellement, c'est équivalent à la version utilisant `linkState()`, sans toutefois inclure l'optimisation de mémorisation qui rend `linkState()` précieux.
 
 ```js
 // ce gestionnaire renvoyé par linkState :
@@ -79,7 +79,7 @@ handler = event => {
 
 ### Illustration: boutons radio groupés
 
-Le code suivant ne fonctionne pas comme prévu. Si l'utilisateur clique sur "no", `noChecked` devient `true` mais `yesChecked` reste à `true`, puisque `onChange` n'est pas éclenché sur l'autre bouton radio :
+Le code suivant ne fonctionne pas comme prévu. Si l'utilisateur clique sur "no", `noChecked` devient `true` mais `yesChecked` reste à `true`, puisque `onChange` n'est pas éclanche sur l'autre bouton radio :
 
 ```js
 import linkState from 'linkstate';

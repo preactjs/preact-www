@@ -108,11 +108,11 @@ Rendre hyperscript avec un DOM virtuel est inutile, cependant. Nous voulons rend
 
 ## Composants
 
-Preact exporte une classe `Component` générique, qui peut être étendue pour créer des boûts d'interface utilisateur encapsulés et indépendants. Les composants supportent toutes les [méthodes de cycle de vie][#the-component-lifecycle] standard de React, comme `shouldComponentUpdate()` et `componentWillReceiveProps()`. Ecrire votre implémentation spécifique de ces méthodes et la meilleure façon de contrôler _quand_ et _comment_ les composants sont mis à jour.
+Preact exporte une classe `Component` générique, qui peut être étendue pour créer des bouts d'interface utilisateur encapsulés et indépendants. Les composants supportent toutes les [méthodes de cycle de vie][#the-component-lifecycle] standard de React, comme `shouldComponentUpdate()` et `componentWillReceiveProps()`. Écrire votre implémentation spécifique de ces méthodes et la meilleure façon de contrôler _quand_ et _comment_ les composants sont mis à jour.
 
-Les composants ont aussi une méthode `render()`, mais à la différence de React, cette méthode reçoit `(props, state)` comme arguments. Cela donne un moyen ergonomique de destructurer `props` et `state` en variables locales qui pourront être référencés dans le JSX.
+Les composants ont aussi une méthode `render()`, mais à la différence de React, cette méthode reçoit `(props, state)` comme arguments. Cela donne un moyen ergonomique de déstructurer `props` et `state` en variables locales qui pourront être référencés dans le JSX.
 
-Jettons un oeil à un composant `Clock` très simple, qui affiche l'heure courante.
+Jetons un œil à un composant `Clock` très simple, qui affiche l'heure courante.
 
 ```js
 import { h, render, Component } from 'preact';

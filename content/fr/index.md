@@ -105,7 +105,7 @@ function Counter() {
   <div>
     <h3>Productif instantanément</h3>
     <p>
-        La légereté est plus amusante quand vous n'avez pas à sacrifier la productivité pour y arriver. Avec Preact vous serez productif en quelques instants. Vous aurez même droit aux fonctionnalités supplémentaires suivantes :
+        La légèreté est plus amusante quand vous n'avez pas à sacrifier la productivité pour y arriver. Avec Preact vous serez productif en quelques instants. Vous aurez même droit aux fonctionnalités supplémentaires suivantes :
     </p>
     <ul>
         <li>Les `props`, `state` et `context` sont passés en arguments de la méthode `render()`</li>

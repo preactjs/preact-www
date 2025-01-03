@@ -20,7 +20,7 @@ Preact est un excellent choix pour les [Progressive Web Apps](https://web.dev/le
           <div class="_title-block">
             <h3>Moins de script chargé</h3>
           </div>
-          <p class="_summary">La petite taille de Preact est précieuse lors vous avez un budget performance serré. Sur un terminal mobile moyen, le chargement de gros bundles de JavaScript mènent à des temps de chargement, d'analyse et d'évaluation plus longs. Cela peut faire attendre les utilisateurs plus longtemps avant qu'ils puissent intéragir avec votre application. En rognant sur le code de la bibliothèque dans vos bundles, vous améliorez le temps de chargement en livrant moins de code à vos utilisateurs.</p>
+          <p class="_summary">La petite taille de Preact est précieuse lors vous avez un budget performance serré. Sur un terminal mobile moyen, le chargement de gros bundles de JavaScript mènent à des temps de chargement, d'analyse et d'évaluation plus longs. Cela peut faire attendre les utilisateurs plus longtemps avant qu'ils puissent interagir avec votre application. En rognant sur le code de la bibliothèque dans vos bundles, vous améliorez le temps de chargement en livrant moins de code à vos utilisateurs.</p>
         </div>
     </li>
     <li class="list-item">
@@ -40,7 +40,7 @@ Preact est un excellent choix pour les [Progressive Web Apps](https://web.dev/le
         </div>
         <div class="list-detail">
           <div class="_title-block">
-            <h3>Un bloc de construction qui fonctionne merveilleusement avec l'ecosystème React</h3>
+            <h3>Un bloc de construction qui fonctionne merveilleusement avec l’écosystème React</h3>
           </div>
           <p class="_summary">Que vous ayez besoin d'utiliser le <a href="https://facebook.github.io/react/docs/react-dom-server.html">rendu côté serveur</a> de React pour afficher quelque chose à l'écran rapidement, ou d'utiliser <a href="https://github.com/ReactTraining/react-router">React Router</a> pour la navigation, Preact fonctionne bien avec de nombreuses bibliothèques de l'écosystème.</p>
         </div>
@@ -53,7 +53,7 @@ En fait, le site sur lequel vous vous trouvez actuellement est une Progressive W
 
 ![A DevTools Timeline trace of the preactjs.com site on a Nexus 5X](/pwa-guide/timeline.jpg)
 
-Le contenu statique du site est stocké dans l'API Cache Storage (Service Worker), ce qui permet un affichage instantanné lors des visites répétées.
+Le contenu statique du site est stocké dans l'API Cache Storage (Service Worker), ce qui permet un affichage instantané lors des visites répétées.
 
 ## Astuces de performances
 
@@ -96,7 +96,7 @@ En plus d'être une solution qui fonctionne bien pour votre PWA, Preact peut aus
 
 ## Preact CLI
 
-[Preact CLI](https://github.com/preactjs/preact-cli/) est l'outil de build officiel pour les projets Preact. C'est une simple dépendance en ligne de commande qui regroupe votre code Preact dans une Progressive Web App hautement optimisée. Son but est de rendre toutes les recommendations précédentes automatiques, afin que vous puissez vous concentrer sur l'écriture de bons composants.
+[Preact CLI](https://github.com/preactjs/preact-cli/) est l'outil de build officiel pour les projets Preact. C'est une simple dépendance en ligne de commande qui regroupe votre code Preact dans une Progressive Web App hautement optimisée. Son but est de rendre toutes les recommendations précédentes automatiques, afin que vous puissiez vous concentrer sur l'écriture de bons composants.
 
 Voici quelques choses fournies par Preact CLI :
 

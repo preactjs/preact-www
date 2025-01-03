@@ -17,7 +17,7 @@ La raison pour laquelle Preact n'essaye pas d'inclure chaque fonctionnalité de 
 
 ## Compatibilité de version
 
-Pour Preact et [preact-compat], la compatibilité de version est mesurée par rapport aux version majeures _actuelle_ et _précédente_ de React. Quand de nouvelles fonctionnalités sont annoncées par l'équipe de React, elles peuvent être ajoutées au coeur de Preact si cela fait sens par rapport aux [buts du projet]. C'est un processus relativement démocratique, en constante évolution à travers des discussions et des décisions transparentes, en utilisant les issues et les pull requests.
+Pour Preact et [preact-compat], la compatibilité de version est mesurée par rapport aux version majeures _actuelle_ et _précédente_ de React. Quand de nouvelles fonctionnalités sont annoncées par l'équipe de React, elles peuvent être ajoutées au cœur de Preact si cela fait sens par rapport aux [buts du projet]. C'est un processus relativement démocratique, en constante évolution à travers des discussions et des décisions transparentes, en utilisant les issues et les pull requests.
 
 > Ainsi, le site web et la documentation reflètent React `0.14.x` et `15.x`, lorsque l'on parle de compatibilité ou qu'on fait des comparaisons.
 
@@ -55,7 +55,7 @@ En fait, Preact ajoute quelques fonctionnalités pratiques inspirées par le tra
 
 - La validation des [PropType] : Tout le monde n'utilise pas les PropTypes, donc ils ne font pas partie du coeur de Preact.
     - _**Les PropTypes sont totalement supportés** dans [preact-compat], ou vous pouvez les utiliser manuellement._
-- [Children]: Pas nécéssaire dans Preact, parce que `props.children est _toujours un Array_.
+- [Children]: Pas nécessaire dans Preact, parce que `props.children est _toujours un Array_.
     - _`React.Children` est totalement supporté dans [preact-compat]._
 - Événements synthétiques : Les navigateurs supportés par Preact n'ont pas besoin de cet ajout.
     - _Preact utilise la méthode `addEventListener` nativement supportée par les navigateurs pour la gestion des événements. Voir [GlobalEventHandlers] pour une liste complète des gestionnaires d'événement DOM._

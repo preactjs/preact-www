@@ -17,7 +17,7 @@ React fournit un module `react-addons-test-utils` pour tester les composants, et
 
 Nous avons besoin de deux modules :
 
-- `preact-compat-enzyme`: pour fournir les propriétés internes de React aditionnelles
+- `preact-compat-enzyme`: pour fournir les propriétés internes de React additionnelles
 - `preact-test-utils`: pour fournir les parties de l'API de `react-addons-test-utils` utilisées par `enzyme`
 
 ```bash
@@ -48,7 +48,7 @@ Utilisant Karma comme test runner, nous allons devoir ajouter quelques [`alias w
 ## Limitations actuelles
 
 1. Actuellement, seul le mode [`mount`](http://airbnb.io/enzyme/docs/api/mount.html) est supporté. 
-2. Vous aurez peut-être besoin d'enrober vos assertions dans un `setTimeout` lorsque vous appelerez les méthodes `setProps()` ou `setState()` du `React Wrapper`.
+2. Vous aurez peut-être besoin d'enrober vos assertions dans un `setTimeout` lorsque vous appellerez les méthodes `setProps()` ou `setState()` du `React Wrapper`.
 
 
 ## Exemple

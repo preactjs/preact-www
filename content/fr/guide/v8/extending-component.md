@@ -5,7 +5,7 @@ permalink: '/guide/extending-component'
 
 # Étendre le composant de base
 
-Il est possible que certains projets souhaitent étendre `Component` avec des fonctionnalités additionelles.
+Il est possible que certains projets souhaitent étendre `Component` avec des fonctionnalités additionnelles.
 
 Il existe différents avis sur l'héritage en JavaScript, mais si vous souhaitez créer votre propre classe de base dont tous vos composants hériteront, Preact a tout prévu.
 
@@ -62,4 +62,4 @@ class MixedComponent extends Component {
 
 ---
 
-> **Note :** il est important de noter que l'héritage peut vous bloquer dans une relation parent-enfant fragile. Souvent, lorsque vous êtes face à une tâche que peut être résolué par l'héritage, il y a une façon plus fonctionnelles de faire la même chose, qui vous permettra de créer une telle relation.
+> **Note :** il est important de noter que l'héritage peut vous bloquer dans une relation parent-enfant fragile. Souvent, lorsque vous êtes face à une tâche que peut être résolue par l'héritage, il y a une façon plus fonctionnelles de faire la même chose, qui vous permettra de créer une telle relation.
