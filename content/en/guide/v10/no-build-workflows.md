@@ -68,7 +68,7 @@ utilize import maps, but a basic example looks like the following:
 
 We create a `<script>` tag with a `type="importmap"` attribute, and then define the modules we'd like to use
 inside of it as JSON. Later, in a `<script type="module">` tag, we can import these modules using bare specifiers,
-similiar to what you'd see in Node.
+similar to what you'd see in Node.
 
 > **Note:** We use `?external=preact` in the example above as https://esm.sh will helpfully provide the
 > module you're asking for as well as its dependencies -- for `htm/preact`, this means also providing a

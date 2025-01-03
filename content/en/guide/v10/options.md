@@ -70,7 +70,7 @@ Invoked immediately after a vnode is rendered, once its DOM representation is co
 
 **Signature:** `(event: Event) => any`
 
-Invoked just before a DOM event is handled by its associated Virtual DOM listener. When `options.event` is setted, the event which is event listener argument is replaced return value of `options.event`.
+Invoked just before a DOM event is handled by its associated Virtual DOM listener. When `options.event` is set, the event which is event listener argument is replaced return value of `options.event`.
 
 #### `options.requestAnimationFrame`
 

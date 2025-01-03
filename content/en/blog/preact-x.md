@@ -64,14 +64,14 @@ const App = () => {
 
 In 10.8.0 we introduced [state settling](https://github.com/preactjs/preact/pull/3553), this would ensure that if a component updates hook-state
 during render that we'd pick this up, cancel prior effects and render on. We'd of course have to ensure that this didn't loop but this feature
-reduces the amount of renders that are queued up because of in-render state invocations, this feature also increased our compatability with the
+reduces the amount of renders that are queued up because of in-render state invocations, this feature also increased our compatibility with the
 React ecosystem as a lot of libraries relied on effects not being called multiple times due to in-render state updates.
 
 ### 10.11.0
 
 After a lot of research we found a way to introduce [useId](https://github.com/preactjs/preact/pull/3583) into Preact, this required a ton of research
 of how we could go about adding unique values for a given tree-structure. One of our maintainers wrote about
-[our research at the time](https://www.jovidecroock.com/blog/preact-use-id) and we've iterated on it ever since trying to make it as collission free as possible...
+[our research at the time](https://www.jovidecroock.com/blog/preact-use-id) and we've iterated on it ever since trying to make it as collision free as possible...
 
 ### 10.15.0
 
