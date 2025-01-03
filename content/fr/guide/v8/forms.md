@@ -15,11 +15,11 @@ Dans Preact, les formulaires fonctionnent globalement de la même façon que dan
 
 ---
 
-## Composants Controllés et Non Controllés
+## Composants Contrôlés et Non Contrôlés
 
-La documentation de React sur les [Composants "Controllés"](https://facebook.github.io/react/docs/forms.html#controlled-components) et [Composants "Non-controllés"](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) est très utiles pour comprendre comment appréhender les formulaires HTML, qui utilise un flux de données bidirectionnel, et comment les utiliser dans le contexte d'un rendu de DOM Virtuel basé sur des composants, qui utilise généralement un flux de données unidirectionnel.
+La documentation de React sur les [Composants "Contrôlés"](https://fr.legacy.reactjs.org/docs/forms.html#controlled-components) et [Composants "Non-contrôlés"](https://fr.legacy.reactjs.org/docs/uncontrolled-components.html) est très utiles pour comprendre comment appréhender les formulaires HTML, qui utilise un flux de données bidirectionnel, et comment les utiliser dans le contexte d'un rendu de DOM Virtuel basé sur des composants, qui utilise généralement un flux de données unidirectionnel.
 
-Généralement, vous devriez essayer de toujours utiliser les composants _Controllés_. Toutefois, lorsqu'on construit des composants isolés ou qu'on enrobe des bibliothèques externes, il peut être utile de simplement utiliser votre composant comme un point de montage pour des fonctionnalités qui ne sont pas liées à preact. Dans ces cas là, les composants "Non controllés" correspondent à ce que vous souhaitez faire.
+Généralement, vous devriez essayer de toujours utiliser les composants _Contrôlés_. Toutefois, lorsqu'on construit des composants isolés ou qu'on enrobe des bibliothèques externes, il peut être utile de simplement utiliser votre composant comme un point de montage pour des fonctionnalités qui ne sont pas liées à preact. Dans ces cas là, les composants "Non contrôlés" correspondent à ce que vous souhaitez faire.
 
 
 ## Checkboxes & boutons Radios
