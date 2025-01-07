@@ -10,7 +10,7 @@ import style from './repl/style.module.css';
 export default function ReplPage() {
 	const { query } = useRoute();
 
-	useContent('repl');
+	useContent('/repl');
 
 	const code = useResource(() => getInitialCode(query), [query]);
 
