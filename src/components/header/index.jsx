@@ -10,9 +10,9 @@ import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
 import { useLanguage } from '../../lib/i18n';
-import { prefetchContent } from '../../lib/use-content.js';
-import { preloadRepl } from '../../lib/use-repl.js';
-import { Repl, TutorialPage } from '../routes.jsx';
+import { prefetchContent } from '../../lib/use-content';
+import { preloadRepl } from '../../lib/use-repl';
+import { Repl, TutorialPage } from '../routes';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo

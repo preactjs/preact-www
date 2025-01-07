@@ -13,7 +13,7 @@ import { TutorialContext, SolutionContext } from './contexts';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { useRepl } from '../../../lib/use-repl.js';
+import { useRepl } from '../../../lib/use-repl';
 import { useLanguage } from '../../../lib/i18n';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';

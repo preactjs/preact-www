@@ -4,9 +4,9 @@ import widgets from '../widgets';
 import style from './style.module.css';
 import { useTranslation } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
-import { prefetchContent } from '../../lib/use-content.js';
-import { preloadRepl } from '../../lib/use-repl.js';
-import { Repl, TutorialPage } from '../routes.jsx';
+import { prefetchContent } from '../../lib/use-content';
+import { preloadRepl } from '../../lib/use-repl';
+import { Repl, TutorialPage } from '../routes';
 
 const COMPONENTS = {
 	...widgets,

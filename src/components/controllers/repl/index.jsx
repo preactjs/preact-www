@@ -5,7 +5,7 @@ import { textToBase64 } from './query-encode.js';
 import { ErrorOverlay } from './error-overlay';
 import { EXAMPLES, fetchExample } from './examples';
 import { useStoredValue } from '../../../lib/localstorage';
-import { useRepl } from '../../../lib/use-repl.js';
+import { useRepl } from '../../../lib/use-repl';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
