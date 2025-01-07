@@ -12,25 +12,6 @@ import { useEffect } from 'preact/hooks';
 export const CACHE = new Map();
 export const createCacheKey = (fn, deps) => '' + fn + JSON.stringify(deps);
 
-export function prefetchRepl() {
-	const load = () => Promise.all([
-		import('../components/code-editor'),
-		import('../components/controllers/repl/runner')
-	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default }));
-
-	const cacheKey = createCacheKey(load, ['repl']);
-	if (CACHE.has(cacheKey)) return;
-
-	setupCacheEntry(load, cacheKey);
-}
-
-export function useRepl() {
-	return useResource(() => Promise.all([
-		import('../components/code-editor'),
-		import('../components/controllers/repl/runner')
-	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
-}
-
 export function useResource(fn, deps) {
 	const cacheKey = createCacheKey(fn, deps);
 
