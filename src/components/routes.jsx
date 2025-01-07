@@ -5,9 +5,9 @@ import { DocPage } from './controllers/doc-page';
 import { NotFound } from './controllers/not-found';
 import { navRoutes } from '../lib/route-utils';
 
-const Repl = lazy(() => import('./controllers/repl-page'));
-const BlogPage = lazy(() => import('./controllers/blog-page'));
-const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
+export const Repl = lazy(() => import('./controllers/repl-page'));
+export const BlogPage = lazy(() => import('./controllers/blog-page'));
+export const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 
 // @ts-ignore
 const routeChange = url => typeof ga === 'function' && ga('send', 'pageview', url);

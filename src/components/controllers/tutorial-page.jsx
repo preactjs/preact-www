@@ -3,8 +3,7 @@ import { useEffect } from 'preact/hooks';
 import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
 import { NotFound } from './not-found';
-import { useContent } from '../../lib/use-content';
-import { prefetchContent } from '../../lib/use-resource.js';
+import { useContent, prefetchContent } from '../../lib/use-content';
 import { tutorialRoutes } from '../../lib/route-utils';
 
 import style from './tutorial/style.module.css';
@@ -22,7 +21,7 @@ export default function TutorialPage() {
 
 function TutorialLayout() {
 	const { path, params } = useRoute();
-	const { html, meta } = useContent(!params.step ? 'tutorial/index' : path);
+	const { html, meta } = useContent(!params.step ? '/tutorial/index' : path);
 
 	// Preload the next chapter
 	useEffect(() => {

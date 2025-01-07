@@ -1,18 +1,34 @@
 import { useEffect } from 'preact/hooks';
 
 import { createTitle } from './page-title';
-import { fetchContent } from './use-resource.js';
+import { getContent } from './content.js';
+import { useLanguage } from './i18n';
+import { useResource, createCacheKey, setupCacheEntry, CACHE } from './use-resource.js';
 
 /**
  * @param {string} path
  * @returns {{ html: string, meta: any }}
  */
 export function useContent(path) {
-	const { html, meta } = fetchContent(path);
+	const [lang] = useLanguage();
+	const { html, meta } = useResource(() => getContent([lang, path]), [lang, path]);
 	useTitle(meta.title);
 	useDescription(meta.description);
 
 	return { html, meta };
+}
+
+/**
+ * @param {string} path
+ */
+export function prefetchContent(path) {
+	const lang = document.documentElement.lang;
+	const fetch = () => getContent([lang, path]);
+
+	const cacheKey = createCacheKey(fetch, [lang, path]);
+	if (CACHE.has(cacheKey)) return;
+
+	setupCacheEntry(fetch, cacheKey);
 }
 
 /**
