@@ -288,7 +288,7 @@ function App() {
 
 ## 使用信号的本地状态
 
-应用的大部分状态最终都是使用props和context传递的。但是，在许多情况下，组件具有特定于该组件的内部状态。没有理由让这些状态称为全局业务逻辑的一部分，因此应将其限制于需要它的组件中。在这些情况下，我们可以使用`useSignal()` 和 `useComputed()` 钩子：
+应用的大部分状态最终都是使用props和context传递的。但是，在许多情况下，组件具有特定于该组件的内部状态。没有理由让这些状态成为全局业务逻辑的一部分，因此应将其限制于需要它的组件中。在这些情况下，我们可以使用`useSignal()` 和 `useComputed()` 钩子：
 
 ```jsx
 import { useSignal, useComputed } from "@preact/signals";
