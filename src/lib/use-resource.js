@@ -1,8 +1,5 @@
 import { useEffect } from 'preact/hooks';
 
-import { getContent } from './content.js';
-import { useLanguage } from './i18n';
-
 /**
  * @typedef {Object} CacheEntry
  * @property {Promise<any>} promise
@@ -12,27 +9,26 @@ import { useLanguage } from './i18n';
  */
 
 /** @type {Map<string, CacheEntry>} */
-const CACHE = new Map();
-const createCacheKey = (fn, deps) => '' + fn + JSON.stringify(deps);
+export const CACHE = new Map();
+export const createCacheKey = (fn, deps) => '' + fn + JSON.stringify(deps);
 
-/**
- * @param {string} path
- */
-export function prefetchContent(path) {
-	const lang = document.documentElement.lang;
-	const cacheKey = createCacheKey(() => getContent([lang, path]), [lang, path]);
+export function prefetchRepl() {
+	const load = () => Promise.all([
+		import('../components/code-editor'),
+		import('../components/controllers/repl/runner')
+	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default }));
+
+	const cacheKey = createCacheKey(load, ['repl']);
 	if (CACHE.has(cacheKey)) return;
 
-	setupCacheEntry(() => getContent([lang, path]), cacheKey);
+	setupCacheEntry(load, cacheKey);
 }
 
-/**
- * @param {string} path
- * @returns {{ html: string, meta: any }}
- */
-export function fetchContent(path) {
-	const [lang] = useLanguage();
-	return useResource(() => getContent([lang, path]), [lang, path]);
+export function useRepl() {
+	return useResource(() => Promise.all([
+		import('../components/code-editor'),
+		import('../components/controllers/repl/runner')
+	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
 }
 
 export function useResource(fn, deps) {
@@ -64,7 +60,7 @@ export function useResource(fn, deps) {
  * @param {string} cacheKey
  * @returns {CacheEntry}
  */
-function setupCacheEntry(fn, cacheKey) {
+export function setupCacheEntry(fn, cacheKey) {
 	/** @type {CacheEntry} */
 	const state = { promise: fn(), status: 'pending', result: undefined, users: 0 };
 

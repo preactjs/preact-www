@@ -4,14 +4,27 @@ import widgets from '../widgets';
 import style from './style.module.css';
 import { useTranslation } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
-import { prefetchContent } from '../../lib/use-resource';
+import { prefetchContent } from '../../lib/use-content.js';
+import { preloadRepl } from '../../lib/use-repl.js';
+import { Repl, TutorialPage } from '../routes.jsx';
 
 const COMPONENTS = {
 	...widgets,
 	a(props) {
 		if (props.href && props.href.startsWith('/')) {
 			const url = new URL(props.href, location.origin);
-			props.onMouseOver = () => prefetchContent(url.pathname);
+
+			props.onMouseOver = () => {
+				if (props.href.startsWith('/repl?code')) {
+					Repl.preload();
+					preloadRepl();
+				} else if (props.href.startsWith('/tutorial')) {
+					TutorialPage.preload();
+					preloadRepl();
+				}
+
+				prefetchContent(url.pathname);
+			};
 		}
 
 		return <a {...props} />;

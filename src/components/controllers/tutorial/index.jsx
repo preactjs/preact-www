@@ -13,7 +13,7 @@ import { TutorialContext, SolutionContext } from './contexts';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { useResource } from '../../../lib/use-resource';
+import { useRepl } from '../../../lib/use-repl.js';
 import { useLanguage } from '../../../lib/i18n';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
@@ -61,13 +61,7 @@ export function Tutorial({ html, meta }) {
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
-	/**
-	 * @type {{ Runner: import('../repl/runner').default, CodeEditor: import('../../code-editor').default }}
-	 */
-	const { Runner, CodeEditor } = useResource(() => Promise.all([
-		import('../../code-editor'),
-		import('../repl/runner')
-	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
+	const { CodeEditor, Runner } = useRepl();
 
 	useEffect(() => {
 		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {

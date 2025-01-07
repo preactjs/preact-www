@@ -1,6 +1,6 @@
 import { useRoute } from 'preact-iso';
 import cx from '../../lib/cx';
-import { prefetchContent } from '../../lib/use-resource';
+import { prefetchContent } from '../../lib/use-content';
 import style from './sidebar-nav.module.css';
 
 /**

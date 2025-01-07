@@ -10,7 +10,9 @@ import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
 import { useLanguage } from '../../lib/i18n';
-import { prefetchContent } from '../../lib/use-resource';
+import { prefetchContent } from '../../lib/use-content.js';
+import { preloadRepl } from '../../lib/use-repl.js';
+import { Repl, TutorialPage } from '../routes.jsx';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -220,10 +222,22 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 		? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
 		: {};
 
+	const onMouseOver = () => {
+		if (prefetchHref.startsWith('/repl')) {
+			Repl.preload();
+			preloadRepl();
+		} else if (prefetchHref.startsWith('/tutorial')) {
+			TutorialPage.preload();
+			preloadRepl();
+		}
+
+		prefetchContent(prefetchHref);
+	};
+
 	return (
 		<a
 			href={href}
-			onMouseOver={() => prefetchContent(prefetchHref)}
+			onMouseOver={onMouseOver}
 			{...props}
 			data-route={route}
 			{...homeProps}

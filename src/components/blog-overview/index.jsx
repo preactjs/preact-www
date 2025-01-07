@@ -2,7 +2,8 @@ import config from '../../config.json';
 import { useLanguage, useTranslation } from '../../lib/i18n';
 import { getRouteName } from '../header';
 import { Time } from '../time';
-import { prefetchContent } from '../../lib/use-resource';
+import { prefetchContent } from '../../lib/use-content';
+import { BlogPage } from '../routes.jsx';
 import s from './style.module.css';
 
 export default function BlogOverview() {
@@ -15,7 +16,10 @@ export default function BlogOverview() {
 				{config.blog.map(post => {
 					const name = getRouteName(post, lang);
 					const excerpt = post.excerpt[lang] || post.excerpt.en;
-					const onMouseOver = () => prefetchContent(post.path);
+					const onMouseOver = () => {
+						BlogPage.preload();
+						prefetchContent(post.path);
+					};
 
 					return (
 						<article class={s.post}>

@@ -5,7 +5,7 @@ import { textToBase64 } from './query-encode.js';
 import { ErrorOverlay } from './error-overlay';
 import { EXAMPLES, fetchExample } from './examples';
 import { useStoredValue } from '../../../lib/localstorage';
-import { useResource } from '../../../lib/use-resource';
+import { useRepl } from '../../../lib/use-repl.js';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
@@ -26,13 +26,7 @@ export function Repl({ code }) {
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
-	/**
-	 * @type {{ Runner: import('./runner').default, CodeEditor: import('../../code-editor').default }}
-	 */
-	const { Runner, CodeEditor } = useResource(() => Promise.all([
-		import('../../code-editor'),
-		import('./runner')
-	]).then(([CodeEditor, Runner]) => ({ CodeEditor: CodeEditor.default, Runner: Runner.default })), ['repl']);
+	const { CodeEditor, Runner } = useRepl();
 
 	const applyExample = (e) => {
 		const slug = e.target.value;

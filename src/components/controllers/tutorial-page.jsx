@@ -3,8 +3,7 @@ import { useEffect } from 'preact/hooks';
 import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
 import { NotFound } from './not-found';
-import { useContent } from '../../lib/use-content';
-import { prefetchContent } from '../../lib/use-resource.js';
+import { useContent, prefetchContent } from '../../lib/use-content';
 import { tutorialRoutes } from '../../lib/route-utils';
 
 import style from './tutorial/style.module.css';
