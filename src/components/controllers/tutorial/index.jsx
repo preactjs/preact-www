@@ -8,12 +8,12 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { useLocation } from 'preact-iso';
+import { ErrorBoundary, useLocation } from 'preact-iso';
 import { TutorialContext, SolutionContext } from './contexts';
 import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { useRepl } from '../../../lib/use-repl';
+import { Repl } from '../../../lib/repl';
 import { useLanguage } from '../../../lib/i18n';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
@@ -60,8 +60,6 @@ export function Tutorial({ html, meta }) {
 
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
-
-	const { CodeEditor, Runner } = useRepl();
 
 	useEffect(() => {
 		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {
@@ -145,74 +143,76 @@ export function Tutorial({ html, meta }) {
 					showCode && style.showCode
 				)}
 			>
-				<Splitter
-					orientation="horizontal"
-					force={!showCode ? '100%' : undefined}
-					other={
-						<Splitter
-							orientation="vertical"
-							other={
-								<>
-									<div class={style.output}>
-										{error && (
-											<ErrorOverlay
-												name={error.name}
-												message={error.message}
-												stack={parseStackTrace(error)}
+				<ErrorBoundary>
+					<Splitter
+						orientation="horizontal"
+						force={!showCode ? '100%' : undefined}
+						other={
+							<Splitter
+								orientation="vertical"
+								other={
+									<>
+										<div class={style.output}>
+											{error && (
+												<ErrorOverlay
+													name={error.name}
+													message={error.message}
+													stack={parseStackTrace(error)}
+												/>
+											)}
+											<Repl.Runner
+												ref={runner}
+												onSuccess={onSuccess}
+												onRealm={onRealm}
+												onError={onError}
+												code={runnerCode}
 											/>
+										</div>
+										{hasCode && (
+											<button
+												class={style.toggleCode}
+												title="Toggle Code"
+												onClick={toggleCode}
+											>
+												<span>Toggle Code</span>
+											</button>
 										)}
-										<Runner
-											ref={runner}
-											onSuccess={onSuccess}
-											onRealm={onRealm}
-											onError={onError}
-											code={runnerCode}
-										/>
-									</div>
-									{hasCode && (
-										<button
-											class={style.toggleCode}
-											title="Toggle Code"
-											onClick={toggleCode}
-										>
-											<span>Toggle Code</span>
-										</button>
-									)}
-								</>
-							}
-						>
-							<div class={style.codeWindow}>
-								<CodeEditor
-									class={style.code}
-									value={editorCode}
-									error={error}
-									slug={url}
-									onInput={setEditorCode}
-								/>
-							</div>
-						</Splitter>
-					}
-				>
-					<div class={style.tutorialWindow} ref={content}>
-						<MarkdownRegion
-							html={html}
-							meta={meta}
-							components={TUTORIAL_COMPONENTS}
-						/>
-
-						{meta.tutorial?.setup &&
-							<TutorialSetupBlock
-								code={meta.tutorial.setup}
-								runner={runner}
-								useResult={useResult}
-								useRealm={useRealm}
-								useError={useError}
-							/>
+									</>
+								}
+							>
+								<div class={style.codeWindow}>
+									<Repl.CodeEditor
+										class={style.code}
+										value={editorCode}
+										error={error}
+										slug={url}
+										onInput={setEditorCode}
+									/>
+								</div>
+							</Splitter>
 						}
+					>
+						<div class={style.tutorialWindow} ref={content}>
+							<MarkdownRegion
+								html={html}
+								meta={meta}
+								components={TUTORIAL_COMPONENTS}
+							/>
 
-						<ButtonContainer meta={meta} showCode={showCode} help={help} />
-					</div>
-				</Splitter>
+							{meta.tutorial?.setup &&
+								<TutorialSetupBlock
+									code={meta.tutorial.setup}
+									runner={runner}
+									useResult={useResult}
+									useRealm={useRealm}
+									useError={useError}
+								/>
+							}
+
+							<ButtonContainer meta={meta} showCode={showCode} help={help} />
+						</div>
+					</Splitter>
+				</ErrorBoundary>
 			</div>
 		</TutorialContext.Provider>
 	);
