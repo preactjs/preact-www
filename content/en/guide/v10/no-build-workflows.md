@@ -10,7 +10,7 @@ applications without them.
 
 No-build workflows are a way to develop web applications while forgoing build tooling, instead relying on the browser
 to facilitate module loading and execution. This is a great way to get started with Preact and can continue to work
-very well at all scales, but isn't entirely without difficulties.
+very well at all scales.
 
 ---
 
@@ -20,14 +20,14 @@ very well at all scales, but isn't entirely without difficulties.
 
 ## Import Maps
 
-An [Import Map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) is a newer feature
+An [Import Map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) is a newer browser feature
 that allows you to control how browsers resolve module specifiers, often to convert bare specifiers such as `preact`
 to a CDN URL like `https://esm.sh/preact`. While many do prefer the aesthetics import maps can provide, there are also
-objective advantages to the centralization of dependencies, such as easier versioning, reduced/removed duplication, and
+objective advantages to the centralization of dependencies such as easier versioning, reduced/removed duplication, and
 better access to more powerful CDN features.
 
-This isn't to say you need import maps, but for those choosing to forgo build tooling, they are a great option to at least
-be aware of.
+We do generally recommend using import maps for those choosing to forgo build tooling as they work around some issues
+you may encounter using bare CDN URLs in your import specifiers (more on that below).
 
 ### Basic Usage
 
@@ -55,9 +55,7 @@ utilize import maps, but a basic example looks like the following:
       import { html } from 'htm/preact';
 
       export function App() {
-        return html`
-          <h1>Hello, World!</h1>
-        `;
+        return html`<h1>Hello, World!</h1>`;
       }
 
       render(html`<${App} />`, document.getElementById('app'));
@@ -70,10 +68,9 @@ We create a `<script>` tag with a `type="importmap"` attribute, and then define 
 inside of it as JSON. Later, in a `<script type="module">` tag, we can import these modules using bare specifiers,
 similar to what you'd see in Node.
 
-> **Note:** We use `?external=preact` in the example above as https://esm.sh will helpfully provide the
+> **Important:** We use `?external=preact` in the example above as https://esm.sh will helpfully provide the
 > module you're asking for as well as its dependencies -- for `htm/preact`, this means also providing a
-> copy of `preact`. However, Preact and many other libraries need to be used as singletons (only a single
-> active instance at a time) which creates a problem.
+> copy of `preact`. However, Preact must be used only as a singleton with only a single copy included in your app.
 >
 > By using `?external=preact`, we tell `esm.sh` that it shouldn't provide a copy of `preact`, we can handle
 > that ourselves. Therefore, the browser will use our importmap to resolve `preact`, using the same Preact
@@ -120,4 +117,38 @@ query parameter, but other CDNs may work differently.
     }
   }
 </script>
+```
+
+## HTM
+
+Whilst JSX is generally the most popular way to write Preact applications, it requires a build step to convert the non-standard syntax into something browsers and other runtimes can understand natively. Writing `h`/`createElement` calls by hand can be a bit tedious though with less than ideal ergonomics, so we instead recommend a JSX-like alternative called [HTM](https://github.com/developit/htm).
+
+Instead of requiring a build step (though it can use one, see [`babel-plugin-htm`](https://github.com/developit/htm/tree/master/packages/babel-plugin-htm)), HTM uses [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) syntax, a feature of JavaScript that's been around since 2015 and is supported in all modern browsers. This is an increasingly popular way to write Preact apps and is likely the most popular for those choosing to forgo a build step.
+
+HTM supports all standard Preact features, including Components, Hooks, Signals, etc., the only difference being the syntax used to write the "JSX" return value.
+
+```js
+// --repl
+import { render } from 'preact';
+// --repl-before
+import { useState } from 'preact/hooks';
+import { html } from 'htm/preact';
+
+function Button({ action, children }) {
+	return html`<button onClick=${action}>${children}</button>`;
+}
+
+function Counter() {
+	const [count, setCount] = useState(0);
+
+	return html`
+		<div class="counter-container">
+			<${Button} action=${() => setCount(count + 1)}>Increment<//>
+			<input readonly value=${count} />
+			<${Button} action=${() => setCount(count - 1)}>Decrement<//>
+		</div>
+	`;
+}
+// --repl-after
+render(<Counter />, document.getElementById('app'));
 ```
