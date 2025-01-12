@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
 import { Splitter } from '../../splitter';
 import { textToBase64 } from './query-encode.js';
 import { ErrorOverlay } from './error-overlay';
 import { EXAMPLES, fetchExample } from './examples';
 import { useStoredValue } from '../../../lib/localstorage';
-import { useRepl } from '../../../lib/use-repl';
+import { Repl as _Repl } from '../../../lib/repl.js';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
@@ -25,8 +25,6 @@ export function Repl({ code }) {
 
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
-
-	const { CodeEditor, Runner } = useRepl();
 
 	const applyExample = (e) => {
 		const slug = e.target.value;
@@ -112,35 +110,37 @@ export function Repl({ code }) {
 				</button>
 			</header>
 			<div class={style.replWrapper}>
-				<Splitter
-					orientation="horizontal"
-					other={
-						<div class={style.output}>
-							{error && (
-								<ErrorOverlay
-									name={error.name}
-									message={error.message}
-									stack={parseStackTrace(error)}
+				<ErrorBoundary>
+					<Splitter
+						orientation="horizontal"
+						other={
+							<div class={style.output}>
+								{error && (
+									<ErrorOverlay
+										name={error.name}
+										message={error.message}
+										stack={parseStackTrace(error)}
+									/>
+								)}
+								<_Repl.Runner
+									onRealm={onRealm}
+									onError={setError}
+									onSuccess={() => setError(null)}
+									css={REPL_CSS}
+									code={runnerCode}
 								/>
-							)}
-							<Runner
-								onRealm={onRealm}
-								onError={setError}
-								onSuccess={() => setError(null)}
-								css={REPL_CSS}
-								code={runnerCode}
-							/>
-						</div>
-					}
-				>
-					<CodeEditor
-						class={style.code}
-						value={editorCode}
-						error={error}
-						slug={query.example}
-						onInput={onEditorInput}
-					/>
-				</Splitter>
+							</div>
+						}
+					>
+						<_Repl.CodeEditor
+							class={style.code}
+							value={editorCode}
+							error={error}
+							slug={query.example}
+							onInput={onEditorInput}
+						/>
+					</Splitter>
+				</ErrorBoundary>
 			</div>
 		</>
 	);
