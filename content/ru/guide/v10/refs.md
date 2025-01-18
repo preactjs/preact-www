@@ -1,13 +1,13 @@
 ---
-name: Ссылки
-description: 'Ссылки можно использовать для доступа к необработанным узлам DOM, отрендеренным Preact.'
+name: Рефы
+description: 'Рефы — это способ создания стабильных значений, которые локальны для экземпляра компонента и сохраняются между рендерами.'
 ---
 
-# Ссылки
+# Рефы
 
-Всегда будут сценарии, в которых вам понадобится прямая ссылка на DOM-элемент или компонент, отрендеренный Preact. `Refs` позволяют вам сделать именно это.
+Ссылки на DOM-элементы, или рефы, — это стабильные локальные значения, которые сохраняются между рендерами компонента, но не вызывают повторные рендеры, как это делают состояние или пропсы при их изменении.
 
-Типичный вариант использования — измерение фактического размера узла DOM. Хотя ссылку на экземпляр компонента можно получить через `ref`, мы обычно не рекомендуем это делать. Это создаст жёсткую связь между родительским и дочерним компонентами, что нарушит возможность компоновки модели компонента. В большинстве случаев более естественно просто передать обратный вызов в качестве свойства, а не пытаться напрямую вызвать метод компонента класса.
+Чаще всего рефы используются для императивного управления DOM, но их можно использовать для хранения любых произвольных локальных значений, которые необходимо сохранить стабильными. Вы можете использовать их для отслеживания предыдущего значения состояния, хранения ссылки на идентификатор интервала или таймаута, или просто для хранения значения счётчика. Важно отметить, что рефы не должны использоваться для логики рендеринга; вместо этого их следует использовать только в методах жизненного цикла и обработчиках событий.
 
 ---
 
@@ -15,114 +15,216 @@ description: 'Ссылки можно использовать для досту
 
 ---
 
-## createRef
+## Создание рефа
 
-Функция `createRef` возвращает обычный объект с одним свойством: `current`. При каждом вызове метода `render` Preact присваивает узлу или компоненту DOM значение `current`.
+В Preact есть два способа создания рефов, в зависимости от предпочитаемого вами стиля компонентов: `createRef` (классовые компоненты) и `useRef` (функциональные компоненты/хуки). Оба API по сути работают одинаково: они создают стабильный, простой объект со свойством `current`, которое можно инициализировать значением по желанию.
+
+<tab-group tabstring="Classes, Hooks">
+
+```jsx
+import { createRef } from "preact";
+
+class MyComponent extends Component {
+  countRef = createRef();
+  inputRef = createRef(null);
+
+  // ...
+}
+```
+
+```jsx
+import { useRef } from "preact/hooks";
+
+function MyComponent() {
+  const countRef = useRef();
+  const inputRef = useRef(null);
+
+  // ...
+}
+```
+
+</tab-group>
+
+## Использование рефов для доступа к DOM-узлам
+
+Наиболее распространённый случай использования рефов — это доступ к базовому DOM-узлу компонента. Это полезно для императивного управления DOM, такого как измерение элементов, вызов нативных методов на различных элементах (например, `.focus()` или `.play()`), а также интеграция со сторонними библиотеками, написанными на чистом JavaScript. В следующих примерах, после рендеринга, Preact присвоит DOM-узел свойству `current` объекта рефа, что сделает его доступным для использования после монтирования компонента.
+
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
-import { render, Component, createRef } from 'preact';
+import { render, Component, createRef } from "preact";
 // --repl-before
-class Foo extends Component {
-  ref = createRef();
+class MyInput extends Component {
+  ref = createRef(null);
 
   componentDidMount() {
     console.log(this.ref.current);
-    // Лог: [HTMLDivElement]
+    // Logs: [HTMLInputElement]
   }
 
   render() {
-    return <div ref={this.ref}>foo</div>;
+    return <input ref={this.ref} />;
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById('app'));
+render(<MyInput />, document.getElementById("app"));
 ```
-
-## Обратные ссылки
-
-Другой способ получения ссылки на элемент может быть осуществлен путём передачи функции обратного вызова. Он немного сложнее, но работает аналогично `createRef`.
 
 ```jsx
 // --repl
-import { render, Component } from 'preact';
+import { render } from "preact";
+import { useRef, useEffect } from "preact/hooks";
 // --repl-before
-class Foo extends Component {
-  ref = null;
-  setRef = (dom) => (this.ref = dom);
+function MyInput() {
+  const ref = useRef(null);
 
-  componentDidMount() {
-    console.log(this.ref);
-    // Лог: [HTMLDivElement]
-  }
+  useEffect(() => {
+    console.log(ref.current);
+    // Logs: [HTMLInputElement]
+  }, []);
 
+  return <input ref={ref} />;
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+</tab-group>
+
+### Колбэк-рефы
+
+Другой способ использования рефов — это передача функции в пропс `ref`, где DOM-узел будет передан в качестве аргумента.
+
+
+<tab-group tabstring="Classes, Hooks">
+
+```jsx
+// --repl
+import { render, Component } from "preact";
+// --repl-before
+class MyInput extends Component {
   render() {
-    return <div ref={this.setRef}>foo</div>;
+    return (
+      <input ref={(dom) => {
+        console.log('Mounted:', dom);
+
+        // Начиная с Preact 10.23.0, вы можете по желанию вернуть функцию очистки
+        return () => {
+          console.log('Unmounted:', dom);
+        };
+      }} />
+    );
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById('app'));
+render(<MyInput />, document.getElementById("app"));
 ```
 
-> Если обратный вызов ref определён как встроенная функция, то он будет вызван дважды. Один раз с `null`, а затем с реальной ссылкой. Это распространённая ошибка, и API `createRef` немного облегчает её, заставляя пользователя проверять, определена ли `ref.current`.
+```jsx
+// --repl
+import { render } from "preact";
+// --repl-before
+function MyInput() {
+  return (
+    <input ref={(dom) => {
+      console.log('Mounted:', dom);
 
-## Собираем всё воедино
+      // Начиная с Preact 10.23.0, вы можете по желанию вернуть функцию очистки
+      return () => {
+        console.log('Unmounted:', dom);
+      };
+    }} />
+  );
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
 
-Допустим, нам нужно получить ссылку на узел DOM, чтобы измерить его ширину и высоту. У нас есть простой компонент, в котором необходимо заменить значения placeholder на реально измеренные.
+</tab-group>
+
+> Если предоставленный колбэк рефа нестабилен (например, определённый инлайн, как показано выше) и _не_ возвращает функцию очистки, **он будет вызываться дважды** при каждом повторном рендере: сначала с `null`, а затем с фактической ссылкой. Это распространённая проблема, и API `createRef`/`useRef` немного упрощают это, заставляя пользователя проверять, определено ли `ref.current`.
+>
+> Сравнительно стабильной функцией может быть метод экземпляра классового компонента, функция, определённая вне компонента, или функция, созданная с помощью `useCallback`, например.
+
+## Использование рефов для хранения локальных значений
+
+Однако рефы не ограничиваются только хранением DOM-узлов; их можно использовать для хранения любого типа значений, которые могут понадобиться.
+
+В следующем примере мы храним идентификатор интервала в рефе, чтобы иметь возможность запускать и останавливать его независимо.
+
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
-class Foo extends Component {
-  // Здесь мы хотим использовать реальную ширину из узла DOM
+// --repl
+import { render, Component, createRef } from "preact";
+// --repl-before
+class SimpleClock extends Component {
   state = {
-    width: 0,
-    height: 0,
+    time: Date.now(),
+  };
+  intervalId = createRef(null);
+
+  startClock = () => {
+    this.setState({ time: Date.now() });
+    this.intervalId.current = setInterval(() => {
+      this.setState({ time: Date.now() });
+    }, 1000);
   };
 
-  render(_, { width, height }) {
+  stopClock = () => {
+    clearInterval(this.intervalId.current);
+  };
+
+
+  render(_, { time }) {
+    const formattedTime = new Date(time).toLocaleTimeString();
+
     return (
       <div>
-        Ширина: {width}, высота: {height}
-      </div>
-    );
-  }
-}
-```
-
-Измерение имеет смысл только после вызова метода `render` и установки компонента в DOM. До этого узла DOM не будет существовать, и пытаться его измерить не имеет смысла.
-
-```jsx
-// --repl
-import { render, Component } from 'preact';
-// --repl-before
-class Foo extends Component {
-  state = {
-    width: 0,
-    height: 0,
-  };
-
-  ref = createRef();
-
-  componentDidMount() {
-    // Для обеспечения безопасности: Проверьте, была ли предоставлена ссылка
-    if (this.ref.current) {
-      const dimensions = this.ref.current.getBoundingClientRect();
-      this.setState({
-        width: dimensions.width,
-        height: dimensions.height,
-      });
-    }
-  }
-
-  render(_, { width, height }) {
-    return (
-      <div ref={this.ref}>
-        Ширина: {width}, высота: {height}
+        <button onClick={this.startClock}>Start Clock</button>
+        <time dateTime={formattedTime}>{formattedTime}</time>
+        <button onClick={this.stopClock}>Stop Clock</button>
       </div>
     );
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById('app'));
+render(<SimpleClock />, document.getElementById("app"));
 ```
 
-Вот и всё! Теперь компонент при установке всегда будет отображать ширину и высоту.
+```jsx
+// --repl
+import { render } from "preact";
+import { useState, useRef } from "preact/hooks";
+// --repl-before
+function SimpleClock() {
+  const [time, setTime] = useState(Date.now());
+  const intervalId = useRef(null);
+
+  const startClock = () => {
+    setTime(Date.now());
+    intervalId.current = setInterval(() => {
+      setTime(Date.now());
+    }, 1000);
+  };
+
+  const stopClock = () => {
+    clearInterval(intervalId.current);
+  };
+
+  const formattedTime = new Date(time).toLocaleTimeString();
+
+  return (
+    <div>
+      <button onClick={startClock}>Start Clock</button>
+      <time dateTime={formattedTime}>{formattedTime}</time>
+      <button onClick={stopClock}>Stop Clock</button>
+    </div>
+  );
+}
+// --repl-after
+render(<SimpleClock />, document.getElementById("app"));
+```
+
+</tab-group>
