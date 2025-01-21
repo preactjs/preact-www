@@ -409,7 +409,7 @@ const count = signal(0);
 effect(() => {
   // Обновляем `count` без подписки на `count` или `delta`:
   count.value = untracked(() => {
-    count.value + delta.value
+    return count.value + delta.value
   });
 });
 ```
