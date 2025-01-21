@@ -429,7 +429,7 @@ const count = signal(0);
 effect(() => {
   // Update `count` without subscribing to `count` or `delta`:
   count.value = untracked(() => {
-    count.value + delta.value
+    return count.value + delta.value
   });
 });
 ```
