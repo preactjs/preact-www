@@ -309,6 +309,7 @@ function MyInput({ inputRef }) {
   const ref = useRef(null);
   useImperativeHandle(inputRef, () => {
     return {
+      // Only expose `.focus()`, don't give direct access to the DOM node
       focus() {
         ref.current.focus();
       },
