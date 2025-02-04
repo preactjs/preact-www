@@ -265,7 +265,11 @@ const onClick = useCallback(
 
 > Fun fact: `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
-## useRef
+## Refs
+
+**Ref**erences are stable, local values that persist across rerenders but don't cause rerenders themselves. See [Refs](/guide/v10/refs) for more information & examples.
+
+### useRef
 
 To create a stable reference to a DOM node or a value that persists between renders, we can use the `useRef` hook. It works similarly to [createRef](/guide/v10/refs#createref).
 
@@ -292,7 +296,50 @@ render(<Foo />, document.getElementById("app"));
 
 > Be careful not to confuse `useRef` with `createRef`.
 
-> See [Refs](/guide/v10/refs) for more information & examples.
+### useImperativeHandle
+
+To mutate a ref that is passed into a child component we can use the `useImperativeHandle` hook. It takes three arguments: the ref to mutate, a function to execute that will return the new ref value, and a dependency array to determine when to rerun.
+
+```jsx
+// --repl
+import { render } from "preact";
+import { useRef, useImperativeHandle, useState } from "preact/hooks";
+// --repl-before
+function MyInput({ inputRef }) {
+  const ref = useRef(null);
+  useImperativeHandle(inputRef, () => {
+    return {
+      // Only expose `.focus()`, don't give direct access to the DOM node
+      focus() {
+        ref.current.focus();
+      },
+    };
+  }, []);
+
+  return (
+    <label>
+      Name: <input ref={ref} />
+    </label>
+  );
+}
+
+function App() {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <MyInput inputRef={inputRef} />
+      <button onClick={handleClick}>Click To Edit</button>
+    </div>
+  );
+}
+// --repl-after
+render(<App />, document.getElementById("app"));
+```
 
 ## useContext
 
