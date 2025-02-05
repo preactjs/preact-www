@@ -95,7 +95,7 @@ Preact aims to closely match the DOM specification supported by all major browse
 <div className="foo" />
 ```
 
-Most Preact developers prefer to use `class` because it's shorter to write, but both are supported.
+Most Preact developers prefer to use `class` instead of `className` as it's shorter to write but both are supported.
 
 ### SVG inside JSX
 
