@@ -497,7 +497,8 @@
 					{
 						"path": "/no-build-workflows",
 						"name": {
-							"en": "No-Build Workflows"
+							"en": "No-Build Workflows",
+							"zh": "无构建工具工作流"
 						}
 					}
 				]
