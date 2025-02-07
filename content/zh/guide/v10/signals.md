@@ -206,7 +206,7 @@ function TodoList() {
 }
 ```
 
-这样我们就有了一个完全可用的待办事项应用程序！您可以[在这里](/repl?example=todo-list-signals)尝试完整的应用程序 :tada:
+这样我们就有了一个完全可用的待办事项应用程序！您可以[在这里](/repl?example=todo-signals)尝试完整的应用程序 :tada:
 
 ## 使用计算信号驱动状态
 
