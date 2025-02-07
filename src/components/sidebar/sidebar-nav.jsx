@@ -70,6 +70,7 @@ function SidebarNavLink(props) {
 			href={href}
 			onClick={onClick}
 			onMouseOver={() => prefetchContent(href)}
+			onTouchStart={() => prefetchContent(href)}
 			class={cx(style.link, activeCss, style['level-' + level])}
 		>
 			{children}

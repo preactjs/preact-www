@@ -14,7 +14,7 @@ const COMPONENTS = {
 		if (props.href && props.href.startsWith('/')) {
 			const url = new URL(props.href, location.origin);
 
-			props.onMouseOver = () => {
+			const prefetchAndPreload = () => {
 				if (props.href.startsWith('/repl?code')) {
 					ReplPage.preload();
 					preloadRepl();
@@ -25,6 +25,9 @@ const COMPONENTS = {
 
 				prefetchContent(url.pathname);
 			};
+
+			props.onMouseOver = prefetchAndPreload;
+			props.onTouchStart = prefetchAndPreload;
 		}
 
 		return <a {...props} />;

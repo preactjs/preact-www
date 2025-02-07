@@ -222,7 +222,7 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 		? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
 		: {};
 
-	const onMouseOver = () => {
+	const prefetchAndPreload = () => {
 		if (prefetchHref.startsWith('/repl')) {
 			ReplPage.preload();
 			preloadRepl();
@@ -237,7 +237,8 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	return (
 		<a
 			href={href}
-			onMouseOver={onMouseOver}
+			onMouseOver={prefetchAndPreload}
+			onTouchStart={prefetchAndPreload}
 			{...props}
 			data-route={route}
 			{...homeProps}
