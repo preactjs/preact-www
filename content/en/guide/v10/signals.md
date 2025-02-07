@@ -212,7 +212,7 @@ function TodoList() {
 }
 ```
 
-And with that we have a fully working todo app! You can try out the full app [over here](/repl?example=todo-list-signals) :tada:
+And with that we have a fully working todo app! You can try out the full app [over here](/repl?example=todo-signals) :tada:
 
 ## Deriving state via computed signals
 
