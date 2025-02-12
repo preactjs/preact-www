@@ -169,6 +169,8 @@ be seen in NextJS. To fix this, we can use aliases directly in our `package.json
 }
 ```
 
+> **Warning**: Preact is not recommended for use in a mixed CJS/ESM codebase running directly in Node without a bundler, as there's a risk that Preact's singletons could be loaded twice. If your first-party code or any dependencies will try to load both the CJS and ESM versions of Preact, you must use a bundler to alias imports of Preact to always resolve to either the CJS or ESM versions.
+
 #### Aliasing in Parcel
 
 Parcel uses the standard `package.json` file to read configuration options under
