@@ -13,6 +13,14 @@ This page describes how Preact applies rendered component properties to the DOM.
 
 ---
 
+## key
+
+The value of this property provides an identity for the VDOM node when diffing against a previous render.
+See the [Keys tutorial](/tutorial/08-keys/) for background.
+
+Note that this is a particularly special property in that it is intercepted by Preact and *not* passed along to any custom component.
+
+
 ## ref
 
 See the [References documentation](/guide/v10/refs#createref) for an introduction to this property.
