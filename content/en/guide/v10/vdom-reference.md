@@ -47,7 +47,7 @@ Numeric values of style objects entries will have a "px" suffix **automatically 
 
 Preact core supports both `class` and `className` for setting the respective attribute/property. See [Preact's philosophy around raw attribute/property usage](/guide/v10/differences-to-react#raw-html-attributeproperty-names) for more discussion.
 
-Note that if values for *both* are provided on your VDOM node, note that `class` will normally be set as an attribute and `className` will be set as a property — but whichever one ends up being iterated last during the DOM diffing tends to clobber the other regardless.
+Iff values for *both* are provided on your VDOM node, note that `class` will the be set as an attribute (under normal circumstances) and `className` will be set as a property — but whichever one ends up being iterated last during the DOM diffing tends to clobber the other regardless.
 
 
 ## children
@@ -58,3 +58,16 @@ Note that if values for *both* are provided on your VDOM node, note that `class`
 
 ### on*Capture
 
+
+## Other special properties
+
+Preact core includes many other special property fixups including for:
+
+* certain form/display elements
+* certain event names and HTML attributes
+* various idiosyncracies of the [SVG DOM](https://www.w3.org/TR/SVG11/svgdom.html)
+* … etc.
+
+The list above is not intended to be comprehensive. There are many nuances both for specific bugfixes and that simply fall out of the how the internals have gotten implemented. (For example of one such edge case, currently if you assign your own property value to a raw DOM node object in an uncontrolled way e.g. `spanRef.current["data-myvar"] = null` it may then interfere w/Preact's fallback attribute setting of `<span ref={spanRef} data-myvar="controlled-value" />`.)
+
+Your best guide for advanced details would be to refer to the [`diff/props.js` source code](https://github.com/preactjs/preact/blob/main/src/diff/props.js), as well as the overarching diffing algorithm itself ([e.g.](https://github.com/preactjs/preact/blob/face9247724db0a74b764316c4486f384b89cfed/src/diff/index.js#L554-L576)) corresponding to the specific version of Preact you are using.
