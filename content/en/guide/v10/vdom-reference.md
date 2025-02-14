@@ -88,6 +88,5 @@ Preact core includes many other special property fixups including for:
 
 The list above is not intended to be comprehensive.
 
-There are many nuances both for specific bugfixes/workarounds/compatibility concessions, and other nuances that simply fall out of the how the internals have gotten implemented. (For example of one such edge case, currently if you assign your own property value to a raw DOM node object in an uncontrolled way e.g. `spanRef.current["data-myvar"] = null` it may then interfere w/Preact's fallback attribute setting of `<span ref={spanRef} data-myvar="controlled-value" />`.)
-
+There are many nuances both for specific bugfixes/workarounds/compatibility concessions, and other nuances that simply fall out of the how the internals have gotten implemented.
 Your best guide for advanced details would be to refer to the [`diff/props.js` source code](https://github.com/preactjs/preact/blob/main/src/diff/props.js), as well as the overarching diffing algorithm itself ([e.g.](https://github.com/preactjs/preact/blob/face9247724db0a74b764316c4486f384b89cfed/src/diff/index.js#L554-L576)) corresponding to the specific version of Preact you are using.
