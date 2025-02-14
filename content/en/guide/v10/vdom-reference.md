@@ -75,7 +75,7 @@ Note that while Preact core does do a bit of fix up here and there (see [Other s
 
 ### on*Capture
 
-If your event property name ends with "…Capture" (but *not* ["…PointerCapture"](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events#pointer_capture) ;-) then Preact will register your event handler during the capture (rather than bubbling) phase.
+If your event property name ends with "…Capture" then Preact will register your event handler during the capture (rather than bubbling) phase.
 
 
 ## Other special properties
