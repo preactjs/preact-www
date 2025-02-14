@@ -70,7 +70,7 @@ each parent component in the tree is given an opportunity to handle the error.
 
 As a result, Error Boundaries can be nested if implemented using `componentDidCatch`.
 When a component's `componentDidCatch()` method _doesn't_ call `setState()`, the
-error will continue to bubble up the Virtual DOM tree until it reaches an component
+error will continue to bubble up the Virtual DOM tree until it reaches a component
 with a `componentDidCatch` method that _does_ call `setState()`.
 
 ## Try it!
