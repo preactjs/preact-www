@@ -61,7 +61,11 @@ The value of the property itself is under the control of Preact, e.g. in the fol
 
 ## dangerouslySetInnerHTML
 
-For regular DOM nodes, this provides a way to take over the rendered contents. Like [React's version](https://react.dev/reference/react-dom/components/common#dangerously-setting-the-inner-html), it expects an object with an `__html` property whose value is to be set as the [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) of the element.
+For regular DOM nodes, this provides a way to take over the rendered contents. Like [React's version](https://react.dev/reference/react-dom/components/common#dangerously-setting-the-inner-html), it expects an object with an `__html` property whose value is to be set as the [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) of the element:
+
+```jsx
+<div dangerouslySetInnerHTML={{ __html: '<h1>Hello World!</h1>' }} />
+```
 
 For functional/class-based components this is treated just as any other arbitrary property. The value would be available to the component's implementation but does not directly influence/override its rendered output. (TBD: but does [diff-skipping](https://preactjs.com/guide/v10/upgrade-guide/#dangerouslysetinnerhtml-will-skip-diffing-of-children) still apply?)
 
