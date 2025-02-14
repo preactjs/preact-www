@@ -40,7 +40,7 @@ This value can also be an object, in which case each of its individual entries a
 
 ### Numeric values
 
-Numeric values of style objects entries will have a "px" suffix **automatically appended** unless the CSS property name is either a custom one (e.g. `--my-var`) or is [known to be "non-dimensional"](https://github.com/preactjs/preact/blob/face9247724db0a74b764316c4486f384b89cfed/src/constants.js#L20-L21). This is for compatibility with React, but will likely be [removed from Preact core](https://github.com/preactjs/preact/issues/2621) in a future version.
+Numeric values of style objects entries will have a "px" suffix **automatically appended** unless the CSS property name is either a custom one (e.g. `--my-var`) or is [known to be "non-dimensional"](https://github.com/preactjs/preact/blob/face9247724db0a74b764316c4486f384b89cfed/src/constants.js#L20-L21). This is for compatibility with React, but will likely be [moved into compat](https://github.com/preactjs/preact/issues/2621) in a future version.
 
 
 ## class / className
