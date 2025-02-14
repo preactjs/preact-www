@@ -47,7 +47,6 @@ Numeric values of style objects entries will have a "px" suffix **automatically 
 
 Preact core supports both `class` and `className` for setting the respective attribute/property. See [Preact's philosophy around raw attribute/property usage](/guide/v10/differences-to-react#raw-html-attributeproperty-names) for more discussion.
 
-Iff values for *both* are provided on your VDOM node, note that `class` will the be set as an attribute (under normal circumstances) and `className` will be set as a property — but whichever one ends up being iterated last during the DOM diffing tends to clobber the other regardless.
 
 
 ## children
