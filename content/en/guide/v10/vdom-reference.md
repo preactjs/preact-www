@@ -52,11 +52,30 @@ Iff values for *both* are provided on your VDOM node, note that `class` will the
 
 ## children
 
+
+The value of the property itself is under the control of Preact, e.g. in the following example despite passing some other value for the prop, `MyComponent` would not receive a `children` entry in its props because there are no actual child vnodes:
+
+```jsx
+
+<MyComponent children={[1,2,3]} />
+```
+
 ## dangerouslySetInnerHTML
+
+For regular DOM nodes, this provides a way to take over the rendered contents. Like [React's version](https://react.dev/reference/react-dom/components/common#dangerously-setting-the-inner-html), it expects an object with an `__html` property whose value is to be set as the [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) of the element.
+
+For functional/class-based components this is treated just as any other arbitrary property. The value would be available to the component's implementation but does not directly influence/override its rendered output. (TBD: but does [diff-skipping](https://preactjs.com/guide/v10/upgrade-guide/#dangerouslysetinnerhtml-will-skip-diffing-of-children) still apply?)
 
 ## on*
 
+For property names beginning with "on…" Preact registers an event handler. See the [Events tutorial](/tutorial/02-events/) for additional explanation.
+
+Note that while Preact core does do a bit of fix up here and there (see [Other special properties](#other-special-properties) below…) it generally follows the underlying browser DOM event naming/behavior more plainly and directly when you are not using `preact/compat`.
+
+
 ### on*Capture
+
+If your event property name ends with "…Capture" (but *not* ["…PointerCapture"](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events#pointer_capture) ;-) then Preact will register your event handler during the capture (rather than bubbling) phase.
 
 
 ## Other special properties
