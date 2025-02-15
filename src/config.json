@@ -58,11 +58,13 @@
 		"tutorial": {
 			"help": {
 				"en": "Help",
+        "ja": "助ける",
 				"kr": "정답 확인",
 				"ru": "Помощь"
 			},
 			"solve": {
 				"en": "Solve",
+        "ja": "説き明かす",
 				"ru": "Решить"
 			}
 		}
@@ -86,9 +88,10 @@
 			"href": "/tutorial",
 			"name": {
 				"en": "Tutorial",
-				"zh": "教程",
+        "ja": "チュートリアル",
 				"kr": "튜토리얼",
-				"ru": "Учебник"
+				"ru": "Учебник",
+				"zh": "教程"
 			}
 		},
 		{
@@ -111,7 +114,7 @@
 				"en": "About",
 				"de": "Mehr",
 				"pt-br": "Sobre",
-				"ja": "Preactについて",
+				"ja": "情報",
 				"es": "Sobre",
 				"zh": "关于",
 				"kr": "소개",
@@ -190,15 +193,17 @@
 			"path": "/blog",
 			"name": {
 				"en": "Blog",
-				"zh": "博客",
+        "ja": "ブログ",
 				"kr": "블로그",
-				"ru": "Блог"
+				"ru": "Блог",
+				"zh": "博客"
 			}
 		},
 		{
 			"path": "/repl",
 			"name": {
 				"en": "REPL",
+        "ja": "レプル",
 				"zh": "在线试用"
 			}
 		}
@@ -209,32 +214,33 @@
 				"name": {
 					"en": "Introduction",
 					"de": "Einführung",
-					"zh": "介绍",
+          "ja": "はじめに",
 					"kr": "개요",
-					"ru": "Введение"
+					"ru": "Введение",
+					"zh": "介绍"
 				},
 				"routes": [
 					{
 						"path": "/getting-started",
 						"name": {
 							"en": "Getting Started",
-							"pt-br": "Começando",
-							"ja": "はじめに",
 							"de": "Los geht's",
-							"zh": "开始上手",
+							"ja": "はじめる",
 							"kr": "시작하기",
-							"ru": "Первые шаги"
+							"pt-br": "Começando",
+							"ru": "Первые шаги",
+							"zh": "开始上手"
 						}
 					},
 					{
 						"path": "/whats-new",
 						"name": {
 							"en": "What's new?",
-							"ja": "Preact Xの新機能",
-							"pt-br": "o que há de novo",
-							"zh": "新鲜功能",
+							"ja": "新機能",
 							"kr": "새로운 기능",
-							"ru": "Что нового?"
+							"ru": "Что нового?",
+							"pt-br": "o que há de novo",
+							"zh": "新鲜功能"
 						}
 					},
 					{
