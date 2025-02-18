@@ -5,7 +5,7 @@ description: "Preact has built-in TypeScript support. Learn how to make use of i
 
 # TypeScript
 
-Preact ships TypeScript type definitions, which are used by the library itself! 
+Preact ships TypeScript type definitions, which are used by the library itself!
 
 When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit from the added type information while writing regular JavaScript. If you want to add type information to your own applications, you can use [JSDoc annotations](https://fettblog.eu/typescript-jsdoc-superpowers/), or write TypeScript and transpile to regular JavaScript. This section will focus on the latter.
 
@@ -233,35 +233,32 @@ Now when we use `Input` it will know about properties like `value`, ...
 Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
 ```tsx
+import type { JSX } from "preact";
+
 export class Button extends Component {
-  handleClick(event: MouseEvent) {
-    event.preventDefault();
-    if (event.target instanceof HTMLElement) {
-      alert(event.target.tagName); // Alerts BUTTON
-    }
-  }
-
-  render() {
-    return <button onClick={this.handleClick}>{this.props.children}</button>;
-  }
-}
-```
-
-You can restrict event handlers by adding a type annotation for `this` to the function signature as the first argument. This argument will be erased after transpilation.
-
-```tsx
-export class Button extends Component {
-  // Adding the this argument restricts binding
-  handleClick(this: HTMLButtonElement, event: MouseEvent) {
-    event.preventDefault();
-    if (event.target instanceof HTMLElement) {
-      console.log(event.target.localName); // "button"
-    }
+  handleClick(event: JSX.TargetedMouseEvent<HTMLButtonElement>) {
+    alert(event.currentTarget.tagName); // Alerts BUTTON
   }
 
   render() {
     return (
-      <button onClick={this.handleClick}>{this.props.children}</button>
+      <button onClick={this.handleClick}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+```
+
+If you prefer inline functions, you can forgo explicitly typing the current event target as it is inferred from the JSX element:
+
+```tsx
+export class Button extends Component {
+  render() {
+    return (
+      <button onClick={(event) => alert(event.currentTarget.tagName)}>
+        {this.props.children}
+      </button>
     );
   }
 }
