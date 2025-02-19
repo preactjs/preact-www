@@ -63,7 +63,7 @@ function Counter() {
   const value = count.value;
 
   const increment = () => {
-    // Сигнал обновляется путем присвоения значения свойству `.value`:
+    // Сигнал обновляется путём присвоения значения свойству `.value`:
     count.value++;
   };
 
