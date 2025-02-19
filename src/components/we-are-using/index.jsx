@@ -277,6 +277,11 @@ const companies = [
 		name: 'Loveholidays',
 		href: 'https://loveholidays.com',
 		logo: 'loveholidays.svg'
+	},
+	{
+		name: 'WordPress CMS',
+		href: 'https://wordpress.org',
+		logo: 'WordPress.png'
 	}
 ];
 
