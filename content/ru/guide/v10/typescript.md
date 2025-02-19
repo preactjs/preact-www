@@ -226,34 +226,33 @@ const Input = (props: InputProperties) => <input {...props} />
 Preact генерирует регулярные события DOM. Пока ваш проект TypeScript включает библиотеку `dom` (установите её в `tsconfig.json`), у вас есть доступ ко всем типам событий, которые доступны в вашей текущей конфигурации.
 
 ```tsx
+import type { JSX } from "preact";
+
 export class Button extends Component {
-  handleClick(event: MouseEvent) {
-    event.preventDefault();
-    if (event.target instanceof HTMLElement) {
-      alert(event.target.tagName); // Оповещение BUTTON
-    }
+  handleClick(event: JSX.TargetedMouseEvent<HTMLButtonElement>) {
+    alert(event.currentTarget.tagName); // Оповещение BUTTON
   }
 
   render() {
-    return <button onClick={this.handleClick}>{this.props.children}</button>;
+    return (
+      <button onClick={this.handleClick}>
+        {this.props.children}
+      </button>
+    );
   }
 }
 ```
 
-Вы можете ограничить обработчики событий, добавив аннотацию типа `this` к сигнатуре функции в качестве первого аргумента. Этот аргумент будет стерт после транспиляции.
+Если вы предпочитаете встроенные функции, можно обойтись без явного указания текущей цели события, так как она выводится из элемента JSX.
 
 ```tsx
 export class Button extends Component {
-  // Добавление этого аргумента ограничивает привязку
-  handleClick(this: HTMLButtonElement, event: MouseEvent) {
-    event.preventDefault();
-    if (event.target instanceof HTMLElement) {
-      console.log(event.target.localName); // "button"
-    }
-  }
-
   render() {
-    return <button onClick={this.handleClick}>{this.props.children}</button>;
+    return (
+      <button onClick={(event) => alert(event.currentTarget.tagName)}>
+        {this.props.children}
+      </button>
+    );
   }
 }
 ```
