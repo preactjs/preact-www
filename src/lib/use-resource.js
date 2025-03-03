@@ -1,4 +1,4 @@
-import { useEffect } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 
 /**
  * @typedef {Object} CacheEntry
@@ -13,11 +13,12 @@ export const CACHE = new Map();
 export const createCacheKey = (fn, deps) => '' + fn + JSON.stringify(deps);
 
 export function useResource(fn, deps) {
+	const update = useState({})[1];
 	const cacheKey = createCacheKey(fn, deps);
 
 	let state = CACHE.get(cacheKey);
 	if (!state) {
-		state = setupCacheEntry(fn, cacheKey);
+		state = setupCacheEntry(fn, cacheKey, update);
 	}
 
 	useEffect(() => {
@@ -39,9 +40,10 @@ export function useResource(fn, deps) {
 /**
  * @param {() => Promise<any>} fn
  * @param {string} cacheKey
+ * @param {(state: CacheEntry) => void} [update]
  * @returns {CacheEntry}
  */
-export function setupCacheEntry(fn, cacheKey) {
+export function setupCacheEntry(fn, cacheKey, update) {
 	/** @type {CacheEntry} */
 	const state = { promise: fn(), status: 'pending', result: undefined, users: 0 };
 
@@ -54,6 +56,9 @@ export function setupCacheEntry(fn, cacheKey) {
 			.catch(err => {
 				state.status = 'error';
 				state.result = err;
+			})
+			.finally(() => {
+				update && update(state);
 			});
 	} else {
 		state.status = 'success';
