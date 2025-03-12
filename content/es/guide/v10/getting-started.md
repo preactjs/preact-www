@@ -18,7 +18,7 @@ Si recién está comenzando, le recomendamos ir con [preact-cli](#best-practices
 	+ [Hacer una construcción de producción](#making-a-production-build)
 + [Integración en una tubería existente](#integrating-into-an-existing-pipeline)
 	+ [Configurando JSX](#setting-up-jsx)
-	+ [Aliasing de Reaccionar a Preact](#aliasing-react-to-preact)
+	+ [Aliasing de React a Preact](#aliasing-react-to-preact)
 		+ [Aliasing en webpack](#aliasing-in-webpack)
 		+ [Aliasing en parcel](#aliasing-in-parcel)
 		+ [Aliasing en jest](#aliasing-in-jest)
@@ -141,9 +141,9 @@ El que todos usamos es [@babel/plugin-transform-react-jsx](https://webpack.js.or
 > [babeljs](https://babeljs.io/) tiene una de las mejores documentaciones que existen. Recomendamos encarecidamente consultarlo en busca de preguntas sobre babel y cómo configurarlo.
 
 
-### Aliasing de Reaccionar a Preact
+### Aliasing de React a Preact
 
-En algún momento, probablemente querrás utilizar el vasto ecosistema de reacción. Las bibliotecas y componentes escritos originalmente para React funcionan a la perfección con nuestra capa de compatibilidad. Para utilizarlo, debemos señalar todas las importaciones de `react` y `react-dom` a Preact. Este paso se llama aliasing.
+En algún momento, probablemente querrás utilizar el vasto ecosistema de React. Las bibliotecas y componentes escritos originalmente para React funcionan a la perfección con nuestra capa de compatibilidad. Para utilizarlo, debemos señalar todas las importaciones de `react` y `react-dom` a Preact. Este paso se llama aliasing.
 
 
 #### Aliasing en webpack
