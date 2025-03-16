@@ -59,11 +59,13 @@
 			"help": {
 				"en": "Help",
 				"kr": "정답 확인",
-				"ru": "Помощь"
+				"ru": "Помощь",
+				"es": "Ayuda"
 			},
 			"solve": {
 				"en": "Solve",
-				"ru": "Решить"
+				"ru": "Решить",
+				"es": "Resolver"
 			}
 		}
 	},
@@ -86,6 +88,7 @@
 			"href": "/tutorial",
 			"name": {
 				"en": "Tutorial",
+				"es": "Tutorial",
 				"zh": "教程",
 				"kr": "튜토리얼",
 				"ru": "Учебник"
@@ -112,7 +115,7 @@
 				"de": "Mehr",
 				"pt-br": "Sobre",
 				"ja": "Preactについて",
-				"es": "Sobre",
+				"es": "Acerca de",
 				"zh": "关于",
 				"kr": "소개",
 				"ru": "Разное"
@@ -190,6 +193,7 @@
 			"path": "/blog",
 			"name": {
 				"en": "Blog",
+				"es": "Blog",
 				"zh": "博客",
 				"kr": "블로그",
 				"ru": "Блог"
@@ -199,6 +203,7 @@
 			"path": "/repl",
 			"name": {
 				"en": "REPL",
+				"es": "REPL",
 				"zh": "在线试用"
 			}
 		}
@@ -208,6 +213,7 @@
 			{
 				"name": {
 					"en": "Introduction",
+					"es": "Introducción",
 					"de": "Einführung",
 					"zh": "介绍",
 					"kr": "개요",
@@ -223,7 +229,8 @@
 							"de": "Los geht's",
 							"zh": "开始上手",
 							"kr": "시작하기",
-							"ru": "Первые шаги"
+							"ru": "Первые шаги",
+							"es": "Para empezar"
 						}
 					},
 					{
@@ -234,7 +241,8 @@
 							"pt-br": "o que há de novo",
 							"zh": "新鲜功能",
 							"kr": "새로운 기능",
-							"ru": "Что нового?"
+							"ru": "Что нового?",
+							"es": "¿Qué hay de nuevo?"
 						}
 					},
 					{
@@ -246,7 +254,8 @@
 							"de": "Migration von 8.x",
 							"zh": "从 8.x 版本更新",
 							"kr": "8.x에서 업그레이드하기",
-							"ru": "Обновление с 8.x"
+							"ru": "Обновление с 8.x",
+							"es": "Actualizar desde 8.x"
 						}
 					},
 					{
@@ -258,7 +267,8 @@
 							"de": "Tutorial",
 							"zh": "教程",
 							"kr": "튜토리얼",
-							"ru": "Учебник"
+							"ru": "Учебник",
+							"es": "Tutorial"
 						}
 					}
 				]
@@ -268,7 +278,8 @@
 					"en": "Essentials",
 					"zh": "基础",
 					"kr": "필수 항목",
-					"ru": "Основы"
+					"ru": "Основы",
+					"es": "Esenciales"
 				},
 				"routes": [
 					{
@@ -280,7 +291,8 @@
 							"de": "Komponenten",
 							"zh": "组件",
 							"kr": "컴포넌트",
-							"ru": "Компоненты"
+							"ru": "Компоненты",
+							"es": "Componentes"
 						}
 					},
 					{
@@ -292,7 +304,8 @@
 							"de": "Hooks",
 							"zh": "钩子",
 							"kr": "훅",
-							"ru": "Хуки"
+							"ru": "Хуки",
+							"es": "Hooks"
 						}
 					},
 					{
@@ -313,7 +326,8 @@
 							"de": "Formulare",
 							"zh": "表单",
 							"kr": "폼",
-							"ru": "Формы"
+							"ru": "Формы",
+							"es": "Formularios"
 						}
 					},
 					{
@@ -325,7 +339,8 @@
 							"de": "Referenzen",
 							"zh": "引用",
 							"kr": "레퍼런스",
-							"ru": "Рефы"
+							"ru": "Рефы",
+							"es": "Referencias"
 						}
 					},
 					{
@@ -337,7 +352,8 @@
 							"de": "Kontext",
 							"zh": "上下文",
 							"kr": "컨텍스트",
-							"ru": "Контекст"
+							"ru": "Контекст",
+							"es": "Contexto"
 						}
 					}
 				]
@@ -347,7 +363,8 @@
 					"en": "Debug & Test",
 					"zh": "调试与测试",
 					"kr": "디버그 & 테스트",
-					"ru": "Отладка и тестирование"
+					"ru": "Отладка и тестирование",
+					"es": "Depuración y Pruebas"
 				},
 				"routes": [
 					{
@@ -359,7 +376,8 @@
 							"de": "Entwickler-Tools",
 							"zh": "调试工具",
 							"kr": "디버깅 도구",
-							"ru": "Инструменты отладки"
+							"ru": "Инструменты отладки",
+							"es": "Heramientas de depuración"
 						}
 					},
 					{
@@ -371,7 +389,8 @@
 							"de": "Preact Testing Library",
 							"zh": "Preact 测试库",
 							"kr": "Preact 테스팅 라이브러리",
-							"ru": "Preact Testing Library"
+							"ru": "Preact Testing Library",
+							"es": "Librería de pruebas de Preact"
 						}
 					},
 					{
@@ -383,7 +402,8 @@
 							"de": "Unit-Tests mit Enzyme",
 							"kr": "Enzyme를 이용한 유닛 테스트",
 							"zh": "使用 Enzyme 进行单元测试",
-							"ru": "Модульное тестирование с помощью Enzyme"
+							"ru": "Модульное тестирование с помощью Enzyme",
+							"es": "Pruebas unitarias con Enzyme"
 						}
 					}
 				]
@@ -393,7 +413,8 @@
 					"en": "React compatibility",
 					"zh": "React 兼容性",
 					"kr": "React 호환성",
-					"ru": "Совместимость с React"
+					"ru": "Совместимость с React",
+					"es": "Compatibilidad con React"
 				},
 				"routes": [
 					{
@@ -405,7 +426,8 @@
 							"de": "Unterschiede zu React",
 							"kr": "React와의 차이점",
 							"zh": "与 React 的区别",
-							"ru": "Отличия от React"
+							"ru": "Отличия от React",
+							"es": "Diferencias con React"
 						}
 					},
 					{
@@ -417,7 +439,8 @@
 							"de": "Wechsel zu Preact",
 							"kr": "Preact로 전환",
 							"zh": "从 React 转到 Preact",
-							"ru": "Переход на Preact"
+							"ru": "Переход на Preact",
+							"es": "Cambiando a Preact"
 						}
 					}
 				]
@@ -428,7 +451,8 @@
 					"de": "Fortgeschritten",
 					"zh": "进阶",
 					"kr": "고급",
-					"ru": "Дополнительно"
+					"ru": "Дополнительно",
+					"es": "Avanzado"
 				},
 				"routes": [
 					{
@@ -440,7 +464,8 @@
 							"de": "API Referenz",
 							"zh": "API 参考",
 							"kr": "API 참조",
-							"ru": "Справочник по API"
+							"ru": "Справочник по API",
+							"es": "Referencias de la API"
 						}
 					},
 					{
@@ -452,7 +477,8 @@
 							"de": "Web Components",
 							"zh": "Web 组件",
 							"kr": "웹 컴포넌트",
-							"ru": "Веб-компоненты"
+							"ru": "Веб-компоненты",
+							"es": "Web Components"
 						}
 					},
 					{
@@ -464,7 +490,8 @@
 							"de": "Server-Side Rendering",
 							"zh": "服务端渲染",
 							"kr": "서버 측 렌더링",
-							"ru": "Рендеринг на стороне сервера"
+							"ru": "Рендеринг на стороне сервера",
+							"es": "Renderizado del lado del servidor (SSR)"
 						}
 					},
 					{
@@ -476,7 +503,8 @@
 							"de": "Externe DOM Mutationen",
 							"zh": "外部 DOM 修改",
 							"kr": "외부 DOM 변경",
-							"ru": "Внешние мутации DOM"
+							"ru": "Внешние мутации DOM",
+							"es": "Mutaciones externas del DOM"
 						}
 					},
 					{
@@ -487,7 +515,8 @@
 							"de": "Optionen",
 							"zh": "选项钩子",
 							"kr": "옵션 훅",
-							"ru": "Опционные хуки"
+							"ru": "Опционные хуки",
+							"es": "Opciones de Hooks"
 						}
 					},
 					{
@@ -498,7 +527,8 @@
 						"path": "/no-build-workflows",
 						"name": {
 							"en": "No-Build Workflows",
-							"zh": "无构建工具工作流"
+							"zh": "无构建工具工作流",
+							"es": "Workflows sin construcción"
 						}
 					}
 				]
@@ -512,7 +542,8 @@
 					"pt-br": "Começando",
 					"de": "Los geht's",
 					"zh": "开始上手",
-					"ru": "Первые шаги"
+					"ru": "Первые шаги",
+					"es": "Para empezar"
 				}
 			},
 			{
@@ -522,7 +553,8 @@
 					"pt-br": "Diferenças do React",
 					"de": "Unterschiede zu React",
 					"zh": "与 React 的区别",
-					"ru": "Отличия от React"
+					"ru": "Отличия от React",
+					"es": "Diferencias con React"
 				}
 			},
 			{
@@ -532,7 +564,8 @@
 					"pt-br": "Mudando para Preact",
 					"de": "Wechsel zu Preact",
 					"zh": "从 React 转到 Preact",
-					"ru": "Переход на Preact"
+					"ru": "Переход на Preact",
+					"es": "Cambiando a Preact"
 				}
 			},
 			{
@@ -542,7 +575,8 @@
 					"pt-br": "Tipos de Componentes",
 					"de": "Komponenten-Typen",
 					"zh": "组件类型",
-					"ru": "Типы компонентов"
+					"ru": "Типы компонентов",
+					"es": "Tipos de Componentes"
 				}
 			},
 			{
@@ -552,7 +586,8 @@
 					"pt-br": "Referência da API",
 					"de": "API Referenz",
 					"zh": "API 参考",
-					"ru": "Справочник по API"
+					"ru": "Справочник по API",
+					"es": "Referencias de la API"
 				}
 			},
 			{
@@ -562,7 +597,8 @@
 					"pt-br": "Formulários",
 					"de": "Formulare",
 					"zh": "表单",
-					"ru": "Формы"
+					"ru": "Формы",
+					"es": "Formularios"
 				}
 			},
 			{
@@ -570,7 +606,8 @@
 				"name": {
 					"en": "Linked State",
 					"zh": "关联状态",
-					"ru": "Связанное состояние"
+					"ru": "Связанное состояние",
+					"es": "Estado vinculado"
 				}
 			},
 			{
@@ -580,7 +617,8 @@
 					"pt-br": "Mutações do DOM externas",
 					"de": "Externe DOM Mutationen",
 					"zh": "外部 DOM 修改",
-					"ru": "Внешние мутации DOM"
+					"ru": "Внешние мутации DOM",
+					"es": "Mutaciones externas del DOM"
 				}
 			},
 			{
@@ -590,7 +628,8 @@
 					"pt-br": "Extendendo Componentes",
 					"de": "Komponente Erweitern",
 					"zh": "扩展组件",
-					"ru": "Расширение компонентов"
+					"ru": "Расширение компонентов",
+					"es": "Extender Componente"
 				}
 			},
 			{
@@ -600,7 +639,8 @@
 					"pt-br": "Teste unitado com Enzyme",
 					"de": "Unit-Tests mit Enzyme",
 					"zh": "使用 Enzyme 进行单元测试",
-					"ru": "Модульное тестирование с помощью Enzyme"
+					"ru": "Модульное тестирование с помощью Enzyme",
+					"es": "Pruebas unitarias con Enzyme"
 				}
 			},
 			{
@@ -608,7 +648,8 @@
 				"name": {
 					"en": "Progressive Web Apps",
 					"zh": "渐进式 Web 应用",
-					"ru": "Прогрессивные веб-приложения"
+					"ru": "Прогрессивные веб-приложения",
+					"es": "Aplicaciones Web Progresivas"
 				}
 			}
 		]
@@ -649,11 +690,13 @@
 			"date": "2024-08-06",
 			"name": {
 				"en": "Build your own Island Components",
-				"ru": "Создание собственных островных компонентов"
+				"ru": "Создание собственных островных компонентов",
+				"es": "Construye tus propios componentes de isla"
 			},
 			"excerpt": {
 				"en": "Demystifying how island architechture works and being able to setup your own, using tools you already have around you.",
-				"ru": "Вы узнаете, как работает островная архитектура, и сможете создать свою собственную, используя инструменты, которые уже есть у вас под рукой."
+				"ru": "Вы узнаете, как работает островная архитектура, и сможете создать свою собственную, используя инструменты, которые уже есть у вас под рукой.",
+				"es": "Desmitificando cómo funciona la arquitectura de islas y poder configurar la tuya propia, utilizando las herramientas que ya tienes a tu alrededor."
 			}
 		},
 		{
@@ -661,11 +704,13 @@
 			"date": "2024-08-06",
 			"name": {
 				"en": "Prerendering with Preset Vite",
-				"ru": "Предварительный рендеринг с пресетом Vite"
+				"ru": "Предварительный рендеринг с пресетом Vite",
+				"es": "Prerenderizado con Preset Vite"
 			},
 			"excerpt": {
 				"en": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large",
-				"ru": "Прошло полгода с тех пор, как наш плагин для пререндеринга стал доступен в `@preact/preset-vite`, так что давайте поговорим о нем, о нашей истории и об экосистеме в целом."
+				"ru": "Прошло полгода с тех пор, как наш плагин для пререндеринга стал доступен в `@preact/preset-vite`, так что давайте поговорим о нем, о нашей истории и об экосистеме в целом.",
+				"es": "Hace medio año que nuestro plugin de preprocesamiento está disponible en `@preact/preset-vite`, así que hablemos de él, de nuestra historia y del ecosistema en general."
 			}
 		},
 		{
@@ -673,11 +718,13 @@
 			"date": "2024-05-24",
 			"name": {
 				"en": "Preact X, a story of stability",
-				"ru": "Preact X, история стабильности"
+				"ru": "Preact X, история стабильности",
+				"es": "Preact X, una historia de estabilidad"
 			},
 			"excerpt": {
 				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened.",
-				"ru": "Preact X выпускается уже пять лет, давайте вспомним всё, что произошло за это время."
+				"ru": "Preact X выпускается уже пять лет, давайте вспомним всё, что произошло за это время.",
+				"es": "Preact X ha sido lanzado durante cinco años, repasemos todas las cosas emocionantes que han sucedido."
 			}
 		},
 		{
@@ -721,67 +768,78 @@
 		{
 			"path": "/tutorial",
 			"name": {
-				"en": "Learn Preact"
+				"en": "Learn Preact",
+				"es": "Aprende Preact"
 			}
 		},
 		{
 			"path": "/tutorial/01-vdom",
 			"name": {
-				"en": "Virtual DOM"
+				"en": "Virtual DOM",
+				"es": "DOM Virtual"
 			}
 		},
 		{
 			"path": "/tutorial/02-events",
 			"name": {
-				"en": "Events"
+				"en": "Events",
+				"es": "Eventos"
 			}
 		},
 		{
 			"path": "/tutorial/03-components",
 			"name": {
-				"en": "Components"
+				"en": "Components",
+				"es": "Componentes"
 			}
 		},
 		{
 			"path": "/tutorial/04-state",
 			"name": {
-				"en": "State"
+				"en": "State",
+				"es": "Estado"
 			}
 		},
 		{
 			"path": "/tutorial/05-refs",
 			"name": {
-				"en": "Refs"
+				"en": "Refs",
+				"es": "Referencias (Refs)"
 			}
 		},
 		{
 			"path": "/tutorial/06-context",
 			"name": {
-				"en": "Context"
+				"en": "Context",
+				"es": "Contexto"
 			}
 		},
 		{
 			"path": "/tutorial/07-side-effects",
 			"name": {
-				"en": "Side Effects"
+				"en": "Side Effects",
+				"es": "Efectos Secundarios"
 			}
 		},
 		{
 			"path": "/tutorial/08-keys",
 			"name": {
-				"en": "Keys"
+				"en": "Keys",
+				"es": "Claves"
 			}
 		},
 		{
 			"path": "/tutorial/09-error-handling",
 			"name": {
-				"en": "Error Handling"
+				"en": "Error Handling",
+				"es": "Manejo de Errores"
 			}
 		},
 		{
 			"path": "/tutorial/10-links",
 			"name": {
-				"en": "Congratulations!"
+				"en": "Congratulations!",
+				"es": "¡Felicidades!"
 			}
 		}
 	],
