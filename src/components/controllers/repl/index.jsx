@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
+import { useLocation, ErrorBoundary } from 'preact-iso';
 import { Splitter } from '../../splitter';
 import { textToBase64 } from './query-encode.js';
 import { ErrorOverlay } from './error-overlay';
@@ -16,8 +16,7 @@ import REPL_CSS from './examples/style.css?raw';
  * @param {string} [props.slug]
  */
 export function Repl({ code }) {
-	const { route } = useLocation();
-	const { query } = useRoute();
+	const { route, searchParams } = useLocation();
 	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code, true);
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
@@ -56,7 +55,7 @@ export function Repl({ code }) {
 	const share = () => {
 		// No reason to share semi-sketchy btoa'd code if there's
 		// a perfectly good example we can use instead
-		if (!query.example) {
+		if (!searchParams.example) {
 			// We use `history.replaceState` here as the code is only relevant on mount.
 			// There's no need to notify the router of the change.
 			history.replaceState(null, null, `/repl?code=${encodeURIComponent(textToBase64(editorCode))}`);
@@ -88,13 +87,13 @@ export function Repl({ code }) {
 			<header class={style.toolbar}>
 				<label>
 					Examples:{' '}
-					<select value={query.example || ''} onChange={applyExample}>
+					<select value={searchParams.example || ''} onChange={applyExample}>
 						<option value="" disabled>
 							Select Example...
 						</option>
 						{EXAMPLES.map(function item(ex) {
 							const selected =
-								ex.slug !== undefined && ex.slug === query.example;
+								ex.slug !== undefined && ex.slug === searchParams.example;
 							return ex.group ? (
 								<optgroup label={ex.group}>{ex.items.map(item)}</optgroup>
 							) : (
@@ -136,7 +135,7 @@ export function Repl({ code }) {
 							class={style.code}
 							value={editorCode}
 							error={error}
-							slug={query.example}
+							slug={searchParams.example}
 							onInput={onEditorInput}
 						/>
 					</Splitter>

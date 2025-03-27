@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import { useEffect } from 'preact/hooks';
 import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
@@ -9,8 +9,7 @@ import { tutorialRoutes } from '../../lib/route-utils';
 import style from './tutorial/style.module.css';
 
 export default function TutorialPage() {
-	const { params } = useRoute();
-	const { step } = params;
+	const { step } = useLocation().pathParams;
 
 	if (!tutorialRoutes[`/tutorial${step ? `/${step}` : ''}`]) {
 		return <NotFound />;
@@ -20,8 +19,8 @@ export default function TutorialPage() {
 }
 
 function TutorialLayout() {
-	const { path, params } = useRoute();
-	const { html, meta } = useContent(!params.step ? '/tutorial/index' : path);
+	const { path, pathParams } = useLocation();
+	const { html, meta } = useContent(!pathParams.step ? '/tutorial/index' : path);
 
 	// Preload the next chapter
 	useEffect(() => {

@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import { useContent } from '../../lib/use-content';
 import config from '../../config.json';
 import { NotFound } from './not-found';
@@ -11,8 +11,8 @@ import { LATEST_MAJOR } from '../doc-version';
 import style from './style.module.css';
 
 export function DocPage() {
-	const { params } = useRoute();
-	const { version, name } = params;
+	const { version, name } = useLocation().pathParams;
+	console.log('doc page');
 
 	if (!docRoutes[version]['/' + name]) {
 		return <NotFound />;
@@ -22,7 +22,8 @@ export function DocPage() {
 }
 
 export function DocLayout({ isGuide = false }) {
-	const { path } = useRoute();
+	const { path } = useLocation();
+	console.log('doc layout');
 	const { html, meta } = useContent(path === '/' ? 'index' : path);
 
 	return (
@@ -44,7 +45,7 @@ export function DocLayout({ isGuide = false }) {
 }
 
 function OldDocsWarning() {
-	const { name, version } = useRoute().params;
+	const { name, version } = useLocation().pathParams;
 
 	if (version === LATEST_MAJOR) {
 		return null;

@@ -1,5 +1,5 @@
 import { Fragment } from 'preact';
-import { useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import EditThisPage from '../edit-button';
 import ContentRegion from '../content-region';
 import BlogMeta from '../blog-meta';
@@ -11,7 +11,7 @@ import BlogMeta from '../blog-meta';
  * @propery {any} [components]
  */
 export function MarkdownRegion({ html, meta, components }) {
-	const { path } = useRoute();
+	const { path } = useLocation();
 
 	const canEdit = path !== '/' && !path.startsWith('/tutorial');
 	const isBlogArticle = path.startsWith('/blog/');

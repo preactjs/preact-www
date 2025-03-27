@@ -1,5 +1,5 @@
 import { useCallback } from 'preact/hooks';
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import config from '../../config.json';
 import style from './style.module.css';
 
@@ -10,9 +10,8 @@ export const AVAILABLE_DOCS = ['10', '8'];
  * Select box to switch the currently displayed docs version
  */
 export default function DocVersion() {
-	const { route } = useLocation();
-	const { params, path } = useRoute();
-	const { version, name } = params;
+	const { path, pathParams, route } = useLocation();
+	const { version, name } = pathParams;
 
 	const onChange = useCallback(
 		e => {
@@ -22,7 +21,7 @@ export default function DocVersion() {
 				: `/guide/${version}/getting-started`;
 			route(url);
 		},
-		[path, route]
+		[path]
 	);
 
 	return (

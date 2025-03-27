@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import cx from '../../lib/cx';
 import { prefetchContent } from '../../lib/use-content';
 import style from './sidebar-nav.module.css';
@@ -14,7 +14,7 @@ import style from './sidebar-nav.module.css';
  * @param {SidebarNavProps} props
  */
 export default function SidebarNav({ items, onClick }) {
-	const { path } = useRoute();
+	const { path } = useLocation();
 
 	return (
 		<nav class={cx(style.toc, !(items && items.length > 1) && style.disabled)}>

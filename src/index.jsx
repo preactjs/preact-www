@@ -1,6 +1,6 @@
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
-import { hydrate, prerender as ssr } from 'preact-iso';
+import { prerender as ssr } from 'preact-iso/prerender';
 
 import App from './components/app';
 import './analytics';
@@ -11,7 +11,8 @@ globalThis.preact = { ...preact, ...hooks };
 
 
 if (typeof window !== 'undefined') {
-	hydrate(<App />, document.getElementById('app'));
+	const target = document.getElementById('app');
+	import.meta.env.DEV ? preact.render(<App />, target) : preact.hydrate(<App />, target);
 
 	// Might need to keep this around indefinitely, unfortunately
 	if ('serviceWorker' in navigator) {

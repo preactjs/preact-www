@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import DocVersion from '../doc-version';
 import SidebarNav from './sidebar-nav';
 import config from '../../config.json';
@@ -8,7 +8,7 @@ import { useLanguage } from '../../lib/i18n';
 import style from './style.module.css';
 
 export default function Sidebar() {
-	const { version } = useRoute().params;
+	const { version } = useLocation().pathParams;
 	const [lang] = useLanguage();
 	const [open, setOpen] = useOverlayToggle();
 

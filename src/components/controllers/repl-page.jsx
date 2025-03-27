@@ -1,4 +1,4 @@
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation } from 'preact-iso';
 import { Repl } from './repl';
 import { base64ToText } from './repl/query-encode.js';
 import { fetchExample } from './repl/examples';
@@ -8,11 +8,11 @@ import { useContent } from '../../lib/use-content';
 import style from './repl/style.module.css';
 
 export default function ReplPage() {
-	const { query } = useRoute();
+	const { searchParams } = useLocation();
 
 	useContent('/repl');
 
-	const code = useResource(() => getInitialCode(query), [query]);
+	const code = useResource(() => getInitialCode(searchParams), [searchParams]);
 
 	return (
 		<div class={style.repl}>
@@ -34,6 +34,7 @@ export default function ReplPage() {
  */
 async function getInitialCode(query) {
 	const { route } = useLocation();
+
 	let code;
 	if (query.code)  {
 		code = base64ToText(query.code);
