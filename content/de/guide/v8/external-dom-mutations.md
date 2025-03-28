@@ -70,13 +70,6 @@ class Beispiel extends Component {
 ```
 
 
-## Demonstration
-
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
-
-[**Schau die Demo auf Webpackbin an**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
 ## Beispiele aus der realen Welt
 
 Alternativ kann diese Technik bei [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) im Einsatz bewundert werden - es benutzt eine Komponente als Halt im DOM, umgeht aber Aktualisierungen und lässt [tags-input](https://github.com/developit/tags-input) von dort aus übernehmen. Ein komplexeres Beispiel wäre [preact-richtextarea](https://github.com/developit/preact-richtextarea). Es benutzt diese Technik, um das Rerendern eines bearbeitbaren `<iframe>`-Elementes zu umgehen.
