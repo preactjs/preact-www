@@ -71,14 +71,6 @@ class Example extends Component {
 ```
 
 
-## Demonstração
-
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
-[**Veja esse demo no Webpackbin**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
 ## Exemplos do Mundo-Real
 
 Alternativamente, veja essa técnica em ação em [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa um componente âncora no DOM, mas então desabilita as atualizações e deixa que [tags-input](https://github.com/developit/tags-input) tome controle a partir daí.

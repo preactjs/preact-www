@@ -70,13 +70,6 @@ class Example extends Component {
 ```
 
 
-## 示范
-
-[![样例](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-[** 在 Webpackbin 中查看样例 **](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
 ## 真实场景中的样例
 
 作为一种选择, 在后面的链接中查看这种技巧的使用 [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) -

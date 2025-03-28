@@ -68,14 +68,6 @@ class Example extends Component {
 }
 ```
 
-
-## Demostración
-
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-[**View this demo on Webpackbin**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
 ## Ejemplos de la vida real
 
 Alternativamente, puedes ver esta técnica en acción en [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa un componente como un foothold en el DOM, luego lo desactiva y deja que [tags-input](https://github.com/developit/tags-input) tome el rumbo más tarde.  Un ejemplo más complejo es [preact-richtextarea](https://github.com/developit/preact-richtextarea), que usa esta técnica para evitar redibujar un `<iframe>` editable.

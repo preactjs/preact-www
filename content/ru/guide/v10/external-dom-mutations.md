@@ -71,12 +71,6 @@ class Example extends Component {
 }
 ```
 
-## Демонстрация
-
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
-
-[**Посмотреть эту демонстрацию на Webpackbin**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
 ## Реальные примеры
 
 В качестве альтернативы можно посмотреть на этот прием в [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) — он использует компонент как точку опоры в DOM, но затем отключает обновления и позволяет [tags-input](https://github.com/developit/tags-input) взять на себя управление. Более сложным примером может служить [preact-richtextarea](https://github.com/developit/preact-richtextarea), в котором эта техника используется для того, чтобы избежать повторного отображения редактируемого `<iframe>`.

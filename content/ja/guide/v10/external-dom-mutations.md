@@ -74,14 +74,6 @@ class Example extends Component {
 }
 ```
 
-
-## デモ
-
-[![デモ](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
-
-[**Webpackbinで動くデモを見る**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
 ## 実際の例
 
 または、[preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js)で、このテクニックの使い方を確認してください。
