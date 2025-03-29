@@ -5,11 +5,11 @@ description: 'Signals: estado reactivo componible con renderización automática
 
 # Signals
 
-Signals son primitivas reactivas para gestionar el estado de las aplicaciones.
+Signals, señales en español, son primitivas reactivas para gestionar el estado de las aplicaciones.
 
-Lo que hacen únicas a los Signals es que los cambios de estado actualizan automáticamente los componentes y la interfaz de usuario de la forma más eficiente posible. La vinculación automática de estados y el seguimiento de dependencias permiten a Signals ofrecer una ergonomía y una productividad excelentes, al tiempo que elimina las pegas más comunes en la gestión de estados.
+Lo que hacen únicos a los Signals es que los cambios de estado actualizan automáticamente los componentes y la interfaz de usuario de la forma más eficiente posible. La vinculación automática de estados y el seguimiento de dependencias permiten a Signals ofrecer una ergonomía y una productividad excelentes, al tiempo que elimina las pegas más comunes en la gestión de estados.
 
-Signals son eficaces en aplicaciones de cualquier tamaño, con ergonomias que acelera el desarrollo de aplicaciones pequeñas, y caracteristicas de rendimiento que garantizan que las aplicaciones de cualquier tamaño sean rapidas por defecto.
+Signals son eficaces en aplicaciones de cualquier tamaño, con ergonomías que aceleran el desarrollo de aplicaciones pequeñas y características de rendimiento que garantizan que las aplicaciones de cualquier tamaño sean rápidas por defecto.
 
 ---
 
@@ -25,9 +25,9 @@ Esta guía tratará sobre el uso de Signals en Preact, y aunque es aplicable tan
 
 ## Introducción
 
-Gran parte de la dificultad de la gestión de estados en JavaScript es reaccionar a los cambios de un valor dado, porque los valores no son directamente observables.Las soluciones suelen resolver este problema almacenando los valores en una variable y comprobando continuamente si han cambiado, lo cual es engorroso y no es ideal para el rendimiento. Idealmente, queremos una forma de expresar un valor que nos diga cuándo cambia. Eso es lo que hacen los Signals.
+Gran parte de la dificultad de la gestión de estados en JavaScript es reaccionar a los cambios de un valor dado, porque los valores no son directamente observables. Las soluciones suelen resolver este problema almacenando los valores en una variable y comprobando continuamente si han cambiado, lo cual es engorroso y no es ideal para el rendimiento. Idealmente, queremos una forma de expresar un valor que nos diga cuándo cambia. Eso es lo que hacen los Signals.
 
-En esencia, una signal es un objeto con una propiedad `.value` que contiene un valor. Esto tiene una característica importante: el valor de una signal puede cambiar, pero la signal en sí siempre permanece igual:
+En esencia, un signal es un objeto con una propiedad `.value` que contiene un valor. Esto tiene una característica importante: el valor de un signal puede cambiar, pero el signal en sí siempre permanece igual:
 
 ```js
 // --repl
@@ -45,9 +45,9 @@ count.value += 1;
 console.log(count.value);  // 1
 ```
 
-En Preact, cuando una signal se pasa a través de un arbol como props o contexto, sólo estamos pasando referencias a la signal. La signal puede ser actualizado sin volver a renderizar ningún componente, ya que los componentes ven la signal y no su valor. Esto nos permite saltarnos todo el costoso trabajo de renderizado y saltar inmediatamente a cualquier componente en el árbol que actualmente acceda a la propiedad `.value` de la signal.
+En Preact, cuando un signal se pasa a través de un arbol como props o contexto, sólo estamos pasando referencias al signal. El signal puede ser actualizado sin volver a renderizar ningún componente, ya que los componentes ven el signal y no su valor. Esto nos permite saltarnos todo el costoso trabajo de renderizado y saltar inmediatamente a cualquier componente en el árbol que actualmente acceda a la propiedad `.value` del signal.
 
-Las signals tienen una segunda caracteristica importante, y es que rastrean cuándo se accede a su valor y cuándo se actualiza. En Preact, al accceso a la propiedad `.value` de una signal dentro de un componente vuelve a renderizar automáticamente el componente cuando el valor de la signal cambia.
+Los signals tienen una segunda caracteristica importante, y es que rastrean cuándo se accede a su valor y cuándo se actualiza. En Preact, al accceso a la propiedad `.value` de un signal dentro de un componente vuelve a renderizar automáticamente el componente cuando el valor del signal cambia.
 
 ```jsx
 // --repl
@@ -55,7 +55,7 @@ import { render } from "preact";
 // --repl-before
 import { signal } from "@preact/signals";
 
-// Crea una signal a la que se puede suscribir:
+// Crea un signal a la que se puede suscribir:
 const count = signal(0);
 
 function Counter() {
@@ -63,7 +63,7 @@ function Counter() {
   const value = count.value;
 
   const increment = () => {
-    // Una signal es actualizado al asignar a la propiedad `.value`:
+    // Un signal es actualizado al asignar a la propiedad `.value`:
     count.value++;
   }
 
@@ -78,7 +78,7 @@ function Counter() {
 render(<Counter />, document.getElementById("app"));
 ```
 
-Por último, las signals están profundamente integradas en Preact para proporcionar el mejor rendimiento y ergonomía posibles. En el ejemplo anterior, accedimos a `count.value` para recuperar el valor actual de la signal `count`, sin embargo esto es innecesario. En su lugar, podemos dejar que Preact haga todo el trabajo por nosotros utilizando la signal `count` directamente en JSX:
+Por último, los signals están profundamente integrados en Preact para proporcionar el mejor rendimiento y ergonomía posibles. En el ejemplo anterior, accedimos a `count.value` para recuperar el valor actual del signal `count`, sin embargo esto es innecesario. En su lugar, podemos dejar que Preact haga todo el trabajo por nosotros utilizando el signal `count` directamente en JSX:
 
 ```jsx
 // --repl
