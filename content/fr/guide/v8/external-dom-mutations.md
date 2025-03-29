@@ -68,14 +68,6 @@ class Example extends Component {
 }
 ```
 
-
-## Démonstration
-
-[![demo](https://i.gyazo.com/a63622edbeefb2e86d6c0d9c8d66e582.gif)](http://www.webpackbin.com/V1hyNQbpe)
-
-[**Voir cette démo sur Webpackbin**](https://www.webpackbin.com/bins/-KflCmJ5bvKsRF8WDkzb)
-
-
 ## Exemples réels
 
 Vous pouvez aussi voir cette technique en action dans [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - cela utilise un composant comme point d'appui dans le DOM, puis désactive les mises à jour et laisse [tags-input](https://github.com/developit/tags-input) prendre la main. Un exemple plus complexe pourrait être [preact-richtextarea](https://github.com/developit/preact-richtextarea), qui utilise cette technique pour éviter de re-rendre une `<iframe>` modifiable.
