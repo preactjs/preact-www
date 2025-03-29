@@ -129,11 +129,9 @@ render(Foo, dom);
 
 HTML parsers have very strict rules on how tables should be structured, deviating from which will lead to rendering errors that can be hard to debug. To help with this, Preact can detect improper nesting in a number of situations and will print warnings to catch this early. To learn more about how tables should be structured we can highly recommend [the MDN documentation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics).
 
-> **Note:** In this context, "strict" is referring to the _output of the HTML parser_ and not the _input_. Browsers are intentionally quite forgiving and try to correct invalid HTML where they can to ensure that pages can still be displayed. However, for VDOM libraries like Preact this can lead to issues as the input structure may not match the output structure once the browser has corrected it. There may be additional elements inserted, elements removed, or elements reordered.
+> **Note:** In this context, "strict" is referring to the _output_ of the HTML parser, not the _input_. Browsers are quite forgiving and try to correct invalid HTML where they can to ensure that pages can still be displayed. However, for VDOM libraries like Preact this can lead to issues as the input content might not match the output once the browser has corrected it which Preact will not be made aware of.
 >
 > For example, `<tr>` elements must always be a child of `<tbody>`, `<thead>`, or `<tfoot>` elements per the spec, but if you were to write a `<tr>` directly inside of a `<table>`, the browser will attempt to correct this by wrapping it in a `<tbody>` element for you. Preact will therefore expect the DOM structure to be `<table><tr></tr></table>` but the real DOM constructed by the browser would be `<table><tbody><tr></tr></tbody></table>`.
->
-> As it's never a good idea to rely on the browser to correct invalid HTML, and as it can cause Preact to behave unexpectedly, we print warnings to ensure that you can catch these issues early in development.
 
 ### Invalid `ref`-property
 
