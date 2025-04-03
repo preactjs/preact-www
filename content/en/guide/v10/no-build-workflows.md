@@ -149,6 +149,6 @@ function Counter() {
 		</div>
 	`;
 }
-// --repl-after
-render(<Counter />, document.getElementById('app'));
+
+render(html`<${Counter} />`, document.getElementById('app'));
 ```
