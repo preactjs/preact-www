@@ -24,12 +24,8 @@
 
 		&:hover,
 		&:focus {
-			text-decoration-color: currentColor;
-		}
-
-		&:hover,
-		&:focus {
 			color: var(--color-link-hover);
+			text-decoration-color: currentColor;
 		}
 	}
 
@@ -55,10 +51,6 @@
 		font-weight: bold;
 		cursor: text;
 		position: relative;
-
-		&:hover a.anchor {
-			text-decoration: none;
-		}
 	}
 
 	h1,
