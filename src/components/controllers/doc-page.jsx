@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import { useContent } from '../../lib/use-content';
+import { useLanguage } from '../../lib/i18n.jsx';
 import config from '../../config.json';
 import { NotFound } from './not-found';
 import cx from '../../lib/cx';
@@ -22,8 +24,13 @@ export function DocPage() {
 }
 
 export function DocLayout({ isGuide = false }) {
+	const [isMounted, setMounted] = useState(false);
 	const { path } = useRoute();
 	const { html, meta } = useContent(path === '/' ? 'index' : path);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	return (
 		<div class={cx(style.page, isGuide && style.withSidebar)}>
@@ -35,6 +42,7 @@ export function DocLayout({ isGuide = false }) {
 				)}
 				<div class={style.inner}>
 					{isGuide && <OldDocsWarning />}
+					{isGuide && isMounted && <UnmaintainedTranslationWarning meta={meta} />}
 					<MarkdownRegion html={html} meta={meta} />
 					<Footer />
 				</div>
@@ -55,7 +63,7 @@ function OldDocsWarning() {
 	);
 
 	return (
-		<div class={style.oldDocsWarning}>
+		<div class={style.stickyWarning}>
 			You are viewing the documentation for an older version of Preact.
 			{latestExists ? (
 				<>
@@ -71,6 +79,47 @@ function OldDocsWarning() {
 					.
 				</>
 			)}
+		</div>
+	);
+}
+
+// Maybe include zh? It's received some contributions recently
+const MAINTAINED_LANGUAGES = ['en', 'ru'];
+function UnmaintainedTranslationWarning({ meta }) {
+	const { path, params } = useRoute();
+	const { name, version } = params;
+	const [lang, setLang] = useLanguage();
+
+	if (version !== LATEST_MAJOR || MAINTAINED_LANGUAGES.includes(lang) || meta.isFallback) {
+		return null;
+	}
+
+	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${path}.md`;
+
+	return (
+		<div class={style.stickyWarning}>
+			<details>
+				<summary>You are viewing an unmaintained translation</summary>
+
+				Whilst we try to offer these docs in as many languages as possible, we rely upon
+				our community members to help us maintain them. This translation has seen little
+				maintenance in recent months and may have fallen out of sync with the English version.
+			</details>
+			<div class={style.unmaintaindTranslationLinks}>
+				<a
+					href={`/guide/${LATEST_MAJOR}/${name}`}
+					onClick={() => setLang('en')}
+				>
+					Switch to the English version
+				</a>
+				<a
+					href={editUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Contribute to this translation
+				</a>
+			</div>
 		</div>
 	);
 }

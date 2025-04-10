@@ -1,7 +1,7 @@
 import { createContext } from 'preact';
-import { useContext, useEffect } from 'preact/hooks';
+import { useContext, useEffect, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
-import { useStoredValue } from './localstorage';
+import { localStorageGet, localStorageSet } from './localstorage';
 import config from '../config.json';
 
 /**
@@ -18,16 +18,10 @@ const LanguageContext = createContext(/** @type {LanguageContext} */ ({}));
 /**
  * Get the default language based on the preferred preference of the browser
  * @param {Record<string, string>} available All available languages
- * @param {string} [override]
  * @returns {string | undefined}
  */
-export function getDefaultLanguage(available, override) {
+function getNavigatorLanguage(available) {
 	if (typeof navigator === 'undefined') return;
-
-	// Override via `?lang=foo` parameter
-	if (override && config.languages[override]) {
-		return override;
-	}
 
 	let langs = [navigator.language].concat(navigator.languages);
 	for (let i = 0; i < langs.length; i++) {
@@ -43,17 +37,19 @@ export function getDefaultLanguage(available, override) {
 export function LanguageProvider({ children }) {
 	const { query } = useLocation();
 
-	const [lang, setLang] = useStoredValue(
-		'lang',
-		getDefaultLanguage(config.languages, query.lang) || 'en',
-		!!query.lang
-	);
+	// We only prerender in English
+	const [lang, setLang] = useState('en');
 
 	useEffect(() => {
+		const localStorageLang = localStorageGet('lang');
+		const navigatorLang = getNavigatorLanguage(config.languages);
+
+		setLang(query.lang || localStorageLang || navigatorLang || 'en');
 		document.documentElement.lang = lang;
 	}, []);
 
 	const setAndUpdateHtmlAttr = (lang) => {
+		localStorageSet('lang', lang);
 		setLang(lang);
 		document.documentElement.lang = lang;
 	};
