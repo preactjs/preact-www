@@ -68,7 +68,7 @@ content-region h1 {
 	}
 }
 
-.oldDocsWarning {
+.stickyWarning {
 	background: var(--color-warn-bg);
 	padding: 0.75rem 1rem;
 	color: #444;
@@ -92,9 +92,16 @@ content-region h1 {
 
 		&:hover,
 		&:focus {
+			/* `--color-link-hover` is too bright on the yellow banner background */
+			color: var(--color-brand-light);
 			text-decoration-color: currentColor;
 		}
 	}
+}
+
+.unmaintaindTranslationLinks {
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .withEdit {
