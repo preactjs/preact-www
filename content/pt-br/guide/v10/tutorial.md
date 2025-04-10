@@ -7,7 +7,7 @@ description: 'Escreva seu primeiro aplicativo Preact'
 
 Este guia mostra a construção de um simples componente "relógio". Informações mais detalhadas sobre cada tópico podem ser encontradas nas páginas dedicadas no menu Guia.
 
-> :information_desk_person: Este guia pressupõe que você tenha concluído o documento [Introdução](/guide/v10/getting-started)  e que tenha configurado com êxito as ferramentas. Caso contrário, comece com [preact-cli](/guide/v10/getting-started#best-practices-powered-with-preact-cli).
+> :information_desk_person: Este guia pressupõe que você tenha concluído o documento [Introdução](/guide/v10/getting-started)  e que tenha configurado com êxito as ferramentas.
 
 ---
 

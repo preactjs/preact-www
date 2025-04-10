@@ -129,7 +129,7 @@ npm run build
 
 某些时候，您可能会想使用一部分 React 生态。为 React 编写的第三方库或组件可通过兼容层无缝使用。为此，我们需要先将所有的 `react` 和 `react-dom` 导入指向 Preact。此流程我们称之为**替名** (Aliasing)。
 
-> **小提示：**如果您使用 [Preact CLI] 的话，我们已自动为您处理替名步骤。
+> **小提示：**如果您使用 Preact CLI 的话，我们已自动为您处理替名步骤。
 
 #### Webpack 中的替名
 
@@ -232,7 +232,6 @@ export default {
 ```
 
 [htm]: https://github.com/developit/htm
-[Preact CLI]: https://github.com/preactjs/preact-cli
 
 ## 为 preact/compat 配置 TypeScript
 

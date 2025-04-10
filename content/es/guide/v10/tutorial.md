@@ -7,7 +7,7 @@ description: 'Escriba su primera aplicación Preact'
 
 Esta guía le guiará en la construcción de un simple componente "tic-tac". Si eres nuevo en Virtual DOM, prueba el [tutorial completo de Preact](/tutorial).
 
-> :information_desk_person: Esta guía asume que ha completado el documento [Primeros pasos](/guide/v10/getting-started) y ha configurado con éxito sus herramientas. Si no es así, comience con [preact-cli](/guide/v10/getting-started#best-practices-powered-with-preact-cli)..
+> :information_desk_person: Esta guía asume que ha completado el documento [Primeros pasos](/guide/v10/getting-started) y ha configurado con éxito sus herramientas.
 
 ---
 

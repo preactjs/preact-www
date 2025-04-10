@@ -7,15 +7,8 @@ permalink: '/guide/getting-started'
 
 Esta guía lo ayuda a comenzar a desarrollar aplicaciones Preact. Hay 3 formas populares de hacerlo.
 
-
-Si recién está comenzando, le recomendamos ir con [preact-cli](#best-practices-powered-with-preact-cli).
-
-
 + [No hay ruta de herramientas de construcción](#no-build-tools-route)
 	+ [Alternativas a JSX](#alternatives-to-jsx)
-+ [Mejores prácticas basadas en `preact-cli`](#best-practices-powered-with-preact-cli)
-	+ [Preparándose para el desarrollo](#getting-ready-for-development)
-	+ [Hacer una construcción de producción](#making-a-production-build)
 + [Integración en una tubería existente](#integrating-into-an-existing-pipeline)
 	+ [Configurando JSX](#setting-up-jsx)
 	+ [Aliasing de React a Preact](#aliasing-react-to-preact)
@@ -61,58 +54,6 @@ const app = html`<div>Hello World!</div>`
 render(app, document.getElementById('app'));
 ```
 Es una forma muy popular de escribir aplicaciones Preact y le recomendamos que consulte el archivo [README](https://github.com/developit/htm) de htm si está interesado en seguir esta ruta.
-
-
-## Mejores prácticas con `preact-cli`
-
-El proyecto `preact-cli` es una solución preparada para agrupar aplicaciones Preact con la configuración óptima de agrupador que es mejor para la aplicación web moderna. Se basa en proyectos de herramientas estándar como `webpack`, `babel` y `postcss`. Debido a la simplicidad, esta es la forma más popular de utilizar Preact entre nuestros usuarios.
-
-Como su nombre lo indica, `preact-cli` es una herramienta de línea de comandos que se puede ejecutar en el terminal de su máquina. Instálelo globalmente ejecutando:
-
-```bash
- npm install -g preact-cli
-```
-
-Después de eso, tendrá un nuevo comando en su terminal llamado `preact`. Con él puedes crear una nueva aplicación ejecutando el siguiente comando:
-
-```bash
- preact create default my-project
-```
-
-El comando anterior extrae la plantilla de `preactjs-templates/default`, solicita información y genera el proyecto en `./my-project/`.
-
-> Consejo: Cualquier repositorio de Github con una carpeta `'template'` puede usarse como plantilla personalizada: 
-`preact create <username>/<repository> <project-name>`.
-
-
-
-### Preparándose para el desarrollo
-
-Ahora estamos listos para comenzar nuestra aplicación. Para iniciar el servidor de desarrollo, ejecute el siguiente comando dentro de la carpeta del proyecto recién generado (`my-project` en este ejemplo):
-
-```bash
-# Go into the generated project folder
-cd my-project/
-
-# Start the devserver
-npm run dev
-```
-
-Una vez que el servidor está activo, puede acceder a su aplicación en la URL que se imprimió en la consola. ¡Ahora estás listo para desarrollar tu aplicación!
-
-
-### Realiza una compilación para producción 
-
-Llega un momento en que debe implementar su aplicación en algún lugar. La CLI entrega un práctico comando `build` que generará una compilación altamente optimizada para su ambiente de producción.
-
-```bash
-npm run build
-```
-
-Al finalizar, tendrá una nueva carpeta `build/` que se puede implementar directamente en un servidor.
-
-> Para obtener una lista completa de todos los comandos disponibles, consulte la lista en el archivo [README](https://github.com/preactjs/preact-cli#cli-options) de preact-cli.
-
 
 ## Integración en una tubería existente
 

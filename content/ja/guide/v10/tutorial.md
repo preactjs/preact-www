@@ -7,7 +7,7 @@ description: '初めてのPreactアプリケーションを書きましょう。
 
 このガイドではシンプルなClockコンポーネントを開発していきます。各トピックの詳細はガイドメニューにある専用ページを見てください。
 
-> :information_desk_person: このガイドは[はじめに](/guide/v10/getting-started)を読み終えてツールの設定が完了していることを前提としています。そうでないなら、[preact-cli](/guide/v10/getting-started#best-practices-powered-with-preact-cli)から読み始めてください。
+> :information_desk_person: このガイドは[はじめに](/guide/v10/getting-started)を読み終えてツールの設定が完了していることを前提としています。
 
 ---
 
