@@ -81,7 +81,7 @@ function OldDocsWarning() {
 const MAINTAINED_LANGUAGES = ['en', 'ru'];
 function UnmaintainedTranslationWarning({ meta }) {
 	const { path, params } = useRoute();
-	const { name, version } =params;
+	const { name, version } = params;
 	const [lang, setLang] = useLanguage();
 
 	if (version !== LATEST_MAJOR || MAINTAINED_LANGUAGES.includes(lang) || meta.isFallback) {
@@ -92,12 +92,13 @@ function UnmaintainedTranslationWarning({ meta }) {
 
 	return (
 		<div class={style.stickyWarning}>
-			You are viewing the documentation for an unmaintained translation of Preact.
-			Whilst we try to offer these docs in as many languages as possible, we rely upon
-			our community members to help us maintain them. This translation has seen little
-			maintenance in recent months and may have fallen out of sync with the English version.
+			<details>
+				<summary>You are viewing an unmaintained translation</summary>
 
-			<br />
+				Whilst we try to offer these docs in as many languages as possible, we rely upon
+				our community members to help us maintain them. This translation has seen little
+				maintenance in recent months and may have fallen out of sync with the English version.
+			</details>
 			<div class={style.unmaintaindTranslationLinks}>
 				<a
 					href={`/guide/${LATEST_MAJOR}/${name}`}
@@ -110,7 +111,7 @@ function UnmaintainedTranslationWarning({ meta }) {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					Help us maintain this translation
+					Contribute to this translation
 				</a>
 			</div>
 		</div>
