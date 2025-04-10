@@ -419,6 +419,10 @@
 				svg {
 					display: block;
 				}
+
+				&:focus {
+					opacity: 1;
+				}
 			}
 
 			&:hover {
