@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import { useContent } from '../../lib/use-content';
 import { useLanguage } from '../../lib/i18n.jsx';
@@ -23,8 +24,13 @@ export function DocPage() {
 }
 
 export function DocLayout({ isGuide = false }) {
+	const [isMounted, setMounted] = useState(false);
 	const { path } = useRoute();
 	const { html, meta } = useContent(path === '/' ? 'index' : path);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	return (
 		<div class={cx(style.page, isGuide && style.withSidebar)}>
@@ -36,7 +42,7 @@ export function DocLayout({ isGuide = false }) {
 				)}
 				<div class={style.inner}>
 					{isGuide && <OldDocsWarning />}
-					{isGuide && <UnmaintainedTranslationWarning meta={meta} />}
+					{isGuide && isMounted && <UnmaintainedTranslationWarning meta={meta} />}
 					<MarkdownRegion html={html} meta={meta} />
 					<Footer />
 				</div>

@@ -46,15 +46,16 @@ export function LanguageProvider({ children }) {
 
 		setLang(query.lang || localStorageLang || navigatorLang || 'en');
 		document.documentElement.lang = lang;
-	}, [lang]);
+	}, []);
 
-	const setLanguageWithStorage = (lang) => {
+	const setAndUpdateHtmlAttr = (lang) => {
 		localStorageSet('lang', lang);
 		setLang(lang);
+		document.documentElement.lang = lang;
 	};
 
 	return (
-		<LanguageContext.Provider value={{ lang, setLang: setLanguageWithStorage }}>
+		<LanguageContext.Provider value={{ lang, setLang: setAndUpdateHtmlAttr }}>
 			{children}
 		</LanguageContext.Provider>
 	);
