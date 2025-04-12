@@ -10,7 +10,7 @@ import { useContext } from 'preact/hooks';
  */
 export function getFallbackData() {
 	if (typeof window === 'undefined') return {};
-	const el = document.getElementById('preact-prerender-data');
+	const el = document.getElementById('prerender-data');
 	if (!el) return {};
 	const data = JSON.parse(el.textContent);
 	return data;
