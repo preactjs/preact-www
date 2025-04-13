@@ -43,9 +43,10 @@ export function LanguageProvider({ children }) {
 	useEffect(() => {
 		const localStorageLang = localStorageGet('lang');
 		const navigatorLang = getNavigatorLanguage(config.languages);
+		const userLang = query.lang || localStorageLang || navigatorLang || 'en';
 
-		setLang(query.lang || localStorageLang || navigatorLang || 'en');
-		document.documentElement.lang = lang;
+		setLang(userLang);
+		document.documentElement.lang = userLang;
 	}, []);
 
 	const setAndUpdateHtmlAttr = (lang) => {
