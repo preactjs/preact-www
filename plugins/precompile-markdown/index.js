@@ -33,33 +33,36 @@ export async function precompileMarkdown(content, path) {
  *   content: "<html here>",
  *   meta: { toc: [], title: "" }
  * }
+ *
+ * @param {string} content
+ * @param {string} path
  */
 function parseContent(content, path) {
 	// Find YAML FrontMatter preceeding a markdown document
 	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
-	// Find a leading title in a markdown document
-	const TITLE_REG = /^\s*#\s+(.+)\n+/;
-
 	const matches = content.match(FRONT_MATTER_REG);
+	/** @type {import('../../src/types.d.ts').ContentMetaData} */
 	let meta = {};
 	if (matches) {
 		try {
 			meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n');
+			if (!meta.title) {
+				throw new Error(`Missing title in YAML FrontMatter for ${path}`);
+			}
+			if (!meta.description) {
+				//console.warn(`Missing description in FrontMatter for ${path}`);
+			}
 		} catch (e) {
 			throw new Error(`Error parsing YAML FrontMatter in ${path}`);
 		}
+
 		content = content.replace(FRONT_MATTER_REG, '');
-		if (!meta.title) {
-			let [, title] = content.match(TITLE_REG) || [];
-			if (title) {
-				meta.title = title;
-			}
-		}
 	}
 
-	// generate ToC from markdown
-	meta.toc = generateToc(content);
+	if (path.includes('/guide/')) {
+		meta.toc = generateToc(content);
+	}
 
 	// extract tutorial setup, initial and final code blocks
 	if (/tutorial\/\d/.test(path)) {
@@ -90,6 +93,17 @@ marked.use({
 					</a>
 					<span>${text}</span>
 				</h${depth}>`;
+		},
+		paragraph({ text }) {
+			if (text == '<toc></toc>') {
+				// The CommonMark spec states that _HTML Blocks_ must start with specific & known
+				// tags, which <toc> is not. As such, `marked` treats it as _Raw HTML_ which
+				// results in it being wrapped in a `<p>` tag.
+				// https://spec.commonmark.org/0.29/#html-blocks
+				return text;
+			}
+
+			return false;
 		},
 		link({ href, text }) {
 			if (href.includes('://')) {

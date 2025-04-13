@@ -3,17 +3,26 @@ import { useEffect } from 'preact/hooks';
 import { createTitle } from './page-title';
 import { getContent } from './content.js';
 import { useLanguage } from './i18n';
-import { useResource, createCacheKey, setupCacheEntry, CACHE } from './use-resource.js';
+import {
+	useResource,
+	createCacheKey,
+	setupCacheEntry,
+	CACHE
+} from './use-resource.js';
 
 /**
  * @param {string} path
- * @returns {{ html: string, meta: any }}
+ * @returns {import('./../types.d.ts').ContentData}
  */
 export function useContent(path) {
 	const [lang] = useLanguage();
-	const { html, meta } = useResource(() => getContent([lang, path]), [lang, path]);
+	/** @type {import('./../types.d.ts').ContentData} */
+	const { html, meta } = useResource(() => getContent([lang, path]), [
+		lang,
+		path
+	]);
 	useTitle(meta.title);
-	useDescription(meta.description);
+	useDescription(meta.description || '');
 
 	return { html, meta };
 }
