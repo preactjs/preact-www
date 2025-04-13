@@ -1,5 +1,5 @@
 ---
-name: Novedades de Preact X
+title: Novedades de Preact X
 description: 'Nuevas funciones y cambios en Preact X'
 ---
 

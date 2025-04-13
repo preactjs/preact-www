@@ -1,6 +1,5 @@
 ---
-name: Reactとの違い
-permalink: '/guide/differences-to-react'
+title: Reactとの違い
 description: 'ReactとPreactの違いは何でしょう。このドキュメントはそれらを詳細に解説します。'
 ---
 

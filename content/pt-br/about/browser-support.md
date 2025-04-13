@@ -1,6 +1,5 @@
 ---
-name: Suporte de Navegadores
-permalink: '/about/browser-support'
+title: Suporte de Navegadores
 ---
 
 # Navegadores Suportados

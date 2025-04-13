@@ -1,5 +1,5 @@
 ---
-name: Referências
+title: Referências
 description: 'As referências podem ser usadas para acessar nós DOM brutos que o Preact renderizou'
 ---
 

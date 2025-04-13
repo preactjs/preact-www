@@ -1,6 +1,5 @@
 ---
-name: Внешние мутации DOM
-permalink: '/guide/external-dom-mutations'
+title: Внешние мутации DOM
 ---
 
 # Внешние мутации DOM

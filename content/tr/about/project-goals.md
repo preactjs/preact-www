@@ -1,6 +1,5 @@
 ---
-name: Proje Amaçları
-permalink: '/about/project-goals'
+title: Proje Amaçları
 ---
 
 # Preact'in Amaçları

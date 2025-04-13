@@ -1,6 +1,5 @@
 ---
-name: Расширение компонентов
-permalink: '/guide/extending-component'
+title: Расширение компонентов
 ---
 
 # Расширение компонентов

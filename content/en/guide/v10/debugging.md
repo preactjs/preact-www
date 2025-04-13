@@ -1,5 +1,5 @@
 ---
-name: Debugging Preact Apps
+title: Debugging Preact Apps
 description: 'How to debug Preact applications when something goes wrong.'
 ---
 

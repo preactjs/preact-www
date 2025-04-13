@@ -1,6 +1,5 @@
 ---
-name: Como começar
-permalink: '/guide/getting-started'
+title: Como começar
 ---
 
 # Como Começar

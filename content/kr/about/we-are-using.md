@@ -1,7 +1,5 @@
 ---
-name: We Are Using
 title: 누가 Preact를 사용하고 있을까요?
-permalink: '/about/we-are-using'
 description: 'Preact를 자랑스럽게 사용하고 있는 기업들'
 ---
 

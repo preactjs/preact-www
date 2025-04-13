@@ -1,6 +1,5 @@
 ---
-name: Project Goals
-permalink: '/about/project-goals'
+title: Project Goals
 ---
 
 # Objetivos del proyecto

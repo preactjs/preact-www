@@ -1,6 +1,5 @@
 ---
-name: Formulaires
-permalink: '/guide/forms'
+title: Formulaires
 ---
 
 # Formulaires

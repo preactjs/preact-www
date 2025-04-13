@@ -1,6 +1,5 @@
 ---
-name: API-Referenzierung
-permalink: '/guide/api-reference'
+title: API-Referenzierung
 ---
 
 # API-Referenzierung

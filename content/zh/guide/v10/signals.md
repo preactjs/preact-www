@@ -1,5 +1,5 @@
 ---
-name: Signals
+title: Signals
 description: 'Signals: composable reactive state with automatic rendering'
 ---
 

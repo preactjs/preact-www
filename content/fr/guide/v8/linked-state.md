@@ -1,6 +1,5 @@
 ---
-name: Etat lié
-permalink: '/guide/linked-state'
+title: Etat lié
 ---
 
 # Etat lié

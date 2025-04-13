@@ -1,6 +1,5 @@
 ---
-name: プロジェクトの目的
-permalink: '/about/project-goals'
+title: プロジェクトの目的
 description: "Preactプロジェクトの目的について詳しく知る"
 ---
 

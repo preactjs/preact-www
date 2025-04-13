@@ -1,6 +1,5 @@
 ---
-name: Unterschiede zu React
-permalink: '/guide/differences-to-react'
+title: Unterschiede zu React
 ---
 
 # Unterschiede zu React

@@ -1,5 +1,5 @@
 ---
-name: Webコンポーネント
+title: Webコンポーネント
 description: 'WebコンポーネントとPreactを連携させる方法'
 ---
 

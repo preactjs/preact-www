@@ -1,4 +1,5 @@
 ---
+title: Side Effects
 prev: /tutorial/06-context
 next: /tutorial/08-keys
 solvable: true

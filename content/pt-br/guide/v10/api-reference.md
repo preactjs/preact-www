@@ -1,5 +1,5 @@
 ---
-name: Referências da API
+title: Referências da API
 description: 'Saiba mais sobre todas as funções exportadas do módulo Preact'
 ---
 

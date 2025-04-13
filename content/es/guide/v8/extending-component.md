@@ -1,6 +1,5 @@
 ---
-name: Extendiendo Component
-permalink: '/guide/extending-component'
+title: Extendiendo Component
 ---
 
 # Extendiendo `Component`

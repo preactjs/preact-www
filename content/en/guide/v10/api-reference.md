@@ -1,5 +1,5 @@
 ---
-name: API Reference
+title: API Reference
 description: 'Learn more about all exported functions of the Preact module'
 ---
 

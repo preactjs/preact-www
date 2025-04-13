@@ -1,6 +1,5 @@
 ---
-name: Первые шаги
-permalink: '/guide/getting-started'
+title: Первые шаги
 ---
 
 # Первые шаги

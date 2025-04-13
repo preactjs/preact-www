@@ -1,6 +1,5 @@
 ---
-name: Verlinkter State
-permalink: '/guide/linked-state'
+title: Verlinkter State
 ---
 
 # Verlinkter State

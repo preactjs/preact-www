@@ -1,6 +1,5 @@
 ---
-name: Types de composants
-permalink: '/guide/types-of-components'
+title: Types de composants
 ---
 
 # Types de composants

@@ -1,4 +1,5 @@
 ---
+title: 事件
 prev: /tutorial/01-vdom
 next: /tutorial/03-components
 solvable: true

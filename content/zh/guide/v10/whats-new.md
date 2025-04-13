@@ -1,5 +1,5 @@
 ---
-name: Preact X 中的新鲜功能
+title: Preact X 中的新鲜功能
 description: 'Preact X 中的新功能与更改'
 ---
 

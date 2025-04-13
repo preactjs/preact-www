@@ -1,6 +1,5 @@
 ---
-name: Unit Testing with Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Unit Testing with Enzyme
 description: 'Testing Preact applications made easy with enzyme'
 ---
 

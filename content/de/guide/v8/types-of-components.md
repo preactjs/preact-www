@@ -1,6 +1,5 @@
 ---
-name: Komponententypen
-permalink: '/guide/types-of-components'
+title: Komponententypen
 ---
 
 # Komponententypen

@@ -1,5 +1,5 @@
 ---
-name: TypeScript
+title: TypeScript
 description: 'Preact имеет встроенную поддержку TypeScript. Узнайте, как его использовать!'
 ---
 

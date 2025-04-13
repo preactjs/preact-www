@@ -1,6 +1,5 @@
 ---
-name: Progressive Web Apps
-permalink: '/guide/progressive-web-apps'
+title: Progressive Web Apps
 ---
 
 # 渐进式 Web 应用程序（Progressive Web Apps）

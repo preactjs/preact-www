@@ -1,5 +1,5 @@
 ---
-name: フォーム
+title: フォーム
 description: 'Preactでどこでも動作する素晴らしいフォームを作成する方法'
 ---
 

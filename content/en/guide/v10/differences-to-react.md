@@ -1,6 +1,5 @@
 ---
-name: Differences to React
-permalink: '/guide/differences-to-react'
+title: Differences to React
 description: 'What are the differences between Preact and React. This document describes them in detail'
 ---
 

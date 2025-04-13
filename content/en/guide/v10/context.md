@@ -1,5 +1,5 @@
 ---
-name: Context
+title: Context
 description: 'Context allows you to pass props through intermediate components. This documents describes both the new and the old API'
 ---
 

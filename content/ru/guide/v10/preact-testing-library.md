@@ -1,5 +1,5 @@
 ---
-name: Тестирование с помощью библиотеки Preact Testing Library
+title: Тестирование с помощью библиотеки Preact Testing Library
 description: 'Тестирование приложений Preact стало проще с помощью библиотеки testing-library'
 ---
 

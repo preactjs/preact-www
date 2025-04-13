@@ -1,6 +1,5 @@
 ---
-name: Модульное тестирование с помощью Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Модульное тестирование с помощью Enzyme
 description: 'Тестирование приложений Preact стало проще благодаря Enzyme'
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Eingabemasken
-permalink: '/guide/forms'
+title: Eingabemasken
 ---
 
 # Eingabemasken

@@ -1,6 +1,5 @@
 ---
-name: Teste Unitário com Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Teste Unitário com Enzyme
 ---
 
 # Teste Unitário com Enzyme

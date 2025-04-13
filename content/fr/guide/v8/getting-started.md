@@ -1,6 +1,5 @@
 ---
-name: Commencer
-permalink: '/guide/getting-started'
+title: Commencer
 ---
 
 # Commencer

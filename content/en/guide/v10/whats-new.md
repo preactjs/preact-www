@@ -1,5 +1,5 @@
 ---
-name: What's new in Preact X
+title: What's new in Preact X
 description: 'New features and changes in Preact X'
 ---
 

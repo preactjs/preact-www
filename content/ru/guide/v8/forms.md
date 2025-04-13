@@ -1,6 +1,5 @@
 ---
-name: Формы
-permalink: '/guide/forms'
+title: Формы
 ---
 
 # Формы

@@ -1,7 +1,5 @@
 ---
-name: Мы используем
 title: Кто использует Preact?
-permalink: '/about/we-are-using'
 description: 'Компании, которые с гордостью используют Preact'
 ---
 

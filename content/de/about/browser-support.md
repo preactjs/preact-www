@@ -1,6 +1,5 @@
 ---
-name: Browserunterstützung
-permalink: '/about/browser-support'
+title: Browserunterstützung
 ---
 
 # Browserunterstützung

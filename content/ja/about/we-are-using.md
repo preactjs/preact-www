@@ -1,7 +1,5 @@
 ---
-name: Preactを使っている企業
-title: 誰がPreactを使っていますか?
-permalink: '/about/we-are-using'
+title: Preactを使っている企業
 description: 'Preactを使っている企業'
 ---
 

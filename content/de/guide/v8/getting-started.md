@@ -1,6 +1,5 @@
 ---
-name: "Los geht's"
-permalink: "/guide/getting-started"
+title: "Los geht's"
 ---
 
 # Los geht's

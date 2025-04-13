@@ -1,5 +1,5 @@
 ---
-name: Preactアプリケーションのデバッグ
+title: Preactアプリケーションのデバッグ
 description: '問題が起きたときにPreactアプリケーションをデバッグする方法'
 ---
 

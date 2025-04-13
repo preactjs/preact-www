@@ -1,6 +1,5 @@
 ---
-name: Forms
-permalink: '/guide/forms'
+title: Forms
 ---
 
 # Forms

@@ -1,6 +1,5 @@
 ---
-name: Enzyme ile Unit Test
-permalink: '/guide/unit-testing-with-enzyme'
+title: Enzyme ile Unit Test
 ---
 
 # Enzyme ile Unit Test

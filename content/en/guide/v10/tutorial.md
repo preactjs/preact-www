@@ -1,5 +1,5 @@
 ---
-name: Quick Tutorial
+title: Quick Tutorial
 description: 'Write your first Preact application'
 ---
 

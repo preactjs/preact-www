@@ -1,5 +1,5 @@
 ---
-name: References
+title: References
 description: 'Refs are a way of creating stable values that are local to a component instance and persist across renders.'
 ---
 

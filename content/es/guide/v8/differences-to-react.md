@@ -1,6 +1,5 @@
 ---
-name: Diferencias con React
-permalink: '/guide/differences-to-react'
+title: Diferencias con React
 ---
 
 # Diferencias con React

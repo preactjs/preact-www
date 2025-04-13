@@ -1,6 +1,5 @@
 ---
-name: Getting Started
-permalink: '/guide/getting-started'
+title: Getting Started
 ---
 
 # Primi passi

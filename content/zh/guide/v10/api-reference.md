@@ -1,5 +1,5 @@
 ---
-name: API 参考
+title: API 参考
 description: '了解 Preact 模块导出的所有函数'
 ---
 

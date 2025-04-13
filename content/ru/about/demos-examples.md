@@ -1,6 +1,5 @@
 ---
-name: Демонстрации и примеры
-permalink: '/about/demos-examples'
+title: Демонстрации и примеры
 description: 'Коллекция демо-версий и примеров приложений Preact'
 ---
 

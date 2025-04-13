@@ -1,6 +1,5 @@
 ---
-name: Unit-Prüfung mit Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Unit-Prüfung mit Enzyme
 ---
 
 # Unit-Prüfung mit Enzyme

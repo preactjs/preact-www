@@ -1,6 +1,5 @@
 ---
-name: Externe DOM-Mutationen
-permalink: '/guide/external-dom-mutations'
+title: Externe DOM-Mutationen
 ---
 
 # Externe DOM-Mutationen

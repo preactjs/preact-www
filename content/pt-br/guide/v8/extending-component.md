@@ -1,6 +1,5 @@
 ---
-name: Extendendo Componentes
-permalink: '/guide/extending-component'
+title: Extendendo Componentes
 ---
 
 # Extendendo Componentes

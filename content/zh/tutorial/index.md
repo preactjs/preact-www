@@ -1,6 +1,6 @@
 ---
+title: 了解 Preact
 next: /tutorial/01-vdom
-nextText: '开始教程'
 code: false
 solvable: false
 ---

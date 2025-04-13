@@ -1,6 +1,5 @@
 ---
-name: ブラウザのサポート
-permalink: '/about/browser-support'
+title: ブラウザのサポート
 description: "Preactはそのままですべてのモダンブラウザ(Chrome, Firefox, Safari, Edge)とIE11をサポートします。"
 ---
 

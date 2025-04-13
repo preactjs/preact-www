@@ -1,7 +1,5 @@
 ---
-name: We Are Using
 title: Kimler Preact Kullanıyor?
-permalink: '/about/we-are-using'
 ---
 
 # We Are Using

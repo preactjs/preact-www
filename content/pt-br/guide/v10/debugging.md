@@ -1,5 +1,5 @@
 ---
-name: Depurando Preact Apps
+title: Depurando Preact Apps
 description: 'Como debugar aplicativos preact quando algo der errado.'
 ---
 

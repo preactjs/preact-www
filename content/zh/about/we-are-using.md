@@ -1,7 +1,5 @@
 ---
-name: 我们正在使用
-title: 谁在使用Preact?
-permalink: '/about/we-are-using'
+title: 我们正在使用
 ---
 
 # 我们正在使用

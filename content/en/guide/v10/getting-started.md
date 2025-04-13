@@ -1,5 +1,5 @@
 ---
-name: Getting Started
+title: Getting Started
 description: "How to get started with Preact. We'll learn how to setup the tooling (if any) and get going with writing an application."
 ---
 
@@ -12,7 +12,7 @@ If you're new to Preact, we recommend starting with [Vite](#create-a-vite-powere
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

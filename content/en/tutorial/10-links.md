@@ -1,4 +1,5 @@
 ---
+title: Congratulations!
 prev: /tutorial/09-error-handling
 solvable: false
 ---

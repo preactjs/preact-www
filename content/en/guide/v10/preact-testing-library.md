@@ -1,5 +1,5 @@
 ---
-name: Testing with Preact Testing Library
+title: Testing with Preact Testing Library
 description: 'Testing Preact applications made easy with testing-library'
 ---
 

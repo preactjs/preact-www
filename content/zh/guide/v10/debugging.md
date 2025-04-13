@@ -1,5 +1,5 @@
 ---
-name: 调试 Preact 应用
+title: 调试 Preact 应用
 description: '如何调试 Preact 应用。'
 ---
 

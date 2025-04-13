@@ -1,6 +1,5 @@
 ---
-name: Von React zu Preact wechseln
-permalink: '/guide/switching-to-preact'
+title: Von React zu Preact wechseln
 ---
 
 # (Von React) Zu Preact wechseln

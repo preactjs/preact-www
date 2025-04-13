@@ -1,6 +1,5 @@
 ---
-name: Types of Components
-permalink: '/guide/types-of-components'
+title: Types of Components
 ---
 
 # Bileşen Türleri

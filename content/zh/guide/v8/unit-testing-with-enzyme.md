@@ -1,6 +1,5 @@
 ---
-name: Unit Testing with Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Unit Testing with Enzyme
 ---
 
 # 使用Enzyme来编写单元测试

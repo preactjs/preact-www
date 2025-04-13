@@ -1,4 +1,5 @@
 ---
+title: Побочные эффекты
 prev: /tutorial/06-context
 next: /tutorial/08-keys
 solvable: true

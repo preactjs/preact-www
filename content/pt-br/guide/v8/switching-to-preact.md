@@ -1,6 +1,5 @@
 ---
-name: Mudando para Preact do React
-permalink: '/guide/switching-to-preact'
+title: Mudando para Preact do React
 ---
 
 # Mudando para Preact (do React)

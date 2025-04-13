@@ -1,5 +1,5 @@
 ---
-name: Hooks
+title: Hooks
 description: 'Hooks no Preact permitem compor comportamentos juntos e reutilizar essa lógica em diferentes componentes.'
 ---
 

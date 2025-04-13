@@ -1,5 +1,5 @@
 ---
-name: Tutorial
+title: Tutorial
 description: 'Escreva seu primeiro aplicativo Preact'
 ---
 

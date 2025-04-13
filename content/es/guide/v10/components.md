@@ -1,5 +1,5 @@
 ---
-name: Componentes
+title: Componentes
 description: 'Los componentes son el corazón de cualquier aplicación de Preact. Aprenda como crearlos y usarlos para componer una interfaces de usuario '
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Formulários
+title: Formulários
 description: 'Como criar formulários incríveis no Preact que funcionam em qualquer lugar.'
 ---
 

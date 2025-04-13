@@ -1,5 +1,5 @@
 ---
-name: Web Components
+title: Web Components
 description: 'How to use web components with Preact.'
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Extending Component
-permalink: '/guide/extending-component'
+title: Extending Component
 ---
 
 # 扩展组件

@@ -1,4 +1,5 @@
 ---
+title: 가상 DOM
 prev: /tutorial
 next: /tutorial/02-events
 solvable: true

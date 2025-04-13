@@ -1,4 +1,5 @@
 ---
+title: Components
 prev: /tutorial/02-events
 next: /tutorial/04-state
 solvable: true

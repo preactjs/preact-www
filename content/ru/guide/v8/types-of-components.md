@@ -1,6 +1,5 @@
 ---
-name: Типы компонентов
-permalink: '/guide/types-of-components'
+title: Типы компонентов
 ---
 
 # Типы компонентов

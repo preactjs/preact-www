@@ -1,6 +1,5 @@
 ---
-name: ReactからPreactへの移行
-permalink: '/guide/switching-to-preact'
+title: ReactからPreactへの移行
 description: 'ReactからPreactへの移行するために必要なことをすべて説明します。'
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Teste unitario com Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Teste unitario com Enzyme
 description: 'Teste de aplicações Preact com Enzyme'
 ---
 

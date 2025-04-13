@@ -1,5 +1,5 @@
 ---
-name: 无构建工具工作流
+title: 无构建工具工作流
 description: '尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实用，但 Preact 完全支持在不使用这些工具的情况下构建应用。'
 ---
 
