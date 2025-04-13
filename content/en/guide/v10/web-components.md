@@ -16,7 +16,7 @@ Preact and Web Components are complementary technologies: Web Components provide
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

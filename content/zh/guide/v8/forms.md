@@ -9,7 +9,7 @@ title: Forms
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

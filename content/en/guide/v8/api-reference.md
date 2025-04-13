@@ -7,7 +7,7 @@ title: API Reference
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -11,7 +11,7 @@ Forms in Preact work much the same as they do in React, except there is no suppo
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

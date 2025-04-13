@@ -11,7 +11,7 @@ PreactがReactの機能をすべて含まない理由は**小さい**、**集中
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -10,7 +10,7 @@ La raison pour laquelle Preact n'essaye pas d'inclure chaque fonctionnalité de 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

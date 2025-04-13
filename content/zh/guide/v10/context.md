@@ -11,7 +11,7 @@ description: '上下文可让您通过中间组件传递属性。此文档同时
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

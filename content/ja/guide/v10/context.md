@@ -13,7 +13,7 @@ description: 'コンテキストは間にあるコンポーネントを飛ばし
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

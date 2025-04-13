@@ -9,7 +9,7 @@ Forms in Preact work in the same way as they do in HTML & JS: you render control
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

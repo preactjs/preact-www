@@ -10,7 +10,7 @@ title: Отличия от React
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

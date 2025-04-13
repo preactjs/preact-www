@@ -12,7 +12,7 @@ Preact Xは`Fragments`、`hooks`等の多くの新しい機能を提供します
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

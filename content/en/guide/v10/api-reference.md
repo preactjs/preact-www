@@ -9,7 +9,7 @@ This page serves as a quick overview over all exported functions.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

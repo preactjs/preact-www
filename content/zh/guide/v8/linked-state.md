@@ -8,7 +8,7 @@ title: Linked State
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

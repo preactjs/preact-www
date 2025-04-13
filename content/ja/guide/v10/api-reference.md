@@ -9,7 +9,7 @@ description: 'Preactモジュールでエクスポートされているすべて
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -14,7 +14,7 @@ description: 'Testing Libraryを使用してPreactアプリケーションのテ
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

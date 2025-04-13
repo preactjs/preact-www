@@ -11,7 +11,7 @@ description: '引用可用于访问 Preact 渲染的 DOM 节点'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

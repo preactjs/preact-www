@@ -11,7 +11,7 @@ En pocas palabras Preact X es lo que siempre quisimos que fuera Preact: Una libr
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -11,7 +11,7 @@ description: 'Тестирование приложений Preact стало п
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

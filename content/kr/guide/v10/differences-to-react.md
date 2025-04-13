@@ -11,7 +11,7 @@ Preact가 React의 모든 기능을 하나하나 포함하지 않으려는 이�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

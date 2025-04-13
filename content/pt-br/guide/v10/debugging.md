@@ -13,7 +13,7 @@ imprimiremos um aviso ou erro sempre que detectarmos algo errado, como aninhamen
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

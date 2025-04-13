@@ -11,7 +11,7 @@ Preact поставляет определения типов TypeScript, кот
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -13,7 +13,7 @@ Dentro desses dois tipos, há também algumas maneiras diversas de implementar-s
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

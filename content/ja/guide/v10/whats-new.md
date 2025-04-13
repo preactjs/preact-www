@@ -12,7 +12,7 @@ Preact XはPreact 8.xから大きく前進しました。私達はコードの�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

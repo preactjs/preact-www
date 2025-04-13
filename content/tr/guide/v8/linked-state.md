@@ -8,7 +8,7 @@ State değişikliklerini optimize etmede, React’tan biraz daha kolaylık sağl
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

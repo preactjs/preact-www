@@ -11,7 +11,7 @@ Dans ce guide, nous allons créer un simple composant d'horloge. Vous pouvez tro
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

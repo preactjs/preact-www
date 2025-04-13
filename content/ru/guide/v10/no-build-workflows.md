@@ -11,7 +11,7 @@ description: 'Хотя такие инструменты сборки, как We
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

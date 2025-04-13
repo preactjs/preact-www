@@ -13,7 +13,7 @@ This API is primarily intended for tooling or library authors who wish to extend
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

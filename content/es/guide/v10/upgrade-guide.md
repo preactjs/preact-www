@@ -11,7 +11,7 @@ Preact X trae muchas nuevas y excitantes características como `Fragments`, `hoo
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

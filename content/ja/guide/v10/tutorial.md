@@ -11,7 +11,7 @@ description: '初めてのPreactアプリケーションを書きましょう。
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -13,7 +13,7 @@ Preact 自带一系列方便您调试的工具，您可以通过导入 `preact/d
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

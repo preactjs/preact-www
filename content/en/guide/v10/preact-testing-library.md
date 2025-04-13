@@ -11,7 +11,7 @@ Unlike [Enzyme](/guide/v10/unit-testing-with-enzyme), Preact Testing Library mus
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -6,7 +6,7 @@ title: API-Referenzierung
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

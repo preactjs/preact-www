@@ -10,7 +10,7 @@ title: Первые шаги
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

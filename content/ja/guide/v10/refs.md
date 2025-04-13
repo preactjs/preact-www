@@ -15,7 +15,7 @@ PreactがレンダリングしたDOM要素やコンポーネントを直接参�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

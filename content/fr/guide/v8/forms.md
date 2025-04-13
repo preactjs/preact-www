@@ -10,7 +10,7 @@ Dans Preact, les formulaires fonctionnent globalement de la même façon que dan
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

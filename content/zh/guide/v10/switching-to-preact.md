@@ -11,7 +11,7 @@ description: '从 React 迁移到 Preact 时必要的说明。'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

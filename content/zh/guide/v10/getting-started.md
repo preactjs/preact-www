@@ -11,7 +11,7 @@ Preact 新人？初见虚拟 DOM？先去看看[教程](/tutorial)吧！
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

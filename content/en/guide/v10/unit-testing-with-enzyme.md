@@ -22,7 +22,7 @@ Preact differs from Enzyme with React.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -11,7 +11,7 @@ Most often you'll see refs used to facilitate imperative manipulation of the DOM
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

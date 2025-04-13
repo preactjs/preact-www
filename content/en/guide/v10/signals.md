@@ -19,7 +19,7 @@ This guide will go over using Signals in Preact, and while this is largely appli
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

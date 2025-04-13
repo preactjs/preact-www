@@ -11,7 +11,7 @@ A principal diferença é que, na maioria dos casos, o `valor 'não é controlad
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

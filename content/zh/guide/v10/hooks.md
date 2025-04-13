@@ -15,7 +15,7 @@ description: 'Preact 中的钩子可让你组合行为和在不同组件中重�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

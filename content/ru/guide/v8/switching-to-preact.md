@@ -11,7 +11,7 @@ title: Переход на Preact с React
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

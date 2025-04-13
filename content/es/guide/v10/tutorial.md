@@ -11,7 +11,7 @@ Esta guía le guiará en la construcción de un simple componente "tic-tac". Si 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

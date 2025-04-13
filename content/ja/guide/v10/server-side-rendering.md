@@ -11,7 +11,7 @@ description: 'サーバでPreactアプリケーションをレンダリングし
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

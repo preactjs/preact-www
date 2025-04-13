@@ -14,7 +14,7 @@ very well at all scales.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

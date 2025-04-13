@@ -8,7 +8,7 @@ React bietet ein `react-addons-test-utils`-Modul zum Testen von Komponenten an. 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -13,7 +13,7 @@ description: 'Signals: composable reactive state with automatic rendering'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

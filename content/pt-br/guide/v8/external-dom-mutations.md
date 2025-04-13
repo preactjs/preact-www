@@ -6,7 +6,7 @@ title: Mutações Externas de DOM
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

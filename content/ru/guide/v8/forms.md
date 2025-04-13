@@ -11,7 +11,7 @@ title: Формы
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

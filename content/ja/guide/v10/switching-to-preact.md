@@ -13,7 +13,7 @@ description: 'ReactからPreactへの移行するために必要なことをす�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

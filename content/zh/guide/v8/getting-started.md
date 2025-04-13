@@ -10,7 +10,7 @@ title: Getting Started
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

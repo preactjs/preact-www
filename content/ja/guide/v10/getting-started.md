@@ -11,7 +11,7 @@ description: "初歩的なPreactの使い方の説明をします。ここでは
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

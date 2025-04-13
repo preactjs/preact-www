@@ -9,7 +9,7 @@ Server-Side Rendering (сокращённо SSR) позволяет вывест
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

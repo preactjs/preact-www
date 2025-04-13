@@ -11,7 +11,7 @@ This lets you continue writing React/ReactDOM code without any changes to your w
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

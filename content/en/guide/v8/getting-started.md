@@ -10,7 +10,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

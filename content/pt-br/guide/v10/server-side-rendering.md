@@ -9,7 +9,7 @@ A renderização no servidor (geralmente abreviada como "SSR") permite renderiza
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

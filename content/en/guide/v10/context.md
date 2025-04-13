@@ -13,7 +13,7 @@ There are two ways to use context in Preact: via the newer `createContext` API a
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

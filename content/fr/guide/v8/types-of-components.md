@@ -13,7 +13,7 @@ Entre ces deux types, il y a aussi plusieurs façons d'implémenter les composan
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

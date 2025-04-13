@@ -11,7 +11,7 @@ Há duas abordagens diferentes para mudar do React pro Preact:
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

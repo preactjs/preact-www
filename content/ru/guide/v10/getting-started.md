@@ -12,7 +12,7 @@ description: 'Как начать работу с Preact. Мы научимся 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

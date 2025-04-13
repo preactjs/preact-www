@@ -10,7 +10,7 @@ In questa guida vedremo come creare un semplice componente "Orologio". Informazi
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

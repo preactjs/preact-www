@@ -9,7 +9,7 @@ Este guia ajuda você a começar a desenvolver aplicativos Preact. Existem três
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

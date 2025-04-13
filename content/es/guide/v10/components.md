@@ -12,7 +12,7 @@ Existen dos tipos de componentes en Preact, de los que hablaremos en esta guía.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

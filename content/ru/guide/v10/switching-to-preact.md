@@ -11,7 +11,7 @@ description: 'Всё, что нужно знать для перехода с Re
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

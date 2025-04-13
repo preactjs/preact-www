@@ -6,7 +6,7 @@ title: Referencia de la API
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

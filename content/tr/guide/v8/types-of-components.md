@@ -13,7 +13,7 @@ Bu iki tür bileşeni uygulamak için birkaç farklı yöntem vardır.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

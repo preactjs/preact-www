@@ -11,7 +11,7 @@ Preact 并没有去尝试实现 React 的每一个特性，是因为它想保持
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -13,7 +13,7 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponent
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

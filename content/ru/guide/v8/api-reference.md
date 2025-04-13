@@ -7,7 +7,7 @@ title: Справочник по API
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

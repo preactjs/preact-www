@@ -11,7 +11,7 @@ When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -11,7 +11,7 @@ Preact'tan React'a geçişte iki türlü yaklaşım vardır:
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

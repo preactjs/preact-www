@@ -17,7 +17,7 @@ Enzymeの詳しい使い方とAPIリファレンスは[Enzymeのドキュメン�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -11,7 +11,7 @@ Il y a deux approches différentes pour passer de React à Preact :
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

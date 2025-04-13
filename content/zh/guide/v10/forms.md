@@ -11,7 +11,7 @@ Preact 中的表单和 HTML 的一样：渲染一个控件，再为其添加事�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

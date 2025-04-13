@@ -8,7 +8,7 @@ title: Prueba unitaria con Enzyme
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

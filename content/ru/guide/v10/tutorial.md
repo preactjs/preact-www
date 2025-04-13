@@ -11,7 +11,7 @@ description: 'Напишите свое первое приложение Preact
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

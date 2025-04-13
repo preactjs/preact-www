@@ -15,7 +15,7 @@ Hay dos maneras de importar hooks: desde `preact/hooks` o desde `preact/compat`.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

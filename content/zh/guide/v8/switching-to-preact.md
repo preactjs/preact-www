@@ -11,7 +11,7 @@ title: Switching to Preact from React
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 
