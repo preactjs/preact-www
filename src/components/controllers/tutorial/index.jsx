@@ -241,7 +241,7 @@ function ButtonContainer({ meta, showCode, help }) {
 			)}
 			{meta.next && (
 				<a class={style.nextButton} href={meta.next}>
-					{!meta.code
+					{meta.code == false
 						? (config.i18n.tutorial.begin[lang] || config.i18n.tutorial.begin.en)
 						: (config.i18n.next[lang] || config.i18n.next.en)
 					}
