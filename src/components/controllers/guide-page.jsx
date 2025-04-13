@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useRoute } from 'preact-iso';
+import { useRoute, ErrorBoundary } from 'preact-iso';
 import { useContent } from '../../lib/use-content';
 import { useLanguage } from '../../lib/i18n.jsx';
 import config from '../../config.json';
@@ -12,37 +12,35 @@ import { docRoutes } from '../../lib/route-utils';
 import { LATEST_MAJOR } from '../doc-version';
 import style from './style.module.css';
 
-export function DocPage() {
-	const { params } = useRoute();
-	const { version, name } = params;
+export function GuidePage() {
+	const { version, name } = useRoute().params;
+	const isValidRoute = docRoutes[version]['/' + name];
 
-	if (!docRoutes[version]['/' + name]) {
-		return <NotFound />;
-	}
-
-	return <DocLayout isGuide />;
+	return (
+		<ErrorBoundary>
+			{isValidRoute ? <GuideLayout /> : <NotFound />}
+		</ErrorBoundary>
+	);
 }
 
-export function DocLayout({ isGuide = false }) {
+function GuideLayout() {
 	const [isMounted, setMounted] = useState(false);
 	const { path } = useRoute();
-	const { html, meta } = useContent(path === '/' ? 'index' : path);
+	const { html, meta } = useContent(path);
 
 	useEffect(() => {
 		setMounted(true);
 	}, []);
 
 	return (
-		<div class={cx(style.page, isGuide && style.withSidebar)}>
+		<div class={cx(style.page, style.withSidebar)}>
 			<div class={style.outer}>
-				{isGuide && (
-					<div class={style.sidebarWrap}>
-						<Sidebar />
-					</div>
-				)}
+				<div class={style.sidebarWrap}>
+					<Sidebar />
+				</div>
 				<div class={style.inner}>
-					{isGuide && <OldDocsWarning />}
-					{isGuide && isMounted && <UnmaintainedTranslationWarning meta={meta} />}
+					{<OldDocsWarning />}
+					{isMounted && <UnmaintainedTranslationWarning meta={meta} />}
 					<MarkdownRegion html={html} meta={meta} />
 					<Footer />
 				</div>
@@ -85,6 +83,11 @@ function OldDocsWarning() {
 
 // Maybe include zh? It's received some contributions recently
 const MAINTAINED_LANGUAGES = ['en', 'ru'];
+
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentMetaData} props.meta
+ */
 function UnmaintainedTranslationWarning({ meta }) {
 	const { path, params } = useRoute();
 	const { name, version } = params;
