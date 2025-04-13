@@ -1,6 +1,5 @@
 ---
-name: Linked State
-permalink: '/guide/linked-state'
+title: Linked State
 ---
 
 # Linked State
@@ -9,7 +8,7 @@ State değişikliklerini optimize etmede, React’tan biraz daha kolaylık sağl
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

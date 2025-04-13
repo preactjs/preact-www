@@ -1,5 +1,5 @@
 ---
-name: Testing with Preact Testing Library
+title: Testing with Preact Testing Library
 description: 'Testing Preact applications made easy with testing-library'
 ---
 
@@ -11,7 +11,7 @@ Unlike [Enzyme](/guide/v10/unit-testing-with-enzyme), Preact Testing Library mus
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

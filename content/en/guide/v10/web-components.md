@@ -1,5 +1,5 @@
 ---
-name: Web Components
+title: Web Components
 description: 'How to use web components with Preact.'
 ---
 
@@ -16,7 +16,7 @@ Preact and Web Components are complementary technologies: Web Components provide
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

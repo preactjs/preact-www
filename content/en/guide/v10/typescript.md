@@ -1,5 +1,5 @@
 ---
-name: TypeScript
+title: TypeScript
 description: "Preact has built-in TypeScript support. Learn how to make use of it!"
 ---
 
@@ -11,7 +11,7 @@ When you use Preact in a TypeScript-aware editor (like VSCode), you can benefit 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

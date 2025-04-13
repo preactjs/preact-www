@@ -1,5 +1,5 @@
 ---
-name: APIリファレンス
+title: APIリファレンス
 description: 'Preactモジュールでエクスポートされているすべての関数について詳しく学びましょう。'
 ---
 
@@ -9,7 +9,7 @@ description: 'Preactモジュールでエクスポートされているすべて
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

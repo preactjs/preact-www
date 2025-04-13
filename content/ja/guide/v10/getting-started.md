@@ -1,5 +1,5 @@
 ---
-name: はじめに
+title: はじめに
 description: "初歩的なPreactの使い方の説明をします。ここではツールの設定やアプリケーションを書く方法を説明します。"
 ---
 
@@ -11,7 +11,7 @@ description: "初歩的なPreactの使い方の説明をします。ここでは
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

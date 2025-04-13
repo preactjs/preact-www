@@ -1,6 +1,5 @@
 ---
-name: Objetivos do Projeto
-permalink: '/about/project-goals'
+title: Objetivos do Projeto
 ---
 
 # Objetivos do Preact

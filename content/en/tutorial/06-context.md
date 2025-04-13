@@ -1,4 +1,5 @@
 ---
+title: Context
 prev: /tutorial/05-refs
 next: /tutorial/07-side-effects
 solvable: true

@@ -1,6 +1,5 @@
 ---
-name: Unit-Prüfung mit Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Unit-Prüfung mit Enzyme
 ---
 
 # Unit-Prüfung mit Enzyme
@@ -9,7 +8,7 @@ React bietet ein `react-addons-test-utils`-Modul zum Testen von Komponenten an. 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

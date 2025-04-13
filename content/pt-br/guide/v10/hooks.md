@@ -1,5 +1,5 @@
 ---
-name: Hooks
+title: Hooks
 description: 'Hooks no Preact permitem compor comportamentos juntos e reutilizar essa lógica em diferentes componentes.'
 ---
 
@@ -16,7 +16,7 @@ Existem duas maneiras de importá-las, você pode importá-las de
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

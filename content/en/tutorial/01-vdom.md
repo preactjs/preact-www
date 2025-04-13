@@ -1,4 +1,5 @@
 ---
+title: Virtual DOM
 prev: /tutorial
 next: /tutorial/02-events
 solvable: true

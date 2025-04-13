@@ -1,6 +1,5 @@
 ---
-name: Les objectifs de Preact
-permalink: '/about/project-goals'
+title: Les objectifs de Preact
 ---
 
 # Les objectifs de Preact

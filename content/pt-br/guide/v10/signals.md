@@ -1,5 +1,5 @@
 ---
-name: Signals
+title: Signals
 description: 'Signals: estado reativo componível com renderização automática.'
 ---
 
@@ -19,7 +19,7 @@ Este guia abordará o uso de Signals no Preact e, embora isso seja amplamente ap
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

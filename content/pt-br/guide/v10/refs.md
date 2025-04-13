@@ -1,5 +1,5 @@
 ---
-name: Referências
+title: Referências
 description: 'As referências podem ser usadas para acessar nós DOM brutos que o Preact renderizou'
 ---
 
@@ -11,7 +11,7 @@ Um caso de uso típico para medir o tamanho real de um nó DOM. Embora seja poss
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

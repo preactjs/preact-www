@@ -1,5 +1,5 @@
 ---
-name: リファレンス(Ref) 
+title: リファレンス(Ref) 
 description: 'Preactがレンダリングした生のDOM Nodeにアクセスするにはリファレンス(Ref)を使います。'
 ---
 
@@ -15,7 +15,7 @@ PreactがレンダリングしたDOM要素やコンポーネントを直接参�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

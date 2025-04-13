@@ -1,6 +1,5 @@
 ---
-name: Цели проекта
-permalink: '/about/project-goals'
+title: Цели проекта
 description: 'Узнайте больше о целях проекта Preact'
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Depurando Preact Apps
+title: Depurando Preact Apps
 description: 'Como debugar aplicativos preact quando algo der errado.'
 ---
 
@@ -13,7 +13,7 @@ imprimiremos um aviso ou erro sempre que detectarmos algo errado, como aninhamen
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

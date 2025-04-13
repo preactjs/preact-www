@@ -2,6 +2,10 @@ import { Time } from '../time';
 import config from '../../config.json';
 import style from './style.module.css';
 
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentMetaData} props.meta
+ */
 export default function BlogMeta({ meta }) {
 	return (
 		<div class={style.blogMeta}>

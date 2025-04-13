@@ -1,13 +1,12 @@
 ---
-name: API Reference
-permalink: '/guide/api-reference'
+title: API Reference
 ---
 
 # API 参考
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

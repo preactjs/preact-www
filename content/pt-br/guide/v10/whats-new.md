@@ -1,5 +1,5 @@
 ---
-name: Novidades do Preact X
+title: Novidades do Preact X
 description: 'Novos recursos e alterações no Preact X'
 ---
 
@@ -11,7 +11,7 @@ Em poucas palavras, o Preact X é o que sempre quisemos que fosse: Uma bibliotec
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

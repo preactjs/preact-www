@@ -1,5 +1,5 @@
 ---
-name: Actualización desde Preact 8.x
+title: Actualización desde Preact 8.x
 description: 'Actualice su aplicación Preact 8.x a Preact X'
 ---
 
@@ -11,7 +11,7 @@ Preact X trae muchas nuevas y excitantes características como `Fragments`, `hoo
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Começando
+title: Começando
 description: "Como começar com o Preact. Vamos aprender a configurar as ferramentas (se houver) e começar a escrever um aplicativo."
 ---
 
@@ -9,7 +9,7 @@ Este guia ajuda você a começar a desenvolver aplicativos Preact. Existem três
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

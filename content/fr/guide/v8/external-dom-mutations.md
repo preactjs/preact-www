@@ -1,6 +1,5 @@
 ---
-name: Modification Externe du DOM
-permalink: '/guide/external-dom-mutations'
+title: Modification Externe du DOM
 ---
 
 # Modification Externe du DOM
@@ -9,7 +8,7 @@ Parfois vous avez besoin de travailler avec des bibliothèques externes qui ont 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

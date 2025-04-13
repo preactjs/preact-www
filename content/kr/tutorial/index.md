@@ -1,6 +1,6 @@
 ---
+title: Preact 배우기
 next: /tutorial/01-vdom
-nextText: '튜토리얼 시작'
 code: false
 solvable: false
 ---

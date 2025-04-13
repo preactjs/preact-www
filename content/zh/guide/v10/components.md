@@ -1,5 +1,5 @@
 ---
-name: 组件
+title: 组件
 description: '组件是所有 Preact 应用的核心，了解学习如何构建并组合使用它打造来界面。'
 ---
 
@@ -11,7 +11,7 @@ description: '组件是所有 Preact 应用的核心，了解学习如何构建�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

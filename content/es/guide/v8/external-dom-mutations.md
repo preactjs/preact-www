@@ -1,6 +1,5 @@
 ---
-name: Mutaciones externas del DOM
-permalink: '/guide/external-dom-mutations'
+title: Mutaciones externas del DOM
 ---
 
 # Mutaciones externas del DOM
@@ -9,7 +8,7 @@ A veces existe la necesidad de trabajar con librerías de terceros que esperan t
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

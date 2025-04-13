@@ -1,6 +1,5 @@
 ---
-name: Forms
-permalink: '/guide/forms'
+title: Forms
 ---
 
 # Formularios
@@ -11,7 +10,7 @@ Los Formularios en Preact funcionan de la misma manera que en React, excepto que
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Demonstrações & Exemplos
-permalink: '/about/demos-examples'
+title: Demonstrações & Exemplos
 ---
 
 # Demonstrações & Exemplos

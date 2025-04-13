@@ -1,6 +1,6 @@
 /**
  * Fetch and parse a markdown document with optional JSON FrontMatter.
- * @returns {Promise<{ content: string, meta: {toc:{text:string, id:string, level:number}[], title: string}, html: string }>}
+ * @returns {Promise<import('./../types.d.ts').ContentData>}
  */
 export async function getContent([lang, name]) {
 	let path = `/content/${lang}`,

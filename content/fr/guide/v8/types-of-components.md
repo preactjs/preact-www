@@ -1,6 +1,5 @@
 ---
-name: Types de composants
-permalink: '/guide/types-of-components'
+title: Types de composants
 ---
 
 # Types de composants
@@ -14,7 +13,7 @@ Entre ces deux types, il y a aussi plusieurs façons d'implémenter les composan
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

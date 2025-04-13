@@ -1,5 +1,5 @@
 ---
-name: Debugging Preact Apps
+title: Debugging Preact Apps
 description: 'How to debug Preact applications when something goes wrong.'
 ---
 
@@ -13,7 +13,7 @@ We'll print a warning or an error whenever we detect something wrong like incorr
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

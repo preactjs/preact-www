@@ -1,6 +1,5 @@
 ---
-name: Bibliothèques et modules complémentaires
-permalink: '/about/addons-libraries'
+title: Bibliothèques et modules complémentaires
 ---
 
 # Bibliothèques et modules complémentaires

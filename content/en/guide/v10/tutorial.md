@@ -1,5 +1,5 @@
 ---
-name: Quick Tutorial
+title: Quick Tutorial
 description: 'Write your first Preact application'
 ---
 
@@ -11,7 +11,7 @@ This guide walks through building a simple "ticking clock" component. If you're 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

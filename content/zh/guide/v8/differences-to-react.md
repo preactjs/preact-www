@@ -1,6 +1,5 @@
 ---
-name: Differences to React
-permalink: '/guide/differences-to-react'
+title: Differences to React
 ---
 
 # 与 React 的不同之处
@@ -11,7 +10,7 @@ Preact 没尝试去包括 React 的每一个特性，是因为它想保持 **轻
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

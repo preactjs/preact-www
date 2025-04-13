@@ -1,5 +1,5 @@
 ---
-name: 表单
+title: 表单
 description: '如何在 Preact 中构建随地可用的表单。'
 ---
 
@@ -11,7 +11,7 @@ Preact 中的表单和 HTML 的一样：渲染一个控件，再为其添加事�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

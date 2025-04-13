@@ -1,6 +1,5 @@
 ---
-name: Estado Associado
-permalink: '/guide/linked-state'
+title: Estado Associado
 ---
 
 # Estado Associado
@@ -9,7 +8,7 @@ Uma área que o Preact leva um pouco mais além do que o React é na otimizaçã
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

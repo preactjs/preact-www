@@ -1,5 +1,5 @@
 ---
-name: Preactアプリケーションのデバッグ
+title: Preactアプリケーションのデバッグ
 description: '問題が起きたときにPreactアプリケーションをデバッグする方法'
 ---
 
@@ -13,7 +13,7 @@ Preactにはデバックを容易にするツールが付属しています。�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

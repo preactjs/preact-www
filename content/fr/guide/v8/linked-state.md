@@ -1,6 +1,5 @@
 ---
-name: Etat lié
-permalink: '/guide/linked-state'
+title: Etat lié
 ---
 
 # Etat lié
@@ -9,7 +8,7 @@ Un point sur lequel Preact va un peu plus loin que React est l'optimisation des 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

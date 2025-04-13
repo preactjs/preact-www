@@ -1,6 +1,5 @@
 ---
-name: API Reference
-permalink: '/guide/api-reference'
+title: API Reference
 ---
 
 # API Reference
@@ -8,7 +7,7 @@ permalink: '/guide/api-reference'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

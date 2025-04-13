@@ -1,5 +1,5 @@
 ---
-name: Webコンポーネント
+title: Webコンポーネント
 description: 'WebコンポーネントとPreactを連携させる方法'
 ---
 
@@ -19,7 +19,7 @@ Webコンポーネントはブラウザを拡張するための低レベルの�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

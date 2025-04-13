@@ -1,6 +1,5 @@
 ---
-name: Types of Components
-permalink: '/guide/types-of-components'
+title: Types of Components
 ---
 
 # 组件种类
@@ -14,7 +13,7 @@ Preact 中有两种组件：
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

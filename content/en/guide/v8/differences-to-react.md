@@ -1,6 +1,5 @@
 ---
-name: Differences to React
-permalink: '/guide/differences-to-react'
+title: Differences to React
 ---
 
 # Differences to React
@@ -11,7 +10,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Novedades de Preact X
+title: Novedades de Preact X
 description: 'Nuevas funciones y cambios en Preact X'
 ---
 
@@ -11,7 +11,7 @@ En pocas palabras Preact X es lo que siempre quisimos que fuera Preact: Una libr
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

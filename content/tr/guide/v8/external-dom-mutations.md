@@ -1,6 +1,5 @@
 ---
-name: External DOM Mutations
-permalink: '/guide/external-dom-mutations'
+title: External DOM Mutations
 ---
 
 # External DOM Mutations
@@ -9,7 +8,7 @@ Sometimes there is a need to work with third-party libraries that expect to be a
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

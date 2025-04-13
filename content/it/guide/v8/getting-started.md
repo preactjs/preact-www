@@ -1,6 +1,5 @@
 ---
-name: Getting Started
-permalink: '/guide/getting-started'
+title: Getting Started
 ---
 
 # Primi passi
@@ -11,7 +10,7 @@ In questa guida vedremo come creare un semplice componente "Orologio". Informazi
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

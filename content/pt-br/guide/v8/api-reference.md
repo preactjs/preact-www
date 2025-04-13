@@ -1,13 +1,12 @@
 ---
-name: Referência da API
-permalink: '/guide/api-reference'
+title: Referência da API
 ---
 
 # Referência da API
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Diferencias con React
-permalink: '/guide/differences-to-react'
+title: Diferencias con React
 ---
 
 # Diferencias con React
@@ -11,7 +10,7 @@ La raz√≥n por la que Preact no intenta incluir absolutamente todas las caracter√
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

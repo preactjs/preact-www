@@ -1,13 +1,12 @@
 ---
-name: External DOM Mutations
-permalink: '/guide/external-dom-mutations'
+title: External DOM Mutations
 ---
 
 # 外部 DOM 修改
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

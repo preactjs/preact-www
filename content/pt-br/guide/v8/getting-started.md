@@ -1,6 +1,5 @@
 ---
-name: Como começar
-permalink: '/guide/getting-started'
+title: Como começar
 ---
 
 # Como Começar
@@ -12,7 +11,7 @@ Esse guia assume que você tem algum tipo de build ES2015 configurado utilizando
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

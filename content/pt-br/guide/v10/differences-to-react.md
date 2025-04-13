@@ -1,6 +1,5 @@
 ---
-name: Diferenças do React
-permalink: '/guide/differences-to-react'
+title: Diferenças do React
 description: 'Quais são as diferenças entre Preact e React. Este documento as descreve em detalhes'
 ---
 
@@ -12,7 +11,7 @@ Preact não tenta incluir cada pequeno recurso do React em razão manter-se **pe
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

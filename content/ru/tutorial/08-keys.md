@@ -1,4 +1,5 @@
 ---
+title: Ключи
 prev: /tutorial/07-side-effects
 next: /tutorial/09-error-handling
 solvable: true

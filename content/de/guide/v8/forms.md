@@ -1,6 +1,5 @@
 ---
-name: Eingabemasken
-permalink: '/guide/forms'
+title: Eingabemasken
 ---
 
 # Eingabemasken
@@ -11,7 +10,7 @@ Eingabemasken funktionieren in Preact fast genauso wie in React, allerdings gibt
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

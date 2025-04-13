@@ -1,6 +1,5 @@
 ---
-name: Unit Testing with Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Unit Testing with Enzyme
 ---
 
 # 使用Enzyme来编写单元测试
@@ -9,7 +8,7 @@ React提供了`react-addons-test-utils`来测试组件，而Airbnb开发的`enzy
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

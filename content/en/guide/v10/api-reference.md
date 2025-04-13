@@ -1,5 +1,5 @@
 ---
-name: API Reference
+title: API Reference
 description: 'Learn more about all exported functions of the Preact module'
 ---
 
@@ -9,7 +9,7 @@ This page serves as a quick overview over all exported functions.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

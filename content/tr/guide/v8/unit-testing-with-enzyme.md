@@ -1,6 +1,5 @@
 ---
-name: Enzyme ile Unit Test
-permalink: '/guide/unit-testing-with-enzyme'
+title: Enzyme ile Unit Test
 ---
 
 # Enzyme ile Unit Test
@@ -10,7 +9,7 @@ Preact bileşenlerini `enzyme` kullanarak test etmek, `preact-compat`'ın üzeri
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

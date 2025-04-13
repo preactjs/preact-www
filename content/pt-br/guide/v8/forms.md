@@ -1,6 +1,5 @@
 ---
-name: Formulários
-permalink: '/guide/forms'
+title: Formulários
 ---
 
 # Formulários
@@ -11,7 +10,7 @@ Formulários no Preact funcionam de forma muito parecida ao React, exceto por n�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

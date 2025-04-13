@@ -1,6 +1,5 @@
 ---
-name: Teste Unitário com Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Teste Unitário com Enzyme
 ---
 
 # Teste Unitário com Enzyme
@@ -9,7 +8,7 @@ O `React` fornece um módulo `reag-addons-test-utils` para testar componentes, e
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

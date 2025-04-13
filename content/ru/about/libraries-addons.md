@@ -1,6 +1,5 @@
 ---
-name: Библиотеки и дополнения
-permalink: '/about/addons-libraries'
+title: Библиотеки и дополнения
 description: 'Коллекция библиотек и дополнений, которые хорошо работают с Preact.'
 ---
 

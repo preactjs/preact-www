@@ -1,4 +1,5 @@
 ---
+title: Error Handling
 prev: /tutorial/08-keys
 next: /tutorial/10-links
 solvable: true

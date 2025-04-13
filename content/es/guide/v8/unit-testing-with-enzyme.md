@@ -1,6 +1,5 @@
 ---
-name: Prueba unitaria con Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Prueba unitaria con Enzyme
 ---
 
 # Prueba unitaria con Enzyme
@@ -9,7 +8,7 @@ permalink: '/guide/unit-testing-with-enzyme'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

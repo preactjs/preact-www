@@ -1,6 +1,5 @@
 ---
-name: Teste unitario com Enzyme
-permalink: '/guide/unit-testing-with-enzyme'
+title: Teste unitario com Enzyme
 description: 'Teste de aplicações Preact com Enzyme'
 ---
 
@@ -23,7 +22,7 @@ O Preact difere da Enzyme com o React.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

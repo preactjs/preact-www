@@ -1,4 +1,5 @@
 ---
+title: Состояние
 prev: /tutorial/03-components
 next: /tutorial/05-refs
 solvable: true

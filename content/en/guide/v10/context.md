@@ -1,5 +1,5 @@
 ---
-name: Context
+title: Context
 description: 'Context allows you to pass props through intermediate components. This documents describes both the new and the old API'
 ---
 
@@ -13,7 +13,7 @@ There are two ways to use context in Preact: via the newer `createContext` API a
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

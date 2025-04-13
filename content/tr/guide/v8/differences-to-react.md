@@ -1,6 +1,5 @@
 ---
-name: Differences to React
-permalink: '/guide/differences-to-react'
+title: Differences to React
 ---
 
 # React’tan Farklılıkları
@@ -11,7 +10,7 @@ Preact’ın React’ın her bir özelliğini içermemesinin nedeni, **küçük*
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

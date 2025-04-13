@@ -1,6 +1,5 @@
 ---
-name: Формы
-permalink: '/guide/forms'
+title: Формы
 ---
 
 # Формы
@@ -12,7 +11,7 @@ permalink: '/guide/forms'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

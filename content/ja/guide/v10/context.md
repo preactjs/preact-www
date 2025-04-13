@@ -1,5 +1,5 @@
 ---
-name: コンテキスト(Context)
+title: コンテキスト(Context)
 description: 'コンテキストは間にあるコンポーネントを飛ばしてpropsを渡すことができます。このドキュメントは新しいAPIと古いAPIの両方を説明します。'
 ---
 
@@ -13,7 +13,7 @@ description: 'コンテキストは間にあるコンポーネントを飛ばし
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

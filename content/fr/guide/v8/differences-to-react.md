@@ -1,6 +1,5 @@
 ---
-name: Différences avec React
-permalink: '/guide/differences-to-react'
+title: Différences avec React
 ---
 
 # Différences avec React
@@ -11,7 +10,7 @@ La raison pour laquelle Preact n'essaye pas d'inclure chaque fonctionnalité de 
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

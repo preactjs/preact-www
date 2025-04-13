@@ -1,5 +1,5 @@
 ---
-name: Preact Xの新機能
+title: Preact Xの新機能
 description: 'Preact Xの新機能と変更点'
 ---
 
@@ -12,7 +12,7 @@ Preact XはPreact 8.xから大きく前進しました。私達はコードの�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

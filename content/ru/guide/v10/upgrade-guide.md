@@ -1,5 +1,5 @@
 ---
-name: Обновление с Preact 8.x
+title: Обновление с Preact 8.x
 description: 'Узнайте, как обновить приложение Preact 8.x до Preact X'
 ---
 
@@ -11,7 +11,7 @@ Preact X предлагает множество новых интересных
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

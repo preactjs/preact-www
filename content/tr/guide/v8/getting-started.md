@@ -1,6 +1,5 @@
 ---
-name: Getting Started
-permalink: '/guide/getting-started'
+title: Getting Started
 ---
 
 # Getting Started
@@ -11,7 +10,7 @@ This guide walks through building a simple "ticking clock" component. More detai
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

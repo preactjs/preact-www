@@ -1,5 +1,5 @@
 ---
-name: Preact Testing Libraryを使ったテスト
+title: Preact Testing Libraryを使ったテスト
 description: 'Testing Libraryを使用してPreactアプリケーションのテストを容易にする'
 ---
 
@@ -14,7 +14,7 @@ description: 'Testing Libraryを使用してPreactアプリケーションのテ
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

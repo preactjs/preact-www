@@ -1,5 +1,5 @@
 ---
-name: Componentes
+title: Componentes
 description: 'Los componentes son el corazón de cualquier aplicación de Preact. Aprenda como crearlos y usarlos para componer una interfaces de usuario '
 ---
 
@@ -12,7 +12,7 @@ Existen dos tipos de componentes en Preact, de los que hablaremos en esta guía.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

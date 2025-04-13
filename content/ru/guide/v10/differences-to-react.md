@@ -1,6 +1,5 @@
 ---
-name: Отличия от React
-permalink: '/guide/differences-to-react'
+title: Отличия от React
 description: 'В чем заключаются различия между Preact и React. В данном документе они подробно описаны'
 ---
 
@@ -12,7 +11,7 @@ Preact не претендует на то, чтобы быть повторно
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

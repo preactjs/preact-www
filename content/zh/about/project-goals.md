@@ -1,6 +1,5 @@
 ---
-name: Project Goals
-permalink: '/about/project-goals'
+title: Project Goals
 ---
 
 # Preact 的项目目标

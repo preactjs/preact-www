@@ -1,6 +1,5 @@
 ---
-name: Switching to Preact from React
-permalink: '/guide/switching-to-preact'
+title: Switching to Preact from React
 description: 'Everything you need to know to switch from React to Preact.'
 ---
 
@@ -12,7 +11,7 @@ This lets you continue writing React/ReactDOM code without any changes to your w
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

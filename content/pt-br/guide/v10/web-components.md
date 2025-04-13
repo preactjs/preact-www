@@ -1,5 +1,5 @@
 ---
-name: Web Components
+title: Web Components
 description: 'Como utilizar webcomponents com Preact.'
 ---
 
@@ -11,7 +11,7 @@ Uma coisa a ter em mente é que os Web Components não substituem o Preact, pois
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

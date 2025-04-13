@@ -1,5 +1,5 @@
 ---
-name: Что нового в Preact X
+title: Что нового в Preact X
 description: 'Новые возможности и изменения в Preact X'
 ---
 
@@ -11,7 +11,7 @@ Preact X — это огромный шаг вперед по сравнению
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Contexto
+title: Contexto
 description: 'O contexto permite que você passe adereços pelos componentes intermediários. Este documento descreve a API nova e a antiga'
 ---
 
@@ -11,7 +11,7 @@ Existem duas maneiras diferentes de usar o contexto: Através da API `createCont
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

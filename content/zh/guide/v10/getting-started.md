@@ -1,5 +1,5 @@
 ---
-name: 开始上手
+title: 开始上手
 description: "如何上手 Preact？我们会在此教程中详解如何安装工具和编写应用。"
 ---
 
@@ -11,7 +11,7 @@ Preact 新人？初见虚拟 DOM？先去看看[教程](/tutorial)吧！
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

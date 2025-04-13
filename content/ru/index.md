@@ -1,5 +1,4 @@
 ---
-layout: home
 title: Preact
 description: 'Быстрая 3КБ-альтернатива React с тем же современным API.'
 ---

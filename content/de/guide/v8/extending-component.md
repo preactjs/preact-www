@@ -1,6 +1,5 @@
 ---
-name: Kompontente erweitern
-permalink: '/guide/extending-component'
+title: Kompontente erweitern
 ---
 
 # Komponente erweitern

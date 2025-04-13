@@ -1,5 +1,5 @@
 ---
-name: Forms
+title: Forms
 description: 'Forms and form controls allow you to collect user input in your application and is a fundamental building block of most web applications.'
 ---
 
@@ -9,7 +9,7 @@ Forms in Preact work in the same way as they do in HTML & JS: you render control
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

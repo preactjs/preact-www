@@ -1,6 +1,5 @@
 ---
-name: Linked State
-permalink: '/guide/linked-state'
+title: Linked State
 ---
 
 # 关联状态
@@ -9,7 +8,7 @@ permalink: '/guide/linked-state'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

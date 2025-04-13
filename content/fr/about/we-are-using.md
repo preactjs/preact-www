@@ -1,7 +1,5 @@
 ---
-name: We Are Using
 title: Qui utilise Preact ?
-permalink: '/about/we-are-using'
 ---
 
 # We Are Using

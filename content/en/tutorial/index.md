@@ -1,6 +1,6 @@
 ---
+title: Learn Preact
 next: /tutorial/01-vdom
-nextText: 'Begin Tutorial'
 code: false
 solvable: false
 ---

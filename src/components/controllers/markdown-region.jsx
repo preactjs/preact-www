@@ -6,9 +6,9 @@ import BlogMeta from '../blog-meta';
 
 /**
  * @param {object} props
- * @propery {string} html
- * @propery {any} meta
- * @propery {any} [components]
+ * @param {string} props.html
+ * @param {import('../../types.d.ts').ContentMetaData} props.meta
+ * @param {any} [props.components]
  */
 export function MarkdownRegion({ html, meta, components }) {
 	const { path } = useRoute();

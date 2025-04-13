@@ -1,6 +1,5 @@
 ---
-name: Reactとの違い
-permalink: '/guide/differences-to-react'
+title: Reactとの違い
 description: 'ReactとPreactの違いは何でしょう。このドキュメントはそれらを詳細に解説します。'
 ---
 
@@ -12,7 +11,7 @@ PreactがReactの機能をすべて含まない理由は**小さい**、**集中
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

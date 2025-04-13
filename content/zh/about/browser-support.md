@@ -1,6 +1,5 @@
 ---
-name: Browser Support
-permalink: '/about/browser-support'
+title: Browser Support
 ---
 
 # 浏览器支持

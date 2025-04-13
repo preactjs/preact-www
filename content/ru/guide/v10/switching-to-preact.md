@@ -1,6 +1,5 @@
 ---
-name: Переход на Preact с React
-permalink: '/guide/switching-to-preact'
+title: Переход на Preact с React
 description: 'Всё, что нужно знать для перехода с React на Preact.'
 ---
 
@@ -12,7 +11,7 @@ description: 'Всё, что нужно знать для перехода с Re
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Switching to Preact from React
-permalink: '/guide/switching-to-preact'
+title: Switching to Preact from React
 ---
 
 # React'tan Preact'a geçiş
@@ -12,7 +11,7 @@ Preact'tan React'a geçişte iki türlü yaklaşım vardır:
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: Getting Started
-permalink: '/guide/getting-started'
+title: Getting Started
 ---
 
 # 如何开始
@@ -11,7 +10,7 @@ permalink: '/guide/getting-started'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

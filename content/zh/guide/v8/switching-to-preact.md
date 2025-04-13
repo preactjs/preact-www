@@ -1,6 +1,5 @@
 ---
-name: Switching to Preact from React
-permalink: '/guide/switching-to-preact'
+title: Switching to Preact from React
 ---
 
 # 用 Preact 替换 React
@@ -12,7 +11,7 @@ permalink: '/guide/switching-to-preact'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

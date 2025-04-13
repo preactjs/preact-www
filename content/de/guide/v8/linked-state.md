@@ -1,6 +1,5 @@
 ---
-name: Verlinkter State
-permalink: '/guide/linked-state'
+title: Verlinkter State
 ---
 
 # Verlinkter State
@@ -9,7 +8,7 @@ Ein Bereich, den Preact ausführlicher als React behandelt ist das Optimieren de
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

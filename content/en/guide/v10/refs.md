@@ -1,5 +1,5 @@
 ---
-name: References
+title: References
 description: 'Refs are a way of creating stable values that are local to a component instance and persist across renders.'
 ---
 
@@ -11,7 +11,7 @@ Most often you'll see refs used to facilitate imperative manipulation of the DOM
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

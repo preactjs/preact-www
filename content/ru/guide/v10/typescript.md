@@ -1,5 +1,5 @@
 ---
-name: TypeScript
+title: TypeScript
 description: 'Preact имеет встроенную поддержку TypeScript. Узнайте, как его использовать!'
 ---
 
@@ -11,7 +11,7 @@ Preact поставляет определения типов TypeScript, кот
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

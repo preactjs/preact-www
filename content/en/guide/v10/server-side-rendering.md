@@ -1,5 +1,5 @@
 ---
-name: Server-Side Rendering
+title: Server-Side Rendering
 description: 'Render your Preact application on the server to show content to users quicker.'
 ---
 
@@ -9,7 +9,7 @@ Server-Side Rendering (often abbreviated as "SSR") allows you to render your app
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

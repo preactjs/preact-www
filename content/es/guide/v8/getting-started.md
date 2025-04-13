@@ -1,6 +1,5 @@
 ---
-name: Getting Started
-permalink: '/guide/getting-started'
+title: Getting Started
 ---
 
 # Primeros pasos
@@ -16,7 +15,7 @@ Si recién está comenzando, le recomendamos ir con preact-cli.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Hooks
+title: Hooks
 description: 'Hooks in Preact allow you to compose behaviours together and re-use that logic in different components.'
 ---
 
@@ -15,7 +15,7 @@ There are two ways to import hooks: from `preact/hooks` or `preact/compat`.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

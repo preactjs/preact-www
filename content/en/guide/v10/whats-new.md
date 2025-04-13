@@ -1,5 +1,5 @@
 ---
-name: What's new in Preact X
+title: What's new in Preact X
 description: 'New features and changes in Preact X'
 ---
 
@@ -11,7 +11,7 @@ In a nutshell Preact X is what we always wanted Preact to be: A tiny, fast and f
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

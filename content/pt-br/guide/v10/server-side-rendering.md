@@ -1,5 +1,5 @@
 ---
-name: Renderização no servidor
+title: Renderização no servidor
 description: 'Renderize seu aplicativo Preact no servidor para mostrar o conteúdo aos usuários mais rapidamente.'
 ---
 
@@ -9,7 +9,7 @@ A renderização no servidor (geralmente abreviada como "SSR") permite renderiza
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

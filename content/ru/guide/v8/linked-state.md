@@ -1,6 +1,5 @@
 ---
-name: Связанное состояние
-permalink: '/guide/linked-state'
+title: Связанное состояние
 ---
 
 # Связанное состояние
@@ -9,7 +8,7 @@ permalink: '/guide/linked-state'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

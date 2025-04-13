@@ -1,6 +1,5 @@
 ---
-name: Forms
-permalink: '/guide/forms'
+title: Forms
 ---
 
 # 表单
@@ -10,7 +9,7 @@ permalink: '/guide/forms'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

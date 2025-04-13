@@ -1,6 +1,5 @@
 ---
-name: "Los geht's"
-permalink: "/guide/getting-started"
+title: "Los geht's"
 ---
 
 # Los geht's
@@ -11,7 +10,7 @@ Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstell
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

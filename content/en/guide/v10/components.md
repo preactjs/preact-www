@@ -1,5 +1,5 @@
 ---
-name: Components
+title: Components
 description: 'Components are the heart of any Preact application. Learn how to create them and use them to compose UIs together'
 ---
 
@@ -11,7 +11,7 @@ There are two kinds of components in Preact, which we'll talk about in this guid
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

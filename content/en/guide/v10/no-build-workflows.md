@@ -1,5 +1,5 @@
 ---
-name: No-Build Workflows
+title: No-Build Workflows
 description: 'Whilst build tools like Webpack, Rollup, and Vite are incredibly powerful and useful, Preact fully supports building applications without them.'
 ---
 
@@ -14,7 +14,7 @@ very well at all scales.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

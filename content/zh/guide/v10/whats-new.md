@@ -1,5 +1,5 @@
 ---
-name: Preact X 中的新鲜功能
+title: Preact X 中的新鲜功能
 description: 'Preact X 中的新功能与更改'
 ---
 
@@ -11,7 +11,7 @@ Preact X 是 Preact 8.x 的一大跃进，我们重新构思了每一行代码�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

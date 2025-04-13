@@ -1,6 +1,5 @@
 ---
-name: Enzymeを使った単体テスト
-permalink: '/guide/unit-testing-with-enzyme'
+title: Enzymeを使った単体テスト
 description: 'Enzymeを使ってPreactアプリケーションの単体テストを行う。'
 ---
 
@@ -18,7 +17,7 @@ Enzymeの詳しい使い方とAPIリファレンスは[Enzymeのドキュメン�
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

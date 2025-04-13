@@ -1,5 +1,5 @@
 ---
-name: Forms
+title: Forms
 description: 'La forma de construir formularios en Preact que siempre funcionen.'
 ---
 
@@ -11,7 +11,7 @@ La principal diferencia es que en muchos casos el `value` no es controlado por u
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

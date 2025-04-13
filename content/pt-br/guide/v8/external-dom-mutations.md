@@ -1,13 +1,12 @@
 ---
-name: Mutações Externas de DOM
-permalink: '/guide/external-dom-mutations'
+title: Mutações Externas de DOM
 ---
 
 # Mutações Externas de DOM
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

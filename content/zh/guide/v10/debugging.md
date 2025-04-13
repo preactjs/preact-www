@@ -1,5 +1,5 @@
 ---
-name: 调试 Preact 应用
+title: 调试 Preact 应用
 description: '如何调试 Preact 应用。'
 ---
 
@@ -13,7 +13,7 @@ Preact 自带一系列方便您调试的工具，您可以通过导入 `preact/d
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

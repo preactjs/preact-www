@@ -1,6 +1,5 @@
 ---
-name: Project Goals
-permalink: '/about/project-goals'
+title: Project Goals
 description: "Read more about Preact's project goals"
 ---
 

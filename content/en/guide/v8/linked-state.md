@@ -1,6 +1,5 @@
 ---
-name: Linked State
-permalink: '/guide/linked-state'
+title: Linked State
 ---
 
 # Linked State
@@ -9,7 +8,7 @@ One area Preact takes a little further than React is in optimizing state changes
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

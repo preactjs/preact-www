@@ -1,5 +1,5 @@
 ---
-name: チュートリアル
+title: チュートリアル
 description: '初めてのPreactアプリケーションを書きましょう。'
 ---
 
@@ -11,7 +11,7 @@ description: '初めてのPreactアプリケーションを書きましょう。
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

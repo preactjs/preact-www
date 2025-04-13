@@ -1,6 +1,5 @@
 ---
-name: Справочник по API
-permalink: '/guide/api-reference'
+title: Справочник по API
 ---
 
 # Справочник по API
@@ -8,7 +7,7 @@ permalink: '/guide/api-reference'
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

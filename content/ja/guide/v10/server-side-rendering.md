@@ -1,5 +1,5 @@
 ---
-name: サーバサイドレンダリング
+title: サーバサイドレンダリング
 description: 'サーバでPreactアプリケーションをレンダリングして高速に表示します。'
 ---
 
@@ -11,7 +11,7 @@ description: 'サーバでPreactアプリケーションをレンダリングし
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

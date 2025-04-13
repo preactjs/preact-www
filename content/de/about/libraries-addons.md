@@ -1,6 +1,5 @@
 ---
-name: Bibliotheken & Add-ons
-permalink: '/about/addons-libraries'
+title: Bibliotheken & Add-ons
 ---
 
 # Bibliotheken & Add-ons

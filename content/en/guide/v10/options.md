@@ -1,5 +1,5 @@
 ---
-name: Option Hooks
+title: Option Hooks
 description: 'Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process.'
 ---
 
@@ -13,7 +13,7 @@ This API is primarily intended for tooling or library authors who wish to extend
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 

@@ -5,35 +5,31 @@ import { useContext, useMemo, useRef } from 'preact/hooks';
 export const TocContext = createContext({ toc: null });
 
 export default function Toc() {
-	const ref = useRef(null);
 	const cache = useRef([]);
 
 	const { toc } = useContext(TocContext);
 
-	// eslint-disable-next-line
-	const items = useMemo(() => {
-		return toc !== null
+	const items = useMemo(() => (
+		toc !== null
 			? (cache.current = listToTree(toc))
-			: cache.current || [];
-	}, [toc]);
+			: cache.current || []
+	), [toc]);
 
-	if (items.length === 0) return <div ref={ref} />;
+	// TODO: Should we throw an error? No good reason to have a toc
+	// on the page if there is nothing to populate it with.
+	if (items.length === 0) return null;
 
 	return (
-		<div ref={ref}>
-			<nav onFocus={this.open}>
-				<ul>
-					{items.map(entry => (
-						<TocItem {...entry} />
-					))}
-				</ul>
-			</nav>
-		</div>
+		<nav>
+			<ul>
+				{items.map(entry => <TocItem {...entry} />)}
+			</ul>
+		</nav>
 	);
 }
 
 // Toc always starts at h2
-export function listToTree(arr) {
+function listToTree(arr) {
 	if (arr.length == 0) return [];
 
 	// Prepare list
@@ -57,7 +53,7 @@ export function listToTree(arr) {
 	return tree;
 }
 
-export function TocItem(props) {
+function TocItem(props) {
 	const { id, text, children } = props;
 
 	return (

@@ -1,5 +1,5 @@
 ---
-name: Atualizando do Preact 8.x
+title: Atualizando do Preact 8.x
 description: 'Atualize seu aplicativo Preact 8.x para o Preact X'
 ---
 
@@ -11,7 +11,7 @@ O Preact X traz muitos novos recursos interessantes, como `Fragments`,` hooks 'e
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 
