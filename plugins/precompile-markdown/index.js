@@ -38,27 +38,27 @@ export async function precompileMarkdown(content, path) {
  * @param {string} path
  */
 function parseContent(content, path) {
+	/** @type {import('../../src/types.d.ts').ContentMetaData} */
+	let meta = {};
+
 	// Find YAML FrontMatter preceeding a markdown document
 	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 	const matches = content.match(FRONT_MATTER_REG);
-	/** @type {import('../../src/types.d.ts').ContentMetaData} */
-	let meta = {};
-	if (matches) {
-		try {
-			meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n');
-			if (!meta.title) {
-				throw new Error(`Missing title in YAML FrontMatter for ${path}`);
-			}
-			if (!meta.description) {
-				//console.warn(`Missing description in FrontMatter for ${path}`);
-			}
-		} catch (e) {
-			throw new Error(`Error parsing YAML FrontMatter in ${path}`);
+	if (!matches) throw new Error(`Missing YAML FrontMatter in ${path}`);
+	try {
+		meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n');
+		if (!meta.title) {
+			throw new Error(`Missing title in YAML FrontMatter for ${path}`);
 		}
-
-		content = content.replace(FRONT_MATTER_REG, '');
+		if (!meta.description) {
+			//console.warn(`Missing description in FrontMatter for ${path}`);
+		}
+	} catch (e) {
+		throw new Error(`Error parsing YAML FrontMatter in ${path}`);
 	}
+
+	content = content.replace(FRONT_MATTER_REG, '');
 
 	if (path.includes('/guide/')) {
 		meta.toc = generateToc(content);
