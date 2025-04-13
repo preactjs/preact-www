@@ -20,8 +20,8 @@ export default function TutorialPage() {
 }
 
 function TutorialLayout() {
-	const { path, params } = useRoute();
-	const { html, meta } = useContent(!params.step ? '/tutorial/index' : path);
+	const { path } = useRoute();
+	const { html, meta } = useContent(path);
 
 	// Preload the next chapter
 	useEffect(() => {

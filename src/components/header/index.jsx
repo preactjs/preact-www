@@ -213,25 +213,20 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	}
 
 	const href = to.href || to.path;
-	const prefetchHref = href == '/tutorial'
-		? '/tutorial/index'
-		: href == '/'
-			? '/index'
-			: href;
 	const homeProps = to.href == '/' || to.path == '/'
 		? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
 		: {};
 
 	const prefetchAndPreload = () => {
-		if (prefetchHref.startsWith('/repl')) {
+		if (href.startsWith('/repl')) {
 			ReplPage.preload();
 			preloadRepl();
-		} else if (prefetchHref.startsWith('/tutorial')) {
+		} else if (href.startsWith('/tutorial')) {
 			TutorialPage.preload();
 			preloadRepl();
 		}
 
-		prefetchContent(prefetchHref);
+		prefetchContent(href);
 	};
 
 	return (
