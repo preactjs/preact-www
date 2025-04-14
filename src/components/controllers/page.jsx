@@ -20,7 +20,7 @@ export function Page() {
 
 export function PageLayout() {
 	const { path } = useRoute();
-	const { html, meta } = useContent(path === '/' ? 'index' : path);
+	const { html, meta } = useContent(path);
 
 	return (
 		<div class={style.page}>

@@ -15,7 +15,7 @@ const COMPONENTS = {
 			const url = new URL(props.href, location.origin);
 
 			const prefetchAndPreload = () => {
-				if (props.href.startsWith('/repl?code')) {
+				if (props.href.startsWith('/repl')) {
 					ReplPage.preload();
 					preloadRepl();
 				} else if (props.href.startsWith('/tutorial')) {

@@ -11,15 +11,28 @@ import {
 } from './use-resource.js';
 
 /**
+ * Correct the few site paths that differ from the markdown file name/structure
+ *
+ * @param {string} path
+ * @returns {string}
+ */
+function getContentPath(path) {
+	if (path == '/') return '/index';
+	if (path == '/tutorial') return '/tutorial/index';
+	return path;
+}
+
+/**
  * @param {string} path
  * @returns {import('./../types.d.ts').ContentData}
  */
 export function useContent(path) {
 	const [lang] = useLanguage();
+	const contentPath = getContentPath(path);
 	/** @type {import('./../types.d.ts').ContentData} */
-	const { html, meta } = useResource(() => getContent([lang, path]), [
+	const { html, meta } = useResource(() => getContent([lang, contentPath]), [
 		lang,
-		path
+		contentPath
 	]);
 	useTitle(meta.title);
 	useDescription(meta.description || '');
@@ -32,9 +45,10 @@ export function useContent(path) {
  */
 export function prefetchContent(path) {
 	const lang = document.documentElement.lang;
-	const fetch = () => getContent([lang, path]);
+	const contentPath = getContentPath(path);
+	const fetch = () => getContent([lang, contentPath]);
 
-	const cacheKey = createCacheKey(fetch, [lang, path]);
+	const cacheKey = createCacheKey(fetch, [lang, contentPath]);
 	if (CACHE.has(cacheKey)) return;
 
 	setupCacheEntry(fetch, cacheKey);
