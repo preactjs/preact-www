@@ -1,4 +1,4 @@
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
 import { Repl } from './repl';
 import { base64ToText } from './repl/query-encode.js';
 import { fetchExample } from './repl/examples';
@@ -22,7 +22,9 @@ export default function ReplPage() {
 					overflow: hidden !important;
 				}
 			`}</style>
-			<Repl code={code} />
+			<ErrorBoundary>
+				<Repl code={code} />
+			</ErrorBoundary>
 		</div>
 	);
 }

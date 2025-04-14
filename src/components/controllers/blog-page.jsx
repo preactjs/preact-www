@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useRoute, ErrorBoundary } from 'preact-iso';
 import { useContent } from '../../lib/use-content';
 import { NotFound } from './not-found';
 import { MarkdownRegion } from './markdown-region';
@@ -7,14 +7,14 @@ import { blogRoutes } from '../../lib/route-utils';
 import style from './style.module.css';
 
 export default function BlogPage() {
-	const { params } = useRoute();
-	const { slug } = params;
+	const { slug } = useRoute().params;
+	const isValidRoute = blogRoutes[`/blog/${slug}`];
 
-	if (!blogRoutes[`/blog/${slug}`]) {
-		return <NotFound />;
-	}
-
-	return <BlogLayout />;
+	return (
+		<ErrorBoundary>
+			{isValidRoute ? <BlogLayout /> : <NotFound />}
+		</ErrorBoundary>
+	);
 }
 
 function BlogLayout() {

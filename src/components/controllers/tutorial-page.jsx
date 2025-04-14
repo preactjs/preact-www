@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useRoute, ErrorBoundary } from 'preact-iso';
 import { useEffect } from 'preact/hooks';
 import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
@@ -9,14 +9,14 @@ import { tutorialRoutes } from '../../lib/route-utils';
 import style from './tutorial/style.module.css';
 
 export default function TutorialPage() {
-	const { params } = useRoute();
-	const { step } = params;
+	const { step } = useRoute().params;
+	const isValidRoute = tutorialRoutes[`/tutorial${step ? `/${step}` : ''}`];
 
-	if (!tutorialRoutes[`/tutorial${step ? `/${step}` : ''}`]) {
-		return <NotFound />;
-	}
-
-	return <TutorialLayout />;
+	return (
+		<ErrorBoundary>
+			{isValidRoute ? <TutorialLayout /> : <NotFound />}
+		</ErrorBoundary>
+	);
 }
 
 function TutorialLayout() {
