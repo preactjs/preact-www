@@ -9,6 +9,7 @@ import { netlifyPlugin } from './plugins/netlify.js';
 import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.js';
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
+import { preloadPlugin } from './plugins/preload.js';
 
 // TODO: Should we do this for all routes, rely on discovery a bit less?
 import { tutorialRoutes } from './src/lib/route-utils.js';
@@ -20,7 +21,8 @@ export default defineConfig({
 	},
 	build: {
 		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
-		outDir: 'build'
+		outDir: 'build',
+		manifest: true
 	},
 	plugins: [
 		replace({
@@ -58,6 +60,7 @@ export default defineConfig({
 		netlifyPlugin(),
 		spaFallbackMiddlewarePlugin(),
 		htmlRoutingMiddlewarePlugin(),
-		rssFeedPlugin()
+		rssFeedPlugin(),
+		preloadPlugin()
 	]
 });
