@@ -22,5 +22,3 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
       - run: npm ci
       - run: npm run build
-        env:
-          NODE_OPTIONS: '--openssl-legacy-provider'

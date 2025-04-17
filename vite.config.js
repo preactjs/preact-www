@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import replace from '@rollup/plugin-replace';
 import path from 'path';
 
 import { precompileMarkdown } from './plugins/precompile-markdown/index.js';
@@ -22,11 +21,10 @@ export default defineConfig({
 		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
 		outDir: 'build'
 	},
+	define: {
+		'process.env.BRANCH': JSON.stringify(process.env.BRANCH)
+	},
 	plugins: [
-		replace({
-			'process.env.BRANCH': JSON.stringify(process.env.BRANCH),
-			preventAssignment: true
-		}),
 		preact({
 			prerender: {
 				enabled: true,
