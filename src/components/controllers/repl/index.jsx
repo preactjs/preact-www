@@ -5,7 +5,7 @@ import { textToBase64 } from './query-encode.js';
 import { ErrorOverlay } from './error-overlay';
 import { EXAMPLES, fetchExample } from './examples';
 import { useStoredValue } from '../../../lib/localstorage';
-import { Repl as _Repl } from '../../../lib/repl.js';
+import { CodeEditor, Runner } from '../../routes';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
@@ -122,7 +122,7 @@ export function Repl({ code }) {
 										stack={parseStackTrace(error)}
 									/>
 								)}
-								<_Repl.Runner
+								<Runner
 									onRealm={onRealm}
 									onError={setError}
 									onSuccess={() => setError(null)}
@@ -132,7 +132,7 @@ export function Repl({ code }) {
 							</div>
 						}
 					>
-						<_Repl.CodeEditor
+						<CodeEditor
 							class={style.code}
 							value={editorCode}
 							error={error}

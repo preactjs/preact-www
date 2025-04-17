@@ -9,6 +9,10 @@ export const ReplPage = lazy(() => import('./controllers/repl-page'));
 export const BlogPage = lazy(() => import('./controllers/blog-page'));
 export const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 
+// Combined Editor & Runner, keeps them in a single chunk
+export const CodeEditor = lazy(() => import('../lib/repl').then(m => m.CodeEditor));
+export const Runner = lazy(() => import('../lib/repl').then(m => m.Runner));
+
 const routeChange = url =>
 	// @ts-ignore
 	typeof ga === 'function' && ga('send', 'pageview', url);

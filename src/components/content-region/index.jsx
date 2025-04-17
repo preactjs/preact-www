@@ -5,8 +5,7 @@ import style from './style.module.css';
 import { useTranslation } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
 import { prefetchContent } from '../../lib/use-content';
-import { preloadRepl } from '../../lib/repl';
-import { ReplPage, TutorialPage } from '../routes';
+import { ReplPage, TutorialPage, CodeEditor, Runner } from '../routes';
 
 const COMPONENTS = {
 	...widgets,
@@ -17,10 +16,12 @@ const COMPONENTS = {
 			const prefetchAndPreload = () => {
 				if (props.href.startsWith('/repl')) {
 					ReplPage.preload();
-					preloadRepl();
+					CodeEditor.preload();
+					Runner.preload();
 				} else if (props.href.startsWith('/tutorial')) {
 					TutorialPage.preload();
-					preloadRepl();
+					CodeEditor.preload();
+					Runner.preload();
 				}
 
 				prefetchContent(url.pathname);
