@@ -38,8 +38,8 @@ export function preloadPlugin() {
 			}).join('');
 
 			const replWithPreload = replContent.replace(
-				'</script>',
-				`</script>${preloadTags}`
+				'</head>',
+				`${preloadTags}</head>`
 			);
 
 			await fs.writeFile(path.resolve('build', 'repl/index.html'), replWithPreload);
