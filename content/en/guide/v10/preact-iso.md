@@ -9,6 +9,8 @@ preact-iso is a collection of isomorphic async tools for Preact.
 
 "Isomorphic" describes code that can run (ideally seamlessly) across both the browser and server. `preact-iso` is made for supporting these environments, allowing users to build apps without having to create separate browser or server routers or worry about differences in data or component loading.
 
+> **Note:** Whilst this is a routing library that comes from the Preact team, many other routers are available in the wider Preact/React ecosystem that you may prefer to use instead, including [wouter](https://github.com/molefrog/wouter) and [react-router](https://reactrouter.com/). It's a great first option but you can bring your favorite router to Preact if you prefer.
+
 ---
 
 <toc></toc>
