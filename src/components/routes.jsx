@@ -9,7 +9,7 @@ export const ReplPage = lazy(() => import('./controllers/repl-page'));
 export const BlogPage = lazy(() => import('./controllers/blog-page'));
 export const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 
-// Combined Editor, Runner, and ErrorOverlay, keeps them in a single chunk
+// Combined 'REPL' components, re-evaluate if any are used outside of the REPL in the future
 export const CodeEditor = lazy(() => import('../lib/repl').then(m => m.CodeEditor));
 export const Runner = lazy(() => import('../lib/repl').then(m => m.Runner));
 export const ErrorOverlay = lazy(() => import('../lib/repl').then(m => m.ErrorOverlay));
