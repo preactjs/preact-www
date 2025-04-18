@@ -496,6 +496,19 @@
 						}
 					}
 				]
+			},
+			{
+				"name": {
+					"en": "Libraries"
+				},
+				"routes": [
+					{
+						"path": "/preact-iso",
+						"name": {
+							"en": "preact-iso"
+						}
+					}
+				]
 			}
 		],
 		"v8": [
