@@ -133,7 +133,7 @@ This will match the following routes:
 
 ## API Docs
 
-### `LocationProvider`
+### LocationProvider
 
 A context provider that provides the current location to its children. This is required for the router to function.
 
@@ -155,7 +155,7 @@ function App() {
 }
 ```
 
-### `Router`
+### Router
 
 Props:
 
@@ -183,7 +183,7 @@ function App() {
 }
 ```
 
-### `Route`
+### Route
 
 
 There are two ways to define routes using `preact-iso`:
@@ -249,7 +249,7 @@ The difference between `/:id*` and `/:id/*` is that in the former, the `id` para
   - `/profile/:id/*`, with `/profile/123/abc`
     - `id` is `123`
 
-### `useLocation`
+### useLocation()
 
 A hook to work with the `LocationProvider` to access location context.
 
@@ -260,7 +260,7 @@ Returns an object with the following properties:
   - `query: Record<string, string>` - The current query string parameters (`/profile?name=John` -> `{ name: 'John' }`)
   - `route: (url: string, replace?: boolean) => void` - A function to programmatically navigate to a new route. The `replace` param can optionally be used to overwrite history, navigating them away without keeping the current location in the history stack.
 
-### `useRoute`
+### useRoute()
 
 A hook to access current route information. Unlike `useLocation`, this hook only works within `<Router>` components.
 
@@ -270,7 +270,7 @@ Returns an object with the following properties:
   - `query: Record<string, string>` - The current query string parameters (`/profile?name=John` -> `{ name: 'John' }`)
   - `params: Record<string, string>` - The current route parameters (`/profile/:id` -> `{ id: '123' }`)
 
-### `lazy`
+### lazy()
 
 Make a lazily-loaded version of a Component.
 
@@ -313,7 +313,7 @@ function Home() {
 }
 ```
 
-### `ErrorBoundary`
+### ErrorBoundary
 
 A simple component to catch errors in the component tree below it.
 
@@ -339,7 +339,7 @@ function App() {
 }
 ```
 
-### `hydrate`
+### hydrate()
 
 A thin wrapper around Preact's `hydrate` export, it switches between hydrating and rendering the provided element, depending on whether the current page has been prerendered. Additionally, it checks to ensure it's running in a browser context before attempting any rendering, making it a no-op during SSR.
 
@@ -366,7 +366,7 @@ hydrate(<App />);
 
 However, it is just a simple utility method. By no means is it essential to use, you can always use Preact's `hydrate` export directly.
 
-### `prerender`
+### prerender()
 
 Renders a Virtual DOM tree to an HTML string using `preact-render-to-string`. The Promise returned from `prerender()` resolves to an Object with `html` and `links[]` properties. The `html` property contains your pre-rendered static HTML markup, and `links` is an Array of any non-external URL strings found in links on the generated page.
 
