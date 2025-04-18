@@ -13,6 +13,7 @@ export const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 export const CodeEditor = lazy(() => import('../lib/repl').then(m => m.CodeEditor));
 export const Runner = lazy(() => import('../lib/repl').then(m => m.Runner));
 export const ErrorOverlay = lazy(() => import('../lib/repl').then(m => m.ErrorOverlay));
+export const Splitter = lazy(() => import('../lib/repl').then(m => m.Splitter));
 
 const routeChange = url =>
 	// @ts-ignore
