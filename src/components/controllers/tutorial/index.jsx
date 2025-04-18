@@ -10,10 +10,9 @@ import {
 } from 'preact/hooks';
 import { ErrorBoundary, useLocation } from 'preact-iso';
 import { TutorialContext, SolutionContext } from './contexts';
-import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { CodeEditor, Runner } from '../../routes';
+import { CodeEditor, Runner, ErrorOverlay } from '../../routes';
 import { useLanguage } from '../../../lib/i18n';
 import { Splitter } from '../../splitter';
 import config from '../../../config.json';
