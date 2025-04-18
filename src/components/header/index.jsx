@@ -11,8 +11,7 @@ import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
 import { useLanguage } from '../../lib/i18n';
 import { prefetchContent } from '../../lib/use-content';
-import { preloadRepl } from '../../lib/repl';
-import { ReplPage, TutorialPage } from '../routes';
+import { ReplPage, TutorialPage, CodeEditor } from '../routes';
 
 const LINK_FLAIR = {
 	logo: InvertedLogo
@@ -220,10 +219,10 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	const prefetchAndPreload = () => {
 		if (href.startsWith('/repl')) {
 			ReplPage.preload();
-			preloadRepl();
+			CodeEditor.preload();
 		} else if (href.startsWith('/tutorial')) {
 			TutorialPage.preload();
-			preloadRepl();
+			CodeEditor.preload();
 		}
 
 		prefetchContent(href);

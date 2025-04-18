@@ -10,12 +10,10 @@ import {
 } from 'preact/hooks';
 import { ErrorBoundary, useLocation } from 'preact-iso';
 import { TutorialContext, SolutionContext } from './contexts';
-import { ErrorOverlay } from '../repl/error-overlay';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { Repl } from '../../../lib/repl';
+import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
 import { useLanguage } from '../../../lib/i18n';
-import { Splitter } from '../../splitter';
 import config from '../../../config.json';
 import { MarkdownRegion } from '../markdown-region';
 import style from './style.module.css';
@@ -160,7 +158,7 @@ export function Tutorial({ html, meta }) {
 													stack={parseStackTrace(error)}
 												/>
 											)}
-											<Repl.Runner
+											<Runner
 												ref={runner}
 												onSuccess={onSuccess}
 												onRealm={onRealm}
@@ -181,7 +179,7 @@ export function Tutorial({ html, meta }) {
 								}
 							>
 								<div class={style.codeWindow}>
-									<Repl.CodeEditor
+									<CodeEditor
 										class={style.code}
 										value={editorCode}
 										error={error}
