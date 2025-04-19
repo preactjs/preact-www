@@ -15,6 +15,7 @@
 	flex-direction: row;
 
 	& > .splitter {
+		touch-action: none;
 		cursor: col-resize;
 		left: var(--size, 50%);
 		top: 0;
@@ -40,6 +41,7 @@
 	flex-direction: column;
 
 	& > .splitter {
+		touch-action: none;
 		cursor: row-resize;
 		left: 0;
 		right: 0;
