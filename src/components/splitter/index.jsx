@@ -1,9 +1,20 @@
-import { useCallback } from 'preact/hooks';
+import { useCallback, useEffect, useState } from 'preact/hooks';
 import cx from '../../lib/cx';
 import s from './splitter.module.css';
 
+const determineSplitterOrientation = (width) => width > 600 ? 'horizontal' : 'vertical';
+
 /**
- * @param {{orientation: "horizontal" | "vertical", initial?: string, children: any, other: any, force?: string | undefined}} props
+ * @typedef {Object} SplitterProps
+ * @property {"horizontal" | "vertical" | "auto"} orientation
+ * @property {string} [initial]
+ * @property {import('preact').ComponentChildren} children
+ * @property {import('preact').ComponentChildren} other
+ * @property {string | undefined} [force]
+ */
+
+/**
+ * @param {SplitterProps} props
  */
 export function Splitter({
 	orientation,
@@ -12,12 +23,30 @@ export function Splitter({
 	other,
 	force
 }) {
+	const [splitterOrientation, setSplitterOrientation] = useState(() => (
+		orientation === 'auto'
+			? determineSplitterOrientation(document.body.clientWidth)
+			: orientation
+	));
+
+	useEffect(() => {
+		if (orientation !== 'auto') return;
+		const observer = new ResizeObserver((entries) => {
+			setSplitterOrientation(
+				determineSplitterOrientation(entries[0].contentRect.width)
+			);
+		});
+
+		observer.observe(document.body);
+		return () => observer.disconnect();
+	}, []);
+
 	const splitterPointerDown = useCallback(e => {
 		let target = e.target;
 		let root = target.parentNode;
 		let v, perc, w, pid;
 		function move(e) {
-			const isHorizontal = orientation === 'horizontal';
+			const isHorizontal = splitterOrientation === 'horizontal';
 			const pos = isHorizontal ? e.pageX : e.pageY;
 
 			if (v == null) {
@@ -33,7 +62,7 @@ export function Splitter({
 		}
 		function up(e) {
 			move(e);
-			cancel(e);
+			cancel();
 		}
 		function cancel() {
 			target.releasePointerCapture(pid);
@@ -41,17 +70,18 @@ export function Splitter({
 			removeEventListener('pointerup', up);
 			removeEventListener('pointercancel', cancel);
 		}
+
 		addEventListener('pointermove', move);
 		addEventListener('pointerup', up);
 		addEventListener('pointercancel', cancel);
-	}, []);
+	}, [splitterOrientation]);
 
 	return (
 		<div
 			ref={(n) => n?.style.setProperty('--size', force || initial)}
 			class={cx(
 				s.container,
-				orientation === 'horizontal' ? s.horizontal : s.vertical
+				splitterOrientation === 'horizontal' ? s.horizontal : s.vertical
 			)}
 		>
 			<div class={cx(s.first, s.area)}>{children}</div>
