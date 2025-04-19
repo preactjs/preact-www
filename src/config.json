@@ -499,7 +499,8 @@
 			},
 			{
 				"name": {
-					"en": "Libraries"
+					"en": "Libraries",
+					"ru": "Библиотеки"
 				},
 				"routes": [
 					{

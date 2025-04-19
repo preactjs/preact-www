@@ -46,9 +46,11 @@ description: 'Хотя такие инструменты сборки, как We
     <script type="module">
       import { render } from 'preact';
       import { html } from 'htm/preact';
+
       export function App() {
         return html`<h1>Привет, мир!</h1>`;
       }
+
       render(html`<${App} />`, document.getElementById('app'));
     </script>
   </body>
@@ -133,6 +135,6 @@ function Counter() {
     </div>
   `;
 }
-// --repl-after
-render(<Counter />, document.getElementById('app'));
+
+render(html`<${Counter} />`, document.getElementById('app'));
 ```
