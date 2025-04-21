@@ -110,7 +110,7 @@ export function Repl({ code }) {
 			<div class={style.replWrapper}>
 				<ErrorBoundary>
 					<Splitter
-						orientation="horizontal"
+						orientation="auto"
 						other={
 							<div class={style.output}>
 								{error && (
