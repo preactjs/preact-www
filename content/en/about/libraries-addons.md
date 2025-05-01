@@ -40,6 +40,8 @@ A collection of modules built to work wonderfully with Preact.
 - :diamond_shape_with_a_dot_inside: [**Capacitor**](https://capacitorjs.com/solution/preact): Turn your Preact app into a Native iOS/Android App and PWA.
 - :ice_cube: [**Kretes**](https://kretes.dev/docs/howtos/preact-setup/): Build full-stack TypeScript apps using Preact and Node.js
 - 🏝: [**preact-island**](https://github.com/mwood23/preact-island): Run your Preact widget on any website with reactive props.
+- 🇲🇦 [**ziko-wrapper**](https://github.com/zakarialaoui10/ziko-wrapper) Seamlessly render [**Zikojs**](https://github.com/zakarialaoui10/ziko.js) components in a Preact app and vice versa.
+
 
 ## GUI Toolkits
 
