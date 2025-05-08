@@ -14,3 +14,6 @@
     Link:""
 /*.atom
     Link:""
+/.well-known/traffic-advice
+    Link:""
+    Content-Type: application/trafficadvice+json

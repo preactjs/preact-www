@@ -53,6 +53,24 @@ export default defineConfig({
 				reloadPageOnChange: true
 			}
 		}),
+		viteStaticCopy({
+			// Safari will always request both `apple-touch-icon.png` and
+			// `apple-touch-icon-precomposed.png` regardless of any set path via `<link>`
+			// tags. The latter serves no purpose since iOS 7.0, but as Safari still
+			// requests it, we may as well provide it to get this out of our 404 stats.
+			targets: [
+				{
+					src: './src/assets/app-icon.png',
+					dest: './',
+					rename: 'apple-touch-icon.png'
+				},
+				{
+					src: './src/assets/app-icon.png',
+					dest: './',
+					rename: 'apple-touch-icon-precomposed.png'
+				}
+			]
+		}),
 		netlifyPlugin(),
 		spaFallbackMiddlewarePlugin(),
 		htmlRoutingMiddlewarePlugin(),
