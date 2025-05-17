@@ -1,5 +1,5 @@
 ---
-title: Side Effects
+title: 副作用
 prev: /tutorial/06-context
 next: /tutorial/08-keys
 solvable: true

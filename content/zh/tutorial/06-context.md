@@ -43,7 +43,7 @@ export default function App() {
 
 在实际使用中，context很少在同一个组件中提供和消费 - 组件状态通常是这种情况的最佳解决方案。
 
-### Usage with hooks
+### 使用hooks
 
 context的`<Consumer>`API对于大多数用例来说已经足够了，但由于它依赖于嵌套函数来实现作用域，所以写起来可能有点繁琐。函数组件可以选择使用Preact的`useContext()`钩子，它返回组件在虚拟DOM树中位置的`Context`的值。
 
