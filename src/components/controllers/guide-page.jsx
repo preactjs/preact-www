@@ -103,10 +103,10 @@ function UnmaintainedTranslationWarning({ meta }) {
 		<div class={style.stickyWarning}>
 			<details>
 				<summary>You are viewing an unmaintained translation</summary>
-				Whilst we try to offer these docs in as many languages as possible, we
-				rely upon our community members to help us maintain them. This
-				translation has seen little maintenance in recent months and may have
-				fallen out of sync with the English version.
+
+				Whilst we try to offer these docs in as many languages as possible, we rely upon
+				our community members to help us maintain them. This translation has seen little
+				maintenance in recent months and may have fallen out of sync with the English version.
 			</details>
 			<div class={style.unmaintaindTranslationLinks}>
 				<a
