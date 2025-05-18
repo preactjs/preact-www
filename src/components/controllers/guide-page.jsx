@@ -82,7 +82,7 @@ function OldDocsWarning() {
 }
 
 // Maybe include zh? It's received some contributions recently
-const MAINTAINED_LANGUAGES = ['en', 'ru'];
+const MAINTAINED_LANGUAGES = ['en', 'ru', 'zh'];
 
 /**
  * @param {object} props

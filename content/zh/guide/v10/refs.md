@@ -1,13 +1,13 @@
 ---
 title: 引用
-description: '引用可用于访问 Preact 渲染的 DOM 节点'
+description: '引用（Refs）是一种创建组件实例本地稳定值的方式，这些值可以在渲染过程中保持不变。'
 ---
 
 # 引用
 
-某些场景你可能需要直接引用 Preact 所渲染的 DOM 元素或组件，引用正是为此而打造。
+引用（References），简称refs，是稳定的、局部的值，它们在组件渲染过程中保持不变，但当它们改变时不会像状态（state）或属性（props）那样触发重新渲染。
 
-引用的用例之一是测量 DOM 节点的实际大小。虽然您也可以通过 `ref` 获取组件示例的引用，但我们通常不推荐此方式。此方式会导致子元素和父元素之间产生硬耦合，破坏组件模型的可组合性。大多数情况下，将回调函数作为 prop 传递比直接调用类组件上的方法更自然。
+最常见的是，您会看到refs用于促进对DOM的命令式操作，但它们也可以用于存储您需要保持稳定的任何任意本地值。您可以使用它们来跟踪之前的状态值，保持对间隔或超时ID的引用，或者简单地作为计数器值。重要的是，refs不应该用于渲染逻辑，而只应该在生命周期方法和事件处理程序中使用。
 
 ---
 
@@ -15,110 +15,215 @@ description: '引用可用于访问 Preact 渲染的 DOM 节点'
 
 ---
 
-## createRef
+## 创建引用
 
-`createRef` 函数将返回只有一个 `current` 属性的对象。当调用 `render` 方法时，Preact 会自动为 `current` 属性赋值当前 DOM 节点或组件。
+在Preact中创建refs有两种方式，取决于您喜欢的组件风格：`createRef`（类组件）和`useRef`（函数组件/钩子）。这两个API的基本工作方式相同：它们创建一个具有`current`属性的稳定的普通对象，可以选择性地初始化为一个值。
+
+<tab-group tabstring="Classes, Hooks">
+
+```jsx
+import { createRef } from "preact";
+
+class MyComponent extends Component {
+  countRef = createRef();
+  inputRef = createRef(null);
+
+  // ...
+}
+```
+
+```jsx
+import { useRef } from "preact/hooks";
+
+function MyComponent() {
+  const countRef = useRef();
+  const inputRef = useRef(null);
+
+  // ...
+}
+```
+
+</tab-group>
+
+## 使用引用访问DOM节点
+
+refs最常见的用例是访问组件的底层DOM节点。这对于命令式DOM操作很有用，例如测量元素、调用各种元素上的原生方法（如`.focus()`或`.play()`），以及与用原生JS编写的第三方库集成。在以下示例中，在渲染后，Preact将把DOM节点分配给ref对象的`current`属性，使其在组件挂载后可用。
+
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
 import { render, Component, createRef } from "preact";
 // --repl-before
-class Foo extends Component {
-  ref = createRef();
+class MyInput extends Component {
+  ref = createRef(null);
 
   componentDidMount() {
     console.log(this.ref.current);
-    // 输出: [HTMLDivElement]
+    // 输出: [HTMLInputElement]
   }
-  
+
   render() {
-    return <div ref={this.ref}>foo</div>
+    return <input ref={this.ref} />;
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<MyInput />, document.getElementById("app"));
 ```
 
-## 回调引用
+```jsx
+// --repl
+import { render } from "preact";
+import { useRef, useEffect } from "preact/hooks";
+// --repl-before
+function MyInput() {
+  const ref = useRef(null);
 
-获取元素引用的另一种方式是传递回调函数。您可能需要写更多的代码，但工作原理与 `createRef` 类似。
+  useEffect(() => {
+    console.log(ref.current);
+    // 输出: [HTMLInputElement]
+  }, []);
+
+  return <input ref={ref} />;
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+</tab-group>
+
+### 回调引用
+
+使用引用的另一种方式是将函数传递给`ref`属性，其中DOM节点将作为参数传递。
+
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
 import { render, Component } from "preact";
 // --repl-before
-class Foo extends Component {
-  ref = null;
-  setRef = (dom) => this.ref = dom;
-
-  componentDidMount() {
-    console.log(this.ref);
-    // 输出: [HTMLDivElement]
-  }
-  
+class MyInput extends Component {
   render() {
-    return <div ref={this.setRef}>foo</div>
-  }
-}
-// --repl-after
-render(<Foo />, document.getElementById("app"));
-```
-
-> 若引用的回调函数是内联函数，则此函数会被调用两次。第一次调用时引用为 `null`，另一次时传入实际的引用。这是一个常见错误，`createRef` 强制用户检查 `ref.current` 是否存在，使得这个问题简单了一些。
-
-## 拼在一起
-
-假设我们需要获取 DOM 节点的引用来测量其宽和高，我们需要将组件中的占位值替换为实际测量值。
-
-```jsx
-class Foo extends Component {
-  // 我们需要在此处使用 DOM 节点的实际宽度替换
-  state = {
-    width: 0,
-    height: 0,
-  };
-
-  render(_, { width, height }) {
-    return <div>宽：{width}，高：{height}</div>;
-  }
-}
-```
-
-只有在 `render` 方法已经调用且组件挂载到 DOM 后测量才有意义。在此之前 DOM 节点并不存在，因此测量没有意义。
-
-```jsx
-// --repl
-import { render, Component } from "preact";
-// --repl-before
-class Foo extends Component {
-  state = {
-    width: 0,
-    height: 0,
-  };
-
-  ref = createRef();
-
-  componentDidMount() {
-    // 为安全考量检测是否存在引用
-    if (this.ref.current) {
-      const dimensions = this.ref.current.getBoundingClientRect();
-      this.setState({
-        width: dimensions.width,
-        height: dimensions.height,
-      });
-    }
-  }
-
-  render(_, { width, height }) {
     return (
-      <div ref={this.ref}>
-        宽：{width}，高：{height}
+      <input ref={(dom) => {
+        console.log('已挂载:', dom);
+
+        // 从Preact 10.23.0开始，您可以选择返回一个清理函数
+        return () => {
+          console.log('已卸载:', dom);
+        };
+      }} />
+    );
+  }
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+```jsx
+// --repl
+import { render } from "preact";
+// --repl-before
+function MyInput() {
+  return (
+    <input ref={(dom) => {
+      console.log('已挂载:', dom);
+
+      // 从Preact 10.23.0开始，您可以选择返回一个清理函数
+      return () => {
+        console.log('已卸载:', dom);
+      };
+    }} />
+  );
+}
+// --repl-after
+render(<MyInput />, document.getElementById("app"));
+```
+
+</tab-group>
+
+> 如果提供的ref回调不稳定（例如上面所示的内联定义的回调），并且_没有_返回清理函数，则在所有重新渲染时**它将被调用两次**：一次传入`null`，然后一次传入实际引用。这是一个常见问题，`createRef`/`useRef` API通过强制用户检查`ref.current`是否已定义，使这个问题变得更容易处理。
+>
+> 相比之下，稳定的函数可以是类组件实例上的方法、组件外部定义的函数，或者例如使用`useCallback`创建的函数。
+
+## 使用引用存储本地值
+
+然而，refs并不限于存储DOM节点；它们可以用于存储您可能需要的任何类型的值。
+
+在下面的例子中，我们将一个间隔的ID存储在ref中，以便能够独立地启动和停止它。
+
+<tab-group tabstring="Classes, Hooks">
+
+```jsx
+// --repl
+import { render, Component, createRef } from "preact";
+// --repl-before
+class SimpleClock extends Component {
+  state = {
+    time: Date.now(),
+  };
+  intervalId = createRef(null);
+
+  startClock = () => {
+    this.setState({ time: Date.now() });
+    this.intervalId.current = setInterval(() => {
+      this.setState({ time: Date.now() });
+    }, 1000);
+  };
+
+  stopClock = () => {
+    clearInterval(this.intervalId.current);
+  };
+
+
+  render(_, { time }) {
+    const formattedTime = new Date(time).toLocaleTimeString();
+
+    return (
+      <div>
+        <button onClick={this.startClock}>启动时钟</button>
+        <time dateTime={formattedTime}>{formattedTime}</time>
+        <button onClick={this.stopClock}>停止时钟</button>
       </div>
     );
   }
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<SimpleClock />, document.getElementById("app"));
 ```
 
-大功告成！现在的组件会在挂载后显示宽和高。
+```jsx
+// --repl
+import { render } from "preact";
+import { useState, useRef } from "preact/hooks";
+// --repl-before
+function SimpleClock() {
+  const [time, setTime] = useState(Date.now());
+  const intervalId = useRef(null);
+
+  const startClock = () => {
+    setTime(Date.now());
+    intervalId.current = setInterval(() => {
+      setTime(Date.now());
+    }, 1000);
+  };
+
+  const stopClock = () => {
+    clearInterval(intervalId.current);
+  };
+
+  const formattedTime = new Date(time).toLocaleTimeString();
+
+  return (
+    <div>
+      <button onClick={startClock}>启动时钟</button>
+      <time dateTime={formattedTime}>{formattedTime}</time>
+      <button onClick={stopClock}>停止时钟</button>
+    </div>
+  );
+}
+// --repl-after
+render(<SimpleClock />, document.getElementById("app"));
+```
+
+</tab-group>

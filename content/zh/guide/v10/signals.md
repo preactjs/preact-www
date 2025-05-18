@@ -13,6 +13,13 @@ description: 'Signals: composable reactive state with automatic rendering'
 
 ---
 
+**Important**
+
+本指南将介绍如何在 Preact 中使用 Signals，虽然这在很大程度上适用于 Core 和 React 库，但会有一些使用差异。它们使用的最佳参考在各自的文档中 [`@preact/signals-core`](https://github.com/preactjs/signals), [`@preact/signals-react`](https://github.com/preactjs/signals/tree/main/packages/react)
+
+
+---
+
 <toc></toc>
 
 ---
@@ -536,4 +543,18 @@ batch(() => {
   name.value = "John";
   surname.value = "Smith";
 });
+```
+### 未追踪(fn)
+
+`untracked(fn)` 函数可用于访问多个信号的值而无需订阅它们。
+
+```js
+const name = signal("Jane");
+const surname = signal("Doe");
+
+effect(() => {
+  untracked(() => {
+    console.log(`${name.value} ${surname.value}`)
+  })
+})
 ```

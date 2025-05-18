@@ -215,27 +215,11 @@ module.exports = {
 }
 ```
 
-#### Snowpack 中的别名
 
-要在 [Snowpack](https://www.snowpack.dev/) 中添加别名，您需要在 `snowpack.config.mjs` 文件中添加包导入别名。
+#### Aliasing in TypeScript
 
-```js
-// snowpack.config.mjs
-export default {
-  alias: {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime",
-  }
-}
-```
-
-[htm]: https://github.com/developit/htm
-
-## 为 preact/compat 配置 TypeScript
-
-您的项目可能需要更广的 React 生态的支持。为了让您的应用得以编译，您可能需要先关闭 `node_modules` 路径的类型检查，并以类似如下方式添加类型路径。这样，您的别名才能在第三方库导入 React 时正常被替换。
+TypeScript，即使与打包工具一起使用时，也有其自身的类型解析流程。
+为确保使用 Preact 的类型而非 React 的类型，您需要在`tsconfig.json` (or `jsconfig.json`):中添加以下配置：
 
 ```json
 {
@@ -252,3 +236,24 @@ export default {
   }
 }
 ```
+
+此外，您可能需要启用 `skipLibCheck`,就像我们在上面的示例中所做的那样。一些 React 库使用的类型可能没有在`preact/compat`中提供（尽管我们会尽力修复这些问题），因此这些库可能会导致 TypeScript 编译错误。通过设置 `skipLibCheck`, 您可以告诉 TypeScript 不需要对所有
+`.d.ts` 文件（通常是 `node_modules` 中的库文件）进行完整检查，从而解决这些错误。
+
+#### 使用导入映射（Import Maps）进行别名配置
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "preact": "https://esm.sh/preact@10.23.1",
+      "preact/": "https://esm.sh/preact@10.23.1/",
+      "react": "https://esm.sh/preact@10.23.1/compat",
+      "react/": "https://esm.sh/preact@10.23.1/compat/",
+      "react-dom": "https://esm.sh/preact@10.23.1/compat",
+    }
+  }
+</script>
+```
+
+同样也可以参考[Import Maps -- Recipes and Common Patterns](/guide/v10/no-build-workflows#示例与常见模式)作为例子.

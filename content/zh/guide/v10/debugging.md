@@ -128,6 +128,10 @@ render(Foo, dom);
 
 HTML 对表格的结构有着严格规则，违反其中一条都会导致渲染错误，且很难调试。在 Preact 中，我们会检测此问题并输出错误。要了解表格结构，我们强烈推荐您参阅 [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Tables/Basics)
 
+> **注意:** 在这个语境中，“严格模式” 指的是 HTML 解析器的 输出，而非 输入。浏览器通常非常宽容，会尽可能尝试修正无效的 HTML 代码，以确保页面仍能正常显示。然而，对于 Preact 这类虚拟 DOM 库而言，这可能会引发问题。因为一旦浏览器修正了 HTML 代码，输入内容与输出内容可能会不一致，而 Preact 对此并不知情。
+>
+> 例如，根据规范，`<tr>` 元素必须始终作为 `<tbody>`、`<thead>` 或 `<tfoot>` 元素的子元素存在。但如果你直接将 `<tr>` 写在 `<table>` 内部，浏览器会尝试自动修正这一问题，为其添加一个 `<tbody>` 包装。此时，Preact 预期的 DOM 结构是 `<table><tr></tr></table>`，但浏览器实际构建的 DOM 结构却是 `<table><tbody><tr></tr></tbody></table>`。
+
 ### 无效 `ref` 属性
 
 当 `ref` 属性包含异常值时我们将抛出此错误。这包括很久前即启用的字符串型 `refs`。
