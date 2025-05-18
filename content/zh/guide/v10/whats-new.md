@@ -120,7 +120,7 @@ function Foo(props) {
 
 尽管我们一直热衷于添加新特性并推动 `Preact` 向前发展，但 `preact-compat` 包并没有得到同样多的关注。到目前为止，它一直存在于一个单独的仓库中，这使得协调跨越 `Preact` 和兼容层的重大变更变得更加困难。通过将兼容层移至与 `Preact` 本身相同的包中，使用 `React` 生态系统中的库时无需额外安装任何东西。
 
-兼容层现在称为 [preact/compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat), 并且掌握了一些新技巧，如 `forwardRef`、`memo` 以及无数的兼容性改进。
+兼容层现在称为 [preact/compat](/guide/v10/differences-to-react#preactcompat-的功能), 并且掌握了一些新技巧，如 `forwardRef`、`memo` 以及无数的兼容性改进。
 
 ```js
 // Preact 8.x
