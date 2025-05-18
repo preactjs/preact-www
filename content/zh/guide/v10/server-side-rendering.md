@@ -23,6 +23,10 @@ npm install -S preact-render-to-string
 
 上述命令执行完毕后，您可以直接使用。我们可以通过下面的代码解释其所有的 API：
 
+## 基本用法
+
+基本功能可以通过一个简单的代码片段来最好地解释：
+
 ```jsx
 import render from 'preact-render-to-string';
 import { h } from 'preact';
@@ -31,6 +35,56 @@ const App = <div class="foo">内容</div>;
 
 console.log(render(App));
 // <div class="foo">内容</div>
+```
+
+## 使用 `Suspense` & `lazy` 进行异步渲染 
+
+你可能会发现自己需要渲染动态加载的组件，比如在使用 `Suspense` 和 `lazy` 来实现代码分割时（以及其他一些用例）。异步渲染器会等待 `Promise` 解析完成，从而让你能够完整地构建 `HTML` 字符串：
+
+
+```jsx
+// page/home.js
+export default () => {
+    return <h1>Home page</h1>;
+};
+```
+
+```jsx
+// main.js
+import { Suspense, lazy } from 'preact/compat';
+
+// Creation of the lazy component
+const HomePage = lazy(() => import('./pages/home'));
+
+const Main = () => {
+    return (
+        <Suspense fallback={<p>Loading</p>}>
+            <HomePage />
+        </Suspense>
+    );
+};
+```
+
+上述内容是使用代码分割的 Preact 应用程序的典型设置，无需进行任何更改即可使用服务器端渲染。
+
+要渲染此应用程序，我们需要略微偏离基本用法示例，并使用 `renderToStringAsync` 导出来渲染我们的应用程序：
+
+```jsx
+import { renderToStringAsync } from 'preact-render-to-string';
+import { Main } from './main';
+
+const main = async () => {
+    // Rendering of lazy components
+    const html = await renderToStringAsync(<Main />);
+
+    console.log(html);
+    // <h1>Home page</h1>
+};
+
+// Execution & error handling
+main().catch((error) => {
+    console.error(error);
+});
 ```
 
 ## 浅层渲染 (Shallow Rendering)

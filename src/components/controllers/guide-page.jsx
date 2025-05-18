@@ -82,7 +82,7 @@ function OldDocsWarning() {
 }
 
 // Maybe include zh? It's received some contributions recently
-const MAINTAINED_LANGUAGES = ['en', 'ru'];
+const MAINTAINED_LANGUAGES = ['en', 'ru', 'zh'];
 
 /**
  * @param {object} props
@@ -93,7 +93,11 @@ function UnmaintainedTranslationWarning({ meta }) {
 	const { name, version } = params;
 	const [lang, setLang] = useLanguage();
 
-	if (version !== LATEST_MAJOR || MAINTAINED_LANGUAGES.includes(lang) || meta.isFallback) {
+	if (
+		version !== LATEST_MAJOR ||
+		MAINTAINED_LANGUAGES.includes(lang) ||
+		meta.isFallback
+	) {
 		return null;
 	}
 
@@ -103,10 +107,10 @@ function UnmaintainedTranslationWarning({ meta }) {
 		<div class={style.stickyWarning}>
 			<details>
 				<summary>You are viewing an unmaintained translation</summary>
-
-				Whilst we try to offer these docs in as many languages as possible, we rely upon
-				our community members to help us maintain them. This translation has seen little
-				maintenance in recent months and may have fallen out of sync with the English version.
+				Whilst we try to offer these docs in as many languages as possible, we
+				rely upon our community members to help us maintain them. This
+				translation has seen little maintenance in recent months and may have
+				fallen out of sync with the English version.
 			</details>
 			<div class={style.unmaintaindTranslationLinks}>
 				<a
@@ -115,11 +119,7 @@ function UnmaintainedTranslationWarning({ meta }) {
 				>
 					Switch to the English version
 				</a>
-				<a
-					href={editUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
+				<a href={editUrl} target="_blank" rel="noopener noreferrer">
 					Contribute to this translation
 				</a>
 			</div>

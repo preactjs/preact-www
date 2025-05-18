@@ -288,6 +288,51 @@ render(<Foo />, document.getElementById("app"));
 
 > 注意不要混淆 `useRef` 和 `createRef`。
 
+### useImperativeHandle
+
+要修改传递给子组件的 ref，我们可以使用 `useImperativeHandle` 钩子。它接受三个参数：要修改的`ref`、一个返回新 `ref` 值的执行函数，以及一个用于确定何时重新运行的依赖项数组。
+
+```jsx
+// --repl
+import { render } from "preact";
+import { useRef, useImperativeHandle, useState } from "preact/hooks";
+// --repl-before
+function MyInput({ inputRef }) {
+  const ref = useRef(null);
+  useImperativeHandle(inputRef, () => {
+    return {
+      // 仅暴露 .focus() 方法，不直接提供对 DOM 节点的访问权限
+      focus() {
+        ref.current.focus();
+      },
+    };
+  }, []);
+
+  return (
+    <label>
+      Name: <input ref={ref} />
+    </label>
+  );
+}
+
+function App() {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <MyInput inputRef={inputRef} />
+      <button onClick={handleClick}>Click To Edit</button>
+    </div>
+  );
+}
+// --repl-after
+render(<App />, document.getElementById("app"));
+```
+
 ## useContext
 
 可以使用 `useContext` 钩子在函数式组件中访问上下文，这不需要任何高阶组件或封装。第一个参数必须是 `createContext` 创建的上下文对象。

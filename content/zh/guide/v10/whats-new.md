@@ -108,7 +108,7 @@ function App() {
 
 ## CSS 自定义属性
 
-现在您可以使用 CSS 最新的[变量功能](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)为网页添加样式。
+有时候，正是这些细微之处带来了巨大的改变。随着 CSS 的最新发展，你可以利用 [CSS 变量](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) 进行样式设计：
 
 ```jsx
 function Foo(props) {
@@ -116,11 +116,11 @@ function Foo(props) {
 }
 ```
 
-## 兼容层加入核心
+## 兼容层融入核心
 
-虽然我们总是为 Preact 不断添加新功能，但我们对 `preact-compat` 包却鲜有关注——直到现在。之前，该软件包的源码一直都位于一个独立仓库中，难以配合 Preact 和兼容层的大型改动。现在，我们将此软件包加入 Preact 包内，这样您无需安装任何东西就能使用 React 的库。
+尽管我们一直热衷于添加新特性并推动 `Preact` 向前发展，但 `preact-compat` 包并没有得到同样多的关注。到目前为止，它一直存在于一个单独的仓库中，这使得协调跨越 `Preact` 和兼容层的重大变更变得更加困难。通过将兼容层移至与 `Preact` 本身相同的包中，使用 `React` 生态系统中的库时无需额外安装任何东西。
 
-此兼容层现已更名为 [preact/compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat)，添加了如 `forwardRef` 和 `memo` 在内的新功能与许多兼容性优化。
+兼容层现在称为 [preact/compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat), 并且掌握了一些新技巧，如 `forwardRef`、`memo` 以及无数的兼容性改进。
 
 ```js
 // Preact 8.x
@@ -130,8 +130,8 @@ import React from "preact-compat";
 import React from "preact/compat";
 ```
 
-## 许多兼容性修复
+## 大量兼容性修复
 
-我们的补丁数量众多。总之，Preact 对 React 生态的兼容性得到了显著提升。我们还在测试流程中引入了一些热门的包进行测试，确保 Preact 完整兼容。
+这些修复太多，无法一一列举，但我们在与 React 生态系统库的兼容性方面取得了长足的进步。我们特别确保在测试过程中纳入了几个流行的包，以确保我们能够保证对它们的全面支持。
 
-如果您在 Preact 8 中遇到了不兼容的 React 包，您可以更新到 Preact X 再安装试试，它十有八九都能正常工作 ;)
+如果你遇到过与 Preact 8 配合不佳的库，你应该在 X 版本上再试一次。很有可能一切都能按预期工作;
