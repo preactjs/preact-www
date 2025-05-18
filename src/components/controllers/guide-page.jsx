@@ -93,11 +93,7 @@ function UnmaintainedTranslationWarning({ meta }) {
 	const { name, version } = params;
 	const [lang, setLang] = useLanguage();
 
-	if (
-		version !== LATEST_MAJOR ||
-		MAINTAINED_LANGUAGES.includes(lang) ||
-		meta.isFallback
-	) {
+	if (version !== LATEST_MAJOR || MAINTAINED_LANGUAGES.includes(lang) || meta.isFallback) {
 		return null;
 	}
 
