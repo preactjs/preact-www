@@ -256,4 +256,4 @@ TypeScript，即使与打包工具一起使用时，也有其自身的类型解�
 </script>
 ```
 
-同样也可以参考[Import Maps -- Recipes and Common Patterns](/guide/v10/no-build-workflows#recipes-and-common-patterns)作为例子.
+同样也可以参考[Import Maps -- Recipes and Common Patterns](/guide/v10/no-build-workflows#示例与常见模式)作为例子.
