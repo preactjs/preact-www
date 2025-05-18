@@ -115,7 +115,11 @@ function UnmaintainedTranslationWarning({ meta }) {
 				>
 					Switch to the English version
 				</a>
-				<a href={editUrl} target="_blank" rel="noopener noreferrer">
+				<a
+					href={editUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					Contribute to this translation
 				</a>
 			</div>
