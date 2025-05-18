@@ -1,5 +1,5 @@
 ---
-title: Upgrading from Preact 8.x
+title: 从Preact 8.x升级
 description: 'Upgrade your Preact 8.x application to Preact X'
 ---
 

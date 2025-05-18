@@ -1,6 +1,6 @@
 ---
-title: Quick Tutorial
-description: 'Write your first Preact application'
+title: 快速教程
+description: '书写你的第一个preact应用'
 ---
 
 # 教程
