@@ -115,7 +115,7 @@
 			},
 			"content": "guide",
 			"path": "/guide/:version?/:page?",
-			"href": "/guide/v10/getting-started"
+			"href": "/guide/v11/getting-started"
 		},
 		{
 			"name": {
