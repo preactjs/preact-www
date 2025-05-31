@@ -23,113 +23,198 @@ npm install -S preact-render-to-string
 
 After the command above finished, we can start using it right away.
 
-## Basic Usage
+## HTML Strings
 
-Basic functionality can be best explained via a simple snippet:
+Both of the following options return a single HTML string that represents the full rendered output of your Preact application.
+
+### renderToString
+
+The most basic and straightforward rendering method, `renderToString` transforms a Preact tree into a string of HTML synchronously.
 
 ```jsx
-import render from 'preact-render-to-string';
-import { h } from 'preact';
+import { renderToString } from 'preact-render-to-string';
 
 const name = 'Preact User!'
 const App = <div class="foo">Hello {name}</div>;
 
-console.log(render(App));
+const html = renderToString(App);
+console.log(html);
 // <div class="foo">Hello Preact User!</div>
 ```
 
-## Asynchronous Rendering with `Suspense` & `lazy`
+### renderToStringAsync
 
-You may find that you need to render components that are dynamically loaded, like when using `Suspense` and `lazy` to facilitate code splitting (along with some other use cases). The async renderer will await the resolution of promises, allowing you to fully construct your HTML string:
-
-```jsx
-// page/home.js
-export default () => {
-    return <h1>Home page</h1>;
-};
-```
+Awaits the resolution of promises before returning the complete HTML string. This is particularly useful when utilizing suspense for lazy-loaded components or data fetching.
 
 ```jsx
-// main.js
+// app.js
 import { Suspense, lazy } from 'preact/compat';
 
-// Creation of the lazy component
-const HomePage = lazy(() => import('./pages/home'));
+const HomePage = lazy(() => import('./pages/home.js'));
 
-const Main = () => {
-    return (
-        <Suspense fallback={<p>Loading</p>}>
-            <HomePage />
-        </Suspense>
-    );
+function App() {
+  return (
+    <Suspense fallback={<p>Loading</p>}>
+      <HomePage />
+    </Suspense>
+  );
 };
 ```
-
-The above is a very typical setup for a Preact application that uses code splitting, with no changes necessary to make use of server-side rendering.
-
-To render this, we will deviate slightly from the basic usage example and use the `renderToStringAsync` export to render our application:
 
 ```jsx
 import { renderToStringAsync } from 'preact-render-to-string';
-import { Main } from './main';
+import { App } from './app.js';
 
-const main = async () => {
-    // Rendering of lazy components
-    const html = await renderToStringAsync(<Main />);
-
-    console.log(html);
-    // <h1>Home page</h1>
-};
-
-// Execution & error handling
-main().catch((error) => {
-    console.error(error);
-});
+const html = await renderToStringAsync(<App />);
+console.log(html);
+// <h1>Home page</h1>
 ```
 
-## Shallow Rendering
+> **Note:** Unfortunately there's a handful of known limitations in Preact v10's implementation of "resumed hydration" — that is, hydration that can pause and wait for JS chunks or data to be downloaded & available before continuing. This has been solved in the upcoming Preact v11 release.
+>
+> For now, you'll want to avoid async boundaries that return 0 or more than 1 DOM node as children, such as in the following examples:
+>
+> ```jsx
+> function X() {
+>   // Some lazy operation, such as initializing analytics
+>   return null;
+> };
+>
+> const LazyOperation = lazy(() => /* import X */);
+> ```
+>
+> ```jsx
+> function Y() {
+>   // `<Fragment>` disappears upon rendering, leaving two `<p>` DOM elements
+>   return (
+>     <Fragment>
+>       <p>Foo</p>
+>       <p>Bar</p>
+>     </Fragment>
+>   );
+> };
+>
+> const SuspendingMultipleChildren = lazy(() => /* import Y */);
+> ```
+>
+> For a more comprehensive write up of the known problems and how we have addressed them, please see [Hydration 2.0 (preactjs/preact#4442)](https://github.com/preactjs/preact/issues/4442)
 
-For some purposes it's often preferable to not render the whole tree, but only one level. For that we have a shallow renderer which will print child components by name, instead of their return value.
+## HTML Streams
+
+Streaming is a method of rendering that allows you to send parts of your Preact application to the client as they are ready rather than waiting for the entire render to complete.
+
+### renderToPipeableStream
+
+`renderToPipeableStream` is a streaming method that utilizes [Node.js Streams](https://nodejs.org/api/stream.html) to render your application. If you are not using Node, you should look to [renderToReadableStream](#rendertoreadablestream) instead.
 
 ```jsx
-import { shallow } from 'preact-render-to-string';
-import { h } from 'preact';
+import { renderToPipeableStream } from 'preact-render-to-string/stream-node';
 
-const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+// Request handler syntax and form will vary across frameworks
+function handler(req, res) {
+  const { pipe, abort } = renderToPipeableStream(<App />, {
+    onShellReady() {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html');
+      pipe(res);
+    },
+    onError(error) {
+      res.statusCode = 500;
+      res.send(
+          `<!doctype html><p>An error ocurred:</p><pre>${error.message}</pre>`
+      );
+    },
+  });
 
-console.log(shallow(App));
-// <div class="foo"><Foo /></div>
+  // Abandon and switch to client rendering if enough time passes.
+	setTimeout(abort, 2000);
+}
 ```
 
-## Pretty Mode
+### renderToReadableStream
+
+`renderToReadableStream` is another streaming method and similar to `renderToPipeableStream`, but designed for use in environments that support standardized [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) instead.
+
+```jsx
+import { renderToReadableStream } from 'preact-render-to-string/stream';
+
+// Request handler syntax and form will vary across frameworks
+function handler(req, res) {
+  const stream = renderToReadableStream(<App />);
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/html',
+    },
+  });
+}
+```
+
+## Customize Renderer Output
+
+We offer a number of options through the `/jsx` module to customize the output of the renderer for a handful of popular use cases.
+
+### JSX Mode
+
+The JSX rendering mode is especially useful if you're doing any kind of snapshot testing. It renders the output as if it was written in JSX.
+
+```jsx
+import renderToString from 'preact-render-to-string/jsx';
+
+const App = <div data-foo={true} />;
+
+const html = renderToString(App, {}, { jsx: true });
+console.log(html);
+// <div data-foo={true} />
+```
+
+### Pretty Mode
 
 If you need to get the rendered output in a more human friendly way, we've got you covered! By passing the `pretty` option, we'll preserve whitespace and indent the output as expected.
 
 ```jsx
-import render from 'preact-render-to-string/jsx';
-import { h } from 'preact';
+import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div>foo</div>;
 const App = <div class="foo"><Foo /></div>;
 
-console.log(render(App, {}, { pretty: true }));
-// Logs:
+const html = renderToString(App, {}, { pretty: true });
+console.log(html);
 // <div class="foo">
 //   <div>foo</div>
 // </div>
 ```
 
-## JSX Mode
+### Shallow Mode
 
-The JSX rendering mode is especially useful if you're doing any kind of snapshot testing. It renders the output as if it was written in JSX.
+For some purposes it's often preferable to not render the whole tree, but only one level. For that we have a shallow renderer which will print child components by name, instead of their return value.
 
 ```jsx
-import render from 'preact-render-to-string/jsx';
-import { h } from 'preact';
+import renderToString from 'preact-render-to-string/jsx';
 
-const App = <div data-foo={true} />;
+const Foo = () => <div>foo</div>;
+const App = <div class="foo"><Foo /></div>;
 
-console.log(render(App));
-// Logs: <div data-foo={true} />
+const html = renderToString(App, {}, { shallow: true });
+console.log(html);
+// <div class="foo"><Foo /></div>
+```
+
+### XML Mode
+
+For elements without children, XML mode will instead render them as self-closing tags.
+
+```jsx
+import renderToString from 'preact-render-to-string/jsx';
+
+const Foo = () => <div></div>;
+const App = <div class="foo"><Foo /></div>;
+
+let html = renderToString(App, {}, { xml: true });
+console.log(html);
+// <div class="foo"><div /></div>
+
+html = renderToString(App, {}, { xml: false });
+console.log(html);
+// <div class="foo"><div></div></div>
 ```
