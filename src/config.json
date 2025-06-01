@@ -456,6 +456,12 @@
 						}
 					},
 					{
+						"path": "/vdom-reference",
+						"name": {
+							"en": "VDOM Properties Reference"
+						}
+					},
+					{
 						"path": "/web-components",
 						"name": {
 							"en": "Web Components",
