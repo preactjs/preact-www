@@ -273,7 +273,7 @@ useResult(function (result) {
         return console.warn('It looks like the counters aren\'t in sync.');
       }
       var solved = counts[0] === ++count;
-      store.setState({ solved: solved });
+      solutionCtx.setSolved(solved);
     }, 10);
     if (oe) return oe.apply(this, arguments);
   }

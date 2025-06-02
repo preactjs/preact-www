@@ -254,7 +254,7 @@ useResult(function (result) {
         return console.warn('Похоже, что счетчики не синхронизированы.');
       }
       var solved = counts[0] === ++count;
-      store.setState({ solved: solved });
+      solutionCtx.setSolved(solved);
     }, 10);
     if (oe) return oe.apply(this, arguments);
   }
