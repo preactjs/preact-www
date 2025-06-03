@@ -1,6 +1,6 @@
 ---
 title: Signals
-description: Signals: composable reactive state with automatic rendering
+description: Composable reactive state with automatic rendering
 ---
 
 # Signals
