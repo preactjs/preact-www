@@ -55,24 +55,29 @@ function App() {
 
 ### Using the Context
 
-There are two ways to consume a context, largely depending on your preferred component style: `Consumer` (class components) and the `useContext` hook (function components/hooks).
+There are three ways to consume a context, largely dependent on your preferred component style: `static contextType` (class components), the `useContext` hook (function components/hooks), and `Context.Consumer` (all components), .
 
-<tab-group tabstring="Consumer, useContext">
+<tab-group tabstring="contextType, useContext, Context.Consumer">
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
+import { render, createContext, Component } from "preact";
 
 const SomeComponent = props => props.children;
 // --repl-before
 const ThemePrimary = createContext("#673ab8");
 
-function ThemedButton() {
-  return (
-    <ThemePrimary.Consumer>
-      {theme => <button style={{ background: theme }}>Themed Button</button>}
-    </ThemePrimary.Consumer>
-  );
+class ThemedButton extends Component {
+  static contextType = ThemePrimary;
+
+  render() {
+    const theme = this.context;
+    return (
+      <button style={{ background: theme }}>
+        Themed Button
+      </button>
+    );
+  }
 }
 
 function App() {
@@ -99,7 +104,44 @@ const ThemePrimary = createContext("#673ab8");
 
 function ThemedButton() {
   const theme = useContext(ThemePrimary);
-  return <button style={{ background: theme }}>Themed Button</button>;
+  return (
+    <button style={{ background: theme }}>
+      Themed Button
+    </button>
+  );
+}
+
+function App() {
+  return (
+    <ThemePrimary.Provider value="#8f61e1">
+      <SomeComponent>
+        <ThemedButton />
+      </SomeComponent>
+    </ThemePrimary.Provider>
+  );
+}
+// --repl-after
+render(<App />, document.getElementById("app"));
+```
+
+```jsx
+// --repl
+import { render, createContext } from "preact";
+
+const SomeComponent = props => props.children;
+// --repl-before
+const ThemePrimary = createContext("#673ab8");
+
+function ThemedButton() {
+  return (
+    <ThemePrimary.Consumer>
+      {theme => (
+        <button style={{ background: theme }}>
+          Themed Button
+        </button>
+      )}
+    </ThemePrimary.Consumer>
+  );
 }
 
 function App() {
