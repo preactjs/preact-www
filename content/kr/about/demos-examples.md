@@ -1,6 +1,6 @@
 ---
 title: 데모 & 예제
-description: 'Preact 데모 & 예제 애플리케이션 모음'
+description: Preact 데모 & 예제 애플리케이션 모음
 ---
 
 # 데모 & 예제

@@ -1,6 +1,6 @@
 ---
 title: Switching to Preact from React
-description: 'Everything you need to know to switch from React to Preact.'
+description: Everything you need to know to switch from React to Preact
 ---
 
 # Switching to Preact (from React)

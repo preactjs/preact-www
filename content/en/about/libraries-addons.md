@@ -1,6 +1,6 @@
 ---
 title: Libraries & Add-ons
-description: 'Collection of libraries and addons that work well with Preact'
+description: Collection of libraries and addons that work well with Preact
 ---
 
 # Libraries & Add-ons

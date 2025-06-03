@@ -1,6 +1,6 @@
 ---
 title: 通过preact 测试库测试
-description: 'Testing Preact applications made easy with testing-library'
+description: Testing Preact applications made easy with testing-library
 ---
 
 # 使用 Preact Testing Library 进行测试

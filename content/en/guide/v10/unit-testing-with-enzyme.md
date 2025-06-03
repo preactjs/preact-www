@@ -1,6 +1,6 @@
 ---
 title: Unit Testing with Enzyme
-description: 'Testing Preact applications made easy with enzyme'
+description: Testing Preact applications made easy with enzyme
 ---
 
 # Unit Testing with Enzyme
