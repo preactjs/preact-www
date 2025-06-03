@@ -1,6 +1,6 @@
 ---
 title: No-Build Workflows
-description: 'Whilst build tools like Webpack, Rollup, and Vite are incredibly powerful and useful, Preact fully supports building applications without them.'
+description: Whilst build tools like Webpack, Rollup, and Vite are incredibly powerful and useful, Preact fully supports building applications without them
 ---
 
 # No-Build Workflows

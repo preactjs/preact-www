@@ -1,6 +1,6 @@
 ---
 title: Option Hooks
-description: 'Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process.'
+description: Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process
 ---
 
 # Option Hooks

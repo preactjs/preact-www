@@ -1,6 +1,6 @@
 ---
 title: 与 React 的差别
-description: '本文详细说明了 Preact 和 React 之间的差别'
+description: 本文详细说明了 Preact 和 React 之间的差别
 ---
 
 # 与 React 的差别

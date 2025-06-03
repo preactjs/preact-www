@@ -1,6 +1,6 @@
 ---
 title: Preact Xの新機能
-description: 'Preact Xの新機能と変更点'
+description: Preact Xの新機能と変更点
 ---
 
 # Preact Xの新機能

@@ -1,6 +1,6 @@
 ---
 title: Browser Support
-description: "Preact supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE11 out of the box."
+description: Preact supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE11 out of the box
 ---
 
 # Browser Support

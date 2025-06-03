@@ -1,6 +1,6 @@
 ---
 title: Preact X 中的新鲜功能
-description: 'Preact X 中的新功能与更改'
+description: Preact X 中的新功能与更改
 ---
 
 # Preact X 中的新鲜功能

@@ -1,6 +1,6 @@
 ---
 title: リファレンス(Ref) 
-description: 'Preactがレンダリングした生のDOM Nodeにアクセスするにはリファレンス(Ref)を使います。'
+description: Preactがレンダリングした生のDOM Nodeにアクセスするにはリファレンス(Ref)を使います。
 ---
 
 # リファレンス(Ref)

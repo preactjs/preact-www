@@ -1,6 +1,6 @@
 ---
 title: Hooks
-description: 'Los hooks en Preact te ayudan a componer distintos comportamientos y reutilizar esa lógica en otros componentes.'
+description: Los hooks en Preact te ayudan a componer distintos comportamientos y reutilizar esa lógica en otros componentes
 ---
 
 # Hooks

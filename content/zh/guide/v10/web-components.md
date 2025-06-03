@@ -1,6 +1,6 @@
 ---
 title: Web Components
-description: 'How to use web components with Preact.'
+description: How to use web components with Preact
 ---
 
 # Web Components

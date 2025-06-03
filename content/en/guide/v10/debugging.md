@@ -1,6 +1,6 @@
 ---
 title: Debugging Preact Apps
-description: 'How to debug Preact applications when something goes wrong.'
+description: How to debug Preact applications when something goes wrong
 ---
 
 # Debugging Preact Apps

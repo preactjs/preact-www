@@ -1,6 +1,6 @@
 ---
 title: Server-Side Rendering
-description: 'Render your Preact application on the server to show content to users quicker.'
+description: Render your Preact application on the server to show content to users quicker
 ---
 
 # Server-Side Rendering

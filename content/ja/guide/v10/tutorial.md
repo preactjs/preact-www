@@ -1,6 +1,6 @@
 ---
 title: チュートリアル
-description: '初めてのPreactアプリケーションを書きましょう。'
+description: 初めてのPreactアプリケーションを書きましょう。
 ---
 
 # チュートリアル

@@ -1,6 +1,6 @@
 ---
 title: Who's using Preact?
-description: 'Companies who are proudly using Preact'
+description: Companies who are proudly using Preact
 ---
 
 # Who's using Preact?

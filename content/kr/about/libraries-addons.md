@@ -1,6 +1,6 @@
 ---
 title: 라이브러리 & 애드온
-description: 'Preact와 훌륭하게 동작하는 라이브러리와 애드온 모음'
+description: Preact와 훌륭하게 동작하는 라이브러리와 애드온 모음
 ---
 
 # 라이브러리 & 애드온

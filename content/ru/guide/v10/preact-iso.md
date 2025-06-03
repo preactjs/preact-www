@@ -1,6 +1,6 @@
 ---
 title: preact-iso
-description: 'preact-iso это набор изоморфных асинхронных инструментов для Preact'
+description: preact-iso это набор изоморфных асинхронных инструментов для Preact
 ---
 
 # preact-iso

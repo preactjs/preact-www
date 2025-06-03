@@ -1,6 +1,6 @@
 ---
 title: 누가 Preact를 사용하고 있을까요?
-description: 'Preact를 자랑스럽게 사용하고 있는 기업들'
+description: Preact를 자랑스럽게 사용하고 있는 기업들
 ---
 
 # We Are Using

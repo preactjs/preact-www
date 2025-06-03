@@ -1,6 +1,6 @@
 ---
 title: Цели проекта
-description: 'Узнайте больше о целях проекта Preact'
+description: Узнайте больше о целях проекта Preact
 ---
 
 # Цели проекта Preact

@@ -1,6 +1,6 @@
 ---
 title: Поддержка браузеров
-description: 'Preact поддерживает все современные браузеры (Chrome, Firefox, Safari, Edge) и IE11'
+description: Preact поддерживает все современные браузеры (Chrome, Firefox, Safari, Edge) и IE11
 ---
 
 # Поддержка браузеров

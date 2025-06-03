@@ -1,6 +1,6 @@
 ---
 title: Project Goals
-description: "Read more about Preact's project goals"
+description: Read more about Preact's project goals
 ---
 
 # Preact's Goals

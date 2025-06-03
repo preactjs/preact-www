@@ -1,6 +1,6 @@
 ---
 title: Preact 8.xからのアップグレード
-description: 'Preact 8.xからPreact Xにアップグレードする'
+description: Preact 8.xからPreact Xにアップグレードする
 ---
 
 # Preact 8.xからのアップグレード

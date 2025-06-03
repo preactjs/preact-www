@@ -1,6 +1,6 @@
 ---
 title: Forms
-description: 'La forma de construir formularios en Preact que siempre funcionen.'
+description: La forma de construir formularios en Preact que siempre funcionen
 ---
 
 # Formularios
