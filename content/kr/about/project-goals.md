@@ -1,6 +1,6 @@
 ---
 title: 프로젝트 목표
-description: "Preact의 프로젝트 목표에 대해 자세히 알아보기"
+description: Preact의 프로젝트 목표에 대해 자세히 알아보기
 ---
 
 # Preact의 목표

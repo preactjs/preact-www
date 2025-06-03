@@ -1,6 +1,6 @@
 ---
 title: Что нового в Preact X
-description: 'Новые возможности и изменения в Preact X'
+description: Новые возможности и изменения в Preact X
 ---
 
 # Что нового в Preact X

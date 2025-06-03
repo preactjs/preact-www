@@ -1,6 +1,6 @@
 ---
 title: Testing with Preact Testing Library
-description: 'Testing Preact applications made easy with testing-library'
+description: Testing Preact applications made easy with testing-library
 ---
 
 # Testing with Preact Testing Library
