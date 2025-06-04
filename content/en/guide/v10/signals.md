@@ -520,9 +520,17 @@ Creates a new signal with the given argument as its initial value:
 const count = signal(0);
 ```
 
-When creating signals within a component, use the hook variant: `useSignal(initialValue)`.
-
 The returned signal has a `.value` property that can be get or set to read and write its value. To read from a signal without subscribing to it, use `signal.peek()`.
+
+#### useSignal(initialValue)
+
+When creating signals within a component, use the hook variant: `useSignal(initialValue)`. It functions similarly to `signal()` but is memoized to ensure that the same signal instance is used across renders of the component.
+
+```jsx
+function MyComponent() {
+  const count = useSignal(0);
+}
+```
 
 ### computed(fn)
 
@@ -535,7 +543,18 @@ const surname = signal("Doe");
 const fullName = computed(() => `${name.value} ${surname.value}`);
 ```
 
+#### useComputed(fn)
+
 When creating computed signals within a component, use the hook variant: `useComputed(fn)`.
+
+```jsx
+function MyComponent() {
+  const name = useSignal("Jane");
+  const surname = useSignal("Doe");
+
+  const fullName = useComputed(() => `${name.value} ${surname.value}`);
+}
+```
 
 ### effect(fn)
 
@@ -552,7 +571,18 @@ name.value = "John";
 // Logs: "Hello John"
 ```
 
+#### useSignalEffect(fn)
+
 When responding to signal changes within a component, use the hook variant: `useSignalEffect(fn)`.
+
+```jsx
+function MyComponent() {
+  const name = useSignal("Jane");
+
+  // Log to console when `name` changes:
+  useSignalEffect(() => console.log('Hello', name.value));
+}
+```
 
 ### batch(fn)
 
