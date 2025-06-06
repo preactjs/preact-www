@@ -1,6 +1,6 @@
 ---
 title: preact-iso
-description: 'preact-iso is a collection of isomorphic async tools for Preact'
+description: preact-iso is a collection of isomorphic async tools for Preact
 ---
 
 # preact-iso

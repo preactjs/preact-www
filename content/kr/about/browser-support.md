@@ -1,6 +1,6 @@
 ---
 title: 브라우저 지원
-description: "Preact는 모든 최신 브라우저(Chrome, Firefox, Safari, Edge)와 IE11을 지원합니다."
+description: Preact는 모든 최신 브라우저(Chrome, Firefox, Safari, Edge)와 IE11을 지원합니다
 ---
 
 # 브라우저 지원

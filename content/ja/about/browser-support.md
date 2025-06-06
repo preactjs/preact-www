@@ -1,6 +1,6 @@
 ---
 title: ブラウザのサポート
-description: "Preactはそのままですべてのモダンブラウザ(Chrome, Firefox, Safari, Edge)とIE11をサポートします。"
+description: Preactはそのままですべてのモダンブラウザ(Chrome, Firefox, Safari, Edge)とIE11をサポートします。
 ---
 
 # ブラウザのサポート

@@ -1,6 +1,6 @@
 ---
 title: Preact Testing Libraryを使ったテスト
-description: 'Testing Libraryを使用してPreactアプリケーションのテストを容易にする'
+description: Testing Libraryを使用してPreactアプリケーションのテストを容易にする
 ---
 
 # Preact Testing Libraryを使ったテスト

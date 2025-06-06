@@ -1,6 +1,6 @@
 ---
 title: Enzymeを使った単体テスト
-description: 'Enzymeを使ってPreactアプリケーションの単体テストを行う。'
+description: Enzymeを使ってPreactアプリケーションの単体テストを行う。
 ---
 
 # Enzymeを使った単体テスト

@@ -1,6 +1,6 @@
 ---
 title: TypeScript
-description: "Preact has built-in TypeScript support. Learn how to make use of it!"
+description: Preact has built-in TypeScript support. Learn how to make use of it!
 ---
 
 # TypeScript

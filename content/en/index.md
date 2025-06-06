@@ -1,6 +1,6 @@
 ---
 title: Preact
-description: 'Fast 3kB alternative to React with the same modern API.'
+description: Fast 3kB alternative to React with the same modern API
 ---
 
 <jumbotron>
