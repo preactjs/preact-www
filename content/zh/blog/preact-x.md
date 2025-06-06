@@ -3,7 +3,7 @@ title: Preact X，稳定性的故事
 date: 2024-05-24
 authors:
   - Jovi De Croock
-translator:
+translation_by:
   - SisyphusZheng
 ---
 
