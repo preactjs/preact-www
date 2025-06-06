@@ -4,7 +4,7 @@ date: 2024-05-24
 authors:
   - Jovi De Croock
 translator:
-  - Zhi Zheng
+  - SisyphusZheng
 ---
 
 # Preact X，稳定性的故事
