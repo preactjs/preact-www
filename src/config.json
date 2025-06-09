@@ -66,12 +66,14 @@
 				"en": "Help",
 				"ja": "助ける",
 				"kr": "정답 확인",
-				"ru": "Помощь"
+				"ru": "Помощь",
+				"zh": "帮助"
 			},
 			"solve": {
 				"en": "Solve",
 				"ja": "説き明かす",
-				"ru": "Решить"
+				"ru": "Решить",
+				"zh": "解决"
 			}
 		}
 	},
@@ -506,7 +508,8 @@
 			{
 				"name": {
 					"en": "Libraries",
-					"ru": "Библиотеки"
+					"ru": "Библиотеки",
+					"zh": "库"
 				},
 				"routes": [
 					{
@@ -655,6 +658,10 @@
 		{
 			"name": "reaper",
 			"link": "https://twitter.com/barelyreaper"
+		},
+		{
+			"name": "zhi zheng",
+			"link": "https://github.com/SisyphusZheng"
 		}
 	],
 	"blog": [
@@ -663,11 +670,13 @@
 			"date": "2024-08-06",
 			"name": {
 				"en": "Build your own Island Components",
-				"ru": "Создание собственных островных компонентов"
+				"ru": "Создание собственных островных компонентов",
+				"zh": "构建自己的岛屿组件"
 			},
 			"excerpt": {
 				"en": "Demystifying how island architechture works and being able to setup your own, using tools you already have around you.",
-				"ru": "Вы узнаете, как работает островная архитектура, и сможете создать свою собственную, используя инструменты, которые уже есть у вас под рукой."
+				"ru": "Вы узнаете, как работает островная архитектура, и сможете создать свою собственную, используя инструменты, которые уже есть у вас под рукой.",
+				"zh": "揭开岛屿架构的神秘面纱，并能够使用您周围已有的工具来设置自己的架构。"
 			}
 		},
 		{
@@ -679,7 +688,8 @@
 			},
 			"excerpt": {
 				"en": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large",
-				"ru": "Прошло полгода с тех пор, как наш плагин для пререндеринга стал доступен в `@preact/preset-vite`, так что давайте поговорим о нем, о нашей истории и об экосистеме в целом."
+				"ru": "Прошло полгода с тех пор, как наш плагин для пререндеринга стал доступен в `@preact/preset-vite`, так что давайте поговорим о нем, о нашей истории и об экосистеме в целом.",
+				"zh": "自从我们的预渲染插件在 `@preact/preset-vite` 中悄然可用已经过去半年了，让我们来谈谈它、我们的历史以及整个生态系统。"
 			}
 		},
 		{
@@ -691,7 +701,8 @@
 			},
 			"excerpt": {
 				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened.",
-				"ru": "Preact X выпускается уже пять лет, давайте вспомним всё, что произошло за это время."
+				"ru": "Preact X выпускается уже пять лет, давайте вспомним всё, что произошло за это время.",
+				"zh": "Preact X 发布已经五年了，让我们回顾一下这段时间发生的所有令人兴奋的事情。"
 			}
 		},
 		{

@@ -1,5 +1,5 @@
 ---
-title: Browser Support
+title: 浏览器支持
 ---
 
 # 浏览器支持
