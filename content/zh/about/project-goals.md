@@ -1,5 +1,5 @@
 ---
-title: Project Goals
+title: Preact 的项目目标
 ---
 
 # Preact 的项目目标
