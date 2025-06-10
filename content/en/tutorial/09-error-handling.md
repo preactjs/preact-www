@@ -37,26 +37,26 @@ The following example shows how to use either method to capture errors
 and show a graceful error message instead of crashing:
 
 ```jsx
-import { Component } from 'preact'
+import { Component } from 'preact';
 
 class ErrorBoundary extends Component {
-  state = { error: null }
+	state = { error: null };
 
-  static getDerivedStateFromError(error) {
-    return { error: error.message }
-  }
+	static getDerivedStateFromError(error) {
+		return { error: error.message };
+	}
 
-  componentDidCatch(error) {
-    console.error(error)
-    this.setState({ error: error.message })
-  }
+	componentDidCatch(error) {
+		console.error(error);
+		this.setState({ error: error.message });
+	}
 
-  render() {
-    if (this.state.error) {
-      return <p>Oh no! We ran into an error: {this.state.error}</p>
-    }
-    return this.props.children
-  }
+	render() {
+		if (this.state.error) {
+			return <p>Oh no! We ran into an error: {this.state.error}</p>;
+		}
+		return this.props.children;
+	}
 }
 ```
 
@@ -86,54 +86,54 @@ the user that we've run into an unexpected error.
   <p>You learned how to handle errors in Preact code!</p>
 </solution>
 
-
 ```js:setup
 useResult(function(result) {
-  var options = require('preact').options;
+	var options = require('preact').options;
 
-  var oe = options.__e;
-  options.__e = function(error, s) {
-    if (/objects are not valid/gi.test(error)) {
-      throw Error('It looks like you might be trying to render an Error object directly: try storing `error.message` instead of `error` itself.');
-    }
-    oe.apply(this, arguments);
-    setTimeout(function() {
-      if (result.output.textContent.match(/error/i)) {
-        solutionCtx.setSolved(true);
-      }
-    }, 10);
-  };
+	var oe = options.__e;
+	options.__e = function(error, s) {
+		if (/objects are not valid/gi.test(error)) {
+			throw Error(
+				'It looks like you might be trying to render an Error object directly: try storing `error.message` instead of `error` itself.'
+			);
+		}
+		oe.apply(this, arguments);
+		setTimeout(function() {
+			if (result.output.textContent.match(/error/i)) {
+				solutionCtx.setSolved(true);
+			}
+		}, 10);
+	};
 
-  return function () {
-    options.__e = oe;
-  };
+	return function() {
+		options.__e = oe;
+	};
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 function Clicker() {
-  const [clicked, setClicked] = useState(false);
+	const [clicked, setClicked] = useState(false);
 
-  if (clicked) {
-    throw new Error('I am erroring');
-  }
+	if (clicked) {
+		throw new Error('I am erroring');
+	}
 
-  return <button onClick={() => setClicked(true)}>Click Me</button>;
+	return <button onClick={() => setClicked(true)}>Click Me</button>;
 }
 
 class App extends Component {
-  state = { error: null };
+	state = { error: null };
 
-  render() {
-    return <Clicker />;
-  }
+	render() {
+		return <Clicker />;
+	}
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
@@ -141,30 +141,30 @@ import { render, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 function Clicker() {
-  const [clicked, setClicked] = useState(false);
+	const [clicked, setClicked] = useState(false);
 
-  if (clicked) {
-    throw new Error('I am erroring');
-  }
+	if (clicked) {
+		throw new Error('I am erroring');
+	}
 
-  return <button onClick={() => setClicked(true)}>Click Me</button>;
+	return <button onClick={() => setClicked(true)}>Click Me</button>;
 }
 
 class App extends Component {
-  state = { error: null };
+	state = { error: null };
 
-  componentDidCatch(error) {
-    this.setState({ error: error.message });
-  }
+	componentDidCatch(error) {
+		this.setState({ error: error.message });
+	}
 
-  render() {
-    const { error } = this.state;
-    if (error) {
-      return <p>Oh no! There was an error: {error}</p>
-    }
-    return <Clicker />;
-  }
+	render() {
+		const { error } = this.state;
+		if (error) {
+			return <p>Oh no! There was an error: {error}</p>;
+		}
+		return <Clicker />;
+	}
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```

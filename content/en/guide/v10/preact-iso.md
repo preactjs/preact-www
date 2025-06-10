@@ -1,6 +1,6 @@
 ---
 title: preact-iso
-description: 'preact-iso is a collection of isomorphic async tools for Preact'
+description: preact-iso is a collection of isomorphic async tools for Preact
 ---
 
 # preact-iso
@@ -22,7 +22,13 @@ preact-iso is a collection of isomorphic async tools for Preact.
 `preact-iso` offers a simple router for Preact with conventional and hooks-based APIs. The `<Router>` component is async-aware: when transitioning from one route to another, if the incoming route suspends (throws a Promise), the outgoing route is preserved until the new one becomes ready.
 
 ```jsx
-import { lazy, LocationProvider, ErrorBoundary, Router, Route } from 'preact-iso';
+import {
+	lazy,
+	LocationProvider,
+	ErrorBoundary,
+	Router,
+	Route
+} from 'preact-iso';
 
 // Synchronous
 import Home from './routes/home.js';
@@ -33,20 +39,20 @@ const Profile = lazy(() => import('./routes/profile.js'));
 const NotFound = lazy(() => import('./routes/_404.js'));
 
 function App() {
-  return (
-    <LocationProvider>
-      <ErrorBoundary>
-        <Router>
-          <Home path="/" />
-          {/* Alternative dedicated route component for better TS support */}
-          <Route path="/profiles" component={Profiles} />
-          <Route path="/profile/:id" component={Profile} />
-          {/* `default` prop indicates a fallback route. Useful for 404 pages */}
-          <NotFound default />
-        </Router>
-      </ErrorBoundary>
-    </LocationProvider>
-  );
+	return (
+		<LocationProvider>
+			<ErrorBoundary>
+				<Router>
+					<Home path="/" />
+					{/* Alternative dedicated route component for better TS support */}
+					<Route path="/profiles" component={Profiles} />
+					<Route path="/profile/:id" component={Profile} />
+					{/* `default` prop indicates a fallback route. Useful for 404 pages */}
+					<NotFound default />
+				</Router>
+			</ErrorBoundary>
+		</LocationProvider>
+	);
 }
 ```
 
@@ -61,21 +67,27 @@ function App() {
 Primarily meant for use with prerendering via [`@preact/preset-vite`](https://github.com/preactjs/preset-vite#prerendering-configuration) or other prerendering systems that share the API. If you're server-side rendering your app via any other method, you can use `preact-render-to-string` (specifically `renderToStringAsync()`) directly.
 
 ```jsx
-import { LocationProvider, ErrorBoundary, Router, lazy, prerender as ssr } from 'preact-iso';
+import {
+	LocationProvider,
+	ErrorBoundary,
+	Router,
+	lazy,
+	prerender as ssr
+} from 'preact-iso';
 
 // Asynchronous (throws a promise)
 const Foo = lazy(() => import('./foo.js'));
 
 function App() {
-  return (
-    <LocationProvider>
-      <ErrorBoundary>
-        <Router>
-          <Foo path="/" />
-        </Router>
-      </ErrorBoundary>
-    </LocationProvider>
-  );
+	return (
+		<LocationProvider>
+			<ErrorBoundary>
+				<Router>
+					<Foo path="/" />
+				</Router>
+			</ErrorBoundary>
+		</LocationProvider>
+	);
 }
 
 hydrate(<App />);
@@ -90,21 +102,27 @@ export async function prerender(data) {
 Nested routes are supported by using multiple `Router` components. Partially matched routes end with a wildcard (`/*`) and the remaining value will be passed to continue matching with if there are any further routes.
 
 ```jsx
-import { lazy, LocationProvider, ErrorBoundary, Router, Route } from 'preact-iso';
+import {
+	lazy,
+	LocationProvider,
+	ErrorBoundary,
+	Router,
+	Route
+} from 'preact-iso';
 
 const NotFound = lazy(() => import('./routes/_404.js'));
 
 function App() {
-  return (
-    <LocationProvider>
-      <ErrorBoundary>
-        <Router>
-          <Route path="/movies/*" component={Movies} />
-          <NotFound default />
-        </Router>
-      </ErrorBoundary>
-    </LocationProvider>
-  );
+	return (
+		<LocationProvider>
+			<ErrorBoundary>
+				<Router>
+					<Route path="/movies/*" component={Movies} />
+					<NotFound default />
+				</Router>
+			</ErrorBoundary>
+		</LocationProvider>
+	);
 }
 
 const TrendingMovies = lazy(() => import('./routes/movies/trending.js'));
@@ -112,22 +130,23 @@ const SearchMovies = lazy(() => import('./routes/movies/search.js'));
 const MovieDetails = lazy(() => import('./routes/movies/details.js'));
 
 function Movies() {
-  return (
-    <ErrorBoundary>
-      <Router>
-        <Route path="/trending" component={TrendingMovies} />
-        <Route path="/search" component={SearchMovies} />
-        <Route path="/:id" component={MovieDetails} />
-      </Router>
-    </ErrorBoundary>
-  );
+	return (
+		<ErrorBoundary>
+			<Router>
+				<Route path="/trending" component={TrendingMovies} />
+				<Route path="/search" component={SearchMovies} />
+				<Route path="/:id" component={MovieDetails} />
+			</Router>
+		</ErrorBoundary>
+	);
 }
 ```
 
 This will match the following routes:
-  - `/movies/trending`
-  - `/movies/search`
-  - `/movies/Inception`
+
+- `/movies/trending`
+- `/movies/search`
+- `/movies/Inception`
 
 ---
 
@@ -139,7 +158,7 @@ A context provider that provides the current location to its children. This is r
 
 Props:
 
-  - `scope?: string | RegExp` - Sets a scope for the paths that the router will handle (intercept). If a path does not match the scope, either by starting with the provided string or matching the RegExp, the router will ignore it and default browser navigation will apply.
+- `scope?: string | RegExp` - Sets a scope for the paths that the router will handle (intercept). If a path does not match the scope, either by starting with the provided string or matching the RegExp, the router will ignore it and default browser navigation will apply.
 
 Typically, you would wrap your entire app in this provider:
 
@@ -147,11 +166,9 @@ Typically, you would wrap your entire app in this provider:
 import { LocationProvider } from 'preact-iso';
 
 function App() {
-  return (
-    <LocationProvider scope="/app">
-        {/* Your app here */}
-    </LocationProvider>
-  );
+	return (
+		<LocationProvider scope="/app">{/* Your app here */}</LocationProvider>
+	);
 }
 ```
 
@@ -159,32 +176,31 @@ function App() {
 
 Props:
 
-  - `onRouteChange?: (url: string) => void` - Callback to be called when a route changes.
-  - `onLoadStart?: (url: string) => void` - Callback to be called when a route starts loading (i.e., if it suspends). This will not be called before navigations to sync routes or subsequent navigations to async routes.
-  - `onLoadEnd?: (url: string) => void` - Callback to be called after a route finishes loading (i.e., if it suspends). This will not be called after navigations to sync routes or subsequent navigations to async routes.
+- `onRouteChange?: (url: string) => void` - Callback to be called when a route changes.
+- `onLoadStart?: (url: string) => void` - Callback to be called when a route starts loading (i.e., if it suspends). This will not be called before navigations to sync routes or subsequent navigations to async routes.
+- `onLoadEnd?: (url: string) => void` - Callback to be called after a route finishes loading (i.e., if it suspends). This will not be called after navigations to sync routes or subsequent navigations to async routes.
 
 ```jsx
 import { LocationProvider, Router } from 'preact-iso';
 
 function App() {
-  return (
-    <LocationProvider>
-      <Router
-        onRouteChange={(url) => console.log('Route changed to', url)}
-        onLoadStart={(url) => console.log('Starting to load', url)}
-        onLoadEnd={(url) => console.log('Finished loading', url)}
-      >
-        <Home path="/" />
-        <Profiles path="/profiles" />
-        <Profile path="/profile/:id" />
-      </Router>
-    </LocationProvider>
-  )
+	return (
+		<LocationProvider>
+			<Router
+				onRouteChange={url => console.log('Route changed to', url)}
+				onLoadStart={url => console.log('Starting to load', url)}
+				onLoadEnd={url => console.log('Finished loading', url)}
+			>
+				<Home path="/" />
+				<Profiles path="/profiles" />
+				<Profile path="/profile/:id" />
+			</Router>
+		</LocationProvider>
+	);
 }
 ```
 
 ### Route
-
 
 There are two ways to define routes using `preact-iso`:
 
@@ -201,53 +217,53 @@ While `<Home path="/" />` is completely equivalent to `<Route path="/" component
 import { LocationProvider, Router, Route } from 'preact-iso';
 
 function App() {
-  return (
-    <LocationProvider>
-      <Router>
-        {/* Both of these are equivalent */}
-        <Home path="/" />
-        <Route path="/" component={Home} />
+	return (
+		<LocationProvider>
+			<Router>
+				{/* Both of these are equivalent */}
+				<Home path="/" />
+				<Route path="/" component={Home} />
 
-        <Profiles path="/profiles" />
-        <Profile path="/profile/:id" />
-        <NotFound default />
-      </Router>
-    </LocationProvider>
-  )
+				<Profiles path="/profiles" />
+				<Profile path="/profile/:id" />
+				<NotFound default />
+			</Router>
+		</LocationProvider>
+	);
 }
 ```
 
 Props for any route component:
 
-  - `path: string` - The path to match (read on)
-  - `default?: boolean` - If set, this route is a fallback/default route to be used when nothing else matches
+- `path: string` - The path to match (read on)
+- `default?: boolean` - If set, this route is a fallback/default route to be used when nothing else matches
 
 Specific to the `Route` component:
 
-  - `component: AnyComponent` - The component to render when the route matches
+- `component: AnyComponent` - The component to render when the route matches
 
 #### Path Segment Matching
 
 Paths are matched using a simple string matching algorithm. The following features may be used:
 
-  - `:param` - Matches any URL segment, binding the value to the label (can later extract this value from `useRoute()`)
-    - `/profile/:id` will match `/profile/123` and `/profile/abc`
-    - `/profile/:id?` will match `/profile` and `/profile/123`
-    - `/profile/:id*` will match `/profile`, `/profile/123`, and `/profile/123/abc`
-    - `/profile/:id+` will match `/profile/123`, `/profile/123/abc`
-  - `*` - Matches one or more URL segments
-    - `/profile/*` will match `/profile/123`, `/profile/123/abc`, etc.
+- `:param` - Matches any URL segment, binding the value to the label (can later extract this value from `useRoute()`)
+  - `/profile/:id` will match `/profile/123` and `/profile/abc`
+  - `/profile/:id?` will match `/profile` and `/profile/123`
+  - `/profile/:id*` will match `/profile`, `/profile/123`, and `/profile/123/abc`
+  - `/profile/:id+` will match `/profile/123`, `/profile/123/abc`
+- `*` - Matches one or more URL segments
+  - `/profile/*` will match `/profile/123`, `/profile/123/abc`, etc.
 
 These can then be composed to create more complex routes:
 
-  - `/profile/:id/*` will match `/profile/123/abc`, `/profile/123/abc/def`, etc.
+- `/profile/:id/*` will match `/profile/123/abc`, `/profile/123/abc/def`, etc.
 
 The difference between `/:id*` and `/:id/*` is that in the former, the `id` param will include the entire path after it, while in the latter, the `id` is just the single path segment.
 
-  - `/profile/:id*`, with `/profile/123/abc`
-    - `id` is `123/abc`
-  - `/profile/:id/*`, with `/profile/123/abc`
-    - `id` is `123`
+- `/profile/:id*`, with `/profile/123/abc`
+  - `id` is `123/abc`
+- `/profile/:id/*`, with `/profile/123/abc`
+  - `id` is `123`
 
 ### useLocation()
 
@@ -255,10 +271,10 @@ A hook to work with the `LocationProvider` to access location context.
 
 Returns an object with the following properties:
 
-  - `url: string` - The current path & search params
-  - `path: string` - The current path
-  - `query: Record<string, string>` - The current query string parameters (`/profile?name=John` -> `{ name: 'John' }`)
-  - `route: (url: string, replace?: boolean) => void` - A function to programmatically navigate to a new route. The `replace` param can optionally be used to overwrite history, navigating them away without keeping the current location in the history stack.
+- `url: string` - The current path & search params
+- `path: string` - The current path
+- `query: Record<string, string>` - The current query string parameters (`/profile?name=John` -> `{ name: 'John' }`)
+- `route: (url: string, replace?: boolean) => void` - A function to programmatically navigate to a new route. The `replace` param can optionally be used to overwrite history, navigating them away without keeping the current location in the history stack.
 
 ### useRoute()
 
@@ -266,9 +282,9 @@ A hook to access current route information. Unlike `useLocation`, this hook only
 
 Returns an object with the following properties:
 
-  - `path: string` - The current path
-  - `query: Record<string, string>` - The current query string parameters (`/profile?name=John` -> `{ name: 'John' }`)
-  - `params: Record<string, string>` - The current route parameters (`/profile/:id` -> `{ id: '123' }`)
+- `path: string` - The current path
+- `query: Record<string, string>` - The current query string parameters (`/profile?name=John` -> `{ name: 'John' }`)
+- `params: Record<string, string>` - The current route parameters (`/profile/:id` -> `{ id: '123' }`)
 
 ### lazy()
 
@@ -283,19 +299,21 @@ import { lazy, LocationProvider, Router } from 'preact-iso';
 import Home from './routes/home.js';
 
 // Asynchronous, code-splitted:
-const Profiles = lazy(() => import('./routes/profiles.js').then(m => m.Profiles)); // Expects a named export called `Profiles`
+const Profiles = lazy(() =>
+	import('./routes/profiles.js').then(m => m.Profiles)
+); // Expects a named export called `Profiles`
 const Profile = lazy(() => import('./routes/profile.js')); // Expects a default export
 
 function App() {
-  return (
-    <LocationProvider>
-      <Router>
-        <Home path="/" />
-        <Profiles path="/profiles" />
-        <Profile path="/profile/:id" />
-      </Router>
-    </LocationProvider>
-  )
+	return (
+		<LocationProvider>
+			<Router>
+				<Home path="/" />
+				<Profiles path="/profiles" />
+				<Profile path="/profile/:id" />
+			</Router>
+		</LocationProvider>
+	);
 }
 ```
 
@@ -305,11 +323,11 @@ The result of `lazy()` also exposes a `preload()` method that can be used to loa
 const Profile = lazy(() => import('./routes/profile.js'));
 
 function Home() {
-    return (
-        <a href="/profile/rschristian" onMouseOver={() => Profile.preload()}>
-            Profile Page -- Hover over me to preload the module!
-        </a>
-    );
+	return (
+		<a href="/profile/rschristian" onMouseOver={() => Profile.preload()}>
+			Profile Page -- Hover over me to preload the module!
+		</a>
+	);
 }
 ```
 
@@ -319,23 +337,23 @@ A simple component to catch errors in the component tree below it.
 
 Props:
 
-  - `onError?: (error: Error) => void` - A callback to be called when an error is caught
+- `onError?: (error: Error) => void` - A callback to be called when an error is caught
 
 ```jsx
 import { LocationProvider, ErrorBoundary, Router } from 'preact-iso';
 
 function App() {
-  return (
-    <LocationProvider>
-      <ErrorBoundary onError={(e) => console.log(e)}>
-        <Router>
-          <Home path="/" />
-          <Profiles path="/profiles" />
-          <Profile path="/profile/:id" />
-        </Router>
-      </ErrorBoundary>
-    </LocationProvider>
-  );
+	return (
+		<LocationProvider>
+			<ErrorBoundary onError={e => console.log(e)}>
+				<Router>
+					<Home path="/" />
+					<Profiles path="/profiles" />
+					<Profile path="/profile/:id" />
+				</Router>
+			</ErrorBoundary>
+		</LocationProvider>
+	);
 }
 ```
 
@@ -347,18 +365,18 @@ Pairs with the `prerender()` function.
 
 Params:
 
-  - `jsx: ComponentChild` - The JSX element or component to render
-  - `parent?: Element | Document | ShadowRoot | DocumentFragment` - The parent element to render into. Defaults to `document.body` if not provided.
+- `jsx: ComponentChild` - The JSX element or component to render
+- `parent?: Element | Document | ShadowRoot | DocumentFragment` - The parent element to render into. Defaults to `document.body` if not provided.
 
 ```jsx
 import { hydrate } from 'preact-iso';
 
 function App() {
-  return (
-    <div class="app">
-      <h1>Hello World</h1>
-    </div>
-  );
+	return (
+		<div class="app">
+			<h1>Hello World</h1>
+		</div>
+	);
 }
 
 hydrate(<App />);
@@ -374,26 +392,32 @@ Pairs primarily with [`@preact/preset-vite`](https://github.com/preactjs/preset-
 
 Params:
 
-  - `jsx: ComponentChild` - The JSX element or component to render
+- `jsx: ComponentChild` - The JSX element or component to render
 
 ```jsx
-import { LocationProvider, ErrorBoundary, Router, lazy, prerender } from 'preact-iso';
+import {
+	LocationProvider,
+	ErrorBoundary,
+	Router,
+	lazy,
+	prerender
+} from 'preact-iso';
 
 // Asynchronous (throws a promise)
 const Foo = lazy(() => import('./foo.js'));
 const Bar = lazy(() => import('./bar.js'));
 
 function App() {
-  return (
-    <LocationProvider>
-      <ErrorBoundary>
-        <Router>
-          <Foo path="/" />
-          <Bar path="/bar" />
-        </Router>
-      </ErrorBoundary>
-    </LocationProvider>
-  );
+	return (
+		<LocationProvider>
+			<ErrorBoundary>
+				<Router>
+					<Foo path="/" />
+					<Bar path="/bar" />
+				</Router>
+			</ErrorBoundary>
+		</LocationProvider>
+	);
 }
 
 const { html, links } = await prerender(<App />);

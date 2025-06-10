@@ -1,6 +1,6 @@
 ---
 title: Mudando de React para Preact
-description: 'Tudo o que você precisa saber para mudar de React para Preact.'
+description: Tudo o que você precisa saber para mudar de React para Preact
 ---
 
 # Mudando para Preact (de React)

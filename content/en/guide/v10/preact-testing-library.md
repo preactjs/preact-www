@@ -1,6 +1,6 @@
 ---
 title: Testing with Preact Testing Library
-description: 'Testing Preact applications made easy with testing-library'
+description: Testing Preact applications made easy with testing-library
 ---
 
 # Testing with Preact Testing Library
@@ -34,15 +34,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      Current value: {count}
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			Current value: {count}
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 ```
 
@@ -56,21 +56,21 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/preact';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  test('should display initial count', () => {
-    const { container } = render(<Counter initialCount={5}/>);
-    expect(container.textContent).toMatch('Current value: 5');
-  });
+	test('should display initial count', () => {
+		const { container } = render(<Counter initialCount={5} />);
+		expect(container.textContent).toMatch('Current value: 5');
+	});
 
-  test('should increment after "Increment" button is clicked', async () => {
-    render(<Counter initialCount={5}/>);
+	test('should increment after "Increment" button is clicked', async () => {
+		render(<Counter initialCount={5} />);
 
-    fireEvent.click(screen.getByText('Increment'));
-    await waitFor(() => {
-      // .toBeInTheDocument() is an assertion that comes from jest-dom.
-      // Otherwise you could use .toBeDefined().
-      expect(screen.getByText("Current value: 6")).toBeInTheDocument();
-    });
-  });
+		fireEvent.click(screen.getByText('Increment'));
+		await waitFor(() => {
+			// .toBeInTheDocument() is an assertion that comes from jest-dom.
+			// Otherwise you could use .toBeDefined().
+			expect(screen.getByText('Current value: 6')).toBeInTheDocument();
+		});
+	});
 });
 ```
 
@@ -97,7 +97,7 @@ test('should increment counter", async () => {
   fireEvent.click(screen.getByText('Increment'));
 
   await screen.findByText('Current value: 6'); // waits for changed element
-  
+
   expect(screen.getByText("Current value: 6")).toBeInTheDocument(); // passes
 });
 ```
@@ -118,44 +118,44 @@ You can find a guide to picking the right query on the ['Which query should I us
 import { render, fireEvent, screen } from '@testing-library/preact';
 
 test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
-  
-  // Locate the input using textbox role and the accessible name,
-  // which is stable no matter if you use a label element, aria-label, or
-  // aria-labelledby relationship
-  const field = await screen.findByRole('textbox', { name: 'Sign In' });
-  
-  // type in the field
-  fireEvent.change(field, { value: 'user123' });
-})
+	render(<MyLoginForm />);
+
+	// Locate the input using textbox role and the accessible name,
+	// which is stable no matter if you use a label element, aria-label, or
+	// aria-labelledby relationship
+	const field = await screen.findByRole('textbox', { name: 'Sign In' });
+
+	// type in the field
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 Sometimes using text content directly creates friction when the content changes a lot, or if you use an internationalization framework that translates text into different languages. You can work around this by treating text as data that you snapshot, making it easy to update but keeping the source of truth outside the test.
 
 ```jsx
 test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
-  
-  // What if we render the app in another language, or change the text? Test fails.
-  const field = await screen.findByRole('textbox', { name: 'Sign In' });
-  fireEvent.change(field, { value: 'user123' });
-})
+	render(<MyLoginForm />);
+
+	// What if we render the app in another language, or change the text? Test fails.
+	const field = await screen.findByRole('textbox', { name: 'Sign In' });
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 Even if you don't use a translation framework, you can keep your strings in a separate file and use the same strategy as in the example below:
 
 ```jsx
 test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
+	render(<MyLoginForm />);
 
-  // We can use our translation function directly in the test
-  const label = translate('signinpage.label', 'en-US');
-  // Snapshot the result so we know what's going on
-  expect(label).toMatchInlineSnapshot(`Sign In`);
+	// We can use our translation function directly in the test
+	const label = translate('signinpage.label', 'en-US');
+	// Snapshot the result so we know what's going on
+	expect(label).toMatchInlineSnapshot(`Sign In`);
 
-  const field = await screen.findByRole('textbox', { name: label });
-  fireEvent.change(field, { value: 'user123' });
-})
+	const field = await screen.findByRole('textbox', { name: label });
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 ### Using Test IDs
@@ -165,11 +165,11 @@ details like DOM structure. They can be used when none of the other methods of f
 
 ```jsx
 function Foo({ onClick }) {
-  return (
-    <button onClick={onClick} data-testid="foo">
-      click here
-    </button>
-  );
+	return (
+		<button onClick={onClick} data-testid="foo">
+			click here
+		</button>
+	);
 }
 
 // Only works if the text stays the same
@@ -203,17 +203,15 @@ import { FooContext } from './foo';
 const history = createMemoryHistory();
 
 export function render(vnode) {
-  return originalRender(
-    <FooContext.Provider value="foo">
-      <Router history={history}>
-        {vnode}
-      </Router>
-    </FooContext.Provider>
-  );
+	return originalRender(
+		<FooContext.Provider value="foo">
+			<Router history={history}>{vnode}</Router>
+		</FooContext.Provider>
+	);
 }
 
 // Usage like usual. Look ma, no providers!
-render(<MyComponent />)
+render(<MyComponent />);
 ```
 
 ## Testing Preact Hooks
@@ -225,10 +223,10 @@ Imagine that we want to re-use the counter functionality for multiple components
 import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const increment = useCallback(() => setCount(c => c + 1), []);
-  return { count, increment };
-}
+	const [count, setCount] = useState(0);
+	const increment = useCallback(() => setCount(c => c + 1), []);
+	return { count, increment };
+};
 ```
 
 Like before, the approach behind it is similar: We want to verify that we can increment our counter. So we need to somehow call our hook. This can be done with the `renderHook()`-function, which automatically creates a surrounding component internally. The function returns the current hook return value under `result.current`, which we can use to do our verifications:
@@ -238,18 +236,18 @@ import { renderHook, act } from '@testing-library/preact';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
-  const { result } = renderHook(() => useCounter());
+	const { result } = renderHook(() => useCounter());
 
-  // Initially the counter should be 0
-  expect(result.current.count).toBe(0);
+	// Initially the counter should be 0
+	expect(result.current.count).toBe(0);
 
-  // Let's update the counter by calling a hook callback
-  act(() => {
-    result.current.increment();
-  });
+	// Let's update the counter by calling a hook callback
+	act(() => {
+		result.current.increment();
+	});
 
-  // Check that the hook return value reflects the new state.
-  expect(result.current.count).toBe(1);
+	// Check that the hook return value reflects the new state.
+	expect(result.current.count).toBe(1);
 });
 ```
 

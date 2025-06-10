@@ -1,6 +1,6 @@
 ---
 title: Upgrading from Preact 8.x
-description: 'Upgrade your Preact 8.x application to Preact X'
+description: Upgrade your Preact 8.x application to Preact X
 ---
 
 # Upgrading from Preact 8.x
@@ -85,13 +85,13 @@ To better support tree-shaking we don't ship with a `default` export in preact c
 
 ```js
 // Preact 8.x
-import Preact from "preact";
+import Preact from 'preact';
 
 // Preact X
-import * as preact from "preact";
+import * as preact from 'preact';
 
 // Preferred: Named exports (works in 8.x and Preact X)
-import { h, Component } from "preact";
+import { h, Component } from 'preact';
 ```
 
 _Note: This change doesn't affect `preact/compat`. It still has both named and a default export to remain compatible with react._
@@ -103,18 +103,18 @@ In Preact 8.x, the calls to `render()` would always append the elements to the c
 ```jsx
 // Existing markup:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Preact 8.x output:
 <body>
-  <div>hello</div>
-  <p>foo</p>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>foo</p>
+	<p>bar</p>
+</body>;
 ```
 
 In order to diff existing children in Preact 8, an existing DOM node had to be provided.
@@ -122,8 +122,8 @@ In order to diff existing children in Preact 8, an existing DOM node had to be p
 ```jsx
 // Existing markup:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 let element;
 element = render(<p>foo</p>, document.body);
@@ -131,9 +131,9 @@ element = render(<p>bar</p>, document.body, element);
 
 // Preact 8.x output:
 <body>
-  <div>hello</div>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>bar</p>
+</body>;
 ```
 
 In Preact X, `render()` always diffs DOM children inside of the container. So if your container contains DOM that was not rendered by Preact, Preact will try to diff it with the elements you pass it. This new behavior more closely matches the behavior of other VDOM libraries.
@@ -141,17 +141,17 @@ In Preact X, `render()` always diffs DOM children inside of the container. So if
 ```jsx
 // Existing markup:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Preact X output:
 <body>
-  <p>bar</p>
-  <div>hello</div>
-</body>
+	<p>bar</p>
+	<div>hello</div>
+</body>;
 ```
 
 If you are looking for behavior that exactly matches how React's `render` method works, use the `render` method exported by `preact/compat`.
@@ -163,18 +163,18 @@ In Preact X we can't guarantee `props.children` to always be of type `array` any
 ```jsx
 // Preact 8.x
 function Foo(props) {
-  // `.length` is an array method. In Preact X when `props.children` is not an
-  // array, this line will throw an exception
-  const count = props.children.length;
-  return <div>I have {count} children </div>;
+	// `.length` is an array method. In Preact X when `props.children` is not an
+	// array, this line will throw an exception
+	const count = props.children.length;
+	return <div>I have {count} children </div>;
 }
 
 // Preact X
-import { toChildArray } from "preact";
+import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>I have {count} children </div>;
+	const count = toChildArray(props.children).length;
+	return <div>I have {count} children </div>;
 }
 ```
 
@@ -190,8 +190,8 @@ this.setState({ counter: this.state.counter + 1 });
 
 // Preact X
 this.setState(prevState => {
-  // Alternatively return `null` here to abort the state update
-  return { counter: prevState.counter + 1 };
+	// Alternatively return `null` here to abort the state update
+	return { counter: prevState.counter + 1 };
 });
 ```
 
@@ -201,8 +201,8 @@ When a `vnode` has the property `dangerouslySetInnerHTML` set Preact will skip d
 
 ```jsx
 <div dangerouslySetInnerHTML="foo">
-  <span>I will be skipped</span>
-  <p>So will I</p>
+	<span>I will be skipped</span>
+	<p>So will I</p>
 </div>
 ```
 
@@ -226,13 +226,13 @@ In Preact 8.x we had this feature where we would join adjacent text notes as an 
 
 ```jsx
 // Preact 8.x
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // Logs a structure like this:
 //   div
 //     text
 
 // Preact X
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // Logs a structure like this:
 //   div
 //     text

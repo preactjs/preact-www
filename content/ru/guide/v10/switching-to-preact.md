@@ -1,6 +1,6 @@
 ---
 title: Переход на Preact с React
-description: 'Всё, что нужно знать для перехода с React на Preact.'
+description: Всё, что нужно знать для перехода с React на Preact
 ---
 
 # Переход на Preact с React

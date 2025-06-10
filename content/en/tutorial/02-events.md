@@ -15,10 +15,10 @@ how event handlers are typically registered using the imperative DOM API:
 
 ```js
 function clicked() {
-  console.log('clicked')
+	console.log('clicked');
 }
-const myButton = document.getElementById('my-button')
-myButton.addEventListener('click', clicked)
+const myButton = document.getElementById('my-button');
+myButton.addEventListener('click', clicked);
 ```
 
 Where Preact differs from the DOM API is how event handlers are registered.
@@ -56,55 +56,53 @@ Once your code runs, click the button to call your event handler and move to the
   <p>You just learned how to handle events in Preact.</p>
 </solution>
 
-
 ```js:setup
-useRealm(function (realm) {
-  var win = realm.globalThis;
-  var prevConsoleLog = win.console.log;
-  win.console.log = function() {
-    solutionCtx.setSolved(true);
-    return prevConsoleLog.apply(win.console, arguments);
-  };
+useRealm(function(realm) {
+	var win = realm.globalThis;
+	var prevConsoleLog = win.console.log;
+	win.console.log = function() {
+		solutionCtx.setSolved(true);
+		return prevConsoleLog.apply(win.console, arguments);
+	};
 
-  return function () {
-    win.console.log = prevConsoleLog;
-  };
+	return function() {
+		win.console.log = prevConsoleLog;
+	};
 }, []);
 ```
 
-
 ```jsx:repl-initial
-import { render } from "preact";
+import { render } from 'preact';
 
 function App() {
-  return (
-    <div>
-      <p class="count">Count:</p>
-      <button>Click Me!</button>
-    </div>
-  )
+	return (
+		<div>
+			<p class="count">Count:</p>
+			<button>Click Me!</button>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
-import { render } from "preact";
+import { render } from 'preact';
 
 function App() {
-  const clicked = () => {
-    console.log('hi')
-  }
+	const clicked = () => {
+		console.log('hi');
+	};
 
-  return (
-    <div>
-      <p class="count">Count:</p>
-      <button onClick={clicked}>Click Me!</button>
-    </div>
-  )
+	return (
+		<div>
+			<p class="count">Count:</p>
+			<button onClick={clicked}>Click Me!</button>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
-[MDN]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
+[mdn]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events

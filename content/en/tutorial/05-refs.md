@@ -30,20 +30,20 @@ We can see what direct usage of the ref feature looks like without rendering
 anything:
 
 ```js
-import { createRef } from 'preact'
+import { createRef } from 'preact';
 
 // create a ref:
-const ref = createRef('initial value')
+const ref = createRef('initial value');
 // { current: 'initial value' }
 
 // read a ref's current value:
-ref.current === 'initial value'
+ref.current === 'initial value';
 
 // update a ref's current value:
-ref.current = 'new value'
+ref.current = 'new value';
 
 // pass refs around:
-console.log(ref) // { current: 'new value' }
+console.log(ref); // { current: 'new value' }
 ```
 
 What makes refs useful in Preact is that a ref object can be passed to a
@@ -55,14 +55,14 @@ we can use the ref's current value to access and modify the HTML element:
 import { createRef } from 'preact';
 
 // create a ref:
-const input = createRef()
+const input = createRef();
 
 // pass the ref as a prop on a Virtual DOM element:
-render(<input ref={input} />, document.body)
+render(<input ref={input} />, document.body);
 
 // access the associated DOM element:
-input.current // an HTML <input> element
-input.current.focus() // focus the input!
+input.current; // an HTML <input> element
+input.current.focus(); // focus the input!
 ```
 
 Using `createRef()` globally isn't recommended, since multiple renders
@@ -73,17 +73,17 @@ refs as class properties:
 import { createRef, Component } from 'preact';
 
 export default class App extends Component {
-  input = createRef()
+	input = createRef();
 
-  // this function runs after <App> is rendered
-  componentDidMount() {
-    // access the associated DOM element:
-    this.input.current.focus();
-  }
+	// this function runs after <App> is rendered
+	componentDidMount() {
+		// access the associated DOM element:
+		this.input.current.focus();
+	}
 
-  render() {
-    return <input ref={this.input} />
-  }
+	render() {
+		return <input ref={this.input} />;
+	}
 }
 ```
 
@@ -97,16 +97,16 @@ ref's current value will then be set to the HTML input element:
 import { useRef, useEffect } from 'preact/hooks';
 
 export default function App() {
-  // create or retrieve our ref:  (hook slot 0)
-  const input = useRef()
+	// create or retrieve our ref:  (hook slot 0)
+	const input = useRef();
 
-  // the callback here will run after <App> is rendered:
-  useEffect(() => {
-    // access the associated DOM element:
-    input.current.focus()
-  }, [])
+	// the callback here will run after <App> is rendered:
+	useEffect(() => {
+		// access the associated DOM element:
+		input.current.focus();
+	}, []);
 
-  return <input ref={input} />
+	return <input ref={input} />;
 }
 ```
 
@@ -115,77 +115,71 @@ to store information between renders of a component without setting state
 that would cause additional rendering. We'll see some uses for that in a
 later chapter.
 
-
 ## Try it!
 
 Now let's put this to practice by creating a button that, when clicked, focuses
 an input field by accessing it using a ref.
-
 
 <solution>
   <h4>🎉 Congratulations!</h4>
   <p><code>pro = createRef()</code> → <code>pro.current = 'you'</code></p>
 </solution>
 
-
 ```js:setup
 function patch(input) {
-  if (input.__patched) return;
-  input.__patched = true;
-  var old = input.focus;
-  input.focus = function() {
-    solutionCtx.setSolved(true);
-    return old.call(this);
-  };
+	if (input.__patched) return;
+	input.__patched = true;
+	var old = input.focus;
+	input.focus = function() {
+		solutionCtx.setSolved(true);
+		return old.call(this);
+	};
 }
 
-useResult(function (result) {
-  var expectedInput;
-  var timer;
-  [].forEach.call(result.output.querySelectorAll('input'), patch);
+useResult(function(result) {
+	var expectedInput;
+	var timer;
+	[].forEach.call(result.output.querySelectorAll('input'), patch);
 
-  var options = require('preact').options;
+	var options = require('preact').options;
 
-  var oe = options.event;
-  options.event = function(e) {
-    if (e.currentTarget.localName !== 'button') return;
-    clearTimeout(timer);
-    var input = e.currentTarget.parentNode.parentNode.querySelector('input');
-    expectedInput = input;
-    if (input) patch(input);
-    timer = setTimeout(function() {
-      if (expectedInput === input) {
-        expectedInput = null;
-      }
-    }, 10);
-    if (oe) return oe.apply(this, arguments);
-  }
+	var oe = options.event;
+	options.event = function(e) {
+		if (e.currentTarget.localName !== 'button') return;
+		clearTimeout(timer);
+		var input = e.currentTarget.parentNode.parentNode.querySelector('input');
+		expectedInput = input;
+		if (input) patch(input);
+		timer = setTimeout(function() {
+			if (expectedInput === input) {
+				expectedInput = null;
+			}
+		}, 10);
+		if (oe) return oe.apply(this, arguments);
+	};
 
-  return function () {
-    options.event = oe;
-  };
+	return function() {
+		options.event = oe;
+	};
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 
 function App() {
-  function onClick() {
+	function onClick() {}
 
-  }
-
-  return (
-    <div>
-      <input defaultValue="Hello World!" />
-      <button onClick={onClick}>Focus input</button>
-    </div>
-  );
+	return (
+		<div>
+			<input defaultValue="Hello World!" />
+			<button onClick={onClick}>Focus input</button>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
@@ -193,19 +187,19 @@ import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 
 function App() {
-  const input = useRef();
+	const input = useRef();
 
-  function onClick() {
-    input.current.focus();
-  }
+	function onClick() {
+		input.current.focus();
+	}
 
-  return (
-    <div>
-      <input ref={input} defaultValue="Hello World!" />
-      <button onClick={onClick}>Focus input</button>
-    </div>
-  );
+	return (
+		<div>
+			<input ref={input} defaultValue="Hello World!" />
+			<button onClick={onClick}>Focus input</button>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```

@@ -30,12 +30,12 @@ Anyone who has worked extensively with SSR at scale knows that there is a mounta
 Before we created our own prerendering implementation for our Vite preset, we had a look at the existing Vite ecosystem to see what was being offered but didn't quite find what we were after with the options. Prerendering is at its best when it is as near to "drop-in" as possible, taking your existing app, with minimal modification, and generating HTML from it, but existing solutions were a further step away from "drop-in" than we would've liked and fell into two main categories:
 
 1. Multiple Builds
-	- Separate client/server builds, often separate entry points too
-	- Less isomorphic, different branches in your app for different environments
+   - Separate client/server builds, often separate entry points too
+   - Less isomorphic, different branches in your app for different environments
 2. Frameworks / Vite Wrappers
-	- No longer using Vite directly but an abstraction
-	- Some amount of buy-in/lock-in
-	- Support matrix for different Vite config options, plugins, etc. can be complicated and less than clear
+   - No longer using Vite directly but an abstraction
+   - Some amount of buy-in/lock-in
+   - Support matrix for different Vite config options, plugins, etc. can be complicated and less than clear
 
 While these solutions absolutely have their merits and places in the ecosystem, neither felt as great as they could be for our ecosystem, given our historic offerings in this area. The "best case scenario" DX was often sacrificed for more complex or specific needs -- which is a completely valid trade off.
 
@@ -77,12 +77,13 @@ export default defineConfig({
 ...finally, make a couple adjustments to our app root:
 
 1. Switch `render` to `hydrate`
-	* `hydrate` from `preact-iso` is a very small utility which decides whether to render the app or hydrate depending on if it can find existing markup on the document. In dev it'll use `render`, but in production, with prerendered HTML, it'll use `hydrate`.
-	* We do need to add a window check (`typeof window !== undefined`) to ensure we're not trying to access `document`, a browser global, in Node during SSR.
+
+   - `hydrate` from `preact-iso` is a very small utility which decides whether to render the app or hydrate depending on if it can find existing markup on the document. In dev it'll use `render`, but in production, with prerendered HTML, it'll use `hydrate`.
+   - We do need to add a window check (`typeof window !== undefined`) to ensure we're not trying to access `document`, a browser global, in Node during SSR.
 
 2. Add our `prerender()` export
-	* This is the facilitator of prerendering, and it's entirely user controlled. You decide how your app should be rendered, which props to pass in to your root component, make any adjustments to the HTML, run any post-processing you'd like, etc. All that the plugin needs is for an object to be returned containing an `html` property with your HTML string.
-	* For our examples here we'll use `prerender` from `preact-iso` which is a thin wrapper around `renderToStringAsync` from `preact-render-to-string` with one main advantage: it automatically collects and returns the relative links it finds in the pages you prerender. The prerender plugin can then use these links to "walk" your app, discovering pages itself. We'll show this off further later.
+   - This is the facilitator of prerendering, and it's entirely user controlled. You decide how your app should be rendered, which props to pass in to your root component, make any adjustments to the HTML, run any post-processing you'd like, etc. All that the plugin needs is for an object to be returned containing an `html` property with your HTML string.
+   - For our examples here we'll use `prerender` from `preact-iso` which is a thin wrapper around `renderToStringAsync` from `preact-render-to-string` with one main advantage: it automatically collects and returns the relative links it finds in the pages you prerender. The prerender plugin can then use these links to "walk" your app, discovering pages itself. We'll show this off further later.
 
 ```diff
 // src/index.jsx
@@ -132,10 +133,13 @@ export async function prerender(data) {
 			//   <meta property="og:title" content="Social media title">
 			elements: new Set([
 				{ type: 'link', props: { rel: 'stylesheet', href: 'foo.css' } },
-				{ type: 'meta', props: { property: 'og:title', content: 'Social media title' } }
+				{
+					type: 'meta',
+					props: { property: 'og:title', content: 'Social media title' }
+				}
 			])
 		}
-	}
+	};
 }
 ```
 
@@ -143,7 +147,7 @@ export async function prerender(data) {
 
 ```jsx
 // src/use-fetch.js
-import { useState } from "preact/hooks";
+import { useState } from 'preact/hooks';
 
 const cache = new Map();
 
@@ -162,8 +166,8 @@ export function useFetch(url) {
 		data = load(url);
 		cache.set(url, data);
 		data.then(
-			(res) => update((data.res = res)),
-			(err) => update((data.err = err)),
+			res => update((data.res = res)),
+			err => update((data.err = err))
 		);
 	}
 
@@ -179,17 +183,17 @@ import { hydrate, prerender as ssr } from 'preact-iso';
 import { useFetch } from './use-fetch.js';
 
 function App() {
-    return (
-        <div>
-            <Suspense fallback={<p>Loading...</p>}>
-                <Article />
-            </Suspense>
-        </div>
-    );
+	return (
+		<div>
+			<Suspense fallback={<p>Loading...</p>}>
+				<Article />
+			</Suspense>
+		</div>
+	);
 }
 
 function Article() {
-	const data = useFetch("/my-local-article.txt");
+	const data = useFetch('/my-local-article.txt');
 	return <p>{data}</p>;
 }
 
@@ -198,7 +202,7 @@ if (typeof window !== 'undefined') {
 }
 
 export async function prerender(data) {
-    return await ssr(<App {...data} />)
+	return await ssr(<App {...data} />);
 }
 ```
 
@@ -226,48 +230,56 @@ export function useTitle(title) {
 
 ```jsx
 // src/index.jsx
-import { LocationProvider, Router, hydrate, prerender as ssr } from 'preact-iso';
+import {
+	LocationProvider,
+	Router,
+	hydrate,
+	prerender as ssr
+} from 'preact-iso';
 
-import { useTitle } from './title-util.js'
+import { useTitle } from './title-util.js';
 
 function App() {
-    return (
-        <LocationProvider>
-            <main>
-                <Home path="/" />
-                <NotFound default />
-            </main>
-        </LocationProvider>
-    );
+	return (
+		<LocationProvider>
+			<main>
+				<Home path="/" />
+				<NotFound default />
+			</main>
+		</LocationProvider>
+	);
 }
 
 function Home() {
-    useTitle('Preact - Home');
-    return <h1>Hello World!</h1>;
+	useTitle('Preact - Home');
+	return <h1>Hello World!</h1>;
 }
 
 function NotFound() {
-    useTitle('Preact - 404');
-    return <h1>Page Not Found</h1>;
+	useTitle('Preact - 404');
+	return <h1>Page Not Found</h1>;
 }
 
 if (typeof window !== 'undefined') {
-    hydrate(<App />, document.getElementById('app'));
+	hydrate(<App />, document.getElementById('app'));
 }
 
 export async function prerender(data) {
-    const { html, links } = await ssr(<App {...data} />);
+	const { html, links } = await ssr(<App {...data} />);
 
-    return {
-        html,
-        links,
-        head: {
-            title: globalThis.title,
-            elements: new Set([
-                { type: 'meta', props: { property: 'og:title', content: globalThis.title } },
-            ])
-        }
-    };
+	return {
+		html,
+		links,
+		head: {
+			title: globalThis.title,
+			elements: new Set([
+				{
+					type: 'meta',
+					props: { property: 'og:title', content: globalThis.title }
+				}
+			])
+		}
+	};
 }
 ```
 
@@ -303,33 +315,28 @@ For the curious asking "How does this all work?", it can be broken into three si
 
 1. Setup
 
-	We set the script with your exported `prerender()` function as an additional input and tell Rollup to preserve entry signatures, allowing us to access and call that function post-build.
+   We set the script with your exported `prerender()` function as an additional input and tell Rollup to preserve entry signatures, allowing us to access and call that function post-build.
+
 2. Build
 
-	We let Vite build your app as usual: compiling JSX, running plugins, optimizing assets, etc.
+   We let Vite build your app as usual: compiling JSX, running plugins, optimizing assets, etc.
+
 3. Prerender
 
-  During the `generateBundle` plugin stage, we begin to generate the HTML. Starting with `/`, we begin executing the built JS bundles in Node, calling your `prerender()` function and inserting the HTML it returns into your `index.html` document, finally writing the result to the specified output directory. Any new links your `prerender()` function returns are then queued up to be processed next.
+During the `generateBundle` plugin stage, we begin to generate the HTML. Starting with `/`, we begin executing the built JS bundles in Node, calling your `prerender()` function and inserting the HTML it returns into your `index.html` document, finally writing the result to the specified output directory. Any new links your `prerender()` function returns are then queued up to be processed next.
 
-  Prerendering completes when we run out of URLs to feed back into your app.
+Prerendering completes when we run out of URLs to feed back into your app.
 
 Following this, Vite will continue to finish up the build process, running any other plugins you may have. Your prerendered app will then be available immediately, with no subsequent builds or scripts required.
 
 ### Some Neat Features
 
-- File system-based `fetch()` implementation (as shown in the "Isomorphic Fetching" example)
-	- Before you run to get your pitchfork, hear us out! During prerendering (and only during prerendering) we patch `fetch()` to allow reading files directly from the file system. This allows you to consume static files (text, JSON, Markdown, etc.) during prerendering without having to start up a server to consume it. You can use the same file paths during prerendering as you will in the browser.
-	- In fact, that's how we build the very page you're reading! `fetch('/content/blog/preact-prerender.json')`, which is what triggers when you navigate to this page, roughly translates to `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` during prerendering. We read the file, wrap it in a `Response` to mimic a network request, and supply it back to your app -- your app can use the same `fetch()` request during prerendering and on the client.
-	- Pairing this with suspense and an async SSR implementation provides a really great DX.
-- Crawling Links
-	- Partly supported by the user-provided `prerender()` function export, partly by the plugin, you can return a set of links upon prerendering the page (`preact-iso` makes this wonderfully simple) which will be added to the plugin's list of URLs to prerender. This will allow the plugin to crawl your site at build time, finding more and more pages to prerender naturally.
-	- You can also provide links manually via the plugin options or by appending some to those that `preact-iso` returns, as we show above in the Full API Example. This is especially useful for error pages, like a `/404`, that might not be linked to but you still want to have it prerendered.
+- File system-based `fetch()` implementation (as shown in the "Isomorphic Fetching" example) - Before you run to get your pitchfork, hear us out! During prerendering (and only during prerendering) we patch `fetch()` to allow reading files directly from the file system. This allows you to consume static files (text, JSON, Markdown, etc.) during prerendering without having to start up a server to consume it. You can use the same file paths during prerendering as you will in the browser. - In fact, that's how we build the very page you're reading! `fetch('/content/blog/preact-prerender.json')`, which is what triggers when you navigate to this page, roughly translates to `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` during prerendering. We read the file, wrap it in a `Response` to mimic a network request, and supply it back to your app -- your app can use the same `fetch()` request during prerendering and on the client. - Pairing this with suspense and an async SSR implementation provides a really great DX.
+- Crawling Links - Partly supported by the user-provided `prerender()` function export, partly by the plugin, you can return a set of links upon prerendering the page (`preact-iso` makes this wonderfully simple) which will be added to the plugin's list of URLs to prerender. This will allow the plugin to crawl your site at build time, finding more and more pages to prerender naturally. - You can also provide links manually via the plugin options or by appending some to those that `preact-iso` returns, as we show above in the Full API Example. This is especially useful for error pages, like a `/404`, that might not be linked to but you still want to have it prerendered.
 
 ...and perhaps the biggest advantage:
 
-- Toggle it by flipping a Boolean in your config file
-	- Because we're not a wrapper, and because you don't need to alter your source code in order to support it (beyond some window checks), there's no lock-in whatsoever. If you decide to move away, or you want to do some testing on your output, all you need to do is flip a Boolean and you're back to a plain SPA with Vite.
-	- As we've mentioned a few times, prerendering is at its best when it is as near to "drop-in" as possible and that includes being able to drop back out on a whim. It's important to us that you can go from an SPA to prerendering and back again with minimal effort.
+- Toggle it by flipping a Boolean in your config file - Because we're not a wrapper, and because you don't need to alter your source code in order to support it (beyond some window checks), there's no lock-in whatsoever. If you decide to move away, or you want to do some testing on your output, all you need to do is flip a Boolean and you're back to a plain SPA with Vite. - As we've mentioned a few times, prerendering is at its best when it is as near to "drop-in" as possible and that includes being able to drop back out on a whim. It's important to us that you can go from an SPA to prerendering and back again with minimal effort.
 
 ## Final Notes
 

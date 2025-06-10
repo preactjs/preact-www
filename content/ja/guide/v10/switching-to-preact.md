@@ -1,6 +1,6 @@
 ---
 title: ReactからPreactへの移行
-description: 'ReactからPreactへの移行するために必要なことをすべて説明します。'
+description: ReactからPreactへの移行するために必要なことをすべて説明します。
 ---
 
 # (Reactから)Preactへの移行

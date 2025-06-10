@@ -1,6 +1,6 @@
 ---
 title: 通过Enzyme进行单元测试
-description: 'Testing Preact applications made easy with enzyme'
+description: Testing Preact applications made easy with enzyme
 ---
 
 # 使用 Enzyme 进行单元测试

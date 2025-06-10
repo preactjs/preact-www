@@ -1,6 +1,6 @@
 ---
 title: Context
-description: 'Context allows you to pass props through intermediate components. This documents describes both the new and the old API'
+description: Context allows you to pass props through intermediate components. This documents describes both the new and the old API
 ---
 
 # Context
@@ -24,10 +24,10 @@ There are two ways to use context in Preact: via the newer `createContext` API a
 To create a new context, we use the `createContext` function. This function takes an initial state as an argument and returns an object with two component properties: `Provider`, to make the context available to descendants, and `Consumer`, to access the context value (primarily in class components).
 
 ```jsx
-import { createContext } from "preact";
+import { createContext } from 'preact';
 
-export const Theme = createContext("light");
-export const User = createContext({ name: "Guest" });
+export const Theme = createContext('light');
+export const User = createContext({ name: 'Guest' });
 export const Locale = createContext(null);
 ```
 
@@ -38,16 +38,16 @@ Once we've created a context, we must make it available to descendants using the
 > The initial value set from `createContext` is only used in the absence of a `Provider` above the consumer in the tree. This may be helpful for testing components in isolation, as it avoids the need for creating a wrapping `Provider` around your component.
 
 ```jsx
-import { createContext } from "preact";
+import { createContext } from 'preact';
 
-export const Theme = createContext("light");
+export const Theme = createContext('light');
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent />
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent />
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -61,100 +61,88 @@ There are three ways to consume a context, largely dependent on your preferred c
 
 ```jsx
 // --repl
-import { render, createContext, Component } from "preact";
+import { render, createContext, Component } from 'preact';
 
 const SomeComponent = props => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
 class ThemedButton extends Component {
-  static contextType = ThemePrimary;
+	static contextType = ThemePrimary;
 
-  render() {
-    const theme = this.context;
-    return (
-      <button style={{ background: theme }}>
-        Themed Button
-      </button>
-    );
-  }
+	render() {
+		const theme = this.context;
+		return <button style={{ background: theme }}>Themed Button</button>;
+	}
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
-import { useContext } from "preact/hooks";
+import { render, createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
 const SomeComponent = props => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
-  const theme = useContext(ThemePrimary);
-  return (
-    <button style={{ background: theme }}>
-      Themed Button
-    </button>
-  );
+	const theme = useContext(ThemePrimary);
+	return <button style={{ background: theme }}>Themed Button</button>;
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
+import { render, createContext } from 'preact';
 
 const SomeComponent = props => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
-  return (
-    <ThemePrimary.Consumer>
-      {theme => (
-        <button style={{ background: theme }}>
-          Themed Button
-        </button>
-      )}
-    </ThemePrimary.Consumer>
-  );
+	return (
+		<ThemePrimary.Consumer>
+			{theme => <button style={{ background: theme }}>Themed Button</button>}
+		</ThemePrimary.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -165,43 +153,43 @@ Static values can be useful, but more often than not, we want to be able to upda
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
-import { useContext, useState } from "preact/hooks";
+import { render, createContext } from 'preact';
+import { useContext, useState } from 'preact/hooks';
 
 const SomeComponent = props => props.children;
 // --repl-before
 const ThemePrimary = createContext(null);
 
 function ThemedButton() {
-  const { theme } = useContext(ThemePrimary);
-  return <button style={{ background: theme }}>Themed Button</button>;
+	const { theme } = useContext(ThemePrimary);
+	return <button style={{ background: theme }}>Themed Button</button>;
 }
 
 function ThemePicker() {
-  const { theme, setTheme } = useContext(ThemePrimary);
-  return (
-    <input
-      type="color"
-      value={theme}
-      onChange={e => setTheme(e.currentTarget.value)}
-    />
-  );
+	const { theme, setTheme } = useContext(ThemePrimary);
+	return (
+		<input
+			type="color"
+			value={theme}
+			onChange={e => setTheme(e.currentTarget.value)}
+		/>
+	);
 }
 
 function App() {
-  const [theme, setTheme] = useState("#673ab8");
-  return (
-    <ThemePrimary.Provider value={{ theme, setTheme }}>
-      <SomeComponent>
-        <ThemedButton />
-        {" - "}
-        <ThemePicker />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	const [theme, setTheme] = useState('#673ab8');
+	return (
+		<ThemePrimary.Provider value={{ theme, setTheme }}>
+			<SomeComponent>
+				<ThemedButton />
+				{' - '}
+				<ThemePicker />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## Legacy Context API
@@ -214,35 +202,31 @@ To pass down a value through the context, a component needs to have the `getChil
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 
 const SomeOtherComponent = props => props.children;
 // --repl-before
 function ThemedButton(_props, context) {
-  return (
-    <button style={{ background: context.theme }}>
-      Themed Button
-    </button>
-  );
+	return <button style={{ background: context.theme }}>Themed Button</button>;
 }
 
 class App extends Component {
-  getChildContext() {
-    return {
-      theme: "#673ab8"
-    }
-  }
+	getChildContext() {
+		return {
+			theme: '#673ab8'
+		};
+	}
 
-  render() {
-    return (
-      <div>
-        <SomeOtherComponent>
-          <ThemedButton />
-        </SomeOtherComponent>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<SomeOtherComponent>
+					<ThemedButton />
+				</SomeOtherComponent>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```

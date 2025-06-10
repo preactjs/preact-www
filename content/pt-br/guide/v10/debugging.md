@@ -1,6 +1,6 @@
 ---
 title: Depurando Preact Apps
-description: 'Como debugar aplicativos preact quando algo der errado.'
+description: Como debugar aplicativos preact quando algo der errado
 ---
 
 # Depurando Preact Apps

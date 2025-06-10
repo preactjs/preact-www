@@ -1,6 +1,6 @@
 ---
 title: Webコンポーネント
-description: 'WebコンポーネントとPreactを連携させる方法'
+description: WebコンポーネントとPreactを連携させる方法
 ---
 
 # Webコンポーネント

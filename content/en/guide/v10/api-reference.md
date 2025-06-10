@@ -1,6 +1,6 @@
 ---
 title: API Reference
-description: 'Learn more about all exported functions of the Preact module'
+description: Learn more about all exported functions of the Preact module
 ---
 
 # API Reference
@@ -23,13 +23,13 @@ Rather than being instantiated directly, Components are managed by the renderer 
 import { Component } from 'preact';
 
 class MyComponent extends Component {
-  // (see below)
+	// (see below)
 }
 ```
 
 ### Component.render(props, state)
 
-All components must provide a  `render()` function. The render function is passed the component's current props and state, and should return a Virtual DOM Element (typically a JSX "element"), an Array, or `null`.
+All components must provide a `render()` function. The render function is passed the component's current props and state, and should return a Virtual DOM Element (typically a JSX "element"), an Array, or `null`.
 
 ```jsx
 import { Component } from 'preact';
@@ -85,9 +85,9 @@ import { render } from 'preact';
 const Foo = () => <div id="target">BAR</div>;
 
 render(
-  <Foo />,
-  document.getElementById('container'),
-  document.getElementById('target')
+	<Foo />,
+	document.getElementById('container'),
+	document.getElementById('target')
 );
 
 // After render:
@@ -146,11 +146,7 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Hello!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```
 
@@ -164,23 +160,20 @@ For Virtual DOM Elements with a single child, `props.children` is a reference to
 import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>I have {count} children</div>;
+	const count = toChildArray(props.children).length;
+	return <div>I have {count} children</div>;
 }
 
 // props.children is "bar"
-render(
-  <Foo>bar</Foo>,
-  container
-);
+render(<Foo>bar</Foo>, container);
 
 // props.children is [<p>A</p>, <p>B</p>]
 render(
-  <Foo>
-    <p>A</p>
-    <p>B</p>
-  </Foo>,
-  container
+	<Foo>
+		<p>A</p>
+		<p>B</p>
+	</Foo>,
+	container
 );
 ```
 
@@ -193,10 +186,14 @@ It's generally used to add or overwrite `props` of an element:
 
 ```jsx
 function Linkout(props) {
-  // add target="_blank" to the link:
-  return cloneElement(props.children, { target: '_blank' });
+	// add target="_blank" to the link:
+	return cloneElement(props.children, { target: '_blank' });
 }
-render(<Linkout><a href="/">home</a></Linkout>);
+render(
+	<Linkout>
+		<a href="/">home</a>
+	</Linkout>
+);
 // <a href="/" target="_blank">home</a>
 ```
 
@@ -220,12 +217,12 @@ Fragments make it possible to return multiple sibling children without needing t
 import { Fragment, render } from 'preact';
 
 render(
-  <Fragment>
-    <div>A</div>
-    <div>B</div>
-    <div>C</div>
-  </Fragment>,
-  document.getElementById('container')
+	<Fragment>
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</Fragment>,
+	document.getElementById('container')
 );
 // Renders:
 // <div id="container>

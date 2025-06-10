@@ -1,6 +1,6 @@
 ---
 title: Teste unitario com Enzyme
-description: 'Teste de aplicações Preact com Enzyme'
+description: Teste de aplicações Preact com Enzyme
 ---
 
 # Teste unitario com Enzyme

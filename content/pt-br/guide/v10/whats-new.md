@@ -1,6 +1,6 @@
 ---
 title: Novidades do Preact X
-description: 'Novos recursos e alterações no Preact X'
+description: Novos recursos e alterações no Preact X
 ---
 
 # Novidades do Preact X
