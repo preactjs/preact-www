@@ -28,15 +28,15 @@ component:
 import { useRef, useEffect } from 'preact/hooks';
 
 export default function App() {
-  const input = useRef()
+	const input = useRef();
 
-  // the callback here will run after <App> is rendered:
-  useEffect(() => {
-    // access the associated DOM element:
-    input.current.focus()
-  }, [])
+	// the callback here will run after <App> is rendered:
+	useEffect(() => {
+		// access the associated DOM element:
+		input.current.focus();
+	}, []);
 
-  return <input ref={input} />
+	return <input ref={input} />;
 }
 ```
 
@@ -57,18 +57,18 @@ Let's see an example:
 import { useEffect, useState } from 'preact/hooks';
 
 export default function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    console.log('<App> was just rendered for the first time')
-  }, [])
+	useEffect(() => {
+		console.log('<App> was just rendered for the first time');
+	}, []);
 
-  useEffect(() => {
-    console.log('count value was changed to: ', count)
-  }, [count])
-  //  ^ run this any time `count` changes, and on the first render
+	useEffect(() => {
+		console.log('count value was changed to: ', count);
+	}, [count]);
+	//  ^ run this any time `count` changes, and on the first render
 
-  return <button onClick={() => setCount(count+1)}>{count}</button>
+	return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
 ```
 
@@ -78,12 +78,12 @@ Class components can also define side effects, by implementing any of
 the available [lifecycle methods] provided by Preact. Here are a
 few of the most commonly used lifecycle methods:
 
-| Lifecycle method | When it runs: |
-|:-----------------|:--------------|
-| `componentWillMount` | just before a component is first rendered
-| `componentDidMount` | after a component is first rendered
-| `componentWillReceiveProps` | before a component is re-rendered
-| `componentDidUpdate` | after a component is re-rendered
+| Lifecycle method            | When it runs:                             |
+| :-------------------------- | :---------------------------------------- |
+| `componentWillMount`        | just before a component is first rendered |
+| `componentDidMount`         | after a component is first rendered       |
+| `componentWillReceiveProps` | before a component is re-rendered         |
+| `componentDidUpdate`        | after a component is re-rendered          |
 
 One of the most common examples of side effect usage in a class component
 is to fetch data when a component is first rendered, then store that data
@@ -95,29 +95,29 @@ shows that information.
 import { Component } from 'preact';
 
 export default class App extends Component {
-  // this gets called after the component is first rendered:
-  componentDidMount() {
-    // get JSON user info, store in `state.user`:
-    fetch('/api/user')
-      .then(response => response.json())
-      .then(user => {
-        this.setState({ user })
-      })
-  }
+	// this gets called after the component is first rendered:
+	componentDidMount() {
+		// get JSON user info, store in `state.user`:
+		fetch('/api/user')
+			.then(response => response.json())
+			.then(user => {
+				this.setState({ user });
+			});
+	}
 
-  render(props, state) {
-    const { user } = state;
+	render(props, state) {
+		const { user } = state;
 
-    // if we haven't received data yet, show a loading indicator:
-    if (!user) return <div>Loading...</div>
+		// if we haven't received data yet, show a loading indicator:
+		if (!user) return <div>Loading...</div>;
 
-    // we have data! show the username we got back from the API:
-    return (
-      <div>
-        <h2>Hello, {user.username}!</h2>
-      </div>
-    )
-  }
+		// we have data! show the username we got back from the API:
+		return (
+			<div>
+				<h2>Hello, {user.username}!</h2>
+			</div>
+		);
+	}
 }
 ```
 
@@ -132,41 +132,39 @@ first rendered.
   <p>You learned how to use side effects in Preact.</p>
 </solution>
 
-
 ```js:setup
-useRealm(function (realm) {
-  var win = realm.globalThis;
-  var prevConsoleLog = win.console.log;
-  win.console.log = function(m, s) {
-    if (/Count is now/.test(m) && s === 1) {
-      solutionCtx.setSolved(true);
-    }
-    return prevConsoleLog.apply(win.console, arguments);
-  };
+useRealm(function(realm) {
+	var win = realm.globalThis;
+	var prevConsoleLog = win.console.log;
+	win.console.log = function(m, s) {
+		if (/Count is now/.test(m) && s === 1) {
+			solutionCtx.setSolved(true);
+		}
+		return prevConsoleLog.apply(win.console, arguments);
+	};
 
-  return function () {
-    win.console.log = prevConsoleLog;
-  };
+	return function() {
+		win.console.log = prevConsoleLog;
+	};
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
 function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    console.log('Count is now: ', count)
-  }, []);
-  // ^^ start here!
+	useEffect(() => {
+		console.log('Count is now: ', count);
+	}, []);
+	// ^^ start here!
 
-  return <button onClick={() => setCount(count+1)}>{count}</button>
+	return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
@@ -174,17 +172,17 @@ import { render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
 function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    console.log('Count is now: ', count)
-  }, [count]);
-  // ^^ start here!
+	useEffect(() => {
+		console.log('Count is now: ', count);
+	}, [count]);
+	// ^^ start here!
 
-  return <button onClick={() => setCount(count+1)}>{count}</button>
+	return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 [lifecycle methods]: /guide/v10/components#lifecycle-methods

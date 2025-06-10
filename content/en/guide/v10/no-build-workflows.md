@@ -37,30 +37,35 @@ utilize import maps, but a basic example looks like the following:
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <script type="importmap">
-      {
-        "imports": {
-          "preact": "https://esm.sh/preact@10.23.1",
-          "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <div id="app"></div>
+	<head>
+		<script type="importmap">
+			{
+				"imports": {
+					"preact": "https://esm.sh/preact@10.23.1",
+					"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="app"></div>
 
-    <script type="module">
-      import { render } from 'preact';
-      import { html } from 'htm/preact';
+		<script type="module">
+			import { render } from 'preact';
+			import { html } from 'htm/preact';
 
-      export function App() {
-        return html`<h1>Hello, World!</h1>`;
-      }
+			export function App() {
+				return html`
+					<h1>Hello, World!</h1>
+				`;
+			}
 
-      render(html`<${App} />`, document.getElementById('app'));
-    </script>
-  </body>
+			render(
+				html`<${App} />`,
+				document.getElementById('app')
+			);
+		</script>
+	</body>
 </html>
 ```
 
@@ -91,14 +96,14 @@ query parameter, but other CDNs may work differently.
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
-      "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
+			"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+		}
+	}
 </script>
 ```
 
@@ -106,16 +111,16 @@ query parameter, but other CDNs may work differently.
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "react": "https://esm.sh/preact@10.23.1/compat",
-      "react/": "https://esm.sh/preact@10.23.1/compat/",
-      "react-dom": "https://esm.sh/preact@10.23.1/compat",
-      "@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"react": "https://esm.sh/preact@10.23.1/compat",
+			"react/": "https://esm.sh/preact@10.23.1/compat/",
+			"react-dom": "https://esm.sh/preact@10.23.1/compat",
+			"@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
+		}
+	}
 </script>
 ```
 
@@ -135,7 +140,9 @@ import { useState } from 'preact/hooks';
 import { html } from 'htm/preact';
 
 function Button({ action, children }) {
-	return html`<button onClick=${action}>${children}</button>`;
+	return html`
+		<button onClick=${action}>${children}</button>
+	`;
 }
 
 function Counter() {
@@ -150,5 +157,8 @@ function Counter() {
 	`;
 }
 
-render(html`<${Counter} />`, document.getElementById('app'));
+render(
+	html`<${Counter} />`,
+	document.getElementById('app')
+);
 ```

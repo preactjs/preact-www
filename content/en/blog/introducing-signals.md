@@ -14,25 +14,24 @@ At its core, a signal is an object with a `.value` property that holds some valu
 
 In addition to being straightforward and easy to write, this also ensures state updates stay fast regardless of how many components your app has. Signals are fast by default, automatically optimizing updates behind the scenes for you.
 
-
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal, computed } from "@preact/signals";
- 
+import { signal, computed } from '@preact/signals';
+
 const count = signal(0);
 const double = computed(() => count.value * 2);
- 
+
 function Counter() {
-  return (
-    <button onClick={() => count.value++}>
-      {count} x 2 = {double}
-    </button>
-  );
+	return (
+		<button onClick={() => count.value++}>
+			{count} x 2 = {double}
+		</button>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 Signals can be used inside or outside of components, unlike hooks. Signals also work great alongside both hooks **_and_** class components, so you can introduce them at your own pace and bring your existing knowledge with you. Try them out in a few components and gradually adopt them over time.
@@ -91,10 +90,10 @@ Signals flip the performance pitch around: instead of opting-in to performance v
 
 To achieve this level of performance, signals were built on these key principles:
 
-* **Lazy by default:** Only signals that are currently used somewhere are observed and updated - disconnected signals don't affect performance.
-* **Optimal updates:** If a signal's value hasn't changed, components and effects that use that signal's value won't be updated, even if the signal's dependencies have changed.
-* **Optimal dependency tracking:** The framework tracks which signals everything depends on for you - no dependency arrays like with hooks.
-* **Direct access:** Accessing a signal's value in a component automatically subscribes to updates, without the need for selectors or hooks.
+- **Lazy by default:** Only signals that are currently used somewhere are observed and updated - disconnected signals don't affect performance.
+- **Optimal updates:** If a signal's value hasn't changed, components and effects that use that signal's value won't be updated, even if the signal's dependencies have changed.
+- **Optimal dependency tracking:** The framework tracks which signals everything depends on for you - no dependency arrays like with hooks.
+- **Direct access:** Accessing a signal's value in a component automatically subscribes to updates, without the need for selectors or hooks.
 
 These principles make signals well-suited to a broad range of use cases, even scenarios that have nothing to do with rendering user interfaces.
 
@@ -105,16 +104,16 @@ Having identified the right state primitive, we set about wiring it up to Preact
 ```js
 // Selector based subscription :(
 function Counter() {
-  const value = useSelector(state => state.count);
-  // ...
+	const value = useSelector(state => state.count);
+	// ...
 }
- 
+
 // Wrapper function based subscription :(
 const counterState = new Counter();
- 
+
 const Counter = observe(props => {
-  const value = counterState.count;
-  // ...
+	const value = counterState.count;
+	// ...
 });
 ```
 
@@ -127,13 +126,9 @@ Ideally, we wouldn't need to know about selectors or wrapper functions and could
 ```jsx
 // Imagine this is some global state and the whole app needs access to:
 let count = 0;
- 
+
 function Counter() {
- return (
-   <button onClick={() => count++}>
-     value: {count}
-   </button>
- );
+	return <button onClick={() => count++}>value: {count}</button>;
 }
 ```
 
@@ -143,21 +138,17 @@ We couldn’t get this scenario out of our heads though. What could we do to mak
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { signal } from "@preact/signals";
+import { render } from 'preact';
+import { signal } from '@preact/signals';
 // --repl-before
 // Imagine this is some global state that the whole app needs access to:
 const count = signal(0);
- 
+
 function Counter() {
- return (
-   <button onClick={() => count.value++}>
-     Value: {count.value}
-   </button>
- );
+	return <button onClick={() => count.value++}>Value: {count.value}</button>;
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 There are no selectors, no wrapper functions, nothing. Accessing the signal's value is enough for the component to know that it needs to update when that signal’s value changes. After testing out the prototype in a few apps, it was clear we were onto something. Writing code this way felt intuitive and didn't require any mental gymnastics to keep things working optimally.
@@ -168,13 +159,13 @@ We could have stopped here and released signals as is, but this is the Preact te
 
 ```jsx
 const count = signal(0);
- 
+
 // Instead of this:
 <p>Value: {count.value}</p>
- 
+
 // … we can pass the signal directly into JSX:
 <p>Value: {count}</p>
- 
+
 // … or even passing them as DOM properties:
 <input value={count} onInput={...} />
 ```

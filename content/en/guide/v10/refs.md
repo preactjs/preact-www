@@ -22,24 +22,24 @@ There are two ways to create refs in Preact, depending on your preferred compone
 <tab-group tabstring="Classes, Hooks">
 
 ```jsx
-import { createRef } from "preact";
+import { createRef } from 'preact';
 
 class MyComponent extends Component {
-  countRef = createRef();
-  inputRef = createRef(null);
+	countRef = createRef();
+	inputRef = createRef(null);
 
-  // ...
+	// ...
 }
 ```
 
 ```jsx
-import { useRef } from "preact/hooks";
+import { useRef } from 'preact/hooks';
 
 function MyComponent() {
-  const countRef = useRef();
-  const inputRef = useRef(null);
+	const countRef = useRef();
+	const inputRef = useRef(null);
 
-  // ...
+	// ...
 }
 ```
 
@@ -53,41 +53,41 @@ The most common use case for refs is to access the underlying DOM node of a comp
 
 ```jsx
 // --repl
-import { render, Component, createRef } from "preact";
+import { render, Component, createRef } from 'preact';
 // --repl-before
 class MyInput extends Component {
-  ref = createRef(null);
+	ref = createRef(null);
 
-  componentDidMount() {
-    console.log(this.ref.current);
-    // Logs: [HTMLInputElement]
-  }
+	componentDidMount() {
+		console.log(this.ref.current);
+		// Logs: [HTMLInputElement]
+	}
 
-  render() {
-    return <input ref={this.ref} />;
-  }
+	render() {
+		return <input ref={this.ref} />;
+	}
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useRef, useEffect } from "preact/hooks";
+import { render } from 'preact';
+import { useRef, useEffect } from 'preact/hooks';
 // --repl-before
 function MyInput() {
-  const ref = useRef(null);
+	const ref = useRef(null);
 
-  useEffect(() => {
-    console.log(ref.current);
-    // Logs: [HTMLInputElement]
-  }, []);
+	useEffect(() => {
+		console.log(ref.current);
+		// Logs: [HTMLInputElement]
+	}, []);
 
-  return <input ref={ref} />;
+	return <input ref={ref} />;
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -96,49 +96,52 @@ render(<MyInput />, document.getElementById("app"));
 
 Another way to use references is by passing a function to the `ref` prop, where the DOM node will be passed as an argument.
 
-
 <tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class MyInput extends Component {
-  render() {
-    return (
-      <input ref={(dom) => {
-        console.log('Mounted:', dom);
+	render() {
+		return (
+			<input
+				ref={dom => {
+					console.log('Mounted:', dom);
 
-        // As of Preact 10.23.0, you can optionally return a cleanup function
-        return () => {
-          console.log('Unmounted:', dom);
-        };
-      }} />
-    );
-  }
+					// As of Preact 10.23.0, you can optionally return a cleanup function
+					return () => {
+						console.log('Unmounted:', dom);
+					};
+				}}
+			/>
+		);
+	}
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
 function MyInput() {
-  return (
-    <input ref={(dom) => {
-      console.log('Mounted:', dom);
+	return (
+		<input
+			ref={dom => {
+				console.log('Mounted:', dom);
 
-      // As of Preact 10.23.0, you can optionally return a cleanup function
-      return () => {
-        console.log('Unmounted:', dom);
-      };
-    }} />
-  );
+				// As of Preact 10.23.0, you can optionally return a cleanup function
+				return () => {
+					console.log('Unmounted:', dom);
+				};
+			}}
+		/>
+	);
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -157,74 +160,73 @@ In the following example, we store the ID of an interval in a ref to be able to 
 
 ```jsx
 // --repl
-import { render, Component, createRef } from "preact";
+import { render, Component, createRef } from 'preact';
 // --repl-before
 class SimpleClock extends Component {
-  state = {
-    time: Date.now(),
-  };
-  intervalId = createRef(null);
+	state = {
+		time: Date.now()
+	};
+	intervalId = createRef(null);
 
-  startClock = () => {
-    this.setState({ time: Date.now() });
-    this.intervalId.current = setInterval(() => {
-      this.setState({ time: Date.now() });
-    }, 1000);
-  };
+	startClock = () => {
+		this.setState({ time: Date.now() });
+		this.intervalId.current = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	};
 
-  stopClock = () => {
-    clearInterval(this.intervalId.current);
-  };
+	stopClock = () => {
+		clearInterval(this.intervalId.current);
+	};
 
+	render(_, { time }) {
+		const formattedTime = new Date(time).toLocaleTimeString();
 
-  render(_, { time }) {
-    const formattedTime = new Date(time).toLocaleTimeString();
-
-    return (
-      <div>
-        <button onClick={this.startClock}>Start Clock</button>
-        <time dateTime={formattedTime}>{formattedTime}</time>
-        <button onClick={this.stopClock}>Stop Clock</button>
-      </div>
-    );
-  }
+		return (
+			<div>
+				<button onClick={this.startClock}>Start Clock</button>
+				<time dateTime={formattedTime}>{formattedTime}</time>
+				<button onClick={this.stopClock}>Stop Clock</button>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<SimpleClock />, document.getElementById("app"));
+render(<SimpleClock />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState, useRef } from "preact/hooks";
+import { render } from 'preact';
+import { useState, useRef } from 'preact/hooks';
 // --repl-before
 function SimpleClock() {
-  const [time, setTime] = useState(Date.now());
-  const intervalId = useRef(null);
+	const [time, setTime] = useState(Date.now());
+	const intervalId = useRef(null);
 
-  const startClock = () => {
-    setTime(Date.now());
-    intervalId.current = setInterval(() => {
-      setTime(Date.now());
-    }, 1000);
-  };
+	const startClock = () => {
+		setTime(Date.now());
+		intervalId.current = setInterval(() => {
+			setTime(Date.now());
+		}, 1000);
+	};
 
-  const stopClock = () => {
-    clearInterval(intervalId.current);
-  };
+	const stopClock = () => {
+		clearInterval(intervalId.current);
+	};
 
-  const formattedTime = new Date(time).toLocaleTimeString();
+	const formattedTime = new Date(time).toLocaleTimeString();
 
-  return (
-    <div>
-      <button onClick={startClock}>Start Clock</button>
-      <time dateTime={formattedTime}>{formattedTime}</time>
-      <button onClick={stopClock}>Stop Clock</button>
-    </div>
-  );
+	return (
+		<div>
+			<button onClick={startClock}>Start Clock</button>
+			<time dateTime={formattedTime}>{formattedTime}</time>
+			<button onClick={stopClock}>Stop Clock</button>
+		</div>
+	);
 }
 // --repl-after
-render(<SimpleClock />, document.getElementById("app"));
+render(<SimpleClock />, document.getElementById('app'));
 ```
 
 </tab-group>

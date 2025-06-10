@@ -28,10 +28,10 @@ import { render } from 'preact';
 import { PureComponent } from 'preact/compat';
 
 class Foo extends PureComponent {
-  render(props) {
-    console.log("render")
-    return <div />
-  }
+	render(props) {
+		console.log('render');
+		return <div />;
+	}
 }
 
 const dom = document.getElementById('root');
@@ -52,7 +52,7 @@ render(<Foo value="3" />, dom);
 import { memo } from 'preact/compat';
 
 function MyComponent(props) {
-  return <div>Hello {props.name}</div>
+	return <div>Hello {props.name}</div>;
 }
 
 // Usage with default comparison function
@@ -60,9 +60,9 @@ const Memoed = memo(MyComponent);
 
 // Usage with custom comparison function
 const Memoed2 = memo(MyComponent, (prevProps, nextProps) => {
-  // Only re-render when `name' changes
-  return prevProps.name === nextProps.name;
-})
+	// Only re-render when `name' changes
+	return prevProps.name === nextProps.name;
+});
 ```
 
 > The comparison function is different from `shouldComponentUpdate` in that it checks if the two props objects are **equal**, whereas `shouldComponentUpdate` checks if they are different.
@@ -76,13 +76,13 @@ import { createRef, render } from 'preact';
 import { forwardRef } from 'preact/compat';
 
 const MyComponent = forwardRef((props, ref) => {
-  return <div ref={ref}>Hello world</div>;
-})
+	return <div ref={ref}>Hello world</div>;
+});
 
 // Usage: `ref` will hold the reference to the inner `div` instead of
 // `MyComponent`
 const ref = createRef();
-render(<MyComponent ref={ref} />, dom)
+render(<MyComponent ref={ref} />, dom);
 ```
 
 This component is most useful for library authors.
@@ -93,12 +93,12 @@ In rare circumstances you may want to continue rendering into a different DOM no
 
 ```html
 <html>
-  <body>
-    <!-- App is rendered here -->
-    <div id="app"></div>
-    <!-- Modals should be rendered here -->
-    <div id="modals"></div>
-  </body>
+	<body>
+		<!-- App is rendered here -->
+		<div id="app"></div>
+		<!-- Modals should be rendered here -->
+		<div id="modals"></div>
+	</body>
 </html>
 ```
 
@@ -107,13 +107,13 @@ import { createPortal } from 'preact/compat';
 import MyModal from './MyModal';
 
 function App() {
-  const container = document.getElementById('modals');
-  return (
-    <div>
-      I'm app
-      {createPortal(<MyModal />, container)}
-    </div>
-  )
+	const container = document.getElementById('modals');
+	return (
+		<div>
+			I'm app
+			{createPortal(<MyModal />, container)}
+		</div>
+	);
 }
 ```
 
@@ -130,10 +130,10 @@ const SomeComponent = lazy(() => import('./SomeComponent'));
 
 // Usage
 <Suspense fallback={<div>loading...</div>}>
-  <Foo>
-    <SomeComponent />
-  </Foo>
-</Suspense>
+	<Foo>
+		<SomeComponent />
+	</Foo>
+</Suspense>;
 ```
 
 In this example the UI will display the `loading...` text until `SomeComponent` is loaded and the Promise is resolved.

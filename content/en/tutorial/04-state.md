@@ -28,19 +28,19 @@ it be re-rendered by Preact.
 
 ```jsx
 class MyButton extends Component {
-  state = { clicked: false }
+	state = { clicked: false };
 
-  handleClick = () => {
-    this.setState({ clicked: true })
-  }
+	handleClick = () => {
+		this.setState({ clicked: true });
+	};
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.clicked ? 'Clicked' : 'No clicks yet'}
-      </button>
-    )
-  }
+	render() {
+		return (
+			<button onClick={this.handleClick}>
+				{this.state.clicked ? 'Clicked' : 'No clicks yet'}
+			</button>
+		);
+	}
 }
 ```
 
@@ -49,7 +49,6 @@ call the class' `render()` method again. Now that `this.state.clicked`
 is `true`, the `render()` method returns a Virtual DOM tree containing
 the text "Clicked" instead of "No clicks yet", causing Preact to update
 the button's text in the DOM.
-
 
 ### State in function components using hooks
 
@@ -78,9 +77,9 @@ will return the exact same Array each time.
 >
 > ```js
 > function User() {
->   const [name, setName] = useState("Bob")    // slot 0
->   const [age, setAge] = useState(42)         // slot 1
->   const [online, setOnline] = useState(true) // slot 2
+> 	const [name, setName] = useState('Bob');    // slot 0
+> 	const [age, setAge] = useState(42);         // slot 1
+> 	const [online, setOnline] = useState(true); // slot 2
 > }
 > ```
 >
@@ -91,21 +90,21 @@ will return the exact same Array each time.
 Let's see an example of the `useState` hook in action:
 
 ```jsx
-import { useState } from 'preact/hooks'
+import { useState } from 'preact/hooks';
 
 const MyButton = () => {
-  const [clicked, setClicked] = useState(false)
+	const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setClicked(true)
-  }
+	const handleClick = () => {
+		setClicked(true);
+	};
 
-  return (
-    <button onClick={handleClick}>
-      {clicked ? 'Clicked' : 'No clicks yet'}
-    </button>
-  )
-}
+	return (
+		<button onClick={handleClick}>
+			{clicked ? 'Clicked' : 'No clicks yet'}
+		</button>
+	);
+};
 ```
 
 Clicking the button calls `setClicked(true)`, which updates the state field
@@ -114,7 +113,6 @@ this component. When the component is rendered (invoked) a second time,
 the value of the `clicked` state field will be `true`, and the returned
 Virtual DOM will have the text "Clicked" instead of "No clicks yet".
 This will cause Preact to update the button's text in the DOM.
-
 
 ---
 
@@ -127,75 +125,84 @@ by `1` when a button is clicked.
 Since we used a function component in the previous chapter, it may be easiest to
 use hooks, though you can pick whichever method of storing state you prefer.
 
-
 <solution>
   <h4>🎉 Congratulations!</h4>
   <p>You learned how to use state!</p>
 </solution>
 
-
 ```js:setup
-useResult(function () {
-  var options = require('preact').options;
+useResult(function() {
+	var options = require('preact').options;
 
-  var oe = options.event;
-  options.event = function(e) {
-    if (oe) oe.apply(this, arguments);
+	var oe = options.event;
+	options.event = function(e) {
+		if (oe) oe.apply(this, arguments);
 
-    if (e.currentTarget.localName !== 'button') return;
-    var root = e.currentTarget.parentNode.parentNode;
-    var text = root.innerText.match(/Count:\s*([\w.-]*)/i);
-    if (!text) return;
-    if (!text[1].match(/^-?\d+$/)) {
-      return console.warn('Tip: it looks like you\'re not rendering {count} anywhere.');
-    }
-    setTimeout(function() {
-      var text2 = root.innerText.match(/Count:\s*([\w.-]*)/i);
-      if (!text2) {
-        return console.warn('Tip: did you remember to render {count}?');
-      }
-      if (text2[1] == text[1]) {
-        return console.warn('Tip: remember to call the "setter" function to change the value of `count`.');
-      }
-      if (!text2[1].match(/^-?\d+$/)) {
-        return console.warn('Tip: it looks like `count` is being set to something other than a number.');
-      }
+		if (e.currentTarget.localName !== 'button') return;
+		var root = e.currentTarget.parentNode.parentNode;
+		var text = root.innerText.match(/Count:\s*([\w.-]*)/i);
+		if (!text) return;
+		if (!text[1].match(/^-?\d+$/)) {
+			return console.warn(
+				"Tip: it looks like you're not rendering {count} anywhere."
+			);
+		}
+		setTimeout(function() {
+			var text2 = root.innerText.match(/Count:\s*([\w.-]*)/i);
+			if (!text2) {
+				return console.warn('Tip: did you remember to render {count}?');
+			}
+			if (text2[1] == text[1]) {
+				return console.warn(
+					'Tip: remember to call the "setter" function to change the value of `count`.'
+				);
+			}
+			if (!text2[1].match(/^-?\d+$/)) {
+				return console.warn(
+					'Tip: it looks like `count` is being set to something other than a number.'
+				);
+			}
 
-      if (Number(text2[1]) === Number(text[1]) + 1) {
-        solutionCtx.setSolved(true);
-      }
-    }, 10);
-  }
+			if (Number(text2[1]) === Number(text[1]) + 1) {
+				solutionCtx.setSolved(true);
+			}
+		}, 10);
+	};
 
-  return function () {
-    options.event = oe;
-  };
+	return function() {
+		options.event = oe;
+	};
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
 import { useState } from 'preact/hooks';
 
 function MyButton(props) {
-  return <button style={props.style} onClick={props.onClick}>{props.children}</button>
+	return (
+		<button style={props.style} onClick={props.onClick}>
+			{props.children}
+		</button>
+	);
 }
 
 function App() {
-  const clicked = () => {
-    // increment count by 1 here
-  }
+	const clicked = () => {
+		// increment count by 1 here
+	};
 
-  return (
-    <div>
-      <p class="count">Count:</p>
-      <MyButton style={{ color: 'purple' }} onClick={clicked}>Click me</MyButton>
-    </div>
-  )
+	return (
+		<div>
+			<p class="count">Count:</p>
+			<MyButton style={{ color: 'purple' }} onClick={clicked}>
+				Click me
+			</MyButton>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
@@ -203,25 +210,31 @@ import { render } from 'preact';
 import { useState } from 'preact/hooks';
 
 function MyButton(props) {
-  return <button style={props.style} onClick={props.onClick}>{props.children}</button>
+	return (
+		<button style={props.style} onClick={props.onClick}>
+			{props.children}
+		</button>
+	);
 }
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [count, setCount] = useState(0);
 
-  const clicked = () => {
-    setCount(count + 1)
-  }
+	const clicked = () => {
+		setCount(count + 1);
+	};
 
-  return (
-    <div>
-      <p class="count">Count: {count}</p>
-      <MyButton style={{ color: 'purple' }} onClick={clicked}>Click me</MyButton>
-    </div>
-  )
+	return (
+		<div>
+			<p class="count">Count: {count}</p>
+			<MyButton style={{ color: 'purple' }} onClick={clicked}>
+				Click me
+			</MyButton>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 [ternary]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

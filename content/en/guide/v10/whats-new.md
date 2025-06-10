@@ -24,12 +24,12 @@ In a nutshell Preact X is what we always wanted Preact to be: A tiny, fast and f
 ```jsx
 // --repl
 function Foo() {
-  return (
-    <>
-      <div>A</div>
-      <div>B</div>
-    </>
-  )
+	return (
+		<>
+			<div>A</div>
+			<div>B</div>
+		</>
+	);
 }
 ```
 
@@ -42,18 +42,18 @@ We all wish errors wouldn't happen in our applications, but sometimes they do. W
 ```jsx
 // --repl
 class Catcher extends Component {
-  state = { errored: false }
+	state = { errored: false };
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
-  }
+	componentDidCatch(error) {
+		this.setState({ errored: true });
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Something went badly wrong</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Something went badly wrong</p>;
+		}
+		return props.children;
+	}
 }
 ```
 
@@ -66,15 +66,15 @@ class Catcher extends Component {
 ```jsx
 // --repl
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => setValue(value + 1), [value]);
 
-  return (
-    <div>
-      Counter: {value}
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			Counter: {value}
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 ```
 
@@ -88,21 +88,19 @@ The `createContext`-API is a true successor for `getChildContext()`. Whereas `ge
 const Theme = createContext('light');
 
 function ThemedButton(props) {
-  return (
-    <Theme.Consumer>
-      {theme => <div>Active theme: {theme}</div>}
-    </Theme.Consumer>
-  );
+	return (
+		<Theme.Consumer>{theme => <div>Active theme: {theme}</div>}</Theme.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -112,7 +110,7 @@ Sometimes it's the little things that make a huge difference. With the recent ad
 
 ```jsx
 function Foo(props) {
-  return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
+	return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
 }
 ```
 
@@ -124,10 +122,10 @@ The compatibility layer is now called [preact/compat](/guide/v10/differences-to-
 
 ```js
 // Preact 8.x
-import React from "preact-compat";
+import React from 'preact-compat';
 
 // Preact X
-import React from "preact/compat";
+import React from 'preact/compat';
 ```
 
 ## Many compatibility fixes

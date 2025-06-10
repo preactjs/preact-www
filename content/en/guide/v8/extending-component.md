@@ -14,18 +14,18 @@ In any case, just use ES2015 class inheritance to extend Preact's `Component` cl
 
 ```js
 class BoundComponent extends Component {
-    // example: get bound methods
-    binds() {
-        let list = this.bind || [],
-            binds = this._binds;
-        if (!binds) {
-            binds = this._binds = {};
-            for (let i=list.length; i--; ) {
-                binds[list[i]] = this[list[i]].bind(this);
-            }
-        }
-        return binds;
-    }
+	// example: get bound methods
+	binds() {
+		let list = this.bind || [],
+			binds = this._binds;
+		if (!binds) {
+			binds = this._binds = {};
+			for (let i = list.length; i--; ) {
+				binds[list[i]] = this[list[i]].bind(this);
+			}
+		}
+		return binds;
+	}
 }
 ```
 
@@ -33,31 +33,27 @@ Example Usage:
 
 ```js
 class Link extends BoundComponent {
-    bind = ['click'];
-    click() {
-        open(this.props.href);
-    }
-    render({ children }) {
-        let { click } = this.binds();
-        return <span onClick={ click }>{ children }</span>;
-    }
+	bind = ['click'];
+	click() {
+		open(this.props.href);
+	}
+	render({ children }) {
+		let { click } = this.binds();
+		return <span onClick={click}>{children}</span>;
+	}
 }
 
-render(
-    <Link href="http://example.com">Click Me</Link>,
-    document.body
-);
+render(<Link href="http://example.com">Click Me</Link>, document.body);
 ```
-
 
 The possibilities are endless. Here's an extended `Component` class that supports rudimentary mixins:
 
 ```js
 class MixedComponent extends Component {
-    constructor() {
-        super();
-        (this.mixins || []).forEach( m => Object.assign(this, m) );
-    }
+	constructor() {
+		super();
+		(this.mixins || []).forEach(m => Object.assign(this, m));
+	}
 }
 ```
 
