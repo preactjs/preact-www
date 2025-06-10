@@ -255,12 +255,6 @@
 			& > button {
 				background: #fff;
 				color: #555;
-				z-index: 101;
-
-				svg {
-					filter: invert(40%) sepia(0%) saturate(3773%) hue-rotate(315deg)
-						brightness(73%) contrast(81%);
-				}
 			}
 
 			nav {
