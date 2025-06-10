@@ -94,11 +94,7 @@
 	}
 
 	nav {
-		position: relative;
-		display: inline-block;
-		font-size: 100%;
-		user-select: none;
-		-webkit-user-drag: none;
+		display: flex;
 
 		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 			display: block;
