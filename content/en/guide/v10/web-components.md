@@ -8,7 +8,7 @@ description: How to use web components with Preact
 Preact's tiny size and standards-first approach make it a great choice for building web components.
 
 Web Components are a set of standards that make it possible to build new HTML element types - Custom Elements like `<material-card>` or `<tab-bar>`.
-Preact [fully supports these standards](https://custom-elements-everywhere.com/#preact), allowing seamless use of Custom Element lifecycles, properties and events. 
+Preact [fully supports these standards](https://custom-elements-everywhere.com/#preact), allowing seamless use of Custom Element lifecycles, properties and events.
 
 Preact is designed to render both full applications and individual parts of a page, making it a natural fit for building Web Components. Many companies use it to build component or design systems that are then wrapped up into a set of Web Components, enabling re-use across multiple projects and within other frameworks.
 
@@ -25,12 +25,15 @@ Preact and Web Components are complementary technologies: Web Components provide
 In Preact, web components work just like other DOM Elements. They can be rendered using their registered tag name:
 
 ```jsx
-customElements.define('x-foo', class extends HTMLElement {
-  // ...
-});
+customElements.define(
+	'x-foo',
+	class extends HTMLElement {
+		// ...
+	}
+);
 
 function Foo() {
-  return <x-foo />;
+	return <x-foo />;
 }
 ```
 
@@ -39,14 +42,17 @@ function Foo() {
 JSX does not provide a way to differentiate between properties and attributes. Custom Elements generally rely on custom properties in order to support setting complex values that can't be expressed as attributes. This works well in Preact, because the renderer automatically determines whether to set values using a property or attribute by inspecting the affected DOM element. When a Custom Element defines a [setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) for a given property, Preact detects its existence and will use the setter instead of an attribute.
 
 ```jsx
-customElements.define('context-menu', class extends HTMLElement {
-  set position({ x, y }) {
-    this.style.cssText = `left:${x}px; top:${y}px;`;
-  }
-});
+customElements.define(
+	'context-menu',
+	class extends HTMLElement {
+		set position({ x, y }) {
+			this.style.cssText = `left:${x}px; top:${y}px;`;
+		}
+	}
+);
 
 function Foo() {
-  return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
+	return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
 }
 ```
 
@@ -60,15 +66,15 @@ To be able to access the instance of your custom web component, we can leverage 
 
 ```jsx
 function Foo() {
-  const myRef = useRef(null);
+	const myRef = useRef(null);
 
-  useEffect(() => {
-    if (myRef.current) {
-      myRef.current.doSomething();
-    }
-  }, []);
+	useEffect(() => {
+		if (myRef.current) {
+			myRef.current.doSomething();
+		}
+	}, []);
 
-  return <x-foo ref={myRef} />;
+	return <x-foo ref={myRef} />;
 }
 ```
 
@@ -94,9 +100,7 @@ Any Preact component can be turned into a web component with [preact-custom-elem
 ```jsx
 import register from 'preact-custom-element';
 
-const Greeting = ({ name = 'World' }) => (
-  <p>Hello, {name}!</p>
-);
+const Greeting = ({ name = 'World' }) => <p>Hello, {name}!</p>;
 
 register(Greeting, 'x-greeting', ['name'], { shadow: false });
 //          ^            ^           ^             ^
@@ -134,15 +138,15 @@ import register from 'preact-custom-element';
 
 // <x-greeting name="Bo"></x-greeting>
 class Greeting extends Component {
-  // Register as <x-greeting>:
-  static tagName = 'x-greeting';
+	// Register as <x-greeting>:
+	static tagName = 'x-greeting';
 
-  // Track these attributes:
-  static observedAttributes = ['name'];
+	// Track these attributes:
+	static observedAttributes = ['name'];
 
-  render({ name }) {
-    return <p>Hello, {name}!</p>;
-  }
+	render({ name }) {
+		return <p>Hello, {name}!</p>;
+	}
 }
 register(Greeting);
 ```
@@ -152,12 +156,16 @@ If no `observedAttributes` are specified, they will be inferred from the keys of
 ```jsx
 // Other option: use PropTypes:
 function FullName({ first, last }) {
-  return <span>{first} {last}</span>
+	return (
+		<span>
+			{first} {last}
+		</span>
+	);
 }
 
 FullName.propTypes = {
-  first: Object,   // you can use PropTypes, or this
-  last: Object     // trick to define un-typed props.
+	first: Object, // you can use PropTypes, or this
+	last: Object // trick to define un-typed props.
 };
 
 register(FullName, 'full-name');
@@ -184,7 +192,7 @@ Usage:
 
 ```html
 <text-section>
-  <span slot="heading">Nice heading</span>
-  <span slot="content">Great content</span>
+	<span slot="heading">Nice heading</span>
+	<span slot="content">Great content</span>
 </text-section>
 ```

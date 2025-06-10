@@ -31,18 +31,18 @@ At its core, a signal is an object with a `.value` property that holds a value. 
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 const count = signal(0);
 
 // Read a signal’s value by accessing .value:
-console.log(count.value);   // 0
+console.log(count.value); // 0
 
 // Update a signal’s value:
 count.value += 1;
 
 // The signal's value has changed:
-console.log(count.value);  // 1
+console.log(count.value); // 1
 ```
 
 In Preact, when a signal is passed down through a tree as props or context, we're only passing around references to the signal. The signal can be updated without re-rendering any components, since components see the signal and not its value. This lets us skip all of the expensive rendering work and jump immediately to any components in the tree that actually access the signal's `.value` property.
@@ -51,53 +51,53 @@ Signals have a second important characteristic, which is that they track when th
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 // Create a signal that can be subscribed to:
 const count = signal(0);
 
 function Counter() {
-  // Accessing .value in a component automatically re-renders when it changes:
-  const value = count.value;
+	// Accessing .value in a component automatically re-renders when it changes:
+	const value = count.value;
 
-  const increment = () => {
-    // A signal is updated by assigning to the `.value` property:
-    count.value++;
-  }
+	const increment = () => {
+		// A signal is updated by assigning to the `.value` property:
+		count.value++;
+	};
 
-  return (
-    <div>
-      <p>Count: {value}</p>
-      <button onClick={increment}>click me</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Count: {value}</p>
+			<button onClick={increment}>click me</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 Finally, Signals are deeply integrated into Preact to provide the best possible performance and ergonomics. In the example above, we accessed `count.value` to retrieve the current value of the `count` signal, however this is unnecessary. Instead, we can let Preact do all of the work for us by using the `count` signal directly in JSX:
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 const count = signal(0);
 
 function Counter() {
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={() => count.value++}>click me</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={() => count.value++}>click me</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 ## Installation
@@ -115,23 +115,20 @@ Once installed via your package manager of choice, you're ready to import it in 
 Let's use signals in a real world scenario. We're going to build a todo list app, where you can add and remove items in a todo list. We'll start by modeling the state. We're going to need a signal that holds a list of todos first, which we can represent with an `Array`:
 
 ```jsx
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
-const todos = signal([
-  { text: "Buy groceries" },
-  { text: "Walk the dog" },
-]);
+const todos = signal([{ text: 'Buy groceries' }, { text: 'Walk the dog' }]);
 ```
 
 To let the user enter text for a new todo item, we'll need one more signal that we'll connect up to an `<input>` element shortly. For now, we can use this signal already to create a function that adds a todo item to our list. Remember, we can update a signal's value by assigning to its `.value` property:
 
 ```jsx
 // We'll use this for our input later
-const text = signal("");
+const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = ""; // Clear input value on add
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = ''; // Clear input value on add
 }
 ```
 
@@ -149,41 +146,37 @@ Let's check if our logic is correct so far. When we update the `text` signal and
 
 ```jsx
 // --repl
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
-const todos = signal([
-  { text: "Buy groceries" },
-  { text: "Walk the dog" },
-]);
+const todos = signal([{ text: 'Buy groceries' }, { text: 'Walk the dog' }]);
 
-const text = signal("");
+const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = ""; // Reset input value on add
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = ''; // Reset input value on add
 }
 
 // Check if our logic works
 console.log(todos.value);
 // Logs: [{text: "Buy groceries"}, {text: "Walk the dog"}]
 
-
 // Simulate adding a new todo
-text.value = "Tidy up";
+text.value = 'Tidy up';
 addTodo();
 
 // Check that it added the new item and cleared the `text` signal:
 console.log(todos.value);
 // Logs: [{text: "Buy groceries"}, {text: "Walk the dog"}, {text: "Tidy up"}]
 
-console.log(text.value);  // Logs: ""
+console.log(text.value); // Logs: ""
 ```
 
 The last feature we'd like to add is the ability to remove a todo item from the list. For this, we'll add a function that deletes a given todo item from the todos array:
 
 ```jsx
 function removeTodo(todo) {
-  todos.value = todos.value.filter(t => t !== todo);
+	todos.value = todos.value.filter(t => t !== todo);
 }
 ```
 
@@ -193,22 +186,21 @@ Now that we've modeled our application's state, it's time to wire in up to a nic
 
 ```jsx
 function TodoList() {
-  const onInput = event => (text.value = event.currentTarget.value);
+	const onInput = event => (text.value = event.currentTarget.value);
 
-  return (
-    <>
-      <input value={text.value} onInput={onInput} />
-      <button onClick={addTodo}>Add</button>
-      <ul>
-        {todos.value.map(todo => (
-          <li>
-            {todo.text}{' '}
-            <button onClick={() => removeTodo(todo)}>❌</button>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+	return (
+		<>
+			<input value={text.value} onInput={onInput} />
+			<button onClick={addTodo}>Add</button>
+			<ul>
+				{todos.value.map(todo => (
+					<li>
+						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
+					</li>
+				))}
+			</ul>
+		</>
+	);
 }
 ```
 
@@ -220,17 +212,17 @@ Let's add one more feature to our todo app: each todo item can be checked off as
 
 ```jsx
 // --repl
-import { signal, computed } from "@preact/signals";
+import { signal, computed } from '@preact/signals';
 
 const todos = signal([
-  { text: "Buy groceries", completed: true },
-  { text: "Walk the dog", completed: false },
+	{ text: 'Buy groceries', completed: true },
+	{ text: 'Walk the dog', completed: false }
 ]);
 
 // create a signal computed from other signals
 const completed = computed(() => {
-  // When `todos` changes, this re-runs automatically:
-  return todos.value.filter(todo => todo.completed).length;
+	// When `todos` changes, this re-runs automatically:
+	return todos.value.filter(todo => todo.completed).length;
 });
 
 // Logs: 1, because one todo is marked as being completed
@@ -247,13 +239,13 @@ Up until now, we've only created signals outside the component tree. This is fin
 
 ```jsx
 function createAppState() {
-  const todos = signal([]);
+	const todos = signal([]);
 
-  const completed = computed(() => {
-    return todos.value.filter(todo => todo.completed).length
-  });
+	const completed = computed(() => {
+		return todos.value.filter(todo => todo.completed).length;
+	});
 
-  return { todos, completed }
+	return { todos, completed };
 }
 ```
 
@@ -265,28 +257,28 @@ We can now pass our todo application state as a prop when rendering:
 const state = createAppState();
 
 // ...later:
-<TodoList state={state} />
+<TodoList state={state} />;
 ```
 
 This works in our todo list app because the state is global, however larger apps typically end up with multiple components that require access to the same pieces of state. This usually involves "lifting state up" to a common shared ancestor component. To avoid passing state manually through each component via props, the state can be placed into [Context](/guide/v10/context) so any component in the tree can access it. Here is a quick example of how that typically looks:
 
 ```jsx
-import { createContext } from "preact";
-import { useContext } from "preact/hooks";
-import { createAppState } from "./my-app-state";
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
+import { createAppState } from './my-app-state';
 
 const AppState = createContext();
 
 render(
-  <AppState.Provider value={createAppState()}>
-    <App />
-  </AppState.Provider>
+	<AppState.Provider value={createAppState()}>
+		<App />
+	</AppState.Provider>
 );
 
 // ...later when you need access to your app state
 function App() {
-  const state = useContext(AppState);
-  return <p>{state.completed}</p>;
+	const state = useContext(AppState);
+	return <p>{state.completed}</p>;
 }
 ```
 
@@ -297,18 +289,20 @@ If you want to learn more about how context works, head over to the [Context doc
 The majority of application state ends up being passed around using props and context. However, there are many scenarios where components have their own internal state that is specific to that component. Since there is no reason for this state to live as part of the app's global business logic, it should be confined to the component that needs it. In these scenarios, we can create signals as well as computed signals directly within components using the `useSignal()` and `useComputed()` hooks:
 
 ```jsx
-import { useSignal, useComputed } from "@preact/signals";
+import { useSignal, useComputed } from '@preact/signals';
 
 function Counter() {
-  const count = useSignal(0);
-  const double = useComputed(() => count.value * 2);
+	const count = useSignal(0);
+	const double = useComputed(() => count.value * 2);
 
-  return (
-    <div>
-      <p>{count} x 2 = {double}</p>
-      <button onClick={() => count.value++}>click me</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>
+				{count} x 2 = {double}
+			</p>
+			<button onClick={() => count.value++}>click me</button>
+		</div>
+	);
 }
 ```
 
@@ -318,7 +312,7 @@ Those two hooks are thin wrappers around [`signal()`](#signalinitialvalue) and [
 >
 > ```js
 > function useSignal(value) {
->  return useMemo(() => signal(value), []);
+> 	return useMemo(() => signal(value), []);
 > }
 > ```
 
@@ -347,10 +341,10 @@ This poses a question: how can we subscribe to signals outside of the component 
 To run arbitrary code in response to signal changes, we can use [`effect(fn)`](#effectfn). Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. Unlike computed signals, [`effect()`](#effectfn) does not return a signal - it's the end of a sequence of changes.
 
 ```js
-import { signal, computed, effect } from "@preact/signals";
+import { signal, computed, effect } from '@preact/signals';
 
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 const fullName = computed(() => `${name.value} ${surname.value}`);
 
 // Logs name every time it changes:
@@ -358,7 +352,7 @@ effect(() => console.log(fullName.value));
 // Logs: "Jane Doe"
 
 // Updating `name` updates `fullName`, which triggers the effect again:
-name.value = "John";
+name.value = 'John';
 // Logs: "John Doe"
 ```
 
@@ -366,20 +360,20 @@ Optionally, you can return a cleanup function from the callback provided to [`ef
 
 ```js
 effect(() => {
-  Chat.connect(username.value)
+	Chat.connect(username.value);
 
-  return () => Chat.disconnect(username.value)
-})
+	return () => Chat.disconnect(username.value);
+});
 ```
 
 You can destroy an effect and unsubscribe from all signals it accessed by calling the returned function.
 
 ```js
-import { signal, effect } from "@preact/signals";
+import { signal, effect } from '@preact/signals';
 
-const name = signal("Jane");
-const surname = signal("Doe");
-const fullName = computed(() => name.value + " " + surname.value);
+const name = signal('Jane');
+const surname = signal('Doe');
+const fullName = computed(() => name.value + ' ' + surname.value);
 
 const dispose = effect(() => console.log(fullName.value));
 // Logs: "Jane Doe"
@@ -389,11 +383,10 @@ dispose();
 
 // Updating `name` does not run the effect because it has been disposed.
 // It also doesn't re-compute `fullName` now that nothing is observing it.
-name.value = "John";
+name.value = 'John';
 ```
 
 > :bulb: Tip: Don't forget to clean up effects if you're using them extensively. Otherwise your app will consume more memory than needed.
-
 
 ## Reading signals without subscribing to them
 
@@ -405,8 +398,8 @@ const delta = signal(0);
 const count = signal(0);
 
 effect(() => {
-  // Update `count` without subscribing to `count`:
-  count.value = count.peek() + delta.value;
+	// Update `count` without subscribing to `count`:
+	count.value = count.peek() + delta.value;
 });
 
 // Setting `delta` reruns the effect:
@@ -427,13 +420,12 @@ const delta = signal(0);
 const count = signal(0);
 
 effect(() => {
-  // Update `count` without subscribing to `count` or `delta`:
-  count.value = untracked(() => {
-    return count.value + delta.value
-  });
+	// Update `count` without subscribing to `count` or `delta`:
+	count.value = untracked(() => {
+		return count.value + delta.value;
+	});
 });
 ```
-
 
 ## Combining multiple updates into one
 
@@ -441,11 +433,11 @@ Remember the `addTodo()` function we used earlier in our todo app? Here is a ref
 
 ```js
 const todos = signal([]);
-const text = signal("");
+const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = "";
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = '';
 }
 ```
 
@@ -453,10 +445,10 @@ Notice that the function triggers two separate updates: one when setting `todos.
 
 ```js
 function addTodo() {
-  batch(() => {
-    todos.value = [...todos.value, { text: text.value }];
-    text.value = "";
-  });
+	batch(() => {
+		todos.value = [...todos.value, { text: text.value }];
+		text.value = '';
+	});
 }
 ```
 
@@ -464,7 +456,7 @@ Accessing a signal that has been modified within a batch will reflect its update
 
 ```js
 // --repl
-import { signal, computed, effect, batch } from "@preact/signals";
+import { signal, computed, effect, batch } from '@preact/signals';
 
 const count = signal(0);
 const double = computed(() => count.value * 2);
@@ -473,18 +465,16 @@ const triple = computed(() => count.value * 3);
 effect(() => console.log(double.value, triple.value));
 
 batch(() => {
-  // set `count`, invalidating `double` and `triple`:
-  count.value = 1;
+	// set `count`, invalidating `double` and `triple`:
+	count.value = 1;
 
-  // Despite being batched, `double` reflects the new computed value.
-  // However, `triple` will only update once the callback completes.
-  console.log(double.value); // Logs: 2
+	// Despite being batched, `double` reflects the new computed value.
+	// However, `triple` will only update once the callback completes.
+	console.log(double.value); // Logs: 2
 });
 ```
 
-
 > :bulb: Tip: Batches can also be nested, in which case batched updates are flushed only after the outermost batch callback has completed.
-
 
 ### Rendering optimizations
 
@@ -494,13 +484,13 @@ With signals we can bypass Virtual DOM rendering and bind signal changes directl
 const count = signal(0);
 
 function Unoptimized() {
-  // Re-renders the component when `count` changes:
-  return <p>{count.value}</p>;
+	// Re-renders the component when `count` changes:
+	return <p>{count.value}</p>;
 }
 
 function Optimized() {
-  // Text automatically updates without re-rendering the component:
-  return <p>{count}</p>;
+	// Text automatically updates without re-rendering the component:
+	return <p>{count}</p>;
 }
 ```
 
@@ -528,7 +518,7 @@ When creating signals within a component, use the hook variant: `useSignal(initi
 
 ```jsx
 function MyComponent() {
-  const count = useSignal(0);
+	const count = useSignal(0);
 }
 ```
 
@@ -537,8 +527,8 @@ function MyComponent() {
 Creates a new signal that is computed based on the values of other signals. The returned computed signal is read-only, and its value is automatically updated when any signals accessed from within the callback function change.
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 
 const fullName = computed(() => `${name.value} ${surname.value}`);
 ```
@@ -549,10 +539,10 @@ When creating computed signals within a component, use the hook variant: `useCom
 
 ```jsx
 function MyComponent() {
-  const name = useSignal("Jane");
-  const surname = useSignal("Doe");
+	const name = useSignal('Jane');
+	const surname = useSignal('Doe');
 
-  const fullName = useComputed(() => `${name.value} ${surname.value}`);
+	const fullName = useComputed(() => `${name.value} ${surname.value}`);
 }
 ```
 
@@ -561,13 +551,13 @@ function MyComponent() {
 To run arbitrary code in response to signal changes, we can use `effect(fn)`. Similar to computed signals, effects track which signals are accessed and re-run their callback when those signals change. If the callback returns a function, this function will be run before the next value update. Unlike computed signals, `effect()` does not return a signal - it's the end of a sequence of changes.
 
 ```js
-const name = signal("Jane");
+const name = signal('Jane');
 
 // Log to console when `name` changes:
 effect(() => console.log('Hello', name.value));
 // Logs: "Hello Jane"
 
-name.value = "John";
+name.value = 'John';
 // Logs: "Hello John"
 ```
 
@@ -577,10 +567,10 @@ When responding to signal changes within a component, use the hook variant: `use
 
 ```jsx
 function MyComponent() {
-  const name = useSignal("Jane");
+	const name = useSignal('Jane');
 
-  // Log to console when `name` changes:
-  useSignalEffect(() => console.log('Hello', name.value));
+	// Log to console when `name` changes:
+	useSignalEffect(() => console.log('Hello', name.value));
 }
 ```
 
@@ -589,13 +579,13 @@ function MyComponent() {
 The `batch(fn)` function can be used to combine multiple value updates into one "commit" at the end of the provided callback. Batches can be nested and changes are only flushed once the outermost batch callback completes. Accessing a signal that has been modified within a batch will reflect its updated value.
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 
 // Combine both writes into one update
 batch(() => {
-  name.value = "John";
-  surname.value = "Smith";
+	name.value = 'John';
+	surname.value = 'Smith';
 });
 ```
 
@@ -604,14 +594,14 @@ batch(() => {
 The `untracked(fn)` function can be used to access the value of several signals without subscribing to them.
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 
 effect(() => {
-  untracked(() => {
-    console.log(`${name.value} ${surname.value}`)
-  })
-})
+	untracked(() => {
+		console.log(`${name.value} ${surname.value}`);
+	});
+});
 ```
 
 ## Utility Components and Hooks
@@ -623,22 +613,22 @@ As of v2.1.0, the `@preact/signals/utils` package provides additional utility co
 The `<Show>` component provides a declarative way to conditionally render content based on a signal's value.
 
 ```jsx
-import { signal } from "@preact/signals";
-import { Show } from "@preact/signals/utils";
+import { signal } from '@preact/signals';
+import { Show } from '@preact/signals/utils';
 
 const isVisible = signal(false);
 
 function App() {
-  return (
-    <Show when={isVisible} fallback={<p>Nothing to see here</p>}>
-      <p>Now you see me!</p>
-    </Show>
-  );
+	return (
+		<Show when={isVisible} fallback={<p>Nothing to see here</p>}>
+			<p>Now you see me!</p>
+		</Show>
+	);
 }
 
 // You can also use a function to access the value
 function App() {
-  return <Show when={isVisible}>{value => <p>The value is {value}</p>}</Show>;
+	return <Show when={isVisible}>{value => <p>The value is {value}</p>}</Show>;
 }
 ```
 
@@ -647,17 +637,17 @@ function App() {
 The `<For>` component helps you render lists from signal arrays with automatic caching of rendered items.
 
 ```jsx
-import { signal } from "@preact/signals";
-import { For } from "@preact/signals/utils";
+import { signal } from '@preact/signals';
+import { For } from '@preact/signals/utils';
 
-const items = signal(["A", "B", "C"]);
+const items = signal(['A', 'B', 'C']);
 
 function App() {
-  return (
-    <For each={items} fallback={<p>No items</p>}>
-      {(item, index) => <div key={index}>Item: {item}</div>}
-    </For>
-  );
+	return (
+		<For each={items} fallback={<p>No items</p>}>
+			{(item, index) => <div key={index}>Item: {item}</div>}
+		</For>
+	);
 }
 ```
 
@@ -668,14 +658,14 @@ function App() {
 The `useLiveSignal(signal)` hook allows you to create a local signal that stays synchronized with an external signal.
 
 ```jsx
-import { signal } from "@preact/signals";
-import { useLiveSignal } from "@preact/signals/utils";
+import { signal } from '@preact/signals';
+import { useLiveSignal } from '@preact/signals/utils';
 
 const external = signal(0);
 
 function Component() {
-  const local = useLiveSignal(external);
-  // local will automatically update when external changes
+	const local = useLiveSignal(external);
+	// local will automatically update when external changes
 }
 ```
 
@@ -684,22 +674,22 @@ function Component() {
 The `useSignalRef(initialValue)` hook creates a signal that behaves like a React ref with a `.current` property.
 
 ```jsx
-import { useSignalEffect } from "@preact/signals";
-import { useSignalRef } from "@preact/signals/utils";
+import { useSignalEffect } from '@preact/signals';
+import { useSignalRef } from '@preact/signals/utils';
 
 function Component() {
-  const ref = useSignalRef(null);
+	const ref = useSignalRef(null);
 
-  useSignalEffect(() => {
-    if (ref.current) {
-      console.log("Ref has been set to:", ref.current);
-    }
-  });
+	useSignalEffect(() => {
+		if (ref.current) {
+			console.log('Ref has been set to:', ref.current);
+		}
+	});
 
-  return (
-    <div ref={ref}>
-      The ref has been attached to a {ref.current?.tagName} element.
-    </div>
-  );
+	return (
+		<div ref={ref}>
+			The ref has been attached to a {ref.current?.tagName} element.
+		</div>
+	);
 }
 ```

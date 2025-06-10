@@ -18,17 +18,17 @@ returns a Virtual DOM tree describing an HTML `<button>` element:
 
 ```jsx
 function MyButton(props) {
-  return <button class="my-button">{props.text}</button>
+	return <button class="my-button">{props.text}</button>;
 }
 ```
 
 We can use this component in an application by referencing it in JSX:
 
 ```js
-let vdom = <MyButton text="Click Me!" />
+let vdom = <MyButton text="Click Me!" />;
 
 // remember createElement? here's what the line above compiles to:
-let vdom = createElement(MyButton, { text: "Click Me!" })
+let vdom = createElement(MyButton, { text: 'Click Me!' });
 ```
 
 Anywhere you use JSX to describe trees of HTML, you can also describe trees
@@ -44,7 +44,7 @@ a JSX element describing that component to `render()`:
 ```jsx
 import { render } from 'preact';
 
-render(<MyButton text="Click me!" />, document.body)
+render(<MyButton text="Click me!" />, document.body);
 ```
 
 ### Nesting Components
@@ -54,15 +54,15 @@ This creates a tree of components:
 
 ```jsx
 function MediaPlayer() {
-  return (
-    <div>
-      <MyButton text="Play" />
-      <MyButton text="Stop" />
-    </div>
-  )
+	return (
+		<div>
+			<MyButton text="Play" />
+			<MyButton text="Stop" />
+		</div>
+	);
 }
 
-render(<MediaPlayer />, document.body)
+render(<MediaPlayer />, document.body);
 ```
 
 We can use this technique to render different trees of components for
@@ -71,28 +71,23 @@ when no sound is playing, and a "Stop" button when sound is playing:
 
 ```jsx
 function MediaPlayer(props) {
-  return (
-    <div>
-      {props.playing ? (
-        <MyButton text="Stop" />
-      ) : (
-        <MyButton text="Play" />
-      )}
-    </div>
-  )
+	return (
+		<div>
+			{props.playing ? <MyButton text="Stop" /> : <MyButton text="Play" />}
+		</div>
+	);
 }
 
-render(<MediaPlayer playing={false} />, document.body)
+render(<MediaPlayer playing={false} />, document.body);
 // renders <button>Play</button>
 
-render(<MediaPlayer playing={true} />, document.body)
+render(<MediaPlayer playing={true} />, document.body);
 // renders <button>Stop</button>
 ```
 
 > **Remember:** `{curly}` braces in JSX let us jump back into plain JavaScript.
 > Here we're using a [ternary] expression to show different buttons based on
 > the value of the `playing` prop.
-
 
 ### Component Children
 
@@ -109,12 +104,12 @@ that Component was placed in the Virtual DOM tree.
 
 ```jsx
 <Foo>
-  <a />
-  <b />
-</Foo>
+	<a />
+	<b />
+</Foo>;
 
 function Foo(props) {
-  return props.children  // [<a />, <b />]
+	return props.children; // [<a />, <b />]
 }
 ```
 
@@ -126,19 +121,19 @@ Let's rewrite `MyButton` to allow nesting using the `children` prop:
 
 ```jsx
 function MyButton(props) {
-  return <button class="my-button">{props.children}</button>
+	return <button class="my-button">{props.children}</button>;
 }
 
 function App() {
-  return (
-    <MyButton>
-      <img src="icon.png" />
-      Click Me!
-    </MyButton>
-  )
+	return (
+		<MyButton>
+			<img src="icon.png" />
+			Click Me!
+		</MyButton>
+	);
 }
 
-render(<App />, document.body)
+render(<App />, document.body);
 ```
 
 Now that we've seen a few examples of components rendering other
@@ -158,7 +153,7 @@ different Virtual DOM trees based on an input other than `props`?
 
 In addition to providing a way to map `props` to a Virtual DOM tree,
 components can also update _themselves_. There are two ways to do this:
-class components, and hooks. We'll cover hooks 
+class components, and hooks. We'll cover hooks
 -->
 
 So far, we've seen Components that are functions. Function components
@@ -171,17 +166,16 @@ Class components are created by extending Preact's `Component` base class.
 In the example below, notice how `render()` takes `props` as its input and
 returns a Virtual DOM tree as its output - just like a function component!
 
-
 ```jsx
 import { Component } from 'preact';
 
 class MyButton extends Component {
-  render(props) {
-    return <button class="my-button">{props.children}</button>
-  }
+	render(props) {
+		return <button class="my-button">{props.children}</button>;
+	}
 }
 
-render(<MyButton>Click Me!</MyButton>, document.body)
+render(<MyButton>Click Me!</MyButton>, document.body);
 ```
 
 The reason we might use a class to define a component is to keep track of
@@ -204,21 +198,21 @@ Preact will call in response to changes in the Virtual DOM tree:
 
 ```jsx
 class MyButton extends Component {
-  componentDidMount() {
-    console.log('Hello from a new <MyButton> component!')
-  }
-  componentDidUpdate() {
-    console.log('A <MyButton> component was updated!')
-  }
-  render(props) {
-    return <button class="my-button">{props.children}</button>
-  }
+	componentDidMount() {
+		console.log('Hello from a new <MyButton> component!');
+	}
+	componentDidUpdate() {
+		console.log('A <MyButton> component was updated!');
+	}
+	render(props) {
+		return <button class="my-button">{props.children}</button>;
+	}
 }
 
-render(<MyButton>Click Me!</MyButton>, document.body)
+render(<MyButton>Click Me!</MyButton>, document.body);
 // logs: "Hello from a new <MyButton> component!"
 
-render(<MyButton>Click Me!</MyButton>, document.body)
+render(<MyButton>Click Me!</MyButton>, document.body);
 // logs: "A <MyButton> component was updated!"
 ```
 
@@ -244,90 +238,96 @@ props, and returns an HTML `<button>` element with those props applied.
   <p>You're on your way to being a component pro!</p>
 </solution>
 
-
 ```js:setup
-useRealm(function (realm) {
-  var options = require('preact').options;
-  var win = realm.globalThis;
-  var prevConsoleLog = win.console.log;
-  var hasComponent = false;
-  var check = false;
+useRealm(function(realm) {
+	var options = require('preact').options;
+	var win = realm.globalThis;
+	var prevConsoleLog = win.console.log;
+	var hasComponent = false;
+	var check = false;
 
-  win.console.log = function() {
-    if (hasComponent && check) {
-      solutionCtx.setSolved(true);
-    }
-    return prevConsoleLog.apply(win.console, arguments);
-  };
+	win.console.log = function() {
+		if (hasComponent && check) {
+			solutionCtx.setSolved(true);
+		}
+		return prevConsoleLog.apply(win.console, arguments);
+	};
 
-  var e = options.event;
-  options.event = function(e) {
-    if (e.type === 'click') {
-      check = true;
-      setTimeout(() => check = false);
-    }
-  };
+	var e = options.event;
+	options.event = function(e) {
+		if (e.type === 'click') {
+			check = true;
+			setTimeout(() => (check = false));
+		}
+	};
 
-  var r = options.__r;
-  options.__r = function(vnode) {
-    if (typeof vnode.type === 'function' && /MyButton/.test(vnode.type)) {
-      hasComponent = true;
-    }
-  }
+	var r = options.__r;
+	options.__r = function(vnode) {
+		if (typeof vnode.type === 'function' && /MyButton/.test(vnode.type)) {
+			hasComponent = true;
+		}
+	};
 
-  return function () {
-    options.event = e;
-    options.__r = r;
-    win.console.log = prevConsoleLog;
-  };
+	return function() {
+		options.event = e;
+		options.__r = r;
+		win.console.log = prevConsoleLog;
+	};
 }, []);
 ```
 
-
 ```jsx:repl-initial
-import { render } from "preact";
+import { render } from 'preact';
 
 function MyButton(props) {
-  // start here!
+	// start here!
 }
 
 function App() {
-  const clicked = () => {
-    console.log('Hello!')
-  }
+	const clicked = () => {
+		console.log('Hello!');
+	};
 
-  return (
-    <div>
-      <p class="count">Count:</p>
-      <button style={{ color: 'purple' }} onClick={clicked}>Click me</button>
-    </div>
-  )
+	return (
+		<div>
+			<p class="count">Count:</p>
+			<button style={{ color: 'purple' }} onClick={clicked}>
+				Click me
+			</button>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
-import { render } from "preact";
+import { render } from 'preact';
 
 function MyButton(props) {
-  return <button style={props.style} onClick={props.onClick}>{props.children}</button>
+	return (
+		<button style={props.style} onClick={props.onClick}>
+			{props.children}
+		</button>
+	);
 }
 
 function App() {
-  const clicked = () => {
-    console.log('Hello!')
-  }
+	const clicked = () => {
+		console.log('Hello!');
+	};
 
-  return (
-    <div>
-      <p class="count">Count:</p>
-      <MyButton style={{ color: 'purple' }} onClick={clicked}>Click me</MyButton>
-    </div>
-  )
+	return (
+		<div>
+			<p class="count">Count:</p>
+			<MyButton style={{ color: 'purple' }} onClick={clicked}>
+				Click me
+			</MyButton>
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 [ternary]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

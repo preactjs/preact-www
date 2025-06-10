@@ -43,7 +43,7 @@ adapter:
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-preact-pure';
 
-configure({ adapter: new Adapter });
+configure({ adapter: new Adapter() });
 ```
 
 For guidance on using Enzyme with different test runners, see the
@@ -59,26 +59,27 @@ with a button to update it:
 import { Component, h } from 'preact';
 
 export default class Counter extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      count: props.initialCount,
-    };
-  };
+		this.state = {
+			count: props.initialCount
+		};
+	}
 
-  render() {
-    const increment = () => this.setState(({ count }) => ({
-      count: count + 1,
-    }));
+	render() {
+		const increment = () =>
+			this.setState(({ count }) => ({
+				count: count + 1
+			}));
 
-    return (
-      <div>
-        Current value: {this.state.count}
-        <button onClick={increment}>Increment</button>
-      </div>
-    );
-  }
+		return (
+			<div>
+				Current value: {this.state.count}
+				<button onClick={increment}>Increment</button>
+			</div>
+		);
+	}
 }
 ```
 
@@ -93,18 +94,18 @@ import { mount } from 'enzyme';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  it('should display initial count', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    expect(wrapper.text()).to.include('Current value: 5');
-  });
+	it('should display initial count', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
+		expect(wrapper.text()).to.include('Current value: 5');
+	});
 
-  it('should increment after "Increment" button is clicked', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
+	it('should increment after "Increment" button is clicked', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
 
-    wrapper.find('button').simulate('click');
+		wrapper.find('button').simulate('click');
 
-    expect(wrapper.text()).to.include('Current value: 6');
-  });
+		expect(wrapper.text()).to.include('Current value: 6');
+	});
 });
 ```
 
@@ -130,33 +131,33 @@ Enzyme has three rendering "modes":
 import { mount, shallow, render } from 'enzyme';
 
 // Render the full component tree:
-const wrapper = mount(<MyComponent prop="value"/>);
+const wrapper = mount(<MyComponent prop="value" />);
 
 // Render only `MyComponent`'s direct output (ie. "mock" child components
 // to render only as placeholders):
-const wrapper = shallow(<MyComponent prop="value"/>);
+const wrapper = shallow(<MyComponent prop="value" />);
 
 // Render the full component tree to an HTML string, and parse the result:
-const wrapper = render(<MyComponent prop="value"/>);
+const wrapper = render(<MyComponent prop="value" />);
 ```
 
- - The `mount` function renders the component and all of its descendants in the
-   same way they would be rendered in the browser.
+- The `mount` function renders the component and all of its descendants in the
+  same way they would be rendered in the browser.
 
- - The `shallow` function renders only the DOM nodes that are directly output
-   by the component. Any child components are replaced with placeholders that
-   output just their children.
+- The `shallow` function renders only the DOM nodes that are directly output
+  by the component. Any child components are replaced with placeholders that
+  output just their children.
 
-   The advantage of this mode is that you can write tests for components without
-   depending on the details of child components and needing to construct all
-   of their dependencies.
+  The advantage of this mode is that you can write tests for components without
+  depending on the details of child components and needing to construct all
+  of their dependencies.
 
-   The `shallow` rendering mode works differently internally with the Preact
-   adapter compared to React. See the Differences section below for details.
+  The `shallow` rendering mode works differently internally with the Preact
+  adapter compared to React. See the Differences section below for details.
 
- - The `render` function (not to be confused with Preact's `render` function!)
-   renders a component to an HTML string. This is useful for testing the output
-   of rendering on the server.
+- The `render` function (not to be confused with Preact's `render` function!)
+  renders a component to an HTML string. This is useful for testing the output
+  of rendering on the server.
 
 ## Triggering state updates
 
@@ -164,7 +165,7 @@ In the previous example, `.simulate('click')` was used to click on a button.
 
 Enzyme knows that calls to `simulate` are likely to change the state of a
 component, so it will apply any state updates immediately before `simulate`
-returns.  Enzyme does the same when the component is rendered initially using
+returns. Enzyme does the same when the component is rendered initially using
 `mount` or `shallow` and when a component is updated using `setProps`.
 
 If however an event happens outside of an Enzyme method call, such as directly
@@ -182,17 +183,17 @@ through the `simulate` method:
 
 ```js
 it('should increment after "Increment" button is clicked', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    const onClick = wrapper.find('button').props().onClick;
+	const wrapper = mount(<Counter initialCount={5} />);
+	const onClick = wrapper.find('button').props().onClick;
 
-    // Invoke the button's click handler, but this time directly, instead of
-    // via an Enzyme API
-    onClick();
+	// Invoke the button's click handler, but this time directly, instead of
+	// via an Enzyme API
+	onClick();
 
-    // Refresh Enzyme's view of the output
-    wrapper.update();
+	// Refresh Enzyme's view of the output
+	wrapper.update();
 
-    expect(wrapper.text()).to.include('Current value: 6');
+	expect(wrapper.text()).to.include('Current value: 6');
 });
 ```
 

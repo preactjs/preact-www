@@ -39,7 +39,7 @@ For both preact and [preact/compat], version compatibility is measured against t
 Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
 
 ```js
-import "preact/debug"; // <-- Add this line at the top of your main entry file
+import 'preact/debug'; // <-- Add this line at the top of your main entry file
 ```
 
 This is different from React which requires a bundler being present that strips out debugging messages at build time by checking for `NODE_ENV != "production"`.
@@ -59,11 +59,15 @@ For convenience, we pass `this.props` and `this.state` to the `render()` method 
 ```jsx
 // Works in both Preact and React
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
-  }
+	render() {
+		return (
+			<div>
+				Name: {this.props.name}, Age: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -72,11 +76,15 @@ In Preact this can be also written like this:
 ```jsx
 // Only works in Preact
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return <div>Name: {name}, Age: {age}</div>;
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Name: {name}, Age: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -137,7 +145,7 @@ JSX is a syntax extension for JavaScript that is converted to nested function ca
 
 ```jsx
 <a href="/">
-  <span>Home</span>
+	<span>Home</span>
 </a>
 ```
 
@@ -145,17 +153,13 @@ JSX is a syntax extension for JavaScript that is converted to nested function ca
 
 ```js
 // Preact:
-h(
-  'a',
-  { href:'/' },
-  h('span', null, 'Home')
-);
+h('a', { href: '/' }, h('span', null, 'Home'));
 
 // React:
 React.createElement(
-  'a',
-  { href:'/' },
-  React.createElement('span', null, 'Home')
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Home')
 );
 ```
 
@@ -176,12 +180,12 @@ The `Children` API is a specialized set of methods for working with the value of
 ```jsx
 // React:
 function App(props) {
-  return <Modal content={Children.only(props.children)} />
+	return <Modal content={Children.only(props.children)} />;
 }
 
 // Preact: use props.children directly:
 function App(props) {
-  return <Modal content={props.children} />
+	return <Modal content={props.children} />;
 }
 ```
 
@@ -190,14 +194,14 @@ For specialized cases where you need to iterate over the children passed to a co
 ```jsx
 // React
 function App(props) {
-  const cols = Children.count(props.children);
-  return <div data-columns={cols}>{props.children}</div>
+	const cols = Children.count(props.children);
+	return <div data-columns={cols}>{props.children}</div>;
 }
 
 // Preact
 function App(props) {
-  const cols = toChildArray(props.children).length;
-  return <div data-columns={cols}>{props.children}</div>
+	const cols = toChildArray(props.children).length;
+	return <div data-columns={cols}>{props.children}</div>;
 }
 ```
 
@@ -214,7 +218,7 @@ A React-compatible `Children` API is available from `preact/compat` to make inte
 - [Suspense](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Allows to display fallback content in case the tree is not ready
 - [lazy](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
 
-[Project Goals]: /about/project-goals
+[project goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
-[MDN's Event Reference]: https://developer.mozilla.org/en-US/docs/Web/Events
+[mdn's event reference]: https://developer.mozilla.org/en-US/docs/Web/Events
