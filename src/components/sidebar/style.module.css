@@ -21,7 +21,7 @@
 	color: #fff;
 	fill: rgba(255, 255, 255, 0.6);
 	cursor: pointer;
-	z-index: 560;
+	z-index: 460;
 	transition: transform 0.3s;
 
 	&:after {
