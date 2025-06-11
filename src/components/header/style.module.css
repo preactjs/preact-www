@@ -351,7 +351,7 @@
 .translation {
 	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 		/* Otherwise overlaps the social items in the dropdown header, blocking use */
-		display: none;
+		display: none !important;
 	}
 }
 
