@@ -1,8 +1,9 @@
 :root {
 	--vh: 100vh;
+	--banner-height: 2.5rem;
 	--header-height: 3.5rem;
 	--header-mobile-breakpoint: 50rem;
-	--header-and-banner-height: calc(var(--header-height) + 2.5rem);
+	--header-and-banner-height: calc(var(--header-height) + var(--banner-height));
 	--content-width: 50rem;
 	--sidebar-break: 900px;
 

@@ -2,6 +2,8 @@
 	background: #38235c;
 	color: white;
 
+	height: var(--banner-height);
+
 	padding: 0.5rem;
 
 	a {
@@ -29,7 +31,7 @@
 	.open & {
 		justify-content: space-between;
 		-webkit-overflow-scrolling: touch;
-		height: var(--vh);
+		height: calc(var(--vh) - var(--banner-height));
 	}
 }
 
@@ -94,11 +96,7 @@
 	}
 
 	nav {
-		position: relative;
-		display: inline-block;
-		font-size: 100%;
-		user-select: none;
-		-webkit-user-drag: none;
+		display: flex;
 
 		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 			display: block;
@@ -185,6 +183,8 @@
 
 		& > a,
 		& > button {
+			display: flex;
+			align-items: center;
 			transition: all 0.3s;
 
 			&::after {
@@ -203,7 +203,7 @@
 
 			& > a,
 			& > button {
-				display: block;
+				display: flex;
 			}
 		}
 
@@ -255,12 +255,6 @@
 			& > button {
 				background: #fff;
 				color: #555;
-				z-index: 101;
-
-				svg {
-					filter: invert(40%) sepia(0%) saturate(3773%) hue-rotate(315deg)
-						brightness(73%) contrast(81%);
-				}
 			}
 
 			nav {
@@ -313,6 +307,8 @@
 	justify-content: space-between;
 	align-items: flex-start;
 
+	touch-action: none;
+
 	@media (min-width: /* --content-width */ 50rem) {
 		justify-content: center;
 		justify-content: flex-start;
@@ -327,18 +323,35 @@
 .translation {
 	position: absolute;
 	height: 2rem;
-	top: calc(var(--vh) - 3rem); /* TODO: Why does bottom not work? */
-	display: flex;
+	display: none;
+	bottom: calc(env(safe-area-inset-bottom) + 1rem);
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		padding-left: 26px;
+		padding-right: 26px;
+	}
+
+	.open & {
+		display: flex;
+	}
+
 	@media (min-width: /* --content-width */ 50rem) {
-		top: initial;
+		display: flex;
+		bottom: initial;
 		height: 100%;
 		left: initial;
 		position: relative;
 		width: initial;
+	}
+}
+
+.translation {
+	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+		/* Otherwise overlaps the social items in the dropdown header, blocking use */
+		display: none !important;
 	}
 }
 
@@ -399,7 +412,6 @@
 	padding: 18px 23px 12px;
 	line-height: var(--header-height);
 	text-align: center;
-	z-index: 100;
 	opacity: 0.7;
 	cursor: pointer;
 	transition: opacity 250ms ease;
