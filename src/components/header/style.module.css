@@ -203,7 +203,7 @@
 
 			& > a,
 			& > button {
-				display: block;
+				display: flex;
 			}
 		}
 
