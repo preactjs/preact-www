@@ -121,6 +121,7 @@
 			cursor: pointer;
 			vertical-align: top;
 			appearance: none;
+			white-space: nowrap;
 
 			@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 				min-width: 100px;
