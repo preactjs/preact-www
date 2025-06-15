@@ -1,6 +1,6 @@
 ---
 title: Forms
-description: 'Forms and form controls allow you to collect user input in your application and is a fundamental building block of most web applications.'
+description: Forms and form controls allow you to collect user input in your application and is a fundamental building block of most web applications
 ---
 
 # Forms
@@ -25,49 +25,47 @@ To get started, we'll create a simple text input field that will update a state 
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class BasicInput extends Component {
-  state = { name: '' };
+	state = { name: '' };
 
-  onInput = e => this.setState({ name: e.currentTarget.value });
+	onInput = e => this.setState({ name: e.currentTarget.value });
 
-  render(_, { name }) {
-    return (
-      <div class="form-example">
-        <label>
-          Name:{' '}
-          <input onInput={this.onInput} />
-        </label>
-        <p>Hello {name}</p>
-      </div>
-    );
-  }
+	render(_, { name }) {
+		return (
+			<div class="form-example">
+				<label>
+					Name: <input onInput={this.onInput} />
+				</label>
+				<p>Hello {name}</p>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<BasicInput />, document.getElementById("app"));
+render(<BasicInput />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState } from "preact/hooks";
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
 // --repl-before
 function BasicInput() {
-  const [name, setName] = useState('');
+	const [name, setName] = useState('');
 
-  return (
-    <div class="form-example">
-      <label>
-        Name:{' '}
-        <input onInput={(e) => setName(e.currentTarget.value)} />
-      </label>
-      <p>Hello {name}</p>
-    </div>
-  );
+	return (
+		<div class="form-example">
+			<label>
+				Name: <input onInput={e => setName(e.currentTarget.value)} />
+			</label>
+			<p>Hello {name}</p>
+		</div>
+	);
 }
 // --repl-after
-render(<BasicInput />, document.getElementById("app"));
+render(<BasicInput />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -78,85 +76,122 @@ render(<BasicInput />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class BasicRadioButton extends Component {
-  state = {
-    allowContact: false,
-    contactMethod: ''
-  };
+	state = {
+		allowContact: false,
+		contactMethod: ''
+	};
 
-  toggleContact = () => this.setState({ allowContact: !this.state.allowContact });
-  setRadioValue = e => this.setState({ contactMethod: e.currentTarget.value });
+	toggleContact = () =>
+		this.setState({ allowContact: !this.state.allowContact });
+	setRadioValue = e => this.setState({ contactMethod: e.currentTarget.value });
 
-  render(_, { allowContact }) {
-    return (
-      <div class="form-example">
-        <label>
-          Allow contact:{' '}
-          <input type="checkbox" onClick={this.toggleContact} />
-        </label>
-        <label>
-          Phone:{' '}
-          <input type="radio" name="contact" value="phone" onClick={this.setRadioValue} disabled={!allowContact} />
-        </label>
-        <label>
-          Email:{' '}
-          <input type="radio" name="contact" value="email" onClick={this.setRadioValue} disabled={!allowContact} />
-        </label>
-        <label>
-          Mail:{' '}
-          <input type="radio" name="contact" value="mail" onClick={this.setRadioValue} disabled={!allowContact} />
-        </label>
-        <p>
-          You {allowContact ? 'have allowed' : 'have not allowed'} contact {allowContact && ` via ${this.state.contactMethod}`}
-        </p>
-      </div>
-    );
-  }
+	render(_, { allowContact }) {
+		return (
+			<div class="form-example">
+				<label>
+					Allow contact: <input type="checkbox" onClick={this.toggleContact} />
+				</label>
+				<label>
+					Phone:{' '}
+					<input
+						type="radio"
+						name="contact"
+						value="phone"
+						onClick={this.setRadioValue}
+						disabled={!allowContact}
+					/>
+				</label>
+				<label>
+					Email:{' '}
+					<input
+						type="radio"
+						name="contact"
+						value="email"
+						onClick={this.setRadioValue}
+						disabled={!allowContact}
+					/>
+				</label>
+				<label>
+					Mail:{' '}
+					<input
+						type="radio"
+						name="contact"
+						value="mail"
+						onClick={this.setRadioValue}
+						disabled={!allowContact}
+					/>
+				</label>
+				<p>
+					You {allowContact ? 'have allowed' : 'have not allowed'} contact{' '}
+					{allowContact && ` via ${this.state.contactMethod}`}
+				</p>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<BasicRadioButton />, document.getElementById("app"));
+render(<BasicRadioButton />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState } from "preact/hooks";
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
 // --repl-before
 function BasicRadioButton() {
-  const [allowContact, setAllowContact] = useState(false);
-  const [contactMethod, setContactMethod] = useState('');
+	const [allowContact, setAllowContact] = useState(false);
+	const [contactMethod, setContactMethod] = useState('');
 
-  const toggleContact = () => setAllowContact(!allowContact);
-  const setRadioValue = (e) => setContactMethod(e.currentTarget.value);
+	const toggleContact = () => setAllowContact(!allowContact);
+	const setRadioValue = e => setContactMethod(e.currentTarget.value);
 
-  return (
-    <div class="form-example">
-      <label>
-        Allow contact:{' '}
-        <input type="checkbox" onClick={toggleContact} />
-      </label>
-      <label>
-        Phone:{' '}
-        <input type="radio" name="contact" value="phone" onClick={setRadioValue} disabled={!allowContact} />
-      </label>
-      <label>
-        Email:{' '}
-        <input type="radio" name="contact" value="email" onClick={setRadioValue} disabled={!allowContact} />
-      </label>
-      <label>
-        Mail:{' '}
-        <input type="radio" name="contact" value="mail" onClick={setRadioValue} disabled={!allowContact} />
-      </label>
-      <p>
-        You {allowContact ? 'have allowed' : 'have not allowed'} contact {allowContact && ` via ${contactMethod}`}
-      </p>
-    </div>
-  );
+	return (
+		<div class="form-example">
+			<label>
+				Allow contact: <input type="checkbox" onClick={toggleContact} />
+			</label>
+			<label>
+				Phone:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="phone"
+					onClick={setRadioValue}
+					disabled={!allowContact}
+				/>
+			</label>
+			<label>
+				Email:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="email"
+					onClick={setRadioValue}
+					disabled={!allowContact}
+				/>
+			</label>
+			<label>
+				Mail:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="mail"
+					onClick={setRadioValue}
+					disabled={!allowContact}
+				/>
+			</label>
+			<p>
+				You {allowContact ? 'have allowed' : 'have not allowed'} contact{' '}
+				{allowContact && ` via ${contactMethod}`}
+			</p>
+		</div>
+	);
 }
 // --repl-after
-render(<BasicRadioButton />, document.getElementById("app"));
+render(<BasicRadioButton />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -167,53 +202,53 @@ render(<BasicRadioButton />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class MySelect extends Component {
-  state = { value: '' };
+	state = { value: '' };
 
-  onChange = e => {
-    this.setState({ value: e.currentTarget.value });
-  }
+	onChange = e => {
+		this.setState({ value: e.currentTarget.value });
+	};
 
-  render(_, { value }) {
-    return (
-      <div class="form-example">
-        <select onChange={this.onChange}>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-        </select>
-        <p>You selected: {value}</p>
-      </div>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<div class="form-example">
+				<select onChange={this.onChange}>
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+				<p>You selected: {value}</p>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<MySelect />, document.getElementById("app"));
+render(<MySelect />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState } from "preact/hooks";
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
 // --repl-before
 function MySelect() {
-  const [value, setValue] = useState('');
+	const [value, setValue] = useState('');
 
-  return (
-    <div class="form-example">
-      <select onChange={(e) => setValue(e.currentTarget.value)}>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-      </select>
-      <p>You selected: {value}</p>
-    </form>
-  );
+	return (
+		<div class="form-example">
+			<select onChange={e => setValue(e.currentTarget.value)}>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+			</select>
+			<p>You selected: {value}</p>
+		</form>
+	);
 }
 // --repl-after
-render(<MySelect />, document.getElementById("app"));
+render(<MySelect />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -228,78 +263,74 @@ To demonstrate, we'll create a new `<form>` element that contains two `<input>` 
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class FullNameForm extends Component {
-  state = { fullName: '' };
+	state = { fullName: '' };
 
-  onSubmit = e => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    this.setState({
-      fullName: formData.get("firstName") + " " + formData.get("lastName")
-    });
-    e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
-  }
+	onSubmit = e => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		this.setState({
+			fullName: formData.get('firstName') + ' ' + formData.get('lastName')
+		});
+		e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
+	};
 
-  render(_, { fullName }) {
-    return (
-      <div class="form-example">
-        <form onSubmit={this.onSubmit}>
-          <label>
-            First Name:{' '}
-            <input name="firstName" />
-          </label>
-          <label>
-            Last Name:{' '}
-            <input name="lastName" />
-          </label>
-          <button>Submit</button>
-        </form>
-        {fullName && <p>Hello {fullName}</p>}
-      </div>
-    );
-  }
+	render(_, { fullName }) {
+		return (
+			<div class="form-example">
+				<form onSubmit={this.onSubmit}>
+					<label>
+						First Name: <input name="firstName" />
+					</label>
+					<label>
+						Last Name: <input name="lastName" />
+					</label>
+					<button>Submit</button>
+				</form>
+				{fullName && <p>Hello {fullName}</p>}
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<FullNameForm />, document.getElementById("app"));
+render(<FullNameForm />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState } from "preact/hooks";
+import { render } from 'preact';
+import { useState } from 'preact/hooks';
 // --repl-before
 function FullNameForm() {
-  const [fullName, setFullName] = useState("");
+	const [fullName, setFullName] = useState('');
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    setFullName(formData.get("firstName") + " " + formData.get("lastName"));
-    e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
-  };
+	const onSubmit = e => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		setFullName(formData.get('firstName') + ' ' + formData.get('lastName'));
+		e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
+	};
 
-  return (
-    <div class="form-example">
-      <form onSubmit={onSubmit}>
-        <label>
-          First Name:{' '}
-          <input name="firstName" />
-        </label>
-        <label>
-          Last Name:{' '}
-          <input name="lastName" />
-        </label>
-        <button>Submit</button>
-      </form>
-      {fullName && <p>Hello {fullName}</p>}
-    </div>
-  );
+	return (
+		<div class="form-example">
+			<form onSubmit={onSubmit}>
+				<label>
+					First Name: <input name="firstName" />
+				</label>
+				<label>
+					Last Name: <input name="lastName" />
+				</label>
+				<button>Submit</button>
+			</form>
+			{fullName && <p>Hello {fullName}</p>}
+		</div>
+	);
 }
 
 // --repl-after
-render(<FullNameForm />, document.getElementById("app"));
+render(<FullNameForm />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -312,14 +343,14 @@ When talking about form controls you may encounter the terms "Controlled Compone
 
 ```jsx
 // Uncontrolled, because Preact doesn't set the value
-<input onInput={myEventHandler} />;
+<input onInput={myEventHandler} />
 ```
 
 However, there are situations in which you might need to exert tighter control over the input value, in which case, _Controlled_ Components can be used.
 
 ```jsx
 // Controlled, because Preact sets the value
-<input value={myValue} onInput={myEventHandler} />;
+<input value={myValue} onInput={myEventHandler} />
 ```
 
 Preact has a known issue with controlled components: rerenders are required for Preact to exert control over input values. This means that if your event handler doesn't update state or trigger a rerender in some fashion, the input value will not be controlled, sometimes becoming out-of-sync with component state.
@@ -327,11 +358,11 @@ Preact has a known issue with controlled components: rerenders are required for 
 An example of one of these problematic situations is as such: say you have an input field that should be limited to 3 characters. You may have an event handler like the following:
 
 ```js
-const onInput = (e) => {
-  if (e.currentTarget.value.length <= 3) {
-    setValue(e.currentTarget.value);
-  }
-}
+const onInput = e => {
+	if (e.currentTarget.value.length <= 3) {
+		setValue(e.currentTarget.value);
+	}
+};
 ```
 
 The problem with this is in the cases where the input fails that condition: because we don't run `setValue`, the component doesn't rerender, and because the component doesn't rerender, the input value is not correctly controlled. However, even if we did add a `else { setValue(value) }` to that handler, Preact is smart enough to detect when the value hasn't changed and so it will not rerender the component. This leaves us with [`refs`](/guide/v10/refs) to bridge the gap between the DOM state and Preact's state.
@@ -344,73 +375,78 @@ Here's an example of how you might use a controlled component to limit the numbe
 
 ```jsx
 // --repl
-import { render, Component, createRef } from "preact";
+import { render, Component, createRef } from 'preact';
 // --repl-before
 class LimitedInput extends Component {
-  state = { value: '' }
-  inputRef = createRef(null)
+	state = { value: '' };
+	inputRef = createRef(null);
 
-  onInput = (e) => {
-    if (e.currentTarget.value.length <= 3) {
-      this.setState({ value: e.currentTarget.value });
-    } else {
-      const start = this.inputRef.current.selectionStart;
-      const end = this.inputRef.current.selectionEnd;
-      const diffLength = Math.abs(e.currentTarget.value.length - this.state.value.length);
-      this.inputRef.current.value = this.state.value;
-      // Restore selection
-      this.inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
-    }
-  }
+	onInput = e => {
+		if (e.currentTarget.value.length <= 3) {
+			this.setState({ value: e.currentTarget.value });
+		} else {
+			const start = this.inputRef.current.selectionStart;
+			const end = this.inputRef.current.selectionEnd;
+			const diffLength = Math.abs(
+				e.currentTarget.value.length - this.state.value.length
+			);
+			this.inputRef.current.value = this.state.value;
+			// Restore selection
+			this.inputRef.current.setSelectionRange(
+				start - diffLength,
+				end - diffLength
+			);
+		}
+	};
 
-  render(_, { value }) {
-    return (
-      <div class="form-example">
-        <label>
-          This input is limited to 3 characters:{' '}
-          <input ref={this.inputRef} value={value} onInput={this.onInput} />
-        </label>
-      </div>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<div class="form-example">
+				<label>
+					This input is limited to 3 characters:{' '}
+					<input ref={this.inputRef} value={value} onInput={this.onInput} />
+				</label>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<LimitedInput />, document.getElementById("app"));
+render(<LimitedInput />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState, useRef } from "preact/hooks";
+import { render } from 'preact';
+import { useState, useRef } from 'preact/hooks';
 // --repl-before
 const LimitedInput = () => {
-  const [value, setValue] = useState('');
-  const inputRef = useRef();
+	const [value, setValue] = useState('');
+	const inputRef = useRef();
 
-  const onInput = (e) => {
-    if (e.currentTarget.value.length <= 3) {
-      setValue(e.currentTarget.value);
-    } else {
-      const start = inputRef.current.selectionStart;
-      const end = inputRef.current.selectionEnd;
-      const diffLength = Math.abs(e.currentTarget.value.length - value.length);
-      inputRef.current.value = value;
-      // Restore selection
-      inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
-    }
-  }
+	const onInput = e => {
+		if (e.currentTarget.value.length <= 3) {
+			setValue(e.currentTarget.value);
+		} else {
+			const start = inputRef.current.selectionStart;
+			const end = inputRef.current.selectionEnd;
+			const diffLength = Math.abs(e.currentTarget.value.length - value.length);
+			inputRef.current.value = value;
+			// Restore selection
+			inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
+		}
+	};
 
-  return (
-    <div class="form-example">
-      <label>
-        This input is limited to 3 characters:{' '}
-        <input ref={inputRef} value={value} onInput={onInput} />
-      </label>
-    </div>
-  );
-}
+	return (
+		<div class="form-example">
+			<label>
+				This input is limited to 3 characters:{' '}
+				<input ref={inputRef} value={value} onInput={onInput} />
+			</label>
+		</div>
+	);
+};
 // --repl-after
-render(<LimitedInput />, document.getElementById("app"));
+render(<LimitedInput />, document.getElementById('app'));
 ```
 
 </tab-group>

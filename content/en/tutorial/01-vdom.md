@@ -15,14 +15,14 @@ A Virtual DOM is a simple description of a tree structure using objects:
 
 ```js
 let vdom = {
-  type: 'p',         // a <p> element
-  props: {
-    class: 'big',    // with class="big"
-    children: [
-      'Hello World!' // and the text "Hello World!"
-    ]
-  }
-}
+	type: 'p',             // a <p> element
+	props: {
+		class: 'big',      // with class="big"
+		children: [
+			'Hello World!' // and the text "Hello World!"
+		]
+	}
+};
 ```
 
 Libraries like Preact provide a way to construct these descriptions, which can
@@ -35,7 +35,7 @@ rather than _imperatively_. Instead of describing _how_ to update the DOM in
 response to things like keyboard or mouse input, we only need to describe _what_
 the DOM should look like after that input is received. It means we can repeatedly
 give Preact descriptions of tree structures, and it will update the browser's DOM
-tree to match each new description – regardless of its current structure. 
+tree to match each new description – regardless of its current structure.
 
 In this chapter, we'll learn how to create Virtual DOM trees, and how to tell
 Preact to update the DOM to match those trees.
@@ -54,9 +54,9 @@ It's useful to start things off with the simplest approach, which would be to ca
 import { createElement, render } from 'preact';
 
 let vdom = createElement(
-  'p',              // a <p> element
-  { class: 'big' }, // with class="big"
-  'Hello World!'    // and the text "Hello World!"
+	'p',              // a <p> element
+	{ class: 'big' }, // with class="big"
+	'Hello World!'    // and the text "Hello World!"
 );
 
 render(vdom, document.body);
@@ -98,10 +98,10 @@ expressions: one to set `class` to a randomized string, and another to calculate
 a number.
 
 ```jsx
-let maybeBig = Math.random() > .5 ? 'big' : 'small';
+let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = <p class={maybeBig}>Hello {40 + 2}!</p>;
-                 // ^---JS---^       ^--JS--^
+//                  ^---JS---^       ^--JS--^
 ```
 
 If we were to `render(vdom, document.body)`, the text "Hello 42!" would be shown.
@@ -113,7 +113,7 @@ removing the need for a compiler. If you haven't encountered tagged templates,
 they're a special type of String literal that can contain `${expression}` fields:
 
 ```js
-let str = `Quantity: ${40 + 2} units`;  // "Quantity: 42 units"
+let str = `Quantity: ${40 + 2} units`; // "Quantity: 42 units"
 ```
 
 HTM uses `${expression}` instead of the `{expression}` syntax from JSX, which
@@ -123,10 +123,10 @@ parts are plain JavaScript:
 ```js
 import { html } from 'htm/preact';
 
-let maybeBig = Math.random() > .5 ? 'big' : 'small';
+let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = html`<p class=${maybeBig}>Hello ${40 + 2}!</p>`;
-                        // ^--JS--^          ^-JS-^
+//                         ^--JS--^          ^-JS-^
 ```
 
 All of these examples produce the same result: a Virtual DOM tree that can
@@ -148,12 +148,10 @@ create a very simple component by moving our JSX into a function:
 import { createElement } from 'preact';
 
 export default function App() {
-	return (
-		<p class="big">Hello World!</p>
-	)
+	return <p class="big">Hello World!</p>;
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 When passing a component to `render()`, it's important to let Preact do the
@@ -191,45 +189,41 @@ one or more CSS properties to set on the element. To pass an object as a prop va
   <p>We've made things appear on the screen. Next we'll make them interactive.</p>
 </solution>
 
-
 ```js:setup
 useResult(function(result) {
-  var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
-  var p = result.output.querySelector('p');
-  var hasColor = p && p.style && p.style.color === 'purple';
-  if (hasEm && hasColor) {
-    solutionCtx.setSolved(true);
-  }
+	var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
+	var p = result.output.querySelector('p');
+	var hasColor = p && p.style && p.style.color === 'purple';
+	if (hasEm && hasColor) {
+		solutionCtx.setSolved(true);
+	}
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { createElement, render } from 'preact';
 
 function App() {
-  return (
-    <p class="big">Hello World!</p>
-  );
+	return <p class="big">Hello World!</p>;
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
 import { createElement, render } from 'preact';
 
 function App() {
-  return (
-    <p class="big" style={{ color: 'purple' }}>
-      Hello <em>World</em>!
-    </p>
-  );
+	return (
+		<p class="big" style={{ color: 'purple' }}>
+			Hello <em>World</em>!
+		</p>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
-[JSX]: https://en.wikipedia.org/wiki/JSX_(JavaScript)
-[HTM]: https://github.com/developit/htm
-[Babel]: https://babeljs.io
+[jsx]: https://en.wikipedia.org/wiki/JSX_(JavaScript)
+[htm]: https://github.com/developit/htm
+[babel]: https://babeljs.io

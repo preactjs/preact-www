@@ -24,7 +24,7 @@ Let's use an example: a simple `<Link>` component that creates an HTML `<a>` ele
 ```js
 class Link extends Component {
 	render(props, state) {
-		return <a href={props.href}>{ props.children }</a>;
+		return <a href={props.href}>{props.children}</a>;
 	}
 }
 ```
@@ -34,7 +34,6 @@ We can instantiate/render this component as follows:
 ```xml
 <Link href="http://example.com">Some Text</Link>
 ```
-
 
 ### Destructure Props & State
 
@@ -58,15 +57,12 @@ class Link extends Component {
 }
 ```
 
-
 ### Stateless Functional Components
 
-Lastly, we can see that this component does not hold state - we can render the component with the same props and get the same result each time.  When this is the case, it's often best to use a Stateless Functional Component. These are just functions that accept `props` as an argument, and return JSX.
+Lastly, we can see that this component does not hold state - we can render the component with the same props and get the same result each time. When this is the case, it's often best to use a Stateless Functional Component. These are just functions that accept `props` as an argument, and return JSX.
 
 ```js
-const Link = ({ children, ...props }) => (
-	<a {...props}>{ children }</a>
-);
+const Link = ({ children, ...props }) => <a {...props}>{children}</a>;
 ```
 
-> *ES2015 Note:* the above is an Arrow Function, and because we've used parens instead of braces for the function body, the value within the parens is automatically returned. You can read more about this [here](https://github.com/lukehoban/es6features#arrows).
+> _ES2015 Note:_ the above is an Arrow Function, and because we've used parens instead of braces for the function body, the value within the parens is automatically returned. You can read more about this [here](https://github.com/lukehoban/es6features#arrows).

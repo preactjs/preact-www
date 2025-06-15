@@ -11,16 +11,15 @@ The new release of Preact Signals brings significant performance updates to the 
 
 We recently [announced](https://twitter.com/jviide/status/1572570215350964224) new versions of the Preact Signals packages:
 
- * [@preact/signals-core](https://www.npmjs.com/package/@preact/signals-core) 1.2.0 for the shared core functionality
- * [@preact/signals](https://www.npmjs.com/package/@preact/signals) 1.1.0 for the Preact bindings
- * [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react) 1.1.0 for the React bindings
+- [@preact/signals-core](https://www.npmjs.com/package/@preact/signals-core) 1.2.0 for the shared core functionality
+- [@preact/signals](https://www.npmjs.com/package/@preact/signals) 1.1.0 for the Preact bindings
+- [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react) 1.1.0 for the React bindings
 
 This post will outline the steps that we took to optimize **@preact/signals-core**. It's the package that acts as a base for the framework specific bindings, but can also be used independently.
 
 Signals are the Preact team's take on reactive programming. If you want a gentle introduction on what Signals are all about and how they tie in with Preact, [the Signals announcement blog post](/blog/introducing-signals) has got you covered. For a deeper dive check out the [official documentation](/guide/v10/signals).
 
 It should be noted that none of these concepts are invented by us. Reactive programming has quite a history, and has already been popularized widely in the JavaScript world by [Vue.js](https://vuejs.org/), [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/), [RxJS](https://rxjs.dev/) and too many others to name. Kudos to all of them!
-
 
 ## A Whirlwind Tour of the Signals Core
 
@@ -36,7 +35,7 @@ Signals represent arbitrary JavaScript values wrapped into a reactive shell. You
 
 ```js
 // --repl
-import { signal } from "@preact/signals-core";
+import { signal } from '@preact/signals-core';
 
 const s = signal(0);
 console.log(s.value); // Console: 0
@@ -53,13 +52,13 @@ _Computed signals_ derive new values from other signals using _compute functions
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hello");
-const s2 = signal("World");
+const s1 = signal('Hello');
+const s2 = signal('World');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 ```
 
@@ -67,13 +66,13 @@ The compute function given to `computed(...)` won't run immediately. That's beca
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hello");
-const s2 = signal("World");
+const s1 = signal('Hello');
+const s2 = signal('World');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 // --repl-before
 console.log(c.value); // Console: Hello World
@@ -83,13 +82,13 @@ Computed values are also _cached_. Their compute functions can potentially be ve
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hello");
-const s2 = signal("World");
+const s1 = signal('Hello');
+const s2 = signal('World');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 
 console.log(c.value); // Console: Hello World
@@ -97,7 +96,7 @@ console.log(c.value); // Console: Hello World
 // s1 and s2 haven't changed, no recomputation here
 console.log(c.value); // Console: Hello World
 
-s2.value = "darkness my old friend";
+s2.value = 'darkness my old friend';
 
 // s2 has changed, so the computation function runs again
 console.log(c.value); // Console: Hello darkness my old friend
@@ -107,7 +106,7 @@ As it happens, computed signals are themselves signals. A computed signal can de
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -122,28 +121,28 @@ The set of dependencies doesn't have to stay static. The computed signal will on
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const choice = signal(true);
-const funk = signal("Uptown");
-const purple = signal("Haze");
+const funk = signal('Uptown');
+const purple = signal('Haze');
 
 const c = computed(() => {
-  if (choice.value) {
-    console.log(funk.value, "Funk");
-  } else {
-    console.log("Purple", purple.value);
-  }
+	if (choice.value) {
+		console.log(funk.value, 'Funk');
+	} else {
+		console.log('Purple', purple.value);
+	}
 });
 c.value;               // Console: Uptown Funk
 
-purple.value = "Rain"; // purple is not a dependency, so
+purple.value = 'Rain'; // purple is not a dependency, so
 c.value;               // effect doesn't run
 
 choice.value = false;
 c.value;               // Console: Purple Rain
 
-funk.value = "Da";     // funk not a dependency anymore, so
+funk.value = 'Da';     // funk not a dependency anymore, so
 c.value;               // effect doesn't run
 ```
 
@@ -157,15 +156,16 @@ Like computed signals, effects are also created with a function (_effect functio
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 effect(() => {
-  console.log("quadruple is now", quadruple.value);
-});               // Console: quadruple value is now 4
+	console.log('quadruple is now', quadruple.value);
+	// Console: quadruple value is now 4
+});
 
 count.value = 20; // Console: quadruple value is now 80
 ```
@@ -176,31 +176,31 @@ When you're done with an effect, call the _disposer_ that got returned when the 
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 // --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 const dispose = effect(() => {
-  console.log("quadruple is now", quadruple.value);
-});                 // Console: quadruple value is now 4
+	console.log('quadruple is now', quadruple.value);
+	// Console: quadruple value is now 4
+});
 
 dispose();
-count.value = 20;  // nothing gets printed to the console
+count.value = 20; // nothing gets printed to the console
 ```
 
 There are other functions, like [`batch`](/guide/v10/signals/#batchfn), but these three are the most relevant to the implementation notes that follow.
-
 
 # Implementation Notes
 
 When we set out to implement more performant versions of the above primitives, we had to find snappy ways to do all the following subtasks:
 
- * Dependency tracking: Keep track of used signals (plain or computed). The dependencies may change dynamically.
- * Laziness: Compute functions should only run on demand.
- * Caching: A computed signal should recompute only when its dependencies may have changed.
- * Eagerness: An effect should run ASAP when something in its dependency chain changes.
+- Dependency tracking: Keep track of used signals (plain or computed). The dependencies may change dynamically.
+- Laziness: Compute functions should only run on demand.
+- Caching: A computed signal should recompute only when its dependencies may have changed.
+- Eagerness: An effect should run ASAP when something in its dependency chain changes.
 
 A reactive system can be implemented in a bajillion different ways. The first released version of **@preact/signals-core** was based on Sets, so we'll keep using that approach to contrast and compare.
 
@@ -224,20 +224,20 @@ Sets also have the property they're iterated in insertion order. Which is cool -
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const s1 = signal(0);
 const s2 = signal(0);
 const s3 = signal(0);
 
-const c = computed(() => {
-  if (s1.value) {
-    s2.value;
-    s3.value;
-  } else {
-    s3.value;
-    s2.value;
-  }
+const c = computed(() => {
+	if (s1.value) {
+		s2.value;
+		s3.value;
+	} else {
+		s3.value;
+		s2.value;
+	}
 });
 ```
 
@@ -249,9 +249,9 @@ There are multiple other ways to deal with this. For example numbering and then 
 
 Linked lists are often considered quite primitive, but for our purposes they have some very nice properties. If you have a doubly-linked list nodes then the following operations can be extremely cheap:
 
- * Insert an item to one end of the list in O(1) time.
- * Remove a node (for which you already have a pointer) from anywhere in the list in O(1) time.
- * Iterate through the list in O(n) time (O(1) per node)
+- Insert an item to one end of the list in O(1) time.
+- Remove a node (for which you already have a pointer) from anywhere in the list in O(1) time.
+- Iterate through the list in O(n) time (O(1) per node)
 
 Turns out that these operations are all we need for managing dependency/dependent lists.
 
@@ -289,7 +289,7 @@ We haven't been completely truthful. Computed signals don't actually _always_ ge
 const s = signal(0);
 
 {
-  const c = computed(() => s.value)
+	const c = computed(() => s.value);
 }
 // c has gone out of scope
 ```
@@ -308,24 +308,23 @@ Each plain and computed signal has their own _version number_. They increment th
 
 We ended up with the following algorithm for figuring out when a computed signal can take the day off and reuse its cached value:
 
- 1. If the no signal anywhere has changed values since the last run, then bail out & return the cached value.
+1.  If the no signal anywhere has changed values since the last run, then bail out & return the cached value.
 
- > Each time a plain signal changes it also increments a _global version number_, shared between all plain signals. Each computed signal keeps track of the last global version number they've seen. If the global version hasn't changed since last computation, then recomputation can be skipped early. There couldn't be any changes to any computed value anyway in that case.
+> Each time a plain signal changes it also increments a _global version number_, shared between all plain signals. Each computed signal keeps track of the last global version number they've seen. If the global version hasn't changed since last computation, then recomputation can be skipped early. There couldn't be any changes to any computed value anyway in that case.
 
- 1. If the computed signal is listening to notifications, and hasn't been notified since the last run, then bail out & return the cached value.
+1.  If the computed signal is listening to notifications, and hasn't been notified since the last run, then bail out & return the cached value.
 
- > When a computed signal gets a notification from its dependencies, it flags the cached value as outdated. As described earlier, computed signals don't always get notifications. But when they do we can take advantage of it.
+> When a computed signal gets a notification from its dependencies, it flags the cached value as outdated. As described earlier, computed signals don't always get notifications. But when they do we can take advantage of it.
 
- 1. Re-evaluate the dependencies in order. Check their version numbers. If no dependency has changed its version number, even after re-evaluation, then bail out & return the cached value.
+1.  Re-evaluate the dependencies in order. Check their version numbers. If no dependency has changed its version number, even after re-evaluation, then bail out & return the cached value.
 
-  > This step is the reason why we gave special love and care to keeping dependencies in their order of use. If a dependency changes, then we don't want to re-evaluate dependencies coming later in the list because it might just be unnecessary work. Who knows, maybe the change in that first dependency causes the next compute function run to drop the latter dependencies.
+> This step is the reason why we gave special love and care to keeping dependencies in their order of use. If a dependency changes, then we don't want to re-evaluate dependencies coming later in the list because it might just be unnecessary work. Who knows, maybe the change in that first dependency causes the next compute function run to drop the latter dependencies.
 
- 1. Run the compute function. If the returned value is different from the cached one, then increment the computed signal's version number. Cache and return the new value.
+1.  Run the compute function. If the returned value is different from the cached one, then increment the computed signal's version number. Cache and return the new value.
 
-  > This is the last resort! But at least if the new value is equal to the cached one, then the version number won't change, and the dependents down the line can use that to optimize their own caching.
+> This is the last resort! But at least if the new value is equal to the cached one, then the version number won't change, and the dependents down the line can use that to optimize their own caching.
 
 The last two steps often recurse into the dependencies. That's why the earlier steps are designed to try to short-circuit the recursion.
-
 
 # Endgame
 
