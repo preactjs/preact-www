@@ -323,20 +323,26 @@ For the curious asking "How does this all work?", it can be broken into three si
 
 3. Prerender
 
-During the `generateBundle` plugin stage, we begin to generate the HTML. Starting with `/`, we begin executing the built JS bundles in Node, calling your `prerender()` function and inserting the HTML it returns into your `index.html` document, finally writing the result to the specified output directory. Any new links your `prerender()` function returns are then queued up to be processed next.
+   During the `generateBundle` plugin stage, we begin to generate the HTML. Starting with `/`, we begin executing the built JS bundles in Node, calling your `prerender()` function and inserting the HTML it returns into your `index.html` document, finally writing the result to the specified output directory. Any new links your `prerender()` function returns are then queued up to be processed next.
 
-Prerendering completes when we run out of URLs to feed back into your app.
+   Prerendering completes when we run out of URLs to feed back into your app.
 
-Following this, Vite will continue to finish up the build process, running any other plugins you may have. Your prerendered app will then be available immediately, with no subsequent builds or scripts required.
+   Following this, Vite will continue to finish up the build process, running any other plugins you may have. Your prerendered app will then be available immediately, with no subsequent builds or scripts required.
 
 ### Some Neat Features
 
-- File system-based `fetch()` implementation (as shown in the "Isomorphic Fetching" example) - Before you run to get your pitchfork, hear us out! During prerendering (and only during prerendering) we patch `fetch()` to allow reading files directly from the file system. This allows you to consume static files (text, JSON, Markdown, etc.) during prerendering without having to start up a server to consume it. You can use the same file paths during prerendering as you will in the browser. - In fact, that's how we build the very page you're reading! `fetch('/content/blog/preact-prerender.json')`, which is what triggers when you navigate to this page, roughly translates to `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` during prerendering. We read the file, wrap it in a `Response` to mimic a network request, and supply it back to your app -- your app can use the same `fetch()` request during prerendering and on the client. - Pairing this with suspense and an async SSR implementation provides a really great DX.
-- Crawling Links - Partly supported by the user-provided `prerender()` function export, partly by the plugin, you can return a set of links upon prerendering the page (`preact-iso` makes this wonderfully simple) which will be added to the plugin's list of URLs to prerender. This will allow the plugin to crawl your site at build time, finding more and more pages to prerender naturally. - You can also provide links manually via the plugin options or by appending some to those that `preact-iso` returns, as we show above in the Full API Example. This is especially useful for error pages, like a `/404`, that might not be linked to but you still want to have it prerendered.
+- File system-based `fetch()` implementation (as shown in the "Isomorphic Fetching" example)
+  - Before you run to get your pitchfork, hear us out! During prerendering (and only during prerendering) we patch `fetch()` to allow reading files directly from the file system. This allows you to consume static files (text, JSON, Markdown, etc.) during prerendering without having to start up a server to consume it. You can use the same file paths during prerendering as you will in the browser.
+  - In fact, that's how we build the very page you're reading! `fetch('/content/blog/preact-prerender.json')`, which is what triggers when you navigate to this page, roughly translates to `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` during prerendering. We read the file, wrap it in a `Response` to mimic a network request, and supply it back to your app -- your app can use the same `fetch()` request during prerendering and on the client. - Pairing this with suspense and an async SSR implementation provides a really great DX.
+- Crawling Links
+  - Partly supported by the user-provided `prerender()` function export, partly by the plugin, you can return a set of links upon prerendering the page (`preact-iso` makes this wonderfully simple) which will be added to the plugin's list of URLs to prerender. This will allow the plugin to crawl your site at build time, finding more and more pages to prerender naturally.
+  - You can also provide links manually via the plugin options or by appending some to those that `preact-iso` returns, as we show above in the Full API Example. This is especially useful for error pages, like a `/404`, that might not be linked to but you still want to have it prerendered.
 
 ...and perhaps the biggest advantage:
 
-- Toggle it by flipping a Boolean in your config file - Because we're not a wrapper, and because you don't need to alter your source code in order to support it (beyond some window checks), there's no lock-in whatsoever. If you decide to move away, or you want to do some testing on your output, all you need to do is flip a Boolean and you're back to a plain SPA with Vite. - As we've mentioned a few times, prerendering is at its best when it is as near to "drop-in" as possible and that includes being able to drop back out on a whim. It's important to us that you can go from an SPA to prerendering and back again with minimal effort.
+- Toggle it by flipping a Boolean in your config file
+  - Because we're not a wrapper, and because you don't need to alter your source code in order to support it (beyond some window checks), there's no lock-in whatsoever. If you decide to move away, or you want to do some testing on your output, all you need to do is flip a Boolean and you're back to a plain SPA with Vite.
+  - As we've mentioned a few times, prerendering is at its best when it is as near to "drop-in" as possible and that includes being able to drop back out on a whim. It's important to us that you can go from an SPA to prerendering and back again with minimal effort.
 
 ## Final Notes
 
