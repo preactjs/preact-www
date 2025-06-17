@@ -1,6 +1,6 @@
 ---
 title: Atualizando do Preact 8.x
-description: 'Atualize seu aplicativo Preact 8.x para o Preact X'
+description: Atualize seu aplicativo Preact 8.x para o Preact X
 ---
 
 # Atualizando do Preact 8.x

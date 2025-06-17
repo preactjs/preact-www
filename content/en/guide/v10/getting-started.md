@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: "How to get started with Preact. We'll learn how to setup the tooling (if any) and get going with writing an application."
+description: How to get started with Preact. We'll learn how to setup the tooling (if any) and get going with writing an application
 ---
 
 # Getting Started
@@ -22,12 +22,12 @@ Preact is packaged to be used directly in the browser, and doesn't require any b
 
 ```html
 <script type="module">
-  import { h, render } from 'https://esm.sh/preact';
+	import { h, render } from 'https://esm.sh/preact';
 
-  // Create your app
-  const app = h('h1', null, 'Hello World!');
+	// Create your app
+	const app = h('h1', null, 'Hello World!');
 
-  render(app, document.body);
+	render(app, document.body);
 </script>
 ```
 
@@ -43,17 +43,22 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 ```html
 <script type="module">
-  import { h, render } from 'https://esm.sh/preact';
-  import htm from 'https://esm.sh/htm';
+	import { h, render } from 'https://esm.sh/preact';
+	import htm from 'https://esm.sh/htm';
 
-  // Initialize htm with Preact
-  const html = htm.bind(h);
+	// Initialize htm with Preact
+	const html = htm.bind(h);
 
-  function App (props) {
-    return html`<h1>Hello ${props.name}!</h1>`;
-  }
+	function App(props) {
+		return html`
+			<h1>Hello ${props.name}!</h1>
+		`;
+	}
 
-  render(html`<${App} name="World" />`, document.body);
+	render(
+		html`<${App} name="World" />`,
+		document.body
+	);
 </script>
 ```
 
@@ -118,12 +123,15 @@ To transpile JSX, you need a Babel plugin that converts it to valid JavaScript c
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "pragma": "h",
-      "pragmaFrag": "Fragment",
-    }]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"pragma": "h",
+				"pragmaFrag": "Fragment"
+			}
+		]
+	]
 }
 ```
 
@@ -143,16 +151,16 @@ already be present, but missing the aliases for Preact.
 
 ```js
 const config = {
-   //...snip
-  "resolve": {
-    "alias": {
-      "react": "preact/compat",
-      "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",     // Must be below test-utils
-      "react/jsx-runtime": "preact/jsx-runtime"
-    },
-  }
-}
+	//...snip
+	resolve: {
+		alias: {
+			react: 'preact/compat',
+			'react-dom/test-utils': 'preact/test-utils',
+			'react-dom': 'preact/compat', // Must be below test-utils
+			'react/jsx-runtime': 'preact/jsx-runtime'
+		}
+	}
+};
 ```
 
 #### Aliasing in Node
@@ -162,10 +170,10 @@ be seen in NextJS. To fix this, we can use aliases directly in our `package.json
 
 ```json
 {
-  "dependencies": {
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-  }
+	"dependencies": {
+		"react": "npm:@preact/compat",
+		"react-dom": "npm:@preact/compat"
+	}
 }
 ```
 
@@ -176,12 +184,12 @@ an `alias` key.
 
 ```json
 {
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime"
-  },
+	"alias": {
+		"react": "preact/compat",
+		"react-dom/test-utils": "preact/test-utils",
+		"react-dom": "preact/compat",
+		"react/jsx-runtime": "preact/jsx-runtime"
+	}
 }
 ```
 
@@ -194,16 +202,16 @@ The plugin will need to be placed before your [@rollup/plugin-node-resolve](http
 import alias from '@rollup/plugin-alias';
 
 module.exports = {
-  plugins: [
-    alias({
-      entries: [
-        { find: 'react', replacement: 'preact/compat' },
-        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
-        { find: 'react-dom', replacement: 'preact/compat' },
-        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
-      ]
-    })
-  ]
+	plugins: [
+		alias({
+			entries: [
+				{ find: 'react', replacement: 'preact/compat' },
+				{ find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+				{ find: 'react-dom', replacement: 'preact/compat' },
+				{ find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
+			]
+		})
+	]
 };
 ```
 
@@ -214,12 +222,12 @@ These rewrites are configured using regular expressions in your Jest configurati
 
 ```json
 {
-  "moduleNameMapper": {
-    "^react$": "preact/compat",
-    "^react-dom/test-utils$": "preact/test-utils",
-    "^react-dom$": "preact/compat",
-    "^react/jsx-runtime$": "preact/jsx-runtime"
-  }
+	"moduleNameMapper": {
+		"^react$": "preact/compat",
+		"^react-dom/test-utils$": "preact/test-utils",
+		"^react-dom$": "preact/compat",
+		"^react/jsx-runtime$": "preact/jsx-runtime"
+	}
 }
 ```
 
@@ -228,7 +236,6 @@ These rewrites are configured using regular expressions in your Jest configurati
 TypeScript, even when used alongside a bundler, has its own process of resolving types.
 In order to ensure Preact's types are used in place of React's, you will want to add the
 following configuration to your `tsconfig.json` (or `jsconfig.json`):
-
 
 ```json
 {
@@ -256,15 +263,15 @@ errors. By setting `skipLibCheck`, you can tell TS that it doesn't need to do a 
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "react": "https://esm.sh/preact@10.23.1/compat",
-      "react/": "https://esm.sh/preact@10.23.1/compat/",
-      "react-dom": "https://esm.sh/preact@10.23.1/compat",
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"react": "https://esm.sh/preact@10.23.1/compat",
+			"react/": "https://esm.sh/preact@10.23.1/compat/",
+			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+		}
+	}
 </script>
 ```
 

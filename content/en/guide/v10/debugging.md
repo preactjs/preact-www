@@ -1,6 +1,6 @@
 ---
 title: Debugging Preact Apps
-description: 'How to debug Preact applications when something goes wrong.'
+description: How to debug Preact applications when something goes wrong
 ---
 
 # Debugging Preact Apps
@@ -33,7 +33,7 @@ Here is an example of how your main entry file to your application may look like
 
 ```jsx
 // Must be the first import
-import "preact/debug";
+import 'preact/debug';
 import { render } from 'preact';
 import App from './components/App';
 
@@ -46,10 +46,10 @@ Most bundlers allow you strip out code when they detect that a branch inside an 
 
 ```jsx
 // Must be the first import
-if (process.env.NODE_ENV==='development') {
-  // Must use require here as import statements are only allowed
-  // to exist at top-level.
-  require("preact/debug");
+if (process.env.NODE_ENV === 'development') {
+	// Must use require here as import statements are only allowed
+	// to exist at top-level.
+	require('preact/debug');
 }
 
 import { render } from 'preact';
@@ -85,7 +85,7 @@ Preact will throw this error whenever you pass `undefined` instead of a componen
 ```jsx
 // app.js
 export default function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js: Wrong, because `app.js` doesn't have a named export
@@ -98,7 +98,7 @@ The same error will be thrown when it's the other way around. When you declare a
 ```jsx
 // app.js
 export function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js
@@ -171,8 +171,8 @@ const [value, setValue] = useState(0);
 
 // valid
 function Foo() {
-  const [value, setValue] = useState(0);
-  return <button onClick={() => setValue(value + 1)}>{value}</button>;
+	const [value, setValue] = useState(0);
+	return <button onClick={() => setValue(value + 1)}>{value}</button>;
 }
 ```
 
@@ -193,7 +193,9 @@ One unique aspect about virtual-dom based libraries is that they have to detect 
 ```jsx
 // Both children will have the same key "A"
 <div>
-  {['A', 'A'].map(char => <p key={char}>{char}</p>)}
+	{['A', 'A'].map(char => (
+		<p key={char}>{char}</p>
+	))}
 </div>
 ```
 
@@ -201,16 +203,20 @@ The correct way to do it is to give them unique keys. In most cases the data you
 
 ```jsx
 const persons = [
-  { name: 'John', age: 22 },
-  { name: 'Sarah', age: 24}
+	{ name: 'John', age: 22 },
+	{ name: 'Sarah', age: 24 }
 ];
 
 // Somewhere later in your component
 <div>
-  {persons.map(({ name, age }) => {
-    return <p key={name}>{name}, Age: {age}</p>;
-  })}
-</div>
+	{persons.map(({ name, age }) => {
+		return (
+			<p key={name}>
+				{name}, Age: {age}
+			</p>
+		);
+	})}
+</div>;
 ```
 
-[Preact Devtools]: https://preactjs.github.io/preact-devtools/
+[preact devtools]: https://preactjs.github.io/preact-devtools/

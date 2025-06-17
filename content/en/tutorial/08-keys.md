@@ -19,27 +19,27 @@ component:
 
 ```jsx
 export default function TodoList() {
-  const [todos, setTodos] = useState(['wake up', 'make bed'])
+	const [todos, setTodos] = useState(['wake up', 'make bed']);
 
-  function wakeUp() {
-    setTodos(['make bed'])
-  }
+	function wakeUp() {
+		setTodos(['make bed']);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map(todo => (
-          <li>{todo}</li>
-        ))}
-      </ul>
-      <button onClick={wakeUp}>I'm Awake!</button>
-    </div>
-  )
+	return (
+		<div>
+			<ul>
+				{todos.map(todo => (
+					<li>{todo}</li>
+				))}
+			</ul>
+			<button onClick={wakeUp}>I'm Awake!</button>
+		</div>
+	);
 }
 ```
 
 The first time this component is rendered, two `<li>` list items will
-be drawn. After clicking the __"I'm Awake!"__ button, our `todos` state
+be drawn. After clicking the **"I'm Awake!"** button, our `todos` state
 Array is updated to contain only the second item, `"make bed"`.
 
 Here's what Preact "sees" for the first and second renders:
@@ -51,11 +51,11 @@ Here's what Preact "sees" for the first and second renders:
 
 ```jsx
 <div>
-  <ul>
-    <li>wake up</li>
-    <li>make bed</li>
-  </ul>
-  <button>I'm Awake!</button>
+	<ul>
+		<li>wake up</li>
+		<li>make bed</li>
+	</ul>
+	<button>I'm Awake!</button>
 </div>
 ```
 
@@ -63,11 +63,10 @@ Here's what Preact "sees" for the first and second renders:
 
 ```jsx
 <div>
-  <ul>
-    <li>make bed</li>
-
-  </ul>
-  <button>I'm Awake!</button>
+	<ul>
+		<li>make bed</li>
+	</ul>
+	<button>I'm Awake!</button>
 </div>
 ```
 
@@ -84,7 +83,6 @@ The result is technically correct – a single item with the text "make bed"
 were 1000 list items and we removed the first item: instead of removing
 a single `<li>`, Preact would update the text of the first 999 other items
 and remove the last one.
-
 
 ### The **key** to list rendering
 
@@ -105,23 +103,23 @@ Array of strings that don't change, we can use those strings as keys:
 
 ```jsx
 export default function TodoList() {
-  const [todos, setTodos] = useState(['wake up', 'make bed'])
+	const [todos, setTodos] = useState(['wake up', 'make bed']);
 
-  function wakeUp() {
-    setTodos(['make bed'])
-  }
+	function wakeUp() {
+		setTodos(['make bed']);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo}>{todo}</li>
-          //  ^^^^^^^^^^ adding a key prop
-        ))}
-      </ul>
-      <button onClick={wakeUp}>I'm Awake!</button>
-    </div>
-  )
+	return (
+		<div>
+			<ul>
+				{todos.map(todo => (
+					<li key={todo}>{todo}</li>
+					//  ^^^^^^^^^^ adding a key prop
+				))}
+			</ul>
+			<button onClick={wakeUp}>I'm Awake!</button>
+		</div>
+	);
 }
 ```
 
@@ -139,11 +137,11 @@ Here's what Preact sees now that we've added `key` to the list items:
 
 ```jsx
 <div>
-  <ul>
-    <li key="wake up">wake up</li>
-    <li key="make bed">make bed</li>
-  </ul>
-  <button>I'm Awake!</button>
+	<ul>
+		<li key="wake up">wake up</li>
+		<li key="make bed">make bed</li>
+	</ul>
+	<button>I'm Awake!</button>
 </div>
 ```
 
@@ -151,11 +149,10 @@ Here's what Preact sees now that we've added `key` to the list items:
 
 ```jsx
 <div>
-  <ul>
-
-    <li key="make bed">make bed</li>
-  </ul>
-  <button>I'm Awake!</button>
+	<ul>
+		<li key="make bed">make bed</li>
+	</ul>
+	<button>I'm Awake!</button>
 </div>
 ```
 
@@ -164,7 +161,6 @@ Here's what Preact sees now that we've added `key` to the list items:
 This time, Preact can see that the first item was removed, because
 the second tree is missing an item with `key="wake up"`. It will
 remove the first item, and leave the second item untouched.
-
 
 ### When **not** to use keys
 
@@ -185,11 +181,11 @@ and second render:
 
 ```jsx
 <div>
-  <ul>
-    <li key={0}>wake up</li>
-    <li key={1}>make bed</li>
-  </ul>
-  <button>I'm Awake!</button>
+	<ul>
+		<li key={0}>wake up</li>
+		<li key={1}>make bed</li>
+	</ul>
+	<button>I'm Awake!</button>
 </div>
 ```
 
@@ -197,11 +193,10 @@ and second render:
 
 ```jsx
 <div>
-  <ul>
-
-    <li key={0}>make bed</li>
-  </ul>
-  <button>I'm Awake!</button>
+	<ul>
+		<li key={0}>make bed</li>
+	</ul>
+	<button>I'm Awake!</button>
 </div>
 ```
 
@@ -243,26 +238,23 @@ that:
 
 ```jsx
 const todos = [
-  { id: 1, text: 'wake up' },
-  { id: 2, text: 'make bed' }
-]
+	{ id: 1, text: 'wake up' },
+	{ id: 2, text: 'make bed' }
+];
 
 export default function ToDos() {
-  return (
-    <ul>
-      {todos.map(todo => (
-        <li key={todo.id}>
-          {todo.text}
-        </li>
-      ))}
-    </ul>
-  )
+	return (
+		<ul>
+			{todos.map(todo => (
+				<li key={todo.id}>{todo.text}</li>
+			))}
+		</ul>
+	);
 }
 ```
 
 Remember: if you genuinely can't find a stable key, it's better to omit
 the `key` prop entirely than to use an index as a key.
-
 
 ## Try it!
 
@@ -286,98 +278,91 @@ Finally, update the JSX to render each item from `todos` as an
   </p>
 </solution>
 
-
 ```js:setup
-useRealm(function (realm) {
-  // the app element
-  var out = realm.globalThis.document.body.firstElementChild;
-  var options = require('preact').options;
+useRealm(function(realm) {
+	// the app element
+	var out = realm.globalThis.document.body.firstElementChild;
+	var options = require('preact').options;
 
-  var oldRender = options.__r;
-  var timer;
-  options.__r = function(vnode) {
-    timer = setTimeout(check, 10);
-    if (oldRender) oldRender(vnode);
-  };
+	var oldRender = options.__r;
+	var timer;
+	options.__r = function(vnode) {
+		timer = setTimeout(check, 10);
+		if (oldRender) oldRender(vnode);
+	};
 
-  function check() {
-    timer = null;
-    var c = out.firstElementChild.children;
-    if (
-      c.length === 2 &&
-      /learn preact/i.test(c[0].textContent) &&
-      /make an awesome app/i.test(c[1].textContent)
-    ) {
-      solutionCtx.setSolved(true);
-    }
-  }
+	function check() {
+		timer = null;
+		var c = out.firstElementChild.children;
+		if (
+			c.length === 2 &&
+			/learn preact/i.test(c[0].textContent) &&
+			/make an awesome app/i.test(c[1].textContent)
+		) {
+			solutionCtx.setSolved(true);
+		}
+	}
 
-  return () => {
-    options.__r = oldRender;
-  };
+	return () => {
+		options.__r = oldRender;
+	};
 });
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 
-const wait = ms => new Promise(r => setTimeout(r, ms))
+const wait = ms => new Promise(r => setTimeout(r, ms));
 
 const getTodos = async () => {
-  await wait(500);
-  return [
-    { id: 1, text: 'learn Preact', done: false },
-    { id: 2, text: 'make an awesome app', done: false },
-  ]
-}
+	await wait(500);
+	return [
+		{ id: 1, text: 'learn Preact', done: false },
+		{ id: 2, text: 'make an awesome app', done: false }
+	];
+};
 
 function TodoList() {
-  const [todos, setTodos] = useState([])
+	const [todos, setTodos] = useState([]);
 
-  return (
-    <ul>
-    </ul>
-  )
+	return <ul></ul>;
 }
 
-render(<TodoList />, document.getElementById("app"));
+render(<TodoList />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
 import { render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 
-const wait = ms => new Promise(r => setTimeout(r, ms))
+const wait = ms => new Promise(r => setTimeout(r, ms));
 
 const getTodos = async () => {
-  await wait(500);
-  return [
-    { id: 1, text: 'learn Preact', done: false },
-    { id: 2, text: 'make an awesome app', done: false },
-  ]
-}
+	await wait(500);
+	return [
+		{ id: 1, text: 'learn Preact', done: false },
+		{ id: 2, text: 'make an awesome app', done: false }
+	];
+};
 
 function TodoList() {
-  const [todos, setTodos] = useState([])
+	const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    getTodos().then(todos => {
-      setTodos(todos)
-    })
-  }, [])
+	useEffect(() => {
+		getTodos().then(todos => {
+			setTodos(todos);
+		});
+	}, []);
 
-  return (
-    <ul>
-      {todos.map(todo => (
-        <li key={todo.id}>
-          {todo.text}
-        </li>
-      ))}
-    </ul>
-  )
+	return (
+		<ul>
+			{todos.map(todo => (
+				<li key={todo.id}>{todo.text}</li>
+			))}
+		</ul>
+	);
 }
 
-render(<TodoList />, document.getElementById("app"));
+render(<TodoList />, document.getElementById('app'));
 ```

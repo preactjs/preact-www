@@ -1,6 +1,6 @@
 ---
 title: Diferenças do React
-description: 'Quais são as diferenças entre Preact e React. Este documento as descreve em detalhes'
+description: Quais são as diferenças entre Preact e React. Este documento as descreve em detalhes
 ---
 
 # Diferenças do React

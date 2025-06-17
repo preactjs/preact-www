@@ -1,6 +1,6 @@
 ---
 title: Renderização no servidor
-description: 'Renderize seu aplicativo Preact no servidor para mostrar o conteúdo aos usuários mais rapidamente.'
+description: Renderize seu aplicativo Preact no servidor para mostrar o conteúdo aos usuários mais rapidamente
 ---
 
 # Renderização no lado do servidor

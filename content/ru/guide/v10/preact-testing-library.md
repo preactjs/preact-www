@@ -1,6 +1,6 @@
 ---
 title: Тестирование с помощью библиотеки Preact Testing Library
-description: 'Тестирование приложений Preact стало проще с помощью библиотеки testing-library'
+description: Тестирование приложений Preact стало проще с помощью библиотеки testing-library
 ---
 
 # Тестирование с помощью библиотеки Preact Testing Library

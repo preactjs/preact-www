@@ -1,6 +1,6 @@
 ---
 title: React와의 차이점
-description: 'Preact와 React에는 어떤 차이점이 있을까요? 이 문서는 그 차이에 대해 자세히 다룹니다.'
+description: Preact와 React에는 어떤 차이점이 있을까요? 이 문서는 그 차이에 대해 자세히 다룹니다
 ---
 
 # React와의 차이점

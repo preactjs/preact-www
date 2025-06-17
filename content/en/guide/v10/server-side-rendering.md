@@ -1,6 +1,6 @@
 ---
 title: Server-Side Rendering
-description: 'Render your Preact application on the server to show content to users quicker.'
+description: Render your Preact application on the server to show content to users quicker
 ---
 
 # Server-Side Rendering
@@ -34,7 +34,7 @@ The most basic and straightforward rendering method, `renderToString` transforms
 ```jsx
 import { renderToString } from 'preact-render-to-string';
 
-const name = 'Preact User!'
+const name = 'Preact User!';
 const App = <div class="foo">Hello {name}</div>;
 
 const html = renderToString(App);
@@ -53,12 +53,12 @@ import { Suspense, lazy } from 'preact/compat';
 const HomePage = lazy(() => import('./pages/home.js'));
 
 function App() {
-  return (
-    <Suspense fallback={<p>Loading</p>}>
-      <HomePage />
-    </Suspense>
-  );
-};
+	return (
+		<Suspense fallback={<p>Loading</p>}>
+			<HomePage />
+		</Suspense>
+	);
+}
 ```
 
 ```jsx
@@ -112,21 +112,21 @@ import { renderToPipeableStream } from 'preact-render-to-string/stream-node';
 
 // Request handler syntax and form will vary across frameworks
 function handler(req, res) {
-  const { pipe, abort } = renderToPipeableStream(<App />, {
-    onShellReady() {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/html');
-      pipe(res);
-    },
-    onError(error) {
-      res.statusCode = 500;
-      res.send(
-          `<!doctype html><p>An error ocurred:</p><pre>${error.message}</pre>`
-      );
-    },
-  });
+	const { pipe, abort } = renderToPipeableStream(<App />, {
+		onShellReady() {
+			res.statusCode = 200;
+			res.setHeader('Content-Type', 'text/html');
+			pipe(res);
+		},
+		onError(error) {
+			res.statusCode = 500;
+			res.send(
+				`<!doctype html><p>An error ocurred:</p><pre>${error.message}</pre>`
+			);
+		}
+	});
 
-  // Abandon and switch to client rendering if enough time passes.
+	// Abandon and switch to client rendering if enough time passes.
 	setTimeout(abort, 2000);
 }
 ```
@@ -140,13 +140,13 @@ import { renderToReadableStream } from 'preact-render-to-string/stream';
 
 // Request handler syntax and form will vary across frameworks
 function handler(req, res) {
-  const stream = renderToReadableStream(<App />);
+	const stream = renderToReadableStream(<App />);
 
-  return new Response(stream, {
-    headers: {
-      'Content-Type': 'text/html',
-    },
-  });
+	return new Response(stream, {
+		headers: {
+			'Content-Type': 'text/html'
+		}
+	});
 }
 ```
 
@@ -176,7 +176,11 @@ If you need to get the rendered output in a more human friendly way, we've got y
 import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 const html = renderToString(App, {}, { pretty: true });
 console.log(html);
@@ -193,7 +197,11 @@ For some purposes it's often preferable to not render the whole tree, but only o
 import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 const html = renderToString(App, {}, { shallow: true });
 console.log(html);
@@ -208,7 +216,11 @@ For elements without children, XML mode will instead render them as self-closing
 import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div></div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 let html = renderToString(App, {}, { xml: true });
 console.log(html);

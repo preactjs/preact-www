@@ -6,7 +6,7 @@ authors:
 ---
 
 > This is a slightly modified version of the original write up at https://barelyhuman.github.io/preact-islands-diy
- 
+
 # Islands
 
 ## Intro
@@ -14,7 +14,7 @@ authors:
 This guide is a simple walkthrough to understand how island architecture works
 and being able to setup your own using tools you already have around you.
 
-First off, what are islands ? You can read more about it's origin from 
+First off, what are islands ? You can read more about it's origin from
 
 [Islands Architecture - Jason Miller &rarr;](https://jasonformat.com/islands-architecture/)
 
@@ -65,18 +65,18 @@ pick up. Hapi, Koa, Fastify, etc.
 
 ```js
 // server.js
-import { h } from 'preact'
-import preactRenderToString from 'preact-render-to-string'
+import { h } from 'preact';
+import preactRenderToString from 'preact-render-to-string';
 
 // ...remaining express.js setup
 
 const HomePage = () => {
-  return h('h1', {}, 'hello')
-}
+	return h('h1', {}, 'hello');
+};
 
 app.get('/', async (req, res) => {
-  res.send(preactRenderToString(h(HomePage, {})))
-})
+	res.send(preactRenderToString(h(HomePage, {})));
+});
 ```
 
 Here most work is done by `preactRenderToString` , and all we are doing is
@@ -103,16 +103,16 @@ As an example, this might looks a little something like this
 
 ```js
 // client.js
-import { hydrate } from 'preact'
-import Counter from './Counter'
+import { hydrate } from 'preact';
+import Counter from './Counter';
 
 const main = () => {
-  // assuming the server rendered the component with the following ID as well.
-  const container = document.getElementById('counter')
-  hydrate(h(Counter, {}), container)
-}
+	// assuming the server rendered the component with the following ID as well.
+	const container = document.getElementById('counter');
+	hydrate(h(Counter, {}), container);
+};
 
-main()
+main();
 ```
 
 Similar to the server render phase, we use a helper from `preact` to help
@@ -148,20 +148,20 @@ would be helpful while reading this.
 The below code snippet only highlights the needed areas
 
 ```js
-import preactRenderToString from 'preact-render-to-string'
-import HomePage from '../pages/HomePage.js'
-import { h } from 'preact'
-import { withManifestBundles } from '../lib/html.js'
+import preactRenderToString from 'preact-render-to-string';
+import HomePage from '../pages/HomePage.js';
+import { h } from 'preact';
+import { withManifestBundles } from '../lib/html.js';
 
-const app = express()
+const app = express();
 
 app.get('/', async (req, res) => {
-  res.send(
-    withManifestBundles({
-      body: preactRenderToString(h(HomePage, {})),
-    })
-  )
-})
+	res.send(
+		withManifestBundles({
+			body: preactRenderToString(h(HomePage, {}))
+		})
+	);
+});
 ```
 
 Looking at the imports, we have the same imports as mentioned in the
@@ -187,31 +187,31 @@ look at in a minute.
 
 ```js
 // fetch the manifest from the client output
-import manifest from '../../dist/js/manifest.json'
+import manifest from '../../dist/js/manifest.json';
 
 export const withManifestBundles = ({ styles, body }) => {
-  // go through each key in the manifest and construct
-  // a script tag for each.
-  const bundledScripts = Object.keys(manifest).map(key => {
-    const scriptPath = `/public/js/${manifest[key]}`
-    return `<script src=${scriptPath}></script>`
-  })
+	// go through each key in the manifest and construct
+	// a script tag for each.
+	const bundledScripts = Object.keys(manifest).map(key => {
+		const scriptPath = `/public/js/${manifest[key]}`;
+		return `<script src=${scriptPath}></script>`;
+	});
 
-  return `<html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <style id="_goober">
-        ${styles}
-      </style>
-    </head>
+	return `<html lang="en">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<style id="_goober">
+				${styles}
+			</style>
+		</head>
 
-    <body>
-      ${body}
-    </body>
-    ${bundledScripts.join('')}
-  </html>`
-}
+		<body>
+			${body}
+		</body>
+		${bundledScripts.join('')}
+	</html>`;
+};
 ```
 
 As explained in the comments, we just grab all the files we need from the
@@ -227,26 +227,26 @@ scaring people away from the whole idea so let's go through the configuration.
 
 ```js
 // webpack.config.server.js
-const path = require('path')
-const nodeExternals = require('webpack-node-externals')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: process.env.NODE_ENV != 'production' ? 'development' : 'production',
-  target: 'node',
-  entry: path.resolve(__dirname, './src/server/app.js'),
-  output: {
-    filename: 'server.js',
-    path: path.resolve(__dirname, './dist'),
-  },
-  stats: 'errors-warnings',
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  module: {
-    rules: [{ test: /\.jsx?$/, loader: 'babel-loader' }],
-  },
-  externals: [nodeExternals()],
-}
+	mode: process.env.NODE_ENV != 'production' ? 'development' : 'production',
+	target: 'node',
+	entry: path.resolve(__dirname, './src/server/app.js'),
+	output: {
+		filename: 'server.js',
+		path: path.resolve(__dirname, './dist')
+	},
+	stats: 'errors-warnings',
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
+	module: {
+		rules: [{ test: /\.jsx?$/, loader: 'babel-loader' }]
+	},
+	externals: [nodeExternals()]
+};
 ```
 
 Most of them need no explanation, and the only loader we have in place is the
@@ -265,14 +265,14 @@ This is shortened out to explain the relevant bits
 // webpack.config.client.js
 
 const entryPoints = glob
-  .sync(path.resolve(__dirname, './src/client') + '/**/*.js', {
-    absolute: true,
-  })
-  .reduce((acc, path) => {
-    const entry = path.match(/[^\/]+\.jsx?$/gm)[0].replace(/.jsx?$/, '')
-    acc[entry] = path
-    return acc
-  }, {})
+	.sync(path.resolve(__dirname, './src/client') + '/**/*.js', {
+		absolute: true
+	})
+	.reduce((acc, path) => {
+		const entry = path.match(/[^\/]+\.jsx?$/gm)[0].replace(/.jsx?$/, '');
+		acc[entry] = path;
+		return acc;
+	}, {});
 ```
 
 So the first section is basically finding all files in `src/client` and creating
@@ -283,7 +283,7 @@ would be
 
 ```json
 {
-  "app.client": "./src/client/app.client.js"
+	"app.client": "./src/client/app.client.js"
 }
 ```
 
@@ -293,15 +293,15 @@ Everything else is generic configuration that's also present on the server side
 
 ```js
 {
-  plugins: [
-    new WebpackManifestPlugin({
-      publicPath: '',
-      basePath: '',
-      filter: file => {
-        return /\.mount\.js$/.test(file.name)
-      },
-    }),
-  ]
+	plugins: [
+		new WebpackManifestPlugin({
+			publicPath: '',
+			basePath: '',
+			filter: file => {
+				return /\.mount\.js$/.test(file.name);
+			}
+		})
+	];
 }
 ```
 
@@ -330,12 +330,12 @@ through the docs of [babel](https://babeljs.io/) and
 ```json
 // .babelrc
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-react-jsx",
-      { "runtime": "automatic", "importSource": "preact" }
-    ]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{ "runtime": "automatic", "importSource": "preact" }
+		]
+	]
 }
 ```
 
@@ -367,33 +367,33 @@ example:
 ```js
 // src/client/index.mount.js
 
-import { h, hydrate } from 'preact'
+import { h, hydrate } from 'preact';
 
 // setup goober
-import { setup } from 'goober'
-setup(h)
+import { setup } from 'goober';
+setup(h);
 
 // can be moved to a util file and used from there,
 // in this file as an example for now.
 const mount = async (Component, elm) => {
-  if (elm?.dataset?.props) {
-    const props = JSON.parse(elm.dataset.props)
-    delete elm.dataset.props
-    hydrate(<Component {...props} />, elm)
-  }
-}
+	if (elm?.dataset?.props) {
+		const props = JSON.parse(elm.dataset.props);
+		delete elm.dataset.props;
+		hydrate(<Component {...props} />, elm);
+	}
+};
 
 const main = async () => {
-  // lazy load and re-mount counter as a client side component if needed
-  // A better way would be to check if the `counter` element exists on
-  // the DOM before even importing the component to avoid un-needed
-  // JS downloads.
+	// lazy load and re-mount counter as a client side component if needed
+	// A better way would be to check if the `counter` element exists on
+	// the DOM before even importing the component to avoid un-needed
+	// JS downloads.
 
-  const Counter = (await import('../components/Counter.js')).default
-  mount(Counter, document.getElementById('counter'))
-}
+	const Counter = (await import('../components/Counter.js')).default;
+	mount(Counter, document.getElementById('counter'));
+};
 
-main()
+main();
 ```
 
 ## components
@@ -440,16 +440,16 @@ Example
 
 ```js
 app.use((req, res, next) => {
-  res.render = (comp, data) => {
-    return res.write(preactRenderToString(h(comp, { ...data })))
-  }
-})
+	res.render = (comp, data) => {
+		return res.write(preactRenderToString(h(comp, { ...data })));
+	};
+});
 
 // and somewhere else in the app
 
 const handler = (req, res) => {
-  return res.status(200).render(Homepage, { username: 'reaper' })
-}
+	return res.status(200).render(Homepage, { username: 'reaper' });
+};
 ```
 
 That's actually all the code that contributes to setting up your own partial

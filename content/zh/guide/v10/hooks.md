@@ -1,6 +1,6 @@
 ---
 title: 钩子
-description: 'Preact 中的钩子可让你组合行为和在不同组件中重用逻辑。'
+description: Preact 中的钩子可让你组合行为和在不同组件中重用逻辑。
 ---
 
 # 钩子

@@ -1,6 +1,6 @@
 ---
 title: Option Hooks
-description: 'Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process.'
+description: Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process
 ---
 
 # Option Hooks
@@ -35,13 +35,13 @@ const oldHook = options.vnode;
 
 // Set our own options hook
 options.vnode = vnode => {
-  console.log("Hey I'm a vnode", vnode);
+	console.log("Hey I'm a vnode", vnode);
 
-  // Call previously defined hook if there was any
-  if (oldHook) {
-    oldHook(vnode);
-  }
-}
+	// Call previously defined hook if there was any
+	if (oldHook) {
+		oldHook(vnode);
+	}
+};
 ```
 
 None of the currently available hooks excluding `options.event` have return values, so handling return values from the original hook is not necessary.

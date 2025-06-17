@@ -1,6 +1,6 @@
 ---
 title: 服务端渲染
-description: '通过服务端渲染来向用户快速呈现您的 Preact 应用。'
+description: 通过服务端渲染来向用户快速呈现您的 Preact 应用。
 ---
 
 # 服务端渲染

@@ -4,7 +4,6 @@ title: API Reference
 
 # API Reference
 
-
 ---
 
 <toc></toc>
@@ -39,7 +38,7 @@ class MyComponent extends Component {
 Preact invokes the following lifecycle methods if they are defined for a Component:
 
 | Lifecycle method            | When it gets called                              |
-|-----------------------------|--------------------------------------------------|
+| --------------------------- | ------------------------------------------------ |
 | `componentWillMount`        | before the component gets mounted to the DOM     |
 | `componentDidMount`         | after the component gets mounted to the DOM      |
 | `componentWillUnmount`      | prior to removal from the DOM                    |
@@ -56,19 +55,19 @@ import { Component } from 'preact';
 class MyComponent extends Component {
 	shouldComponentUpdate(nextProps, nextState) {}
 	componentWillReceiveProps(nextProps, nextState) {
-		this.props // Previous props
-		this.state // Previous state
+		this.props; // Previous props
+		this.state; // Previous state
 	}
 	componentWillMount() {}
 	componentWillUpdate(nextProps, nextState) {
-		this.props // Previous props
-		this.state // Previous state
+		this.props; // Previous props
+		this.state; // Previous state
 	}
 	componentDidMount() {}
 	componentDidUpdate(prevProps, prevState) {}
 	componentWillUnmount() {
-		this.props // Current props
-		this.state // Current state
+		this.props; // Current props
+		this.state; // Current state
 	}
 }
 ```
@@ -130,10 +129,6 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Hello!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```

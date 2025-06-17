@@ -1,6 +1,6 @@
 ---
 title: Começando
-description: "Como começar com o Preact. Vamos aprender a configurar as ferramentas (se houver) e começar a escrever um aplicativo."
+description: Como começar com o Preact. Vamos aprender a configurar as ferramentas (se houver) e começar a escrever um aplicativo
 ---
 
 # Começando

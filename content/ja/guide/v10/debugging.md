@@ -1,6 +1,6 @@
 ---
 title: Preactアプリケーションのデバッグ
-description: '問題が起きたときにPreactアプリケーションをデバッグする方法'
+description: 問題が起きたときにPreactアプリケーションをデバッグする方法
 ---
 
 # Preactアプリケーションのデバッグ

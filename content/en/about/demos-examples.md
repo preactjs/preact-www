@@ -1,6 +1,6 @@
 ---
 title: Demos & Examples
-description: 'Collection of demos and example Preact applications'
+description: Collection of demos and example Preact applications
 ---
 
 # Demos & Examples

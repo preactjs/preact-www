@@ -1,6 +1,6 @@
 ---
 title: プロジェクトの目的
-description: "Preactプロジェクトの目的について詳しく知る"
+description: Preactプロジェクトの目的について詳しく知る
 ---
 
 # Preactの目的

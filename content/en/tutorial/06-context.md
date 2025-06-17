@@ -20,35 +20,33 @@ Context is a feature that lets us pass values down through the tree
 _automatically_, without components needing to be aware of anything.
 This is done using a Provider/Consumer approach:
 
-
 - `<Provider>` sets the context's value within a <abbr title="The Virtual DOM tree within <Provider>...</Provider>, including all children">subtree</abbr>
 - `<Consumer>` gets the context value set by the nearest parent Provider
-
 
 To start off, let's look at a simple example with only one component. In this
 case, we're providing a "Username" context value _and_ consuming that value:
 
 ```jsx
-import { createContext } from 'preact'
+import { createContext } from 'preact';
 
-const Username = createContext()
+const Username = createContext();
 
 export default function App() {
-  return (
-    // provide the username value to our subtree:
-    <Username.Provider value="Bob">
-      <div>
-        <p>
-          <Username.Consumer>
-            {username => (
-              // access the current username from context:
-              <span>{username}</span>
-            )}
-          </Username.Consumer>
-        </p>
-      </div>
-    </Username.Provider>
-  )
+	return (
+		// provide the username value to our subtree:
+		<Username.Provider value="Bob">
+			<div>
+				<p>
+					<Username.Consumer>
+						{username => (
+							// access the current username from context:
+							<span>{username}</span>
+						)}
+					</Username.Consumer>
+				</p>
+			</div>
+		</Username.Provider>
+	);
 }
 ```
 
@@ -67,27 +65,27 @@ Here's the previous example again, this time split into two components
 and using `useContext()` to get the context's current value:
 
 ```jsx
-import { createContext } from 'preact'
-import { useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const Username = createContext()
+const Username = createContext();
 
 export default function App() {
-  return (
-    <Username.Provider value="Bob">
-      <div>
-        <p>
-          <User />
-        </p>
-      </div>
-    </Username.Provider>
-  )
+	return (
+		<Username.Provider value="Bob">
+			<div>
+				<p>
+					<User />
+				</p>
+			</div>
+		</Username.Provider>
+	);
 }
 
 function User() {
-  // access the current username from context:
-  const username = useContext(Username) // "Bob"
-  return <span>{username}</span>
+	// access the current username from context:
+	const username = useContext(Username); // "Bob"
+	return <span>{username}</span>;
 }
 ```
 
@@ -106,47 +104,44 @@ with a `user` property containing our signed-in user, along with
 a `setUser` method to modify that state.
 
 ```jsx
-import { createContext } from 'preact'
-import { useState, useMemo, useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useState, useMemo, useContext } from 'preact/hooks';
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export default function App() {
-  const [user, setUser] = useState(null)
+	const [user, setUser] = useState(null);
 
-  const auth = useMemo(() => {
-    return { user, setUser }
-  }, [user])
+	const auth = useMemo(() => {
+		return { user, setUser };
+	}, [user]);
 
-  return (
-    <AuthContext.Provider value={auth}>
-      <div class="app">
-        {auth.user && <p>Welcome {auth.user.name}!</p>}
-        <Login />
-      </div>
-    </AuthContext.Provider>
-  )
+	return (
+		<AuthContext.Provider value={auth}>
+			<div class="app">
+				{auth.user && <p>Welcome {auth.user.name}!</p>}
+				<Login />
+			</div>
+		</AuthContext.Provider>
+	);
 }
 
 function Login() {
-  const { user, setUser } = useContext(AuthContext)
+	const { user, setUser } = useContext(AuthContext);
 
-  if (user) return (
-    <div class="logged-in">
-      Logged in as {user.name}.
-      <button onClick={() => setUser(null)}>
-        Log Out
-      </button>
-    </div>
-  )
+	if (user)
+		return (
+			<div class="logged-in">
+				Logged in as {user.name}.
+				<button onClick={() => setUser(null)}>Log Out</button>
+			</div>
+		);
 
-  return (
-    <div class="logged-out">
-      <button onClick={() => setUser({ name: 'Bob' })}>
-        Log In
-      </button>
-    </div>
-  )
+	return (
+		<div class="logged-out">
+			<button onClick={() => setUser({ name: 'Bob' })}>Log In</button>
+		</div>
+	);
 }
 ```
 
@@ -168,20 +163,18 @@ nested Routes, each matched Route can override the "current path" context value
 within its subtree to exclude the part of the path that was matched.
 
 ```jsx
-import { createContext } from 'preact'
-import { useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const Path = createContext(location.pathname)
+const Path = createContext(location.pathname);
 
 function Route(props) {
-  const path = useContext(Path) // the current path
-  const isMatch = path.startsWith(props.path)
-  const innerPath = path.substring(props.path.length)
-  return isMatch && (
-    <Path.Provider value={innerPath}>
-      {props.children}
-    </Path.Provider>
-  )
+	const path = useContext(Path); // the current path
+	const isMatch = path.startsWith(props.path);
+	const innerPath = path.substring(props.path.length);
+	return (
+		isMatch && <Path.Provider value={innerPath}>{props.children}</Path.Provider>
+	);
 }
 ```
 
@@ -191,38 +184,38 @@ to define `<Route path="..">` matching for its children:
 
 ```jsx
 export default function App() {
-  return (
-    <div class="app">
-      <Route path="/inbox">
-        <Inbox />
-      </Route>
-      <Route path="/settings">
-        <Settings />
-      </Route>
-    </div>
-  )
+	return (
+		<div class="app">
+			<Route path="/inbox">
+				<Inbox />
+			</Route>
+			<Route path="/settings">
+				<Settings />
+			</Route>
+		</div>
+	);
 }
 
 function Inbox() {
-  return (
-    <div class="inbox">
-      <div class="messages"> ... </div>
-      <Route path="/compose">
-        <Compose />
-      </Route>
-    </div>
-  )
+	return (
+		<div class="inbox">
+			<div class="messages"> ... </div>
+			<Route path="/compose">
+				<Compose />
+			</Route>
+		</div>
+	);
 }
 
 function Settings() {
-  return (
-    <div class="settings">
-      <h1>Settings</h1>
-      <Route path="/forwarding">
-        <Forwarding />
-      </Route>
-    </div>
-  )
+	return (
+		<div class="settings">
+			<h1>Settings</h1>
+			<Route path="/forwarding">
+				<Forwarding />
+			</Route>
+		</div>
+	);
 }
 ```
 
@@ -240,18 +233,17 @@ Here's what the first example would have looked like using the default context
 value instead of a Provider:
 
 ```jsx
-import { createContext } from 'preact'
-import { useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const Username = createContext('Bob')
+const Username = createContext('Bob');
 
 export default function App() {
-  const username = useContext(Username) // returns "Bob"
+	const username = useContext(Username); // returns "Bob"
 
-  return <span>{username}</span>
+	return <span>{username}</span>;
 }
 ```
-
 
 ## Try it!
 
@@ -262,62 +254,61 @@ Alternatively, you could also define _two_ contexts: one to share the
 `count` value, and another to share an `increment` function that
 updates the value.
 
-
 <solution>
   <h4>🎉 Congratulations!</h4>
   <p>You learned how to use context in Preact.</p>
 </solution>
 
-
 ```js:setup
 var output = useRef();
 
 function getCounts() {
-  var counts = [];
-  var text = output.current.innerText;
-  var r = /Count:\s*([\w.-]*)/gi;
-  while (t = r.exec(text)) {
-    var num = Number(t[1]);
-    counts.push(isNaN(num) ? t[1] : num);
-  }
-  return counts;
+	var counts = [];
+	var text = output.current.innerText;
+	var r = /Count:\s*([\w.-]*)/gi;
+	while ((t = r.exec(text))) {
+		var num = Number(t[1]);
+		counts.push(isNaN(num) ? t[1] : num);
+	}
+	return counts;
 }
 
-useResult(function (result) {
-  output.current = result.output;
+useResult(function(result) {
+	output.current = result.output;
 
-  if (getCounts().length !== 3) {
-    console.warn('It looks like you haven\'t initialized the `count` value to 0.');
-  }
-  
-  var timer;
-  var count = 0;
-  var options = require('preact').options;
+	if (getCounts().length !== 3) {
+		console.warn(
+			"It looks like you haven't initialized the `count` value to 0."
+		);
+	}
 
-  var oe = options.event;
-  options.event = function(e) {
-    if (e.currentTarget.localName !== 'button') return;
-    clearTimeout(timer);
-    timer = setTimeout(function() {
-      var counts = getCounts();
-      if (counts.length !== 3) {
-        return console.warn('We seem to be missing one of the counters.');
-      }
-      if (counts[0] !== counts[2] || counts[0] !== counts[1]) {
-        return console.warn('It looks like the counters aren\'t in sync.');
-      }
-      var solved = counts[0] === ++count;
-      solutionCtx.setSolved(solved);
-    }, 10);
-    if (oe) return oe.apply(this, arguments);
-  }
+	var timer;
+	var count = 0;
+	var options = require('preact').options;
 
-  return function () {
-    options.event = oe;
-  };
+	var oe = options.event;
+	options.event = function(e) {
+		if (e.currentTarget.localName !== 'button') return;
+		clearTimeout(timer);
+		timer = setTimeout(function() {
+			var counts = getCounts();
+			if (counts.length !== 3) {
+				return console.warn('We seem to be missing one of the counters.');
+			}
+			if (counts[0] !== counts[2] || counts[0] !== counts[1]) {
+				return console.warn("It looks like the counters aren't in sync.");
+			}
+			var solved = counts[0] === ++count;
+			solutionCtx.setSolved(solved);
+		}, 10);
+		if (oe) return oe.apply(this, arguments);
+	};
+
+	return function() {
+		options.event = oe;
+	};
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render, createContext } from 'preact';
@@ -326,27 +317,27 @@ import { useState, useContext, useMemo } from 'preact/hooks';
 const CounterContext = createContext(null);
 
 function Counter() {
-  return (
-    <div style={{ background: '#eee', padding: '10px' }}>
-      <p>Count: {'MISSING'}</p>
-      <button>Add</button>
-    </div>
-  );
+	return (
+		<div style={{ background: '#eee', padding: '10px' }}>
+			<p>Count: {'MISSING'}</p>
+			<button>Add</button>
+		</div>
+	);
 }
 
 function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  return (
-    <div style={{ display: 'flex', gap: '20px' }}>
-      <Counter />
-      <Counter />
-      <Counter />
-    </div>
-  )
+	return (
+		<div style={{ display: 'flex', gap: '20px' }}>
+			<Counter />
+			<Counter />
+			<Counter />
+		</div>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx:repl-final
@@ -356,37 +347,37 @@ import { useState, useContext, useMemo } from 'preact/hooks';
 const CounterContext = createContext(null);
 
 function Counter() {
-  const { count, increment } = useContext(CounterContext);
+	const { count, increment } = useContext(CounterContext);
 
-  return (
-    <div style={{ background: '#eee', padding: '10px' }}>
-      <p>Count: {count}</p>
-      <button onClick={increment}>Add</button>
-    </div>
-  );
+	return (
+		<div style={{ background: '#eee', padding: '10px' }}>
+			<p>Count: {count}</p>
+			<button onClick={increment}>Add</button>
+		</div>
+	);
 }
 
 function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  function increment() {
-    setCount(count + 1);
-  }
+	function increment() {
+		setCount(count + 1);
+	}
 
-  const counter = useMemo(() => {
-    return { count, increment };
-  }, [count]);
+	const counter = useMemo(() => {
+		return { count, increment };
+	}, [count]);
 
-  return (
-    <CounterContext.Provider value={counter}>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <Counter />
-        <Counter />
-        <Counter />
-      </div>
-    </CounterContext.Provider>
-  )
+	return (
+		<CounterContext.Provider value={counter}>
+			<div style={{ display: 'flex', gap: '20px' }}>
+				<Counter />
+				<Counter />
+				<Counter />
+			</div>
+		</CounterContext.Provider>
+	);
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
