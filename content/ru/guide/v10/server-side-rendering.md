@@ -21,123 +21,212 @@ Server-Side Rendering (сокращённо SSR) позволяет вывест
 npm install -S preact-render-to-string
 ```
 
-После выполнения указанной выше команды мы можем сразу же приступить к её использованию.
+После выполнения указанной выше команды мы можем сразу же приступить к использованию рендерера.
 
-## Пример использования
+## HTML-строки
 
-Основную функциональность лучше всего объяснить с помощью простого фрагмента:
+Оба варианта ниже возвращают одну HTML-строку, представляющую полностью отрендеренный результат вашего приложения Preact.
+
+### renderToString
+
+Самый простой и прямолинейный метод рендеринга, `renderToString` преобразует дерево Preact в строку HTML синхронно.
 
 ```jsx
-import render from 'preact-render-to-string';
-import { h } from 'preact';
+import { renderToString } from 'preact-render-to-string';
 
 const name = 'пользователь Preact!'
 const App = <div class="foo">Привет, {name}</div>;
 
-console.log(render(App));
+const html = renderToString(App);
+console.log(html);
 // <div class="foo">Привет, пользователь Preact!</div>
 ```
 
-## Асинхронный рендеринг с `Suspense` и `lazy`
+### renderToStringAsync
 
-Вы можете столкнуться с необходимостью визуализации динамически загружаемых компонентов, например, при использовании `Suspense` и `lazy` для облегчения разделения кода (наряду с некоторыми другими случаями использования). Асинхронный рендерер будет ожидать разрешения обещаний, позволяя вам полностью сконструировать вашу HTML-строку:
-
-```jsx
-// page/home.js
-export default () => {
-    return <h1>Домашняя страница</h1>;
-};
-```
+Ожидает выполнения промисов перед возвратом полной HTML-строки. Это особенно полезно при использовании Suspense для ленивой загрузки компонентов или получения данных.
 
 ```jsx
-// main.js
+// app.js
 import { Suspense, lazy } from 'preact/compat';
 
-// Создание lazy-компонента
-const HomePage = lazy(() => import('./pages/home'));
+const HomePage = lazy(() => import('./pages/home.js'));
 
-const Main = () => {
+function App() {
     return (
         <Suspense fallback={<p>Загрузка</p>}>
             <HomePage />
         </Suspense>
     );
-};
+}
 ```
-
-Выше приведена очень типичная настройка для приложения Preact, использующего разделение кода, без каких-либо изменений, необходимых для использования рендеринга на стороне сервера.
-
-Для рендеринга мы немного отклонимся от базового примера использования и воспользуемся экспортом `renderToStringAsync` для рендеринга нашего приложения:
 
 ```jsx
 import { renderToStringAsync } from 'preact-render-to-string';
-import { Main } from './main';
+import { App } from './app.js';
 
-const main = async () => {
-    // Отрисовка lazy-компонента
-    const html = await renderToStringAsync(<Main />);
-
-    console.log(html);
-    // <h1>Домашняя страница</h1>
-};
-
-// Выполнение и обработка ошибок
-main().catch((error) => {
-    console.error(error);
-});
+const html = await renderToStringAsync(<App />);
+console.log(html);
+// <h1>Домашняя страница</h1>
 ```
 
-## Неглубокий рендеринг
+> **Примечание:** К сожалению, в реализации «возобновляемой гидратации» в Preact v10 есть несколько известных ограничений — то есть гидратации, которая может приостанавливаться и ожидать загрузки и доступности JS-чанков или данных перед продолжением. Эта проблема решена в предстоящем выпуске Preact v11.
+>
+> На данный момент следует избегать асинхронных границ, которые возвращают 0 или более 1 DOM-узла в качестве дочерних элементов, как в следующих примерах:
+>
+> ```jsx
+> function X() {
+>   // Некоторая ленивая операция, например, инициализация аналитики
+>   return null;
+> };
+>
+> const LazyOperation = lazy(() => /* import X */);
+> ```
+>
+> ```jsx
+> function Y() {
+>   // Тег `<Fragment>` исчезает при рендеринге, оставляя два DOM-элемента `<p>`
+>   return (
+>     <Fragment>
+>       <p>Foo</p>
+>       <p>Bar</p>
+>     </Fragment>
+>   );
+> };
+>
+> const SuspendingMultipleChildren = lazy(() => /* import Y */);
+> ```
+>
+> Для более подробного описания известных проблем и того, как мы их решили, пожалуйста, ознакомьтесь с [Hydration 2.0 (preactjs/preact#4442)](https://github.com/preactjs/preact/issues/4442).
 
-Для некоторых целей часто предпочтительнее отображать не всё дерево, а только один его уровень. Для этого у нас есть неглубокий рендерер, который будет выводить дочерние компоненты по имени, а не по их возвращаемому значению.
+## HTML-потоки
+
+Потоковая передача — это метод рендеринга, который позволяет отправлять части вашего приложения Preact на клиент по мере их готовности, не дожидаясь завершения всего рендеринга.
+
+### renderToPipeableStream
+
+`renderToPipeableStream` — это потоковый метод, использующий [потоки Node.js](https://nodejs.org/api/stream.html) для рендеринга вашего приложения. Если вы не используете Node, вместо этого рассмотрите [renderToReadableStream](#rendertoreadablestream).
 
 ```jsx
-import { shallow } from 'preact-render-to-string';
-import { h } from 'preact';
+import { renderToPipeableStream } from 'preact-render-to-string/stream-node';
 
-const Foo = () => <div>foo</div>;
-const App = (
-  <div class='foo'>
-    <Foo />
-  </div>
-);
+// Синтаксис и форма обработчика запросов будут различаться в зависимости от фреймворка
+function handler(req, res) {
+    const { pipe, abort } = renderToPipeableStream(<App />, {
+        onShellReady() {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/html');
+            pipe(res);
+        },
+        onError(error) {
+            res.statusCode = 500;
+            res.send(
+                `<!doctype html><p>Произошла ошибка:</p><pre>${error.message}</pre>`
+            );
+        }
+    });
 
-console.log(shallow(App));
-// <div class="foo"><Foo /></div>
+    // Переключаемся на клиентский рендеринг, если прошло достаточно времени.
+    setTimeout(abort, 2000);
+}
 ```
 
-## Режим Pretty
+### renderToReadableStream
 
-Если вам нужно получить вывод в более удобном для человека виде, мы поможем вам! Передав опцию `pretty`, мы сохраним пробельные символы и отступы в выводе, как и ожидалось.
+`renderToReadableStream` — это ещё один потоковый метод, похожий на `renderToPipeableStream`, но предназначенный для использования в средах, поддерживающих стандартизированные [веб-потоки](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API).
 
 ```jsx
-import render from 'preact-render-to-string/jsx';
-import { h } from 'preact';
+import { renderToReadableStream } from 'preact-render-to-string/stream';
 
-const Foo = () => <div>foo</div>;
-const App = (
-  <div class='foo'>
-    <Foo />
-  </div>
-);
+// Синтаксис и форма обработчика запросов будут различаться в зависимости от фреймворка
+function handler(req, res) {
+    const stream = renderToReadableStream(<App />);
 
-console.log(render(App, {}, { pretty: true }));
-// Лог:
-// <div class="foo">
-//   <div>foo</div>
-// </div>
+    return new Response(stream, {
+        headers: {
+            'Content-Type': 'text/html'
+        }
+    });
+}
 ```
+
+## Настройка вывода рендера
+
+Модуль `/jsx` предоставляет несколько опций для настройки вывода рендера для ряда популярных сценариев использования.
 
 ## Режим JSX
 
 Режим рендеринга JSX особенно полезен, если вы занимаетесь каким-либо видом тестирования моментальных снимков. Он отображает вывод так, как если бы он был написан на JSX.
 
 ```jsx
-import render from 'preact-render-to-string/jsx';
-import { h } from 'preact';
+import renderToString from 'preact-render-to-string/jsx';
 
 const App = <div data-foo={true} />;
 
-console.log(render(App));
-// Лог: <div data-foo={true} />
+const html = renderToString(App, {}, { jsx: true });
+console.log(html);
+// <div data-foo={true} />
+```
+
+## Режим Pretty
+
+Если вам нужно получить вывод в более удобном для человека виде, мы поможем вам! При передаче опции `pretty` мы сохраним пробельные символы и отступы в выводе, как и ожидается.
+
+```jsx
+import renderToString from 'preact-render-to-string/jsx';
+
+const Foo = () => <div>foo</div>;
+const App = (
+    <div class="foo">
+        <Foo />
+    </div>
+);
+
+const html = renderToString(App, {}, { pretty: true });
+console.log(html);
+// <div class="foo">
+//   <div>foo</div>
+// </div>
+```
+
+### Режим Shallow
+
+Для некоторых целей часто предпочтительнее не рендерить всё дерево, а только один уровень. Для этого у нас есть shallow-рендерер, который выводит дочерние компоненты по их именам, а не по возвращаемому значению.
+
+```jsx
+import renderToString from 'preact-render-to-string/jsx';
+
+const Foo = () => <div>foo</div>;
+const App = (
+    <div class="foo">
+        <Foo />
+    </div>
+);
+
+const html = renderToString(App, {}, { shallow: true });
+console.log(html);
+// <div class="foo"><Foo /></div>
+```
+
+### Режим XML
+
+Для элементов без потомков режим XML будет рендерить их как самозакрывающиеся теги.
+
+```jsx
+import renderToString from 'preact-render-to-string/jsx';
+
+const Foo = () => <div></div>;
+const App = (
+    <div class="foo">
+        <Foo />
+    </div>
+);
+
+let html = renderToString(App, {}, { xml: true });
+console.log(html);
+// <div class="foo"><div /></div>
+
+html = renderToString(App, {}, { xml: false });
+console.log(html);
+// <div class="foo"><div></div></div>
 ```
