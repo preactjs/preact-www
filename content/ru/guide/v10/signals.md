@@ -59,20 +59,20 @@ import { signal } from '@preact/signals';
 const count = signal(0);
 
 function Counter() {
-  // Компонент автоматически перерисовывается при доступе к .value`:
-  const value = count.value;
+	// Компонент автоматически перерисовывается при доступе к .value`:
+	const value = count.value;
 
-  const increment = () => {
-    // Сигнал обновляется путём присвоения значения свойству `.value`:
-    count.value++;
-  };
+	const increment = () => {
+		// Сигнал обновляется путём присвоения значения свойству `.value`:
+		count.value++;
+	};
 
-  return (
-    <div>
-      <p>Счётчик: {value}</p>
-      <button onClick={increment}>Нажми меня</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Счётчик: {value}</p>
+			<button onClick={increment}>нажми меня</button>
+		</div>
+	);
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -89,12 +89,12 @@ import { signal } from '@preact/signals';
 const count = signal(0);
 
 function Counter() {
-  return (
-    <div>
-      <p>Счётчик: {count}</p>
-      <button onClick={() => count.value++}>Нажми меня</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={() => count.value++}>нажми меня</button>
+		</div>
+	);
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -127,8 +127,8 @@ const todos = signal([{ text: 'Купить продукты' }, { text: 'Выг
 const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = ''; // Очистить входное значение при добавлении
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = ''; // Очистить входное значение при добавлении
 }
 ```
 
@@ -153,8 +153,8 @@ const todos = signal([{ text: 'Купить продукты' }, { text: 'Выг
 const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = ''; // Сбросить входное значение при добавлении
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = ''; // Сбросить входное значение при добавлении
 }
 
 // Проверим, работает ли наша логика
@@ -176,7 +176,7 @@ console.log(text.value); // Лог: ""
 
 ```jsx
 function removeTodo(todo) {
-  todos.value = todos.value.filter((t) => t !== todo);
+	todos.value = todos.value.filter(t => t !== todo);
 }
 ```
 
@@ -186,21 +186,21 @@ function removeTodo(todo) {
 
 ```jsx
 function TodoList() {
-  const onInput = (event) => (text.value = event.currentTarget.value);
+	const onInput = event => (text.value = event.currentTarget.value);
 
-  return (
-    <>
-      <input value={text.value} onInput={onInput} />
-      <button onClick={addTodo}>Добавить</button>
-      <ul>
-        {todos.value.map((todo) => (
-          <li>
-            {todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+	return (
+		<>
+			<input value={text.value} onInput={onInput} />
+			<button onClick={addTodo}>Добавить</button>
+			<ul>
+				{todos.value.map(todo => (
+					<li>
+						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
+					</li>
+				))}
+			</ul>
+		</>
+	);
 }
 ```
 
@@ -215,14 +215,14 @@ function TodoList() {
 import { signal, computed } from '@preact/signals';
 
 const todos = signal([
-  { text: 'Купить продукты', completed: true },
-  { text: 'Выгулять собаку', completed: false },
+	{ text: 'Buy groceries', completed: true },
+	{ text: 'Walk the dog', completed: false }
 ]);
 
 // Создаём сигнал, вычисляемый из других сигналов
 const completed = computed(() => {
-  // Когда `todos` изменяется, это автоматически повторяется:
-  return todos.value.filter((todo) => todo.completed).length;
+	// Когда `todos` изменяется, это автоматически повторяется:
+	return todos.value.filter(todo => todo.completed).length;
 });
 
 // Лог: 1, потому что одна задача помечена как выполненная
@@ -239,13 +239,13 @@ console.log(completed.value);
 
 ```jsx
 function createAppState() {
-  const todos = signal([]);
+	const todos = signal([]);
 
-  const completed = computed(() => {
-    return todos.value.filter((todo) => todo.completed).length;
-  });
+	const completed = computed(() => {
+		return todos.value.filter(todo => todo.completed).length;
+	});
 
-  return { todos, completed };
+	return { todos, completed };
 }
 ```
 
@@ -270,15 +270,15 @@ import { createAppState } from './my-app-state';
 const AppState = createContext();
 
 render(
-  <AppState.Provider value={createAppState()}>
-    <App />
-  </AppState.Provider>
+	<AppState.Provider value={createAppState()}>
+		<App />
+	</AppState.Provider>
 );
 
 // ...позже, когда вам понадобится доступ к состоянию вашего приложения
 function App() {
-  const state = useContext(AppState);
-  return <p>{state.completed}</p>;
+	const state = useContext(AppState);
+	return <p>{state.completed}</p>;
 }
 ```
 
@@ -292,17 +292,17 @@ function App() {
 import { useSignal, useComputed } from '@preact/signals';
 
 function Counter() {
-  const count = useSignal(0);
-  const double = useComputed(() => count.value * 2);
+	const count = useSignal(0);
+	const double = useComputed(() => count.value * 2);
 
-  return (
-    <div>
-      <p>
-        {count} x 2 = {double}
-      </p>
-      <button onClick={() => count.value++}>Нажми меня</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>
+				{count} x 2 = {double}
+			</p>
+			<button onClick={() => count.value++}>нажми меня</button>
+		</div>
+	);
 }
 ```
 
@@ -356,6 +356,16 @@ name.value = 'Джон';
 // Лог: "Джон Доу"
 ```
 
+Опционально, вы можете вернуть функцию очистки из колбэка, переданного в [`effect()`](#effectfn), которая будет выполнена перед следующим обновлением. Это позволяет «очистить» побочный эффект и, при необходимости, сбросить состояние для следующего вызова колбэка.
+
+```js
+effect(() => {
+	Chat.connect(username.value);
+
+	return () => Chat.disconnect(username.value);
+});
+```
+
 Вы можете уничтожить эффект и отказаться от подписки на все сигналы, к которым он получил доступ, вызвав возвращаемую функцию.
 
 ```js
@@ -382,13 +392,14 @@ name.value = 'Джон';
 
 В тех редких случаях, когда вам нужно записать сигнал внутри [`effect(fn)`](#effectfn), но вы не хотите, чтобы эффект повторно запускался при изменении этого сигнала, вы можете использовать `.peek()`, чтобы получить текущее значение сигнала без подписки.
 
+
 ```js
 const delta = signal(0);
 const count = signal(0);
 
 effect(() => {
-  // Обновляем `count` без подписки на `count`:
-  count.value = count.peek() + delta.value;
+	// Обновляем `count` без подписки на `count`:
+	count.value = count.peek() + delta.value;
 });
 
 // Установка значения `delta` повторно запускает эффект:
@@ -398,19 +409,21 @@ delta.value = 1;
 count.value = 10;
 ```
 
-> :bulb: Совет: Сценарии, в которых вы не хотите подписываться на сигнал, встречаются редко. В большинстве случаев вы хотите, чтобы ваш эффект подписывался на все сигналы. Используйте `.peek()` только тогда, когда это вам действительно нужно.
+> :bulb: Совет: Сценарии, в которых вы не хотите подписываться на сигнал, встречаются редко. В большинстве случаев вы хотите, чтобы ваш эффект подписывался на все сигналы. Используйте `.peek()` только тогда, когда вам это действительно нужно.
 
 В качестве альтернативы `.peek()` у нас есть функция `untracked`, которая принимает функцию в качестве аргумента и возвращает результат выполнения этой функции. В `untracked` вы можете ссылаться на любой сигнал с помощью `.value` без создания подписки. Это может быть полезно, когда у вас есть многоразовая функция, которая обращается к `.value`, или вам нужно получить доступ к более чем одному сигналу.
+
+
 
 ```js
 const delta = signal(0);
 const count = signal(0);
 
 effect(() => {
-  // Обновляем `count` без подписки на `count` или `delta`:
-  count.value = untracked(() => {
-    return count.value + delta.value
-  });
+	// Обновляем `count` без подписки на `count` или `delta`:
+	count.value = untracked(() => {
+		return count.value + delta.value;
+	});
 });
 ```
 
@@ -423,8 +436,8 @@ const todos = signal([]);
 const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = '';
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = '';
 }
 ```
 
@@ -432,10 +445,10 @@ function addTodo() {
 
 ```js
 function addTodo() {
-  batch(() => {
-    todos.value = [...todos.value, { text: text.value }];
-    text.value = '';
-  });
+	batch(() => {
+		todos.value = [...todos.value, { text: text.value }];
+		text.value = '';
+	});
 }
 ```
 
@@ -452,12 +465,12 @@ const triple = computed(() => count.value * 3);
 effect(() => console.log(double.value, triple.value));
 
 batch(() => {
-  // Устанавливаем `count`, делая недействительными `double` и `triple`:
-  count.value = 1;
+	// Устанавливаем `count`, делая недействительными `double` и `triple`:
+	count.value = 1;
 
-  // Несмотря на пакетную обработку, `double` отражает новое вычисленное значение.
-  // Однако `triple` будет обновляться только после завершения обратного вызова.
-  console.log(double.value); // Лог: 2
+	// Несмотря на пакетную обработку, `double` отражает новое вычисленное значение.
+	// Однако `triple` будет обновляться только после завершения обратного вызова.
+	console.log(double.value); // Лог: 2
 });
 ```
 
@@ -471,13 +484,13 @@ batch(() => {
 const count = signal(0);
 
 function Unoptimized() {
-  // Перерисовывает компонент при изменении `count`:
-  return <p>{count.value}</p>;
+	// Перерисовывает компонент при изменении `count`:
+	return <p>{count.value}</p>;
 }
 
 function Optimized() {
-  // Текст автоматически обновляется без повторной отрисовки компонента:
-  return <p>{count}</p>;
+	// Текст автоматически обновляется без повторной отрисовки компонента:
+	return <p>{count}</p>;
 }
 ```
 
@@ -497,13 +510,21 @@ function Optimized() {
 const count = signal(0);
 ```
 
-При создании сигналов внутри компонента используйте вариант с хуком: `useSignal(initialValue)`.
+Возвращённый сигнал имеет свойство `.value`, которое можно получить или установить для чтения и записи его значения. Чтобы прочитать сигнал без подписки на него, используйте `signal.peek()`.
 
-Возвращенный сигнал имеет свойство `.value`, которое можно получить или установить для чтения и записи его значения. Чтобы прочитать сигнал без подписки на него, используйте `signal.peek()`.
+#### useSignal(initialValue)
+
+При создании сигналов внутри компонента используйте вариант с хуком: `useSignal(initialValue)`. Он работает аналогично `signal()`, но использует мемоизацию, чтобы гарантировать использование одного и того же экземпляра сигнала при повторных рендерах компонента.
+
+```jsx
+function MyComponent() {
+	const count = useSignal(0);
+}
+```
 
 ### computed(fn)
 
-Создает новый сигнал, который вычисляется на основе значений других сигналов. Возвращенный вычисленный сигнал доступен только для чтения, и его значение автоматически обновляется при изменении любых сигналов, к которым осуществляется доступ из функции обратного вызова.
+Создает новый сигнал, который вычисляется на основе значений других сигналов. Возвращённый вычисленный сигнал доступен только для чтения, и его значение автоматически обновляется при изменении любых сигналов, к которым осуществляется доступ из функции обратного вызова.
 
 ```js
 const name = signal('Джейн');
@@ -512,7 +533,18 @@ const surname = signal('Доу');
 const fullName = computed(() => `${name.value} ${surname.value}`);
 ```
 
+#### useComputed(fn)
+
 При создании вычисляемых сигналов внутри компонента используйте вариант с хуком: `useComputed(fn)`.
+
+```jsx
+function MyComponent() {
+	const name = useSignal('Jane');
+	const surname = useSignal('Doe');
+
+	const fullName = useComputed(() => `${name.value} ${surname.value}`);
+}
+```
 
 ### effect(fn)
 
@@ -529,7 +561,18 @@ name.value = 'Джон';
 // Лог: "Привет, Джон"
 ```
 
+#### useSignalEffect(fn)
+
 При реагировании на изменения сигнала внутри компонента используйте вариант с хуком: `useSignalEffect(fn)`.
+
+```jsx
+function MyComponent() {
+	const name = useSignal('Джейн');
+
+	// Отображаем сообщение в консоли при изменении `name`:
+	useSignalEffect(() => console.log('Привет, ', name.value));
+}
+```
 
 ### batch(fn)
 
@@ -556,7 +599,97 @@ const surname = signal("Doe");
 
 effect(() => {
   untracked(() => {
-    console.log(`${name.value} ${surname.value}`)
+	console.log(`${name.value} ${surname.value}`)
   })
 })
+```
+
+## Вспомогательные компоненты и хуки
+
+Начиная с версии v2.1.0, пакет `@preact/signals/utils` предоставляет дополнительные вспомогательные компоненты и хуки, упрощающие работу с сигналами.
+
+### Компонент Show
+
+Компонент `<Show>` предоставляет декларативный способ условного отображения контента на основе значения сигнала.
+
+```jsx
+import { signal } from '@preact/signals';
+import { Show } from '@preact/signals/utils';
+
+const isVisible = signal(false);
+
+function App() {
+	return (
+		<Show when={isVisible} fallback={<p>Здесь ничего нет</p>}>
+			<p>Теперь вы меня видите!</p>
+		</Show>
+	);
+}
+
+// Вы также можете использовать функцию для доступа к значению
+function App() {
+	return <Show when={isVisible}>{value => <p>Значение: {value}</p>}</Show>;
+}
+```
+
+### Компонент For
+
+Компонент `<For>` помогает отображать списки из массивов-сигналов с автоматическим кэшированием отрендеренных элементов.
+
+```jsx
+import { signal } from '@preact/signals';
+import { For } from '@preact/signals/utils';
+
+const items = signal(['A', 'B', 'C']);
+
+function App() {
+	return (
+		<For each={items} fallback={<p>Нет элементов</p>}>
+			{(item, index) => <div key={index}>Элемент: {item}</div>}
+		</For>
+	);
+}
+```
+
+### Дополнительные хуки
+
+#### useLiveSignal(signal)
+
+Хук `useLiveSignal(signal)` позволяет создать локальный сигнал, который остаётся синхронизированным с внешним сигналом.
+
+```jsx
+import { signal } from '@preact/signals';
+import { useLiveSignal } from '@preact/signals/utils';
+
+const external = signal(0);
+
+function Component() {
+	const local = useLiveSignal(external);
+	// локальное значение будет автоматически обновляться при изменении внешнего
+}
+```
+
+#### useSignalRef(initialValue)
+
+Хук `useSignalRef(initialValue)` создаёт сигнал, который ведёт себя как реф React со свойством `.current`.
+
+```jsx
+import { useSignalEffect } from '@preact/signals';
+import { useSignalRef } from '@preact/signals/utils';
+
+function Component() {
+	const ref = useSignalRef(null);
+
+	useSignalEffect(() => {
+		if (ref.current) {
+			console.log('Реф получил значение:', ref.current);
+		}
+	});
+
+	return (
+		<div ref={ref}>
+			Реф был прикреплён к элементу {ref.current?.tagName}.
+		</div>
+	);
+}
 ```
