@@ -38,16 +38,16 @@ export const Locale = createContext(null);
 > Начальное значение, установленное с помощью `createContext`, используется только в отсутствие `Provider` выше потребителя в дереве. Это может быть полезно для тестирования компонентов в изоляции, так как позволяет избежать необходимости создания обёртки `Provider` вокруг вашего компонента.
 
 ```jsx
-import { createContext } from "preact";
+import { createContext } from 'preact';
 
-export const Theme = createContext("light");
+export const Theme = createContext('light');
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent />
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent />
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -55,64 +55,94 @@ function App() {
 
 ### Использование контекста
 
-Существует два способа потребления контекста, в значительной степени в зависимости от предпочитаемого вами стиля компонентов: `Consumer` (классовые компоненты) и хук `useContext` (функциональные компоненты/хуки).
+Существуют три способа использования контекста, в значительной степени в зависимости от предпочитаемого вами стиля компонентов: `static contextType` (классовые компоненты), хук `useContext` (функциональные компоненты/хуки), и `Context.Consumer` (все компоненты).
 
-<tab-group tabstring="Consumer, useContext">
+<tab-group tabstring="contextType, useContext, Context.Consumer">
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
+import { render, createContext, Component } from 'preact';
 
 const SomeComponent = props => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
-function ThemedButton() {
-  return (
-    <ThemePrimary.Consumer>
-      {theme => <button style={{ background: theme }}>Переключить тему</button>}
-    </ThemePrimary.Consumer>
-  );
+class ThemedButton extends Component {
+	static contextType = ThemePrimary;
+
+	render() {
+		const theme = this.context;
+		return <button style={{ background: theme }}>Стилизованная кнопка</button>;
+	}
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
-import { useContext } from "preact/hooks";
+import { render, createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
 const SomeComponent = props => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
-  const theme = useContext(ThemePrimary);
-  return <button style={{ background: theme }}>Переключить тему</button>;
+	const theme = useContext(ThemePrimary);
+	return <button style={{ background: theme }}>Стилизованная кнопка</button>;
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
+```
+
+```jsx
+// --repl
+import { render, createContext } from 'preact';
+
+const SomeComponent = props => props.children;
+// --repl-before
+const ThemePrimary = createContext('#673ab8');
+
+function ThemedButton() {
+	return (
+		<ThemePrimary.Consumer>
+			{theme => <button style={{ background: theme }}>Стилизованная кнопка</button>}
+		</ThemePrimary.Consumer>
+	);
+}
+
+function App() {
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
+}
+// --repl-after
+render(<App />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -123,43 +153,43 @@ render(<App />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
-import { useContext, useState } from "preact/hooks";
+import { render, createContext } from 'preact';
+import { useContext, useState } from 'preact/hooks';
 
 const SomeComponent = props => props.children;
 // --repl-before
 const ThemePrimary = createContext(null);
 
 function ThemedButton() {
-  const { theme } = useContext(ThemePrimary);
-  return <button style={{ background: theme }}>Переключить тему</button>;
+	const { theme } = useContext(ThemePrimary);
+	return <button style={{ background: theme }}>Стилизованная кнопка</button>;
 }
 
 function ThemePicker() {
-  const { theme, setTheme } = useContext(ThemePrimary);
-  return (
-    <input
-      type="color"
-      value={theme}
-      onChange={e => setTheme(e.currentTarget.value)}
-    />
-  );
+	const { theme, setTheme } = useContext(ThemePrimary);
+	return (
+		<input
+			type="color"
+			value={theme}
+			onChange={e => setTheme(e.currentTarget.value)}
+		/>
+	);
 }
 
 function App() {
-  const [theme, setTheme] = useState("#673ab8");
-  return (
-    <ThemePrimary.Provider value={{ theme, setTheme }}>
-      <SomeComponent>
-        <ThemedButton />
-        {" - "}
-        <ThemePicker />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	const [theme, setTheme] = useState('#673ab8');
+	return (
+		<ThemePrimary.Provider value={{ theme, setTheme }}>
+			<SomeComponent>
+				<ThemedButton />
+				{' - '}
+				<ThemePicker />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## Устаревший Context API
@@ -172,35 +202,31 @@ render(<App />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 
 const SomeOtherComponent = props => props.children;
 // --repl-before
 function ThemedButton(_props, context) {
-  return (
-    <button style={{ background: context.theme }}>
-      Переключить тему
-    </button>
-  );
+	return <button style={{ background: context.theme }}>Стилизованная кнопка</button>;
 }
 
 class App extends Component {
-  getChildContext() {
-    return {
-      theme: "#673ab8"
-    }
-  }
+	getChildContext() {
+		return {
+			theme: '#673ab8'
+		};
+	}
 
-  render() {
-    return (
-      <div>
-        <SomeOtherComponent>
-          <ThemedButton />
-        </SomeOtherComponent>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<SomeOtherComponent>
+					<ThemedButton />
+				</SomeOtherComponent>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
