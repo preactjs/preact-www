@@ -30,9 +30,9 @@ TS v5.1 will be the new minimum supported version for the 11.x release line. If 
 
 Increasing our minimum TS version allows us to take advantage of some key improvements that the TS team has made for JSX typing, fixing a handful of long-standing & fundamental type issues that we could not address ourselves.
 
-### `replaceNode` removal
+### Remove `replaceNode` parameter from `render()`
 
-`replaceNode` was an optional third parameter to `render()` & `hydrate()` that has been removed in Preact 11 as it introduced too many edge cases and bugs which needed to be accounted for in the rest of Preact's source code.
+The third & optional parameter to `render()` has been removed in Preact 11 as there were numerous bugs and edge cases with the implementation as well as some key use cases that it could not accommodate well.
 
 If this is something you still need, we provide a standalone, Preact 10-compatible implementation [here](https://gist.github.com/developit/f4c67a2ede71dc2fab7f357f39cff28c).
 
