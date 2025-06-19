@@ -3,8 +3,8 @@ import { useLocation, useRoute } from 'preact-iso';
 import { docRoutes } from '../../lib/route-utils.js';
 import style from './style.module.css';
 
-export const LATEST_MAJOR = 'v10';
-export const AVAILABLE_DOCS = ['10', '8'];
+export const LATEST_MAJOR = 'v11';
+export const AVAILABLE_DOCS = ['11', '10', '8'];
 
 /**
  * Select box to switch the currently displayed docs version
