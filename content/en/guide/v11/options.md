@@ -1,19 +1,19 @@
 ---
-name: Option Hooks
-description: 'Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process.'
+title: Option Hooks
+description: Preact has several option hooks that allow you to attach callbacks to various stages of the diffing process
 ---
 
 # Option Hooks
 
 Callbacks for plugins that can change Preact's rendering.
 
-Preact supports a number of different callbacks that can be used to observe or change each stage of the rendering process, commonly referred to as "Option Hooks" (not to be confused with [hooks](/guide/v11/hooks)). These are frequently used to extend the feature-set of Preact itself, or to create specialized testing tools. All of our addons like `preact/hooks`, `preact/compat` and our devtools extension are based on these callbacks.
+Preact supports a number of different callbacks that can be used to observe or change each stage of the rendering process, commonly referred to as "Option Hooks" (not to be confused with [hooks](/guide/v10/hooks)). These are frequently used to extend the feature-set of Preact itself, or to create specialized testing tools. All of our addons like `preact/hooks`, `preact/compat` and our devtools extension are based on these callbacks.
 
 This API is primarily intended for tooling or library authors who wish to extend Preact.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 
@@ -35,13 +35,13 @@ const oldHook = options.vnode;
 
 // Set our own options hook
 options.vnode = vnode => {
-  console.log("Hey I'm a vnode", vnode);
+	console.log("Hey I'm a vnode", vnode);
 
-  // Call previously defined hook if there was any
-  if (oldHook) {
-    oldHook(vnode);
-  }
-}
+	// Call previously defined hook if there was any
+	if (oldHook) {
+		oldHook(vnode);
+	}
+};
 ```
 
 None of the currently available hooks excluding `options.event` have return values, so handling return values from the original hook is not necessary.
@@ -70,7 +70,7 @@ Invoked immediately after a vnode is rendered, once its DOM representation is co
 
 **Signature:** `(event: Event) => any`
 
-Invoked just before a DOM event is handled by its associated Virtual DOM listener. When `options.event` is setted, the event which is event listener argument is replaced return value of `options.event`.
+Invoked just before a DOM event is handled by its associated Virtual DOM listener. When `options.event` is set, the event which is event listener argument is replaced return value of `options.event`.
 
 #### `options.requestAnimationFrame`
 

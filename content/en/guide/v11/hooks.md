@@ -1,6 +1,6 @@
 ---
-name: Hooks
-description: 'Hooks in Preact allow you to compose behaviours together and re-use that logic in different components.'
+title: Hooks
+description: Hooks in Preact allow you to compose behaviours together and re-use that logic in different components
 ---
 
 # Hooks
@@ -15,7 +15,7 @@ There are two ways to import hooks: from `preact/hooks` or `preact/compat`.
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 
@@ -27,52 +27,52 @@ We'll use a simple counter component as our example, which renders a number and 
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class Counter extends Component {
-  state = {
-    value: 0
-  };
+	state = {
+		value: 0
+	};
 
-  increment = () => {
-    this.setState(prev => ({ value: prev.value +1 }));
-  };
+	increment = () => {
+		this.setState(prev => ({ value: prev.value + 1 }));
+	};
 
-  render(props, state) {
-    return (
-      <div>
-        <p>Counter: {state.value}</p>
-        <button onClick={this.increment}>Increment</button>
-      </div>
-    );
-  }
+	render(props, state) {
+		return (
+			<div>
+				<p>Counter: {state.value}</p>
+				<button onClick={this.increment}>Increment</button>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 Now, here's an equivalent function component built with hooks:
 
 ```jsx
 // --repl
-import { useState, useCallback } from "preact/hooks";
-import { render } from "preact";
+import { useState, useCallback } from 'preact/hooks';
+import { render } from 'preact';
 // --repl-before
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
 
-  return (
-    <div>
-      <p>Counter: {value}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Counter: {value}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 At this point they seem pretty similar, however we can further simplify the hooks version.
@@ -81,46 +81,46 @@ Let's extract the counter logic into a custom hook, making it easily reusable ac
 
 ```jsx
 // --repl
-import { useState, useCallback } from "preact/hooks";
-import { render } from "preact";
+import { useState, useCallback } from 'preact/hooks';
+import { render } from 'preact';
 // --repl-before
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
+	return { value, increment };
 }
 
 // First counter
 function CounterA() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <p>Counter A: {value}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<p>Counter A: {value}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 
 // Second counter which renders a different output.
 function CounterB() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <h1>Counter B: {value}</h1>
-      <p>I'm a nice counter</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<h1>Counter B: {value}</h1>
+			<p>I'm a nice counter</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 // --repl-after
 render(
-  <div>
-    <CounterA />
-    <CounterB />
-  </div>,
-  document.getElementById("app")
+	<div>
+		<CounterA />
+		<CounterB />
+	</div>,
+	document.getElementById('app')
 );
 ```
 
@@ -138,11 +138,11 @@ In our `useCounter()` implementation above, we passed an array of dependencies t
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);  // <-- the dependency array
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]); // <-- the dependency array
+	return { value, increment };
 }
 ```
 
@@ -177,21 +177,21 @@ import { render } from 'preact';
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  // You can also pass a callback to the setter
-  const decrement = () => setCount((currentCount) => currentCount - 1);
+	const [count, setCount] = useState(0);
+	const increment = () => setCount(count + 1);
+	// You can also pass a callback to the setter
+	const decrement = () => setCount(currentCount => currentCount - 1);
 
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-    </div>
-  )
-}
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={increment}>Increment</button>
+			<button onClick={decrement}>Decrement</button>
+		</div>
+	);
+};
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 > When our initial state is expensive it's better to pass a function instead of a value.
@@ -208,29 +208,33 @@ import { useReducer } from 'preact/hooks';
 
 const initialState = 0;
 const reducer = (state, action) => {
-  switch (action) {
-    case 'increment': return state + 1;
-    case 'decrement': return state - 1;
-    case 'reset': return 0;
-    default: throw new Error('Unexpected action');
-  }
+	switch (action) {
+		case 'increment':
+			return state + 1;
+		case 'decrement':
+			return state - 1;
+		case 'reset':
+			return 0;
+		default:
+			throw new Error('Unexpected action');
+	}
 };
 
 function Counter() {
-  // Returns the current state and a dispatch function to
-  // trigger an action
-  const [count, dispatch] = useReducer(reducer, initialState);
-  return (
-    <div>
-      {count}
-      <button onClick={() => dispatch('increment')}>+1</button>
-      <button onClick={() => dispatch('decrement')}>-1</button>
-      <button onClick={() => dispatch('reset')}>reset</button>
-    </div>
-  );
+	// Returns the current state and a dispatch function to
+	// trigger an action
+	const [count, dispatch] = useReducer(reducer, initialState);
+	return (
+		<div>
+			{count}
+			<button onClick={() => dispatch('increment')}>+1</button>
+			<button onClick={() => dispatch('decrement')}>-1</button>
+			<button onClick={() => dispatch('reset')}>reset</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 ## Memoization
@@ -243,10 +247,10 @@ With the `useMemo` hook we can memoize the results of that computation and only 
 
 ```jsx
 const memoized = useMemo(
-  () => expensive(a, b),
-  // Only re-run the expensive function when any of these
-  // dependencies change
-  [a, b]
+	() => expensive(a, b),
+	// Only re-run the expensive function when any of these
+	// dependencies change
+	[a, b]
 );
 ```
 
@@ -257,17 +261,18 @@ const memoized = useMemo(
 The `useCallback` hook can be used to ensure that the returned function will remain referentially equal for as long as no dependencies have changed. This can be used to optimize updates of child components when they rely on referential equality to skip updates (e.g. `shouldComponentUpdate`).
 
 ```jsx
-const onClick = useCallback(
-  () => console.log(a, b),
-  [a, b]
-);
+const onClick = useCallback(() => console.log(a, b), [a, b]);
 ```
 
 > Fun fact: `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
-## useRef
+## Refs
 
-To get a reference to a DOM node inside a functional components there is the `useRef` hook. It works similar to [createRef](/guide/v11/refs#createref).
+**Ref**erences are stable, local values that persist across rerenders but don't cause rerenders themselves. See [Refs](/guide/v10/refs) for more information & examples.
+
+### useRef
+
+To create a stable reference to a DOM node or a value that persists between renders, we can use the `useRef` hook. It works similarly to [createRef](/guide/v10/refs#createref).
 
 ```jsx
 // --repl
@@ -275,22 +280,71 @@ import { useRef } from 'preact/hooks';
 import { render } from 'preact';
 // --repl-before
 function Foo() {
-  // Initialize useRef with an initial value of `null`
-  const input = useRef(null);
-  const onClick = () => input.current && input.current.focus();
+	// Initialize useRef with an initial value of `null`
+	const input = useRef(null);
+	const onClick = () => input.current && input.current.focus();
 
-  return (
-    <>
-      <input ref={input} />
-      <button onClick={onClick}>Focus input</button>
-    </>
-  );
+	return (
+		<>
+			<input ref={input} />
+			<button onClick={onClick}>Focus input</button>
+		</>
+	);
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<Foo />, document.getElementById('app'));
 ```
 
 > Be careful not to confuse `useRef` with `createRef`.
+
+### useImperativeHandle
+
+To mutate a ref that is passed into a child component we can use the `useImperativeHandle` hook. It takes three arguments: the ref to mutate, a function to execute that will return the new ref value, and a dependency array to determine when to rerun.
+
+```jsx
+// --repl
+import { render } from 'preact';
+import { useRef, useImperativeHandle, useState } from 'preact/hooks';
+// --repl-before
+function MyInput({ inputRef }) {
+	const ref = useRef(null);
+	useImperativeHandle(
+		inputRef,
+		() => {
+			return {
+				// Only expose `.focus()`, don't give direct access to the DOM node
+				focus() {
+					ref.current.focus();
+				}
+			};
+		},
+		[]
+	);
+
+	return (
+		<label>
+			Name: <input ref={ref} />
+		</label>
+	);
+}
+
+function App() {
+	const inputRef = useRef(null);
+
+	const handleClick = () => {
+		inputRef.current.focus();
+	};
+
+	return (
+		<div>
+			<MyInput inputRef={inputRef} />
+			<button onClick={handleClick}>Click To Edit</button>
+		</div>
+	);
+}
+// --repl-after
+render(<App />, document.getElementById('app'));
+```
 
 ## useContext
 
@@ -306,22 +360,22 @@ const OtherComponent = props => props.children;
 const Theme = createContext('light');
 
 function DisplayTheme() {
-  const theme = useContext(Theme);
-  return <p>Active theme: {theme}</p>;
+	const theme = useContext(Theme);
+	return <p>Active theme: {theme}</p>;
 }
 
 // ...later
 function App() {
-  return (
-    <Theme.Provider value="light">
-      <OtherComponent>
-        <DisplayTheme />
-      </OtherComponent>
-    </Theme.Provider>
-  )
+	return (
+		<Theme.Provider value="light">
+			<OtherComponent>
+				<DisplayTheme />
+			</OtherComponent>
+		</Theme.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## Side-Effects
@@ -334,10 +388,10 @@ As the name implies, `useEffect` is the main way to trigger various side-effects
 
 ```jsx
 useEffect(() => {
-  // Trigger your effect
-  return () => {
-    // Optional: Any cleanup code
-  };
+	// Trigger your effect
+	return () => {
+		// Optional: Any cleanup code
+	};
 }, []);
 ```
 
@@ -345,11 +399,11 @@ We'll start with a `Title` component which should reflect the title to the docum
 
 ```jsx
 function PageTitle(props) {
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+	useEffect(() => {
+		document.title = props.title;
+	}, [props.title]);
 
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 ```
 
@@ -364,21 +418,21 @@ import { render } from 'preact';
 // --repl-before
 // Component that will always display the current window width
 function WindowWidth(props) {
-  const [width, setWidth] = useState(0);
+	const [width, setWidth] = useState(0);
 
-  function onResize() {
-    setWidth(window.innerWidth);
-  }
+	function onResize() {
+		setWidth(window.innerWidth);
+	}
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
 
-  return <p>Window width: {width}</p>;
+	return <p>Window width: {width}</p>;
 }
 // --repl-after
-render(<WindowWidth />, document.getElementById("app"));
+render(<WindowWidth />, document.getElementById('app'));
 ```
 
 > The cleanup function is optional. If you don't need to run any cleanup code, you don't need to return anything in the callback that's passed to `useEffect`.
@@ -409,32 +463,32 @@ A full usage example may look like this:
 
 ```jsx
 const App = props => {
-  const [error, resetError] = useErrorBoundary(
-    error => callMyApi(error.message)
-  );
-  
-  // Display a nice error message
-  if (error) {
-    return (
-      <div>
-        <p>{error.message}</p>
-        <button onClick={resetError}>Try again</button>
-      </div>
-    );
-  } else {
-    return <div>{props.children}</div>
-  }
+	const [error, resetError] = useErrorBoundary(error =>
+		callMyApi(error.message)
+	);
+
+	// Display a nice error message
+	if (error) {
+		return (
+			<div>
+				<p>{error.message}</p>
+				<button onClick={resetError}>Try again</button>
+			</div>
+		);
+	} else {
+		return <div>{props.children}</div>;
+	}
 };
 ```
 
-> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](/guide/v11/whats-new/#componentdidcatch) lifecycle method.
+> If you've been using the class based component API in the past, then this hook is essentially an alternative to the [componentDidCatch](/guide/v10/whats-new/#componentdidcatch) lifecycle method.
 > This hook was introduced with Preact 10.2.0.
 
 ## Utility hooks
 
 ### useId
 
-This hook will generate a unique identifier for each invocation and guarantees that these will be consistent when rendering both [on the server](/guide/v11/server-side-rendering) and the client. A common use case for consistent IDs are forms, where `<label>`-elements use the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for) attribute to associate them with a specific `<input>`-element. The `useId` hook isn't tied to just forms though and can be used whenever you need a unique ID.
+This hook will generate a unique identifier for each invocation and guarantees that these will be consistent when rendering both [on the server](/guide/v10/server-side-rendering) and the client. A common use case for consistent IDs are forms, where `<label>`-elements use the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for) attribute to associate them with a specific `<input>`-element. The `useId` hook isn't tied to just forms though and can be used whenever you need a unique ID.
 
 > To make the hook consistent you will need to use Preact on both the server
 > as well as on the client.
@@ -449,7 +503,7 @@ const App = props => {
   useLayoutEffect(() => {
     document.getElementById(inputId).focus()
   }, [])
-  
+
   // Display an input with a unique ID.
   return (
     <main id={mainId}>
