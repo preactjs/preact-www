@@ -62,3 +62,13 @@ options.vnode = (vnode) => {
     }
 }
 ```
+
+### Remove automatic `px` suffixing for style properties
+
+Preact 11 has moved the automatic `px` suffixing for numeric style values from core into `preact/compat`.
+
+```jsx
+<h1 style={{ height: 500 }}>Hello World!</h1>
+// Preact 10: <h1 style="height:500px">Hello World!</h1>
+// Preact 11: <h1 style="height:500">Hello World!</h1>
+```
