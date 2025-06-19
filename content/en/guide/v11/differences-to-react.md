@@ -1,7 +1,6 @@
 ---
-name: Differences to React
-permalink: '/guide/differences-to-react'
-description: 'What are the differences between Preact and React. This document describes them in detail'
+title: Differences to React
+description: What are the differences between Preact and React. This document describes them in detail
 ---
 
 # Differences to React
@@ -12,7 +11,7 @@ The reason Preact does not attempt to include every single feature of React is i
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 
@@ -33,14 +32,14 @@ Another notable difference is that Preact follows the DOM specification more clo
 
 For both preact and [preact/compat], version compatibility is measured against the _current_ and _previous_ major releases of React. When new features are announced by the React team, they may be added to Preact's core if it makes sense given the [Project Goals]. This is a fairly democratic process, constantly evolving through discussion and decisions made in the open, using issues and pull requests.
 
-> Thus, the website and documentation reflect React `15.x` through `17.x` when discussing compatibility or making comparisons.
+> Thus, the website and documentation reflect React `15.x` through `17.x`, with some `18.x` and `19.x` additions, when discussing compatibility or making comparisons.
 
 ## Debug messages and errors
 
-Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](/guide/v11/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
+Our flexible architecture allows addons to enhance the Preact experience in any way they want. One of those addons is `preact/debug` which adds [helpful warnings and errors](/guide/v10/debugging) and attaches the [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) browser extension, if installed. Those guide you when developing Preact applications and make it a lot easier to inspect what's going on. You can enable them by adding the relevant import statement:
 
 ```js
-import "preact/debug"; // <-- Add this line at the top of your main entry file
+import 'preact/debug'; // <-- Add this line at the top of your main entry file
 ```
 
 This is different from React which requires a bundler being present that strips out debugging messages at build time by checking for `NODE_ENV != "production"`.
@@ -60,11 +59,15 @@ For convenience, we pass `this.props` and `this.state` to the `render()` method 
 ```jsx
 // Works in both Preact and React
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
-  }
+	render() {
+		return (
+			<div>
+				Name: {this.props.name}, Age: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -73,11 +76,15 @@ In Preact this can be also written like this:
 ```jsx
 // Only works in Preact
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return <div>Name: {name}, Age: {age}</div>;
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Name: {name}, Age: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -95,7 +102,7 @@ Preact aims to closely match the DOM specification supported by all major browse
 <div className="foo" />
 ```
 
-Most Preact developers prefer to use `class` because it's shorter to write, but both are supported.
+Most Preact developers prefer to use `class` instead of `className` as it's shorter to write but both are supported.
 
 ### SVG inside JSX
 
@@ -138,7 +145,7 @@ JSX is a syntax extension for JavaScript that is converted to nested function ca
 
 ```jsx
 <a href="/">
-  <span>Home</span>
+	<span>Home</span>
 </a>
 ```
 
@@ -146,17 +153,13 @@ JSX is a syntax extension for JavaScript that is converted to nested function ca
 
 ```js
 // Preact:
-h(
-  'a',
-  { href:'/' },
-  h('span', null, 'Home')
-);
+h('a', { href: '/' }, h('span', null, 'Home'));
 
 // React:
 React.createElement(
-  'a',
-  { href:'/' },
-  React.createElement('span', null, 'Home')
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Home')
 );
 ```
 
@@ -168,7 +171,7 @@ The legacy `Context` API requires Components to declare specific properties usin
 
 ## Features exclusive to `preact/compat`
 
-`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](/guide/v11/getting-started#aliasing-react-to-preact) in your bundler configuration.
+`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](/guide/v10/getting-started#aliasing-react-to-preact) in your bundler configuration.
 
 ### Children API
 
@@ -177,12 +180,12 @@ The `Children` API is a specialized set of methods for working with the value of
 ```jsx
 // React:
 function App(props) {
-  return <Modal content={Children.only(props.children)} />
+	return <Modal content={Children.only(props.children)} />;
 }
 
 // Preact: use props.children directly:
 function App(props) {
-  return <Modal content={props.children} />
+	return <Modal content={props.children} />;
 }
 ```
 
@@ -191,14 +194,14 @@ For specialized cases where you need to iterate over the children passed to a co
 ```jsx
 // React
 function App(props) {
-  const cols = Children.count(props.children);
-  return <div data-columns={cols}>{props.children}</div>
+	const cols = Children.count(props.children);
+	return <div data-columns={cols}>{props.children}</div>;
 }
 
 // Preact
 function App(props) {
-  const cols = toChildArray(props.children).length;
-  return <div data-columns={cols}>{props.children}</div>
+	const cols = toChildArray(props.children).length;
+	return <div data-columns={cols}>{props.children}</div>;
 }
 ```
 
@@ -208,14 +211,14 @@ A React-compatible `Children` API is available from `preact/compat` to make inte
 
 [preact/compat] ships with specialised components that are not necessary for every app. These include
 
-- [PureComponent](/guide/v11/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
-- [memo](/guide/v11/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
-- [forwardRef](/guide/v11/switching-to-preact#forwardref): Supply a `ref` to a specified child component.
-- [Portals](/guide/v11/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
-- [Suspense](/guide/v11/switching-to-preact#suspense-experimental): **experimental** Allows to display fallback content in case the tree is not ready
-- [lazy](/guide/v11/switching-to-preact#suspense-experimental): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
+- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
+- [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
+- [forwardRef](/guide/v10/switching-to-preact#forwardref): Supply a `ref` to a specified child component.
+- [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
+- [Suspense](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Allows to display fallback content in case the tree is not ready
+- [lazy](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
 
-[Project Goals]: /about/project-goals
+[project goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[preact/compat]: /guide/v11/switching-to-preact
-[MDN's Event Reference]: https://developer.mozilla.org/en-US/docs/Web/Events
+[preact/compat]: /guide/v10/switching-to-preact
+[mdn's event reference]: https://developer.mozilla.org/en-US/docs/Web/Events

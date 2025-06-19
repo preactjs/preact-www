@@ -1,6 +1,6 @@
 ---
-name: Debugging Preact Apps
-description: 'How to debug Preact applications when something goes wrong.'
+title: Debugging Preact Apps
+description: How to debug Preact applications when something goes wrong
 ---
 
 # Debugging Preact Apps
@@ -13,7 +13,7 @@ We'll print a warning or an error whenever we detect something wrong like incorr
 
 ---
 
-<div><toc></toc></div>
+<toc></toc>
 
 ---
 
@@ -33,7 +33,7 @@ Here is an example of how your main entry file to your application may look like
 
 ```jsx
 // Must be the first import
-import "preact/debug";
+import 'preact/debug';
 import { render } from 'preact';
 import App from './components/App';
 
@@ -46,10 +46,10 @@ Most bundlers allow you strip out code when they detect that a branch inside an 
 
 ```jsx
 // Must be the first import
-if (process.env.NODE_ENV==='development') {
-  // Must use require here as import statements are only allowed
-  // to exist at top-level.
-  require("preact/debug");
+if (process.env.NODE_ENV === 'development') {
+	// Must use require here as import statements are only allowed
+	// to exist at top-level.
+	require('preact/debug');
 }
 
 import { render } from 'preact';
@@ -85,7 +85,7 @@ Preact will throw this error whenever you pass `undefined` instead of a componen
 ```jsx
 // app.js
 export default function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js: Wrong, because `app.js` doesn't have a named export
@@ -98,7 +98,7 @@ The same error will be thrown when it's the other way around. When you declare a
 ```jsx
 // app.js
 export function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js
@@ -127,7 +127,11 @@ render(Foo, dom);
 
 ### Improper nesting of table detected
 
-HTML has a very clear directions on how tables should be structured. Deviating from that will lead to rendering errors that are very hard to debug. In Preact we'll detect this and print an error. To learn more about how tables should be structured we can highly recommend [the mdn documentation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics)
+HTML parsers have very strict rules on how tables should be structured, deviating from which will lead to rendering errors that can be hard to debug. To help with this, Preact can detect improper nesting in a number of situations and will print warnings to catch this early. To learn more about how tables should be structured we can highly recommend [the MDN documentation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics).
+
+> **Note:** In this context, "strict" is referring to the _output_ of the HTML parser, not the _input_. Browsers are quite forgiving and try to correct invalid HTML where they can to ensure that pages can still be displayed. However, for VDOM libraries like Preact this can lead to issues as the input content might not match the output once the browser has corrected it which Preact will not be made aware of.
+>
+> For example, `<tr>` elements must always be a child of `<tbody>`, `<thead>`, or `<tfoot>` elements per the spec, but if you were to write a `<tr>` directly inside of a `<table>`, the browser will attempt to correct this by wrapping it in a `<tbody>` element for you. Preact will therefore expect the DOM structure to be `<table><tr></tr></table>` but the real DOM constructed by the browser would be `<table><tbody><tr></tr></tbody></table>`.
 
 ### Invalid `ref`-property
 
@@ -167,8 +171,8 @@ const [value, setValue] = useState(0);
 
 // valid
 function Foo() {
-  const [value, setValue] = useState(0);
-  return <button onClick={() => setValue(value + 1)}>{value}</button>;
+	const [value, setValue] = useState(0);
+	return <button onClick={() => setValue(value + 1)}>{value}</button>;
 }
 ```
 
@@ -176,7 +180,7 @@ function Foo() {
 
 With Preact X we did some breaking changes to our internal `vnode` shape.
 
-| Preact 8.x         | Preact 10.x/11.x       | 
+| Preact 8.x         | Preact 10.x            |
 | ------------------ | ---------------------- |
 | `vnode.nodeName`   | `vnode.type`           |
 | `vnode.attributes` | `vnode.props`          |
@@ -189,7 +193,9 @@ One unique aspect about virtual-dom based libraries is that they have to detect 
 ```jsx
 // Both children will have the same key "A"
 <div>
-  {['A', 'A'].map(char => <p key={char}>{char}</p>)}
+	{['A', 'A'].map(char => (
+		<p key={char}>{char}</p>
+	))}
 </div>
 ```
 
@@ -197,16 +203,20 @@ The correct way to do it is to give them unique keys. In most cases the data you
 
 ```jsx
 const persons = [
-  { name: 'John', age: 22 },
-  { name: 'Sarah', age: 24}
+	{ name: 'John', age: 22 },
+	{ name: 'Sarah', age: 24 }
 ];
 
 // Somewhere later in your component
 <div>
-  {persons.map(({ name, age }) => {
-    return <p key={name}>{name}, Age: {age}</p>;
-  })}
-</div>
+	{persons.map(({ name, age }) => {
+		return (
+			<p key={name}>
+				{name}, Age: {age}
+			</p>
+		);
+	})}
+</div>;
 ```
 
-[Preact Devtools]: https://preactjs.github.io/preact-devtools/
+[preact devtools]: https://preactjs.github.io/preact-devtools/
