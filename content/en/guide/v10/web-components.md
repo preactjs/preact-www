@@ -5,12 +5,9 @@ description: How to use web components with Preact
 
 # Web Components
 
-Preact's tiny size and standards-first approach make it a great choice for building web components.
+Web Components are a set of different technologies that allow you to create reusable, encapsulated custom HTML elements that are entirely framework-agnostic. Examples of Web Components include elements like `<material-card>` or `<tab-bar>`.
 
-Web Components are a set of standards that make it possible to build new HTML element types - Custom Elements like `<material-card>` or `<tab-bar>`.
-Preact [fully supports these standards](https://custom-elements-everywhere.com/#preact), allowing seamless use of Custom Element lifecycles, properties and events.
-
-Preact is designed to render both full applications and individual parts of a page, making it a natural fit for building Web Components. Many companies use it to build component or design systems that are then wrapped up into a set of Web Components, enabling re-use across multiple projects and within other frameworks.
+As a platform primitive, Preact [fully supports Web Components](https://custom-elements-everywhere.com/#preact), allowing seamless use of Custom Element lifecycles, properties, and events in your Preact apps.
 
 Preact and Web Components are complementary technologies: Web Components provide a set of low-level primitives for extending the browser, and Preact provides a high-level component model that can sit atop those primitives.
 
@@ -56,7 +53,7 @@ function Foo() {
 }
 ```
 
-> **Note:** Preact makes no assumptions over naming schemes and will not attempt to coerce names, in JSX or otherwise, to DOM properties. If a custom element has a property name `someProperty`, it will need to be set using `someProperty=...` rather than `some-property=...`.
+> **Note:** Preact makes no assumptions over naming schemes and will not attempt to coerce names, in JSX or otherwise, to DOM properties. If a custom element has a property name `someProperty`, then it will need to be set using that exact same capitalization and spelling (`someProperty=...`). `someproperty=...` or `some-property=...` will not work.
 
 When rendering static HTML using `preact-render-to-string` ("SSR"), complex property values like the object above are not automatically serialized. They are applied once the static HTML is hydrated on the client.
 
@@ -91,108 +88,4 @@ Preact normalizes the casing of standard built-in DOM Events, which are normally
 
 // Corrected: listens for "tabchange" event (lower-case)
 <tab-bar ontabchange={() => console.log('tab change')} />
-```
-
-## Creating a Web Component
-
-Any Preact component can be turned into a web component with [preact-custom-element](https://github.com/preactjs/preact-custom-element), a very thin wrapper that adheres to the Custom Elements v1 spec.
-
-```jsx
-import register from 'preact-custom-element';
-
-const Greeting = ({ name = 'World' }) => <p>Hello, {name}!</p>;
-
-register(Greeting, 'x-greeting', ['name'], { shadow: false });
-//          ^            ^           ^             ^
-//          |      HTML tag name     |       use shadow-dom
-//   Component definition      Observed attributes
-```
-
-> Note: As per the [Custom Element Specification](http://w3c.github.io/webcomponents/spec/custom/#prod-potentialcustomelementname), the tag name must contain a hyphen (`-`).
-
-Use the new tag name in HTML, attribute keys and values will be passed in as props:
-
-```html
-<x-greeting name="Billy Jo"></x-greeting>
-```
-
-Output:
-
-```html
-<p>Hello, Billy Jo!</p>
-```
-
-### Observed Attributes
-
-Web Components require explicitly listing the names of attributes you want to observe in order to respond when their values are changed. These can be specified via the third parameter that's passed to the `register()` function:
-
-```jsx
-// Listen to changes to the `name` attribute
-register(Greeting, 'x-greeting', ['name']);
-```
-
-If you omit the third parameter to `register()`, the list of attributes to observe can be specified using a static `observedAttributes` property on your Component. This also works for the Custom Element's name, which can be specified using a `tagName` static property:
-
-```jsx
-import register from 'preact-custom-element';
-
-// <x-greeting name="Bo"></x-greeting>
-class Greeting extends Component {
-	// Register as <x-greeting>:
-	static tagName = 'x-greeting';
-
-	// Track these attributes:
-	static observedAttributes = ['name'];
-
-	render({ name }) {
-		return <p>Hello, {name}!</p>;
-	}
-}
-register(Greeting);
-```
-
-If no `observedAttributes` are specified, they will be inferred from the keys of `propTypes` if present on the Component:
-
-```jsx
-// Other option: use PropTypes:
-function FullName({ first, last }) {
-	return (
-		<span>
-			{first} {last}
-		</span>
-	);
-}
-
-FullName.propTypes = {
-	first: Object, // you can use PropTypes, or this
-	last: Object // trick to define un-typed props.
-};
-
-register(FullName, 'full-name');
-```
-
-### Passing slots as props
-
-The `register()` function has a fourth parameter to pass options; currently, only the `shadow` option is supported, which attaches a shadow DOM tree to the specified element. When enabled, this allows the use of named `<slot>` elements to forward the Custom Element's children to specific places in the shadow tree.
-
-```jsx
-function TextSection({ heading, content }) {
-	return (
-		<div>
-			<h1>{heading}</h1>
-			<p>{content}</p>
-		</div>
-	);
-}
-
-register(TextSection, 'text-section', [], { shadow: true });
-```
-
-Usage:
-
-```html
-<text-section>
-	<span slot="heading">Nice heading</span>
-	<span slot="content">Great content</span>
-</text-section>
 ```
