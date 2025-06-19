@@ -55,7 +55,8 @@ function parseContent(content, path) {
 			//console.warn(`Missing description in FrontMatter for ${path}`);
 		}
 	} catch (e) {
-		throw new Error(`Error parsing YAML FrontMatter in ${path}`);
+		e.message = `Error parsing YAML FrontMatter in ${path}:\n\n ${e.message}`;
+		throw e;
 	}
 
 	content = content.replace(FRONT_MATTER_REG, '');
