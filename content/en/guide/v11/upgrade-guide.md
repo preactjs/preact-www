@@ -42,10 +42,10 @@ Refs are now forwarded by default, allowing them to be used just like any other 
 
 ```jsx
 function MyComponent({ ref }) {
-    return <h1 ref={ref}>Hello, world!</h1>;
+	return <h1 ref={ref}>Hello, world!</h1>;
 }
 
-<MyComponent ref={myRef} />
+<MyComponent ref={myRef} />;
 // Preact 10: myRef.current is an instance of MyComponent
 // Preact 11: myRef.current is the <h1> DOM element
 ```
@@ -55,11 +55,14 @@ If you need to continue to use the old behavior, you can use the following snipp
 ```js
 import { options } from 'preact';
 
+const oldVNode = options.vnode;
 options.vnode = (vnode) => {
     if (vnode.props.ref) {
         vnode.ref = vnode.props.ref;
         delete vnode.props.ref;
     }
+
+	if oldVNode) oldVNode(vnode);
 }
 ```
 
