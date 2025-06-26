@@ -32,11 +32,13 @@ TS v5.1 will be the new minimum supported version for the 11.x release line. If 
 
 Increasing our minimum TS version allows us to take advantage of some key improvements that the TS team has made for JSX typing, fixing a handful of long-standing & fundamental type issues that we could not address ourselves.
 
-### Remove `replaceNode` parameter from `render()`
+### ESM Bundles are distributed as `.mjs`
 
-The third & optional parameter to `render()` has been removed in Preact 11 as there were numerous bugs and edge cases with the implementation as well as some key use cases that it could not accommodate well.
+Preact 11.x will distribute all ESM bundles with the `.mjs` extension, dropping the `.module.js` copies that 10.x provided. This should correct some tooling issues that some users have experienced as well as simplify the distribution bundles.
 
-If this is something you still need, we provide a standalone, Preact 10-compatible implementation [here](https://gist.github.com/developit/f4c67a2ede71dc2fab7f357f39cff28c).
+The CJS & UMD bundles will continue to be provided and are unchanged.
+
+## API Changes
 
 ### Refs are forwarded by default
 
@@ -68,7 +70,7 @@ options.vnode = (vnode) => {
 }
 ```
 
-### Remove automatic `px` suffixing for style properties
+### Move automatic `px` suffixing for style properties into `preact/compat`
 
 Preact 11 has moved the automatic `px` suffixing for numeric style values from core into `preact/compat`.
 
@@ -77,3 +79,23 @@ Preact 11 has moved the automatic `px` suffixing for numeric style values from c
 // Preact 10: <h1 style="height:500px">Hello World!</h1>
 // Preact 11: <h1 style="height:500">Hello World!</h1>
 ```
+
+### Move `defaultProps` support into `preact/compat`
+
+This has been moved into `preact/compat` as it's less commonly used today due to the rise of functional components and hooks.
+
+### Remove `replaceNode` parameter from `render()`
+
+The third & optional parameter to `render()` has been removed in Preact 11 as there were numerous bugs and edge cases with the implementation as well as some key use cases that it could not accommodate well.
+
+If this is something you still need, we provide a [standalone, Preact 10-compatible implementation](https://gist.github.com/developit/f4c67a2ede71dc2fab7f357f39cff28c).
+
+### Remove `Component.base` property
+
+We're removing `Component.base` as it has always felt leaky to surface the DOM that is connected to the Component.
+
+If you still have a need for this you can access the DOM with `this.__v.__e`; `.__v` is a mangled property that refers to the VNode associated with the component, and `.__e` is the DOM node associated with that VNode.
+
+### Remove `SuspenseList` from `preact/compat`
+
+The implementation and server-side support has always been a bit unclear and incomplete, so we are choosing to remove it.
