@@ -375,7 +375,8 @@
 			scroll-margin-top: var(--header-height);
 		}
 
-		content-region[name*='v8'] & {
+		content-region[name*='v8'] &,
+		content-region[name*='v10'] & {
 			scroll-margin-top: calc(var(--header-and-banner-height) + 3.25rem);
 
 			@media (max-height: 431px) {
