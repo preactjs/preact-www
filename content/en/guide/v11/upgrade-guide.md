@@ -15,6 +15,17 @@ This document is intended to guide you through upgrading an existing Preact 10.x
 
 ## Getting your applications ready
 
+### Supported Browser Versions
+
+Preact 11.x will support the following browsers without any additional polyfills:
+
+- Chrome >= 40
+- Safari >= 9
+- Firefox >= 36
+- Edge >= 12
+
+If you need to support older browser versions, you will need to use polyfills.
+
 ### Supported TypeScript Versions
 
 TS v5.1 will be the new minimum supported version for the 11.x release line. If you are on an older version, please upgrade prior to upgrading to Preact 11.
