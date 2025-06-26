@@ -479,18 +479,6 @@
 						}
 					},
 					{
-						"path": "/external-dom-mutations",
-						"name": {
-							"en": "External DOM Mutations",
-							"pt-br": "Mutações do DOM externas",
-							"ja": "Preactのステート管理の範囲外のDOMとの連携",
-							"de": "Externe DOM Mutationen",
-							"zh": "外部 DOM 修改",
-							"kr": "외부 DOM 변경",
-							"ru": "Внешние мутации DOM"
-						}
-					},
-					{
 						"path": "/options",
 						"name": {
 							"en": "Option Hooks",
