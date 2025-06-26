@@ -48,7 +48,7 @@ To learn more about components and how they can be used, check out the [Componen
 
 ## render()
 
-`render(virtualDom, containerNode, [replaceNode])`
+`render(virtualDom, containerNode)`
 
 Render a Virtual DOM Element into a parent DOM element `containerNode`. Does not return anything.
 
@@ -66,34 +66,6 @@ render(<Foo />, document.getElementById('container'));
 // After render:
 // <div id="container">
 //  <div>foo</div>
-// </div>
-```
-
-If the optional `replaceNode` parameter is provided, it must be a child of `containerNode`. Instead of inferring where to start rendering, Preact will update or replace the passed element using its diffing algorithm.
-
-> ⚠️ The `replaceNode`-argument will be removed with Preact `v11`. It introduces too many edge cases and bugs which need to be accounted for in the rest of Preact's source code. We're leaving this section up for historical reasons, but we don't recommend anyone to use the third `replaceNode` argument.
-
-```jsx
-// DOM tree before render:
-// <div id="container">
-//   <div>bar</div>
-//   <div id="target">foo</div>
-// </div>
-
-import { render } from 'preact';
-
-const Foo = () => <div id="target">BAR</div>;
-
-render(
-	<Foo />,
-	document.getElementById('container'),
-	document.getElementById('target')
-);
-
-// After render:
-// <div id="container">
-//   <div>bar</div>
-//   <div id="target">BAR</div>
 // </div>
 ```
 
