@@ -15,12 +15,12 @@ export function rssFeedPlugin() {
 				id: 'https://preactjs.com',
 				link: 'https://preactjs.com',
 				language: 'en',
-				image: 'https://preactjs.com/assets/branding/symbol.png',
+				image: 'https://preactjs.com/branding/symbol.png',
 				favicon: 'https://preactjs.com/favicon.ico',
 				copyright: 'All rights reserved 2022, the Preact team',
 				feedLinks: {
-					json: 'https://preactjs.com/json',
-					atom: 'https://preactjs.com/atom'
+					rss: 'https://preactjs.com/feed.xml',
+					atom: 'https://preactjs.com/feed.atom'
 				}
 			});
 
@@ -39,7 +39,7 @@ export function rssFeedPlugin() {
 					.split('\n')
 					.filter(
 						line =>
-							line !==
+							line.trim() !==
 							'<generator>https://github.com/jpmonette/feed</generator>'
 					)
 					.join('\n');
