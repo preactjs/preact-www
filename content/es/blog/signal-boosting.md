@@ -212,7 +212,7 @@ Cada vez que una función de cálculo/efecto comienza a evaluar, necesita una fo
 
 Al final, los signals y los efectos siempre tienen una visión actualizada de sus dependencias y dependientes. Cada signal puede entonces notificar a sus dependientes cada vez que su valor ha cambiado. Los efectos y los signals calculados pueden referirse a sus conjuntos de dependencias para darse de baja de esas notificaciones cuando, por ejemplo, un efecto es eliminado.
 
-![Signals and effects always have an up-to-date view of their dependencies (sources) and dependents (targets)](/assets/signals/signal-boosting-01.png)
+![Signals and effects always have an up-to-date view of their dependencies (sources) and dependents (targets)](/signals/signal-boosting-01.png)
 
 El mismo signal puede leerse varias veces dentro del mismo contexto de evaluación. En tales casos, sería útil hacer algún tipo de deduplicación para las entradas de dependencias y dependientes. También necesitamos una forma de gestionar los conjuntos cambiantes de dependencias: reconstruir el conjunto de dependencias en cada ejecución o añadir/eliminar incrementalmente dependencias/dependientes.
 
@@ -220,7 +220,7 @@ Los objetos [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 Sin embargo, nos preguntábamos si existen enfoques alternativos. Los Sets pueden ser relativamente caros de crear, y al menos los signals calculaods pueden necesitar dos Sets separados: uno para las dependencias y otro para los dependientes. Jason estaba siendo un _Jason total_ otra vez y [comparó](https://esbench.com/bench/6317fc2a6c89f600a5701bc9) cómo le va a la iteración de Set frente a Arrays. Habrá mucha iteración, así que todo suma.
 
-![Set iteration is just a tad slower than Array iteration](/assets/signals/signal-boosting-01b.png)
+![Set iteration is just a tad slower than Array iteration](/signals/signal-boosting-01b.png)
 
 Los Sets también tienen la propiedad de ser iterados en orden de inserción. Lo que está muy bien - que es justo lo que necesitamos más tarde cuando nos ocupamos de almacenamiento en caché. Pero existe la posibilidad de que el orden no sea siempre el mismo. Observa el siguiente escenario:
 
@@ -259,15 +259,15 @@ Resulta que estas operaciones son todo lo que necesitamos para gestionar depende
 
 Empecemos creando un "Nodo fuente" para cada relación de dependencia. El atributo `source` del Nodo apunta a la señal de la que depende. Cada Nodo tiene las propiedades `nextSource` y `prevSource` que apuntan al siguiente y anterior Nodo fuente en la lista de dependencias, respectivamente. Los efectos o signals calculados obtienen un atributo `sources` que apunta al primer Nodo de la lista. Ahora podemos iterar a través de las dependencias, insertar una nueva dependencia y eliminar dependencias de la lista para reordenarlas.
 
-![Effects and computed signals keep their dependencies in a doubly-linked list](/assets/signals/signal-boosting-02.png)
+![Effects and computed signals keep their dependencies in a doubly-linked list](/signals/signal-boosting-02.png)
 
 Ahora hagamos lo mismo en la otra dirección: Para cada dependiente, creemos un "Nodo objetivo". El atributo `target` del Nodo apunta al efecto dependiente o signal calculado. `nextTarget` y `prevTarget` construyen una lista doblemente enlazada. Los signals simples y computados obtienen un atributo `targets` que apunta al primer Nodo objetivo en su lista de dependientes.
 
-![Signals keep their dependents in a doubly-linked list](/assets/signals/signal-boosting-03.png)
+![Signals keep their dependents in a doubly-linked list](/signals/signal-boosting-03.png)
 
 Pero oye, las dependencias y los dependientes vienen en pares. Por cada Nodo fuente **debe** haber un Nodo objetivo correspondiente. Podemos explotar este hecho y fusionar los "Nodos fuente" y "Nodos objetivo" en solo "Nodos". Cada Nodo se convierte en una especie de monstruosidad cuádruple enlazada que el dependiente puede usar como parte de su lista de dependencias, y viceversa.
 
-![Each Node becomes a sort of quad-linked monstrosity that the dependent can use as a part of its dependency list, and vice versa](/assets/signals/signal-boosting-04.png)
+![Each Node becomes a sort of quad-linked monstrosity that the dependent can use as a part of its dependency list, and vice versa](/signals/signal-boosting-04.png)
 
 A cada Nodo se le pueden adjuntar cosas adicionales con fines de mantenimiento. Antes de cada función de computación/efecto, iteramos a través de las dependencias previas y establecemos la bandera "sin usar" de cada Nodo. También almacenamos temporalmente el Nodo en su propiedad `.source.node` para usarlo después. La función puede entonces comenzar su ejecución.
 
