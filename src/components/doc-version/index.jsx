@@ -1,6 +1,6 @@
 import { useCallback } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
-import config from '../../config.json';
+import { docRoutes } from '../../lib/route-utils.js';
 import style from './style.module.css';
 
 export const LATEST_MAJOR = 'v10';
@@ -17,7 +17,7 @@ export default function DocVersion() {
 	const onChange = useCallback(
 		e => {
 			const version = e.currentTarget.value;
-			const url = config.docs[version]?.[name]
+			const url = docRoutes[version]?.[`/${name}`]
 				? path.replace(/(v\d{1,2})/, version)
 				: `/guide/${version}/getting-started`;
 			route(url);
