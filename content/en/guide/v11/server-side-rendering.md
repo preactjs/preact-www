@@ -70,35 +70,6 @@ console.log(html);
 // <h1>Home page</h1>
 ```
 
-> **Note:** Unfortunately there's a handful of known limitations in Preact v10's implementation of "resumed hydration" — that is, hydration that can pause and wait for JS chunks or data to be downloaded & available before continuing. This has been solved in the upcoming Preact v11 release.
->
-> For now, you'll want to avoid async boundaries that return 0 or more than 1 DOM node as children, such as in the following examples:
->
-> ```jsx
-> function X() {
->   // Some lazy operation, such as initializing analytics
->   return null;
-> };
->
-> const LazyOperation = lazy(() => /* import X */);
-> ```
->
-> ```jsx
-> function Y() {
->   // `<Fragment>` disappears upon rendering, leaving two `<p>` DOM elements
->   return (
->     <Fragment>
->       <p>Foo</p>
->       <p>Bar</p>
->     </Fragment>
->   );
-> };
->
-> const SuspendingMultipleChildren = lazy(() => /* import Y */);
-> ```
->
-> For a more comprehensive write up of the known problems and how we have addressed them, please see [Hydration 2.0 (preactjs/preact#4442)](https://github.com/preactjs/preact/issues/4442)
-
 ## HTML Streams
 
 Streaming is a method of rendering that allows you to send parts of your Preact application to the client as they are ready rather than waiting for the entire render to complete.
