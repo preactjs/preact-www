@@ -1,4 +1,5 @@
 import { useEffect } from 'preact/hooks';
+import { useLocation } from 'preact-iso';
 
 import { createTitle } from './page-title';
 import { getContent } from './content.js';
@@ -59,14 +60,17 @@ export function prefetchContent(path) {
  * @param {string} title
  */
 export function useTitle(title) {
+	const { url } = useLocation();
+
 	if (typeof window === 'undefined') {
 		globalThis.title = createTitle(title);
 	}
+
 	useEffect(() => {
 		if (title) {
 			document.title = createTitle(title);
 		}
-	}, [title]);
+	}, [title, url]);
 }
 
 /**

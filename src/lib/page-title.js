@@ -7,16 +7,17 @@ export function createTitle(title) {
 	// Titles for various content areas
 	let suffix = '';
 	switch (true) {
-		// Shouldn't be an issue, but `startsWith` is wildly faster than `includes`
 		case url.startsWith('/guide/v11'):
-		case url.startsWith('/guide/v10'):
 			suffix = 'Preact Guide';
+			break;
+		case url.startsWith('/guide/v10'):
+			suffix = 'Preact Guide v10';
+			break;
+		case url.startsWith('/guide/v8'):
+			suffix = 'Preact Guide v8';
 			break;
 		case url.startsWith('/tutorial'):
 			suffix = 'Preact Tutorial';
-			break;
-		case url.startsWith('/guide/v8'):
-			suffix = 'Preact Version 8';
 			break;
 		default:
 			suffix = 'Preact';
