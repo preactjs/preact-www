@@ -2,35 +2,10 @@ import fs from 'fs/promises';
 import fsSync from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { parseFrontmatter, cleanReplComments } from '../src/lib/frontmatter.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/**
- * Extract title and description from frontmatter
- * @param {string} content
- * @returns {{title: string, description: string, body: string}}
- */
-function parseFrontmatter(content) {
-	const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
-	const match = content.match(frontmatterRegex);
-
-	if (!match) {
-		return { title: '', description: '', body: content };
-	}
-
-	const frontmatter = match[1];
-	const body = match[2];
-
-	const titleMatch = frontmatter.match(/^title:\s*(.+)$/m);
-	const descriptionMatch = frontmatter.match(/^description:\s*(.+)$/m);
-
-	return {
-		title: titleMatch ? titleMatch[1].trim() : '',
-		description: descriptionMatch ? descriptionMatch[1].trim() : '',
-		body: body.trim()
-	};
-}
 
 /**
  * Read all markdown files from the guide directory
@@ -59,12 +34,6 @@ function generateLlmsTxt(files) {
 	const header = `# Preact Documentation
 
 This file contains comprehensive documentation for Preact v10, a fast 3kB alternative to React with the same modern API.
-
-Generated on: ${new Date().toISOString()}
-Source: https://github.com/preactjs/preact-www
-
-## Overview
-
 Preact is a fast, lightweight alternative to React that provides the same modern API in a much smaller package. This documentation covers all aspects of Preact v10, including components, hooks, server-side rendering, TypeScript support, and more.
 
 ---
@@ -76,16 +45,24 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 	files.sort((a, b) => a.filename.localeCompare(b.filename));
 
 	files.forEach(({ filename, content: fileContent }) => {
-		const { title, description, body } = parseFrontmatter(fileContent);
+		const { description, body } = parseFrontmatter(fileContent, filename);
+		let cleanedBody = cleanReplComments(body);
 
-		content += `## ${title || filename.replace('.md', '')}\n\n`;
+		// Remove <toc></toc> tags
+		cleanedBody = cleanedBody.replace(/<toc><\/toc>/g, '');
+
+		// Clean up multiple consecutive newlines and empty lines around separators
+		cleanedBody = cleanedBody.replace(/\n{3,}/g, '\n\n');
+		cleanedBody = cleanedBody.replace(/---\s*\n\s*\n\s*---/g, '');
+
+		// Fix heading hierarchy: convert # to ## for consistency
+		cleanedBody = cleanedBody.replace(/^# /gm, '## ');
 
 		if (description) {
 			content += `**Description:** ${description}\n\n`;
 		}
 
-		content += `**Source:** content/en/guide/v10/${filename}\n\n`;
-		content += `${body}\n\n`;
+		content += `${cleanedBody}\n\n`;
 		content += `---\n\n`;
 	});
 
