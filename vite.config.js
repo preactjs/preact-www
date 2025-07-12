@@ -8,6 +8,7 @@ import { netlifyPlugin } from './plugins/netlify.js';
 import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.js';
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
+import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 
 // TODO: Should we do this for all routes, rely on discovery a bit less?
 import { tutorialRoutes } from './src/lib/route-utils.js';
@@ -44,7 +45,8 @@ export default defineConfig({
 				{
 					src: './content/**/*.md',
 					dest: './',
-					rename: (_name, _fileExtension, fullPath) => path.basename(fullPath).replace(/\.md$/, '.json'),
+					rename: (_name, _fileExtension, fullPath) =>
+						path.basename(fullPath).replace(/\.md$/, '.json'),
 					transform: precompileMarkdown
 				}
 			],
@@ -74,6 +76,7 @@ export default defineConfig({
 		netlifyPlugin(),
 		spaFallbackMiddlewarePlugin(),
 		htmlRoutingMiddlewarePlugin(),
-		rssFeedPlugin()
+		rssFeedPlugin(),
+		generateLlmsTxtPlugin()
 	]
 });
