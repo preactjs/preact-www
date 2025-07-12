@@ -1,10 +1,10 @@
-import yaml from 'yaml';
 import { marked } from 'marked';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
+import { parseFrontmatter } from '../../src/lib/frontmatter.js';
 
 // Prism will always load `markup`, `css`, `clike` and `javascript` by default.
 // Any additional languages we need should be loaded here
@@ -38,41 +38,23 @@ export async function precompileMarkdown(content, path) {
  * @param {string} path
  */
 function parseContent(content, path) {
-	/** @type {import('../../src/types.d.ts').ContentMetaData} */
-	let meta = {};
+	const { body, meta } = parseFrontmatter(content, path);
 
-	// Find YAML FrontMatter preceeding a markdown document
-	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
-
-	const matches = content.match(FRONT_MATTER_REG);
-	if (!matches) throw new Error(`Missing YAML FrontMatter in ${path}`);
-	try {
-		meta = yaml.parse('---\n' + matches[1].replace(/^/gm, '  ') + '\n');
-		if (!meta.title) {
-			throw new Error(`Missing title in YAML FrontMatter for ${path}`);
-		}
-		if (!meta.description) {
-			//console.warn(`Missing description in FrontMatter for ${path}`);
-		}
-	} catch (e) {
-		throw new Error(`Error parsing YAML FrontMatter in ${path}`);
-	}
-
-	content = content.replace(FRONT_MATTER_REG, '');
+	let processedContent = body;
 
 	if (path.includes('/guide/')) {
-		meta.toc = generateToc(content);
+		meta.toc = generateToc(processedContent);
 	}
 
 	// extract tutorial setup, initial and final code blocks
 	if (/tutorial\/\d/.test(path)) {
-		const { markdown, tutorial } = extractTutorialCodeBlocks(content);
-		content = markdown;
+		const { markdown, tutorial } = extractTutorialCodeBlocks(processedContent);
+		processedContent = markdown;
 		meta.tutorial = tutorial;
 	}
 
 	return {
-		content,
+		content: processedContent,
 		meta
 	};
 }
@@ -121,10 +103,12 @@ marked.use({
 
 			Prism.languages[lang] == null
 				? console.warn(`No Prism highlighter for language: ${lang}`)
-				: text = Prism.highlight(code, Prism.languages[lang], lang);
+				: (text = Prism.highlight(code, Prism.languages[lang], lang));
 
 			const runInReplLink = runInRepl
-				? `<a class="repl-link" href="/repl?code=${encodeURIComponent(textToBase64(source))}">Run in REPL</a>`
+				? `<a class="repl-link" href="/repl?code=${encodeURIComponent(
+						textToBase64(source)
+				  )}">Run in REPL</a>`
 				: '';
 
 			return `
@@ -227,7 +211,9 @@ function highlightCodeBlocks(data) {
 	const doc = parse(data.html, { blockTextElements: { code: true } });
 
 	// Only get the pre blocks that haven't already been highlighted
-	const codeBlocks = doc.querySelectorAll('pre:not([class="highlight"]):has(> code[class])');
+	const codeBlocks = doc.querySelectorAll(
+		'pre:not([class="highlight"]):has(> code[class])'
+	);
 	for (const block of codeBlocks) {
 		const child = block.childNodes[0];
 
@@ -243,16 +229,21 @@ function highlightCodeBlocks(data) {
 		 * and switch it back to `\n` for the code content after marked is through with it.
 		 * We only do this on the home/index page at the moment.
 		 */
-		const rawCodeBlockText = unescapeHTML(child.innerText.trim().replace('<br>', '\n'));
+		const rawCodeBlockText = unescapeHTML(
+			child.innerText.trim().replace('<br>', '\n')
+		);
 		const [code, source, runInRepl] = processRepl(rawCodeBlockText);
 
 		const lang = child.getAttribute('class').replace('language-', '');
 
 		Prism.languages[lang] == null
 			? console.warn(`No Prism highlighter for language: ${lang}`)
-			: child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang);
+			: (child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang));
 
-		block.insertAdjacentHTML('beforebegin', '<div class="highlight-container">');
+		block.insertAdjacentHTML(
+			'beforebegin',
+			'<div class="highlight-container">'
+		);
 		const container = block.previousSibling;
 		container.appendChild(block);
 		block.setAttribute('class', 'highlight');
@@ -260,7 +251,9 @@ function highlightCodeBlocks(data) {
 		if (runInRepl) {
 			block.insertAdjacentHTML(
 				'afterend',
-				`<a class="repl-link" href="/repl?code=${encodeURIComponent(textToBase64(source))}">
+				`<a class="repl-link" href="/repl?code=${encodeURIComponent(
+					textToBase64(source)
+				)}">
 					Run in REPL
 				</a>`
 			);
@@ -271,7 +264,6 @@ function highlightCodeBlocks(data) {
 	return data;
 }
 
-
 /**
  * Marked escapes HTML entities, which is normally great,
  * but we want to feed the raw code into Prism for highlighting.
@@ -280,12 +272,12 @@ function highlightCodeBlocks(data) {
  * @returns {string}
  */
 function unescapeHTML(str) {
-    return str
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'");
+	return str
+		.replace(/&amp;/g, '&')
+		.replace(/&lt;/g, '<')
+		.replace(/&gt;/g, '>')
+		.replace(/&quot;/g, '"')
+		.replace(/&#39;/g, "'");
 }
 
 /**
