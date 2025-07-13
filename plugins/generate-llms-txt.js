@@ -63,7 +63,7 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 		}
 
 		content += `${cleanedBody}\n\n`;
-		content += `---\n\n`;
+		content += `------\n\n`;
 	});
 
 	return content;
