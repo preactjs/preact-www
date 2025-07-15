@@ -83,6 +83,7 @@ export default function generateLlmsTxtPlugin(options = {}) {
 
 	return {
 		name: 'generate-llms-txt',
+		apply: 'build',
 		async buildStart() {
 			try {
 				if (!fsSync.existsSync(guideDir)) {
