@@ -238,17 +238,6 @@
 						}
 					},
 					{
-						"path": "/whats-new",
-						"name": {
-							"en": "What's new?",
-							"ja": "Preact Xの新機能",
-							"pt-br": "o que há de novo",
-							"zh": "新鲜功能",
-							"kr": "새로운 기능",
-							"ru": "Что нового?"
-						}
-					},
-					{
 						"path": "/upgrade-guide",
 						"name": {
 							"en": "Upgrading from 10.x",
