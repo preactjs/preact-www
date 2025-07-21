@@ -3,6 +3,7 @@ import fsSync from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parseFrontmatter, cleanReplComments } from '../src/lib/frontmatter.js';
+import { v10StructuredDocRoutes } from '../src/lib/route-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,29 +43,42 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 
 	let content = header;
 
-	files.sort((a, b) => a.filename.localeCompare(b.filename));
+	for (const section of v10StructuredDocRoutes) {
+		content += `## ${section.name}\n\n`;
 
-	files.forEach(({ filename, content: fileContent }) => {
-		const { description, body } = parseFrontmatter(fileContent, filename);
-		let cleanedBody = cleanReplComments(body);
+		for (const route of section.routes) {
+			const { filename, content: fileContent } = files.find(
+				file => file.filename === `${route.replace('/', '')}.md`
+			);
 
-		// Remove <toc></toc> tags
-		cleanedBody = cleanedBody.replace(/<toc><\/toc>/g, '');
+			const { description, body } = parseFrontmatter(fileContent, filename);
+			let cleanedBody = cleanReplComments(body);
 
-		// Clean up multiple consecutive newlines and empty lines around separators
-		cleanedBody = cleanedBody.replace(/\n{3,}/g, '\n\n');
-		cleanedBody = cleanedBody.replace(/---\s*\n\s*\n\s*---/g, '');
+			// Remove <toc></toc> tags
+			cleanedBody = cleanedBody.replace(/<toc><\/toc>/g, '');
 
-		// Fix heading hierarchy: convert # to ## for consistency
-		cleanedBody = cleanedBody.replace(/^# /gm, '## ');
+			// Clean up multiple consecutive newlines and empty lines around separators
+			cleanedBody = cleanedBody.replace(/\n{3,}/g, '\n\n');
+			cleanedBody = cleanedBody.replace(/---\s*\n\s*\n\s*---/g, '');
 
-		if (description) {
-			content += `**Description:** ${description}\n\n`;
+			// Fix heading hierarchy: page headings should be 3 levels deep to accommodate
+			// the llms document heading & the section headings for page/concept groups.
+			cleanedBody = cleanedBody
+				.replace(/^#### /gm, '###### ')
+				.replace(/^### /gm, '##### ')
+				.replace(/^## /gm, '#### ')
+				// Not `/g` as there should only be one top-level heading per file
+				// and this would conflict with bash comments that we have in a few places.
+				.replace(/^# /m, '### ');
+
+			if (description) {
+				content += `**Description:** ${description}\n\n`;
+			}
+
+			content += `${cleanedBody}\n\n`;
+			content += `------\n\n`;
 		}
-
-		content += `${cleanedBody}\n\n`;
-		content += `------\n\n`;
-	});
+	}
 
 	return content;
 }

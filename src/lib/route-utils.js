@@ -35,6 +35,14 @@ for (const k in config.docs) {
 	docRoutes[k] = flattenRoutes(config.docs[k]);
 }
 
+export const v10StructuredDocRoutes = [];
+for (const k of config.docs.v10) {
+	v10StructuredDocRoutes.push({
+		name: k.name.en,
+		routes: k.routes.map(route => route.path)
+	});
+}
+
 export const blogRoutes = flattenRoutes(config.blog);
 
 export const tutorialRoutes = flattenRoutes(config.tutorial);
