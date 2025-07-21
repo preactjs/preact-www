@@ -30,8 +30,6 @@ Preactはビルドやツールなしでブラウザで直に使うためのパ�
 </script>
 ```
 
-[🔨 Glitch上で編集する](https://glitch.com/~preact-no-build-tools)
-
 この方法で開発する欠点はJSX（ビルドが必要）が使えないことです。代わりに使用できるパフォーマンスの良い便利な方法を次に説明します。
 
 ### JSXの代替
@@ -57,8 +55,6 @@ HTMは今までのフロントエンドのビルドツールよりシンプル�
   render(app, document.body);
 </script>
 ```
-
-[🔨 Glitch上で編集する](https://glitch.com/~preact-with-htm)
 
 HTMについて詳しく知りたい場合はHTMの[ドキュメント][htm]をチェックしてください。
 
