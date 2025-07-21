@@ -31,8 +31,6 @@ Preact is packaged to be used directly in the browser, and doesn't require any b
 </script>
 ```
 
-[🔨 Edit on Glitch](https://glitch.com/~preact-no-build-tools)
-
 The primary drawback of developing this way is the lack of JSX, which requires a build step. An ergonomic and performant alternative to JSX is documented in the next section.
 
 ### Alternatives to JSX
@@ -61,8 +59,6 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 	);
 </script>
 ```
-
-[🔨 Edit on Glitch](https://glitch.com/~preact-with-htm)
 
 > **Tip:** HTM also provides a convenient single-import Preact version:
 >

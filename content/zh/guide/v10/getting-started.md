@@ -30,8 +30,6 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
 </script>
 ```
 
-[🔨 在 Glitch 上编辑](https://glitch.com/~preact-no-build-tools)
-
 此方法的一大缺点是缺少需要构建的 JSX。我们会在下一小节中提供既符合人体工程学，又性能极高的 JSX 替代选项。
 
 ### JSX 的替代选项
@@ -55,8 +53,6 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
   render(html`<${App} name="World" />`, document.body);
 </script>
 ```
-
-[🔨 在 Glitch 上编辑](https://glitch.com/~preact-with-htm)
 
 > **小提示：**HTM 还提供了一键 import 的 Preact 版本：
 >
