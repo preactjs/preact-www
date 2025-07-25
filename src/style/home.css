@@ -189,5 +189,9 @@ main .markup {
 			box-sizing: border-box;
 			width: 75%;
 		}
+		ul {
+			max-height: 340px;
+			overflow-y: scroll;
+		}
 	}
 }
