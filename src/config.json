@@ -1,18 +1,16 @@
 {
-	"title": "Preact: Fast 3kb React alternative with the same ES6 API. Components & Virtual DOM.",
-	"name": "Preact",
 	"languages": {
 		"en": "English",
-		"ja": "Japanese",
-		"zh": "简体中文",
-		"fr": "French",
-		"es": "Spanish",
-		"tr": "Turkish",
-		"pt-br": "Brazilian Portuguese",
 		"de": "German",
+		"es": "Spanish",
+		"fr": "French",
 		"it": "Italian",
+		"ja": "Japanese",
 		"kr": "Korean",
-		"ru": "Русский"
+		"pt-br": "Brazilian Portuguese",
+		"ru": "Русский",
+		"tr": "Turkish",
+		"zh": "简体中文"
 	},
 	"repo": "preact",
 	"docsearch": {
@@ -23,37 +21,37 @@
 	"i18n": {
 		"next": {
 			"en": "Next Page",
-			"ja": "次のページ",
 			"de": "Nächste Seite",
-			"fr": "Page Suivante",
 			"es": "Siguiente Página",
-			"tr": "Sonraki Sayfa",
+			"fr": "Page Suivante",
 			"it": "Pagina Successiva",
-			"pt-br": "Próxima Página",
-			"zh": "下一页",
+			"ja": "次のページ",
 			"kr": "다음",
-			"ru": "Следующая страница"
+			"pt-br": "Próxima Página",
+			"ru": "Следующая страница",
+			"tr": "Sonraki Sayfa",
+			"zh": "下一页"
 		},
 		"previous": {
 			"en": "Previous Page",
-			"ja": "前のページ",
 			"de": "Vorherige Seite",
-			"fr": "Page Précédente",
 			"es": "Pagina Anterior",
-			"tr": "Önceki Sayfa",
+			"fr": "Page Précédente",
 			"it": "Pagina Precedente",
-			"pt-br": "Página Anterior",
-			"zh": "上一页",
+			"ja": "前のページ",
 			"kr": "이전",
-			"ru": "Предыдущая страница"
+			"pt-br": "Página Anterior",
+			"ru": "Предыдущая страница",
+			"tr": "Önceki Sayfa",
+			"zh": "上一页"
 		},
 		"continueReading": {
 			"en": "Continue reading",
 			"de": "Weiter lesen",
-			"zh": "继续阅读",
 			"es": "Seguir leyendo",
 			"kr": "계속 읽기",
-			"ru": "Продолжить чтение"
+			"ru": "Продолжить чтение",
+			"zh": "继续阅读"
 		},
 		"tutorial": {
 			"begin": {
@@ -106,12 +104,12 @@
 			"name": {
 				"en": "Guide",
 				"de": "Anleitung",
-				"pt-br": "Guia",
-				"ja": "ガイド",
 				"es": "Guía",
-				"zh": "指南",
+				"ja": "ガイド",
 				"kr": "가이드",
-				"ru": "Руководство"
+				"pt-br": "Guia",
+				"ru": "Руководство",
+				"zh": "指南"
 			},
 			"content": "guide",
 			"path": "/guide/:version?/:page?",
@@ -121,12 +119,12 @@
 			"name": {
 				"en": "About",
 				"de": "Mehr",
-				"pt-br": "Sobre",
-				"ja": "情報",
 				"es": "Sobre",
-				"zh": "关于",
+				"ja": "情報",
 				"kr": "소개",
-				"ru": "Разное"
+				"pt-br": "Sobre",
+				"ru": "Разное",
+				"zh": "关于"
 			},
 			"content": "about",
 			"routes": [
@@ -135,12 +133,12 @@
 					"name": {
 						"en": "Companies using Preact",
 						"de": "Firmen die Preact benutzen",
-						"pt-br": "Empresas que usam Preact",
-						"ja": "Preactを使っている企業",
 						"es": "Empresas que usan Preact",
-						"zh": "使用 Preact 的企业",
+						"ja": "Preactを使っている企業",
 						"kr": "Preact를 사용하는 기업",
-						"ru": "Используют Preact"
+						"pt-br": "Empresas que usam Preact",
+						"ru": "Используют Preact",
+						"zh": "使用 Preact 的企业"
 					}
 				},
 				{
@@ -148,12 +146,12 @@
 					"name": {
 						"en": "Libraries & Add-ons",
 						"de": "Bibliotheken & Erweiterungen",
-						"pt-br": "Bibliotecas e Complementos",
-						"ja": "ライブラリとアドオン",
 						"es": "Librerías y complementos",
-						"zh": "第三方库和附加组件",
+						"ja": "ライブラリとアドオン",
 						"kr": "라이브러리 & 애드온",
-						"ru": "Библиотеки и дополнения"
+						"pt-br": "Bibliotecas e Complementos",
+						"ru": "Библиотеки и дополнения",
+						"zh": "第三方库和附加组件"
 					}
 				},
 				{
@@ -161,12 +159,12 @@
 					"name": {
 						"en": "Demos & Examples",
 						"de": "Beispiel-Projekte",
-						"pt-br": "Demonstrações e exemplos",
-						"ja": "デモと例",
 						"es": "Demostraciones y ejemplos",
-						"zh": "示例",
+						"ja": "デモと例",
 						"kr": "데모 & 예제",
-						"ru": "Демонстрации и примеры"
+						"pt-br": "Demonstrações e exemplos",
+						"ru": "Демонстрации и примеры",
+						"zh": "示例"
 					}
 				},
 				{
@@ -174,12 +172,12 @@
 					"name": {
 						"en": "Project Goals",
 						"de": "Projekt-Ziele",
-						"pt-br": "Objetivos do Projeto",
-						"ja": "Preactの目的",
 						"es": "Objetivos del proyecto",
-						"zh": "项目目标",
+						"ja": "Preactの目的",
 						"kr": "프로젝트 목표",
-						"ru": "Цели проекта"
+						"pt-br": "Objetivos do Projeto",
+						"ru": "Цели проекта",
+						"zh": "项目目标"
 					}
 				},
 				{
@@ -187,12 +185,12 @@
 					"name": {
 						"en": "Browser Support",
 						"de": "Browserunterstützung",
-						"pt-br": "Suporte do navegador",
-						"ja": "ブラウザのサポート",
 						"es": "Soporte de navegadores",
-						"zh": "浏览器支持",
+						"ja": "ブラウザのサポート",
 						"kr": "브라우저 지원",
-						"ru": "Поддержка браузеров"
+						"pt-br": "Suporte do navegador",
+						"ru": "Поддержка браузеров",
+						"zh": "浏览器支持"
 					}
 				}
 			]
@@ -246,8 +244,8 @@
 							"en": "What's new?",
 							"ja": "新機能",
 							"kr": "새로운 기능",
-							"ru": "Что нового?",
 							"pt-br": "o que há de novo",
+							"ru": "Что нового?",
 							"zh": "新鲜功能"
 						}
 					},
@@ -255,12 +253,12 @@
 						"path": "/upgrade-guide",
 						"name": {
 							"en": "Upgrading from 8.x",
-							"pt-br": "Fazendo upgrade do 8.x",
-							"ja": "Preact 8.xからのアップグレード",
 							"de": "Migration von 8.x",
-							"zh": "从 8.x 版本更新",
+							"ja": "Preact 8.xからのアップグレード",
 							"kr": "8.x에서 업그레이드하기",
-							"ru": "Обновление с 8.x"
+							"pt-br": "Fazendo upgrade do 8.x",
+							"ru": "Обновление с 8.x",
+							"zh": "从 8.x 版本更新"
 						}
 					}
 				]
@@ -268,78 +266,78 @@
 			{
 				"name": {
 					"en": "Essentials",
-					"zh": "基础",
 					"kr": "필수 항목",
-					"ru": "Основы"
+					"ru": "Основы",
+					"zh": "基础"
 				},
 				"routes": [
 					{
 						"path": "/components",
 						"name": {
 							"en": "Components",
-							"pt-br": "Componentes",
-							"ja": "コンポーネント",
 							"de": "Komponenten",
-							"zh": "组件",
+							"ja": "コンポーネント",
 							"kr": "컴포넌트",
-							"ru": "Компоненты"
+							"pt-br": "Componentes",
+							"ru": "Компоненты",
+							"zh": "组件"
 						}
 					},
 					{
 						"path": "/hooks",
 						"name": {
 							"en": "Hooks",
-							"pt-br": "Hooks",
-							"ja": "フック(Hooks)",
 							"de": "Hooks",
-							"zh": "钩子",
+							"ja": "フック(Hooks)",
 							"kr": "훅",
-							"ru": "Хуки"
+							"pt-br": "Hooks",
+							"ru": "Хуки",
+							"zh": "钩子"
 						}
 					},
 					{
 						"path": "/signals",
 						"name": {
 							"en": "Signals",
-							"zh": "信号",
 							"kr": "시그널",
-							"ru": "Сигналы"
+							"ru": "Сигналы",
+							"zh": "信号"
 						}
 					},
 					{
 						"path": "/forms",
 						"name": {
 							"en": "Forms",
-							"pt-br": "Formulários",
-							"ja": "フォーム",
 							"de": "Formulare",
-							"zh": "表单",
+							"ja": "フォーム",
 							"kr": "폼",
-							"ru": "Формы"
+							"pt-br": "Formulários",
+							"ru": "Формы",
+							"zh": "表单"
 						}
 					},
 					{
 						"path": "/refs",
 						"name": {
 							"en": "References",
-							"pt-br": "Referências",
-							"ja": "リファレンス(Ref)",
 							"de": "Referenzen",
-							"zh": "引用",
+							"ja": "リファレンス(Ref)",
 							"kr": "레퍼런스",
-							"ru": "Рефы"
+							"pt-br": "Referências",
+							"ru": "Рефы",
+							"zh": "引用"
 						}
 					},
 					{
 						"path": "/context",
 						"name": {
 							"en": "Context",
-							"pt-br": "Contexto",
-							"ja": "コンテキスト(Context)",
 							"de": "Kontext",
-							"zh": "上下文",
+							"ja": "コンテキスト(Context)",
 							"kr": "컨텍스트",
-							"ru": "Контекст"
+							"pt-br": "Contexto",
+							"ru": "Контекст",
+							"zh": "上下文"
 						}
 					}
 				]
@@ -347,45 +345,45 @@
 			{
 				"name": {
 					"en": "Debug & Test",
-					"zh": "调试与测试",
 					"kr": "디버그 & 테스트",
-					"ru": "Отладка и тестирование"
+					"ru": "Отладка и тестирование",
+					"zh": "调试与测试"
 				},
 				"routes": [
 					{
 						"path": "/debugging",
 						"name": {
 							"en": "Debugging Tools",
-							"pt-br": "Ferramentas de depuração",
-							"ja": "デバッグツール",
 							"de": "Entwickler-Tools",
-							"zh": "调试工具",
+							"ja": "デバッグツール",
 							"kr": "디버깅 도구",
-							"ru": "Инструменты отладки"
+							"pt-br": "Ferramentas de depuração",
+							"ru": "Инструменты отладки",
+							"zh": "调试工具"
 						}
 					},
 					{
 						"path": "/preact-testing-library",
 						"name": {
 							"en": "Preact Testing Library",
-							"pt-br": "Preact Testing Library",
-							"ja": "Preact Testing Library",
 							"de": "Preact Testing Library",
-							"zh": "Preact 测试库",
+							"ja": "Preact Testing Library",
 							"kr": "Preact 테스팅 라이브러리",
-							"ru": "Preact Testing Library"
+							"pt-br": "Preact Testing Library",
+							"ru": "Preact Testing Library",
+							"zh": "Preact 测试库"
 						}
 					},
 					{
 						"path": "/unit-testing-with-enzyme",
 						"name": {
 							"en": "Unit Testing with Enzyme",
-							"pt-br": "Teste unitario com Enzyme",
-							"ja": "Enzymeを使った単体テスト",
 							"de": "Unit-Tests mit Enzyme",
+							"ja": "Enzymeを使った単体テスト",
 							"kr": "Enzyme를 이용한 유닛 테스트",
-							"zh": "使用 Enzyme 进行单元测试",
-							"ru": "Модульное тестирование с помощью Enzyme"
+							"pt-br": "Teste unitario com Enzyme",
+							"ru": "Модульное тестирование с помощью Enzyme",
+							"zh": "使用 Enzyme 进行单元测试"
 						}
 					}
 				]
@@ -393,33 +391,33 @@
 			{
 				"name": {
 					"en": "React compatibility",
-					"zh": "React 兼容性",
 					"kr": "React 호환성",
-					"ru": "Совместимость с React"
+					"ru": "Совместимость с React",
+					"zh": "React 兼容性"
 				},
 				"routes": [
 					{
 						"path": "/differences-to-react",
 						"name": {
 							"en": "Differences to React",
-							"pt-br": "Diferenças do React",
-							"ja": "Reactとの違い",
 							"de": "Unterschiede zu React",
+							"ja": "Reactとの違い",
 							"kr": "React와의 차이점",
-							"zh": "与 React 的区别",
-							"ru": "Отличия от React"
+							"pt-br": "Diferenças do React",
+							"ru": "Отличия от React",
+							"zh": "与 React 的区别"
 						}
 					},
 					{
 						"path": "/switching-to-preact",
 						"name": {
 							"en": "Switching to Preact",
-							"pt-br": "Mudando para Preact",
-							"ja": "Preactへの移行",
 							"de": "Wechsel zu Preact",
+							"ja": "Preactへの移行",
 							"kr": "Preact로 전환",
-							"zh": "从 React 转到 Preact",
-							"ru": "Переход на Preact"
+							"pt-br": "Mudando para Preact",
+							"ru": "Переход на Preact",
+							"zh": "从 React 转到 Preact"
 						}
 					}
 				]
@@ -428,56 +426,56 @@
 				"name": {
 					"en": "Advanced",
 					"de": "Fortgeschritten",
-					"zh": "进阶",
 					"kr": "고급",
-					"ru": "Дополнительно"
+					"ru": "Дополнительно",
+					"zh": "进阶"
 				},
 				"routes": [
 					{
 						"path": "/api-reference",
 						"name": {
 							"en": "API Reference",
-							"pt-br": "Referência da API",
-							"ja": "APIリファレンス",
 							"de": "API Referenz",
-							"zh": "API 参考",
+							"ja": "APIリファレンス",
 							"kr": "API 참조",
-							"ru": "Справочник по API"
+							"pt-br": "Referência da API",
+							"ru": "Справочник по API",
+							"zh": "API 参考"
 						}
 					},
 					{
 						"path": "/web-components",
 						"name": {
 							"en": "Web Components",
-							"pt-br": "Web Components",
-							"ja": "Webコンポーネント",
 							"de": "Web Components",
-							"zh": "Web 组件",
+							"ja": "Webコンポーネント",
 							"kr": "웹 컴포넌트",
-							"ru": "Веб-компоненты"
+							"pt-br": "Web Components",
+							"ru": "Веб-компоненты",
+							"zh": "Web 组件"
 						}
 					},
 					{
 						"path": "/server-side-rendering",
 						"name": {
 							"en": "Server-Side Rendering",
-							"pt-br": "Server-Side Rendering",
-							"ja": "サーバーサイドレンダリング",
 							"de": "Server-Side Rendering",
-							"zh": "服务端渲染",
+							"ja": "サーバーサイドレンダリング",
 							"kr": "서버 측 렌더링",
-							"ru": "Рендеринг на стороне сервера"
+							"pt-br": "Server-Side Rendering",
+							"ru": "Рендеринг на стороне сервера",
+							"zh": "服务端渲染"
 						}
 					},
 					{
 						"path": "/options",
 						"name": {
 							"en": "Option Hooks",
-							"ja": "オプションフック",
 							"de": "Optionen",
-							"zh": "选项钩子",
+							"ja": "オプションフック",
 							"kr": "옵션 훅",
-							"ru": "Опционные хуки"
+							"ru": "Опционные хуки",
+							"zh": "选项钩子"
 						}
 					},
 					{
@@ -520,106 +518,106 @@
 				"path": "/getting-started",
 				"name": {
 					"en": "Getting Started",
-					"pt-br": "Começando",
 					"de": "Los geht's",
-					"zh": "开始上手",
-					"ru": "Первые шаги"
+					"pt-br": "Começando",
+					"ru": "Первые шаги",
+					"zh": "开始上手"
 				}
 			},
 			{
 				"path": "/differences-to-react",
 				"name": {
 					"en": "Differences to React",
-					"pt-br": "Diferenças do React",
 					"de": "Unterschiede zu React",
-					"zh": "与 React 的区别",
-					"ru": "Отличия от React"
+					"pt-br": "Diferenças do React",
+					"ru": "Отличия от React",
+					"zh": "与 React 的区别"
 				}
 			},
 			{
 				"path": "/switching-to-preact",
 				"name": {
 					"en": "Switching to Preact",
-					"pt-br": "Mudando para Preact",
 					"de": "Wechsel zu Preact",
-					"zh": "从 React 转到 Preact",
-					"ru": "Переход на Preact"
+					"pt-br": "Mudando para Preact",
+					"ru": "Переход на Preact",
+					"zh": "从 React 转到 Preact"
 				}
 			},
 			{
 				"path": "/types-of-components",
 				"name": {
 					"en": "Types of Components",
-					"pt-br": "Tipos de Componentes",
 					"de": "Komponenten-Typen",
-					"zh": "组件类型",
-					"ru": "Типы компонентов"
+					"pt-br": "Tipos de Componentes",
+					"ru": "Типы компонентов",
+					"zh": "组件类型"
 				}
 			},
 			{
 				"path": "/api-reference",
 				"name": {
 					"en": "API Reference",
-					"pt-br": "Referência da API",
 					"de": "API Referenz",
-					"zh": "API 参考",
-					"ru": "Справочник по API"
+					"pt-br": "Referência da API",
+					"ru": "Справочник по API",
+					"zh": "API 参考"
 				}
 			},
 			{
 				"path": "/forms",
 				"name": {
 					"en": "Forms",
-					"pt-br": "Formulários",
 					"de": "Formulare",
-					"zh": "表单",
-					"ru": "Формы"
+					"pt-br": "Formulários",
+					"ru": "Формы",
+					"zh": "表单"
 				}
 			},
 			{
 				"path": "/linked-state",
 				"name": {
 					"en": "Linked State",
-					"zh": "关联状态",
-					"ru": "Связанное состояние"
+					"ru": "Связанное состояние",
+					"zh": "关联状态"
 				}
 			},
 			{
 				"path": "/external-dom-mutations",
 				"name": {
 					"en": "External DOM Mutations",
-					"pt-br": "Mutações do DOM externas",
 					"de": "Externe DOM Mutationen",
-					"zh": "外部 DOM 修改",
-					"ru": "Внешние мутации DOM"
+					"pt-br": "Mutações do DOM externas",
+					"ru": "Внешние мутации DOM",
+					"zh": "外部 DOM 修改"
 				}
 			},
 			{
 				"path": "/extending-component",
 				"name": {
 					"en": "Extending Component",
-					"pt-br": "Extendendo Componentes",
 					"de": "Komponente Erweitern",
-					"zh": "扩展组件",
-					"ru": "Расширение компонентов"
+					"pt-br": "Extendendo Componentes",
+					"ru": "Расширение компонентов",
+					"zh": "扩展组件"
 				}
 			},
 			{
 				"path": "/unit-testing-with-enzyme",
 				"name": {
 					"en": "Unit Testing with Enzyme",
-					"pt-br": "Teste unitado com Enzyme",
 					"de": "Unit-Tests mit Enzyme",
-					"zh": "使用 Enzyme 进行单元测试",
-					"ru": "Модульное тестирование с помощью Enzyme"
+					"pt-br": "Teste unitado com Enzyme",
+					"ru": "Модульное тестирование с помощью Enzyme",
+					"zh": "使用 Enzyme 进行单元测试"
 				}
 			},
 			{
 				"path": "/progressive-web-apps",
 				"name": {
 					"en": "Progressive Web Apps",
-					"zh": "渐进式 Web 应用",
-					"ru": "Прогрессивные веб-приложения"
+					"ru": "Прогрессивные веб-приложения",
+					"zh": "渐进式 Web 应用"
 				}
 			}
 		]
@@ -703,36 +701,36 @@
 			"path": "/blog/signal-boosting",
 			"name": {
 				"en": "Signal Boosting",
-				"zh": "信号增强",
+				"es": "El impulso de signal",
 				"kr": "시그널 부스팅",
 				"ru": "Усиление сигналов",
-				"es": "El impulso de signal"
+				"zh": "信号增强"
 			},
 			"date": "2022-09-23",
 			"excerpt": {
 				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen.",
-				"zh": "全新版本 Preact 信号为反应系统带来了显著的性能提升，阅读本文来了解其背后的工作原理。",
+				"es": "La nueva versión de Preact Signals aporta importantes actualizaciones de rendimiento a los fundamentos del sistema reactivo. Sigue leyendo para saber qué tipo de trucos hemos empleado para conseguirlo.",
 				"kr": "Preact 시그널의 새로운 릴리스는 반응형 시스템의 기초에 중요한 성능 업데이트를 가져왔습니다. 이를 실현하기 위해 사용한 트릭에 대해 알아보세요.",
 				"ru": "Новая версия Preact Signals вносит значительные улучшения производительности в основы реактивной системы. Читайте дальше, чтобы узнать, какие трюки мы использовали, чтобы это произошло.",
-				"es": "La nueva versión de Preact Signals aporta importantes actualizaciones de rendimiento a los fundamentos del sistema reactivo. Sigue leyendo para saber qué tipo de trucos hemos empleado para conseguirlo."
+				"zh": "全新版本 Preact 信号为反应系统带来了显著的性能提升，阅读本文来了解其背后的工作原理。"
 			}
 		},
 		{
 			"path": "/blog/introducing-signals",
 			"name": {
 				"en": "Introducing Signals",
-				"zh": "初见信号",
 				"es": "Introduciendo los Signals",
 				"kr": "시그널 소개",
-				"ru": "Знакомство с сигналами"
+				"ru": "Знакомство с сигналами",
+				"zh": "初见信号"
 			},
 			"date": "2022-09-06",
 			"excerpt": {
 				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions.",
-				"zh": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。",
 				"es": "Los Signals son una forma más fácil de administrar el estado de tu aplicación en comparación con los hooks. Un signal es un objeto contenedor con una propiedad especial \"value\" que contiene algún valor. Leer la propiedad value de un signal desde un componente o una función computada se suscribe automáticamente a las actualizaciones, y escribir en la propiedad value activa las suscripciones.",
 				"kr": "시그널은 훅에 비해 애플리케이션의 상태를 관리하는 더 쉬운 방법입니다. 시그널은 어떤 값을 저장하는 특수한 \"value\" 속성을 가진 컨테이너 객체입니다. 컴포넌트나 computed 함수 내에서 시그널의 value 속성을 읽으면 자동으로 업데이트를 구독하고, value 속성에 임의의 값을 쓰는 경우 구독을 트리거합니다.",
-				"ru": "Сигналы — это более простой способ управления состоянием вашего приложения по сравнению с хуками. Сигнал — это объект-контейнер со специальным свойством «value», которое содержит некоторое значение. Чтение свойства значения сигнала из компонента или вычисляемой функции автоматически подписывается на обновления, а запись в свойство значения запускает подписку."
+				"ru": "Сигналы — это более простой способ управления состоянием вашего приложения по сравнению с хуками. Сигнал — это объект-контейнер со специальным свойством «value», которое содержит некоторое значение. Чтение свойства значения сигнала из компонента или вычисляемой функции автоматически подписывается на обновления, а запись в свойство значения запускает подписку.",
+				"zh": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。"
 			}
 		}
 	],

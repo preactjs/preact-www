@@ -77,10 +77,10 @@ marked.use({
 				</h${depth}>`;
 		},
 		paragraph({ text }) {
-			if (text == '<toc></toc>') {
+			if (text == '<toc></toc>' || text == '<branding></branding>') {
 				// The CommonMark spec states that _HTML Blocks_ must start with specific & known
-				// tags, which <toc> is not. As such, `marked` treats it as _Raw HTML_ which
-				// results in it being wrapped in a `<p>` tag.
+				// tags, which our custom components are not. As such, `marked` treats them as
+				// _Raw HTML_ which results in them being wrapped in a `<p>` tag.
 				// https://spec.commonmark.org/0.29/#html-blocks
 				return text;
 			}
