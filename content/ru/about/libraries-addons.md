@@ -38,6 +38,7 @@ description: Коллекция библиотек и дополнений, ко
 - :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Интегрирует экосистему вокруг [i18n-js](https://github.com/everydayhero/i18n-js) с Preact через [i18nline](https://github.com/download/i18nline).
 - :diamond_shape_with_a_dot_inside: **[Capacitor](https://capacitorjs.com/solution/preact)**: Превратите свое приложение Preact в нативное приложение для iOS/Android и PWA.
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Запустите виджет Preact на любом веб-сайте с реактивными реквизитами.
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Встраивайте компоненты [zikojs](https://github.com/zakarialaoui10/zikojs) в ваше приложение на Preact — и наоборот.
 
 ## Инструментальные средства графического интерфейса
 
