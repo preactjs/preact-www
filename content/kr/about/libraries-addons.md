@@ -40,6 +40,7 @@ Preact와 훌륭하게 동작하는 모듈 모음입니다.
 - :diamond_shape_with_a_dot_inside: **[Capacitor](https://capacitorjs.com/solution/preact)**: Preact 앱을 네이티브 iOS/Android 앱 및 PWA로 변환
 - :ice_cube: **[Kretes](https://kretes.dev/docs/howtos/preact-setup/)**: Preact 및 Node.js를 사용하여 풀스택 TypeScript 앱 빌드
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: 반응적인 Props를 통해 어떤 웹사이트에서든 Preact 위젯 실행
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
 
 ## GUI 툴킷
 

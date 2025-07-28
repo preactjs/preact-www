@@ -28,6 +28,7 @@ Preact ile oluşturulmuş mükemmel modül koleksiyonu.
 - :thought_balloon: **[preact-socrates](https://github.com/matthewmueller/preact-socrates)**: [Socrates](http://github.com/matthewmueller/socrates) için Preact eklentileri
 - :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: [flyd](https://github.com/paldepind/flyd) FRP stream'leri Preact + JSX'de kullanın
 - :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**:[i18n-js](https://github.com/everydayhero/i18n-js) çevresindeki ekosistemi [i18nline](https://github.com/download/i18nline) yoluyla Preact ile bütünleştirir.
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
 
 
 ### GUI Araçları

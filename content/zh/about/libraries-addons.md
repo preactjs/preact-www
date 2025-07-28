@@ -40,6 +40,7 @@ description: '与 Preact 完美配合的库和扩展集合'
 - :diamond_shape_with_a_dot_inside: **[Capacitor](https://capacitorjs.com/solution/preact)**: 将您的 Preact 应用转换为原生 iOS/Android 应用和 PWA。
 - :ice_cube: **[Kretes](https://kretes.dev/docs/howtos/preact-setup/)**: 使用 Preact 和 Node.js 构建全栈 TypeScript 应用
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: 在任何网站上运行您的 Preact 小部件，具有响应式属性。
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
 
 ## GUI 工具包
 
