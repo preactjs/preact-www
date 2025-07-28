@@ -34,6 +34,7 @@ Uma coleção de módulos construídos para trabalhar maravilhosamente com Preac
 - :thought_balloon: **[preact-socrates](https://github.com/matthewmueller/preact-socrates)**: Plugin Preact para [Socrates](http://github.com/matthewmueller/socrates)
 - :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: Use [flyd](https://github.com/paldepind/flyd) <i> FRP streams</i> em Preact + JSX
 - :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Integra o ecosistema do [i18n-js](https://github.com/everydayhero/i18n-js) com Preact via [i18nline](https://github.com/download/i18nline).
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
 
 
 ### Ferramentas para Interfaces Gráficas (GUI)

@@ -16,7 +16,6 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 - :raised_hands: **[preact-compat](https://github.com/preactjs/preact-compat)**: Jegliche React-Bibliothek mit Preact benutzen *([Vollständiges Beispiel](https://github.com/developit/preact-compat-example))*
 - :repeat: **[preact-cycle](https://github.com/developit/preact-cycle)**: Funktionalreaktives Paradigma für Preact
 - :page_facing_up: **[preact-render-to-string](https://github.com/preactjs/preact-render-to-string)**: Universelles Rendering.
-- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Binde [zikojs](https://github.com/zakarialaoui10/zikojs) Komponenten in deine Preact-App ein – und umgekehrt.
 
 
 ### Komponenten
@@ -37,6 +36,7 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 - :thought_balloon: **[preact-socrates](https://github.com/matthewmueller/preact-socrates)**: Preact-Plugin für [Socrates](http://github.com/matthewmueller/socrates)
 - :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: [flyd](https://github.com/paldepind/flyd) FRP-Streams in Preact + JSX benutzen
 - :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Das  [i18n-js](https://github.com/everydayhero/i18n-js)-Ökosystem mit Preact mithilfe von  [i18nline](https://github.com/download/i18nline) integrieren.
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
 
 
 ### GUI Toolkits
