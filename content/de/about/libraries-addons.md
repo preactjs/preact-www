@@ -16,6 +16,7 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 - :raised_hands: **[preact-compat](https://github.com/preactjs/preact-compat)**: Jegliche React-Bibliothek mit Preact benutzen *([Vollständiges Beispiel](https://github.com/developit/preact-compat-example))*
 - :repeat: **[preact-cycle](https://github.com/developit/preact-cycle)**: Funktionalreaktives Paradigma für Preact
 - :page_facing_up: **[preact-render-to-string](https://github.com/preactjs/preact-render-to-string)**: Universelles Rendering.
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Binde [zikojs](https://github.com/zakarialaoui10/zikojs) Komponenten in deine Preact-App ein – und umgekehrt.
 
 
 ### Komponenten
