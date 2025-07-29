@@ -19,6 +19,9 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :nut_and_bolt: **[express-preact-views](https://github.com/edwjusti/express-preact-views)**: Moteur de vues Express.js qui rend les composants Preact côté serveur.
 - :floppy_disk: **[Prefresh](https://github.com/JoviDeCroock/prefresh)**:  Actualisation rapide pour Preact.
 - :bookmark_tabs: **[adonis-preact](https://github.com/DonsWayo/adonis-preact)**: Utilisez Preact avec [AdonisJS](https://adonisjs.com/).
+- :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Scrollbars personnalisables pour un défilement natif fluide dans les navigateurs.
+- 🧱 **[@modular-forms/preact](https://modularforms.dev/)**: Bibliothèque de formulaires modulaire avec typage sécurisé.
+
 
 
 ### Composants
