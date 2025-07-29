@@ -19,8 +19,6 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :nut_and_bolt: **[express-preact-views](https://github.com/edwjusti/express-preact-views)**: Moteur de vues Express.js qui rend les composants Preact côté serveur.
 - :floppy_disk: **[Prefresh](https://github.com/JoviDeCroock/prefresh)**:  Actualisation rapide pour Preact.
 - :bookmark_tabs: **[adonis-preact](https://github.com/DonsWayo/adonis-preact)**: Utilisez Preact avec [AdonisJS](https://adonisjs.com/).
-- :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Scrollbars personnalisables pour un défilement natif fluide dans les navigateurs.
-- 🧱 **[@modular-forms/preact](https://modularforms.dev/)**: Bibliothèque de formulaires modulaire avec typage sécurisé.
 
 
 
@@ -34,6 +32,8 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :card_index: **[preact-virtual-list](https://github.com/developit/preact-virtual-list)**: Affichez facilement des listes de plusieurs millions de lignes ([demo](https://jsfiddle.net/developit/qqan9pdo/))
 - :triangular_ruler: **[preact-layout](https://download.github.io/preact-layout/)**: Une bibliothèque de mise en page légère et simple d'utilisation
 - :construction_worker: **[preact-helmet](https://github.com/download/preact-helmet)**: Une bibliothèque pour Preact permettant de gérer le head d'un document
+- :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Scrollbars personnalisables pour un défilement natif fluide dans les navigateurs.
+- 🧱 **[@modular-forms/preact](https://modularforms.dev/)**: Bibliothèque de formulaires modulaire avec typage sécurisé.
 
 
 ### Intégrations
