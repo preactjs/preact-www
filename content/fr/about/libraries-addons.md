@@ -48,9 +48,14 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 
 
 ### Outils pour créer des interfaces graphiques
-
+- 🎴 **[@mui/material](https://github.com/mui/material-ui/tree/master/examples/material-ui-preact)**: Bibliothèque UI React, suivez votre design ou Material Design.
+- :thumbsup: **[preact-material-components](https://github.com/prateekbh/preact-material-components)**: composants Material pour le Web (remplace MDL).
 - :white_square_button: **[preact-mdl](https://github.com/developit/preact-mdl)**: Utilisez [MDL](https://getmdl.io) comme des composants Preact
 - :rocket: **[preact-photon](https://github.com/developit/preact-photon)**: créez de belles interfaces utilisateurs pour bureau avec [photon](http://photonkit.com)
+- :penguin: **[preact-weui](https://github.com/afeiship/preact-weui)**: [Weui](https://github.com/afeiship/preact-weui) pour Preact
+- 💅 **[preact-fluid](https://github.com/ajainvivek/preact-fluid)**: Kit UI minimaliste [Fluid](https://github.com/ajainvivek/preact-fluid) pour Preact
+- :book: **[storybook-preact](https://github.com/storybooks/storybook/tree/next/app/preact)**: Storybook pour Preact, un environnement de développement UI pour vos composants Preact.
+
 
 
 ### Tests
