@@ -15,6 +15,10 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :raised_hands: **[preact-compat](https://github.com/preactjs/preact-compat)**: utilisez n'importe quelle bibliothèque créée pour React avec Preact *([full example](https://github.com/developit/preact-compat-example))*
 - :repeat: **[preact-cycle](https://github.com/developit/preact-cycle)**: Le paradigme de programmation fonctionnelle réactive pour Preact
 - :page_facing_up: **[preact-render-to-string](https://github.com/preactjs/preact-render-to-string)**: Rendu universel.
+- :timer_clock: **[relaks](https://github.com/trambarhq/relaks)**: Créez des composants avec des méthodes de rendu qui retournent de manière asynchrone.
+- :nut_and_bolt: **[express-preact-views](https://github.com/edwjusti/express-preact-views)**: Moteur de vues Express.js qui rend les composants Preact côté serveur.
+- :floppy_disk: **[Prefresh](https://github.com/JoviDeCroock/prefresh)**:  Actualisation rapide pour Preact.
+- :bookmark_tabs: **[adonis-preact](https://github.com/DonsWayo/adonis-preact)**: Utilisez Preact avec [AdonisJS](https://adonisjs.com/).
 
 
 ### Composants
