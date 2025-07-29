@@ -41,6 +41,9 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :thought_balloon: **[preact-socrates](https://github.com/matthewmueller/preact-socrates)**: Un module Preact pour [Socrates](http://github.com/matthewmueller/socrates)
 - :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: Utilisez les flux FRP de [flyd](https://github.com/paldepind/flyd) avec Preact et JSX
 - :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Intègre l'écosystème autour de [i18n-js](https://github.com/everydayhero/i18n-js) avec Preact via [i18nline](https://github.com/download/i18nline).
+- :diamond_shape_with_a_dot_inside: **[Capacitor](https://capacitorjs.com/solution/preact)**: Transformez votre application Preact en application native iOS/Android et PWA.
+- :ice_cube: **[Kretes](https://kretes.dev/docs/howtos/preact-setup/)**: Créez des applications full-stack TypeScript avec Preact et Node.js.
+- 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Exécutez votre widget Preact sur n’importe quel site web avec des propriétés réactives.
 - 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Intégrez des composants [zikojs](https://github.com/zakarialaoui10/zikojs) dans votre application Preact —  et vice‑versa.
 
 
