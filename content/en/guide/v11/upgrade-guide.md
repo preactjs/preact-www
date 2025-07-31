@@ -93,7 +93,7 @@ function App() {
 
 ### Refs are forwarded by default
 
-Refs are now forwarded by default, allowing them to be used just like any other prop in function components. You will no longer need `forwardRef` from `preact/compat` to supply this functionality.
+Refs are now forwarded by default, allowing them to be used just like any other prop. You will no longer need to use `forwardRef` from `preact/compat` to supply this functionality.
 
 ```jsx
 function MyComponent({ ref }) {
@@ -104,6 +104,10 @@ function MyComponent({ ref }) {
 // Preact 10: myRef.current is an instance of MyComponent
 // Preact 11: myRef.current is the <h1> DOM element
 ```
+
+> **Note**: When using `preact/compat`, refs will not be forwarded to class components. React only forwards refs to function components and so we match that behavior for anyone using the compat layer.
+>
+> For consumers of pure Preact, **refs will be forwarded** to class components, same as function components.
 
 If you need to continue to use the old behavior, you can use the following snippet to revert to the Preact 10 behavior:
 
