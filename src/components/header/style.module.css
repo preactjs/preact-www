@@ -104,8 +104,7 @@
 		}
 
 		a,
-		button,
-		span {
+		button {
 			display: inline-block;
 			position: relative;
 			height: var(--header-height);
@@ -226,11 +225,11 @@
 			z-index: 750;
 
 			a,
-			button,
-			span {
+			button {
 				display: block;
 				padding: 10px 20px;
 				height: auto;
+				width: 100%;
 				line-height: 1.5;
 				font-size: 15px;
 				color: #444;
@@ -284,8 +283,7 @@
 					animation: menuExpand 250ms ease forwards 1;
 
 					a,
-					button,
-					span {
+					button {
 						color: #eee;
 
 						&:hover,
@@ -459,7 +457,7 @@
 		transform-origin: 0 0;
 	}
 
-	&[open] {
+	&[data-open='true'] {
 		@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 			position: absolute;
 		}

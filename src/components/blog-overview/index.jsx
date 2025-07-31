@@ -1,6 +1,5 @@
 import config from '../../config.json';
-import { useLanguage, useTranslation } from '../../lib/i18n';
-import { getRouteName } from '../header';
+import { useLanguage, useTranslation, getRouteName } from '../../lib/i18n';
 import { Time } from '../time';
 import { prefetchContent } from '../../lib/use-content';
 import { BlogPage } from '../routes.jsx';
@@ -28,10 +27,21 @@ export default function BlogOverview() {
 								<Time value={post.date} />
 							</div>
 							<h2 class={s.title}>
-								<a href={post.path} onMouseOver={prefetchAndPreload} onTouchStart={prefetchAndPreload}>{name}</a>
+								<a
+									href={post.path}
+									onMouseOver={prefetchAndPreload}
+									onTouchStart={prefetchAndPreload}
+								>
+									{name}
+								</a>
 							</h2>
 							<p class={s.excerpt}>{excerpt}</p>
-							<a href={post.path} onMouseOver={prefetchAndPreload} onTouchStart={prefetchAndPreload} class="btn-small">
+							<a
+								href={post.path}
+								onMouseOver={prefetchAndPreload}
+								onTouchStart={prefetchAndPreload}
+								class="btn-small"
+							>
 								{continueReading} &rarr;
 							</a>
 						</article>
