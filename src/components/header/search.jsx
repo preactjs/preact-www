@@ -2,7 +2,7 @@ import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 import { lazy, ErrorBoundary } from 'preact-iso';
 import style from './style.module.css';
-import config from '../../config.json';
+import { algoliaConfig } from '../../app-config.js';
 
 const DocSearch = lazy(() => import('@docsearch/react').then(m => m.DocSearch));
 const DocSearchStylesURL = new URL(
@@ -80,9 +80,9 @@ export default function Search() {
 			render(
 				<ErrorBoundary>
 					<DocSearch
-						apiKey={config.docsearch.apiKey}
-						indexName={config.docsearch.indexName}
-						appId={config.docsearch.appId}
+						apiKey={algoliaConfig.apiKey}
+						indexName={algoliaConfig.indexName}
+						appId={algoliaConfig.appId}
 						transformItems={transformItems}
 					/>
 				</ErrorBoundary>,

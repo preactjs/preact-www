@@ -1,10 +1,28 @@
 import style from './style.module.css';
-import config from '../../config.json';
+
+const LOGOS = [
+	{
+		name: 'logo-text',
+		alt: 'Full Logo'
+	},
+	{
+		name: 'logo-text-inverted',
+		alt: 'Full Logo with Inverted Colors'
+	},
+	{
+		name: 'symbol',
+		alt: 'Preact Symbol'
+	},
+	{
+		name: 'symbol-inverted',
+		alt: 'Preact Symbol with Inverted Colors'
+	}
+];
 
 export default function Branding() {
 	return (
 		<div class={style.logos}>
-			{config.branding.map(asset => (
+			{LOGOS.map(asset => (
 				<LogoVariation name={asset.name} alt={asset.alt} />
 			))}
 		</div>

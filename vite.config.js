@@ -9,6 +9,7 @@ import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.j
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
+import { i18nPlugin } from './plugins/i18n.js';
 
 // TODO: Should we do this for all routes, rely on discovery a bit less?
 import { tutorialRoutes } from './src/lib/route-utils.js';
@@ -89,6 +90,7 @@ export default defineConfig({
 		spaFallbackMiddlewarePlugin(),
 		htmlRoutingMiddlewarePlugin(),
 		rssFeedPlugin(),
-		generateLlmsTxtPlugin()
+		generateLlmsTxtPlugin(),
+		i18nPlugin()
 	]
 });

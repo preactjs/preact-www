@@ -72,3 +72,7 @@ export interface ContentData {
 	html: string;
 	meta: ContentMetaData;
 }
+
+export type RouteData =
+	| { name: string; path?: string; routes?: never; }
+	| { name: string; routes?: RouteData[]; path?: never; };

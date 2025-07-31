@@ -8,6 +8,7 @@
 		"jsxImportSource": "preact",
 		"noEmit": true,
 		"allowJs": true,
-		"checkJs": true
+		"checkJs": true,
+		"skipLibCheck": false
 	}
 }

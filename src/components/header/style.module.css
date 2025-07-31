@@ -190,8 +190,7 @@
 			&::after {
 				content: '▼';
 				position: relative;
-				left: 7px;
-				top: -1px;
+				left: 8px;
 				font-size: 60%;
 			}
 		}

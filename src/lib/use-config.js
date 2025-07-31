@@ -1,13 +1,11 @@
 import { createContext } from 'preact';
 import { useContext, useEffect, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
-
 import { localStorageGet, localStorageSet } from './localstorage';
-//import config from '../config.json';
-import { languages } from '../app-config.js';
+import config from '../config.json';
 
 /**
- * @typedef LanguageContext
+ * @typedef ConfigContext
  * @property {string} lang
  * @property {(string) => void} setLang
  */
@@ -44,7 +42,7 @@ export function LanguageProvider({ children }) {
 
 	useEffect(() => {
 		const localStorageLang = localStorageGet('lang');
-		const navigatorLang = getNavigatorLanguage(languages);
+		const navigatorLang = getNavigatorLanguage(config.languages);
 		const userLang = query.lang || localStorageLang || navigatorLang || 'en';
 
 		setLang(userLang);
@@ -71,47 +69,4 @@ export function LanguageProvider({ children }) {
 export function useLanguage() {
 	const { lang, setLang } = useContext(LanguageContext);
 	return [lang, setLang];
-}
-
-/**
- * Get the translation of a key. Defaults to English if no translation is found
- * @param {string} key
- */
-export function useTranslation(key) {
-	const [lang] = useLanguage();
-	//const data = config.i18n[key];
-	return 'Ryan is awesome!';
-}
-
-/**
- * Get the translated name of a path based upon the current language.
- * @param {string} path
- */
-export function useNavTranslation(path) {
-	const [lang] = useLanguage();
-
-	for (const route in config.nav) {
-		if (config.nav[route].path === path) {
-			return getRouteName(config.nav[route], lang);
-		} else if (config.nav[route].routes) {
-			for (const subRoute of config.nav[route].routes) {
-				if (subRoute.path === path) {
-					return getRouteName(subRoute, lang);
-				}
-			}
-		}
-	}
-
-	return null;
-}
-
-/**
- * @param {{ name: Record<string, string> | string }} route
- * @param {string} lang
- * @return {string}
- */
-export function getRouteName(route, lang) {
-	return typeof route.name === 'object'
-		? route.name[lang] || route.name.en
-		: route.name;
 }

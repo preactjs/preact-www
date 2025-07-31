@@ -1,5 +1,5 @@
 import { useCallback } from 'preact/hooks';
-import config from '../../config.json';
+import { languages } from '../../app-config.js';
 import { useLanguage } from '../../lib/i18n';
 import { useResource } from '../../lib/use-resource';
 import style from './style.module.css';
@@ -50,9 +50,9 @@ export default function Footer() {
 					<label class={style.lang}>
 						Language:{' '}
 						<select value={lang || 'en'} onInput={onSelect}>
-							{Object.keys(config.languages).map(id => (
+							{Object.keys(languages).map(id => (
 								<option selected={id == lang} value={id}>
-									{config.languages[id]}
+									{languages[id]}
 								</option>
 							))}
 						</select>

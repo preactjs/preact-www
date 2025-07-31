@@ -7,8 +7,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "vite --port 8080",
-    "server": "vite preview --port 8080",
+    "serve:dev": "vite --port 3000",
+    "serve:prod": "vite preview --port 3000",
     "build": "vite build",
     "lint": "eslint src test",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\"",

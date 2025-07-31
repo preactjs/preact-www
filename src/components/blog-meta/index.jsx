@@ -1,5 +1,5 @@
 import { Time } from '../time';
-import config from '../../config.json';
+import { blogAuthors } from '../../app-config.js';
 import style from './style.module.css';
 
 /**
@@ -15,9 +15,7 @@ export default function BlogMeta({ meta }) {
 					, written by{' '}
 					<address class={style.authors}>
 						{meta.authors.map((author, i, arr) => {
-							const authorData = config.blogAuthors.find(
-								data => data.name === author
-							);
+							const authorData = blogAuthors.find(data => data.name === author);
 							return (
 								<AuthorLinks
 									authorData={authorData}
@@ -28,9 +26,7 @@ export default function BlogMeta({ meta }) {
 							);
 						})}
 						{(meta.translation_by || []).map((author, i, arr) => {
-							const authorData = config.blogAuthors.find(
-								data => data.name === author
-							);
+							const authorData = blogAuthors.find(data => data.name === author);
 							return (
 								<>
 									{', translated by '}

@@ -2,7 +2,7 @@ import cx from '../../lib/cx';
 import { InvertedLogo } from '../logo';
 import Search from './search';
 import style from './style.module.css';
-import config from '../../config.json';
+import * as appConfig from '../../app-config.js';
 import { useCallback, useEffect, useState } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
@@ -14,6 +14,7 @@ import { ReplPage, TutorialPage, CodeEditor } from '../routes';
 
 export default function Header() {
 	const { url } = useLocation();
+	//const { headerLinks } = useTranslation();
 	const [open, setOpen] = useOverlayToggle();
 	const toggle = useCallback(() => setOpen(!open), [open]);
 
@@ -135,13 +136,13 @@ function LanguagePicker() {
 						aria-label={selectYourLanguage}
 					>
 						{typeof window !== 'undefined' &&
-							Object.keys(config.languages).map(id => (
+							Object.keys(appConfig.languages).map(id => (
 								<button
 									class={cx(id == lang && style.current)}
 									data-value={id}
 									onClick={e => setLang(e.currentTarget.dataset.value)}
 								>
-									{config.languages[id]}
+									{appConfig.languages[id]}
 								</button>
 							))}
 					</ExpandableNavLink>
