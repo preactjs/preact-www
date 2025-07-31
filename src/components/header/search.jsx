@@ -1,6 +1,6 @@
 import { lazy, ErrorBoundary } from 'preact-iso';
 import style from './style.module.css';
-import config from '../../config.json';
+import { algoliaConfig } from '../../app-config.js';
 
 const DocSearch = lazy(() => import('@docsearch/react').then(m => m.DocSearch));
 
@@ -8,21 +8,22 @@ const DocSearch = lazy(() => import('@docsearch/react').then(m => m.DocSearch));
 // appends `#app` to all URLs without a hash fragment.
 //
 // It also returns the full prod URL, which isn't ideal for dev/staging
-const transformItems = (items) =>
+const transformItems = items =>
 	items.map(i => {
-			const url = new URL(i.url);
-			return Object.assign(i, { url: url.pathname + url.hash.replace(/#app$/, '') });
-		}
-	);
+		const url = new URL(i.url);
+		return Object.assign(i, {
+			url: url.pathname + url.hash.replace(/#app$/, '')
+		});
+	});
 
 export default function Search() {
 	return (
 		<div class={style.search}>
 			<ErrorBoundary>
 				<DocSearch
-					apiKey={config.docsearch.apiKey}
-					indexName={config.docsearch.indexName}
-					appId={config.docsearch.appId}
+					apiKey={algoliaConfig.apiKey}
+					indexName={algoliaConfig.indexName}
+					appId={algoliaConfig.appId}
 					transformItems={transformItems}
 				/>
 			</ErrorBoundary>

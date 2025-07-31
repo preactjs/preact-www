@@ -1,0 +1,474 @@
+{
+	"i18n": {
+		"next": {
+			"en": "Next Page"
+		},
+		"previous": {
+			"en": "Previous Page"
+		},
+		"continueReading": {
+			"en": "Continue reading"
+		},
+		"tutorial": {
+			"begin": {
+				"en": "Begin Tutorial"
+			},
+			"help": {
+				"en": "Help"
+			},
+			"solve": {
+				"en": "Solve"
+			}
+		}
+	},
+	"nav": [
+		{
+			"path": "/",
+			"name": "Preact",
+			"title": "Home",
+			"class": "home",
+			"flair": "logo",
+			"content": "index"
+		},
+		{
+			"path": "/branding",
+			"title": "Branding",
+			"skipHeader": true
+		},
+		{
+			"path": "/tutorial/:step",
+			"href": "/tutorial",
+			"name": {
+				"en": "Tutorial"
+			}
+		},
+		{
+			"name": {
+				"en": "Guide"
+			},
+			"content": "guide",
+			"path": "/guide/:version?/:page?",
+			"href": "/guide/v10/getting-started"
+		},
+		{
+			"name": {
+				"en": "About"
+			},
+			"content": "about",
+			"routes": [
+				{
+					"path": "/about/we-are-using",
+					"name": {
+						"en": "Companies using Preact"
+					}
+				},
+				{
+					"path": "/about/libraries-addons",
+					"name": {
+						"en": "Libraries & Add-ons"
+					}
+				},
+				{
+					"path": "/about/demos-examples",
+					"name": {
+						"en": "Demos & Examples"
+					}
+				},
+				{
+					"path": "/about/project-goals",
+					"name": {
+						"en": "Project Goals"
+					}
+				},
+				{
+					"path": "/about/browser-support",
+					"name": {
+						"en": "Browser Support"
+					}
+				}
+			]
+		},
+		{
+			"path": "/blog",
+			"name": {
+				"en": "Blog"
+			}
+		},
+		{
+			"path": "/repl",
+			"name": {
+				"en": "REPL"
+			}
+		}
+	],
+	"docs": {
+		"v10": [
+			{
+				"name": {
+					"en": "Introduction"
+				},
+				"routes": [
+					{
+						"path": "/getting-started",
+						"name": {
+							"en": "Getting Started"
+						}
+					},
+					{
+						"path": "/whats-new",
+						"name": {
+							"en": "What's new?"
+						}
+					},
+					{
+						"path": "/upgrade-guide",
+						"name": {
+							"en": "Upgrading from 8.x"
+						}
+					},
+					{
+						"path": "/tutorial",
+						"name": {
+							"en": "Tutorial"
+						}
+					}
+				]
+			},
+			{
+				"name": {
+					"en": "Essentials"
+				},
+				"routes": [
+					{
+						"path": "/components",
+						"name": {
+							"en": "Components"
+						}
+					},
+					{
+						"path": "/hooks",
+						"name": {
+							"en": "Hooks"
+						}
+					},
+					{
+						"path": "/signals",
+						"name": {
+							"en": "Signals"
+						}
+					},
+					{
+						"path": "/forms",
+						"name": {
+							"en": "Forms"
+						}
+					},
+					{
+						"path": "/refs",
+						"name": {
+							"en": "References"
+						}
+					},
+					{
+						"path": "/context",
+						"name": {
+							"en": "Context"
+						}
+					}
+				]
+			},
+			{
+				"name": {
+					"en": "Debug & Test"
+				},
+				"routes": [
+					{
+						"path": "/debugging",
+						"name": {
+							"en": "Debugging Tools"
+						}
+					},
+					{
+						"path": "/preact-testing-library",
+						"name": {
+							"en": "Preact Testing Library"
+						}
+					},
+					{
+						"path": "/unit-testing-with-enzyme",
+						"name": {
+							"en": "Unit Testing with Enzyme"
+						}
+					}
+				]
+			},
+			{
+				"name": {
+					"en": "React compatibility"
+				},
+				"routes": [
+					{
+						"path": "/differences-to-react",
+						"name": {
+							"en": "Differences to React"
+						}
+					},
+					{
+						"path": "/switching-to-preact",
+						"name": {
+							"en": "Switching to Preact"
+						}
+					}
+				]
+			},
+			{
+				"name": {
+					"en": "Advanced"
+				},
+				"routes": [
+					{
+						"path": "/api-reference",
+						"name": {
+							"en": "API Reference"
+						}
+					},
+					{
+						"path": "/web-components",
+						"name": {
+							"en": "Web Components"
+						}
+					},
+					{
+						"path": "/server-side-rendering",
+						"name": {
+							"en": "Server-Side Rendering"
+						}
+					},
+					{
+						"path": "/options",
+						"name": {
+							"en": "Option Hooks"
+						}
+					},
+					{
+						"path": "/typescript",
+						"name": "TypeScript"
+					},
+					{
+						"path": "/no-build-workflows",
+						"name": {
+							"en": "No-Build Workflows"
+						}
+					}
+				]
+			},
+			{
+				"name": {
+					"en": "Libraries"
+				},
+				"routes": [
+					{
+						"path": "/preact-iso",
+						"name": {
+							"en": "preact-iso"
+						}
+					},
+					{
+						"path": "/preact-custom-element",
+						"name": {
+							"en": "preact-custom-element"
+						}
+					}
+				]
+			}
+		],
+		"v8": [
+			{
+				"path": "/getting-started",
+				"name": {
+					"en": "Getting Started"
+				}
+			},
+			{
+				"path": "/differences-to-react",
+				"name": {
+					"en": "Differences to React"
+				}
+			},
+			{
+				"path": "/switching-to-preact",
+				"name": {
+					"en": "Switching to Preact"
+				}
+			},
+			{
+				"path": "/types-of-components",
+				"name": {
+					"en": "Types of Components"
+				}
+			},
+			{
+				"path": "/api-reference",
+				"name": {
+					"en": "API Reference"
+				}
+			},
+			{
+				"path": "/forms",
+				"name": {
+					"en": "Forms"
+				}
+			},
+			{
+				"path": "/linked-state",
+				"name": {
+					"en": "Linked State"
+				}
+			},
+			{
+				"path": "/external-dom-mutations",
+				"name": {
+					"en": "External DOM Mutations"
+				}
+			},
+			{
+				"path": "/extending-component",
+				"name": {
+					"en": "Extending Component"
+				}
+			},
+			{
+				"path": "/unit-testing-with-enzyme",
+				"name": {
+					"en": "Unit Testing with Enzyme"
+				}
+			},
+			{
+				"path": "/progressive-web-apps",
+				"name": {
+					"en": "Progressive Web Apps"
+				}
+			}
+		]
+	},
+	"blog": [
+		{
+			"path": "/blog/simplifying-islands-arch",
+			"date": "2024-08-06",
+			"name": {
+				"en": "Build your own Island Components"
+			},
+			"excerpt": {
+				"en": "Demystifying how island architechture works and being able to setup your own, using tools you already have around you."
+			}
+		},
+		{
+			"path": "/blog/prerendering-preset-vite",
+			"date": "2024-08-06",
+			"name": {
+				"en": "Prerendering with Preset Vite"
+			},
+			"excerpt": {
+				"en": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large"
+			}
+		},
+		{
+			"path": "/blog/preact-x",
+			"date": "2024-05-24",
+			"name": {
+				"en": "Preact X, a story of stability"
+			},
+			"excerpt": {
+				"en": "Preact X has been released for five years, let's go over all the exciting things that have happened."
+			}
+		},
+		{
+			"path": "/blog/signal-boosting",
+			"name": {
+				"en": "Signal Boosting"
+			},
+			"date": "2022-09-23",
+			"excerpt": {
+				"en": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen."
+			}
+		},
+		{
+			"path": "/blog/introducing-signals",
+			"name": {
+				"en": "Introducing Signals"
+			},
+			"date": "2022-09-06",
+			"excerpt": {
+				"en": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions."
+			}
+		}
+	],
+	"tutorial": [
+		{
+			"path": "/tutorial",
+			"name": {
+				"en": "Learn Preact"
+			}
+		},
+		{
+			"path": "/tutorial/01-vdom",
+			"name": {
+				"en": "Virtual DOM"
+			}
+		},
+		{
+			"path": "/tutorial/02-events",
+			"name": {
+				"en": "Events"
+			}
+		},
+		{
+			"path": "/tutorial/03-components",
+			"name": {
+				"en": "Components"
+			}
+		},
+		{
+			"path": "/tutorial/04-state",
+			"name": {
+				"en": "State"
+			}
+		},
+		{
+			"path": "/tutorial/05-refs",
+			"name": {
+				"en": "Refs"
+			}
+		},
+		{
+			"path": "/tutorial/06-context",
+			"name": {
+				"en": "Context"
+			}
+		},
+		{
+			"path": "/tutorial/07-side-effects",
+			"name": {
+				"en": "Side Effects"
+			}
+		},
+		{
+			"path": "/tutorial/08-keys",
+			"name": {
+				"en": "Keys"
+			}
+		},
+		{
+			"path": "/tutorial/09-error-handling",
+			"name": {
+				"en": "Error Handling"
+			}
+		},
+		{
+			"path": "/tutorial/10-links",
+			"name": {
+				"en": "Congratulations!"
+			}
+		}
+	]
+}

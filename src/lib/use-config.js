@@ -2,11 +2,10 @@ import { createContext } from 'preact';
 import { useContext, useEffect, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 import { localStorageGet, localStorageSet } from './localstorage';
-//import config from '../config.json';
-import { languages } from '../app-config.js';
+import config from '../config.json';
 
 /**
- * @typedef LanguageContext
+ * @typedef ConfigContext
  * @property {string} lang
  * @property {(string) => void} setLang
  */
@@ -43,7 +42,7 @@ export function LanguageProvider({ children }) {
 
 	useEffect(() => {
 		const localStorageLang = localStorageGet('lang');
-		const navigatorLang = getNavigatorLanguage(languages);
+		const navigatorLang = getNavigatorLanguage(config.languages);
 		const userLang = query.lang || localStorageLang || navigatorLang || 'en';
 
 		setLang(userLang);
@@ -70,14 +69,4 @@ export function LanguageProvider({ children }) {
 export function useLanguage() {
 	const { lang, setLang } = useContext(LanguageContext);
 	return [lang, setLang];
-}
-
-/**
- * Get the translation of a key. Defaults to english if no translation is found
- * @param {string} key
- */
-export function useTranslation(key) {
-	const [lang] = useLanguage();
-	//const data = config.i18n[key];
-	return 'Ryan is awesome!';
 }
