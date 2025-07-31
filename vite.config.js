@@ -34,6 +34,7 @@ export default defineConfig({
 				additionalPrerenderRoutes: [
 					'/404',
 					'/guide/v8/getting-started',
+					'/guide/v11/getting-started',
 					'/branding',
 					...Object.keys(tutorialRoutes)
 				]

@@ -4,10 +4,10 @@
 /guide/types-of-components /guide/v10/components
 /guide/api-reference /guide/v10/api-reference
 /guide/forms /guide/v10/forms
-/guide/linked-state /guide/v8/linked-state
-/guide/external-dom-mutations /guide/v10/external-dom-mutations
-/guide/extending-component /guide/v8/extending-component
 /guide/unit-testing-with-enzyme /guide/v10/unit-testing-with-enzyme
+/guide/external-dom-mutations /guide/v8/external-dom-mutations
+/guide/extending-component /guide/v8/extending-component
+/guide/linked-state /guide/v8/linked-state
 /guide/progressive-web-apps /guide/v8/progressive-web-apps
 /guide/v10/tutorial /tutorial
 /* /404/index.html 404
