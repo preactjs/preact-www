@@ -1,13 +1,13 @@
-/guide/getting-started          /guide/v11/getting-started
-/guide/differences-to-react     /guide/v11/differences-to-react
-/guide/switching-to-preact      /guide/v11/switching-to-preact
-/guide/types-of-components      /guide/v11/components
-/guide/api-reference            /guide/v11/api-reference
-/guide/forms                    /guide/v11/forms
+/guide/getting-started          /guide/v10/getting-started
+/guide/differences-to-react     /guide/v10/differences-to-react
+/guide/switching-to-preact      /guide/v10/switching-to-preact
+/guide/types-of-components      /guide/v10/components
+/guide/api-reference            /guide/v10/api-reference
+/guide/forms                    /guide/v10/forms
 /guide/linked-state             /guide/v8/linked-state
 /guide/external-dom-mutations   /guide/v8/external-dom-mutations
 /guide/extending-component      /guide/v8/extending-component
-/guide/unit-testing-with-enzyme /guide/v11/unit-testing-with-enzyme
+/guide/unit-testing-with-enzyme /guide/v10/unit-testing-with-enzyme
 /guide/progressive-web-apps     /guide/v8/progressive-web-apps
 /guide/v10/tutorial             /tutorial
 
