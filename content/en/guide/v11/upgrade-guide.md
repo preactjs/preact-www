@@ -139,7 +139,28 @@ This has been moved into `preact/compat` as it's less commonly used today due to
 
 The third & optional parameter to `render()` has been removed in Preact 11 as there were numerous bugs and edge cases with the implementation as well as some key use cases that it could not accommodate well.
 
-If this is something you still need, we provide a [standalone, Preact 10-compatible implementation](https://gist.github.com/developit/f4c67a2ede71dc2fab7f357f39cff28c).
+If this is something you still need, we provide a standalone, Preact 10 compatible implementation via the [`preact-root-fragment`](https://github.com/preactjs/preact-root-fragment) package.
+
+```html
+<div id="root">
+	<section id="widgetA"><h1>Widget A</h1></section>
+	<section id="widgetB"><h1>Widget B</h1></section>
+	<section id="widgetC"><h1>Widget C</h1></section>
+</div>
+```
+
+```jsx
+// Preact 10
+import { render } from 'preact';
+
+render(<App />, root, widgetC);
+
+// Preact 11
+import { render } from 'preact';
+import { createRootFragment } from 'preact-root-fragment';
+
+render(<App />, createRootFragment(root, widgetC));
+```
 
 ### Remove `Component.base` property
 
