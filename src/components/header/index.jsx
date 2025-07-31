@@ -61,7 +61,7 @@ function MainNav() {
 			/>
 			<NavLink href="/tutorial" />
 			<NavLink href="/guide/v10/getting-started" />
-			<Menu>
+			<NavMenu>
 				{isOpen => (
 					<ExpandableNavLink isOpen={isOpen} label={about}>
 						<>
@@ -73,7 +73,7 @@ function MainNav() {
 						</>
 					</ExpandableNavLink>
 				)}
-			</Menu>
+			</NavMenu>
 			<NavLink href="/blog" />
 			<NavLink href="/repl" />
 		</nav>
@@ -118,7 +118,7 @@ function LanguagePicker() {
 
 	return (
 		<div class={style.translation}>
-			<Menu>
+			<NavMenu>
 				{isOpen => (
 					<ExpandableNavLink
 						isOpen={isOpen}
@@ -141,7 +141,7 @@ function LanguagePicker() {
 							))}
 					</ExpandableNavLink>
 				)}
-			</Menu>
+			</NavMenu>
 		</div>
 	);
 }
@@ -184,7 +184,7 @@ const HamburgerMenu = ({ open, ...props }) => (
  * @param {Object} props
  * @param {(open: boolean) => import('preact').JSX.Element} props.children
  */
-function Menu(props) {
+function NavMenu(props) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
