@@ -84,10 +84,7 @@
 			"name": "Preact"
 		},
 		{
-			"path": "/branding",
-			"name": {
-				"en": "Branding"
-			}
+			"path": "/branding"
 		},
 		{
 			"path": "/tutorial",
