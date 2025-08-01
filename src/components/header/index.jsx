@@ -43,7 +43,7 @@ export default function Header() {
 }
 
 function MainNav() {
-	const { route } = useLocation();
+	const { path, route } = useLocation();
 	const about = useNavTranslation('/about');
 
 	const brandingRedirect = e => {
@@ -64,7 +64,11 @@ function MainNav() {
 			<NavLink href="/guide/v10/getting-started" />
 			<NavMenu>
 				{isOpen => (
-					<ExpandableNavLink isOpen={isOpen} label={about}>
+					<ExpandableNavLink
+						isOpen={isOpen}
+						label={about}
+						class={cx(path.startsWith('/about') && style.current)}
+					>
 						<>
 							<NavLink href="/about/we-are-using" />
 							<NavLink href="/about/libraries-addons" />
@@ -128,7 +132,7 @@ function LanguagePicker() {
 								<use href="/icons.svg#i18n" />
 							</svg>
 						}
-						ariaLabel={selectYourLanguage}
+						aria-label={selectYourLanguage}
 					>
 						{typeof window !== 'undefined' &&
 							Object.keys(config.languages).map(id => (
@@ -212,6 +216,46 @@ function NavMenu(props) {
 }
 
 /**
+ * @typedef {Object} ExpandableNavLinkProps
+ * @property {boolean} props.isOpen
+ * @property {string | import('preact').JSX.Element} props.label
+ * @property {import('preact').ComponentChildren} props.children
+ */
+
+/**
+ * Button that expands into a menu when clicked. Pass in label & menu items as children.
+ *
+ * @param {ExpandableNavLinkProps & import('preact').JSX.ButtonHTMLAttributes} props
+ */
+function ExpandableNavLink({ isOpen, label, children, ...rest }) {
+	return (
+		<>
+			<button aria-haspopup aria-expanded={isOpen} {...rest}>
+				{label}
+			</button>
+			<nav aria-label="submenu" aria-hidden={!isOpen}>
+				{children}
+			</nav>
+		</>
+	);
+}
+
+/**
+ * @param {string} href
+ */
+const prefetchAndPreload = href => {
+	if (href.startsWith('/repl')) {
+		ReplPage.preload();
+		CodeEditor.preload();
+	} else if (href.startsWith('/tutorial')) {
+		TutorialPage.preload();
+		CodeEditor.preload();
+	}
+
+	prefetchContent(href);
+};
+
+/**
  * @typedef {Object} NavLinkProps
  * @property {string} props.href
  * @property {string} [props.clsx]
@@ -226,24 +270,12 @@ function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
 	const label = useNavTranslation(href);
 
-	const prefetchAndPreload = () => {
-		if (href.startsWith('/repl')) {
-			ReplPage.preload();
-			CodeEditor.preload();
-		} else if (href.startsWith('/tutorial')) {
-			TutorialPage.preload();
-			CodeEditor.preload();
-		}
-
-		prefetchContent(href);
-	};
-
 	return (
 		<a
 			href={href}
-			onMouseOver={prefetchAndPreload}
-			onTouchStart={prefetchAndPreload}
-			class={cx(pathMatchesRoute(href, path) && style.current, clsx)}
+			onMouseOver={() => prefetchAndPreload(href)}
+			onTouchStart={() => prefetchAndPreload(href)}
+			class={cx(pathMatchesHref(path, href) && style.current, clsx)}
 			{...rest}
 		>
 			{flair}
@@ -253,40 +285,15 @@ function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 }
 
 /**
- * Button that expands into a menu when clicked. Pass in label & menu items as children.
- *
- * @param {Object} props
- * @param {boolean} props.isOpen
- * @param {string | import('preact').JSX.Element} props.label
- * @param {string} [props.ariaLabel]
- * @param {import('preact').ComponentChildren} props.children
- */
-function ExpandableNavLink({ isOpen, children, label, ariaLabel }) {
-	return (
-		<>
-			<button
-				aria-label={ariaLabel || null}
-				aria-haspopup
-				aria-expanded={isOpen}
-			>
-				{label}
-			</button>
-			<nav aria-label="submenu" aria-hidden={!isOpen}>
-				{children}
-			</nav>
-		</>
-	);
-}
-
-/**
  * @param {string} path
- * @param {string} route
+ * @param {string} href
  * @returns {boolean}
  */
-function pathMatchesRoute(path, route) {
-	if (!path || !route) return false;
-	if (path === route) return true;
+function pathMatchesHref(path, href) {
+	if (!path || !href) return false;
+	if (path === href) return true;
 
-	if (path !== '/' && route.startsWith(path)) return true;
+	if (href !== '/' && path.startsWith(href)) return true;
+	if (path.startsWith('/guide/') && href.startsWith('/guide/')) return true;
 	return false;
 }
