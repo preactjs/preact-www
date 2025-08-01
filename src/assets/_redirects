@@ -10,5 +10,7 @@
 /guide/unit-testing-with-enzyme /guide/v10/unit-testing-with-enzyme
 /guide/progressive-web-apps     /guide/v8/progressive-web-apps
 /guide/v10/tutorial             /tutorial
+
+# Return a smaller asset than the prerendered 404 page for failed "guess-and-check" translation fetches
 /content/*                      /content/en/404.json                   404
 /*                              /404/index.html                        404
