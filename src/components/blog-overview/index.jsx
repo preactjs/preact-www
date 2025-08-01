@@ -1,6 +1,5 @@
 import config from '../../config.json';
-import { useLanguage, useTranslation } from '../../lib/i18n';
-import { getRouteName } from '../header';
+import { useLanguage, useTranslation, getRouteName } from '../../lib/i18n';
 import { Time } from '../time';
 import { prefetchContent } from '../../lib/use-content';
 import { BlogPage } from '../routes.jsx';

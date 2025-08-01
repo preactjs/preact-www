@@ -53,6 +53,9 @@
 			"ru": "Продолжить чтение",
 			"zh": "继续阅读"
 		},
+		"selectYourLanguage": {
+			"en": "Select your language"
+		},
 		"tutorial": {
 			"begin": {
 				"en": "Begin Tutorial",
@@ -78,20 +81,13 @@
 	"nav": [
 		{
 			"path": "/",
-			"name": "Preact",
-			"title": "Home",
-			"class": "home",
-			"flair": "logo",
-			"content": "index"
+			"name": "Preact"
 		},
 		{
-			"path": "/branding",
-			"title": "Branding",
-			"skipHeader": true
+			"path": "/branding"
 		},
 		{
-			"path": "/tutorial/:step",
-			"href": "/tutorial",
+			"path": "/tutorial",
 			"name": {
 				"en": "Tutorial",
 				"ja": "チュートリアル",
@@ -101,6 +97,7 @@
 			}
 		},
 		{
+			"path": "/guide/v10/getting-started",
 			"name": {
 				"en": "Guide",
 				"de": "Anleitung",
@@ -110,12 +107,10 @@
 				"pt-br": "Guia",
 				"ru": "Руководство",
 				"zh": "指南"
-			},
-			"content": "guide",
-			"path": "/guide/:version?/:page?",
-			"href": "/guide/v10/getting-started"
+			}
 		},
 		{
+			"path": "/about",
 			"name": {
 				"en": "About",
 				"de": "Mehr",
@@ -126,7 +121,6 @@
 				"ru": "Разное",
 				"zh": "关于"
 			},
-			"content": "about",
 			"routes": [
 				{
 					"path": "/about/we-are-using",

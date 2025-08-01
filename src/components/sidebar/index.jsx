@@ -3,8 +3,7 @@ import DocVersion from '../doc-version';
 import SidebarNav from './sidebar-nav';
 import config from '../../config.json';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { getRouteName } from '../header';
-import { useLanguage } from '../../lib/i18n';
+import { useLanguage, getRouteName } from '../../lib/i18n';
 import style from './style.module.css';
 
 export default function Sidebar() {
@@ -36,8 +35,10 @@ export default function Sidebar() {
 		}
 	}
 
-	// TODO: use URL match instead of .content
-	const guide = config.nav.filter(item => item.content === 'guide')[0];
+	// TODO: Need to entirely disassociate nav labels from URLs
+	const guide = config.nav.find(
+		item => item.path === '/guide/v10/getting-started'
+	);
 	const sectionName = getRouteName(guide, lang);
 
 	return (
