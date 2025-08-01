@@ -56,6 +56,7 @@ function MainNav() {
 			<NavLink
 				href="/"
 				clsx="home"
+				flair={<InvertedLogo title="Preact Logo" />}
 				onContextMenu={brandingRedirect}
 				aria-label="Home"
 			/>
@@ -214,13 +215,14 @@ function NavMenu(props) {
  * @typedef {Object} NavLinkProps
  * @property {string} props.href
  * @property {string} [props.clsx]
+ * @property {import('preact').ComponentChildren} [props.flair]
  * @property {boolean} [props.isOpen]
  */
 
 /**
  * @param {NavLinkProps & import('preact').AnchorHTMLAttributes} props
  */
-function NavLink({ href, clsx, isOpen, ...rest }) {
+function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
 	const label = useNavTranslation(href);
 
@@ -244,7 +246,7 @@ function NavLink({ href, clsx, isOpen, ...rest }) {
 			class={cx(pathMatchesRoute(href, path) && style.current, clsx)}
 			{...rest}
 		>
-			{href == '/' ? <InvertedLogo title="Preact Logo" /> : null}
+			{flair}
 			{label}
 		</a>
 	);
