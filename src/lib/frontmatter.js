@@ -22,7 +22,8 @@ export function parseFrontmatter(content, path = '') {
 			throw new Error(`Missing title in YAML FrontMatter for ${path}`);
 		}
 	} catch (e) {
-		throw new Error(`Error parsing YAML FrontMatter in ${path}: ${e.message}`);
+		e.message = `Error parsing YAML FrontMatter in ${path}:\n\n ${e.message}`;
+		throw e;
 	}
 
 	const body = content.replace(FRONT_MATTER_REG, '').trim();
