@@ -175,3 +175,27 @@ If you still have a need for this you can access the DOM with `this.__v.__e`; `.
 ### Remove `SuspenseList` from `preact/compat`
 
 The implementation and server-side support has always been a bit unclear and incomplete, so we are choosing to remove it.
+
+### Types
+
+#### `useRef` requires an initial value
+
+Similar to the change made in React 19, we've changed the `useRef` type signature to require an initial value. Providing an initial value simplifies some of the type inference and helps users avoid some typing issues.
+
+#### Reduction in `JSX` namespace
+
+TypeScript uses the special `JSX` namespace to alter how JSX is typed and interpreted. In v10, we greatly expanded this namespace to include a variety of useful types, but many of these are better implemented in the `preact` namespace instead.
+
+Starting in Preact 11, the `JSX` namespace will therefore only contain the types that TS requires, such as `Element`, `IntrinsicElements`, etc., and the rest will be moved to the `preact` namespace. This should also aid editors and IDEs when resolving types for auto-import suggestions.
+
+```ts
+ // Preact 10
+import { JSX } from 'preact';
+
+type MyCustomButtonProps = JSX.ButtonHTMLAttributes & { ... }
+
+// Preact 11
+import { ButtonHTMLAttributes } from 'preact';
+
+type MyCustomButtonProps = ButtonHTMLAttributes & { ... }
+```
