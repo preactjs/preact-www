@@ -216,9 +216,9 @@ When we write components like `<Input />` that wrap the HTML `<input>`, most of 
 the props that can be used on the native HTML input element. To do this we can do the following:
 
 ```tsx
-import { JSX } from 'preact';
+import { InputHTMLAttributes } from 'preact';
 
-interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
+interface InputProperties extends InputHTMLAttributes {
 	mySpecialProp: any;
 }
 
@@ -232,10 +232,10 @@ Now when we use `Input` it will know about properties like `value`, ...
 Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
 ```tsx
-import type { JSX } from "preact";
+import type { TargetedMouseEvent } from "preact";
 
 export class Button extends Component {
-  handleClick(event: JSX.TargetedMouseEvent<HTMLButtonElement>) {
+  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
     alert(event.currentTarget.tagName); // Alerts BUTTON
   }
 
@@ -315,8 +315,8 @@ function App() {
 	return (
 		<AppContext.Provider
 			value={{
-	 //    ~~~~~
-	 // 💥 Error: theme not defined
+				//    ~~~~~
+				// 💥 Error: theme not defined
 				lang: 'de',
 				authenticated: true
 			}}
@@ -522,9 +522,9 @@ The only annotation needed is in the reducer function itself. The `useReducer` t
 
 ## Extending built-in JSX types
 
-You may have [custom elements](/guide/v10/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all HTML elements to work with a particular library. To do this, you will need to extend the `IntrinsicElements` or `HTMLAttributes` interfaces, respectively, so that TypeScript is aware and can provide correct type information.
+You may have [custom elements](/guide/v10/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all or some HTML elements to work with a particular library. To do this, you will need to use "Module augmentation" to extend and/or alter the types that Preact provides.
 
-### Extending `IntrinsicElements`
+### Extending `IntrinsicElements` for custom elements
 
 ```tsx
 function MyComponent() {
@@ -549,7 +549,9 @@ declare global {
 export {};
 ```
 
-### Extending `HTMLAttributes`
+### Extending `HTMLAttributes` for global custom attributes
+
+If you want to add a custom attribute to all HTML elements, you can extend the `HTMLAttributes` interface:
 
 ```tsx
 function MyComponent() {
@@ -563,14 +565,46 @@ function MyComponent() {
 ```tsx
 // global.d.ts
 
-declare global {
-	namespace preact.JSX {
-		interface HTMLAttributes {
-			custom?: string | undefined;
-		}
+declare module 'preact' {
+	interface HTMLAttributes {
+		custom?: string | undefined;
 	}
 }
 
 // This empty export is important! It tells TS to treat this as a module
 export {};
 ```
+
+### Extending per-element interfaces for custom attributes
+
+Sometimes you may not want to add a custom attribute globally, but only to a specific element. In this case, you can extend the specific element's interface:
+
+```tsx
+// global.d.ts
+
+declare module 'preact' {
+	interface HeadingHTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// This empty export is important! It tells TS to treat this as a module
+export {};
+```
+
+There are, however, currently 5 special elements (`<a>`, `<area>`, `<img>`, `<input>`, and `<select>`) that you need to handle a bit differently: unlike other elements, these elements have their interfaces prefixed with `Partial...` and so you will need to ensure your interfaces match that pattern:
+
+```ts
+// global.d.ts
+
+declare module 'preact' {
+	interface PartialAnchorHTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// This empty export is important! It tells TS to treat this as a module
+export {};
+```
+
+> **Note**: We do this to support better ARIA/accessibility types for these elements, as their ARIA roles are a discriminated union type per the spec (eg., if `<a>` has an `href` attribute, it can be a few specific roles, but if it doesn't, it can be a different set of roles). To facilitate this we need to use the `type` keyword in TypeScript, but this breaks the ability to augment the type as it's no longer a simple interface. Our accessible types intersect `Partial...` interfaces however, so we can simply augment them instead.
