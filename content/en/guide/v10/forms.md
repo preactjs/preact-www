@@ -21,7 +21,7 @@ Often you'll want to collect user input in your application, and this is where `
 
 To get started, we'll create a simple text input field that will update a state value as the user types. We'll use the `onInput` event to listen for changes to the input field's value and update the state per-keystroke. This state value is then rendered in a `<p>` element, so we can see the results.
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -68,11 +68,32 @@ function BasicInput() {
 render(<BasicInput />, document.getElementById('app'));
 ```
 
+```jsx
+// --repl
+import { render } from 'preact';
+import { signal } from '@preact/signals';
+// --repl-before
+const name = signal('');
+
+function BasicInput() {
+	return (
+		<div class="form-example">
+			<label>
+				Name: <input onInput={e => (name.value = e.currentTarget.value)} />
+			</label>
+			<p>Hello {name.value}</p>
+		</div>
+	);
+}
+// --repl-after
+render(<BasicInput />, document.getElementById('app'));
+```
+
 </tab-group>
 
 ### Input (checkbox & radio)
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -194,11 +215,69 @@ function BasicRadioButton() {
 render(<BasicRadioButton />, document.getElementById('app'));
 ```
 
+```jsx
+// --repl
+import { render } from 'preact';
+import { signal } from '@preact/signals';
+// --repl-before
+const allowContact = signal(false);
+const contactMethod = signal('');
+
+function BasicRadioButton() {
+	const toggleContact = () => (allowContact.value = !allowContact.value);
+	const setRadioValue = e => (contactMethod.value = e.currentTarget.value);
+
+	return (
+		<div class="form-example">
+			<label>
+				Allow contact: <input type="checkbox" onClick={toggleContact} />
+			</label>
+			<label>
+				Phone:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="phone"
+					onClick={setRadioValue}
+					disabled={!allowContact.value}
+				/>
+			</label>
+			<label>
+				Email:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="email"
+					onClick={setRadioValue}
+					disabled={!allowContact.value}
+				/>
+			</label>
+			<label>
+				Mail:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="mail"
+					onClick={setRadioValue}
+					disabled={!allowContact.value}
+				/>
+			</label>
+			<p>
+				You {allowContact.value ? 'have allowed' : 'have not allowed'} contact{' '}
+				{allowContact.value && ` via ${contactMethod.value}`}
+			</p>
+		</div>
+	);
+}
+// --repl-after
+render(<BasicRadioButton />, document.getElementById('app'));
+```
+
 </tab-group>
 
 ### Select
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -251,6 +330,29 @@ function MySelect() {
 render(<MySelect />, document.getElementById('app'));
 ```
 
+```jsx
+// --repl
+import { render } from 'preact';
+import { signal } from '@preact/signals';
+// --repl-before
+const value = signal('');
+
+function MySelect() {
+	return (
+		<div class="form-example">
+			<select onChange={e => (value.value = e.currentTarget.value)}>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+			</select>
+			<p>You selected: {value.value}</p>
+		</form>
+	);
+}
+// --repl-after
+render(<MySelect />, document.getElementById('app'));
+```
+
 </tab-group>
 
 ## Basic Forms
@@ -259,7 +361,7 @@ Whilst bare inputs are useful and you can get far with them, often we'll see our
 
 To demonstrate, we'll create a new `<form>` element that contains two `<input>` fields: one for a user's first name and one for their last name. We'll use the `onSubmit` event to listen for the form submission and update the state with the user's full name.
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -333,6 +435,41 @@ function FullNameForm() {
 render(<FullNameForm />, document.getElementById('app'));
 ```
 
+```jsx
+// --repl
+import { render } from 'preact';
+import { signal } from '@preact/signals';
+// --repl-before
+const fullName = signal('');
+
+function FullNameForm() {
+	const onSubmit = e => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		fullName.value = formData.get('firstName') + ' ' + formData.get('lastName');
+		e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
+	};
+
+	return (
+		<div class="form-example">
+			<form onSubmit={onSubmit}>
+				<label>
+					First Name: <input name="firstName" />
+				</label>
+				<label>
+					Last Name: <input name="lastName" />
+				</label>
+				<button>Submit</button>
+			</form>
+			{fullName.value && <p>Hello {fullName.value}</p>}
+		</div>
+	);
+}
+
+// --repl-after
+render(<FullNameForm />, document.getElementById('app'));
+```
+
 </tab-group>
 
 > **Note**: Whilst it's quite common to see React & Preact forms that link every input field to component state, it's often unnecessary and can get unwieldy. As a very loose rule of thumb, you should prefer using `onSubmit` and the [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) API in most cases, using component state only when you need to. This reduces the complexity of your components and may skip unnecessary rerenders.
@@ -371,7 +508,7 @@ The problem with this is in the cases where the input fails that condition: beca
 
 Here's an example of how you might use a controlled component to limit the number of characters in an input field:
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -431,6 +568,43 @@ const LimitedInput = () => {
 			const end = inputRef.current.selectionEnd;
 			const diffLength = Math.abs(e.currentTarget.value.length - value.length);
 			inputRef.current.value = value;
+			// Restore selection
+			inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
+		}
+	};
+
+	return (
+		<div class="form-example">
+			<label>
+				This input is limited to 3 characters:{' '}
+				<input ref={inputRef} value={value} onInput={onInput} />
+			</label>
+		</div>
+	);
+};
+// --repl-after
+render(<LimitedInput />, document.getElementById('app'));
+```
+
+```jsx
+// --repl
+import { render } from 'preact';
+import { signal } from '@preact/signals';
+// --repl-before
+const LimitedInput = () => {
+	const value = signal('');
+	const inputRef = useRef();
+
+	const onInput = e => {
+		if (e.currentTarget.value.length <= 3) {
+			value.value = e.currentTarget.value;
+		} else {
+			const start = inputRef.current.selectionStart;
+			const end = inputRef.current.selectionEnd;
+			const diffLength = Math.abs(
+				e.currentTarget.value.length - value.value.length
+			);
+			inputRef.current.value = value.value;
 			// Restore selection
 			inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
 		}
