@@ -189,5 +189,40 @@ main .markup {
 			box-sizing: border-box;
 			width: 75%;
 		}
+
+		.repo-list-header {
+			text-align: center;
+			font-weight: 200;
+		}
+
+		.repo-list-item {
+			padding: 1rem;
+			margin: 1rem;
+			background: #fffbf1;
+			border: 1px solid #673ab8;
+			border-radius: 7px;
+
+			@media (prefers-color-scheme: dark) {
+				background: #2b2a33;
+			}
+		}
+
+		.repo-list-item a {
+			color: black;
+			font-weight: bold;
+			text-decoration: underline;
+
+			&:hover {
+				color: #444;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				color: white;
+
+				&:hover {
+					color: #bbb;
+				}
+			}
+		}
 	}
 }
