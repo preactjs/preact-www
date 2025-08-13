@@ -8,7 +8,7 @@ function GitHubRepos({ org }) {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
-		fetch(`https://api.github.com/orgs/${org}/repos?per_page=50`)
+		fetch(`https://api.github.com/orgs/${org}/repos?sort=updated`)
 			.then((res) => res.json())
 			.then((repos) =>
 				setItems(repos.sort(compare))
