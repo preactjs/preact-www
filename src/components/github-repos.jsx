@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'preact/hooks';
+import { fetchOrganizationRepos } from '../lib/github.js';
+import { usePrerenderData } from '../lib/prerender-data.jsx';
 
 const compare = (a, b) => (a.stargazers_count < b.stargazers_count ? 1 : -1);
+export const prepare = repos => repos.sort(compare).slice(0, 5);
 
 export default function GitHubRepos({ org }) {
-	const [items, setItems] = useState([]);
+	const { preactOrgRepos } = usePrerenderData();
+	const [items, setItems] = useState(preactOrgRepos);
 
 	useEffect(() => {
-		fetch(`https://api.github.com/orgs/${org}/repos?per_page=50`)
-			.then(res => res.json())
-			.then(repos => setItems(repos.sort(compare).slice(0, 5)));
+		fetchOrganizationRepos(org).then(repos => setItems(prepare(repos)));
 	}, []);
 
 	return (

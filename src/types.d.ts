@@ -12,7 +12,7 @@ declare global {
 export interface PrerenderData {
 	preactVersion: string;
 	preactReleaseURL: string;
-	preactStargazers: number;
+	preactOrgRepos: { html_url: string; full_name: string; stargazers_count: number; description: string }[];
 }
 
 // Data added to the markdown frontmatter
