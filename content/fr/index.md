@@ -137,43 +137,45 @@ function Counter() {
     <div>
         <h3>Composant liste de tâches</h3>
         <pre><code class="language-jsx">
-// --repl
-export default class TodoList extends Component {
-    state = { todos: [], text: '' };
-    setText = e =&gt; {
-        this.setState({ text: e.currentTarget.value });
-    };
-    addTodo = () =&gt; {
-        let { todos, text } = this.state;
-        todos = todos.concat({ text });
-        this.setState({ todos, text: '' });
-    };
-    render({ }, { todos, text }) {
-        return (
-            &lt;form onSubmit={this.addTodo} action="javascript:"&gt;
-                &lt;label&gt;
-                  &lt;span&gt;Add Todo&lt;/span&gt;
-                  &lt;input value={text} onInput={this.setText} /&gt;
-                &lt;/label&gt;
-                &lt;button type="submit"&gt;Add&lt;/button&gt;
-                &lt;ul&gt;
-                    { todos.map( todo =&gt; (
-                        &lt;li&gt;{todo.text}&lt;/li&gt;
-                    )) }
-                &lt;/ul&gt;
-            &lt;/form&gt;
-        );
-    }
-}
-// --repl-after
-render(&lt;TodoList /&gt;, document.getElementById("app"));
+            // --repl
+            import { Component, render } from "preact";
+            // --repl-before
+            export default class TodoList extends Component {
+            	state = { todos: [], text: "" };<br>
+            	setText = (e) => {
+            		this.setState({ text: e.currentTarget.value });
+            	};<br>
+            	addTodo = () => {
+            		let { todos, text } = this.state;
+            		todos = todos.concat({ text });
+            		this.setState({ todos, text: "" });
+            	};<br>
+            	render({}, { todos, text }) {
+            		return (
+            			<form onSubmit={this.addTodo} action="javascript:">
+            				<label>
+            					<span>Add Todo</span>
+            					<input value={text} onInput={this.setText} />
+            				</label>
+            				<button type="submit">Add</button>
+            				<ul>
+            					{todos.map((todo) => (
+            						<li>{todo.text}</li>
+            					))}
+            				</ul>
+            			</form>
+            		);
+            	}
+            }
+            // --repl-after
+            render(<TodoList />, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
         <h3>Exemple interactif</h3>
         <pre repl="false"><code class="language-jsx">
-import TodoList from './todo-list';<br>
-render(&lt;TodoList /&gt;, document.body);
+            import TodoList from './todo-list';<br>
+            render(<TodoList />, document.body);
         </code></pre>
         <div class="home-demo">
             <todo-list></todo-list>
@@ -186,36 +188,69 @@ render(&lt;TodoList /&gt;, document.body);
     <div>
         <h3>Récupérer les Stars Github</h3>
         <pre><code class="language-jsx">
-// --repl
-export default class Stars extends Component {
-    async componentDidMount() {
-        let stars = await githubStars(this.props.repo);
-        this.setState({ stars });
-    }
-    render({ repo }, { stars=0 }) {
-        let url = `https://github.com/${repo}`;
-        return (
-            &lt;a href={url} class="stars"&gt;
-                ⭐️ {stars} Stars
-            &lt;/a&gt;
-        );
-    }
-}
-// --repl-after
-render(&lt;Stars repo="preactjs/preact" /&gt;, document.getElementById("app"));
+            // --repl
+            import { render } from "preact";
+            import { useState, useEffect } from "preact/hooks";
+            // --repl-before
+            const compare = (a, b) =>
+            	(a.stargazers_count < b.stargazers_count ? 1 : -1);<br>
+            export default function GitHubRepos({ org }) {
+            	const [items, setItems] = useState([]);<br>
+            	useEffect(() => {
+            		fetch(`https://api.github.com/orgs/${org}/repos?per_page=50`)
+            			.then((res) => res.json())
+            			.then((repos) =>
+            				setItems(repos.sort(compare).slice(0, 5))
+            			);
+            	}, []);<br>
+            	return (
+            		<div>
+            			<h1 class="repo-list-header">
+            				Preact Repositories
+            			</h1>
+            			<div>
+            				{items.map((result) => (
+            					<Result {...result} />
+            				))}
+            			</div>
+            		</div>
+            	);
+            }<br>
+            function Result(result) {
+            	return (
+            		<div class="repo-list-item">
+            			<div>
+            				<a
+            					href={result.html_url}
+            					target="_blank"
+            					rel="noopener noreferrer"
+            				>
+            					{result.full_name}
+            				</a>
+            				{" - "}
+            				<strong>
+            					⭐️{result.stargazers_count.toLocaleString()}
+            				</strong>
+            			</div>
+            			<p>{result.description}</p>
+            		</div>
+            	);
+            }
+            // --repl-after
+            render(<GitHubRepos org="preactjs" />, document.getElementById("app"));
         </code></pre>
     </div>
     <div>
         <h3>Exemple fonctionnel</h3>
         <pre repl="false"><code class="language-jsx">
-import Stars from './stars';<br>
-render(
-    &lt;Stars repo="developit/preact" /&gt;,
-    document.body
-);
+            import GitHubRepos from './github-repos';<br>
+            render(
+                <GitHubRepos org="preactjs" />,
+                document.body
+            );
         </code></pre>
         <div class="home-demo">
-            <github-stars simple="true" user="preactjs" repo="preact"></github-stars>
+            <github-repos org="preactjs"></github-repos>
         </div>
     </div>
 </section>

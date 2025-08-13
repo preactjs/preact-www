@@ -234,7 +234,7 @@ function Counter() {
             	);
             }
             // --repl-after
-            render(<Repos org="preactjs" />, document.getElementById("app"));
+            render(<GitHubRepos org="preactjs" />, document.getElementById("app"));
         </code></pre>
     </div>
     <div>

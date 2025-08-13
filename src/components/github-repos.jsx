@@ -13,7 +13,8 @@ export default function GitHubRepos({ org }) {
 
 	return (
 		<div>
-			<h1 class="repo-list-header">Preact Repositories</h1>
+			{/* We use a <p> here (roughly) styled as an <h1> here to not disrupt the heading order on the home page */}
+			<p class="repo-list-header">Preact Repositories</p>
 			<div>
 				{items.map(result => (
 					<Result {...result} />
