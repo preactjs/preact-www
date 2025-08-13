@@ -1,4 +1,5 @@
 import { marked } from 'marked';
+import dedent from 'dedent';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { parse } from 'node-html-parser';
@@ -98,8 +99,7 @@ marked.use({
 			return `<img decoding="async" src="${href}" alt="${text}" />`;
 		},
 		code({ text, lang }) {
-			const rawCodeBlockText = text.trim().replace('<br>', '\n');
-			const [code, source, runInRepl] = processRepl(rawCodeBlockText);
+			const [code, source, runInRepl] = processRepl(text.trim());
 
 			Prism.languages[lang] == null
 				? console.warn(`No Prism highlighter for language: ${lang}`)
@@ -230,7 +230,9 @@ function highlightCodeBlocks(data) {
 		 * We only do this on the home/index page at the moment.
 		 */
 		const rawCodeBlockText = unescapeHTML(
-			child.innerText.trim().replace('<br>', '\n')
+			dedent(child.innerText)
+				.trim()
+				.replaceAll('<br>', '\n')
 		);
 		const [code, source, runInRepl] = processRepl(rawCodeBlockText);
 
