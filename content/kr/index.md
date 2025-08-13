@@ -189,7 +189,7 @@ function Counter() {
             export default function GitHubRepos({ org }) {
             	const [items, setItems] = useState([]);<br>
             	useEffect(() => {
-            		fetch(`https://api.github.com/orgs/${org}/repos?per_page=50`)
+            		fetch(`https://api.github.com/orgs/${org}/repos`)
             			.then((res) => res.json())
             			.then((repos) =>
             				setItems(repos.sort(compare).slice(0, 5))
