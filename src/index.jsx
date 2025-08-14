@@ -3,7 +3,6 @@ import * as hooks from 'preact/hooks';
 import { hydrate, prerender as ssr } from 'preact-iso';
 
 import App from './components/app';
-import { prepare as prepareGitHubOrgRepos } from './components/github-repos.jsx';
 import './analytics';
 import './style/index.css';
 
@@ -47,14 +46,7 @@ export async function prerender() {
 
 		prerenderData.preactVersion = preactData.version;
 		prerenderData.preactReleaseURL = preactData.url;
-		prerenderData.preactOrgRepos = prepareGitHubOrgRepos(preactOrgRepos).map(
-			repo => ({
-				html_url: repo.html_url,
-				full_name: repo.full_name,
-				stargazers_count: repo.stargazers_count,
-				description: repo.description
-			})
-		);
+		prerenderData.preactOrgRepos = preactOrgRepos;
 
 		initialized = true;
 	};
