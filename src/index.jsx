@@ -27,7 +27,7 @@ let initialized = false,
 	prerenderData = {
 		preactVersion: '',
 		preactReleaseURL: '',
-		preactStargazers: 0
+		preactOrgRepos: []
 	};
 export async function prerender() {
 	const init = async () => {
@@ -35,16 +35,18 @@ export async function prerender() {
 		const { DOMParser } = await import('@xmldom/xmldom');
 		globalThis.DOMParser = DOMParser;
 
-		// fetch latest release data
-		const { default: releaseLambda } = await import('./lambda/release.js');
-		const { version, url } = await (await releaseLambda()).json();
-		prerenderData.preactVersion = version;
-		prerenderData.preactReleaseURL = url;
+		const [preactData, preactOrgRepos] = await Promise.all([
+			import('./lambda/release.js')
+				.then(m => m.default())
+				.then(res => res.json()),
+			import('./lambda/repos.js')
+				.then(m => m.default())
+				.then(res => res.json())
+		]);
 
-		// fetch latest stargazer count
-		const { default: repoLambda } = await import('./lambda/repo.js');
-		const { stargazers_count: stargazersCount } = await (await repoLambda()).json();
-		prerenderData.preactStargazers = stargazersCount;
+		prerenderData.preactVersion = preactData.version;
+		prerenderData.preactReleaseURL = preactData.url;
+		prerenderData.preactOrgRepos = preactOrgRepos;
 
 		initialized = true;
 	};

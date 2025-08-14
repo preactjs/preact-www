@@ -1,5 +1,5 @@
 import Jumbotron from './jumbotron';
-import GithubStars from './github-stars';
+import GithubRepos from './github-repos';
 import TodoList from './todo-list';
 import Logo from './logo';
 import Toc from './table-of-contents';
@@ -13,7 +13,7 @@ export default {
 	Toc,
 	BlogOverview,
 	Jumbotron,
-	GithubStars,
+	GithubRepos,
 	TodoList,
 	Sponsors,
 	Logo,
