@@ -4,7 +4,7 @@ import { usePrerenderData } from '../lib/prerender-data.jsx';
 
 export default function GitHubRepos({ org }) {
 	const { preactOrgRepos } = usePrerenderData();
-	const [items, setItems] = useState(preactOrgRepos);
+	const [items, setItems] = useState(preactOrgRepos || []);
 
 	useEffect(() => {
 		fetchOrganizationRepos(org).then(repos => setItems(repos));
