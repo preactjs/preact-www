@@ -39,7 +39,7 @@ export default async function repoLambda(req, _context) {
 		status: 200,
 		headers: {
 			'Content-Type': 'application/json',
-			'Cache-Control': 'public, max-age=86400, stale-if-error=86400'
+			'Cache-Control': 'public, max-age=604800, stale-if-error=604800'
 		}
 	});
 }
