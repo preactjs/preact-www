@@ -10,7 +10,10 @@ const DocSearchStylesURL = new URL(
 	import.meta.url
 ).href;
 
-// Inject DocSearch styles into the document head *before* app styles
+/**
+ * Inject Docsearch styles into the document head above app styles,
+ * solving some specificity issues w/ Vite's default lazy loading of CSS.
+ */
 function injectDocsearchCSS() {
 	if (document.querySelector(`link[href="${DocSearchStylesURL}"]`)) return;
 
@@ -19,6 +22,35 @@ function injectDocsearchCSS() {
 	link.crossOrigin = '';
 	link.href = DocSearchStylesURL;
 	document.head.insertAdjacentElement('afterbegin', link);
+}
+
+/**
+ * Wait for Docsearch to initialize so we can trigger a click if the user
+ * interacted with the placeholder button prior to Docsearch fully loading.
+ *
+ * @param {HTMLElement} root
+ * @returns {Promise<HTMLElement>}
+ */
+function waitForDocsearch(root) {
+	return new Promise(resolve => {
+		const getDocSearchButton = () =>
+			document.querySelector('.DocSearch.DocSearch-Button');
+
+		// Not included in the initial render, as we always style it w/ `display: none`,
+		// so useful as a marker for whether DocSearch has been initialized.
+		let target = root.querySelector('.DocSearch-Button-Keys');
+		if (target) return resolve(getDocSearchButton());
+
+		const observer = new MutationObserver(() => {
+			target = getDocSearchButton();
+			if (target) {
+				observer.disconnect();
+				resolve(getDocSearchButton());
+			}
+		});
+
+		observer.observe(root, { childList: true, subtree: true });
+	});
 }
 
 // Might be a problem with the Algolia data, but it seemingly
@@ -34,11 +66,12 @@ const transformItems = items =>
 	});
 
 export default function Search() {
-	const ref = useRef(null);
+	const root = useRef(null);
 	const rendered = useRef(false);
+	const interactedWith = useRef(false);
 
 	const loadDocSearch = () => {
-		if (ref.current && !rendered.current) {
+		if (!rendered.current) {
 			injectDocsearchCSS();
 			render(
 				<ErrorBoundary>
@@ -49,14 +82,25 @@ export default function Search() {
 						transformItems={transformItems}
 					/>
 				</ErrorBoundary>,
-				ref.current
+				root.current
 			);
+
+			waitForDocsearch(root.current).then(docsearchButton => {
+				if (interactedWith.current) {
+					docsearchButton.click();
+				}
+			});
 			rendered.current = true;
 		}
 	};
 
+	// Is `onClick` the only one we need? Enter key will trigger `click` events too on buttons
+	const onInteraction = () => {
+		interactedWith.current = true;
+	};
+
 	return (
-		<div class={style.search} ref={ref}>
+		<div class={style.search} ref={root}>
 			{/* Copy/paste of the HTML DocSearch normally generates, used as a placeholder */}
 			<button
 				type="button"
@@ -65,6 +109,7 @@ export default function Search() {
 				onMouseOver={loadDocSearch}
 				onTouchStart={loadDocSearch}
 				onFocus={loadDocSearch}
+				onClick={onInteraction}
 			>
 				<span class="DocSearch-Button-Container">
 					<span class="DocSearch-Button-Placeholder">Search</span>
