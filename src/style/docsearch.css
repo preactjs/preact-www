@@ -1,9 +1,13 @@
-@import '@docsearch/css';
+/*@import '@docsearch/css';*/
 
 .DocSearch-Button {
+	display: flex;
+	justify-content: space-between;
 	width: 60px;
+	height: 36px;
 	margin: 10px 5px;
 	padding: 8px 4px 8px 32px;
+	color: var(--docsearch-muted-color);
 	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
 	background-position: 10px center;
 	background-repeat: no-repeat;
@@ -13,6 +17,9 @@
 	border-radius: 5px;
 	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
 	font-size: 100%;
+	font-weight: 500;
+	cursor: pointer;
+	user-select: none;
 
 	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
 		width: 100%;
@@ -34,7 +41,17 @@
 		background-position: 10px center;
 		background-repeat: no-repeat;
 		background-color: #58319d !important; /* --color-brand 7% darker */
+		box-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
 	}
+}
+
+.DocSearch-Button-Container {
+	align-items: center;
+	display: flex;
+}
+
+.DocSearch-Button-Placeholder {
+	padding: 0 12px 0 6px;
 }
 
 /* Uses 'muted' color by default, which is fine for the modal,
