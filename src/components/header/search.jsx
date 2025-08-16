@@ -72,6 +72,12 @@ export default function Search() {
 
 	const loadDocSearch = () => {
 		if (!rendered.current) {
+			// The <loading-bar> is sat alongside the router & has it's state controlled by it,
+			// so while we could create a new context to be able to set it here, direct DOM
+			// manipulation is a heck of a lot simpler.
+			const loadingBar = document.querySelector('loading-bar');
+			loadingBar.setAttribute('showing', 'true');
+
 			injectDocsearchCSS();
 			render(
 				<ErrorBoundary>
@@ -86,6 +92,7 @@ export default function Search() {
 			);
 
 			waitForDocsearch(root.current).then(docsearchButton => {
+				loadingBar.removeAttribute('showing');
 				if (interactedWith.current) {
 					docsearchButton.click();
 				}
