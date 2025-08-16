@@ -69,15 +69,13 @@ export default function Search() {
 	const root = useRef(null);
 	const rendered = useRef(false);
 	const interactedWith = useRef(false);
+	const loadingBar =
+		typeof window !== 'undefined'
+			? document.querySelector('loading-bar')
+			: null;
 
 	const loadDocSearch = () => {
 		if (!rendered.current) {
-			// The <loading-bar> is sat alongside the router & has it's state controlled by it,
-			// so while we could create a new context to be able to set it here, direct DOM
-			// manipulation is a heck of a lot simpler.
-			const loadingBar = document.querySelector('loading-bar');
-			loadingBar.setAttribute('showing', 'true');
-
 			injectDocsearchCSS();
 			render(
 				<ErrorBoundary>
@@ -92,18 +90,25 @@ export default function Search() {
 			);
 
 			waitForDocsearch(root.current).then(docsearchButton => {
+				rendered.current = true;
 				loadingBar.removeAttribute('showing');
 				if (interactedWith.current) {
 					docsearchButton.click();
 				}
 			});
-			rendered.current = true;
 		}
 	};
 
 	// Is `onClick` the only one we need? Enter key will trigger `click` events too on buttons
 	const onInteraction = () => {
 		interactedWith.current = true;
+
+		if (!rendered.current) {
+			// The <loading-bar> is sat alongside the router & has it's state controlled by it,
+			// so while we could create a new context to be able to set it here, direct DOM
+			// manipulation is a heck of a lot simpler.
+			loadingBar.setAttribute('showing', 'true');
+		}
 	};
 
 	return (
