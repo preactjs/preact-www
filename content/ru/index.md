@@ -151,10 +151,10 @@ function Counter() {
             		return (
             			<form onSubmit={this.addTodo} action="javascript:">
             				<label>
-            					<span>Add Todo</span>
+            					<span>Новый пункт</span>
             					<input value={text} onInput={this.setText} />
             				</label>
-            				<button type="submit">Add</button>
+            				<button type="submit">Добавить</button>
             				<ul>
             					{todos.map((todo) => (
             						<li>{todo.text}</li>
@@ -182,7 +182,7 @@ function Counter() {
 
 <section class="home-split">
     <div>
-        <h3>Получение звёзд GitHub</h3>
+        <h3>Получение репозиториев GitHub</h3>
         <pre><code class="language-jsx">
             // --repl
             import { render } from "preact";
@@ -202,7 +202,7 @@ function Counter() {
             	return (
             		<div>
             			<h1 class="repo-list-header">
-            				Preact Repositories
+            				Репозитории Preact
             			</h1>
             			<div>
             				{items.map((result) => (

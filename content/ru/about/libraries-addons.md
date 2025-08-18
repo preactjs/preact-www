@@ -17,6 +17,7 @@ description: Коллекция библиотек и дополнений, ко
 - :timer_clock: **[relaks](https://github.com/trambarhq/relaks)**: Создавайте компоненты с методами рендеринга, которые возвращаются асинхронно.
 - :nut_and_bolt: **[express-preact-views](https://github.com/edwjusti/express-preact-views)**: Express View Engine.
 - :floppy_disk: **[Prefresh](https://github.com/JoviDeCroock/prefresh)**: Fast-Refresh для Preact.
+- :bookmark_tabs: **[adonis-preact](https://github.com/DonsWayo/adonis-preact)**: Используем Preact в Adonisjs
 
 ## Компоненты
 
@@ -34,11 +35,12 @@ description: Коллекция библиотек и дополнений, ко
 ## Интеграции
 
 - :thought_balloon: **[preact-socrates](https://github.com/matthewmueller/preact-socrates)**: Плагин Preact для [Socrates](http://github.com/matthewmueller/socrates)
-- :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: Use [flyd](https://github.com/paldepind/flyd) Потоки FRP в Preact + JSX
-- :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Интегрирует экосистему вокруг [i18n-js](https://github.com/everydayhero/i18n-js) с Preact через [i18nline](https://github.com/download/i18nline).
-- :diamond_shape_with_a_dot_inside: **[Capacitor](https://capacitorjs.com/solution/preact)**: Превратите свое приложение Preact в нативное приложение для iOS/Android и PWA.
-- 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Запустите виджет Preact на любом веб-сайте с реактивными реквизитами.
-- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
+- :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: Используем FRP-потоки [flyd](https://github.com/paldepind/flyd) в Preact + JSX
+- :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Интегрируем экосистему вокруг [i18n-js](https://github.com/everydayhero/i18n-js) с Preact через [i18nline](https://github.com/download/i18nline).
+- :diamond_shape_with_a_dot_inside: **[Capacitor](https://capacitorjs.com/solution/preact)**: Превращаем свое приложение Preact в нативное приложение для iOS/Android и PWA.
+- :ice_cube: **[Kretes](https://kretes.dev/docs/howtos/preact-setup/)**: Разрабатываем full-stack приложения на TypeScript с использованием Preact и Node.js
+- 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Запускаем виджет Preact на любом веб-сайте с реактивными пропсами.
+- 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Оборачиваем ваши компоненты [ZikoJS](https://github.com/zakarialaoui10/zikojs) внутри Preact-приложения — и наоборот.
 
 ## Инструментальные средства графического интерфейса
 
