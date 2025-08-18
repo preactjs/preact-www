@@ -182,7 +182,7 @@ function Counter() {
 
 <section class="home-split">
     <div>
-        <h3>Получение звёзд GitHub</h3>
+        <h3>Получение репозиториев GitHub</h3>
         <pre><code class="language-jsx">
             // --repl
             import { render } from "preact";
