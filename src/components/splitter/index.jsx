@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'preact/hooks';
+import { useCallback, useEffect, useState, useLayoutEffect, useRef } from 'preact/hooks';
 import cx from '../../lib/cx';
 import s from './splitter.module.css';
 
@@ -76,9 +76,14 @@ export function Splitter({
 		addEventListener('pointercancel', cancel);
 	}, [splitterOrientation]);
 
+	const ref = useRef(null);
+	useLayoutEffect(() => {
+		ref.current?.style.setProperty('--size', force || initial);
+	}, [force, initial]);
+
 	return (
 		<div
-			ref={(n) => n?.style.setProperty('--size', force || initial)}
+			ref={ref}
 			class={cx(
 				s.container,
 				splitterOrientation === 'horizontal' ? s.horizontal : s.vertical
