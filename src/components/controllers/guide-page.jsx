@@ -64,7 +64,7 @@ function OldDocsWarning() {
 	return (
 		<div class={style.stickyWarning}>
 			You are viewing the documentation for an{' '}
-			{outdatedVersion ? 'older' : 'unreleased'} version of Preact.
+			{outdatedVersion ? 'older' : 'upcoming'} version of Preact.
 			{latestExists ? (
 				<>
 					{' '}
