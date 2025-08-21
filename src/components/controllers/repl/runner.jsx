@@ -28,7 +28,7 @@ export default class Runner extends Component {
 
 	constructor(props) {
 		super(props);
-		props.ref.current = this;
+		if (props.ref) props.ref.current = this;
 	}
 
 	shouldComponentUpdate() {
