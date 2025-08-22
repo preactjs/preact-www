@@ -134,7 +134,7 @@ class NavMenu extends Component {
 	handleClickOutside = ({ target }) => {
 		if (this.state.open) {
 			do {
-				if (target === this.base) return;
+				if (target === this.__v.__e) return;
 			} while ((target = target.parentNode));
 			this.close();
 		}
@@ -212,9 +212,10 @@ const NavLink = ({ to, isOpen, route, ...props }) => {
 	}
 
 	const href = to.href || to.path;
-	const homeProps = to.href == '/' || to.path == '/'
-		? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
-		: {};
+	const homeProps =
+		to.href == '/' || to.path == '/'
+			? { onContextMenu: BrandingRedirect, 'aria-label': 'Home' }
+			: {};
 
 	const prefetchAndPreload = () => {
 		if (href.startsWith('/repl')) {
@@ -267,15 +268,16 @@ const LanguageSelectorMenu = ({ isOpen, toggle, close, ...props }) => {
 				</svg>
 			</button>
 			<nav aria-label="submenu" aria-hidden={!isOpen}>
-				{typeof window !== 'undefined' && Object.keys(config.languages).map(id => (
-					<span
-						class={cx(id == lang && style.current)}
-						data-value={id}
-						onClick={onClick}
-					>
-						{config.languages[id]}
-					</span>
-				))}
+				{typeof window !== 'undefined' &&
+					Object.keys(config.languages).map(id => (
+						<span
+							class={cx(id == lang && style.current)}
+							data-value={id}
+							onClick={onClick}
+						>
+							{config.languages[id]}
+						</span>
+					))}
 			</nav>
 		</>
 	);

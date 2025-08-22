@@ -26,6 +26,11 @@ export default class Runner extends Component {
 
 	userUpdated = false;
 
+	constructor(props) {
+		super(props);
+		if (props.ref) props.ref.current = this;
+	}
+
 	shouldComponentUpdate() {
 		return false;
 	}
@@ -130,7 +135,7 @@ export default class Runner extends Component {
 		};
 
 		this.frame.current.contentDocument.readyState !== 'complete'
-			? this.frame.current.onload = insertStyles
+			? (this.frame.current.onload = insertStyles)
 			: insertStyles();
 	}
 
@@ -149,7 +154,9 @@ export default class Runner extends Component {
 			!this.userUpdated
 		) {
 			// eslint-disable-next-line no-alert
-			const confirmed = confirm('Are you sure you want to run the code contained in this link?');
+			const confirmed = confirm(
+				'Are you sure you want to run the code contained in this link?'
+			);
 			if (!confirmed) return;
 		}
 
