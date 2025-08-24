@@ -17,7 +17,7 @@ import {
  * @param {string} path
  * @returns {string}
  */
-function getContentPath(path) {
+export function getContentPath(path) {
 	if (path == '/') return '/index';
 	if (path == '/tutorial') return '/tutorial/index';
 	return path;
