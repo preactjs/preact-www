@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "dev": "vite --port 8080",
@@ -91,7 +91,7 @@
     "prismjs": "^1.30.0",
     "rollup": "^2.79.1",
     "sucrase": "^3.35.0",
-    "vite": "npm:rolldown-vite@latest",
+    "vite": "npm:rolldown-vite@^7.1.4",
     "vite-plugin-static-copy": "^2.3.1",
     "yaml": "^2.7.1"
   }
