@@ -24,8 +24,13 @@ import style from './style.module.css';
  * Display a random contributor of the list above.
  */
 function useContributors() {
-	const contributors = useResource(() =>
-		fetch('/contributors.json').then(r => r.json()),
+	const contributors = useResource(
+		() =>
+			fetch('/contributors.json', {
+				credentials: 'include',
+				mode: 'no-cors',
+				priority: 'low'
+			}).then(r => r.json()),
 		['/contributors.json']
 	);
 
