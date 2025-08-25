@@ -1,21 +1,26 @@
 import { render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 
-const SEARCH = 'https://api.github.com/search/repositories';
+const compare = (a, b) =>
+	(a.stargazers_count < b.stargazers_count ? 1 : -1);
 
-function Example() {
+function GitHubRepos({ org }) {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
-		fetch(`${SEARCH}?q=preact`)
-			.then(res => res.json())
-			.then(data => setItems((data && data.items) || []));
+		fetch(`https://api.github.com/orgs/${org}/repos?sort=updated`)
+			.then((res) => res.json())
+			.then((repos) =>
+				setItems(repos.sort(compare))
+			);
 	}, []);
 
 	return (
 		<div>
-			<h1 style="text-align:center; font-weight: 200">Example</h1>
-			<div class="list">
+			<h1 class="repo-list-header">
+				Preact Repositories
+			</h1>
+			<div>
 				{items.map(result => (
 					<Result {...result} />
 				))}
@@ -25,16 +30,18 @@ function Example() {
 }
 
 const Result = result => (
-	<div class="list-item">
+	<div class="repo-list-item">
 		<div>
 			<a href={result.html_url} target="_blank" rel="noopener noreferrer">
 				{result.full_name}
 			</a>
 			{' - '}
-			<strong>{result.stargazers_count}</strong>
+			<strong>
+				⭐️{result.stargazers_count.toLocaleString()}
+			</strong>
 		</div>
 		<p>{result.description}</p>
 	</div>
 );
 
-render(<Example />, document.getElementById('app'));
+render(<GitHubRepos org="preactjs" />, document.getElementById('app'));

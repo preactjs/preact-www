@@ -4,7 +4,8 @@ import { docRoutes } from '../../lib/route-utils.js';
 import style from './style.module.css';
 
 export const LATEST_MAJOR = 'v10';
-export const AVAILABLE_DOCS = ['10', '8'];
+export const PREVIEW_MAJOR = 'v11';
+export const AVAILABLE_DOCS = ['11', '10', '8'];
 
 /**
  * Select box to switch the currently displayed docs version
@@ -30,7 +31,12 @@ export default function DocVersion() {
 			Version:{' '}
 			<select value={version} class={style.select} onChange={onChange}>
 				{AVAILABLE_DOCS.map(v => {
-					const suffix = LATEST_MAJOR.slice(1) == v ? ' (current)' : '';
+					let suffix = '';
+					if (LATEST_MAJOR.slice(1) == v) {
+						suffix = ' (current)';
+					} else if (PREVIEW_MAJOR.slice(1) == v) {
+						suffix = ' (preview)';
+					}
 					return (
 						<option key={v} value={`v${v}`}>
 							{v}.x{suffix}

@@ -13,13 +13,11 @@ function checkStatus(r) {
 
 const baseUrl = '/.netlify/functions/';
 
-export const repoInfo = repo =>
-	fetch(`${baseUrl}repo?repo=${repo}`, { credentials: 'omit' })
+export const fetchOrganizationRepos = org =>
+	fetch(`${baseUrl}repos?org=${org}`, { credentials: 'omit' })
 		.then(checkStatus)
 		.then(r => r.json())
-		.catch(() => ({
-			stargazers_count: getFallbackData().preactStargazers
-		}));
+		.catch(() => getFallbackData().preactOrgRepos);
 
 export const fetchRelease = repo =>
 	fetch(`${baseUrl}release?repo=${repo}`, { credentials: 'omit' })

@@ -28,11 +28,14 @@ export function PrerenderDataProvider({ value, children }) {
 	const fallbackData = getFallbackData();
 
 	const preactVersion = value?.preactVersion || fallbackData.preactVersion;
-	const preactReleaseURL = value?.preactReleaseURL || fallbackData.preactReleaseUrl;
-	const preactStargazers = value?.preactStargazers || fallbackData.preactStargazers;
+	const preactReleaseURL =
+		value?.preactReleaseURL || fallbackData.preactReleaseUrl;
+	const preactOrgRepos = value?.preactOrgRepos || fallbackData.preactOrgRepos;
 
 	return (
-		<PrerenderDataContext.Provider value={{ preactVersion, preactReleaseURL, preactStargazers }}>
+		<PrerenderDataContext.Provider
+			value={{ preactVersion, preactReleaseURL, preactOrgRepos }}
+		>
 			{children}
 		</PrerenderDataContext.Provider>
 	);
