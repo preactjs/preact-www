@@ -27,3 +27,4 @@ jobs:
         with:
           pattern: 'build/**/*.{js,css,html}'
           strip-hash: "-(\\w{8})\\.(?:js|css)$"
+          minimum-change-threshold: 100
