@@ -26,5 +26,6 @@ jobs:
       - uses: preactjs/compressed-size-action@v2
         with:
           pattern: 'build/**/*.{js,css}'
-          strip-hash: "-(.{8})\\.(?:js|css)$"
+          exclude: 'build/assets/prerender-*.js,build/assets/xmldom-*.js,build/assets/release-*.js,build/assets/repos-*.js'
+          strip-hash: '-(\\w{8})\\.(?:js|css)$'
           minimum-change-threshold: 100
