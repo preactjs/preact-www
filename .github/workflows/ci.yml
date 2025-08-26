@@ -22,3 +22,8 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
       - run: npm ci
       - run: npm run build
+
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          pattern: 'build/**/*.{js,css,html}'
+          strip-hash: "-(\\w{8})\\.(?:js|css)$"
