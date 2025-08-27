@@ -13,40 +13,11 @@ This page serves as a quick overview over all exported functions.
 
 ---
 
-## Component
+## preact
 
-`Component` is a base class that can be extended to create stateful Preact components.
+The `preact` module provides only essential functionality, such as rendering components and creating VDOM elements. Additional utilities are provided by the various subpath exports, such as `preact/hooks`, `preact/compat`, `preact/debug`, etc.
 
-Rather than being instantiated directly, Components are managed by the renderer and created as-needed.
-
-```js
-import { Component } from 'preact';
-
-class MyComponent extends Component {
-	// (see below)
-}
-```
-
-### Component.render(props, state)
-
-All components must provide a `render()` function. The render function is passed the component's current props and state, and should return a Virtual DOM Element (typically a JSX "element"), an Array, or `null`.
-
-```jsx
-import { Component } from 'preact';
-
-class MyComponent extends Component {
-	render(props, state) {
-		// props is the same as this.props
-		// state is the same as this.state
-
-		return <h1>Hello, {props.name}!</h1>;
-	}
-}
-```
-
-To learn more about components and how they can be used, check out the [Components Documentation](/guide/v10/components).
-
-## render()
+### render()
 
 `render(virtualDom, containerNode, [replaceNode])`
 
@@ -112,7 +83,9 @@ render(h(App), rootElement); // success
 render(<App />, rootElement); // success
 ```
 
-## hydrate()
+### hydrate()
+
+`hydrate(virtualDom, containerNode)`
 
 If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with pre-rendering or [Server-Side Rendering](/guide/v10/server-side-rendering).
 
@@ -124,7 +97,7 @@ const Foo = () => <div>foo</div>;
 hydrate(<Foo />, document.getElementById('container'));
 ```
 
-## h() / createElement()
+### h() / createElement()
 
 `h(type, props, ...children)`
 
@@ -150,7 +123,103 @@ h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```
 
-## toChildArray
+### Component
+
+`Component` is a base class that can be extended to create stateful Preact components.
+
+Rather than being instantiated directly, Components are managed by the renderer and created as-needed.
+
+```js
+import { Component } from 'preact';
+
+class MyComponent extends Component {
+	// (see below)
+}
+```
+
+#### Component.render(props, state)
+
+All components must provide a `render()` function. The render function is passed the component's current props and state, and should return a Virtual DOM Element (typically a JSX "element"), an Array, or `null`.
+
+```jsx
+import { Component } from 'preact';
+
+class MyComponent extends Component {
+	render(props, state) {
+		// props is the same as this.props
+		// state is the same as this.state
+
+		return <h1>Hello, {props.name}!</h1>;
+	}
+}
+```
+
+To learn more about components and how they can be used, check out the [Components Documentation](/guide/v10/components).
+
+### cloneElement
+
+`cloneElement(virtualElement, props, ...children)`
+
+This function allows you to create a shallow copy of a Virtual DOM Element.
+It's generally used to add or overwrite `props` of an element:
+
+```jsx
+function Linkout(props) {
+	// add target="_blank" to the link:
+	return cloneElement(props.children, { target: '_blank' });
+}
+render(
+	<Linkout>
+		<a href="/">home</a>
+	</Linkout>
+);
+// <a href="/" target="_blank">home</a>
+```
+
+### createContext
+
+`createContext(initialState)`
+
+Creates a new Context object which can be used to pass data through the component tree without passing down props through each level.
+
+See the section in the [Context documentation](/guide/v10/context#createcontext).
+
+### createRef
+
+`createRef(initialValue)`
+
+Creates a new Ref object that acts as a stable, local value that will persist across renders. This can be used to store DOM references, component instances, or any arbitrary value.
+
+See the [References documentation](/guide/v10/refs#createref) for more details.
+
+### Fragment
+
+A special kind of component that can have children, but is not rendered as a DOM element.
+Fragments make it possible to return multiple sibling children without needing to wrap them in a DOM container:
+
+```jsx
+// --repl
+import { Fragment, render } from 'preact';
+
+render(
+	<Fragment>
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</Fragment>,
+	document.getElementById('container')
+);
+// Renders:
+// <div id="container>
+//   <div>A</div>
+//   <div>B</div>
+//   <div>C</div>
+// </div>
+```
+
+### toChildArray
+
+`toChildArray(componentChildren)`
 
 This helper function converts a `props.children` value to a flattened Array regardless of its structure or nesting. If `props.children` is already an array, a copy is returned. This function is useful in cases where `props.children` may not be an array, which can happen with certain combinations of static and dynamic expressions in JSX.
 
@@ -177,57 +246,38 @@ render(
 );
 ```
 
-## cloneElement
+### isValidElement
 
-`cloneElement(virtualElement, props, ...children)`
+`isValidElement(virtualElement)`
 
-This function allows you to create a shallow copy of a Virtual DOM Element.
-It's generally used to add or overwrite `props` of an element:
+Checks if the provided value is a valid Preact VNode.
 
-```jsx
-function Linkout(props) {
-	// add target="_blank" to the link:
-	return cloneElement(props.children, { target: '_blank' });
-}
-render(
-	<Linkout>
-		<a href="/">home</a>
-	</Linkout>
-);
-// <a href="/" target="_blank">home</a>
-```
+### options
 
-## createContext
+See the [Option Hooks](/guide/v10/options) documentation for more details.
 
-See the section in the [Context documentation](/guide/v10/context#createcontext).
+## preact/hooks
 
-## createRef
+See the [Hooks](/guide/v10/hooks) documentation for more details. Please note that the page includes a number of "Compat-specific hooks" that are not available from `preact/hooks`, only `preact/compat`.
 
-Provides a way to reference an element or component once it has been rendered.
+## preact/compat
 
-See the [References documentation](/guide/v10/refs#createref) for more details.
+`preact/compat` is our compatibility layer that allows you to use Preact as a drop-in replacement for React. It provides all of the APIs of `preact` and `preact/hooks`, whilst also providing a few more to match the React API.
 
-## Fragment
+### Children
 
-A special kind of component that can have children, but is not rendered as a DOM element.
-Fragments make it possible to return multiple sibling children without needing to wrap them in a DOM container:
+### createPortal
 
-```jsx
-// --repl
-import { Fragment, render } from 'preact';
+### memo
 
-render(
-	<Fragment>
-		<div>A</div>
-		<div>B</div>
-		<div>C</div>
-	</Fragment>,
-	document.getElementById('container')
-);
-// Renders:
-// <div id="container>
-//   <div>A</div>
-//   <div>B</div>
-//   <div>C</div>
-// </div>
-```
+### forwardRef
+
+### StrictMode
+
+Preact does not implement `StrictMode` and so the `StrictMode` component is just an alias of [`Fragment`](#Fragment). You can pass children to it, but for all debugging checks and warnings, you should instead use [`preact/debug`](#preactdebug).
+
+### Suspense
+
+### lazy
+
+## preact/debug
