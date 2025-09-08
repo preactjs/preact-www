@@ -99,7 +99,9 @@ export async function prerender(data) {
 
 ## Nested Routing
 
-Nested routes are supported by using multiple `Router` components. Partially matched routes end with a wildcard (`/*`) and the remaining value will be passed to continue matching with if there are any further routes.
+Some applications would benefit from having routers of multiple levels, allowing to break down the routing logic into smaller components. This is especially useful for larger applications, and we solve this by allowing for multiple nested `<Router>` components.
+
+Partially matched routes end with a wildcard (`/*`) and only the remaining value will be passed to descendant routers for further matching. This allows you to create a parent route that matches a base path, and then have child routes that match specific sub-paths.
 
 ```jsx
 import {
@@ -110,6 +112,8 @@ import {
 	Route
 } from 'preact-iso';
 
+import AllMovies from './routes/movies/all.js';
+
 const NotFound = lazy(() => import('./routes/_404.js'));
 
 function App() {
@@ -117,6 +121,7 @@ function App() {
 		<LocationProvider>
 			<ErrorBoundary>
 				<Router>
+					<Router path="/movies" component={AllMovies} />
 					<Route path="/movies/*" component={Movies} />
 					<NotFound default />
 				</Router>
@@ -142,11 +147,21 @@ function Movies() {
 }
 ```
 
-This will match the following routes:
+The `<Movies>` component will be used for the following routes:
 
 - `/movies/trending`
 - `/movies/search`
 - `/movies/Inception`
+- `/movies/...`
+
+It will not be used for any of the following:
+
+- `/movies`
+- `/movies/`
+
+## Non-JS Servers
+
+For those using non-JS servers (e.g., PHP, Python, Ruby, etc.) to serve your Preact app, you may want to use our ["polyglot-utils"](https://github.com/preactjs/preact-iso/tree/main/polyglot-utils), a collection of our route matching logic ported to various other languages. Combined with a route manifest, this will allow your server to better understand which assets will be needed at runtime for a given URL, allowing you to say insert preload tags for those assets in the HTML head prior to serving the page.
 
 ---
 
@@ -421,4 +436,16 @@ function App() {
 }
 
 const { html, links } = await prerender(<App />);
+```
+
+### locationStub
+
+A utility function to imitate the `location` object in a non-browser environment. Our router relies upon this to function, so if you are using `preact-iso` outside of a browser context and are not prerendering via `@preact/preset-vite` (which does this for you), you can use this utility to set a stubbed `location` object.
+
+```js
+import { locationStub } from 'preact-iso/prerender';
+
+locationStub('/foo/bar?baz=qux#quux');
+
+console.log(location.pathname); // "/foo/bar"
 ```
