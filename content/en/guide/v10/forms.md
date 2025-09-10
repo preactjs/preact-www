@@ -589,10 +589,11 @@ render(<LimitedInput />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
+import { useRef } from 'preact/hooks';
 // --repl-before
 const LimitedInput = () => {
-	const value = signal('');
+	const value = useSignal('');
 	const inputRef = useRef();
 
 	const onInput = e => {
