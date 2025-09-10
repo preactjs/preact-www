@@ -1,7 +1,7 @@
 ---
 title: Keys
 prev: /tutorial/07-side-effects
-next: /tutorial/09-error-handling
+next: /tutorial/09-signals
 solvable: true
 ---
 

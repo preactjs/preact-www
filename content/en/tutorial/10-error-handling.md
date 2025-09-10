@@ -1,7 +1,7 @@
 ---
 title: Error Handling
-prev: /tutorial/08-keys
-next: /tutorial/10-links
+prev: /tutorial/09-signals
+next: /tutorial/11-links
 solvable: true
 ---
 

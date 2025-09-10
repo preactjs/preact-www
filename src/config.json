@@ -1048,13 +1048,19 @@
 			}
 		},
 		{
-			"path": "/tutorial/09-error-handling",
+			"path": "/tutorial/09-signals",
 			"name": {
 				"en": "Error Handling"
 			}
 		},
 		{
-			"path": "/tutorial/10-links",
+			"path": "/tutorial/10-error-handling",
+			"name": {
+				"en": "Error Handling"
+			}
+		},
+		{
+			"path": "/tutorial/11-links",
 			"name": {
 				"en": "Congratulations!"
 			}

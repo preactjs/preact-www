@@ -1,6 +1,6 @@
 ---
 title: Congratulations!
-prev: /tutorial/09-error-handling
+prev: /tutorial/10-error-handling
 solvable: false
 ---
 
@@ -14,6 +14,7 @@ Feel free to play around a bit more with the demo code.
 
 - [Learn more about class components](/guide/v10/components)
 - [Learn more about hooks](/guide/v10/hooks)
+- [Learn more about signals](/guide/v10/signals)
 - [Create your own project](https://vite.new/preact)
 
 > **We want your feedback!**
