@@ -10,7 +10,7 @@ export async function getContent([lang, name]) {
 		url = url.endsWith('/') ? url.replace(/\/$/, '.json') : url + '.json';
 
 	let fallback = false;
-	return await fetch(url)
+	return await fetch(url, { credentials: 'include', mode: 'no-cors' })
 		.then(r => {
 			// fall back to english
 			if (!r.ok && lang != 'en') {
