@@ -1,6 +1,6 @@
 ---
 title: Congratulations!
-prev: /tutorial/10-error-handling
+prev: /tutorial/10-signals
 solvable: false
 ---
 

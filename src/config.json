@@ -1048,15 +1048,15 @@
 			}
 		},
 		{
-			"path": "/tutorial/09-signals",
+			"path": "/tutorial/09-error-handling",
 			"name": {
 				"en": "Error Handling"
 			}
 		},
 		{
-			"path": "/tutorial/10-error-handling",
+			"path": "/tutorial/10-signals",
 			"name": {
-				"en": "Error Handling"
+				"en": "Signals"
 			}
 		},
 		{

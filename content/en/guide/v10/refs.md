@@ -156,7 +156,7 @@ Refs aren't limited to storing DOM nodes, however; they can be used to store any
 
 In the following example, we store the ID of an interval in a ref to be able to start & stop it independently.
 
-<tab-group tabstring="Classes, Hooks, Signals">
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -216,43 +216,6 @@ function SimpleClock() {
 	};
 
 	const formattedTime = new Date(time).toLocaleTimeString();
-
-	return (
-		<div>
-			<button onClick={startClock}>Start Clock</button>
-			<time dateTime={formattedTime}>{formattedTime}</time>
-			<button onClick={stopClock}>Stop Clock</button>
-		</div>
-	);
-}
-// --repl-after
-render(<SimpleClock />, document.getElementById('app'));
-```
-
-```jsx
-// --repl
-import { render } from 'preact';
-import { signal, computed } from '@preact/signals';
-import { useRef } from 'preact/hooks';
-// --repl-before
-function SimpleClock() {
-	const time = signal(Date.now());
-	const intervalId = useRef(null);
-
-	const startClock = () => {
-		time.value = Date.now();
-		intervalId.current = setInterval(() => {
-			time.value = Date.now();
-		}, 1000);
-	};
-
-	const stopClock = () => {
-		clearInterval(intervalId.current);
-	};
-
-	const formattedTime = computed(() =>
-		new Date(time.value).toLocaleTimeString()
-	);
 
 	return (
 		<div>

@@ -35,7 +35,7 @@ const App = <MyComponent name="John Doe" />;
 render(App, document.body);
 ```
 
-Functional components usually use Hooks to manage state, but Preact also provides [Signals](/guide/v10/signals). Signals are reactive values that can be used **inside or outside** components. When a signal changes, **only the component that use it will re-render**, not the whole page, and you don't need hooks. This makes signals a simpler and more efficient way to handle reactive state in modern Preact apps.
+Functional components often use Hooks to manage state, but Preact also provides [Signals](/guide/v10/signals). Signals are a reactive state primitive that can be used **inside or outside** components, offering fine-grained updates and a reactivity model many users find to be simpler. They're a great option for managing state in modern Preact apps.
 
 > Note in earlier versions they were known as `"Stateless Components"`. This doesn't hold true anymore with the [hooks-addon](/guide/v10/hooks).
 

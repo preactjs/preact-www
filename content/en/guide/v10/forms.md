@@ -71,11 +71,11 @@ render(<BasicInput />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 // --repl-before
-const name = signal('');
-
 function BasicInput() {
+	const name = useSignal('');
+
 	return (
 		<div class="form-example">
 			<label>
@@ -218,12 +218,12 @@ render(<BasicRadioButton />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 // --repl-before
-const allowContact = signal(false);
-const contactMethod = signal('');
-
 function BasicRadioButton() {
+	const allowContact = useSignal(false);
+	const contactMethod = useSignal('');
+
 	const toggleContact = () => (allowContact.value = !allowContact.value);
 	const setRadioValue = e => (contactMethod.value = e.currentTarget.value);
 
@@ -323,7 +323,7 @@ function MySelect() {
 				<option value="C">C</option>
 			</select>
 			<p>You selected: {value}</p>
-		</form>
+		</div>
 	);
 }
 // --repl-after
@@ -333,11 +333,11 @@ render(<MySelect />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 // --repl-before
-const value = signal('');
-
 function MySelect() {
+	const value = useSignal('');
+
 	return (
 		<div class="form-example">
 			<select onChange={e => (value.value = e.currentTarget.value)}>
@@ -346,7 +346,7 @@ function MySelect() {
 				<option value="C">C</option>
 			</select>
 			<p>You selected: {value.value}</p>
-		</form>
+		</div>
 	);
 }
 // --repl-after
@@ -438,11 +438,11 @@ render(<FullNameForm />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 // --repl-before
-const fullName = signal('');
-
 function FullNameForm() {
+	const fullName = useSignal('');
+
 	const onSubmit = e => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
@@ -508,7 +508,7 @@ The problem with this is in the cases where the input fails that condition: beca
 
 Here's an example of how you might use a controlled component to limit the number of characters in an input field:
 
-<tab-group tabstring="Classes, Hooks, Signals">
+<tab-group tabstring="Classes, Hooks">
 
 ```jsx
 // --repl
@@ -568,44 +568,6 @@ const LimitedInput = () => {
 			const end = inputRef.current.selectionEnd;
 			const diffLength = Math.abs(e.currentTarget.value.length - value.length);
 			inputRef.current.value = value;
-			// Restore selection
-			inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
-		}
-	};
-
-	return (
-		<div class="form-example">
-			<label>
-				This input is limited to 3 characters:{' '}
-				<input ref={inputRef} value={value} onInput={onInput} />
-			</label>
-		</div>
-	);
-};
-// --repl-after
-render(<LimitedInput />, document.getElementById('app'));
-```
-
-```jsx
-// --repl
-import { render } from 'preact';
-import { useSignal } from '@preact/signals';
-import { useRef } from 'preact/hooks';
-// --repl-before
-const LimitedInput = () => {
-	const value = useSignal('');
-	const inputRef = useRef();
-
-	const onInput = e => {
-		if (e.currentTarget.value.length <= 3) {
-			value.value = e.currentTarget.value;
-		} else {
-			const start = inputRef.current.selectionStart;
-			const end = inputRef.current.selectionEnd;
-			const diffLength = Math.abs(
-				e.currentTarget.value.length - value.value.length
-			);
-			inputRef.current.value = value.value;
 			// Restore selection
 			inputRef.current.setSelectionRange(start - diffLength, end - diffLength);
 		}

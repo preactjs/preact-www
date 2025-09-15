@@ -5,7 +5,7 @@ description: Hooks in Preact allow you to compose behaviours together and re-use
 
 # Hooks
 
-The Hooks API is an alternative way to write components in Preact. Hooks allow you to compose state and side effects, reusing stateful logic much more easily than with class components. In addition to hooks, Preact also provides [Signals](/guide/v10/signals), Signals are another way to manage state.
+The Hooks API is an alternative way to write components in Preact. Hooks allow you to compose state and side effects, reusing stateful logic much more easily than with class components.
 
 If you've worked with class components in Preact for a while, you may be familiar with patterns like "render props" and "higher order components" that try to solve these challenges. These solutions have tended to make code harder to follow and more abstract. The hooks API makes it possible to neatly extract the logic for state and side effects, and also simplifies unit testing that logic independently from the components that rely on it.
 
@@ -194,8 +194,6 @@ const Counter = () => {
 render(<Counter />, document.getElementById('app'));
 ```
 
-Instead of `useState`, you can use [Signals](/guide/v10/signals). With signals, you don’t need a setter function. While the value changes, the component updates by itself.
-
 > When our initial state is expensive it's better to pass a function instead of a value.
 
 ### useReducer
@@ -238,8 +236,6 @@ function Counter() {
 // --repl-after
 render(<Counter />, document.getElementById('app'));
 ```
-
-The `useReducer` hook is used for managing complex state, but Preact [Signals](guide/v10/signals) can do the same thing more simply. They automatically update the components that use them, without needing a reducer or dispatch function.
 
 ## Memoization
 
@@ -634,6 +630,3 @@ function App() {
 	}, [dependencies]);
 }
 ```
-
-> Using hooks are the usual way to handle state and side effects in functional components.  
-> **But keep in mind:** Preact also has [Signals](/guide/v10/signals), which will do the same job in an easier way.

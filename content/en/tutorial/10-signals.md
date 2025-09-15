@@ -1,7 +1,7 @@
 ---
 title: Signals
-prev: /tutorial/08-keys
-next: /tutorial/10-error-handling
+prev: /tutorial/09-error-handling
+next: /tutorial/11-links
 solvable: true
 ---
 
