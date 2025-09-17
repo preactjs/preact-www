@@ -522,9 +522,9 @@ The only annotation needed is in the reducer function itself. The `useReducer` t
 
 ## Extending built-in JSX types
 
-You may have [custom elements](/guide/v10/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all HTML elements to work with a particular library. To do this, you will need to extend the `IntrinsicElements` or `HTMLAttributes` interfaces, respectively, so that TypeScript is aware and can provide correct type information.
+You may have [custom elements](/guide/v10/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all or some HTML elements to work with a particular library. To do this, you will need to use "Module augmentation" to extend and/or alter the types that Preact provides.
 
-### Extending `IntrinsicElements`
+### Extending `IntrinsicElements` for custom elements
 
 ```tsx
 function MyComponent() {
@@ -549,7 +549,9 @@ declare global {
 export {};
 ```
 
-### Extending `HTMLAttributes`
+### Extending `HTMLAttributes` for global custom attributes
+
+If you want to add a custom attribute to all HTML elements, you can extend the `HTMLAttributes` interface:
 
 ```tsx
 function MyComponent() {
@@ -566,6 +568,25 @@ function MyComponent() {
 declare global {
 	namespace preact.JSX {
 		interface HTMLAttributes {
+			custom?: string | undefined;
+		}
+	}
+}
+
+// This empty export is important! It tells TS to treat this as a module
+export {};
+```
+
+### Extending per-element interfaces for custom attributes
+
+Sometimes you may not want to add a custom attribute globally, but only to a specific element. In this case, you can extend the specific element's interface:
+
+```tsx
+// global.d.ts
+
+declare global {
+	namespace preact.JSX {
+		interface HeadingHTMLAttributes {
 			custom?: string | undefined;
 		}
 	}
