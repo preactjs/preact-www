@@ -1,15 +1,13 @@
 ---
-title: 使用 Enzyme 进行单元测试
-description: 使用 Enzyme 简化对 Preact 应用的测试
+title: TypeScript
+description: Preact 内置 TypeScript 支持。学习如何使用它！
 ---
 
-# 使用 Enzyme 进行单元测试
+# TypeScript
 
-Airbnb 的 [Enzyme](https://airbnb.io/enzyme/) 是一个用于为 React 组件编写测试的库。它通过“适配器（adapters）”支持不同版本的 React 及类 React 库。Preact 团队维护了一个针对 Preact 的适配器。
+Preact 附带 TypeScript 的类型定义，库本身也在使用这些类型定义！
 
-Enzyme 支持在普通或无头浏览器中运行的测试（例如通过 [Karma](http://karma-runner.github.io/latest/index.html)），也支持在 Node 环境中使用 [jsdom](https://github.com/jsdom/jsdom) 模拟浏览器 API 来运行测试。
-
-有关 Enzyme 的详细入门和 API 参考，请参阅 [Enzyme 文档](https://airbnb.io/enzyme/)。本指南余下部分说明如何将 Enzyme 与 Preact 配置在一起，以及 Enzyme 在与 Preact 配合使用时与 React 的差异。
+在支持 TypeScript 的编辑器（例如 VSCode）中使用 Preact 时，即使编写常规 JavaScript，也能受益于额外的类型信息。如果你想为自己的应用添加类型信息，可以使用 JSDoc 注释（例如：https://fettblog.eu/typescript-jsdoc-superpowers/），或者直接编写 TypeScript 并将其转译为普通 JavaScript。本节重点介绍后一种方式。
 
 ---
 
@@ -17,147 +15,590 @@ Enzyme 支持在普通或无头浏览器中运行的测试（例如通过 [Karma
 
 ---
 
-## 安装
+## TypeScript 配置
 
-使用以下命令安装 Enzyme 及 Preact 适配器：
+TypeScript 自带完整的 JSX 编译器，可以替代 Babel 使用。将以下配置添加到你的 `tsconfig.json`，以将 JSX 转译为与 Preact 兼容的 JavaScript：
 
-```bash
-npm install --save-dev enzyme enzyme-adapter-preact-pure
+```json
+// 经典转换
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
+		//...
+	}
+}
 ```
 
-## 配置
-
-在你的测试初始化代码中，需要将 Enzyme 配置为使用 Preact 适配器：
-
-```js
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-preact-pure';
-
-configure({ adapter: new Adapter() });
+```json
+// 自动转换，TypeScript >= 4.1.1 可用
+{
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+		//...
+	}
+}
 ```
 
-关于如何在不同测试运行器（如 Mocha、Jest）中使用 Enzyme 的更多指南，请参见 Enzyme 文档中的 [Guides](https://airbnb.io/enzyme/docs/guides.html) 部分。
+如果你在 Babel 工具链中使用 TypeScript，请将 `jsx` 设置为 `preserve` 并让 Babel 处理转译。你仍需指定 `jsxFactory` 和 `jsxFragmentFactory` 以获得正确的类型信息。
 
-## 示例
+```json
+{
+	"compilerOptions": {
+		"jsx": "preserve",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
+		//...
+	}
+}
+```
 
-假设我们有一个简单的 `Counter` 组件，它显示一个初始值并提供一个按钮来增加计数：
+In your `.babelrc`:
 
-```jsx
-import { h } from 'preact';
-import { useState } from 'preact/hooks';
+```javascript
+{
+  presets: [
+    "@babel/env",
+    ["@babel/typescript", { jsxPragma: "h" }],
+  ],
+  plugins: [
+    ["@babel/transform-react-jsx", { pragma: "h" }]
+  ],
+}
+```
 
-export default function Counter({ initialCount }) {
-	const [count, setCount] = useState(initialCount);
-	const increment = () => setCount(count + 1);
+将你的 `.jsx` 文件重命名为 `.tsx`，以便 TypeScript 正确解析 JSX。
 
+## TypeScript 的 `preact/compat` 配置
+
+如果你的项目需要支持更广泛的 React 生态，在编译时可能需要对 `node_modules` 禁用类型检查并为类型添加路径映射。如下配置可以在库导入 `react` 时让别名正常工作：
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
+      "react-dom": ["./node_modules/preact/compat/"],
+      "react-dom/*": ["./node_modules/preact/compat/*"]
+    }
+  }
+}
+```
+
+## 组件的类型定义
+
+在 Preact 中为组件添加类型有多种方式。类组件使用泛型类型变量来确保类型安全。只要函数返回 JSX，TypeScript 就会将其视为函数式组件。对于函数式组件的 props，有多种定义方案。
+
+### 函数组件
+
+为普通函数组件添加类型非常简单，只需在函数参数处添加类型信息。
+
+```tsx
+interface MyComponentProps {
+	name: string;
+	age: number;
+}
+
+function MyComponent({ name, age }: MyComponentProps) {
 	return (
 		<div>
-			Current value: {count}
-			<button onClick={increment}>Increment</button>
+			My name is {name}, I am {age.toString()} years old.
 		</div>
 	);
 }
 ```
 
-使用例如 Mocha 或 Jest 的测试运行器，你可以编写如下测试来验证其行为：
+你可以在函数签名中为参数设置默认值来实现默认 props。
 
-```jsx
-import { expect } from 'chai';
+```tsx
+interface GreetingProps {
+	name?: string; // name is optional!
+}
+
+function Greeting({ name = 'User' }: GreetingProps) {
+	// name 至少为 "User"
+	return <div>Hello {name}!</div>;
+}
+```
+
+Preact 还提供了 `FunctionComponent` 类型用于注释匿名函数。`FunctionComponent` 会为 `children` 添加类型：
+
+```tsx
+import { h, FunctionComponent } from 'preact';
+
+const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
+	return (
+		<div class="card">
+			<h1>{title}</h1>
+			{children}
+		</div>
+	);
+};
+```
+
+`children` 的类型为 `ComponentChildren`。你也可以使用该类型自行指定 children：
+
+```tsx
+import { h, ComponentChildren } from 'preact';
+
+interface ChildrenProps {
+	title: string;
+	children: ComponentChildren;
+}
+
+function Card({ title, children }: ChildrenProps) {
+	return (
+		<div class="card">
+			<h1>{title}</h1>
+			{children}
+		</div>
+	);
+}
+```
+
+### 类组件
+
+Preact 的 `Component` 类是一个带有两个泛型类型变量（Props 和 State）的泛型类。两个类型默认都是空对象，你可以根据需要指定它们。
+
+```tsx
+// Types for props
+interface ExpandableProps {
+	title: string;
+}
+
+// Types for state
+interface ExpandableState {
+	toggled: boolean;
+}
+
+// Bind generics to ExpandableProps and ExpandableState
+class Expandable extends Component<ExpandableProps, ExpandableState> {
+	constructor(props: ExpandableProps) {
+		super(props);
+		// this.state is an object with a boolean field `toggle`
+		// due to ExpandableState
+		this.state = {
+			toggled: false
+		};
+	}
+	// `this.props.title` is string due to ExpandableProps
+	render() {
+		return (
+			<div class="expandable">
+				<h2>
+					{this.props.title}{' '}
+					<button
+						onClick={() => this.setState({ toggled: !this.state.toggled })}
+					>
+						Toggle
+					</button>
+				</h2>
+				<div hidden={this.state.toggled}>{this.props.children}</div>
+			</div>
+		);
+	}
+}
+```
+
+类组件默认包含 children，其类型为 `ComponentChildren`。
+
+## 继承 HTML 属性
+
+当我们编写像 `<Input />` 这样的组件来包裹原生 `<input>` 元素时，通常希望继承原生 HTML input 元素可用的属性。可以按如下方式实现：
+
+```tsx
+import { InputHTMLAttributes } from 'preact';
+
+interface InputProperties extends InputHTMLAttributes {
+	mySpecialProp: any;
+}
+
+const Input = (props: InputProperties) => <input {...props} />;
+```
+
+现在使用 `Input` 时，它会识别诸如 `value` 等属性。
+
+## 事件的类型定义
+
+Preact 会触发常规的 DOM 事件。只要你的 TypeScript 项目在 `tsconfig.json` 中包含了 `dom` 库，就可以使用当前配置下所有事件类型。
+
+```tsx
+import type { TargetedMouseEvent } from "preact";
+
+export class Button extends Component {
+    handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
+    alert(event.currentTarget.tagName); // 会弹出 BUTTON
+    }
+
+    render() {
+        return (
+            <button onClick={this.handleClick}>
+                {this.props.children}
+            </button>
+        );
+    }
+}
+```
+
+如果你偏好内联函数，可以不显式标注当前事件目标的类型，因为它会从 JSX 元素推断出来：
+
+```tsx
+export class Button extends Component {
+	render() {
+		return (
+			<button onClick={event => alert(event.currentTarget.tagName)}>
+				{this.props.children}
+			</button>
+		);
+	}
+}
+```
+
+## 引用（refs）的类型定义
+
+`createRef` 函数也是泛型的，允许你将引用绑定到特定的元素类型。在下面的示例中，我们确保引用只能绑定到 `HTMLAnchorElement`。若对其他元素使用该 `ref`，TypeScript 会报错：
+
+```tsx
+import { h, Component, createRef } from 'preact';
+
+class Foo extends Component {
+	ref = createRef<HTMLAnchorElement>();
+
+	componentDidMount() {
+		// current 的类型为 HTMLAnchorElement
+		console.log(this.ref.current);
+	}
+
+	render() {
+		return <div ref={this.ref}>Foo</div>;
+		//          ~~~
+		//       💥 错误！该 ref 只可用于 HTMLAnchorElement
+	}
+}
+```
+
+如果你想确保引用的元素是可聚焦（focusable）的输入元素，这点非常有用。
+
+## 上下文（context）的类型定义
+
+`createContext` 会尽可能从你传入的初始值推断出类型：
+
+```tsx
+import { h, createContext } from 'preact';
+
+const AppContext = createContext({
+	authenticated: true,
+	lang: 'en',
+	theme: 'dark'
+});
+// AppContext 的类型为 preact.Context<{
+//   authenticated: boolean;
+//   lang: string;
+//   theme: string;
+// }>
+```
+
+它同时要求你在提供 value 时包含初始值中定义的所有属性：
+
+```tsx
+function App() {
+	// 这里会报错 💥 因为我们没有定义 theme
+	return (
+		<AppContext.Provider
+			value={{
+				//    ~~~~~
+				// 💥 错误：theme 未定义
+				lang: 'de',
+				authenticated: true
+			}}
+		>
+			{}
+			<ComponentThatUsesAppContext />
+		</AppContext.Provider>
+	);
+}
+```
+
+如果你不想指定所有属性，可以将默认值与覆盖值合并：
+
+```tsx
+const AppContext = createContext(appContextDefault);
+
+function App() {
+	return (
+		<AppContext.Provider
+			value={{
+				lang: 'de',
+				...appContextDefault
+			}}
+		>
+			<ComponentThatUsesAppContext />
+		</AppContext.Provider>
+	);
+}
+```
+
+或者你可以不使用默认值，而是在创建 context 时通过泛型类型变量为 context 绑定特定类型：
+
+```tsx
+interface AppContextValues {
+  authenticated: boolean;
+  lang: string;
+  theme: string;
+}
+
+const AppContext = createContext<Partial<AppContextValues>>({});
+
+function App() {
+  return (
+    <AppContext.Provider
+      value={{
+        lang: "de"
+      }}
+    >
+      <ComponentThatUsesAppContext />
+    </AppContext.Provider>
+  );
+```
+
+所有值将变为可选，因此在使用时需要进行空值检查。
+
+## Hooks 的类型定义
+
+大多数 hooks 不需要特殊的类型声明，通常可从使用方式中推断类型。
+
+### useState、useEffect、useContext
+
+`useState`、`useEffect` 和 `useContext` 都支持泛型类型，因此通常无需额外注解。下面是一个最小示例，展示了 `useState` 如何从函数签名的默认值推断出类型。
+
+```tsx
+const Counter = ({ initial = 0 }) => {
+	// 由于 initial 是数字（默认值），所以 clicks 是数字
+	// setClicks 是一个接受以下参数的函数
+	// - 一个数字
+	// - 或者返回数字的函数
+	const [clicks, setClicks] = useState(initial);
+	return (
+		<>
+			<p>Clicks: {clicks}</p>
+			<button onClick={() => setClicks(clicks + 1)}>+</button>
+			<button onClick={() => setClicks(clicks - 1)}>-</button>
+		</>
+	);
+};
+```
+
+`useEffect` 会做额外检查，因此你从 effect 回调返回的只能是一个没有参数的清理函数。
+
+```typescript
+useEffect(() => {
+	const handler = () => {
+		document.title = window.innerWidth.toString();
+	};
+	window.addEventListener('resize', handler);
+
+	// ✅  if you return something from the effect callback
+	// it HAS to be a function without arguments
+	return () => {
+		window.removeEventListener('resize', handler);
+	};
+});
+```
+
+`useContext` gets the type information from the default object you pass into `createContext`.
+
+```tsx
+const LanguageContext = createContext({ lang: 'en' });
+
+const Display = () => {
+	// lang 的类型将为 string
+	const { lang } = useContext(LanguageContext);
+	return (
+		<>
+			<p>Your selected language: {lang}</p>
+		</>
+	);
+};
+```
+
+### useRef
+
+与 `createRef` 类似，`useRef` 通过为泛型类型变量指定 HTMLElement 的子类型来收获类型优势。在下面的示例中，我们确保 `inputRef` 只用于 `HTMLInputElement`。`useRef` 通常用 `null` 初始化；在启用 `strictNullChecks` 的情况下，需要检查 `inputRef` 是否存在。
+
+```tsx
 import { h } from 'preact';
-import { mount } from 'enzyme';
+import { useRef } from 'preact/hooks';
 
-import Counter from '../src/Counter';
-
-describe('Counter', () => {
-	it('should display initial count', () => {
-		const wrapper = mount(<Counter initialCount={5} />);
-		expect(wrapper.text()).to.include('Current value: 5');
-	});
-
-	it('should increment after "Increment" button is clicked', () => {
-		const wrapper = mount(<Counter initialCount={5} />);
-
-		wrapper.find('button').simulate('click');
-
-		expect(wrapper.text()).to.include('Current value: 6');
-	});
-});
+function TextInputWithFocusButton() {
+	// initialise with null, but tell TypeScript we are looking for an HTMLInputElement
+	const inputRef = useRef<HTMLInputElement>(null);
+	const focusElement = () => {
+		// 在 strict null checks 下需要检查 ref 和 current 是否存在。
+		// 但一旦 current 存在，它的类型为 HTMLInputElement，因此它
+		// 因此它有 focus 方法 ✅
+		if (inputRef && inputRef.current) {
+			inputRef.current.focus();
+		}
+	};
+	return (
+		<>
+			{/* 此外，inputRef 仅可用于 input 元素 */}
+			<input ref={inputRef} type="text" />
+			<button onClick={focusElement}>Focus the input</button>
+		</>
+	);
+}
 ```
 
-要查看可运行的示例项目和其它示例，请参阅 Preact 适配器仓库中的 [examples/](https://github.com/preactjs/enzyme-adapter-preact-pure/blob/master/README.md#example-projects) 目录。
+### useReducer
 
-## Enzyme 的工作原理
+对于 `useReducer`，TypeScript 会尽可能从 reducer 函数中推断出类型。例如，下面展示了计数器的 reducer：
 
-Enzyme 使用已配置的适配器来渲染组件及其子节点。适配器会将渲染输出转换为一个标准化的内部表示（即“React Standard Tree”）。Enzyme 在此基础上封装了一个带有查询和触发更新方法的包装对象。该包装对象的 API 使用类似 CSS 的 [选择器](https://airbnb.io/enzyme/docs/api/selector.html) 来定位输出中的部分节点。
+```typescript
+// reducer 函数的 state 类型
+interface StateType {
+	count: number;
+}
 
-## 完整渲染、浅渲染和字符串渲染
+// action 的类型，`type` 可以是
+// "reset", "decrement", "increment"
+interface ActionType {
+	type: 'reset' | 'decrement' | 'increment';
+}
 
-Enzyme 提供三种渲染“模式”：
+// 初始 state。无需注解
+const initialState = { count: 0 };
 
-```jsx
-import { mount, shallow, render } from 'enzyme';
-
-// 完整渲染组件树：
-const wrapper = mount(<MyComponent prop="value" />);
-
-// 仅渲染 `MyComponent` 的直接输出（即将子组件“模拟”为占位符）:
-const wrapper = shallow(<MyComponent prop="value" />);
-
-// 将完整组件树渲染为 HTML 字符串并解析结果:
-const wrapper = render(<MyComponent prop="value" />);
+function reducer(state: StateType, action: ActionType) {
+	switch (action.type) {
+		// TypeScript 会确保我们处理所有可能的 action 类型，并为类型字符串提供自动完成
+		case 'reset':
+			return initialState;
+		case 'increment':
+			return { count: state.count + 1 };
+		case 'decrement':
+			return { count: state.count - 1 };
+		default:
+			return state;
+	}
+}
 ```
 
-- `mount` 会以浏览器中相同的方式渲染组件及其所有后代节点。
+Once we use the reducer function in `useReducer`, we infer several types and do type checks for passed arguments.
 
-- `shallow` 只渲染组件直接输出的 DOM 节点。任何子组件都会被替换为仅输出其子内容的占位符。
+```tsx
+function Counter({ initialCount = 0 }) {
+	// TypeScript 会确保 reducer 最多接收两个参数，并且初始 state 与 StateType 匹配。
+	// 此外：
+	// - state 的类型为 StateType
+	// - dispatch 是用于发送 ActionType 的函数
+	const [state, dispatch] = useReducer(reducer, { count: initialCount });
 
-  这种模式的优点是可以在不依赖子组件实现细节的情况下为组件编写测试，从而无需构造所有子组件的依赖。
-
-  注意：`shallow` 在 Preact 适配器中的内部实现与 React 不同。详情参见下文的“差异”一节。
-
-- `render`（注意不要与 Preact 的 `render` 函数混淆）将组件渲染为 HTML 字符串，适用于在服务端测试渲染输出或在不触发副作用的情况下渲染组件。
-
-## 使用 `act` 触发状态更新和副作用
-
-在前面的示例中，使用了 `.simulate('click')` 来触发按钮点击。
-
-Enzyme 知道对 `simulate` 的调用可能会改变组件状态或触发副作用，因此会在 `simulate` 返回之前立即应用相应的状态更新或副作用。Enzyme 在使用 `mount` 或 `shallow` 初次渲染组件以及通过 `setProps` 更新组件时也会执行相同的刷新行为。
-
-但如果事件是在 Enzyme 的方法调用之外触发的，例如直接调用事件处理器（如按钮的 `onClick` 属性），Enzyme 并不会自动感知这些变化。在这种情况下，测试代码需要手动触发状态更新和副作用的执行，并让 Enzyme 刷新其对渲染输出的视图。
-
-- 若要同步执行状态更新和副作用，可使用 `preact/test-utils` 中的 `act` 函数来包裹触发更新的代码。
-- 若要让 Enzyme 刷新其对渲染输出的视图，可使用包装对象的 `.update()` 方法。
-
-例如，下面是对计数器测试的另一种写法，它直接调用按钮的 `onClick` 属性，而不是通过 Enzyme 的 `simulate`：
-
-```js
-import { act } from 'preact/test-utils';
+	return (
+		<>
+			Count: {state.count}
+			{/* TypeScript ensures that the dispatched actions are of ActionType */}
+			<button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+			<button onClick={() => dispatch({ type: 'increment' })}>+</button>
+			<button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+		</>
+	);
+}
 ```
 
-```jsx
-it('should increment after "Increment" button is clicked', () => {
-	const wrapper = mount(<Counter initialCount={5} />);
-	const onClick = wrapper.find('button').props().onClick;
+唯一需要显式标注的地方通常是在 reducer 函数本身。`useReducer` 的类型还会确保 reducer 的返回值符合 `StateType`。
 
-	act(() => {
-		// 直接调用按钮的点击处理器（而不是通过 Enzyme 的 API）
-		onClick();
-	});
-	// 刷新 Enzyme 对渲染输出的视图
-	wrapper.update();
+## 扩展内置的 JSX 类型
 
-	expect(wrapper.text()).to.include('Current value: 6');
-});
+你可能会在 JSX 中使用自定义元素（参见 /guide/v10/web-components），或者想为所有或某些 HTML 元素添加额外属性以配合特定库使用。为此，需要使用“模块扩展（Module augmentation）”来扩展或修改 Preact 提供的类型。
+
+### 为自定义元素扩展 `IntrinsicElements`
+
+```tsx
+function MyComponent() {
+	return <loading-bar showing={true}></loading-bar>;
+	//      ~~~~~~~~~~~
+	//   💥 错误！属性 'loading-bar' 在类型 'JSX.IntrinsicElements' 中不存在。
+}
 ```
 
-## 与 React 下的 Enzyme 的差异
+```tsx
+// global.d.ts
 
-总体目标是让使用 Enzyme + React 编写的测试能较容易地在 Enzyme + Preact 下工作，反之亦然。这避免了在将组件从 Preact 切换到 React（或反向）时需重写所有测试的需求。
+declare global {
+	namespace preact.JSX {
+		interface IntrinsicElements {
+			'loading-bar': { showing: boolean };
+		}
+	}
+}
 
-不过，还是有一些行为差异需要注意：
+// 这个空导出很重要！它告诉 TypeScript 将此文件视为模块
+export {};
+```
 
-- `shallow` 渲染模式在底层的工作方式不同。它在只渲染组件“一层深度”方面与 React 一致，但与 React 不同的是它会创建真实的 DOM 节点，并且会运行所有常规的生命周期钩子和副作用。
-- `simulate` 方法会派发真实的 DOM 事件，而在 React 的适配器中，`simulate` 只是调用对应的 `on<EventName>` 属性。
-- 在 Preact 中，状态更新（例如调用 `setState` 后）会被合并并异步应用。React 中状态更新可能会立即应用或根据上下文被批处理。为了简化测试，Preact 适配器会在初次渲染以及通过 `setProps` 或 `simulate` 触发的更新后刷新状态更新和副作用。当状态更新或副作用是通过其他方式触发时，测试代码可能需要使用 `preact/test-utils` 中的 `act` 手动触发刷新。
+### 为全局自定义属性扩展 `HTMLAttributes`
 
-如需更多细节，请参阅 Preact 适配器的 [README](https://github.com/preactjs/enzyme-adapter-preact-pure#differences-compared-to-enzyme--react)。
+如果你想向所有 HTML 元素添加自定义属性，可以扩展 `HTMLAttributes` 接口：
+
+```tsx
+function MyComponent() {
+	return <div custom="foo"></div>;
+	//          ~~~~~~
+	//       💥 错误！类型 '{ custom: string; }' 无法赋值给类型 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'。
+	//                   属性 'custom' 在类型 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>' 中不存在。
+}
+```
+
+```tsx
+// global.d.ts
+
+declare module 'preact' {
+	interface HTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// 这个空导出很重要！它告诉 TypeScript 将此文件视为模块
+export {};
+```
+
+### 为单个元素扩展属性接口
+
+有时你可能不想全局添加自定义属性，而仅针对特定元素扩展。这种情况下可以扩展该元素对应的接口：
+
+```tsx
+// global.d.ts
+
+declare module 'preact' {
+	interface HeadingHTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// 这个空导出很重要！它告诉 TypeScript 将此文件视为模块
+export {};
+```
+
+但是，目前有 5 个特殊元素（`<a>`、`<area>`、`<img>`、`<input>` 和 `<select>`）需要稍作不同的处理：与其他元素不同，这些元素的接口以 `Partial...` 为前缀，因此你需要确保你的接口符合这一模式：
+
+```ts
+// global.d.ts
+
+declare module 'preact' {
+	interface PartialAnchorHTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// 这个空导出很重要！它告诉 TypeScript 将此文件视为模块
+export {};
+```
+
+> **注意**：我们这样做是为了支持这些元素更完善的 ARIA/无障碍类型，因为根据规范这些元素的 ARIA 角色是判别联合类型（例如，如果 `<a>` 有 `href` 属性，它可以具有几种特定角色；如果没有，它又可能具有另一组角色）。为实现这点，我们需要在 TypeScript 中使用 `type` 关键字，但这会阻止类型被扩展，因为它不再是简单的接口。不过，我们的无障碍类型与 `Partial...` 接口相交，因此可以通过扩展这些接口来实现需要的功能。
