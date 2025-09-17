@@ -48,7 +48,7 @@
     "pre-commit": "npx nano-staged"
   },
   "nano-staged": {
-    "**/*.{css,js,jsx,json,md}": [
+    "**/*.{css,js,jsx,json}": [
       "prettier --write"
     ]
   },
