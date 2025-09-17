@@ -315,8 +315,8 @@ function App() {
 	return (
 		<AppContext.Provider
 			value={{
-				//    ~~~~~
-				// 💥 Error: theme not defined
+	 //    ~~~~~
+	 // 💥 Error: theme not defined
 				lang: 'de',
 				authenticated: true
 			}}
