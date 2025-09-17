@@ -214,9 +214,9 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 当我们编写像 `<Input />` 这样包装 HTML `<input>` 的组件时，大多数情况下我们希望继承可以在原生 HTML input 元素上使用的 props。为此，我们可以这样做：
 
 ```tsx
-import { JSX } from 'preact';
+import { InputHTMLAttributes } from 'preact';
 
-interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
+interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
   mySpecialProp: any
 }
 
@@ -230,10 +230,10 @@ const Input = (props: InputProperties) => <input {...props} />
 Preact 会发出常规的 DOM 事件。只要您的 TypeScript 项目包含 `dom` 库（在 `tsconfig.json` 中设置），您就可以访问当前配置中可用的所有事件类型。
 
 ```tsx
-import type { JSX } from "preact";
+import type { TargetedMouseEvent } from "preact";
 
 export class Button extends Component {
-  handleClick(event: JSX.TargetedMouseEvent<HTMLButtonElement>) {
+  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
     alert(event.currentTarget.tagName); // 提示 BUTTON
   }
 
