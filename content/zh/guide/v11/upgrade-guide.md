@@ -1,13 +1,13 @@
 ---
-title: 从Preact 8.x升级
-description: Upgrade your Preact 8.x application to Preact X
+title: 从 Preact 10.x 升级
+description: 将现有的 Preact 10.x 应用升级到 Preact 11 的指南
 ---
 
-# 从 Preact 8.x 升级
+# 从 Preact 10.x 升级
 
-本文档旨在指导您将现有的 Preact 8.x 应用程序升级到 Preact X，分为 3 个主要部分。
+Preact 11 的目标是在尽量减少破坏性的前提下从 Preact 10.x 升级，因此我们可以提高所支持的浏览器版本并清除一些遗留代码。对大多数用户而言，此次升级应当简单快速，只有少数更改可能需要关注。
 
-Preact X 带来了许多令人兴奋的新特性，如 `Fragments`、`hooks` 以及与 React 生态系统更好的兼容性。我们尽量将任何破坏性变更控制在最小范围内，但无法在不影响我们的功能集的情况下完全消除所有更改.
+本文档旨在引导你将现有的 Preact 10.x 应用迁移到 Preact 11，涵盖可能存在的破坏性更改以及确保平滑迁移的步骤。
 
 ---
 
@@ -15,226 +15,272 @@ Preact X 带来了许多令人兴奋的新特性，如 `Fragments`、`hooks` 以
 
 ---
 
-## 升级依赖
+## 为应用做准备
 
-_注意：在本指南中，我们将使用 `npm` 客户端，这些命令应该很容易适用于其他包管理器，如 `yarn`。_
+### 支持的浏览器版本
 
-让我们开始吧！首先安装 Preact X：
+Preact 11.x 默认在以下浏览器上工作，无需额外的 polyfill：
 
-```bash
-npm install preact
+- Chrome >= 40
+- Safari >= 9
+- Firefox >= 36
+- Edge >= 12
+
+如果你需要支持更老的浏览器，则需要自行引入 polyfill。
+
+### 支持的 TypeScript 版本
+
+11.x 版本线将把 TypeScript 的最低支持版本提高到 v5.1。如果你现在使用的是较旧的 TypeScript，请在升级到 Preact 11 之前先升级 TypeScript。
+
+提高最低 TypeScript 版本可以利用 TS 团队在 JSX 类型方面的重要改进，从而修复一些长期存在且较难在库内部解决的类型问题。
+
+### ESM 打包产物使用 `.mjs` 后缀
+
+Preact 11.x 会将所有 ESM 包以 `.mjs` 扩展名分发，移除 10.x 中的 `.module.js` 副本。这有助于修正部分工具链遇到的问题，并简化分发包。
+
+CJS 与 UMD 包将继续提供，且保持不变。
+
+## 新特性
+
+### Hydration 2.0
+
+Preact 11 在 hydration（服务器端渲染后的客户端恢复）方面带来显著改进，特别是在处理挂起（suspending）组件时。相比 Preact X 需要在每个异步边界总是返回恰好 1 个 DOM 节点的限制，Preact 11 允许返回 0 个或 2 个及以上 DOM 节点，从而支持更灵活的组件设计。
+
+下面的示例在 Preact 11 中现在是合法的：
+
+```jsx
+function X() {
+  // 一些懒加载操作，例如初始化分析工具
+  return null;
+}
+
+const LazyOperation = lazy(() => /* import X */);
 ```
 
-由于 compat 已移至 core lib，不再需要 `preact-compat` 了。使用以下命令移除它：
+```jsx
+function Y() {
+  // 渲染后 `<Fragment>` 会被移除，留下两个 `<p>` DOM 元素
+  return (
+    <Fragment>
+      <p>Foo</p>
+      <p>Bar</p>
+    </Fragment>
+  );
+}
 
-```bash
-npm remove preact-compat
+const SuspendingMultipleChildren = lazy(() => /* import Y */);
 ```
 
-### 更新 preact 相关库
+关于已知问题的更详细说明以及我们的解决方案，请参阅 [RFC: Hydration 2.0 (preactjs/preact#4442)](https://github.com/preactjs/preact/issues/4442)。
 
-为了保证用户（尤其是企业用户）生态系统的稳定性，我们为与 Preact X 相关的库发布了主要版本更新。如果您使用了 `preact-render-to-string`，需要更新到适用于 X 的版本。
+### 钩子参数使用 `Object.is` 进行相等性判断
 
-| 库                        | Preact 8.x | Preact X |
-| ------------------------- | ---------- | -------- |
-| `preact-render-to-string` | 4.x        | 5.x      |
-| `preact-router`           | 2.x        | 3.x      |
-| `preact-jsx-chai`         | 2.x        | 3.x      |
-| `preact-markup`           | 1.x        | 2.x      |
+Preact 11 在钩子（hooks）参数的相等性判断中使用 `Object.is`，更接近 React 的行为。这意味着现在可以将 `NaN` 用作状态值或 `useEffect`/`useMemo`/`useCallback` 的依赖项。
 
-### compat 已移至核心库
+在 Preact 10 中，下面的例子在每次点击按钮时都会触发重新渲染，而在 Preact 11 中则不会：
 
-为了使第三方 React 库能与 Preact 一起工作，我们提供了一个可通过 `preact/compat` 导入的**兼容性**层。它以前是一个单独的包，但为了使协调更容易，我们已将其移至核心库。因此，您需要将现有的导入或别名声明从 `preact-compat` 更改为 `preact/compat`（注意斜杠）。
+```jsx
+import { useState, useEffect } from 'preact/hooks';
 
-请注意不要引入任何拼写错误。一个常见的错误似乎是写成 `compact` 而不是 `compat`。如果您遇到问题，可以将 `compat` 理解为 React 的 `compatibility`（兼容性）层。这就是名称的由来。
+function App() {
+	const [count, setCount] = useState(0);
 
-### 第三方库
+	return <button onClick={() => setCount(NaN)}>Set count to NaN</button>;
+}
+```
 
-由于破坏性变更的性质，一些现有库可能无法与 X 一起工作。大多数库已经根据我们的测试版计划进行了更新，但您可能会遇到尚未更新的情况。
+## API 变更
 
-#### preact-redux
+### Ref 默认会被转发
 
-`preact-redux` 是尚未更新的此类库之一。好消息是 `preact/compat` 更符合 React 规范，可以与名为 `react-redux` 的 React 绑定开箱即用。切换到它将解决这个问题。确保您在打包工具中已将 `react` 和 `react-dom` 别名为 `preact/compat`。
+现在 Ref 默认会被转发，可以像普通 prop 一样使用它们。你不再需要通过 `preact/compat` 的 `forwardRef` 来实现这一功能。
 
-1. 移除 `preact-redux`
-2. 安装 `react-redux`
+```jsx
+function MyComponent({ ref }) {
+	return <h1 ref={ref}>Hello, world!</h1>;
+}
 
-#### mobx-preact
+<MyComponent ref={myRef} />;
+// Preact 10: myRef.current 是 MyComponent 的实例
+// Preact 11: myRef.current 是 <h1> DOM 元素
+```
 
-由于我们对 React 生态系统的兼容性增强，不再需要这个包。请使用 `mobx-react` 代替。
+> 注意：当使用 `preact/compat` 时，refs 不会被转发到类组件。React 只将 refs 转发给函数组件，因此我们在 compat 层保持一致。
+>
+> 对于纯 Preact 的使用者，refs 会被转发到类组件，与函数组件行为一致。
 
-1. 移除 `mobx-preact`
-2. 安装 `mobx-react`
-
-#### styled-components
-
-Preact 8.x 只能与 `styled-components@3.x` 一起使用。使用 Preact X 后，这个障碍不再存在，我们可以与最新版本的 `styled-components` 一起工作。确保您已正确地[将 react 别名为 preact](/guide/v10/getting-started#将-react-别名为-preact)。
-
-#### preact-portal
-
-`Portal` 组件现在是 `preact/compat` 的一部分。
-
-1. 移除 `preact-portal`
-2. 从 `preact/compat` 导入 `createPortal`
-
-## 准备代码
-
-### 使用命名导出
-
-为了更好地支持 tree-shaking，我们不再在 preact 核心中提供 `default` 导出。这种方法的优点是只有您需要的代码才会被包含在您的包中。
+如果你需要继续使用旧行为，可以使用以下代码片段将行为恢复为 Preact 10：
 
 ```js
-// Preact 8.x
-import Preact from 'preact';
+import { options } from 'preact';
 
-// Preact X
-import * as preact from 'preact';
+const oldVNode = options.vnode;
+options.vnode = vnode => {
+	if (vnode.props && vnode.props.ref) {
+		vnode.ref = vnode.props.ref;
+		delete vnode.props.ref;
+	}
 
-// 推荐：命名导出（适用于 8.x 和 Preact X）
-import { h, Component } from 'preact';
+	if (oldVNode) oldVNode(vnode);
+};
 ```
 
-_注意：此更改不影响 `preact/compat`。它仍然同时具有命名导出和默认导出，以保持与 react 的兼容性。_
+### 将数值样式自动添加 `px` 的行为移到 `preact/compat`
 
-### `render()` 总是比较现有子元素
-
-在 Preact 8.x 中，对 `render()` 的调用总是将元素附加到容器中。
+Preact 11 已将对数值类型样式属性自动添加 `px` 的逻辑从核心库移动到 `preact/compat`。
 
 ```jsx
-// 现有标记：
-<body>
-	<div>hello</div>
-</body>;
-
-render(<p>foo</p>, document.body);
-render(<p>bar</p>, document.body);
-
-// Preact 8.x 输出：
-<body>
-	<div>hello</div>
-	<p>foo</p>
-	<p>bar</p>
-</body>;
+<h1 style={{ height: 500 }}>Hello World!</h1>
+// Preact 10: <h1 style="height:500px">Hello World!</h1>
+// Preact 11: <h1 style="height:500">Hello World!</h1>
 ```
 
-在 Preact 8 中，要比较现有子元素，必须提供一个现有的 DOM 节点。
+### 将 `defaultProps` 支持移动到 `preact/compat`
 
-```jsx
-// 现有标记：
-<body>
-	<div>hello</div>
-</body>;
+由于函数组件与 Hook 的普及，`defaultProps` 使用频率下降，因此该支持已移入 `preact/compat`。
 
-let element;
-element = render(<p>foo</p>, document.body);
-element = render(<p>bar</p>, document.body, element);
+### 从 `render()` 中移除 `replaceNode` 参数
 
-// Preact 8.x 输出：
-<body>
-	<div>hello</div>
-	<p>bar</p>
-</body>;
-```
+`render()` 的第三个（可选）参数在 Preact 11 中被移除，因为该实现存在许多 bug 和边缘情况，且无法很好地满足某些关键用例。
 
-在 Preact X 中，`render()` 总是比较容器内的 DOM 子元素。因此，如果您的容器包含不是由 Preact 渲染的 DOM，Preact 将尝试将其与您传递的元素进行比较。这种新行为更接近其他 VDOM 库的行为。
+如果你仍然需要此功能，我们提供了一个与 Preact 10 兼容的独立实现：[`preact-root-fragment`](https://github.com/preactjs/preact-root-fragment)。
 
-```jsx
-// 现有标记：
-<body>
-	<div>hello</div>
-</body>;
-
-render(<p>foo</p>, document.body);
-render(<p>bar</p>, document.body);
-
-// Preact X 输出：
-<body>
-	<p>bar</p>
-	<div>hello</div>
-</body>;
-```
-
-如果您需要与 React 的 `render` 方法完全匹配的行为，请使用 `preact/compat` 导出的 `render` 方法。
-
-### `props.children` 不总是 `array` 类型
-
-在 Preact X 中，我们不能保证 `props.children` 总是 `array` 类型。这一变更是为了解决关于 `Fragments` 和返回子元素 `array` 的组件的解析歧义。在大多数情况下，您可能甚至不会注意到它。只有在直接对 `props.children` 使用数组方法的地方需要用 `toChildArray` 包装。这个函数将始终返回一个数组。
-
-```jsx
-// Preact 8.x
-function Foo(props) {
-	// `.length` 是一个数组方法。在 Preact X 中，当 `props.children` 不是
-	// 数组时，这行代码将抛出异常
-	const count = props.children.length;
-	return <div>我有 {count} 个子元素 </div>;
-}
-
-// Preact X
-import { toChildArray } from 'preact';
-
-function Foo(props) {
-	const count = toChildArray(props.children).length;
-	return <div>我有 {count} 个子元素 </div>;
-}
-```
-
-### 不要同步访问 `this.state`
-
-在 Preact X 中，组件的状态不会再同步变更。这意味着在 `setState` 调用后立即读取 `this.state` 将返回之前的值。相反，您应该使用回调函数来修改依赖于先前值的状态。
-
-```jsx
-this.state = { counter: 0 };
-
-// Preact 8.x
-this.setState({ counter: this.state.counter + 1 });
-
-// Preact X
-this.setState(prevState => {
-	// 或者在此处返回 `null` 来中止状态更新
-	return { counter: prevState.counter + 1 };
-});
-```
-
-### `dangerouslySetInnerHTML` 将跳过子元素比较
-
-当一个 `vnode` 设置了 `dangerouslySetInnerHTML` 属性时，Preact 将跳过比较 `vnode` 的子元素。
-
-```jsx
-<div dangerouslySetInnerHTML="foo">
-	<span>我将被跳过</span>
-	<p>我也会被跳过</p>
+```html
+<div id="root">
+	<section id="widgetA"><h1>Widget A</h1></section>
+	<section id="widgetB"><h1>Widget B</h1></section>
+	<section id="widgetC"><h1>Widget C</h1></section>
 </div>
 ```
 
-## 库作者注意事项
+```jsx
+// Preact 10
+import { render } from 'preact';
 
-本节适用于正在维护与 Preact X 一起使用的包的库作者。如果您不是在编写这样的库，可以安全地跳过本节。
+render(<App />, root, widgetC);
 
-### `VNode` 形状已更改
+// Preact 11
+import { render } from 'preact';
+import { createRootFragment } from 'preact-root-fragment';
 
-我们重命名/移动了以下属性：
+render(<App />, createRootFragment(root, widgetC));
+```
 
-- `attributes` -> `props`
-- `nodeName` -> `type`
-- `children` -> `props.children`
+### 移除 `Component.base` 属性
 
-尽管我们尽力了，但我们总是遇到为 React 编写的第三方库的边缘情况。这种对我们的 `vnode` 形状的更改消除了许多难以发现的错误，并使我们的 `compat` 代码更加整洁。
+我们将移除 `Component.base`，因为暴露组件所连接的 DOM 总显得有些泄露实现细节。
 
-### 相邻文本节点不再合并
+如果你仍然需要访问该 DOM，可以使用 `this.__v.__e`；其中 `.__v` 是组件关联的 VNode（经过混淆的属性名），`.__e` 则是该 VNode 关联的 DOM 节点。
 
-在 Preact 8.x 中，我们有一个将相邻文本节点合并作为优化的功能。这在 X 中不再适用，因为我们不再直接与 dom 进行比较。事实上，我们注意到它在 X 中反而损害了性能，这就是为什么我们移除了它。看下面的例子：
+### 从 `preact/compat` 移除 `SuspenseList`
+
+该功能的实现和服务端支持一直不够清晰和完整，因而我们决定移除它。
+
+### 类型相关变更
+
+#### `useRef` 现在需要初始值
+
+与 React 19 中的更改类似，我们将 `useRef` 的类型签名改为需要提供初始值。提供初始值有助于类型推断并避免一些类型上的问题。
+
+#### `JSX` 命名空间收缩
+
+TypeScript 使用特殊的 `JSX` 命名空间来改变 JSX 的类型和解释方式。在 10 版本中，我们大幅扩展了该命名空间以包含多种有用类型，但其中许多更适合放到 `preact` 命名空间。
+
+从 Preact 11 开始，`JSX` 命名空间将只包含 TypeScript 所需的基本类型（例如 `Element`、`IntrinsicElements` 等），其余类型将迁移到 `preact` 命名空间。这也有助于编辑器和 IDE 在自动导入提示时更好地解析类型。
+
+```ts
+// Preact 10
+import { JSX } from 'preact';
+
+type MyCustomButtonProps = JSX.ButtonHTMLAttributes & {
+	/* ... */
+};
+
+// Preact 11
+import { ButtonHTMLAttributes } from 'preact';
+
+type MyCustomButtonProps = ButtonHTMLAttributes & {
+	/* ... */
+};
+```
+
+````
+
+### 将数值样式自动添加 `px` 的行为移到 `preact/compat`
+
+Preact 11 已将对数值类型样式属性自动添加 `px` 的逻辑从核心库移动到 `preact/compat`。
 
 ```jsx
-// Preact 8.x
-console.log(<div>foo{'bar'}</div>);
-// 记录一个如下的结构：
-//   div
-//     text
+<h1 style={{ height: 500 }}>Hello World!</h1>
+// Preact 10: <h1 style="height:500px">Hello World!</h1>
+// Preact 11: <h1 style="height:500">Hello World!</h1>
+````
 
-// Preact X
-console.log(<div>foo{'bar'}</div>);
-// 记录一个如下的结构：
-//   div
-//     text
-//     text
+### 将 `defaultProps` 支持移动到 `preact/compat`
+
+由于函数组件与 Hook 的普及，`defaultProps` 使用频率下降，因此该支持已移入 `preact/compat`。
+
+### 从 `render()` 中移除 `replaceNode` 参数
+
+`render()` 的第三个（可选）参数在 Preact 11 中被移除，因为该实现存在许多 bug 和边缘情况，且无法很好地满足某些关键用例。
+
+如果你仍然需要此功能，我们提供了一个与 Preact 10 兼容的独立实现：[`preact-root-fragment`](https://github.com/preactjs/preact-root-fragment)。
+
+```html
+<div id="root">
+	<section id="widgetA"><h1>Widget A</h1></section>
+	<section id="widgetB"><h1>Widget B</h1></section>
+	<section id="widgetC"><h1>Widget C</h1></section>
+</div>
+```
+
+```jsx
+// Preact 10
+import { render } from 'preact';
+
+render(<App />, root, widgetC);
+
+// Preact 11
+import { render } from 'preact';
+import { createRootFragment } from 'preact-root-fragment';
+
+render(<App />, createRootFragment(root, widgetC));
+```
+
+### 移除 `Component.base` 属性
+
+我们将移除 `Component.base`，因为暴露组件所连接的 DOM 总显得有些泄露实现细节。
+
+如果你仍然需要访问该 DOM，可以使用 `this.__v.__e`；其中 `.__v` 是组件关联的 VNode（经过混淆的属性名），`.__e` 则是该 VNode 关联的 DOM 节点。
+
+### 从 `preact/compat` 移除 `SuspenseList`
+
+该功能的实现和服务端支持一直不够清晰和完整，因而我们决定移除它。
+
+### 类型相关变更
+
+#### `useRef` 现在需要初始值
+
+与 React 19 中的更改类似，我们将 `useRef` 的类型签名改为需要提供初始值。提供初始值有助于类型推断并避免一些类型上的问题。
+
+#### `JSX` 命名空间收缩
+
+TypeScript 使用特殊的 `JSX` 命名空间来改变 JSX 的类型和解释方式。在 10 版本中，我们大幅扩展了该命名空间以包含多种有用类型，但其中许多更适合放到 `preact` 命名空间。
+
+从 Preact 11 开始，`JSX` 命名空间将只包含 TypeScript 所需的基本类型（例如 `Element`、`IntrinsicElements` 等），其余类型将迁移到 `preact` 命名空间。这也有助于编辑器和 IDE 在自动导入提示时更好地解析类型。
+
+```ts
+// Preact 10
+import { JSX } from 'preact';
+
+type MyCustomButtonProps = JSX.ButtonHTMLAttributes & {
+	/* ... */
+};
+
+// Preact 11
+import { ButtonHTMLAttributes } from 'preact';
+
+type MyCustomButtonProps = ButtonHTMLAttributes & {
+	/* ... */
+};
 ```

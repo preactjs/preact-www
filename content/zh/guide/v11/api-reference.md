@@ -48,7 +48,7 @@ class MyComponent extends Component {
 
 ## render()
 
-`render(virtualDom, containerNode, [replaceNode])`
+`render(virtualDom, containerNode)`
 
 将虚拟 DOM 元素渲染为父 DOM 元素的 `containerNode`，无返回值。
 
