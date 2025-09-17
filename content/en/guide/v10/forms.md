@@ -81,7 +81,7 @@ function BasicInput() {
 			<label>
 				Name: <input onInput={e => (name.value = e.currentTarget.value)} />
 			</label>
-			<p>Hello {name.value}</p>
+			<p>Hello {name}</p>
 		</div>
 	);
 }
@@ -218,19 +218,28 @@ render(<BasicRadioButton />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { useSignal } from '@preact/signals';
+import { useSignal, useComputed } from '@preact/signals';
+import { Show } from '@preact/signals/utils';
 // --repl-before
 function BasicRadioButton() {
 	const allowContact = useSignal(false);
 	const contactMethod = useSignal('');
 
-	const toggleContact = () => (allowContact.value = !allowContact.value);
 	const setRadioValue = e => (contactMethod.value = e.currentTarget.value);
+	const isDisabled = useComputed(() => !allowContact.value);
+	const contactStatus = useComputed(
+		() => `have allowed via ${contactMethod.value}`
+	);
 
 	return (
 		<div class="form-example">
 			<label>
-				Allow contact: <input type="checkbox" onClick={toggleContact} />
+				Allow contact:
+				<input
+					type="checkbox"
+					checked={allowContact.value}
+					onChange={e => (allowContact.value = e.target.checked)}
+				/>
 			</label>
 			<label>
 				Phone:{' '}
@@ -239,7 +248,7 @@ function BasicRadioButton() {
 					name="contact"
 					value="phone"
 					onClick={setRadioValue}
-					disabled={!allowContact.value}
+					disabled={isDisabled}
 				/>
 			</label>
 			<label>
@@ -249,7 +258,7 @@ function BasicRadioButton() {
 					name="contact"
 					value="email"
 					onClick={setRadioValue}
-					disabled={!allowContact.value}
+					disabled={isDisabled}
 				/>
 			</label>
 			<label>
@@ -259,12 +268,14 @@ function BasicRadioButton() {
 					name="contact"
 					value="mail"
 					onClick={setRadioValue}
-					disabled={!allowContact.value}
+					disabled={isDisabled}
 				/>
 			</label>
 			<p>
-				You {allowContact.value ? 'have allowed' : 'have not allowed'} contact{' '}
-				{allowContact.value && ` via ${contactMethod.value}`}
+				You{' '}
+				<Show when={allowContact} fallback="have not allowed">
+					{() => contactStatus}
+				</Show>
 			</p>
 		</div>
 	);
@@ -345,7 +356,7 @@ function MySelect() {
 				<option value="B">B</option>
 				<option value="C">C</option>
 			</select>
-			<p>You selected: {value.value}</p>
+			<p>You selected: {value}</p>
 		</div>
 	);
 }
@@ -438,7 +449,8 @@ render(<FullNameForm />, document.getElementById('app'));
 ```jsx
 // --repl
 import { render } from 'preact';
-import { useSignal } from '@preact/signals';
+import { useSignal, useComputed } from '@preact/signals';
+import { Show } from '@preact/signals/utils';
 // --repl-before
 function FullNameForm() {
 	const fullName = useSignal('');
@@ -449,6 +461,8 @@ function FullNameForm() {
 		fullName.value = formData.get('firstName') + ' ' + formData.get('lastName');
 		e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
 	};
+
+	const greeting = useComputed(() => `Hello ${fullName.value}`);
 
 	return (
 		<div class="form-example">
@@ -461,7 +475,7 @@ function FullNameForm() {
 				</label>
 				<button>Submit</button>
 			</form>
-			{fullName.value && <p>Hello {fullName.value}</p>}
+			<Show when={fullName}>{() => <p>{greeting}</p>}</Show>
 		</div>
 	);
 }

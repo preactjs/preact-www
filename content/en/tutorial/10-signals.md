@@ -7,10 +7,14 @@ solvable: true
 
 # Signals
 
-In chapter four, we saw how Preact manages state with the help of
-**hooks**. Hooks are powerful, but they always re-render the whole component whenever the state changes.
+In chapter four, we saw how Preact manages state with the help of **hooks**. Hooks
+rely upon re-rendering the component on state/prop change, and whilst this is a perfectly
+usable set of APIs, we find many users struggle with modeling their components and using
+this system without consistently running into some known pitfalls.
 
-**Signals** is a other way to manage state in Preact. Unlike hooks, which re-render the whole component whenever the state changes, the signals update only the
+**Signals** are another way to manage state in Preact. Signals can offer automatic fine-grained
+updates, avoiding the need for dependency arrays and skipping full-component re-renders, as
+well as a (subjectively) simpler flow for derived state. This helps ensure apps of all sizes are fast by default.
 parts of the UI that actually uses them. A signal remembers its value and automatically tracks where it is used, so when the value
 changes, only the parts that depend on it will update.
 
@@ -20,9 +24,9 @@ You can create a signal using the `signal()` function, Every signal has a `.valu
 signals read it with `signal.value` and update the value. Signals gets updated only there's a change in a value, else it remains same.
 
 ```js
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 
-const count = signal(1);
+const count = useSignal(1);
 
 count.value = 1; //no updates
 count.value = 2; //count updates
@@ -33,12 +37,12 @@ But if you change value inside an array directly, the signal won’t know whethe
 Instead, signals only update when they get a **new array**, so you need to create a copy of array with the updated values, which updates the UI correctly.
 
 ```jsx
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 
-const todos = signal(['Buy milk']);
+const todos = useSignal(['Buy milk']);
 
 todos.value.push('Clean room'); //doesn't update
-todos.value = [...todos.value, 'Study for exam']; //updates the UI
+todos.value = [...todos, 'Study for exam']; //updates the UI
 ```
 
 ### Derived values with computed signals
@@ -51,20 +55,20 @@ This is where `computed()` helps. A computed signal is like a signal that is aut
 You will not set the value directly. Instead, you give a small function to it, and it will always run that function automatically whenever the original signals change.
 
 ```jsx
-import { signal, computed } from '@preact/signals';
+import { useSignal, useComputed } from '@preact/signals';
 
-const firstName = signal('John');
-const lastName = signal('Doe');
+const firstName = useSignal('John');
+const lastName = usesignal('Doe');
 
 //fullName will always stay in sync with firstName & lastName
-const fullName = computed(() => `${firstName.value} ${lastName.value}`);
+const fullName = useComputed(() => `${firstName.value} ${lastName.value}`);
 
-console.log(fullName.value); //John Doe
+console.log(fullName); //John Doe
 
 //Update signal
 firstName.value = 'Jane';
 
-console.log(fullName.value); //Jane Doe (updated automatically)
+console.log(fullName); //Jane Doe (updated automatically)
 ```
 
 ## Side effects with effect()
@@ -78,12 +82,12 @@ That’s where `effect()` comes in. It runs a piece of code automatically whenev
 You don’t have to call it yourself manually, it reacts to the signals it depends.
 
 ```jsx
-import { signal, effect } from '@preact/signals';
+import { useSignal, useEffect } from '@preact/signals';
 
-const name = signal('Alice');
+const name = useSignal('Alice');
 
-effect(() => {
-	console.log(`Hello, ${name.value}!`);
+useEffect(() => {
+	console.log(`Hello, ${name}!`);
 });
 
 name.value = 'Bob'; //"Hello, Bob!"
@@ -189,7 +193,7 @@ so you don’t need to import global signals directly.
 
 ## Try it!
 
-Let’s create a counter which gets incremented while the button is clicked using `signal`, which is similar to the state example from fourth chapter.
+Let’s build a simple counter using `signal` that increases each time the button is clicked, and be sure to display the current count (`{count}`).
 
 <solution> 
 	<h4>🎉 Congratulations!</h4> 
@@ -243,7 +247,7 @@ useResult(function() {
 
 ```jsx:repl-initial
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 
 function MyButton(props) {
 	return (
@@ -254,8 +258,6 @@ function MyButton(props) {
 }
 
 function App() {
-	const count = signal(0);
-
 	const clicked = () => {
 		// increment the signal value here
 	};
@@ -275,7 +277,7 @@ render(<App />, document.getElementById('app'));
 
 ```jsx:repl-final
 import { render } from 'preact';
-import { signal } from '@preact/signals';
+import { useSignal } from '@preact/signals';
 
 function MyButton(props) {
 	return (
@@ -286,7 +288,7 @@ function MyButton(props) {
 }
 
 function App() {
-	const count = signal(0);
+	const count = useSignal(0);
 
 	const clicked = () => {
 		count.value++;
