@@ -216,9 +216,9 @@ When we write components like `<Input />` that wrap the HTML `<input>`, most of 
 the props that can be used on the native HTML input element. To do this we can do the following:
 
 ```tsx
-import { JSX } from 'preact';
+import { HTMLInputAttributes } from 'preact';
 
-interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
+interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
 	mySpecialProp: any;
 }
 
@@ -232,10 +232,10 @@ Now when we use `Input` it will know about properties like `value`, ...
 Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
 ```tsx
-import type { JSX } from "preact";
+import type { TargetedMouseEvent } from "preact";
 
 export class Button extends Component {
-  handleClick(event: JSX.TargetedMouseEvent<HTMLButtonElement>) {
+  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
     alert(event.currentTarget.tagName); // Alerts BUTTON
   }
 

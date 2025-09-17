@@ -210,9 +210,9 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 Когда мы пишем компоненты, такие как `<Input />`, которые оборачивают HTML-элемент `<input>`, чаще всего мы хотим унаследовать свойства, которые могут быть использованы на нативном HTML-элементе input. Для этого мы можем сделать следующее:
 
 ```tsx
-import { JSX } from 'preact';
+import { InputHTMLAttributes } from 'preact';
 
-interface InputProperties extends JSX.InputHTMLAttributes<HTMLInputElement> {
+interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
   mySpecialProp: any
 }
 
@@ -226,10 +226,10 @@ const Input = (props: InputProperties) => <input {...props} />
 Preact генерирует регулярные события DOM. Пока ваш проект TypeScript включает библиотеку `dom` (установите её в `tsconfig.json`), у вас есть доступ ко всем типам событий, которые доступны в вашей текущей конфигурации.
 
 ```tsx
-import type { JSX } from "preact";
+import type { TargetedMouseEvent } from "preact";
 
 export class Button extends Component {
-  handleClick(event: JSX.TargetedMouseEvent<HTMLButtonElement>) {
+  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
     alert(event.currentTarget.tagName); // Оповещение BUTTON
   }
 
