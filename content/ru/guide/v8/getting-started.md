@@ -6,7 +6,7 @@ title: Первые шаги
 
 В этом руководстве мы рассмотрим создание простого компонента «тикающие часы». Более подробную информацию по каждой теме можно найти на специальных страницах в меню "Руководство".
 
-> :information_desk_person: Вы [не обязаны использовать ES2015, чтобы использовать Preact](https://github.com/developit/preact-without-babel), но должны. Это руководство предполагает, что у вас есть какая-то сборка ES2015, настроенная с помощью babel и/или webpack/browserify/gulp/grunt и т. д. Если у вас их нет, начните с [preact-cli](https://github.com/preactjs/preact-cli) или с [шаблона CodePen](https://codepen.io/developit/pen/pgaROe?editors=0010).
+> :information_desk_person: Вам [не _обязательно_ использовать ES2015 для работы с Preact](https://github.com/developit/preact-without-babel)... но стоит это сделать. Это руководство предполагает, что у вас настроена сборка с ES2015 с использованием babel и/или webpack/browserify/gulp/grunt/и т.д. Если у вас нет такой сборки, начните с [preact-cli](https://github.com/preactjs/preact-cli) или [шаблона CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 ---
 
