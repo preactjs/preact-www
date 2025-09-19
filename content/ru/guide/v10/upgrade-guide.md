@@ -69,7 +69,7 @@ Be careful not to introduce any spelling errors here. A common one seems to be t
 
 #### styled-components
 
-Preact 8.x работал только до `styled-components@3.x`. С Preact X этого барьера больше нет, и мы работаем с последней версией `styled-components`. Убедитесь, что вы правильно настроили [псевдонимы react для preact](/guide/v10/getting-started#aliasing-react-to-preact).
+Preact 8.x работал только до `styled-components@3.x`. С Preact X этого барьера больше нет, и мы работаем с последней версией `styled-components`. Убедитесь, что вы правильно настроили [псевдонимы react для preact](/guide/v10/getting-started#псевдонимы-react-для-preact).
 
 #### preact-portal
 
