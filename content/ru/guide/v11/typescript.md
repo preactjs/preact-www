@@ -20,25 +20,25 @@ Preact поставляет определения типов TypeScript, кот
 TypeScript включает в себя полноценный JSX-компилятор, который вы можете использовать вместо Babel. Добавьте следующую конфигурацию в ваш `tsconfig.json`, чтобы транспилировать JSX в Preact-совместимый JavaScript:
 
 ```json
-// TypeScript < 4.1.1
+// Классическая транформация
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
-    //...
-  }
+	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
+		//...
+	}
 }
 ```
 
 ```json
-// TypeScript >= 4.1.1
+// Автотрансформация, доступна в TypeScript >= 4.1.1
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-    //...
-  }
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+		//...
+	}
 }
 ```
 
@@ -46,12 +46,12 @@ TypeScript включает в себя полноценный JSX-компил�
 
 ```json
 {
-  "compilerOptions": {
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
-    //...
-  }
+	"compilerOptions": {
+		"jsx": "preserve",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
+		//...
+	}
 }
 ```
 
@@ -101,16 +101,16 @@ TypeScript включает в себя полноценный JSX-компил�
 
 ```tsx
 interface MyComponentProps {
-  name: string;
-  age: number;
+	name: string;
+	age: number;
 };
 
 function MyComponent({ name, age }: MyComponentProps) {
-  return (
-    <div>
-      Меня зовут {name}, мне {age.toString()} лет.
-    </div>
-  );
+	return (
+		<div>
+			Меня зовут {name}, мне {age.toString()} лет.
+		</div>
+	);
 }
 ```
 
@@ -118,12 +118,12 @@ function MyComponent({ name, age }: MyComponentProps) {
 
 ```tsx
 interface GreetingProps {
-  name?: string; // необязательный параметр!
+	name?: string; // необязательный параметр!
 };
 
 function Greeting({ name = 'Вася' }: GreetingProps) {
-  // name по умолчанию равно "Вася"
-  return <div>Привет, {name}!</div>;
+	// name по умолчанию равно "Вася"
+	return <div>Привет, {name}!</div>;
 }
 ```
 
@@ -133,12 +133,12 @@ function Greeting({ name = 'Вася' }: GreetingProps) {
 import { h, FunctionComponent } from 'preact';
 
 const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
-  return (
-    <div class='card'>
-      <h1>{title}</h1>
-      {children}
-    </div>
-  );
+	return (
+		<div class="card">
+			<h1>{title}</h1>
+			{children}
+		</div>
+	);
 };
 ```
 
@@ -148,17 +148,17 @@ const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
 import { h, ComponentChildren } from 'preact';
 
 interface ChildrenProps {
-  title: string;
-  children: ComponentChildren;
-};
+	title: string;
+	children: ComponentChildren;
+}
 
 function Card({ title, children }: ChildrenProps) {
-  return (
-    <div class='card'>
-      <h1>{title}</h1>
-      {children}
-    </div>
-  );
+	return (
+		<div class="card">
+			<h1>{title}</h1>
+			{children}
+		</div>
+	);
 }
 ```
 
@@ -169,37 +169,37 @@ function Card({ title, children }: ChildrenProps) {
 ```tsx
 // Типы для props
 interface ExpandableProps {
-  title: string;
+	title: string;
 };
 
 // Типы для state
 interface ExpandableState {
-  toggled: boolean;
+	toggled: boolean;
 };
 
 // Привязка дженериков к ExpandableProps и ExpandableState
 class Expandable extends Component<ExpandableProps, ExpandableState> {
-  constructor(props: ExpandableProps) {
-    super(props);
-    // this.state — это объект с логическим полем `toggle` из-за ExpandableState.
-    this.state = {
-      toggled: false,
-    };
-  }
-  // `this.props.title` является строкой из-за использования ExpandableProps
-  render() {
-    return (
-      <div class='expandable'>
-        <h2>
-          {this.props.title}{' '}
-          <button onClick={() => this.setState({ toggled: !this.state.toggled })}>
-            Переключить
-          </button>
-        </h2>
-        <div hidden={this.state.toggled}>{this.props.children}</div>
-      </div>
-    );
-  }
+	constructor(props: ExpandableProps) {
+		super(props);
+		// this.state — это объект с логическим полем `toggle` из-за ExpandableState.
+		this.state = {
+		toggled: false,
+		};
+	}
+	// `this.props.title` является строкой из-за использования ExpandableProps
+	render() {
+		return (
+		<div class='expandable'>
+			<h2>
+			{this.props.title}{' '}
+			<button onClick={() => this.setState({ toggled: !this.state.toggled })}>
+				Переключить
+			</button>
+			</h2>
+			<div hidden={this.state.toggled}>{this.props.children}</div>
+		</div>
+		);
+	}
 }
 ```
 
@@ -212,11 +212,11 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 ```tsx
 import { InputHTMLAttributes } from 'preact';
 
-interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
-  mySpecialProp: any
+interface InputProperties extends InputHTMLAttributes {
+	mySpecialProp: any;
 }
 
-const Input = (props: InputProperties) => <input {...props} />
+const Input = (props: InputProperties) => <input {...props} />;
 ```
 
 Теперь, когда мы используем `Input`, он будет знать о таких свойствах, как `value` и т. д.
@@ -247,13 +247,13 @@ export class Button extends Component {
 
 ```tsx
 export class Button extends Component {
-  render() {
-    return (
-      <button onClick={(event) => alert(event.currentTarget.tagName)}>
-        {this.props.children}
-      </button>
-    );
-  }
+	render() {
+		return (
+		<button onClick={(event) => alert(event.currentTarget.tagName)}>
+			{this.props.children}
+		</button>
+		);
+	}
 }
 ```
 
@@ -265,18 +265,18 @@ export class Button extends Component {
 import { h, Component, createRef } from 'preact';
 
 class Foo extends Component {
-  ref = createRef<HTMLAnchorElement>();
+	ref = createRef<HTMLAnchorElement>();
 
-  componentDidMount() {
-    // current имеет тип HTMLAnchorElement
-    console.log(this.ref.current);
-  }
+	componentDidMount() {
+		// current имеет тип HTMLAnchorElement
+		console.log(this.ref.current);
+	}
 
-  render() {
-    return <div ref={this.ref}>Foo</div>;
-    //          ~~~
-    //       💥 Ошибка! Для HTMLAnchorElement можно использовать только ссылку `ref`
-  }
+	render() {
+		return <div ref={this.ref}>Foo</div>;
+		//          ~~~
+		//       💥 Ошибка! Для HTMLAnchorElement можно использовать только ссылку `ref`
+	}
 }
 ```
 
@@ -290,9 +290,9 @@ class Foo extends Component {
 import { h, createContext } from 'preact';
 
 const AppContext = createContext({
-  authenticated: true,
-  lang: 'en',
-  theme: 'dark',
+	authenticated: true,
+	lang: 'en',
+	theme: 'dark',
 });
 // AppContext имеет тип preact.Context<{
 //   authenticated: boolean;
@@ -305,20 +305,20 @@ const AppContext = createContext({
 
 ```tsx
 function App() {
-  // Здесь ошибка 💥, так как мы не определили `theme`
-  return (
-    <AppContext.Provider
-      value={{
-        //    ~~~~~
-        // 💥 Ошибка: `theme` не определена
-        lang: 'de',
-        authenticated: true,
-      }}
-    >
-      {}
-      <ComponentThatUsesAppContext />
-    </AppContext.Provider>
-  );
+	// Здесь ошибка 💥, так как мы не определили `theme`
+	return (
+		<AppContext.Provider
+			value={{
+	 //    ~~~~~
+	 // 💥 Ошибка: `theme` не определена
+				lang: 'de',
+				authenticated: true,
+			}}
+		>
+			{}
+			<ComponentThatUsesAppContext />
+		</AppContext.Provider>
+	);
 }
 ```
 
@@ -328,16 +328,16 @@ function App() {
 const AppContext = createContext(appContextDefault);
 
 function App() {
-  return (
-    <AppContext.Provider
-      value={{
-        lang: 'de',
-        ...appContextDefault,
-      }}
-    >
-      <ComponentThatUsesAppContext />
-    </AppContext.Provider>
-  );
+	return (
+		<AppContext.Provider
+			value={{
+				lang: 'de',
+				...appContextDefault,
+			}}
+			>
+			<ComponentThatUsesAppContext />
+		</AppContext.Provider>
+	);
 }
 ```
 
@@ -376,18 +376,18 @@ function App() {
 
 ```tsx
 const Counter = ({ initial = 0 }) => {
-  // поскольку начальное значение — это число (значение по умолчанию!), clicks — это число.
-  // setClicks — это функция, которая принимает
-  // — число
-  // — функция возвращает число
-  const [clicks, setClicks] = useState(initial);
-  return (
-    <>
-      <p>Клики: {clicks}</p>
-      <button onClick={() => setClicks(clicks + 1)}>+</button>
-      <button onClick={() => setClicks(clicks - 1)}>-</button>
-    </>
-  );
+	// поскольку начальное значение — это число (значение по умолчанию!), clicks — это число.
+	// setClicks — это функция, которая принимает
+	// — число
+	// — функция возвращает число
+	const [clicks, setClicks] = useState(initial);
+	return (
+		<>
+		<p>Клики: {clicks}</p>
+		<button onClick={() => setClicks(clicks + 1)}>+</button>
+		<button onClick={() => setClicks(clicks - 1)}>-</button>
+		</>
+	);
 };
 ```
 
@@ -395,15 +395,15 @@ const Counter = ({ initial = 0 }) => {
 
 ```typescript
 useEffect(() => {
-  const handler = () => {
-    document.title = window.innerWidth.toString();
-  };
-  window.addEventListener('resize', handler);
+	const handler = () => {
+		document.title = window.innerWidth.toString();
+	};
+	window.addEventListener('resize', handler);
 
-  // ✅ если вы возвращаете что-то из обратного вызова эффекта, это ДОЛЖНО быть функцией без аргументов
-  return () => {
-    window.removeEventListener('resize', handler);
-  };
+	// ✅ если вы возвращаете что-то из обратного вызова эффекта, это ДОЛЖНО быть функцией без аргументов
+	return () => {
+		window.removeEventListener('resize', handler);
+	};
 });
 ```
 
@@ -413,13 +413,13 @@ useEffect(() => {
 const LanguageContext = createContext({ lang: 'en' });
 
 const Display = () => {
-  // lang будет иметь тип строки
-  const { lang } = useContext(LanguageContext);
-  return (
-    <>
-      <p>Выбранный вами язык: {lang}</p>
-    </>
-  );
+	// lang будет иметь тип строки
+	const { lang } = useContext(LanguageContext);
+	return (
+		<>
+			<p>Выбранный вами язык: {lang}</p>
+		</>
+	);
 };
 ```
 
@@ -432,22 +432,22 @@ import { h } from 'preact';
 import { useRef } from 'preact/hooks';
 
 function TextInputWithFocusButton() {
-  // инициализировать с нулевым значением, но сообщить TypeScript, что мы ищем HTMLInputElement
-  const inputRef = useRef<HTMLInputElement>(null);
-  const focusElement = () => {
-    // строгие проверки на ноль требуют, чтобы мы проверили, существуют ли inputEl и current.
-    // но если current существует, он имеет тип HTMLInputElement, значит у него есть и метод focus! ✅
-    if (inputRef && inputRef.current) {
-      inputRef.current.focus();
-    }
-  };
-  return (
-    <>
-      {/* кроме того, inputEl можно использовать только с элементами ввода */}
-      <input ref={inputRef} type='text' />
-      <button onClick={focusElement}>Передать фокус элементу input</button>
-    </>
-  );
+	// инициализировать с нулевым значением, но сообщить TypeScript, что мы ищем HTMLInputElement
+	const inputRef = useRef<HTMLInputElement>(null);
+	const focusElement = () => {
+		// строгие проверки на ноль требуют, чтобы мы проверили, существуют ли inputEl и current.
+		// но если current существует, он имеет тип HTMLInputElement, значит у него есть и метод focus! ✅
+		if (inputRef && inputRef.current) {
+			inputRef.current.focus();
+		}
+	};
+	return (
+		<>
+			{/* кроме того, inputEl можно использовать только с элементами ввода */}
+			<input ref={inputRef} type='text' />
+			<button onClick={focusElement}>Передать фокус элементу input</button>
+		</>
+	);
 }
 ```
 
@@ -458,31 +458,31 @@ function TextInputWithFocusButton() {
 ```typescript
 // Тип состояния для функции редуктора
 interface StateType {
-  count: number;
+	count: number;
 };
 
 // Тип действия, где `type` может быть любым
 // "reset", "decrement", "increment"
 interface ActionType {
-  type: 'reset' | 'decrement' | 'increment';
+	type: 'reset' | 'decrement' | 'increment';
 };
 
 // Исходное состояние. Нет необходимости комментировать
 const initialState = { count: 0 };
 
 function reducer(state: StateType, action: ActionType) {
-  switch (action.type) {
-    // TypeScript гарантирует, что мы обрабатываем все возможные типы действий,
-    // и обеспечивает автоматическое заполнение строк типов.
-    case 'reset':
-      return initialState;
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		// TypeScript гарантирует, что мы обрабатываем все возможные типы действий,
+		// и обеспечивает автоматическое заполнение строк типов.
+		case 'reset':
+			return initialState;
+		case 'increment':
+			return { count: state.count + 1 };
+		case 'decrement':
+			return { count: state.count - 1 };
+		default:
+			return state;
+	}
 }
 ```
 
@@ -490,21 +490,21 @@ function reducer(state: StateType, action: ActionType) {
 
 ```tsx
 function Counter({ initialCount = 0 }) {
-  // TypeScript гарантирует, что редуктор имеет максимум два аргумента и что начальное состояние имеет тип Statetype.
-  // Более того:
-  // — state имеет тип StateType
-  // — dispatch это функция для отправки ActionType
-  const [state, dispatch] = useReducer(reducer, { count: initialCount });
+	// TypeScript гарантирует, что редуктор имеет максимум два аргумента и что начальное состояние имеет тип Statetype.
+	// Более того:
+	// — state имеет тип StateType
+	// — dispatch это функция для отправки ActionType
+	const [state, dispatch] = useReducer(reducer, { count: initialCount });
 
-  return (
-    <>
-      Счётчик: {state.count}
-      {/* TypeScript гарантирует, что отправленные действия имеют тип ActionType. */}
-      <button onClick={() => dispatch({ type: 'reset' })}>Сброс</button>
-      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
-    </>
-  );
+	return (
+		<>
+			Счётчик: {state.count}
+			{/* TypeScript гарантирует, что отправленные действия имеют тип ActionType. */}
+			<button onClick={() => dispatch({ type: 'reset' })}>Сброс</button>
+			<button onClick={() => dispatch({ type: 'increment' })}>+</button>
+			<button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+		</>
+	);
 }
 ```
 
@@ -518,9 +518,9 @@ function Counter({ initialCount = 0 }) {
 
 ```tsx
 function MyComponent() {
-  return <loading-bar showing={true}></loading-bar>;
-  //      ~~~~~~~~~~~
-  //   💥 Ошибка! Свойство 'loading-bar' не существует для типа 'JSX.IntrinsicElements'.
+	return <loading-bar showing={true}></loading-bar>;
+	//      ~~~~~~~~~~~
+	//   💥 Ошибка! Свойство 'loading-bar' не существует для типа 'JSX.IntrinsicElements'.
 }
 ```
 
@@ -528,39 +528,73 @@ function MyComponent() {
 // global.d.ts
 
 declare global {
-  namespace preact.JSX {
-    interface IntrinsicElements {
-      'loading-bar': { showing: boolean };
-    }
-  }
+	namespace preact.JSX {
+		interface IntrinsicElements {
+			'loading-bar': { showing: boolean };
+		}
+	}
 }
 
 // Этот пустой экспорт очень важен! Это говорит TS, что нужно рассматривать это как модуль
 export {}
 ```
 
-### Расширение `HTMLAttributes`
+### Расширение `HTMLAttributes` для глобальных пользовательских атрибутов
+
+Если вы хотите добавить пользовательский атрибут ко всем элементам HTML, можно расширить интерфейс `HTMLAttributes`:
 
 ```tsx
 function MyComponent() {
-  return <div custom="foo"></div>;
-  //          ~~~~~~
-  //       💥 Ошибка! Тип '{ custom: string; }' не может быть присвоен типу 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
-  //                   Свойство 'custom' не существует для типа 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+	return <div custom="foo"></div>;
+	//          ~~~~~~
+	//       💥 Ошибка! Тип '{ custom: string; }' не может быть присвоен типу 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+	//                   Свойство 'custom' не существует для типа 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
 }
 ```
 
 ```tsx
 // global.d.ts
 
-declare global {
-  namespace preact.JSX {
-    interface HTMLAttributes {
-      custom?: string | undefined;
-    }
-  }
+declare module 'preact' {
+	interface HTMLAttributes {
+		custom?: string | undefined;
+	}
 }
 
-// Этот пустой экспорт очень важен! Это говорит TS, что нужно рассматривать это как модуль
+// Этот пустой экспорт важен! Он указывает TS рассматривать это как модуль
 export {}
 ```
+
+### Расширение интерфейсов для отдельных элементов с пользовательскими атрибутами
+
+Иногда вы можете не хотеть добавлять пользовательский атрибут глобально, а только для определённого элемента. В этом случае вы можете расширить интерфейс конкретного элемента:
+
+```tsx
+// global.d.ts
+
+declare module 'preact' {
+	interface HeadingHTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// Этот пустой экспорт важен! Он указывает TS рассматривать это как модуль
+export {};
+```
+
+Однако в настоящее время есть 5 специальных элементов (`<a>`, `<area>`, `<img>`, `<input>` и `<select>`), которые требуют немного иного подхода: в отличие от других элементов, их интерфейсы имеют префикс `Partial`..., поэтому вам нужно убедиться, что ваши интерфейсы соответствуют этому шаблону:
+
+```ts
+// global.d.ts
+
+declare module 'preact' {
+	interface PartialAnchorHTMLAttributes {
+		custom?: string | undefined;
+	}
+}
+
+// Этот пустой экспорт важен! Он указывает TS рассматривать это как модуль
+export {};
+```
+
+> **Примечание**: Мы делаем это для поддержки более качественных типов ARIA/доступности для этих элементов, поскольку их роли ARIA представляют собой дискриминированный объединенный тип согласно спецификации (например, если у `<a>` есть атрибут `href`, он может иметь несколько определенных ролей, но если его нет, то роли могут быть другими). Для этого нам нужно использовать ключевое слово `type` в TypeScript, но это нарушает возможность расширения типа, так как он больше не является простым интерфейсом. Однако наши типы доступности пересекаются с интерфейсами `Partial...`, так что мы можем просто расширять их вместо этого.

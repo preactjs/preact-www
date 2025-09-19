@@ -48,7 +48,7 @@ class MyComponent extends Component {
 
 ## render()
 
-`render(virtualDom, containerNode, [replaceNode])`
+`render(virtualDom, containerNode)`
 
 Визуализация элемента Virtual DOM в родительский элемент DOM `containerNode`. Ничего не возвращает.
 
