@@ -1,6 +1,6 @@
 ---
 title: Компоненты
-description: Компоненты являются сердцем любого приложения Preact. Узнайте, как их создавать и использовать для композиции UI
+description: Узнайте, как их создавать и использовать для компоновки пользовательских интерфейсов
 ---
 
 # Компоненты
@@ -28,10 +28,10 @@ function MyComponent(props) {
 	return <div>Меня зовут {props.name}.</div>;
 }
 
-// Usage
+// Использование
 const App = <MyComponent name="Вася" />;
 
-// Renders: <div>Меня зовут Вася.</div>
+// Рендерит: <div>Меня зовут Вася.</div>
 render(App, document.body);
 ```
 
