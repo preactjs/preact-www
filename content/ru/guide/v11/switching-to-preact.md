@@ -17,7 +17,7 @@ description: Всё, что нужно знать для перехода с Rea
 
 ## Настройка `preact/compat`
 
-Чтобы настроить `preact/compat`, вам нужно использовать псевдонимы `react` и `react-dom` для `preact/compat`. На странице [Первые шаги](/guide/v10/getting-started#псевдонимы-react-для-preact) подробно описывается настройка псевдонимов в различных сборщиках.
+Чтобы настроить `preact/compat`, вам нужно использовать псевдонимы `react` и `react-dom` для `preact/compat`. На странице [Первые шаги](/guide/v11/getting-started#псевдонимы-react-для-preact) подробно описывается настройка псевдонимов в различных сборщиках.
 
 ## PureComponent
 
