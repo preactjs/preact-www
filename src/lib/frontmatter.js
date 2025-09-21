@@ -7,8 +7,7 @@ import yaml from 'yaml';
  * @returns {{title: string, description: string, body: string, meta: object}}
  */
 export function parseFrontmatter(content, path = '') {
-	// Accept both LF and CRLF line endings so frontmatter is detected on Windows
-	const FRONT_MATTER_REG = /^\s*---\r?\n\s*([\s\S]*?)\s*\r?\n---\r?\n/i;
+	const FRONT_MATTER_REG = /^\s*---\n\s*([\s\S]*?)\s*\n---\n/i;
 
 	const matches = content.match(FRONT_MATTER_REG);
 	if (!matches) {
