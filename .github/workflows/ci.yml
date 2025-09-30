@@ -25,5 +25,5 @@ jobs:
         with:
           pattern: 'build/**/*.{js,css}'
           exclude: 'build/assets/{prerender,xmldom,release,repos}-*.js'
-          strip-hash: '-(\w{8})\.'
+          strip-hash: '-(.{8})\.'
           minimum-change-threshold: 100
