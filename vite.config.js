@@ -20,7 +20,18 @@ export default defineConfig({
 	},
 	build: {
 		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
-		outDir: 'build'
+		outDir: 'build',
+		rollupOptions: {
+			output: {
+				chunkFileNames: chunkInfo => {
+					if (chunkInfo.moduleIds.find(id => id.includes('@xmldom/xmldom')))
+						return 'assets/xmldom-[hash].js';
+					if (chunkInfo.facadeModuleId?.includes('@docsearch/react'))
+						return 'assets/docsearch-[hash].js';
+					return 'assets/[name]-[hash].js';
+				}
+			}
+		}
 	},
 	define: {
 		'process.env.BRANCH': JSON.stringify(process.env.BRANCH)

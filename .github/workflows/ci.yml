@@ -20,5 +20,10 @@ jobs:
           node-version-file: 'package.json'
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
-      - run: npm ci
-      - run: npm run build
+
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          pattern: 'build/**/*.{js,css}'
+          exclude: 'build/assets/{prerender,xmldom,release,repos}-*.js'
+          strip-hash: '-(.{8})\.'
+          minimum-change-threshold: 100
