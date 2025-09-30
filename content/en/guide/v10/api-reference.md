@@ -69,9 +69,22 @@ render(<Foo />, document.getElementById('container'));
 // </div>
 ```
 
-If the optional `replaceNode` parameter is provided, it must be a child of `containerNode`. Instead of inferring where to start rendering, Preact will update or replace the passed element using its diffing algorithm.
+The first argument must be a valid Virtual DOM Element, which represents either a component or an element. When passing a Component, it's important to let Preact do the instantiation rather than invoking your component directly, which will break in unexpected ways:
 
-> ⚠️ The `replaceNode`-argument will be removed with Preact `v11`. It introduces too many edge cases and bugs which need to be accounted for in the rest of Preact's source code. We're leaving this section up for historical reasons, but we don't recommend anyone to use the third `replaceNode` argument.
+```jsx
+const App = () => <div>foo</div>;
+
+// DON'T: Invoking components directly means they won't be counted as a
+// VNode and hence not be able to use functionality relating to vnodes.
+render(App(), rootElement); // ERROR
+render(App, rootElement); // ERROR
+
+// DO: Passing components using h() or JSX allows Preact to render correctly:
+render(h(App), rootElement); // success
+render(<App />, rootElement); // success
+```
+
+If the optional `replaceNode` parameter is provided, it must be a child of `containerNode`. Instead of inferring where to start rendering, Preact will update or replace the passed element using its diffing algorithm.
 
 ```jsx
 // DOM tree before render:
@@ -97,20 +110,7 @@ render(
 // </div>
 ```
 
-The first argument must be a valid Virtual DOM Element, which represents either a component or an element. When passing a Component, it's important to let Preact do the instantiation rather than invoking your component directly, which will break in unexpected ways:
-
-```jsx
-const App = () => <div>foo</div>;
-
-// DON'T: Invoking components directly means they won't be counted as a
-// VNode and hence not be able to use functionality relating to vnodes.
-render(App(), rootElement); // ERROR
-render(App, rootElement); // ERROR
-
-// DO: Passing components using h() or JSX allows Preact to render correctly:
-render(h(App), rootElement); // success
-render(<App />, rootElement); // success
-```
+> ⚠️ The `replaceNode`-argument will be removed with Preact `v11`. It introduces too many edge cases and bugs which need to be accounted for in the rest of Preact's source code. If you still need this functionality, we recommend using [`preact-root-fragment`](/guide/v10/preact-root-fragment), a small helper library that provides similar functionality. It is compatible with both Preact `v10` and `v11`.
 
 ## hydrate()
 

@@ -471,6 +471,33 @@
 						}
 					}
 				]
+			},
+			{
+				"name": {
+					"en": "Libraries",
+					"ru": "Библиотеки",
+					"zh": "库"
+				},
+				"routes": [
+					{
+						"path": "/preact-iso",
+						"name": {
+							"en": "preact-iso"
+						}
+					},
+					{
+						"path": "/preact-custom-element",
+						"name": {
+							"en": "preact-custom-element"
+						}
+					},
+					{
+						"path": "/preact-root-fragment",
+						"name": {
+							"en": "preact-root-fragment"
+						}
+					}
+				]
 			}
 		],
 		"v10": [
@@ -766,6 +793,12 @@
 						"path": "/preact-custom-element",
 						"name": {
 							"en": "preact-custom-element"
+						}
+					},
+					{
+						"path": "/preact-root-fragment",
+						"name": {
+							"en": "preact-root-fragment"
 						}
 					}
 				]
