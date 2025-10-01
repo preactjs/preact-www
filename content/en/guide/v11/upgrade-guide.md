@@ -121,7 +121,7 @@ options.vnode = (vnode) => {
         delete vnode.props.ref;
     }
 
-	if oldVNode) oldVNode(vnode);
+	if (oldVNode) oldVNode(vnode);
 }
 ```
 
