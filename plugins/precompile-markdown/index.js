@@ -101,9 +101,13 @@ marked.use({
 		code({ text, lang }) {
 			const [code, source, runInRepl] = processRepl(text.trim());
 
-			Prism.languages[lang] == null
-				? console.warn(`No Prism highlighter for language: ${lang}`)
-				: (text = Prism.highlight(code, Prism.languages[lang], lang));
+			if (Prism.languages[lang] == null) {
+				throw new Error(
+					`No Prism highlighter for language: ${lang}\n\ncode:\n${code}\n`
+				);
+			}
+
+			text = Prism.highlight(code, Prism.languages[lang], lang);
 
 			const runInReplLink = runInRepl
 				? `<a class="repl-link" href="/repl?code=${encodeURIComponent(
@@ -238,9 +242,13 @@ function highlightCodeBlocks(data) {
 
 		const lang = child.getAttribute('class').replace('language-', '');
 
-		Prism.languages[lang] == null
-			? console.warn(`No Prism highlighter for language: ${lang}`)
-			: (child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang));
+		if (Prism.languages[lang] == null) {
+			throw new Error(
+				`No Prism highlighter for language: ${lang}\n\ncode:\n${code}\n`
+			);
+		}
+
+		child.innerHTML = Prism.highlight(code, Prism.languages[lang], lang);
 
 		block.insertAdjacentHTML(
 			'beforebegin',
