@@ -129,7 +129,7 @@ function LanguagePicker() {
 						isOpen={isOpen}
 						label={
 							<svg aria-hidden viewBox="0 0 24 24">
-								<use href="/icons.svg#i18n" />
+								<use href="#i18n" />
 							</svg>
 						}
 						aria-label={selectYourLanguage}
@@ -156,7 +156,7 @@ function LanguagePicker() {
  * @param {string} props.label - The aria label for the social icon
  * @param {string} props.href - The URL the icon links to
  * @param {string} props.viewbox - The SVG viewBox attribute -- must match the SVG's viewBox
- * @param {string} props.id - The ID of the icon in the `/icons.svg` spritesheet
+ * @param {string} props.id - The ID of the icon in the spritesheet located in `index.html`
  */
 const SocialIcon = ({ label, href, viewbox, id }) => (
 	<a
@@ -167,7 +167,7 @@ const SocialIcon = ({ label, href, viewbox, id }) => (
 		rel="noopener noreferrer"
 	>
 		<svg aria-hidden viewBox={viewbox}>
-			<use href={`/icons.svg#${id}`} />
+			<use href={`#${id}`} />
 		</svg>
 	</a>
 );
