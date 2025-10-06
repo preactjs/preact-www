@@ -277,6 +277,11 @@ const companies = [
 		name: 'Loveholidays',
 		href: 'https://loveholidays.com',
 		logo: 'loveholidays.svg'
+	},
+	{
+		name: 'JDLT',
+		href: 'https://jdlt.co.uk',
+		logo: 'jdlt.svg'
 	}
 ];
 
