@@ -81,17 +81,17 @@ render(<Clock />, document.getElementById('app'));
 
 In order to have the clock's time update every second, we need to know when `<Clock>` gets mounted to the DOM. _If you've used HTML5 Custom Elements, this is similar to the `attachedCallback` and `detachedCallback` lifecycle methods._ Preact invokes the following lifecycle methods if they are defined for a Component:
 
-| Lifecycle method                                           | When it gets called                                                                                         |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `componentWillMount()`                                     | (deprecated) before the component gets mounted to the DOM                                                   |
-| `componentDidMount()`                                      | after the component gets mounted to the DOM                                                                 |
-| `componentWillUnmount()`                                   | prior to removal from the DOM                                                                               |
-| `componentWillReceiveProps(nextProps, nextContext)`        | before new props get accepted _(deprecated)_                                                                |
-| `getDerivedStateFromProps(nextProps, prevState)`           | just before `shouldComponentUpdate`. Return object to update state or `null` to skip update. Use with care. |
-| `shouldComponentUpdate(nextProps, nextState, nextContext)` | before `render()`. Return `false` to skip render                                                            |
-| `componentWillUpdate(nextProps, nextState, nextContext)`   | before `render()` _(deprecated)_                                                                            |
-| `getSnapshotBeforeUpdate(prevProps, prevState)`            | called just before `render()`. return value is passed to `componentDidUpdate`.                              |
-| `componentDidUpdate(prevProps, prevState, snapshot)`       | after `render()`                                                                                            |
+| Lifecycle method                                           | When it gets called                                                                                                      |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `componentWillMount()`                                     | (deprecated) before the component gets mounted to the DOM                                                                |
+| `componentDidMount()`                                      | after the component gets mounted to the DOM                                                                              |
+| `componentWillUnmount()`                                   | prior to removal from the DOM                                                                                            |
+| `componentWillReceiveProps(nextProps, nextContext)`        | before new props get accepted _(deprecated)_                                                                             |
+| `getDerivedStateFromProps(nextProps, prevState)`           | just before `shouldComponentUpdate`. Return object to update state or `null` to skip update. Use with care.              |
+| `shouldComponentUpdate(nextProps, nextState, nextContext)` | before `render()`. Return `false` to skip render                                                                         |
+| `componentWillUpdate(nextProps, nextState, nextContext)`   | before `render()` _(deprecated)_                                                                                         |
+| `getSnapshotBeforeUpdate(prevProps, prevState)`            | called just after `render()`, but before changes are flushed to the DOM. Return value is passed to `componentDidUpdate`. |
+| `componentDidUpdate(prevProps, prevState, snapshot)`       | after `render()`                                                                                                         |
 
 Here's a visual overview of how they relate to each other (originally posted in [a tweet](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) by Dan Abramov):
 
