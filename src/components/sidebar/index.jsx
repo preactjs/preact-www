@@ -19,7 +19,7 @@ export default function Sidebar() {
 
 	const navItems = [];
 	for (const item of config.docs[version]) {
-		if (item.routes) {
+		if ('routes' in item) {
 			navItems.push({
 				text: getSidebarRouteName(item.name, lang),
 				level: 2,
