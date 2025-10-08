@@ -89,20 +89,9 @@ export function useTranslation(key) {
 export function useNavTranslation(path) {
 	const [lang] = useLanguage();
 
-	// TODO: Flattening the nav structure would make this simpler
-	for (const route in config.nav) {
-		if (config.nav[route].path === path) {
-			return getHeaderRouteName(config.nav[route].name, lang);
-		} else if (config.nav[route].routes) {
-			for (const subRoute of config.nav[route].routes) {
-				if (subRoute.path === path) {
-					return getHeaderRouteName(subRoute.name, lang);
-				}
-			}
-		}
-	}
-
-	return null;
+	const routeName = config.nav.find(r => r.path == path);
+	if (!routeName) throw new Error(`No route found for path: ${path}`);
+	return getHeaderRouteName(routeName.name, lang);
 }
 
 /**

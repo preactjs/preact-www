@@ -444,29 +444,27 @@
 		},
 		{
 			"path": "/about",
-			"name": "about",
-			"routes": [
-				{
-					"path": "/about/we-are-using",
-					"name": "weAreUsing"
-				},
-				{
-					"path": "/about/libraries-addons",
-					"name": "librariesAddons"
-				},
-				{
-					"path": "/about/demos-examples",
-					"name": "demosExamples"
-				},
-				{
-					"path": "/about/project-goals",
-					"name": "projectGoals"
-				},
-				{
-					"path": "/about/browser-support",
-					"name": "browserSupport"
-				}
-			]
+			"name": "about"
+		},
+		{
+			"path": "/about/we-are-using",
+			"name": "weAreUsing"
+		},
+		{
+			"path": "/about/libraries-addons",
+			"name": "librariesAddons"
+		},
+		{
+			"path": "/about/demos-examples",
+			"name": "demosExamples"
+		},
+		{
+			"path": "/about/project-goals",
+			"name": "projectGoals"
+		},
+		{
+			"path": "/about/browser-support",
+			"name": "browserSupport"
 		},
 		{
 			"path": "/blog",
