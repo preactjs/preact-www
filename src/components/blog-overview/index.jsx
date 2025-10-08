@@ -1,5 +1,5 @@
 import config from '../../config.json';
-import { useLanguage, useTranslation, getRouteName } from '../../lib/i18n';
+import { useLanguage, useTranslation } from '../../lib/i18n';
 import { Time } from '../time';
 import s from './style.module.css';
 
@@ -11,7 +11,8 @@ export default function BlogOverview() {
 		<div>
 			<div class={s.postList}>
 				{config.blog.map(post => {
-					const name = getRouteName(post, lang);
+					//const name = getRouteName(post, lang);
+					const name = 'FIXME';
 					const excerpt = post.excerpt[lang] || post.excerpt.en;
 
 					return (
