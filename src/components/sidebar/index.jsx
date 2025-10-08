@@ -3,43 +3,44 @@ import DocVersion from '../doc-version';
 import SidebarNav from './sidebar-nav';
 import config from '../../config.json';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { useLanguage, getRouteName } from '../../lib/i18n';
+import {
+	useLanguage,
+	getSidebarRouteName,
+	getHeaderRouteName
+} from '../../lib/i18n';
 import style from './style.module.css';
 
 export default function Sidebar() {
-	const { version } = useRoute().params;
+	const {
+		version
+	} = /** @type {{ version: 'v8' | 'v10' | 'v11' }} */ (useRoute().params);
 	const [lang] = useLanguage();
 	const [open, setOpen] = useOverlayToggle();
 
 	const navItems = [];
-	const routes = config.docs[version];
-	for (let i = 0; i < routes.length; i++) {
-		const item = routes[i];
+	for (const item of config.docs[version]) {
 		if (item.routes) {
 			navItems.push({
-				text: getRouteName(item, lang),
+				text: getSidebarRouteName(item.name, lang),
 				level: 2,
 				href: null,
 				routes: item.routes.map(nested => ({
-					text: getRouteName(nested, lang),
+					text: getSidebarRouteName(nested.name, lang),
 					level: 3,
 					href: `/guide/${version}${nested.path}`
 				}))
 			});
 		} else {
 			navItems.push({
-				text: getRouteName(item, lang),
+				text: getSidebarRouteName(item.name, lang),
 				level: 2,
 				href: `/guide/${version}${item.path}`
 			});
 		}
 	}
 
-	// TODO: Need to entirely disassociate nav labels from URLs
-	const guide = config.nav.find(
-		item => item.path === '/guide/v10/getting-started'
-	);
-	const sectionName = getRouteName(guide, lang);
+	// TODO: Is "Guide" really the best label for the button?
+	const mobileButtonLabel = getHeaderRouteName('guide', lang);
 
 	return (
 		<div class={style.wrapper} data-open={open}>
@@ -48,7 +49,7 @@ export default function Sidebar() {
 				onClick={() => setOpen(v => !v)}
 				value="sidebar"
 			>
-				{sectionName}
+				{mobileButtonLabel}
 			</button>
 			<aside class={style.sidebar}>
 				<div class={style.sidebarInner}>

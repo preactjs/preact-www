@@ -89,13 +89,14 @@ export function useTranslation(key) {
 export function useNavTranslation(path) {
 	const [lang] = useLanguage();
 
+	// TODO: Flattening the nav structure would make this simpler
 	for (const route in config.nav) {
 		if (config.nav[route].path === path) {
-			return getRouteName(config.nav[route], lang);
+			return getHeaderRouteName(config.nav[route].name, lang);
 		} else if (config.nav[route].routes) {
 			for (const subRoute of config.nav[route].routes) {
 				if (subRoute.path === path) {
-					return getRouteName(subRoute, lang);
+					return getHeaderRouteName(subRoute.name, lang);
 				}
 			}
 		}
@@ -105,12 +106,27 @@ export function useNavTranslation(path) {
 }
 
 /**
- * @param {{ name: Record<string, string> | string }} route
+ * @param {string} routeName
  * @param {string} lang
  * @return {string}
  */
-export function getRouteName(route, lang) {
-	return typeof route.name === 'object'
-		? route.name[lang] || route.name.en
-		: route.name;
+export function getHeaderRouteName(routeName, lang) {
+	const data = config.i18n.nav.header[routeName];
+	if (!data) console.log(routeName, lang);
+	if (!data)
+		throw new Error(`Missing header translation obj for: ${routeName}`);
+	return data[lang] || data.en;
+}
+
+/**
+ * @param {string} routeName
+ * @param {string} lang
+ * @return {string}
+ */
+export function getSidebarRouteName(routeName, lang) {
+	const data = config.i18n.nav.sidebar[routeName];
+	if (!data) console.log(routeName, lang);
+	if (!data)
+		throw new Error(`Missing version translation obj for: ${routeName}`);
+	return data[lang] || data.en;
 }
