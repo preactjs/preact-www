@@ -118,18 +118,18 @@
 				"introduction": {
 					"en": "Introduction",
 					"de": "Einführung",
-					"zh": "介绍",
 					"kr": "개요",
-					"ru": "Введение"
+					"ru": "Введение",
+					"zh": "介绍"
 				},
 				"gettingStarted": {
 					"en": "Getting Started",
-					"pt-br": "Começando",
-					"ja": "はじめに",
 					"de": "Los geht's",
-					"zh": "开始上手",
+					"ja": "はじめに",
 					"kr": "시작하기",
-					"ru": "Первые шаги"
+					"pt-br": "Começando",
+					"ru": "Первые шаги",
+					"zh": "开始上手"
 				},
 				"upgradeGuide-v10": {
 					"en": "Upgrading from 8.x",
@@ -151,117 +151,117 @@
 				},
 				"essentials": {
 					"en": "Essentials",
-					"zh": "基础",
 					"kr": "필수 항목",
-					"ru": "Основы"
+					"ru": "Основы",
+					"zh": "基础"
 				},
 				"components": {
 					"en": "Components",
-					"pt-br": "Componentes",
-					"ja": "コンポーネント",
 					"de": "Komponenten",
-					"zh": "组件",
+					"ja": "コンポーネント",
 					"kr": "컴포넌트",
-					"ru": "Компоненты"
+					"pt-br": "Componentes",
+					"ru": "Компоненты",
+					"zh": "组件"
 				},
 				"hooks": {
 					"en": "Hooks",
-					"pt-br": "Hooks",
-					"ja": "フック(Hooks)",
 					"de": "Hooks",
-					"zh": "钩子",
+					"ja": "フック(Hooks)",
 					"kr": "훅",
-					"ru": "Хуки"
+					"pt-br": "Hooks",
+					"ru": "Хуки",
+					"zh": "钩子"
 				},
 				"signals": {
 					"en": "Signals",
-					"zh": "信号",
 					"kr": "시그널",
-					"ru": "Сигналы"
+					"ru": "Сигналы",
+					"zh": "信号"
 				},
 				"forms": {
 					"en": "Forms",
-					"pt-br": "Formulários",
-					"ja": "フォーム",
 					"de": "Formulare",
-					"zh": "表单",
+					"ja": "フォーム",
 					"kr": "폼",
-					"ru": "Формы"
+					"pt-br": "Formulários",
+					"ru": "Формы",
+					"zh": "表单"
 				},
 				"refs": {
 					"en": "References",
-					"pt-br": "Referências",
-					"ja": "リファレンス(Ref)",
 					"de": "Referenzen",
-					"zh": "引用",
+					"ja": "リファレンス(Ref)",
 					"kr": "레퍼런스",
-					"ru": "Ссылки"
+					"pt-br": "Referências",
+					"ru": "Ссылки",
+					"zh": "引用"
 				},
 				"context": {
 					"en": "Context",
-					"pt-br": "Contexto",
-					"ja": "コンテキスト(Context)",
 					"de": "Kontext",
-					"zh": "上下文",
+					"ja": "コンテキスト(Context)",
 					"kr": "컨텍스트",
-					"ru": "Контекст"
+					"pt-br": "Contexto",
+					"ru": "Контекст",
+					"zh": "上下文"
 				},
 				"debugTest": {
 					"en": "Debug & Test",
-					"zh": "调试与测试",
 					"kr": "디버그 & 테스트",
-					"ru": "Отладка и тестирование"
+					"ru": "Отладка и тестирование",
+					"zh": "调试与测试"
 				},
 				"debugging": {
 					"en": "Debugging Tools",
-					"pt-br": "Ferramentas de depuração",
-					"ja": "デバッグツール",
 					"de": "Entwickler-Tools",
-					"zh": "调试工具",
+					"ja": "デバッグツール",
 					"kr": "디버깅 도구",
-					"ru": "Инструменты отладки"
+					"pt-br": "Ferramentas de depuração",
+					"ru": "Инструменты отладки",
+					"zh": "调试工具"
 				},
 				"preactTestingLibrary": {
 					"en": "Preact Testing Library",
-					"pt-br": "Preact Testing Library",
-					"ja": "Preact Testing Library",
 					"de": "Preact Testing Library",
-					"zh": "Preact 测试库",
+					"ja": "Preact Testing Library",
 					"kr": "Preact 테스팅 라이브러리",
-					"ru": "Preact Testing Library"
+					"pt-br": "Preact Testing Library",
+					"ru": "Preact Testing Library",
+					"zh": "Preact 测试库"
 				},
 				"unitTestingWithEnzyme": {
 					"en": "Unit Testing with Enzyme",
-					"pt-br": "Teste unitario com Enzyme",
-					"ja": "Enzymeを使った単体テスト",
 					"de": "Unit-Tests mit Enzyme",
+					"ja": "Enzymeを使った単体テスト",
 					"kr": "Enzyme를 이용한 유닛 테스트",
-					"zh": "使用 Enzyme 进行单元测试",
-					"ru": "Модульное тестирование с помощью Enzyme"
+					"pt-br": "Teste unitario com Enzyme",
+					"ru": "Модульное тестирование с помощью Enzyme",
+					"zh": "使用 Enzyme 进行单元测试"
 				},
 				"reactCompatibility": {
 					"en": "React compatibility",
-					"zh": "React 兼容性",
 					"kr": "React 호환성",
-					"ru": "Совместимость с React"
+					"ru": "Совместимость с React",
+					"zh": "React 兼容性"
 				},
 				"differencesToReact": {
 					"en": "Differences to React",
-					"pt-br": "Diferenças do React",
-					"ja": "Reactとの違い",
 					"de": "Unterschiede zu React",
+					"ja": "Reactとの違い",
 					"kr": "React와의 차이점",
-					"zh": "与 React 的区别",
-					"ru": "Отличия от React"
+					"pt-br": "Diferenças do React",
+					"ru": "Отличия от React",
+					"zh": "与 React 的区别"
 				},
 				"switchingToPreact": {
 					"en": "Switching to Preact",
-					"pt-br": "Mudando para Preact",
-					"ja": "Preactへの移行",
 					"de": "Wechsel zu Preact",
+					"ja": "Preactへの移行",
 					"kr": "Preact로 전환",
-					"zh": "从 React 转到 Preact",
-					"ru": "Переход на Preact"
+					"pt-br": "Mudando para Preact",
+					"ru": "Переход на Preact",
+					"zh": "从 React 转到 Preact"
 				},
 				"advanced": {
 					"en": "Advanced",
@@ -272,21 +272,21 @@
 				},
 				"apiReference": {
 					"en": "API Reference",
-					"pt-br": "Referência da API",
-					"ja": "APIリファレンス",
 					"de": "API Referenz",
-					"zh": "API 参考",
+					"ja": "APIリファレンス",
 					"kr": "API 참조",
-					"ru": "Справочник по API"
+					"pt-br": "Referência da API",
+					"ru": "Справочник по API",
+					"zh": "API 参考"
 				},
 				"webComponents": {
 					"en": "Web Components",
-					"pt-br": "Web Components",
-					"ja": "Webコンポーネント",
 					"de": "Web Components",
-					"zh": "Web 组件",
+					"ja": "Webコンポーネント",
 					"kr": "웹 컴포넌트",
-					"ru": "Веб-компоненты"
+					"pt-br": "Web Components",
+					"ru": "Веб-компоненты",
+					"zh": "Web 组件"
 				},
 				"serverSideRendering": {
 					"en": "Server-Side Rendering",
