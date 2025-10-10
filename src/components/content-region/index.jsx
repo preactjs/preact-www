@@ -1,42 +1,13 @@
 import { useEffect } from 'preact/hooks';
 import Markup from 'preact-markup';
 import widgets from '../widgets';
-import style from './style.module.css';
-import { useTranslation } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
 
 const COMPONENTS = {
 	...widgets
 };
 
-function SiblingNav({ route, lang, start }) {
-	let title = '';
-	let url = '';
-	if (route) {
-		url = route.path.toLowerCase();
-		title =
-			typeof route.name === 'object'
-				? route.name[lang || 'en']
-				: route.name || route.title;
-	}
-	const label = useTranslation(start ? 'previous' : 'next');
-
-	return (
-		<a class={style.nextLink} data-dir-end={!start} href={url}>
-			{start && <span class={style.icon}>&larr;&nbsp;</span>}
-			{!start && <span class={style.icon}>&nbsp;&rarr;</span>}
-			<span class={style.nextInner}>
-				<span class={style.nextTitle}>
-					<span class={style.nextTitleInner}>{title}</span>
-				</span>
-				<span class={style.nextUrl}>{label}</span>
-			</span>
-		</a>
-	);
-}
-
 export default function ContentRegion({ content, components, ...props }) {
-	const hasNav = !!(props.next || props.prev);
 	components = Object.assign({}, COMPONENTS, components);
 
 	useEffect(() => {
@@ -49,11 +20,7 @@ export default function ContentRegion({ content, components, ...props }) {
 	}, [props.current]);
 
 	return (
-		<content-region
-			name={props.current}
-			data-page-nav={hasNav}
-			can-edit={props.canEdit}
-		>
+		<content-region name={props.current} can-edit={props.canEdit}>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup
@@ -63,20 +30,6 @@ export default function ContentRegion({ content, components, ...props }) {
 						components={components}
 					/>
 				</TocContext.Provider>
-			)}
-			{hasNav && (
-				<div class={style.nextWrapper}>
-					{props.prev ? (
-						<SiblingNav start lang={props.lang} route={props.prev} />
-					) : (
-						<span />
-					)}
-					{props.next ? (
-						<SiblingNav lang={props.lang} route={props.next} />
-					) : (
-						<span />
-					)}
-				</div>
 			)}
 		</content-region>
 	);
