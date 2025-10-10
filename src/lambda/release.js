@@ -3,9 +3,11 @@
  * @param {unknown} [_context]
  */
 export default async function releaseLambda(req, _context) {
-	const repo = req?.url ? new URL(req.url).searchParams.get('repo') : 'preact';
+	const repo = req?.url
+		? new URL(req.url).searchParams.get('repo')
+		: 'preactjs/preact';
 
-	const { version, url } = await fetchRelease(`preactjs/${repo}`);
+	const { version, url } = await fetchRelease(repo);
 
 	return new Response(JSON.stringify({ version, url }), {
 		status: 200,

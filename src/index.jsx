@@ -66,7 +66,7 @@ export async function prerender() {
 
 		// Preloading
 		// These are all low priority, non-blocking fetches that we just want to have started early. None are critical due to prerendering.
-		{ type: 'link', props: { rel: 'preload', href: '/.netlify/functions/release?repo=preact', as: 'fetch', fetchpriority: 'low' } },
+		{ type: 'link', props: { rel: 'preload', href: '/.netlify/functions/release?repo=preactjs/preact', as: 'fetch', fetchpriority: 'low' } },
 		location.pathname == '/' && { type: 'link', props: { rel: 'preload', href: '/.netlify/functions/repos?org=preactjs', as: 'fetch', fetchpriority: 'low' } },
 		{ type: 'link', props: { rel: 'preload', href: '/contributors.json', as: 'fetch', fetchpriority: 'low' } },
 		// Hardcoding English is intentional, first render always fetches it with user preference only being applied later
