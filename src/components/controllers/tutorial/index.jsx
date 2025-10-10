@@ -13,8 +13,7 @@ import { TutorialContext, SolutionContext } from './contexts';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
-import { useLanguage } from '../../../lib/i18n';
-import config from '../../../config.json';
+import { useTranslation } from '../../../lib/i18n';
 import { MarkdownRegion } from '../markdown-region';
 import style from './style.module.css';
 
@@ -74,7 +73,6 @@ export function Tutorial({ html, meta }) {
 		}, 250);
 		return () => clearTimeout(delay);
 	}, [editorCode]);
-
 
 	const useResult = fn => {
 		useEffect(() => {
@@ -197,7 +195,7 @@ export function Tutorial({ html, meta }) {
 								components={TUTORIAL_COMPONENTS}
 							/>
 
-							{meta.tutorial?.setup &&
+							{meta.tutorial?.setup && (
 								<TutorialSetupBlock
 									code={meta.tutorial.setup}
 									runner={runner}
@@ -205,7 +203,7 @@ export function Tutorial({ html, meta }) {
 									useRealm={useRealm}
 									useError={useError}
 								/>
-							}
+							)}
 
 							<ButtonContainer meta={meta} showCode={showCode} help={help} />
 						</div>
@@ -217,13 +215,16 @@ export function Tutorial({ html, meta }) {
 }
 
 function ButtonContainer({ meta, showCode, help }) {
-	const [lang] = useLanguage();
+	const previous = useTranslation('previous');
+	const solve = useTranslation('solve');
+	const beginTutorial = useTranslation('beginTutorial');
+	const next = useTranslation('next');
 
 	return (
 		<div class={style.buttonContainer}>
 			{meta.prev && (
 				<a class={style.prevButton} href={meta.prev}>
-					{config.i18n.previous[lang] || config.i18n.previous.en}
+					{previous}
 				</a>
 			)}
 			{meta.solvable && (
@@ -233,16 +234,12 @@ function ButtonContainer({ meta, showCode, help }) {
 					disabled={!showCode}
 					title="Show solution to this example"
 				>
-					{config.i18n.tutorial.solve[lang] ||
-						config.i18n.tutorial.solve.en}
+					{solve}
 				</button>
 			)}
 			{meta.next && (
 				<a class={style.nextButton} href={meta.next}>
-					{meta.code == false
-						? (config.i18n.tutorial.begin[lang] || config.i18n.tutorial.begin.en)
-						: (config.i18n.next[lang] || config.i18n.next.en)
-					}
+					{meta.code == false ? beginTutorial : next}
 				</a>
 			)}
 		</div>
