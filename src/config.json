@@ -12,7 +12,7 @@
 		"tr": "Turkish",
 		"zh": "简体中文"
 	},
-	"repo": "preact",
+	"repo": "preactjs/preact",
 	"docsearch": {
 		"apiKey": "842e1531d4af13c18b4718c456e386b2",
 		"indexName": "preact",
