@@ -21,7 +21,7 @@ Often you'll want to collect user input in your application, and this is where `
 
 To get started, we'll create a simple text input field that will update a state value as the user types. We'll use the `onInput` event to listen for changes to the input field's value and update the state per-keystroke. This state value is then rendered in a `<p>` element, so we can see the results.
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -68,11 +68,32 @@ function BasicInput() {
 render(<BasicInput />, document.getElementById('app'));
 ```
 
+```jsx
+// --repl
+import { render } from 'preact';
+import { useSignal } from '@preact/signals';
+// --repl-before
+function BasicInput() {
+	const name = useSignal('');
+
+	return (
+		<div class="form-example">
+			<label>
+				Name: <input onInput={e => (name.value = e.currentTarget.value)} />
+			</label>
+			<p>Hello {name}</p>
+		</div>
+	);
+}
+// --repl-after
+render(<BasicInput />, document.getElementById('app'));
+```
+
 </tab-group>
 
 ### Input (checkbox & radio)
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -194,11 +215,80 @@ function BasicRadioButton() {
 render(<BasicRadioButton />, document.getElementById('app'));
 ```
 
+```jsx
+// --repl
+import { render } from 'preact';
+import { useSignal, useComputed } from '@preact/signals';
+import { Show } from '@preact/signals/utils';
+// --repl-before
+function BasicRadioButton() {
+	const allowContact = useSignal(false);
+	const contactMethod = useSignal('');
+
+	const setRadioValue = e => (contactMethod.value = e.currentTarget.value);
+	const isDisabled = useComputed(() => !allowContact.value);
+	const contactStatus = useComputed(
+		() => `have allowed via ${contactMethod.value}`
+	);
+
+	return (
+		<div class="form-example">
+			<label>
+				Allow contact:
+				<input
+					type="checkbox"
+					checked={allowContact.value}
+					onChange={e => (allowContact.value = e.target.checked)}
+				/>
+			</label>
+			<label>
+				Phone:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="phone"
+					onClick={setRadioValue}
+					disabled={isDisabled}
+				/>
+			</label>
+			<label>
+				Email:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="email"
+					onClick={setRadioValue}
+					disabled={isDisabled}
+				/>
+			</label>
+			<label>
+				Mail:{' '}
+				<input
+					type="radio"
+					name="contact"
+					value="mail"
+					onClick={setRadioValue}
+					disabled={isDisabled}
+				/>
+			</label>
+			<p>
+				You{' '}
+				<Show when={allowContact} fallback="have not allowed">
+					{() => contactStatus}
+				</Show>
+			</p>
+		</div>
+	);
+}
+// --repl-after
+render(<BasicRadioButton />, document.getElementById('app'));
+```
+
 </tab-group>
 
 ### Select
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -244,7 +334,30 @@ function MySelect() {
 				<option value="C">C</option>
 			</select>
 			<p>You selected: {value}</p>
-		</form>
+		</div>
+	);
+}
+// --repl-after
+render(<MySelect />, document.getElementById('app'));
+```
+
+```jsx
+// --repl
+import { render } from 'preact';
+import { useSignal } from '@preact/signals';
+// --repl-before
+function MySelect() {
+	const value = useSignal('');
+
+	return (
+		<div class="form-example">
+			<select onChange={e => (value.value = e.currentTarget.value)}>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+			</select>
+			<p>You selected: {value}</p>
+		</div>
 	);
 }
 // --repl-after
@@ -259,7 +372,7 @@ Whilst bare inputs are useful and you can get far with them, often we'll see our
 
 To demonstrate, we'll create a new `<form>` element that contains two `<input>` fields: one for a user's first name and one for their last name. We'll use the `onSubmit` event to listen for the form submission and update the state with the user's full name.
 
-<tab-group tabstring="Classes, Hooks">
+<tab-group tabstring="Classes, Hooks, Signals">
 
 ```jsx
 // --repl
@@ -325,6 +438,44 @@ function FullNameForm() {
 				<button>Submit</button>
 			</form>
 			{fullName && <p>Hello {fullName}</p>}
+		</div>
+	);
+}
+
+// --repl-after
+render(<FullNameForm />, document.getElementById('app'));
+```
+
+```jsx
+// --repl
+import { render } from 'preact';
+import { useSignal, useComputed } from '@preact/signals';
+import { Show } from '@preact/signals/utils';
+// --repl-before
+function FullNameForm() {
+	const fullName = useSignal('');
+
+	const onSubmit = e => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		fullName.value = formData.get('firstName') + ' ' + formData.get('lastName');
+		e.currentTarget.reset(); // Clear the inputs to prepare for the next submission
+	};
+
+	const greeting = useComputed(() => `Hello ${fullName.value}`);
+
+	return (
+		<div class="form-example">
+			<form onSubmit={onSubmit}>
+				<label>
+					First Name: <input name="firstName" />
+				</label>
+				<label>
+					Last Name: <input name="lastName" />
+				</label>
+				<button>Submit</button>
+			</form>
+			<Show when={fullName}>{() => <p>{greeting}</p>}</Show>
 		</div>
 	);
 }

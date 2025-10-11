@@ -1087,7 +1087,13 @@
 			}
 		},
 		{
-			"path": "/tutorial/10-links",
+			"path": "/tutorial/10-signals",
+			"name": {
+				"en": "Signals"
+			}
+		},
+		{
+			"path": "/tutorial/11-links",
 			"name": {
 				"en": "Congratulations!"
 			}
