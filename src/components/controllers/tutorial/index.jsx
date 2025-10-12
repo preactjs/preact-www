@@ -13,9 +13,9 @@ import { TutorialContext, SolutionContext } from './contexts';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
+import { useTranslation } from '../../../lib/i18n.jsx';
 import { MarkdownRegion } from '../markdown-region';
 import style from './style.module.css';
-import englishTranslations from '../../../locales/en.json';
 
 const resultHandlers = new Set();
 const realmHandlers = new Set();
@@ -215,11 +215,16 @@ export function Tutorial({ html, meta }) {
 }
 
 function ButtonContainer({ meta, showCode, help }) {
+	const previousPage = useTranslation('previousPage');
+	const nextPage = useTranslation('nextPage');
+	const solve = useTranslation('solve');
+	const tutorialBegin = useTranslation('beginTutorial');
+
 	return (
 		<div class={style.buttonContainer}>
 			{meta.prev && (
 				<a class={style.prevButton} href={meta.prev}>
-					{englishTranslations.previous}
+					{previousPage}
 				</a>
 			)}
 			{meta.solvable && (
@@ -229,14 +234,12 @@ function ButtonContainer({ meta, showCode, help }) {
 					disabled={!showCode}
 					title="Show solution to this example"
 				>
-					{englishTranslations.tutorial.solve}
+					{solve}
 				</button>
 			)}
 			{meta.next && (
 				<a class={style.nextButton} href={meta.next}>
-					{meta.code == false
-						? englishTranslations.tutorial.begin
-						: englishTranslations.next}
+					{meta.code == false ? tutorialBegin : nextPage}
 				</a>
 			)}
 		</div>
