@@ -8,7 +8,11 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
-import { useLanguage, useTranslation, useNavTranslation } from '../../lib/i18n';
+import {
+	useLanguage,
+	useTranslation,
+	usePathTranslation
+} from '../../lib/i18n';
 import { prefetchContent } from '../../lib/use-content';
 import { ReplPage, TutorialPage, CodeEditor } from '../routes';
 
@@ -44,7 +48,7 @@ export default function Header() {
 
 function MainNav() {
 	const { path, route } = useLocation();
-	const about = useNavTranslation('/about');
+	const about = usePathTranslation('/about');
 
 	const brandingRedirect = e => {
 		e.preventDefault();
@@ -256,8 +260,12 @@ const prefetchAndPreload = href => {
 };
 
 /**
+ * @typedef {import('../../locales/en.json')} Translations
+ */
+
+/**
  * @typedef {Object} NavLinkProps
- * @property {string} props.href
+ * @property {keyof Translations['headerNav']} props.href
  * @property {string} [props.clsx]
  * @property {import('preact').ComponentChildren} [props.flair]
  * @property {boolean} [props.isOpen]
@@ -268,7 +276,7 @@ const prefetchAndPreload = href => {
  */
 function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
-	const label = useNavTranslation(href);
+	const label = usePathTranslation(href);
 
 	return (
 		<a

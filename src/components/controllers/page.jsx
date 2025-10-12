@@ -9,7 +9,7 @@ import style from './style.module.css';
 // Supports generic pages like `/`, `/about/*`, `/blog`, etc.
 export function Page() {
 	const { path } = useRoute();
-	const isValidRoute = navRoutes[path];
+	const isValidRoute = true;
 
 	return (
 		<ErrorBoundary>

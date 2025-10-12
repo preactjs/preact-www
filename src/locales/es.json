@@ -1,0 +1,16 @@
+{
+	"i18n": {
+		"nextPage": "Siguiente Página",
+		"previousPage": "Pagina Anterior",
+		"continueReading": "Seguir leyendo"
+	},
+	"headerNav": {
+		"/guide/v10/getting-started": "Guía",
+		"/about": "Sobre",
+		"/about/we-are-using": "Empresas que usan Preact",
+		"/about/libraries-addons": "Librerías y complementos",
+		"/about/demos-examples": "Demostraciones y ejemplos",
+		"/about/project-goals": "Objetivos del proyecto",
+		"/about/browser-support": "Soporte de navegadores"
+	}
+}

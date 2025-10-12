@@ -1,0 +1,48 @@
+{
+	"i18n": {
+		"nextPage": "다음",
+		"previousPage": "이전",
+		"continueReading": "계속 읽기",
+		"beginTutorial": "튜토리얼 시작",
+		"help": "정답 확인"
+	},
+	"headerNav": {
+		"/tutorial": "튜토리얼",
+		"/guide/v10/getting-started": "가이드",
+		"/about": "소개",
+		"/about/we-are-using": "Preact를 사용하는 기업",
+		"/about/libraries-addons": "라이브러리 & 애드온",
+		"/about/demos-examples": "데모 & 예제",
+		"/about/project-goals": "프로젝트 목표",
+		"/about/browser-support": "브라우저 지원",
+		"/blog": "블로그"
+	},
+	"nav": {
+		"sidebar": {
+			"introduction": "개요",
+			"gettingStarted": "시작하기",
+			"upgradeGuide-v10": "8.x에서 업그레이드하기",
+			"upgradeGuide-v11": "10.x에서 업그레이드하기",
+			"essentials": "필수 항목",
+			"components": "컴포넌트",
+			"hooks": "훅",
+			"signals": "시그널",
+			"forms": "폼",
+			"refs": "레퍼런스",
+			"context": "컨텍스트",
+			"debugTest": "디버그 & 테스트",
+			"debugging": "디버깅 도구",
+			"preactTestingLibrary": "Preact 테스팅 라이브러리",
+			"unitTestingWithEnzyme": "Enzyme를 이용한 유닛 테스트",
+			"reactCompatibility": "React 호환성",
+			"differencesToReact": "React와의 차이점",
+			"switchingToPreact": "Preact로 전환",
+			"advanced": "고급",
+			"apiReference": "API 참조",
+			"webComponents": "웹 컴포넌트",
+			"serverSideRendering": "서버 측 렌더링",
+			"options": "옵션 훅",
+			"whatsNew": "새로운 기능"
+		}
+	}
+}

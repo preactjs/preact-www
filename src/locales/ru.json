@@ -1,0 +1,55 @@
+{
+	"i18n": {
+		"nextPage": "Следующая страница",
+		"previousPage": "Предыдущая страница",
+		"continueReading": "Продолжить чтение",
+		"beginTutorial": "Начать обучение",
+		"help": "Помощь",
+		"solve": "Решить"
+	},
+	"headerNav": {
+		"/tutorial": "Учебник",
+		"/guide/v10/getting-started": "Руководство",
+		"/about": "Разное",
+		"/about/we-are-using": "Используют Preact",
+		"/about/libraries-addons": "Библиотеки и дополнения",
+		"/about/demos-examples": "Демонстрации и примеры",
+		"/about/project-goals": "Цели проекта",
+		"/about/browser-support": "Поддержка браузеров",
+		"/blog": "Блог"
+	},
+	"nav": {
+		"sidebar": {
+			"introduction": "Введение",
+			"gettingStarted": "Первые шаги",
+			"upgradeGuide-v10": "Обновление с 8.x",
+			"upgradeGuide-v11": "Обновление с 10.x",
+			"essentials": "Основы",
+			"components": "Компоненты",
+			"hooks": "Хуки",
+			"signals": "Сигналы",
+			"forms": "Формы",
+			"refs": "Ссылки",
+			"context": "Контекст",
+			"debugTest": "Отладка и тестирование",
+			"debugging": "Инструменты отладки",
+			"preactTestingLibrary": "Preact Testing Library",
+			"unitTestingWithEnzyme": "Модульное тестирование с помощью Enzyme",
+			"reactCompatibility": "Совместимость с React",
+			"differencesToReact": "Отличия от React",
+			"switchingToPreact": "Переход на Preact",
+			"advanced": "Дополнительно",
+			"apiReference": "Справочник по API",
+			"webComponents": "Веб-компоненты",
+			"serverSideRendering": "Рендеринг на стороне сервера",
+			"options": "Опционные хуки",
+			"libraries": "Библиотеки",
+			"whatsNew": "Что нового?",
+			"typesOfComponents": "Типы компонентов",
+			"linkedState": "Связанное состояние",
+			"externalDomMutations": "Внешние мутации DOM",
+			"extendingComponent": "Расширение компонентов",
+			"progressiveWebApps": "Прогрессивные веб-приложения"
+		}
+	}
+}

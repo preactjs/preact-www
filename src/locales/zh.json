@@ -1,0 +1,56 @@
+{
+	"i18n": {
+		"nextPage": "下一页",
+		"previousPage": "上一页",
+		"continueReading": "继续阅读",
+		"beginTutorial": "开始教程",
+		"help": "帮助",
+		"solve": "解决"
+	},
+	"headerNav": {
+		"/tutorial": "教程",
+		"/guide/v10/getting-started": "指南",
+		"/about": "关于",
+		"/about/we-are-using": "使用 Preact 的企业",
+		"/about/libraries-addons": "第三方库和附加组件",
+		"/about/demos-examples": "示例",
+		"/about/project-goals": "项目目标",
+		"/about/browser-support": "浏览器支持",
+		"/blog": "博客",
+		"/repl": "在线试用"
+	},
+	"nav": {
+		"sidebar": {
+			"introduction": "介绍",
+			"gettingStarted": "开始上手",
+			"upgradeGuide-v10": "从 8.x 版本更新",
+			"upgradeGuide-v11": "从 10.x 版本更新",
+			"essentials": "基础",
+			"components": "组件",
+			"hooks": "钩子",
+			"signals": "信号",
+			"forms": "表单",
+			"refs": "引用",
+			"context": "上下文",
+			"debugTest": "调试与测试",
+			"debugging": "调试工具",
+			"preactTestingLibrary": "Preact 测试库",
+			"unitTestingWithEnzyme": "使用 Enzyme 进行单元测试",
+			"reactCompatibility": "React 兼容性",
+			"differencesToReact": "与 React 的区别",
+			"switchingToPreact": "从 React 转到 Preact",
+			"advanced": "进阶",
+			"apiReference": "API 参考",
+			"webComponents": "Web 组件",
+			"serverSideRendering": "服务端渲染",
+			"options": "选项钩子",
+			"libraries": "库",
+			"whatsNew": "新鲜功能",
+			"typesOfComponents": "组件类型",
+			"linkedState": "关联状态",
+			"externalDomMutations": "外部 DOM 修改",
+			"extendingComponent": "扩展组件",
+			"progressiveWebApps": "渐进式 Web 应用"
+		}
+	}
+}
