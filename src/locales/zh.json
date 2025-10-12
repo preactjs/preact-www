@@ -8,16 +8,16 @@
 		"solve": "解决"
 	},
 	"headerNav": {
-		"/tutorial": "教程",
-		"/guide/v10/getting-started": "指南",
-		"/about": "关于",
-		"/about/we-are-using": "使用 Preact 的企业",
-		"/about/libraries-addons": "第三方库和附加组件",
-		"/about/demos-examples": "示例",
-		"/about/project-goals": "项目目标",
-		"/about/browser-support": "浏览器支持",
-		"/blog": "博客",
-		"/repl": "在线试用"
+		"tutorial": "教程",
+		"guide": "指南",
+		"about": "关于",
+		"weAreUsing": "使用 Preact 的企业",
+		"librariesAddons": "第三方库和附加组件",
+		"demosExamples": "示例",
+		"projectGoals": "项目目标",
+		"browserSupport": "浏览器支持",
+		"blog": "博客",
+		"repl": "在线试用"
 	},
 	"nav": {
 		"sidebar": {

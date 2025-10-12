@@ -8,13 +8,14 @@ import cx from '../../lib/cx';
 import { MarkdownRegion } from './markdown-region';
 import Sidebar from '../sidebar';
 import Footer from '../footer/index';
-import { docRoutes } from '../../lib/route-utils';
+import { flatv10DocPages } from '../../config.js';
+//import { docRoutes } from '../../lib/route-utils';
 import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version';
 import style from './style.module.css';
 
 export function GuidePage() {
 	const { version, name } = useRoute().params;
-	const isValidRoute = docRoutes[version]['/' + name];
+	const isValidRoute = flatv10DocPages['/' + name];
 
 	return (
 		<ErrorBoundary>

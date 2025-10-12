@@ -8,15 +8,15 @@
 		"solve": "Решить"
 	},
 	"headerNav": {
-		"/tutorial": "Учебник",
-		"/guide/v10/getting-started": "Руководство",
-		"/about": "Разное",
-		"/about/we-are-using": "Используют Preact",
-		"/about/libraries-addons": "Библиотеки и дополнения",
-		"/about/demos-examples": "Демонстрации и примеры",
-		"/about/project-goals": "Цели проекта",
-		"/about/browser-support": "Поддержка браузеров",
-		"/blog": "Блог"
+		"tutorial": "Учебник",
+		"guide": "Руководство",
+		"about": "Разное",
+		"weAreUsing": "Используют Preact",
+		"librariesAddons": "Библиотеки и дополнения",
+		"demosExamples": "Демонстрации и примеры",
+		"projectGoals": "Цели проекта",
+		"browserSupport": "Поддержка браузеров",
+		"blog": "Блог"
 	},
 	"nav": {
 		"sidebar": {

@@ -5,13 +5,13 @@
 		"continueReading": "Weiter lesen"
 	},
 	"headerNav": {
-		"/guide/v10/getting-started": "Anleitung",
-		"/about": "Mehr",
-		"/about/we-are-using": "Firmen die Preact benutzen",
-		"/about/libraries-addons": "Bibliotheken & Erweiterungen",
-		"/about/demos-examples": "Beispiel-Projekte",
-		"/about/project-goals": "Projekt-Ziele",
-		"/about/browser-support": "Browserunterstützung"
+		"guide": "Anleitung",
+		"about": "Mehr",
+		"weAreUsing": "Firmen die Preact benutzen",
+		"librariesAddons": "Bibliotheken & Erweiterungen",
+		"demosExamples": "Beispiel-Projekte",
+		"projectGoals": "Projekt-Ziele",
+		"browserSupport": "Browserunterstützung"
 	},
 	"nav": {
 		"sidebar": {

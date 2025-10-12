@@ -30,18 +30,24 @@ function flattenRoutes(routes) {
 
 export const navRoutes = flattenRoutes([{ path: '/', name: 'Preact' }]);
 
-export const docRoutes = {};
-for (const k in config.docs) {
-	docRoutes[k] = flattenRoutes(config.docs[k]);
-}
+export const docRoutes = {
+	v10: {
+		'/getting-started': { path: '/getting-started', name: 'Getting Started' }
+	}
+};
+//for (const k in config.docs) {
+//	docRoutes[k] = flattenRoutes(config.docs[k]);
+//}
 
-export const v10StructuredDocRoutes = [];
-for (const k of config.docs.v10) {
-	v10StructuredDocRoutes.push({
-		name: k.name.en,
-		routes: k.routes.map(route => route.path)
-	});
-}
+//console.log(docRoutes);
+
+//export const v10StructuredDocRoutes = [];
+//for (const k of config.docs.v10) {
+//	v10StructuredDocRoutes.push({
+//		name: k.name.en,
+//		routes: k.routes.map(route => route.path)
+//	});
+//}
 
 export const blogRoutes = flattenRoutes(config.blog);
 
