@@ -25,4 +25,4 @@ React의 일부 기능은 Preact에서 의도적으로 제외되었습니다. �
 - `Children`, 원시 배열로 대체 가능
 - `Synthetic Events`, Preact는 IE8과 같은 이전 브라우저의 문제를 해결하지 않음
 
-[preact/compat]: /guide/v10/switching-to-preact
+[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact

@@ -171,5 +171,5 @@ React.createElement(
 
 [project goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[preact/compat]: /guide/v10/switching-to-preact
+[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
 [mdn's event reference]: https://developer.mozilla.org/en-US/docs/Web/Events

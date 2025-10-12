@@ -9,7 +9,7 @@ title: Preact
     <p class="tagline">Alternative légère et rapide à React avec le même API en seulement 3Ko</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Commencer</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passer à preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Passer à preact</a>
     </p>
 </jumbotron>
 
@@ -122,7 +122,7 @@ function Counter() {
         Les composants du DOM virtuel vous permettent de réutiliser des briques de votre application. Grâce à la conception de Preact, vous avez à votre disposition les composants de l'écosystème React.
     </p>
     <p>
-        Un simple alias vers <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a> apporte une couche de compatibilité qui permet l'utilisation des fonctionnalités les plus complexes de React.
+        Un simple alias vers <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact-compat</a> apporte une couche de compatibilité qui permet l'utilisation des fonctionnalités les plus complexes de React.
     </p>
   </div>
 </section>
@@ -269,6 +269,6 @@ function Counter() {
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="btn primary">Commencer</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Passer à Preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Passer à Preact</a>
     </p>
 </section>

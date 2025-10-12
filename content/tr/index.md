@@ -10,7 +10,7 @@ title: Preact
     <p class="tagline">Aynı modern API ile React'e hızlı ve 3kB'lık alternatif</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Başlangıç</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact'e Geçiş</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Preact'e Geçiş</a>
     </p>
 </jumbotron>
 
@@ -131,7 +131,7 @@ function Counter() {
         Preact'ın tasarımı, halihazırda React'ın ekosisteminde bulunan yüzlerce Component'i sorunsuz bir şekilde kullanabileceğiniz manasına gelir.
     </p>
     <p>
-        Paketleyicinizde <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>'ı eklemek, bir uyumluluk katmanı sunarak karmaşık React bileşenlerini dahi uygulamanızda kullanmanıza izin veriyor.
+        Paketleyicinizde <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact-compat</a>'ı eklemek, bir uyumluluk katmanı sunarak karmaşık React bileşenlerini dahi uygulamanızda kullanmanıza izin veriyor.
     </p>
   </div>
 </section>
@@ -278,6 +278,6 @@ function Counter() {
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="btn primary">Başlangıç</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact'e Geçiş</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Preact'e Geçiş</a>
     </p>
 </section>

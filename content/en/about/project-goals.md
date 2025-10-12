@@ -25,4 +25,4 @@ The intentional items under [Differences to React](/guide/v10/differences-to-rea
 - `Children`, can be replaced with native arrays
 - `Synthetic Events`, since Preact does not attempt to patch issues in older browsers like IE8
 
-[preact/compat]: /guide/v10/switching-to-preact
+[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
