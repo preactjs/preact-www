@@ -169,55 +169,6 @@ Ultimately, if you're looking at the generated output code for a Preact applicat
 
 The legacy `Context` API requires Components to declare specific properties using React's `contextTypes` or `childContextTypes` in order to receive those values. Preact does not have this requirement: all Components receive all `context` properties produced by `getChildContext()` by default.
 
-## Features exclusive to `preact/compat`
-
-`preact/compat` is our **compat**ibility layer that translates React code to Preact. For existing React users this can be an easy way to try out Preact without changing any of your code, by [setting up a few aliases](/guide/v10/getting-started#aliasing-react-to-preact) in your bundler configuration.
-
-### Children API
-
-The `Children` API is a specialized set of methods for working with the value of `props.children`. For Preact this is generally unnecessary, and we recommend using the built-in array methods instead. In Preact, `props.children` is either a Virtual DOM node, an empty value like `null`, or an Array of Virtual DOM nodes. The first two cases are the simplest and most common, since it's possible to use or return `children` as-is:
-
-```jsx
-// React:
-function App(props) {
-	return <Modal content={Children.only(props.children)} />;
-}
-
-// Preact: use props.children directly:
-function App(props) {
-	return <Modal content={props.children} />;
-}
-```
-
-For specialized cases where you need to iterate over the children passed to a component, Preact provides a `toChildArray()` method that accepts any `props.children` value and returns a flattened and normalized Array of Virtual DOM nodes.
-
-```jsx
-// React
-function App(props) {
-	const cols = Children.count(props.children);
-	return <div data-columns={cols}>{props.children}</div>;
-}
-
-// Preact
-function App(props) {
-	const cols = toChildArray(props.children).length;
-	return <div data-columns={cols}>{props.children}</div>;
-}
-```
-
-A React-compatible `Children` API is available from `preact/compat` to make integration with existing component libraries seamless.
-
-### Specialised Components
-
-[preact/compat] ships with specialised components that are not necessary for every app. These include
-
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Only updates if `props` or `state` have changed
-- [memo](/guide/v10/switching-to-preact#memo): Similar in spirit to `PureComponent` but allows to use a custom comparison function
-- [forwardRef](/guide/v10/switching-to-preact#forwardref): Supply a `ref` to a specified child component.
-- [Portals](/guide/v10/switching-to-preact#portals): Continues rendering the current tree into a different DOM container
-- [Suspense](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Allows to display fallback content in case the tree is not ready
-- [lazy](/guide/v10/switching-to-preact#suspense-experimental): **experimental** Lazy load async code and mark a tree as ready/not ready accordingly.
-
 [project goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact

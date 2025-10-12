@@ -165,54 +165,6 @@ React.createElement(
 
 旧的 `Context` API 要求组件使用 React 的 `contextTypes` 或 `childContextTypes` 声明特定属性以便接收这些值。Preact 没有这个要求：默认情况下，所有组件都会接收由 `getChildContext()` 生成的所有 context 属性。
 
-## `preact/compat` 的功能
-
-`preact/compat` 是我们用来翻译 React 代码为 Preact 的 **兼容** 层。对于现有的 React 用户来说，通过在你的打包工具配置中[设置一些别名](/guide/v10/getting-started#aliasing-react-to-preact)，这是一种无需更改任何代码即可尝试 Preact 的简单方法。
-
-### Children API
-
-`Children` API 是一组专门用于处理 `props.children` 值的方法。对于 Preact 这通常是不必要的，我们建议使用内置的数组方法。在 Preact 中，`props.children` 可以是虚拟 DOM 节点、空值（如 `null`）或虚拟 DOM 节点数组。前两种情况是最简单和最常见的，因为可以按原样使用或返回 `children`：
-
-```jsx
-// React:
-function App(props) {
-  return <Modal content={Children.only(props.children)} />
-}
-
-// Preact: use props.children directly:
-function App(props) {
-  return <Modal content={props.children} />
-}
-```
-
-对于需要迭代传递给组件的子级的特殊情况，Preact 提供了一个 `toChildArray()` 方法，该方法接受任何 `props.children` 值并返回一个扁平且规范化的虚拟 DOM 节点数组。
-
-```jsx
-// React
-function App(props) {
-  const cols = Children.count(props.children);
-  return <div data-columns={cols}>{props.children}</div>
-}
-
-// Preact
-function App(props) {
-  const cols = toChildArray(props.children).length;
-  return <div data-columns={cols}>{props.children}</div>
-}
-```
-`preact/compat` 提供了与 React 兼容的 `Children` API，可与现有组件库无缝集成。
-
-### ​专用组件
-
-[preact/compat] 附带了并非每个应用程序都必需的专用组件。 这些包括：
-
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): 仅当 `props` 或 `state` 改变时发生
-- [memo](/guide/v10/switching-to-preact#memo)：与 `PureComponent` 类似，但允许使用自定义比较函数
-- [forwardRef](/guide/v10/switching-to-preact#forwardref)：向指定的子组件提供 `ref`。
-- [Portals](/guide/v10/switching-to-preact#portals)：将当前树渲染到不同的 DOM 容器中
-- [Suspense](/guide/v10/switching-to-preact#suspense-experimental)：**实验性** 允许在树未准备好时显示 fallback 内容
-- [lazy](/guide/v10/switching-to-preact#suspense-experimental)：**实验性** 延迟加载异步代码并相应地将树标记为就绪/未就绪。
-
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
