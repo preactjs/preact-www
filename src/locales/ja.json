@@ -6,16 +6,16 @@
 		"solve": "説き明かす"
 	},
 	"headerNav": {
-		"/tutorial": "チュートリアル",
-		"/guide/v10/getting-started": "ガイド",
-		"/about": "情報",
-		"/about/we-are-using": "Preactを使っている企業",
-		"/about/libraries-addons": "ライブラリとアドオン",
-		"/about/demos-examples": "デモと例",
-		"/about/project-goals": "Preactの目的",
-		"/about/browser-support": "ブラウザのサポート",
-		"/blog": "ブログ",
-		"/repl": "レプル"
+		"tutorial": "チュートリアル",
+		"guide": "ガイド",
+		"about": "情報",
+		"weAreUsing": "Preactを使っている企業",
+		"librariesAddons": "ライブラリとアドオン",
+		"demosExamples": "デモと例",
+		"projectGoals": "Preactの目的",
+		"browserSupport": "ブラウザのサポート",
+		"blog": "ブログ",
+		"repl": "レプル"
 	},
 	"nav": {
 		"sidebar": {

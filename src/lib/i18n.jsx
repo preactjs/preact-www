@@ -4,6 +4,7 @@ import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage';
 import { useResource } from './use-resource.js';
+import { allPages } from '../config.js';
 import config from '../config.json';
 import englishTranslations from '../locales/en.json';
 
@@ -17,8 +18,8 @@ const translationURLs = import.meta.glob('../locales/!(en)*.json', {
  * @typedef LanguageContext
  * @property {string} lang
  * @property {(string) => void} setLang
- * @property {Record<string, unknown>} translations
- * @property {Record<string, unknown>} fallback
+ * @property {typeof englishTranslations} translations
+ * @property {typeof englishTranslations} fallback
  */
 
 /**
@@ -54,7 +55,6 @@ export function LanguageProvider({ children }) {
 	const translations = useResource(() => {
 		if (lang == 'en') return Promise.resolve(englishTranslations);
 		let url = '';
-		console.log('translationURLs', translationURLs);
 		for (const language in translationURLs) {
 			if (language.includes(`/${lang}.json`)) {
 				url = /** @type {string} */ (translationURLs[language]);
@@ -111,8 +111,13 @@ export function useLanguage() {
 	return [lang, setLang];
 }
 
+export function useLanguageContext() {
+	return useContext(LanguageContext);
+}
+
 /**
- * Get the translation of a key. Defaults to English if no translation is found
+ * Maps a key to its translated string based upon the current language.
+ *
  * @param {keyof typeof englishTranslations.i18n} key
  */
 export function useTranslation(key) {
@@ -122,13 +127,33 @@ export function useTranslation(key) {
 }
 
 /**
- * Get the translation of a key. Defaults to English if no translation is found
- * @param {keyof typeof englishTranslations.headerNav} path
+ * Maps a path to its translated name based upon the current language.
+ *
+ * @param {keyof allPages} path
  */
 export function usePathTranslation(path) {
 	const { translations, fallback } = useContext(LanguageContext);
 
-	return translations.headerNav[path] || fallback.headerNav[path];
+	const key = allPages[path].label;
+
+	return translations.headerNav[key] || fallback.headerNav[key];
+}
+
+/**
+ * Maps a path to its translated name based upon the current language.
+ *
+ * @param {keyof allPages} path
+ * @param {typeof englishTranslations} translations
+ * @param {typeof englishTranslations} fallback
+ */
+export function translatePath(path, translations, fallback) {
+	const key = allPages[path].label;
+
+	return translations.docPages[key] || fallback.docPages[key];
+}
+
+export function reeee(sectionName, translations, fallback) {
+	return translations.docPages[sectionName] || fallback.docPages[sectionName];
 }
 
 ///**

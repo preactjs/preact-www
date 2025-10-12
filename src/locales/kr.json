@@ -7,15 +7,15 @@
 		"help": "정답 확인"
 	},
 	"headerNav": {
-		"/tutorial": "튜토리얼",
-		"/guide/v10/getting-started": "가이드",
-		"/about": "소개",
-		"/about/we-are-using": "Preact를 사용하는 기업",
-		"/about/libraries-addons": "라이브러리 & 애드온",
-		"/about/demos-examples": "데모 & 예제",
-		"/about/project-goals": "프로젝트 목표",
-		"/about/browser-support": "브라우저 지원",
-		"/blog": "블로그"
+		"tutorial": "튜토리얼",
+		"guide": "가이드",
+		"about": "소개",
+		"weAreUsing": "Preact를 사용하는 기업",
+		"librariesAddons": "라이브러리 & 애드온",
+		"demosExamples": "데모 & 예제",
+		"projectGoals": "프로젝트 목표",
+		"browserSupport": "브라우저 지원",
+		"blog": "블로그"
 	},
 	"nav": {
 		"sidebar": {

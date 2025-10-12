@@ -5,12 +5,12 @@
 		"continueReading": "Seguir leyendo"
 	},
 	"headerNav": {
-		"/guide/v10/getting-started": "Guía",
-		"/about": "Sobre",
-		"/about/we-are-using": "Empresas que usan Preact",
-		"/about/libraries-addons": "Librerías y complementos",
-		"/about/demos-examples": "Demostraciones y ejemplos",
-		"/about/project-goals": "Objetivos del proyecto",
-		"/about/browser-support": "Soporte de navegadores"
+		"guide": "Guía",
+		"about": "Sobre",
+		"weAreUsing": "Empresas que usan Preact",
+		"librariesAddons": "Librerías y complementos",
+		"demosExamples": "Demostraciones y ejemplos",
+		"projectGoals": "Objetivos del proyecto",
+		"browserSupport": "Soporte de navegadores"
 	}
 }
