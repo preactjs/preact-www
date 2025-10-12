@@ -242,6 +242,18 @@
 							"kr": "10.x에서 업그레이드하기",
 							"ru": "Обновление с 10.x"
 						}
+					},
+					{
+						"path": "/differences-to-react",
+						"name": {
+							"en": "Differences to React",
+							"pt-br": "Diferenças do React",
+							"ja": "Reactとの違い",
+							"de": "Unterschiede zu React",
+							"kr": "React와의 차이점",
+							"zh": "与 React 的区别",
+							"ru": "Отличия от React"
+						}
 					}
 				]
 			},
@@ -366,40 +378,6 @@
 							"kr": "Enzyme를 이용한 유닛 테스트",
 							"zh": "使用 Enzyme 进行单元测试",
 							"ru": "Модульное тестирование с помощью Enzyme"
-						}
-					}
-				]
-			},
-			{
-				"name": {
-					"en": "React compatibility",
-					"zh": "React 兼容性",
-					"kr": "React 호환성",
-					"ru": "Совместимость с React"
-				},
-				"routes": [
-					{
-						"path": "/differences-to-react",
-						"name": {
-							"en": "Differences to React",
-							"pt-br": "Diferenças do React",
-							"ja": "Reactとの違い",
-							"de": "Unterschiede zu React",
-							"kr": "React와의 차이점",
-							"zh": "与 React 的区别",
-							"ru": "Отличия от React"
-						}
-					},
-					{
-						"path": "/switching-to-preact",
-						"name": {
-							"en": "Switching to Preact",
-							"pt-br": "Mudando para Preact",
-							"ja": "Preactへの移行",
-							"de": "Wechsel zu Preact",
-							"kr": "Preact로 전환",
-							"zh": "从 React 转到 Preact",
-							"ru": "Переход на Preact"
 						}
 					}
 				]
@@ -545,6 +523,18 @@
 							"ru": "Обновление с 8.x",
 							"zh": "从 8.x 版本更新"
 						}
+					},
+					{
+						"path": "/differences-to-react",
+						"name": {
+							"en": "Differences to React",
+							"de": "Unterschiede zu React",
+							"ja": "Reactとの違い",
+							"kr": "React와의 차이점",
+							"pt-br": "Diferenças do React",
+							"ru": "Отличия от React",
+							"zh": "与 React 的区别"
+						}
 					}
 				]
 			},
@@ -669,40 +659,6 @@
 							"pt-br": "Teste unitario com Enzyme",
 							"ru": "Модульное тестирование с помощью Enzyme",
 							"zh": "使用 Enzyme 进行单元测试"
-						}
-					}
-				]
-			},
-			{
-				"name": {
-					"en": "React compatibility",
-					"kr": "React 호환성",
-					"ru": "Совместимость с React",
-					"zh": "React 兼容性"
-				},
-				"routes": [
-					{
-						"path": "/differences-to-react",
-						"name": {
-							"en": "Differences to React",
-							"de": "Unterschiede zu React",
-							"ja": "Reactとの違い",
-							"kr": "React와의 차이점",
-							"pt-br": "Diferenças do React",
-							"ru": "Отличия от React",
-							"zh": "与 React 的区别"
-						}
-					},
-					{
-						"path": "/switching-to-preact",
-						"name": {
-							"en": "Switching to Preact",
-							"de": "Wechsel zu Preact",
-							"ja": "Preactへの移行",
-							"kr": "Preact로 전환",
-							"pt-br": "Mudando para Preact",
-							"ru": "Переход на Preact",
-							"zh": "从 React 转到 Preact"
 						}
 					}
 				]

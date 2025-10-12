@@ -158,5 +158,5 @@ Preactではこの制限はありません。すべてのコンポーネント�
 
 [Projectの目的]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[preact/compat]: /guide/v10/switching-to-preact
+[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
 [MDN's Event Reference]: https://developer.mozilla.org/ja/docs/Web/Events

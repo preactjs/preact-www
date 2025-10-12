@@ -119,5 +119,5 @@ A API legada `Context` exige que os Componentes implementem `contextTypes` ou `c
 
 [Objetivos do projeto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[preact/compat]: /guide/v10/switching-to-preact
+[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
 [MDN's Event Reference]: https://developer.mozilla.org/pt-BR/docs/Web/Events

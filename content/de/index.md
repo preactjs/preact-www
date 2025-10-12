@@ -10,7 +10,7 @@ title: Preact
     <p class="tagline">Schnelle 3kB-Alternative zu React mit der gleichen ES6-API</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Fang an</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Wechsle zu Preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Wechsle zu Preact</a>
     </p>
 </jumbotron>
 
@@ -123,7 +123,7 @@ function Counter() {
         Preacts Gestaltung lässt dich tausende Komponenten, die bereits im React-Ökosystem verfügbar sind, verwenden.
     </p>
     <p>
-        Das Hinzufügen eines einfachen <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
+        Das Hinzufügen eines einfachen <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact-compat</a>-Alias zum Bundler fügt eine Kompatibilitätsschicht hinzu, die es erlaubt, selbst die komplexesten React-Komponenten in der eigenen Preact-App zu verwenden.
     </p>
   </div>
 </section>
@@ -270,6 +270,6 @@ function Counter() {
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="btn primary">Fang an</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Wechsle zu Preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Wechsle zu Preact</a>
     </p>
 </section>
