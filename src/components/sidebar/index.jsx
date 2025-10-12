@@ -4,9 +4,9 @@ import SidebarNav from './sidebar-nav';
 import config from '../../config.json';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import {
-	useLanguage,
-	getSidebarRouteName,
-	getHeaderRouteName
+	useLanguage
+	//getSidebarRouteName,
+	//getHeaderRouteName
 } from '../../lib/i18n';
 import style from './style.module.css';
 
@@ -21,18 +21,18 @@ export default function Sidebar() {
 	for (const item of config.docs[version]) {
 		if ('routes' in item) {
 			navItems.push({
-				text: getSidebarRouteName(item.name, lang),
+				text: '',
 				level: 2,
 				href: null,
 				routes: item.routes.map(nested => ({
-					text: getSidebarRouteName(nested.name, lang),
+					text: '',
 					level: 3,
 					href: `/guide/${version}${nested.path}`
 				}))
 			});
 		} else {
 			navItems.push({
-				text: getSidebarRouteName(item.name, lang),
+				text: '',
 				level: 2,
 				href: `/guide/${version}${item.path}`
 			});
@@ -40,7 +40,7 @@ export default function Sidebar() {
 	}
 
 	// TODO: Is "Guide" really the best label for the button?
-	const mobileButtonLabel = getHeaderRouteName('guide', lang);
+	const mobileButtonLabel = '';
 
 	return (
 		<div class={style.wrapper} data-open={open}>

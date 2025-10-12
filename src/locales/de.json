@@ -1,0 +1,42 @@
+{
+	"i18n": {
+		"nextPage": "Nächste Seite",
+		"previousPage": "Vorherige Seite",
+		"continueReading": "Weiter lesen"
+	},
+	"headerNav": {
+		"/guide/v10/getting-started": "Anleitung",
+		"/about": "Mehr",
+		"/about/we-are-using": "Firmen die Preact benutzen",
+		"/about/libraries-addons": "Bibliotheken & Erweiterungen",
+		"/about/demos-examples": "Beispiel-Projekte",
+		"/about/project-goals": "Projekt-Ziele",
+		"/about/browser-support": "Browserunterstützung"
+	},
+	"nav": {
+		"sidebar": {
+			"introduction": "Einführung",
+			"gettingStarted": "Los geht's",
+			"upgradeGuide-v10": "Migration von 8.x",
+			"upgradeGuide-v11": "Migration von 10.x",
+			"components": "Komponenten",
+			"hooks": "Hooks",
+			"forms": "Formulare",
+			"refs": "Referenzen",
+			"context": "Kontext",
+			"debugging": "Entwickler-Tools",
+			"preactTestingLibrary": "Preact Testing Library",
+			"unitTestingWithEnzyme": "Unit-Tests mit Enzyme",
+			"differencesToReact": "Unterschiede zu React",
+			"switchingToPreact": "Wechsel zu Preact",
+			"advanced": "Fortgeschritten",
+			"apiReference": "API Referenz",
+			"webComponents": "Web Components",
+			"serverSideRendering": "Server-Side Rendering",
+			"options": "Optionen",
+			"typesOfComponents": "Komponenten-Typen",
+			"externalDomMutations": "Externe DOM Mutationen",
+			"extendingComponent": "Komponente Erweitern"
+		}
+	}
+}

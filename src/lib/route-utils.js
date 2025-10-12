@@ -28,7 +28,7 @@ function flattenRoutes(routes) {
 	return out;
 }
 
-export const navRoutes = flattenRoutes(config.nav);
+export const navRoutes = flattenRoutes([{ path: '/', name: 'Preact' }]);
 
 export const docRoutes = {};
 for (const k in config.docs) {
@@ -45,4 +45,4 @@ for (const k of config.docs.v10) {
 
 export const blogRoutes = flattenRoutes(config.blog);
 
-export const tutorialRoutes = flattenRoutes(config.tutorial);
+export const tutorialRoutes = flattenRoutes(['']);
