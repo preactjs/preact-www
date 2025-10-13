@@ -168,55 +168,6 @@ React.createElement(
 
 레거시 `Context` API는 컴포넌트가 해당 값을 받기 위해 React의 `contextTypes`나 `childContextTypes`를 사용해 특정 프로퍼티를 선언해야 합니다. 하지만 Preact는 그럴 필요가 없습니다. 모든 컴포넌트는 기본적으로 `getChildContext()`를 통해 만들어진 모든 `context` 프로퍼티를 전달받습니다.
 
-## `preact/compat` 전용 기능
-
-`preact/compat` 는 React 코드를 Preact로 번역해주는 Preact의 호환성 레이어(**compat**ibility layer)입니다. React 사용자가 코드를 수정하지 않고 Preact를 시도해볼 수 있는 쉬운 방법입니다. 번들러 환경 설정에 [몇가지 별칭을 세팅](/guide/v10/getting-started#aliasing-react-to-preact)하면 됩니다.
-
-### Children API
-
-`Children` API는 `props.children`의 값을 사용하기 위해 전문화된 메소드의 집합입니다. Preact에서는 일반적으로 불필요하며, 대신 내장 배열 메소드를 사용하기를 권장합니다. Preact에서 `props.children`은 Virtual DOM 노드나 `null`과 같은 빈값 또는 Virtual DOM node 배열입니다. 아래 두 경우는 `children`을 있는 그대로 사용하거나 리턴할 수 있기 때문에 가장 간단하고 흔한 경우입니다.
-
-```jsx
-// React:
-function App(props) {
-  return <Modal content={Children.only(props.children)} />
-}
-
-// Preact : props.children 바로 사용:
-function App(props) {
-  return <Modal content={props.children} />
-}
-```
-
-컴포넌트에 전달된 children을 반복해야 하는 특수한 경우를 위해 Preact는 `toChildArray()` 메소드를 제공합니다. `toChildArray()`는 어떠한 `props.children` 값이라도 전달받고 또한 평평하고(Flatten) 정규화된 Virtual DOM 노드 배열을 리턴합니다. 
-
-```jsx
-// React
-function App(props) {
-  const cols = Children.count(props.children);
-  return <div data-columns={cols}>{props.children}</div>
-}
-
-// Preact
-function App(props) {
-  const cols = toChildArray(props.children).length;
-  return <div data-columns={cols}>{props.children}</div>
-}
-```
-
-React와 호환되는 `Children` API는 `preact/compat`에서 제공되며 기존의 컴포넌트 라이브러리와 원활하게 통합할 수 있습니다.
-
-### 특수한 목적의 컴포넌트
-
-[preact/compat]는 모든 앱에서 필요하지는 않은 특수한 컴포넌트들도 포함하여 제공합니다. 
-
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): `props`나 `state`가 변경되었을 때만 업데이트합니다.
-- [memo](/guide/v10/switching-to-preact#memo): `PureComponent`와 유사하지만, 사용자 정의 비교 함수를 사용할 수 있습니다.
-- [forwardRef](/guide/v10/switching-to-preact#forwardRef): 명시된 자식 컴포넌트에 `ref`를 전달할 수 있습니다.
-- [Portals](/guide/v10/switching-to-preact#portals): 다른 DOM 컨테이너에 현재 트리를 계속해서 렌더링합니다.
-- [Suspense](/guide/v10/switching-to-preact#suspense): **실험 단계** 트리가 준비되지 않은 경우 fallback 컨텐츠를 보여줍니다.
-- [lazy](/guide/v10/switching-to-preact#suspense): **실험 단계** 비동기 코드를 느리게(Lazy) 로드하고 트리를 준비됨/준비되지 않음 상태로 표시합니다.
-
 [Project Goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact

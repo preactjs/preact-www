@@ -117,37 +117,6 @@ Na maioria dos aplicativos Preact, você encontrará `h ()`, mas suportamos ambo
 
 A API legada `Context` exige que os Componentes implementem `contextTypes` ou `childContextTypes` no React. Com Preact, não temos essa limitação e todos os componentes recebem todas as entradas do `context`, extraídas de `getChildContext ()`.
 
-## Funcionalidades exclusivas para `preact / compat`
-
-`preact/compat` é a nossa camada **compat** ibilidade que traduz o código React para Preact. Para usuários existentes do React, é muito fácil experimentar o Preact apenas configurando alguns aliases na configuração do empacotador e deixando o restante do código como está.
-
-### Children-API
-
-A API `Children` é uma maneira especializada de iterar sobre os `children` de um componente. Para Preact, essa API não é necessária e recomendamos o uso dos métodos de arrays nativos.
-
-```jsx
-// React
-function App(props) {
-  return <div>{Children.count(props.children)}</div>
-}
-
-// Preact: Converta filhos em um array e use métodos de arrays padrão.
-function App(props) {
-  return <div>{toChildArray(props.children).length}</div>
-}
-```
-
-### Componentes especializados
-
-[preact/compat] é fornecido com componentes especializados que não são necessários para todos os aplicativos. Esses incluem
-
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): Atualiza somente se `props` e `state` foram alterados
-- [memo](/guide/v10/switching-to-preact#memo): Semelhante em espírito ao `PureComponent`, mas permite usar uma função de comparação personalizada
-- [forwardRef](/guide/v10/switching-to-preact#forwardRef): Forneça um `ref` para um componente filho especificado.
-- [Portals](/guide/v10/switching-to-preact#portals): Continua renderizando a árvore atual em um contêiner DOM diferente
-- [Suspense](/guide/v10/switching-to-preact#suspense): **experimental** Permite exibir o conteúdo de fallback caso a árvore não esteja pronta
-- [lazy](/guide/v10/switching-to-preact#suspense): **experimental** Carregue o código assíncrono lazy e marque uma árvore como pronta / não pronta de acordo.
-
 [Objetivos do projeto]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact

@@ -156,39 +156,6 @@ React.createElement(
 Reactの古いコンテキストAPIではコンポーネントに`contextTypes`もしくは`childContextTypes`を実装する必要があります。
 Preactではこの制限はありません。すべてのコンポーネントは`getChildContext()`から生成されたすべての`context`の値を受け取ります。
 
-## `preact`には無くて`preact/compat`にある機能
-
-`preact/compat`はReactのコードをPreactに移行するための**互換**レイヤーです。
-既存のReactユーザはコードはそのままでバンドラの設定にいくつかのエイリアスをセットするだけで、とても手軽にPreactを試すことができます。
-
-### Children API
-
-Reactの`Children`APIはコンポーネントの`children`を反復処理するためのAPIです。
-PreactではこのAPIは必要ありません。代わりにネイティブの配列のメソッドを使うことを推奨します。
-
-```jsx
-// React
-function App(props) {
-  return <div>{Children.count(props.children)}</div>
-}
-
-// Preact: 子コンポーネントを配列に変換します。配列の標準のプロパティを使います。
-function App(props) {
-  return <div>{toChildArray(props.children).length}</div>
-}
-```
-
-### 固有のコンポーネントと関数
-
-[preact/compat]は以下のような特殊な用途で使用することを目的としたコンポーネントや関数を提供しています。
-
-- [PureComponent](/guide/v10/switching-to-preact#purecomponent): `props`もしくは`state`が変化した場合のみ更新されます。
-- [memo](/guide/v10/switching-to-preact#memo): `PureComponent`と用途が似ていますがこちらは比較のための関数を指定することができます。
-- [forwardRef](/guide/v10/switching-to-preact#forwardRef): 指定した子コンポーネントに`ref`をセットします。
-- [Portals](/guide/v10/switching-to-preact#portals): 指定した仮想DOMツリーを別のDOMコンテナにレンダリングします。
-- [Suspense](/guide/v10/switching-to-preact#suspense): **実験的機能** 仮想DOMツリーの準備ができていない間は代替の仮想DOMツリーのレンダリングすることを可能にします。
-- [lazy](/guide/v10/switching-to-preact#suspense): **実験的機能** 非同期のコードを遅延ロードします。そして、ロード完了を通知します。
-
 [Projectの目的]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [preact/compat]: /guide/v10/switching-to-preact
