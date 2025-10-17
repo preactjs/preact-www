@@ -306,6 +306,35 @@ function Counter() {
 }
 ```
 
+> **Optimizing `useComputed` performance**
+>
+> The `useComputed` hook follows the convention of keeping closures fresh. By default, the callback function passed to `useComputed` will re-run on every component render to ensure it always has access to the latest values from the component's scope. However, if the computed value doesn't change, updates won't propagate to dependent nodes in the signal graph.
+>
+> For expensive computations, you can optimize performance by memoizing the callback with `useCallback`:
+>
+> ```jsx
+> import { useSignal, useComputed } from "@preact/signals";
+> import { useCallback } from "preact/hooks";
+>
+> function Counter() {
+> 	const count = useSignal(0);
+>
+> 	// Memoize the callback to avoid re-running expensive calculations
+> 	const expensiveComputation = useCallback(() => {
+> 		let result = count.value;
+> 		for (let i = 0; i < 10000000; i++) {
+> 			result += 1;
+> 		}
+> 		return result;
+> 		// Empty deps means callback never changes, alternatively add count here so that if the identity of the signal changes this re-runs
+> 	}, []);
+>
+> 	const computed = useComputed(expensiveComputation);
+>
+> 	return <div>Result: {computed}</div>;
+> }
+> ```
+
 Those two hooks are thin wrappers around [`signal()`](#signalinitialvalue) and [`computed()`](#computedfn) that construct a signal the first time a component runs, and simply use that same signal on subsequent renders.
 
 > :bulb: Behind the scenes, this is the implementation:
