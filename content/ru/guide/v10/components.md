@@ -90,7 +90,7 @@ render(<Clock />, document.getElementById('app'));
 | `getDerivedStateFromProps(nextProps)`                | непосредственно перед `shouldComponentUpdate`. Используйте с осторожностью.                              |
 | `shouldComponentUpdate(nextProps, nextState)`        | перед `render()`. Верните false, чтобы пропустить рендеринг                                              |
 | `componentWillUpdate(nextProps, nextState)`          | bперед `render()` _(устарел)_                                                                            |
-| `getSnapshotBeforeUpdate(prevProps, prevState)`      | вызывается непосредственно перед `render()`. возвращаемое значение передается в `componentDidUpdate`. |
+| `getSnapshotBeforeUpdate(prevProps, prevState)`      | вызывается сразу после `render()`, но до того, как изменения будут применены к DOM. Возвращаемое значение передаётся в `componentDidUpdate`. |
 | `componentDidUpdate(prevProps, prevState, snapshot)` | после `render()`                                                                                         |
 
 Вот наглядный обзор того, как они соотносятся друг с другом (первоначально опубликован в [твите](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) Дэном Абрамовым):
