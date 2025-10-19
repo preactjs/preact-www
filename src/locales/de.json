@@ -2,7 +2,8 @@
 	"i18n": {
 		"nextPage": "Nächste Seite",
 		"previousPage": "Vorherige Seite",
-		"continueReading": "Weiter lesen"
+		"continueReading": "Weiter lesen",
+		"mobileGuideButton": "Anleitung"
 	},
 	"headerNav": {
 		"guide": "Anleitung",
@@ -13,30 +14,31 @@
 		"projectGoals": "Projekt-Ziele",
 		"browserSupport": "Browserunterstützung"
 	},
-	"nav": {
-		"sidebar": {
-			"introduction": "Einführung",
-			"gettingStarted": "Los geht's",
-			"upgradeGuide-v10": "Migration von 8.x",
-			"upgradeGuide-v11": "Migration von 10.x",
-			"components": "Komponenten",
-			"hooks": "Hooks",
-			"forms": "Formulare",
-			"refs": "Referenzen",
-			"context": "Kontext",
-			"debugging": "Entwickler-Tools",
-			"preactTestingLibrary": "Preact Testing Library",
-			"unitTestingWithEnzyme": "Unit-Tests mit Enzyme",
-			"differencesToReact": "Unterschiede zu React",
-			"switchingToPreact": "Wechsel zu Preact",
-			"advanced": "Fortgeschritten",
-			"apiReference": "API Referenz",
-			"webComponents": "Web Components",
-			"serverSideRendering": "Server-Side Rendering",
-			"options": "Optionen",
-			"typesOfComponents": "Komponenten-Typen",
-			"externalDomMutations": "Externe DOM Mutationen",
-			"extendingComponent": "Komponente Erweitern"
-		}
-	}
+	"sidebarSections": {
+		"introduction": "Einführung",
+		"advanced": "Fortgeschritten"
+	},
+	"sidebarNav": {
+		"gettingStarted": "Los geht's",
+		"upgradeGuide-v10": "Migration von 8.x",
+		"upgradeGuide-v11": "Migration von 10.x",
+		"components": "Komponenten",
+		"hooks": "Hooks",
+		"forms": "Formulare",
+		"refs": "Referenzen",
+		"context": "Kontext",
+		"debugging": "Entwickler-Tools",
+		"preactTestingLibrary": "Preact Testing Library",
+		"unitTestingWithEnzyme": "Unit-Tests mit Enzyme",
+		"differencesToReact": "Unterschiede zu React",
+		"switchingToPreact": "Wechsel zu Preact",
+		"apiReference": "API Referenz",
+		"webComponents": "Web Components",
+		"serverSideRendering": "Server-Side Rendering",
+		"options": "Optionen",
+		"typesOfComponents": "Komponenten-Typen",
+		"externalDomMutations": "Externe DOM Mutationen",
+		"extendingComponent": "Komponente Erweitern"
+	},
+	"blogPosts": {}
 }

@@ -1,7 +1,8 @@
 {
 	"i18n": {
 		"nextPage": "Próxima Página",
-		"previousPage": "Página Anterior"
+		"previousPage": "Página Anterior",
+		"mobileGuideButton": "Guia"
 	},
 	"headerNav": {
 		"guide": "Guia",
@@ -12,28 +13,28 @@
 		"projectGoals": "Objetivos do Projeto",
 		"browserSupport": "Suporte do Navegador"
 	},
-	"nav": {
-		"sidebar": {
-			"gettingStarted": "Começando",
-			"upgradeGuide-v10": "Fazendo upgrade do 8.x",
-			"upgradeGuide-v11": "Fazendo upgrade do 10.x",
-			"components": "Componentes",
-			"hooks": "Hooks",
-			"forms": "Formulários",
-			"refs": "Referências",
-			"context": "Contexto",
-			"debugging": "Ferramentas de depuração",
-			"preactTestingLibrary": "Preact Testing Library",
-			"unitTestingWithEnzyme": "Teste unitario com Enzyme",
-			"differencesToReact": "Diferenças do React",
-			"switchingToPreact": "Mudando para Preact",
-			"apiReference": "Referência da API",
-			"webComponents": "Web Components",
-			"serverSideRendering": "Server-Side Rendering",
-			"whatsNew": "o que há de novo",
-			"typesOfComponents": "Tipos de Componentes",
-			"externalDomMutations": "Mutações do DOM externas",
-			"extendingComponent": "Extendendo Componentes"
-		}
-	}
+	"sidebarSections": {},
+	"sidebarNav": {
+		"gettingStarted": "Começando",
+		"upgradeGuide-v10": "Fazendo upgrade do 8.x",
+		"upgradeGuide-v11": "Fazendo upgrade do 10.x",
+		"components": "Componentes",
+		"hooks": "Hooks",
+		"forms": "Formulários",
+		"refs": "Referências",
+		"context": "Contexto",
+		"debugging": "Ferramentas de depuração",
+		"preactTestingLibrary": "Preact Testing Library",
+		"unitTestingWithEnzyme": "Teste unitario com Enzyme",
+		"differencesToReact": "Diferenças do React",
+		"switchingToPreact": "Mudando para Preact",
+		"apiReference": "Referência da API",
+		"webComponents": "Web Components",
+		"serverSideRendering": "Server-Side Rendering",
+		"whatsNew": "o que há de novo",
+		"typesOfComponents": "Tipos de Componentes",
+		"externalDomMutations": "Mutações do DOM externas",
+		"extendingComponent": "Extendendo Componentes"
+	},
+	"blogPosts": {}
 }

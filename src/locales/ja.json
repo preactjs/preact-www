@@ -3,7 +3,8 @@
 		"nextPage": "次のページ",
 		"previousPage": "前のページ",
 		"help": "助ける",
-		"solve": "説き明かす"
+		"solve": "説き明かす",
+		"mobileGuideButton": "ガイド"
 	},
 	"headerNav": {
 		"tutorial": "チュートリアル",
@@ -17,26 +18,26 @@
 		"blog": "ブログ",
 		"repl": "レプル"
 	},
-	"nav": {
-		"sidebar": {
-			"gettingStarted": "はじめに",
-			"upgradeGuide-v10": "Preact 8.xからのアップグレード",
-			"upgradeGuide-v11": "Preact 10.xからのアップグレード",
-			"components": "コンポーネント",
-			"hooks": "フック(Hooks)",
-			"forms": "フォーム",
-			"refs": "リファレンス(Ref)",
-			"context": "コンテキスト(Context)",
-			"debugging": "デバッグツール",
-			"preactTestingLibrary": "Preact Testing Library",
-			"unitTestingWithEnzyme": "Enzymeを使った単体テスト",
-			"differencesToReact": "Reactとの違い",
-			"switchingToPreact": "Preactへの移行",
-			"apiReference": "APIリファレンス",
-			"webComponents": "Webコンポーネント",
-			"serverSideRendering": "サーバーサイドレンダリング",
-			"options": "オプションフック",
-			"whatsNew": "新機能"
-		}
-	}
+	"sidebarSections": {},
+	"sidebarNav": {
+		"gettingStarted": "はじめに",
+		"upgradeGuide-v10": "Preact 8.xからのアップグレード",
+		"upgradeGuide-v11": "Preact 10.xからのアップグレード",
+		"components": "コンポーネント",
+		"hooks": "フック(Hooks)",
+		"forms": "フォーム",
+		"refs": "リファレンス(Ref)",
+		"context": "コンテキスト(Context)",
+		"debugging": "デバッグツール",
+		"preactTestingLibrary": "Preact Testing Library",
+		"unitTestingWithEnzyme": "Enzymeを使った単体テスト",
+		"differencesToReact": "Reactとの違い",
+		"switchingToPreact": "Preactへの移行",
+		"apiReference": "APIリファレンス",
+		"webComponents": "Webコンポーネント",
+		"serverSideRendering": "サーバーサイドレンダリング",
+		"options": "オプションフック",
+		"whatsNew": "新機能"
+	},
+	"blogPosts": {}
 }

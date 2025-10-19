@@ -11,7 +11,7 @@ import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.j
 //import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 
 // TODO: Should we do this for all routes, rely on discovery a bit less?
-import { tutorialRoutes } from './src/lib/route-utils.js';
+//import { tutorialRoutes } from './src/lib/route-utils.js';
 
 export default defineConfig({
 	publicDir: 'src/assets',
@@ -46,8 +46,8 @@ export default defineConfig({
 					'/404',
 					'/guide/v8/getting-started',
 					'/guide/v11/getting-started',
-					'/branding',
-					...Object.keys(tutorialRoutes)
+					'/branding'
+					//...Object.keys(tutorialRoutes)
 				]
 			}
 		}),

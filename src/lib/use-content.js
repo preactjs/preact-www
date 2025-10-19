@@ -3,7 +3,7 @@ import { useLocation } from 'preact-iso';
 
 import { createTitle } from './page-title';
 import { getContent } from './content.js';
-import { useLanguage } from './i18n';
+import { useLanguageContext } from './i18n';
 import {
 	useResource,
 	createCacheKey,
@@ -28,7 +28,7 @@ export function getContentPath(path) {
  * @returns {import('./../types.d.ts').ContentData}
  */
 export function useContent(path) {
-	const [lang] = useLanguage();
+	const { lang } = useLanguageContext();
 	const contentPath = getContentPath(path);
 	/** @type {import('./../types.d.ts').ContentData} */
 	const { html, meta } = useResource(() => getContent([lang, contentPath]), [

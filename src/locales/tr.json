@@ -3,5 +3,8 @@
 		"nextPage": "Sonraki Sayfa",
 		"previousPage": "Önceki Sayfa"
 	},
-	"headerNav": {}
+	"headerNav": {},
+	"sidebarSections": {},
+	"sidebarNav": {},
+	"blogPosts": {}
 }
