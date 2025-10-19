@@ -223,7 +223,7 @@ function NavMenu(props) {
 /**
  * Button that expands into a menu when clicked. Pass in label & menu items as children.
  *
- * @param {ExpandableNavLinkProps & import('preact').JSX.ButtonHTMLAttributes} props
+ * @param {ExpandableNavLinkProps & import('preact').ButtonHTMLAttributes} props
  */
 function ExpandableNavLink({ isOpen, label, children, ...rest }) {
 	return (
@@ -247,7 +247,7 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
  */
 
 /**
- * @param {NavLinkProps & import('preact').AnchorHTMLAttributes} props
+ * @param {NavLinkProps & Omit<import('preact').AnchorHTMLAttributes, 'role'>} props
  */
 function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
