@@ -28,6 +28,14 @@ export default defineConfig({
 						return 'assets/xmldom-[hash].js';
 					if (chunkInfo.facadeModuleId?.includes('@docsearch/react'))
 						return 'assets/docsearch-[hash].js';
+
+					if (chunkInfo.facadeModuleId?.includes('branding'))
+						return 'assets/branding-[hash].js';
+					if (chunkInfo.facadeModuleId?.includes('blog-overview'))
+						return 'assets/blog-overview-[hash].js';
+					if (chunkInfo.facadeModuleId?.includes('we-are-using'))
+						return 'assets/we-are-using-[hash].js';
+
 					return 'assets/[name]-[hash].js';
 				}
 			}
