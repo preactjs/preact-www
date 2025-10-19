@@ -96,7 +96,7 @@ marked.use({
 			return `<a href="${href}">${text}</a>`;
 		},
 		image({ href, text }) {
-			return `<img decoding="async" src="${href}" alt="${text}" />`;
+			return `<img loading="lazy" decoding="async" src="${href}" alt="${text}" />`;
 		},
 		code({ text, lang }) {
 			const [code, source, runInRepl] = processRepl(text.trim());
