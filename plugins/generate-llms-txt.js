@@ -3,7 +3,8 @@ import fsSync from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parseFrontmatter, cleanReplComments } from '../src/lib/frontmatter.js';
-import { v10StructuredDocRoutes } from '../src/lib/route-utils.js';
+import { docPages } from '../src/route-config.js';
+import englishTranslations from '../src/locales/en.json';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,10 +44,10 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 
 	let content = header;
 
-	for (const section of v10StructuredDocRoutes) {
-		content += `## ${section.name}\n\n`;
+	for (const section in docPages.v10) {
+		content += `## ${englishTranslations.sidebarSections[section]}\n\n`;
 
-		for (const route of section.routes) {
+		for (const route in docPages.v10[section]) {
 			const { filename, content: fileContent } = files.find(
 				file => file.filename === `${route.replace('/', '')}.md`
 			);

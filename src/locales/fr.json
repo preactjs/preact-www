@@ -3,5 +3,8 @@
 		"nextPage": "Page Suivante",
 		"previousPage": "Page Précédente"
 	},
-	"headerNav": {}
+	"headerNav": {},
+	"sidebarSections": {},
+	"sidebarNav": {},
+	"blogPosts": {}
 }

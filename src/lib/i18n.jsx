@@ -4,7 +4,7 @@ import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage';
 import { useResource } from './use-resource.js';
-import { allPages } from '../config.js';
+import { allPages } from '../route-config.js';
 import config from '../config.json';
 import englishTranslations from '../locales/en.json';
 
@@ -55,9 +55,9 @@ export function LanguageProvider({ children }) {
 	const translations = useResource(() => {
 		if (lang == 'en') return Promise.resolve(englishTranslations);
 		let url = '';
-		for (const language in translationURLs) {
-			if (language.includes(`/${lang}.json`)) {
-				url = /** @type {string} */ (translationURLs[language]);
+		for (const translationURL in translationURLs) {
+			if (translationURL.includes(`/${lang}.json`)) {
+				url = /** @type {string} */ (translationURLs[translationURL]);
 				break;
 			}
 		}
@@ -68,8 +68,6 @@ export function LanguageProvider({ children }) {
 			mode: 'no-cors'
 		}).then(r => r.json());
 	}, [lang]);
-
-	console.log('Loaded language:', lang, translations);
 
 	useEffect(() => {
 		const userLang =
@@ -102,94 +100,56 @@ export function LanguageProvider({ children }) {
 	);
 }
 
-/**
- * Handles all logic related to language settings
- * @returns {[string, (v: string) => void]}
- */
-export function useLanguage() {
-	const { lang, setLang } = useContext(LanguageContext);
-	return [lang, setLang];
-}
-
 export function useLanguageContext() {
 	return useContext(LanguageContext);
 }
 
 /**
  * Maps a key to its translated string based upon the current language.
- *
- * @param {keyof typeof englishTranslations.i18n} key
  */
-export function useTranslation(key) {
+export function useTranslate() {
 	const { translations, fallback } = useContext(LanguageContext);
 
-	return translations.i18n[key] || fallback.i18n[key];
+	/**
+	 * @template {keyof typeof translations} T
+	 * @template {keyof typeof translations[T]} K
+	 * @param {T} namespace
+	 * @param {K} key
+	 * @return {typeof translations[T][K]}
+	 */
+	return (namespace, key) =>
+		translations[namespace][key] || fallback[namespace][key];
 }
 
 /**
  * Maps a path to its translated name based upon the current language.
- *
- * @param {keyof allPages} path
  */
-export function usePathTranslation(path) {
+export function usePathTranslate() {
 	const { translations, fallback } = useContext(LanguageContext);
 
-	const key = allPages[path].label;
-
-	return translations.headerNav[key] || fallback.headerNav[key];
+	/**
+	 * @param {'headerNav' | 'sidebarNav'} namespace
+	 * @param {keyof allPages} path
+	 * @return {string}
+	 */
+	return (namespace, path) => {
+		const key = allPages[path].label;
+		return translations[namespace][key] || fallback[namespace][key];
+	};
 }
 
 /**
- * Maps a path to its translated name based upon the current language.
- *
- * @param {keyof allPages} path
- * @param {typeof englishTranslations} translations
- * @param {typeof englishTranslations} fallback
+ * Maps a blog post path to its translated metadata based upon the current language.
  */
-export function translatePath(path, translations, fallback) {
-	const key = allPages[path].label;
+export function useBlogTranslate() {
+	const { translations, fallback } = useContext(LanguageContext);
 
-	return translations.docPages[key] || fallback.docPages[key];
+	/**
+	 * @param {keyof typeof import('../route-config.js').blogPosts} path
+	 * @return {{ label: string, excerpt: string }}
+	 */
+	return path => {
+		const key = allPages[path].label;
+		return translations.blogPosts[key] || fallback.blogPosts[key];
+	};
 }
-
-export function reeee(sectionName, translations, fallback) {
-	return translations.docPages[sectionName] || fallback.docPages[sectionName];
-}
-
-///**
-// * Get the translated name of a path based upon the current language.
-// * @param {string} path
-// */
-//export function useNavTranslation(path) {
-//	const [lang] = useLanguage();
-//
-//	const routeName = config.nav.find(r => r.path == path);
-//	if (!routeName) throw new Error(`No route found for path: ${path}`);
-//	return getHeaderRouteName(routeName.name, lang);
-//}
-//
-///**
-// * @param {string} routeName
-// * @param {string} lang
-// * @return {string}
-// */
-//export function getHeaderRouteName(routeName, lang) {
-//	const data = englishTranslations.nav.header[routeName];
-//	if (!data) console.log(routeName, lang);
-//	if (!data)
-//		throw new Error(`Missing header translation obj for: ${routeName}`);
-//	return data;
-//}
-//
-///**
-// * @param {string} routeName
-// * @param {string} lang
-// * @return {string}
-// */
-//export function getSidebarRouteName(routeName, lang) {
-//	const data = englishTranslations.nav.sidebar[routeName];
-//	if (!data) console.log(routeName, lang);
-//	if (!data)
-//		throw new Error(`Missing version translation obj for: ${routeName}`);
-//	return data;
-//}

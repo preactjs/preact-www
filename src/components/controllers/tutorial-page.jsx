@@ -4,13 +4,13 @@ import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
 import { NotFound } from './not-found';
 import { useContent, prefetchContent } from '../../lib/use-content';
-import { tutorialRoutes } from '../../lib/route-utils';
+import { tutorialPages } from '../../route-config.js';
 
 import style from './tutorial/style.module.css';
 
 export default function TutorialPage() {
 	const { step } = useRoute().params;
-	const isValidRoute = tutorialRoutes[`/tutorial${step ? `/${step}` : ''}`];
+	const isValidRoute = tutorialPages[`/tutorial${step ? `/${step}` : ''}`];
 
 	return (
 		<ErrorBoundary>

@@ -2,8 +2,8 @@ import { useRoute } from 'preact-iso';
 import DocVersion from '../doc-version';
 import SidebarNav from './sidebar-nav';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { useLanguageContext, translatePath, reeee } from '../../lib/i18n';
-import { docPages } from '../../config.js';
+import { useTranslate, usePathTranslate } from '../../lib/i18n';
+import { docPages } from '../../route-config.js';
 import style from './style.module.css';
 
 export default function Sidebar() {
@@ -11,63 +11,44 @@ export default function Sidebar() {
 		version
 	} = /** @type {{ version: 'v8' | 'v10' | 'v11' }} */ (useRoute().params);
 	const [open, setOpen] = useOverlayToggle();
-
-	const { translations, fallback } = useLanguageContext();
+	const translate = useTranslate();
+	const translatePath = usePathTranslate();
 
 	const navItems = [];
-	if (version == 'v8') {
-	} else {
-		for (const page of docPages[version]) {
-			const routes = [];
-			for (const route in page.routes) {
-				routes.push({
-					text: translatePath(route, translations, fallback),
-					level: 3,
-					href: `/guide/${version}${route}`
-				});
-			}
-
+	for (const item in docPages[version]) {
+		if (version == 'v8') {
 			navItems.push({
-				text: reeee(page.label, translations, fallback),
+				text: translatePath(
+					'sidebarNav',
+					/** @type {keyof typeof import('../../route-config.js').allPages} */ (item)
+				),
+				level: 2,
+				href: `/guide/${version}${item}`
+			});
+		} else {
+			navItems.push({
+				text: translate(
+					'sidebarSections',
+					/** @type {keyof typeof docPages['v10']} */ (item)
+				),
 				level: 2,
 				href: null,
-				routes
+				routes: Object.keys(docPages[version][item]).map(nested => ({
+					text: translatePath(
+						'sidebarNav',
+						/** @type {keyof typeof import('../../route-config.js').allPages} */ (nested)
+					),
+					level: 3,
+					href: `/guide/${version}${nested}`
+				}))
 			});
 		}
 	}
 
-	//for (const item in docPages[version]) {
-	//	if ('routes' in item) {
-	//		navItems.push({
-	//			text: '',
-	//			level: 2,
-	//			href: null,
-	//			routes: item.routes.map(nested => ({
-	//				text: '',
-	//				level: 3,
-	//				href: `/guide/${version}${nested.path}`
-	//			}))
-	//		});
-	//	} else {
-	//		navItems.push({
-	//			text: '',
-	//			level: 2,
-	//			href: `/guide/${version}${item.path}`
-	//		});
-	//	}
-	//}
-
-	// TODO: Is "Guide" really the best label for the button?
-	const mobileButtonLabel = '';
-
 	return (
 		<div class={style.wrapper} data-open={open}>
-			<button
-				class={style.toggle}
-				onClick={() => setOpen(v => !v)}
-				value="sidebar"
-			>
-				{mobileButtonLabel}
+			<button class={style.toggle} onClick={() => setOpen(v => !v)}>
+				{translate('i18n', 'mobileGuideButton')}
 			</button>
 			<aside class={style.sidebar}>
 				<div class={style.sidebarInner}>

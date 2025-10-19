@@ -5,7 +5,8 @@
 		"continueReading": "继续阅读",
 		"beginTutorial": "开始教程",
 		"help": "帮助",
-		"solve": "解决"
+		"solve": "解决",
+		"mobileGuideButton": "指南"
 	},
 	"headerNav": {
 		"tutorial": "教程",
@@ -19,38 +20,59 @@
 		"blog": "博客",
 		"repl": "在线试用"
 	},
-	"nav": {
-		"sidebar": {
-			"introduction": "介绍",
-			"gettingStarted": "开始上手",
-			"upgradeGuide-v10": "从 8.x 版本更新",
-			"upgradeGuide-v11": "从 10.x 版本更新",
-			"essentials": "基础",
-			"components": "组件",
-			"hooks": "钩子",
-			"signals": "信号",
-			"forms": "表单",
-			"refs": "引用",
-			"context": "上下文",
-			"debugTest": "调试与测试",
-			"debugging": "调试工具",
-			"preactTestingLibrary": "Preact 测试库",
-			"unitTestingWithEnzyme": "使用 Enzyme 进行单元测试",
-			"reactCompatibility": "React 兼容性",
-			"differencesToReact": "与 React 的区别",
-			"switchingToPreact": "从 React 转到 Preact",
-			"advanced": "进阶",
-			"apiReference": "API 参考",
-			"webComponents": "Web 组件",
-			"serverSideRendering": "服务端渲染",
-			"options": "选项钩子",
-			"libraries": "库",
-			"whatsNew": "新鲜功能",
-			"typesOfComponents": "组件类型",
-			"linkedState": "关联状态",
-			"externalDomMutations": "外部 DOM 修改",
-			"extendingComponent": "扩展组件",
-			"progressiveWebApps": "渐进式 Web 应用"
+	"sidebarSections": {
+		"introduction": "介绍",
+		"essentials": "基础",
+		"debugAndTest": "调试与测试",
+		"advanced": "进阶",
+		"libraries": "库"
+	},
+	"sidebarNav": {
+		"gettingStarted": "开始上手",
+		"upgradeGuide-v10": "从 8.x 版本更新",
+		"upgradeGuide-v11": "从 10.x 版本更新",
+		"components": "组件",
+		"hooks": "钩子",
+		"signals": "信号",
+		"forms": "表单",
+		"refs": "引用",
+		"context": "上下文",
+		"debugging": "调试工具",
+		"preactTestingLibrary": "Preact 测试库",
+		"unitTestingWithEnzyme": "使用 Enzyme 进行单元测试",
+		"differencesToReact": "与 React 的区别",
+		"switchingToPreact": "从 React 转到 Preact",
+		"apiReference": "API 参考",
+		"webComponents": "Web 组件",
+		"serverSideRendering": "服务端渲染",
+		"options": "选项钩子",
+		"whatsNew": "新鲜功能",
+		"typesOfComponents": "组件类型",
+		"linkedState": "关联状态",
+		"externalDomMutations": "外部 DOM 修改",
+		"extendingComponent": "扩展组件",
+		"progressiveWebApps": "渐进式 Web 应用"
+	},
+	"blogPosts": {
+		"simplifyingIslandsArch": {
+			"label": "构建自己的岛屿组件",
+			"excerpt": "揭开岛屿架构的神秘面纱，并能够使用您周围已有的工具来设置自己的架构。"
+		},
+		"prerenderingPresetVite": {
+			"label": "Prerendering with Preset Vite",
+			"excerpt": "自从我们的预渲染插件在 `@preact/preset-vite` 中悄然可用已经过去半年了，让我们来谈谈它、我们的历史以及整个生态系统。"
+		},
+		"preactX": {
+			"label": "Preact X, a story of stability",
+			"excerpt": "Preact X 发布已经五年了，让我们回顾一下这段时间发生的所有令人兴奋的事情。"
+		},
+		"signalBoosting": {
+			"label": "信号增强",
+			"excerpt": "全新版本 Preact 信号为反应系统带来了显著的性能提升，阅读本文来了解其背后的工作原理。"
+		},
+		"introducingSignals": {
+			"label": "初见信号",
+			"excerpt": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。"
 		}
 	}
 }
