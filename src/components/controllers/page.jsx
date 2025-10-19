@@ -1,15 +1,15 @@
 import { useRoute, ErrorBoundary } from 'preact-iso';
-import { navRoutes } from '../../lib/route-utils';
 import { useContent } from '../../lib/use-content';
 import { NotFound } from './not-found';
 import { MarkdownRegion } from './markdown-region';
 import Footer from '../footer/index';
 import style from './style.module.css';
+import { headerNav } from '../../route-config.js';
 
 // Supports generic pages like `/`, `/about/*`, `/blog`, etc.
 export function Page() {
 	const { path } = useRoute();
-	const isValidRoute = navRoutes[path];
+	const isValidRoute = headerNav[path];
 
 	return (
 		<ErrorBoundary>

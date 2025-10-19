@@ -1,0 +1,29 @@
+{
+	"i18n": {
+		"nextPage": "Siguiente Página",
+		"previousPage": "Pagina Anterior",
+		"continueReading": "Seguir leyendo",
+		"mobileGuideButton": "Guía"
+	},
+	"headerNav": {
+		"guide": "Guía",
+		"about": "Sobre",
+		"weAreUsing": "Empresas que usan Preact",
+		"librariesAddons": "Librerías y complementos",
+		"demosExamples": "Demostraciones y ejemplos",
+		"projectGoals": "Objetivos del proyecto",
+		"browserSupport": "Soporte de navegadores"
+	},
+	"sidebarSections": {},
+	"sidebarNav": {},
+	"blogPosts": {
+		"signalBoosting": {
+			"label": "El impulso de signal",
+			"excerpt": "La nueva versión de Preact Signals aporta importantes actualizaciones de rendimiento a los fundamentos del sistema reactivo. Sigue leyendo para saber qué tipo de trucos hemos empleado para conseguirlo."
+		},
+		"introducingSignals": {
+			"label": "Introduciendo los Signals",
+			"excerpt": "Los Signals son una forma más fácil de administrar el estado de tu aplicación en comparación con los hooks. Un signal es un objeto contenedor con una propiedad especial \"value\" que contiene algún valor. Leer la propiedad value de un signal desde un componente o una función computada se suscribe automáticamente a las actualizaciones, y escribir en la propiedad value activa las suscripciones."
+		}
+	}
+}

@@ -1,10 +1,10 @@
 import { useRoute } from 'preact-iso';
-import { useLanguage } from '../../lib/i18n';
+import { useLanguageContext } from '../../lib/i18n';
 import style from './style.module.css';
 
 export default function EditThisPage({ isFallback }) {
 	let { path } = useRoute();
-	const [lang] = useLanguage();
+	const { lang } = useLanguageContext();
 
 	path = !isFallback ? path + '.md' : '';
 	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${path}`;

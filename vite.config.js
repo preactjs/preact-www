@@ -7,11 +7,11 @@ import { precompileMarkdown } from './plugins/precompile-markdown/index.js';
 import { netlifyPlugin } from './plugins/netlify.js';
 import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.js';
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
-import { rssFeedPlugin } from './plugins/rss-feed.js';
-import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
+//import { rssFeedPlugin } from './plugins/rss-feed.js';
+//import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 
 // TODO: Should we do this for all routes, rely on discovery a bit less?
-import { tutorialRoutes } from './src/lib/route-utils.js';
+//import { tutorialRoutes } from './src/lib/route-utils.js';
 
 export default defineConfig({
 	publicDir: 'src/assets',
@@ -39,15 +39,15 @@ export default defineConfig({
 	plugins: [
 		preact({
 			prerender: {
-				enabled: true,
+				enabled: false,
 				renderTarget: '#app',
 				// The routes that will not be discovered automatically
 				additionalPrerenderRoutes: [
 					'/404',
 					'/guide/v8/getting-started',
 					'/guide/v11/getting-started',
-					'/branding',
-					...Object.keys(tutorialRoutes)
+					'/branding'
+					//...Object.keys(tutorialRoutes)
 				]
 			}
 		}),
@@ -87,8 +87,8 @@ export default defineConfig({
 		}),
 		netlifyPlugin(),
 		spaFallbackMiddlewarePlugin(),
-		htmlRoutingMiddlewarePlugin(),
-		rssFeedPlugin(),
-		generateLlmsTxtPlugin()
+		htmlRoutingMiddlewarePlugin()
+		//rssFeedPlugin(),
+		//generateLlmsTxtPlugin()
 	]
 });

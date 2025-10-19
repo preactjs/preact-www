@@ -8,7 +8,11 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
-import { useLanguage, useTranslation, useNavTranslation } from '../../lib/i18n';
+import {
+	useLanguageContext,
+	useTranslate,
+	usePathTranslate
+} from '../../lib/i18n';
 import { prefetchContent } from '../../lib/use-content';
 import { ReplPage, TutorialPage, CodeEditor } from '../routes';
 
@@ -44,7 +48,7 @@ export default function Header() {
 
 function MainNav() {
 	const { path, route } = useLocation();
-	const about = useNavTranslation('/about');
+	const translatePath = usePathTranslate();
 
 	const brandingRedirect = e => {
 		e.preventDefault();
@@ -66,7 +70,7 @@ function MainNav() {
 				{isOpen => (
 					<ExpandableNavLink
 						isOpen={isOpen}
-						label={about}
+						label={translatePath('headerNav', '/about')}
 						class={cx(path.startsWith('/about') && style.current)}
 					>
 						<>
@@ -118,8 +122,23 @@ function SocialLinks() {
 }
 
 function LanguagePicker() {
-	const [lang, setLang] = useLanguage();
-	const selectYourLanguage = useTranslation('selectYourLanguage');
+	const { lang, setLang } = useLanguageContext();
+	const translate = useTranslate();
+
+	const languages = [];
+	if (typeof window !== 'undefined') {
+		for (const language in config.languages) {
+			languages.push(
+				<button
+					class={cx(language == lang && style.current)}
+					data-value={language}
+					onClick={e => setLang(e.currentTarget.dataset.value)}
+				>
+					{config.languages[language]}
+				</button>
+			);
+		}
+	}
 
 	return (
 		<div class={style.translation}>
@@ -132,18 +151,9 @@ function LanguagePicker() {
 								<use href="/icons.svg#i18n" />
 							</svg>
 						}
-						aria-label={selectYourLanguage}
+						aria-label={translate('i18n', 'selectYourLanguage')}
 					>
-						{typeof window !== 'undefined' &&
-							Object.keys(config.languages).map(id => (
-								<button
-									class={cx(id == lang && style.current)}
-									data-value={id}
-									onClick={e => setLang(e.currentTarget.dataset.value)}
-								>
-									{config.languages[id]}
-								</button>
-							))}
+						{languages}
 					</ExpandableNavLink>
 				)}
 			</NavMenu>
@@ -225,7 +235,7 @@ function NavMenu(props) {
 /**
  * Button that expands into a menu when clicked. Pass in label & menu items as children.
  *
- * @param {ExpandableNavLinkProps & import('preact').JSX.ButtonHTMLAttributes} props
+ * @param {ExpandableNavLinkProps & import('preact').ButtonHTMLAttributes} props
  */
 function ExpandableNavLink({ isOpen, label, children, ...rest }) {
 	return (
@@ -256,19 +266,23 @@ const prefetchAndPreload = href => {
 };
 
 /**
+ * @typedef {import('../../locales/en.json')} Translations
+ */
+
+/**
  * @typedef {Object} NavLinkProps
- * @property {string} props.href
+ * @property {keyof typeof import('../../route-config.js').headerNav} props.href
  * @property {string} [props.clsx]
  * @property {import('preact').ComponentChildren} [props.flair]
  * @property {boolean} [props.isOpen]
  */
 
 /**
- * @param {NavLinkProps & import('preact').AnchorHTMLAttributes} props
+ * @param {NavLinkProps & Omit<import('preact').AnchorHTMLAttributes, 'role'>} props
  */
 function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
-	const label = useNavTranslation(href);
+	const translatePath = usePathTranslate();
 
 	return (
 		<a
@@ -279,7 +293,7 @@ function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 			{...rest}
 		>
 			{flair}
-			{label}
+			{translatePath('headerNav', href)}
 		</a>
 	);
 }

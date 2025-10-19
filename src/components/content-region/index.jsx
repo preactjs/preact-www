@@ -2,7 +2,7 @@ import { useEffect } from 'preact/hooks';
 import Markup from 'preact-markup';
 import widgets from '../widgets';
 import style from './style.module.css';
-import { useTranslation } from '../../lib/i18n';
+import { useTranslate } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
 import { prefetchContent } from '../../lib/use-content';
 import { ReplPage, TutorialPage, CodeEditor } from '../routes';
@@ -43,7 +43,7 @@ function SiblingNav({ route, lang, start }) {
 				? route.name[lang || 'en']
 				: route.name || route.title;
 	}
-	const label = useTranslation(start ? 'previous' : 'next');
+	const translate = useTranslate();
 
 	return (
 		<a class={style.nextLink} data-dir-end={!start} href={url}>
@@ -53,7 +53,9 @@ function SiblingNav({ route, lang, start }) {
 				<span class={style.nextTitle}>
 					<span class={style.nextTitleInner}>{title}</span>
 				</span>
-				<span class={style.nextUrl}>{label}</span>
+				<span class={style.nextUrl}>
+					{translate('i18n', start ? 'previousPage' : 'nextPage')}
+				</span>
 			</span>
 		</a>
 	);
@@ -73,7 +75,11 @@ export default function ContentRegion({ content, components, ...props }) {
 	}, [props.current]);
 
 	return (
-		<content-region name={props.current} data-page-nav={hasNav} can-edit={props.canEdit}>
+		<content-region
+			name={props.current}
+			data-page-nav={hasNav}
+			can-edit={props.canEdit}
+		>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup
