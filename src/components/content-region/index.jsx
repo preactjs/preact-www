@@ -4,33 +4,9 @@ import widgets from '../widgets';
 import style from './style.module.css';
 import { useTranslation } from '../../lib/i18n';
 import { TocContext } from '../table-of-contents';
-import { prefetchContent } from '../../lib/use-content';
-import { ReplPage, TutorialPage, CodeEditor } from '../routes';
 
 const COMPONENTS = {
-	...widgets,
-	a(props) {
-		if (props.href && props.href.startsWith('/')) {
-			const url = new URL(props.href, location.origin);
-
-			const prefetchAndPreload = () => {
-				if (props.href.startsWith('/repl')) {
-					ReplPage.preload();
-					CodeEditor.preload();
-				} else if (props.href.startsWith('/tutorial')) {
-					TutorialPage.preload();
-					CodeEditor.preload();
-				}
-
-				prefetchContent(url.pathname);
-			};
-
-			props.onMouseOver = prefetchAndPreload;
-			props.onTouchStart = prefetchAndPreload;
-		}
-
-		return <a {...props} />;
-	}
+	...widgets
 };
 
 function SiblingNav({ route, lang, start }) {
@@ -73,7 +49,11 @@ export default function ContentRegion({ content, components, ...props }) {
 	}, [props.current]);
 
 	return (
-		<content-region name={props.current} data-page-nav={hasNav} can-edit={props.canEdit}>
+		<content-region
+			name={props.current}
+			data-page-nav={hasNav}
+			can-edit={props.canEdit}
+		>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup

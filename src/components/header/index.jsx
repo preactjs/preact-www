@@ -9,8 +9,6 @@ import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
 import { useLanguage, useTranslation, useNavTranslation } from '../../lib/i18n';
-import { prefetchContent } from '../../lib/use-content';
-import { ReplPage, TutorialPage, CodeEditor } from '../routes';
 
 export default function Header() {
 	const { url } = useLocation();
@@ -241,21 +239,6 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
 }
 
 /**
- * @param {string} href
- */
-const prefetchAndPreload = href => {
-	if (href.startsWith('/repl')) {
-		ReplPage.preload();
-		CodeEditor.preload();
-	} else if (href.startsWith('/tutorial')) {
-		TutorialPage.preload();
-		CodeEditor.preload();
-	}
-
-	prefetchContent(href);
-};
-
-/**
  * @typedef {Object} NavLinkProps
  * @property {string} props.href
  * @property {string} [props.clsx]
@@ -273,8 +256,6 @@ function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	return (
 		<a
 			href={href}
-			onMouseOver={() => prefetchAndPreload(href)}
-			onTouchStart={() => prefetchAndPreload(href)}
 			class={cx(pathMatchesHref(path, href) && style.current, clsx)}
 			{...rest}
 		>

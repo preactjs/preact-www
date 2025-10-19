@@ -1,6 +1,5 @@
 import { useRoute } from 'preact-iso';
 import cx from '../../lib/cx';
-import { prefetchContent } from '../../lib/use-content';
 import style from './sidebar-nav.module.css';
 
 /**
@@ -69,8 +68,6 @@ function SidebarNavLink(props) {
 		<a
 			href={href}
 			onClick={onClick}
-			onMouseOver={() => prefetchContent(href)}
-			onTouchStart={() => prefetchContent(href)}
 			class={cx(style.link, activeCss, style['level-' + level])}
 		>
 			{children}
