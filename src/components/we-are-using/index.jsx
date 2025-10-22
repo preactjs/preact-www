@@ -4,6 +4,11 @@ import styles from './style.module.css';
 // in `src/assets/we-are-using/my-logo.svg`.
 const companies = [
 	{
+		name: 'Apple',
+		href: 'https://www.apple.com/',
+		logo: 'apple.svg'
+	},
+	{
 		name: 'Babbel',
 		href: 'https://www.babbel.com/',
 		logo: 'babbel.svg'
