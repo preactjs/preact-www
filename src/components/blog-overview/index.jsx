@@ -1,8 +1,6 @@
 import config from '../../config.json';
 import { useLanguage, useTranslation, getRouteName } from '../../lib/i18n';
 import { Time } from '../time';
-import { prefetchContent } from '../../lib/use-content';
-import { BlogPage } from '../routes.jsx';
 import s from './style.module.css';
 
 export default function BlogOverview() {
@@ -16,21 +14,16 @@ export default function BlogOverview() {
 					const name = getRouteName(post, lang);
 					const excerpt = post.excerpt[lang] || post.excerpt.en;
 
-					const prefetchAndPreload = () => {
-						BlogPage.preload();
-						prefetchContent(post.path);
-					};
-
 					return (
 						<article class={s.post}>
 							<div class={s.meta}>
 								<Time value={post.date} />
 							</div>
 							<h2 class={s.title}>
-								<a href={post.path} onMouseOver={prefetchAndPreload} onTouchStart={prefetchAndPreload}>{name}</a>
+								<a href={post.path}>{name}</a>
 							</h2>
 							<p class={s.excerpt}>{excerpt}</p>
-							<a href={post.path} onMouseOver={prefetchAndPreload} onTouchStart={prefetchAndPreload} class="btn-small">
+							<a href={post.path} class="btn-small">
 								{continueReading} &rarr;
 							</a>
 						</article>
