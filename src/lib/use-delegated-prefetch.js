@@ -15,8 +15,6 @@ export function useDelegatedPrefetch() {
 				if (!e.target.href.startsWith(location.origin)) return;
 				const pathname = new URL(e.target.href).pathname;
 
-				if (!pathname.startsWith('/')) return;
-
 				if (pathname.startsWith('/repl')) {
 					ReplPage.preload();
 					CodeEditor.preload();
