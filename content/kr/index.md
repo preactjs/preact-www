@@ -10,7 +10,7 @@ description: Fast 3kB alternative to React with the same modern API
     <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">시작하기</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact로 전환하기</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Preact로 전환하기</a>
     </p>
 </jumbotron>
 
@@ -117,7 +117,7 @@ function Counter() {
       가상 DOM 구성 요소를 사용하면 버튼에서 데이터 공급자에 이르기까지 재사용 가능한 모든 것을 쉽게 공유할 수 있습니다. Preact의 디자인은 React 생태계에서 사용 가능한 수천 개의 구성 요소를 원활하게 사용할 수 있음을 의미합니다.
     </p>
     <p>
-      간단한 <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> 별칭을 번들러에 추가하면 가장 복잡한 React 구성 요소도 애플리케이션에서 사용할 수 있는 호환성 계층이 제공됩니다.
+      간단한 <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact/compat</a> 별칭을 번들러에 추가하면 가장 복잡한 React 구성 요소도 애플리케이션에서 사용할 수 있는 호환성 계층이 제공됩니다.
     </p>
   </div>
 </section>
@@ -259,6 +259,6 @@ function Counter() {
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="btn primary">시작하기</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Preact로 전환하기</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Preact로 전환하기</a>
     </p>
 </section>

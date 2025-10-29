@@ -10,7 +10,7 @@ description: Быстрая 3КБ-альтернатива React с тем же 
     <p class="tagline">Быстрая альтернатива React весом 3 КБ с тем же современным API.</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">Начать</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Перейти на Preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Перейти на Preact</a>
     </p>
 </jumbotron>
 
@@ -120,7 +120,7 @@ function Counter() {
       Дизайн Preact позволяет легко использовать тысячи компонентов, доступных в экосистеме React.
     </p>
     <p>
-      Добавление простого <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> псевдонима в вашу сборку обеспечивает совместимость даже с самыми сложными компонентами React.
+      Добавление простого <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact/compat</a> псевдонима в вашу сборку обеспечивает совместимость даже с самыми сложными компонентами React.
     </p>
   </div>
 </section>
@@ -263,6 +263,6 @@ function Counter() {
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="btn primary">Начать</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">Перейти на Preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Перейти на Preact</a>
     </p>
 </section>
