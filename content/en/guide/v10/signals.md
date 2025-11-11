@@ -182,7 +182,7 @@ function removeTodo(todo) {
 
 ## Building the UI
 
-Now that we've modeled our application's state, it's time to wire in up to a nice UI that users can interact with.
+Now that we've modeled our application's state, it's time to wire it up to a nice UI that users can interact with.
 
 ```jsx
 function TodoList() {
