@@ -74,7 +74,8 @@ export function useLanguage() {
 
 /**
  * Get the translation of a key. Defaults to English if no translation is found
- * @param {string} key
+ * @param {keyof typeof config.i18n} key
+ * @returns {string}
  */
 export function useTranslation(key) {
 	const [lang] = useLanguage();
