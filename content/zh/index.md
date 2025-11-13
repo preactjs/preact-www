@@ -11,7 +11,7 @@ description: React 的 3kb 轻量级替代方案，拥有相同的现代 API。
     <p class="tagline">3kb 大小的 React 轻量、快速替代方案，拥有相同的现代 API。</p>
     <p class="intro-buttons">
         <a href="/guide/v10/getting-started" class="btn primary">开始上手</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">切换到 preact</a>
     </p>
 </jumbotron>
 
@@ -123,7 +123,7 @@ function Counter() {
       虚拟 DOM 组件让其复用易如反掌——无论是按钮，还是数据提供方，Preact 的设计都能让您轻松、无缝地借用来自 React 生态中的许多组件。
     </p>
     <p>
-      为您的打包工具添加一行简单的 <a href="/guide/v10/switching-to-preact#how-to-alias-preact-compat">preact/compat</a> 替名即可为即便是最为复杂的 React 组件提供一层无缝兼容。
+      为您的打包工具添加一行简单的 <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact/compat</a> 替名即可为即便是最为复杂的 React 组件提供一层无缝兼容。
     </p>
   </div>
 </section>
@@ -269,6 +269,6 @@ function Counter() {
     </p>
     <p>
         <a href="/guide/v10/getting-started" class="btn primary">开始上手</a>
-        <a href="/guide/v10/switching-to-preact" class="btn secondary">切换到 Preact</a>
+        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">切换到 Preact</a>
     </p>
 </section>

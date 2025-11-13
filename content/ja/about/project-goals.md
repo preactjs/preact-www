@@ -25,4 +25,4 @@ Reactの機能の一部は意図的にPreactでは提供されていません。
 - `Children`は標準のArrayに置き換えることができます。
 - `Synthetic Events`はPreactがIE8のような古いブラウザに対応しないのでサポートされません。
 
-[preact/compat]: /guide/v10/switching-to-preact
+[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
