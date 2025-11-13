@@ -1092,23 +1092,5 @@
 				"en": "Congratulations!"
 			}
 		}
-	],
-	"branding": [
-		{
-			"name": "logo-text",
-			"alt": "Full Logo"
-		},
-		{
-			"name": "logo-text-inverted",
-			"alt": "Full Logo with Inverted Colors"
-		},
-		{
-			"name": "symbol",
-			"alt": "Preact Symbol"
-		},
-		{
-			"name": "symbol-inverted",
-			"alt": "Preact Symbol with Inverted Colors"
-		}
 	]
 }
