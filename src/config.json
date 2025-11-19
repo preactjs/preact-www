@@ -12,7 +12,7 @@
 		"tr": "Turkish",
 		"zh": "简体中文"
 	},
-	"repo": "preact",
+	"repo": "preactjs/preact",
 	"docsearch": {
 		"apiKey": "842e1531d4af13c18b4718c456e386b2",
 		"indexName": "preact",
@@ -56,26 +56,24 @@
 		"selectYourLanguage": {
 			"en": "Select your language"
 		},
-		"tutorial": {
-			"begin": {
-				"en": "Begin Tutorial",
-				"kr": "튜토리얼 시작",
-				"ru": "Начать обучение",
-				"zh": "开始教程"
-			},
-			"help": {
-				"en": "Help",
-				"ja": "助ける",
-				"kr": "정답 확인",
-				"ru": "Помощь",
-				"zh": "帮助"
-			},
-			"solve": {
-				"en": "Solve",
-				"ja": "説き明かす",
-				"ru": "Решить",
-				"zh": "解决"
-			}
+		"beginTutorial": {
+			"en": "Begin Tutorial",
+			"kr": "튜토리얼 시작",
+			"ru": "Начать обучение",
+			"zh": "开始教程"
+		},
+		"help": {
+			"en": "Help",
+			"ja": "助ける",
+			"kr": "정답 확인",
+			"ru": "Помощь",
+			"zh": "帮助"
+		},
+		"solve": {
+			"en": "Solve",
+			"ja": "説き明かす",
+			"ru": "Решить",
+			"zh": "解决"
 		}
 	},
 	"nav": [
