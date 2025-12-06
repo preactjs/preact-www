@@ -20,7 +20,7 @@ export default function Toc() {
 	if (items.length === 0) return null;
 
 	return (
-		<nav>
+		<nav aria-label="Table of Contents">
 			<ul>
 				{items.map(entry => <TocItem {...entry} />)}
 			</ul>
