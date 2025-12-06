@@ -29,10 +29,11 @@ function injectDocsearchCSS() {
  * interacted with the placeholder button prior to Docsearch fully loading.
  *
  * @param {HTMLElement} root
- * @returns {Promise<HTMLElement>}
+ * @returns {Promise<HTMLButtonElement>}
  */
 function waitForDocsearch(root) {
 	return new Promise(resolve => {
+		/** @returns {HTMLButtonElement | null} */
 		const getDocSearchButton = () =>
 			document.querySelector('.DocSearch.DocSearch-Button');
 
@@ -69,10 +70,6 @@ export default function Search() {
 	const root = useRef(null);
 	const rendered = useRef(false);
 	const interactedWith = useRef(false);
-	const loadingBar =
-		typeof window !== 'undefined'
-			? document.querySelector('loading-bar')
-			: null;
 
 	const loadDocSearch = () => {
 		if (!rendered.current) {
@@ -91,7 +88,7 @@ export default function Search() {
 
 			waitForDocsearch(root.current).then(docsearchButton => {
 				rendered.current = true;
-				loadingBar.removeAttribute('showing');
+				document.querySelector('loading-bar')?.removeAttribute('showing');
 				if (interactedWith.current) {
 					docsearchButton.click();
 				}
@@ -107,26 +104,37 @@ export default function Search() {
 			// The <loading-bar> is sat alongside the router & has it's state controlled by it,
 			// so while we could create a new context to be able to set it here, direct DOM
 			// manipulation is a heck of a lot simpler.
-			loadingBar.setAttribute('showing', 'true');
+			document.querySelector('loading-bar')?.setAttribute('showing', 'true');
 		}
 	};
 
 	return (
 		<div class={style.search} ref={root}>
-			{/* Copy/paste of the HTML DocSearch normally generates, used as a placeholder */}
-			<button
-				type="button"
-				aria-label="Search"
-				class="DocSearch DocSearch-Button"
-				onMouseOver={loadDocSearch}
-				onTouchStart={loadDocSearch}
-				onFocus={loadDocSearch}
-				onClick={onInteraction}
-			>
-				<span class="DocSearch-Button-Container">
-					<span class="DocSearch-Button-Placeholder">Search</span>
-				</span>
-			</button>
+			{rendered.current ? (
+				<ErrorBoundary>
+					<DocSearch
+						apiKey={config.docsearch.apiKey}
+						indexName={config.docsearch.indexName}
+						appId={config.docsearch.appId}
+						transformItems={transformItems}
+					/>
+				</ErrorBoundary>
+			) : (
+				/* Copy/paste of the HTML DocSearch normally generates, used as a placeholder */
+				<button
+					type="button"
+					aria-label="Search"
+					class="DocSearch DocSearch-Button"
+					onMouseOver={loadDocSearch}
+					onTouchStart={loadDocSearch}
+					onFocus={loadDocSearch}
+					onClick={onInteraction}
+				>
+					<span class="DocSearch-Button-Container">
+						<span class="DocSearch-Button-Placeholder">Search</span>
+					</span>
+				</button>
+			)}
 		</div>
 	);
 }
