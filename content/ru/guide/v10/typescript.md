@@ -205,6 +205,32 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 
 Классовые компоненты по умолчанию включают дочерние элементы, типизированные как `ComponentChildren`.
 
+## Типизация дочерних элементов
+
+`ComponentChildren` — это тип, представляющий все допустимые дочерние элементы в Preact. Он включает примитивные типы, такие как `string`, `number` и `boolean`, а также элементы Preact, значения `null`/`undefined` и массивы из всего вышеперечисленного. Для тех, кто знаком с React, он работает очень похоже на `ReactNode`.
+
+```tsx
+import { h, ComponentChildren } from 'preact';
+
+interface MyHeadingComponentProps {
+  children: ComponentChildren;
+}
+
+function MyHeadingComponent({ children }: MyHeadingComponentProps) {
+  return <h1>{children}</h1>;
+}
+
+<MyHeadingComponent>
+  {/* Примеры валидных дочерних элементов */}
+  Привет, мир!
+  <strong>Жирный текст</strong>
+  {42}
+  {true}
+  {['Массив', '', 'строк']}
+  <OtherComponent />
+</MyHeadingComponent>
+```
+
 ## Наследование свойств HTML
 
 Когда мы пишем компоненты, такие как `<Input />`, которые оборачивают HTML-элемент `<input>`, чаще всего мы хотим унаследовать свойства, которые могут быть использованы на нативном HTML-элементе input. Для этого мы можем сделать следующее:
