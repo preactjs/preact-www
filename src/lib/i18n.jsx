@@ -72,7 +72,7 @@ export function LanguageProvider({ children }) {
 		const userLang =
 			query.lang ||
 			localStorageGet('lang') ||
-			getNavigatorLanguage(config.languages) ||
+			getNavigatorLanguage(config.locales) ||
 			'en';
 
 		setLang(userLang);

@@ -120,21 +120,6 @@ function LanguagePicker() {
 	const { lang, setLang } = useLanguageContext();
 	const translate = useTranslate();
 
-	const languages = [];
-	if (typeof window !== 'undefined') {
-		for (const language in config.languages) {
-			languages.push(
-				<button
-					class={cx(language == lang && style.current)}
-					data-value={language}
-					onClick={e => setLang(e.currentTarget.dataset.value)}
-				>
-					{config.languages[language]}
-				</button>
-			);
-		}
-	}
-
 	return (
 		<div class={style.translation}>
 			<NavMenu>
@@ -148,7 +133,16 @@ function LanguagePicker() {
 						}
 						aria-label={translate('i18n', 'selectYourLanguage')}
 					>
-						{languages}
+						{typeof window !== 'undefined' &&
+							Object.entries(config.locales).map(([id, label]) => (
+								<button
+									class={cx(id == lang && style.current)}
+									data-value={id}
+									onClick={e => setLang(e.currentTarget.dataset.value)}
+								>
+									{label}
+								</button>
+							))}
 					</ExpandableNavLink>
 				)}
 			</NavMenu>
@@ -246,10 +240,6 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
 }
 
 /**
- * @typedef {import('../../locales/en.json')} Translations
- */
-
-/**
  * @typedef {Object} NavLinkProps
  * @property {keyof typeof import('../../route-config.js').headerNav} props.href
  * @property {string} [props.clsx]
@@ -289,6 +279,10 @@ function pathMatchesHref(path, href) {
 	if (path.startsWith('/guide/') && href.startsWith('/guide/')) return true;
 	return false;
 }
+
+/**
+ * @typedef {import('../../locales/en.json')} Translations
+ */
 
 /**
  * @param {keyof typeof headerNav} path

@@ -50,9 +50,9 @@ export default function Footer() {
 					<label class={style.lang}>
 						Language:{' '}
 						<select value={lang || 'en'} onInput={onSelect}>
-							{Object.keys(config.languages).map(id => (
+							{Object.entries(config.locales).map(([id, label]) => (
 								<option selected={id == lang} value={id}>
-									{config.languages[id]}
+									{label}
 								</option>
 							))}
 						</select>

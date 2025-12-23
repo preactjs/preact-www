@@ -29,11 +29,13 @@ export default function Sidebar() {
 				),
 				level: 2,
 				href: null,
-				routes: Object.keys(docPages[version][item]).map(nested => ({
-					text: translate('sidebarNav', docPages[version][item][nested].label),
-					level: 3,
-					href: `/guide/${version}${nested}`
-				}))
+				routes: Object.entries(docPages[version][item]).map(
+					([pagePath, page]) => ({
+						text: translate('sidebarNav', page.label),
+						level: 3,
+						href: `/guide/${version}${pagePath}`
+					})
+				)
 			});
 		}
 	}

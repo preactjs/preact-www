@@ -25,8 +25,7 @@ export function rssFeedPlugin() {
 				}
 			});
 
-			for (const postPath in blogPosts) {
-				const post = blogPosts[/** @type {keyof blogPosts} */ (postPath)];
+			Object.entries(blogPosts).map(([postPath, post]) => {
 				const postTranslation = englishTranslations.blogPosts[post.label];
 
 				feed.addItem({
@@ -36,7 +35,7 @@ export function rssFeedPlugin() {
 					description: postTranslation.excerpt,
 					date: new Date(post.date)
 				});
-			}
+			});
 
 			function removeDefaultGenerator(str) {
 				return str

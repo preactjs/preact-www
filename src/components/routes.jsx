@@ -10,13 +10,9 @@ export const BlogPage = lazy(() => import('./controllers/blog-page'));
 export const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
 
 // Combined 'REPL' components, re-evaluate if any are used outside of the REPL in the future
-export const CodeEditor = lazy(() =>
-	import('../lib/repl').then(m => m.CodeEditor)
-);
+export const CodeEditor = lazy(() => import('../lib/repl').then(m => m.CodeEditor));
 export const Runner = lazy(() => import('../lib/repl').then(m => m.Runner));
-export const ErrorOverlay = lazy(() =>
-	import('../lib/repl').then(m => m.ErrorOverlay)
-);
+export const ErrorOverlay = lazy(() => import('../lib/repl').then(m => m.ErrorOverlay));
 export const Splitter = lazy(() => import('../lib/repl').then(m => m.Splitter));
 
 const routeChange = url =>
