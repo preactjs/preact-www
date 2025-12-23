@@ -8,11 +8,8 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
-import {
-	useLanguageContext,
-	useTranslate,
-	usePathTranslate
-} from '../../lib/i18n';
+import { useLanguageContext, useTranslate } from '../../lib/i18n';
+import { headerNav } from '../../route-config.js';
 
 export default function Header() {
 	const { url } = useLocation();
@@ -46,7 +43,7 @@ export default function Header() {
 
 function MainNav() {
 	const { path, route } = useLocation();
-	const translatePath = usePathTranslate();
+	const translate = useTranslate();
 
 	const brandingRedirect = e => {
 		e.preventDefault();
@@ -68,7 +65,7 @@ function MainNav() {
 				{isOpen => (
 					<ExpandableNavLink
 						isOpen={isOpen}
-						label={translatePath('headerNav', '/about')}
+						label={translate('headerNav', pathToI18nLabel('/about'))}
 						class={cx(path.startsWith('/about') && style.current)}
 					>
 						<>
@@ -265,7 +262,7 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
  */
 function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
-	const translatePath = usePathTranslate();
+	const translate = useTranslate();
 
 	return (
 		<a
@@ -274,7 +271,7 @@ function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 			{...rest}
 		>
 			{flair}
-			{translatePath('headerNav', href)}
+			{translate('headerNav', pathToI18nLabel(href))}
 		</a>
 	);
 }
@@ -291,4 +288,12 @@ function pathMatchesHref(path, href) {
 	if (href !== '/' && path.startsWith(href)) return true;
 	if (path.startsWith('/guide/') && href.startsWith('/guide/')) return true;
 	return false;
+}
+
+/**
+ * @param {keyof typeof headerNav} path
+ * @returns {keyof Translations['headerNav']}
+ */
+function pathToI18nLabel(path) {
+	return headerNav[path].label;
 }

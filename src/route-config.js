@@ -318,16 +318,6 @@ function flattenRoutes(routes) {
 	return out;
 }
 
-// TODO: This creates a flat object of path endings alone. I.e., `/getting-started` instead of `/guide/v10/getting-started`
-// We almost certainly don't want this.
-export const allPages = {
-	...headerNav,
-	...flattenRoutes(docPages.v11),
-	...flattenRoutes(docPages.v10),
-	...docPages.v8,
-	...blogPosts
-};
-
 export const flatDocPages = {
 	v8: docPages.v8,
 	v10: flattenRoutes(docPages.v10),

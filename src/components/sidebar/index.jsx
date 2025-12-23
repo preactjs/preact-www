@@ -2,7 +2,7 @@ import { useRoute } from 'preact-iso';
 import DocVersion from '../doc-version';
 import SidebarNav from './sidebar-nav';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { useTranslate, usePathTranslate } from '../../lib/i18n';
+import { useTranslate } from '../../lib/i18n';
 import { docPages } from '../../route-config.js';
 import style from './style.module.css';
 
@@ -12,16 +12,12 @@ export default function Sidebar() {
 	} = /** @type {{ version: 'v8' | 'v10' | 'v11' }} */ (useRoute().params);
 	const [open, setOpen] = useOverlayToggle();
 	const translate = useTranslate();
-	const translatePath = usePathTranslate();
 
 	const navItems = [];
 	for (const item in docPages[version]) {
 		if (version == 'v8') {
 			navItems.push({
-				text: translatePath(
-					'sidebarNav',
-					/** @type {keyof typeof import('../../route-config.js').allPages} */ (item)
-				),
+				text: translate('sidebarNav', docPages[version][item].label),
 				level: 2,
 				href: `/guide/${version}${item}`
 			});
@@ -29,15 +25,12 @@ export default function Sidebar() {
 			navItems.push({
 				text: translate(
 					'sidebarSections',
-					/** @type {keyof typeof docPages['v10']} */ (item)
+					/** @type {keyof typeof docPages.v10 | keyof typeof docPages.v11} */ (item)
 				),
 				level: 2,
 				href: null,
 				routes: Object.keys(docPages[version][item]).map(nested => ({
-					text: translatePath(
-						'sidebarNav',
-						/** @type {keyof typeof import('../../route-config.js').allPages} */ (nested)
-					),
+					text: translate('sidebarNav', docPages[version][item][nested].label),
 					level: 3,
 					href: `/guide/${version}${nested}`
 				}))

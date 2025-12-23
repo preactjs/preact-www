@@ -1,16 +1,20 @@
 import { blogPosts } from '../../route-config.js';
-import { useTranslate, useBlogTranslate } from '../../lib/i18n';
+import { useTranslate } from '../../lib/i18n';
 import { Time } from '../time';
 import s from './style.module.css';
 
+/**
+ * @typedef {import('../../locales/en.json')} Translations
+ */
+
 export default function BlogOverview() {
 	const translate = useTranslate();
-	const translateBlog = useBlogTranslate();
 
 	const posts = [];
 	for (const post in blogPosts) {
-		const translatedBlog = translateBlog(
-			/** @type {keyof typeof blogPosts} */ (post)
+		const translatedBlog = translate(
+			'blogPosts',
+			/** @type {keyof Translations['blogPosts']} */ (blogPosts[post].label)
 		);
 
 		posts.push(

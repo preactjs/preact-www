@@ -4,7 +4,6 @@ import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage';
 import { useResource } from './use-resource.js';
-import { allPages } from '../route-config.js';
 import config from '../config.json';
 import englishTranslations from '../locales/en.json';
 
@@ -119,37 +118,4 @@ export function useTranslate() {
 	 */
 	return (namespace, key) =>
 		translations[namespace][key] || fallback[namespace][key];
-}
-
-/**
- * Maps a path to its translated name based upon the current language.
- */
-export function usePathTranslate() {
-	const { translations, fallback } = useContext(LanguageContext);
-
-	/**
-	 * @param {'headerNav' | 'sidebarNav'} namespace
-	 * @param {keyof allPages} path
-	 * @return {string}
-	 */
-	return (namespace, path) => {
-		const key = allPages[path].label;
-		return translations[namespace][key] || fallback[namespace][key];
-	};
-}
-
-/**
- * Maps a blog post path to its translated metadata based upon the current language.
- */
-export function useBlogTranslate() {
-	const { translations, fallback } = useContext(LanguageContext);
-
-	/**
-	 * @param {keyof typeof import('../route-config.js').blogPosts} path
-	 * @return {{ label: string, excerpt: string }}
-	 */
-	return path => {
-		const key = allPages[path].label;
-		return translations.blogPosts[key] || fallback.blogPosts[key];
-	};
 }
