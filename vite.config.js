@@ -10,8 +10,19 @@ import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.j
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 
-// TODO: Should we do this for all routes, rely on discovery a bit less?
-//import { tutorialRoutes } from './src/lib/route-utils.js';
+import {
+	headerNav,
+	flatDocPages,
+	tutorialPages,
+	blogPosts
+} from './src/route-config.js';
+
+/**
+ * @param {'v8' | 'v10' | 'v11'} version
+ * @param {string} path
+ * @returns {string}
+ */
+const flatDocPathToNested = (version, path) => `/guide/${version}${path}`;
 
 export default defineConfig({
 	publicDir: 'src/assets',
@@ -44,10 +55,19 @@ export default defineConfig({
 				// The routes that will not be discovered automatically
 				additionalPrerenderRoutes: [
 					'/404',
-					'/guide/v8/getting-started',
-					'/guide/v11/getting-started',
-					'/branding'
-					//...Object.keys(tutorialRoutes)
+					'/branding',
+					...Object.keys(headerNav),
+					...Object.keys(flatDocPages.v8).map(path =>
+						flatDocPathToNested('v8', path)
+					),
+					...Object.keys(flatDocPages.v10).map(path =>
+						flatDocPathToNested('v10', path)
+					),
+					...Object.keys(flatDocPages.v11).map(path =>
+						flatDocPathToNested('v11', path)
+					),
+					...Object.keys(tutorialPages),
+					...Object.keys(blogPosts)
 				]
 			}
 		}),
