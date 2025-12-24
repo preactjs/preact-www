@@ -8,7 +8,8 @@ import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
 import { useLocation } from 'preact-iso';
-import { useLanguage, useTranslation, useNavTranslation } from '../../lib/i18n';
+import { useLanguageContext, useTranslate } from '../../lib/i18n';
+import { headerNav } from '../../route-config.js';
 
 export default function Header() {
 	const { url } = useLocation();
@@ -42,7 +43,7 @@ export default function Header() {
 
 function MainNav() {
 	const { path, route } = useLocation();
-	const about = useNavTranslation('/about');
+	const translate = useTranslate();
 
 	const brandingRedirect = e => {
 		e.preventDefault();
@@ -64,7 +65,7 @@ function MainNav() {
 				{isOpen => (
 					<ExpandableNavLink
 						isOpen={isOpen}
-						label={about}
+						label={translate('headerNav', 'about')}
 						class={cx(path.startsWith('/about') && style.current)}
 					>
 						<>
@@ -116,8 +117,8 @@ function SocialLinks() {
 }
 
 function LanguagePicker() {
-	const [lang, setLang] = useLanguage();
-	const selectYourLanguage = useTranslation('selectYourLanguage');
+	const { lang, setLang } = useLanguageContext();
+	const translate = useTranslate();
 
 	return (
 		<div class={style.translation}>
@@ -130,16 +131,16 @@ function LanguagePicker() {
 								<use href="/icons.svg#i18n" />
 							</svg>
 						}
-						aria-label={selectYourLanguage}
+						aria-label={translate('i18n', 'selectYourLanguage')}
 					>
 						{typeof window !== 'undefined' &&
-							Object.keys(config.languages).map(id => (
+							Object.entries(config.locales).map(([id, label]) => (
 								<button
 									class={cx(id == lang && style.current)}
 									data-value={id}
 									onClick={e => setLang(e.currentTarget.dataset.value)}
 								>
-									{config.languages[id]}
+									{label}
 								</button>
 							))}
 					</ExpandableNavLink>
@@ -240,7 +241,7 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
 
 /**
  * @typedef {Object} NavLinkProps
- * @property {string} props.href
+ * @property {keyof typeof import('../../route-config.js').headerNav} props.href
  * @property {string} [props.clsx]
  * @property {import('preact').ComponentChildren} [props.flair]
  * @property {boolean} [props.isOpen]
@@ -251,7 +252,7 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
  */
 function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 	const { path } = useLocation();
-	const label = useNavTranslation(href);
+	const translate = useTranslate();
 
 	return (
 		<a
@@ -260,7 +261,7 @@ function NavLink({ href, flair, clsx, isOpen, ...rest }) {
 			{...rest}
 		>
 			{flair}
-			{label}
+			{translate('headerNav', pathToI18nLabel(href))}
 		</a>
 	);
 }
@@ -277,4 +278,16 @@ function pathMatchesHref(path, href) {
 	if (href !== '/' && path.startsWith(href)) return true;
 	if (path.startsWith('/guide/') && href.startsWith('/guide/')) return true;
 	return false;
+}
+
+/**
+ * @typedef {import('../../locales/en.json')} Translations
+ */
+
+/**
+ * @param {keyof typeof headerNav} path
+ * @returns {keyof Translations['headerNav']}
+ */
+function pathToI18nLabel(path) {
+	return headerNav[path].label;
 }

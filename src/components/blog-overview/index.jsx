@@ -1,18 +1,16 @@
-import config from '../../config.json';
-import { useLanguage, useTranslation, getRouteName } from '../../lib/i18n';
+import { blogPosts } from '../../route-config.js';
+import { useTranslate } from '../../lib/i18n';
 import { Time } from '../time';
 import s from './style.module.css';
 
 export default function BlogOverview() {
-	const [lang] = useLanguage();
-	const continueReading = useTranslation('continueReading');
+	const translate = useTranslate();
 
 	return (
 		<div>
 			<div class={s.postList}>
-				{config.blog.map(post => {
-					const name = getRouteName(post, lang);
-					const excerpt = post.excerpt[lang] || post.excerpt.en;
+				{Object.entries(blogPosts).map(([postPath, post]) => {
+					const translatedBlog = translate('blogPosts', post.label);
 
 					return (
 						<article class={s.post}>
@@ -20,11 +18,11 @@ export default function BlogOverview() {
 								<Time value={post.date} />
 							</div>
 							<h2 class={s.title}>
-								<a href={post.path}>{name}</a>
+								<a href={postPath}>{translatedBlog.label}</a>
 							</h2>
-							<p class={s.excerpt}>{excerpt}</p>
-							<a href={post.path} class="btn-small">
-								{continueReading} &rarr;
+							<p class={s.excerpt}>{translatedBlog.excerpt}</p>
+							<a href={postPath} class="btn-small">
+								{translate('i18n', 'continueReading')} &rarr;
 							</a>
 						</article>
 					);

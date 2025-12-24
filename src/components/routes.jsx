@@ -3,7 +3,7 @@ import { Router, Route, lazy } from 'preact-iso';
 import { Page } from './controllers/page';
 import { GuidePage } from './controllers/guide-page';
 import { NotFound } from './controllers/not-found';
-import { navRoutes } from '../lib/route-utils';
+import { headerNav } from '../route-config.js';
 
 export const ReplPage = lazy(() => import('./controllers/repl-page'));
 export const BlogPage = lazy(() => import('./controllers/blog-page'));
@@ -19,16 +19,17 @@ const routeChange = url =>
 	// @ts-ignore
 	typeof ga === 'function' && ga('send', 'pageview', url);
 
-const genericRoutes = Object.keys(navRoutes)
-	.filter(
-		route =>
-			!route.startsWith('/guide') &&
-			!route.startsWith('/tutorial') &&
-			!route.startsWith('/repl')
+const genericRoutes = [];
+for (const route in headerNav) {
+	if (
+		route.startsWith('/guide') ||
+		route.startsWith('/tutorial') ||
+		route.startsWith('/repl')
 	)
-	.map(route => (
-		<Route key={route} path={route} component={Page} />
-	));
+		continue;
+
+	genericRoutes.push(<Route key={route} path={route} component={Page} />);
+}
 
 export default function Routes() {
 	const [loading, setLoading] = useState(false);

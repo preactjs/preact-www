@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'preact/hooks';
 import { useRoute, ErrorBoundary } from 'preact-iso';
 import { useContent } from '../../lib/use-content';
-import { useLanguage } from '../../lib/i18n.jsx';
-import config from '../../config.json';
+import { useLanguageContext } from '../../lib/i18n.jsx';
 import { NotFound } from './not-found';
 import cx from '../../lib/cx';
 import { MarkdownRegion } from './markdown-region';
 import Sidebar from '../sidebar';
 import Footer from '../footer/index';
-import { docRoutes } from '../../lib/route-utils';
+import { flatDocPages } from '../../route-config.js';
 import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version';
 import style from './style.module.css';
 
 export function GuidePage() {
 	const { version, name } = useRoute().params;
-	const isValidRoute = docRoutes[version]['/' + name];
+	const isValidRoute = flatDocPages[version]['/' + name];
 
 	return (
 		<ErrorBoundary>
@@ -57,9 +56,7 @@ function OldDocsWarning() {
 	}
 
 	const outdatedVersion = version !== PREVIEW_MAJOR;
-	const latestExists = config.docs[LATEST_MAJOR].some(section =>
-		section.routes.some(route => route.path === '/' + name)
-	);
+	const latestExists = flatDocPages[LATEST_MAJOR]['/' + name];
 
 	return (
 		<div class={style.stickyWarning}>
@@ -93,7 +90,7 @@ const MAINTAINED_LANGUAGES = ['en', 'ru', 'zh'];
 function UnmaintainedTranslationWarning({ meta }) {
 	const { path, params } = useRoute();
 	const { name, version } = params;
-	const [lang, setLang] = useLanguage();
+	const { lang, setLang } = useLanguageContext();
 
 	if (
 		version !== LATEST_MAJOR ||

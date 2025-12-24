@@ -3,12 +3,22 @@ import { useContext, useEffect, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage';
+import { useResource } from './use-resource.js';
 import config from '../config.json';
+import englishTranslations from '../locales/en.json';
+
+const translationURLs = import.meta.glob('../locales/!(en)*.json', {
+	query: '?url&no-inline',
+	eager: true,
+	import: 'default'
+});
 
 /**
  * @typedef LanguageContext
  * @property {string} lang
  * @property {(string) => void} setLang
+ * @property {typeof englishTranslations} translations
+ * @property {typeof englishTranslations} fallback
  */
 
 /**
@@ -41,10 +51,29 @@ export function LanguageProvider({ children }) {
 	// We only prerender in English
 	const [lang, setLang] = useState('en');
 
+	const translations = useResource(() => {
+		if (lang == 'en') return Promise.resolve(englishTranslations);
+		let url = '';
+		for (const translationURL in translationURLs) {
+			if (translationURL.includes(`/${lang}.json`)) {
+				url = /** @type {string} */ (translationURLs[translationURL]);
+				break;
+			}
+		}
+		if (!url) throw new Error(`No translation found for language: ${lang}`);
+
+		return fetch(url, {
+			credentials: 'include',
+			mode: 'no-cors'
+		}).then(r => r.json());
+	}, [lang]);
+
 	useEffect(() => {
-		const localStorageLang = localStorageGet('lang');
-		const navigatorLang = getNavigatorLanguage(config.languages);
-		const userLang = query.lang || localStorageLang || navigatorLang || 'en';
+		const userLang =
+			query.lang ||
+			localStorageGet('lang') ||
+			getNavigatorLanguage(config.locales) ||
+			'en';
 
 		setLang(userLang);
 		document.documentElement.lang = userLang;
@@ -57,60 +86,36 @@ export function LanguageProvider({ children }) {
 	};
 
 	return (
-		<LanguageContext.Provider value={{ lang, setLang: setAndUpdateHtmlAttr }}>
+		<LanguageContext.Provider
+			value={{
+				lang,
+				setLang: setAndUpdateHtmlAttr,
+				translations,
+				fallback: englishTranslations
+			}}
+		>
 			{children}
 		</LanguageContext.Provider>
 	);
 }
 
-/**
- * Handles all logic related to language settings
- * @returns {[string, (v: string) => void]}
- */
-export function useLanguage() {
-	const { lang, setLang } = useContext(LanguageContext);
-	return [lang, setLang];
+export function useLanguageContext() {
+	return useContext(LanguageContext);
 }
 
 /**
- * Get the translation of a key. Defaults to English if no translation is found
- * @param {string} key
+ * Maps a key to its translated string based upon the current language.
  */
-export function useTranslation(key) {
-	const [lang] = useLanguage();
-	const data = config.i18n[key];
-	return data[lang] || data.en;
-}
+export function useTranslate() {
+	const { translations, fallback } = useContext(LanguageContext);
 
-/**
- * Get the translated name of a path based upon the current language.
- * @param {string} path
- */
-export function useNavTranslation(path) {
-	const [lang] = useLanguage();
-
-	for (const route in config.nav) {
-		if (config.nav[route].path === path) {
-			return getRouteName(config.nav[route], lang);
-		} else if (config.nav[route].routes) {
-			for (const subRoute of config.nav[route].routes) {
-				if (subRoute.path === path) {
-					return getRouteName(subRoute, lang);
-				}
-			}
-		}
-	}
-
-	return null;
-}
-
-/**
- * @param {{ name: Record<string, string> | string }} route
- * @param {string} lang
- * @return {string}
- */
-export function getRouteName(route, lang) {
-	return typeof route.name === 'object'
-		? route.name[lang] || route.name.en
-		: route.name;
+	/**
+	 * @template {keyof typeof translations} T
+	 * @template {keyof typeof translations[T]} K
+	 * @param {T} namespace
+	 * @param {K} key
+	 * @return {typeof translations[T][K]}
+	 */
+	return (namespace, key) =>
+		translations[namespace][key] || fallback[namespace][key];
 }

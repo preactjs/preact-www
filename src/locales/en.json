@@ -1,0 +1,98 @@
+{
+	"i18n": {
+		"nextPage": "Next Page",
+		"previousPage": "Previous Page",
+		"continueReading": "Continue reading",
+		"selectYourLanguage": "Select your language",
+		"beginTutorial": "Begin Tutorial",
+		"help": "Help",
+		"solve": "Solve",
+		"mobileGuideButton": "Guide"
+	},
+	"headerNav": {
+		"home": "Preact",
+		"tutorial": "Tutorial",
+		"guide": "Guide",
+		"about": "About",
+		"weAreUsing": "Companies using Preact",
+		"librariesAddons": "Libraries & Add-ons",
+		"demosExamples": "Demos & Examples",
+		"projectGoals": "Project Goals",
+		"browserSupport": "Browser Support",
+		"blog": "Blog",
+		"repl": "REPL"
+	},
+	"sidebarSections": {
+		"introduction": "Introduction",
+		"essentials": "Essentials",
+		"debugAndTest": "Debug & Test",
+		"advanced": "Advanced",
+		"libraries": "Libraries"
+	},
+	"sidebarNav": {
+		"gettingStarted": "Getting Started",
+		"whatsNew": "What's new?",
+		"upgradeGuide-v10": "Upgrading from 8.x",
+		"upgradeGuide-v11": "Upgrading from 10.x",
+		"components": "Components",
+		"hooks": "Hooks",
+		"signals": "Signals",
+		"forms": "Forms",
+		"refs": "References",
+		"context": "Context",
+		"debugging": "Debugging Tools",
+		"preactTestingLibrary": "Preact Testing Library",
+		"unitTestingWithEnzyme": "Unit Testing with Enzyme",
+		"differencesToReact": "Differences to React",
+		"switchingToPreact": "Switching to Preact",
+		"apiReference": "API Reference",
+		"webComponents": "Web Components",
+		"serverSideRendering": "Server-Side Rendering",
+		"options": "Option Hooks",
+		"typeScript": "TypeScript",
+		"noBuildWorkflows": "No-Build Workflows",
+		"preactIso": "preact-iso",
+		"preactCustomElement": "preact-custom-element",
+		"preactRootFragment": "preact-root-fragment",
+		"typesOfComponents": "Types of Components",
+		"linkedState": "Linked State",
+		"externalDomMutations": "External DOM Mutations",
+		"extendingComponent": "Extending Component",
+		"progressiveWebApps": "Progressive Web Apps"
+	},
+	"tutorialNav": {
+		"learnPreact": "Learn Preact",
+		"virtualDom": "Virtual DOM",
+		"events": "Events",
+		"components": "Components",
+		"state": "State",
+		"refs": "Refs",
+		"context": "Context",
+		"sideEffects": "Side Effects",
+		"keys": "Keys",
+		"errorHandling": "Error Handling",
+		"congratulations": "Congratulations!"
+	},
+	"blogPosts": {
+		"simplifyingIslandsArch": {
+			"label": "Build your own Island Components",
+			"excerpt": "Demystifying how island architecture works and being able to setup your own, using tools you already have around you."
+		},
+		"prerenderingPresetVite": {
+			"label": "Prerendering with Preset Vite",
+			"excerpt": "It's been a half-year since our prerendering plugin has somewhat quietly become available in `@preact/preset-vite`, so let's talk about it, our history, and the ecosystem at large"
+		},
+		"preactX": {
+			"label": "Preact X, a story of stability",
+			"excerpt": "Preact X has been released for five years, let's go over all the exciting things that have happened."
+		},
+		"signalBoosting": {
+			"label": "Signal Boosting",
+			"excerpt": "The new release of Preact Signals brings significant performance updates to the foundations of the reactive system. Read on to learn what kinds of tricks we employed to make this happen."
+		},
+		"introducingSignals": {
+			"label": "Introducing Signals",
+			"excerpt": "Signals are an easier way to manage your application's state compared to hooks. A signal is a container object with a special \"value\" property that holds some value. Reading a signal's value property from within a component or computed function automatically subscribes to updates, and writing to the value property triggers subscriptions."
+		}
+	}
+}

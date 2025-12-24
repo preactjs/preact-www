@@ -1,5 +1,6 @@
 import { Feed } from 'feed';
-import config from '../src/config.json';
+import { blogPosts } from '../src/route-config.js';
+import englishTranslations from '../src/locales/en.json';
 
 /**
  * @returns {import('vite').Plugin}
@@ -24,12 +25,14 @@ export function rssFeedPlugin() {
 				}
 			});
 
-			config.blog.forEach(post => {
+			Object.entries(blogPosts).map(([postPath, post]) => {
+				const postTranslation = englishTranslations.blogPosts[post.label];
+
 				feed.addItem({
-					title: post.name.en,
-					id: `https://preactjs.com${post.path}`,
-					link: `https://preactjs.com${post.path}`,
-					description: post.excerpt.en,
+					title: postTranslation.label,
+					id: `https://preactjs.com${postPath}`,
+					link: `https://preactjs.com${postPath}`,
+					description: postTranslation.excerpt,
 					date: new Date(post.date)
 				});
 			});

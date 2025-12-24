@@ -1,6 +1,6 @@
 import { useCallback } from 'preact/hooks';
 import config from '../../config.json';
-import { useLanguage } from '../../lib/i18n';
+import { useLanguageContext } from '../../lib/i18n';
 import { useResource } from '../../lib/use-resource';
 import style from './style.module.css';
 
@@ -39,7 +39,7 @@ function useContributors() {
 
 export default function Footer() {
 	const contrib = useContributors();
-	const [lang, setLang] = useLanguage();
+	const { lang, setLang } = useLanguageContext();
 
 	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
 
@@ -50,9 +50,9 @@ export default function Footer() {
 					<label class={style.lang}>
 						Language:{' '}
 						<select value={lang || 'en'} onInput={onSelect}>
-							{Object.keys(config.languages).map(id => (
+							{Object.entries(config.locales).map(([id, label]) => (
 								<option selected={id == lang} value={id}>
-									{config.languages[id]}
+									{label}
 								</option>
 							))}
 						</select>
