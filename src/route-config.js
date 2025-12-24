@@ -15,9 +15,6 @@ export const headerNav = {
 	'/guide/v10/getting-started': {
 		label: 'guide'
 	},
-	'/about': {
-		label: 'about'
-	},
 	'/about/we-are-using': {
 		label: 'weAreUsing'
 	},

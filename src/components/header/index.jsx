@@ -65,7 +65,7 @@ function MainNav() {
 				{isOpen => (
 					<ExpandableNavLink
 						isOpen={isOpen}
-						label={translate('headerNav', pathToI18nLabel('/about'))}
+						label={translate('headerNav', 'about')}
 						class={cx(path.startsWith('/about') && style.current)}
 					>
 						<>
