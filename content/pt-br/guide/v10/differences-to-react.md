@@ -25,7 +25,7 @@ A outra principal diferença é que seguimos um pouco mais de perto a especifica
 
 ## Compatibilidade de Versões
 
-Para mbos Preact e [preact/compat], a compatibilidade da versão é medida em relação às versões principais _current_ e _previous_ do React. Quando novos recursos são anunciados pela equipe do React, eles podem ser adicionados ao núcleo do Preact, se fizer sentido, considerando os [Objetivos do projeto]. Este é um processo bastante democrático, em constante evolução por meio de discussões e decisões tomadas de forma aberta, usando questões e solicitações de recebimento.
+Para ambos Preact e [preact/compat], a compatibilidade da versão é medida em relação às versões principais _current_ e _previous_ do React. Quando novos recursos são anunciados pela equipe do React, eles podem ser adicionados ao núcleo do Preact, se fizer sentido, considerando os [Objetivos do projeto]. Este é um processo bastante democrático, em constante evolução por meio de discussões e decisões tomadas de forma aberta, usando questões e solicitações de recebimento.
 
 > Assim, o site e a documentação refletem os React `0.16.x` e `15.x` ao discutir compatibilidade ou fazer comparações.
 
