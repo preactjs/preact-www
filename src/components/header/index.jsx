@@ -133,16 +133,15 @@ function LanguagePicker() {
 						}
 						aria-label={translate('i18n', 'selectYourLanguage')}
 					>
-						{typeof window !== 'undefined' &&
-							Object.entries(config.locales).map(([id, label]) => (
-								<button
-									class={cx(id == lang && style.current)}
-									data-value={id}
-									onClick={e => setLang(e.currentTarget.dataset.value)}
-								>
-									{label}
-								</button>
-							))}
+						{Object.entries(config.locales).map(([id, label]) => (
+							<button
+								class={cx(id == lang && style.current)}
+								data-value={id}
+								onClick={e => setLang(e.currentTarget.dataset.value)}
+							>
+								{label}
+							</button>
+						))}
 					</ExpandableNavLink>
 				)}
 			</NavMenu>
