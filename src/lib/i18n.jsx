@@ -52,7 +52,7 @@ export function LanguageProvider({ children }) {
 	const [lang, setLang] = useState('en');
 
 	const translations = useResource(() => {
-		if (lang == 'en') return Promise.resolve(englishTranslations);
+		if (lang == 'en') return englishTranslations;
 		let url = '';
 		for (const translationURL in translationURLs) {
 			if (translationURL.includes(`/${lang}.json`)) {
