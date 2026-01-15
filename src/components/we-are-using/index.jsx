@@ -282,6 +282,11 @@ const companies = [
 		name: 'JDLT',
 		href: 'https://jdlt.co.uk',
 		logo: 'jdlt.svg'
+	},
+	{
+		name: "HesapKurdu",
+		href: 'https://www.hesapkurdu.com',
+		logo: 'hesapkurdu.svg'
 	}
 ];
 
