@@ -45,6 +45,7 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :ice_cube: **[Kretes](https://kretes.dev/docs/howtos/preact-setup/)**: Créez des applications full-stack TypeScript avec Preact et Node.js.
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Exécutez votre widget Preact sur n’importe quel site web avec des propriétés réactives.
 - 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Intégrez des composants [zikojs](https://github.com/zakarialaoui10/zikojs) dans votre application Preact —  et vice‑versa.
+- 💤 **[zikofy](https://github.com/zakarialaoui10/zikofy)**: Convertit des composants Preact en `UIElement` de Zikojs.
 
 
 ### Outils pour créer des interfaces graphiques
