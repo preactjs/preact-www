@@ -34,6 +34,7 @@ Une liste de modules construit pour fonctionner parfaitement avec Preact.
 - :construction_worker: **[preact-helmet](https://github.com/download/preact-helmet)**: Une bibliothèque pour Preact permettant de gérer le head d'un document
 - :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Scrollbars personnalisables pour un défilement natif fluide dans les navigateurs.
 - 🧱 **[@modular-forms/preact](https://modularforms.dev/)**: Bibliothèque de formulaires modulaire avec typage sécurisé.
+- 🔥 **[ufbr](https://github.com/zakarialaoui10/ufbr)**: Routeur universel basé sur les fichiers avec support de `Preact`.
 
 
 ### Intégrations
