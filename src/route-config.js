@@ -84,6 +84,12 @@ export const docPages = {
 			'/signals': {
 				label: 'signals'
 			},
+			'/signals-debug': {
+				label: 'signalsDebug'
+			},
+			'/signals-devtools': {
+				label: 'signalsDevtools'
+			},
 			'/forms': {
 				label: 'forms'
 			},
@@ -151,6 +157,12 @@ export const docPages = {
 			},
 			'/signals': {
 				label: 'signals'
+			},
+			'/signals-debug': {
+				label: 'signalsDebug'
+			},
+			'/signals-devtools': {
+				label: 'signalsDevtools'
 			},
 			'/forms': {
 				label: 'forms'
