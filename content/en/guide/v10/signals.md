@@ -498,6 +498,51 @@ To enable this optimization, pass the signal into JSX instead of accessing its `
 
 A similar rendering optimization is also supported when passing signals as props on DOM elements.
 
+## Models
+
+Models provide a structured way to build reactive state containers that encapsulate signals, computed values, effects, and actions. They offer a clean pattern for organizing complex state logic while ensuring automatic cleanup and batched updates.
+
+As applications grow in complexity, managing state with individual signals can become unwieldy. Models solve this by bundling related signals, computed values, and actions together into cohesive units. This makes your code more maintainable, testable, and easier to reason about.
+
+### Why Use Models?
+
+Models offer several key benefits:
+
+- **Encapsulation**: Group related state and logic together, making it clear what belongs where
+- **Automatic cleanup**: Effects created in models are automatically disposed when the model is disposed, preventing memory leaks
+- **Automatic batching**: All methods are automatically wrapped as actions, ensuring optimal performance
+- **Composability**: Models can be nested and composed, with parent models automatically managing child model lifecycles
+- **Reusability**: Models can accept initialization parameters, making them reusable across different contexts
+- **Testability**: Models can be instantiated and tested in isolation without requiring component rendering
+
+Here's a simple example showing how models organize state:
+
+```js
+import { signal, computed, createModel } from '@preact/signals';
+
+const CounterModel = createModel((initialCount = 0) => {
+	const count = signal(initialCount);
+	const doubled = computed(() => count.value * 2);
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+const counter = new CounterModel(5);
+counter.increment();
+console.log(counter.count.value); // 6
+```
+
+For more details on how to use models in your components and the full API reference, see the [Model APIs](#createmodelfactory) in the API section below.
+
 ## API
 
 This section is an overview of the signals API. It's aimed to be a quick reference for folks who already know how to use signals and need a reminder of what's available.
@@ -603,6 +648,229 @@ effect(() => {
 	});
 });
 ```
+
+### createModel(factory)
+
+The `createModel(factory)` function creates a model constructor from a factory function. The factory function can accept arguments for initialization and should return an object containing signals, computed values, and action methods.
+
+```js
+import { signal, computed, effect, createModel } from '@preact/signals';
+
+const CounterModel = createModel((initialCount = 0) => {
+	const count = signal(initialCount);
+	const doubled = computed(() => count.value * 2);
+
+	effect(() => {
+		console.log('Count changed:', count.value);
+	});
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+// Create a new model instance using `new`
+const counter = new CounterModel(5);
+counter.increment(); // Updates are automatically batched
+console.log(counter.count.value); // 6
+console.log(counter.doubled.value); // 12
+
+// Clean up all effects when done
+counter[Symbol.dispose]();
+```
+
+#### Key Features
+
+- **Factory arguments**: Factory functions can accept arguments for initialization, making models reusable with different configurations.
+- **Automatic batching**: All methods returned from the factory are automatically wrapped as actions, meaning state updates within them are batched and untracked.
+- **Automatic effect cleanup**: Effects created during model construction are captured and automatically disposed when the model is disposed via `Symbol.dispose`.
+- **Composable models**: Models compose naturally - effects from nested models are captured by the parent and disposed together when the parent is disposed.
+
+#### Model Composition
+
+Models can be nested within other models. When a parent model is disposed, all effects from nested models are automatically cleaned up:
+
+```js
+const TodoItemModel = createModel((text) => {
+	const completed = signal(false);
+
+	return {
+		text,
+		completed,
+		toggle() {
+			completed.value = !completed.value;
+		}
+	};
+});
+
+const TodoListModel = createModel(() => {
+	const items = signal([]);
+
+	return {
+		items,
+		addTodo(text) {
+			const todo = new TodoItemModel(text);
+			items.value = [...items.value, todo];
+		},
+		removeTodo(todo) {
+			items.value = items.value.filter(t => t !== todo);
+			todo[Symbol.dispose]();
+		}
+	};
+});
+
+const todoList = new TodoListModel();
+todoList.addTodo('Buy groceries');
+todoList.addTodo('Walk the dog');
+
+// Disposing the parent also cleans up all nested model effects
+todoList[Symbol.dispose]();
+```
+
+### action(fn)
+
+The `action(fn)` function wraps a function to run in a batched and untracked context. This is useful when you need to create standalone actions outside of a model:
+
+```js
+import { signal, action } from '@preact/signals';
+
+const count = signal(0);
+
+const incrementBy = action((amount) => {
+	count.value += amount;
+});
+
+incrementBy(5); // Batched update
+```
+
+### useModel(modelOrFactory)
+
+The `useModel` hook is available in both `@preact/signals` and `@preact/signals-react` packages. It handles creating a model instance on first render, maintaining the same instance across re-renders, and automatically disposing the model when the component unmounts.
+
+```jsx
+import { signal, createModel } from '@preact/signals';
+import { useModel } from '@preact/signals';
+
+const CounterModel = createModel(() => ({
+	count: signal(0),
+	increment() {
+		this.count.value++;
+	}
+}));
+
+function Counter() {
+	const model = useModel(CounterModel);
+
+	return (
+		<button onClick={() => model.increment()}>
+			Count: {model.count}
+		</button>
+	);
+}
+```
+
+For models that require constructor arguments, wrap the instantiation in a factory function:
+
+```jsx
+const CounterModel = createModel((initialCount) => ({
+	count: signal(initialCount),
+	increment() {
+		this.count.value++;
+	}
+}));
+
+function Counter({ initialValue }) {
+	// Use a factory function to pass arguments
+	const model = useModel(() => new CounterModel(initialValue));
+
+	return (
+		<button onClick={() => model.increment()}>
+			Count: {model.count}
+		</button>
+	);
+}
+```
+
+### Recommended Patterns
+
+#### Explicit ReadonlySignal Pattern
+
+For better encapsulation, declare your model interface explicitly and use `ReadonlySignal` for signals that should only be modified through actions:
+
+```ts
+import { signal, computed, createModel, ReadonlySignal } from '@preact/signals';
+
+interface Counter {
+	count: ReadonlySignal<number>;
+	doubled: ReadonlySignal<number>;
+	increment(): void;
+	decrement(): void;
+}
+
+const CounterModel = createModel<Counter>(() => {
+	const count = signal(0);
+	const doubled = computed(() => count.value * 2);
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+const counter = new CounterModel();
+counter.increment(); // OK
+counter.count.value = 10; // TypeScript error: Cannot assign to 'value'
+```
+
+#### Custom Dispose Logic
+
+If your model needs custom cleanup logic that isn't related to signals (such as closing WebSocket connections), use an effect with no dependencies that returns a cleanup function:
+
+```js
+const WebSocketModel = createModel((url) => {
+	const messages = signal([]);
+	const ws = new WebSocket(url);
+
+	ws.onmessage = (e) => {
+		messages.value = [...messages.value, e.data];
+	};
+
+	// This effect runs once; its cleanup runs on dispose
+	effect(() => {
+		return () => {
+			ws.close();
+		};
+	});
+
+	return {
+		messages,
+		send(message) {
+			ws.send(message);
+		}
+	};
+});
+
+const chat = new WebSocketModel('wss://example.com/chat');
+chat.send('Hello!');
+
+// Closes the WebSocket connection on dispose
+chat[Symbol.dispose]();
+```
+
+This pattern mirrors `useEffect(() => { return cleanup }, [])` in React and ensures that cleanup happens automatically when models are composed together - parent models don't need to know about the dispose functions of nested models.
 
 ## Utility Components and Hooks
 
