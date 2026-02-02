@@ -37,8 +37,6 @@
 		"components": "Components",
 		"hooks": "Hooks",
 		"signals": "Signals",
-		"signalsDebug": "Signals Debug",
-		"signalsDevtools": "Signals DevTools",
 		"forms": "Forms",
 		"refs": "References",
 		"context": "Context",

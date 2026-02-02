@@ -182,7 +182,7 @@ function removeTodo(todo) {
 
 ## Building the UI
 
-Now that we've modeled our application's state, it's time to wire in up to a nice UI that users can interact with.
+Now that we've modeled our application's state, it's time to wire it up to a nice UI that users can interact with.
 
 ```jsx
 function TodoList() {
@@ -693,3 +693,12 @@ function Component() {
 	);
 }
 ```
+
+## Debugging
+
+If you're using Preact Signals in your application, there are specialized debugging tools available:
+
+- **[Signals Debug](https://github.com/preactjs/signals/blob/main/packages/debug)** - A development tool that provides detailed console output about signal updates, effect executions, and computed value recalculations.
+- **[Signals DevTools](https://github.com/preactjs/signals/blob/main/packages/devtools-ui)** - Visual DevTools UI for debugging and visualizing Preact Signals in real-time. You can embed it directly in your page for demos, or integrate it into custom tooling.
+
+> **Note:** These are framework-agnostic tools from the Signals library. While they work great with Preact, they're not Preact-specific.
