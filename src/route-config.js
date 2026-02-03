@@ -30,6 +30,9 @@ export const headerNav = {
 	'/about/browser-support': {
 		label: 'browserSupport'
 	},
+	'/branding': {
+		label: 'branding'
+	},
 	'/blog': {
 		label: 'blog'
 	},
