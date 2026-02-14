@@ -1,6 +1,8 @@
 ---
 title: Hooks de Opción
 description: Preact tiene varios hooks de opción que te permiten adjuntar callbacks a varias etapas del proceso de diffing
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Hooks de Opción

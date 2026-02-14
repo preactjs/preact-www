@@ -1,6 +1,8 @@
 ---
 title: Comenzando
 description: Cómo empezar con Preact. Aprenderemos cómo configurar las herramientas (si las hay) y comenzar a escribir una aplicación
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Comenzando

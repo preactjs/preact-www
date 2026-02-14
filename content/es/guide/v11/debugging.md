@@ -1,6 +1,8 @@
 ---
 title: Depuración de Aplicaciones Preact
 description: Cómo depurar aplicaciones Preact cuando algo sale mal
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Depuración de Aplicaciones Preact

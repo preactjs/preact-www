@@ -1,6 +1,8 @@
 ---
 title: Context
 description: Context te permite pasar props a través de componentes intermedios. Este documento describe tanto la API nueva como la antigua
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Context

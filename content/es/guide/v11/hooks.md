@@ -1,6 +1,8 @@
 ---
 title: Hooks
 description: Los Hooks en Preact te permiten componer comportamientos juntos y reutilizar esa lógica en diferentes componentes
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Hooks

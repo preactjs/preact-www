@@ -1,6 +1,8 @@
 ---
 title: Diferencias con React
 description: Cuáles son las diferencias entre Preact y React. Este documento las describe en detalle
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Diferencias con React

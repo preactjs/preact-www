@@ -1,6 +1,8 @@
 ---
 title: Formularios
 description: Los formularios y controles de formulario te permiten recopilar entrada del usuario en tu aplicación y son un bloque de construcción fundamental de la mayoría de aplicaciones web
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Formularios

@@ -1,6 +1,8 @@
 ---
 title: Flujos de Trabajo sin Compilación
 description: Aunque herramientas de compilación como Webpack, Rollup y Vite son increíblemente poderosas y útiles, Preact soporta completamente la construcción de aplicaciones sin ellas
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Flujos de Trabajo sin Compilación

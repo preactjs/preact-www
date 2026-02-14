@@ -1,6 +1,8 @@
 ---
 title: Componentes
 description: Los componentes son el corazón de cualquier aplicación Preact. Aprende a crearlos y úsalos para componer UIs juntos
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Componentes

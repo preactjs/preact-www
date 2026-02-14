@@ -1,6 +1,8 @@
 ---
 title: Referencia de la API
 description: Aprende más sobre todas las funciones exportadas del módulo Preact
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 # Referencia de la API
