@@ -3,6 +3,8 @@ title: Simplificando la arquitectura de Islas
 date: 2024-10-27
 authors:
   - reaper
+translation_by:
+  - Ezequiel Mastropietro
 ---
 
 > Esta es una versión ligeramente modificada del escrito original en https://barelyhuman.github.io/preact-islands-diy
