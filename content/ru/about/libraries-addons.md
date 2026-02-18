@@ -41,6 +41,7 @@ description: Коллекция библиотек и дополнений, ко
 - :ice_cube: **[Kretes](https://kretes.dev/docs/howtos/preact-setup/)**: Разрабатываем full-stack приложения на TypeScript с использованием Preact и Node.js
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Запускаем виджет Preact на любом веб-сайте с реактивными пропсами.
 - 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Оборачиваем ваши компоненты [ZikoJS](https://github.com/zakarialaoui10/zikojs) внутри Preact-приложения — и наоборот.
+- 💤 **[zikofy](https://github.com/zakarialaoui10/zikofy)**: Превращает компоненты Preact в `UIElement` из Zikojs.
 
 ## Инструментальные средства графического интерфейса
 
