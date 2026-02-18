@@ -498,6 +498,51 @@ function Optimized() {
 
 Аналогичная оптимизация рендеринга также поддерживается при передаче сигналов в качестве атрибута в элементах DOM.
 
+## Модели
+
+Модели предоставляют структурированный способ создания реактивных контейнеров состояния, которые инкапсулируют сигналы, вычисляемые значения, эффекты и действия. Они предлагают чистый паттерн для организации сложной логики состояния, обеспечивая при этом автоматическую очистку и пакетные обновления.
+
+По мере роста сложности приложений управление состоянием с помощью отдельных сигналов может стать неудобным. Модели решают эту проблему, объединяя связанные сигналы, вычисляемые значения и действия в цельные единицы. Это делает ваш код более поддерживаемым, тестируемым и понятным.
+
+### Зачем использовать модели?
+
+Модели дают несколько ключевых преимуществ:
+
+- **Инкапсуляция**: Группируют связанное состояние и логику вместе, делая очевидным, что к чему относится
+- **Автоматическая очистка**: Эффекты, созданные в моделях, автоматически удаляются при уничтожении модели, предотвращая утечки памяти
+- **Автоматическая пакетная обработка**: Все методы автоматически оборачиваются как действия, обеспечивая оптимальную производительность
+- **Компонуемость**: Модели можно вкладывать друг в друга и комбинировать, при этом родительские модели автоматически управляют жизненным циклом дочерних
+- **Повторное использование**: Модели могут принимать параметры инициализации, что делает их пригодными для повторного использования в разных контекстах
+- **Тестируемость**: Модели можно создавать и тестировать изолированно, без необходимости рендеринга компонентов
+
+Вот простой пример, показывающий, как модели организуют состояние:
+
+```js
+import { signal, computed, createModel } from '@preact/signals';
+
+const CounterModel = createModel((initialCount = 0) => {
+	const count = signal(initialCount);
+	const doubled = computed(() => count.value * 2);
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+const counter = new CounterModel(5);
+counter.increment();
+console.log(counter.count.value); // 6
+```
+
+Подробнее о том, как использовать модели в ваших компонентах, и полная справочная информация по API — см. [API моделей](#createmodelfactory) в разделе API ниже.
+
 ## API
 
 В этом разделе представлен обзор API сигналов. Он призван стать кратким справочником для людей, которые уже знают, как использовать сигналы, и нуждаются в напоминании о том, что доступно.
@@ -594,8 +639,8 @@ batch(() => {
 Функция `untracked(fn)` может быть использована для доступа к значению нескольких сигналов без подписки на них.
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal("Джейн");
+const surname = signal("Доу");
 
 effect(() => {
   untracked(() => {
@@ -603,6 +648,229 @@ effect(() => {
   })
 })
 ```
+
+### createModel(factory)
+
+Функция `createModel(factory)` создаёт конструктор модели из фабричной функции. Фабричная функция может принимать аргументы для инициализации и должна возвращать объект, содержащий сигналы, вычисляемые значения и методы-действия.
+
+```js
+import { signal, computed, effect, createModel } from '@preact/signals';
+
+const CounterModel = createModel((initialCount = 0) => {
+	const count = signal(initialCount);
+	const doubled = computed(() => count.value * 2);
+
+	effect(() => {
+		console.log('Счётчик изменился:', count.value);
+	});
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+// Создаём новый экземпляр модели с помощью `new`
+const counter = new CounterModel(5);
+counter.increment(); // Обновления автоматически группируются в пакет
+console.log(counter.count.value); // 6
+console.log(counter.doubled.value); // 12
+
+// Очищаем все эффекты, когда закончили
+counter[Symbol.dispose]();
+```
+
+#### Ключевые возможности
+
+- **Аргументы фабрики**: Фабричные функции могут принимать аргументы для инициализации, что делает модели повторно используемыми с разными конфигурациями.
+- **Автоматическая пакетная обработка**: Все методы, возвращаемые из фабрики, автоматически оборачиваются как действия, поэтому обновления состояния внутри них группируются в пакет и не отслеживаются.
+- **Автоматическая очистка эффектов**: Эффекты, созданные при построении модели, захватываются и автоматически удаляются при уничтожении модели через `Symbol.dispose`.
+- **Компонуемые модели**: Модели естественно компонуются — эффекты из вложенных моделей захватываются родительской и удаляются вместе с ней при уничтожении родителя.
+
+#### Композиция моделей
+
+Модели можно вкладывать друг в друга. При уничтожении родительской модели все эффекты из вложенных моделей автоматически очищаются:
+
+```js
+const TodoItemModel = createModel((text) => {
+	const completed = signal(false);
+
+	return {
+		text,
+		completed,
+		toggle() {
+			completed.value = !completed.value;
+		}
+	};
+});
+
+const TodoListModel = createModel(() => {
+	const items = signal([]);
+
+	return {
+		items,
+		addTodo(text) {
+			const todo = new TodoItemModel(text);
+			items.value = [...items.value, todo];
+		},
+		removeTodo(todo) {
+			items.value = items.value.filter(t => t !== todo);
+			todo[Symbol.dispose]();
+		}
+	};
+});
+
+const todoList = new TodoListModel();
+todoList.addTodo('Купить продукты');
+todoList.addTodo('Выгулять собаку');
+
+// Уничтожение родительской модели также очищает все эффекты вложенных моделей
+todoList[Symbol.dispose]();
+```
+
+### action(fn)
+
+Функция `action(fn)` оборачивает функцию для выполнения в пакетном и неотслеживаемом контексте. Это полезно, когда нужно создать самостоятельные действия вне модели:
+
+```js
+import { signal, action } from '@preact/signals';
+
+const count = signal(0);
+
+const incrementBy = action((amount) => {
+	count.value += amount;
+});
+
+incrementBy(5); // Пакетное обновление
+```
+
+### useModel(modelOrFactory)
+
+Хук `useModel` доступен как в пакете `@preact/signals`, так и в `@preact/signals-react`. Он отвечает за создание экземпляра модели при первом рендере, сохранение того же экземпляра при последующих перерисовках и автоматическое уничтожение модели при размонтировании компонента.
+
+```jsx
+import { signal, createModel } from '@preact/signals';
+import { useModel } from '@preact/signals';
+
+const CounterModel = createModel(() => ({
+	count: signal(0),
+	increment() {
+		this.count.value++;
+	}
+}));
+
+function Counter() {
+	const model = useModel(CounterModel);
+
+	return (
+		<button onClick={() => model.increment()}>
+			Счётчик: {model.count}
+		</button>
+	);
+}
+```
+
+Для моделей, которым требуются аргументы конструктора, оберните создание экземпляра в фабричную функцию:
+
+```jsx
+const CounterModel = createModel((initialCount) => ({
+	count: signal(initialCount),
+	increment() {
+		this.count.value++;
+	}
+}));
+
+function Counter({ initialValue }) {
+	// Используйте фабричную функцию для передачи аргументов
+	const model = useModel(() => new CounterModel(initialValue));
+
+	return (
+		<button onClick={() => model.increment()}>
+			Счётчик: {model.count}
+		</button>
+	);
+}
+```
+
+### Рекомендуемые паттерны
+
+#### Явный паттерн ReadonlySignal
+
+Для лучшей инкапсуляции объявляйте интерфейс вашей модели явно и используйте `ReadonlySignal` для сигналов, которые должны изменяться только через экшены:
+
+```ts
+import { signal, computed, createModel, ReadonlySignal } from '@preact/signals';
+
+interface Counter {
+	count: ReadonlySignal<number>;
+	doubled: ReadonlySignal<number>;
+	increment(): void;
+	decrement(): void;
+}
+
+const CounterModel = createModel<Counter>(() => {
+	const count = signal(0);
+	const doubled = computed(() => count.value * 2);
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+const counter = new CounterModel();
+counter.increment(); // OK
+counter.count.value = 10; // Ошибка TypeScript: Cannot assign to 'value'
+```
+
+#### Пользовательская логика уничтожения
+
+Если вашей модели требуется пользовательская логика очистки, не связанная с сигналами (например, закрытие WebSocket-соединений), используйте эффект без зависимостей, который возвращает функцию очистки:
+
+```js
+const WebSocketModel = createModel((url) => {
+	const messages = signal([]);
+	const ws = new WebSocket(url);
+
+	ws.onmessage = (e) => {
+		messages.value = [...messages.value, e.data];
+	};
+
+	// Этот эффект выполняется один раз; его очистка запускается при уничтожении
+	effect(() => {
+		return () => {
+			ws.close();
+		};
+	});
+
+	return {
+		messages,
+		send(message) {
+			ws.send(message);
+		}
+	};
+});
+
+const chat = new WebSocketModel('wss://example.com/chat');
+chat.send('Привет!');
+
+// Закрывает WebSocket-соединение при уничтожении
+chat[Symbol.dispose]();
+```
+
+Этот паттерн аналогичен `useEffect(() => { return cleanup }, [])` в React и гарантирует, что очистка происходит автоматически при композиции моделей — родительским моделям не нужно знать о функциях уничтожения вложенных моделей.
 
 ## Вспомогательные компоненты и хуки
 
@@ -693,3 +961,12 @@ function Component() {
 	);
 }
 ```
+
+## Отладка
+
+Если вы используете Preact Signals в своём приложении, доступны специализированные инструменты для отладки:
+
+- **[Signals Debug](https://github.com/preactjs/signals/blob/main/packages/debug)** — Инструмент разработки, который предоставляет подробный вывод в консоль об обновлениях сигналов, выполнении эффектов и пересчётах вычисляемых значений.
+- **[Signals DevTools](https://github.com/preactjs/signals/blob/main/packages/devtools-ui)** — Визуальный интерфейс DevTools для отладки и визуализации Preact Signals в реальном времени. Его можно встроить прямо на страницу для демонстраций или интегрировать в собственные инструменты.
+
+> **Примечание:** Это инструменты, независимые от фреймворка, из библиотеки Signals. Хотя они отлично работают с Preact, они не являются специфичными именно для Preact.
