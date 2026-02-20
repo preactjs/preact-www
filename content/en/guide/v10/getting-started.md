@@ -106,6 +106,7 @@ npm run build
 ```
 
 Upon completion, you'll have a new `dist/` folder which can be deployed directly to a server.
+You can use any Node.js-capable host for this, including [Hostinger Web Apps Hosting](https://www.hostinger.com/web-apps-hosting).
 
 > For a full list of all available commands and their options, check out the [Vite CLI Documentation](https://vitejs.dev/guide/cli.html).
 
