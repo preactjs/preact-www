@@ -128,7 +128,7 @@ function LanguagePicker() {
 						isOpen={isOpen}
 						label={
 							<svg aria-hidden viewBox="0 0 24 24">
-								<use href="/icons.svg#i18n" />
+								<use href="#i18n" />
 							</svg>
 						}
 						aria-label={translate('i18n', 'selectYourLanguage')}
@@ -165,7 +165,7 @@ const SocialIcon = ({ label, href, viewbox, id }) => (
 		rel="noopener noreferrer"
 	>
 		<svg aria-hidden viewBox={viewbox}>
-			<use href={`/icons.svg#${id}`} />
+			<use href={`#${id}`} />
 		</svg>
 	</a>
 );

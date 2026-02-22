@@ -71,7 +71,7 @@ marked.use({
 				<h${depth} id="${id}">
 					<a class="fragment-link" href="#${id}">
 						<svg width="16" height="16" viewBox="0 0 24 24" aria-label="Link to: ${text} (#${id})">
-							<use href="/icons.svg#link" />
+							<use href="#link" />
 						</svg>
 					</a>
 					<span>${text}</span>
