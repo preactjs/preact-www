@@ -543,6 +543,128 @@ console.log(counter.count.value); // 6
 
 For more details on how to use models in your components and the full API reference, see the [Model APIs](#createmodelfactory) in the API section below.
 
+### Key Features
+
+- **Factory arguments**: Factory functions can accept arguments for initialization, making models reusable with different configurations.
+- **Automatic batching**: All methods returned from the factory are automatically wrapped as actions, meaning state updates within them are batched and untracked.
+- **Automatic effect cleanup**: Effects created during model construction are captured and automatically disposed when the model is disposed via `Symbol.dispose`.
+- **Composable models**: Models compose naturally - effects from nested models are captured by the parent and disposed together when the parent is disposed.
+
+### Model Composition
+
+Models can be nested within other models. When a parent model is disposed, all effects from nested models are automatically cleaned up:
+
+```js
+const TodoItemModel = createModel((text) => {
+	const completed = signal(false);
+
+	return {
+		text,
+		completed,
+		toggle() {
+			completed.value = !completed.value;
+		}
+	};
+});
+
+const TodoListModel = createModel(() => {
+	const items = signal([]);
+
+	return {
+		items,
+		addTodo(text) {
+			const todo = new TodoItemModel(text);
+			items.value = [...items.value, todo];
+		},
+		removeTodo(todo) {
+			items.value = items.value.filter(t => t !== todo);
+			todo[Symbol.dispose]();
+		}
+	};
+});
+
+const todoList = new TodoListModel();
+todoList.addTodo('Buy groceries');
+todoList.addTodo('Walk the dog');
+
+// Disposing the parent also cleans up all nested model effects
+todoList[Symbol.dispose]();
+```
+
+### Recommended Patterns
+
+#### Explicit ReadonlySignal Pattern
+
+For better encapsulation, declare your model interface explicitly and use `ReadonlySignal` for signals that should only be modified through actions:
+
+```ts
+import { signal, computed, createModel, ReadonlySignal } from '@preact/signals';
+
+interface Counter {
+	count: ReadonlySignal<number>;
+	doubled: ReadonlySignal<number>;
+	increment(): void;
+	decrement(): void;
+}
+
+const CounterModel = createModel<Counter>(() => {
+	const count = signal(0);
+	const doubled = computed(() => count.value * 2);
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+const counter = new CounterModel();
+counter.increment(); // OK
+counter.count.value = 10; // TypeScript error: Cannot assign to 'value'
+```
+
+#### Custom Dispose Logic
+
+If your model needs custom cleanup logic that isn't related to signals (such as closing WebSocket connections), use an effect with no dependencies that returns a cleanup function:
+
+```js
+const WebSocketModel = createModel((url) => {
+	const messages = signal([]);
+	const ws = new WebSocket(url);
+
+	ws.onmessage = (e) => {
+		messages.value = [...messages.value, e.data];
+	};
+
+	// This effect runs once; its cleanup runs on dispose
+	effect(() => {
+		return () => {
+			ws.close();
+		};
+	});
+
+	return {
+		messages,
+		send(message) {
+			ws.send(message);
+		}
+	};
+});
+
+const chat = new WebSocketModel('wss://example.com/chat');
+chat.send('Hello!');
+
+// Closes the WebSocket connection on dispose
+chat[Symbol.dispose]();
+```
+
+This pattern mirrors `useEffect(() => { return cleanup }, [])` in React and ensures that cleanup happens automatically when models are composed together - parent models don't need to know about the dispose functions of nested models.
+
 ## API
 
 This section is an overview of the signals API. It's aimed to be a quick reference for folks who already know how to use signals and need a reminder of what's available.
@@ -686,54 +808,6 @@ console.log(counter.doubled.value); // 12
 counter[Symbol.dispose]();
 ```
 
-#### Key Features
-
-- **Factory arguments**: Factory functions can accept arguments for initialization, making models reusable with different configurations.
-- **Automatic batching**: All methods returned from the factory are automatically wrapped as actions, meaning state updates within them are batched and untracked.
-- **Automatic effect cleanup**: Effects created during model construction are captured and automatically disposed when the model is disposed via `Symbol.dispose`.
-- **Composable models**: Models compose naturally - effects from nested models are captured by the parent and disposed together when the parent is disposed.
-
-#### Model Composition
-
-Models can be nested within other models. When a parent model is disposed, all effects from nested models are automatically cleaned up:
-
-```js
-const TodoItemModel = createModel((text) => {
-	const completed = signal(false);
-
-	return {
-		text,
-		completed,
-		toggle() {
-			completed.value = !completed.value;
-		}
-	};
-});
-
-const TodoListModel = createModel(() => {
-	const items = signal([]);
-
-	return {
-		items,
-		addTodo(text) {
-			const todo = new TodoItemModel(text);
-			items.value = [...items.value, todo];
-		},
-		removeTodo(todo) {
-			items.value = items.value.filter(t => t !== todo);
-			todo[Symbol.dispose]();
-		}
-	};
-});
-
-const todoList = new TodoListModel();
-todoList.addTodo('Buy groceries');
-todoList.addTodo('Walk the dog');
-
-// Disposing the parent also cleans up all nested model effects
-todoList[Symbol.dispose]();
-```
-
 ### action(fn)
 
 The `action(fn)` function wraps a function to run in a batched and untracked context. This is useful when you need to create standalone actions outside of a model:
@@ -797,80 +871,6 @@ function Counter({ initialValue }) {
 	);
 }
 ```
-
-### Recommended Patterns
-
-#### Explicit ReadonlySignal Pattern
-
-For better encapsulation, declare your model interface explicitly and use `ReadonlySignal` for signals that should only be modified through actions:
-
-```ts
-import { signal, computed, createModel, ReadonlySignal } from '@preact/signals';
-
-interface Counter {
-	count: ReadonlySignal<number>;
-	doubled: ReadonlySignal<number>;
-	increment(): void;
-	decrement(): void;
-}
-
-const CounterModel = createModel<Counter>(() => {
-	const count = signal(0);
-	const doubled = computed(() => count.value * 2);
-
-	return {
-		count,
-		doubled,
-		increment() {
-			count.value++;
-		},
-		decrement() {
-			count.value--;
-		}
-	};
-});
-
-const counter = new CounterModel();
-counter.increment(); // OK
-counter.count.value = 10; // TypeScript error: Cannot assign to 'value'
-```
-
-#### Custom Dispose Logic
-
-If your model needs custom cleanup logic that isn't related to signals (such as closing WebSocket connections), use an effect with no dependencies that returns a cleanup function:
-
-```js
-const WebSocketModel = createModel((url) => {
-	const messages = signal([]);
-	const ws = new WebSocket(url);
-
-	ws.onmessage = (e) => {
-		messages.value = [...messages.value, e.data];
-	};
-
-	// This effect runs once; its cleanup runs on dispose
-	effect(() => {
-		return () => {
-			ws.close();
-		};
-	});
-
-	return {
-		messages,
-		send(message) {
-			ws.send(message);
-		}
-	};
-});
-
-const chat = new WebSocketModel('wss://example.com/chat');
-chat.send('Hello!');
-
-// Closes the WebSocket connection on dispose
-chat[Symbol.dispose]();
-```
-
-This pattern mirrors `useEffect(() => { return cleanup }, [])` in React and ensures that cleanup happens automatically when models are composed together - parent models don't need to know about the dispose functions of nested models.
 
 ## Utility Components and Hooks
 
