@@ -257,7 +257,7 @@ function createAppState() {
 }
 ```
 
-> :bulb: Dica: Perceba que estamos conscientemente não incluindo as funções `addTodo()` e `removeTodo(todo)` aqui. Separar os dados das funções que os modificam frequentemente ajuda a simplificar a arquitetura da aplicação. Para mais detalhes, confira [design orientado a dados](https://en.wikipedia.org/wiki/Data-oriented_design).
+> :bulb: Dica: Perceba que estamos conscientemente não incluindo as funções `addTodo()` e `removeTodo(todo)` aqui. Separar os dados das funções que os modificam frequentemente ajuda a simplificar a arquitetura da aplicação. Para mais detalhes, confira [design orientado a dados](https://www.dataorienteddesign.com/dodbook/).
 
 Agora podemos passar o estado da nossa aplicação de tarefas como uma prop ao renderizar:
 

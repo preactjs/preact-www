@@ -258,7 +258,7 @@ function createAppState() {
 }
 ```
 
-> :bulb: Tip: 请注意，我们故意没有使用 `addTodo()` 和 `removeTodo(todo)` 函数。 分离数据与修改它的函数通常有助于简化应用架构。详情请参阅[面向数据设计](https://en.wikipedia.org/wiki/data-oriented_design)。
+> :bulb: Tip: 请注意，我们故意没有使用 `addTodo()` 和 `removeTodo(todo)` 函数。 分离数据与修改它的函数通常有助于简化应用架构。详情请参阅[面向数据设计](https://www.dataorienteddesign.com/dodbook/)。
 
 现在，我们可以在渲染时将待办事项状态作为 props 传递：
 
