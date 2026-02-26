@@ -249,7 +249,7 @@ function createAppState() {
 }
 ```
 
-> :bulb: Tip: Notice that we're consciously not including the `addTodo()` and `removeTodo(todo)` functions here. Separating data from functions that modify it often helps simplify application architecture. For more details, check out [data-oriented design](https://en.wikipedia.org/wiki/Data-oriented_design).
+> :bulb: Tip: Notice that we're consciously not including the `addTodo()` and `removeTodo(todo)` functions here. Separating data from functions that modify it often helps simplify application architecture. For more details, check out [data-oriented design](https://www.dataorienteddesign.com/dodbook/).
 
 We can now pass our todo application state as a prop when rendering:
 
