@@ -249,7 +249,7 @@ function createAppState() {
 }
 ```
 
-> :bulb: Совет: Обратите внимание, что мы сознательно не включили сюда функции `addTodo()` и `removeTodo(todo)`. Отделение данных от функций, которые их изменяют, часто помогает упростить архитектуру приложения. Для получения более подробной информации ознакомьтесь со статьёй [дизайн, ориентированный на данные](https://habr.com/ru/articles/321106/).
+> :bulb: Совет: Обратите внимание, что мы сознательно не включили сюда функции `addTodo()` и `removeTodo(todo)`. Отделение данных от функций, которые их изменяют, часто помогает упростить архитектуру приложения. Для получения более подробной информации ознакомьтесь со статьёй [дизайн, ориентированный на данные](https://www.dataorienteddesign.com/dodbook/).
 >
 > Теперь мы можем передать состояние нашего приложения todo в качестве параметра при рендеринге:
 
@@ -543,6 +543,128 @@ console.log(counter.count.value); // 6
 
 Подробнее о том, как использовать модели в ваших компонентах, и полная справочная информация по API — см. [API моделей](#createmodelfactory) в разделе API ниже.
 
+#### Ключевые возможности
+
+- **Аргументы фабрики**: Фабричные функции могут принимать аргументы для инициализации, что делает модели повторно используемыми с разными конфигурациями.
+- **Автоматическая пакетная обработка**: Все методы, возвращаемые из фабрики, автоматически оборачиваются как действия, поэтому обновления состояния внутри них группируются в пакет и не отслеживаются.
+- **Автоматическая очистка эффектов**: Эффекты, созданные при построении модели, захватываются и автоматически удаляются при уничтожении модели через `Symbol.dispose`.
+- **Компонуемые модели**: Модели естественно компонуются — эффекты из вложенных моделей захватываются родительской и удаляются вместе с ней при уничтожении родителя.
+
+#### Композиция моделей
+
+Модели можно вкладывать друг в друга. При уничтожении родительской модели все эффекты из вложенных моделей автоматически очищаются:
+
+```js
+const TodoItemModel = createModel((text) => {
+	const completed = signal(false);
+
+	return {
+		text,
+		completed,
+		toggle() {
+			completed.value = !completed.value;
+		}
+	};
+});
+
+const TodoListModel = createModel(() => {
+	const items = signal([]);
+
+	return {
+		items,
+		addTodo(text) {
+			const todo = new TodoItemModel(text);
+			items.value = [...items.value, todo];
+		},
+		removeTodo(todo) {
+			items.value = items.value.filter(t => t !== todo);
+			todo[Symbol.dispose]();
+		}
+	};
+});
+
+const todoList = new TodoListModel();
+todoList.addTodo('Купить продукты');
+todoList.addTodo('Выгулять собаку');
+
+// Уничтожение родительской модели также очищает все эффекты вложенных моделей
+todoList[Symbol.dispose]();
+```
+
+### Рекомендуемые паттерны
+
+#### Явный паттерн ReadonlySignal
+
+Для лучшей инкапсуляции объявляйте интерфейс вашей модели явно и используйте `ReadonlySignal` для сигналов, которые должны изменяться только через экшены:
+
+```ts
+import { signal, computed, createModel, ReadonlySignal } from '@preact/signals';
+
+interface Counter {
+	count: ReadonlySignal<number>;
+	doubled: ReadonlySignal<number>;
+	increment(): void;
+	decrement(): void;
+}
+
+const CounterModel = createModel<Counter>(() => {
+	const count = signal(0);
+	const doubled = computed(() => count.value * 2);
+
+	return {
+		count,
+		doubled,
+		increment() {
+			count.value++;
+		},
+		decrement() {
+			count.value--;
+		}
+	};
+});
+
+const counter = new CounterModel();
+counter.increment(); // OK
+counter.count.value = 10; // Ошибка TypeScript: Cannot assign to 'value'
+```
+
+#### Пользовательская логика уничтожения
+
+Если вашей модели требуется пользовательская логика очистки, не связанная с сигналами (например, закрытие WebSocket-соединений), используйте эффект без зависимостей, который возвращает функцию очистки:
+
+```js
+const WebSocketModel = createModel((url) => {
+	const messages = signal([]);
+	const ws = new WebSocket(url);
+
+	ws.onmessage = (e) => {
+		messages.value = [...messages.value, e.data];
+	};
+
+	// Этот эффект выполняется один раз; его очистка запускается при уничтожении
+	effect(() => {
+		return () => {
+			ws.close();
+		};
+	});
+
+	return {
+		messages,
+		send(message) {
+			ws.send(message);
+		}
+	};
+});
+
+const chat = new WebSocketModel('wss://example.com/chat');
+chat.send('Привет!');
+
+// Закрывает WebSocket-соединение при уничтожении
+chat[Symbol.dispose]();
+```
+
+Этот паттерн аналогичен `useEffect(() => { return cleanup }, [])` в React и гарантирует, что очистка происходит автоматически при композиции моделей — родительским моделям не нужно знать о функциях уничтожения вложенных моделей.
+
 ## API
 
 В этом разделе представлен обзор API сигналов. Он призван стать кратким справочником для людей, которые уже знают, как использовать сигналы, и нуждаются в напоминании о том, что доступно.
@@ -686,54 +808,6 @@ console.log(counter.doubled.value); // 12
 counter[Symbol.dispose]();
 ```
 
-#### Ключевые возможности
-
-- **Аргументы фабрики**: Фабричные функции могут принимать аргументы для инициализации, что делает модели повторно используемыми с разными конфигурациями.
-- **Автоматическая пакетная обработка**: Все методы, возвращаемые из фабрики, автоматически оборачиваются как действия, поэтому обновления состояния внутри них группируются в пакет и не отслеживаются.
-- **Автоматическая очистка эффектов**: Эффекты, созданные при построении модели, захватываются и автоматически удаляются при уничтожении модели через `Symbol.dispose`.
-- **Компонуемые модели**: Модели естественно компонуются — эффекты из вложенных моделей захватываются родительской и удаляются вместе с ней при уничтожении родителя.
-
-#### Композиция моделей
-
-Модели можно вкладывать друг в друга. При уничтожении родительской модели все эффекты из вложенных моделей автоматически очищаются:
-
-```js
-const TodoItemModel = createModel((text) => {
-	const completed = signal(false);
-
-	return {
-		text,
-		completed,
-		toggle() {
-			completed.value = !completed.value;
-		}
-	};
-});
-
-const TodoListModel = createModel(() => {
-	const items = signal([]);
-
-	return {
-		items,
-		addTodo(text) {
-			const todo = new TodoItemModel(text);
-			items.value = [...items.value, todo];
-		},
-		removeTodo(todo) {
-			items.value = items.value.filter(t => t !== todo);
-			todo[Symbol.dispose]();
-		}
-	};
-});
-
-const todoList = new TodoListModel();
-todoList.addTodo('Купить продукты');
-todoList.addTodo('Выгулять собаку');
-
-// Уничтожение родительской модели также очищает все эффекты вложенных моделей
-todoList[Symbol.dispose]();
-```
-
 ### action(fn)
 
 Функция `action(fn)` оборачивает функцию для выполнения в пакетном и неотслеживаемом контексте. Это полезно, когда нужно создать самостоятельные действия вне модели:
@@ -797,80 +871,6 @@ function Counter({ initialValue }) {
 	);
 }
 ```
-
-### Рекомендуемые паттерны
-
-#### Явный паттерн ReadonlySignal
-
-Для лучшей инкапсуляции объявляйте интерфейс вашей модели явно и используйте `ReadonlySignal` для сигналов, которые должны изменяться только через экшены:
-
-```ts
-import { signal, computed, createModel, ReadonlySignal } from '@preact/signals';
-
-interface Counter {
-	count: ReadonlySignal<number>;
-	doubled: ReadonlySignal<number>;
-	increment(): void;
-	decrement(): void;
-}
-
-const CounterModel = createModel<Counter>(() => {
-	const count = signal(0);
-	const doubled = computed(() => count.value * 2);
-
-	return {
-		count,
-		doubled,
-		increment() {
-			count.value++;
-		},
-		decrement() {
-			count.value--;
-		}
-	};
-});
-
-const counter = new CounterModel();
-counter.increment(); // OK
-counter.count.value = 10; // Ошибка TypeScript: Cannot assign to 'value'
-```
-
-#### Пользовательская логика уничтожения
-
-Если вашей модели требуется пользовательская логика очистки, не связанная с сигналами (например, закрытие WebSocket-соединений), используйте эффект без зависимостей, который возвращает функцию очистки:
-
-```js
-const WebSocketModel = createModel((url) => {
-	const messages = signal([]);
-	const ws = new WebSocket(url);
-
-	ws.onmessage = (e) => {
-		messages.value = [...messages.value, e.data];
-	};
-
-	// Этот эффект выполняется один раз; его очистка запускается при уничтожении
-	effect(() => {
-		return () => {
-			ws.close();
-		};
-	});
-
-	return {
-		messages,
-		send(message) {
-			ws.send(message);
-		}
-	};
-});
-
-const chat = new WebSocketModel('wss://example.com/chat');
-chat.send('Привет!');
-
-// Закрывает WebSocket-соединение при уничтожении
-chat[Symbol.dispose]();
-```
-
-Этот паттерн аналогичен `useEffect(() => { return cleanup }, [])` в React и гарантирует, что очистка происходит автоматически при композиции моделей — родительским моделям не нужно знать о функциях уничтожения вложенных моделей.
 
 ## Вспомогательные компоненты и хуки
 
