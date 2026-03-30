@@ -591,6 +591,8 @@ todoList.addTodo('Walk the dog');
 todoList[Symbol.dispose]();
 ```
 
+> **TypeScript:** If you call `model[Symbol.dispose]()` directly, add `"ESNext.Disposable"` (or `"ESNext"`) to the `lib` array in your `tsconfig.json` so that `Symbol.dispose` is typed.
+
 ### Recommended Patterns
 
 #### Explicit ReadonlySignal Pattern
@@ -807,6 +809,8 @@ console.log(counter.doubled.value); // 12
 // Clean up all effects when done
 counter[Symbol.dispose]();
 ```
+
+> **TypeScript:** Calling `model[Symbol.dispose]()` requires `"ESNext.Disposable"` (or `"ESNext"`) in your `tsconfig.json` `lib` array.
 
 ### action(fn)
 
