@@ -591,6 +591,8 @@ todoList.addTodo('Выгулять собаку');
 todoList[Symbol.dispose]();
 ```
 
+> **TypeScript:** Если вы вызываете `model[Symbol.dispose]()` напрямую, добавьте `"ESNext.Disposable"` (или `"ESNext"`) в массив `lib` в вашем `tsconfig.json`, чтобы `Symbol.dispose` был типизирован.
+
 ### Рекомендуемые паттерны
 
 #### Явный паттерн ReadonlySignal
@@ -807,6 +809,8 @@ console.log(counter.doubled.value); // 12
 // Очищаем все эффекты, когда закончили
 counter[Symbol.dispose]();
 ```
+
+> **TypeScript:** Вызов `model[Symbol.dispose]()` требует добавления `"ESNext.Disposable"` (или `"ESNext"`) в массив `lib` вашего `tsconfig.json`.
 
 ### action(fn)
 
