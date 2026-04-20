@@ -16,7 +16,10 @@ export default function SidebarNav({ items, onClick }) {
 	const { path } = useRoute();
 
 	return (
-		<nav class={cx(style.toc, !(items && items.length > 1) && style.disabled)}>
+		<nav
+			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
+			aria-label="Sidebar Navigation"
+		>
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
 					return (

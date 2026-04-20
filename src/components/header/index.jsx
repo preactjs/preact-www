@@ -51,7 +51,7 @@ function MainNav() {
 	};
 
 	return (
-		<nav class={style.nav}>
+		<nav class={style.nav} aria-label="Main navigation">
 			<NavLink
 				href="/"
 				clsx="home"
