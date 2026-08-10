@@ -19,14 +19,14 @@ This document is intended to guide you through upgrading an existing Preact 10.x
 
 ### Supported Browser Versions
 
-Preact 11.x will support the following browsers without any additional polyfills:
+Preact 11.x bundles are transpiled for the following browsers:
 
 - Chrome >= 40
 - Safari >= 9
 - Firefox >= 36
 - Edge >= 12
 
-If you need to support older browser versions, you will need to use polyfills.
+Preact does not include polyfills and relies on `Object.assign`, `String.prototype.startsWith`, and `queueMicrotask`. Not all versions listed above provide these APIs, so you may need to polyfill them depending on your browser support requirements. Without polyfills, these APIs are available in Chrome 71+, Safari 12.1+, Firefox 69+, and Edge 79+.
 
 ### Supported TypeScript Versions
 
@@ -34,11 +34,11 @@ TS v5.1 will be the new minimum supported version for the 11.x release line. If 
 
 Increasing our minimum TS version allows us to take advantage of some key improvements that the TS team has made for JSX typing, fixing a handful of long-standing & fundamental type issues that we could not address ourselves.
 
-### ESM Bundles are distributed as `.mjs`
+### Preact is distributed as ESM
 
-Preact 11.x will distribute all ESM bundles with the `.mjs` extension, dropping the `.module.js` copies that 10.x provided. This should correct some tooling issues that some users have experienced as well as simplify the distribution bundles.
+Preact 11.x distributes its core and add-on bundles exclusively as ES modules using the `.mjs` extension. The `.module.js`, CommonJS, and UMD bundles that Preact 10.x provided have been removed.
 
-The CJS & UMD bundles will continue to be provided and are unchanged.
+If you rely on `require('preact')`, a UMD global, or direct imports such as `preact/dist/preact.js` and `preact/dist/preact.min.js`, switch to standard ESM imports or an ESM-focused CDN. A few `preact/compat` support entry points, such as `preact/compat/server`, continue to provide CommonJS wrappers for compatibility.
 
 ## What's new
 
