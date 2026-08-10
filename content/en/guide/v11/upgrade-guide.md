@@ -19,14 +19,14 @@ This document is intended to guide you through upgrading an existing Preact 10.x
 
 ### Supported Browser Versions
 
-Preact 11.x bundles are transpiled for the following browsers:
+Preact 11.x will support the following browsers without any additional polyfills:
 
-- Chrome >= 40
-- Safari >= 9
-- Firefox >= 36
-- Edge >= 12
+- Chrome >= 71
+- Safari >= 12.1
+- Firefox >= 69
+- Edge >= 79
 
-Preact does not include polyfills and relies on `Object.assign`, `String.prototype.startsWith`, and `queueMicrotask`. Not all versions listed above provide these APIs, so you may need to polyfill them depending on your browser support requirements. Without polyfills, these APIs are available in Chrome 71+, Safari 12.1+, Firefox 69+, and Edge 79+.
+If you need to support older browser versions, you will need to use polyfills.
 
 ### Supported TypeScript Versions
 
@@ -38,7 +38,7 @@ Increasing our minimum TS version allows us to take advantage of some key improv
 
 Preact 11.x distributes its core and add-on bundles exclusively as ES modules using the `.mjs` extension. The `.module.js`, CommonJS, and UMD bundles that Preact 10.x provided have been removed.
 
-If you rely on `require('preact')`, a UMD global, or direct imports such as `preact/dist/preact.js` and `preact/dist/preact.min.js`, switch to standard ESM imports or an ESM-focused CDN. A few `preact/compat` support entry points, such as `preact/compat/server`, continue to provide CommonJS wrappers for compatibility.
+Modern runtimes with [`require(esm)`](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) support can continue to use `require('preact')`, which will load the ES module. Other CommonJS consumers, UMD global users, and direct imports such as `preact/dist/preact.js` or `preact/dist/preact.min.js` should switch to standard ESM imports or an ESM-focused CDN. A few `preact/compat` support entry points, such as `preact/compat/server`, continue to provide CommonJS wrappers for compatibility.
 
 ## What's new
 
@@ -71,7 +71,9 @@ function Y() {
 const SuspendingMultipleChildren = lazy(() => /* import Y */);
 ```
 
-For a more comprehensive write up of the known problems and how we have addressed them, please see [RFC: Hydration 2.0 (preactjs/preact#4442)](https://github.com/preactjs/preact/issues/4442)
+Hydration 2.0 also coordinates with streamed SSR output. Suspended boundaries use stable comment markers so that Preact can resume hydration against the latest streamed DOM rather than stale fallback nodes.
+
+For a more comprehensive write up of the known problems and how we have addressed them, please see [RFC: Hydration 2.0 (preactjs/preact#4442)](https://github.com/preactjs/preact/issues/4442) and [RFC: Streaming SSR Hydration Coordination (preactjs/preact#5034)](https://github.com/preactjs/preact/issues/5034).
 
 ### `Object.is` for equality checks in hook arguments
 
@@ -88,6 +90,29 @@ function App() {
 	return <button onClick={() => setCount(NaN)}>Set count to NaN</button>;
 }
 ```
+
+### Portals in core
+
+`createPortal` is now available directly from `preact`, allowing portals to be used without `preact/compat`. It remains exported from `preact/compat`, so existing imports do not need to change.
+
+```jsx
+import { createPortal } from 'preact';
+
+function Modal({ children }) {
+	return createPortal(children, document.body);
+}
+```
+
+### React 19 compatibility
+
+`preact/compat` now reports React version `19.0.0` and includes several APIs introduced by newer React releases:
+
+- `use()` for reading Promises and Context
+- `useEffectEvent()`
+- The optional `getServerSnapshot` argument for `useSyncExternalStore()`
+- The optional context argument for `Children.map()` and `Children.forEach()`
+
+`preact/debug` now also exports `captureOwnerStack()` and `setupComponentStack()` for improved debugging and integration with developer tooling.
 
 ## API Changes
 
@@ -176,11 +201,33 @@ If you still have a need for this you can access the DOM with `this.__v.__e`; `.
 
 The implementation and server-side support has always been a bit unclear and incomplete, so we are choosing to remove it.
 
+### `useEffect` cleanup timing
+
+When a component is unmounted, `useEffect` cleanup functions are now deferred until after the browser has painted, matching React. In Preact 10, these cleanup functions ran synchronously as part of unmounting.
+
+Most applications will not need to make any changes. Tests which assert immediately after unmounting may need to flush effects first. If cleanup must happen synchronously before DOM mutations are committed, use `useLayoutEffect` instead.
+
 ### Types
 
 #### `useRef` requires an initial value
 
 Similar to the change made in React 19, we've changed the `useRef` type signature to require an initial value. Providing an initial value simplifies some of the type inference and helps users avoid some typing issues.
+
+`RefObject<T>` now describes a ref whose `current` value is `T`. Include `null` in the type argument where applicable, such as `RefObject<HTMLElement | null>`.
+
+#### Removed deprecated ref types
+
+The deprecated `PropRef` and `ForwardFn` types have been removed. Use `Ref` and `ForwardRefRenderFunction` instead. Note that `ForwardFn` accepted its prop type first, whereas `ForwardRefRenderFunction` accepts its ref type first:
+
+```ts
+import type * as React from 'preact/compat';
+
+// Preact 10
+const Component: React.ForwardFn<Props, Handle> = render;
+
+// Preact 11
+const Component: React.ForwardRefRenderFunction<Handle, Props> = render;
+```
 
 #### Reduction in `JSX` namespace
 
@@ -199,3 +246,5 @@ import { ButtonHTMLAttributes } from 'preact';
 
 type MyCustomButtonProps = ButtonHTMLAttributes & { ... }
 ```
+
+If you augment Preact's JSX types, target the `preact` module or the `preact.JSX` namespace instead of the global `JSX` namespace. See [Extending built-in JSX types](/guide/v11/typescript#extending-built-in-jsx-types) for examples.
