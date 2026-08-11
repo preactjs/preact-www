@@ -103,9 +103,9 @@ function Modal({ children }) {
 }
 ```
 
-### React 19 compatibility
+### React compatibility
 
-`preact/compat` now reports React version `19.0.0` and includes several APIs introduced by newer React releases:
+`preact/compat` includes several APIs introduced by newer React releases:
 
 - `use()` for reading Promises and Context
 - `useEffectEvent()`
