@@ -103,9 +103,9 @@ function Modal({ children }) {
 }
 ```
 
-### React 19 compatibility
+### React compatibility
 
-`preact/compat` now reports React version `19.0.0` and includes several APIs introduced by newer React releases:
+`preact/compat` includes several APIs introduced by newer React releases:
 
 - `use()` for reading Promises and Context
 - `useEffectEvent()`
@@ -215,20 +215,6 @@ Similar to the change made in React 19, we've changed the `useRef` type signatur
 
 `RefObject<T>` now describes a ref whose `current` value is `T`. Include `null` in the type argument where applicable, such as `RefObject<HTMLElement | null>`.
 
-#### Removed deprecated ref types
-
-The deprecated `PropRef` and `ForwardFn` types have been removed. Use `Ref` and `ForwardRefRenderFunction` instead. Note that `ForwardFn` accepted its prop type first, whereas `ForwardRefRenderFunction` accepts its ref type first:
-
-```ts
-import type * as React from 'preact/compat';
-
-// Preact 10
-const Component: React.ForwardFn<Props, Handle> = render;
-
-// Preact 11
-const Component: React.ForwardRefRenderFunction<Handle, Props> = render;
-```
-
 #### Reduction in `JSX` namespace
 
 TypeScript uses the special `JSX` namespace to alter how JSX is typed and interpreted. In v10, we greatly expanded this namespace to include a variety of useful types, but many of these are better implemented in the `preact` namespace instead.
@@ -246,5 +232,3 @@ import { ButtonHTMLAttributes } from 'preact';
 
 type MyCustomButtonProps = ButtonHTMLAttributes & { ... }
 ```
-
-If you augment Preact's JSX types, target the `preact` module or the `preact.JSX` namespace instead of the global `JSX` namespace. See [Extending built-in JSX types](/guide/v11/typescript#extending-built-in-jsx-types) for examples.
