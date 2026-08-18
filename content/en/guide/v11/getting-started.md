@@ -68,7 +68,7 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 >
 > `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
-For a more scalable solution, see [Import Maps -- Basic Usage](/guide/v10/no-build-workflows#basic-usage), and for more information on HTM, check out its [documentation][htm].
+For a more scalable solution, see [Import Maps -- Basic Usage](/guide/v11/no-build-workflows#basic-usage), and for more information on HTM, check out its [documentation][htm].
 
 [htm]: https://github.com/developit/htm
 
@@ -275,4 +275,4 @@ errors. By setting `skipLibCheck`, you can tell TS that it doesn't need to do a 
 </script>
 ```
 
-See also [Import Maps -- Recipes and Common Patterns](/guide/v10/no-build-workflows#recipes-and-common-patterns) for more examples.
+See also [Import Maps -- Recipes and Common Patterns](/guide/v11/no-build-workflows#recipes-and-common-patterns) for more examples.

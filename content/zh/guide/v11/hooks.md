@@ -264,7 +264,7 @@ const onClick = useCallback(() => console.log(a, b), [a, b]);
 
 ## useRef
 
-可以使用 `useRef` 钩子在函数式组件中获取 DOM 节点的引用。它与 [createRef](/guide/v10/refs#createref) 相似。
+可以使用 `useRef` 钩子在函数式组件中获取 DOM 节点的引用。它与 [createRef](/guide/v11/refs#createref) 相似。
 
 ```jsx
 // --repl
@@ -472,14 +472,14 @@ const App = props => {
 };
 ```
 
-> 如果你曾使用过类组件的 API，这个钩子本质上是 [componentDidCatch](/guide/v10/whats-new/#componentdidcatch) 生命周期方法的替代。
+> 如果你曾使用过类组件的 API，这个钩子本质上是 [componentDidCatch](/guide/v11/whats-new/#componentdidcatch) 生命周期方法的替代。
 > 这个钩子在 Preact 10.2.0 中引入。
 
 ## 工具钩子
 
 ### useId
 
-这个钩子会为每个调用生成唯一的 ID，并确保[在服务端](/guide/v10/server-side-rendering))和客户端的一致性。一致 ID 的常见用例是表单，`<label>` 元素使用 [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for)) 属性与 `<input>` 元素关联，`useId` 钩子并不局限于表单，它可以在任何你需要唯一 ID 的时候使用。
+这个钩子会为每个调用生成唯一的 ID，并确保[在服务端](/guide/v11/server-side-rendering))和客户端的一致性。一致 ID 的常见用例是表单，`<label>` 元素使用 [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for)) 属性与 `<input>` 元素关联，`useId` 钩子并不局限于表单，它可以在任何你需要唯一 ID 的时候使用。
 
 > 要保证钩子一致，你需要同时在服务端和客户端使用 Preact。
 

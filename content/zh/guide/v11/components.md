@@ -35,7 +35,7 @@ const App = <MyComponent name="张三" />;
 render(App, document.body);
 ```
 
-> 请注意，在先前的版本中我们将其称之为`“无状态组件”`，但有了[钩子组件](/guide/v10/hooks)后就不是了。
+> 请注意，在先前的版本中我们将其称之为`“无状态组件”`，但有了[钩子组件](/guide/v11/hooks)后就不是了。
 
 ## 类组件
 

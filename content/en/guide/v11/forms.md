@@ -365,7 +365,7 @@ const onInput = e => {
 };
 ```
 
-The problem with this is in the cases where the input fails that condition: because we don't run `setValue`, the component doesn't rerender, and because the component doesn't rerender, the input value is not correctly controlled. However, even if we did add a `else { setValue(value) }` to that handler, Preact is smart enough to detect when the value hasn't changed and so it will not rerender the component. This leaves us with [`refs`](/guide/v10/refs) to bridge the gap between the DOM state and Preact's state.
+The problem with this is in the cases where the input fails that condition: because we don't run `setValue`, the component doesn't rerender, and because the component doesn't rerender, the input value is not correctly controlled. However, even if we did add a `else { setValue(value) }` to that handler, Preact is smart enough to detect when the value hasn't changed and so it will not rerender the component. This leaves us with [`refs`](/guide/v11/refs) to bridge the gap between the DOM state and Preact's state.
 
 > For more information on controlled components in Preact, see [Controlled Inputs](https://www.jovidecroock.com/blog/controlled-inputs) by Jovi De Croock.
 

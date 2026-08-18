@@ -516,7 +516,7 @@ function Counter({ initialCount = 0 }) {
 
 ## 扩展内置的 JSX 类型
 
-你可能会在 JSX 中使用自定义元素（参见 /guide/v10/web-components），或者想为所有或某些 HTML 元素添加额外属性以配合特定库使用。为此，需要使用“模块扩展（Module augmentation）”来扩展或修改 Preact 提供的类型。
+你可能会在 JSX 中使用自定义元素（参见 /guide/v11/web-components），或者想为所有或某些 HTML 元素添加额外属性以配合特定库使用。为此，需要使用“模块扩展（Module augmentation）”来扩展或修改 Preact 提供的类型。
 
 ### 为自定义元素扩展 `IntrinsicElements`
 

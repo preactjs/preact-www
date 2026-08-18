@@ -50,7 +50,7 @@ class MyComponent extends Component {
 }
 ```
 
-Para aprender más sobre los componentes y cómo pueden usarse, consulta la [Documentación de Componentes](/guide/v10/components).
+Para aprender más sobre los componentes y cómo pueden usarse, consulta la [Documentación de Componentes](/guide/v11/components).
 
 ### render()
 
@@ -94,7 +94,7 @@ render(<App />, rootElement); // success
 
 `hydrate(virtualDom, containerNode)`
 
-Si ya has pre-renderizado o renderizado en el servidor tu aplicación a HTML, Preact puede omitir la mayor parte del trabajo de renderizado al cargar en el navegador. Esto se puede habilitar cambiando de `render()` a `hydrate()`, que omite la mayor parte del diffing pero aún así adjunta los listeners de eventos y configura tu árbol de componentes. Esto solo funciona cuando se usa junto con pre-renderizado o [Renderizado en el Servidor](/guide/v10/server-side-rendering).
+Si ya has pre-renderizado o renderizado en el servidor tu aplicación a HTML, Preact puede omitir la mayor parte del trabajo de renderizado al cargar en el navegador. Esto se puede habilitar cambiando de `render()` a `hydrate()`, que omite la mayor parte del diffing pero aún así adjunta los listeners de eventos y configura tu árbol de componentes. Esto solo funciona cuando se usa junto con pre-renderizado o [Renderizado en el Servidor](/guide/v11/server-side-rendering).
 
 ```jsx
 // --repl
@@ -185,7 +185,7 @@ render(
 
 Crea un nuevo objeto Context que puede usarse para pasar datos a través del árbol de componentes sin tener que pasar props manualmente por cada nivel.
 
-Consulta la sección en la [documentación de Context](/guide/v10/context#createcontext).
+Consulta la sección en la [documentación de Context](/guide/v11/context#createcontext).
 
 ```jsx
 import { createContext } from 'preact';
@@ -199,7 +199,7 @@ const MyContext = createContext(defaultValue);
 
 Crea un nuevo objeto Ref que actúa como un valor local y estable que persistirá entre renders. Esto puede usarse para almacenar referencias al DOM, instancias de componentes o cualquier valor arbitrario.
 
-Consulta la [documentación de Referencias](/guide/v10/refs#createref) para más detalles.
+Consulta la [documentación de Referencias](/guide/v11/refs#createref) para más detalles.
 
 ```jsx
 import { createRef, Component } from 'preact';
@@ -254,11 +254,11 @@ isValidElement(null); // false
 
 ### options
 
-Consulta la documentación de [Option Hooks](/guide/v10/options) para más detalles.
+Consulta la documentación de [Option Hooks](/guide/v11/options) para más detalles.
 
 ## preact/hooks
 
-Consulta la documentación de [Hooks](/guide/v10/hooks) para más detalles. Ten en cuenta que la página incluye algunos "hooks específicos de Compat" que no están disponibles en `preact/hooks`, solo en `preact/compat`.
+Consulta la documentación de [Hooks](/guide/v11/hooks) para más detalles. Ten en cuenta que la página incluye algunos "hooks específicos de Compat" que no están disponibles en `preact/hooks`, solo en `preact/compat`.
 
 ## preact/compat
 
@@ -707,7 +707,7 @@ Escapa un hijo dinámico pasado a [`jsxTemplate`](#jsxtemplate). Usado por la tr
 
 ## preact/test-utils
 
-Una colección de utilidades para facilitar el testeo de componentes Preact. Normalmente son usadas por librerías de testing como [`enzyme`](/guide/v10/unit-testing-with-enzyme) o [`@testing-library/preact`](/guide/v10/preact-testing-library) en vez de directamente por los usuarios.
+Una colección de utilidades para facilitar el testeo de componentes Preact. Normalmente son usadas por librerías de testing como [`enzyme`](/guide/v11/unit-testing-with-enzyme) o [`@testing-library/preact`](/guide/v11/preact-testing-library) en vez de directamente por los usuarios.
 
 ### setupRerender
 

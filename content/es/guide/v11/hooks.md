@@ -264,11 +264,11 @@ const onClick = useCallback(() => console.log(a, b), [a, b]);
 
 ## Refs
 
-Las **referencias** (refs para abreviar) son valores estables y locales que persisten entre rerenders pero no causan rerenders por sí mismos. Consulta [Refs](/guide/v10/refs) para más información y ejemplos.
+Las **referencias** (refs para abreviar) son valores estables y locales que persisten entre rerenders pero no causan rerenders por sí mismos. Consulta [Refs](/guide/v11/refs) para más información y ejemplos.
 
 ### useRef
 
-Para crear una referencia estable a un nodo del DOM o un valor que persista entre renders, podemos usar el hook `useRef`. Funciona de manera similar a [createRef](/guide/v10/refs#createref).
+Para crear una referencia estable a un nodo del DOM o un valor que persista entre renders, podemos usar el hook `useRef`. Funciona de manera similar a [createRef](/guide/v11/refs#createref).
 
 ```jsx
 // --repl
@@ -477,14 +477,14 @@ const App = props => {
 };
 ```
 
-> Si has estado usando la API de componentes basados en clases en el pasado, entonces este hook es esencialmente una alternativa al método de ciclo de vida [componentDidCatch](/guide/v10/whats-new/#componentdidcatch).
+> Si has estado usando la API de componentes basados en clases en el pasado, entonces este hook es esencialmente una alternativa al método de ciclo de vida [componentDidCatch](/guide/v11/whats-new/#componentdidcatch).
 > Este hook fue introducido con Preact 10.2.0.
 
 ## Hooks de Utilidad
 
 ### useId
 
-Este hook generará un identificador único para cada invocación y garantiza que estos serán consistentes al renderizar tanto [en el servidor](/guide/v10/server-side-rendering) como en el cliente. Un caso de uso común para ID consistentes son los formularios, donde los elementos `<label>` usan el atributo [`for`](https://developer.mozilla.org/es/docs/Web/HTML/Element/label#attr-for) para asociarlos con un elemento `<input>` específ ico. El hook `useId` no se limita solo a formularios y se puede usar siempre que necesites un ID único.
+Este hook generará un identificador único para cada invocación y garantiza que estos serán consistentes al renderizar tanto [en el servidor](/guide/v11/server-side-rendering) como en el cliente. Un caso de uso común para ID consistentes son los formularios, donde los elementos `<label>` usan el atributo [`for`](https://developer.mozilla.org/es/docs/Web/HTML/Element/label#attr-for) para asociarlos con un elemento `<input>` específ ico. El hook `useId` no se limita solo a formularios y se puede usar siempre que necesites un ID único.
 
 > Para hacer el hook consistente, necesitarás usar Preact tanto en el servidor
 > como en el cliente.

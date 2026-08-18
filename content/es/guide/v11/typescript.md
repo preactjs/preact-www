@@ -520,7 +520,7 @@ La única anotación necesaria está en la función reductora misma. Los tipos d
 
 ## Extendiendo tipos JSX incorporados
 
-Podrías tener [elementos personalizados](/guide/v10/web-components) que quieras usar en JSX, o podrías desear agregar atributos adicionales a todos o algunos elementos HTML para funcionar con una librería particular. Para hacer esto, necesitarás usar "Module augmentation" (aumento de módulo) para extender y/o alterar los tipos que Preact proporciona.
+Podrías tener [elementos personalizados](/guide/v11/web-components) que quieras usar en JSX, o podrías desear agregar atributos adicionales a todos o algunos elementos HTML para funcionar con una librería particular. Para hacer esto, necesitarás usar "Module augmentation" (aumento de módulo) para extender y/o alterar los tipos que Preact proporciona.
 
 ### Extendiendo `IntrinsicElements` para elementos personalizados
 

@@ -70,7 +70,7 @@ Escribir llamadas raw `h` o `createElement` puede ser tedioso. JSX tiene la vent
 >
 > `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
-Para una solución más escalable, consulta [Mapas de Importación -- Uso Básico](/guide/v10/no-build-workflows#basic-usage), y para más información sobre HTM, consulta su [documentación][htm].
+Para una solución más escalable, consulta [Mapas de Importación -- Uso Básico](/guide/v11/no-build-workflows#basic-usage), y para más información sobre HTM, consulta su [documentación][htm].
 
 [htm]: https://github.com/developit/htm
 
@@ -265,4 +265,4 @@ Además, es posible que desees habilitar `skipLibCheck` como lo hacemos en el ej
 </script>
 ```
 
-Consulta también [Mapas de Importación -- Recetas y Patrones Comunes](/guide/v10/no-build-workflows#recipes-and-common-patterns) para más ejemplos.
+Consulta también [Mapas de Importación -- Recetas y Patrones Comunes](/guide/v11/no-build-workflows#recipes-and-common-patterns) para más ejemplos.

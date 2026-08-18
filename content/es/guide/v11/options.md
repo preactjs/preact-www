@@ -9,7 +9,7 @@ translation_by:
 
 Callbacks para plugins que pueden cambiar la renderización de Preact.
 
-Preact soporta una serie de callbacks diferentes que pueden ser usados para observar o cambiar cada etapa del proceso de renderizado, comúnmente referido como "Hooks de Opción" (no confundir con [hooks](/guide/v10/hooks)). Estos se usan frecuentemente para extender el conjunto de características de Preact mismo, o para crear herramientas de prueba especializadas. Todos nuestros addons como `preact/hooks`, `preact/compat` y nuestra extensión devtools se basan en estos callbacks.
+Preact soporta una serie de callbacks diferentes que pueden ser usados para observar o cambiar cada etapa del proceso de renderizado, comúnmente referido como "Hooks de Opción" (no confundir con [hooks](/guide/v11/hooks)). Estos se usan frecuentemente para extender el conjunto de características de Preact mismo, o para crear herramientas de prueba especializadas. Todos nuestros addons como `preact/hooks`, `preact/compat` y nuestra extensión devtools se basan en estos callbacks.
 
 Esta API está principalmente destinada a autores de herramientas o librerías que deseen extender Preact.
 

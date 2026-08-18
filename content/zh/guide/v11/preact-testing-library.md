@@ -7,7 +7,7 @@ description: Testing Preact applications made easy with testing-library
 
 [Preact Testing Library](https://github.com/testing-library/preact-testing-library) 是 `preact/test-utils` 的一个轻量级包装器。它提供了一组查询方法，用于以类似用户在页面上查找元素的方式访问渲染的 DOM。这种方法允许您编写不依赖于实现细节的测试。因此，当被测试的组件进行重构时，这使得测试更容易维护且更具弹性。
 
-与 [Enzyme](/guide/v10/unit-testing-with-enzyme) 不同，Preact Testing Library 必须在 DOM 环境中调用。
+与 [Enzyme](/guide/v11/unit-testing-with-enzyme) 不同，Preact Testing Library 必须在 DOM 环境中调用。
 
 ---
 

@@ -44,7 +44,7 @@ class MyComponent extends Component {
 }
 ```
 
-请参阅[组件文档](/guide/v10/components)来了解其概念及使用方法。
+请参阅[组件文档](/guide/v11/components)来了解其概念及使用方法。
 
 ## render()
 
@@ -85,7 +85,7 @@ render(<App />, rootElement); // 成功
 
 ## hydrate()
 
-若您已经通过预渲染或服务端渲染的方式将应用转换为 HTML，Preact 可以在浏览器加载时跳过大部分渲染流程。您可以通过将 `render()` 替换为 `hydrate()` 的方式跳过大部分差异对比流程，而事件监听器和组件树仍能正常使用。此函数仅能与预渲染或[服务端渲染](/guide/v10/server-side-rendering)搭配使用。
+若您已经通过预渲染或服务端渲染的方式将应用转换为 HTML，Preact 可以在浏览器加载时跳过大部分渲染流程。您可以通过将 `render()` 替换为 `hydrate()` 的方式跳过大部分差异对比流程，而事件监听器和组件树仍能正常使用。此函数仅能与预渲染或[服务端渲染](/guide/v11/server-side-rendering)搭配使用。
 
 ```jsx
 // --repl
@@ -169,13 +169,13 @@ render(
 
 ## createContext
 
-参见[上下文文档一节](/guide/v10/context#createcontext)。
+参见[上下文文档一节](/guide/v11/context#createcontext)。
 
 ## createRef
 
 提供渲染后引用元素或组件的方式。
 
-参见[引用文档](/guide/v10/refs#createref)以了解详情。
+参见[引用文档](/guide/v11/refs#createref)以了解详情。
 
 ## Fragment
 

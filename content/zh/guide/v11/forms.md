@@ -365,7 +365,7 @@ const onInput = e => {
 };
 ```
 
-这个问题在于当输入未通过该条件判断的情况：因为我们没有运行`setValue`，组件不会重新渲染，而由于组件不重新渲染，输入值就无法正确受控。然而，即使我们在处理程序中添加了`else { setValue(value) }`，Preact 也足够智能，能够检测到值没有改变，因此不会重新渲染组件。这就需要我们使用[`refs`](/guide/v10/refs)来弥合 DOM 状态和 Preact 状态之间的差距。
+这个问题在于当输入未通过该条件判断的情况：因为我们没有运行`setValue`，组件不会重新渲染，而由于组件不重新渲染，输入值就无法正确受控。然而，即使我们在处理程序中添加了`else { setValue(value) }`，Preact 也足够智能，能够检测到值没有改变，因此不会重新渲染组件。这就需要我们使用[`refs`](/guide/v11/refs)来弥合 DOM 状态和 Preact 状态之间的差距。
 
 > 有关 Preact 中受控组件的更多信息，请参阅 Jovi De Croock 的[受控输入](https://www.jovidecroock.com/blog/controlled-inputs)。
 

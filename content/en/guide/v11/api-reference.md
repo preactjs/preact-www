@@ -48,7 +48,7 @@ class MyComponent extends Component {
 }
 ```
 
-To learn more about components and how they can be used, check out the [Components Documentation](/guide/v10/components).
+To learn more about components and how they can be used, check out the [Components Documentation](/guide/v11/components).
 
 ### render()
 
@@ -92,7 +92,7 @@ render(<App />, rootElement); // success
 
 `hydrate(virtualDom, containerNode)`
 
-If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with pre-rendering or [Server-Side Rendering](/guide/v10/server-side-rendering).
+If you've already pre-rendered or server-side-rendered your application to HTML, Preact can bypass most rendering work when loading in the browser. This can be enabled by switching from `render()` to `hydrate()`, which skips most diffing while still attaching event listeners and setting up your component tree. This works only when used in conjunction with pre-rendering or [Server-Side Rendering](/guide/v11/server-side-rendering).
 
 ```jsx
 // --repl
@@ -183,7 +183,7 @@ render(
 
 Creates a new Context object which can be used to pass data through the component tree without passing down props through each level.
 
-See the section in the [Context documentation](/guide/v10/context#createcontext).
+See the section in the [Context documentation](/guide/v11/context#createcontext).
 
 ```jsx
 import { createContext } from 'preact';
@@ -197,7 +197,7 @@ const MyContext = createContext(defaultValue);
 
 Creates a new Ref object that acts as a stable, local value that will persist across renders. This can be used to store DOM references, component instances, or any arbitrary value.
 
-See the [References documentation](/guide/v10/refs#createref) for more details.
+See the [References documentation](/guide/v11/refs#createref) for more details.
 
 ```jsx
 import { createRef, Component } from 'preact';
@@ -252,11 +252,11 @@ isValidElement(null); // false
 
 ### options
 
-See the [Option Hooks](/guide/v10/options) documentation for more details.
+See the [Option Hooks](/guide/v11/options) documentation for more details.
 
 ## preact/hooks
 
-See the [Hooks](/guide/v10/hooks) documentation for more details. Please note that the page includes a number of "Compat-specific hooks" that are not available from `preact/hooks`, only `preact/compat`.
+See the [Hooks](/guide/v11/hooks) documentation for more details. Please note that the page includes a number of "Compat-specific hooks" that are not available from `preact/hooks`, only `preact/compat`.
 
 ## preact/compat
 
@@ -705,7 +705,7 @@ Escape a dynamic child passed to [`jsxTemplate`](#jsxtemplate). Used by Deno's "
 
 ## preact/test-utils
 
-A collection of utilities to facilitate testing Preact components. Usually these are used by a testing library like [`enzyme`](/guide/v10/unit-testing-with-enzyme) or [`@testing-library/preact`](/guide/v10/preact-testing-library) rather than directly by users.
+A collection of utilities to facilitate testing Preact components. Usually these are used by a testing library like [`enzyme`](/guide/v11/unit-testing-with-enzyme) or [`@testing-library/preact`](/guide/v11/preact-testing-library) rather than directly by users.
 
 ### setupRerender
 
