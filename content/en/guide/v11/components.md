@@ -35,7 +35,7 @@ const App = <MyComponent name="John Doe" />;
 render(App, document.body);
 ```
 
-> Note in earlier versions they were known as `"Stateless Components"`. This doesn't hold true anymore with the [hooks-addon](/guide/v10/hooks).
+> Note in earlier versions they were known as `"Stateless Components"`. This doesn't hold true anymore with the [hooks-addon](/guide/v11/hooks).
 
 ## Class Components
 

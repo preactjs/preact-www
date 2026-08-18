@@ -37,7 +37,7 @@ const App = <MyComponent name="John Doe" />;
 render(App, document.body);
 ```
 
-> Nota: en versiones anteriores se conocían como `"Componentes sin Estado"`. Esto ya no es cierto con el [addon de hooks](/guide/v10/hooks).
+> Nota: en versiones anteriores se conocían como `"Componentes sin Estado"`. Esto ya no es cierto con el [addon de hooks](/guide/v11/hooks).
 
 ## Componentes de Clase
 

@@ -263,7 +263,7 @@ const state = createAppState();
 <TodoList state={state} />;
 ```
 
-Esto funciona en nuestra aplicación de lista de tareas porque el estado es global, sin embargo, las aplicaciones más grandes suelen terminar con múltiples componentes que requieren acceso a las mismas piezas de estado. Esto generalmente implica "elevar el estado" (lifting state up) a un componente ancestro común compartido. Para evitar pasar el estado manualmente a través de cada componente a través de props, el estado se puede colocar en [Contexto](/guide/v10/context) para que cualquier componente en el árbol pueda acceder a él. Aquí hay un ejemplo rápido de cómo se ve eso típicamente:
+Esto funciona en nuestra aplicación de lista de tareas porque el estado es global, sin embargo, las aplicaciones más grandes suelen terminar con múltiples componentes que requieren acceso a las mismas piezas de estado. Esto generalmente implica "elevar el estado" (lifting state up) a un componente ancestro común compartido. Para evitar pasar el estado manualmente a través de cada componente a través de props, el estado se puede colocar en [Contexto](/guide/v11/context) para que cualquier componente en el árbol pueda acceder a él. Aquí hay un ejemplo rápido de cómo se ve eso típicamente:
 
 ```jsx
 import { createContext } from 'preact';
@@ -285,7 +285,7 @@ function App() {
 }
 ```
 
-Si quieres aprender más sobre cómo funciona el contexto, dirígete a la [documentación de Contexto](/guide/v10/context).
+Si quieres aprender más sobre cómo funciona el contexto, dirígete a la [documentación de Contexto](/guide/v11/context).
 
 ## Estado local con Señales
 

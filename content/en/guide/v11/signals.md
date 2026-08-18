@@ -260,7 +260,7 @@ const state = createAppState();
 <TodoList state={state} />;
 ```
 
-This works in our todo list app because the state is global, however larger apps typically end up with multiple components that require access to the same pieces of state. This usually involves "lifting state up" to a common shared ancestor component. To avoid passing state manually through each component via props, the state can be placed into [Context](/guide/v10/context) so any component in the tree can access it. Here is a quick example of how that typically looks:
+This works in our todo list app because the state is global, however larger apps typically end up with multiple components that require access to the same pieces of state. This usually involves "lifting state up" to a common shared ancestor component. To avoid passing state manually through each component via props, the state can be placed into [Context](/guide/v11/context) so any component in the tree can access it. Here is a quick example of how that typically looks:
 
 ```jsx
 import { createContext } from 'preact';
@@ -282,7 +282,7 @@ function App() {
 }
 ```
 
-If you want to learn more about how context works, head over to the [Context documentation](/guide/v10/context).
+If you want to learn more about how context works, head over to the [Context documentation](/guide/v11/context).
 
 ## Local state with signals
 

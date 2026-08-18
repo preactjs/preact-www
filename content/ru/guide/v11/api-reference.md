@@ -252,11 +252,11 @@ isValidElement(null); // false
 
 ### options
 
-Подробнее см. в документации [по опционным хукам]](/guide/v10/options)
+Подробнее см. в документации [по опционным хукам]](/guide/v11/options)
 
 ## preact/hooks
 
-Подробнее см. в разделе [Хуки](/guide/v10/hooks). Обратите внимание, что на этой странице упомянуты некоторые «хуки, специфичные для Compat», которые недоступны в `preact/hooks`, а есть только в `preact/compat`.
+Подробнее см. в разделе [Хуки](/guide/v11/hooks). Обратите внимание, что на этой странице упомянуты некоторые «хуки, специфичные для Compat», которые недоступны в `preact/hooks`, а есть только в `preact/compat`.
 
 ## preact/compat
 
@@ -676,7 +676,7 @@ jsx('div', { id: 'foo', children: 'Привет!' });
 
 ## preact/test-utils
 
-Коллекция утилит для облегчения тестирования компонентов Preact. Обычно они используются библиотеками для тестирования, такими как [`enzyme`](/guide/v10/unit-testing-with-enzyme) или [`@testing-library/preact`](/guide/v10/preact-testing-library), а не напрямую пользователями.
+Коллекция утилит для облегчения тестирования компонентов Preact. Обычно они используются библиотеками для тестирования, такими как [`enzyme`](/guide/v11/unit-testing-with-enzyme) или [`@testing-library/preact`](/guide/v11/preact-testing-library), а не напрямую пользователями.
 
 ### setupRerender
 

@@ -38,7 +38,7 @@ Para tanto preact como [preact/compat], la compatibilidad de versiones se mide c
 
 ## Mensajes de debug y errores
 
-Nuestra arquitectura flexible permite que los addons mejoren la experiencia de Preact de cualquier forma que deseen. Uno de esos addons es `preact/debug` que añade [advertencias y errores útiles](/guide/v10/debugging) y adjunta la extensión del navegador [Preact Developer Tools](https://preactjs.github.io/preact-devtools/), si está instalada. Estos te guían al desarrollar aplicaciones de Preact y facilitan mucho la inspección de lo que está sucediendo. Puedes habilitarlos agregando la declaración de importación relevante:
+Nuestra arquitectura flexible permite que los addons mejoren la experiencia de Preact de cualquier forma que deseen. Uno de esos addons es `preact/debug` que añade [advertencias y errores útiles](/guide/v11/debugging) y adjunta la extensión del navegador [Preact Developer Tools](https://preactjs.github.io/preact-devtools/), si está instalada. Estos te guían al desarrollar aplicaciones de Preact y facilitan mucho la inspección de lo que está sucediendo. Puedes habilitarlos agregando la declaración de importación relevante:
 
 ```js
 import 'preact/debug'; // <-- Agrega esta línea en la parte superior de tu archivo de entrada principal
@@ -173,5 +173,5 @@ La API de `Context` heredada requiere que los Componentes declaren propiedades e
 
 [project goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
-[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
+[preact/compat]: /guide/v11/getting-started#aliasing-react-to-preact
 [mdn's event reference]: https://developer.mozilla.org/en-US/docs/Web/Events

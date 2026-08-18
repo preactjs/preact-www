@@ -522,7 +522,7 @@ The only annotation needed is in the reducer function itself. The `useReducer` t
 
 ## Extending built-in JSX types
 
-You may have [custom elements](/guide/v10/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all or some HTML elements to work with a particular library. To do this, you will need to use "Module augmentation" to extend and/or alter the types that Preact provides.
+You may have [custom elements](/guide/v11/web-components) that you'd like to use in JSX, or you may wish to add additional attributes to all or some HTML elements to work with a particular library. To do this, you will need to use "Module augmentation" to extend and/or alter the types that Preact provides.
 
 ### Extending `IntrinsicElements` for custom elements
 

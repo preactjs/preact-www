@@ -367,7 +367,7 @@ const onInput = e => {
 };
 ```
 
-El problema con esto es en los casos donde la entrada falla esa condición: porque no ejecutamos `setValue`, el componente no se vuelve a renderizar, y porque el componente no se vuelve a renderizar, el valor de entrada no se controla correctamente. Sin embargo, incluso si agregáramos un `else { setValue(value) }` a ese manejador, Preact es lo suficientemente inteligente como para detectar cuándo el valor no ha cambiado y por lo tanto no volverá a renderizar el componente. Esto nos deja con [`refs`](/guide/v10/refs) para cerrar la brecha entre el estado del DOM y el estado de Preact.
+El problema con esto es en los casos donde la entrada falla esa condición: porque no ejecutamos `setValue`, el componente no se vuelve a renderizar, y porque el componente no se vuelve a renderizar, el valor de entrada no se controla correctamente. Sin embargo, incluso si agregáramos un `else { setValue(value) }` a ese manejador, Preact es lo suficientemente inteligente como para detectar cuándo el valor no ha cambiado y por lo tanto no volverá a renderizar el componente. Esto nos deja con [`refs`](/guide/v11/refs) para cerrar la brecha entre el estado del DOM y el estado de Preact.
 
 > Para más información sobre componentes controlados en Preact, consulta [Controlled Inputs](https://www.jovidecroock.com/blog/controlled-inputs) de Jovi De Croock.
 

@@ -70,7 +70,7 @@ Preact 被打包为可在浏览器中直接使用，不需要任何构建或工�
 >
 > `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
 
-对于更具可扩展性的解决方案，请参见[导入映射 -- 基本用法](/guide/v10/no-build-workflows#basic-usage)，有关 HTM 的更多信息，请查看其[文档][htm]。
+对于更具可扩展性的解决方案，请参见[导入映射 -- 基本用法](/guide/v11/no-build-workflows#basic-usage)，有关 HTM 的更多信息，请查看其[文档][htm]。
 
 [htm]: https://github.com/developit/htm
 
@@ -272,4 +272,4 @@ React 库使用 `preact/compat` 可能不提供的类型（尽管我们尽力修
 </script>
 ```
 
-另请参见[导入映射 -- 配方和常见模式](/guide/v10/no-build-workflows#recipes-and-common-patterns)以获取更多示例。
+另请参见[导入映射 -- 配方和常见模式](/guide/v11/no-build-workflows#recipes-and-common-patterns)以获取更多示例。

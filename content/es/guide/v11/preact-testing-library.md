@@ -9,7 +9,7 @@ translation_by:
 
 La [Preact Testing Library](https://github.com/testing-library/preact-testing-library) es un wrapper ligero alrededor de `preact/test-utils`. Proporciona un conjunto de métodos de consulta para acceder al DOM renderizado de una manera similar a cómo un usuario encuentra elementos en una página. Este enfoque te permite escribir pruebas que no dependen de los detalles de implementación. En consecuencia, esto hace que las pruebas sean más fáciles de mantener y más resistentes cuando el componente siendo probado es refactorizado.
 
-A diferencia de [Enzyme](/guide/v10/unit-testing-with-enzyme), Preact Testing Library debe ser llamada dentro de un entorno DOM.
+A diferencia de [Enzyme](/guide/v11/unit-testing-with-enzyme), Preact Testing Library debe ser llamada dentro de un entorno DOM.
 
 ---
 
