@@ -210,6 +210,32 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 
 Class components include children by default, typed as `ComponentChildren`.
 
+## Typing children
+
+`ComponentChildren` is a type that represents all valid Preact children. It includes primitive types like `string`, `number`, and `boolean`, but also Preact elements, `null`/`undefined`, and arrays of all of the above. For those familiar with React, it works in a very similar way to `ReactNode`.
+
+```tsx
+import { h, ComponentChildren } from 'preact';
+
+interface MyHeadingComponentProps {
+	children: ComponentChildren;
+}
+
+function MyHeadingComponent({ children }: MyHeadingComponentProps) {
+	return <h1>{children}</h1>;
+}
+
+<MyHeadingComponent>
+	{/* All of these are valid children */}
+	Hello World!
+	<strong>Bold Text</strong>
+	{42}
+	{true}
+	{['Array', 'of', 'strings']}
+	<OtherComponent />
+</MyHeadingComponent>
+```
+
 ## Inheriting HTML properties
 
 When we write components like `<Input />` that wrap the HTML `<input>`, most of the time we'd want to inherit
@@ -607,4 +633,4 @@ declare module 'preact' {
 export {};
 ```
 
-> **Note**: We do this to support better ARIA/accessibility types for these elements, as their ARIA roles are a discriminated union type per the spec (eg., if `<a>` has an `href` attribute, it can be a few specific roles, but if it doesn't, it can be a different set of roles). To facilitate this we need to use the `type` keyword in TypeScript, but this breaks the ability to augment the type as it's no longer a simple interface. Our accessible types intersect `Partial...` interfaces however, so we can simply augment them instead.
+> **Note**: We do this to support better ARIA/accessibility types for these elements, as their ARIA roles are a discriminated union type per the spec (eg., if `<a>` has an `href` attribute, it must be a few specific roles, but if it doesn't, it must be a different set of roles). To facilitate this we need to use the `type` keyword in TypeScript, but this breaks the ability to augment the type as it's no longer a simple interface. Our accessible types intersect `Partial...` interfaces however, so we can simply augment them instead.

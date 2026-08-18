@@ -5,9 +5,9 @@ description: Hooks in Preact allow you to compose behaviours together and re-use
 
 # Hooks
 
-The Hooks API is a new concept that allows you to compose state and side effects. Hooks allow you to reuse stateful logic between components.
+The Hooks API is an alternative way to write components in Preact. Hooks allow you to compose state and side effects, reusing stateful logic much more easily than with class components.
 
-If you've worked with Preact for a while, you may be familiar with patterns like "render props" and "higher order components" that try to solve these challenges. These solutions have tended to make code harder to follow and more abstract. The hooks API makes it possible to neatly extract the logic for state and side effects, and also simplifies unit testing that logic independently from the components that rely on it.
+If you've worked with class components in Preact for a while, you may be familiar with patterns like "render props" and "higher order components" that try to solve these challenges. These solutions have tended to make code harder to follow and more abstract. The hooks API makes it possible to neatly extract the logic for state and side effects, and also simplifies unit testing that logic independently from the components that rely on it.
 
 Hooks can be used in any component, and avoid many pitfalls of the `this` keyword relied on by the class components API. Instead of accessing properties from the component instance, hooks rely on closures. This makes them value-bound and eliminates a number of stale data problems that can occur when dealing with asynchronous state updates.
 
@@ -439,7 +439,28 @@ render(<WindowWidth />, document.getElementById('app'));
 
 ### useLayoutEffect
 
-The signature is identical to [useEffect](#useeffect), but it will fire as soon as the component is diffed and the browser has a chance to paint.
+Similar to [`useEffect`](#useeffect), `useLayoutEffect` is used to trigger side-effects but it will do so as soon as the component is diffed and before the browser has a chance to repaint. Commonly used for measuring DOM elements, this allows you to avoid flickering or pop-in that may occur if you use `useEffect` for such tasks.
+
+```jsx
+import { useLayoutEffect, useRef } from 'preact/hooks';
+
+function App() {
+	const hintRef = useRef(null);
+
+	useLayoutEffect(() => {
+		const hintWidth = hintRef.current.getBoundingClientRect().width;
+
+		// We might use this width to position and center the hint on the screen, like so:
+		hintRef.current.style.left = `${(window.innerWidth - hintWidth) / 2}px`;
+	}, []);
+
+	return (
+		<div style="display: inline; position: absolute" ref={hintRef}>
+			<p>This is a hint</p>
+		</div>
+	);
+}
+```
 
 ### useErrorBoundary
 
@@ -514,3 +535,98 @@ const App = props => {
 ```
 
 > This hook was introduced with Preact 10.11.0 and needs preact-render-to-string 5.2.4.
+
+### useDebugValue
+
+Displays a custom label for use in the Preact DevTools browser extension. Useful for custom hooks to provide additional context about the state or value they represent.
+
+```jsx
+import { useDebugValue, useState } from 'preact/hooks';
+
+function useCount() {
+	const [count, setCount] = useState(0);
+	useDebugValue(count > 0 ? 'Positive' : 'Negative');
+	return [count, setCount];
+}
+```
+
+In your devtools, this will display as `useCount: "Positive"` or `useCount: "Negative"`, whereas previously it would've been just `useCount`.
+
+Optionally, you can also pass a function as the second argument to `useDebugValue` for use as the "formatter".
+
+```jsx
+import { useDebugValue, useState } from 'preact/hooks';
+
+function useCount() {
+	const [count, setCount] = useState(0);
+	useDebugValue(count, c => `Count: ${c}`);
+	return [count, setCount];
+}
+```
+
+## Compat-specific hooks
+
+We offer some additional hooks only through the `preact/compat` package, as they are either stubbed-out implementations or are not part of the essential hooks API.
+
+### useSyncExternalStore
+
+Allows you to subscribe to an external data source, such as a global state management library, browser APIs, or any other external (to Preact) data source.
+
+```jsx
+import { useSyncExternalStore } from 'preact/compat';
+
+function subscribe(cb) {
+	addEventListener('scroll', cb);
+	return () => removeEventListener('scroll', cb);
+}
+
+function App() {
+	const scrollY = useSyncExternalStore(subscribe, () => window.scrollY, () => 0);
+}
+```
+
+### useDeferredValue
+
+Stubbed-out implementation, immediately returns the value as Preact does not support concurrent rendering.
+
+```jsx
+import { useDeferredValue } from 'preact/compat';
+
+function App() {
+	const deferredValue = useDeferredValue('Hello, World!');
+}
+```
+
+### useTransition
+
+Stubbed-out implementation as Preact does not support concurrent rendering.
+
+```jsx
+import { useTransition } from 'preact/compat';
+
+function App() {
+	// `isPending` will always be `false`
+	const [isPending, startTransition] = useTransition();
+
+	const handleClick = () => {
+		// Immediately executes the callback, it's a no-op.
+		startTransition(() => {
+			// Transition code here
+		});
+	};
+}
+```
+
+### useInsertionEffect
+
+Stubbed-out implementation, matches [`useLayoutEffect`](#uselayouteffect) in functionality.
+
+```jsx
+import { useInsertionEffect } from 'preact/compat';
+
+function App() {
+	useInsertionEffect(() => {
+		// Effect code here
+	}, [dependencies]);
+}
+```
