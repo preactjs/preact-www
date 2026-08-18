@@ -296,7 +296,7 @@ Offered for compatibility, `Children` is a passthrough wrapper around the [`toCh
 
 #### Children.map
 
-`Children.map(children, fn, [context])`
+`Children.map(children, fn)`
 
 Iterates over children and returns a new array, same as [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
@@ -317,7 +317,7 @@ function List(props) {
 
 #### Children.forEach
 
-`Children.forEach(children, fn, [context])`
+`Children.forEach(children, fn)`
 
 Iterates over children but does not return a new array, same as [`Array.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
 

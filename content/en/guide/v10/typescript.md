@@ -242,9 +242,9 @@ When we write components like `<Input />` that wrap the HTML `<input>`, most of 
 the props that can be used on the native HTML input element. To do this we can do the following:
 
 ```tsx
-import { HTMLInputAttributes } from 'preact';
+import { InputHTMLAttributes } from 'preact';
 
-interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProperties extends InputHTMLAttributes {
 	mySpecialProp: any;
 }
 
