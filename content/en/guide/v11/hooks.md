@@ -630,3 +630,84 @@ function App() {
 	}, [dependencies]);
 }
 ```
+
+### use
+
+Allows you to read the value of a promise, suspending while the promise pends, or read a context. Notably, `use` is the only hook that can be called conditionally.
+
+> Context
+```jsx
+import { createContext } from 'preact';
+import { use } from 'preact/compat';
+
+const Theme = createContext('light');
+
+function DisplayTheme() {
+	const theme = use(Theme);
+	return <p>Active theme: {theme}</p>;
+}
+```
+
+> Promises
+```jsx
+import { Suspense, use } from 'preact/compat';
+
+const promise = new Promise(r => setTimeout(() => r('Hello World!'), 5000));
+
+function Message() {
+    return <span>Message: {use(promise)}</span>
+}
+
+export function App() {
+	return (
+		<div>
+            <Suspense fallback={<span>Loading...</span>}>
+                <Message />
+            </Suspense>
+		</div>
+	);
+}
+```
+
+> **Note:** The promise used must be cached so that it is stable between renders. You may store the promise in a `Map` and similar data structures so that the same cache key returns the same promise / resolved value. For example:
+
+```js
+const CACHE = new Map();
+
+function asyncData(cacheKey) {
+	if (!CACHE.has(cacheKey)) {
+		CACHE.set(cacheKey, fetchData(cacheKey));
+	}
+
+	return CACHE.get(cacheKey);
+}
+```
+
+### useEffectEvent
+
+Wraps a function to give it a stable reference across renders, while still allowing it to access the latest values of any variables it uses, and also can be ommitted from the dependency array of `useEffect` without linting errors, if you're using a linter that enforces the rules of hooks.
+
+```jsx
+import { useState } from 'preact/hooks';
+import { useEffectEvent } from 'preact/compat';
+
+function App() {
+	const [breakpoint, setBreakpoint] = useState('mobile');
+	const [sidebarOpen, setSidebarOpen] = useState(true);
+
+	const handleResize = useEffectEvent(() => {
+		const width = window.innerWidth;
+
+		// Needs a fresh `breakpoint` value every run
+		if (window.innerWidth > 768 && breakpoint === 'mobile') {
+			setBreakpoint('desktop');
+			if (width < 1200) setSidebarOpen(false);
+		}
+	});
+
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []); // Don't need to declare `handleResize` as a dependency
+}
+```
