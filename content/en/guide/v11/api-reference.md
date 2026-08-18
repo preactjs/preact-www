@@ -209,6 +209,38 @@ class MyComponent extends Component {
 }
 ```
 
+### createPortal
+
+`createPortal(virtualDom, containerNode)`
+
+Allows you to render somewhere else in the DOM tree than your component's natural parent.
+
+```html
+<html>
+	<body>
+		<!-- Modals should be rendered here -->
+		<div id="modal-root"></div>
+		<!-- App is rendered here -->
+		<div id="app"></div>
+	</body>
+</html>
+```
+
+```jsx
+import { createPortal } from 'preact';
+import { MyModal } from './MyModal.jsx';
+
+function App() {
+	const container = document.getElementById('modal-root');
+	return (
+		<div>
+			<h1>My App</h1>
+			{createPortal(<MyModal />, container)}
+		</div>
+	);
+}
+```
+
 ### Fragment
 
 A special kind of component that can have children, but is not rendered as a DOM element.
@@ -355,38 +387,6 @@ function MyComponent(props) {
 ```
 
 > Note: Can be replaced with `toChildArray(props.children)`.
-
-### createPortal
-
-`createPortal(virtualDom, containerNode)`
-
-Allows you to render somewhere else in the DOM tree than your component's natural parent.
-
-```html
-<html>
-	<body>
-		<!-- Modals should be rendered here -->
-		<div id="modal-root"></div>
-		<!-- App is rendered here -->
-		<div id="app"></div>
-	</body>
-</html>
-```
-
-```jsx
-import { createPortal } from 'preact/compat';
-import { MyModal } from './MyModal.jsx';
-
-function App() {
-	const container = document.getElementById('modal-root');
-	return (
-		<div>
-			<h1>My App</h1>
-			{createPortal(<MyModal />, container)}
-		</div>
-	);
-}
-```
 
 ### PureComponent
 
