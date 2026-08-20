@@ -9,8 +9,8 @@ title: Preact
     </h1>
     <p class="tagline">Un alternativa veloce e leggera 3Kb a React con le stesse moderne API</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn primary">Primi Passi</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Passare a Preact</a>
+        <a href="/guide/v11/getting-started" class="btn primary">Primi Passi</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Passare a Preact</a>
     </p>
 </jumbotron>
 
@@ -129,7 +129,7 @@ function Counter() {
         Il design di Preact ti permette di utilizzare senza problemi migliaia di componenti disponibili nell'ecosistema React.
     </p>
     <p>
-        La semplice aggiunta dell'alias <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact-compat</a> al tuo bundler fornisce un livello di compatibilità che permette anche al più complesso componente React di essere utilizzato nella tua applicaizone.
+        La semplice aggiunta dell'alias <a href="/guide/v11/getting-started#aliasing-react-to-preact">preact-compat</a> al tuo bundler fornisce un livello di compatibilità che permette anche al più complesso componente React di essere utilizzato nella tua applicaizone.
     </p>
   </div>
 </section>
@@ -275,7 +275,7 @@ function Counter() {
         Scegli la guida migliore per te!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="btn primary">Primi passi</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Passa a Preact</a>
+        <a href="/guide/v11/getting-started" class="btn primary">Primi passi</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Passa a Preact</a>
     </p>
 </section>

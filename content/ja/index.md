@@ -9,8 +9,8 @@ description: Preact is a fast 3kB alternative to React with the same modern API
     </h1>
     <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn primary">はじめに</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Preactへ移行する</a>
+        <a href="/guide/v11/getting-started" class="btn primary">はじめに</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Preactへ移行する</a>
     </p>
 </jumbotron>
 
@@ -121,7 +121,7 @@ function Counter() {
       PreactはReactのエコシステムにある何千ものコンポーネントをシームレスに利用できるように設計されています。
     </p>
     <p>
-      React互換レイヤとしてバンドラに<a href="/guide/v10/getting-started#aliasing-react-to-preact#compatの設定">preact/compat</a>を加えるだけで、どんなに複雑なReactコンポーネントでもそのままアプリケーションに組み込むことができます。
+      React互換レイヤとしてバンドラに<a href="/guide/v11/getting-started#aliasing-react-to-preact#compatの設定">preact/compat</a>を加えるだけで、どんなに複雑なReactコンポーネントでもそのままアプリケーションに組み込むことができます。
     </p>
   </div>
 </section>
@@ -262,7 +262,7 @@ function Counter() {
         あなたに合ったガイドを選びましょう。
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="btn primary">はじめに</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Preactへ移行する</a>
+        <a href="/guide/v11/getting-started" class="btn primary">はじめに</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Preactへ移行する</a>
     </p>
 </section>

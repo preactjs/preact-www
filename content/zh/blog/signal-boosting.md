@@ -19,7 +19,7 @@ Preact Signals 的新版本为响应式系统的基础带来了显著的性能�
 
 这篇文章将概述我们为优化 **@preact/signals-core** 所采取的步骤。它是作为框架特定绑定的基础包，但也可以独立使用。
 
-Signals 是 Preact 团队对响应式编程的实现。如果你想要对 Signals 有一个温和的介绍，了解它们是什么以及如何与 Preact 结合使用，[Signals 发布博文](/blog/introducing-signals)已经为你准备好了。如需深入了解，请查看[官方文档](/guide/v10/signals)。
+Signals 是 Preact 团队对响应式编程的实现。如果你想要对 Signals 有一个温和的介绍，了解它们是什么以及如何与 Preact 结合使用，[Signals 发布博文](/blog/introducing-signals)已经为你准备好了。如需深入了解，请查看[官方文档](/guide/v11/signals)。
 
 应该指出的是，这些概念并非由我们发明。响应式编程有相当长的历史，并已在 JavaScript 世界中被 [Vue.js](https://vuejs.org/)、[Svelte](https://svelte.dev/)、[SolidJS](https://www.solidjs.com/)、[RxJS](https://rxjs.dev/) 和太多其他框架广泛普及。向他们所有人致敬！
 
@@ -191,7 +191,7 @@ dispose();
 count.value = 20;  // 控制台上不会打印任何内容
 ```
 
-还有其他函数，如 [`batch`](/guide/v10/signals/#batchfn)，但这三个与下面的实现说明最相关。
+还有其他函数，如 [`batch`](/guide/v11/signals/#batchfn)，但这三个与下面的实现说明最相关。
 
 # 实现说明
 

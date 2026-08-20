@@ -39,7 +39,7 @@ Los signals pueden utilizarse dentro o fuera de los componentes, a diferencia de
 
 Por cierto, nos mantenemos fieles a nuestras raíces de ofrecerte las librerías más pequeñas posibles. Los signals en Preact sólo añaden **1.6kB** al tamaño del paquete.
 
-Si quiere empezar de inmediato, consulte nuestra [documentación](/guide/v10/signals) para obtener más información sobre los signals.
+Si quiere empezar de inmediato, consulte nuestra [documentación](/guide/v11/signals) para obtener más información sobre los signals.
 
 ## ¿Qué problemas se resuelven con los signals?
 
@@ -137,7 +137,7 @@ function Counter() {
 
 El código es claro y es fácil de entender lo que está pasando, pero por desgracia no funciona. El componente no se actualiza al pulsar el botón porque no hay forma de saber que `count` ha cambiado.
 
-Sin embargo, no podíamos quitarnos este escenario de la cabeza. ¿Qué podríamos hacer para convertir un modelo tan claro en una realidad? Empezamos a prototipar varias ideas e implementaciones utilizando el [renderizador conectable](/guide/v10/options) de Preact. Nos llevó tiempo, pero al final dimos con la forma de hacerlo realidad:
+Sin embargo, no podíamos quitarnos este escenario de la cabeza. ¿Qué podríamos hacer para convertir un modelo tan claro en una realidad? Empezamos a prototipar varias ideas e implementaciones utilizando el [renderizador conectable](/guide/v11/options) de Preact. Nos llevó tiempo, pero al final dimos con la forma de hacerlo realidad:
 
 ```jsx
 // --repl
@@ -181,6 +181,6 @@ Así que sí, hicimos eso también. Puedes pasar un signal directamente al JSX e
 
 ## Próximos pasos
 
-Si tienes curiosidad y quieres ponerte manos a la obra, visita nuestra [documentación](/guide/v10/signals) sobre signals. Nos encantaría saber cómo vas a utilizarlas.
+Si tienes curiosidad y quieres ponerte manos a la obra, visita nuestra [documentación](/guide/v11/signals) sobre signals. Nos encantaría saber cómo vas a utilizarlas.
 
 Recuerde que no hay prisa por cambiar a los signals. Los hooks seguirán siendo compatibles, y también funcionan muy bien con los signals. Recomendamos probar los signals gradualmente, empezando con unos pocos componentes para acostumbrarse a los conceptos.

@@ -19,10 +19,10 @@ Preact стремится достичь нескольких ключевых �
 
 Некоторые функции React намеренно исключены из Preact либо потому, что они недостижимы при достижении основных целей проекта, перечисленных выше, либо потому, что они не вписываются в объём основного набора функций Preact.
 
-Намеренные различия перечислены в статье [Отличия от React](/guide/v10/differences-to-react):
+Намеренные различия перечислены в статье [Отличия от React](/guide/v11/differences-to-react):
 
 - `PropTypes`, которые легко использовать как отдельную библиотеку
 - `Children`, можно заменить собственными массивами
 - `Synthetic Events`, поскольку Preact не пытается исправлять проблемы в старых браузерах, таких как IE8.
 
-[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
+[preact/compat]: /guide/v11/getting-started#aliasing-react-to-preact

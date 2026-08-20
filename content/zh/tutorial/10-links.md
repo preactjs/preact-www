@@ -12,8 +12,8 @@ solvable: false
 
 ### 下一步
 
-- [深入了解类组件](/guide/v10/components)
-- [深入了解钩子](/guide/v10/hooks)
+- [深入了解类组件](/guide/v11/components)
+- [深入了解钩子](/guide/v11/hooks)
 - [创建您的项目](https://vite.new/preact)
 
 > **我们渴望您的反馈！**
