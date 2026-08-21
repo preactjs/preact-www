@@ -9,8 +9,8 @@ description: Fast 3kB alternative to React with the same modern API
     </h1>
     <p class="tagline">Fast 3kB alternative to React with the same modern API</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Switch to Preact</a>
+        <a href="/guide/v11/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </jumbotron>
 
@@ -121,7 +121,7 @@ function Counter() {
       Preact's design means you can seamlessly use thousands of Components available in the React ecosystem.
     </p>
     <p>
-      Adding a simple <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact/compat</a> alias to your bundler provides a compatibility layer
+      Adding a simple <a href="/guide/v11/getting-started#aliasing-react-to-preact">preact/compat</a> alias to your bundler provides a compatibility layer
       that enables even the most complex React components to be used in your application.
     </p>
   </div>
@@ -263,7 +263,7 @@ function Counter() {
         Pick the guide that works best for you!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="btn primary">Get Started</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Switch to Preact</a>
+        <a href="/guide/v11/getting-started" class="btn primary">Get Started</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Switch to Preact</a>
     </p>
 </section>

@@ -12,8 +12,8 @@ Feel free to play around a bit more with the demo code.
 
 ### Next Steps
 
-- [Learn more about class components](/guide/v10/components)
-- [Learn more about hooks](/guide/v10/hooks)
+- [Learn more about class components](/guide/v11/components)
+- [Learn more about hooks](/guide/v11/hooks)
 - [Create your own project](https://vite.new/preact)
 
 > **We want your feedback!**

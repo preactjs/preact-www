@@ -19,10 +19,10 @@ Preact는 몇 가지 주요 목표를 달성하려 합니다.
 
 React의 일부 기능은 Preact에서 의도적으로 제외되었습니다. 이는 위에 나열된 주요 프로젝트 목표를 충족하면서 얻을 수 없거나 Preact의 핵심 기능 범위 내에 맞지 않기 때문입니다.
 
-의도적으로 [React와 다른 부분](/guide/v10/differences-to-react)에 속하는 항목:
+의도적으로 [React와 다른 부분](/guide/v11/differences-to-react)에 속하는 항목:
 
 - `PropTypes`, 별도의 라이브러리로 쉽게 사용 가능
 - `Children`, 원시 배열로 대체 가능
 - `Synthetic Events`, Preact는 IE8과 같은 이전 브라우저의 문제를 해결하지 않음
 
-[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
+[preact/compat]: /guide/v11/getting-started#aliasing-react-to-preact

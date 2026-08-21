@@ -38,7 +38,7 @@ Signals can be used inside or outside of components, unlike hooks. Signals also 
 
 Oh and by the way, we are staying true to our roots of bringing you the smallest libraries possible. Using signals in Preact adds just **1.6kB** to your bundle size.
 
-If you want to jump right in, head over to our [documentation](/guide/v10/signals) to learn more in depth about signals.
+If you want to jump right in, head over to our [documentation](/guide/v11/signals) to learn more in depth about signals.
 
 ## Which problems are solved by signals?
 
@@ -134,7 +134,7 @@ function Counter() {
 
 The code is clear and it's easy to understand what is going on, but unfortunately it doesn't work. The component doesn't update when clicking the button because there is no way to know that `count` has changed.
 
-We couldn’t get this scenario out of our heads though. What could we do to make a model this clear into a reality? We began to prototype various ideas and implementations using Preact's [pluggable renderer](/guide/v10/options). It took time, but we eventually landed on a way to make it happen:
+We couldn’t get this scenario out of our heads though. What could we do to make a model this clear into a reality? We began to prototype various ideas and implementations using Preact's [pluggable renderer](/guide/v11/options). It took time, but we eventually landed on a way to make it happen:
 
 ```jsx
 // --repl
@@ -174,6 +174,6 @@ So yeah, we did that too. You can pass a signal directly into the JSX anywhere y
 
 ## Next Steps
 
-If you’re curious and want to jump right in, head over to our [documentation](/guide/v10/signals) for signals. We’d love to hear how you're going to use them.
+If you’re curious and want to jump right in, head over to our [documentation](/guide/v11/signals) for signals. We’d love to hear how you're going to use them.
 
 Remember that there is no rush to switch to signals. Hooks will continue to be supported, and they work great with signals too! We recommend gradually trying out signals, starting with a few components to get used to the concepts.

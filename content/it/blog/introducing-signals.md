@@ -42,7 +42,7 @@ I Signals possono essere usati sia all'interno che all'esterno dei componenti, a
 
 Oh, e comunque, restiamo fedeli al nostro principio di portarti le librerie il più piccole possibile. Usare i Signals in Preact aggiunge solo **1.6kB** al tuo bundle size.
 
-Se vuoi già provarli, visita la nostra [documentazione](/guide/v10/signals) per approfondire.
+Se vuoi già provarli, visita la nostra [documentazione](/guide/v11/signals) per approfondire.
 
 ## Quali problemi vengono risolti dai signals?
 
@@ -145,7 +145,7 @@ function Counter() {
 ```
 Il codice è chiaro ed è semplice capire cosa stia succedendo, ma sfortunatamente non funziona. Il componente non si aggiorna quando si clicca perché non vi è modo di sapere che `count` sia cambiato.
 
-Però non riuscivamo a toglierci questo scenario dalla testa. Cosa avremmo potuto fare per rendere questo modello realtà? Abbiamo iniziato a prototipare alcune idee e implementazioni utilizzando i [pluggable renderer](/guide/v10/options) di Preact. Ci è voluto tempo, ma siamo finalmente riusciti a realizzarlo.
+Però non riuscivamo a toglierci questo scenario dalla testa. Cosa avremmo potuto fare per rendere questo modello realtà? Abbiamo iniziato a prototipare alcune idee e implementazioni utilizzando i [pluggable renderer](/guide/v11/options) di Preact. Ci è voluto tempo, ma siamo finalmente riusciti a realizzarlo.
 
 ```jsx
 // --repl
@@ -194,7 +194,7 @@ Questo funziona anche per le props.
 
 ## Prossimi passi
 
-Se non vedi l'ora di provarli, puoi andare direttamente sulla nostra [documentazione](/guide/v10/signals) per i Signals, ci piacerebbe molto sapere come li userai.
+Se non vedi l'ora di provarli, puoi andare direttamente sulla nostra [documentazione](/guide/v11/signals) per i Signals, ci piacerebbe molto sapere come li userai.
 
 Ricorda, non c'è alcuna fretta nel passari ai Signals. Gli Hooks continueranno ad essere supportati e funzionano molto bene anche in congiunzione con i Signals!
 Raccomandiamo un passaggio graduale ai Signals provandoli su pochi componenti alla volta, per abituarti ai nuovi concetti.

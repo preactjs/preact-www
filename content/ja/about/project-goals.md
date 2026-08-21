@@ -20,9 +20,9 @@ Preactは以下の目的を達成することを目指しています。
 Reactの機能の一部は意図的にPreactでは提供されていません。
 なぜなら、上記のプロジェクトの目的を達成する上で障害となる機能やPreactのコア機能の範囲に収まらないからです。
 
-意図的な[Reactとの違い](/guide/v10/differences-to-react):
+意図的な[Reactとの違い](/guide/v11/differences-to-react):
 - `PropTypes`は、外部のライブラリを使用できるので、本体にはいれていません。
 - `Children`は標準のArrayに置き換えることができます。
 - `Synthetic Events`はPreactがIE8のような古いブラウザに対応しないのでサポートされません。
 
-[preact/compat]: /guide/v10/getting-started#aliasing-react-to-preact
+[preact/compat]: /guide/v11/getting-started#aliasing-react-to-preact

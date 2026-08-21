@@ -9,8 +9,8 @@ title: Preact
     </h1>
     <p class="tagline">Una alternativa veloz a React en 3kB con la misma API de ES6</p>
     <p class="intro-buttons">
-        <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Cambiar a Preact</a>
+        <a href="/guide/v11/getting-started" class="btn primary">Primeros pasos</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Cambiar a Preact</a>
     </p>
 </jumbotron>
 
@@ -129,7 +129,7 @@ function Counter() {
     </p>
     <p>
         Agregando un simple alias a
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact">preact-compat</a> en tu bundler provee una capa de compatibilidad que habilita incluso los componentes de React más complejos para ser usados en tu aplicación.
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact">preact-compat</a> en tu bundler provee una capa de compatibilidad que habilita incluso los componentes de React más complejos para ser usados en tu aplicación.
     </p>
   </div>
 </section>
@@ -275,7 +275,7 @@ function Counter() {
         ¡Elige la guía que mejor te funcione!
     </p>
     <p>
-        <a href="/guide/v10/getting-started" class="btn primary">Primeros pasos</a>
-        <a href="/guide/v10/getting-started#aliasing-react-to-preact" class="btn secondary">Cambiando a Preact</a>
+        <a href="/guide/v11/getting-started" class="btn primary">Primeros pasos</a>
+        <a href="/guide/v11/getting-started#aliasing-react-to-preact" class="btn secondary">Cambiando a Preact</a>
     </p>
 </section>
