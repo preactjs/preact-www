@@ -7,7 +7,6 @@ import {
 } from '@pracht/content/vite';
 
 import { docs } from './content.js';
-import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 
 export default defineConfig(({ isSsrBuild }) => ({
@@ -51,11 +50,11 @@ export default defineConfig(({ isSsrBuild }) => ({
 					'/.well-known/traffic-advice'
 				]
 			}),
-			// Preserve the site's existing, v10-focused llms.txt generator.
+			// `/llms.txt` is curated by the content collection. The core one lists route
+			// patterns, and `/guide/:version/:name` is not a URL an agent can fetch.
 			llmsTxt: false
 		}),
 		rssFeedPlugin(),
-		generateLlmsTxtPlugin(),
 		omitInternalContentManifest()
 	]
 }));

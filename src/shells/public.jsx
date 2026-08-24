@@ -108,7 +108,8 @@ export function head() {
 				rel: 'agent-skills',
 				href: '/.well-known/agent-skills/index.json',
 				type: 'application/json'
-			}
+			},
+			{ rel: 'llms', href: '/llms.txt', type: 'text/plain' }
 		]
 	};
 }
@@ -117,7 +118,8 @@ export function headers() {
 	// RFC 8288 discovery for agents that land on any page without prior
 	// knowledge of the skill catalog.
 	return {
-		link: '</.well-known/agent-skills/index.json>; rel="agent-skills"'
+		link:
+			'</.well-known/agent-skills/index.json>; rel="agent-skills", </llms.txt>; rel="llms"'
 	};
 }
 

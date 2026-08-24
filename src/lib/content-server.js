@@ -31,3 +31,13 @@ export async function requireContent(routePath, lang) {
 	}
 	return content;
 }
+
+/**
+ * @param {string} routePath
+ * @param {string} [lang]
+ * @returns {Promise<string | undefined>}
+ */
+export async function loadMarkdownSource(routePath, lang = FALLBACK_LANG) {
+	const resolution = await docs.resolveByRoute(routePath, { locale: lang });
+	return resolution?.document.raw;
+}

@@ -13,3 +13,11 @@ export function getContentPath(path) {
 	if (path == '/tutorial') return '/tutorial/index';
 	return path;
 }
+
+/**
+ * @param {string} path
+ * @returns {string}
+ */
+export function markdownUrl(path) {
+	return path === '/' ? '/index.md' : `${path}.md`;
+}

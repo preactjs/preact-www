@@ -24,7 +24,7 @@ $ npm run doctor     # check the app wiring
 
 ## Application Structure
 
-The site runs on [pracht](https://pracht.resynapse.dev/), a Preact framework built on Vite. Every page is statically generated at build time.
+The site runs on [pracht](https://pracht.resynapse.dev/), a Preact framework built on Vite. Every page is statically generated at build time; the server runtime stays in the request path so that any URL can also answer with its Markdown source.
 
 ### Routing
 
@@ -59,13 +59,18 @@ Since [`preact`](https://github.com/preactjs/preact) is used to render the Markd
 
 ### Navigation
 
-The navigation menu and the set of documentation pages are controlled by [`src/route-config.js`](./src/route-config.js); [`src/config.json`](./src/config.json) holds locales and third-party keys. Any new document needs an entry in `src/route-config.js` to be reachable — it feeds the nav, the sidebar, and `getStaticPaths()`.
+The navigation menu and the set of documentation pages are controlled by [`src/route-config.js`](./src/route-config.js); [`src/config.json`](./src/config.json) holds locales and third-party keys. Any new document needs an entry in `src/route-config.js` to be reachable — it feeds the nav, the sidebar, `getStaticPaths()`, and `llms.txt` alike.
 
 ### Serving agents
 
-[`skills/`](./skills) holds Claude Code skills for working with Preact. They are published at `/skills/<name>/SKILL.md` with a signed manifest at `/.well-known/agent-skills/index.json`.
+The site is readable by AI agents as a first-class case, not as an afterthought:
 
-The `docs.search`, `docs.page`, and `preact.latestRelease` capabilities in [`src/capabilities/`](./src/capabilities) are typed operations exposed at `POST /api/capabilities/<name>` and as WebMCP page tools.
+- **Markdown at the same URLs.** `curl -H 'Accept: text/markdown' https://preactjs.com/guide/v10/hooks` returns the source document. So does appending `.md` to the path. Both are handled by [`src/middleware/markdown.js`](./src/middleware/markdown.js); browsers are unaffected, and responses carry `Vary: Accept`.
+- **`/llms.txt`** is an index of every page with its description and Markdown URL; **`/llms-full.txt`** inlines the whole corpus. Generated from the shared [`@pracht/content` collection](./content.js).
+- **Capabilities** — `docs.search`, `docs.page`, and `preact.latestRelease` in [`src/capabilities/`](./src/capabilities) are typed operations exposed at `POST /api/capabilities/<name>` and as WebMCP page tools, so an agent can search or read the docs without scraping HTML.
+- **Skills** — [`skills/`](./skills) holds Claude Code skills for working with Preact, published at `/skills/<name>/SKILL.md` with an integrity manifest at `/.well-known/agent-skills/index.json`.
+
+If you add a page, all of the content-backed surfaces pick it up automatically from `src/route-config.js`.
 
 ## Writing Content
 

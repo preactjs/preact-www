@@ -8,6 +8,7 @@
  */
 
 import { createTitle } from './page-title.js';
+import { markdownUrl } from './content-path.js';
 
 const ORIGIN = 'https://preactjs.com';
 
@@ -47,6 +48,12 @@ export function pageHead({ data, url }, options = {}) {
 			href: '/api/release?repo=preact',
 			as: 'fetch',
 			fetchpriority: 'low'
+		},
+		// The agent-readable twin of this page.
+		{
+			rel: 'alternate',
+			type: 'text/markdown',
+			href: `${ORIGIN}${markdownUrl(pathname)}`
 		}
 	];
 

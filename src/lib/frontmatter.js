@@ -35,19 +35,3 @@ export function parseFrontmatter(content, path = '') {
 		meta
 	};
 }
-
-/**
- * Process and clean code blocks for LLM consumption
- * Removes --repl comments and markers that are used for REPL functionality
- * @param {string} content - Markdown content
- * @returns {string} - Cleaned content
- */
-export function cleanReplComments(content) {
-	// Remove --repl comment lines and markers
-	return content
-		.replace(/^\/\/ --repl.*$/gm, '')
-		.replace(/^\/\/ --repl-before.*$/gm, '')
-		.replace(/^\/\/ --repl-after.*$/gm, '')
-		.replace(/\n\n\n+/g, '\n\n') // Clean up extra newlines
-		.trim();
-}

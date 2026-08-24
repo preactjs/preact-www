@@ -1,9 +1,10 @@
 import { readdir, readFile } from 'node:fs/promises';
 
-import { defineCollection } from '@pracht/content';
+import { defineCollection, llmsTxtArtifacts } from '@pracht/content';
 
 import { compileMarkdown } from './plugins/precompile-markdown/index.js';
 
+const ORIGIN = 'https://preactjs.com';
 const CONTENT_ROOT = new URL('./content/', import.meta.url);
 const SUPPORTED_LOCALES = Object.keys(
 	JSON.parse(
@@ -24,7 +25,41 @@ export const docs = defineCollection({
 		routePrefix: 'never'
 	},
 	compile: ({ raw, path }) => compileMarkdown(raw, path),
-	artifacts: [clientContentArtifacts, iconAliasArtifacts]
+	artifacts: [
+		clientContentArtifacts,
+		llmsTxtArtifacts({
+			title: 'Preact',
+			description:
+				'Fast 3kB alternative to React with the same modern API. This is the documentation site for Preact — guides for v8, v10 and v11, an interactive tutorial, the REPL, and the project blog.',
+			origin: ORIGIN,
+			descriptionField: 'description',
+			details: [
+				'Every page URL below serves its Markdown source when requested with `Accept: text/markdown`. Append `?lang=<code>` for a translation.',
+				'',
+				'Structured operations are available without scraping:',
+				'',
+				`- \`POST ${ORIGIN}/api/capabilities/docs/search\` — search the documentation`,
+				`- \`POST ${ORIGIN}/api/capabilities/docs/page\` — read one page as Markdown`,
+				`- \`POST ${ORIGIN}/api/capabilities/preact/latestRelease\` — current release version`,
+				'',
+				`Claude Code skills for working with Preact: ${ORIGIN}/.well-known/agent-skills/index.json`,
+				'',
+				'## Optional',
+				'',
+				`- [Full documentation bundle](${ORIGIN}/llms-full.txt): every page below, inlined into one file.`
+			],
+			sections: [
+				section('Guide v8', path => path.startsWith('/guide/v8/')),
+				section('Guide v10', path => path.startsWith('/guide/v10/')),
+				section('Guide v11', path => path.startsWith('/guide/v11/')),
+				section('Tutorial', path => path.startsWith('/tutorial')),
+				section('Blog', path => path === '/blog' || path.startsWith('/blog/')),
+				section('About', path => path.startsWith('/about/')),
+				section('Site', path => ['/', '/branding', '/repl'].includes(path))
+			]
+		}),
+		iconAliasArtifacts
+	]
 });
 
 async function contentSources() {
@@ -76,4 +111,11 @@ async function iconAliasArtifacts() {
 			contentType: 'image/png'
 		})
 	);
+}
+
+function section(heading, matches) {
+	return {
+		heading,
+		match: document => document.locale === 'en' && matches(document.path)
+	};
 }

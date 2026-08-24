@@ -10,23 +10,33 @@
 
 The site runs on [pracht](https://pracht.resynapse.dev/) — a Preact framework on Vite with an explicit route manifest, per-route render modes, and server-side loaders.
 
-Every page is statically generated at build time, so what a reader downloads is a prerendered HTML document. The server runtime handles route data, redirects, and the existing release and repository API endpoints.
+Every page is statically generated at build time, so what a reader downloads is a prerendered HTML document. The server runtime stays in front of those pages because it is what lets the same URLs serve Markdown to agents, and what backs the docs-search and page-read capabilities.
 
 See the [Contributing Guide](./CONTRIBUTING.md) for how to run it and how it is put together.
 
 ## For AI agents
 
-The site publishes Claude Code [skills](./skills) for common Preact workflows. Discover and install them through the signed manifest at [`/.well-known/agent-skills/index.json`](https://preactjs.com/.well-known/agent-skills/index.json).
+preactjs.com is designed to be read by agents without scraping:
 
-Agents can also call typed operations without scraping HTML:
-
-| Endpoint | Result |
+| Surface | What it gives you |
 | --- | --- |
+| `Accept: text/markdown` on any page URL | The page's Markdown source. `<path>.md` works too. Add `?lang=<code>` for a translation. |
+| [`/llms.txt`](https://preactjs.com/llms.txt) | Index of every page with its description and Markdown URL |
+| [`/llms-full.txt`](https://preactjs.com/llms-full.txt) | The full corpus in one file |
 | `POST /api/capabilities/docs/search` | Search the documentation |
 | `POST /api/capabilities/docs/page` | Read one page as Markdown |
-| `POST /api/capabilities/preact/latestRelease` | Read the current Preact version |
+| `POST /api/capabilities/preact/latestRelease` | The current Preact version |
+| [`/.well-known/agent-skills/index.json`](https://preactjs.com/.well-known/agent-skills/index.json) | Claude Code [skills](./skills) for working with Preact |
 
-The capabilities are also registered as [WebMCP](https://developer.chrome.com/docs/ai/webmcp) page tools.
+```sh
+curl -H 'Accept: text/markdown' https://preactjs.com/guide/v10/hooks
+curl https://preactjs.com/guide/v10/hooks.md
+
+curl -X POST https://preactjs.com/api/capabilities/docs/search \
+  -H 'content-type: application/json' -d '{"query":"hydration mismatch"}'
+```
+
+The capabilities are also registered as [WebMCP](https://developer.chrome.com/docs/ai/webmcp) page tools, so an in-browser agent can call them directly.
 
 ## Deployment
 
@@ -36,7 +46,7 @@ Netlify, configured by [`netlify.toml`](./netlify.toml). `npm run build` produce
 - `dist/server/server.js` — the request handler
 - `netlify/functions/pracht.mjs` — a generated Netlify Function v2 entry wrapping it
 
-The generated function claims application routes and serves the prerendered HTML with `Netlify-CDN-Cache-Control`, while asset prefixes in `excludedPath` stay on Netlify's static CDN.
+**Why the function claims `/*`.** Netlify serves the publish directory from its CDN *before* invoking functions. If prerendered pages went out that way, `/guide/v10/hooks` would never reach the framework and `Accept: text/markdown` would silently stop working. So the function claims every path except the asset prefixes in `excludedPath` and serves the prerendered HTML itself, tagged with `Netlify-CDN-Cache-Control` so the edge still answers virtually every request.
 
 To move hosts, swap the adapter in [`vite.config.js`](./vite.config.js) — the Node, Cloudflare and Vercel adapters are drop-in replacements.
 
