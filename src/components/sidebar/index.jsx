@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useRoute } from '../../lib/router.js';
 import DocVersion from '../doc-version';
 import SidebarNav from './sidebar-nav';
 import { useOverlayToggle } from '../../lib/toggle-overlay';

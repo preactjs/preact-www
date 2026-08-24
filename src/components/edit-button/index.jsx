@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useRoute } from '../../lib/router.js';
 import { useLanguageContext } from '../../lib/i18n';
 import style from './style.module.css';
 

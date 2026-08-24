@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="@pracht/content/virtual" />
 
 declare global {
 	namespace preact.JSX {
@@ -26,6 +27,7 @@ export interface FilteredRepoData {
 
 export interface PrerenderData {
 	preactVersion: string;
+	contributor?: string;
 	preactReleaseURL: string;
 	preactOrgRepos: FilteredRepoData[];
 }

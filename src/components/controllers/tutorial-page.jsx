@@ -1,27 +1,18 @@
-import { useRoute, ErrorBoundary } from 'preact-iso';
 import { useEffect } from 'preact/hooks';
+import { useRoute } from '../../lib/router.js';
 import { Tutorial } from './tutorial';
 import { SolutionProvider } from './tutorial/contexts';
-import { NotFound } from './not-found';
 import { useContent, prefetchContent } from '../../lib/use-content';
-import { tutorialPages } from '../../route-config.js';
 
 import style from './tutorial/style.module.css';
 
-export default function TutorialPage() {
-	const { step } = useRoute().params;
-	const isValidRoute = tutorialPages[`/tutorial${step ? `/${step}` : ''}`];
-
-	return (
-		<ErrorBoundary>
-			{isValidRoute ? <TutorialLayout /> : <NotFound />}
-		</ErrorBoundary>
-	);
-}
-
-function TutorialLayout() {
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentData} props.content
+ */
+export function TutorialLayout({ content }) {
 	const { path } = useRoute();
-	const { html, meta } = useContent(path);
+	const { html, meta } = useContent(path, content);
 
 	// Preload the next chapter
 	useEffect(() => {

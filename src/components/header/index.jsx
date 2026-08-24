@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from 'preact/hooks';
 import ReleaseLink from './gh-version';
 import Corner from './corner';
 import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { useLocation } from 'preact-iso';
+import { useLocation } from '../../lib/router.js';
 import { useLanguageContext, useTranslate } from '../../lib/i18n';
 import { headerNav } from '../../route-config.js';
 

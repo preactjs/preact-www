@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
+import { ErrorBoundary } from 'preact-iso';
+import { useBrowserQuery, useLocation } from '../../../lib/router.js';
 import { textToBase64 } from './query-encode.js';
 import { EXAMPLES, fetchExample } from './examples';
 import { useStoredValue } from '../../../lib/localstorage';
-import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
+import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../lazy-repl.js';
 import { parseStackTrace } from './errors';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
@@ -15,8 +16,14 @@ import REPL_CSS from './examples/style.css?raw';
  */
 export function Repl({ code }) {
 	const { route } = useLocation();
-	const { query } = useRoute();
-	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code, true);
+	// Browser-only component, so the live query is both safe and required —
+	// this page is prerendered without one. See useBrowserQuery.
+	const query = useBrowserQuery();
+	const [editorCode, setEditorCode] = useStoredValue(
+		'preact-www-repl-code',
+		code,
+		true
+	);
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
@@ -24,17 +31,16 @@ export function Repl({ code }) {
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
-	const applyExample = (e) => {
+	const applyExample = e => {
 		const slug = e.target.value;
-		fetchExample(slug)
-			.then(code => {
-				setEditorCode(code);
-				setRunnerCode(code);
-				route(`/repl?example=${encodeURIComponent(slug)}`, true);
+		fetchExample(slug).then(code => {
+			setEditorCode(code);
+			setRunnerCode(code);
+			route(`/repl?example=${encodeURIComponent(slug)}`, true);
 		});
 	};
 
-	const onEditorInput = (code) => {
+	const onEditorInput = code => {
 		setEditorCode(code);
 
 		// Clears the (now outdated) example & code query params
@@ -57,7 +63,11 @@ export function Repl({ code }) {
 		if (!query.example) {
 			// We use `history.replaceState` here as the code is only relevant on mount.
 			// There's no need to notify the router of the change.
-			history.replaceState(null, null, `/repl?code=${encodeURIComponent(textToBase64(editorCode))}`);
+			history.replaceState(
+				null,
+				null,
+				`/repl?code=${encodeURIComponent(textToBase64(editorCode))}`
+			);
 		}
 
 		try {

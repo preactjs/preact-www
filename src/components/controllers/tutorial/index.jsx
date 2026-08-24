@@ -8,11 +8,12 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { ErrorBoundary, useLocation } from 'preact-iso';
+import { ErrorBoundary } from 'preact-iso';
+import { useLocation } from '../../../lib/router.js';
 import { TutorialContext, SolutionContext } from './contexts';
 import { parseStackTrace } from '../repl/errors';
 import cx from '../../../lib/cx';
-import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
+import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../lazy-repl.js';
 import { useTranslate } from '../../../lib/i18n.jsx';
 import { MarkdownRegion } from '../markdown-region';
 import style from './style.module.css';

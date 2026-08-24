@@ -1,8 +1,9 @@
 import { useEffect } from 'preact/hooks';
-import { useLocation } from 'preact-iso';
+import { useLocation } from '@pracht/core';
 
 import { createTitle } from './page-title';
 import { getContent } from './content.js';
+import { getContentPath } from './content-path.js';
 import { useLanguageContext } from './i18n';
 import {
 	useResource,
@@ -11,30 +12,36 @@ import {
 	CACHE
 } from './use-resource.js';
 
-/**
- * Correct the few site paths that differ from the markdown file name/structure
- *
- * @param {string} path
- * @returns {string}
- */
-export function getContentPath(path) {
-	if (path == '/') return '/index';
-	if (path == '/tutorial') return '/tutorial/index';
-	return path;
-}
+export { getContentPath };
 
 /**
+ * Content for the current page.
+ *
+ * The server already compiled the English document and handed it to us as
+ * loader data, so the common case costs no fetch at all. When the reader
+ * switches to another language we fall back to the prebuilt
+ * `/content/<lang>/**.json` assets, exactly as before.
+ *
  * @param {string} path
+ * @param {import('./../types.d.ts').ContentData} [initial] Loader-provided content
  * @returns {import('./../types.d.ts').ContentData}
  */
-export function useContent(path) {
+export function useContent(path, initial) {
 	const { lang } = useLanguageContext();
 	const contentPath = getContentPath(path);
+	const usePrerendered = initial != null && lang === 'en';
+
+	// `useResource` resolves synchronously when the thunk returns a non-promise,
+	// so the prerendered case never suspends.
 	/** @type {import('./../types.d.ts').ContentData} */
-	const { html, meta } = useResource(() => getContent([lang, contentPath]), [
-		lang,
-		contentPath
-	]);
+	const { html, meta } = useResource(
+		() =>
+			usePrerendered
+				? /** @type {any} */ (initial)
+				: getContent([lang, contentPath]),
+		[lang, contentPath, usePrerendered]
+	);
+
 	useTitle(meta.title);
 	useDescription(meta.description || '');
 
@@ -56,15 +63,15 @@ export function prefetchContent(path) {
 }
 
 /**
- * Set `document.title`
+ * Keep `document.title` in sync when the language changes client-side.
+ *
+ * The initial title comes from the route's `head()` export, which runs on the
+ * server with the same loader data.
+ *
  * @param {string} title
  */
 export function useTitle(title) {
 	const { url } = useLocation();
-
-	if (typeof window === 'undefined') {
-		globalThis.title = createTitle(title);
-	}
 
 	useEffect(() => {
 		if (title) {
@@ -74,13 +81,9 @@ export function useTitle(title) {
 }
 
 /**
- * Set the meta description tag content
  * @param {string} text
  */
 export function useDescription(text) {
-	if (typeof window === 'undefined') {
-		globalThis.description = text;
-	}
 	useEffect(() => {
 		const el = document.querySelector('meta[name=description]');
 		if (text && el) {

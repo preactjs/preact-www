@@ -11,7 +11,7 @@ function checkStatus(r) {
 	return r;
 }
 
-const baseUrl = '/.netlify/functions/';
+const baseUrl = '/api/';
 
 export const fetchOrganizationRepos = org =>
 	fetch(`${baseUrl}repos?org=${org}`, {

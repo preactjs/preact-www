@@ -1,19 +1,20 @@
-import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
+import { ErrorBoundary } from 'preact-iso';
+import { useIsHydrated } from '@pracht/core';
+import { useBrowserQuery, useLocation } from '../../lib/router.js';
 import { Repl } from './repl';
 import { base64ToText } from './repl/query-encode.js';
 import { fetchExample } from './repl/examples';
 import { useResource } from '../../lib/use-resource';
-import { useContent } from '../../lib/use-content';
 
 import style from './repl/style.module.css';
 
-export default function ReplPage() {
-	const { query } = useRoute();
-
-	useContent('/repl');
-
-	const code = useResource(() => getInitialCode(query), [query]);
-
+/**
+ * The page is server-rendered for its `<head>` and chrome, but the editor
+ * itself is not: its starting code comes from `?code`, `?example` or
+ * `localStorage`, and CodeMirror and the in-browser bundler are browser-only.
+ * So the frame renders on the server and the editor mounts after hydration.
+ */
+export function ReplPage() {
 	return (
 		<div class={style.repl}>
 			<style>{`
@@ -23,21 +24,50 @@ export default function ReplPage() {
 				}
 			`}</style>
 			<ErrorBoundary>
-				<Repl code={code} />
+				<ReplEditor />
 			</ErrorBoundary>
 		</div>
 	);
+}
+
+function ReplEditor() {
+	const hydrated = useIsHydrated();
+	// Safe here: this component only renders after hydration.
+	const query = useBrowserQuery();
+	const { route } = useLocation();
+
+	if (!hydrated) return null;
+
+	return <Editor query={query} route={route} />;
+}
+
+/**
+ * Split from `ReplEditor` so the resource is only ever requested in the
+ * browser — `useResource` suspends, and suspending during SSR would block the
+ * render we deliberately skipped.
+ *
+ * @param {object} props
+ * @param {Record<string, string>} props.query
+ * @param {(url: string, replace?: boolean) => void} props.route
+ */
+function Editor({ query, route }) {
+	const code = useResource(() => getInitialCode(query, route), [query]);
+
+	return <Repl code={code} />;
 }
 
 /**
  * Go down the list of fallbacks to get initial code
  *
  * ?code -> ?example -> localStorage -> simple counter example
+ *
+ * @param {Record<string, string>} query
+ * @param {(url: string, replace?: boolean) => void} route Navigation helper,
+ *   passed in because this runs outside of the render pass.
  */
-async function getInitialCode(query) {
-	const { route } = useLocation();
+async function getInitialCode(query, route) {
 	let code;
-	if (query.code)  {
+	if (query.code) {
 		code = base64ToText(query.code);
 	} else if (query.example) {
 		code = await fetchExample(query.example);
@@ -47,7 +77,10 @@ async function getInitialCode(query) {
 	}
 
 	if (!code) {
-		if (typeof window !== 'undefined' && localStorage.getItem('preact-www-repl-code')) {
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('preact-www-repl-code')
+		) {
 			code = localStorage.getItem('preact-www-repl-code');
 		} else {
 			const slug = 'counter-hooks';

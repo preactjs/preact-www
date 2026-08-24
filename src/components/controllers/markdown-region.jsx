@@ -1,5 +1,5 @@
 import { Fragment } from 'preact';
-import { useRoute } from 'preact-iso';
+import { useRoute } from '../../lib/router.js';
 import EditThisPage from '../edit-button';
 import ContentRegion from '../content-region';
 import BlogMeta from '../blog-meta';

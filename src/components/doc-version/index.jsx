@@ -1,5 +1,5 @@
 import { useCallback } from 'preact/hooks';
-import { useLocation, useRoute } from 'preact-iso';
+import { useLocation, useRoute } from '../../lib/router.js';
 import { flatDocPages } from '../../route-config.js';
 import style from './style.module.css';
 

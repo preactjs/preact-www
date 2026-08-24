@@ -1,5 +1,5 @@
 import { Component } from 'preact';
-import { useLocation } from 'preact-iso';
+import { useLocation } from '../lib/router.js';
 
 export default class Logo extends Component {
 	state = { i: 0, hover: false };

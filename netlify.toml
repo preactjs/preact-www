@@ -1,0 +1,29 @@
+[build]
+  command = "npm run build"
+  publish = "dist/client"
+
+[functions]
+  directory = "netlify/functions"
+
+# `/assets/*`, `/content/*` and `/_pracht/*` bypass the function and are served
+# by Netlify's CDN. @pracht/adapter-netlify generates `dist/client/_headers`
+# with their cache and security headers, and computes the function's
+# `includedFiles` — neither needs declaring here.
+
+[[headers]]
+  for = "/.well-known/traffic-advice"
+  [headers.values]
+    Content-Type = "application/trafficadvice+json"
+    Link = ""
+
+# Avoid adding early-hint `Link` headers to static assets.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Link = ""
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Link = ""

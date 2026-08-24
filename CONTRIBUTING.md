@@ -14,13 +14,35 @@ $ npm run dev
 
 At this point, you should have the site running at `http://localhost:8080`, ready for you to make any changes.
 
+Other useful commands:
+
+```bash
+$ npm run build      # client bundle, server bundle, and every page prerendered
+$ npm run preview    # netlify dev, against the production build
+$ npm run doctor     # check the app wiring
+```
+
 ## Application Structure
 
-This website is built as a [prerendered static app](https://developers.google.com/web/updates/2019/02/rendering-on-the-web#static-rendering), following the [Application Shell pattern](https://developers.google.com/web/fundamentals/architecture/app-shell).
+The site runs on [pracht](https://pracht.resynapse.dev/), a Preact framework built on Vite. Every page is statically generated at build time.
+
+### Routing
+
+Routes are declared explicitly in [`src/routes.js`](./src/routes.js) — there is no file-system routing. A route names a URL pattern, the module that renders it, and the shell it renders inside. Route modules live in [`src/routes/`](./src/routes), and the single shell (header, `<main>`, language context) is [`src/shells/public.jsx`](./src/shells/public.jsx).
+
+The documentation, tutorial and blog use one module each with a dynamic segment; `getStaticPaths()` in those modules enumerates the pages to prerender, reading from [`src/route-config.js`](./src/route-config.js).
+
+`npx pracht inspect routes` prints the resolved table, including which middleware applies where.
 
 ### Content
 
-Content is fetched and rendered on the fly from Markdown documents, similiar to how Jekyll and many other static site generators work. Each page on the site is a separate Markdown file, with optional YAML FrontMatter for specifying page metadata or layout information. Once fetched, the markdown content is then parsed using [`marked`](https://github.com/markedjs/marked) and rendered via [`preact-markup`](https://github.com/developit/preact-markup) to create the HTML you can read and interact with.
+Each page on the site is a separate Markdown file with YAML FrontMatter, found in [`content/`](./content) and split by language.
+
+A route's **loader** reads and compiles that Markdown on the server — at build time for the prerender, and per request otherwise. Markdown is parsed with [`marked`](https://github.com/markedjs/marked) and rendered via [`preact-markup`](https://github.com/developit/preact-markup). Because this happens server-side, the prose is in the initial HTML rather than fetched after paint.
+
+Translations still load at runtime: switching language does not change the URL, so there is no navigation for a loader to hang off. Those are served from the prebuilt `/content/<lang>/**.json` assets emitted by the [`@pracht/content` collection](./content.js).
+
+Loaders, `head()`, and middleware are stripped from the client bundle, so anything they import — the Markdown compiler, Prism, the content reader — never reaches the browser.
 
 ### Custom Elements
 
@@ -37,7 +59,7 @@ Since [`preact`](https://github.com/preactjs/preact) is used to render the Markd
 
 ### Navigation
 
-The navigation menu and route handling are controlled by [`src/config.json`](./src/config.json). Any new documents would need to be added to this file to be accessible via the site's navigation.
+The navigation menu and the set of documentation pages are controlled by [`src/route-config.js`](./src/route-config.js); [`src/config.json`](./src/config.json) holds locales and third-party keys. Any new document needs an entry in `src/route-config.js` to be reachable — it feeds the nav, the sidebar, and `getStaticPaths()`.
 
 ## Writing Content
 

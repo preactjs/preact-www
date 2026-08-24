@@ -6,6 +6,30 @@
 
 ---
 
+## Stack
+
+The site runs on [pracht](https://pracht.resynapse.dev/) — a Preact framework on Vite with an explicit route manifest, per-route render modes, and server-side loaders.
+
+Every page is statically generated at build time, so what a reader downloads is a prerendered HTML document. The server runtime handles route data, redirects, and the existing release and repository API endpoints.
+
+See the [Contributing Guide](./CONTRIBUTING.md) for how to run it and how it is put together.
+
+## Deployment
+
+Netlify, configured by [`netlify.toml`](./netlify.toml). `npm run build` produces:
+
+- `dist/client/` — hashed assets, the translation JSON, and one prerendered HTML file per page (the publish directory)
+- `dist/server/server.js` — the request handler
+- `netlify/functions/pracht.mjs` — a generated Netlify Function v2 entry wrapping it
+
+The generated function claims application routes and serves the prerendered HTML with `Netlify-CDN-Cache-Control`, while asset prefixes in `excludedPath` stay on Netlify's static CDN.
+
+To move hosts, swap the adapter in [`vite.config.js`](./vite.config.js) — the Node, Cloudflare and Vercel adapters are drop-in replacements.
+
+> **Note:** the old deploy published a purely static `build/` with `_redirects` and two Netlify Functions. Those functions are now API routes (`/api/release`, `/api/repos`; the old paths 308 to them), and the redirect table lives in `src/middleware/redirects.js`. Netlify's build settings need `publish` changed from `build` to `dist/client` — or, better, deleted from the UI so `netlify.toml` is the single source of truth.
+
+---
+
 ## Chat with Us
 
 We have a [Slack community](https://chat.preactjs.com/) where you can chat with the Preact team and the wider Preact community. Come stop by to get support, ask questions, or just to introduce yourself!

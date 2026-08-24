@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useRoute, ErrorBoundary } from 'preact-iso';
+import { useRoute } from '../../lib/router.js';
 import { useContent } from '../../lib/use-content';
 import { useLanguageContext } from '../../lib/i18n.jsx';
-import { NotFound } from './not-found';
 import cx from '../../lib/cx';
 import { MarkdownRegion } from './markdown-region';
 import Sidebar from '../sidebar';
@@ -11,21 +10,14 @@ import { flatDocPages } from '../../route-config.js';
 import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version';
 import style from './style.module.css';
 
-export function GuidePage() {
-	const { version, name } = useRoute().params;
-	const isValidRoute = flatDocPages[version]['/' + name];
-
-	return (
-		<ErrorBoundary>
-			{isValidRoute ? <GuideLayout /> : <NotFound />}
-		</ErrorBoundary>
-	);
-}
-
-function GuideLayout() {
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentData} props.content
+ */
+export function GuideLayout({ content }) {
 	const [isMounted, setMounted] = useState(false);
 	const { path } = useRoute();
-	const { html, meta } = useContent(path);
+	const { html, meta } = useContent(path, content);
 
 	useEffect(() => {
 		setMounted(true);

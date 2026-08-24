@@ -1,25 +1,16 @@
-import { useRoute, ErrorBoundary } from 'preact-iso';
+import { useRoute } from '../../lib/router.js';
 import { useContent } from '../../lib/use-content';
-import { NotFound } from './not-found';
 import { MarkdownRegion } from './markdown-region';
 import Footer from '../footer/index';
-import { blogPosts } from '../../route-config.js';
 import style from './style.module.css';
 
-export default function BlogPage() {
-	const { slug } = useRoute().params;
-	const isValidRoute = blogPosts[`/blog/${slug}`];
-
-	return (
-		<ErrorBoundary>
-			{isValidRoute ? <BlogLayout /> : <NotFound />}
-		</ErrorBoundary>
-	);
-}
-
-function BlogLayout() {
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentData} props.content
+ */
+export function BlogLayout({ content }) {
 	const { path } = useRoute();
-	const { html, meta } = useContent(path);
+	const { html, meta } = useContent(path, content);
 
 	return (
 		<div class={style.page}>

@@ -23,7 +23,7 @@ jobs:
 
       - uses: preactjs/compressed-size-action@v2
         with:
-          pattern: 'build/**/*.{js,css}'
-          exclude: 'build/assets/{prerender,xmldom,release,repos}-*.js'
+          pattern: 'dist/client/**/*.{js,css}'
+          exclude: 'dist/client/assets/{xmldom,release,repos}-*.js'
           strip-hash: '-(.{8})\.'
           minimum-change-threshold: 100

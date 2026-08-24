@@ -3,8 +3,12 @@ import Footer from '../footer';
 import { MarkdownRegion } from './markdown-region';
 import style from './style.module.css';
 
-export function NotFound() {
-	const { html, meta } = useContent('404');
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentData} [props.content]
+ */
+export function NotFound({ content }) {
+	const { html, meta } = useContent('/404', content);
 
 	return (
 		<div class={style.page}>

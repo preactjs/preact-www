@@ -12,20 +12,31 @@ import { parseFrontmatter } from '../../src/lib/frontmatter.js';
 loadLanguages(['typescript', 'tsx', 'json', 'bash', 'diff']);
 
 /**
+ * Compile a markdown document into the `{ html, meta }` shape the site renders.
+ *
  * @param {string} content
  * @param {string} path
- * @returns {Promise<string>}
+ * @returns {Promise<{ html: string, meta: import('../../src/types.d.ts').ContentMetaData }>}
  */
-export async function precompileMarkdown(content, path) {
+export async function compileMarkdown(content, path) {
 	const parsed = parseContent(content, path);
 	const emojified = applyEmojiToContent(parsed);
 	const htmlified = await markdownToHTML(emojified);
 	const result = highlightCodeBlocks(htmlified);
 
-	// client only needs `.html` and `.meta` fields
+	// consumers only need `.html` and `.meta` fields
 	delete result.content;
 
-	return JSON.stringify(result);
+	return /** @type {any} */ (result);
+}
+
+/**
+ * @param {string} content
+ * @param {string} path
+ * @returns {Promise<string>}
+ */
+export async function precompileMarkdown(content, path) {
+	return JSON.stringify(await compileMarkdown(content, path));
 }
 
 /**

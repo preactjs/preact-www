@@ -1,4 +1,4 @@
-import { useRoute } from 'preact-iso';
+import { useRoute } from '../../lib/router.js';
 import cx from '../../lib/cx';
 import style from './sidebar-nav.module.css';
 

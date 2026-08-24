@@ -1,17 +1,30 @@
 import { createContext } from 'preact';
 import { useContext, useEffect, useState } from 'preact/hooks';
-import { useLocation } from 'preact-iso';
+import { useBrowserQuery } from './router.js';
 
 import { localStorageGet, localStorageSet } from './localstorage';
 import { useResource } from './use-resource.js';
 import config from '../config.json';
 import englishTranslations from '../locales/en.json';
 
-const translationURLs = import.meta.glob('../locales/!(en)*.json', {
-	query: '?url&no-inline',
-	eager: true,
-	import: 'default'
-});
+/**
+ * URLs of the translation bundles, fetched on demand when a reader picks a
+ * language. English is imported statically above, since it is both the default
+ * and the fallback for every missing key.
+ *
+ * Plain `*.json` rather than `!(en)*.json`: the extglob form silently resolves
+ * to an empty object under Vite 8's production build (it works in dev), which
+ * leaves every translation unreachable. English is filtered out below instead.
+ */
+const translationURLs = Object.fromEntries(
+	Object.entries(
+		import.meta.glob('../locales/*.json', {
+			query: '?url&no-inline',
+			eager: true,
+			import: 'default'
+		})
+	).filter(([path]) => !path.endsWith('/en.json'))
+);
 
 /**
  * @typedef LanguageContext
@@ -46,7 +59,7 @@ function getNavigatorLanguage(available) {
 }
 
 export function LanguageProvider({ children }) {
-	const { query } = useLocation();
+	const query = useBrowserQuery();
 
 	// We only prerender in English
 	const [lang, setLang] = useState('en');
@@ -68,6 +81,9 @@ export function LanguageProvider({ children }) {
 		}).then(r => r.json());
 	}, [lang]);
 
+	// Depends on `query.lang`, not just mount: the router publishes the
+	// browser's query string after the hydration tree settles, so a
+	// `?lang=` on a statically generated page arrives one tick late.
 	useEffect(() => {
 		const userLang =
 			query.lang ||
@@ -77,7 +93,7 @@ export function LanguageProvider({ children }) {
 
 		setLang(userLang);
 		document.documentElement.lang = userLang;
-	}, []);
+	}, [query.lang]);
 
 	const setAndUpdateHtmlAttr = lang => {
 		localStorageSet('lang', lang);

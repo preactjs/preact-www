@@ -7,12 +7,13 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "vite --port 8080",
-    "server": "vite preview --port 8080",
-    "build": "vite build",
+    "dev": "pracht dev --port 8080",
+    "build": "pracht build",
     "lint": "eslint src test",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\"",
-    "prepare": "npx simple-git-hooks"
+    "prepare": "npx simple-git-hooks",
+    "preview": "netlify dev",
+    "doctor": "pracht doctor"
   },
   "eslintConfig": {
     "extends": "developit",
@@ -52,14 +53,17 @@
       "prettier --write"
     ]
   },
-  "devDependencies": {
+	"devDependencies": {
+		"@pracht/cli": "1.11.1",
+		"@pracht/vite-plugin": "0.9.0",
     "eslint": "^6.8.0",
     "eslint-config-developit": "^1.1.1",
     "nano-staged": "^0.8.0",
     "prettier": "^1.19.1",
-    "simple-git-hooks": "^2.0.2"
+    "simple-git-hooks": "^2.0.2",
+    "vite": "8.2.1"
   },
-  "dependencies": {
+	"dependencies": {
     "@babel/polyfill": "^7.7.0",
     "@codemirror/commands": "^6.8.1",
     "@codemirror/lang-html": "^6.4.9",
@@ -69,7 +73,9 @@
     "@codemirror/state": "^6.5.1",
     "@codemirror/view": "^6.36.5",
     "@docsearch/react": "^3.6.0",
-    "@preact/preset-vite": "^2.10.2",
+		"@pracht/adapter-netlify": "0.2.0",
+		"@pracht/content": "0.0.0",
+		"@pracht/core": "0.14.0",
     "@preact/signals": "^2.3.1",
     "@preact/signals-core": "^1.12.0",
     "@rollup/browser": "^3.18.0",
@@ -91,8 +97,6 @@
     "prismjs": "^1.30.0",
     "rollup": "^2.79.1",
     "sucrase": "^3.35.0",
-    "vite": "^7.1.7",
-    "vite-plugin-static-copy": "^2.3.1",
     "yaml": "^2.7.1"
   }
 }

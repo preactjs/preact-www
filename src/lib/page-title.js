@@ -1,8 +1,10 @@
 /**
  * @param {string} title
+ * @param {string} [pathname] Defaults to the current location; pass it
+ *   explicitly from server code, where there is no `location`.
  */
-export function createTitle(title) {
-	const url = location.pathname;
+export function createTitle(title, pathname) {
+	const url = pathname ?? location.pathname;
 
 	// Titles for various content areas
 	let suffix = '';

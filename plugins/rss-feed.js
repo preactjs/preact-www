@@ -6,10 +6,18 @@ import englishTranslations from '../src/locales/en.json';
  * @returns {import('vite').Plugin}
  */
 export function rssFeedPlugin() {
+	/** The feed is a client asset; the SSR pass would emit a second copy. */
+	let shouldEmit = false;
+
 	return {
 		name: 'rss-feed',
 		apply: 'build',
+		configResolved(config) {
+			shouldEmit = !config.build.ssr;
+		},
 		generateBundle() {
+			if (!shouldEmit) return;
+
 			const feed = new Feed({
 				title: 'Preact Blog',
 				description: 'Preact news and articles',

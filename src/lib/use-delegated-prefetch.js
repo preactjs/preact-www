@@ -1,40 +1,34 @@
 import { useEffect } from 'preact/hooks';
 
 import { prefetchContent } from './use-content.js';
-import {
-	ReplPage,
-	TutorialPage,
-	CodeEditor,
-	BlogPage
-} from '../components/routes.jsx';
+import { useLanguageContext } from './i18n.jsx';
 
+/**
+ * Warm the content cache on hover/touch.
+ *
+ * pracht already prefetches route chunks and loader data for links it owns, and
+ * for English readers the loader payload *is* the content. Translations are
+ * still fetched separately, though, so those are what we prefetch here.
+ */
 export function useDelegatedPrefetch() {
+	const { lang } = useLanguageContext();
+
 	useEffect(() => {
-		const prefetchAndPreload = e => {
-			if (e.target.tagName === 'A') {
-				if (!e.target.href.startsWith(location.origin)) return;
-				const pathname = new URL(e.target.href).pathname;
+		if (lang === 'en') return;
 
-				if (pathname.startsWith('/repl')) {
-					ReplPage.preload();
-					CodeEditor.preload();
-				} else if (pathname.startsWith('/tutorial')) {
-					TutorialPage.preload();
-					CodeEditor.preload();
-				} else if (pathname.startsWith('/blog/')) {
-					BlogPage.preload();
-				}
+		const prefetch = e => {
+			if (e.target.tagName !== 'A') return;
+			if (!e.target.href?.startsWith(location.origin)) return;
 
-				prefetchContent(pathname);
-			}
+			prefetchContent(new URL(e.target.href).pathname);
 		};
 
-		addEventListener('mouseover', prefetchAndPreload);
-		addEventListener('touchstart', prefetchAndPreload);
+		addEventListener('mouseover', prefetch);
+		addEventListener('touchstart', prefetch);
 
 		return () => {
-			removeEventListener('mouseover', prefetchAndPreload);
-			removeEventListener('touchstart', prefetchAndPreload);
+			removeEventListener('mouseover', prefetch);
+			removeEventListener('touchstart', prefetch);
 		};
-	}, []);
+	}, [lang]);
 }

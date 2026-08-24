@@ -1,37 +1,25 @@
 import { defineConfig } from 'vite';
-import preact from '@preact/preset-vite';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
-import path from 'path';
-
-import { precompileMarkdown } from './plugins/precompile-markdown/index.js';
-import { netlifyPlugin } from './plugins/netlify.js';
-import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.js';
-import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
-import { rssFeedPlugin } from './plugins/rss-feed.js';
-import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
-
+import { pracht } from '@pracht/vite-plugin';
+import { netlifyAdapter } from '@pracht/adapter-netlify';
 import {
-	headerNav,
-	flatDocPages,
-	tutorialPages,
-	blogPosts
-} from './src/route-config.js';
+	CONTENT_BUILD_MANIFEST_FILE,
+	prachtContent
+} from '@pracht/content/vite';
 
-/**
- * @param {'v8' | 'v10' | 'v11'} version
- * @param {string} path
- * @returns {string}
- */
-const flatDocPathToNested = (version, path) => `/guide/${version}${path}`;
+import { docs } from './content.js';
+import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
+import { rssFeedPlugin } from './plugins/rss-feed.js';
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
 	publicDir: 'src/assets',
 	optimizeDeps: {
 		include: ['@babel/polyfill', '@rollup/browser', 'sucrase']
 	},
 	build: {
+		// Only the client build is served to browsers; copying the public
+		// directory into the server bundle as well just doubles the output.
+		copyPublicDir: !isSsrBuild,
 		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
-		outDir: 'build',
 		rollupOptions: {
 			output: {
 				chunkFileNames: chunkInfo => {
@@ -48,67 +36,39 @@ export default defineConfig({
 		'process.env.BRANCH': JSON.stringify(process.env.BRANCH)
 	},
 	plugins: [
-		preact({
-			prerender: {
-				enabled: true,
-				renderTarget: '#app',
-				// The routes that will not be discovered automatically
-				additionalPrerenderRoutes: [
-					'/404',
-					'/branding',
-					...Object.keys(headerNav),
-					...Object.keys(flatDocPages.v8).map(path =>
-						flatDocPathToNested('v8', path)
-					),
-					...Object.keys(flatDocPages.v10).map(path =>
-						flatDocPathToNested('v10', path)
-					),
-					...Object.keys(flatDocPages.v11).map(path =>
-						flatDocPathToNested('v11', path)
-					),
-					...Object.keys(tutorialPages),
-					...Object.keys(blogPosts)
+		prachtContent({ collections: [docs] }),
+		pracht({
+			appFile: '/src/routes.js',
+			adapter: netlifyAdapter({
+				// 12 MB of prebuilt translation JSON. Pure CDN — never worth a
+				// function invocation, and excluded from the function bundle.
+				excludedPath: [
+					'/content/*',
+					// Extensionless, so the function would serve it as
+					// application/octet-stream; Chrome ignores it unless the type is
+					// application/trafficadvice+json, which netlify.toml sets on the
+					// static layer.
+					'/.well-known/traffic-advice'
 				]
-			}
+			}),
+			// Preserve the site's existing, v10-focused llms.txt generator.
+			llmsTxt: false
 		}),
-		viteStaticCopy({
-			hook: 'generateBundle',
-			targets: [
-				{
-					src: './content/**/*.md',
-					dest: './',
-					rename: (_name, _fileExtension, fullPath) =>
-						path.basename(fullPath).replace(/\.md$/, '.json'),
-					transform: precompileMarkdown
-				}
-			],
-			structured: true,
-			watch: {
-				reloadPageOnChange: true
-			}
-		}),
-		viteStaticCopy({
-			// Safari will always request both `apple-touch-icon.png` and
-			// `apple-touch-icon-precomposed.png` regardless of any set path via `<link>`
-			// tags. The latter serves no purpose since iOS 7.0, but as Safari still
-			// requests it, we may as well provide it to get this out of our 404 stats.
-			targets: [
-				{
-					src: './src/assets/app-icon.png',
-					dest: './',
-					rename: 'apple-touch-icon.png'
-				},
-				{
-					src: './src/assets/app-icon.png',
-					dest: './',
-					rename: 'apple-touch-icon-precomposed.png'
-				}
-			]
-		}),
-		netlifyPlugin(),
-		spaFallbackMiddlewarePlugin(),
-		htmlRoutingMiddlewarePlugin(),
 		rssFeedPlugin(),
-		generateLlmsTxtPlugin()
+		generateLlmsTxtPlugin(),
+		omitInternalContentManifest()
 	]
-});
+}));
+
+/** CLI 1.11 predates the build-time content manifest consumer. */
+function omitInternalContentManifest() {
+	return {
+		name: 'preact-www:omit-content-manifest',
+		generateBundle: {
+			order: 'post',
+			handler(_options, bundle) {
+				delete bundle[CONTENT_BUILD_MANIFEST_FILE];
+			}
+		}
+	};
+}

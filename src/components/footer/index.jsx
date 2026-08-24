@@ -1,7 +1,7 @@
 import { useCallback } from 'preact/hooks';
 import config from '../../config.json';
 import { useLanguageContext } from '../../lib/i18n';
-import { useResource } from '../../lib/use-resource';
+import { usePrerenderData } from '../../lib/prerender-data.jsx';
 import style from './style.module.css';
 
 /*
@@ -20,25 +20,10 @@ import style from './style.module.css';
  * And paste the results into src/assets/contributors.json
  */
 
-/**
- * Display a random contributor of the list above.
- */
-function useContributors() {
-	const contributors = useResource(
-		() =>
-			fetch('/contributors.json', {
-				credentials: 'include',
-				mode: 'no-cors',
-				priority: 'low'
-			}).then(r => r.json()),
-		['/contributors.json']
-	);
-
-	return contributors[(Math.random() * (contributors.length - 1)) | 0];
-}
-
 export default function Footer() {
-	const contrib = useContributors();
+	// Chosen by the route loader from `src/assets/contributors.json`, so the
+	// name is server-rendered instead of costing a fetch after paint.
+	const { contributor: contrib } = usePrerenderData();
 	const { lang, setLang } = useLanguageContext();
 
 	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
