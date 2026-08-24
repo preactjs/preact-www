@@ -18,6 +18,16 @@ See the [Contributing Guide](./CONTRIBUTING.md) for how to run it and how it is 
 
 The site publishes Claude Code [skills](./skills) for common Preact workflows. Discover and install them through the signed manifest at [`/.well-known/agent-skills/index.json`](https://preactjs.com/.well-known/agent-skills/index.json).
 
+Agents can also call typed operations without scraping HTML:
+
+| Endpoint | Result |
+| --- | --- |
+| `POST /api/capabilities/docs/search` | Search the documentation |
+| `POST /api/capabilities/docs/page` | Read one page as Markdown |
+| `POST /api/capabilities/preact/latestRelease` | Read the current Preact version |
+
+The capabilities are also registered as [WebMCP](https://developer.chrome.com/docs/ai/webmcp) page tools.
+
 ## Deployment
 
 Netlify, configured by [`netlify.toml`](./netlify.toml). `npm run build` produces:

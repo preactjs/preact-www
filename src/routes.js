@@ -23,6 +23,14 @@ export const app = defineApp({
 		'agent-skills': './middleware/agent-skills.js',
 		redirects: './middleware/redirects.js'
 	},
+	// Typed operations agents can call directly, instead of scraping pages for
+	// the same answers. Each is projected to `POST /api/capabilities/<name>`
+	// and registered as a WebMCP page tool.
+	capabilities: {
+		'docs.search': './capabilities/search-docs.js',
+		'docs.page': './capabilities/get-page.js',
+		'preact.latestRelease': './capabilities/latest-release.js'
+	},
 	notFound: {
 		component: './routes/not-found.jsx',
 		shell: 'public',

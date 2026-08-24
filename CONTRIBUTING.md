@@ -65,6 +65,8 @@ The navigation menu and the set of documentation pages are controlled by [`src/r
 
 [`skills/`](./skills) holds Claude Code skills for working with Preact. They are published at `/skills/<name>/SKILL.md` with a signed manifest at `/.well-known/agent-skills/index.json`.
 
+The `docs.search`, `docs.page`, and `preact.latestRelease` capabilities in [`src/capabilities/`](./src/capabilities) are typed operations exposed at `POST /api/capabilities/<name>` and as WebMCP page tools.
+
 ## Writing Content
 
 The written content on the site is authored in Markdown, found in the [`content`](./content) directory and split up by language. Additionally, [`src/config.json`](./src/config.json) contains some i18n labels which you may need to alter if you were adding a new translated page.
