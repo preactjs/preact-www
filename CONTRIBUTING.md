@@ -61,6 +61,10 @@ Since [`preact`](https://github.com/preactjs/preact) is used to render the Markd
 
 The navigation menu and the set of documentation pages are controlled by [`src/route-config.js`](./src/route-config.js); [`src/config.json`](./src/config.json) holds locales and third-party keys. Any new document needs an entry in `src/route-config.js` to be reachable — it feeds the nav, the sidebar, and `getStaticPaths()`.
 
+### Serving agents
+
+[`skills/`](./skills) holds Claude Code skills for working with Preact. They are published at `/skills/<name>/SKILL.md` with a signed manifest at `/.well-known/agent-skills/index.json`.
+
 ## Writing Content
 
 The written content on the site is authored in Markdown, found in the [`content`](./content) directory and split up by language. Additionally, [`src/config.json`](./src/config.json) contains some i18n labels which you may need to alter if you were adding a new translated page.

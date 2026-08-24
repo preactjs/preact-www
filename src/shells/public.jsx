@@ -101,8 +101,23 @@ export function head() {
 				rel: 'preconnect',
 				href: 'https://www.google-analytics.com',
 				crossorigin: 'anonymous'
+			},
+			// Advertise the agent-skills manifest to crawlers that read <head>
+			// rather than response headers.
+			{
+				rel: 'agent-skills',
+				href: '/.well-known/agent-skills/index.json',
+				type: 'application/json'
 			}
 		]
+	};
+}
+
+export function headers() {
+	// RFC 8288 discovery for agents that land on any page without prior
+	// knowledge of the skill catalog.
+	return {
+		link: '</.well-known/agent-skills/index.json>; rel="agent-skills"'
 	};
 }
 

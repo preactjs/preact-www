@@ -14,6 +14,10 @@ Every page is statically generated at build time, so what a reader downloads is 
 
 See the [Contributing Guide](./CONTRIBUTING.md) for how to run it and how it is put together.
 
+## For AI agents
+
+The site publishes Claude Code [skills](./skills) for common Preact workflows. Discover and install them through the signed manifest at [`/.well-known/agent-skills/index.json`](https://preactjs.com/.well-known/agent-skills/index.json).
+
 ## Deployment
 
 Netlify, configured by [`netlify.toml`](./netlify.toml). `npm run build` produces:

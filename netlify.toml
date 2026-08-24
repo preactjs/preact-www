@@ -16,7 +16,9 @@
     Content-Type = "application/trafficadvice+json"
     Link = ""
 
-# Avoid adding early-hint `Link` headers to static assets.
+# Netlify adds early-hint `Link` headers to static assets. Pages carry a
+# deliberate `Link` of their own for agent-skills discovery, so keep the
+# automatic ones from muddying that signal.
 [[headers]]
   for = "/assets/*"
   [headers.values]

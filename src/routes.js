@@ -20,6 +20,7 @@ export const app = defineApp({
 		public: './shells/public.jsx'
 	},
 	middleware: {
+		'agent-skills': './middleware/agent-skills.js',
 		redirects: './middleware/redirects.js'
 	},
 	notFound: {
@@ -28,7 +29,7 @@ export const app = defineApp({
 		// Unmatched URLs are the only place the legacy `/guide/<page>` paths can
 		// still show up, so the redirect table runs here rather than as a
 		// catch-all route that would shadow real pages.
-		middleware: ['redirects']
+		middleware: ['agent-skills', 'redirects']
 	},
 	routes: [
 		group({ shell: 'public', render: 'ssg' }, [
