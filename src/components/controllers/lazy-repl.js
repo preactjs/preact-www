@@ -1,4 +1,4 @@
-import { lazy } from 'preact-iso';
+import lazy from 'preact-iso/lazy';
 
 /**
  * The REPL's heavy parts — CodeMirror, an in-browser Rollup, and the preview

@@ -1,5 +1,5 @@
 import { useNavigation, useRouteData } from '@pracht/core';
-import { ErrorBoundary as SuspenseBoundary } from 'preact-iso';
+import { ErrorBoundary as SuspenseBoundary } from 'preact-iso/lazy';
 
 import { LanguageProvider } from '../lib/i18n';
 import { PrerenderDataProvider } from '../lib/prerender-data.jsx';

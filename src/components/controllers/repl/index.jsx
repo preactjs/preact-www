@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { ErrorBoundary } from 'preact-iso';
+import { ErrorBoundary } from 'preact-iso/lazy';
 import { useBrowserQuery, useLocation } from '../../../lib/router.js';
 import { textToBase64 } from './query-encode.js';
 import { EXAMPLES, fetchExample } from './examples';

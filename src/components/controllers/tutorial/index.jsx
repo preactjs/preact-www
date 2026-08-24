@@ -8,7 +8,7 @@ import {
 	useMemo,
 	useCallback
 } from 'preact/hooks';
-import { ErrorBoundary } from 'preact-iso';
+import { ErrorBoundary } from 'preact-iso/lazy';
 import { useLocation } from '../../../lib/router.js';
 import { TutorialContext, SolutionContext } from './contexts';
 import { parseStackTrace } from '../repl/errors';

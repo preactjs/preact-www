@@ -1,4 +1,4 @@
-import { ErrorBoundary } from 'preact-iso';
+import { ErrorBoundary } from 'preact-iso/lazy';
 import { useIsHydrated } from '@pracht/core';
 import { useBrowserQuery, useLocation } from '../../lib/router.js';
 import { Repl } from './repl';

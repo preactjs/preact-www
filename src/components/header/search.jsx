@@ -1,6 +1,6 @@
 import { render } from 'preact';
 import { useRef } from 'preact/hooks';
-import { lazy, ErrorBoundary } from 'preact-iso';
+import lazy, { ErrorBoundary } from 'preact-iso/lazy';
 import style from './style.module.css';
 import config from '../../config.json';
 
