@@ -94,7 +94,9 @@ div.highlight-container {
 	}
 }
 
-#app {
+/* pracht hydrates into `<div id="pracht-root">`; the id is fixed by the
+   framework, so this selector has to track it. */
+#pracht-root {
 	min-height: 100%;
 	background: var(--color-page-bg);
 

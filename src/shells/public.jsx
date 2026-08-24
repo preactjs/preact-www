@@ -6,7 +6,7 @@ import { PrerenderDataProvider } from '../lib/prerender-data.jsx';
 import { useDelegatedPrefetch } from '../lib/use-delegated-prefetch.js';
 import Header from '../components/header';
 import '../lib/dev-globals.js';
-import '../analytics.js';
+import { useAnalytics } from '../analytics.js';
 import '../style/index.css';
 
 /**
@@ -48,6 +48,7 @@ export function Shell({ children }) {
  */
 function Chrome({ children }) {
 	useDelegatedPrefetch();
+	useAnalytics();
 
 	return (
 		<>

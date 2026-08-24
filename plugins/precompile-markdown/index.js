@@ -24,10 +24,31 @@ export async function compileMarkdown(content, path) {
 	const htmlified = await markdownToHTML(emojified);
 	const result = highlightCodeBlocks(htmlified);
 
+	result.html = defuseBundlerMarkers(result.html);
+
 	// consumers only need `.html` and `.meta` fields
 	delete result.content;
 
 	return /** @type {any} */ (result);
+}
+
+/**
+ * Vite substitutes its own placeholders — `__VITE_IS_MODERN__`,
+ * `__VITE_PRELOAD__` and friends — with a plain string replace over each
+ * finished chunk. Compiled documents are bundled into the server build, so a
+ * post that quotes Vite's own source (`/blog/prerendering-preset-vite`) gets
+ * rewritten mid-prose: readers saw `if (true && deps ...)` where the article
+ * says `if (__VITE_IS_MODERN__ && deps ...)`.
+ *
+ * Writing the leading underscore as a character reference keeps the marker out
+ * of the chunk without changing what the browser renders — the HTML is parsed
+ * before it reaches the page either way.
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+function defuseBundlerMarkers(html) {
+	return html.replace(/__(VITE_[A-Z0-9_]*?)__/g, '&#95;_$1__');
 }
 
 /**

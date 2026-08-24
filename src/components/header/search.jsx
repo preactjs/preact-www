@@ -54,15 +54,17 @@ function waitForDocsearch(root) {
 	});
 }
 
-// Might be a problem with the Algolia data, but it seemingly
-// appends `#app` to all URLs without a hash fragment.
+// Might be a problem with the Algolia data, but it seemingly appends the id of
+// the app's root element to all URLs without a hash fragment. The index still
+// holds `#app` from before the pracht migration and will hold `#pracht-root`
+// once it is recrawled, so strip either.
 //
 // It also returns the full prod URL, which isn't ideal for dev/staging
 const transformItems = items =>
 	items.map(i => {
 		const url = new URL(i.url);
 		return Object.assign(i, {
-			url: url.pathname + url.hash.replace(/#app$/, '')
+			url: url.pathname + url.hash.replace(/#(app|pracht-root)$/, '')
 		});
 	});
 
