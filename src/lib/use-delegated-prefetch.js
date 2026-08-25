@@ -6,9 +6,9 @@ import { useLanguageContext } from './i18n.jsx';
 /**
  * Warm the content cache on hover/touch.
  *
- * pracht already prefetches route chunks and loader data for links it owns, and
- * for English readers the loader payload *is* the content. Translations are
- * still fetched separately, though, so those are what we prefetch here.
+ * Pracht's general route prefetcher is disabled to avoid shipping its client
+ * runtime. Translations are fetched separately, so keep warming only those
+ * content requests here; English content loads with its route on navigation.
  */
 export function useDelegatedPrefetch() {
 	const { lang } = useLanguageContext();

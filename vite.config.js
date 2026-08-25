@@ -1,10 +1,7 @@
 import { defineConfig } from 'vite';
 import { pracht } from '@pracht/vite-plugin';
 import { netlifyAdapter } from '@pracht/adapter-netlify';
-import {
-	CONTENT_BUILD_MANIFEST_FILE,
-	prachtContent
-} from '@pracht/content/vite';
+import { prachtContent } from '@pracht/content/vite';
 
 import { docs } from './content.js';
 import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
@@ -39,6 +36,7 @@ export default defineConfig(({ isSsrBuild }) => ({
 		prachtContent({ collections: [docs] }),
 		pracht({
 			appFile: '/src/routes.js',
+			client: { prefetch: false },
 			adapter: netlifyAdapter({
 				// 12 MB of prebuilt translation JSON. Pure CDN — never worth a
 				// function invocation, and excluded from the function bundle.
@@ -55,20 +53,6 @@ export default defineConfig(({ isSsrBuild }) => ({
 			llmsTxt: false
 		}),
 		rssFeedPlugin(),
-		generateLlmsTxtPlugin(),
-		omitInternalContentManifest()
+		generateLlmsTxtPlugin()
 	]
 }));
-
-/** CLI 1.11 predates the build-time content manifest consumer. */
-function omitInternalContentManifest() {
-	return {
-		name: 'preact-www:omit-content-manifest',
-		generateBundle: {
-			order: 'post',
-			handler(_options, bundle) {
-				delete bundle[CONTENT_BUILD_MANIFEST_FILE];
-			}
-		}
-	};
-}

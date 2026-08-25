@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "pracht dev --port 8080",
     "build": "pracht build",
-    "lint": "eslint src test",
+    "lint": "eslint src",
     "format": "prettier --write \"{src,test}/**/*.{css,js,json}\"",
     "prepare": "npx simple-git-hooks",
     "preview": "netlify dev",
@@ -54,8 +54,8 @@
     ]
   },
 	"devDependencies": {
-		"@pracht/cli": "1.11.1",
-		"@pracht/vite-plugin": "0.9.0",
+		"@pracht/cli": "1.11.2",
+		"@pracht/vite-plugin": "0.10.0",
     "eslint": "^6.8.0",
     "eslint-config-developit": "^1.1.1",
     "nano-staged": "^0.8.0",
@@ -73,9 +73,9 @@
     "@codemirror/state": "^6.5.1",
     "@codemirror/view": "^6.36.5",
     "@docsearch/react": "^3.6.0",
-		"@pracht/adapter-netlify": "0.2.0",
-		"@pracht/content": "0.0.0",
-		"@pracht/core": "0.14.0",
+		"@pracht/adapter-netlify": "0.2.1",
+		"@pracht/content": "0.1.0",
+		"@pracht/core": "0.15.0",
     "@preact/signals": "^2.3.1",
     "@preact/signals-core": "^1.12.0",
     "@rollup/browser": "^3.18.0",
