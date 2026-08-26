@@ -203,13 +203,8 @@ function Glossary(props) {
 }
 ```
 
-
 A key identifies the entire Fragment as one group during reconciliation. When
 Fragment groups are reordered, stable keys help Preact match each group with
 the corresponding group from the previous render instead of matching only by
 position. Use the explicit `<Fragment key={...}>` form for keyed Fragments,
 because the `<>...</>` shorthand cannot accept a key.
-
-For a React-focused comparison and practice exercise covering wrapper-free DOM
-output and key-driven identity, see
-[Fragments, DOM, and reconciliation](https://frontendatlas.com/react/trivia/react-fragments-dom-and-reconciliation).
