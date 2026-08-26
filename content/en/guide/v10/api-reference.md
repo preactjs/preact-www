@@ -48,6 +48,8 @@ class MyComponent extends Component {
 }
 ```
 
+`render()` describes the component's Virtual DOM output for its current props and state. When code needs to run at a specific point in the mounting or update cycle, class components can use [lifecycle methods](/guide/v10/components#lifecycle-methods). The [Side Effects tutorial](/tutorial/07-side-effects) shows examples using lifecycle methods and `useEffect()`.
+
 To learn more about components and how they can be used, check out the [Components Documentation](/guide/v10/components).
 
 ### render()
