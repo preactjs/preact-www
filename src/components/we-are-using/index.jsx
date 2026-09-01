@@ -287,6 +287,11 @@ const companies = [
 		name: "HesapKurdu",
 		href: 'https://www.hesapkurdu.com',
 		logo: 'hesapkurdu.svg'
+	},
+	{
+		name: 'Authier',
+		href: 'https://www.authier.pm/',
+		logo: 'authier.png'
 	}
 ];
 
