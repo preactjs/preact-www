@@ -48,6 +48,8 @@ class MyComponent extends Component {
 }
 ```
 
+When code needs to run at a specific point in the mounting or update cycle, class components can use [lifecycle methods](/guide/v10/components#lifecycle-methods) and function components can use [`useEffect()`](/guide/v10/hooks#useeffect). Examples for both can be found in the [Side Effects tutorial](/tutorial/07-side-effects).
+
 To learn more about components and how they can be used, check out the [Components Documentation](/guide/v10/components).
 
 ### render()
