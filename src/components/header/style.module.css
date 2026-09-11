@@ -141,10 +141,6 @@
 					padding: 0;
 				}
 
-				&.current {
-					visibility: hidden;
-				}
-
 				svg {
 					position: relative;
 					padding-right: 5px;
