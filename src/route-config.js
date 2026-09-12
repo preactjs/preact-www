@@ -12,7 +12,7 @@ export const headerNav = {
 	'/tutorial': {
 		label: 'tutorial'
 	},
-	'/guide/v10/getting-started': {
+	'/guide/v11/getting-started': {
 		label: 'guide'
 	},
 	'/about/we-are-using': {

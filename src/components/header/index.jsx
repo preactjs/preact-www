@@ -60,7 +60,7 @@ function MainNav() {
 				aria-label="Home"
 			/>
 			<NavLink href="/tutorial" />
-			<NavLink href="/guide/v10/getting-started" />
+			<NavLink href="/guide/v11/getting-started" />
 			<NavMenu>
 				{isOpen => (
 					<ExpandableNavLink
