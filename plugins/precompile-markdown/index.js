@@ -6,6 +6,7 @@ import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
 import { parseFrontmatter } from '../../src/lib/frontmatter.js';
+import { generateHeadingId } from '../../src/lib/generate-heading-id.js';
 
 // Prism will always load `markup`, `css`, `clike` and `javascript` by default.
 // Any additional languages we need should be loaded here
@@ -164,18 +165,6 @@ function generateToc(markdown) {
 		toc.push({ text, id, level });
 	}
 	return toc;
-}
-
-/**
- * @param {string} text
- * @returns {string}
- */
-function generateHeadingId(text) {
-	// Note: character range in regex is roughly "word characters including accented" (eg: bublé)
-	return text
-		.toLowerCase()
-		.replace(/[\s-!<>`",]+/g, '-')
-		.replace(/^-|-$|[/&.()[\]']/g, '');
 }
 
 /**

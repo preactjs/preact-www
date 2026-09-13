@@ -1,5 +1,6 @@
 import { blogPosts } from '../../route-config.js';
 import { useTranslate } from '../../lib/i18n';
+import { generateHeadingId } from '../../lib/generate-heading-id.js';
 import { Time } from '../time';
 import s from './style.module.css';
 
@@ -17,7 +18,7 @@ export default function BlogOverview() {
 							<div class={s.meta}>
 								<Time value={post.date} />
 							</div>
-							<h2 class={s.title}>
+							<h2 class={s.title} id={generateHeadingId(translatedBlog.label)}>
 								<a href={postPath}>{translatedBlog.label}</a>
 							</h2>
 							<p class={s.excerpt}>{translatedBlog.excerpt}</p>
