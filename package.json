@@ -60,7 +60,6 @@
     "simple-git-hooks": "^2.14.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.7.0",
     "@codemirror/commands": "^6.11.0",
     "@codemirror/lang-html": "^6.4.12",
     "@codemirror/lang-javascript": "^6.2.5",
