@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import { rollup } from '@rollup/browser';
 import { transform } from 'sucrase';
 import * as Comlink from 'comlink';
