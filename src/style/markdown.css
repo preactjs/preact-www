@@ -376,9 +376,8 @@
 		}
 
 		/* TODO v11: Switch when v11 is properly released */
-		content-region[name*='v8'] & {
-			/*content-region[name*='v8'] &,
-		content-region[name*='v10'] & {*/
+		content-region[name*='v8'] &,
+		content-region[name*='v11'] & {
 			scroll-margin-top: calc(var(--header-and-banner-height) + 3.25rem);
 
 			@media (max-height: 431px) {
