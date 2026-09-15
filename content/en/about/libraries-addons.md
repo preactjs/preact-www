@@ -52,7 +52,7 @@ A collection of modules built to work wonderfully with Preact.
 - :rocket: **[preact-photon](https://github.com/developit/preact-photon)**: build beautiful desktop UI with [photon](http://photonkit.com)
 - :penguin: **[preact-weui](https://github.com/afeiship/preact-weui)**: [Weui](https://github.com/afeiship/preact-weui) for Preact
 - 💅 **[preact-fluid](https://github.com/ajainvivek/preact-fluid)**: [Fluid](https://github.com/ajainvivek/preact-fluid) minimal UI kit for Preact
-- :book: **[storybook-preact](https://github.com/storybooks/storybook/tree/next/app/preact)**: Storybook for Preact is a UI development environment for your Preact components
+- :book: **[storybook-preact](https://github.com/storybookjs/storybook/tree/next/code/frameworks/preact-vite)**: Storybook for Preact is a UI development environment for your Preact components
 
 ### Testing
 
