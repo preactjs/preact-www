@@ -61,6 +61,12 @@ function parseContent(content, path) {
 	};
 }
 
+const CUSTOM_BLOCKS = [
+	'<toc></toc>',
+	'<branding></branding>',
+	'<blog-overview></blog-overview>'
+];
+
 marked.use({
 	renderer: {
 		heading({ text, depth }) {
@@ -79,7 +85,7 @@ marked.use({
 				</h${depth}>`;
 		},
 		paragraph({ text }) {
-			if (text == '<toc></toc>' || text == '<branding></branding>') {
+			if (CUSTOM_BLOCKS.includes(text)) {
 				// The CommonMark spec states that _HTML Blocks_ must start with specific & known
 				// tags, which our custom components are not. As such, `marked` treats them as
 				// _Raw HTML_ which results in them being wrapped in a `<p>` tag.

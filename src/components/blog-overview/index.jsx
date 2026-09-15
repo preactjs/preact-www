@@ -8,27 +8,25 @@ export default function BlogOverview() {
 	const translate = useTranslate();
 
 	return (
-		<div>
-			<div class={s.postList}>
-				{Object.entries(blogPosts).map(([postPath, post]) => {
-					const translatedBlog = translate('blogPosts', post.label);
+		<div class={s.postList}>
+			{Object.entries(blogPosts).map(([postPath, post]) => {
+				const translatedBlog = translate('blogPosts', post.label);
 
-					return (
-						<article class={s.post}>
-							<div class={s.meta}>
-								<Time value={post.date} />
-							</div>
-							<h2 class={s.title} id={generateHeadingId(translatedBlog.label)}>
-								<a href={postPath}>{translatedBlog.label}</a>
-							</h2>
-							<p class={s.excerpt}>{translatedBlog.excerpt}</p>
-							<a href={postPath} class="btn-small">
-								{translate('i18n', 'continueReading')} &rarr;
-							</a>
-						</article>
-					);
-				})}
-			</div>
+				return (
+					<article class={s.post}>
+						<div class={s.meta}>
+							<Time value={post.date} />
+						</div>
+						<h2 class={s.title} id={generateHeadingId(translatedBlog.label)}>
+							<a href={postPath}>{translatedBlog.label}</a>
+						</h2>
+						<p class={s.excerpt}>{translatedBlog.excerpt}</p>
+						<a href={postPath} class="btn-small">
+							{translate('i18n', 'continueReading')} &rarr;
+						</a>
+					</article>
+				);
+			})}
 		</div>
 	);
 }
