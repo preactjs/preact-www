@@ -1,8 +1,9 @@
 ---
 title: Blog
+description: Find out more about what the Preact team is working on
 ---
 
-# Blog
+# Preact Team Blog
 
 Find out more about what the Preact team is working on.
 
