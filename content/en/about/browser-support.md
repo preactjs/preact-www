@@ -7,9 +7,9 @@ description: Preact supports all modern browsers (Chrome, Firefox, Safari, Edge)
 
 Preact 11.x supports the following browsers out of the box with no additional polyfills needed:
 
-- Chrome >= 40
-- Safari >= 9
-- Firefox >= 36
-- Edge >= 12
+- Chrome >= 71
+- Safari >= 12.1
+- Firefox >= 69
+- Edge >= 79
 
 If you need to support older browsers, you can use polyfills or stick to Preact 10.x which supports back to IE11.
