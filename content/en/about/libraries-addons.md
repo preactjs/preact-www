@@ -43,6 +43,7 @@ A collection of modules built to work wonderfully with Preact.
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Run your Preact widget on any website with reactive props.
 - 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
 - 💤 **[zikofy](https://github.com/zakarialaoui10/zikofy)**: Turns Preact components into Zikojs `UIElement`.
+- 🧰 **[Extension.js](https://extension.js.org)**: Build browser extensions with Preact, no config, one manifest.json for Chrome, Edge, Firefox and Safari.
 
 ## GUI Toolkits
 
