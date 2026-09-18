@@ -75,6 +75,10 @@
 		"congratulations": "Congratulations!"
 	},
 	"blogPosts": {
+		"preact11Release": {
+			"label": "Preact 11 Release",
+			"excerpt": "The wait is finally over: Preact 11 is here!"
+		},
 		"simplifyingIslandsArch": {
 			"label": "Build your own Island Components",
 			"excerpt": "Demystifying how island architecture works and being able to setup your own, using tools you already have around you."
