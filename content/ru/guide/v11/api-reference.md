@@ -48,7 +48,9 @@ class MyComponent extends Component {
 }
 ```
 
-Чтобы узнать больше о компонентах и ​​о том, как их можно использовать, ознакомьтесь с [документацией по компонентам](/guide/v11/components).
+Когда код должен выполняться на определённом этапе монтирования или обновления, классовые компоненты могут использовать [методы жизненного цикла](/guide/v11/components#методы-жизненного-цикла), а функциональные компоненты — [`useEffect()`](/guide/v11/hooks#useeffect). Примеры обоих подходов приведены в [руководстве по побочным эффектам](/tutorial/07-side-effects).
+
+Чтобы узнать больше о компонентах и о том, как их можно использовать, ознакомьтесь с [документацией по компонентам](/guide/v11/components).
 
 ### render()
 
@@ -208,6 +210,38 @@ class MyComponent extends Component {
 }
 ```
 
+### createPortal
+
+`createPortal(virtualDom, containerNode)`
+
+Позволяет рендерить в другом месте в дереве DOM, кроме естественного родителя вашего компонента.
+
+```html
+<html>
+  <body>
+    <!-- Модальные окна должны рендериться здесь -->
+    <div id="modal-root"></div>
+    <!-- App рендерится здесь -->
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+```jsx
+import { createPortal } from 'preact/compat';
+import { MyModal } from './MyModal.jsx';
+
+function App() {
+  const container = document.getElementById('modal-root');
+  return (
+    <div>
+      <h1>My App</h1>
+      {createPortal(<MyModal />, container)}
+    </div>
+  );
+}
+```
+
 ### Fragment
 
 Особый вид компонента, который может иметь дочерние элементы, но не отображается как элемент DOM.
@@ -356,38 +390,6 @@ function MyComponent(props) {
 ```
 
 > Примечание: можно заменить на `toChildArray(props.children)`.
-
-### createPortal
-
-`createPortal(virtualDom, containerNode)`
-
-Позволяет рендерить в другом месте в дереве DOM, кроме естественного родителя вашего компонента.
-
-```html
-<html>
-  <body>
-    <!-- Модальные окна должны рендериться здесь -->
-    <div id="modal-root"></div>
-    <!-- App рендерится здесь -->
-    <div id="app"></div>
-  </body>
-</html>
-```
-
-```jsx
-import { createPortal } from 'preact/compat';
-import { MyModal } from './MyModal.jsx';
-
-function App() {
-  const container = document.getElementById('modal-root');
-  return (
-    <div>
-      <h1>My App</h1>
-      {createPortal(<MyModal />, container)}
-    </div>
-  );
-}
-```
 
 ### PureComponent
 

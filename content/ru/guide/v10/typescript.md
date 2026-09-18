@@ -238,7 +238,7 @@ function MyHeadingComponent({ children }: MyHeadingComponentProps) {
 ```tsx
 import { InputHTMLAttributes } from 'preact';
 
-interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProperties extends InputHTMLAttributes {
   mySpecialProp: any
 }
 

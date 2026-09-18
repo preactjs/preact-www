@@ -526,3 +526,179 @@ const App = props => {
 ```
 
 > Этот хук был представлен в Preact 10.11.0 и требует preact-render-to-string 5.2.4.
+
+### useDebugValue
+
+Отображает пользовательскую метку для использования в браузерном расширении Preact DevTools. Полезно для пользовательских хуков, чтобы предоставить дополнительный контекст о состоянии или значении, которое они представляют.
+
+```jsx
+import { useDebugValue, useState } from 'preact/hooks';
+
+function useCount() {
+  const [count, setCount] = useState(0);
+  useDebugValue(count > 0 ? 'Положительное' : 'Отрицательное');
+  return [count, setCount];
+}
+```
+
+В инструментах разработчика это будет отображаться как `useCount: "Positive"` или `useCount: "Negative"`, тогда как раньше отображалось бы просто `useCount`.
+
+При желании в качестве второго аргумента `useDebugValue` можно передать функцию, которая будет использоваться как «форматтер».
+
+```jsx
+import { useDebugValue, useState } from 'preact/hooks';
+
+function useCount() {
+  const [count, setCount] = useState(0);
+  useDebugValue(count, c => `Счётчик: ${c}`);
+  return [count, setCount];
+}
+```
+
+## Хуки, специфичные для Compat
+
+Мы предоставляем некоторые дополнительные хуки только через пакет `preact/compat`, поскольку они либо являются заглушками, либо не входят в основной API хуков.
+
+### useSyncExternalStore
+
+Позволяет подписываться на внешний источник данных, например глобальную библиотеку управления состоянием, браузерные API или любой другой внешний по отношению к Preact источник данных.
+
+```jsx
+import { useSyncExternalStore } from 'preact/compat';
+
+function subscribe(cb) {
+  addEventListener('scroll', cb);
+  return () => removeEventListener('scroll', cb);
+}
+
+function App() {
+  const scrollY = useSyncExternalStore(subscribe, () => window.scrollY, () => 0);
+}
+```
+
+### useDeferredValue
+
+Реализация-заглушка, немедленно возвращает значение, поскольку Preact не поддерживает конкурентный рендеринг.
+
+```jsx
+import { useDeferredValue } from 'preact/compat';
+
+function App() {
+  const deferredValue = useDeferredValue('Привет, мир!');
+}
+```
+
+### useTransition
+
+Реализация-заглушка, поскольку Preact не поддерживает конкурентный рендеринг.
+
+```jsx
+import { useTransition } from 'preact/compat';
+
+function App() {
+  // `isPending` всегда будет иметь значение `false`
+  const [isPending, startTransition] = useTransition();
+
+  const handleClick = () => {
+    // Немедленно выполняет callback — ничего не делает.
+    startTransition(() => {
+      // Код перехода здесь
+    });
+  };
+}
+```
+
+### useInsertionEffect
+
+Реализация-заглушка, по функциональности соответствует [`useLayoutEffect`](#uselayouteffect).
+
+```jsx
+import { useInsertionEffect } from 'preact/compat';
+
+function App() {
+  useInsertionEffect(() => {
+    // Код эффекта здесь
+  }, [dependencies]);
+}
+```
+
+### use
+
+Позволяет получить значение промиса, приостанавливая выполнение, пока промис не завершится, или прочитать значение контекста. Примечательно, что `use` — единственный хук, который можно вызывать условно.
+
+> Context
+```jsx
+import { createContext } from 'preact';
+import { use } from 'preact/compat';
+
+const Theme = createContext('light');
+
+function DisplayTheme() {
+  const theme = use(Theme);
+  return <p>Active theme: {theme}</p>;
+}
+```
+
+> Promises
+```jsx
+import { Suspense, use } from 'preact/compat';
+
+const promise = new Promise(r => setTimeout(() => r('Hello World!'), 5000));
+
+function Message() {
+    return <span>Сообщение: {use(promise)}</span>
+}
+
+export function App() {
+  return (
+    <div>
+            <Suspense fallback={<span>Загрузка...</span>}>
+                <Message />
+            </Suspense>
+    </div>
+  );
+}
+```
+
+> **Примечание:** Используемый промис должен кэшироваться, чтобы оставаться неизменным между рендерами. Можно хранить промисы в `Map` и других подобных структурах данных, чтобы для одного и того же ключа кэша возвращался тот же промис или разрешённое значение. Например:
+
+```js
+const CACHE = new Map();
+
+function asyncData(cacheKey) {
+  if (!CACHE.has(cacheKey)) {
+    CACHE.set(cacheKey, fetchData(cacheKey));
+  }
+
+  return CACHE.get(cacheKey);
+}
+```
+
+### useEffectEvent
+
+Оборачивает функцию, чтобы обеспечить стабильную ссылку на неё между рендерами, при этом позволяя ей обращаться к актуальным значениям всех используемых ею переменных. Кроме того, такую функцию можно не указывать в массиве зависимостей `useEffect` без ошибок линтера, если вы используете линтер, который проверяет соблюдение правил хуков.
+
+```jsx
+import { useState } from 'preact/hooks';
+import { useEffectEvent } from 'preact/compat';
+
+function App() {
+  const [breakpoint, setBreakpoint] = useState('mobile');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const handleResize = useEffectEvent(() => {
+    const width = window.innerWidth;
+
+    // При каждом вызове требуется актуальное значение `breakpoint`
+    if (window.innerWidth > 768 && breakpoint === 'mobile') {
+      setBreakpoint('desktop');
+      if (width < 1200) setSidebarOpen(false);
+    }
+  });
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Не нужно указывать `handleResize` в качестве зависимости
+}
+```

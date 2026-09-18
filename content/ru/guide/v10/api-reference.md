@@ -48,7 +48,9 @@ class MyComponent extends Component {
 }
 ```
 
-Чтобы узнать больше о компонентах и ​​о том, как их можно использовать, ознакомьтесь с [документацией по компонентам](/guide/v10/components).
+Когда код должен выполняться на определённом этапе монтирования или обновления, классовые компоненты могут использовать [методы жизненного цикла](/guide/v10/components#методы-жизненного-цикла), а функциональные компоненты — [`useEffect()`](/guide/v10/hooks#useeffect). Примеры обоих подходов приведены в [руководстве по побочным эффектам](/tutorial/07-side-effects).
+
+Чтобы узнать больше о компонентах и о том, как их можно использовать, ознакомьтесь с [документацией по компонентам](/guide/v10/components).
 
 ### render()
 
@@ -297,7 +299,7 @@ isValidElement(null); // false
 
 #### Children.map
 
-`Children.map(children, fn, [context])`
+`Children.map(children, fn)`
 
 Проходит по всем дочерним элементам и возвращает новый массив, аналогично методу [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
@@ -318,7 +320,7 @@ function List(props) {
 
 #### Children.forEach
 
-`Children.forEach(children, fn, [context])`
+`Children.forEach(children, fn)`
 
 Проходит по всем дочерним элементам, но не возвращает новый массив, аналогично методу [`Array.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
 

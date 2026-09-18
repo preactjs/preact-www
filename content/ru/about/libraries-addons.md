@@ -31,6 +31,7 @@ description: Коллекция библиотек и дополнений, ко
 - :construction_worker: **[preact-helmet](https://github.com/download/preact-helmet)**: Главный менеджер документов для Preact
 - :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Полностью настраиваемые полосы прокрутки для удобной прокрутки в браузере.
 - 🧱 **[@formisch/preact](https://formisch.dev/preact/guides/introduction/)**: Библиотека для работы с формами с акцентом на производительность, типобезопасность и минимальный размер бандла
+- ✨ **[ufbr](https://github.com/zakarialaoui10/ufbr)**: универсальный файловый маршрутизатор с поддержкой Preact.
 
 ## Интеграции
 
@@ -42,6 +43,7 @@ description: Коллекция библиотек и дополнений, ко
 - 🏝: **[preact-island](https://github.com/mwood23/preact-island)**: Запускаем виджет Preact на любом веб-сайте с реактивными пропсами.
 - 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Оборачиваем ваши компоненты [ZikoJS](https://github.com/zakarialaoui10/zikojs) внутри Preact-приложения — и наоборот.
 - 💤 **[zikofy](https://github.com/zakarialaoui10/zikofy)**: Превращает компоненты Preact в `UIElement` из Zikojs.
+- 🧰 **[Extension.js](https://extension.js.org)**: Создавайте браузерные расширения с Preact без конфигурации, используя один `manifest.json` для Chrome, Edge, Firefox и Safari.
 
 ## Инструментальные средства графического интерфейса
 
