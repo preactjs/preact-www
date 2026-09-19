@@ -1,14 +1,15 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "Node",
+		"target": "ES2020",
+		"module": "Node20",
+		"moduleResolution": "Node16",
 		"resolveJsonModule": true,
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact",
 		"noEmit": true,
 		"allowJs": true,
-		"checkJs": true
+		"checkJs": true,
+		"skipLibCheck": false,
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
 	},
 	"exclude": ["node_modules", "build"]
 }
