@@ -34,14 +34,24 @@ Eight extra designs that we like will receive $500 each.
 
 ### Requirements
 
-1. Your designs should be full-page views of the Preact website, including the homepage, a documentation page, and any other pages you feel are relevant. Feel free to change any copy and content as you see fit. These should be desktop & mobile views.
-2. Our branding will remain the same, so please keep the Preact logo and color palette in mind for your designs. You can find our logos [here](https://preactjs.com/branding) and most of our brand hex colors [here](https://github.com/preactjs/preact-www/blob/master/src/style/variables.css).
-3. You should submit your designs as <TBD> to <TBD>. Please include your name/handle and make sure the designs will be accessible to the team in high fidelity.
-4. The deadline for submissions is <TBD>. We'll review all submissions and announce the winners shortly after.
-5. Make sure you provide a way for us to contact you if your submission is selected as a winner. Email addresses or Twitter/Bluesky accounts are good options.
+1. Your designs should be full-page interactive views of the Preact website, including the home page, a documentation page, and any other pages you feel are relevant. The copy on the home page is up to you -- write about what makes Preact special to you, and what you think others should know about it. For any docs pages, feel free to copy existing text as it will likely stay the same. These designs should be both desktop & mobile views.
+2. Our branding (logo & primary color) will remain the same so please keep them in mind and integrate them into your designs. You can find our logos [here](https://preactjs.com/branding) and most of our brand hex colors [here](https://github.com/preactjs/preact-www/blob/master/src/style/variables.css). Besides the Preact purple, other colors are completely up to you.
+3. Your designs should be web-hosted. We unfortunately won't be able to download and/or run projects locally so please make sure your work is accessible via a public URL. Figma, CodePen, and GitHub Pages are all good options for hosting your designs.
 
 ### Rules
 
 1. Single submission per person. Pick your best idea to send us.
-2. Please no AI. We're looking to celebrate human creativity and design.
-3. As with any site, make sure your designs are accessible and inclusive. For static designs, this mainly means carefully considering color contrast and font sizes.
+2. Please refrain from using AI. We're looking to celebrate human creativity and design.
+3. As with any site, please make sure your designs are accessible and inclusive. Keep color contrast, font sizes, and navigation in mind especially.
+4. The deadline for submissions is <TBD>. We'll review all submissions and announce the winners shortly after.
+
+### Submission
+
+To submit your design, please submit [this form](<TBD>, gonna be a Google Form). We'll need a few pieces of information from you:
+
+- Your name/handle
+- Where you'd like us to contact you (email, Twitter, Bluesky)
+- Your email or user name on the platform
+- Your submission URLs
+
+We look forward to seeing your work and celebrating the release of Preact 11!
