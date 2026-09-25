@@ -23,7 +23,7 @@ export default function Header() {
 	return (
 		<header class={cx(style.header, open && style.open)}>
 			<div class={style.banner}>
-				<a href="https://www.stopputin.net/">
+				<a href="https://u24.gov.ua/">
 					We stand with Ukraine. <b>Show your support</b> 🇺🇦
 				</a>
 			</div>
