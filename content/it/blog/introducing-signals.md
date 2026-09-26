@@ -17,25 +17,24 @@ Nel loro core, un signal è un oggetto con una proprietà `.value` che contiene 
 
 Oltre ad essere molto chiari e semplici da scrivere, la velocità di aggiornamento dello state viene garantita a prescindere dal numero di componenti che compongono la tua app. I Signals sono veloci di default, ottimizzando gli aggiornamenti dietro le quinte per te.
 
-
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal, computed } from "@preact/signals";
- 
+import { signal, computed } from '@preact/signals';
+
 const count = signal(0);
 const double = computed(() => count.value * 2);
- 
+
 function Counter() {
-  return (
-    <button onClick={() => count.value++}>
-      {count} x 2 = {double}
-    </button>
-  );
+	return (
+		<button onClick={() => count.value++}>
+			{count} x 2 = {double}
+		</button>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 I Signals possono essere usati sia all'interno che all'esterno dei componenti, a differenza degli hooks. I Signals inoltre possono essere usati con gli hook **_e_** nei componenti stateful, possono quindi essere introdotti passo passo, utilizzando le tue conoscenze attuali. Provali su alcuni componenti e utilizzali gradualmente sempre più.
@@ -96,13 +95,12 @@ I Signals ribaltano il paradigma della performance: invece di doversi impegnare 
 
 Per raggiungere questo livello di performance, i Signals sono stati costruiti seguendo questi principi cardine:
 
-* **Lazy di default:** Solo i Signals che vengono effettivamente utilizzati da qualche componente vengono osservati e aggiornati - i Signals disconnessi non incidono sulla performance.
-* **Aggiornamenti ottimali:** Se il valore di un Signal non è cambiato, i componenti e gli "effetti" che lo usano non vengono aggiornati, persino se le dipendenze del Signal stesso siano state aggiornate.
-* **Tracciamento ottimale delle dipendenze:** È il framework a gestire le dipendenze del Signal per te, basta agli array di dipendenze come con gli hooks.
-* **Accesso diretto:** L'accesso al valore di un Signal ti registra automaticamente come osservatore di quel Signal, senza la necessità di hooks o selettori.
+- **Lazy di default:** Solo i Signals che vengono effettivamente utilizzati da qualche componente vengono osservati e aggiornati - i Signals disconnessi non incidono sulla performance.
+- **Aggiornamenti ottimali:** Se il valore di un Signal non è cambiato, i componenti e gli "effetti" che lo usano non vengono aggiornati, persino se le dipendenze del Signal stesso siano state aggiornate.
+- **Tracciamento ottimale delle dipendenze:** È il framework a gestire le dipendenze del Signal per te, basta agli array di dipendenze come con gli hooks.
+- **Accesso diretto:** L'accesso al valore di un Signal ti registra automaticamente come osservatore di quel Signal, senza la necessità di hooks o selettori.
 
 Questi principi fanno sì che i Signal siano adatti ad un ampio spettro di casid'uso, persino scenari che non prevedano il rendering di interfacce grafiche.
-
 
 ## Portare i signals in Preact
 
@@ -112,16 +110,16 @@ Questo è un vantaggio ergonomico se comparato alle soluzioni per la gestione de
 ```js
 // Abbonamento basato sui Selettori :(
 function Counter() {
-  const value = useSelector(state => state.count);
-  // ...
+	const value = useSelector((state) => state.count);
+	// ...
 }
- 
+
 // Abbonamento basato sulle funzioni Wrapper :(
 const counterState = new Counter();
- 
-const Counter = observe(props => {
-  const value = counterState.count;
-  // ...
+
+const Counter = observe((props) => {
+	const value = counterState.count;
+	// ...
 });
 ```
 
@@ -134,36 +132,29 @@ Idealmente, non vorremmo aver bisogno di conoscere selettori o wrapper, ma sempl
 ```jsx
 // Immagina se questo fosse uno state globale e l'intera app avesse la necessità di accedervi:
 let count = 0;
- 
+
 function Counter() {
- return (
-   <button onClick={() => count++}>
-     value: {count}
-   </button>
- );
+	return <button onClick={() => count++}>value: {count}</button>;
 }
 ```
+
 Il codice è chiaro ed è semplice capire cosa stia succedendo, ma sfortunatamente non funziona. Il componente non si aggiorna quando si clicca perché non vi è modo di sapere che `count` sia cambiato.
 
 Però non riuscivamo a toglierci questo scenario dalla testa. Cosa avremmo potuto fare per rendere questo modello realtà? Abbiamo iniziato a prototipare alcune idee e implementazioni utilizzando i [pluggable renderer](/guide/v11/options) di Preact. Ci è voluto tempo, ma siamo finalmente riusciti a realizzarlo.
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { signal } from "@preact/signals";
+import { render } from 'preact';
+import { signal } from '@preact/signals';
 // --repl-before
 // Immagina se questo fosse uno state globale e l'intera app avesse la necessità di accedervi:
 const count = signal(0);
- 
+
 function Counter() {
- return (
-   <button onClick={() => count.value++}>
-     Value: {count.value}
-   </button>
- );
+	return <button onClick={() => count.value++}>Value: {count.value}</button>;
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 Non ci sono selettori o funzioni wrapper, niente. Accedere al valore del Signal è abbastanza perché il componente sappia che deve aggiornarsi quando il valore del signal cambi. Dopo aver provato i prototipi in alcune app, era chiaro che fosse la soluzione giusta. Scrivere codice in questo modo ci è subito risultato intuitivo e non richiedeva alcuna "ginnastica mentale" per continuare a far funzionare le app in modo ottimale.
@@ -174,13 +165,13 @@ Avremmo potuto fermarci quì e rilasciare i Signals così com'erano, ma questo �
 
 ```jsx
 const count = signal(0);
- 
+
 // Invece di questo:
 <p>Value: {count.value}</p>
- 
+
 // … possiamo utilizzare l'intero Signal nel JSX:
 <p>Value: {count}</p>
- 
+
 // … o addirittura passarli come attributi del DOM:
 <input value={count} onInput={...} />
 ```
@@ -190,7 +181,6 @@ Quindi, sì, abbiamo fatto anche quello.
 Puoi passare un signal direttamente nel JSX in un posto qualsiasi in cui normalmente useresti una stringa, il suo valore verrà renderizzato come semplice testo e si aggiornerà automaticamente ogni qual volta il suo valore cambi.
 
 Questo funziona anche per le props.
-
 
 ## Prossimi passi
 
