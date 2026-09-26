@@ -56,7 +56,10 @@
 	background: var(--color-brand);
 	color: white;
 	transform: translate3d(0, 0, 0);
-	transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s,
+		color 0.3s;
 
 	&:active {
 		transform: translate3d(0, 5%, 0);

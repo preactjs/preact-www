@@ -3,7 +3,7 @@
 
 	.tab {
 		cursor: pointer;
-		padding: .2rem .4rem;
+		padding: 0.2rem 0.4rem;
 		font-weight: 700;
 		font-size: 1rem;
 		display: inline-flex;

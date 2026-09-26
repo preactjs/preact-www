@@ -29,8 +29,9 @@
 	pre,
 	code,
 	.cm-lineNumbers {
-		font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
-			'Courier New', monospace;
+		font-family:
+			'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono', 'Courier New',
+			monospace;
 	}
 
 	.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground,

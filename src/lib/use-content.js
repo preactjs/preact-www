@@ -31,10 +31,10 @@ export function useContent(path) {
 	const { lang } = useLanguageContext();
 	const contentPath = getContentPath(path);
 	/** @type {import('./../types.d.ts').ContentData} */
-	const { html, meta } = useResource(() => getContent([lang, contentPath]), [
-		lang,
-		contentPath
-	]);
+	const { html, meta } = useResource(
+		() => getContent([lang, contentPath]),
+		[lang, contentPath]
+	);
 	useTitle(meta.title);
 	useDescription(meta.description || '');
 

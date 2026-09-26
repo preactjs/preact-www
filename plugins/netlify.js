@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { pathToFileURL } from 'node:url'
+import { pathToFileURL } from 'node:url';
 import { Readable } from 'stream';
 
 /**
@@ -27,7 +27,9 @@ export function netlifyPlugin() {
 			)
 		);
 
-		const { default: netlifyLambda } = await import(`${file}.js?t=${Date.now()}`);
+		const { default: netlifyLambda } = await import(
+			`${file}.js?t=${Date.now()}`
+		);
 		const result = await netlifyLambda({ url });
 
 		for (const [k, v] of result.headers.entries()) {

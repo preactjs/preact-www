@@ -23,7 +23,7 @@ let moduleCache = {
 	'preact-custom-element': preactCustomElement
 };
 
-window._require = function(id) {
+window._require = function (id) {
 	// flatten unpkg
 	if (typeof id === 'string') {
 		id = id.replace(/(^(https?:)?\/\/unpkg\.com\/|\?module$)/gi, '');
