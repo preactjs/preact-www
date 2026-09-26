@@ -19,8 +19,8 @@ Preact vise à remplir certains objectifs clés :
 Certaines fonctionnalités de React sont volontairement absentes de Preact, soit parce qu'elles ne sont pas réalisables en prenant en compte les objectifs principaux de Preact listés ci-dessus ou parce qu'elles n'entrent pas dans le cadre des fonctionnalités essentielles de Preact.
 
 - Les éléments listés dans [Que manque-t-il ?](/guide/v8/differences-to-react#whats-missing):
-    - les PropTypes, qui peuvent facilement être utilisées comme une bibliothèque tierce
-    - les Children, puisque Preact place toujours les children dans un tableau
-    - les événements synthétiques, puisque Preact n'essaye pas de réparer les problèmes dans les anciens navigateurs comme IE8
+  - les PropTypes, qui peuvent facilement être utilisées comme une bibliothèque tierce
+  - les Children, puisque Preact place toujours les children dans un tableau
+  - les événements synthétiques, puisque Preact n'essaye pas de réparer les problèmes dans les anciens navigateurs comme IE8
 
 [preact-compat]: https://github.com/preactjs/preact-compat/

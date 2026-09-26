@@ -105,4 +105,4 @@ Voici quelques choses fournies par Preact CLI :
 - Pré-rendu pour un Time To First Paint rapide
 - Chargement de polyfills si nécessaire
 
-Puisque [Preact CLI](https://github.com/preactjs/preact-cli/) utilise [Webpack](https://webpack.js.org), vous pouvez définir un fichier `preact.config.js` et personnaliser le processus de build pour qu'il corresponde à vos besoins. Même si vous personnalisez des choses, vous pourrez toujours profiter des supers paramètres par défaut, et vous pourrez faire les mises à jours lorsque de nouvelles versions de `preact-cli` sortiront. 
+Puisque [Preact CLI](https://github.com/preactjs/preact-cli/) utilise [Webpack](https://webpack.js.org), vous pouvez définir un fichier `preact.config.js` et personnaliser le processus de build pour qu'il corresponde à vos besoins. Même si vous personnalisez des choses, vous pourrez toujours profiter des supers paramètres par défaut, et vous pourrez faire les mises à jours lorsque de nouvelles versions de `preact-cli` sortiront.

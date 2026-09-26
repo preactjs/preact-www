@@ -8,7 +8,6 @@ Dans ce guide, nous allons créer un simple composant d'horloge. Vous pouvez tro
 
 > :information_desk_person: Vous [n'êtes pas obligé d'utiliser ES2015 pour utiliser Preact](https://github.com/developit/preact-without-babel)... mais vous devriez. Ce guide part du principe que vous avez déjà un système de build ES2015 utilisant babel et/ou webpack/browserify/gulp/grunt/etc. Si ce n'est pas le cas, commencez avec [preact-boiletplate] ou un [template CodePen](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
-
 ---
 
 <toc></toc>
@@ -44,7 +43,8 @@ import preact from 'preact';
 Au lieu de déclarer le pragma `@jsx` dans votre code, il vaut mieux le configurer globalement dans un `.babelrc`.
 
 **Nommé :**
->**Pour Babel 5 et inférieur :**
+
+> **Pour Babel 5 et inférieur :**
 >
 > ```json
 > { "jsxPragma": "h" }
@@ -54,14 +54,13 @@ Au lieu de déclarer le pragma `@jsx` dans votre code, il vaut mieux le configur
 >
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 > }
 > ```
 
 **Par défaut :**
->**Pour Babel 5 et inférieur :**
+
+> **Pour Babel 5 et inférieur :**
 >
 > ```json
 > { "jsxPragma": "preact.h" }
@@ -71,14 +70,11 @@ Au lieu de déclarer le pragma `@jsx` dans votre code, il vaut mieux le configur
 >
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"preact.h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "preact.h" }]]
 > }
 > ```
 
 ---
-
 
 ## Rendre du JSX
 
@@ -89,21 +85,20 @@ Pour rendre du JSX, importez juste ces deux fonctions et utilisez comme ceci :
 ```js
 import { h, render } from 'preact';
 
-render((
+render(
 	<div id="foo">
 		<span>Hello, world!</span>
-		<button onClick={ e => alert("hi!") }>Click Me</button>
-	</div>
-), document.body);
+		<button onClick={(e) => alert('hi!')}>Click Me</button>
+	</div>,
+	document.body
+);
 ```
 
 Cela devrait vous paraître simple si vous avez déjà utilisé [hyperscript] ou l'un de ses [nombreux amis](https://github.com/developit/vhtml).
 
 Rendre hyperscript avec un DOM virtuel est inutile, cependant. Nous voulons rendre des composants et les mettre à jour lorsque les données changent - c'est là que le pouvoir du DOM virtuel rayonne. :star2:
 
-
 ---
-
 
 ## Composants
 
@@ -119,7 +114,7 @@ import { h, render, Component } from 'preact';
 class Clock extends Component {
 	render() {
 		let time = new Date().toLocaleTimeString();
-		return <span>{ time }</span>;
+		return <span>{time}</span>;
 	}
 }
 
@@ -133,25 +128,21 @@ C'est super. Executer cela produit la structure DOM HTML suivante :
 <span>10:28:57 PM</span>
 ```
 
-
 ---
-
 
 ## Le cycle de vie d'un composant
 
 Pour pouvoir mettre à jour l'heure de l'horloge à chaque seconde, nous devons savoir lorsque `<Clock>` a été monté dans le DOM. _Si vous avez utilisé les HTML5 Custom Elements, c'est similaire aux méthodes de cycle de vie `attachedCallback` et `detachedCallback`._ Preact exécute les méthodes de cycle de vie suivantes si elles sont définies dans un Composant :
 
-| Méthode de cycle de vie            | Quand est-elle appelée ?                                 |
-|------------------------------------|----------------------------------------------------------|
-| `componentWillMount`               | avant que le composant soit monté dans le DOM            |
-| `componentDidMount`                | après que le composant soit monté dans le DOM            |
-| `componentWillUnmount`             | avant la suppression du DOM                              |
-| `componentWillReceiveProps`        | avant que de nouvelles props soient acceptées            |
-| `shouldComponentUpdate`            | avant `render()`. Retournez `false` pour éviter le rendu |
-| `componentWillUpdate`              | avant `render()`                                         |
-| `componentDidUpdate`               | après `render()`                                         |
-
-
+| Méthode de cycle de vie     | Quand est-elle appelée ?                                 |
+| --------------------------- | -------------------------------------------------------- |
+| `componentWillMount`        | avant que le composant soit monté dans le DOM            |
+| `componentDidMount`         | après que le composant soit monté dans le DOM            |
+| `componentWillUnmount`      | avant la suppression du DOM                              |
+| `componentWillReceiveProps` | avant que de nouvelles props soient acceptées            |
+| `shouldComponentUpdate`     | avant `render()`. Retournez `false` pour éviter le rendu |
+| `componentWillUpdate`       | avant `render()`                                         |
+| `componentDidUpdate`        | après `render()`                                         |
 
 Donc, nous voulons démarrer un minuteur qui se déclenche toutes les secondes une fois que le composant a été ajouté au DOM, et l'arrêter si il est supprimé. Nous allons créer le minuteur et stocker une référence vers celui-ci dans `componentDidMount`, et l'arrêter dans `componentWillUnmount`. A chaque déclenchement du minuteur, nous allons mettre à jour l'objet `state` du composant avec une nouvelle valeur de l'heure. Cela aura pour effet de déclencher un nouveau rendu du composant.
 
@@ -179,7 +170,7 @@ class Clock extends Component {
 
 	render(props, state) {
 		let time = new Date(state.time).toLocaleTimeString();
-		return <span>{ time }</span>;
+		return <span>{time}</span>;
 	}
 }
 
@@ -187,11 +178,9 @@ class Clock extends Component {
 render(<Clock />, document.body);
 ```
 
-
 ---
 
 Maintenant nous avons une [horloge fonctionnelle](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/) !
-
 
 [preact-boilerplate]: https://github.com/developit/preact-boilerplate
 [hyperscript]: https://github.com/dominictarr/hyperscript

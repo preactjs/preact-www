@@ -18,10 +18,10 @@ Une solution est de déclarer des méthodes attachées au composant en utilisant
 
 ```js
 class Foo extends Component {
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={this.updateText} />;
 	}
 }
@@ -30,7 +30,6 @@ class Foo extends Component {
 Bien que cela offre de meilleures performances à l'exécution, cela nécessite toujours beaucoup de code non nécessaire pour lier le state à l'interface utilisateur.
 
 > Une autre solution est de lié les méthodes du composant de manière _déclarative_, en utilisant les décorateurs d'ES7, comme le `@bind` de [decko](https://github.com/developit/decko)
-
 
 ## Etat lié à la rescousse
 
@@ -46,14 +45,13 @@ Voici l'exemple précédent réécrit en utilisant **le state lié** :
 import linkState from 'linkstate';
 
 class Foo extends Component {
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={linkState(this, 'text')} />;
 	}
 }
 ```
 
 C'est concis, facile à comprendre, et efficace. Cela gère la liaison du state de n'importe quel type d'input. Un troisième argument optionnel `'path'` peut être utilisé afin de fournir explicitement un chemin séparé par des points pour la nouvelle valeur de state, pour une liaison plus personnalisée (comme une liaison sur la valeur d'un composant externe).
-
 
 ## Custom Event Paths
 
@@ -68,13 +66,12 @@ Pour comprendre cette fonctionnalité, il peut être utile de jeter un œil sous
 handler = linkState(this, 'thing', 'foo.bar');
 
 // ...est fonctionnellement équivalent à :
-handler = event => {
-  this.setState({
-    thing: event.foo.bar
-  });
-}
+handler = (event) => {
+	this.setState({
+		thing: event.foo.bar
+	});
+};
 ```
-
 
 ### Illustration: boutons radio groupés
 
@@ -84,23 +81,28 @@ Le code suivant ne fonctionne pas comme prévu. Si l'utilisateur clique sur "no"
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { yes, no }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={yes}
-          onChange={linkState(this, 'yes')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={no}
-          onChange={linkState(this, 'no')}
-        />
-      </div>
-    );
-  }
+	render({}, { yes, no }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={yes}
+					onChange={linkState(this, 'yes')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={no}
+					onChange={linkState(this, 'no')}
+				/>
+			</div>
+		);
+	}
 }
 ```
-
 
 Le troisième argument de `linkState` est utile ici. Il vous laisse fournir un chemin à utiliser comme la valeur liée sur l'objet événement. En revisitant l'exemple précédent, demandons explicitement à `linkState` de prendre sa nouvelle valeur de state dans la propriété `value` de `event.target` :
 
@@ -108,20 +110,26 @@ Le troisième argument de `linkState` est utile ici. Il vous laisse fournir un c
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { answer }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={answer == 'yes'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={answer == 'no'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-      </div>
-    );
-  }
+	render({}, { answer }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={answer == 'yes'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={answer == 'no'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+			</div>
+		);
+	}
 }
 ```
 

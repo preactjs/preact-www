@@ -19,12 +19,12 @@ Entre ces deux types, il y a aussi plusieurs façons d'implémenter les composan
 
 ## Exemple
 
-Prenons un exemple : un simple composant `<Link>` qui crée un élément HTML `<a>` : 
+Prenons un exemple : un simple composant `<Link>` qui crée un élément HTML `<a>` :
 
 ```js
 class Link extends Component {
 	render(props, state) {
-		return <a href={props.href}>{ props.children }</a>;
+		return <a href={props.href}>{props.children}</a>;
 	}
 }
 ```
@@ -34,7 +34,6 @@ Nous pouvons instancier/rendre ce composant comme ceci :
 ```xml
 <Link href="http://example.com">Some Text</Link>
 ```
-
 
 ### Destructurer les Props et le State
 
@@ -58,15 +57,12 @@ class Link extends Component {
 }
 ```
 
-
 ### Composants fonctionnels sans état
 
 Enfin, nous pouvons voir que ce composant n'a aucun état - nous pouvons le rendre avec les mêmes props et récupérer le même résultat à chaque fois. Quand c'est le cas, il est généralement mieux d'utiliser un composant fonctionnel sans état. Ce sont juste des fonctions qui prennent des `props` en argument, et retournent du JSX.
 
 ```js
-const Link = ({ children, ...props }) => (
-	<a {...props}>{ children }</a>
-);
+const Link = ({ children, ...props }) => <a {...props}>{children}</a>;
 ```
 
-> *Note à propos de ES2015 :* la fonction ci-dessus est une fonction fléchée, et parce que nous avons utilisé des parenthèses à la place des accolades pour le corps de la fonction, la valeur à l'intérieur des parenthèses est retournée automatiquement. Vous pouvez en apprendre plus à ce propos [ici](https://github.com/lukehoban/es6features#arrows).
+> _Note à propos de ES2015:_ la fonction ci-dessus est une fonction fléchée, et parce que nous avons utilisé des parenthèses à la place des accolades pour le corps de la fonction, la valeur à l'intérieur des parenthèses est retournée automatiquement. Vous pouvez en apprendre plus à ce propos [ici](https://github.com/lukehoban/es6features#arrows).
