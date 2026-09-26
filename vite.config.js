@@ -35,8 +35,6 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				chunkFileNames: chunkInfo => {
-					if (chunkInfo.moduleIds.find(id => id.includes('@xmldom/xmldom')))
-						return 'assets/xmldom-[hash].js';
 					if (chunkInfo.facadeModuleId?.includes('@docsearch/react'))
 						return 'assets/docsearch-[hash].js';
 					return 'assets/[name]-[hash].js';
