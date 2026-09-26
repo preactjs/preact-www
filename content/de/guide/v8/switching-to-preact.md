@@ -31,7 +31,6 @@ npm i -S preact preact-compat
 
 Sind diese Dependencies installiert, muss man den Build-Prozess so abändern, dass React-Imports stattdessen auf Preact referenzieren.
 
-
 ### `preact-compat`-Alias setzen
 
 Nun, da die Dependencies installiert sind, muss man den Build-Prozess so konfigurieren, dass jegliche Importierungen von `react` oder `react-dom` zu `preact-compat` weitergeleitet werden.
@@ -42,12 +41,12 @@ Man fügt einfach die folgende [resolve.alias](https://webpack.github.io/docs/co
 
 ```json
 {
-  "resolve": {
-    "alias": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"resolve": {
+		"alias": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -61,12 +60,12 @@ Und weist aliasify danach in der `package.json` an, React-Importierungen an `pre
 
 ```json
 {
-  "aliasify": {
-    "aliases": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"aliasify": {
+		"aliases": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -74,7 +73,7 @@ Und weist aliasify danach in der `package.json` an, React-Importierungen an `pre
 
 Falls kein Build-System verwendet wird oder aber ein permanenter Wechsel zu `preact-compat` erwünscht ist, kann man natürlich auch alle Importierungen und Voraussetzungen in der Codebasis suchen und ersetzen, genauso wie es ein Alias tun würde:
 
-> **find:**    `(['"])react(-dom)?\1`
+> **find:** `(['"])react(-dom)?\1`
 >
 > **replace:** `$1preact-compat$1`
 
@@ -93,21 +92,23 @@ npm i -S module-alias
 ```
 
 `patchPreact.js`:
+
 ```js
-var path = require('path')
-var moduleAlias = require('module-alias')
+var path = require('path');
+var moduleAlias = require('module-alias');
 
 moduleAlias.addAliases({
-  'react': 'preact-compat/dist/preact-compat.min',
-  'react-dom': 'preact-compat/dist/preact-compat.min',
-  'create-react-class': path.resolve(__dirname, './create-preact-class')
-})
+	react: 'preact-compat/dist/preact-compat.min',
+	'react-dom': 'preact-compat/dist/preact-compat.min',
+	'create-react-class': path.resolve(__dirname, './create-preact-class')
+});
 ```
 
 `create-preact-class.js`:
+
 ```js
-import { createClass } from 'preact-compat/dist/preact-compat.min'
-export default createClass
+import { createClass } from 'preact-compat/dist/preact-compat.min';
+export default createClass;
 ```
 
 Falls die neuartige `import`-Syntax auf dem eigenen Server mit Babel verwendet wird, wird das obrige Verhalten nicht funktionieren, da Babel alle Importierungen an das obere Ende eines Moduls platziert. In diesem Fall speichert man den darüberstehenden Code in einer Datei namens `patchPreact.js` ab und importiert diese am Anfang seiner Datei (`import './patchPreact'`). Mehr über das Verwenden von `module-alias` kann man [hier](https://npmjs.com/package/module-alias) erfahren.
@@ -116,15 +117,16 @@ Es ist außerdem möglich, einen Alias direkt mithilfe von Node zu stetzen, ohne
 
 ```js
 // patchPreact.js
-var React = require('react')
-var ReactDOM = require('react-dom')
-var ReactDOMServer = require('react-dom/server')
-var CreateReactClass = require('create-react-class')
-var Preact = require('preact-compat/dist/preact-compat.min')
-var Module = module.constructor
-Module._cache[require.resolve('react')].exports = Preact
-Module._cache[require.resolve('react-dom')].exports = Preact
-Module._cache[require.resolve('create-react-class')].exports.default = Preact.createClass
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
+var CreateReactClass = require('create-react-class');
+var Preact = require('preact-compat/dist/preact-compat.min');
+var Module = module.constructor;
+Module._cache[require.resolve('react')].exports = Preact;
+Module._cache[require.resolve('react-dom')].exports = Preact;
+Module._cache[require.resolve('create-react-class')].exports.default =
+	Preact.createClass;
 ```
 
 ### Erstellen und Testen
@@ -134,9 +136,7 @@ Module._cache[require.resolve('create-react-class')].exports.default = Preact.cr
 Wenn man nun den Build-Prozess ausführt, werden alle React-Importierungen stattdessen `preact-compat` importieren. Das Bundle wird so deutlich verkleinert.
 Es ist immer eine gute Idee, die Testumgebung und die fertige App auszuführen, um zu prüfen, ob sie auch wirklich funktioniert.
 
-
 ---
-
 
 ## Optimal: Wechseln zu Preact
 
@@ -176,19 +176,15 @@ In JSX ist das "Pragma" der Name einer Funktion, die das Erstellen eines solchen
 
 In jedem der obengenannten Beispiele ist `h` der Funktionsname, der als JSX-Pragma deklariert wird.
 
-
 #### Mithilfe von Babel
 
 Falls Babel verwendet wird, kann man das JSX-Pragma in der `.babelrc`- oder `package.json`-Datei definiert werden. In welcher der beiden Dateien man dies tut, ist lediglich von persönlicher Präferenz abhängig:
 
 ```json
 {
-  "plugins": [
-    ["transform-react-jsx", { "pragma": "h" }]
-  ]
+	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 }
 ```
-
 
 #### Mithilfe von Kommentaren
 
@@ -196,13 +192,11 @@ Falls man mit einem Onlineeditor mit Babel-Integration (z.B. JSFiddle oder CodeP
 
 `/** @jsx h */`
 
-
 #### Mithilfe von Bublé
 
 [Bublé] unterstützt JSX standardmäßig. Man muss lediglich die `jsx`-Option setzen:
 
 `buble({ jsx: 'h' })`
-
 
 ### 3. Legacy Code aktualisieren
 
@@ -217,7 +211,6 @@ Ein weiterer erwähnbarer Unterschied ist, dass Preact standardmäßig lediglich
 Stringreferenzierungen sind in React veraltet und werden in naher Zukunft entfernt, da sie eine überraschende Menge an Komplexität für solch minimalen Nutzen hinzufügen.
 
 Wenn man auch in Zukunft Stringreferenzierungen nutzen möchte, bietet [diese kleine Funktion](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d) eine zukunftssichere Version, die `this.refs.$$` weiterhin wie Stringreferenzierungen behandelt. Die Simplizität dieses kleinen Umwegs für Funktionsreferenzierungen zeigt außerdem, warum Funktionsreferenzierungen mittlerweile die präferierte Methode darstellen.
-
 
 ### 4. Root Render vereinfachen
 
@@ -234,7 +227,6 @@ Man sollte ebenfalls anmerken, dass Preacts `render()`-Funktion nicht-destruktiv
 
 Dies ist möglich, da Preact nicht davon ausgeht, das komplette Root-Element zu steuern, das man an Preact weitergibt. Das zweite `render()`-Argument ist `parent`, was bedeutet, dass es ein DOM-Element ist, in das _hinein_ gerendert wird.
 Falls es erwünscht ist, direkt vom Root aus neu zu rendern (möglicherweise für Hot Module Replacement), akzeptiert `render()` ein Element zum Ersetzen als drittes Argument:
-
 
 ```js
 // initial render:
@@ -255,7 +247,7 @@ Das nachfolgende Beispiel zeigt, wie man als Antwort auf Webpacks Hot Module Rep
 let root;
 
 function init() {
-  root = render(<App />, document.body, root);
+	root = render(<App />, document.body, root);
 }
 init();
 
@@ -263,8 +255,7 @@ init();
 if (module.hot) module.hot.accept('./app', init);
 ```
 
-Das komplette Verfahren kann bei  [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18) eingesehen werden.
-
+Das komplette Verfahren kann bei [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18) eingesehen werden.
 
 [babel]: https://babeljs.io
 [bublé]: https://buble.surge.sh

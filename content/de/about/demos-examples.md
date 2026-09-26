@@ -9,7 +9,6 @@ Diese Seite zeigt einige Demos und Beispiele, die zum Erlernen von Preact benutz
 > :information_desk_person: _Eigenes Beispiel erstellt?
 > [Einfach hinzufügen!](https://github.com/preactjs/preact-www/blob/master/content/de/about/demos-examples.md)_
 
-
 ## Vollständige Apps
 
 **[Preact Website (preactjs.com)](https://preactjs.com)**<br>

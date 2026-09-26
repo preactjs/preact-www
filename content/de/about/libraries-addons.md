@@ -4,19 +4,16 @@ title: Bibliotheken & Add-ons
 
 # Bibliotheken & Add-ons
 
-
 Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 
 > :information_desk_person: _Eigenes Modul erstellt?
 > [Einfach hinzufügen!](https://github.com/preactjs/preact-www/blob/master/content/de/about/libraries-addons.md)_
 
-
 ### Add-Ons
 
-- :raised_hands: **[preact-compat](https://github.com/preactjs/preact-compat)**: Jegliche React-Bibliothek mit Preact benutzen *([Vollständiges Beispiel](https://github.com/developit/preact-compat-example))*
+- :raised_hands: **[preact-compat](https://github.com/preactjs/preact-compat)**: Jegliche React-Bibliothek mit Preact benutzen _([Vollständiges Beispiel](https://github.com/developit/preact-compat-example))_
 - :repeat: **[preact-cycle](https://github.com/developit/preact-cycle)**: Funktionalreaktives Paradigma für Preact
 - :page_facing_up: **[preact-render-to-string](https://github.com/preactjs/preact-render-to-string)**: Universelles Rendering.
-
 
 ### Komponenten
 
@@ -30,26 +27,22 @@ Eine Auswahl an Modulen, die nahtlos mit Preact funktionieren.
 - :construction_worker: **[preact-helmet](https://github.com/download/preact-helmet)**: Ein Dokumentenkopf-Manager für Preact
 - :floppy_disk: **[preact-boot](https://gitlab.com/cromefire_/preact-boot)**: Einfache, deklarative [Bootstrap 4](https://getbootstrap.com/) Komponenten für preact ([Lies die Dokumentation!](https://preactboot.rtfd.io) (Englisch)).
 
-
 ### Integrationen
 
 - :thought_balloon: **[preact-socrates](https://github.com/matthewmueller/preact-socrates)**: Preact-Plugin für [Socrates](http://github.com/matthewmueller/socrates)
 - :rowboat: **[preact-flyd](https://github.com/xialvjun/preact-flyd)**: [flyd](https://github.com/paldepind/flyd) FRP-Streams in Preact + JSX benutzen
-- :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Das  [i18n-js](https://github.com/everydayhero/i18n-js)-Ökosystem mit Preact mithilfe von  [i18nline](https://github.com/download/i18nline) integrieren.
+- :speech_balloon: **[preact-i18nline](https://github.com/download/preact-i18nline)**: Das [i18n-js](https://github.com/everydayhero/i18n-js)-Ökosystem mit Preact mithilfe von [i18nline](https://github.com/download/i18nline) integrieren.
 - 🧩 **[ziko-wrapper](https://github.com/zakarialaoui10/ziko-wrapper)**: Wrap your [zikojs](https://github.com/zakarialaoui10/zikojs) components inside a Preact app — and vice versa.
-
 
 ### GUI Toolkits
 
 - :white_square_button: **[preact-mdl](https://github.com/developit/preact-mdl)**: [MDL](https://getmdl.io) als Preact-Komponenten benutzen
 - :rocket: **[preact-photon](https://github.com/developit/preact-photon)**: Schöne Desktop UIs mit [photon](http://photonkit.com) erstellen
 
-
 ### Testen
 
 - :microscope: **[preact-jsx-chai](https://github.com/developit/preact-jsx-chai)**: JSX-Behauptungen testen _(kein DOM, direkt in Node)_
 - :white_check_mark: **[unexpected-preact](https://github.com/bruderstein/unexpected-preact)**: JSX-Behauptungen, Ereignisse, Momentaufnahmen in Jest _(DOM, funktioniert mit Node jsdom oder direkt von der Stange mit Jest)_ - [docs](https://bruderstein.github.io/unexpected-preact/)
-
 
 ### Dienstprogramme
 
