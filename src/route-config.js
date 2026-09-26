@@ -278,6 +278,10 @@ export const tutorialPages = {
  * @satisfies {Record<string, { label: keyof Translations['blogPosts'], date: string }>}
  */
 export const blogPosts = {
+	'/blog/preact-11': {
+		label: 'preact11',
+		date: '2026-09-30'
+	},
 	'/blog/simplifying-islands-arch': {
 		label: 'simplifyingIslandsArch',
 		// TODO: I don't love this, we're conflating route config with metadata

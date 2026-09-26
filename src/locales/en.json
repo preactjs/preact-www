@@ -75,6 +75,10 @@
 		"congratulations": "Congratulations!"
 	},
 	"blogPosts": {
+		"preact11": {
+			"label": "Preact 11",
+			"excerpt": "Preact 11, the boring major release cutting unused polyfills and optimizing for SSR DX."
+		},
 		"simplifyingIslandsArch": {
 			"label": "Build your own Island Components",
 			"excerpt": "Demystifying how island architecture works and being able to setup your own, using tools you already have around you."
