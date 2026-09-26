@@ -25,9 +25,7 @@ export function htmlRoutingMiddlewarePlugin() {
 
 				const file = path.join(
 					outDir,
-					url.pathname
-						.split(path.posix.sep)
-						.join(path.sep),
+					url.pathname.split(path.posix.sep).join(path.sep),
 					'index.html'
 				);
 

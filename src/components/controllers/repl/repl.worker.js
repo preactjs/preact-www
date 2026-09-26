@@ -141,7 +141,7 @@ const cache = new Map();
 function get(url) {
 	url = new URL(url).href;
 	if (cache.has(url)) return cache.get(url);
-	const p = fetch(url).then(r => (cache.set(r.url, p), r.text()));
+	const p = fetch(url).then((r) => (cache.set(r.url, p), r.text()));
 	cache.set(url, p);
 	return p;
 }

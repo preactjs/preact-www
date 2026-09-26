@@ -93,8 +93,9 @@
 		color: #961a1a;
 		border: 1px solid #961a1a;
 		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-		font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
-			'Courier New', monospace;
+		font-family:
+			'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono', 'Courier New',
+			monospace;
 		font-size: 11px;
 		line-height: 1.4;
 		z-index: 500;

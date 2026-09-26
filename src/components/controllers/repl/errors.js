@@ -9,10 +9,10 @@ export function parseStackTrace(err) {
 		.split('\n')
 		.slice(1)
 		.filter(
-			line => (include && !/node_modules/.test(line)) || (include = false)
+			(line) => (include && !/node_modules/.test(line)) || (include = false)
 		)
-		.map(line => line.replace(/\(.*:(\d+):(\d+)\)/, '($1:$2)'))
-		.map(line => {
+		.map((line) => line.replace(/\(.*:(\d+):(\d+)\)/, '($1:$2)'))
+		.map((line) => {
 			const match = line.match(/at\s+(.*)\s\((\d+):(\d+)\)/);
 			return {
 				functionName: match != null ? match[1] : 'unknown',

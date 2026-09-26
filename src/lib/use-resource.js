@@ -45,15 +45,20 @@ export function useResource(fn, deps) {
  */
 export function setupCacheEntry(fn, cacheKey, update) {
 	/** @type {CacheEntry} */
-	const state = { promise: fn(), status: 'pending', result: undefined, users: 0 };
+	const state = {
+		promise: fn(),
+		status: 'pending',
+		result: undefined,
+		users: 0
+	};
 
 	if (state.promise.then) {
 		state.promise
-			.then(r => {
+			.then((r) => {
 				state.status = 'success';
 				state.result = r;
 			})
-			.catch(err => {
+			.catch((err) => {
 				state.status = 'error';
 				state.result = err;
 			})

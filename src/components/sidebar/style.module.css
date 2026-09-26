@@ -42,7 +42,8 @@
 	&:focus {
 		outline: none;
 		/* Use box shadow to draw an outline because outline has no radius */
-		box-shadow: 0 0 2px 2px #dacef0,
+		box-shadow:
+			0 0 2px 2px #dacef0,
 			/* --color-brand 40% lighter */ 0 3px 8px rgba(0, 0, 0, 0.5);
 	}
 

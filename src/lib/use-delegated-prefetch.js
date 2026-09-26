@@ -10,7 +10,7 @@ import {
 
 export function useDelegatedPrefetch() {
 	useEffect(() => {
-		const prefetchAndPreload = e => {
+		const prefetchAndPreload = (e) => {
 			if (e.target.tagName === 'A') {
 				if (!e.target.href.startsWith(location.origin)) return;
 				const pathname = new URL(e.target.href).pathname;

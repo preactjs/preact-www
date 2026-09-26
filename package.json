@@ -11,7 +11,7 @@
 		"server": "vite preview --port 8080",
 		"build": "vite build",
 		"lint": "eslint src",
-		"format": "prettier --write \"src/**/*.{css,js,json}\"",
+		"format": "prettier --write \"**/*.{css,js,json}\"",
 		"prepare": "npx simple-git-hooks"
 	},
 	"eslintConfig": {
@@ -56,7 +56,7 @@
 		"eslint": "^6.8.0",
 		"eslint-config-developit": "^1.1.1",
 		"nano-staged": "^0.8.0",
-		"prettier": "^1.19.1",
+		"prettier": "^3.9.9",
 		"simple-git-hooks": "^2.0.2"
 	},
 	"dependencies": {
