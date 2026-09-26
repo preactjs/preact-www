@@ -159,9 +159,7 @@
 					border: 1px solid var(--color-btn);
 					border-radius: 5px;
 					font-size: 100%;
-					transition:
-						box-shadow 300ms ease,
-						border-color 300ms ease;
+					transition: box-shadow 300ms ease, border-color 300ms ease;
 					outline: none;
 					background: var(--color-btn-background);
 					color: var(--color-btn);
@@ -273,13 +271,8 @@
 			line-height: 1;
 			border-radius: 5px;
 			transform: translateX(-100%) translateX(-24px);
-			transition:
-				left 250ms ease,
-				transform 250ms ease,
-				color 10ms ease,
-				background 250ms ease,
-				border 250ms ease,
-				box-shadow 250ms ease;
+			transition: left 250ms ease, transform 250ms ease, color 10ms ease,
+				background 250ms ease, border 250ms ease, box-shadow 250ms ease;
 			font-size: 1rem;
 			z-index: 1001;
 			cursor: pointer;
@@ -290,8 +283,7 @@
 
 			&:hover,
 			&:focus-visible {
-				box-shadow:
-					0 0 1px 0.5px var(--color-btn-background),
+				box-shadow: 0 0 1px 0.5px var(--color-btn-background),
 					0 0 0 5px var(--color-brand-light);
 			}
 

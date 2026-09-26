@@ -16,10 +16,10 @@ const __dirname = path.dirname(__filename);
  */
 async function readMarkdownFiles(guideDir) {
 	const files = await fs.readdir(guideDir);
-	const markdownFiles = files.filter((file) => file.endsWith('.md'));
+	const markdownFiles = files.filter(file => file.endsWith('.md'));
 
 	return Promise.all(
-		markdownFiles.map(async (filename) => {
+		markdownFiles.map(async filename => {
 			const filePath = path.join(guideDir, filename);
 			const content = await fs.readFile(filePath, 'utf-8');
 			return { filename, content };
@@ -49,7 +49,7 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 
 		for (const route in docPages.v10[section]) {
 			const { filename, content: fileContent } = files.find(
-				(file) => file.filename === `${route.replace('/', '')}.md`
+				file => file.filename === `${route.replace('/', '')}.md`
 			);
 
 			const { description, body } = parseFrontmatter(fileContent, filename);

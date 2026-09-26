@@ -14,6 +14,6 @@ export function textToBase64(text) {
  * @param {string} base64
  */
 export function base64ToText(base64) {
-	const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+	const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
 	return new TextDecoder().decode(bytes);
 }

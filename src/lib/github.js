@@ -13,24 +13,24 @@ function checkStatus(r) {
 
 const baseUrl = '/.netlify/functions/';
 
-export const fetchOrganizationRepos = (org) =>
+export const fetchOrganizationRepos = org =>
 	fetch(`${baseUrl}repos?org=${org}`, {
 		credentials: 'include',
 		mode: 'no-cors',
 		priority: 'low'
 	})
 		.then(checkStatus)
-		.then((r) => r.json())
+		.then(r => r.json())
 		.catch(() => getFallbackData().preactOrgRepos);
 
-export const fetchRelease = (repo) =>
+export const fetchRelease = repo =>
 	fetch(`${baseUrl}release?repo=${repo}`, {
 		credentials: 'include',
 		mode: 'no-cors',
 		priority: 'low'
 	})
 		.then(checkStatus)
-		.then((r) => r.json())
+		.then(r => r.json())
 		.catch(() => {
 			const fallbackData = getFallbackData();
 			return {

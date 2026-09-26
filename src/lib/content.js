@@ -11,7 +11,7 @@ export async function getContent([lang, name]) {
 
 	let fallback = false;
 	return await fetch(url, { credentials: 'include', mode: 'no-cors' })
-		.then((r) => {
+		.then(r => {
 			// fall back to english
 			if (!r.ok && lang != 'en') {
 				fallback = true;
@@ -19,12 +19,12 @@ export async function getContent([lang, name]) {
 			}
 			return r;
 		})
-		.then((r) => {
+		.then(r => {
 			if (r.ok) return r;
 			return fetch(`${path}/${r.status}.json`);
 		})
-		.then((r) => r.json())
-		.then((data) => {
+		.then(r => r.json())
+		.then(data => {
 			data.meta.isFallback = fallback;
 			return data;
 		});

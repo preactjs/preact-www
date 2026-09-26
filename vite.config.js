@@ -34,12 +34,12 @@ export default defineConfig({
 		outDir: 'build',
 		rollupOptions: {
 			output: {
-				chunkFileNames: (chunkInfo) => {
+				chunkFileNames: chunkInfo => {
 					if (chunkInfo.facadeModuleId?.includes('@docsearch/react'))
 						return 'assets/docsearch-[hash].js';
 					return 'assets/[name]-[hash].js';
 				},
-				manualChunks: (id) => {
+				manualChunks: id => {
 					if (
 						id.includes('src/index.jsx') ||
 						id.includes('vite/modulepreload-polyfill')
@@ -64,13 +64,13 @@ export default defineConfig({
 					'/404',
 					'/branding',
 					...Object.keys(headerNav),
-					...Object.keys(flatDocPages.v8).map((path) =>
+					...Object.keys(flatDocPages.v8).map(path =>
 						flatDocPathToNested('v8', path)
 					),
-					...Object.keys(flatDocPages.v10).map((path) =>
+					...Object.keys(flatDocPages.v10).map(path =>
 						flatDocPathToNested('v10', path)
 					),
-					...Object.keys(flatDocPages.v11).map((path) =>
+					...Object.keys(flatDocPages.v11).map(path =>
 						flatDocPathToNested('v11', path)
 					),
 					...Object.keys(tutorialPages),

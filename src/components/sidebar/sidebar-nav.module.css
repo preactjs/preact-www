@@ -19,10 +19,7 @@
 	padding: 0.25rem 0.75em 0.25rem 1em;
 	border-radius: 5px;
 	color: var(--color-sidebar-link);
-	transition:
-		background-color 0.2s,
-		box-shadow 0.2s,
-		color 0.2s;
+	transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
 
 	&:hover {
 		color: var(--color-heading);

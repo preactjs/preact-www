@@ -6,16 +6,17 @@
  * @param {import('../types.d.ts').GitHubOrgRepoData[]} repos
  * @return {import('../types.d.ts').FilteredRepoData[]}
  */
-const sortAndFilter = (repos) =>
+const sortAndFilter = repos =>
 	repos
 		.sort((a, b) => (a.stargazers_count < b.stargazers_count ? 1 : -1))
 		.slice(0, 5)
-		.map((repo) => ({
+		.map(repo => ({
 			html_url: repo.html_url,
 			full_name: repo.full_name,
 			stargazers_count: repo.stargazers_count,
 			description: repo.description
 		}));
+
 
 /**
  * @param {Request} [req]

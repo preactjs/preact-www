@@ -28,9 +28,7 @@
 		margin: 0.5rem 1rem;
 		border: 1px solid var(--color-btn-background);
 		border-radius: 5px;
-		transition:
-			box-shadow 300ms ease,
-			border-color 300ms ease;
+		transition: box-shadow 300ms ease, border-color 300ms ease;
 		background: var(--color-btn);
 		color: var(--color-btn-background);
 		&:hover,

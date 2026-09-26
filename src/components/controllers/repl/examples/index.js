@@ -93,5 +93,5 @@ export function getExample(slug, list = EXAMPLES) {
 export async function fetchExample(slug) {
 	const example = getExample(slug);
 	if (!example) return;
-	return await fetch(example.url).then((r) => r.text());
+	return await fetch(example.url).then(r => r.text());
 }

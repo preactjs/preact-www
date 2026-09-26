@@ -18,9 +18,7 @@ export function spaFallbackMiddlewarePlugin() {
 		if (!url.pathname.startsWith('/content')) return next();
 
 		try {
-			await fs.access(
-				path.join(__dirname, '..', url.pathname.replace(/\.json$/, '.md'))
-			);
+			await fs.access(path.join(__dirname, '..', url.pathname.replace(/\.json$/, '.md')));
 			next();
 		} catch {
 			res.statusCode = 404;

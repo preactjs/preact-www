@@ -12,17 +12,8 @@ body {
 	margin: 0;
 	background: var(--color-page-bg);
 	color: var(--color-text);
-	font:
-		16px/1.65 system-ui,
-		'Segoe UI',
-		'Roboto',
-		'Oxygen',
-		'Ubuntu',
-		'Cantarell',
-		'Fira Sans',
-		'Droid Sans',
-		'Helvetica Neue',
-		sans-serif;
+	font: 16px/1.65 system-ui, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -66,9 +57,8 @@ h6 {
 
 pre,
 code {
-	font-family:
-		'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono', 'Courier New',
-		monospace;
+	font-family: 'source-code-pro', Menlo, Consolas, Monaco, 'Andale Mono',
+		'Courier New', monospace;
 	font-size: 0.9rem;
 }
 
@@ -127,9 +117,7 @@ loading-bar {
 	height: 3px;
 	background: #ee484c80;
 	transform: translateY(0);
-	transition:
-		transform 1s ease,
-		opacity 1s ease;
+	transition: transform 1s ease, opacity 1s ease;
 	opacity: 0;
 	z-index: 1000;
 	&::after {

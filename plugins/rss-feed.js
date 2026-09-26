@@ -41,7 +41,7 @@ export function rssFeedPlugin() {
 				return str
 					.split('\n')
 					.filter(
-						(line) =>
+						line =>
 							line.trim() !==
 							'<generator>https://github.com/jpmonette/feed</generator>'
 					)
