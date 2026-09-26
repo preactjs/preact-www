@@ -15,15 +15,15 @@ title: Preact
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
+	const [value, setValue] = useState(0);
 
-  return (
-    <>
-      <div>Counter: {value}</div>
-      <button onClick={() => setValue(value + 1)}>Increment</button>
-      <button onClick={() => setValue(value - 1)}>Decrement</button>
-    </>
-  )
+	return (
+		<>
+			<div>Counter: {value}</div>
+			<button onClick={() => setValue(value + 1)}>Increment</button>
+			<button onClick={() => setValue(value - 1)}>Decrement</button>
+		</>
+	);
 }
 ```
 
@@ -35,7 +35,6 @@ function Counter() {
 <section class="home-top">
     <h2>Un concept différent</h2>
 </section>
-
 
 <section class="home-section">
   <img src="/home/metal.svg" alt="metal" loading="lazy" decoding="async" width="54" height="54">
@@ -52,7 +51,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/size.svg" alt="size" loading="lazy" decoding="async" width="54" height="54">
 
@@ -66,7 +64,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
 
 <section class="home-section">
   <img src="/home/performance.svg" alt="performance" loading="lazy" decoding="async" width="54" height="54">
@@ -82,7 +79,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/portable.svg" alt="portable" loading="lazy" decoding="async" width="54" height="54">
 
@@ -96,7 +92,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
 
 <section class="home-section">
   <img src="/home/productive.svg" alt="productive" loading="lazy" decoding="async" width="54" height="54">
@@ -113,7 +108,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <div>
     <img src="/home/compatible.svg" alt="compatible" loading="lazy" decoding="async" width="54" height="54">
@@ -127,11 +121,9 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-top">
     <h2>Voir en action!</h2>
 </section>
-
 
 <section class="home-split">
     <div>
@@ -182,7 +174,6 @@ function Counter() {
         </div>
     </div>
 </section>
-
 
 <section class="home-split">
     <div>
@@ -255,11 +246,9 @@ function Counter() {
     </div>
 </section>
 
-
 <section class="home-top">
     <h2>Prêt à vous lancer ?</h2>
 </section>
-
 
 <section style="text-align:center;">
     <p>

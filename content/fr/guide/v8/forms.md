@@ -20,7 +20,6 @@ La documentation de React sur les [Composants "Contrôlés"](https://fr.legacy.r
 
 Généralement, vous devriez essayer de toujours utiliser les composants _Contrôlés_. Toutefois, lorsqu'on construit des composants isolés ou qu'on enrobe des bibliothèques externes, il peut être utile de simplement utiliser votre composant comme un point de montage pour des fonctionnalités qui ne sont pas liées à preact. Dans ces cas là, les composants "Non contrôlés" correspondent à ce que vous souhaitez faire.
 
-
 ## Checkboxes & boutons Radios
 
 Les checkboxes et les boutons radio (`<input type="checkbox|radio">`) peuvent être source de confusion lorsque vous construisez des formulaires contrôlés. C'est parce que dans un environnement non contrôlé, nous autoriserions typiquement le navigateur à "basculer" ou "cocher" une checkbox ou un bouton radio pour nous, en écoutant un événement "change" et en réagissant en fonction de la nouvelle valeur. Mais cette technique ne se transpose pas bien dans un monde où l'interface utilisateur est toujours mise à jour automatiquement en réponse à un changement du state ou des props.
@@ -33,19 +32,16 @@ Donc, au lieu d'écouter un événement `change`, nous devrions écouter un év�
 
 ```js
 class MyForm extends Component {
-    toggle = e => {
-        let checked = !this.state.checked;
-        this.setState({ checked });
-    };
-    render({ }, { checked }) {
-        return (
-            <label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={this.toggle} />
-            </label>
-        );
-    }
+	toggle = (e) => {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	};
+	render({}, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={this.toggle} />
+			</label>
+		);
+	}
 }
 ```

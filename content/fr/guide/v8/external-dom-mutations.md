@@ -18,9 +18,9 @@ Cela peut être aussi simple que de définir une méthode `shouldComponentUpdate
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+	shouldComponentUpdate() {
+		return false;
+	}
 }
 ```
 
@@ -28,7 +28,7 @@ class Block extends Component {
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate = () => false;
+	shouldComponentUpdate = () => false;
 }
 ```
 
@@ -42,28 +42,28 @@ Voici un exemple de désactivation du re-rendering pour un composant. Notez que 
 
 ```js
 class Example extends Component {
-  shouldComponentUpdate() {
-    // ne pas re-rendre après comparaison :
-    return false;
-  }
+	shouldComponentUpdate() {
+		// ne pas re-rendre après comparaison :
+		return false;
+	}
 
-  componentWillReceiveProps(nextProps) {
-    // vous pouvez faire quelque chose avec les nouvelles props si vous le souhaitez ici
-  }
+	componentWillReceiveProps(nextProps) {
+		// vous pouvez faire quelque chose avec les nouvelles props si vous le souhaitez ici
+	}
 
-  componentDidMount() {
-    // un fois monté, vous pouvez modifier le DOM librement :
-    let thing = document.createElement('maybe-a-custom-element');
-    this.base.appendChild(thing);
-  }
+	componentDidMount() {
+		// un fois monté, vous pouvez modifier le DOM librement :
+		let thing = document.createElement('maybe-a-custom-element');
+		this.base.appendChild(thing);
+	}
 
-  componentWillUnmount() {
-    // le composant est sur le point d'être supprimé du DOM, vous pouvez faire du nettoyage
-  }
+	componentWillUnmount() {
+		// le composant est sur le point d'être supprimé du DOM, vous pouvez faire du nettoyage
+	}
 
-  render() {
-    return <div class="example" />;
-  }
+	render() {
+		return <div class="example" />;
+	}
 }
 ```
 

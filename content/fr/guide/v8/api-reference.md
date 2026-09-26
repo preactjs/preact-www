@@ -37,15 +37,15 @@ class MyComponent extends Component {
 
 Preact déclenche les méthodes de cycle de vie suivantes si elles sont définies dans un composant :
 
-| Méthode de cycle de vie            | Quand est-elle déclenchée ?                              |
-|------------------------------------|----------------------------------------------------------|
-| `componentWillMount`               | avant que le composant soit monté dans le DOM            |
-| `componentDidMount`                | après que le composant ait été monté dans le DOM         |
-| `componentWillUnmount`             | avant de supprimer le composant du DOM                   |
-| `componentWillReceiveProps`        | après que de nouvelles propriétés aient été acceptées    |
-| `shouldComponentUpdate`            | avant `render()`. Retourner `false` pour éviter le rendu |
-| `componentWillUpdate`              | avant `render()`                                         |
-| `componentDidUpdate`               | après `render()`                                         |
+| Méthode de cycle de vie     | Quand est-elle déclenchée ?                              |
+| --------------------------- | -------------------------------------------------------- |
+| `componentWillMount`        | avant que le composant soit monté dans le DOM            |
+| `componentDidMount`         | après que le composant ait été monté dans le DOM         |
+| `componentWillUnmount`      | avant de supprimer le composant du DOM                   |
+| `componentWillReceiveProps` | après que de nouvelles propriétés aient été acceptées    |
+| `shouldComponentUpdate`     | avant `render()`. Retourner `false` pour éviter le rendu |
+| `componentWillUpdate`       | avant `render()`                                         |
+| `componentDidUpdate`        | après `render()`                                         |
 
 Toutes les méthodes de cycle de vie et leurs paramètres sont présentes dans l'exemple de composant suivant :
 
@@ -55,19 +55,19 @@ import { Component } from 'preact';
 class MyComponent extends Component {
 	shouldComponentUpdate(nextProps, nextState) {}
 	componentWillReceiveProps(nextProps, nextState) {
-		this.props // props précédentes
-		this.state // state précédent
+		this.props; // props précédentes
+		this.state; // state précédent
 	}
 	componentWillMount() {}
 	componentWillUpdate(nextProps, nextState) {
-		this.props // Previous props
-		this.state // Previous state
+		this.props; // Previous props
+		this.state; // Previous state
 	}
 	componentDidMount() {}
 	componentDidUpdate() {}
 	componentWillUnmount() {
-		this.props // props courantes
-		this.state // state courant
+		this.props; // props courantes
+		this.state; // state courant
 	}
 }
 ```
@@ -129,10 +129,6 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Hello!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```

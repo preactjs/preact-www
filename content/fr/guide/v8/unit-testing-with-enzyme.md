@@ -29,63 +29,67 @@ Utilisant Karma comme test runner, nous allons devoir ajouter quelques [`alias w
 
 ```json
 {
-  "resolve": {
-    "alias": {
-      "react-dom/server": "preact-render-to-string",
-      "react-dom/test-utils": "preact-test-utils",
-      "react-dom": "preact-compat-enzyme",
-      "react-test-renderer/shallow": "preact-test-utils",
-      "react-test-renderer": "preact-test-utils",
-      "react-addons-test-utils": "preact-test-utils",
-      "react-addons-transition-group": "preact-transition-group",
-      "react": "preact-compat-enzyme"
-    }
-  }
+	"resolve": {
+		"alias": {
+			"react-dom/server": "preact-render-to-string",
+			"react-dom/test-utils": "preact-test-utils",
+			"react-dom": "preact-compat-enzyme",
+			"react-test-renderer/shallow": "preact-test-utils",
+			"react-test-renderer": "preact-test-utils",
+			"react-addons-test-utils": "preact-test-utils",
+			"react-addons-transition-group": "preact-transition-group",
+			"react": "preact-compat-enzyme"
+		}
+	}
 }
 ```
 
 ## Limitations actuelles
 
-1. Actuellement, seul le mode [`mount`](http://airbnb.io/enzyme/docs/api/mount.html) est supporté. 
+1. Actuellement, seul le mode [`mount`](http://airbnb.io/enzyme/docs/api/mount.html) est supporté.
 2. Vous aurez peut-être besoin d'enrober vos assertions dans un `setTimeout` lorsque vous appellerez les méthodes `setProps()` ou `setState()` du `React Wrapper`.
-
 
 ## Exemple
 
 ```js
-let dataSource = [{ id: '1', name: 'test-content' }, { id: '2', name: 'test-content' }],
-    table,
-    wrapper;
+let dataSource = [
+		{ id: '1', name: 'test-content' },
+		{ id: '2', name: 'test-content' }
+	],
+	table,
+	wrapper;
 
-    beforeEach(() => {
-        table = <Table dataSource={dataSource}>
-            <Table.Column dataIndex='id' />
-            <Table.Column dataIndex='name' />
-        </Table>
-        wrapper = mount(table);
-    })
+beforeEach(() => {
+	table = (
+		<Table dataSource={dataSource}>
+			<Table.Column dataIndex="id" />
+			<Table.Column dataIndex="name" />
+		</Table>
+	);
+	wrapper = mount(table);
+});
 
-    afterEach(() => {
-        table = null;
-    })
+afterEach(() => {
+	table = null;
+});
 
-    it('should render checkboxMode', (done) => {
-        wrapper.setProps({
-             rowSelection: {
-                getProps: (record) => {
-                    if (record.id === '1') {
-                        return {
-                            disabled: true
-                        }
-                    }
-                }
-            }
-        });
+it('should render checkboxMode', (done) => {
+	wrapper.setProps({
+		rowSelection: {
+			getProps: (record) => {
+				if (record.id === '1') {
+					return {
+						disabled: true
+					};
+				}
+			}
+		}
+	});
 
-        setTimeout(() => {
-            expect(wrapper.find('.checkbox').length).to.be.equal(3);
-            expect(wrapper.find('.checkbox.disabled').length).to.be.equal(1);
-            done();
-        }, 10);
-    });
+	setTimeout(() => {
+		expect(wrapper.find('.checkbox').length).to.be.equal(3);
+		expect(wrapper.find('.checkbox.disabled').length).to.be.equal(1);
+		done();
+	}, 10);
+});
 ```
