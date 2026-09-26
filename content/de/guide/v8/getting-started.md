@@ -6,7 +6,7 @@ title: "Los geht's"
 
 Diese Anleitung zeigt, wie man eine einfache tickende Uhr als Komponente erstellt. Detailliertere Informationen zu jedem Thema können auf den dedizierten Seiten unter dem Anleitungsmenü gefunden werden.
 
-> :information_desk_person: Man [_muss_ nicht ES2015 für Preact benutzen](<https://github.com/developit/preact-without-babel>)... man sollte es aber. Diese Anleitung geht davon aus, dass man eine ES2015-Umgebung mit Babel und/oder Webpack/Browserify/Gulp/Grunt/etc. benutzt. Wenn das nicht der Fall ist, verwende [preact-boilerplate] oder eine [CodePen-Vorlage](http://codepen.io/developit/pen/pgaROe?editors=0010).
+> :information_desk_person: Man [_muss_ nicht ES2015 für Preact benutzen](https://github.com/developit/preact-without-babel)... man sollte es aber. Diese Anleitung geht davon aus, dass man eine ES2015-Umgebung mit Babel und/oder Webpack/Browserify/Gulp/Grunt/etc. benutzt. Wenn das nicht der Fall ist, verwende [preact-boilerplate] oder eine [CodePen-Vorlage](http://codepen.io/developit/pen/pgaROe?editors=0010).
 
 ---
 
@@ -54,9 +54,7 @@ Anstatt das `@jsx`-Pragma im eigenen Code zu deklarieren sollte man es lieber gl
 
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 > }
 > ```
 
@@ -72,9 +70,7 @@ Anstatt das `@jsx`-Pragma im eigenen Code zu deklarieren sollte man es lieber gl
 
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"preact.h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "preact.h" }]]
 > }
 > ```
 
@@ -87,12 +83,13 @@ Um JSX zu rendern, importiert man diese zwei Funktionen und setzt sie wie folgt 
 ```js
 import { h, render } from 'preact';
 
-render((
-    <div id="foo">
-        <span>Hallo Welt!</span>
-        <button onClick={ e => alert("hi!") }>Klick mich!</button>
-    </div>
-), document.body);
+render(
+	<div id="foo">
+		<span>Hallo Welt!</span>
+		<button onClick={(e) => alert('hi!')}>Klick mich!</button>
+	</div>,
+	document.body
+);
 ```
 
 Dies sollte eigentlich bekannt sein, wenn man bereits mit [hyperscript] oder einem seiner [vielen Freunde](https://github.com/developit/vhtml) gearbeitet hat.
@@ -111,10 +108,10 @@ Nachfolgend ist eine simple `Uhr`-Komponente, die die aktuelle Zeit anzeigt.
 import { h, render, Component } from 'preact';
 
 class Uhr extends Component {
-    render() {
-        let time = new Date().toLocaleTimeString();
-        return <span>{ time }</span>;
-    }
+	render() {
+		let time = new Date().toLocaleTimeString();
+		return <span>{time}</span>;
+	}
 }
 
 // Eine Uhr-Instanz in <body> rendern:
@@ -127,21 +124,21 @@ So weit, so gut. Das Ausführen dieser Anweisung generiert die folgende HTML-DOM
 <span>10:28:57 PM</span>
 ```
 
---------------------------------------------------------------------------------
+---
 
 ## Der Komponentenlebenszyklus
 
 Damit sich die Uhr jede Sekunde aktualisieren kann, muss man wissen, wann `<Uhr>` an das DOM gemounted wird. _Falls man bereits HTML5 Custom Elements benutzt hat, wird einem dies vertraut vorkommen. Es ähnelt sich mit den `attachedCallback`- und `detachedCallback`-Lebenszyklusmethoden._ Falls sie für eine Komponente definiert sind, ruft Preact die folgenden Lebenszyklusmethoden auf:
 
-| Lebenszyklusmethoden        | Wann sie aufgerufen wird                             				 |
-|-----------------------------|--------------------------------------------------------------|
-| `componentWillMount`        | bevor die Komponente an das DOM eingehanden wird					   |
-| `componentDidMount`         | nachdem die Komponente an das DOM eingehanden wird 					 |
-| `componentWillUnmount`      | vor dem Entfernen vom  DOM	                      					 |
-| `componentWillReceiveProps` | bevor neue props angenommen werden                 					 |
+| Lebenszyklusmethoden        | Wann sie aufgerufen wird                                     |
+| --------------------------- | ------------------------------------------------------------ |
+| `componentWillMount`        | bevor die Komponente an das DOM eingehanden wird             |
+| `componentDidMount`         | nachdem die Komponente an das DOM eingehanden wird           |
+| `componentWillUnmount`      | vor dem Entfernen vom DOM                                    |
+| `componentWillReceiveProps` | bevor neue props angenommen werden                           |
 | `shouldComponentUpdate`     | vor `render()`. `false` ausgeben, um Rendern zu überspringen |
 | `componentWillUpdate`       | vor `render()`                                               |
-| `componentDidUpdate`        | nach `render()`                                  						 |
+| `componentDidUpdate`        | nach `render()`                                              |
 
 Gewünscht ist also ein 1-Sekunden-Timer, der startet, sobald die Komponente zum DOM hinzugefügt wird und stoppt, sobald diese vom DOM entfernt wird. Dieser erstellte Timer wird in `componentDidMount` referenziert und mithilfe von `componentWillUnmount` gestoppt. Bei jedem Durchlauf des Timers wird das `state`-Objekt der Komponente mit einem neuen Zeitwert aktualisiert. Dies führt automatisch dazu, dass die Komponente neu gerendert wird.
 
@@ -149,35 +146,35 @@ Gewünscht ist also ein 1-Sekunden-Timer, der startet, sobald die Komponente zum
 import { h, render, Component } from 'preact';
 
 class Uhr extends Component {
-    constructor() {
-        super();
-        // Initiale Zeit einstellen:
-        this.state.time = Date.now();
-    }
+	constructor() {
+		super();
+		// Initiale Zeit einstellen:
+		this.state.time = Date.now();
+	}
 
-    componentDidMount() {
-        // Zeit jede Sekunde aktualisieren
-        this.timer = setInterval(() => {
-            this.setState({ time: Date.now() });
-        }, 1000);
-    }
+	componentDidMount() {
+		// Zeit jede Sekunde aktualisieren
+		this.timer = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	}
 
-    componentWillUnmount() {
-        // Stoppen, falls nicht renderbar
-        clearInterval(this.timer);
-    }
+	componentWillUnmount() {
+		// Stoppen, falls nicht renderbar
+		clearInterval(this.timer);
+	}
 
-    render(props, state) {
-        let time = new Date(state.time).toLocaleTimeString();
-        return <span>{ time }</span>;
-    }
+	render(props, state) {
+		let time = new Date(state.time).toLocaleTimeString();
+		return <span>{time}</span>;
+	}
 }
 
 // Eine Instanz von Uhr in <body> rendern:
 render(<Uhr />, document.body);
 ```
 
---------------------------------------------------------------------------------
+---
 
 Das war's! Man hat jetzt eine [tickende Uhr](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/).
 

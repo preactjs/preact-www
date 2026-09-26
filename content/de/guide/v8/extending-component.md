@@ -14,18 +14,18 @@ In jedem Fall ist die Klassenvererbbarkeit aus ES2015 anwendbar, um Preacts `Com
 
 ```js
 class BoundComponent extends Component {
-    // example: Gebundene Methoden erfassen
-    binds() {
-        let list = this.bind || [],
-            binds = this._binds;
-        if (!binds) {
-            binds = this._binds = {};
-            for (let i=list.length; i--; ) {
-                binds[list[i]] = this[list[i]].bind(this);
-            }
-        }
-        return binds;
-    }
+	// example: Gebundene Methoden erfassen
+	binds() {
+		let list = this.bind || [],
+			binds = this._binds;
+		if (!binds) {
+			binds = this._binds = {};
+			for (let i = list.length; i--;) {
+				binds[list[i]] = this[list[i]].bind(this);
+			}
+		}
+		return binds;
+	}
 }
 ```
 
@@ -33,31 +33,27 @@ Anwendungsbeispiel:
 
 ```js
 class Link extends BoundComponent {
-    bind = ['click'];
-    click() {
-        open(this.props.href);
-    }
-    render({ children }) {
-        let { click } = this.binds();
-        return <span onClick={ click }>{ children }</span>;
-    }
+	bind = ['click'];
+	click() {
+		open(this.props.href);
+	}
+	render({ children }) {
+		let { click } = this.binds();
+		return <span onClick={click}>{children}</span>;
+	}
 }
 
-render(
-    <Link href="http://example.com">Click mich</Link>,
-    document.body
-);
+render(<Link href="http://example.com">Click mich</Link>, document.body);
 ```
-
 
 Die Möglichkeiten sind unendlich. Hier ist eine erweiterte `Component`-Klasse, die rudimentäre Mixins unterstützt:
 
 ```js
 class MixedComponent extends Component {
-    constructor() {
-        super();
-        (this.mixins || []).forEach( m => Object.assign(this, m) );
-    }
+	constructor() {
+		super();
+		(this.mixins || []).forEach((m) => Object.assign(this, m));
+	}
 }
 ```
 

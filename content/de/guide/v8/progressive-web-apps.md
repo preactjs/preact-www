@@ -97,7 +97,6 @@ Während Preact einfach in einer PWA zu integrieren ist und reibungslos funktion
 
 Anbei einige Funktionen, die Preact CLI mitliefert:
 
-
 - Automatisches, lückenloses Code-Splitting für URL-Routen
 - Automatisches Generieren und Installieren eines ServiceWorkers
 - Generierung von HTTP2/Push-Headern (oder Preload Meta Tags), die auf der URL basieren

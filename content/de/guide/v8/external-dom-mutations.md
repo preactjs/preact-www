@@ -12,8 +12,7 @@ title: Externe DOM-Mutationen
 
 ## Übersicht
 
-Manchmal ist es nötig, mit Drittanbieterbibliotheken zu arbeiten, die erwarten, frei im DOM mutieren zu können, in einem Stadium zu verharren oder überhaupt gar keine Komponentengrenzen zu haben. Es gibt viele großartige UI-Toolkits und wiederverwendbare Elemente, die so funktionieren. In Preact, ähnlich wie auch React, setzt das Arbeiten mit diesen Bibliotheken voraus, dass man dem Rendering oder der Differenzierungsalgorithmus des Virtual DOM befiehlt, keine externen DOM-Mutationen innerhalb einer bestimmten Komponente (oder seinem  DOM-Element) _rückgängig_ zu machen.
-
+Manchmal ist es nötig, mit Drittanbieterbibliotheken zu arbeiten, die erwarten, frei im DOM mutieren zu können, in einem Stadium zu verharren oder überhaupt gar keine Komponentengrenzen zu haben. Es gibt viele großartige UI-Toolkits und wiederverwendbare Elemente, die so funktionieren. In Preact, ähnlich wie auch React, setzt das Arbeiten mit diesen Bibliotheken voraus, dass man dem Rendering oder der Differenzierungsalgorithmus des Virtual DOM befiehlt, keine externen DOM-Mutationen innerhalb einer bestimmten Komponente (oder seinem DOM-Element) _rückgängig_ zu machen.
 
 ## Technik
 
@@ -21,9 +20,9 @@ Dies funktioniert ganz einfach indem man eine `shouldComponentUpdate()`-Methode 
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+	shouldComponentUpdate() {
+		return false;
+	}
 }
 ```
 
@@ -31,7 +30,7 @@ class Block extends Component {
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate = () => false;
+	shouldComponentUpdate = () => false;
 }
 ```
 
@@ -43,31 +42,30 @@ Hier wird beispielhaft gezeigt, wie das Rerendern einer Komponente "ausgeschalte
 
 ```js
 class Beispiel extends Component {
-  shouldComponentUpdate() {
-    // Nicht via diff rerendern:
-    return false;
-  }
+	shouldComponentUpdate() {
+		// Nicht via diff rerendern:
+		return false;
+	}
 
-  componentWillReceiveProps(nextProps) {
-    // Irgendetwas mit eingehenden props kann hier erledigt werden, falls benötigt
-  }
+	componentWillReceiveProps(nextProps) {
+		// Irgendetwas mit eingehenden props kann hier erledigt werden, falls benötigt
+	}
 
-  componentDidMount() {
-    // jetzt gemounted, kann das DOM frei modifizieren:
-    let thing = document.createElement('maybe-a-custom-element');
-    this.base.appendChild(thing);
-  }
+	componentDidMount() {
+		// jetzt gemounted, kann das DOM frei modifizieren:
+		let thing = document.createElement('maybe-a-custom-element');
+		this.base.appendChild(thing);
+	}
 
-  componentWillUnmount() {
-    // Komponente ist kurz davor, vom DOM entfernt zu werden. Aufräumarbeiten sind hier möglich.
-  }
+	componentWillUnmount() {
+		// Komponente ist kurz davor, vom DOM entfernt zu werden. Aufräumarbeiten sind hier möglich.
+	}
 
-  render() {
-    return <div class="beispiel" />;
-  }
+	render() {
+		return <div class="beispiel" />;
+	}
 }
 ```
-
 
 ## Beispiele aus der realen Welt
 

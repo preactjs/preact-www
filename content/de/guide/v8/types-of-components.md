@@ -19,12 +19,12 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponent
 
 ## Beispiel
 
- Hier ein Beispiel: Eine einfache `<Link>`-Komponente, die ein ein HTML-`<a>`-Element erstellt:
+Hier ein Beispiel: Eine einfache `<Link>`-Komponente, die ein ein HTML-`<a>`-Element erstellt:
 
 ```js
 class Link extends Component {
 	render(props, state) {
-		return <a href={props.href}>{ props.children }</a>;
+		return <a href={props.href}>{props.children}</a>;
 	}
 }
 ```
@@ -34,7 +34,6 @@ Die Komponente kann wie folgt instanziert/gerendert werden:
 ```xml
 <Link href="http://example.com">Irgendein Text</Link>
 ```
-
 
 ### Props & State destrukturieren
 
@@ -58,15 +57,12 @@ class Link extends Component {
 }
 ```
 
-
 ### State-lose funktionale Komponenten
 
 Zu guter Letzt kann man sehen, dass diese Komponente keinen State hat. Man kann die Komponente mit den selben props rendern und bekommt jedes Mal das gleiche Resultat. Wenn dies der Fall ist, ist die Nutzung von State-losen funktionalen Komponenten empfohlen. Diese sind lediglich Funktionen, die `props` als Argumente annehmen und JSX ausgeben.
 
 ```js
-const Link = ({ children, ...props }) => (
-	<a {...props}>{ children }</a>
-);
+const Link = ({ children, ...props }) => <a {...props}>{children}</a>;
 ```
 
-> *ES2015-Anmerkung:* Das oben genannte ist eine Arrow-Funktion. Da Parens, oder auch ()-Klammern, statt Braces, oder auch {}-Klammern, für den Funktionskörper verwendet wurden, wird der Wert innerhalb der Parens automatisch zurückgegeben. [Hier](https://github.com/likehoban/es6features#arrow) kann man mehr darüber erfahren.
+> _ES2015-Anmerkung:_ Das oben genannte ist eine Arrow-Funktion. Da Parens, oder auch ()-Klammern, statt Braces, oder auch {}-Klammern, für den Funktionskörper verwendet wurden, wird der Wert innerhalb der Parens automatisch zurückgegeben. [Hier](https://github.com/likehoban/es6features#arrow) kann man mehr darüber erfahren.

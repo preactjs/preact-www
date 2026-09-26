@@ -20,7 +20,6 @@ Reacts Dokumentation zu ["Kontrollierten" Komponenten](https://facebook.github.i
 
 Generell sollte man versuchen, immer _Kontrollierte_ Komponenten zu verwenden. Trotzdem kann es beim Erstellen von unabhängigen Komponenten oder umschließenden Drittanbieter-UI-Bibliotheken sehr nützlich sein, die Komponente einfach als Mount-Punkt für Non-Preact-Funktionalitäten zu verwenden. In diesen Fällen sind _Unkontrollierte_ Komponenten genau richtig für die Aufgabe.
 
-
 ## Kontrollboxen & Radio Buttons
 
 Kontrollboxen und Radio Buttons (`<input type="checkbox|radio">`) können anfänglich für Verwirrung sorgen, wenn man kontrollierte Eingabemasken erstellt. Dies ist damit zu begründen, dass man in einer unkontrollierten Umgebung normalerweise dem Browser erlauben würden, eine Kontrollbox oder einen Radio Button für uns "umzuschalten" oder "anzukreuzen", auf Änderungsereignisse zu warten und auf den neuen Wert zu reagieren. Allerdings geht diese Technik nicht sonderlich gut in ein Weltbild über, in dem da UI immer wieder automatisch als Reaktion auf state- und prop-Änderungen aktualisiert wird.
@@ -33,19 +32,16 @@ Man sollte also anstatt auf ein `change`-Ereignis auf ein `click`-Ereignis warte
 
 ```js
 class MeineEingabemaske extends Component {
-    toggle = e => {
-        let checked = !this.state.checked;
-        this.setState({ checked });
-    };
-    render({ }, { checked }) {
-        return (
-            <label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={this.toggle} />
-            </label>
-        );
-    }
+	toggle = (e) => {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	};
+	render({}, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={this.toggle} />
+			</label>
+		);
+	}
 }
 ```

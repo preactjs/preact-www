@@ -14,14 +14,14 @@ Ein Bereich, den Preact ausführlicher als React behandelt ist das Optimieren de
 
 ## Der schönere, manuelle Weg
 
-Eine Lösung beinhaltet das Definieren von gebundenen Komponentenmethoden mithilfe von ES7-Klassen-Properties ([class instance fields](https://github.com(jeffmo/es-class-fields-and-static-properties)):
+Eine Lösung beinhaltet das Definieren von gebundenen Komponentenmethoden mithilfe von ES7-Klassen-Properties ([class instance fields](<https://github.com(jeffmo/es-class-fields-and-static-properties)>):
 
 ```js
 class Foo extends Component {
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={this.updateText} />;
 	}
 }
@@ -29,8 +29,7 @@ class Foo extends Component {
 
 Während dies zu deutlich besseren Laufzeitleistungen führt, beinhaltet dieser Ansatz immer noch eine Menge unnötigen Code, der gebraucht wird, um State und UI zu verbinden.
 
-> Ein anderer Ansatuz wäre es, Komponentenmethoden mithilfe von ES7-Decorators  _deklarativ_ anzubinden. Ein Beispiel hierfür wäre [decko's](https://github.com/developit/decko) `@bind`:
-
+> Ein anderer Ansatuz wäre es, Komponentenmethoden mithilfe von ES7-Decorators _deklarativ_ anzubinden. Ein Beispiel hierfür wäre [decko's](https://github.com/developit/decko) `@bind`:
 
 ## Verlinkter State eilt zur Rettung
 
@@ -46,14 +45,13 @@ Nachfolgend ist das genannte Beispiel mithilfe von **Verlinkten State**:
 import linkState from 'linkstate';
 
 class Foo extends Component {
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={linkState(this, 'text')} />;
 	}
 }
 ```
 
 Dieses Vorgehen ist präzise, einfach zu verstehen und effektiv. Es verarbeitet verlinkte States jedes Eingabetypus. Ein optionales, drittes Argument `'path'` kann verwendet werden, um einen Punkt-notierten Keypath dem neuen State-Wert für zusätzliche, eigene Bindings (z.B. Anbinden an den Wert einer Dritttanbieterkomponente) explizit bereitzustellen.
-
 
 ## Eigene Ereignispfade
 
@@ -68,13 +66,12 @@ Um diese Funktion verstehen zu können, ist es nützlich, einen Blick unter die 
 handler = linkState(this, 'thing', 'foo.bar');
 
 // ...ist funktional equivalent zu:
-handler = event => {
-  this.setState({
-    thing: event.foo.bar
-  });
-}
+handler = (event) => {
+	this.setState({
+		thing: event.foo.bar
+	});
+};
 ```
-
 
 ### Illustration: Gruppierte Radio Buttons
 
@@ -84,26 +81,30 @@ Der nachfolgende Code funktioniert nicht wie zuerst erwartet. Wenn der Nutzer "n
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { yes, no }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={yes}
-          onChange={linkState(this, 'yes')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={no}
-          onChange={linkState(this, 'no')}
-        />
-      </div>
-    );
-  }
+	render({}, { yes, no }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={yes}
+					onChange={linkState(this, 'yes')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={no}
+					onChange={linkState(this, 'no')}
+				/>
+			</div>
+		);
+	}
 }
 ```
 
-
-
-Hier hilft die Nutzung des dritten `linkState`-Argumentes weiter, 
+Hier hilft die Nutzung des dritten `linkState`-Argumentes weiter,
 indem man hier den Wert an Hand eines expliziten Pfades des Ereignisobjekts auswählt.
 
 Angewendet auf das vorherige Beispiel bedeutet das folgendes:
@@ -114,20 +115,26 @@ Der Wert des State-Objekts namens `answer` wird daraufhin genutzt, um die `check
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { answer }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={answer == 'yes'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={answer == 'no'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-      </div>
-    );
-  }
+	render({}, { answer }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={answer == 'yes'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={answer == 'no'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+			</div>
+		);
+	}
 }
 ```
 

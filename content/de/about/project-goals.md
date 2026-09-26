@@ -20,8 +20,8 @@ Einige Features von React wurden absichtlich nicht in Preact integriert, da sie 
 
 - Die beabsichtigten Artikel unter [Was fehlt?](/guide/v8/differences-to-react#whats-missing):
 
-    - PropTypes, die leicht als separate Bibliothek verwendet werden können
-    - Children, da Preact immer children als Array verpackt
-    - Synthetic Events, da Preact nicht versucht, Fehler in älteren Browsern (z.B. IE8) zu beheben
+  - PropTypes, die leicht als separate Bibliothek verwendet werden können
+  - Children, da Preact immer children als Array verpackt
+  - Synthetic Events, da Preact nicht versucht, Fehler in älteren Browsern (z.B. IE8) zu beheben
 
 [preact-compat]: https://github.com/preactjs/preact-compat/
