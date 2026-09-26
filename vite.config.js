@@ -35,11 +35,17 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				chunkFileNames: chunkInfo => {
-					if (chunkInfo.moduleIds.find(id => id.includes('@xmldom/xmldom')))
-						return 'assets/xmldom-[hash].js';
 					if (chunkInfo.facadeModuleId?.includes('@docsearch/react'))
 						return 'assets/docsearch-[hash].js';
 					return 'assets/[name]-[hash].js';
+				},
+				manualChunks: id => {
+					if (
+						id.includes('src/index.jsx') ||
+						id.includes('vite/modulepreload-polyfill')
+					) {
+						return 'index';
+					}
 				}
 			}
 		}
@@ -52,6 +58,7 @@ export default defineConfig({
 			prerender: {
 				enabled: true,
 				renderTarget: '#app',
+				prerenderScript: 'src/prerender.jsx',
 				// The routes that will not be discovered automatically
 				additionalPrerenderRoutes: [
 					'/404',
