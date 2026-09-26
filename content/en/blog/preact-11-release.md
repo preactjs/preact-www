@@ -18,30 +18,31 @@ We want to thank everyone who has contributed to Preact and its ecosystem over t
 
 ## Preact Site Design Competition
 
-To celebrate the release of Preact 11, we're hosting a design competition for the Preact website! The current design has served us well for the past years but a new release is a perfect opportunity to apply a new coat of paint and try out a new look. We've love to involve the community in this process and are looking for contributions!
+To celebrate the release of Preact 11, we're hosting a design competition for the Preact website! The current design has served us well for the past years but a new release is a perfect opportunity to apply a new coat of paint and try out a new look. We'd love to involve the community in this process and are looking for contributions!
 
-We want to include as many members of the community as possible, so we're not going to be asking for any code or direct PRs to the website repository, just designs.
+This competition will be purely design-focused, no code required. Be creative and express your ideas for what the Preact docs should look like for the next few years.
 
 ### Prizes
 
-There's prizes, everything is better with prizes!
+Of course, there's prizes! Everything is better with prizes!
 
-- First place: $3000 USD & will likely be implemented as the new design for the Preact website
-- Second place: $2000 USD
-- Third place: $1000 USD
+- First place: $4000 USD & will likely be implemented as the new design for the Preact website
+- Second place: $2500 USD
+- Third place: $1500 USD
 
-Eight extra designs that we like will receive $500 each.
+Four extra designs that we like will receive $500 each.
 
 ### Requirements
 
 1. Your designs should be full-page interactive views of the Preact website, including the home page, a documentation page, and any other pages you feel are relevant. The copy on the home page is up to you -- write about what makes Preact special to you, and what you think others should know about it. For any docs pages, feel free to copy existing text as it will likely stay the same. These designs should be both desktop & mobile views.
 2. Our branding (logo & primary color) will remain the same so please keep them in mind and integrate them into your designs. You can find our logos [here](https://preactjs.com/branding) and most of our brand hex colors [here](https://github.com/preactjs/preact-www/blob/master/src/style/variables.css). Besides the Preact purple, other colors are completely up to you.
 3. Your designs should be web-hosted. We unfortunately won't be able to download and/or run projects locally so please make sure your work is accessible via a public URL. Figma, CodePen, and GitHub Pages are all good options for hosting your designs.
+4. Don't feel tied to existing navigation or layout patterns, it's all up to be rethought and redesigned.
 
 ### Rules
 
 1. Single submission per person. Pick your best idea to send us.
-2. Please refrain from using AI. We're looking to celebrate human creativity and design.
+2. Please refrain from using AI. We're looking to celebrate human creativity and design, obvious AI submissions will be disqualified and ignored.
 3. As with any site, please make sure your designs are accessible and inclusive. Keep color contrast, font sizes, and navigation in mind especially.
 4. The deadline for submissions is <TBD>. We'll review all submissions and announce the winners shortly after.
 
@@ -51,7 +52,7 @@ To submit your design, please submit [this form](<TBD>, gonna be a Google Form).
 
 - Your name/handle
 - Where you'd like us to contact you (email, Twitter, Bluesky)
-- Your email or user name on the platform
+- Your email or user name on the platform chosen
 - Your submission URLs
 
 We look forward to seeing your work and celebrating the release of Preact 11!
