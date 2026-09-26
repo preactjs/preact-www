@@ -284,7 +284,7 @@ const companies = [
 		logo: 'jdlt.svg'
 	},
 	{
-		name: "HesapKurdu",
+		name: 'HesapKurdu',
 		href: 'https://www.hesapkurdu.com',
 		logo: 'hesapkurdu.svg'
 	},
@@ -292,6 +292,11 @@ const companies = [
 		name: 'Authier',
 		href: 'https://www.authier.pm/',
 		logo: 'authier.png'
+	},
+	{
+		name: 'Ellaz',
+		href: 'https://ellaz.fun/',
+		logo: 'ellaz.svg'
 	}
 ];
 
@@ -299,7 +304,7 @@ const companies = [
 export default function WeAreUsing() {
 	return (
 		<ul class={styles.root}>
-			{companies.map(c => (
+			{companies.map((c) => (
 				<li key={c.name} class={styles.item}>
 					<a
 						href={c.href}
