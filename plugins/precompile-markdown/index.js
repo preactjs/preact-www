@@ -119,7 +119,7 @@ marked.use({
 			const runInReplLink = runInRepl
 				? `<a class="repl-link" href="/repl?code=${encodeURIComponent(
 						textToBase64(source)
-				  )}">Run in REPL</a>`
+					)}">Run in REPL</a>`
 				: '';
 
 			return `
@@ -229,9 +229,7 @@ function highlightCodeBlocks(data) {
 		 * We only do this on the home/index page at the moment.
 		 */
 		const rawCodeBlockText = unescapeHTML(
-			dedent(child.innerText)
-				.trim()
-				.replaceAll('<br>', '\n')
+			dedent(child.innerText).trim().replaceAll('<br>', '\n')
 		);
 		const [code, source, runInRepl] = processRepl(rawCodeBlockText);
 
