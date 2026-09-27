@@ -12,21 +12,20 @@ Talvez você queira fazer conexão automática a `stores`/`reducers` dentro de u
 
 Em qualquer caso, apenas use a herança de classes do ES2015 para extender a class `Component` do Preact:
 
-
 ```js
 class BoundComponent extends Component {
-    // Exemplo: obter métodos vinculados
-    binds() {
-        let list = this.bind || [],
-            binds = this._binds;
-        if (!binds) {
-            binds = this._binds = {};
-            for (let i=list.length; i--; ) {
-                binds[list[i]] = this[list[i]].bind(this);
-            }
-        }
-        return binds;
-    }
+	// Exemplo: obter métodos vinculados
+	binds() {
+		let list = this.bind || [],
+			binds = this._binds;
+		if (!binds) {
+			binds = this._binds = {};
+			for (let i = list.length; i--;) {
+				binds[list[i]] = this[list[i]].bind(this);
+			}
+		}
+		return binds;
+	}
 }
 ```
 
@@ -34,31 +33,27 @@ Exemplo de uso:
 
 ```js
 class Link extends BoundComponent {
-    bind = ['click'];
-    click() {
-        open(this.props.href);
-    }
-    render({ children }) {
-        let { click } = this.binds();
-        return <span onClick={ click }>{ children }</span>;
-    }
+	bind = ['click'];
+	click() {
+		open(this.props.href);
+	}
+	render({ children }) {
+		let { click } = this.binds();
+		return <span onClick={click}>{children}</span>;
+	}
 }
 
-render(
-    <Link href="http://example.com">Click Me</Link>,
-    document.body
-);
+render(<Link href="http://example.com">Click Me</Link>, document.body);
 ```
 
 As possibilidades são sem fim. Aqui, uma class `Componente` que suporta _mixins_ rudimentares:
 
-
 ```js
 class MixedComponent extends Component {
-    constructor() {
-        super();
-        (this.mixins || []).forEach( m => Object.assign(this, m) );
-    }
+	constructor() {
+		super();
+		(this.mixins || []).forEach((m) => Object.assign(this, m));
+	}
 }
 ```
 

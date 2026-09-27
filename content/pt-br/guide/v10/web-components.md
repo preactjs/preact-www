@@ -21,7 +21,7 @@ Do ponto de vista do Preact, os componentes da web são apenas elementos DOM pad
 
 ```jsx
 function Foo() {
-  return <x-foo />;
+	return <x-foo />;
 }
 ```
 
@@ -31,15 +31,15 @@ Para poder acessar a instância do seu componente da web personalizado, podemos 
 
 ```jsx
 function Foo() {
-  const myRef = useRef(null);
+	const myRef = useRef(null);
 
-  useEffect(() => {
-    if (myRef.current) {
-      myRef.current.doSomething();
-    }
-  }, []);
+	useEffect(() => {
+		if (myRef.current) {
+			myRef.current.doSomething();
+		}
+	}, []);
 
-  return <x-foo ref={myRef} />;
+	return <x-foo ref={myRef} />;
 }
 ```
 

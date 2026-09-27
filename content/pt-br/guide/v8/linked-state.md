@@ -18,10 +18,10 @@ Uma solução é declarar métodos de componentes _bound_ usando propriedade de 
 
 ```js
 class Foo extends Component {
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={this.updateText} />;
 	}
 }
@@ -30,7 +30,6 @@ class Foo extends Component {
 Apesar de alcançar performance muito melhor em _runtime_, é ainda muito código desnecessário para conectar estado a UI.
 
 > Outra solução é vincular os métodos de componente _declarativamente_, utilizando decoradores ES7, como [`@bind` do decko](https://github.com/developit/decko):
-
 
 ## Estado Associado ao Resgate
 
@@ -44,7 +43,7 @@ Aqui está o exemplo anterior reescrito utilizando **Estado Associado**:
 
 ```js
 class Foo extends Component {
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={linkState(this, 'text')} />;
 	}
 }
@@ -56,25 +55,21 @@ Isso é conciso, fácil de compreender e efetivo. Manipula o estado associado pr
 
 Por padrão, `linkState()` irá tentar derivar o valor apropriado a partir de um evento automaticamente. Por exemplo, um elemento `<input>` irá definir o valor de uma propriedade para `event.target.value` ou `event.target.checked` dependendo do tipo do _input_. Para manipuladores de evento customizados, passar valores escalares para o manipulador gerado pelo `linkState()` irá simplesmente usar o valor escalar. Na maioria do tempo, esse comportamento é desejável.
 
-
 Contudo, há casos onde isso é indesejável - eventos customizados e botões _radio_ agrupados são dois exemplos de tal ocorrência. Nesses casos, um terceiro argumento pode ser passado para `linkState()` para especificar o caminho dentro do evento onde o valor pode ser encontrado.
 
-
 Para entender tal característica, pode ser útil entender como `linkState()` funciona por trás das cortinas. O exemplo a seguir ilustra um _event handler_ criado manualmente que persiste um valor, a partir de um objeto Evento, no estado. É funcionalmente equivalente a versão do `linkState()`, não incluindo no entanto a otimização de _memoização_ que torna o `linkState()` valioso.
-
 
 ```js
 // Esse handler retornado do linkState:
 handler = linkState(this, 'thing', 'foo.bar');
 
 // ...é funcionalmente equivalente a:
-handler = event => {
-  this.setState({
-    thing: event.foo.bar
-  });
-}
+handler = (event) => {
+	this.setState({
+		thing: event.foo.bar
+	});
+};
 ```
-
 
 ### Ilustração: Botões _Radio_ Agrupados
 
@@ -82,20 +77,26 @@ O seguinte código não funciona como esperado. Se o usuário clicar em "no", `n
 
 ```js
 class Foo extends Component {
-  render({ }, { yes, no }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={yes}
-          onChange={linkState(this, 'yes')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={no}
-          onChange={linkState(this, 'no')}
-        />
-      </div>
-    );
-  }
+	render({}, { yes, no }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={yes}
+					onChange={linkState(this, 'yes')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={no}
+					onChange={linkState(this, 'no')}
+				/>
+			</div>
+		);
+	}
 }
 ```
 
@@ -103,20 +104,27 @@ O terceiro argumento do `linkState` nos ajuda aqui. Ele te deixa prover um camin
 
 ```js
 class Foo extends Component {
-  render({ }, { answer }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={answer == 'yes'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={answer == 'no'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-      </div>
-    );
-  }
+	render({}, { answer }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={answer == 'yes'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={answer == 'no'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+			</div>
+		);
+	}
 }
 ```
+
 Agora o exemplo funciona como esperado!

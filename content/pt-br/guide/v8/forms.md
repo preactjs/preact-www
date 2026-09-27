@@ -26,7 +26,6 @@ Geralmente, você deve tentar usar Componentes _Controlados_ o tempo todo. Contu
 Checkboxes e radio buttons (`<input type="checkbox|radio">`) podem inicialmente causar confusão quando criando formulários controlados. Isto se deve a, num ambiente não controlado, tipicamente permitindo o navegador "alternar" ou "checar" um _checkbox_ ou um botão _radio_ para nós, esperando pela mudança e reagindo de acordo com o novo valor.
 Contudo, tal técnica não transita bem para a visão de mundo onde a UI é sempre atualizada automáticamente em resposta a mudanças de estado e de _props_.
 
-
 > **Guia:** Digamos que escutamos por uma mudança numa _checkbox_, que acontece quando a _checkbox_ é checada ou não pelo usuário. No nosso manipulador de evento da mudança, definimos um valor em `state` para o o novo valor recebido do checkbox. Tal ação irá engatilhar uma re-renderização do nosso componente, que irá re-designar o valor do _checkbox_ para o valor do estado. Isso é desnecessário, já que acabamos de pedir para o DOM por um valor e então pedimos que renderizar novamente com um valor qualquer que queríamos.
 
 Então, ao invés de esperarmos por um evento de `mudança` deveríamos esperar por um evento de `click`, que é disparado a qualquer momento que o usuário clica na _checkbox_ ou _em uma `<label>` associada_. _Checkboxes_ apenas alternam entre Booleanos `true` e `false`, então clicar na _checkbox_ ou na _label) irá somente inverter qualquer valor que tivermos no estado, disparando uma re-renderização, e definindo o valor mostrado da _checkbox_ para o qual desejamos.
@@ -35,19 +34,16 @@ Então, ao invés de esperarmos por um evento de `mudança` deveríamos esperar 
 
 ```js
 class MyForm extends Component {
-    toggle(e) {
-        let checked = !this.state.checked;
-        this.setState({ checked });
-    }
-    render({ }, { checked }) {
-        return (
-            <label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={::this.toggle} />
-            </label>
-        );
-    }
+	toggle(e) {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	}
+	render({}, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={::this.toggle} />
+			</label>
+		);
+	}
 }
 ```

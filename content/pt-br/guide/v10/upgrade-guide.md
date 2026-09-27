@@ -68,7 +68,7 @@ Devido à nossa maior compatibilidade com o ecossistema react, este pacote não 
 
 #### componentes estilizados
 
-O Preact 8.x funcionava apenas com `styled-components @ 3.x`. Com o Preact X, essa barreira não existe mais e trabalhamos com a versão mais recente do `styled-components`. Certifique-se de que você  [converteu react para preact](#setting-up-aliases) correctly. corretamente.
+O Preact 8.x funcionava apenas com `styled-components @ 3.x`. Com o Preact X, essa barreira não existe mais e trabalhamos com a versão mais recente do `styled-components`. Certifique-se de que você [converteu react para preact](#setting-up-aliases) correctly. corretamente.
 
 #### preact-portal
 
@@ -85,13 +85,13 @@ Para suportar melhor a trepidação de árvores, não enviamos mais uma exporta�
 
 ```js
 // Preact 8.x
-import Preact from "preact";
+import Preact from 'preact';
 
 // Preact X
-import * as preact from "preact";
+import * as preact from 'preact';
 
 // Preferencial: exportações nomeadas (funciona em 8.xe no Preact X)
-import { h, Component } from "preact";
+import { h, Component } from 'preact';
 ```
 
 _Nota: Esta alteração não afeta o `preact/compat`. Ele ainda tem uma exportação nomeada e padrão para permanecer compatível com o react._
@@ -115,18 +115,18 @@ No Preact X, não podemos garantir que `props.children 'sempre seja do tipo` arr
 ```jsx
 // Preact 8.x
 function Foo(props) {
-  // `.length` é um método de matriz. No Preact X, quando `props.children` não é um
-  // array, esta linha lançará uma exceção
-  const count = props.children.length;
-  return <div>Eu tenho {count} filhos </div>;
+	// `.length` é um método de matriz. No Preact X, quando `props.children` não é um
+	// array, esta linha lançará uma exceção
+	const count = props.children.length;
+	return <div>Eu tenho {count} filhos </div>;
 }
 
 // Preact X
-import { toChildArray } from "preact";
+import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>Eu tenho {count} filhos </div>;
+	const count = toChildArray(props.children).length;
+	return <div>Eu tenho {count} filhos </div>;
 }
 ```
 
@@ -141,9 +141,9 @@ this.state = { counter: 0 };
 this.setState({ counter: this.state.counter++ });
 
 // Preact X
-this.setState(prevState => {
-  // Como alternativa, retorne 'null` aqui para abortar a atualização do estado
-  return { counter: prevState.counter++ };
+this.setState((prevState) => {
+	// Como alternativa, retorne 'null` aqui para abortar a atualização do estado
+	return { counter: prevState.counter++ };
 });
 ```
 
@@ -155,8 +155,8 @@ Quando um `vnode` possui a propriedade `dangerouslySetInnerHTML` set, o Preact i
 
 ```jsx
 <div dangerouslySetInnerHTML="foo">
-  <span>Serei ignorado</span>
-  <p>So do I</p>
+	<span>Serei ignorado</span>
+	<p>So do I</p>
 </div>
 ```
 
@@ -180,13 +180,13 @@ No Preact 8.x, tínhamos esse recurso em que juntávamos nós de texto adjacente
 
 ```jsx
 // Preact 8.x
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // Registra uma estrutura como esta:
 //   div
 //     texto
 
 // Preact X
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // Registra uma estrutura como esta:
 //   div
 //     texto

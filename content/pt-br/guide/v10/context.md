@@ -23,23 +23,27 @@ Primeiro, precisamos criar um objeto de contexto que possamos transmitir. Isso �
 const Theme = createContext('light');
 
 function ThemedButton(props) {
-  return (
-    <Theme.Consumer>
-      {theme => {
-        return <button {...props} class={'btn ' + theme}>Botão temático</button>;
-      }}
-    </Theme.Consumer>
-  );
+	return (
+		<Theme.Consumer>
+			{(theme) => {
+				return (
+					<button {...props} class={'btn ' + theme}>
+						Botão temático
+					</button>
+				);
+			}}
+		</Theme.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</Theme.Provider>
+	);
 }
 ```
 

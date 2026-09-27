@@ -40,11 +40,15 @@ Por conveniência, passamos `this.props` e `this.state` de um componente de clas
 ```jsx
 //  Funciona em ambos Preact e React
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
-  }
+	render() {
+		return (
+			<div>
+				Name: {this.props.name}, Age: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -53,11 +57,15 @@ No Preact, isto também pode ser escrito assim:
 ```jsx
 // Funciona apenas no Preact
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return <div>Name: {name}, Age: {age}</div>;
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Name: {name}, Age: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -97,17 +105,13 @@ Se você estiver usando [preact/compat], configuraremos esse alias para `onChang
 Essa ideia foi originalmente chamada [hiperscript] e tem valor muito além do ecossistema React, portanto o Preact promove o padrão original. ([Leia: por que `h ()`?](http://jasonformat.com/wtf-is-jsx)). Se você está olhando para a saída transpilada, é um pouco mais fácil de ler do que `React.createElement`.
 
 ```js
-h(
-  'a',
-  { href:'/' },
-  h('span', null, 'Home')
-);
+h('a', { href: '/' }, h('span', null, 'Home'));
 
 // vs
 React.createElement(
-  'a',
-  { href:'/' },
-  React.createElement('span', null, 'Home')
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Home')
 );
 ```
 

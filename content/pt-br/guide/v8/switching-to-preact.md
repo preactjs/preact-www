@@ -20,8 +20,8 @@ Há duas abordagens diferentes para mudar do React pro Preact:
 A mudança pra Preact pode ser tão fácil quanto instalar e criar o _alias_ `preact-compat` para `react` e `react-dom`.
 Isso te permite continuar escrevendo código React/ReactDOM sem mudanças ao seu _workflow_ ou _codebase_.
 `preact-compat` adiciona algo em torno de 2kb ao tamanho do seu _bundle_, mas tem a vantagem de suportar a vasta maioria
- dos módulos React existentes que você possa encontrar no npm. O pacote `preact-compat` provê todos os _tweaks_ necessários
- sobre o _core_ do Preact para fazê-lo funcionar do mesmo modo do `react` e `react-dom`, em um único módulo.
+dos módulos React existentes que você possa encontrar no npm. O pacote `preact-compat` provê todos os _tweaks_ necessários
+sobre o _core_ do Preact para fazê-lo funcionar do mesmo modo do `react` e `react-dom`, em um único módulo.
 
 O processo pra instalação é de apenas dois passos.
 Primeiro, você precisa instalar `preact` e `preact-compat` (eles são pacotes separados):
@@ -31,7 +31,6 @@ npm i -S preact preact-compat
 ```
 
 Com tais dependências instaladas, configure seu sistema de _build_ para apontar imports de React para Preact.
-
 
 ### Como fazer o Alias do preact-compat
 
@@ -44,12 +43,12 @@ Simplesmente adicione o seguinte [resolve.alias](https://webpack.github.io/docs/
 
 ```json
 {
-  "resolve": {
-    "alias": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"resolve": {
+		"alias": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -57,17 +56,17 @@ Simplesmente adicione o seguinte [resolve.alias](https://webpack.github.io/docs/
 
 Se você está usando Browserify, _aliases_ podem ser definidos adicionando o transform [aliasify](https://www.npmjs.com/package/aliasify).
 
-Primeiro, instale o transform:  `npm i -D aliasify`
+Primeiro, instale o transform: `npm i -D aliasify`
 Então, em seu `package.json`, diga ao aliasify para redirectiona imports React para preact-compat:
 
 ```json
 {
-  "aliasify": {
-    "aliases": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"aliasify": {
+		"aliases": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -76,7 +75,7 @@ Então, em seu `package.json`, diga ao aliasify para redirectiona imports React 
 Se você não está utilizando um sistema de build ou quer permanentemente trocar para `preact-compat`,
 você pode também utilizar _find & replace_ para substituir os _imports/requires_ na sua _codebase_ como um alias faz:
 
-> **find:**    `(['"])react(-dom)?\1`
+> **find:** `(['"])react(-dom)?\1`
 >
 > **replace:** `$1preact-compat$1`
 
@@ -89,7 +88,6 @@ Falaremos dessa abordagem na próxima seção.
 
 É provável que você esteja querendo utilizar preact-compat, para conseguir usar módulos de React da comunidade. Se este é o caso, lembre-se de configurar o transform do [Aliasify](https://www.npmjs.com/package/aliasify) como `global` (`--global-transform`). Essa é uma configuração do [Browserify](https://github.com/browserify/browserify).
 
-
 ### Build & Teste
 
 **Pronto!**
@@ -97,7 +95,6 @@ Agora quando você rodar sua _build_, todos os seus _imports_ React estarão ao 
 É sempre uma boa ideia rodar os seus testes e, claro, carregar sua aplicação para checar seu funcionamento.
 
 ---
-
 
 ## Ótima: Mudar para o Preact
 
@@ -136,16 +133,14 @@ Em JSX, o "pragma" é o nome da função que administra a criação de cada elem
 Em cada exemplo acima, `h` é o nome da funçãp que declaramos como o JSX Pragma.
 
 #### Via Babel
+
 Se você está usando Babel, você pode definir o JSX Pragma o seu `.babelrc` ou `package.json` (qual você preferir):
 
 ```json
 {
-  "plugins": [
-    ["transform-react-jsx", { "pragma": "h" }]
-  ]
+	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 }
 ```
-
 
 #### Via Commentários
 
@@ -154,13 +149,11 @@ vocÊ pode definir o JSX Pragma através de um comentário perto do topo do seu 
 
 `/** @jsx h */`
 
-
 #### Via Bublé
 
 [Bublé] tem suporte a JSX por padrão. Apenas defina a opção `jsx`:
 
 `buble({ jsx: 'h' })`
-
 
 ### 3. Atualize qualquer código legado
 
@@ -180,6 +173,7 @@ oferece uma versão a-prova-de-futuro que ainda popula `this.refs.$$` como Strin
 A simplicidade desse pequeno wrapper em torno das _Function Refs_ também auxilia ilustrar o porque _Function Refs_ são a maneira recomendada daqui em diante.
 
 ### 4. Simplifique o Render raiz
+
 Desde o React 0.13, `render()` é provido pelo módulo `react-dom`
 Preact não usa módulos separados pra renderização de DOM, já que é focado somente em ser um bom renderizador DOM.
 Então, o último passo pra converter sua codebase para Preact é trocar `ReactDOM.render()` para o `render()` do Preact:
@@ -212,15 +206,15 @@ O exemplo a seguir mostra como re-renderizar em resposta as atualizações do Ho
 let root;
 
 function init() {
-  root = render(<App />, document.body, root);
+	root = render(<App />, document.body, root);
 }
 init();
 
 // examplo: Re-renderizar a partir do Webpack HMR update:
 if (module.hot) module.hot.accept('./app', init);
 ```
-A técnica completa pode ser vista em [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
 
+A técnica completa pode ser vista em [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
 
 [babel]: https://babeljs.io
 [bublé]: https://buble.surge.sh
