@@ -82,9 +82,13 @@ export function useDescription(text) {
 		globalThis.description = text;
 	}
 	useEffect(() => {
-		const el = document.querySelector('meta[name=description]');
-		if (text && el) {
-			el.setAttribute('content', text);
+		if (!text) return;
+		let el = document.querySelector('meta[name=description]');
+		if (!el) {
+			el = document.createElement('meta');
+			el.setAttribute('name', 'description');
+			document.head.appendChild(el);
 		}
+		el.setAttribute('content', text);
 	}, [text]);
 }
