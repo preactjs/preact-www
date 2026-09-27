@@ -55,15 +55,10 @@ utilize import maps, but a basic example looks like the following:
 			import { html } from 'htm/preact';
 
 			export function App() {
-				return html`
-					<h1>Hello, World!</h1>
-				`;
+				return html`<h1>Hello, World!</h1>`;
 			}
 
-			render(
-				html`<${App} />`,
-				document.getElementById('app')
-			);
+			render(html`<${App} />`, document.getElementById('app'));
 		</script>
 	</body>
 </html>
@@ -140,9 +135,7 @@ import { useState } from 'preact/hooks';
 import { html } from 'htm/preact';
 
 function Button({ action, children }) {
-	return html`
-		<button onClick=${action}>${children}</button>
-	`;
+	return html`<button onClick=${action}>${children}</button>`;
 }
 
 function Counter() {
@@ -157,8 +150,5 @@ function Counter() {
 	`;
 }
 
-render(
-	html`<${Counter} />`,
-	document.getElementById('app')
-);
+render(html`<${Counter} />`, document.getElementById('app'));
 ```

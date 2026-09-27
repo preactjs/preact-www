@@ -205,9 +205,9 @@ See the [References documentation](/guide/v11/refs#createref) for more details.
 import { createRef, Component } from 'preact';
 
 class MyComponent extends Component {
-    inputRef = createRef(null);
+	inputRef = createRef(null);
 
-    // ...
+	// ...
 }
 ```
 
@@ -308,14 +308,8 @@ Iterates over children and returns a new array, same as [`Array.prototype.map`](
 
 ```jsx
 function List(props) {
-	const children = Children.map(props.children, child => (
-		<li>{child}</li>
-	));
-	return (
-		<ul>
-			{children}
-		</ul>
-	);
+	const children = Children.map(props.children, (child) => <li>{child}</li>);
+	return <ul>{children}</ul>;
 }
 ```
 
@@ -330,14 +324,8 @@ Iterates over children but does not return a new array, same as [`Array.prototyp
 ```jsx
 function List(props) {
 	const children = [];
-	Children.forEach(props.children, child =>
-		children.push(<li>{child}</li>)
-	);
-	return (
-		<ul>
-			{children}
-		</ul>
-	);
+	Children.forEach(props.children, (child) => children.push(<li>{child}</li>));
+	return <ul>{children}</ul>;
 }
 ```
 
@@ -367,11 +355,7 @@ Throws if the number of children is not exactly one. Otherwise, returns the only
 ```jsx
 function List(props) {
 	const singleChild = Children.only(props.children);
-	return (
-		<ul>
-			{singleChild}
-		</ul>
-	);
+	return <ul>{singleChild}</ul>;
 }
 ```
 
@@ -470,10 +454,10 @@ Offered strictly for compatibility, `<StrictMode>` is simply an alias of [`Fragm
 import { StrictMode } from 'preact/compat';
 
 render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
-    document.getElementById('root')
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	document.getElementById('root')
 );
 ```
 
@@ -487,11 +471,11 @@ A component that can be used to "wait" for some asynchronous operation to comple
 import { Suspense } from 'preact/compat';
 
 function MyComponent() {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <MyLazyComponent />
-        </Suspense>
-    );
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<MyLazyComponent />
+		</Suspense>
+	);
 }
 ```
 
@@ -537,7 +521,6 @@ expect(console.error).toHaveBeenCalledOnce();
 resetPropWarnings();
 
 //...
-
 ```
 
 ### getCurrentVNode
@@ -554,7 +537,7 @@ function MyComponent() {
 	const currentVNode = getCurrentVNode();
 	console.log(currentVNode); // Logs: Object { type: MyComponent(), props: {}, key: undefined, ref: undefined, ... }
 
-	return <h1>Hello World!</h1>
+	return <h1>Hello World!</h1>;
 }
 
 render(<MyComponent />, document.getElementById('app'));
@@ -622,7 +605,7 @@ function MyComponent() {
 	// in MyComponent
 	// in App (at /path/to/file.jsx:15)
 
-	return <h1>Hello World!</h1>
+	return <h1>Hello World!</h1>;
 }
 
 function App() {

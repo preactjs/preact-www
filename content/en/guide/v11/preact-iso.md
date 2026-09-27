@@ -202,9 +202,9 @@ function App() {
 	return (
 		<LocationProvider>
 			<Router
-				onRouteChange={url => console.log('Route changed to', url)}
-				onLoadStart={url => console.log('Starting to load', url)}
-				onLoadEnd={url => console.log('Finished loading', url)}
+				onRouteChange={(url) => console.log('Route changed to', url)}
+				onLoadStart={(url) => console.log('Starting to load', url)}
+				onLoadEnd={(url) => console.log('Finished loading', url)}
 			>
 				<Home path="/" />
 				<Profiles path="/profiles" />
@@ -315,7 +315,7 @@ import Home from './routes/home.js';
 
 // Asynchronous, code-splitted:
 const Profiles = lazy(() =>
-	import('./routes/profiles.js').then(m => m.Profiles)
+	import('./routes/profiles.js').then((m) => m.Profiles)
 ); // Expects a named export called `Profiles`
 const Profile = lazy(() => import('./routes/profile.js')); // Expects a default export
 
@@ -360,7 +360,7 @@ import { LocationProvider, ErrorBoundary, Router } from 'preact-iso';
 function App() {
 	return (
 		<LocationProvider>
-			<ErrorBoundary onError={e => console.log(e)}>
+			<ErrorBoundary onError={(e) => console.log(e)}>
 				<Router>
 					<Home path="/" />
 					<Profiles path="/profiles" />

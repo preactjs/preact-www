@@ -35,7 +35,7 @@ class Counter extends Component {
 	};
 
 	increment = () => {
-		this.setState(prev => ({ value: prev.value + 1 }));
+		this.setState((prev) => ({ value: prev.value + 1 }));
 	};
 
 	render(props, state) {
@@ -180,7 +180,7 @@ const Counter = () => {
 	const [count, setCount] = useState(0);
 	const increment = () => setCount(count + 1);
 	// You can also pass a callback to the setter
-	const decrement = () => setCount(currentCount => currentCount - 1);
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
 	return (
 		<div>
@@ -308,18 +308,14 @@ import { useRef, useImperativeHandle, useState } from 'preact/hooks';
 // --repl-before
 function MyInput({ inputRef }) {
 	const ref = useRef(null);
-	useImperativeHandle(
-		inputRef,
-		() => {
-			return {
-				// Only expose `.focus()`, don't give direct access to the DOM node
-				focus() {
-					ref.current.focus();
-				}
-			};
-		},
-		[]
-	);
+	useImperativeHandle(inputRef, () => {
+		return {
+			// Only expose `.focus()`, don't give direct access to the DOM node
+			focus() {
+				ref.current.focus();
+			}
+		};
+	}, []);
 
 	return (
 		<label>
@@ -355,7 +351,7 @@ To access context in a functional component we can use the `useContext` hook, wi
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const OtherComponent = props => props.children;
+const OtherComponent = (props) => props.children;
 // --repl-before
 const Theme = createContext('light');
 
@@ -477,14 +473,14 @@ const [error, resetError] = useErrorBoundary();
 For monitoring purposes it's often incredibly useful to notify a service of any errors. For that we can leverage an optional callback and pass that as the first argument to `useErrorBoundary`.
 
 ```jsx
-const [error] = useErrorBoundary(error => callMyApi(error.message));
+const [error] = useErrorBoundary((error) => callMyApi(error.message));
 ```
 
 A full usage example may look like this:
 
 ```jsx
-const App = props => {
-	const [error, resetError] = useErrorBoundary(error =>
+const App = (props) => {
+	const [error, resetError] = useErrorBoundary((error) =>
 		callMyApi(error.message)
 	);
 
@@ -559,7 +555,7 @@ import { useDebugValue, useState } from 'preact/hooks';
 
 function useCount() {
 	const [count, setCount] = useState(0);
-	useDebugValue(count, c => `Count: ${c}`);
+	useDebugValue(count, (c) => `Count: ${c}`);
 	return [count, setCount];
 }
 ```
@@ -581,7 +577,11 @@ function subscribe(cb) {
 }
 
 function App() {
-	const scrollY = useSyncExternalStore(subscribe, () => window.scrollY, () => 0);
+	const scrollY = useSyncExternalStore(
+		subscribe,
+		() => window.scrollY,
+		() => 0
+	);
 }
 ```
 
@@ -636,6 +636,7 @@ function App() {
 Allows you to read the value of a promise, suspending while the promise pends, or read a context. Notably, `use` is the only hook that can be called conditionally.
 
 > Context
+
 ```jsx
 import { createContext } from 'preact';
 import { use } from 'preact/compat';
@@ -649,21 +650,22 @@ function DisplayTheme() {
 ```
 
 > Promises
+
 ```jsx
 import { Suspense, use } from 'preact/compat';
 
-const promise = new Promise(r => setTimeout(() => r('Hello World!'), 5000));
+const promise = new Promise((r) => setTimeout(() => r('Hello World!'), 5000));
 
 function Message() {
-    return <span>Message: {use(promise)}</span>
+	return <span>Message: {use(promise)}</span>;
 }
 
 export function App() {
 	return (
 		<div>
-            <Suspense fallback={<span>Loading...</span>}>
-                <Message />
-            </Suspense>
+			<Suspense fallback={<span>Loading...</span>}>
+				<Message />
+			</Suspense>
 		</div>
 	);
 }

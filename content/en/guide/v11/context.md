@@ -63,7 +63,7 @@ There are three ways to consume a context, largely dependent on your preferred c
 // --repl
 import { render, createContext, Component } from 'preact';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
@@ -94,7 +94,7 @@ render(<App />, document.getElementById('app'));
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
@@ -120,14 +120,14 @@ render(<App />, document.getElementById('app'));
 // --repl
 import { render, createContext } from 'preact';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
 	return (
 		<ThemePrimary.Consumer>
-			{theme => <button style={{ background: theme }}>Themed Button</button>}
+			{(theme) => <button style={{ background: theme }}>Themed Button</button>}
 		</ThemePrimary.Consumer>
 	);
 }
@@ -156,7 +156,7 @@ Static values can be useful, but more often than not, we want to be able to upda
 import { render, createContext } from 'preact';
 import { useContext, useState } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext(null);
 
@@ -171,7 +171,7 @@ function ThemePicker() {
 		<input
 			type="color"
 			value={theme}
-			onChange={e => setTheme(e.currentTarget.value)}
+			onChange={(e) => setTheme(e.currentTarget.value)}
 		/>
 	);
 }
@@ -204,7 +204,7 @@ To pass down a value through the context, a component needs to have the `getChil
 // --repl
 import { render } from 'preact';
 
-const SomeOtherComponent = props => props.children;
+const SomeOtherComponent = (props) => props.children;
 // --repl-before
 function ThemedButton(_props, context) {
 	return <button style={{ background: context.theme }}>Themed Button</button>;

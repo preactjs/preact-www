@@ -48,15 +48,10 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 	const html = htm.bind(h);
 
 	function App(props) {
-		return html`
-			<h1>Hello ${props.name}!</h1>
-		`;
+		return html`<h1>Hello ${props.name}!</h1>`;
 	}
 
-	render(
-		html`<${App} name="World" />`,
-		document.body
-	);
+	render(html`<${App} name="World" />`, document.body);
 </script>
 ```
 
