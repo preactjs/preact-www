@@ -11,7 +11,7 @@ solvable: true
 
 ```js
 function clicked() {
-  console.log('clicked');
+	console.log('clicked');
 }
 const myButton = document.getElementById('my-button');
 myButton.addEventListener('click', clicked);

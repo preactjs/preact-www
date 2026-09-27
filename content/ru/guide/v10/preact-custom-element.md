@@ -60,15 +60,15 @@ import register from 'preact-custom-element';
 
 // <x-greeting name="Павлик"></x-greeting>
 class Greeting extends Component {
-  // Регистрируем как <x-greeting>:
-  static tagName = 'x-greeting';
+	// Регистрируем как <x-greeting>:
+	static tagName = 'x-greeting';
 
-  // Отслеживаем эти атрибуты:
-  static observedAttributes = ['name'];
+	// Отслеживаем эти атрибуты:
+	static observedAttributes = ['name'];
 
-  render({ name }) {
-    return <p>Привет, {name}!</p>;
-  }
+	render({ name }) {
+		return <p>Привет, {name}!</p>;
+	}
 }
 register(Greeting);
 ```
@@ -78,16 +78,16 @@ register(Greeting);
 ```jsx
 // Другой вариант: используем PropTypes:
 function FullName({ first, last }) {
-  return (
-    <span>
-      {first} {last}
-    </span>
-  );
+	return (
+		<span>
+			{first} {last}
+		</span>
+	);
 }
 
 FullName.propTypes = {
-  first: Object, // использование PropTypes или
-  last: Object, // трюк для определения нетипизированных параметров
+	first: Object, // использование PropTypes или
+	last: Object // трюк для определения нетипизированных параметров
 };
 
 register(FullName, 'full-name');
@@ -99,12 +99,12 @@ register(FullName, 'full-name');
 
 ```jsx
 function TextSection({ heading, content }) {
-  return (
-    <div>
-      <h1>{heading}</h1>
-      <p>{content}</p>
-    </div>
-  );
+	return (
+		<div>
+			<h1>{heading}</h1>
+			<p>{content}</p>
+		</div>
+	);
 }
 
 register(TextSection, 'text-section', [], { shadow: true });
@@ -114,7 +114,7 @@ register(TextSection, 'text-section', [], { shadow: true });
 
 ```html
 <text-section>
-  <span slot="heading">Хороший заголовок</span>
-  <span slot="content">Отличный контент</span>
+	<span slot="heading">Хороший заголовок</span>
+	<span slot="content">Отличный контент</span>
 </text-section>
 ```

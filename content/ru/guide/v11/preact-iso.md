@@ -211,7 +211,7 @@ function App() {
 				<Profile path="/profile/:id" />
 			</Router>
 		</LocationProvider>
-	)
+	);
 }
 ```
 
@@ -244,7 +244,7 @@ function App() {
 				<NotFound default />
 			</Router>
 		</LocationProvider>
-	)
+	);
 }
 ```
 
@@ -315,7 +315,7 @@ import Home from './routes/home.js';
 
 // Асинхронный, с разделением кода:
 const Profiles = lazy(() =>
-	import('./routes/profiles.js').then(m => m.Profiles)
+	import('./routes/profiles.js').then((m) => m.Profiles)
 ); // Ожидает именованный экспорт с именем `Profiles`
 const Profile = lazy(() => import('./routes/profile.js')); // Ожидает экспорт по умолчанию
 
@@ -340,7 +340,8 @@ const Profile = lazy(() => import('./routes/profile.js'));
 function Home() {
 	return (
 		<a href="/profile/rschristian" onMouseOver={() => Profile.preload()}>
-			Страница профиля - наведите курсор на меня, чтобы предварительно загрузить модуль!
+			Страница профиля - наведите курсор на меня, чтобы предварительно загрузить
+			модуль!
 		</a>
 	);
 }
@@ -360,7 +361,7 @@ import { LocationProvider, ErrorBoundary, Router } from 'preact-iso';
 function App() {
 	return (
 		<LocationProvider>
-			<ErrorBoundary onError={e => console.log(e)}>
+			<ErrorBoundary onError={(e) => console.log(e)}>
 				<Router>
 					<Home path="/" />
 					<Profiles path="/profiles" />

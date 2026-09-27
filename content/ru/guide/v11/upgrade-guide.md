@@ -99,7 +99,7 @@ function App() {
 import { createPortal } from 'preact';
 
 function Modal({ children }) {
-  return createPortal(children, document.body);
+	return createPortal(children, document.body);
 }
 ```
 
@@ -141,13 +141,13 @@ import { options } from 'preact';
 
 const oldVNode = options.vnode;
 options.vnode = (vnode) => {
-    if (vnode.props.ref) {
-        vnode.ref = vnode.props.ref;
-        delete vnode.props.ref;
-    }
+	if (vnode.props.ref) {
+		vnode.ref = vnode.props.ref;
+		delete vnode.props.ref;
+	}
 
 	if (oldVNode) oldVNode(vnode);
-}
+};
 ```
 
 ### Перемещение автоматического суффикса `px` для свойств стилей в `preact/compat`

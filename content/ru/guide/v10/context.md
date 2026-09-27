@@ -24,10 +24,10 @@ description: Контекст позволяет передавать парам
 Чтобы создать новый контекст, мы используем функцию `createContext`. Эта функция принимает начальное состояние в качестве аргумента и возвращает объект с двумя свойствами компонентов: `Provider`, чтобы сделать контекст доступным для потомков, и `Consumer`, чтобы получить доступ к значению контекста (в основном в классовых компонентах).
 
 ```jsx
-import { createContext } from "preact";
+import { createContext } from 'preact';
 
-export const Theme = createContext("light");
-export const User = createContext({ name: "Guest" });
+export const Theme = createContext('light');
+export const User = createContext({ name: 'Guest' });
 export const Locale = createContext(null);
 ```
 
@@ -63,7 +63,7 @@ function App() {
 // --repl
 import { render, createContext, Component } from 'preact';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
@@ -94,7 +94,7 @@ render(<App />, document.getElementById('app'));
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
@@ -120,14 +120,16 @@ render(<App />, document.getElementById('app'));
 // --repl
 import { render, createContext } from 'preact';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
 	return (
 		<ThemePrimary.Consumer>
-			{theme => <button style={{ background: theme }}>Стилизованная кнопка</button>}
+			{(theme) => (
+				<button style={{ background: theme }}>Стилизованная кнопка</button>
+			)}
 		</ThemePrimary.Consumer>
 	);
 }
@@ -156,7 +158,7 @@ render(<App />, document.getElementById('app'));
 import { render, createContext } from 'preact';
 import { useContext, useState } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext(null);
 
@@ -171,7 +173,7 @@ function ThemePicker() {
 		<input
 			type="color"
 			value={theme}
-			onChange={e => setTheme(e.currentTarget.value)}
+			onChange={(e) => setTheme(e.currentTarget.value)}
 		/>
 	);
 }
@@ -204,10 +206,12 @@ render(<App />, document.getElementById('app'));
 // --repl
 import { render } from 'preact';
 
-const SomeOtherComponent = props => props.children;
+const SomeOtherComponent = (props) => props.children;
 // --repl-before
 function ThemedButton(_props, context) {
-	return <button style={{ background: context.theme }}>Стилизованная кнопка</button>;
+	return (
+		<button style={{ background: context.theme }}>Стилизованная кнопка</button>
+	);
 }
 
 class App extends Component {

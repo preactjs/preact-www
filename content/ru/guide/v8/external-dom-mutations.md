@@ -4,11 +4,9 @@ title: Внешние мутации DOM
 
 # Внешние мутации DOM
 
-
 ## Обзор
 
-Иногда возникает необходимость работать со сторонними библиотеками, которые ожидают, что смогут свободно изменять DOM, сохранять состояние внутри него или вообще не имеют границ компонентов.  Существует множество отличных наборов инструментов пользовательского интерфейса или многократно используемых элементов, которые работают именно таким образом. В Preact (и аналогично в React) работа с такими библиотеками требует, чтобы вы сообщили алгоритму рендеринга/дифференцирования Virtual DOM, что он не должен пытаться _отменять_ любые внешние мутации DOM, выполняемые в рамках данного компонента (или элемента DOM, который он представляет).
-
+Иногда возникает необходимость работать со сторонними библиотеками, которые ожидают, что смогут свободно изменять DOM, сохранять состояние внутри него или вообще не имеют границ компонентов. Существует множество отличных наборов инструментов пользовательского интерфейса или многократно используемых элементов, которые работают именно таким образом. В Preact (и аналогично в React) работа с такими библиотеками требует, чтобы вы сообщили алгоритму рендеринга/дифференцирования Virtual DOM, что он не должен пытаться _отменять_ любые внешние мутации DOM, выполняемые в рамках данного компонента (или элемента DOM, который он представляет).
 
 ## Техника
 
@@ -16,9 +14,9 @@ title: Внешние мутации DOM
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+	shouldComponentUpdate() {
+		return false;
+	}
 }
 ```
 
@@ -26,7 +24,7 @@ class Block extends Component {
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate = () => false;
+	shouldComponentUpdate = () => false;
 }
 ```
 
@@ -40,28 +38,28 @@ class Block extends Component {
 
 ```js
 class Example extends Component {
-  shouldComponentUpdate() {
-    // не пересчитывать через diff:
-    return false;
-  }
+	shouldComponentUpdate() {
+		// не пересчитывать через diff:
+		return false;
+	}
 
-  componentWillReceiveProps(nextProps) {
-    // здесь можно что-то сделать с входящими параметрами, если нужно
-  }
+	componentWillReceiveProps(nextProps) {
+		// здесь можно что-то сделать с входящими параметрами, если нужно
+	}
 
-  componentDidMount() {
-    // компонент смонтирован, можно свободно модифицировать DOM:
-    let thing = document.createElement('maybe-a-custom-element');
-    this.base.appendChild(thing);
-  }
+	componentDidMount() {
+		// компонент смонтирован, можно свободно модифицировать DOM:
+		let thing = document.createElement('maybe-a-custom-element');
+		this.base.appendChild(thing);
+	}
 
-  componentWillUnmount() {
-    // компонент будет удален из DOM, выполняем все необходимые действия по очистке
-  }
+	componentWillUnmount() {
+		// компонент будет удален из DOM, выполняем все необходимые действия по очистке
+	}
 
-  render() {
-    return <div class="example" />;
-  }
+	render() {
+		return <div class="example" />;
+	}
 }
 ```
 

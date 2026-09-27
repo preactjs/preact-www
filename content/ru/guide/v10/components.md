@@ -25,11 +25,11 @@ import { render } from 'preact';
 
 // --repl-before
 function MyComponent(props) {
-  return <div>Меня зовут {props.name}.</div>;
+	return <div>Меня зовут {props.name}.</div>;
 }
 
 // Использование
-const App = <MyComponent name='Вася' />;
+const App = <MyComponent name="Вася" />;
 
 // Вывод: <div>Меня зовут Вася.</div>
 render(App, document.body);
@@ -49,29 +49,29 @@ import { Component, render } from 'preact';
 
 // --repl-before
 class Clock extends Component {
-  constructor() {
-    super();
-    this.state = { time: Date.now() };
-  }
+	constructor() {
+		super();
+		this.state = { time: Date.now() };
+	}
 
-  // Жизненный цикл: Вызывается каждый раз, когда создается наш компонент
-  componentDidMount() {
-    // время обновления каждую секунду
-    this.timer = setInterval(() => {
-      this.setState({ time: Date.now() });
-    }, 1000);
-  }
+	// Жизненный цикл: Вызывается каждый раз, когда создается наш компонент
+	componentDidMount() {
+		// время обновления каждую секунду
+		this.timer = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	}
 
-  // Жизненный цикл: Вызывается непосредственно перед тем, как наш компонент будет уничтожен
-  componentWillUnmount() {
-    // остановка при отсутствии возможности рендеринга
-    clearInterval(this.timer);
-  }
+	// Жизненный цикл: Вызывается непосредственно перед тем, как наш компонент будет уничтожен
+	componentWillUnmount() {
+		// остановка при отсутствии возможности рендеринга
+		clearInterval(this.timer);
+	}
 
-  render() {
-    let time = new Date(this.state.time).toLocaleTimeString();
-    return <span>{time}</span>;
-  }
+	render() {
+		let time = new Date(this.state.time).toLocaleTimeString();
+		return <span>{time}</span>;
+	}
 }
 // --repl-after
 render(<Clock />, document.getElementById('app'));
@@ -81,17 +81,17 @@ render(<Clock />, document.getElementById('app'));
 
 Для того чтобы время на часах обновлялось каждую секунду, нам необходимо знать, когда `<Clock>` будет подключен к DOM. _Если вы использовали HTML5 Custom Elements, то это похоже на методы жизненного цикла `attachedCallback` и `detachedCallback`._ Preact вызывает следующие методы жизненного цикла, если они определены для компонента:
 
-| Метод жизненного цикла                               | Когда его вызывают                                                                                       |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `componentWillMount()`                               | до того, как компонент будет смонтирован в DOM _(устарел)_                                               |
-| `componentDidMount()`                                | после того, как компонент будет смонтирован в DOM                                                        |
-| `componentWillUnmount()`                             | до удаления из DOM                                                                                       |
-| `componentWillReceiveProps(nextProps, nextState)`    | до того, как будут приняты новые реквизиты _(устарел)_                                                   |
-| `getDerivedStateFromProps(nextProps)`                | непосредственно перед `shouldComponentUpdate`. Используйте с осторожностью.                              |
-| `shouldComponentUpdate(nextProps, nextState)`        | перед `render()`. Верните false, чтобы пропустить рендеринг                                              |
-| `componentWillUpdate(nextProps, nextState)`          | bперед `render()` _(устарел)_                                                                            |
+| Метод жизненного цикла                               | Когда его вызывают                                                                                                                           |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `componentWillMount()`                               | до того, как компонент будет смонтирован в DOM _(устарел)_                                                                                   |
+| `componentDidMount()`                                | после того, как компонент будет смонтирован в DOM                                                                                            |
+| `componentWillUnmount()`                             | до удаления из DOM                                                                                                                           |
+| `componentWillReceiveProps(nextProps, nextState)`    | до того, как будут приняты новые реквизиты _(устарел)_                                                                                       |
+| `getDerivedStateFromProps(nextProps)`                | непосредственно перед `shouldComponentUpdate`. Используйте с осторожностью.                                                                  |
+| `shouldComponentUpdate(nextProps, nextState)`        | перед `render()`. Верните false, чтобы пропустить рендеринг                                                                                  |
+| `componentWillUpdate(nextProps, nextState)`          | bперед `render()` _(устарел)_                                                                                                                |
 | `getSnapshotBeforeUpdate(prevProps, prevState)`      | вызывается сразу после `render()`, но до того, как изменения будут применены к DOM. Возвращаемое значение передаётся в `componentDidUpdate`. |
-| `componentDidUpdate(prevProps, prevState, snapshot)` | после `render()`                                                                                         |
+| `componentDidUpdate(prevProps, prevState, snapshot)` | после `render()`                                                                                                                             |
 
 Вот наглядный обзор того, как они соотносятся друг с другом (первоначально опубликован в [твите](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) Дэном Абрамовым):
 
@@ -108,25 +108,25 @@ render(<Clock />, document.getElementById('app'));
 import { Component, render } from 'preact';
 // --repl-before
 class ErrorBoundary extends Component {
-  constructor() {
-    super();
-    this.state = { errored: false };
-  }
+	constructor() {
+		super();
+		this.state = { errored: false };
+	}
 
-  static getDerivedStateFromError(error) {
-    return { errored: true };
-  }
+	static getDerivedStateFromError(error) {
+		return { errored: true };
+	}
 
-  componentDidCatch(error, errorInfo) {
-    errorReportingService(error, errorInfo);
-  }
+	componentDidCatch(error, errorInfo) {
+		errorReportingService(error, errorInfo);
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Что-то пошло не так</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Что-то пошло не так</p>;
+		}
+		return props.children;
+	}
 }
 // --repl-after
 render(<ErrorBoundary />, document.getElementById('app'));
@@ -141,20 +141,20 @@ render(<ErrorBoundary />, document.getElementById('app'));
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
-  return (
-    <Fragment>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+		</Fragment>
+	);
 }
 
 const App = (
-  <ul>
-    <TodoItems />
-    <li>D</li>
-  </ul>
+	<ul>
+		<TodoItems />
+		<li>D</li>
+	</ul>
 );
 
 render(App, container);
@@ -180,7 +180,7 @@ const Bar = <>foo</>;
 
 ```jsx
 function Columns() {
-  return [<td>Привет</td>, <td>мир</td>];
+	return [<td>Привет</td>, <td>мир</td>];
 }
 ```
 
@@ -188,17 +188,17 @@ function Columns() {
 
 ```jsx
 function Glossary(props) {
-  return (
-    <dl>
-      {props.items.map((item) => (
-        // Без ключа при повторном рендеринге Preact приходится угадывать, какие элементы изменились
-        <Fragment key={item.id}>
-          <dt>{item.term}</dt>
-          <dd>{item.description}</dd>
-        </Fragment>
-      ))}
-    </dl>
-  );
+	return (
+		<dl>
+			{props.items.map((item) => (
+				// Без ключа при повторном рендеринге Preact приходится угадывать, какие элементы изменились
+				<Fragment key={item.id}>
+					<dt>{item.term}</dt>
+					<dd>{item.description}</dd>
+				</Fragment>
+			))}
+		</dl>
+	);
 }
 ```
 

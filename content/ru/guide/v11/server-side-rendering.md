@@ -34,7 +34,7 @@ npm install -S preact-render-to-string
 ```jsx
 import { renderToString } from 'preact-render-to-string';
 
-const name = 'пользователь Preact!'
+const name = 'пользователь Preact!';
 const App = <div class="foo">Привет, {name}</div>;
 
 const html = renderToString(App);
@@ -53,11 +53,11 @@ import { Suspense, lazy } from 'preact/compat';
 const HomePage = lazy(() => import('./pages/home.js'));
 
 function App() {
-    return (
-        <Suspense fallback={<p>Загрузка</p>}>
-            <HomePage />
-        </Suspense>
-    );
+	return (
+		<Suspense fallback={<p>Загрузка</p>}>
+			<HomePage />
+		</Suspense>
+	);
 }
 ```
 
@@ -83,22 +83,22 @@ import { renderToPipeableStream } from 'preact-render-to-string/stream-node';
 
 // Синтаксис и форма обработчика запросов будут различаться в зависимости от фреймворка
 function handler(req, res) {
-    const { pipe, abort } = renderToPipeableStream(<App />, {
-        onShellReady() {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'text/html');
-            pipe(res);
-        },
-        onError(error) {
-            res.statusCode = 500;
-            res.send(
-                `<!doctype html><p>Произошла ошибка:</p><pre>${error.message}</pre>`
-            );
-        }
-    });
+	const { pipe, abort } = renderToPipeableStream(<App />, {
+		onShellReady() {
+			res.statusCode = 200;
+			res.setHeader('Content-Type', 'text/html');
+			pipe(res);
+		},
+		onError(error) {
+			res.statusCode = 500;
+			res.send(
+				`<!doctype html><p>Произошла ошибка:</p><pre>${error.message}</pre>`
+			);
+		}
+	});
 
-    // Переключаемся на клиентский рендеринг, если прошло достаточно времени.
-    setTimeout(abort, 2000);
+	// Переключаемся на клиентский рендеринг, если прошло достаточно времени.
+	setTimeout(abort, 2000);
 }
 ```
 
@@ -111,13 +111,13 @@ import { renderToReadableStream } from 'preact-render-to-string/stream';
 
 // Синтаксис и форма обработчика запросов будут различаться в зависимости от фреймворка
 function handler(req, res) {
-    const stream = renderToReadableStream(<App />);
+	const stream = renderToReadableStream(<App />);
 
-    return new Response(stream, {
-        headers: {
-            'Content-Type': 'text/html'
-        }
-    });
+	return new Response(stream, {
+		headers: {
+			'Content-Type': 'text/html'
+		}
+	});
 }
 ```
 
@@ -148,9 +148,9 @@ import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div>foo</div>;
 const App = (
-    <div class="foo">
-        <Foo />
-    </div>
+	<div class="foo">
+		<Foo />
+	</div>
 );
 
 const html = renderToString(App, {}, { pretty: true });
@@ -169,9 +169,9 @@ import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div>foo</div>;
 const App = (
-    <div class="foo">
-        <Foo />
-    </div>
+	<div class="foo">
+		<Foo />
+	</div>
 );
 
 const html = renderToString(App, {}, { shallow: true });
@@ -188,9 +188,9 @@ import renderToString from 'preact-render-to-string/jsx';
 
 const Foo = () => <div></div>;
 const App = (
-    <div class="foo">
-        <Foo />
-    </div>
+	<div class="foo">
+		<Foo />
+	</div>
 );
 
 let html = renderToString(App, {}, { xml: true });

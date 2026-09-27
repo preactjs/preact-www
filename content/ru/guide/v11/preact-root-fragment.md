@@ -9,18 +9,20 @@ preact-root-fragment — это независимая и более гибка�
 
 Она предоставляет способ рендеринга или гидратации дерева Preact с использованием подмножества дочерних элементов внутри родительского элемента, переданного в `render()`:
 
+<!-- prettier-ignore-start -->
 ```html
 <body>
-  <div id="root"> ⬅ передаем это в render() как родительский DOM-элемент...
+	<div id="root"> ⬅ передаем это в render() как родительский DOM-элемент...
 
-    <script src="/etc.js"></script>
+		<script src="/etc.js"></script>
 
-    <div class="app"> ⬅ ... но мы хотим использовать это дерево, а не скрипт
-      <!-- ... -->
-    </div>
-  </div>
+		<div class="app"> ⬅ ... но мы хотим использовать это дерево, а не скрипт
+			<!-- ... -->
+		</div>
+	</div>
 </body>
 ```
+<!-- prettier-ignore-end -->
 
 ---
 
@@ -34,9 +36,9 @@ preact-root-fragment — это независимая и более гибка�
 
 ```html
 <div id="sidebar">
-  <section id="widgetA"><h1>Виджет A</h1></section>
-  <section id="widgetB"><h1>Виджет B</h1></section>
-  <section id="widgetC"><h1>Виджет C</h1></section>
+	<section id="widgetA"><h1>Виджет A</h1></section>
+	<section id="widgetB"><h1>Виджет B</h1></section>
+	<section id="widgetC"><h1>Виджет C</h1></section>
 </div>
 ```
 
@@ -83,12 +85,12 @@ import { createRootFragment } from 'preact-root-fragment';
 import { render } from 'preact';
 
 function App() {
-  return (
-    <>
-      <h1>Example</h1>
-      <p>Hello world!</p>
-    </>
-  );
+	return (
+		<>
+			<h1>Example</h1>
+			<p>Hello world!</p>
+		</>
+	);
 }
 
 // Используем только последние два дочерних элемента внутри <body>:

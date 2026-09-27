@@ -58,7 +58,7 @@ const s1 = signal('Привет');
 const s2 = signal('мир');
 
 const c = computed(() => {
-  return s1.value + ', ' + s2.value;
+	return s1.value + ', ' + s2.value;
 });
 ```
 
@@ -72,7 +72,7 @@ const s1 = signal('Привет');
 const s2 = signal('мир');
 
 const c = computed(() => {
-  return s1.value + ', ' + s2.value;
+	return s1.value + ', ' + s2.value;
 });
 // --repl-before
 console.log(c.value); // Консоль: Привет, мир
@@ -88,7 +88,7 @@ const s1 = signal('Привет');
 const s2 = signal('мир');
 
 const c = computed(() => {
-  return s1.value + ', ' + s2.value;
+	return s1.value + ', ' + s2.value;
 });
 
 console.log(c.value); // Консоль: Привет, мир
@@ -128,22 +128,24 @@ const funk = signal('Группа');
 const purple = signal('герой');
 
 const c = computed(() => {
-  if (choice.value) {
-    console.log(funk.value, 'крови');
-  } else {
-    console.log('Звезда', purple.value);
-  }
+	if (choice.value) {
+		console.log(funk.value, 'крови');
+	} else {
+		console.log('Звезда', purple.value);
+	}
 });
-console.log(c.value); // Консоль: Группа крови
+<!-- prettier-ignore-start -->
+console.log(c.value);             // Консоль: Группа крови
 
 purple.value = 'по имени солнце'; // purple не является зависимостью, поэтому
-console.log(c.value); // эффект не работает
+console.log(c.value);             // эффект не работает
 
 choice.value = false;
-console.log(c.value); // Консоль: Звезда по имени солнце
+console.log(c.value);             // Консоль: Звезда по имени солнце
 
-funk.value = 'Последний'; // funk больше не является зависимостью, поэтому
-console.log(c.value); // эффект не работает
+funk.value = 'Последний';         // funk больше не является зависимостью, поэтому
+console.log(c.value);             // эффект не работает
+<!-- prettier-ignore-end -->
 ```
 
 Эти три вещи — отслеживание зависимостей, ленивые вычисления и кэширование — являются общими чертами библиотек реактивности. В Vue _вычисляемые свойства_ являются [одним из ярких примеров](https://dev.to/linusborg/vue-when-a-computed-property-can-be-the-wrong-tool-195j).
@@ -163,7 +165,7 @@ const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 effect(() => {
-  console.log('четырехкратное значение теперь равно', quadruple.value);
+	console.log('четырехкратное значение теперь равно', quadruple.value);
 }); // Консоль: четырехкратное значение теперь равно 4
 
 count.value = 20; // Консоль: четырехкратное значение теперь равно 80
@@ -182,7 +184,7 @@ const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 const dispose = effect(() => {
-  console.log('четырехкратное значение теперь равно', quadruple.value);
+	console.log('четырехкратное значение теперь равно', quadruple.value);
 }); // Консоль: четырехкратное значение теперь равно 4
 
 dispose();
@@ -229,13 +231,13 @@ const s2 = signal(0);
 const s3 = signal(0);
 
 const c = computed(() => {
-  if (s1.value) {
-    s2.value;
-    s3.value;
-  } else {
-    s3.value;
-    s2.value;
-  }
+	if (s1.value) {
+		s2.value;
+		s3.value;
+	} else {
+		s3.value;
+		s2.value;
+	}
 });
 ```
 
@@ -287,7 +289,7 @@ const c = computed(() => {
 const s = signal(0);
 
 {
-  const c = computed(() => s.value);
+	const c = computed(() => s.value);
 }
 // c вышел из области видимости
 ```

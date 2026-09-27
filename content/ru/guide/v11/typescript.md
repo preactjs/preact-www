@@ -103,7 +103,7 @@ TypeScript включает в себя полноценный JSX-компил�
 interface MyComponentProps {
 	name: string;
 	age: number;
-};
+}
 
 function MyComponent({ name, age }: MyComponentProps) {
 	return (
@@ -119,7 +119,7 @@ function MyComponent({ name, age }: MyComponentProps) {
 ```tsx
 interface GreetingProps {
 	name?: string; // необязательный параметр!
-};
+}
 
 function Greeting({ name = 'Вася' }: GreetingProps) {
 	// name по умолчанию равно "Вася"
@@ -170,12 +170,12 @@ function Card({ title, children }: ChildrenProps) {
 // Типы для props
 interface ExpandableProps {
 	title: string;
-};
+}
 
 // Типы для state
 interface ExpandableState {
 	toggled: boolean;
-};
+}
 
 // Привязка дженериков к ExpandableProps и ExpandableState
 class Expandable extends Component<ExpandableProps, ExpandableState> {
@@ -183,21 +183,23 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 		super(props);
 		// this.state — это объект с логическим полем `toggle` из-за ExpandableState.
 		this.state = {
-		toggled: false,
+			toggled: false
 		};
 	}
 	// `this.props.title` является строкой из-за использования ExpandableProps
 	render() {
 		return (
-		<div class='expandable'>
-			<h2>
-			{this.props.title}{' '}
-			<button onClick={() => this.setState({ toggled: !this.state.toggled })}>
-				Переключить
-			</button>
-			</h2>
-			<div hidden={this.state.toggled}>{this.props.children}</div>
-		</div>
+			<div class="expandable">
+				<h2>
+					{this.props.title}{' '}
+					<button
+						onClick={() => this.setState({ toggled: !this.state.toggled })}
+					>
+						Переключить
+					</button>
+				</h2>
+				<div hidden={this.state.toggled}>{this.props.children}</div>
+			</div>
 		);
 	}
 }
@@ -228,7 +230,7 @@ function MyHeadingComponent({ children }: MyHeadingComponentProps) {
 	{true}
 	{['Массив', 'из', 'строк']}
 	<OtherComponent />
-</MyHeadingComponent>
+</MyHeadingComponent>;
 ```
 
 ## Наследование свойств HTML
@@ -252,20 +254,16 @@ const Input = (props: InputProperties) => <input {...props} />;
 Preact генерирует регулярные события DOM. Пока ваш проект TypeScript включает библиотеку `dom` (установите её в `tsconfig.json`), у вас есть доступ ко всем типам событий, которые доступны в вашей текущей конфигурации.
 
 ```tsx
-import type { TargetedMouseEvent } from "preact";
+import type { TargetedMouseEvent } from 'preact';
 
 export class Button extends Component {
-  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
-    alert(event.currentTarget.tagName); // Оповещение BUTTON
-  }
+	handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
+		alert(event.currentTarget.tagName); // Оповещение BUTTON
+	}
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.props.children}
-      </button>
-    );
-  }
+	render() {
+		return <button onClick={this.handleClick}>{this.props.children}</button>;
+	}
 }
 ```
 
@@ -275,9 +273,9 @@ export class Button extends Component {
 export class Button extends Component {
 	render() {
 		return (
-		<button onClick={(event) => alert(event.currentTarget.tagName)}>
-			{this.props.children}
-		</button>
+			<button onClick={(event) => alert(event.currentTarget.tagName)}>
+				{this.props.children}
+			</button>
 		);
 	}
 }
@@ -318,7 +316,7 @@ import { h, createContext } from 'preact';
 const AppContext = createContext({
 	authenticated: true,
 	lang: 'en',
-	theme: 'dark',
+	theme: 'dark'
 });
 // AppContext имеет тип preact.Context<{
 //   authenticated: boolean;
@@ -335,10 +333,12 @@ function App() {
 	return (
 		<AppContext.Provider
 			value={{
+<!-- prettier-ignore-start -->
 	 //    ~~~~~
 	 // 💥 Ошибка: `theme` не определена
+<!-- prettier-ignore-end -->
 				lang: 'de',
-				authenticated: true,
+				authenticated: true
 			}}
 		>
 			{}
@@ -358,9 +358,9 @@ function App() {
 		<AppContext.Provider
 			value={{
 				lang: 'de',
-				...appContextDefault,
+				...appContextDefault
 			}}
-			>
+		>
 			<ComponentThatUsesAppContext />
 		</AppContext.Provider>
 	);
@@ -409,9 +409,9 @@ const Counter = ({ initial = 0 }) => {
 	const [clicks, setClicks] = useState(initial);
 	return (
 		<>
-		<p>Клики: {clicks}</p>
-		<button onClick={() => setClicks(clicks + 1)}>+</button>
-		<button onClick={() => setClicks(clicks - 1)}>-</button>
+			<p>Клики: {clicks}</p>
+			<button onClick={() => setClicks(clicks + 1)}>+</button>
+			<button onClick={() => setClicks(clicks - 1)}>-</button>
 		</>
 	);
 };
@@ -470,7 +470,7 @@ function TextInputWithFocusButton() {
 	return (
 		<>
 			{/* кроме того, inputEl можно использовать только с элементами ввода */}
-			<input ref={inputRef} type='text' />
+			<input ref={inputRef} type="text" />
 			<button onClick={focusElement}>Передать фокус элементу input</button>
 		</>
 	);
@@ -485,13 +485,13 @@ function TextInputWithFocusButton() {
 // Тип состояния для функции редуктора
 interface StateType {
 	count: number;
-};
+}
 
 // Тип действия, где `type` может быть любым
 // "reset", "decrement", "increment"
 interface ActionType {
 	type: 'reset' | 'decrement' | 'increment';
-};
+}
 
 // Исходное состояние. Нет необходимости комментировать
 const initialState = { count: 0 };
@@ -562,7 +562,7 @@ declare global {
 }
 
 // Этот пустой экспорт очень важен! Это говорит TS, что нужно рассматривать это как модуль
-export {}
+export {};
 ```
 
 ### Расширение `HTMLAttributes` для глобальных пользовательских атрибутов
@@ -588,7 +588,7 @@ declare module 'preact' {
 }
 
 // Этот пустой экспорт важен! Он указывает TS рассматривать это как модуль
-export {}
+export {};
 ```
 
 ### Расширение интерфейсов для отдельных элементов с пользовательскими атрибутами

@@ -13,13 +13,15 @@ solvable: true
 
 ```js
 let vdom = {
-  type: 'p', // элемент <p>
-  props: {
-    class: 'big', // с классом "big"
-    children: [
-      'Привет, мир!', // и с текстом "Привет, мир!"
-    ],
-  },
+<!-- prettier-ignore-start -->
+	type: 'p',             // элемент <p>
+	props: {
+		class: 'big',      // с классом "big"
+		children: [
+			'Привет, мир!' // и с текстом "Привет, мир!"
+		]
+	}
+<!-- prettier-ignore-end -->
 };
 ```
 
@@ -43,9 +45,11 @@ let vdom = {
 import { createElement, render } from 'preact';
 
 let vdom = createElement(
-  'p', // элемент <p>
-  { class: 'big' }, // с классом "big"
-  'Привет, мир!' // и с текстом "Привет, мир!"
+<!-- prettier-ignore-start -->
+	'p',              // элемент <p>
+	{ class: 'big' }, // с классом "big"
+	'Привет, мир!'    // и с текстом "Привет, мир!"
+<!-- prettier-ignore-end -->
 );
 
 render(vdom, document.body);
@@ -62,7 +66,7 @@ render(vdom, document.body);
 ```jsx
 import { createElement, render } from 'preact';
 
-let vdom = <p class='big'>Привет, мир!</p>;
+let vdom = <p class="big">Привет, мир!</p>;
 
 render(vdom, document.body);
 ```
@@ -114,7 +118,7 @@ let vdom = html`<p class=${maybeBig}>Привет, ${40 + 2}!</p>`;
 import { createElement, render } from 'preact';
 
 export default function App() {
-  return <p class='big'>Привет, мир!</p>;
+	return <p class="big">Привет, мир!</p>;
 }
 
 render(<App />, document.getElementById('app'));

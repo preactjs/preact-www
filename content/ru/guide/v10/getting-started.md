@@ -22,12 +22,12 @@ Preact упакован для использования непосредств
 
 ```html
 <script type="module">
-  import { h, render } from 'https://esm.sh/preact';
+	import { h, render } from 'https://esm.sh/preact';
 
-  // Создаём свое приложение
-  const app = h('h1', null, 'Привет, мир!');
+	// Создаём свое приложение
+	const app = h('h1', null, 'Привет, мир!');
 
-  render(app, document.body);
+	render(app, document.body);
 </script>
 ```
 
@@ -41,17 +41,17 @@ Preact упакован для использования непосредств
 
 ```html
 <script type="module">
-  import { h, render } from 'https://esm.sh/preact';
-  import htm from 'https://esm.sh/htm';
+	import { h, render } from 'https://esm.sh/preact';
+	import htm from 'https://esm.sh/htm';
 
-  // Инициализация htm с помощью Preact
-  const html = htm.bind(h);
+	// Инициализация htm с помощью Preact
+	const html = htm.bind(h);
 
-  function App(props) {
-    return html`<h1>Привет, ${props.name}!</h1>`;
-  }
+	function App(props) {
+		return html`<h1>Привет, ${props.name}!</h1>`;
+	}
 
-  render(html`<${App} name="мир" />`, document.body);
+	render(html`<${App} name="мир" />`, document.body);
 </script>
 ```
 
@@ -114,15 +114,15 @@ npm run build
 
 ```json
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-react-jsx",
-      {
-        "pragma": "h",
-        "pragmaFrag": "Fragment"
-      }
-    ]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"pragma": "h",
+				"pragmaFrag": "Fragment"
+			}
+		]
+	]
 }
 ```
 
@@ -140,15 +140,15 @@ npm run build
 
 ```js
 const config = {
-  //...snip
-  resolve: {
-    alias: {
-      react: 'preact/compat',
-      'react-dom/test-utils': 'preact/test-utils',
-      'react-dom': 'preact/compat', // Должно быть ниже test-utils
-      'react/jsx-runtime': 'preact/jsx-runtime',
-    },
-  },
+	//...snip
+	resolve: {
+		alias: {
+			react: 'preact/compat',
+			'react-dom/test-utils': 'preact/test-utils',
+			'react-dom': 'preact/compat', // Должно быть ниже test-utils
+			'react/jsx-runtime': 'preact/jsx-runtime'
+		}
+	}
 };
 ```
 
@@ -158,10 +158,10 @@ const config = {
 
 ```json
 {
-  "dependencies": {
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat"
-  }
+	"dependencies": {
+		"react": "npm:@preact/compat",
+		"react-dom": "npm:@preact/compat"
+	}
 }
 ```
 
@@ -171,12 +171,12 @@ Parcel использует стандартный файл `package.json` дл�
 
 ```json
 {
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime"
-  }
+	"alias": {
+		"react": "preact/compat",
+		"react-dom/test-utils": "preact/test-utils",
+		"react-dom": "preact/compat",
+		"react/jsx-runtime": "preact/jsx-runtime"
+	}
 }
 ```
 
@@ -189,16 +189,16 @@ Parcel использует стандартный файл `package.json` дл�
 import alias from '@rollup/plugin-alias';
 
 module.exports = {
-  plugins: [
-    alias({
-      entries: [
-        { find: 'react', replacement: 'preact/compat' },
-        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
-        { find: 'react-dom', replacement: 'preact/compat' },
-        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' },
-      ],
-    }),
-  ],
+	plugins: [
+		alias({
+			entries: [
+				{ find: 'react', replacement: 'preact/compat' },
+				{ find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+				{ find: 'react-dom', replacement: 'preact/compat' },
+				{ find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
+			]
+		})
+	]
 };
 ```
 
@@ -208,12 +208,12 @@ module.exports = {
 
 ```json
 {
-  "moduleNameMapper": {
-    "^react$": "preact/compat",
-    "^react-dom/test-utils$": "preact/test-utils",
-    "^react-dom$": "preact/compat",
-    "^react/jsx-runtime$": "preact/jsx-runtime"
-  }
+	"moduleNameMapper": {
+		"^react$": "preact/compat",
+		"^react-dom/test-utils$": "preact/test-utils",
+		"^react-dom$": "preact/compat",
+		"^react/jsx-runtime$": "preact/jsx-runtime"
+	}
 }
 ```
 
@@ -243,15 +243,15 @@ TypeScript, даже если он используется вместе со с
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "react": "https://esm.sh/preact@10.23.1/compat",
-      "react/": "https://esm.sh/preact@10.23.1/compat/",
-      "react-dom": "https://esm.sh/preact@10.23.1/compat",
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"react": "https://esm.sh/preact@10.23.1/compat",
+			"react/": "https://esm.sh/preact@10.23.1/compat/",
+			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+		}
+	}
 </script>
 ```
 

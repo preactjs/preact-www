@@ -13,14 +13,14 @@ solvable: true
 
 ```jsx
 function MyButton(props) {
-  return <button class='my-button'>{props.text}</button>;
+	return <button class="my-button">{props.text}</button>;
 }
 ```
 
 Мы можем использовать этот компонент в приложении, ссылаясь на него в JSX:
 
 ```js
-let vdom = <MyButton text='Нажми меня!' />;
+let vdom = <MyButton text="Нажми меня!" />;
 
 // помните createElement? Вот во что компилируется приведенная выше строка:
 let vdom = createElement(MyButton, { text: 'Нажми меня!' });
@@ -33,7 +33,7 @@ let vdom = createElement(MyButton, { text: 'Нажми меня!' });
 ```jsx
 import { render } from 'preact';
 
-render(<MyButton text='Нажми меня!' />, document.body);
+render(<MyButton text="Нажми меня!" />, document.body);
 ```
 
 ### Вложенные компоненты
@@ -42,12 +42,12 @@ render(<MyButton text='Нажми меня!' />, document.body);
 
 ```jsx
 function MediaPlayer() {
-  return (
-    <div>
-      <MyButton text='Играть' />
-      <MyButton text='Стоп' />
-    </div>
-  );
+	return (
+		<div>
+			<MyButton text="Играть" />
+			<MyButton text="Стоп" />
+		</div>
+	);
 }
 
 render(<MediaPlayer />, document.body);
@@ -57,7 +57,11 @@ render(<MediaPlayer />, document.body);
 
 ```jsx
 function MediaPlayer(props) {
-  return <div>{props.playing ? <MyButton text='Стоп' /> : <MyButton text='Играть' />}</div>;
+	return (
+		<div>
+			{props.playing ? <MyButton text="Стоп" /> : <MyButton text="Играть" />}
+		</div>
+	);
 }
 
 render(<MediaPlayer playing={false} />, document.body);
@@ -78,12 +82,12 @@ render(<MediaPlayer playing={true} />, document.body);
 
 ```jsx
 <Foo>
-  <a />
-  <b />
+	<a />
+	<b />
 </Foo>;
 
 function Foo(props) {
-  return props.children; // [<a />, <b />]
+	return props.children; // [<a />, <b />]
 }
 ```
 
@@ -93,16 +97,16 @@ function Foo(props) {
 
 ```jsx
 function MyButton(props) {
-  return <button class='my-button'>{props.children}</button>;
+	return <button class="my-button">{props.children}</button>;
 }
 
 function App() {
-  return (
-    <MyButton>
-      <img src='icon.png' />
-      Нажми меня!
-    </MyButton>
-  );
+	return (
+		<MyButton>
+			<img src="icon.png" />
+			Нажми меня!
+		</MyButton>
+	);
 }
 
 render(<App />, document.body);
@@ -128,9 +132,9 @@ render(<App />, document.body);
 import { Component } from 'preact';
 
 class MyButton extends Component {
-  render(props) {
-    return <button class='my-button'>{props.children}</button>;
-  }
+	render(props) {
+		return <button class="my-button">{props.children}</button>;
+	}
 }
 
 render(<MyButton>Нажми меня!</MyButton>, document.body);
@@ -146,15 +150,15 @@ render(<MyButton>Нажми меня!</MyButton>, document.body);
 
 ```jsx
 class MyButton extends Component {
-  componentDidMount() {
-    console.log('Привет из компонента <MyButton>!');
-  }
-  componentDidUpdate() {
-    console.log('Компонент <MyButton> был обновлён!');
-  }
-  render(props) {
-    return <button class='my-button'>{props.children}</button>;
-  }
+	componentDidMount() {
+		console.log('Привет из компонента <MyButton>!');
+	}
+	componentDidUpdate() {
+		console.log('Компонент <MyButton> был обновлён!');
+	}
+	render(props) {
+		return <button class="my-button">{props.children}</button>;
+	}
 }
 
 render(<MyButton>Click Me!</MyButton>, document.body);

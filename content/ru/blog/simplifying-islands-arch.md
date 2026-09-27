@@ -52,18 +52,18 @@ authors:
 
 ```js
 // server.js
-import { h } from 'preact'
-import preactRenderToString from 'preact-render-to-string'
+import { h } from 'preact';
+import preactRenderToString from 'preact-render-to-string';
 
 // ...оставшаяся настройка express.js
 
 const HomePage = () => {
-  return h('h1', {}, 'hello')
-}
+	return h('h1', {}, 'hello');
+};
 
 app.get('/', async (req, res) => {
-  res.send(preactRenderToString(h(HomePage, {})))
-})
+	res.send(preactRenderToString(h(HomePage, {})));
+});
 ```
 
 Здесь основная работа выполняется `preactRenderToString`, а всё, что мы делаем, — это пишем компоненты. С небольшим количеством магии бандлинга мы должны быть в состоянии писать в JSX, чтобы сделать работу с ним немного более удобной.
@@ -84,16 +84,16 @@ app.get('/', async (req, res) => {
 
 ```js
 // client.js
-import { hydrate } from 'preact'
-import Counter from './Counter'
+import { hydrate } from 'preact';
+import Counter from './Counter';
 
 const main = () => {
-  // предполагаем, что сервер отрендерил компонент со следующим идентификатором:
-  const container = document.getElementById('counter')
-  hydrate(h(Counter, {}), container)
-}
+	// предполагаем, что сервер отрендерил компонент со следующим идентификатором:
+	const container = document.getElementById('counter');
+	hydrate(h(Counter, {}), container);
+};
 
-main()
+main();
 ```
 
 Аналогично фазе серверного рендеринга, мы используем вспомогательную функцию из `preact`, чтобы помочь гидратировать компонент. Вы можете использовать `render`, но тогда фактический элемент уже будет чем-то, что было отрендерено сервером, и повторный рендеринг не имеет смысла, поэтому мы просто просим Preact попытаться добавить необходимые события и данные состояния.
@@ -121,20 +121,20 @@ main()
 Ниже приведённый фрагмент кода только подчеркивает необходимые области:
 
 ```js
-import preactRenderToString from 'preact-render-to-string'
-import HomePage from '../pages/HomePage.js'
-import { h } from 'preact'
-import { withManifestBundles } from '../lib/html.js'
+import preactRenderToString from 'preact-render-to-string';
+import HomePage from '../pages/HomePage.js';
+import { h } from 'preact';
+import { withManifestBundles } from '../lib/html.js';
 
-const app = express()
+const app = express();
 
 app.get('/', async (req, res) => {
-  res.send(
-    withManifestBundles({
-      body: preactRenderToString(h(HomePage, {})),
-    })
-  )
-})
+	res.send(
+		withManifestBundles({
+			body: preactRenderToString(h(HomePage, {}))
+		})
+	);
+});
 ```
 
 Если посмотреть на импорты, у нас те же импорты, что и в разделе [Первые шаги](#getting-started), и не так много изменилось.
@@ -153,17 +153,17 @@ app.get('/', async (req, res) => {
 
 ```js
 // получаем манифест из клиентского вывода
-import manifest from '../../dist/js/manifest.json'
+import manifest from '../../dist/js/manifest.json';
 
 export const withManifestBundles = ({ styles, body }) => {
-  // проходимся по каждому ключу в манифесте и создаем
-  // тег скрипта для каждого.
-  const bundledScripts = Object.keys(manifest).map(key => {
-    const scriptPath = `/public/js/${manifest[key]}`
-    return `<script src=${scriptPath}></script>`
-  })
+	// проходимся по каждому ключу в манифесте и создаем
+	// тег скрипта для каждого.
+	const bundledScripts = Object.keys(manifest).map((key) => {
+		const scriptPath = `/public/js/${manifest[key]}`;
+		return `<script src=${scriptPath}></script>`;
+	});
 
-  return `<html lang="en">
+	return `<html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -176,8 +176,8 @@ export const withManifestBundles = ({ styles, body }) => {
       ${body}
     </body>
     ${bundledScripts.join('')}
-  </html>`
-}
+  </html>`;
+};
 ```
 
 Как объясняется в комментариях, мы просто берем все необходимые файлы из манифеста и вставляем их в виде тегов скриптов в финальный HTML, который отправляется с сервера.
@@ -190,26 +190,26 @@ export const withManifestBundles = ({ styles, body }) => {
 
 ```js
 // webpack.config.server.js
-const path = require('path')
-const nodeExternals = require('webpack-node-externals')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: process.env.NODE_ENV != 'production' ? 'development' : 'production',
-  target: 'node',
-  entry: path.resolve(__dirname, './src/server/app.js'),
-  output: {
-    filename: 'server.js',
-    path: path.resolve(__dirname, './dist'),
-  },
-  stats: 'errors-warnings',
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  module: {
-    rules: [{ test: /\.jsx?$/, loader: 'babel-loader' }],
-  },
-  externals: [nodeExternals()],
-}
+	mode: process.env.NODE_ENV != 'production' ? 'development' : 'production',
+	target: 'node',
+	entry: path.resolve(__dirname, './src/server/app.js'),
+	output: {
+		filename: 'server.js',
+		path: path.resolve(__dirname, './dist')
+	},
+	stats: 'errors-warnings',
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
+	module: {
+		rules: [{ test: /\.jsx?$/, loader: 'babel-loader' }]
+	},
+	externals: [nodeExternals()]
+};
 ```
 
 Большинство из них не требуют объяснений, и единственный загрузчик, который у нас есть, — это `babel-loader`, поскольку мы используем решение CSS-IN-JS для стилизации.
@@ -224,14 +224,14 @@ module.exports = {
 // webpack.config.client.js
 
 const entryPoints = glob
-  .sync(path.resolve(__dirname, './src/client') + '/**/*.js', {
-    absolute: true,
-  })
-  .reduce((acc, path) => {
-    const entry = path.match(/[^\/]+\.jsx?$/gm)[0].replace(/.jsx?$/, '')
-    acc[entry] = path
-    return acc
-  }, {})
+	.sync(path.resolve(__dirname, './src/client') + '/**/*.js', {
+		absolute: true
+	})
+	.reduce((acc, path) => {
+		const entry = path.match(/[^\/]+\.jsx?$/gm)[0].replace(/.jsx?$/, '');
+		acc[entry] = path;
+		return acc;
+	}, {});
 ```
 
 Итак, первый раздел в основном находит все файлы в `src/client` и создает объект записей для webpack.
@@ -240,7 +240,7 @@ const entryPoints = glob
 
 ```json
 {
-  "app.client": "./src/client/app.client.js"
+	"app.client": "./src/client/app.client.js"
 }
 ```
 
@@ -250,15 +250,15 @@ const entryPoints = glob
 
 ```js
 {
-  plugins: [
-    new WebpackManifestPlugin({
-      publicPath: '',
-      basePath: '',
-      filter: file => {
-        return /\.mount\.js$/.test(file.name)
-      },
-    }),
-  ]
+	plugins: [
+		new WebpackManifestPlugin({
+			publicPath: '',
+			basePath: '',
+			filter: (file) => {
+				return /\.mount\.js$/.test(file.name);
+			}
+		})
+	];
 }
 ```
 
@@ -277,12 +277,12 @@ const entryPoints = glob
 ```json
 // .babelrc
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-react-jsx",
-      { "runtime": "automatic", "importSource": "preact" }
-    ]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{ "runtime": "automatic", "importSource": "preact" }
+		]
+	]
 }
 ```
 
@@ -305,33 +305,33 @@ const entryPoints = glob
 ```js
 // src/client/index.mount.js
 
-import { h, hydrate } from 'preact'
+import { h, hydrate } from 'preact';
 
 // настройка goober
-import { setup } from 'goober'
-setup(h)
+import { setup } from 'goober';
+setup(h);
 
 // может быть перемещено в файл утилит и использоваться оттуда,
 // в этом файле как пример на данный момент.
 const mount = async (Component, elm) => {
-  if (elm?.dataset?.props) {
-    const props = JSON.parse(elm.dataset.props)
-    delete elm.dataset.props
-    hydrate(<Component {...props} />, elm)
-  }
-}
+	if (elm?.dataset?.props) {
+		const props = JSON.parse(elm.dataset.props);
+		delete elm.dataset.props;
+		hydrate(<Component {...props} />, elm);
+	}
+};
 
 const main = async () => {
-  // ленивая загрузка и повторное монтирование счётчика как клиентского компонента, если это необходимо
-  // Лучший способ — проверить, существует ли элемент `counter` в
-  // DOM, прежде чем импортировать компонент, чтобы избежать ненужных
-  // загрузок JS.
+	// ленивая загрузка и повторное монтирование счётчика как клиентского компонента, если это необходимо
+	// Лучший способ — проверить, существует ли элемент `counter` в
+	// DOM, прежде чем импортировать компонент, чтобы избежать ненужных
+	// загрузок JS.
 
-  const Counter = (await import('../components/Counter.js')).default
-  mount(Counter, document.getElementById('counter'))
-}
+	const Counter = (await import('../components/Counter.js')).default;
+	mount(Counter, document.getElementById('counter'));
+};
 
-main()
+main();
 ```
 
 ## `components`
@@ -364,16 +364,16 @@ main()
 
 ```js
 app.use((req, res, next) => {
-  res.render = (comp, data) => {
-    return res.write(preactRenderToString(h(comp, { ...data })))
-  }
-})
+	res.render = (comp, data) => {
+		return res.write(preactRenderToString(h(comp, { ...data })));
+	};
+});
 
 // и где-то ещё в приложении
 
 const handler = (req, res) => {
-  return res.status(200).render(Homepage, { username: 'reaper' })
-}
+	return res.status(200).render(Homepage, { username: 'reaper' });
+};
 ```
 
 На самом деле, это весь код, который способствует настройке вашей собственной частичной гидратации / гидратации в стиле островков с использованием Node.js.

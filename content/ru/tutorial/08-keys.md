@@ -13,22 +13,22 @@ solvable: true
 
 ```jsx
 export default function TodoList() {
-  const [todos, setTodos] = useState(['встать', 'застелить кровать']);
+	const [todos, setTodos] = useState(['встать', 'застелить кровать']);
 
-  function wakeUp() {
-    setTodos(['застелить кровать']);
-  }
+	function wakeUp() {
+		setTodos(['застелить кровать']);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map((todo) => (
-          <li>{todo}</li>
-        ))}
-      </ul>
-      <button onClick={wakeUp}>Я проснулся!</button>
-    </div>
-  );
+	return (
+		<div>
+			<ul>
+				{todos.map((todo) => (
+					<li>{todo}</li>
+				))}
+			</ul>
+			<button onClick={wakeUp}>Я проснулся!</button>
+		</div>
+	);
 }
 ```
 
@@ -43,11 +43,11 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li>встать</li>
-    <li>застелить кровать</li>
-  </ul>
-  <button>Я проснулся!</button>
+	<ul>
+		<li>встать</li>
+		<li>застелить кровать</li>
+	</ul>
+	<button>Я проснулся!</button>
 </div>
 ```
 
@@ -55,10 +55,10 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li>застелить кровать</li>
-  </ul>
-  <button>Я проснулся!</button>
+	<ul>
+		<li>застелить кровать</li>
+	</ul>
+	<button>Я проснулся!</button>
 </div>
 ```
 
@@ -78,23 +78,23 @@ export default function TodoList() {
 
 ```jsx
 export default function TodoList() {
-  const [todos, setTodos] = useState(['встать', 'застелить кровать']);
+	const [todos, setTodos] = useState(['встать', 'застелить кровать']);
 
-  function wakeUp() {
-    setTodos(['застелить кровать']);
-  }
+	function wakeUp() {
+		setTodos(['застелить кровать']);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo}>{todo}</li>
-          //  ^^^^^^^^^^ добавление атрибута key
-        ))}
-      </ul>
-      <button onClick={wakeUp}>Я проснулся!</button>
-    </div>
-  );
+	return (
+		<div>
+			<ul>
+				{todos.map((todo) => (
+					<li key={todo}>{todo}</li>
+					//  ^^^^^^^^^^ добавление атрибута key
+				))}
+			</ul>
+			<button onClick={wakeUp}>Я проснулся!</button>
+		</div>
+	);
 }
 ```
 
@@ -109,11 +109,11 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li key='встать'>встать</li>
-    <li key='застелить кровать'>застелить кровать</li>
-  </ul>
-  <button>Я проснулся!</button>
+	<ul>
+		<li key="встать">встать</li>
+		<li key="застелить кровать">застелить кровать</li>
+	</ul>
+	<button>Я проснулся!</button>
 </div>
 ```
 
@@ -121,10 +121,10 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li key='застелить кровать'>застелить кровать</li>
-  </ul>
-  <button>Я проснулся!</button>
+	<ul>
+		<li key="застелить кровать">застелить кровать</li>
+	</ul>
+	<button>Я проснулся!</button>
 </div>
 ```
 
@@ -147,11 +147,11 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li key={0}>встать</li>
-    <li key={1}>застелить кровать</li>
-  </ul>
-  <button>Я проснулся!</button>
+	<ul>
+		<li key={0}>встать</li>
+		<li key={1}>застелить кровать</li>
+	</ul>
+	<button>Я проснулся!</button>
 </div>
 ```
 
@@ -159,10 +159,10 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li key={0}>застелить кровать</li>
-  </ul>
-  <button>Я проснулся!</button>
+	<ul>
+		<li key={0}>застелить кровать</li>
+	</ul>
+	<button>Я проснулся!</button>
 </div>
 ```
 
@@ -188,18 +188,18 @@ export default function TodoList() {
 
 ```jsx
 const todos = [
-  { id: 1, text: 'встать' },
-  { id: 2, text: 'make bed' },
+	{ id: 1, text: 'встать' },
+	{ id: 2, text: 'make bed' }
 ];
 
 export default function ToDos() {
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.text}</li>
-      ))}
-    </ul>
-  );
+	return (
+		<ul>
+			{todos.map((todo) => (
+				<li key={todo.id}>{todo.text}</li>
+			))}
+		</ul>
+	);
 }
 ```
 

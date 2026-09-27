@@ -22,21 +22,21 @@ import { createContext } from 'preact';
 const Username = createContext();
 
 export default function App() {
-  return (
-    // предоставляем значение username нашему поддереву:
-    <Username.Provider value='Вася'>
-      <div>
-        <p>
-          <Username.Consumer>
-            {(username) => (
-              // получаем доступ к текущему имени пользователя из контекста:
-              <span>{username}</span>
-            )}
-          </Username.Consumer>
-        </p>
-      </div>
-    </Username.Provider>
-  );
+	return (
+		// предоставляем значение username нашему поддереву:
+		<Username.Provider value="Вася">
+			<div>
+				<p>
+					<Username.Consumer>
+						{(username) => (
+							// получаем доступ к текущему имени пользователя из контекста:
+							<span>{username}</span>
+						)}
+					</Username.Consumer>
+				</p>
+			</div>
+		</Username.Provider>
+	);
 }
 ```
 
@@ -55,21 +55,21 @@ import { useContext } from 'preact/hooks';
 const Username = createContext();
 
 export default function App() {
-  return (
-    <Username.Provider value='Вася'>
-      <div>
-        <p>
-          <User />
-        </p>
-      </div>
-    </Username.Provider>
-  );
+	return (
+		<Username.Provider value="Вася">
+			<div>
+				<p>
+					<User />
+				</p>
+			</div>
+		</Username.Provider>
+	);
 }
 
 function User() {
-  // доступ к текущему имени пользователя из контекста:
-  const username = useContext(Username); // "Вася"
-  return <span>{username}</span>;
+	// доступ к текущему имени пользователя из контекста:
+	const username = useContext(Username); // "Вася"
+	return <span>{username}</span>;
 }
 ```
 
@@ -88,37 +88,38 @@ import { useState, useMemo, useContext } from 'preact/hooks';
 const AuthContext = createContext();
 
 export default function App() {
-  const [user, setUser] = useState(null);
+	const [user, setUser] = useState(null);
 
-  const auth = useMemo(() => {
-    return { user, setUser };
-  }, [user]);
+	const auth = useMemo(() => {
+		return { user, setUser };
+	}, [user]);
 
-  return (
-    <AuthContext.Provider value={auth}>
-      <div class='app'>
-        {auth.user && <p>Добро пожаловать, {auth.user.name}!</p>}
-        <Login />
-      </div>
-    </AuthContext.Provider>
-  );
+	return (
+		<AuthContext.Provider value={auth}>
+			<div class="app">
+				{auth.user && <p>Добро пожаловать, {auth.user.name}!</p>}
+				<Login />
+			</div>
+		</AuthContext.Provider>
+	);
 }
 
 function Login() {
-  const { user, setUser } = useContext(AuthContext);
+	const { user, setUser } = useContext(AuthContext);
 
-  if (user)
-    return (
-      <div class='logged-in'>
-        Вошли в систему как {user.name}.<button onClick={() => setUser(null)}>Выйти</button>
-      </div>
-    );
+	if (user)
+		return (
+			<div class="logged-in">
+				Вошли в систему как {user.name}.
+				<button onClick={() => setUser(null)}>Выйти</button>
+			</div>
+		);
 
-  return (
-    <div class='logged-out'>
-      <button onClick={() => setUser({ name: 'Вася' })}>Войти</button>
-    </div>
-  );
+	return (
+		<div class="logged-out">
+			<button onClick={() => setUser({ name: 'Вася' })}>Войти</button>
+		</div>
+	);
 }
 ```
 
@@ -140,10 +141,12 @@ import { useContext } from 'preact/hooks';
 const Path = createContext(location.pathname);
 
 function Route(props) {
-  const path = useContext(Path); // текущий путь
-  const isMatch = path.startsWith(props.path);
-  const innerPath = path.substring(props.path.length);
-  return isMatch && <Path.Provider value={innerPath}>{props.children}</Path.Provider>;
+	const path = useContext(Path); // текущий путь
+	const isMatch = path.startsWith(props.path);
+	const innerPath = path.substring(props.path.length);
+	return (
+		isMatch && <Path.Provider value={innerPath}>{props.children}</Path.Provider>
+	);
 }
 ```
 
@@ -151,38 +154,38 @@ function Route(props) {
 
 ```jsx
 export default function App() {
-  return (
-    <div class='app'>
-      <Route path='/inbox'>
-        <Inbox />
-      </Route>
-      <Route path='/settings'>
-        <Settings />
-      </Route>
-    </div>
-  );
+	return (
+		<div class="app">
+			<Route path="/inbox">
+				<Inbox />
+			</Route>
+			<Route path="/settings">
+				<Settings />
+			</Route>
+		</div>
+	);
 }
 
 function Inbox() {
-  return (
-    <div class='inbox'>
-      <div class='messages'> ... </div>
-      <Route path='/compose'>
-        <Compose />
-      </Route>
-    </div>
-  );
+	return (
+		<div class="inbox">
+			<div class="messages"> ... </div>
+			<Route path="/compose">
+				<Compose />
+			</Route>
+		</div>
+	);
 }
 
 function Settings() {
-  return (
-    <div class='settings'>
-      <h1>Settings</h1>
-      <Route path='/forwarding'>
-        <Forwarding />
-      </Route>
-    </div>
-  );
+	return (
+		<div class="settings">
+			<h1>Settings</h1>
+			<Route path="/forwarding">
+				<Forwarding />
+			</Route>
+		</div>
+	);
 }
 ```
 
@@ -201,9 +204,9 @@ import { useContext } from 'preact/hooks';
 const Username = createContext('Вася');
 
 export default function App() {
-  const username = useContext(Username); // возвращает "Вася"
+	const username = useContext(Username); // возвращает "Вася"
 
-  return <span>{username}</span>;
+	return <span>{username}</span>;
 }
 ```
 

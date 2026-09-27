@@ -23,14 +23,14 @@ Preact и веб-компоненты являются взаимодополн�
 
 ```jsx
 customElements.define(
-  'x-foo',
-  class extends HTMLElement {
-    // ...
-  }
+	'x-foo',
+	class extends HTMLElement {
+		// ...
+	}
 );
 
 function Foo() {
-  return <x-foo />;
+	return <x-foo />;
 }
 ```
 
@@ -40,16 +40,16 @@ JSX не предоставляет возможности различать с
 
 ```jsx
 customElements.define(
-  'context-menu',
-  class extends HTMLElement {
-    set position({ x, y }) {
-      this.style.cssText = `left:${x}px; top:${y}px;`;
-    }
-  }
+	'context-menu',
+	class extends HTMLElement {
+		set position({ x, y }) {
+			this.style.cssText = `left:${x}px; top:${y}px;`;
+		}
+	}
 );
 
 function Foo() {
-  return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
+	return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
 }
 ```
 
@@ -63,15 +63,15 @@ function Foo() {
 
 ```jsx
 function Foo() {
-  const myRef = useRef(null);
+	const myRef = useRef(null);
 
-  useEffect(() => {
-    if (myRef.current) {
-      myRef.current.doSomething();
-    }
-  }, []);
+	useEffect(() => {
+		if (myRef.current) {
+			myRef.current.doSomething();
+		}
+	}, []);
 
-  return <x-foo ref={myRef} />;
+	return <x-foo ref={myRef} />;
 }
 ```
 

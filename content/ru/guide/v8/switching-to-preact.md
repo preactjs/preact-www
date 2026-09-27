@@ -32,7 +32,6 @@ npm i -S preact preact-compat
 
 Установив эти зависимости, настройте систему сборки на псевдоним импортов React, чтобы они указывали на Preact.
 
-
 ### Как настроить псевдоним для preact-compat
 
 Теперь, когда зависимости установлены, вам нужно настроить систему сборки
@@ -44,12 +43,12 @@ npm i -S preact preact-compat
 
 ```json
 {
-  "resolve": {
-    "alias": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"resolve": {
+		"alias": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -59,10 +58,10 @@ Parcel поддерживает определение псевдонимов м
 
 ```json
 {
-  "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat"
-  }
+	"alias": {
+		"react": "preact-compat",
+		"react-dom": "preact-compat"
+	}
 }
 ```
 
@@ -76,23 +75,22 @@ Parcel поддерживает определение псевдонимов м
 
 ```json
 {
-  "aliasify": {
-    "aliases": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"aliasify": {
+		"aliases": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
 Чаще всего preact-compat используется для поддержки React-совместимых модулей сторонних разработчиков. При использовании Browserify не забудьте настроить преобразование [Aliasify](https://www.npmjs.com/package/aliasify) на **глобальное** с помощью опции `--global-transform` [Browserify option](https://github.com/browserify/browserify).
 
-
 #### Ручная настройка псевдонимов
 
 Если вы не используете систему сборки или хотите навсегда перейти на `preact-compat`, вы также можете найти и заменить все импорты/требования в вашей кодовой базе, как это делает псевдоним:
 
-> **найти:**    `(['"])react(-dom)?\1`
+> **найти:** `(['"])react(-dom)?\1`
 >
 > **заменить:** `$1preact-compat$1`
 
@@ -109,39 +107,41 @@ npm i -S module-alias
 ```
 
 `patchPreact.js`:
+
 ```js
-var path = require('path')
-var moduleAlias = require('module-alias')
+var path = require('path');
+var moduleAlias = require('module-alias');
 
 moduleAlias.addAliases({
-  'react': 'preact-compat/dist/preact-compat.min',
-  'react-dom': 'preact-compat/dist/preact-compat.min',
-  'create-react-class': path.resolve(__dirname, './create-preact-class')
-})
+	react: 'preact-compat/dist/preact-compat.min',
+	'react-dom': 'preact-compat/dist/preact-compat.min',
+	'create-react-class': path.resolve(__dirname, './create-preact-class')
+});
 ```
 
 `create-preact-class.js`:
+
 ```js
-import { createClass } from 'preact-compat/dist/preact-compat.min'
-export default createClass
+import { createClass } from 'preact-compat/dist/preact-compat.min';
+export default createClass;
 ```
 
 Если вы используете новый синтаксис `импорта` на вашем сервере с Babel, написание этих строк поверх других импортов не сработает, поскольку Babel перемещает все импорты в верхнюю часть модуля. В этом случае сохраните приведённый выше код как `patchPreact.js`, а затем импортируйте его в верхнюю часть вашего файла (`import './patchPreact'`). Подробнее об использовании `module-alias` можно прочитать [здесь](https://www.npmjs.com/package/module-alias).
-
 
 Также можно создавать псевдонимы непосредственно в node без пакета `module-alias`. Это зависит от внутренних свойств системы модулей Node, поэтому действуйте осторожно. Чтобы задать псевдоним вручную:
 
 ```js
 // patchPreact.js
-var React = require('react')
-var ReactDOM = require('react-dom')
-var ReactDOMServer = require('react-dom/server')
-var CreateReactClass = require('create-react-class')
-var Preact = require('preact-compat/dist/preact-compat.min')
-var Module = module.constructor
-Module._cache[require.resolve('react')].exports = Preact
-Module._cache[require.resolve('react-dom')].exports = Preact
-Module._cache[require.resolve('create-react-class')].exports.default = Preact.createClass
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
+var CreateReactClass = require('create-react-class');
+var Preact = require('preact-compat/dist/preact-compat.min');
+var Module = module.constructor;
+Module._cache[require.resolve('react')].exports = Preact;
+Module._cache[require.resolve('react-dom')].exports = Preact;
+Module._cache[require.resolve('create-react-class')].exports.default =
+	Preact.createClass;
 ```
 
 ### Сборка и тестирование
@@ -150,9 +150,7 @@ Module._cache[require.resolve('create-react-class')].exports.default = Preact.cr
 Теперь при запуске сборки все ваши импорты React будут импортировать `preact-compat`, и ваш пакет станет намного меньше.
 Всегда полезно запустить набор тестов и, конечно, загрузить приложение, чтобы посмотреть, как оно работает.
 
-
 ---
-
 
 ## Оптимально: Переход на Preact
 
@@ -190,19 +188,15 @@ npm install --save preact  # или: npm i -S preact
 
 В каждом приведенном выше примере `h` — это имя функции, которую мы объявили как прагму JSX.
 
-
 #### Через Babel
 
 Если вы используете Babel, вы можете установить JSX-прагму в свой `.babelrc` или `package.json` (в зависимости от того, что вы предпочитаете):
 
 ```json
 {
-  "plugins": [
-    ["transform-react-jsx", { "pragma": "h" }]
-  ]
+	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 }
 ```
-
 
 #### Через комментарии
 
@@ -210,13 +204,11 @@ npm install --save preact  # или: npm i -S preact
 
 `/** @jsx h */`
 
-
 #### Через Bublé
 
 [Bublé] по умолчанию поставляется с поддержкой JSX. Просто установите опцию `jsx`:
 
 `buble({ jsx: 'h' })`
-
 
 ### 3. Обновление устаревшего кода
 
@@ -232,7 +224,6 @@ npm install --save preact  # или: npm i -S preact
 Ещё одно отличие, на которое стоит обратить внимание, заключается в том, что Preact по умолчанию поддерживает только ссылки на функции.
 Ссылки на строки устарели в React и скоро будут удалены, поскольку они создают удивительную сложность при незначительной выгоде.
 Если вы хотите продолжать использовать ссылки на строки, [эта крошечная функция linkedRef](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d) предлагает перспективную версию, которая по-прежнему заполняет `this.refs.$$` подобно строковым ссылкам. Простота этой крошечной оболочки для ссылок на функции также помогает проиллюстрировать, почему ссылки на функции теперь являются предпочтительным выбором в будущем.
-
 
 ### 4. Упрощение корневого рендеринга
 
@@ -266,7 +257,7 @@ render(<App />, document.body, document.body.lastElementChild);
 let root;
 
 function init() {
-  root = render(<App />, document.body, root);
+	root = render(<App />, document.body, root);
 }
 init();
 
@@ -275,7 +266,6 @@ if (module.hot) module.hot.accept('./app', init);
 ```
 
 Полную технику можно увидеть в [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
-
 
 [Babel]: https://babeljs.io
 [Bublé]: https://buble.surge.sh

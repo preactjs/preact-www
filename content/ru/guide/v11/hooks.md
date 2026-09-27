@@ -30,22 +30,22 @@ Hooks API — это альтернативный способ написани�
 import { render, Component } from 'preact';
 // --repl-before
 class Counter extends Component {
-  state = {
-    value: 0,
-  };
+	state = {
+		value: 0
+	};
 
-  increment = () => {
-    this.setState((prev) => ({ value: prev.value + 1 }));
-  };
+	increment = () => {
+		this.setState((prev) => ({ value: prev.value + 1 }));
+	};
 
-  render(props, state) {
-    return (
-      <div>
-        <p>Счётчик: {state.value}</p>
-        <button onClick={this.increment}>Увеличить</button>
-      </div>
-    );
-  }
+	render(props, state) {
+		return (
+			<div>
+				<p>Счётчик: {state.value}</p>
+				<button onClick={this.increment}>Увеличить</button>
+			</div>
+		);
+	}
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -59,17 +59,17 @@ import { useState, useCallback } from 'preact/hooks';
 import { render } from 'preact';
 // --repl-before
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
 
-  return (
-    <div>
-      <p>Счётчик: {value}</p>
-      <button onClick={increment}>Увеличить</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Счётчик: {value}</p>
+			<button onClick={increment}>Увеличить</button>
+		</div>
+	);
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -85,42 +85,42 @@ import { useState, useCallback } from 'preact/hooks';
 import { render } from 'preact';
 // --repl-before
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
+	return { value, increment };
 }
 
 // Первый счётчик
 function CounterA() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <p>Счётчик A: {value}</p>
-      <button onClick={increment}>Увеличить</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<p>Счётчик A: {value}</p>
+			<button onClick={increment}>Увеличить</button>
+		</div>
+	);
 }
 
 // Second counter which renders a different output.
 function CounterB() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <h1>Счётчик B: {value}</h1>
-      <p>Я хороший счётчик</p>
-      <button onClick={increment}>Увеличить</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<h1>Счётчик B: {value}</h1>
+			<p>Я хороший счётчик</p>
+			<button onClick={increment}>Увеличить</button>
+		</div>
+	);
 }
 // --repl-after
 render(
-  <div>
-    <CounterA />
-    <CounterB />
-  </div>,
-  document.getElementById('app')
+	<div>
+		<CounterA />
+		<CounterB />
+	</div>,
+	document.getElementById('app')
 );
 ```
 
@@ -138,11 +138,11 @@ render(
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]); // <-- массив зависимостей
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]); // <-- массив зависимостей
+	return { value, increment };
 }
 ```
 
@@ -173,18 +173,18 @@ import { render } from 'preact';
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  // Также можно передать сеттеру обратный вызов
-  const decrement = () => setCount((currentCount) => currentCount - 1);
+	const [count, setCount] = useState(0);
+	const increment = () => setCount(count + 1);
+	// Также можно передать сеттеру обратный вызов
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
-  return (
-    <div>
-      <p>Счётчик: {count}</p>
-      <button onClick={increment}>Увеличить</button>
-      <button onClick={decrement}>Уменьшить</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Счётчик: {count}</p>
+			<button onClick={increment}>Увеличить</button>
+			<button onClick={decrement}>Уменьшить</button>
+		</div>
+	);
 };
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -204,30 +204,30 @@ import { useReducer } from 'preact/hooks';
 
 const initialState = 0;
 const reducer = (state, action) => {
-  switch (action) {
-    case 'increment':
-      return state + 1;
-    case 'decrement':
-      return state - 1;
-    case 'reset':
-      return 0;
-    default:
-      throw new Error('Неожиданное действие');
-  }
+	switch (action) {
+		case 'increment':
+			return state + 1;
+		case 'decrement':
+			return state - 1;
+		case 'reset':
+			return 0;
+		default:
+			throw new Error('Неожиданное действие');
+	}
 };
 
 function Counter() {
-  // Возвращает текущее состояние и функцию диспетчеризации для
-  // триггера действия
-  const [count, dispatch] = useReducer(reducer, initialState);
-  return (
-    <div>
-      {count}
-      <button onClick={() => dispatch('increment')}>+1</button>
-      <button onClick={() => dispatch('decrement')}>-1</button>
-      <button onClick={() => dispatch('reset')}>сбросить</button>
-    </div>
-  );
+	// Возвращает текущее состояние и функцию диспетчеризации для
+	// триггера действия
+	const [count, dispatch] = useReducer(reducer, initialState);
+	return (
+		<div>
+			{count}
+			<button onClick={() => dispatch('increment')}>+1</button>
+			<button onClick={() => dispatch('decrement')}>-1</button>
+			<button onClick={() => dispatch('reset')}>сбросить</button>
+		</div>
+	);
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -243,10 +243,10 @@ render(<Counter />, document.getElementById('app'));
 
 ```jsx
 const memoized = useMemo(
-  () => expensive(a, b),
-  // Повторное выполнение дорогостоящей функции происходит только в том случае, если любая из этих
-  // зависимостей изменяется
-  [a, b]
+	() => expensive(a, b),
+	// Повторное выполнение дорогостоящей функции происходит только в том случае, если любая из этих
+	// зависимостей изменяется
+	[a, b]
 );
 ```
 
@@ -276,16 +276,16 @@ import { useRef } from 'preact/hooks';
 import { render } from 'preact';
 // --repl-before
 function Foo() {
-  // Инициализировать useRef с начальным значением `null`.
-  const input = useRef(null);
-  const onClick = () => input.current && input.current.focus();
+	// Инициализировать useRef с начальным значением `null`.
+	const input = useRef(null);
+	const onClick = () => input.current && input.current.focus();
 
-  return (
-    <>
-      <input ref={input} />
-      <button onClick={onClick}>Сфокусироваться на input</button>
-    </>
-  );
+	return (
+		<>
+			<input ref={input} />
+			<button onClick={onClick}>Сфокусироваться на input</button>
+		</>
+	);
 }
 // --repl-after
 render(<Foo />, document.getElementById('app'));
@@ -301,43 +301,43 @@ render(<Foo />, document.getElementById('app'));
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useRef, useImperativeHandle, useState } from "preact/hooks";
+import { render } from 'preact';
+import { useRef, useImperativeHandle, useState } from 'preact/hooks';
 // --repl-before
 function MyInput({ inputRef }) {
-  const ref = useRef(null);
-  useImperativeHandle(inputRef, () => {
-    return {
-      // Раскрываем только метод `.focus()`, не предоставляя прямого доступа к узлу DOM
-      focus() {
-        ref.current.focus();
-      },
-    };
-  }, []);
+	const ref = useRef(null);
+	useImperativeHandle(inputRef, () => {
+		return {
+			// Раскрываем только метод `.focus()`, не предоставляя прямого доступа к узлу DOM
+			focus() {
+				ref.current.focus();
+			}
+		};
+	}, []);
 
-  return (
-    <label>
-      Name: <input ref={ref} />
-    </label>
-  );
+	return (
+		<label>
+			Name: <input ref={ref} />
+		</label>
+	);
 }
 
 function App() {
-  const inputRef = useRef(null);
+	const inputRef = useRef(null);
 
-  const handleClick = () => {
-    inputRef.current.focus();
-  };
+	const handleClick = () => {
+		inputRef.current.focus();
+	};
 
-  return (
-    <div>
-      <MyInput inputRef={inputRef} />
-      <button onClick={handleClick}>Нажмите для редактирования</button>
-    </div>
-  );
+	return (
+		<div>
+			<MyInput inputRef={inputRef} />
+			<button onClick={handleClick}>Нажмите для редактирования</button>
+		</div>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## useContext
@@ -354,19 +354,19 @@ const OtherComponent = (props) => props.children;
 const Theme = createContext('light');
 
 function DisplayTheme() {
-  const theme = useContext(Theme);
-  return <p>Активная тема: {theme}</p>;
+	const theme = useContext(Theme);
+	return <p>Активная тема: {theme}</p>;
 }
 
 // ...later
 function App() {
-  return (
-    <Theme.Provider value='light'>
-      <OtherComponent>
-        <DisplayTheme />
-      </OtherComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="light">
+			<OtherComponent>
+				<DisplayTheme />
+			</OtherComponent>
+		</Theme.Provider>
+	);
 }
 // --repl-after
 render(<App />, document.getElementById('app'));
@@ -382,10 +382,10 @@ render(<App />, document.getElementById('app'));
 
 ```jsx
 useEffect(() => {
-  // Запуск эффекта
-  return () => {
-    // Дополнительно: Любой код очистки
-  };
+	// Запуск эффекта
+	return () => {
+		// Дополнительно: Любой код очистки
+	};
 }, []);
 ```
 
@@ -393,11 +393,11 @@ useEffect(() => {
 
 ```jsx
 function PageTitle(props) {
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+	useEffect(() => {
+		document.title = props.title;
+	}, [props.title]);
 
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 ```
 
@@ -412,18 +412,18 @@ import { render } from 'preact';
 // --repl-before
 // Компонент, который всегда будет отображать текущую ширину окна
 function WindowWidth(props) {
-  const [width, setWidth] = useState(0);
+	const [width, setWidth] = useState(0);
 
-  function onResize() {
-    setWidth(window.innerWidth);
-  }
+	function onResize() {
+		setWidth(window.innerWidth);
+	}
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
 
-  return <p>Ширина окна: {width}</p>;
+	return <p>Ширина окна: {width}</p>;
 }
 // --repl-after
 render(<WindowWidth />, document.getElementById('app'));
@@ -439,20 +439,20 @@ render(<WindowWidth />, document.getElementById('app'));
 import { useLayoutEffect, useRef } from 'preact/hooks';
 
 function App() {
-  const hintRef = useRef(null);
+	const hintRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const hintWidth = hintRef.current.getBoundingClientRect().width;
+	useLayoutEffect(() => {
+		const hintWidth = hintRef.current.getBoundingClientRect().width;
 
-    // Мы можем использовать эту ширину, чтобы расположить и отцентрировать подсказку на экране:
-    hintRef.current.style.left = `${(window.innerWidth - hintWidth) / 2}px`;
-  }, []);
+		// Мы можем использовать эту ширину, чтобы расположить и отцентрировать подсказку на экране:
+		hintRef.current.style.left = `${(window.innerWidth - hintWidth) / 2}px`;
+	}, []);
 
-  return (
-    <div style="display: inline; position: absolute" ref={hintRef}>
-      <p>Это подсказка</p>
-    </div>
-  );
+	return (
+		<div style="display: inline; position: absolute" ref={hintRef}>
+			<p>Это подсказка</p>
+		</div>
+	);
 }
 ```
 
@@ -478,19 +478,21 @@ const [error] = useErrorBoundary((error) => callMyApi(error.message));
 
 ```jsx
 const App = (props) => {
-  const [error, resetError] = useErrorBoundary((error) => callMyApi(error.message));
+	const [error, resetError] = useErrorBoundary((error) =>
+		callMyApi(error.message)
+	);
 
-  // Отображение красивого сообщения об ошибке
-  if (error) {
-    return (
-      <div>
-        <p>{error.message}</p>
-        <button onClick={resetError}>Попробовать снова</button>
-      </div>
-    );
-  } else {
-    return <div>{props.children}</div>;
-  }
+	// Отображение красивого сообщения об ошибке
+	if (error) {
+		return (
+			<div>
+				<p>{error.message}</p>
+				<button onClick={resetError}>Попробовать снова</button>
+			</div>
+		);
+	} else {
+		return <div>{props.children}</div>;
+	}
 };
 ```
 
@@ -535,9 +537,9 @@ const App = props => {
 import { useDebugValue, useState } from 'preact/hooks';
 
 function useCount() {
-  const [count, setCount] = useState(0);
-  useDebugValue(count > 0 ? 'Положительное' : 'Отрицательное');
-  return [count, setCount];
+	const [count, setCount] = useState(0);
+	useDebugValue(count > 0 ? 'Положительное' : 'Отрицательное');
+	return [count, setCount];
 }
 ```
 
@@ -549,9 +551,9 @@ function useCount() {
 import { useDebugValue, useState } from 'preact/hooks';
 
 function useCount() {
-  const [count, setCount] = useState(0);
-  useDebugValue(count, c => `Счётчик: ${c}`);
-  return [count, setCount];
+	const [count, setCount] = useState(0);
+	useDebugValue(count, (c) => `Счётчик: ${c}`);
+	return [count, setCount];
 }
 ```
 
@@ -567,12 +569,16 @@ function useCount() {
 import { useSyncExternalStore } from 'preact/compat';
 
 function subscribe(cb) {
-  addEventListener('scroll', cb);
-  return () => removeEventListener('scroll', cb);
+	addEventListener('scroll', cb);
+	return () => removeEventListener('scroll', cb);
 }
 
 function App() {
-  const scrollY = useSyncExternalStore(subscribe, () => window.scrollY, () => 0);
+	const scrollY = useSyncExternalStore(
+		subscribe,
+		() => window.scrollY,
+		() => 0
+	);
 }
 ```
 
@@ -584,7 +590,7 @@ function App() {
 import { useDeferredValue } from 'preact/compat';
 
 function App() {
-  const deferredValue = useDeferredValue('Привет, мир!');
+	const deferredValue = useDeferredValue('Привет, мир!');
 }
 ```
 
@@ -596,15 +602,15 @@ function App() {
 import { useTransition } from 'preact/compat';
 
 function App() {
-  // `isPending` всегда будет иметь значение `false`
-  const [isPending, startTransition] = useTransition();
+	// `isPending` всегда будет иметь значение `false`
+	const [isPending, startTransition] = useTransition();
 
-  const handleClick = () => {
-    // Немедленно выполняет callback — ничего не делает.
-    startTransition(() => {
-      // Код перехода здесь
-    });
-  };
+	const handleClick = () => {
+		// Немедленно выполняет callback — ничего не делает.
+		startTransition(() => {
+			// Код перехода здесь
+		});
+	};
 }
 ```
 
@@ -616,9 +622,9 @@ function App() {
 import { useInsertionEffect } from 'preact/compat';
 
 function App() {
-  useInsertionEffect(() => {
-    // Код эффекта здесь
-  }, [dependencies]);
+	useInsertionEffect(() => {
+		// Код эффекта здесь
+	}, [dependencies]);
 }
 ```
 
@@ -627,6 +633,7 @@ function App() {
 Позволяет получить значение промиса, приостанавливая выполнение, пока промис не завершится, или прочитать значение контекста. Примечательно, что `use` — единственный хук, который можно вызывать условно.
 
 > Context
+
 ```jsx
 import { createContext } from 'preact';
 import { use } from 'preact/compat';
@@ -634,29 +641,30 @@ import { use } from 'preact/compat';
 const Theme = createContext('light');
 
 function DisplayTheme() {
-  const theme = use(Theme);
-  return <p>Active theme: {theme}</p>;
+	const theme = use(Theme);
+	return <p>Active theme: {theme}</p>;
 }
 ```
 
 > Promises
+
 ```jsx
 import { Suspense, use } from 'preact/compat';
 
-const promise = new Promise(r => setTimeout(() => r('Hello World!'), 5000));
+const promise = new Promise((r) => setTimeout(() => r('Hello World!'), 5000));
 
 function Message() {
-    return <span>Сообщение: {use(promise)}</span>
+	return <span>Сообщение: {use(promise)}</span>;
 }
 
 export function App() {
-  return (
-    <div>
-            <Suspense fallback={<span>Загрузка...</span>}>
-                <Message />
-            </Suspense>
-    </div>
-  );
+	return (
+		<div>
+			<Suspense fallback={<span>Загрузка...</span>}>
+				<Message />
+			</Suspense>
+		</div>
+	);
 }
 ```
 
@@ -666,11 +674,11 @@ export function App() {
 const CACHE = new Map();
 
 function asyncData(cacheKey) {
-  if (!CACHE.has(cacheKey)) {
-    CACHE.set(cacheKey, fetchData(cacheKey));
-  }
+	if (!CACHE.has(cacheKey)) {
+		CACHE.set(cacheKey, fetchData(cacheKey));
+	}
 
-  return CACHE.get(cacheKey);
+	return CACHE.get(cacheKey);
 }
 ```
 
@@ -683,22 +691,22 @@ import { useState } from 'preact/hooks';
 import { useEffectEvent } from 'preact/compat';
 
 function App() {
-  const [breakpoint, setBreakpoint] = useState('mobile');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+	const [breakpoint, setBreakpoint] = useState('mobile');
+	const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  const handleResize = useEffectEvent(() => {
-    const width = window.innerWidth;
+	const handleResize = useEffectEvent(() => {
+		const width = window.innerWidth;
 
-    // При каждом вызове требуется актуальное значение `breakpoint`
-    if (window.innerWidth > 768 && breakpoint === 'mobile') {
-      setBreakpoint('desktop');
-      if (width < 1200) setSidebarOpen(false);
-    }
-  });
+		// При каждом вызове требуется актуальное значение `breakpoint`
+		if (window.innerWidth > 768 && breakpoint === 'mobile') {
+			setBreakpoint('desktop');
+			if (width < 1200) setSidebarOpen(false);
+		}
+	});
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Не нужно указывать `handleResize` в качестве зависимости
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []); // Не нужно указывать `handleResize` в качестве зависимости
 }
 ```
