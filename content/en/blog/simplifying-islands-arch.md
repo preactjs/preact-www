@@ -192,7 +192,7 @@ import manifest from '../../dist/js/manifest.json';
 export const withManifestBundles = ({ styles, body }) => {
 	// go through each key in the manifest and construct
 	// a script tag for each.
-	const bundledScripts = Object.keys(manifest).map(key => {
+	const bundledScripts = Object.keys(manifest).map((key) => {
 		const scriptPath = `/public/js/${manifest[key]}`;
 		return `<script src=${scriptPath}></script>`;
 	});
@@ -297,7 +297,7 @@ Everything else is generic configuration that's also present on the server side
 		new WebpackManifestPlugin({
 			publicPath: '',
 			basePath: '',
-			filter: file => {
+			filter: (file) => {
 				return /\.mount\.js$/.test(file.name);
 			}
 		})

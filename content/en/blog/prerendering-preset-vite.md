@@ -166,8 +166,8 @@ export function useFetch(url) {
 		data = load(url);
 		cache.set(url, data);
 		data.then(
-			res => update((data.res = res)),
-			err => update((data.err = err))
+			(res) => update((data.res = res)),
+			(err) => update((data.err = err))
 		);
 	}
 
