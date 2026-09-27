@@ -14,55 +14,50 @@ La razón por la que Preact no intenta incluir absolutamente todas las caracter�
 
 ---
 
-
 ## Compatibilidad de versiones
 
 Tanto para Preact como para [preact-compat], la compatibilidad de versiones es medida contra el _actual_ y _anterior_ release **mayor** de React. Cuando se anuncian nuevas características desde el equipo de React, pueden ser agregadas al núcleo de Preact si tiene sentido dadas las [Metas del Proyecto]. Este es un proceso democrático, evolucionando constantemente la discusión y tomando las decisiones públicamente, usando issues y pull requests.
 
 > Así, el sitio web y la documentación reflejan React `0.14.x` y `0.15.x` cuando se discute compatibilidad o se hacen comparaciones.
 
-
 ## ¿Qué está incluido?
 
 - [Componentes de Clases de ES6]
-    - _Las clases proveen una forma expresiva e definir componentes que poseen estado_
-- [Componentes de Alto Orden]  
-    - _Componentes que devuelven otros componentes desde `render()`, efectivamente son wrappers_
-- [Componentes funcionales puros sin estado]  
-    - _funciones que reciven `props` como argumentos y retornan JSX/VDOM_
+  - _Las clases proveen una forma expresiva e definir componentes que poseen estado_
+- [Componentes de Alto Orden]
+  - _Componentes que devuelven otros componentes desde `render()`, efectivamente son wrappers_
+- [Componentes funcionales puros sin estado]
+  - _funciones que reciven `props` como argumentos y retornan JSX/VDOM_
 - [Contextos]: El soporte para `context` fue agregado en Preact [3.0].
-    - _El Contexto es una característica experimental de React, pero fue adoptado por algunas librerías._
+  - _El Contexto es una característica experimental de React, pero fue adoptado por algunas librerías._
 - [Refs]: El soporte de funciones refs fue agregador en Preact [4.0]. Los String refs son soportados por `preact-compat`.
-    - _Los Refs proveen una forma de referirse a elementos dibujados y elementos hijo._
+  - _Los Refs proveen una forma de referirse a elementos dibujados y elementos hijo._
 - Virtual DOM Diffing
-    - _Esto está dado por sentado - El diff de Preact es simple pero efectivo, y **[extremadamente](http://developit.github.io/js-repaint-perfs/) [rápido](https://localvoid.github.io/uibench/)**._
+  - _Esto está dado por sentado - El diff de Preact es simple pero efectivo, y **[extremadamente](http://developit.github.io/js-repaint-perfs/) [rápido](https://localvoid.github.io/uibench/)**._
 - `h()`, Una versión generalizada de `React.createElement`
-    - _Esta idea fue originalmente llamada [hyperscript] y tiene valor más allá del ecosistema de React, por eso Preact promueve el estándar original. ([Leer: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
-    - _Es también más legible: `h('a', { href:'/' }, h('span', null, 'Home'))`_
-
+  - _Esta idea fue originalmente llamada [hyperscript] y tiene valor más allá del ecosistema de React, por eso Preact promueve el estándar original. ([Leer: why `h()`?](http://jasonformat.com/wtf-is-jsx))_
+  - _Es también más legible: `h('a', { href:'/' }, h('span', null, 'Home'))`_
 
 ## ¿Qué fue agregado?
 
 Preact de hecho agrega algunas características convenientes inspiradas en el trabajo de la comunidad de React:
 
 - `this.props` y `this.state` son pasados a `render()` para tí
-    - _Todavía podés referenciarlos manualmente. Es simplemente una forma más clara, particularmente cuando se [desestructura]_
+  - _Todavía podés referenciarlos manualmente. Es simplemente una forma más clara, particularmente cuando se [desestructura]_
 - [Estado conectado] actualiza el estado automáticamente cuando el input cambia
 - Batching de actualizaciones del DOM, demorado usando `setTimeout(1)` _(también puede usar requestAnimationFrame)_
 - Puedes usar `class` para clases de CSS. `className` es soportado, pero `class` es privilegiado.
 - Reciclado y agrupamiento de Componentes y elementos.
 
-
 ## ¿Qué falta?
 
 - Validación de [PropType]: No todo el mundo usa PropTypes, entonces no son parte del núcleo de Preact.
-    - _**Las PropTypes son soportadas** en [preact-compat], o también podés usarlas manualmente._
+  - _**Las PropTypes son soportadas** en [preact-compat], o también podés usarlas manualmente._
 - [Children]: No son necesarios en Preact, porque `props.children` es _siempre un Array_.
-    - _`React.Children` está totalmente soportado en [preact-compat]._
+  - _`React.Children` está totalmente soportado en [preact-compat]._
 - Eventos sintéticos: El soporte de navegadores de Preact no requiere esta sobrecarga.
-    - _Preact usa el método nativo `addEventListener` del navegador a la hora de hacer manejo de eventos. Mira [GlobalEventHandlers] para ver una lista completa de eventos disponibles._
-    - _Una implementación completa de eventos implica más mentenimiento y problemas de performance, además de una superficie de API más grande._
-
+  - _Preact usa el método nativo `addEventListener` del navegador a la hora de hacer manejo de eventos. Mira [GlobalEventHandlers] para ver una lista completa de eventos disponibles._
+  - _Una implementación completa de eventos implica más mentenimiento y problemas de performance, además de una superficie de API más grande._
 
 ## ¿Cuál es la diferencia?
 

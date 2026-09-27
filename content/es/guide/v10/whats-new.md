@@ -24,12 +24,12 @@ Los `Fragmentos` son una de las principales novedades de Preact X, y una de las 
 ```jsx
 // --repl
 function Foo() {
-  return (
-    <>
-      <div>A</div>
-      <div>B</div>
-    </>
-  )
+	return (
+		<>
+			<div>A</div>
+			<div>B</div>
+		</>
+	);
 }
 ```
 
@@ -42,18 +42,18 @@ Todos deseamos que no se produzcan errores en nuestras aplicaciones, pero a vece
 ```jsx
 // --repl
 class Catcher extends Component {
-  state = { errored: false }
+	state = { errored: false };
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
-  }
+	componentDidCatch(error) {
+		this.setState({ errored: true });
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Algo salió mal</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Algo salió mal</p>;
+		}
+		return props.children;
+	}
 }
 ```
 
@@ -66,15 +66,15 @@ Los `Hooks` son una nueva forma de facilitar el intercambio de lógica entre com
 ```jsx
 // --repl
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => setValue(value + 1), [value]);
 
-  return (
-    <div>
-      Counter: {value}
-      <button onClick={increment}>Incremento</button>
-    </div>
-  );
+	return (
+		<div>
+			Counter: {value}
+			<button onClick={increment}>Incremento</button>
+		</div>
+	);
 }
 ```
 
@@ -88,21 +88,21 @@ La API `createContext` es la verdadera sucesora de `getChildContext()`. Mientras
 const Theme = createContext('light');
 
 function ThemedButton(props) {
-  return (
-    <Theme.Consumer>
-      {theme => <div>Tema activo: {theme}</div>}
-    </Theme.Consumer>
-  );
+	return (
+		<Theme.Consumer>
+			{(theme) => <div>Tema activo: {theme}</div>}
+		</Theme.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -112,7 +112,7 @@ A veces son los pequeños detalles los que marcan la diferencia. Con los recient
 
 ```jsx
 function Foo(props) {
-  return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
+	return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
 }
 ```
 
@@ -124,10 +124,10 @@ La capa de compatibilidad se llama ahora [preact/compat](/guide/v10/differences-
 
 ```js
 // Preact 8.x
-import React from "preact-compat";
+import React from 'preact-compat';
 
 // Preact X
-import React from "preact/compat";
+import React from 'preact/compat';
 ```
 
 ## Numerosas correcciones de compatibilidad

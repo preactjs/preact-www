@@ -29,9 +29,9 @@ Un framework como Preact, en contraste, mayormente trabaja con un flujo de datos
 <input value={someValue} onInput={myEventHandler} />;
 ```
 
-Generalmente, deberías tratar de utilizar componentes _Controlados_ en todos los casos. No obstante, cuando se construyen componentes que se sostienen por sí mismos o se encapsulan librerías de UI de terceros, puede ser útil simplemente usar tu componente como un punto donde implementar funcionalidad ajena a Preact. En estos casos, los componentes no controlados son aptos para lograr el cometido. 
+Generalmente, deberías tratar de utilizar componentes _Controlados_ en todos los casos. No obstante, cuando se construyen componentes que se sostienen por sí mismos o se encapsulan librerías de UI de terceros, puede ser útil simplemente usar tu componente como un punto donde implementar funcionalidad ajena a Preact. En estos casos, los componentes no controlados son aptos para lograr el cometido.
 
-> Advertencia:  Cambiar el 'value' a `undefined` o `null` va a resultar en componentes no controlados.
+> Advertencia: Cambiar el 'value' a `undefined` o `null` va a resultar en componentes no controlados.
 
 ## Creando un formulario simple
 
@@ -39,32 +39,32 @@ Creemos un formulario simple con el cual subir items de tareas (to-do). Para est
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class TodoForm extends Component {
-  state = { value: '' };
+	state = { value: '' };
 
-  onSubmit = e => {
-    alert("Submitted a todo");
-    e.preventDefault();
-  }
+	onSubmit = (e) => {
+		alert('Submitted a todo');
+		e.preventDefault();
+	};
 
-  onInput = e => {
-    this.setState({ value: e.currentTarget.value })
-  }
+	onInput = (e) => {
+		this.setState({ value: e.currentTarget.value });
+	};
 
-  render(_, { value }) {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input type="text" value={value} onInput={this.onInput} />
-        <p>You typed this value: {value}</p>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<form onSubmit={this.onSubmit}>
+				<input type="text" value={value} onInput={this.onInput} />
+				<p>You typed this value: {value}</p>
+				<button type="submit">Submit</button>
+			</form>
+		);
+	}
 }
 // --repl-after
-render(<TodoForm />, document.getElementById("app"));
+render(<TodoForm />, document.getElementById('app'));
 ```
 
 ## Select
@@ -73,36 +73,36 @@ Una entrada de `<select>` se involucra un poco más, pero es similar a todos los
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 
 // --repl-before
 class MySelect extends Component {
-  state = { value: '' };
+	state = { value: '' };
 
-  onChange = e => {
-    this.setState({ value: e.currentTarget.value });
-  }
+	onChange = (e) => {
+		this.setState({ value: e.currentTarget.value });
+	};
 
-  onSubmit = e => {
-    alert("Submitted " + this.state.value);
-    e.preventDefault();
-  }
+	onSubmit = (e) => {
+		alert('Submitted ' + this.state.value);
+		e.preventDefault();
+	};
 
-  render(_, { value }) {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <select value={value} onChange={this.onChange}>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-        </select>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<form onSubmit={this.onSubmit}>
+				<select value={value} onChange={this.onChange}>
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+				<button type="submit">Submit</button>
+			</form>
+		);
+	}
 }
 // --repl-after
-render(<MySelect />, document.getElementById("app"));
+render(<MySelect />, document.getElementById('app'));
 ```
 
 ## Checkboxes & Botones de Radio
@@ -117,27 +117,23 @@ Así que, en vez de escuchar por evento de `input`, deberíamos escuchar por un 
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class MyForm extends Component {
-  toggle = e => {
-      let checked = !this.state.checked;
-      this.setState({ checked });
-  };
+	toggle = (e) => {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	};
 
-  render(_, { checked }) {
-    return (
-      <label>
-        <input
-          type="checkbox"
-          checked={checked}
-          onClick={this.toggle}
-        />
-        check this box
-      </label>
-    );
-  }
+	render(_, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={this.toggle} />
+				check this box
+			</label>
+		);
+	}
 }
 // --repl-after
-render(<MyForm />, document.getElementById("app"));
+render(<MyForm />, document.getElementById('app'));
 ```

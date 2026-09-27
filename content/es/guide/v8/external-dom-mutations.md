@@ -18,9 +18,9 @@ Esto puede ser tan simple como definir un método `shouldComponentUpdate()` en t
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+	shouldComponentUpdate() {
+		return false;
+	}
 }
 ```
 
@@ -28,7 +28,7 @@ class Block extends Component {
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate = () => false;
+	shouldComponentUpdate = () => false;
 }
 ```
 
@@ -42,31 +42,31 @@ Este es un ejemplo de como "apagar" el redibujo de un componente. Notemos que `r
 
 ```js
 class Example extends Component {
-  shouldComponentUpdate() {
-    // no re-dibujar vía diff:
-    return false;
-  }
+	shouldComponentUpdate() {
+		// no re-dibujar vía diff:
+		return false;
+	}
 
-  componentWillReceiveProps(nextProps) {
-    // acá puedes hacer algo con las props entrantes si lo necesitas
-  }
+	componentWillReceiveProps(nextProps) {
+		// acá puedes hacer algo con las props entrantes si lo necesitas
+	}
 
-  componentDidMount() {
-    // ahora montado puedes modificar libremente el DOM:
-    let thing = document.createElement('maybe-a-custom-element');
-    this.base.appendChild(thing);
-  }
+	componentDidMount() {
+		// ahora montado puedes modificar libremente el DOM:
+		let thing = document.createElement('maybe-a-custom-element');
+		this.base.appendChild(thing);
+	}
 
-  componentWillUnmount() {
-    // el componente será removido del DOM, realiza cualquier limpieza
-  }
+	componentWillUnmount() {
+		// el componente será removido del DOM, realiza cualquier limpieza
+	}
 
-  render() {
-    return <div class="example" />;
-  }
+	render() {
+		return <div class="example" />;
+	}
 }
 ```
 
 ## Ejemplos de la vida real
 
-Alternativamente, puedes ver esta técnica en acción en [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa un componente como un foothold en el DOM, luego lo desactiva y deja que [tags-input](https://github.com/developit/tags-input) tome el rumbo más tarde.  Un ejemplo más complejo es [preact-richtextarea](https://github.com/developit/preact-richtextarea), que usa esta técnica para evitar redibujar un `<iframe>` editable.
+Alternativamente, puedes ver esta técnica en acción en [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) - usa un componente como un foothold en el DOM, luego lo desactiva y deja que [tags-input](https://github.com/developit/tags-input) tome el rumbo más tarde. Un ejemplo más complejo es [preact-richtextarea](https://github.com/developit/preact-richtextarea), que usa esta técnica para evitar redibujar un `<iframe>` editable.

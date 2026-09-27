@@ -9,7 +9,7 @@ translation_by:
 
 # Preact X, una historia de estabilidad
 
-Muchos de ustedes han estado esperando la llegada de [Preact 11](https://github.com/preactjs/preact/issues/2621), anunciada en una Issue abierta en julio de 2020, y, a decir verdad, yo era una de las personas más emocionadas por la v11. 
+Muchos de ustedes han estado esperando la llegada de [Preact 11](https://github.com/preactjs/preact/issues/2621), anunciada en una Issue abierta en julio de 2020, y, a decir verdad, yo era una de las personas más emocionadas por la v11.
 
 Cuando empezamos a pensar en Preact 11, creíamos que no había forma de introducir los cambios que teníamos en mente en Preact X sin cambios que rompieran la compatibilidad; algunas de las cosas que teníamos en mente:
 
@@ -66,7 +66,7 @@ Después de mucha investigación encontramos una manera de introducir [useId](ht
 
 ### 10.15.0
 
-Encontramos que un re-renderizado de paso que resultaba en múltiples componentes nuevos re-renderizándose podía resultar en que nuestra `rerenderQueue` estuviera desordenada; esto podía resultar en que nuestras actualizaciones (de contexto) se propagaran a componentes que luego se renderizarían *de nuevo* con valores obsoletos, ¡puedes consultar [el mensaje del commit](https://github.com/preactjs/preact/commit/672782adbf9ccefa7a4d7c175f0adf8580f73c92) para una explicación realmente detallada! Hacer esto tanto agrupa estas actualizaciones como aumenta nuestra alineación con las bibliotecas de React.
+Encontramos que un re-renderizado de paso que resultaba en múltiples componentes nuevos re-renderizándose podía resultar en que nuestra `rerenderQueue` estuviera desordenada; esto podía resultar en que nuestras actualizaciones (de contexto) se propagaran a componentes que luego se renderizarían _de nuevo_ con valores obsoletos, ¡puedes consultar [el mensaje del commit](https://github.com/preactjs/preact/commit/672782adbf9ccefa7a4d7c175f0adf8580f73c92) para una explicación realmente detallada! Hacer esto tanto agrupa estas actualizaciones como aumenta nuestra alineación con las bibliotecas de React.
 
 ### 10.16.0
 
@@ -116,6 +116,6 @@ La estabilidad es genial, nosotros como el equipo de Preact amamos la estabilida
 - [Un nuevo enrutador asíncrono](https://github.com/preactjs/preact-iso)
 - [Create Preact](https://github.com/preactjs/create-preact)
 
-Valoramos nuestro ecosistema y valoramos las extensiones que se construyen a través de nuestra [`options API`](https://www.google.com/search?q=%5Bhttps://marvinh.dev/blog/preact-options/%5D(https://marvinh.dev/blog/preact-options/)), este es uno de los principales impulsores detrás de no querer introducir estos cambios que rompen la compatibilidad, sino en su lugar, permitirles a todos beneficiarse de nuestra investigación sin un camino de migración doloroso.
+Valoramos nuestro ecosistema y valoramos las extensiones que se construyen a través de nuestra [`options API`](<https://www.google.com/search?q=%5Bhttps://marvinh.dev/blog/preact-options/%5D(https://marvinh.dev/blog/preact-options/)>), este es uno de los principales impulsores detrás de no querer introducir estos cambios que rompen la compatibilidad, sino en su lugar, permitirles a todos beneficiarse de nuestra investigación sin un camino de migración doloroso.
 
 Esto no significa que Preact 11 no sucederá, pero podría no ser lo que pensamos inicialmente que sería. En su lugar, podríamos simplemente eliminar el soporte de IE11 y darles esas mejoras de rendimiento, todo mientras les damos la estabilidad de Preact X. Hay muchas más ideas flotando y estamos muy interesados en la experiencia más amplia de Preact en el contexto de meta-frameworks que proporcionan cosas como enrutamiento listo para usar. Estamos explorando este ángulo en nuestro preset de vite así como en [Fresh](https://fresh.deno.dev/) para tener una buena idea de cómo debería verse un meta framework que priorice Preact.

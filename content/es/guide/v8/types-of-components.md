@@ -24,7 +24,7 @@ Supongamos que tenemos un componente `<Link>` que crea un elemento `<a>` de HTML
 ```js
 class Link extends Component {
 	render(props, state) {
-		return <a href={props.href}>{ props.children }</a>;
+		return <a href={props.href}>{props.children}</a>;
 	}
 }
 ```
@@ -34,7 +34,6 @@ Podemos instanciar/renderizar este componente de la siguiente manera:
 ```xml
 <Link href="http://example.com">Some Text</Link>
 ```
-
 
 ### Destructurar Props y State
 
@@ -58,15 +57,12 @@ class Link extends Component {
 }
 ```
 
-
 ### Componentes Funcionales Sin Estado
 
 Por último, podemos ver como este componente no tiene estado - por lo que cada vez que lo renderizemos con las mismas `props`, siempre vamos a obtener el mismo resultado. Cuando este sea el caso, es mejor utilizar Componentes Funcionales Sin Estado. Estos componentes son funciones que simplemente reciben `props` como un argumento, y devuelven JSX.
 
 ```js
-const Link = ({ children, ...props }) => (
-	<a {...props}>{ children }</a>
-);
+const Link = ({ children, ...props }) => <a {...props}>{children}</a>;
 ```
 
-> *ES2015 Nota:* en el ejemplo anterior se utiliza una [Arrow Function](https://github.com/lukehoban/es6features#arrows), y debido a que estamos usando paréntesis en vez de llaves para el cuerpo de la función, el valor entre los paréntesis se devuelve automaticamente. Puedes leer más sobre esto [aquí](https://github.com/lukehoban/es6features#arrows).
+> _ES2015 Nota:_ en el ejemplo anterior se utiliza una [Arrow Function](https://github.com/lukehoban/es6features#arrows), y debido a que estamos usando paréntesis en vez de llaves para el cuerpo de la función, el valor entre los paréntesis se devuelve automaticamente. Puedes leer más sobre esto [aquí](https://github.com/lukehoban/es6features#arrows).

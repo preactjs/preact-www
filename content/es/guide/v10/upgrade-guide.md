@@ -85,13 +85,13 @@ Para mejorar el soporte de tree-shaking ya no incluimos una exportación `defaul
 
 ```js
 // Preact 8.x
-import Preact from "preact";
+import Preact from 'preact';
 
 // Preact X
-import * as preact from "preact";
+import * as preact from 'preact';
 
 // Preferred: Named exports (works in 8.x and Preact X)
-import { h, Component } from "preact";
+import { h, Component } from 'preact';
 ```
 
 _Note: Este cambio no afecta a `preact/compat`. Sigue teniendo un nombre y una exportación por defecto para seguir siendo compatible con react._
@@ -103,18 +103,18 @@ En Preact 8.x, las llamadas a `render()` siempre añadían los elementos al cont
 ```jsx
 // Marcado existente:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Salida de Preact 8.x:
 <body>
-  <div>hello</div>
-  <p>foo</p>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>foo</p>
+	<p>bar</p>
+</body>;
 ```
 
 Para difundir los hijos existentes en Preact 8, era necesario proporcionar un nodo DOM existente.
@@ -122,8 +122,8 @@ Para difundir los hijos existentes en Preact 8, era necesario proporcionar un no
 ```jsx
 // Marcado existente:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 let element;
 element = render(<p>foo</p>, document.body);
@@ -131,9 +131,9 @@ element = render(<p>bar</p>, document.body, element);
 
 // Salida de Preact 8.x:
 <body>
-  <div>hello</div>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>bar</p>
+</body>;
 ```
 
 En Preact X, `render()` siempre difiere los hijos DOM dentro del contenedor. Así que si tu contenedor contiene DOM que no ha sido renderizado por Preact, Preact intentará diferenciarlo con los elementos que le pases. Este nuevo comportamiento se asemeja más al de otras librerías VDOM.
@@ -141,17 +141,17 @@ En Preact X, `render()` siempre difiere los hijos DOM dentro del contenedor. As�
 ```jsx
 // Marcado existente:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Salida de Preact 8.x:
 <body>
-  <p>bar</p>
-  <div>hello</div>
-</body>
+	<p>bar</p>
+	<div>hello</div>
+</body>;
 ```
 
 Si buscas un comportamiento que coincida exactamente con el funcionamiento del método `render` de React, utiliza el método `render` exportado por `preact/compat`.
@@ -163,18 +163,18 @@ En Preact X ya no podemos garantizar que `props.children` sea siempre de tipo `a
 ```jsx
 // Preact 8.x
 function Foo(props) {
-  // `.length` es un método de array. En Preact X cuando `props.children` no es un
-  // array, esta línea lanzará una excepción
-  const count = props.children.length;
-  return <div>Tengo {count} hijos</div>;
+	// `.length` es un método de array. En Preact X cuando `props.children` no es un
+	// array, esta línea lanzará una excepción
+	const count = props.children.length;
+	return <div>Tengo {count} hijos</div>;
 }
 
 // Preact X
-import { toChildArray } from "preact";
+import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>Tengo {count} hijos</div>;
+	const count = toChildArray(props.children).length;
+	return <div>Tengo {count} hijos</div>;
 }
 ```
 
@@ -189,9 +189,9 @@ this.state = { counter: 0 };
 this.setState({ counter: this.state.counter + 1 });
 
 // Preact X
-this.setState(prevState => {
-  // Alternativamente devolver `null` aquí para abortar la actualización del estado
-  return { counter: prevState.counter + 1 };
+this.setState((prevState) => {
+	// Alternativamente devolver `null` aquí para abortar la actualización del estado
+	return { counter: prevState.counter + 1 };
 });
 ```
 
@@ -201,8 +201,8 @@ Cuando un `vnode` tiene la propiedad `dangerouslySetInnerHTML` establecida Preac
 
 ```jsx
 <div dangerouslySetInnerHTML="foo">
-  <span>Me saltaré</span>
-  <p>Yo también</p>
+	<span>Me saltaré</span>
+	<p>Yo también</p>
 </div>
 ```
 
@@ -226,13 +226,13 @@ En Preact 8.x teníamos esta función que nos permitía unir notas de texto adya
 
 ```jsx
 // Preact 8.x
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // Registra una estructura como esta:
 //   div
 //     text
 
 // Preact X
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // Registra una estructura como esta:
 //   div
 //     text

@@ -37,7 +37,7 @@ class Counter extends Component {
 	};
 
 	increment = () => {
-		this.setState(prev => ({ value: prev.value + 1 }));
+		this.setState((prev) => ({ value: prev.value + 1 }));
 	};
 
 	render(props, state) {
@@ -176,7 +176,7 @@ const Counter = () => {
 	const [count, setCount] = useState(0);
 	const increment = () => setCount(count + 1);
 	// También puedes pasar un callback al setter.
-	const decrement = () => setCount(currentCount => currentCount - 1);
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
 	return (
 		<div>
@@ -218,7 +218,7 @@ const reducer = (state, action) => {
 
 function Counter() {
 	// Devuelve el estado actual y una función de envío para
-  // activar una acción.
+	// activar una acción.
 	const [count, dispatch] = useReducer(reducer, initialState);
 	return (
 		<div>
@@ -245,7 +245,7 @@ Con el hook `useMemo` podemos memoizar los resultados de ese cálculo y solo rec
 const memoized = useMemo(
 	() => expensive(a, b),
 	// Solo vuelve a ejecutar la función costosa cuando alguna de estas
-  // dependencias cambie.
+	// dependencias cambie.
 	[a, b]
 );
 ```
@@ -304,18 +304,14 @@ import { useRef, useImperativeHandle, useState } from 'preact/hooks';
 // --repl-before
 function MyInput({ inputRef }) {
 	const ref = useRef(null);
-	useImperativeHandle(
-		inputRef,
-		() => {
-			return {
-				// Solo exponer `.focus()`, no dar acceso directo al nodo DOM.
-				focus() {
-					ref.current.focus();
-				}
-			};
-		},
-		[]
-	);
+	useImperativeHandle(inputRef, () => {
+		return {
+			// Solo exponer `.focus()`, no dar acceso directo al nodo DOM.
+			focus() {
+				ref.current.focus();
+			}
+		};
+	}, []);
 
 	return (
 		<label>
@@ -351,7 +347,7 @@ Para acceder a contexto en un componente funcional podemos usar el hook `useCont
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const OtherComponent = props => props.children;
+const OtherComponent = (props) => props.children;
 // --repl-before
 const Theme = createContext('light');
 
@@ -452,14 +448,14 @@ const [error, resetError] = useErrorBoundary();
 Para fines de monitoreo a menudo es increíblemente útil notificar a un servicio de cualquier error. Para eso podemos aprovechar una devolución de llamada opcional y pasar eso como el primer argumento a `useErrorBoundary`.
 
 ```jsx
-const [error] = useErrorBoundary(error => callMyApi(error.message));
+const [error] = useErrorBoundary((error) => callMyApi(error.message));
 ```
 
 Un ejemplo de uso completo puede verse así:
 
 ```jsx
-const App = props => {
-	const [error, resetError] = useErrorBoundary(error =>
+const App = (props) => {
+	const [error, resetError] = useErrorBoundary((error) =>
 		callMyApi(error.message)
 	);
 

@@ -36,7 +36,7 @@ import { options } from 'preact';
 const oldHook = options.vnode;
 
 // Configura tu propio hook de opciones
-options.vnode = vnode => {
+options.vnode = (vnode) => {
 	console.log("Hey I'm a vnode", vnode);
 
 	// Llama al hook definido previamente si lo hubiera.

@@ -30,7 +30,6 @@ npm i -S preact preact-compat
 
 Con esas dependencias instaladas, configura tu sistema de build para incluir el alias de imports de React para que apunten a Preact en su lugar.
 
-
 ### Cómo hacer el alias de preact-compat
 
 Ahora que tienes las dependencias instaladas, necesitas configurar tu sistema de build para redirigir cualquier import/require que busque por `react` or `react-dom` a `preact-compat`.
@@ -42,12 +41,12 @@ en tu `webpack.config.js`:
 
 ```json
 {
-  "resolve": {
-    "alias": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"resolve": {
+		"alias": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -55,18 +54,18 @@ en tu `webpack.config.js`:
 
 Si usas Browserify, los alias se pueden definir agregando la transformación de [aliasify](https://www.npmjs.com/package/aliasify).
 
-Primero, instala la transformación:  `npm i -D aliasify`
+Primero, instala la transformación: `npm i -D aliasify`
 
 Luego, en tu `package.json`, dile a aliasify que redirija tus import de react a preact-compat:
 
 ```json
 {
-  "aliasify": {
-    "aliases": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"aliasify": {
+		"aliases": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -75,7 +74,7 @@ Luego, en tu `package.json`, dile a aliasify que redirija tus import de react a 
 Si no usas un sistema de build o quieres cambiar permanentemente a `preact-compat`,
 También puedes buscar y reemplazar todos los imports/requires en tu código que es básicamente lo que hace el alias:
 
-> **buscar:**    `(['"])react(-dom)?\1`
+> **buscar:** `(['"])react(-dom)?\1`
 >
 > **reemplazar:** `$1preact-compat$1`
 
@@ -83,16 +82,13 @@ En este caso probablemente tenga más sentido cambiar directamente a `preact`, e
 El núcleo de Preact es completo y muchos proyectos de React pueden de hecho pasarse a `preact` con muy poco esfuerzo.
 Este enfoque se cubre en la siguiente sección.
 
-
 ### Build y Test
 
 **Ya estás list@!**
 Ahora cuando corras tu build, todos los imports de React van a importar `preact-compat` y tu bundle va a ser mucho más pequeño.
 Es siempre una buena idea correr tu suite de tests y obviamente cargar tu aplicación para ver como funciona.
 
-
 ---
-
 
 ## Óptimo: Cambiarse a Preact
 
@@ -130,19 +126,15 @@ En JSX, el "pragma" es el nombre de la función que maneja la creación de cada 
 
 En cada uno de los ejemplos anteriores, `h` es el nombre de la función que declaramos como el JSX Pragma.
 
-
 #### Vía Babel
 
 Si estás usando Babel, puedes setear el JSX Pragma en tu `.babelrc` o el `package.json` (lo que prefieras):
 
 ```json
 {
-  "plugins": [
-    ["transform-react-jsx", { "pragma": "h" }]
-  ]
+	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 }
 ```
-
 
 #### Usando comentarios
 
@@ -151,13 +143,11 @@ puedes setear el JSX Pragma definiendo un comentario cerca del comienzo de tu c�
 
 `/** @jsx h */`
 
-
 #### Con Bublé
 
 [Bublé] viene con soporte de JSX por defecto. Solo tienes que setear la opción de `jsx`:
 
 `buble({ jsx: 'h' })`
-
 
 ### 3. Actualizar código antiguo
 
@@ -174,7 +164,6 @@ Los String refs están deprecados en React y van a ser eliminados pronto, esto s
 Si quieres seguir usando String refs, [esta pequeña funcion linkedRef](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d)
 ofrece una versión que va a funcionar en el futuro que popula`this.refs.$$` como hacen las String Refs. La simplicidad de este pequeño wrapper sobre las Function Refs también ayuda a ilustrar por qué las Function Refs son ahora la elección de preferencia.
 
-
 ### 4. Simplificando el renderizado de la raíz
 
 Desde React 0.13, `render()` es provisto por el módulo `react-dom`.
@@ -187,8 +176,8 @@ Entonces, el último paso para convertir tu código a Preact es cambiar `ReactDO
 ```
 
 Es también interestante ver que el `render()` de Preact es no-destructivo, entonces dibujar en el `<body>` está perfecto (recomendado, de hecho).
-Esto es posible porque Preact no asume que controla todo el elemento raíz que le pases.  El segundo argumento a `render()`
-es de hecho el `padre` - es decir el elemento de DOM _dentro_ del que dibujamos.  si quieres redibujar desde la raíz (quizás para Hot
+Esto es posible porque Preact no asume que controla todo el elemento raíz que le pases. El segundo argumento a `render()`
+es de hecho el `padre` - es decir el elemento de DOM _dentro_ del que dibujamos. si quieres redibujar desde la raíz (quizás para Hot
 Module Replacement), `render()` acepta un elemento a reemplazar como su tercer argumento:
 
 ```js
@@ -199,7 +188,7 @@ render(<App />, document.body);
 render(<App />, document.body, document.body.lastElementChild);
 ```
 
-En el ejemplo anterior,  estamos usando que el último hijo es la raíz que dibujamos anteriormente.
+En el ejemplo anterior, estamos usando que el último hijo es la raíz que dibujamos anteriormente.
 Mientras que esto funciona en muchos casos (jsfiddles, codepens, etc), lo mejor es tener mayor control.
 Es por eso que `render()` retorna el elemento raíz: Lo pasas como el tercer argumento para redibujar en el lugar.
 El siguiente ejemplo muestra como redibujar en respuesta del módulo Hot Module Replacement de Webpack cuando hay un cambio:
@@ -209,7 +198,7 @@ El siguiente ejemplo muestra como redibujar en respuesta del módulo Hot Module 
 let root;
 
 function init() {
-  root = render(<App />, document.body, root);
+	root = render(<App />, document.body, root);
 }
 init();
 
@@ -218,7 +207,6 @@ if (module.hot) module.hot.accept('./app', init);
 ```
 
 La técnica completa puede ser vista en [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18).
-
 
 [babel]: https://babeljs.io
 [bublé]: https://buble.surge.sh

@@ -80,11 +80,11 @@ Quizás notaste la llamada `waitFor()` allí. Necesitamos esto para asegurar que
 
 ```jsx
 test('should increment counter', async () => {
-  render(<Counter initialCount={5}/>);
+	render(<Counter initialCount={5} />);
 
-  fireEvent.click(screen.getByText('Increment'));
-  // INCORRECTO: Preact probablemente no haya terminado de renderizar aquí
-  expect(screen.getByText("Current value: 6")).toBeInTheDocument();
+	fireEvent.click(screen.getByText('Increment'));
+	// INCORRECTO: Preact probablemente no haya terminado de renderizar aquí
+	expect(screen.getByText('Current value: 6')).toBeInTheDocument();
 });
 ```
 
@@ -94,13 +94,13 @@ También podemos escribir pruebas de una manera asincrónica-primero usando la v
 
 ```jsx
 test('should increment counter', async () => {
-  render(<Counter initialCount={5}/>);
+	render(<Counter initialCount={5} />);
 
-  fireEvent.click(screen.getByText('Increment'));
+	fireEvent.click(screen.getByText('Increment'));
 
-  await screen.findByText('Current value: 6'); // espera a que el elemento cambie
+	await screen.findByText('Current value: 6'); // espera a que el elemento cambie
 
-  expect(screen.getByText("Current value: 6")).toBeInTheDocument(); // pasa
+	expect(screen.getByText('Current value: 6')).toBeInTheDocument(); // pasa
 });
 ```
 
@@ -181,6 +181,7 @@ fireEvent.click(screen.getByTestId('foo'));
 ```
 
 ## Debugging Tests
+
 purando Pruebas
 
 Para depurar el estado actual del DOM puedes usar la función `debug()` para imprimir una versión embellecida del DOM.
@@ -189,7 +190,7 @@ Para depurar el estado actual del DOM puedes usar la función `debug()` para imp
 const { debug } = render(<App />);
 
 // Imprime una versión embellecida del DOM
-debug()
+debug();
 ```
 
 ## Proporcionando Proveedores de Contexto Personalizados
@@ -226,7 +227,7 @@ import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
 	const [count, setCount] = useState(0);
-	const increment = useCallback(() => setCount(c => c + 1), []);
+	const increment = useCallback(() => setCount((c) => c + 1), []);
 	return { count, increment };
 };
 ```

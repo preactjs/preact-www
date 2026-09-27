@@ -183,9 +183,7 @@ Típicamente, envolvería toda tu aplicación en este proveedor:
 import { LocationProvider } from 'preact-iso';
 
 function App() {
-	return (
-		<LocationProvider scope="/app">{/* Tu app aquí */}</LocationProvider>
-	);
+	return <LocationProvider scope="/app">{/* Tu app aquí */}</LocationProvider>;
 }
 ```
 
@@ -204,9 +202,9 @@ function App() {
 	return (
 		<LocationProvider>
 			<Router
-				onRouteChange={url => console.log('Route changed to', url)}
-				onLoadStart={url => console.log('Starting to load', url)}
-				onLoadEnd={url => console.log('Finished loading', url)}
+				onRouteChange={(url) => console.log('Route changed to', url)}
+				onLoadStart={(url) => console.log('Starting to load', url)}
+				onLoadEnd={(url) => console.log('Finished loading', url)}
 			>
 				<Home path="/" />
 				<Profiles path="/profiles" />
@@ -317,7 +315,7 @@ import Home from './routes/home.js';
 
 // Asíncrono, con división de código:
 const Profiles = lazy(() =>
-	import('./routes/profiles.js').then(m => m.Profiles)
+	import('./routes/profiles.js').then((m) => m.Profiles)
 ); // Espera una exportación nombrada llamada `Profiles`
 const Profile = lazy(() => import('./routes/profile.js')); // Espera una exportación predeterminada
 
@@ -362,7 +360,7 @@ import { LocationProvider, ErrorBoundary, Router } from 'preact-iso';
 function App() {
 	return (
 		<LocationProvider>
-			<ErrorBoundary onError={e => console.log(e)}>
+			<ErrorBoundary onError={(e) => console.log(e)}>
 				<Router>
 					<Home path="/" />
 					<Profiles path="/profiles" />

@@ -190,8 +190,8 @@ import manifest from '../../dist/js/manifest.json';
 
 export const withManifestBundles = ({ styles, body }) => {
 	// recorrer cada clave del manifiesto y construir
-  // una etiqueta de script para cada una.
-	const bundledScripts = Object.keys(manifest).map(key => {
+	// una etiqueta de script para cada una.
+	const bundledScripts = Object.keys(manifest).map((key) => {
 		const scriptPath = `/public/js/${manifest[key]}`;
 		return `<script src=${scriptPath}></script>`;
 	});
@@ -295,7 +295,7 @@ Todo lo demás es configuración genérica que también está presente en el lad
 		new WebpackManifestPlugin({
 			publicPath: '',
 			basePath: '',
-			filter: file => {
+			filter: (file) => {
 				return /\.mount\.js$/.test(file.name);
 			}
 		})
@@ -381,9 +381,9 @@ const mount = async (Component, elm) => {
 
 const main = async () => {
 	// Carga diferida y vuelve a montar el contador como un componente del lado del cliente si es necesario.
-  // Una mejor manera sería verificar si el elemento `counter` existe en
-  // el DOM antes incluso de importar el componente para evitar descargas innecesarias
-  // de JS.
+	// Una mejor manera sería verificar si el elemento `counter` existe en
+	// el DOM antes incluso de importar el componente para evitar descargas innecesarias
+	// de JS.
 
 	const Counter = (await import('../components/Counter.js')).default;
 	mount(Counter, document.getElementById('counter'));

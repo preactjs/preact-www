@@ -13,16 +13,15 @@ La nueva versión de Preact Signals aporta importantes actualizaciones de rendim
 
 Recientemente hemos [anunciado](https://twitter.com/jviide/status/1572570215350964224) nuevas versiones de los paquetes de Preact Signals:
 
- * [@preact/signals-core](https://www.npmjs.com/package/@preact/signals-core) 1.2.0 para las funciones básicas compartidas
- * [@preact/signals](https://www.npmjs.com/package/@preact/signals) 1.1.0 para las vinculaciones con Preact
- * [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react) 1.1.0 para las vinculaciones con React
+- [@preact/signals-core](https://www.npmjs.com/package/@preact/signals-core) 1.2.0 para las funciones básicas compartidas
+- [@preact/signals](https://www.npmjs.com/package/@preact/signals) 1.1.0 para las vinculaciones con Preact
+- [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react) 1.1.0 para las vinculaciones con React
 
 Esta publicación describirá los pasos que tomamos para optimizar **@preact/signals-core**. Es el paquete que actúa como base para los vinculos específicos del framework, pero también se puede utilizar de forma independiente.
 
 Los Signals son la propuesta del equipo de Preact para la programación reactiva. Si quieres una pequeña introducción sobre qué son los Signals y cómo se relacionan con Preact, [la publicación del blog sobre el anuncio de los Signals](/blog/introducing-signals) lo tiene cubierto. Para una inmersión más profunda, consulta la [documentación oficial](/guide/v11/signals).
 
 Cabe señalar que ninguno de estos conceptos los hemos inventado nosotros. La programación reactiva tiene bastante historia, y ya ha sido popularizada ampliamente en el mundo de JavaScript por [Vue.js](https://vuejs.org/), [Svelte](https://svelte.dev/), [SolidJS](https://www.solidjs.com/), [RxJS](https://rxjs.dev/) y demasiados otros para nombrarlos. ¡Felicitaciones a todos ellos!
-
 
 ## Un recorrido rápido por el núcleo de los Signals
 
@@ -38,7 +37,7 @@ Los Signals representan valores arbitrarios de JavaScript envueltos en un capara
 
 ```js
 // --repl
-import { signal } from "@preact/signals-core";
+import { signal } from '@preact/signals-core';
 
 const s = signal(0);
 console.log(s.value); // Consola: 0
@@ -55,13 +54,13 @@ Los _signals calculados_ derivan nuevos valores de otros signals mediante _funci
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hola");
-const s2 = signal("Mundo");
+const s1 = signal('Hola');
+const s2 = signal('Mundo');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 ```
 
@@ -69,13 +68,13 @@ La función de cálculo dada a `computed(...)` no se ejecutará inmediatamente. 
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hola");
-const s2 = signal("Mundo");
+const s1 = signal('Hola');
+const s2 = signal('Mundo');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 // --repl-before
 console.log(c.value); // Consola: Hola Mundo
@@ -85,13 +84,13 @@ Los valores calculados también _se almacenan en caché_. Sus funciones de cálc
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hola");
-const s2 = signal("Mundo");
+const s1 = signal('Hola');
+const s2 = signal('Mundo');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 
 console.log(c.value); // Consola: Hola Mundo
@@ -99,7 +98,7 @@ console.log(c.value); // Consola: Hola Mundo
 // s1 y s2 no han cambiado, no hay que volver a calcularlo aquí
 console.log(c.value); // Consola: Hola Mundo
 
-s2.value = "oscuridad mi vieja amiga";
+s2.value = 'oscuridad mi vieja amiga';
 
 // s2 ha cambiado, por lo que la función de cálculo se ejecuta nuevamente
 console.log(c.value); // Consola: Hola oscuridad mi vieja amiga
@@ -109,7 +108,7 @@ Así, los signals calculados son en sí mismos signals. Un signal calculado pued
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -124,29 +123,31 @@ El conjunto de dependencias no tiene por qué permanecer estático. El signal ca
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const choice = signal(true);
-const funk = signal("Uptown");
-const purple = signal("Haze");
+const funk = signal('Uptown');
+const purple = signal('Haze');
 
 const c = computed(() => {
-  if (choice.value) {
-    console.log(funk.value, "Funk");
-  } else {
-    console.log("Purple", purple.value);
-  }
+	if (choice.value) {
+		console.log(funk.value, 'Funk');
+	} else {
+		console.log('Purple', purple.value);
+	}
 });
+<!-- prettier-ignore-start -->
 c.value;               // Consola: Uptown Funk
 
-purple.value = "Rain"; // purple no es una dependencia, por lo que
+purple.value = 'Rain'; // purple no es una dependencia, por lo que
 c.value;               // el efecto no se ejecuta
 
 choice.value = false;
 c.value;               // Consola: Purple Rain
 
-funk.value = "Da";     // funk no es una dependencia, por lo que
+funk.value = 'Da';     // funk no es una dependencia, por lo que
 c.value;               // el efecto no se ejecuta
+<!-- prettier-ignore-end -->
 ```
 
 Estas tres cosas - seguimiento de dependencias, pereza y almacenamiento en caché - son características comunes en las bibliotecas de reactividad. _Las propiedades computadas_ de Vue son [un ejemplo destacado](https://dev.to/linusborg/vue-when-a-computed-property-can-be-the-wrong-tool-195j).
@@ -159,15 +160,15 @@ Al igual que los signals computados, los efectos también se crean con una funci
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 effect(() => {
-  console.log("EL cuádruple ahora es", quadruple.value);
-});               // Consola: EL cuádruple ahora es 4
+	console.log('EL cuádruple ahora es', quadruple.value);
+}); // Consola: EL cuádruple ahora es 4
 
 count.value = 20; // Consola: EL cuádruple ahora es 80
 ```
@@ -178,31 +179,30 @@ Cuando haya terminado con un efecto, llame al _disposer_ que se devolvió cuando
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 // --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 const dispose = effect(() => {
-  console.log("EL cuádruple ahora es", quadruple.value);
-});                 // Consola: EL cuádruple ahora es 4
+	console.log('EL cuádruple ahora es', quadruple.value);
+}); // Consola: EL cuádruple ahora es 4
 
 dispose();
-count.value = 20;  // no se imprime nada en la consola
+count.value = 20; // no se imprime nada en la consola
 ```
 
 Existen otras funciones, como [`batch`](/guide/v11/signals/#batchfn), pero estas tres son las más relevantes para las notas de implementación que siguen.
-
 
 # Notas de implementación
 
 Cuando nos propusimos implementar versiones más eficaces de las primitivas anteriores, tuvimos que encontrar formas ágiles de realizar todas las siguientes subtareas:
 
- * Seguimiento de dependencias: Realiza un seguimiento de los signals utilizados (simples o calculados). Las dependencias pueden cambiar dinámicamente.
- * Pereza: Las funciones de cálculo sólo deben ejecutarse bajo demanda.
- * Almacenamiento en caché: Un signal calculado debe volver a calcularse sólo cuando sus dependencias hayan cambiado.
- * Ansiedad: Un efecto debe ejecutarse lo antes posible cuando cambie algo en su cadena de dependencias.
+- Seguimiento de dependencias: Realiza un seguimiento de los signals utilizados (simples o calculados). Las dependencias pueden cambiar dinámicamente.
+- Pereza: Las funciones de cálculo sólo deben ejecutarse bajo demanda.
+- Almacenamiento en caché: Un signal calculado debe volver a calcularse sólo cuando sus dependencias hayan cambiado.
+- Ansiedad: Un efecto debe ejecutarse lo antes posible cuando cambie algo en su cadena de dependencias.
 
 Un sistema reactivo puede implementarse de un millón de maneras diferentes. La primera versión publicada de **@preact/signals-core** se basaba en Sets, así que seguiremos usando ese enfoque para contrastar y comparar.
 
@@ -226,20 +226,20 @@ Los Sets también tienen la propiedad de ser iterados en orden de inserción. Lo
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const s1 = signal(0);
 const s2 = signal(0);
 const s3 = signal(0);
 
-const c = computed(() => {
-  if (s1.value) {
-    s2.value;
-    s3.value;
-  } else {
-    s3.value;
-    s2.value;
-  }
+const c = computed(() => {
+	if (s1.value) {
+		s2.value;
+		s3.value;
+	} else {
+		s3.value;
+		s2.value;
+	}
 });
 ```
 
@@ -251,9 +251,9 @@ Hay muchas otras formas de solucionar este problema. Por ejemplo, numerando y lu
 
 Las listas enlazadas a menudo se consideran bastante primitivas, pero para nuestros propósitos tienen algunas propiedades muy interesantes. Si tiene una lista de nodos doblemente enlazados, las siguientes operaciones pueden resultar extremadamente económicas:
 
- * Insertar un elemento en un extremo de la lista en tiempo O(1).
- * Eliminar un nodo (para el cual ya tienes un puntero) de cualquier lugar de la lista en un tiempo O(1).
- * Iterar a través de la lista en O(n) tiempo (O(1) por nodo)
+- Insertar un elemento en un extremo de la lista en tiempo O(1).
+- Eliminar un nodo (para el cual ya tienes un puntero) de cualquier lugar de la lista en un tiempo O(1).
+- Iterar a través de la lista en O(n) tiempo (O(1) por nodo)
 
 Resulta que estas operaciones son todo lo que necesitamos para gestionar dependencias/listas de dependientes.
 
@@ -291,7 +291,7 @@ No hemos sido completamente honestos. Los signals calculados en realidad no _sie
 const s = signal(0);
 
 {
-  const c = computed(() => s.value)
+	const c = computed(() => s.value);
 }
 // c ha salido del ámbito
 ```
@@ -310,24 +310,23 @@ Cada signal simple y calculado tiene su propio _número de versión_. Incrementa
 
 Terminamos con el siguiente algoritmo para determinar cuándo un signal calculado puede tomarse el día libre y reutilizar su valor almacenado en caché:
 
- 1. Si ningún signal en ningún lugar ha cambiado de valor desde la última ejecución, entonces sal del proceso y devuelve el valor en caché.
+1.  Si ningún signal en ningún lugar ha cambiado de valor desde la última ejecución, entonces sal del proceso y devuelve el valor en caché.
 
- > Cada vez que un signal simple cambia, también incrementa un número de versión global, compartido entre todos los signals simples. Cada signal calculado lleva la cuenta del último número de versión global que ha visto. Si la versión global no ha cambiado desde el último cálculo, entonces el recálculo se puede omitir antes de tiempo. De todos modos, no podría haber ningún cambio en ningún valor calculado en ese caso.
+> Cada vez que un signal simple cambia, también incrementa un número de versión global, compartido entre todos los signals simples. Cada signal calculado lleva la cuenta del último número de versión global que ha visto. Si la versión global no ha cambiado desde el último cálculo, entonces el recálculo se puede omitir antes de tiempo. De todos modos, no podría haber ningún cambio en ningún valor calculado en ese caso.
 
- 1. Si el signal calculado está escuchando notificaciones, y no ha sido notificado desde la última ejecución, entonces sal del proceso y devuelve el valor en caché.
+1.  Si el signal calculado está escuchando notificaciones, y no ha sido notificado desde la última ejecución, entonces sal del proceso y devuelve el valor en caché.
 
- > Cuando un signal calculado recibe una notificación de sus dependencias, marca el valor en caché como obsoleto. Como se describió anteriormente, los signals calculados no siempre reciben notificaciones. Pero cuando lo hacen, podemos aprovecharlo.
+> Cuando un signal calculado recibe una notificación de sus dependencias, marca el valor en caché como obsoleto. Como se describió anteriormente, los signals calculados no siempre reciben notificaciones. Pero cuando lo hacen, podemos aprovecharlo.
 
- 1. Vuelve a evaluar las dependencias en orden. Verifica sus números de versión. Si ninguna dependencia ha cambiado su número de versión, incluso después de la reevaluación, entonces sal del proceso y devuelve el valor en caché.
+1.  Vuelve a evaluar las dependencias en orden. Verifica sus números de versión. Si ninguna dependencia ha cambiado su número de versión, incluso después de la reevaluación, entonces sal del proceso y devuelve el valor en caché.
 
-  > Este paso es la razón por la que dimos amor y cuidado especial para mantener las dependencias en su orden de uso. Si una dependencia cambia, entonces no queremos volver a evaluar las dependencias que vienen más adelante en la lista porque podría ser solo trabajo innecesario. Quién sabe, tal vez el cambio en esa primera dependencia haga que la siguiente función de cálculo que se ejecute elimine las últimas dependencias.
+> Este paso es la razón por la que dimos amor y cuidado especial para mantener las dependencias en su orden de uso. Si una dependencia cambia, entonces no queremos volver a evaluar las dependencias que vienen más adelante en la lista porque podría ser solo trabajo innecesario. Quién sabe, tal vez el cambio en esa primera dependencia haga que la siguiente función de cálculo que se ejecute elimine las últimas dependencias.
 
- 1. Ejecuta la función de cálculo. Si el valor devuelto es diferente al guardado en caché, entonces incrementa el número de versión del signal calculado. Guarda en caché y devuelve el nuevo valor.
+1.  Ejecuta la función de cálculo. Si el valor devuelto es diferente al guardado en caché, entonces incrementa el número de versión del signal calculado. Guarda en caché y devuelve el nuevo valor.
 
-  > ¡Este es el último recurso! Pero al menos si el nuevo valor es igual al guardado en caché, entonces el número de versión no cambiará, y los dependientes en la línea pueden usar eso para optimizar su propio almacenamiento en caché.
+> ¡Este es el último recurso! Pero al menos si el nuevo valor es igual al guardado en caché, entonces el número de versión no cambiará, y los dependientes en la línea pueden usar eso para optimizar su propio almacenamiento en caché.
 
 Los dos últimos pasos suelen recurrir en las dependencias. Es por eso que los pasos anteriores están diseñados para tratar de cortocircuitar la recursión.
-
 
 # Final del juego
 
