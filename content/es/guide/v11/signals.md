@@ -178,7 +178,7 @@ La última característica que nos gustaría agregar es la capacidad de eliminar
 
 ```jsx
 function removeTodo(todo) {
-	todos.value = todos.value.filter(t => t !== todo);
+	todos.value = todos.value.filter((t) => t !== todo);
 }
 ```
 
@@ -188,14 +188,14 @@ Ahora que hemos modelado el estado de nuestra aplicación, es hora de conectarlo
 
 ```jsx
 function TodoList() {
-	const onInput = event => (text.value = event.currentTarget.value);
+	const onInput = (event) => (text.value = event.currentTarget.value);
 
 	return (
 		<>
 			<input value={text.value} onInput={onInput} />
 			<button onClick={addTodo}>Añadir</button>
 			<ul>
-				{todos.value.map(todo => (
+				{todos.value.map((todo) => (
 					<li>
 						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
 					</li>
@@ -224,7 +224,7 @@ const todos = signal([
 // crea una señal computada de otras señales
 const completed = computed(() => {
 	// Cuando `todos` cambia, esto se ejecuta automáticamente:
-	return todos.value.filter(todo => todo.completed).length;
+	return todos.value.filter((todo) => todo.completed).length;
 });
 
 // Logs: 1, porque un todo está marcado como completado
@@ -244,12 +244,11 @@ function createAppState() {
 	const todos = signal([]);
 
 	const completed = computed(() => {
-		return todos.value.filter(todo => todo.completed).length;
+		return todos.value.filter((todo) => todo.completed).length;
 	});
 
 	return { todos, completed };
 }
-
 ```
 
 > :bulb: Nota: Observa que no estamos incluyendo conscientemente las funciones `addTodo()` y `removeTodo(todo)` aquí. Separar los datos de las funciones que los modifican a menudo ayuda a simplificar la arquitectura de la aplicación. Para más detalles, consulta el [diseño orientado a datos](https://www.dataorienteddesign.com/dodbook/).
@@ -720,7 +719,7 @@ const TodoListModel = createModel(() => {
 			items.value = [...items.value, todo];
 		},
 		removeTodo(todo) {
-			items.value = items.value.filter(t => t !== todo);
+			items.value = items.value.filter((t) => t !== todo);
 			todo[Symbol.dispose]();
 		}
 	};
@@ -769,9 +768,7 @@ function Counter() {
 	const model = useModel(CounterModel);
 
 	return (
-		<button onClick={() => model.increment()}>
-			Count: {model.count}
-		</button>
+		<button onClick={() => model.increment()}>Count: {model.count}</button>
 	);
 }
 ```
@@ -791,9 +788,7 @@ function Counter({ initialValue }) {
 	const model = useModel(() => new CounterModel(initialValue));
 
 	return (
-		<button onClick={() => model.increment()}>
-			Count: {model.count}
-		</button>
+		<button onClick={() => model.increment()}>Count: {model.count}</button>
 	);
 }
 ```
@@ -896,7 +891,7 @@ function App() {
 
 // También puedes usar una función para acceder al valor
 function App() {
-	return <Show when={isVisible}>{value => <p>El valor es {value}</p>}</Show>;
+	return <Show when={isVisible}>{(value) => <p>El valor es {value}</p>}</Show>;
 }
 ```
 

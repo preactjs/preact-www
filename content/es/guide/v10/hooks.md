@@ -27,52 +27,52 @@ Vamos a usar un componente que representa un contador simple como ejemplo. Este 
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class Counter extends Component {
-  state = {
-    value: 0
-  };
+	state = {
+		value: 0
+	};
 
-  increment = () => {
-    this.setState(prev => ({ value: prev.value +1 }));
-  };
+	increment = () => {
+		this.setState((prev) => ({ value: prev.value + 1 }));
+	};
 
-  render(props, state) {
-    return (
-      <div>
-        <p>Counter: {state.value}</p>
-        <button onClick={this.increment}>Increment</button>
-      </div>
-    );
-  }
+	render(props, state) {
+		return (
+			<div>
+				<p>Counter: {state.value}</p>
+				<button onClick={this.increment}>Increment</button>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 Ahora, aquí hay un componente funcional equivalente construido con hooks:
 
 ```jsx
 // --repl
-import { useState, useCallback } from "preact/hooks";
-import { render } from "preact";
+import { useState, useCallback } from 'preact/hooks';
+import { render } from 'preact';
 // --repl-before
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
 
-  return (
-    <div>
-      <p>Counter: {value}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Counter: {value}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 En este punto se ven muy similares, pero podemos simplificar aun más la versión con hooks.
@@ -81,46 +81,46 @@ Vamos a extraer la lógica del contador en un hook personalizado, haciéndolo f�
 
 ```jsx
 // --repl
-import { useState, useCallback } from "preact/hooks";
-import { render } from "preact";
+import { useState, useCallback } from 'preact/hooks';
+import { render } from 'preact';
 // --repl-before
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
+	return { value, increment };
 }
 
 // Primer contador
 function CounterA() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <p>Counter A: {value}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<p>Counter A: {value}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 
 // Segundo contador que renderiza un resultado diferente
 function CounterB() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <h1>Counter B: {value}</h1>
-      <p>I'm a nice counter</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<h1>Counter B: {value}</h1>
+			<p>I'm a nice counter</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 // --repl-after
 render(
-  <div>
-    <CounterA />
-    <CounterB />
-  </div>,
-  document.getElementById("app")
+	<div>
+		<CounterA />
+		<CounterB />
+	</div>,
+	document.getElementById('app')
 );
 ```
 
@@ -138,11 +138,11 @@ En nuestra implementación `useCounter()` anterior, pasamos un array de dependen
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);  // <-- the dependency array
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]); // <-- the dependency array
+	return { value, increment };
 }
 ```
 
@@ -177,21 +177,21 @@ import { render } from 'preact';
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  // También puedes pasar un callback como el setter
-  const decrement = () => setCount((currentCount) => currentCount - 1);
+	const [count, setCount] = useState(0);
+	const increment = () => setCount(count + 1);
+	// También puedes pasar un callback como el setter
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-    </div>
-  )
-}
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={increment}>Increment</button>
+			<button onClick={decrement}>Decrement</button>
+		</div>
+	);
+};
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 > Cuando nuestro estado inicial es demasiado demandante es mejor pasar una función en vez de un valor.
@@ -208,29 +208,33 @@ import { useReducer } from 'preact/hooks';
 
 const initialState = 0;
 const reducer = (state, action) => {
-  switch (action) {
-    case 'increment': return state + 1;
-    case 'decrement': return state - 1;
-    case 'reset': return 0;
-    default: throw new Error('Unexpected action');
-  }
+	switch (action) {
+		case 'increment':
+			return state + 1;
+		case 'decrement':
+			return state - 1;
+		case 'reset':
+			return 0;
+		default:
+			throw new Error('Unexpected action');
+	}
 };
 
 function Counter() {
-  // Devuelve el estado actual y una función de dispatch para
-  // desencadenar una acción
-  const [count, dispatch] = useReducer(reducer, initialState);
-  return (
-    <div>
-      {count}
-      <button onClick={() => dispatch('increment')}>+1</button>
-      <button onClick={() => dispatch('decrement')}>-1</button>
-      <button onClick={() => dispatch('reset')}>reset</button>
-    </div>
-  );
+	// Devuelve el estado actual y una función de dispatch para
+	// desencadenar una acción
+	const [count, dispatch] = useReducer(reducer, initialState);
+	return (
+		<div>
+			{count}
+			<button onClick={() => dispatch('increment')}>+1</button>
+			<button onClick={() => dispatch('decrement')}>-1</button>
+			<button onClick={() => dispatch('reset')}>reset</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 ## Memoization
@@ -243,10 +247,10 @@ Con el hook `useMemo` podemos memorizar los resultados de ese cálculo y sólo r
 
 ```jsx
 const memoized = useMemo(
-  () => expensive(a, b),
-// Sólo volver a ejecutar esta función costosa cuando cualquiera de estas
-  // dependencias cambie
-  [a, b]
+	() => expensive(a, b),
+	// Sólo volver a ejecutar esta función costosa cuando cualquiera de estas
+	// dependencias cambie
+	[a, b]
 );
 ```
 
@@ -257,10 +261,7 @@ const memoized = useMemo(
 El hook `useCallback` puede utilizarse para asegurar que la función devuelta permanecerá igual mientras no cambien las dependencias. Esto se puede utilizar para optimizar las actualizaciones de componentes hijos cuando se basan en la igualdad referencial para omitir actualizaciones (por ejemplo, `shouldComponentUpdate`).
 
 ```jsx
-const onClick = useCallback(
-  () => console.log(a, b),
-  [a, b]
-);
+const onClick = useCallback(() => console.log(a, b), [a, b]);
 ```
 
 > Dato: `useCallback(fn, deps)` es el equivalente de `useMemo(() => fn, deps)`.
@@ -275,19 +276,19 @@ import { useRef } from 'preact/hooks';
 import { render } from 'preact';
 // --repl-before
 function Foo() {
-  // Inicializa 'useRef' con un valor de null
-  const input = useRef(null);
-  const onClick = () => input.current && input.current.focus();
+	// Inicializa 'useRef' con un valor de null
+	const input = useRef(null);
+	const onClick = () => input.current && input.current.focus();
 
-  return (
-    <>
-      <input ref={input} />
-      <button onClick={onClick}>Focus input</button>
-    </>
-  );
+	return (
+		<>
+			<input ref={input} />
+			<button onClick={onClick}>Focus input</button>
+		</>
+	);
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<Foo />, document.getElementById('app'));
 ```
 
 > Ten cuidado de confundir `useRef` con `createRef`.
@@ -301,27 +302,27 @@ Para acceder al context en un componente funcional podemos utilizar el hook `use
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const OtherComponent = props => props.children;
+const OtherComponent = (props) => props.children;
 // --repl-before
 const Theme = createContext('light');
 
 function DisplayTheme() {
-  const theme = useContext(Theme);
-  return <p>Active theme: {theme}</p>;
+	const theme = useContext(Theme);
+	return <p>Active theme: {theme}</p>;
 }
 
 // ...later
 function App() {
-  return (
-    <Theme.Provider value="light">
-      <OtherComponent>
-        <DisplayTheme />
-      </OtherComponent>
-    </Theme.Provider>
-  )
+	return (
+		<Theme.Provider value="light">
+			<OtherComponent>
+				<DisplayTheme />
+			</OtherComponent>
+		</Theme.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## Efectos secundarios
@@ -334,10 +335,10 @@ Como su nombre indica, `useEffect` es la principal forma de desencadenar varios 
 
 ```jsx
 useEffect(() => {
-  // Trigger your effect
-  return () => {
-    // Optional: Cualquier código cleanup
-  };
+	// Trigger your effect
+	return () => {
+		// Optional: Cualquier código cleanup
+	};
 }, []);
 ```
 
@@ -345,11 +346,11 @@ Empezaremos con un componente `Title` que debe reflejar el título al documento,
 
 ```jsx
 function PageTitle(props) {
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+	useEffect(() => {
+		document.title = props.title;
+	}, [props.title]);
 
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 ```
 
@@ -364,21 +365,21 @@ import { render } from 'preact';
 // --repl-before
 // Componente que siempre mostrará el ancho actual de la ventana
 function WindowWidth(props) {
-  const [width, setWidth] = useState(0);
+	const [width, setWidth] = useState(0);
 
-  function onResize() {
-    setWidth(window.innerWidth);
-  }
+	function onResize() {
+		setWidth(window.innerWidth);
+	}
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
 
-  return <p>Window width: {width}</p>;
+	return <p>Window width: {width}</p>;
 }
 // --repl-after
-render(<WindowWidth />, document.getElementById("app"));
+render(<WindowWidth />, document.getElementById('app'));
 ```
 
 > La función cleanup es opcional. Si no necesitas ejecutar ningún código cleanup, no necesitas devolver nada en el callback que se pasa a `useEffect`.
@@ -402,28 +403,28 @@ const [error, resetError] = useErrorBoundary();
 Para propósitos de monitorización, a menudo es increíblemente útil notificar a un servicio de cualquier error. Para ello podemos utilizar un callback opcional y pasarla como primer argumento a `useErrorBoundary`.
 
 ```jsx
-const [error] = useErrorBoundary(error => callMyApi(error.message));
+const [error] = useErrorBoundary((error) => callMyApi(error.message));
 ```
 
 Un ejemplo que muestre su uso completo puede ser este:
 
 ```jsx
-const App = props => {
-  const [error, resetError] = useErrorBoundary(
-    error => callMyApi(error.message)
-  );
-  
-  // Display a nice error message
-  if (error) {
-    return (
-      <div>
-        <p>{error.message}</p>
-        <button onClick={resetError}>Try again</button>
-      </div>
-    );
-  } else {
-    return <div>{props.children}</div>
-  }
+const App = (props) => {
+	const [error, resetError] = useErrorBoundary((error) =>
+		callMyApi(error.message)
+	);
+
+	// Display a nice error message
+	if (error) {
+		return (
+			<div>
+				<p>{error.message}</p>
+				<button onClick={resetError}>Try again</button>
+			</div>
+		);
+	} else {
+		return <div>{props.children}</div>;
+	}
 };
 ```
 
@@ -449,7 +450,7 @@ const App = props => {
   useLayoutEffect(() => {
     document.getElementById(inputId).focus()
   }, [])
-  
+
   // Display a nice error message
   return (
     <main id={mainId}>

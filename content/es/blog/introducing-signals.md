@@ -18,23 +18,24 @@ Además de ser sencillo y fácil de escribir, también garantiza que las actuali
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal, computed } from "@preact/signals";
- 
+import { signal, computed } from '@preact/signals';
+
 const count = signal(0);
 const double = computed(() => count.value * 2);
- 
+
 function Counter() {
-  return (
-    <button onClick={() => count.value++}>
-      {count} x 2 = {double}
-    </button>
-  );
+	return (
+		<button onClick={() => count.value++}>
+			{count} x 2 = {double}
+		</button>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
+
 Los signals pueden utilizarse dentro o fuera de los componentes, a diferencia de los hooks. Los signals también funcionan muy bien junto con hooks **_y_** componentes de clase, por lo que puedes introducirlos a tu propio ritmo y llevar contigo tus conocimientos existentes. Pruébalas en unos pocos componentes y adóptalas gradualmente con el tiempo.
 
 Por cierto, nos mantenemos fieles a nuestras raíces de ofrecerte las librerías más pequeñas posibles. Los signals en Preact sólo añaden **1.6kB** al tamaño del paquete.
@@ -89,10 +90,10 @@ Los signals superan ampliamente el mecanismo de actualización de cualquier fram
 
 Los signals le dan la vuelta al rendimiento: en lugar de optar por el rendimiento mediante memoization o selectores, los signals son rápidos por defecto. Con los signals, el rendimiento se excluye (al no usar signals).
 
-* **Perezoso por defecto:** Sólo los signals que se utilizan actualmente en algún lugar son observados y actualizados - los signals desconectados no afectan al rendimiento.
-* **Actualizaciones óptimas:** Si el valor de una señal no ha cambiado, los componentes y efectos que utilicen el valor de esa señal no se actualizarán, aunque las dependencias de la señal hayan cambiado.
-* **Seguimiento óptimo de las dependencias:** El framework rastrea las señales de las que depende cada cosa, sin matrices de dependencias como en el caso de los hooks.
-* **Acceso directo:** Al acceder al valor de Los signals en un componente, se suscribe automáticamente a las actualizaciones, sin necesidad de selectores ni hooks.
+- **Perezoso por defecto:** Sólo los signals que se utilizan actualmente en algún lugar son observados y actualizados - los signals desconectados no afectan al rendimiento.
+- **Actualizaciones óptimas:** Si el valor de una señal no ha cambiado, los componentes y efectos que utilicen el valor de esa señal no se actualizarán, aunque las dependencias de la señal hayan cambiado.
+- **Seguimiento óptimo de las dependencias:** El framework rastrea las señales de las que depende cada cosa, sin matrices de dependencias como en el caso de los hooks.
+- **Acceso directo:** Al acceder al valor de Los signals en un componente, se suscribe automáticamente a las actualizaciones, sin necesidad de selectores ni hooks.
 
 Estos principios hacen que los signals se adapten bien a una amplia gama de casos de uso, incluso a escenarios que no tienen nada que ver con la representación de interfaces de usuario.
 
@@ -103,16 +104,16 @@ Una vez identificado el estado primitivo adecuado, nos pusimos a conectarlo a Pr
 ```js
 // Suscripción basada en selector :(
 function Counter() {
-  const value = useSelector(state => state.count);
-  // ...
+	const value = useSelector((state) => state.count);
+	// ...
 }
- 
+
 // Suscripción basada en una función envolvente :(
 const counterState = new Counter();
- 
-const Counter = observe(props => {
-  const value = counterState.count;
-  // ...
+
+const Counter = observe((props) => {
+	const value = counterState.count;
+	// ...
 });
 ```
 
@@ -125,13 +126,9 @@ Idealmente, no necesitaríamos conocer selectores o funciones envolventes y podr
 ```jsx
 // Imagina que este es un estado global y toda la aplicación necesita acceso a:
 let count = 0;
- 
+
 function Counter() {
- return (
-   <button onClick={() => count++}>
-     value: {count}
-   </button>
- );
+	return <button onClick={() => count++}>value: {count}</button>;
 }
 ```
 
@@ -141,21 +138,17 @@ Sin embargo, no podíamos quitarnos este escenario de la cabeza. ¿Qué podríam
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { signal } from "@preact/signals";
+import { render } from 'preact';
+import { signal } from '@preact/signals';
 // --repl-before
 // Imagina que este es un estado global al que toda la aplicación necesita acceso:
 const count = signal(0);
- 
+
 function Counter() {
- return (
-   <button onClick={() => count.value++}>
-     Value: {count.value}
-   </button>
- );
+	return <button onClick={() => count.value++}>Value: {count.value}</button>;
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 No hay selectores, ni funciones envolventes, nada. Acceder al valor de la señal es suficiente para que el componente sepa que necesita actualizarse cuando el valor del signal cambia. Después de probar el prototipo en algunas aplicaciones, estaba claro que habíamos dado en el clavo. Escribir el código de esta manera era intuitivo y no requería ninguna gimnasia mental para mantener las cosas funcionando de manera óptima.
@@ -166,13 +159,13 @@ Podríamos habernos detenido aquí y liberar los signals tal cual, pero así es 
 
 ```jsx
 const count = signal(0);
- 
+
 // En lugar de esto:
 <p>Value: {count.value}</p>
- 
+
 // … podemos pasar el signal directamente al JSX:
 <p>Value: {count}</p>
- 
+
 // … o incluso pasándolo como propiedades del DOM:
 <input value={count} onInput={...} />
 ```

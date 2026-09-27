@@ -19,7 +19,7 @@ title: Referencia de la API
 Preact invoca los siguientes métodos del ciclo en caso de que estén definidos para un componente:
 
 | Método                      | ¿Cuándo se llama?                                           |
-|-----------------------------|-------------------------------------------------------------|
+| --------------------------- | ----------------------------------------------------------- |
 | `componentWillMount`        | antes de montar el componente en el DOM                     |
 | `componentDidMount`         | después de montar el componente en el DOM                   |
 | `componentWillUnmount`      | antes de remover el componente del DOM                      |

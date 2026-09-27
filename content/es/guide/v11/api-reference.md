@@ -205,9 +205,9 @@ Consulta la [documentación de Referencias](/guide/v11/refs#createref) para más
 import { createRef, Component } from 'preact';
 
 class MyComponent extends Component {
-    inputRef = createRef(null);
+	inputRef = createRef(null);
 
-    // ...
+	// ...
 }
 ```
 
@@ -276,14 +276,8 @@ Itera sobre los hijos y devuelve un nuevo array, igual que [`Array.prototype.map
 
 ```jsx
 function List(props) {
-	const children = Children.map(props.children, child => (
-		<li>{child}</li>
-	));
-	return (
-		<ul>
-			{children}
-		</ul>
-	);
+	const children = Children.map(props.children, (child) => <li>{child}</li>);
+	return <ul>{children}</ul>;
 }
 ```
 
@@ -298,14 +292,8 @@ Itera sobre los hijos pero no devuelve un nuevo array, igual que [`Array.prototy
 ```jsx
 function List(props) {
 	const children = [];
-	Children.forEach(props.children, child =>
-		children.push(<li>{child}</li>)
-	);
-	return (
-		<ul>
-			{children}
-		</ul>
-	);
+	Children.forEach(props.children, (child) => children.push(<li>{child}</li>));
+	return <ul>{children}</ul>;
 }
 ```
 
@@ -335,11 +323,7 @@ Lanza un error si el número de hijos no es exactamente uno. De lo contrario, de
 ```jsx
 function List(props) {
 	const singleChild = Children.only(props.children);
-	return (
-		<ul>
-			{singleChild}
-		</ul>
-	);
+	return <ul>{singleChild}</ul>;
 }
 ```
 
@@ -470,10 +454,10 @@ Ofrecido estrictamente por compatibilidad, `<StrictMode>` es simplemente un alia
 import { StrictMode } from 'preact/compat';
 
 render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
-    document.getElementById('root')
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	document.getElementById('root')
 );
 ```
 
@@ -487,11 +471,11 @@ Un componente que puede usarse para "esperar" a que se complete alguna operació
 import { Suspense } from 'preact/compat';
 
 function MyComponent() {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <MyLazyComponent />
-        </Suspense>
-    );
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<MyLazyComponent />
+		</Suspense>
+	);
 }
 ```
 
@@ -537,7 +521,6 @@ expect(console.error).toHaveBeenCalledOnce();
 resetPropWarnings();
 
 //...
-
 ```
 
 ### getCurrentVNode
@@ -554,7 +537,7 @@ function MyComponent() {
 	const currentVNode = getCurrentVNode();
 	console.log(currentVNode); // Enseña en consola: Object { type: MyComponent(), props: {}, key: undefined, ref: undefined, ... }
 
-	return <h1>Hello World!</h1>
+	return <h1>Hello World!</h1>;
 }
 
 render(<MyComponent />, document.getElementById('app'));
@@ -622,7 +605,7 @@ function MyComponent() {
 	// in MyComponent
 	// in App (at /path/to/file.jsx:15)
 
-	return <h1>Hello World!</h1>
+	return <h1>Hello World!</h1>;
 }
 
 function App() {

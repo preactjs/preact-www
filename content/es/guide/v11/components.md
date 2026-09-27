@@ -83,17 +83,17 @@ render(<Clock />, document.getElementById('app'));
 
 Para hacer que la hora del reloj se actualice cada segundo, necesitamos saber cuándo se adjunta `<Clock>` al DOM. _Si has usado HTML5 Custom Elements, esto es similar a los métodos de ciclo de vida `attachedCallback` y `detachedCallback`._ Preact invoca los siguientes métodos de ciclo de vida si están definidos para un Componente:
 
-| Método de ciclo de vida                                    | Cuándo se llama                                                                                                          |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `componentWillMount()`                                     | (deprecado) antes de que el componente se adjunte al DOM                                                                 |
-| `componentDidMount()`                                      | después de que el componente se adjunte al DOM                                                                           |
-| `componentWillUnmount()`                                   | antes de la eliminación del DOM                                                                                         |
-| `componentWillReceiveProps(nextProps, nextContext)`        | antes de que se acepten las nuevas props _(deprecado)_                                                                   |
-| `getDerivedStateFromProps(nextProps, prevState)`           | justo antes de `shouldComponentUpdate`. Devuelve objeto para actualizar estado o `null` para omitir actualización.       |
-| `shouldComponentUpdate(nextProps, nextState, nextContext)` | antes de `render()`. Devuelve `false` para omitir render                                                                 |
-| `componentWillUpdate(nextProps, nextState, nextContext)`   | antes de `render()` _(deprecado)_                                                                                         |
+| Método de ciclo de vida                                    | Cuándo se llama                                                                                                                     |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `componentWillMount()`                                     | (deprecado) antes de que el componente se adjunte al DOM                                                                            |
+| `componentDidMount()`                                      | después de que el componente se adjunte al DOM                                                                                      |
+| `componentWillUnmount()`                                   | antes de la eliminación del DOM                                                                                                     |
+| `componentWillReceiveProps(nextProps, nextContext)`        | antes de que se acepten las nuevas props _(deprecado)_                                                                              |
+| `getDerivedStateFromProps(nextProps, prevState)`           | justo antes de `shouldComponentUpdate`. Devuelve objeto para actualizar estado o `null` para omitir actualización.                  |
+| `shouldComponentUpdate(nextProps, nextState, nextContext)` | antes de `render()`. Devuelve `false` para omitir render                                                                            |
+| `componentWillUpdate(nextProps, nextState, nextContext)`   | antes de `render()` _(deprecado)_                                                                                                   |
 | `getSnapshotBeforeUpdate(prevProps, prevState)`            | se llama justo después de `render()`, pero antes de que los cambios se vacíen en el DOM. El valor es pasado a `componentDidUpdate`. |
-| `componentDidUpdate(prevProps, prevState, snapshot)`       | después de `render()`                                                                                                    |
+| `componentDidUpdate(prevProps, prevState, snapshot)`       | después de `render()`                                                                                                               |
 
 Aquí hay una descripción visual de cómo se relacionan entre sí (publicado originalmente en [un tweet](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509) por Dan Abramov):
 
@@ -192,7 +192,7 @@ No olvides añadir keys a `Fragments` si los creas en un bucle:
 function Glossary(props) {
 	return (
 		<dl>
-			{props.items.map(item => (
+			{props.items.map((item) => (
 				// Sin una key, Preact tiene que adivinar qué elementos han
 				// cambiado al re-renderizar.
 				<Fragment key={item.id}>

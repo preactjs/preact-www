@@ -32,13 +32,13 @@ Cualquiera que haya trabajado extensamente con SSR a escala sabe que hay una mon
 Antes de crear nuestra propia implementación de prerenderizado para nuestro preset de Vite, echamos un vistazo al ecosistema existente de Vite para ver qué se ofrecía, pero no encontramos exactamente lo que buscábamos con las opciones. El prerenderizado es mejor cuando es lo más cercano posible a "drop-in", tomando tu aplicación existente, con mínima modificación, y generando HTML a partir de ella, pero las soluciones existentes estaban un paso más lejos de "drop-in" de lo que nos hubiera gustado y caían en dos categorías principales:
 
 1. Múltiples Compilaciones (Builds)
-	 - Compilaciones separadas cliente/servidor, a menudo puntos de entrada separados también.
-	 - Menos isomórfico, diferentes ramas en tu aplicación para diferentes entornos.
+   - Compilaciones separadas cliente/servidor, a menudo puntos de entrada separados también.
+   - Menos isomórfico, diferentes ramas en tu aplicación para diferentes entornos.
 
 2. Frameworks / Envoltorios de Vite
-	 - Ya no usan Vite directamente sino una abstracción.
-	 - Cierta cantidad de compromiso/bloqueo (lock-in).
-	 - La matriz de soporte para diferentes opciones de configuración de Vite, plugins, etc., puede ser complicada y menos que clara.
+   - Ya no usan Vite directamente sino una abstracción.
+   - Cierta cantidad de compromiso/bloqueo (lock-in).
+   - La matriz de soporte para diferentes opciones de configuración de Vite, plugins, etc., puede ser complicada y menos que clara.
 
 Si bien estas soluciones tienen absolutamente sus méritos y lugares en el ecosistema, ninguna se sentía tan genial como podrían ser para nuestro ecosistema, dadas nuestras ofertas históricas en esta área. La DX (Experiencia de Desarrollador) del "mejor escenario" a menudo se sacrificaba por necesidades más complejas o específicas -- lo cual es un intercambio completamente válido.
 
@@ -81,8 +81,8 @@ export default defineConfig({
 
 1. Cambiar `render` a `hydrate`
 
-	 - `hydrate` de `preact-iso` es una utilidad muy pequeña que decide si renderizar la aplicación o hidratarla dependiendo de si puede encontrar marcado existente en el documento. En desarrollo usará `render`, pero en producción, con HTML prerenderizado, usará `hydrate`.
-	 - Necesitamos agregar una verificación de ventana (`typeof window !== undefined`) para asegurar que no estamos intentando acceder a `document`, un global del navegador, en Node durante el SSR.
+   - `hydrate` de `preact-iso` es una utilidad muy pequeña que decide si renderizar la aplicación o hidratarla dependiendo de si puede encontrar marcado existente en el documento. En desarrollo usará `render`, pero en producción, con HTML prerenderizado, usará `hydrate`.
+   - Necesitamos agregar una verificación de ventana (`typeof window !== undefined`) para asegurar que no estamos intentando acceder a `document`, un global del navegador, en Node durante el SSR.
 
 2. Agregar nuestra exportación `prerender()`
    - Este es el facilitador del prerenderizado, y es totalmente controlado por el usuario. Tú decides cómo debe renderizarse tu aplicación, qué props pasar a tu componente raíz, hacer cualquier ajuste al HTML, ejecutar cualquier post-procesamiento que desees, etc. Todo lo que el plugin necesita es que se devuelva un objeto conteniendo una propiedad `html` con tu cadena HTML.
@@ -169,8 +169,8 @@ export function useFetch(url) {
 		data = load(url);
 		cache.set(url, data);
 		data.then(
-			res => update((data.res = res)),
-			err => update((data.err = err))
+			(res) => update((data.res = res)),
+			(err) => update((data.err = err))
 		);
 	}
 
@@ -318,34 +318,34 @@ Para los curiosos que preguntan "¿Cómo funciona todo esto?", se puede desglosa
 
 1. Configuración
 
-	 Configuramos el script con tu función `prerender()` exportada como una entrada adicional y le decimos a Rollup que preserve las firmas de entrada, permitiéndonos acceder y llamar a esa función después de la compilación.
+   Configuramos el script con tu función `prerender()` exportada como una entrada adicional y le decimos a Rollup que preserve las firmas de entrada, permitiéndonos acceder y llamar a esa función después de la compilación.
 
 2. Compilación (Build)
 
-	 Dejamos que Vite compile tu aplicación como de costumbre: compilando JSX, ejecutando plugins, optimizando assets, etc.
+   Dejamos que Vite compile tu aplicación como de costumbre: compilando JSX, ejecutando plugins, optimizando assets, etc.
 
 3. Prerenderizado
 
    Durante la etapa del plugin `generateBundle`, comenzamos a generar el HTML. Comenzando con `/`, empezamos a ejecutar los bundles JS compilados en Node, llamando a tu función `prerender()` e insertando el HTML que devuelve en tu documento `index.html`, finalmente escribiendo el resultado en el directorio de salida especificado. Cualquier enlace nuevo que tu función `prerender()` devuelva se encola para ser procesado a continuación.
 
-	 El prerenderizado se completa cuando nos quedamos sin URLs para retroalimentar a tu aplicación.
+   El prerenderizado se completa cuando nos quedamos sin URLs para retroalimentar a tu aplicación.
 
-	 Siguiendo esto, Vite continuará finalizando el proceso de compilación, ejecutando cualquier otro plugin que puedas tener. Tu aplicación prerenderizada estará entonces disponible inmediatamente, sin necesidad de compilaciones o scripts posteriores.
+   Siguiendo esto, Vite continuará finalizando el proceso de compilación, ejecutando cualquier otro plugin que puedas tener. Tu aplicación prerenderizada estará entonces disponible inmediatamente, sin necesidad de compilaciones o scripts posteriores.
 
 ### Algunas Características Geniales
 
 - Implementación de `fetch()` basada en sistema de archivos (como se muestra en el ejemplo de "Fetching Isomórfico")
   - Antes de que corras a buscar tu antorcha, ¡escúchanos! Durante el prerenderizado (y solo durante el prerenderizado) parcheamos `fetch()` para permitir leer archivos directamente del sistema de archivos. Esto te permite consumir archivos estáticos (texto, JSON, Markdown, etc.) durante el prerenderizado sin tener que iniciar un servidor para consumirlo. Puedes usar las mismas rutas de archivo durante el prerenderizado que usarás en el navegador.
-   - De hecho, ¡así es como construimos la misma página que estás leyendo! `fetch('/content/blog/preact-prerender.json')`, que es lo que se activa cuando navegas a esta página, se traduce aproximadamente a `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` durante el prerenderizado. Leemos el archivo, lo envolvemos en una `Response` para imitar una solicitud de red, y lo suministramos de vuelta a tu aplicación -- tu aplicación puede usar la misma solicitud `fetch()` durante el prerenderizado y en el cliente. - Combinar esto con suspense y una implementación de SSR asíncrona proporciona una DX realmente genial.
+  - De hecho, ¡así es como construimos la misma página que estás leyendo! `fetch('/content/blog/preact-prerender.json')`, que es lo que se activa cuando navegas a esta página, se traduce aproximadamente a `new Response(await fs.readFile('/content/blog/preact-prerender.json'))` durante el prerenderizado. Leemos el archivo, lo envolvemos en una `Response` para imitar una solicitud de red, y lo suministramos de vuelta a tu aplicación -- tu aplicación puede usar la misma solicitud `fetch()` durante el prerenderizado y en el cliente. - Combinar esto con suspense y una implementación de SSR asíncrona proporciona una DX realmente genial.
 - Rastreo de Enlaces
-	 - Parcialmente soportado por la exportación de la función `prerender()` proporcionada por el usuario, parcialmente por el plugin, puedes devolver un conjunto de enlaces al prerenderizar la página (`preact-iso` hace esto maravillosamente simple) que se agregarán a la lista de URLs del plugin para prerenderizar. Esto permitirá al plugin rastrear tu sitio en tiempo de compilación, encontrando más y más páginas para prerenderizar naturalmente.
-	 - También puedes proporcionar enlaces manualmente a través de las opciones del plugin o adjuntando algunos a los que `preact-iso` devuelve, como mostramos arriba en el Ejemplo de API Completa. Esto es especialmente útil para páginas de error, como un `/404`, que podrían no estar enlazadas pero que aún así quieres tener prerenderizadas.
+  - Parcialmente soportado por la exportación de la función `prerender()` proporcionada por el usuario, parcialmente por el plugin, puedes devolver un conjunto de enlaces al prerenderizar la página (`preact-iso` hace esto maravillosamente simple) que se agregarán a la lista de URLs del plugin para prerenderizar. Esto permitirá al plugin rastrear tu sitio en tiempo de compilación, encontrando más y más páginas para prerenderizar naturalmente.
+  - También puedes proporcionar enlaces manualmente a través de las opciones del plugin o adjuntando algunos a los que `preact-iso` devuelve, como mostramos arriba en el Ejemplo de API Completa. Esto es especialmente útil para páginas de error, como un `/404`, que podrían no estar enlazadas pero que aún así quieres tener prerenderizadas.
 
 ...y quizás la mayor ventaja:
 
 - Alternarlo cambiando un Booleano en tu archivo de configuración
-	 - Porque no somos un envoltorio, y porque no necesitas alterar tu código fuente para soportarlo (más allá de algunas verificaciones de ventana), no hay bloqueo (lock-in) alguno. Si decides alejarte, o quieres hacer algunas pruebas en tu salida, todo lo que necesitas hacer es cambiar un Booleano y vuelves a una SPA plana con Vite.
-	 - Como hemos mencionado un par de veces, el prerenderizado es mejor cuando es lo más cercano posible a "drop-in" y eso incluye ser capaz de salir por capricho. Es importante para nosotros que puedas ir de una SPA al prerenderizado y viceversa con un esfuerzo mínimo.
+  - Porque no somos un envoltorio, y porque no necesitas alterar tu código fuente para soportarlo (más allá de algunas verificaciones de ventana), no hay bloqueo (lock-in) alguno. Si decides alejarte, o quieres hacer algunas pruebas en tu salida, todo lo que necesitas hacer es cambiar un Booleano y vuelves a una SPA plana con Vite.
+  - Como hemos mencionado un par de veces, el prerenderizado es mejor cuando es lo más cercano posible a "drop-in" y eso incluye ser capaz de salir por capricho. Es importante para nosotros que puedas ir de una SPA al prerenderizado y viceversa con un esfuerzo mínimo.
 
 ## Notas Finales
 
@@ -365,4 +365,4 @@ Como intentar ejecutar `document.getElementsByTagName` dará error en Node donde
 
 Estamos muy, muy contentos con este nivel de riesgo y lo hemos estado usando intensamente durante algún tiempo sin ningún problema, pero, esto es de alguna manera usar la herramienta más allá de para lo que fue diseñada y es algo que queremos revelar.
 
-Para cualquier usuario que no sea de Preact, buenas noticias: ¡nuestro plugin es completamente agnóstico del framework! Para hacerlo ligeramente más fácil de usar en cualquier otro framework, esto se ofrece alternativamente como [`vite-prerender-plugin`](https://www.google.com/search?q=%5Bhttps://npm.im/vite-prerender-plugin%5D(https://npm.im/vite-prerender-plugin)). La misma funcionalidad, y mantenida en sincronía con `@preact/preset-vite`, pero elimina las otras utilidades específicas de Preact que se envían en el plugin del preset de Preact.
+Para cualquier usuario que no sea de Preact, buenas noticias: ¡nuestro plugin es completamente agnóstico del framework! Para hacerlo ligeramente más fácil de usar en cualquier otro framework, esto se ofrece alternativamente como [`vite-prerender-plugin`](<https://www.google.com/search?q=%5Bhttps://npm.im/vite-prerender-plugin%5D(https://npm.im/vite-prerender-plugin)>). La misma funcionalidad, y mantenida en sincronía con `@preact/preset-vite`, pero elimina las otras utilidades específicas de Preact que se envían en el plugin del preset de Preact.

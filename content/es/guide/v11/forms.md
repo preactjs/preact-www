@@ -32,7 +32,7 @@ import { render, Component } from 'preact';
 class BasicInput extends Component {
 	state = { name: '' };
 
-	onInput = e => this.setState({ name: e.currentTarget.value });
+	onInput = (e) => this.setState({ name: e.currentTarget.value });
 
 	render(_, { name }) {
 		return (
@@ -60,7 +60,7 @@ function BasicInput() {
 	return (
 		<div class="form-example">
 			<label>
-				Name: <input onInput={e => setName(e.currentTarget.value)} />
+				Name: <input onInput={(e) => setName(e.currentTarget.value)} />
 			</label>
 			<p>Hello {name}</p>
 		</div>
@@ -88,7 +88,8 @@ class BasicRadioButton extends Component {
 
 	toggleContact = () =>
 		this.setState({ allowContact: !this.state.allowContact });
-	setRadioValue = e => this.setState({ contactMethod: e.currentTarget.value });
+	setRadioValue = (e) =>
+		this.setState({ contactMethod: e.currentTarget.value });
 
 	render(_, { allowContact }) {
 		return (
@@ -148,7 +149,7 @@ function BasicRadioButton() {
 	const [contactMethod, setContactMethod] = useState('');
 
 	const toggleContact = () => setAllowContact(!allowContact);
-	const setRadioValue = e => setContactMethod(e.currentTarget.value);
+	const setRadioValue = (e) => setContactMethod(e.currentTarget.value);
 
 	return (
 		<div class="form-example">
@@ -209,7 +210,7 @@ import { render, Component } from 'preact';
 class MySelect extends Component {
 	state = { value: '' };
 
-	onChange = e => {
+	onChange = (e) => {
 		this.setState({ value: e.currentTarget.value });
 	};
 
@@ -270,7 +271,7 @@ import { render, Component } from 'preact';
 class FullNameForm extends Component {
 	state = { fullName: '' };
 
-	onSubmit = e => {
+	onSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		this.setState({
@@ -308,7 +309,7 @@ import { useState } from 'preact/hooks';
 function FullNameForm() {
 	const [fullName, setFullName] = useState('');
 
-	const onSubmit = e => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		setFullName(formData.get('firstName') + ' ' + formData.get('lastName'));
@@ -360,7 +361,7 @@ Preact tiene un problema conocido con componentes controlados: se requieren rere
 Un ejemplo de una de estas situaciones problemáticas sería el siguiente: digamos que tienes un campo de entrada que debe limitarse a 3 caracteres. Es posible que tengas un manejador de eventos como el siguiente:
 
 ```js
-const onInput = e => {
+const onInput = (e) => {
 	if (e.currentTarget.value.length <= 3) {
 		setValue(e.currentTarget.value);
 	}
@@ -383,7 +384,7 @@ class LimitedInput extends Component {
 	state = { value: '' };
 	inputRef = createRef(null);
 
-	onInput = e => {
+	onInput = (e) => {
 		if (e.currentTarget.value.length <= 3) {
 			this.setState({ value: e.currentTarget.value });
 		} else {
@@ -425,7 +426,7 @@ const LimitedInput = () => {
 	const [value, setValue] = useState('');
 	const inputRef = useRef();
 
-	const onInput = e => {
+	const onInput = (e) => {
 		if (e.currentTarget.value.length <= 3) {
 			setValue(e.currentTarget.value);
 		} else {

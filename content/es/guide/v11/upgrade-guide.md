@@ -87,7 +87,9 @@ import { useState, useEffect } from 'preact/hooks';
 function App() {
 	const [count, setCount] = useState(0);
 
-	return <button onClick={() => setCount(NaN)}>Establecer contador a NaN</button>;
+	return (
+		<button onClick={() => setCount(NaN)}>Establecer contador a NaN</button>
+	);
 }
 ```
 
@@ -118,13 +120,13 @@ import { options } from 'preact';
 
 const oldVNode = options.vnode;
 options.vnode = (vnode) => {
-    if (vnode.props.ref) {
-        vnode.ref = vnode.props.ref;
-        delete vnode.props.ref;
-    }
+	if (vnode.props.ref) {
+		vnode.ref = vnode.props.ref;
+		delete vnode.props.ref;
+	}
 
 	if (oldVNode) oldVNode(vnode);
-}
+};
 ```
 
 ### Mover el sufijo automático `px` para propiedades de estilo a `preact/compat`

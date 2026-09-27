@@ -204,7 +204,7 @@ Un aspecto único de las librerías basadas en virtual-dom es que tienen que det
 ```jsx
 // Ambos hijos tendrán la misma key "A"
 <div>
-	{['A', 'A'].map(char => (
+	{['A', 'A'].map((char) => (
 		<p key={char}>{char}</p>
 	))}
 </div>

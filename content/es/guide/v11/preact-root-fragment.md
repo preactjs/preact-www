@@ -11,6 +11,7 @@ preact-root-fragment es una implementación independiente y más flexible de Pre
 
 Proporciona una forma de renderizar o hidratar un árbol Preact usando un subconjunto de los hijos dentro del elemento padre pasado a render():
 
+<!-- prettier-ignore-start -->
 ```html
 <body>
 	<div id="root"> ⬅ pasamos esto a render() como elemento DOM padre...
@@ -23,6 +24,7 @@ Proporciona una forma de renderizar o hidratar un árbol Preact usando un subcon
 	</div>
 </body>
 ```
+<!-- prettier-ignore-end -->
 
 ---
 
@@ -36,9 +38,9 @@ Esto es particularmente útil para [hidratación parcial](https://jasonformat.co
 
 ```html
 <div id="sidebar">
-  <section id="widgetA"><h1>Widget A</h1></section>
-  <section id="widgetB"><h1>Widget B</h1></section>
-  <section id="widgetC"><h1>Widget C</h1></section>
+	<section id="widgetA"><h1>Widget A</h1></section>
+	<section id="widgetB"><h1>Widget B</h1></section>
+	<section id="widgetC"><h1>Widget C</h1></section>
 </div>
 ```
 
@@ -85,12 +87,12 @@ import { createRootFragment } from 'preact-root-fragment';
 import { render } from 'preact';
 
 function App() {
-  return (
-    <>
-      <h1>Example</h1>
-      <p>Hello world!</p>
-    </>
-  );
+	return (
+		<>
+			<h1>Example</h1>
+			<p>Hello world!</p>
+		</>
+	);
 }
 
 // Usa solo los últimos dos elementos hijo dentro de <body>:

@@ -79,17 +79,17 @@ Tu proyecto podría necesitar soporte para el ecosistema React más amplio. Para
 
 ```json
 {
-  "compilerOptions": {
-    // ...
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "react": ["./node_modules/preact/compat/"],
-      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
-      "react-dom": ["./node_modules/preact/compat/"],
-      "react-dom/*": ["./node_modules/preact/compat/*"]
-    }
-  }
+	"compilerOptions": {
+		// ...
+		"skipLibCheck": true,
+		"baseUrl": "./",
+		"paths": {
+			"react": ["./node_modules/preact/compat/"],
+			"react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
+			"react-dom": ["./node_modules/preact/compat/"],
+			"react-dom/*": ["./node_modules/preact/compat/*"]
+		}
+	}
 }
 ```
 
@@ -231,20 +231,16 @@ Ahora cuando usamos `Input` sabrá sobre propiedades como `value`, ...
 Preact emite eventos DOM regulares. Mientras tu proyecto TypeScript incluya la librería `dom` (establécela en `tsconfig.json`), tienes acceso a todos los tipos de evento disponibles en tu configuración actual.
 
 ```tsx
-import type { TargetedMouseEvent } from "preact";
+import type { TargetedMouseEvent } from 'preact';
 
 export class Button extends Component {
-  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
-    alert(event.currentTarget.tagName); // Alerta BUTTON
-  }
+	handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
+		alert(event.currentTarget.tagName); // Alerta BUTTON
+	}
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.props.children}
-      </button>
-    );
-  }
+	render() {
+		return <button onClick={this.handleClick}>{this.props.children}</button>;
+	}
 }
 ```
 
@@ -254,7 +250,7 @@ Si prefieres funciones en línea, puedes prescindir de tipificar explícitamente
 export class Button extends Component {
 	render() {
 		return (
-			<button onClick={event => alert(event.currentTarget.tagName)}>
+			<button onClick={(event) => alert(event.currentTarget.tagName)}>
 				{this.props.children}
 			</button>
 		);
@@ -314,8 +310,10 @@ function App() {
 	return (
 		<AppContext.Provider
 			value={{
+<!-- prettier-ignore-start -->
 	 //    ~~~~~
 	 // 💥 Error: theme no definido
+<!-- prettier-ignore-end -->
 				lang: 'de',
 				authenticated: true
 			}}

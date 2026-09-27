@@ -20,7 +20,6 @@ La documentación de React sobre [Componentes "Con Control"](https://facebook.gi
 
 En general, debes intentar utilizar _Componentes "Con Control"_ para todos los casos. Sin embargo, cuando se construyen componentes independientes o componentes que hacen uso de librerías de UI de terceros, puede resultar útil utilizar tu componente para agrupar toda la funcionalidad que no sea de Preact. En estos casos, los _Componentes "Sin Control"_ se adaptan muy bien para llevar a cabo esta tarea.
 
-
 ## Checkboxes y Radio Buttons
 
 Los checkboxes y radio buttons (`<input type="checkbox|radio">`) pueden causar confusión al crear formularios. Esto se debe a que normalmente permitimos que el navegador "cambie" o "marque" un checkbox o un radio button por nosotros, escuchando un evento de cambio y reaccionando ante el nuevo valor. Sin embargo, esta técnica no es la adecuada en un mundo donde la UI siempre es actualizada automáticamente cuando cambia su estado o sus propiedades.
@@ -33,19 +32,16 @@ Por lo tanto, en vez de escuhar un evento `change`, debemos escuchar el evento `
 
 ```js
 class MyForm extends Component {
-    toggle(e) {
-        let checked = !this.state.checked;
-        this.setState({ checked });
-    }
-    render({ }, { checked }) {
-        return (
-            <label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={::this.toggle} />
-            </label>
-        );
-    }
+	toggle(e) {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	}
+	render({}, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={::this.toggle} />
+			</label>
+		);
+	}
 }
 ```
