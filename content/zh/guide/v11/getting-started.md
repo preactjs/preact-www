@@ -50,17 +50,10 @@ Preact 被打包为可在浏览器中直接使用，不需要任何构建或工�
 	const html = htm.bind(h);
 
 	function App(props) {
-		return html`
-			<h1>Hello ${props.name}!</h1>
-		`;
+		return html`<h1>Hello ${props.name}!</h1>`;
 	}
 
-	render(
-		html`
-			<${App} name="World" />
-		`,
-		document.body
-	);
+	render(html`<${App} name="World" />`, document.body);
 </script>
 ```
 

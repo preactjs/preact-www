@@ -115,7 +115,7 @@ function MyComponent({ ref }) {
 import { options } from 'preact';
 
 const oldVNode = options.vnode;
-options.vnode = vnode => {
+options.vnode = (vnode) => {
 	if (vnode.props && vnode.props.ref) {
 		vnode.ref = vnode.props.ref;
 		delete vnode.props.ref;
@@ -192,14 +192,10 @@ TypeScript 使用特殊的 `JSX` 命名空间来改变 JSX 的类型和解释方
 // Preact 10
 import { JSX } from 'preact';
 
-type MyCustomButtonProps = JSX.ButtonHTMLAttributes & {
-	/* ... */
-};
+type MyCustomButtonProps = JSX.ButtonHTMLAttributes & {/* ... */};
 
 // Preact 11
 import { ButtonHTMLAttributes } from 'preact';
 
-type MyCustomButtonProps = ButtonHTMLAttributes & {
-	/* ... */
-};
+type MyCustomButtonProps = ButtonHTMLAttributes & {/* ... */};
 ```

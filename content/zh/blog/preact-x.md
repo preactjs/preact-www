@@ -87,20 +87,18 @@ const App = () => {
 
 ```jsx
 const App = () => {
-  const [toggled, setToggled] = useState(false);
+	const [toggled, setToggled] = useState(false);
 
-  return toggled ? (
-    <div onClick={() => setToggled(false)}>
-      <span>clear</span>
-    </div> 
-  ) : (
-    <div>
-      <button
-        onClick={() => setToggled(true)}
-      >toggle on</button>
-    </div>
-  )
-}
+	return toggled ? (
+		<div onClick={() => setToggled(false)}>
+			<span>clear</span>
+		</div>
+	) : (
+		<div>
+			<button onClick={() => setToggled(true)}>toggle on</button>
+		</div>
+	);
+};
 ```
 
 ## 稳定性

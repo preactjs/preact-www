@@ -192,7 +192,7 @@ Preact X 中，我们对内部的 `vnode` 结构做出了重大变更。
 ```jsx
 // 两个子元素都会有相同键值 "A"
 <div>
-	{['A', 'A'].map(char => (
+	{['A', 'A'].map((char) => (
 		<p key={char}>{char}</p>
 	))}
 </div>

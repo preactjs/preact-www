@@ -32,12 +32,12 @@ translation_by:
 在为我们的 Vite 预设创建自己的预渲染实现之前，我们查看了现有的 Vite 生态系统，看看提供了什么，但没有完全找到我们想要的选项。预渲染在尽可能接近"即插即用"时效果最好，最少的修改就能从你现有的应用生成 HTML，但现有的解决方案比我们希望的"即插即用"程度更远，主要分为两类：
 
 1. 多重构建
-	- 分离的客户端/服务器构建，通常还有单独的入口点
-	- 不太同构，在不同环境下你的应用有不同的分支
+   - 分离的客户端/服务器构建，通常还有单独的入口点
+   - 不太同构，在不同环境下你的应用有不同的分支
 2. 框架 / Vite 包装器
-	- 不再直接使用 Vite，而是使用抽象层
-	- 一定程度的买入/锁定
-	- 对不同 Vite 配置选项、插件等的支持矩阵可能复杂且不够清晰
+   - 不再直接使用 Vite，而是使用抽象层
+   - 一定程度的买入/锁定
+   - 对不同 Vite 配置选项、插件等的支持矩阵可能复杂且不够清晰
 
 虽然这些解决方案绝对有其优点，并在生态系统中有其地位，但考虑到我们在这一领域的历史产品，对我们的生态系统来说，它们感觉都不够好。"最佳情况"的开发体验常常被牺牲，以满足更复杂或特定的需求——这是完全有效的权衡。
 
@@ -79,12 +79,12 @@ export default defineConfig({
 ...最后，对我们的应用根目录做几处调整：
 
 1. 将 `render` 切换为 `hydrate`
-	* 来自 `preact-iso` 的 `hydrate` 是一个非常小的工具，它决定是渲染应用还是水合，取决于它是否能在文档上找到现有的标记。在开发中它会使用 `render`，但在生产中，使用预渲染的 HTML，它会使用 `hydrate`。
-	* 我们需要添加一个窗口检查（`typeof window !== undefined`），以确保我们在 SSR 期间不会在 Node 中尝试访问浏览器全局变量 `document`。
+   - 来自 `preact-iso` 的 `hydrate` 是一个非常小的工具，它决定是渲染应用还是水合，取决于它是否能在文档上找到现有的标记。在开发中它会使用 `render`，但在生产中，使用预渲染的 HTML，它会使用 `hydrate`。
+   - 我们需要添加一个窗口检查（`typeof window !== undefined`），以确保我们在 SSR 期间不会在 Node 中尝试访问浏览器全局变量 `document`。
 
 2. 添加我们的 `prerender()` 导出
-	* 这是预渲染的促进者，它完全由用户控制。你决定如何渲染你的应用，向根组件传递哪些 props，对 HTML 进行任何调整，运行你想要的任何后处理等。插件只需要返回一个包含你的 HTML 字符串的 `html` 属性的对象。
-	* 对于我们这里的示例，我们将使用来自 `preact-iso` 的 `prerender`，它是 `preact-render-to-string` 中 `renderToStringAsync` 的一个薄包装，有一个主要优势：它自动收集并返回它在你预渲染的页面中找到的相对链接。然后预渲染插件可以使用这些链接来"遍历"你的应用，自行发现页面。我们稍后会进一步展示这一点。
+   - 这是预渲染的促进者，它完全由用户控制。你决定如何渲染你的应用，向根组件传递哪些 props，对 HTML 进行任何调整，运行你想要的任何后处理等。插件只需要返回一个包含你的 HTML 字符串的 `html` 属性的对象。
+   - 对于我们这里的示例，我们将使用来自 `preact-iso` 的 `prerender`，它是 `preact-render-to-string` 中 `renderToStringAsync` 的一个薄包装，有一个主要优势：它自动收集并返回它在你预渲染的页面中找到的相对链接。然后预渲染插件可以使用这些链接来"遍历"你的应用，自行发现页面。我们稍后会进一步展示这一点。
 
 ```diff
 // src/index.jsx
@@ -133,10 +133,13 @@ export async function prerender(data) {
 			//   <meta property="og:title" content="Social media title">
 			elements: new Set([
 				{ type: 'link', props: { rel: 'stylesheet', href: 'foo.css' } },
-				{ type: 'meta', props: { property: 'og:title', content: 'Social media title' } }
+				{
+					type: 'meta',
+					props: { property: 'og:title', content: 'Social media title' }
+				}
 			])
 		}
-	}
+	};
 }
 ```
 
@@ -144,7 +147,7 @@ export async function prerender(data) {
 
 ```jsx
 // src/use-fetch.js
-import { useState } from "preact/hooks";
+import { useState } from 'preact/hooks';
 
 const cache = new Map();
 
@@ -164,7 +167,7 @@ export function useFetch(url) {
 		cache.set(url, data);
 		data.then(
 			(res) => update((data.res = res)),
-			(err) => update((data.err = err)),
+			(err) => update((data.err = err))
 		);
 	}
 
@@ -180,17 +183,17 @@ import { hydrate, prerender as ssr } from 'preact-iso';
 import { useFetch } from './use-fetch.js';
 
 function App() {
-    return (
-        <div>
-            <Suspense fallback={<p>Loading...</p>}>
-                <Article />
-            </Suspense>
-        </div>
-    );
+	return (
+		<div>
+			<Suspense fallback={<p>Loading...</p>}>
+				<Article />
+			</Suspense>
+		</div>
+	);
 }
 
 function Article() {
-	const data = useFetch("/my-local-article.txt");
+	const data = useFetch('/my-local-article.txt');
 	return <p>{data}</p>;
 }
 
@@ -199,7 +202,7 @@ if (typeof window !== 'undefined') {
 }
 
 export async function prerender(data) {
-    return await ssr(<App {...data} />)
+	return await ssr(<App {...data} />);
 }
 ```
 
@@ -227,48 +230,56 @@ export function useTitle(title) {
 
 ```jsx
 // src/index.jsx
-import { LocationProvider, Router, hydrate, prerender as ssr } from 'preact-iso';
+import {
+	LocationProvider,
+	Router,
+	hydrate,
+	prerender as ssr
+} from 'preact-iso';
 
-import { useTitle } from './title-util.js'
+import { useTitle } from './title-util.js';
 
 function App() {
-    return (
-        <LocationProvider>
-            <main>
-                <Home path="/" />
-                <NotFound default />
-            </main>
-        </LocationProvider>
-    );
+	return (
+		<LocationProvider>
+			<main>
+				<Home path="/" />
+				<NotFound default />
+			</main>
+		</LocationProvider>
+	);
 }
 
 function Home() {
-    useTitle('Preact - Home');
-    return <h1>Hello World!</h1>;
+	useTitle('Preact - Home');
+	return <h1>Hello World!</h1>;
 }
 
 function NotFound() {
-    useTitle('Preact - 404');
-    return <h1>页面未找到</h1>;
+	useTitle('Preact - 404');
+	return <h1>页面未找到</h1>;
 }
 
 if (typeof window !== 'undefined') {
-    hydrate(<App />, document.getElementById('app'));
+	hydrate(<App />, document.getElementById('app'));
 }
 
 export async function prerender(data) {
-    const { html, links } = await ssr(<App {...data} />);
+	const { html, links } = await ssr(<App {...data} />);
 
-    return {
-        html,
-        links,
-        head: {
-            title: globalThis.title,
-            elements: new Set([
-                { type: 'meta', props: { property: 'og:title', content: globalThis.title } },
-            ])
-        }
-    };
+	return {
+		html,
+		links,
+		head: {
+			title: globalThis.title,
+			elements: new Set([
+				{
+					type: 'meta',
+					props: { property: 'og:title', content: globalThis.title }
+				}
+			])
+		}
+	};
 }
 ```
 
@@ -304,34 +315,34 @@ export async function prerender(data) {
 
 1. 设置
 
-	我们将包含你导出的 `prerender()` 函数的脚本设置为额外输入，并告诉 Rollup 保留入口签名，使我们能够在构建后访问和调用该函数。
+   我们将包含你导出的 `prerender()` 函数的脚本设置为额外输入，并告诉 Rollup 保留入口签名，使我们能够在构建后访问和调用该函数。
 
 2. 构建
 
-	我们让 Vite 像往常一样构建你的应用：编译 JSX，运行插件，优化资产等。
+   我们让 Vite 像往常一样构建你的应用：编译 JSX，运行插件，优化资产等。
 
 3. 预渲染
 
-  在插件的 `generateBundle` 阶段，我们开始生成 HTML。从 `/` 开始，我们开始在 Node 中执行构建好的 JS 包，调用你的 `prerender()` 函数，并将其返回的 HTML 插入到你的 `index.html` 文档中，最后将结果写入指定的输出目录。你的 `prerender()` 函数返回的任何新链接都会被排队，下一步处理。
+在插件的 `generateBundle` 阶段，我们开始生成 HTML。从 `/` 开始，我们开始在 Node 中执行构建好的 JS 包，调用你的 `prerender()` 函数，并将其返回的 HTML 插入到你的 `index.html` 文档中，最后将结果写入指定的输出目录。你的 `prerender()` 函数返回的任何新链接都会被排队，下一步处理。
 
-  当我们用完了要反馈给你的应用的 URL 时，预渲染就完成了。之后，Vite 将继续完成构建过程，运行你可能拥有的任何其他插件。你的预渲染应用将立即可用，无需后续构建或脚本。
+当我们用完了要反馈给你的应用的 URL 时，预渲染就完成了。之后，Vite 将继续完成构建过程，运行你可能拥有的任何其他插件。你的预渲染应用将立即可用，无需后续构建或脚本。
 
 ### 一些不错的功能
 
 - 基于文件系统的 `fetch()` 实现（如"同构获取"示例所示）
-	- 在你拿起你的干草叉之前，请听我们说！在预渲染期间（仅在预渲染期间），我们修补 `fetch()` 以允许直接从文件系统读取文件。这允许你在预渲染期间使用静态文件（文本、JSON、Markdown 等），而无需启动服务器来使用它。你可以在预渲染期间使用与浏览器中相同的文件路径。
-	- 事实上，这就是我们构建你正在阅读的页面的方式！`fetch('/content/blog/preact-prerender.json')`，当你导航到这个页面时触发的，在预渲染期间大致转换为 `new Response(await fs.readFile('/content/blog/preact-prerender.json'))`。我们读取文件，将其包装在 `Response` 中以模拟网络请求，并将其提供回你的应用 —— 你的应用可以在预渲染和客户端使用相同的 `fetch()` 请求。
-	- 将其与 suspense 和异步 SSR 实现配对，提供了非常棒的开发体验。
+  - 在你拿起你的干草叉之前，请听我们说！在预渲染期间（仅在预渲染期间），我们修补 `fetch()` 以允许直接从文件系统读取文件。这允许你在预渲染期间使用静态文件（文本、JSON、Markdown 等），而无需启动服务器来使用它。你可以在预渲染期间使用与浏览器中相同的文件路径。
+  - 事实上，这就是我们构建你正在阅读的页面的方式！`fetch('/content/blog/preact-prerender.json')`，当你导航到这个页面时触发的，在预渲染期间大致转换为 `new Response(await fs.readFile('/content/blog/preact-prerender.json'))`。我们读取文件，将其包装在 `Response` 中以模拟网络请求，并将其提供回你的应用 —— 你的应用可以在预渲染和客户端使用相同的 `fetch()` 请求。
+  - 将其与 suspense 和异步 SSR 实现配对，提供了非常棒的开发体验。
 
 - 爬取链接
-	- 部分由用户提供的 `prerender()` 函数导出支持，部分由插件支持，你可以在预渲染页面时返回一组链接（`preact-iso` 使这变得非常简单），这些链接将被添加到插件的待预渲染 URL 列表中。这将允许插件在构建时爬取你的网站，自然地找到更多要预渲染的页面。
-	- 你也可以通过插件选项手动提供链接，或者在 `preact-iso` 返回的链接中附加一些，如我们在完整 API 示例中所示。这对于错误页面特别有用，如 `/404`，可能没有链接但你仍然希望预渲染。
+  - 部分由用户提供的 `prerender()` 函数导出支持，部分由插件支持，你可以在预渲染页面时返回一组链接（`preact-iso` 使这变得非常简单），这些链接将被添加到插件的待预渲染 URL 列表中。这将允许插件在构建时爬取你的网站，自然地找到更多要预渲染的页面。
+  - 你也可以通过插件选项手动提供链接，或者在 `preact-iso` 返回的链接中附加一些，如我们在完整 API 示例中所示。这对于错误页面特别有用，如 `/404`，可能没有链接但你仍然希望预渲染。
 
 ...也许最大的优势是：
 
 - 通过在配置文件中翻转布尔值(Boolean)来切换它
-	- 因为我们不是包装器，并且因为你不需要更改源代码来支持它（除了一些窗口检查），所以根本没有锁定。如果你决定离开，或者你想对你的输出做一些测试，你只需要翻转一个布尔值，你就又回到了带有 Vite 的普通 SPA。
-	- 正如我们多次提到的，预渲染在尽可能接近"即插即用"时效果最好，这包括能够随心所欲地退出。对我们来说，重要的是你可以以最小的努力从 SPA 到预渲染再返回。
+  - 因为我们不是包装器，并且因为你不需要更改源代码来支持它（除了一些窗口检查），所以根本没有锁定。如果你决定离开，或者你想对你的输出做一些测试，你只需要翻转一个布尔值，你就又回到了带有 Vite 的普通 SPA。
+  - 正如我们多次提到的，预渲染在尽可能接近"即插即用"时效果最好，这包括能够随心所欲地退出。对我们来说，重要的是你可以以最小的努力从 SPA 到预渲染再返回。
 
 ## 最后说明
 

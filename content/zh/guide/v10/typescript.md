@@ -22,22 +22,23 @@ TypeScript 包含一个功能齐全的 JSX 编译器，您可以用它来代替 
 ```json
 // 经典转换
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
-    //...
-  }
+	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
+		//...
+	}
 }
 ```
+
 ```json
 // 自动转换，TypeScript >= 4.1.1 可用
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    //...
-  }
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+		//...
+	}
 }
 ```
 
@@ -45,12 +46,12 @@ TypeScript 包含一个功能齐全的 JSX 编译器，您可以用它来代替 
 
 ```json
 {
-  "compilerOptions": {
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
-    //...
-  }
+	"compilerOptions": {
+		"jsx": "preserve",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
+		//...
+	}
 }
 ```
 
@@ -100,16 +101,16 @@ TypeScript 包含一个功能齐全的 JSX 编译器，您可以用它来代替 
 
 ```tsx
 interface MyComponentProps {
-  name: string;
-  age: number;
-};
+	name: string;
+	age: number;
+}
 
 function MyComponent({ name, age }: MyComponentProps) {
-  return (
-    <div>
-      我的名字是 {name}，我今年 {age.toString()} 岁。
-    </div>
-  );
+	return (
+		<div>
+			我的名字是 {name}，我今年 {age.toString()} 岁。
+		</div>
+	);
 }
 ```
 
@@ -117,49 +118,48 @@ function MyComponent({ name, age }: MyComponentProps) {
 
 ```tsx
 interface GreetingProps {
-  name?: string; // name 是可选的！
+	name?: string; // name 是可选的！
 }
 
-function Greeting({ name = "用户" }: GreetingProps) {
-  // name 至少是 "用户"
-  return <div>你好 {name}！</div>
+function Greeting({ name = '用户' }: GreetingProps) {
+	// name 至少是 "用户"
+	return <div>你好 {name}！</div>;
 }
 ```
 
 Preact 还提供了 `FunctionComponent` 类型来注释匿名函数。`FunctionComponent` 还为 `children` 添加了类型：
 
 ```tsx
-import { h, FunctionComponent } from "preact";
+import { h, FunctionComponent } from 'preact';
 
 const Card: FunctionComponent<{ title: string }> = ({ title, children }) => {
-  return (
-    <div class="card">
-      <h1>{title}</h1>
-      {children}
-    </div>
-  );
+	return (
+		<div class="card">
+			<h1>{title}</h1>
+			{children}
+		</div>
+	);
 };
 ```
 
 `children` 的类型是 `ComponentChildren`。您可以使用此类型自己指定 children：
 
-
 ```tsx
-import { h, ComponentChildren } from "preact";
+import { h, ComponentChildren } from 'preact';
 
 interface ChildrenProps {
-  title: string;
-  children: ComponentChildren;
+	title: string;
+	children: ComponentChildren;
 }
 
 function Card({ title, children }: ChildrenProps) {
-  return (
-    <div class="card">
-      <h1>{title}</h1>
-      {children}
-    </div>
-  );
-};
+	return (
+		<div class="card">
+			<h1>{title}</h1>
+			{children}
+		</div>
+	);
+}
 ```
 
 ### 类组件
@@ -169,41 +169,40 @@ Preact 的 `Component` 类是一个带有两个泛型类型变量的泛型：Pro
 ```tsx
 // Props 的类型
 interface ExpandableProps {
-  title: string;
-};
+	title: string;
+}
 
 // State 的类型
 interface ExpandableState {
-  toggled: boolean;
-};
-
+	toggled: boolean;
+}
 
 // 将泛型绑定到 ExpandableProps 和 ExpandableState
 class Expandable extends Component<ExpandableProps, ExpandableState> {
-  constructor(props: ExpandableProps) {
-    super(props);
-    // this.state 是一个带有布尔字段 `toggle` 的对象
-    // 由于 ExpandableState
-    this.state = {
-      toggled: false
-    };
-  }
-  // `this.props.title` 是字符串，由于 ExpandableProps
-  render() {
-    return (
-      <div class="expandable">
-        <h2>
-          {this.props.title}{" "}
-          <button
-            onClick={() => this.setState({ toggled: !this.state.toggled })}
-          >
-            切换
-          </button>
-        </h2>
-        <div hidden={this.state.toggled}>{this.props.children}</div>
-      </div>
-    );
-  }
+	constructor(props: ExpandableProps) {
+		super(props);
+		// this.state 是一个带有布尔字段 `toggle` 的对象
+		// 由于 ExpandableState
+		this.state = {
+			toggled: false
+		};
+	}
+	// `this.props.title` 是字符串，由于 ExpandableProps
+	render() {
+		return (
+			<div class="expandable">
+				<h2>
+					{this.props.title}{' '}
+					<button
+						onClick={() => this.setState({ toggled: !this.state.toggled })}
+					>
+						切换
+					</button>
+				</h2>
+				<div hidden={this.state.toggled}>{this.props.children}</div>
+			</div>
+		);
+	}
 }
 ```
 
@@ -217,10 +216,10 @@ class Expandable extends Component<ExpandableProps, ExpandableState> {
 import { InputHTMLAttributes } from 'preact';
 
 interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
-  mySpecialProp: any
+	mySpecialProp: any;
 }
 
-const Input = (props: InputProperties) => <input {...props} />
+const Input = (props: InputProperties) => <input {...props} />;
 ```
 
 现在当我们使用 `Input` 时，它会知道 `value` 等属性...
@@ -230,20 +229,16 @@ const Input = (props: InputProperties) => <input {...props} />
 Preact 会发出常规的 DOM 事件。只要您的 TypeScript 项目包含 `dom` 库（在 `tsconfig.json` 中设置），您就可以访问当前配置中可用的所有事件类型。
 
 ```tsx
-import type { TargetedMouseEvent } from "preact";
+import type { TargetedMouseEvent } from 'preact';
 
 export class Button extends Component {
-  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
-    alert(event.currentTarget.tagName); // 提示 BUTTON
-  }
+	handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
+		alert(event.currentTarget.tagName); // 提示 BUTTON
+	}
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.props.children}
-      </button>
-    );
-  }
+	render() {
+		return <button onClick={this.handleClick}>{this.props.children}</button>;
+	}
 }
 ```
 
@@ -251,13 +246,13 @@ export class Button extends Component {
 
 ```tsx
 export class Button extends Component {
-  render() {
-    return (
-      <button onClick={(event) => alert(event.currentTarget.tagName)}>
-        {this.props.children}
-      </button>
-    );
-  }
+	render() {
+		return (
+			<button onClick={(event) => alert(event.currentTarget.tagName)}>
+				{this.props.children}
+			</button>
+		);
+	}
 }
 ```
 
@@ -266,21 +261,21 @@ export class Button extends Component {
 `createRef` 函数也是泛型的，允许您将引用绑定到元素类型。在此示例中，我们确保引用只能绑定到 `HTMLAnchorElement`。使用任何其他元素的 `ref` 都会让 TypeScript 抛出错误：
 
 ```tsx
-import { h, Component, createRef } from "preact";
+import { h, Component, createRef } from 'preact';
 
 class Foo extends Component {
-  ref = createRef<HTMLAnchorElement>();
+	ref = createRef<HTMLAnchorElement>();
 
-  componentDidMount() {
-    // current 的类型是 HTMLAnchorElement
-    console.log(this.ref.current);
-  }
+	componentDidMount() {
+		// current 的类型是 HTMLAnchorElement
+		console.log(this.ref.current);
+	}
 
-  render() {
-    return <div ref={this.ref}>Foo</div>;
-    //          ~~~
-    //       💥 错误！Ref 只能用于 HTMLAnchorElement
-  }
+	render() {
+		return <div ref={this.ref}>Foo</div>;
+		//          ~~~
+		//       💥 错误！Ref 只能用于 HTMLAnchorElement
+	}
 }
 ```
 
@@ -291,12 +286,12 @@ class Foo extends Component {
 `createContext` 尝试从您传递给它的初始值中推断尽可能多的内容：
 
 ```tsx
-import { h, createContext } from "preact";
+import { h, createContext } from 'preact';
 
 const AppContext = createContext({
-  authenticated: true,
-  lang: "en",
-  theme: "dark"
+	authenticated: true,
+	lang: 'en',
+	theme: 'dark'
 });
 // AppContext 的类型是 preact.Context<{
 //   authenticated: boolean;
@@ -309,20 +304,22 @@ const AppContext = createContext({
 
 ```tsx
 function App() {
-  // 这个会报错 💥 因为我们没有定义 theme
-  return (
-    <AppContext.Provider
-      value={{
-//    ~~~~~ 
-// 💥 错误：未定义 theme
-        lang: "de",
-        authenticated: true
-      }}
-    >
-    {}
-      <ComponentThatUsesAppContext />
-    </AppContext.Provider>
-  );
+	// 这个会报错 💥 因为我们没有定义 theme
+	return (
+		<AppContext.Provider
+			value={{
+<!-- prettier-ignore-start -->
+	 //    ~~~~~
+	 // 💥 错误：未定义 theme
+<!-- prettier-ignore-end -->
+				lang: 'de',
+				authenticated: true
+			}}
+		>
+			{}
+			<ComponentThatUsesAppContext />
+		</AppContext.Provider>
+	);
 }
 ```
 
@@ -332,16 +329,16 @@ function App() {
 const AppContext = createContext(appContextDefault);
 
 function App() {
-  return (
-    <AppContext.Provider
-      value={{
-        lang: "de",
-        ...appContextDefault
-      }}
-    >
-      <ComponentThatUsesAppContext />
-    </AppContext.Provider>
-  );
+	return (
+		<AppContext.Provider
+			value={{
+				lang: 'de',
+				...appContextDefault
+			}}
+		>
+			<ComponentThatUsesAppContext />
+		</AppContext.Provider>
+	);
 }
 ```
 
@@ -380,18 +377,18 @@ function App() {
 
 ```tsx
 const Counter = ({ initial = 0 }) => {
-  // 由于 initial 是一个数字（默认值！），clicks 是一个数字
-  // setClicks 是一个接受以下内容的函数
-  // - 一个数字
-  // - 一个返回数字的函数
-  const [clicks, setClicks] = useState(initial);
-  return (
-    <>
-      <p>点击次数：{clicks}</p>
-      <button onClick={() => setClicks(clicks + 1)}>+</button>
-      <button onClick={() => setClicks(clicks - 1)}>-</button>
-    </>
-  );
+	// 由于 initial 是一个数字（默认值！），clicks 是一个数字
+	// setClicks 是一个接受以下内容的函数
+	// - 一个数字
+	// - 一个返回数字的函数
+	const [clicks, setClicks] = useState(initial);
+	return (
+		<>
+			<p>点击次数：{clicks}</p>
+			<button onClick={() => setClicks(clicks + 1)}>+</button>
+			<button onClick={() => setClicks(clicks - 1)}>-</button>
+		</>
+	);
 };
 ```
 
@@ -399,16 +396,16 @@ const Counter = ({ initial = 0 }) => {
 
 ```typescript
 useEffect(() => {
-  const handler = () => {
-    document.title = window.innerWidth.toString();
-  };
-  window.addEventListener("resize", handler);
+	const handler = () => {
+		document.title = window.innerWidth.toString();
+	};
+	window.addEventListener('resize', handler);
 
-  // ✅ 如果您从效果回调返回某些内容
-  // 它必须是一个没有参数的函数
-  return () => {
-    window.removeEventListener("resize", handler);
-  };
+	// ✅ 如果您从效果回调返回某些内容
+	// 它必须是一个没有参数的函数
+	return () => {
+		window.removeEventListener('resize', handler);
+	};
 });
 ```
 
@@ -418,12 +415,14 @@ useEffect(() => {
 const LanguageContext = createContext({ lang: 'en' });
 
 const Display = () => {
-  // lang 将是字符串类型
-  const { lang } = useContext(LanguageContext);
-  return <>
-    <p>您选择的语言：{lang}</p>
-  </>
-}
+	// lang 将是字符串类型
+	const { lang } = useContext(LanguageContext);
+	return (
+		<>
+			<p>您选择的语言：{lang}</p>
+		</>
+	);
+};
 ```
 
 ### useRef
@@ -431,27 +430,27 @@ const Display = () => {
 就像 `createRef` 一样，`useRef` 受益于将泛型类型变量绑定到 `HTMLElement` 的子类型。在下面的示例中，我们确保 `inputRef` 只能传递给 `HTMLInputElement`。`useRef` 通常以 `null` 初始化，启用 `strictNullChecks` 标志后，我们需要检查 `inputRef` 是否实际可用。
 
 ```tsx
-import { h } from "preact";
-import { useRef } from "preact/hooks";
+import { h } from 'preact';
+import { useRef } from 'preact/hooks';
 
 function TextInputWithFocusButton() {
-  // 用 null 初始化，但告诉 TypeScript 我们正在寻找一个 HTMLInputElement
-  const inputRef = useRef<HTMLInputElement>(null);
-  const focusElement = () => {
-    // 严格空检查需要我们检查 inputEl 和 current 是否存在。
-    // 但一旦 current 存在，它就是 HTMLInputElement 类型，因此它
-    // 有 focus 方法！✅
-    if(inputRef && inputRef.current) {
-      inputRef.current.focus();
-    } 
-  };
-  return (
-    <>
-      { /* 此外，inputEl 只能与输入元素一起使用 */ }
-      <input ref={inputRef} type="text" />
-      <button onClick={focusElement}>聚焦输入框</button>
-    </>
-  );
+	// 用 null 初始化，但告诉 TypeScript 我们正在寻找一个 HTMLInputElement
+	const inputRef = useRef<HTMLInputElement>(null);
+	const focusElement = () => {
+		// 严格空检查需要我们检查 inputEl 和 current 是否存在。
+		// 但一旦 current 存在，它就是 HTMLInputElement 类型，因此它
+		// 有 focus 方法！✅
+		if (inputRef && inputRef.current) {
+			inputRef.current.focus();
+		}
+	};
+	return (
+		<>
+			{/* 此外，inputEl 只能与输入元素一起使用 */}
+			<input ref={inputRef} type="text" />
+			<button onClick={focusElement}>聚焦输入框</button>
+		</>
+	);
 }
 ```
 
@@ -462,31 +461,31 @@ function TextInputWithFocusButton() {
 ```typescript
 // reducer 函数的状态类型
 interface StateType {
-  count: number;
+	count: number;
 }
 
 // 一个动作类型，其中 `type` 可以是
 // "reset"、"decrement"、"increment"
 interface ActionType {
-  type: "reset" | "decrement" | "increment";
+	type: 'reset' | 'decrement' | 'increment';
 }
 
 // 初始状态。不需要注释
 const initialState = { count: 0 };
 
 function reducer(state: StateType, action: ActionType) {
-  switch (action.type) {
-    // TypeScript 确保我们处理所有可能的
-    // 动作类型，并为类型字符串提供自动完成
-    case "reset":
-      return initialState;
-    case "increment":
-      return { count: state.count + 1 };
-    case "decrement":
-      return { count: state.count - 1 };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		// TypeScript 确保我们处理所有可能的
+		// 动作类型，并为类型字符串提供自动完成
+		case 'reset':
+			return initialState;
+		case 'increment':
+			return { count: state.count + 1 };
+		case 'decrement':
+			return { count: state.count - 1 };
+		default:
+			return state;
+	}
 }
 ```
 
@@ -494,22 +493,22 @@ function reducer(state: StateType, action: ActionType) {
 
 ```tsx
 function Counter({ initialCount = 0 }) {
-  // TypeScript 确保 reducer 最多有两个参数，并且
-  // 初始状态的类型是 Statetype。
-  // 此外：
-  // - state 的类型是 StateType
-  // - dispatch 是一个调度 ActionType 的函数
-  const [state, dispatch] = useReducer(reducer, { count: initialCount });
+	// TypeScript 确保 reducer 最多有两个参数，并且
+	// 初始状态的类型是 Statetype。
+	// 此外：
+	// - state 的类型是 StateType
+	// - dispatch 是一个调度 ActionType 的函数
+	const [state, dispatch] = useReducer(reducer, { count: initialCount });
 
-  return (
-    <>
-      计数：{state.count}
-      {/* TypeScript 确保调度的动作是 ActionType */}
-      <button onClick={() => dispatch({ type: "reset" })}>重置</button>
-      <button onClick={() => dispatch({ type: "increment" })}>+</button>
-      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
-    </>
-  );
+	return (
+		<>
+			计数：{state.count}
+			{/* TypeScript 确保调度的动作是 ActionType */}
+			<button onClick={() => dispatch({ type: 'reset' })}>重置</button>
+			<button onClick={() => dispatch({ type: 'increment' })}>+</button>
+			<button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+		</>
+	);
 }
 ```
 
@@ -523,9 +522,9 @@ function Counter({ initialCount = 0 }) {
 
 ```tsx
 function MyComponent() {
-  return <loading-bar showing={true}></loading-bar>;
-  //      ~~~~~~~~~~~
-  //   💥 错误！类型 'JSX.IntrinsicElements' 上不存在属性 'loading-bar'。
+	return <loading-bar showing={true}></loading-bar>;
+	//      ~~~~~~~~~~~
+	//   💥 错误！类型 'JSX.IntrinsicElements' 上不存在属性 'loading-bar'。
 }
 ```
 
@@ -533,25 +532,25 @@ function MyComponent() {
 // global.d.ts
 
 declare global {
-  namespace preact.JSX {
-    interface IntrinsicElements {
-      'loading-bar': { showing: boolean };
-    }
-  }
+	namespace preact.JSX {
+		interface IntrinsicElements {
+			'loading-bar': { showing: boolean };
+		}
+	}
 }
 
 // 这个空导出很重要！它告诉 TS 将此视为模块
-export {}
+export {};
 ```
 
 ### 扩展 `HTMLAttributes`
 
 ```tsx
 function MyComponent() {
-  return <div custom="foo"></div>;
-  //          ~~~~~~
-  //       💥 错误！类型 '{ custom: string; }' 不能赋值给类型 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'。
-  //                   属性 'custom' 不存在于类型 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>' 上。
+	return <div custom="foo"></div>;
+	//          ~~~~~~
+	//       💥 错误！类型 '{ custom: string; }' 不能赋值给类型 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'。
+	//                   属性 'custom' 不存在于类型 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>' 上。
 }
 ```
 
@@ -559,13 +558,13 @@ function MyComponent() {
 // global.d.ts
 
 declare global {
-  namespace preact.JSX {
-    interface HTMLAttributes {
-      custom?: string | undefined;
-    }
-  }
+	namespace preact.JSX {
+		interface HTMLAttributes {
+			custom?: string | undefined;
+		}
+	}
 }
 
 // 这个空导出很重要！它告诉 TS 将此视为模块
-export {}
-``` 
+export {};
+```

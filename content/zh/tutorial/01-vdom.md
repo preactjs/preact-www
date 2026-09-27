@@ -14,14 +14,16 @@ solvable: true
 
 ```js
 let vdom = {
-  type: 'p',         // 一个 <p> 元素
-  props: {
-    class: 'big',    // 带有 class="big"
-    children: [
-      'Hello World!' // 和文字 "Hello World!"
-    ]
-  }
-}
+<!-- prettier-ignore-start -->
+	type: 'p',             // 一个 <p> 元素
+	props: {
+		class: 'big',      // 带有 class="big"
+		children: [
+			'Hello World!' // 和文字 "Hello World!"
+		]
+	}
+<!-- prettier-ignore-end -->
+};
 ```
 
 类似 Preact 这样的库提供了一种方式构筑这些描述，然后使用这些描述构成的虚拟 DOM 树和浏览器中真实DOM 树进行比较。
@@ -29,7 +31,7 @@ let vdom = {
 
 这是很有用的工具，因为它让我们可以 _声明式_ 组成用户界面，而不是 _命令式_ 组成用户界面。
 我们不需要描述 _如何_ 更新 DOM 来响应键盘或鼠标的输入, 我们只需要描述 DOM 在收到输入后应该是 _什么_ 样子
-也就是说我们可以不断的描述给 Preact 不同的树结构，Preact 也会不断的更新浏览器的 真实 DOM 树中的描述，来匹配我们描述的树结构  - 不用管当前树结构是什么样
+也就是说我们可以不断的描述给 Preact 不同的树结构，Preact 也会不断的更新浏览器的 真实 DOM 树中的描述，来匹配我们描述的树结构 - 不用管当前树结构是什么样
 
 在本章中，我们将学习如何创建虚拟 DOM 树，以及如何才能让 Preact 对真实 DOM 进行更新用来匹配那些树结构。
 
@@ -49,9 +51,11 @@ let vdom = {
 import { createElement, render } from 'preact';
 
 let vdom = createElement(
-  'p',              // 一个 <p> 元素
-  { class: 'big' }, // 带有 class="big"
-  'Hello World!'    // 和文字 "Hello World!"
+<!-- prettier-ignore-start -->
+	'p',              // 一个 <p> 元素
+	{ class: 'big' }, // 带有 class="big"
+	'Hello World!'    // 和文字 "Hello World!"
+<!-- prettier-ignore-end -->
 );
 
 render(vdom, document.body);
@@ -65,7 +69,6 @@ render(vdom, document.body);
 最后一行告诉 Preact 建立一个真实 DOM 树，与我们的虚拟 DOM 的描述相匹配,并将该 DOM 树插入网页的`<body>`中。
 
 ### 现在是JSX!
-
 
 我们可以使用[JSX]重写前面的例子而不改变其功能。
 JSX 让我们使用类似 HTML 的语法来描述我们的段落元素，
@@ -88,10 +91,10 @@ render(vdom, document.body);
 下面的例子显示了两个表达式：一个是将`class`设置为一个随机字符串，另一个是计算数字。
 
 ```jsx
-let maybeBig = Math.random() > .5 ? 'big' : 'small';
+let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = <p class={maybeBig}>Hello {40 + 2}!</p>;
-                 // ^---JS---^       ^--JS--^
+// ^---JS---^       ^--JS--^
 ```
 
 如果我们调用了`render(vdom, document.body)`，文本 "Hello 42!"将被显示出来。
@@ -101,8 +104,9 @@ let vdom = <p class={maybeBig}>Hello {40 + 2}!</p>;
 [HTM] 是 JSX 的一个替代品，它使用标准的 JavaScript 标记模板。
 消除了对编译器的需求。如果你还没有遇到过标签模板。
 它们是一种特殊的 String literal，可以包含`${expression}`字段。
+
 ```js
-let str = `Quantity: ${40 + 2} units`;  // "Quantity: 42 units"
+let str = `Quantity: ${40 + 2} units`; // "Quantity: 42 units"
 ```
 
 HTM 使用`${expression}`而不是 JSX 的`{expression}`语法，这可以使你知道你的代码中哪些部分是 HTM/JSX 元素，哪些部分是普通的 JavaScript。
@@ -110,12 +114,11 @@ HTM 使用`${expression}`而不是 JSX 的`{expression}`语法，这可以使你
 ```js
 import { html } from 'htm/preact';
 
-let maybeBig = Math.random() > .5 ? 'big' : 'small';
+let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = html`<p class=${maybeBig}>Hello ${40 + 2}!</p>`;
-                        // ^--JS--^          ^-JS-^
+// ^--JS--^          ^-JS-^
 ```
-
 
 所有这些例子都产生了相同的结果：一个虚拟的 DOM 树，可以交给 Preact 用来创建或更新现有的 DOM 树。
 
@@ -133,16 +136,13 @@ let vdom = html`<p class=${maybeBig}>Hello ${40 + 2}!</p>`;
 import { createElement } from 'preact';
 
 export default function App() {
-	return (
-		<p class="big">Hello World!</p>
-	)
+	return <p class="big">Hello World!</p>;
 }
 ```
 
 ## 试试吧!
 
 在这个页面的右侧，你会看到我们之前的例子中的代码位于顶部。下面是运行该代码的结果的方框。你可以编辑代码，看看你的改动是如何影响（或破坏！）结果的。
-
 
 为了检验你在本章中所学到的知识，请尝试给文本添加一些更多的精彩吧
 使用 HTML 标签:`<em>`和`</em>` 让文本`World`更加突出
@@ -155,7 +155,6 @@ export default function App() {
   <p>我们已经让东西出现在屏幕上。接下来，我们将让它更具有互动性</p>
 </solution>
 
-
 ```js:setup
 useResult(function(result) {
   var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
@@ -166,7 +165,6 @@ useResult(function(result) {
   }
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { createElement, render } from 'preact';

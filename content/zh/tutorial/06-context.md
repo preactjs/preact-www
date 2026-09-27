@@ -14,30 +14,29 @@ Context是一种让我们能够自动地将值向下传递的功能，组件不�
 - `<Provider>` sets the context's value within a <abbr title="The Virtual DOM tree within <Provider>...</Provider>, including all children">subtree</abbr>
 - `<Consumer>`获取由最近的父Provider设置的context值
 
-
 首先，让我们看一个只有一个组件的简单例子。在这个例子中，我们提供"Username"context值并消费该值：
 
 ```jsx
-import { createContext } from 'preact'
+import { createContext } from 'preact';
 
-const Username = createContext()
+const Username = createContext();
 
 export default function App() {
-  return (
-    // provide the username value to our subtree:
-    <Username.Provider value="Bob">
-      <div>
-        <p>
-          <Username.Consumer>
-            {username => (
-              // access the current username from context:
-              <span>{username}</span>
-            )}
-          </Username.Consumer>
-        </p>
-      </div>
-    </Username.Provider>
-  )
+	return (
+		// provide the username value to our subtree:
+		<Username.Provider value="Bob">
+			<div>
+				<p>
+					<Username.Consumer>
+						{(username) => (
+							// access the current username from context:
+							<span>{username}</span>
+						)}
+					</Username.Consumer>
+				</p>
+			</div>
+		</Username.Provider>
+	);
 }
 ```
 
@@ -50,27 +49,27 @@ context的`<Consumer>`API对于大多数用例来说已经足够了，但由于�
 这里再次展示前面的例子，这次分成了两个组件，并使用`useContext()`获取context的当前值：
 
 ```jsx
-import { createContext } from 'preact'
-import { useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const Username = createContext()
+const Username = createContext();
 
 export default function App() {
-  return (
-    <Username.Provider value="Bob">
-      <div>
-        <p>
-          <User />
-        </p>
-      </div>
-    </Username.Provider>
-  )
+	return (
+		<Username.Provider value="Bob">
+			<div>
+				<p>
+					<User />
+				</p>
+			</div>
+		</Username.Provider>
+	);
 }
 
 function User() {
-  // access the current username from context:
-  const username = useContext(Username) // "Bob"
-  return <span>{username}</span>
+	// access the current username from context:
+	const username = useContext(Username); // "Bob"
+	return <span>{username}</span>;
 }
 ```
 
@@ -83,47 +82,44 @@ Context的一个更实际的用法是存储应用程序的认证状态（用户�
 为此，我们可以创建一个存储信息的context，我们称之为`AuthContext`。AuthContext的值将是一个对象，其中包含一个`user`属性，包含我们已登录的用户，以及一个`setUser`方法来修改该状态。
 
 ```jsx
-import { createContext } from 'preact'
-import { useState, useMemo, useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useState, useMemo, useContext } from 'preact/hooks';
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export default function App() {
-  const [user, setUser] = useState(null)
+	const [user, setUser] = useState(null);
 
-  const auth = useMemo(() => {
-    return { user, setUser }
-  }, [user])
+	const auth = useMemo(() => {
+		return { user, setUser };
+	}, [user]);
 
-  return (
-    <AuthContext.Provider value={auth}>
-      <div class="app">
-        {auth.user && <p>Welcome {auth.user.name}!</p>}
-        <Login />
-      </div>
-    </AuthContext.Provider>
-  )
+	return (
+		<AuthContext.Provider value={auth}>
+			<div class="app">
+				{auth.user && <p>Welcome {auth.user.name}!</p>}
+				<Login />
+			</div>
+		</AuthContext.Provider>
+	);
 }
 
 function Login() {
-  const { user, setUser } = useContext(AuthContext)
+	const { user, setUser } = useContext(AuthContext);
 
-  if (user) return (
-    <div class="logged-in">
-      Logged in as {user.name}.
-      <button onClick={() => setUser(null)}>
-        Log Out
-      </button>
-    </div>
-  )
+	if (user)
+		return (
+			<div class="logged-in">
+				Logged in as {user.name}.
+				<button onClick={() => setUser(null)}>Log Out</button>
+			</div>
+		);
 
-  return (
-    <div class="logged-out">
-      <button onClick={() => setUser({ name: 'Bob' })}>
-        Log In
-      </button>
-    </div>
-  )
+	return (
+		<div class="logged-out">
+			<button onClick={() => setUser({ name: 'Bob' })}>Log In</button>
+		</div>
+	);
 }
 ```
 
@@ -141,20 +137,18 @@ Context有一个隐藏的超能力，在大型应用程序中非常有用：cont
 我们可以创建一个`<Route path=".."`组件，只有当当前路径匹配给定的路径段时才渲染虚拟DOM树。为了简化嵌套路由的定义，每个匹配的路由可以在其子树中覆盖"当前路径"context值，以排除已匹配的路径部分。
 
 ```jsx
-import { createContext } from 'preact'
-import { useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const Path = createContext(location.pathname)
+const Path = createContext(location.pathname);
 
 function Route(props) {
-  const path = useContext(Path) // the current path
-  const isMatch = path.startsWith(props.path)
-  const innerPath = path.substring(props.path.length)
-  return isMatch && (
-    <Path.Provider value={innerPath}>
-      {props.children}
-    </Path.Provider>
-  )
+	const path = useContext(Path); // the current path
+	const isMatch = path.startsWith(props.path);
+	const innerPath = path.substring(props.path.length);
+	return (
+		isMatch && <Path.Provider value={innerPath}>{props.children}</Path.Provider>
+	);
 }
 ```
 
@@ -162,38 +156,38 @@ function Route(props) {
 
 ```jsx
 export default function App() {
-  return (
-    <div class="app">
-      <Route path="/inbox">
-        <Inbox />
-      </Route>
-      <Route path="/settings">
-        <Settings />
-      </Route>
-    </div>
-  )
+	return (
+		<div class="app">
+			<Route path="/inbox">
+				<Inbox />
+			</Route>
+			<Route path="/settings">
+				<Settings />
+			</Route>
+		</div>
+	);
 }
 
 function Inbox() {
-  return (
-    <div class="inbox">
-      <div class="messages"> ... </div>
-      <Route path="/compose">
-        <Compose />
-      </Route>
-    </div>
-  )
+	return (
+		<div class="inbox">
+			<div class="messages"> ... </div>
+			<Route path="/compose">
+				<Compose />
+			</Route>
+		</div>
+	);
 }
 
 function Settings() {
-  return (
-    <div class="settings">
-      <h1>Settings</h1>
-      <Route path="/forwarding">
-        <Forwarding />
-      </Route>
-    </div>
-  )
+	return (
+		<div class="settings">
+			<h1>Settings</h1>
+			<Route path="/forwarding">
+				<Forwarding />
+			</Route>
+		</div>
+	);
 }
 ```
 
@@ -206,18 +200,17 @@ function Settings() {
 下面是第一个例子使用默认context值而不是Provider的样子：
 
 ```jsx
-import { createContext } from 'preact'
-import { useContext } from 'preact/hooks'
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const Username = createContext('Bob')
+const Username = createContext('Bob');
 
 export default function App() {
-  const username = useContext(Username) // returns "Bob"
+	const username = useContext(Username); // returns "Bob"
 
-  return <span>{username}</span>
+	return <span>{username}</span>;
 }
 ```
-
 
 ## 试一试！
 
@@ -233,7 +226,6 @@ export default function App() {
   <h4>🎉 恭喜你！</h4>
   <p>你已经成功地使用Context在组件树中传递信息！</p>
 </solution>
-
 
 ```js:setup
 var output = useRef();
@@ -255,7 +247,7 @@ useResult(function (result) {
   if (getCounts().length !== 3) {
     console.warn('It looks like you haven\'t initialized the `count` value to 0.');
   }
-  
+
   var timer;
   var count = 0;
   var options = require('preact').options;
@@ -283,7 +275,6 @@ useResult(function (result) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render, createContext } from 'preact';

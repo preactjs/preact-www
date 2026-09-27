@@ -13,9 +13,9 @@ Preact Signals 的新版本为响应式系统的基础带来了显著的性能�
 
 我们最近[宣布](https://twitter.com/jviide/status/1572570215350964224)了 Preact Signals 包的新版本：
 
-* [@preact/signals-core](https://www.npmjs.com/package/@preact/signals-core) 1.2.0 用于共享核心功能
-* [@preact/signals](https://www.npmjs.com/package/@preact/signals) 1.1.0 用于 Preact 绑定
-* [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react) 1.1.0 用于 React 绑定
+- [@preact/signals-core](https://www.npmjs.com/package/@preact/signals-core) 1.2.0 用于共享核心功能
+- [@preact/signals](https://www.npmjs.com/package/@preact/signals) 1.1.0 用于 Preact 绑定
+- [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react) 1.1.0 用于 React 绑定
 
 这篇文章将概述我们为优化 **@preact/signals-core** 所采取的步骤。它是作为框架特定绑定的基础包，但也可以独立使用。
 
@@ -37,7 +37,7 @@ Signals 表示包装在响应式外壳中的任意 JavaScript 值。你为 signa
 
 ```js
 // --repl
-import { signal } from "@preact/signals-core";
+import { signal } from '@preact/signals-core';
 
 const s = signal(0);
 console.log(s.value); // 控制台: 0
@@ -54,13 +54,13 @@ Computed signals使用compute functions从其他信号派生新值。
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hello");
-const s2 = signal("World");
+const s1 = signal('Hello');
+const s2 = signal('World');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 ```
 
@@ -68,13 +68,13 @@ const c = computed(() => {
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hello");
-const s2 = signal("World");
+const s1 = signal('Hello');
+const s2 = signal('World');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 // --repl-before
 console.log(c.value); // 控制台: Hello World
@@ -84,13 +84,13 @@ console.log(c.value); // 控制台: Hello World
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 
-const s1 = signal("Hello");
-const s2 = signal("World");
+const s1 = signal('Hello');
+const s2 = signal('World');
 
 const c = computed(() => {
-  return s1.value + " " + s2.value;
+	return s1.value + ' ' + s2.value;
 });
 
 console.log(c.value); // 控制台: Hello World
@@ -98,7 +98,7 @@ console.log(c.value); // 控制台: Hello World
 // s1 和 s2 没有变化，这里不会重新计算
 console.log(c.value); // 控制台: Hello World
 
-s2.value = "darkness my old friend";
+s2.value = 'darkness my old friend';
 
 // s2 已经改变，所以计算函数会再次运行
 console.log(c.value); // 控制台: Hello darkness my old friend
@@ -108,7 +108,7 @@ console.log(c.value); // 控制台: Hello darkness my old friend
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
@@ -123,29 +123,31 @@ console.log(quadruple.value); // 控制台: 80
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const choice = signal(true);
-const funk = signal("Uptown");
-const purple = signal("Haze");
+const funk = signal('Uptown');
+const purple = signal('Haze');
 
 const c = computed(() => {
-  if (choice.value) {
-    console.log(funk.value, "Funk");
-  } else {
-    console.log("Purple", purple.value);
-  }
+	if (choice.value) {
+		console.log(funk.value, 'Funk');
+	} else {
+		console.log('Purple', purple.value);
+	}
 });
+<!-- prettier-ignore-start -->
 c.value;               // 控制台: Uptown Funk
 
-purple.value = "Rain"; // purple 不是依赖项，所以
+purple.value = 'Rain'; // purple 不是依赖项，所以
 c.value;               // 效果不会运行
 
 choice.value = false;
 c.value;               // 控制台: Purple Rain
 
-funk.value = "Da";     // funk 不再是依赖项，所以
+funk.value = 'Da';     // funk 不再是依赖项，所以
 c.value;               // 效果不会运行
+<!-- prettier-ignore-end -->
 ```
 
 这三个特性 - 依赖项跟踪、惰性和缓存 - 是响应式库中常见的功能。Vue 的 _计算属性_(computed properties) 是[一个突出的例子](https://dev.to/linusborg/vue-when-a-computed-property-can-be-the-wrong-tool-195j)。
@@ -158,15 +160,15 @@ c.value;               // 效果不会运行
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 effect(() => {
-  console.log("quadruple is now", quadruple.value);
-});               // 控制台: quadruple value is now 4
+	console.log('quadruple is now', quadruple.value);
+}); // 控制台: quadruple value is now 4
 
 count.value = 20; // 控制台: quadruple value is now 80
 ```
@@ -177,18 +179,18 @@ count.value = 20; // 控制台: quadruple value is now 80
 
 ```js
 // --repl
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 // --repl-before
 const count = signal(1);
 const double = computed(() => count.value * 2);
 const quadruple = computed(() => double.value * 2);
 
 const dispose = effect(() => {
-  console.log("quadruple is now", quadruple.value);
-});                 // 控制台: quadruple value is now 4
+	console.log('quadruple is now', quadruple.value);
+}); // 控制台: quadruple value is now 4
 
 dispose();
-count.value = 20;  // 控制台上不会打印任何内容
+count.value = 20; // 控制台上不会打印任何内容
 ```
 
 还有其他函数，如 [`batch`](/guide/v11/signals/#batchfn)，但这三个与下面的实现说明最相关。
@@ -197,10 +199,10 @@ count.value = 20;  // 控制台上不会打印任何内容
 
 当我们着手实现上述原语的更高性能版本时，我们必须找到快速的方法来完成以下所有子任务：
 
-* 依赖跟踪：跟踪使用的信号（普通或计算）。依赖项可能会动态变化。
-* 惰性：计算函数应该只按需运行。
-* 缓存：计算信号应该只在其依赖项可能已更改时重新计算。
-* 急切性：当其依赖链中的某些内容改变时，效果应该尽快运行。
+- 依赖跟踪：跟踪使用的信号（普通或计算）。依赖项可能会动态变化。
+- 惰性：计算函数应该只按需运行。
+- 缓存：计算信号应该只在其依赖项可能已更改时重新计算。
+- 急切性：当其依赖链中的某些内容改变时，效果应该尽快运行。
 
 响应式系统可以通过无数种不同的方式实现。**@preact/signals-core** 的第一个发布版本基于 Sets，所以我们将继续使用这种方法来对比和比较。
 
@@ -224,20 +226,20 @@ Sets 还有一个特性，它们按插入顺序迭代。这很酷 - 这正是我
 
 ```js
 // --repl
-import { signal, computed } from "@preact/signals-core";
+import { signal, computed } from '@preact/signals-core';
 // --repl-before
 const s1 = signal(0);
 const s2 = signal(0);
 const s3 = signal(0);
 
 const c = computed(() => {
-  if (s1.value) {
-    s2.value;
-    s3.value;
-  } else {
-    s3.value;
-    s2.value;
-  }
+	if (s1.value) {
+		s2.value;
+		s3.value;
+	} else {
+		s3.value;
+		s2.value;
+	}
 });
 ```
 
@@ -249,9 +251,9 @@ const c = computed(() => {
 
 链表通常被认为相当原始，但对于我们的目的来说，它们具有一些非常好的特性。如果你有双向链表节点，那么以下操作可以非常便宜：
 
-* 在 O(1) 时间内将一个项目插入到列表的一端。
-* 在 O(1) 时间内从列表中的任何位置删除一个节点（你已经有了指向该节点的指针）。
-* 在 O(n) 时间内遍历列表（每个节点 O(1)）。
+- 在 O(1) 时间内将一个项目插入到列表的一端。
+- 在 O(1) 时间内从列表中的任何位置删除一个节点（你已经有了指向该节点的指针）。
+- 在 O(n) 时间内遍历列表（每个节点 O(1)）。
 
 事实证明，这些操作是我们管理依赖项/依赖者列表所需的全部内容。
 
@@ -289,7 +291,7 @@ const c = computed(() => {
 const s = signal(0);
 
 {
-  const c = computed(() => s.value)
+	const c = computed(() => s.value);
 }
 // c 已经超出作用域
 ```

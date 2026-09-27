@@ -16,12 +16,11 @@ title: Forms
 ## 受控 & 不受控 组件
 
 React 关于 [『受控』组件](https://facebook.github.io/react/docs/forms.html#controlled-components) 与 [『不受控』组件](https://facebook.github.io/react/docs/forms.html#uncontrolled-components) 的文档可以十分有效地帮助理解以下两点:
+
 1. 如何构建具有双向数据流的 HTML 表单
 2. 如何使用从基于组件化的 Virtual DOM 渲染而来的表单，当然通常 Virtual DOM 渲染是单向数据流
 
 通常说来，任何时候你都应该尝试使用受控的组件。然而，当构建独立组件，或者包装第三方 UI 库的时候，需要在非 Preact 环境下，把你的组件仅仅用作为一个挂载点。这种情况下，不受控组件十分适合这项工作。
-
-
 
 ## 多选框 & 单选框
 
@@ -29,26 +28,22 @@ React 关于 [『受控』组件](https://facebook.github.io/react/docs/forms.ht
 
 > ** 提示:** 通常说我们监听一个多选框的 change 事件，事件会在人为选中或者取消选中多选框的时候触发。在 change 事件处理器中，我们会把 `state` 中的某个值置为从多选框接收到的新值。这么做将会使我们的组件再次渲染，并使得多选框的值被再次置为 state 中的值。这并不必要，因为我们刚刚从 DOM 中获取了一个值，却紧接着让 DOM 根据任何我们想要的值再渲染一次。
 
-
 所以我们应该监听 `click` 事件，来替代监听 `change` 事件。`click` 事件会在任何我们点击多选框或者与多选框相关联的 `<label>` 标签的时候被触发。这样多选框就会在布尔值 `true` 和 `false` 之间切换。所以点击多选框或者标签，我们就可以翻转任何我们在 state 中有的值并触发再次渲染，使得多选框显示的值为我们想要的值。
 
 ### 多选框样例
 
 ```js
 class MyForm extends Component {
-    toggle(e) {
-        let checked = !this.state.checked;
-        this.setState({ checked });
-    }
-    render({ }, { checked }) {
-        return (
-            <label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={::this.toggle} />
-            </label>
-        );
-    }
+	toggle(e) {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	}
+	render({}, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={::this.toggle} />
+			</label>
+		);
+	}
 }
 ```

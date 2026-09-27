@@ -106,7 +106,7 @@ class MyInput extends Component {
 	render() {
 		return (
 			<input
-				ref={dom => {
+				ref={(dom) => {
 					console.log('已挂载:', dom);
 
 					// 从Preact 10.23.0开始，您可以选择返回一个清理函数
@@ -129,7 +129,7 @@ import { render } from 'preact';
 function MyInput() {
 	return (
 		<input
-			ref={dom => {
+			ref={(dom) => {
 				console.log('已挂载:', dom);
 
 				// 从Preact 10.23.0开始，您可以选择返回一个清理函数

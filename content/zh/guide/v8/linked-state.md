@@ -16,18 +16,16 @@ title: Linked State
 
 一个办法是使用 ES7 的类属性声明绑定了组件的方法。([类实例域](https://github.com/jeffmo/es-class-fields-and-static-properties))：
 
-
 ```js
 class Foo extends Component {
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={this.updateText} />;
 	}
 }
 ```
-
 
 尽管这样做获得了更优异的运行性能，但是它还是需要编写许多不必要的代码来关联 state 和 UI。
 
@@ -47,11 +45,12 @@ class Foo extends Component {
 import linkState from 'linkstate';
 
 class Foo extends Component {
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={linkState(this, 'text')} />;
 	}
 }
 ```
+
 这段代码简洁明了，易于理解且高效。他能够处理来自任何输入形式的关联状态。
 可选的第三个参数 `'path'` 能够显式提供一个点式路径（形如：foo.bar.baz）给新的状态，用于自定义绑定（如绑定到第三方组件的值）。
 
@@ -68,13 +67,12 @@ class Foo extends Component {
 handler = linkState(this, 'thing', 'foo.bar');
 
 // ...在功能上等同于:
-handler = event => {
-  this.setState({
-    thing: event.foo.bar
-  });
-}
+handler = (event) => {
+	this.setState({
+		thing: event.foo.bar
+	});
+};
 ```
-
 
 ### 例子：分组单选按钮
 
@@ -84,23 +82,28 @@ handler = event => {
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { yes, no }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={yes}
-          onChange={linkState(this, 'yes')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={no}
-          onChange={linkState(this, 'no')}
-        />
-      </div>
-    );
-  }
+	render({}, { yes, no }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={yes}
+					onChange={linkState(this, 'yes')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={no}
+					onChange={linkState(this, 'no')}
+				/>
+			</div>
+		);
+	}
 }
 ```
-
 
 `linkState` 的第三个参数在这里会派上用场。它允许你提供事件对象的点式路径值作为绑定值。 回顾之前的例子，可以显式指定linkState从 `event.target` 的 `value` 属性中获取新的状态值：
 
@@ -108,20 +111,26 @@ class Foo extends Component {
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { answer }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={answer == 'yes'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={answer == 'no'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-      </div>
-    );
-  }
+	render({}, { answer }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={answer == 'yes'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={answer == 'no'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+			</div>
+		);
+	}
 }
 ```
 

@@ -13,17 +13,17 @@ solvable: true
 
 ```jsx
 function MyButton(props) {
-  return <button class="my-button">{props.text}</button>
+	return <button class="my-button">{props.text}</button>;
 }
 ```
 
 我们可以通过在JSX中引用它来在应用程序中使用这个组件：
 
 ```js
-let vdom = <MyButton text="点击我！" />
+let vdom = <MyButton text="点击我！" />;
 
 // 还记得createElement吗？上面那行代码会被编译成：
-let vdom = createElement(MyButton, { text: "点击我！" })
+let vdom = createElement(MyButton, { text: '点击我！' });
 ```
 
 在任何使用JSX描述HTML树的地方，你也可以描述组件树。区别在于组件在JSX中使用大写字母开头的名称来描述，该名称对应于组件的名称（一个JavaScript变量）。
@@ -33,7 +33,7 @@ let vdom = createElement(MyButton, { text: "点击我！" })
 ```jsx
 import { render } from 'preact';
 
-render(<MyButton text="点击我！" />, document.body)
+render(<MyButton text="点击我！" />, document.body);
 ```
 
 ### 嵌套组件
@@ -42,42 +42,37 @@ render(<MyButton text="点击我！" />, document.body)
 
 ```jsx
 function MediaPlayer() {
-  return (
-    <div>
-      <MyButton text="播放" />
-      <MyButton text="停止" />
-    </div>
-  )
+	return (
+		<div>
+			<MyButton text="播放" />
+			<MyButton text="停止" />
+		</div>
+	);
 }
 
-render(<MediaPlayer />, document.body)
+render(<MediaPlayer />, document.body);
 ```
 
 我们可以使用这种技术为不同的场景渲染不同的组件树。让我们让`MediaPlayer`在没有声音播放时显示"播放"按钮，在有声音播放时显示"停止"按钮：
 
 ```jsx
 function MediaPlayer(props) {
-  return (
-    <div>
-      {props.playing ? (
-        <MyButton text="停止" />
-      ) : (
-        <MyButton text="播放" />
-      )}
-    </div>
-  )
+	return (
+		<div>
+			{props.playing ? <MyButton text="停止" /> : <MyButton text="播放" />}
+		</div>
+	);
 }
 
-render(<MediaPlayer playing={false} />, document.body)
+render(<MediaPlayer playing={false} />, document.body);
 // 渲染 <button>播放</button>
 
-render(<MediaPlayer playing={true} />, document.body)
+render(<MediaPlayer playing={true} />, document.body);
 // 渲染 <button>停止</button>
 ```
 
 > **记住：** JSX中的`{花括号}`让我们可以回到普通JavaScript。
 > 这里我们使用[三元]表达式根据`playing` prop的值显示不同的按钮。
-
 
 ### 组件子元素
 
@@ -87,12 +82,12 @@ render(<MediaPlayer playing={true} />, document.body)
 
 ```jsx
 <Foo>
-  <a />
-  <b />
-</Foo>
+	<a />
+	<b />
+</Foo>;
 
 function Foo(props) {
-  return props.children  // [<a />, <b />]
+	return props.children; // [<a />, <b />]
 }
 ```
 
@@ -102,19 +97,19 @@ function Foo(props) {
 
 ```jsx
 function MyButton(props) {
-  return <button class="my-button">{props.children}</button>
+	return <button class="my-button">{props.children}</button>;
 }
 
 function App() {
-  return (
-    <MyButton>
-      <img src="icon.png" />
-      点击我！
-    </MyButton>
-  )
+	return (
+		<MyButton>
+			<img src="icon.png" />
+			点击我！
+		</MyButton>
+	);
 }
 
-render(<App />, document.body)
+render(<App />, document.body);
 ```
 
 现在我们已经看到了一些组件渲染其他组件的例子，希望嵌套组件如何让我们从许多更小的单独部分组装复杂应用程序的概念已经开始变得清晰。
@@ -131,12 +126,12 @@ render(<App />, document.body)
 import { Component } from 'preact';
 
 class MyButton extends Component {
-  render(props) {
-    return <button class="my-button">{props.children}</button>
-  }
+	render(props) {
+		return <button class="my-button">{props.children}</button>;
+	}
 }
 
-render(<MyButton>点击我！</MyButton>, document.body)
+render(<MyButton>点击我！</MyButton>, document.body);
 ```
 
 我们可能使用类来定义组件的原因是为了跟踪组件的_生命周期_。每次Preact在渲染虚拟DOM树时遇到组件，它都会创建我们类的新实例（`new MyButton()`）。
@@ -149,21 +144,21 @@ render(<MyButton>点击我！</MyButton>, document.body)
 
 ```jsx
 class MyButton extends Component {
-  componentDidMount() {
-    console.log('你好，来自新的<MyButton>组件！')
-  }
-  componentDidUpdate() {
-    console.log('<MyButton>组件已更新！')
-  }
-  render(props) {
-    return <button class="my-button">{props.children}</button>
-  }
+	componentDidMount() {
+		console.log('你好，来自新的<MyButton>组件！');
+	}
+	componentDidUpdate() {
+		console.log('<MyButton>组件已更新！');
+	}
+	render(props) {
+		return <button class="my-button">{props.children}</button>;
+	}
 }
 
-render(<MyButton>点击我！</MyButton>, document.body)
+render(<MyButton>点击我！</MyButton>, document.body);
 // 日志："你好，来自新的<MyButton>组件！"
 
-render(<MyButton>点击我！</MyButton>, document.body)
+render(<MyButton>点击我！</MyButton>, document.body);
 // 日志："<MyButton>组件已更新！"
 ```
 
@@ -181,7 +176,6 @@ render(<MyButton>点击我！</MyButton>, document.body)
   <h4>🎉 恭喜你！</h4>
   <p>你正在成为组件专家的路上！</p>
 </solution>
-
 
 ```js:setup
 useRealm(function (realm) {
@@ -220,7 +214,6 @@ useRealm(function (realm) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from "preact";

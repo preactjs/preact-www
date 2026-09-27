@@ -34,7 +34,7 @@ import { options } from 'preact';
 const oldHook = options.vnode;
 
 // 设置您自己的钩子函数
-options.vnode = vnode => {
+options.vnode = (vnode) => {
 	console.log("Hey I'm a vnode", vnode);
 
 	// 调用备份的钩子函数 (如果有)

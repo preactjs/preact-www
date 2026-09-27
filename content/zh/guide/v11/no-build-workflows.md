@@ -46,17 +46,10 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 			import { html } from 'htm/preact';
 
 			export function App() {
-				return html`
-					<h1>你好，世界！</h1>
-				`;
+				return html`<h1>你好，世界！</h1>`;
 			}
 
-			render(
-				html`
-					<${App} />
-				`,
-				document.getElementById('app')
-			);
+			render(html`<${App} />`, document.getElementById('app'));
 		</script>
 	</body>
 </html>
@@ -122,9 +115,7 @@ import { useState } from 'preact/hooks';
 import { html } from 'htm/preact';
 
 function Button({ action, children }) {
-	return html`
-		<button onClick=${action}>${children}</button>
-	`;
+	return html`<button onClick=${action}>${children}</button>`;
 }
 
 function Counter() {

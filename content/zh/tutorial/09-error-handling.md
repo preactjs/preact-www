@@ -22,26 +22,26 @@ JavaScript是一种灵活的解释型语言，这意味着在运行时遇到错�
 以下示例展示了如何使用这两种方法来捕获错误并显示优雅的错误消息，而不是崩溃：
 
 ```jsx
-import { Component } from 'preact'
+import { Component } from 'preact';
 
 class ErrorBoundary extends Component {
-  state = { error: null }
+	state = { error: null };
 
-  static getDerivedStateFromError(error) {
-    return { error: error.message }
-  }
+	static getDerivedStateFromError(error) {
+		return { error: error.message };
+	}
 
-  componentDidCatch(error) {
-    console.error(error)
-    this.setState({ error: error.message })
-  }
+	componentDidCatch(error) {
+		console.error(error);
+		this.setState({ error: error.message });
+	}
 
-  render() {
-    if (this.state.error) {
-      return <p>哎呀！我们遇到了一个错误：{this.state.error}</p>
-    }
-    return this.props.children
-  }
+	render() {
+		if (this.state.error) {
+			return <p>哎呀！我们遇到了一个错误：{this.state.error}</p>;
+		}
+		return this.props.children;
+	}
 }
 ```
 
@@ -61,7 +61,6 @@ class ErrorBoundary extends Component {
   <h4>🎉 恭喜你！</h4>
   <p>你学会了如何处理Preact代码中的错误！</p>
 </solution>
-
 
 ```js:setup
 useResult(function(result) {
@@ -85,7 +84,6 @@ useResult(function(result) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render, Component } from 'preact';

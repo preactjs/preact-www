@@ -63,14 +63,14 @@ function App() {
 // --repl
 import { render, createContext } from 'preact';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
 	return (
 		<ThemePrimary.Consumer>
-			{theme => <button style={{ background: theme }}>主题按钮</button>}
+			{(theme) => <button style={{ background: theme }}>主题按钮</button>}
 		</ThemePrimary.Consumer>
 	);
 }
@@ -93,7 +93,7 @@ render(<App />, document.getElementById('app'));
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext('#673ab8');
 
@@ -126,7 +126,7 @@ render(<App />, document.getElementById('app'));
 import { render, createContext } from 'preact';
 import { useContext, useState } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext(null);
 
@@ -141,7 +141,7 @@ function ThemePicker() {
 		<input
 			type="color"
 			value={theme}
-			onChange={e => setTheme(e.currentTarget.value)}
+			onChange={(e) => setTheme(e.currentTarget.value)}
 		/>
 	);
 }
@@ -174,7 +174,7 @@ render(<App />, document.getElementById('app'));
 // --repl
 import { render } from 'preact';
 
-const SomeOtherComponent = props => props.children;
+const SomeOtherComponent = (props) => props.children;
 // --repl-before
 function ThemedButton(_props, context) {
 	return <button style={{ background: context.theme }}>主题按钮</button>;

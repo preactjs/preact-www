@@ -21,12 +21,12 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://esm.sh/preact';
+	import { h, Component, render } from 'https://esm.sh/preact';
 
-  // Create your app
-  const app = h('h1', null, 'Hello World!');
+	// Create your app
+	const app = h('h1', null, 'Hello World!');
 
-  render(app, document.body);
+	render(app, document.body);
 </script>
 ```
 
@@ -40,17 +40,17 @@ Preact 可在浏览器中直接使用，无需构建或任何工具：
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://esm.sh/preact';
-  import htm from 'https://esm.sh/htm';
+	import { h, Component, render } from 'https://esm.sh/preact';
+	import htm from 'https://esm.sh/htm';
 
-  // 为 Preact 初始化 htm
-  const html = htm.bind(h);
+	// 为 Preact 初始化 htm
+	const html = htm.bind(h);
 
-  function App (props) {
-    return html`<h1>Hello ${props.name}!</h1>`;
-  }
+	function App(props) {
+		return html`<h1>Hello ${props.name}!</h1>`;
+	}
 
-  render(html`<${App} name="World" />`, document.body);
+	render(html`<${App} name="World" />`, document.body);
 </script>
 ```
 
@@ -110,12 +110,15 @@ npm run build
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "pragma": "h",
-      "pragmaFrag": "Fragment",
-    }]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"pragma": "h",
+				"pragmaFrag": "Fragment"
+			}
+		]
+	]
 }
 ```
 
@@ -132,17 +135,17 @@ npm run build
 要在 Webpack 中为包替名，您需要在配置中添加 `resolve.alias` 一节。根据您配置的不同，此配置可能已经存在，但缺少 Preact 的替名。
 
 ```js
-const config = { 
-   //...snip
-  "resolve": { 
-    "alias": { 
-      "react": "preact/compat",
-      "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",     // 必须放在 test-utils 下面
-      "react/jsx-runtime": "preact/jsx-runtime"
-    },
-  }
-}
+const config = {
+	//...snip
+	resolve: {
+		alias: {
+			react: 'preact/compat',
+			'react-dom/test-utils': 'preact/test-utils',
+			'react-dom': 'preact/compat', // 必须放在 test-utils 下面
+			'react/jsx-runtime': 'preact/jsx-runtime'
+		}
+	}
+};
 ```
 
 #### Node 中的替名
@@ -151,10 +154,10 @@ const config = {
 
 ```json
 {
-  "dependencies": {
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-  }
+	"dependencies": {
+		"react": "npm:@preact/compat",
+		"react-dom": "npm:@preact/compat"
+	}
 }
 ```
 
@@ -166,12 +169,12 @@ Parcel 使用标准的 `package.json` 文件中的 `alias` 键来读取替名。
 
 ```json
 {
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime"
-  },
+	"alias": {
+		"react": "preact/compat",
+		"react-dom/test-utils": "preact/test-utils",
+		"react-dom": "preact/compat",
+		"react/jsx-runtime": "preact/jsx-runtime"
+	}
 }
 ```
 
@@ -183,16 +186,16 @@ Parcel 使用标准的 `package.json` 文件中的 `alias` 键来读取替名。
 import alias from '@rollup/plugin-alias';
 
 module.exports = {
-  plugins: [
-    alias({
-      entries: [
-        { find: 'react', replacement: 'preact/compat' },
-        { find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
-        { find: 'react-dom', replacement: 'preact/compat' },
-        { find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
-      ]
-    })
-  ]
+	plugins: [
+		alias({
+			entries: [
+				{ find: 'react', replacement: 'preact/compat' },
+				{ find: 'react-dom/test-utils', replacement: 'preact/test-utils' },
+				{ find: 'react-dom', replacement: 'preact/compat' },
+				{ find: 'react/jsx-runtime', replacement: 'preact/jsx-runtime' }
+			]
+		})
+	]
 };
 ```
 
@@ -202,15 +205,14 @@ module.exports = {
 
 ```json
 {
-  "moduleNameMapper": {
-    "^react$": "preact/compat",
-    "^react-dom/test-utils$": "preact/test-utils",
-    "^react-dom$": "preact/compat",
-    "^react/jsx-runtime$": "preact/jsx-runtime"
-  }
+	"moduleNameMapper": {
+		"^react$": "preact/compat",
+		"^react-dom/test-utils$": "preact/test-utils",
+		"^react-dom$": "preact/compat",
+		"^react/jsx-runtime$": "preact/jsx-runtime"
+	}
 }
 ```
-
 
 #### Aliasing in TypeScript
 
@@ -240,15 +242,15 @@ TypeScript，即使与打包工具一起使用时，也有其自身的类型解�
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "react": "https://esm.sh/preact@10.23.1/compat",
-      "react/": "https://esm.sh/preact@10.23.1/compat/",
-      "react-dom": "https://esm.sh/preact@10.23.1/compat",
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"react": "https://esm.sh/preact@10.23.1/compat",
+			"react/": "https://esm.sh/preact@10.23.1/compat/",
+			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+		}
+	}
 </script>
 ```
 

@@ -17,7 +17,6 @@ description: Composable reactive state with automatic rendering
 
 本指南将介绍如何在 Preact 中使用 Signals，虽然这在很大程度上适用于 Core 和 React 库，但会有一些使用差异。它们使用的最佳参考在各自的文档中 [`@preact/signals-core`](https://github.com/preactjs/signals), [`@preact/signals-react`](https://github.com/preactjs/signals/tree/main/packages/react)
 
-
 ---
 
 <toc></toc>
@@ -32,18 +31,18 @@ JavaScript中许多状态管理的痛苦在于对给定值的变化做出反应�
 
 ```js
 // --repl
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 const count = signal(0);
 
 // 访问 .value 以读取信号的值
-console.log(count.value);   // 0
+console.log(count.value); // 0
 
 // 更新信号值
 count.value += 1;
 
 // 信号已改变
-console.log(count.value);  // 1
+console.log(count.value); // 1
 ```
 
 在Preact中，当信号通过组件树作为props或上下文传递时，我们只传递信号的引用。信号可以在不重新渲染任何组件的情况下更新，因为组件看到信号而不是其值。这让我们跳过所有昂贵的渲染工作，并立即跳转到实际访问信号的.value属性的树中的任何组件。
@@ -52,53 +51,53 @@ console.log(count.value);  // 1
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 // 创建一个可以订阅的信号
 const count = signal(0);
 
 function Counter() {
-  // 在组件中访问 .value 将会在信号改变时自动重渲染：
-  const value = count.value;
+	// 在组件中访问 .value 将会在信号改变时自动重渲染：
+	const value = count.value;
 
-  const increment = () => {
-    // 通过赋值 `.value` 属性更新信号
-    count.value++;
-  }
+	const increment = () => {
+		// 通过赋值 `.value` 属性更新信号
+		count.value++;
+	};
 
-  return (
-    <div>
-      <p>Count: {value}</p>
-      <button onClick={increment}>click me</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Count: {value}</p>
+			<button onClick={increment}>click me</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 最后，信号被深度集成到 Preact 中，以提供最佳的性能和人体工程学设计。 在上面的示例中，我们访问“count.value”来检索“count”信号的当前值，但这是不必要的。 相反，我们可以直接在 JSX 中使用“count”信号，让 Preact 为我们完成所有工作：
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 const count = signal(0);
 
 function Counter() {
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={() => count.value++}>click me</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={() => count.value++}>click me</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 ## 安装
@@ -116,23 +115,20 @@ npm install @preact/signals
 让我们在现实场景中使用信号。 我们将构建一个待办事项列表应用程序，您可以在其中添加和删除待办事项列表中的项目。 我们将从对状态建模开始。 我们首先需要一个包含待办事项列表的信号，我们可以用“数组”来表示：
 
 ```jsx
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
-const todos = signal([
-  { text: "Buy groceries" },
-  { text: "Walk the dog" },
-]);
+const todos = signal([{ text: 'Buy groceries' }, { text: 'Walk the dog' }]);
 ```
 
 为了让用户为新的待办事项输入文本，我们还需要一个信号，表明我们很快就会连接到“input”元素。 现在，我们已经可以使用这个信号来创建一个函数，将待办事项添加到我们的列表中。 请记住，我们可以通过分配信号的“.value”属性来更新信号的值：
 
 ```jsx
 // 在后面我们会使用这个作为输入
-const text = signal("");
+const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = ""; // 在添加时清空输入值
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = ''; // 在添加时清空输入值
 }
 ```
 
@@ -150,41 +146,37 @@ function addTodo() {
 
 ```jsx
 // --repl
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
-const todos = signal([
-  { text: "Buy groceries" },
-  { text: "Walk the dog" },
-]);
+const todos = signal([{ text: 'Buy groceries' }, { text: 'Walk the dog' }]);
 
-const text = signal("");
+const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = ""; // 在添加时重置输入值
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = ''; // 在添加时重置输入值
 }
 
 // 检查逻辑是否正确
 console.log(todos.value);
 // 输出: [{text: "Buy groceries"}, {text: "Walk the dog"}]
 
-
 // 模拟添加新的待办
-text.value = "Tidy up";
+text.value = 'Tidy up';
 addTodo();
 
 // 查看是否添加了新的项目且 `text` 信号已被清空
 console.log(todos.value);
 // 输出: [{text: "Buy groceries"}, {text: "Walk the dog"}, {text: "Tidy up"}]
 
-console.log(text.value);  // 输出: ""
+console.log(text.value); // 输出: ""
 ```
 
 我们要添加的最后一个功能是能够从列表中删除待办事项。 为此，我们将添加一个函数，用于从 todos 数组中删除给定的待办事项：
 
 ```jsx
 function removeTodo(todo) {
-  todos.value = todos.value.filter(t => t !== todo);
+	todos.value = todos.value.filter((t) => t !== todo);
 }
 ```
 
@@ -194,22 +186,21 @@ function removeTodo(todo) {
 
 ```jsx
 function TodoList() {
-  const onInput = event => (text.value = event.currentTarget.value);
+	const onInput = (event) => (text.value = event.currentTarget.value);
 
-  return (
-    <>
-      <input value={text.value} onInput={onInput} />
-      <button onClick={addTodo}>Add</button>
-      <ul>
-        {todos.value.map(todo => (
-          <li>
-            {todo.text}{' '}
-            <button onClick={() => removeTodo(todo)}>❌</button>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+	return (
+		<>
+			<input value={text.value} onInput={onInput} />
+			<button onClick={addTodo}>Add</button>
+			<ul>
+				{todos.value.map((todo) => (
+					<li>
+						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
+					</li>
+				))}
+			</ul>
+		</>
+	);
 }
 ```
 
@@ -221,17 +212,17 @@ function TodoList() {
 
 ```jsx
 // --repl
-import { signal, computed } from "@preact/signals";
+import { signal, computed } from '@preact/signals';
 
 const todos = signal([
-  { text: "Buy groceries", completed: true },
-  { text: "Walk the dog", completed: false },
+	{ text: 'Buy groceries', completed: true },
+	{ text: 'Walk the dog', completed: false }
 ]);
 
 // 创建从其他信号计算而来的信号
 const completed = computed(() => {
-  // 当 `todos` 改变时，这将会自动重新运行
-  return todos.value.filter(todo => todo.completed).length;
+	// 当 `todos` 改变时，这将会自动重新运行
+	return todos.value.filter((todo) => todo.completed).length;
 });
 
 // 输出: 1，因为有一个标记为完成的待办
@@ -248,13 +239,13 @@ console.log(completed.value);
 
 ```jsx
 function createAppState() {
-  const todos = signal([]);
+	const todos = signal([]);
 
-  const completed = computed(() => {
-    return todos.value.filter(todo => todo.completed).length
-  });
+	const completed = computed(() => {
+		return todos.value.filter((todo) => todo.completed).length;
+	});
 
-  return { todos, completed }
+	return { todos, completed };
 }
 ```
 
@@ -266,28 +257,28 @@ function createAppState() {
 const state = createAppState();
 
 // ...然后:
-<TodoList state={state} />
+<TodoList state={state} />;
 ```
 
 这在我们的TODO列表应用程序中可行，因为状态是全局的，但大型应用通常会有多个需要访问相同状态的组件。 这通常需要“状态提升”到一个共同的祖先组件。为了避免使用props在每个组件中手动传递状态，可以将状态放入[上下文](/guide/v10/context)中，以便树中的任何组件都可以访问它。 下面是一个典型例子：
 
 ```jsx
-import { createContext } from "preact";
-import { useContext } from "preact/hooks";
-import { createAppState } from "./my-app-state";
+import { createContext } from 'preact';
+import { useContext } from 'preact/hooks';
+import { createAppState } from './my-app-state';
 
 const AppState = createContext();
 
 render(
-  <AppState.Provider value={createAppState()}>
-    <App />
-  </AppState.Provider>
+	<AppState.Provider value={createAppState()}>
+		<App />
+	</AppState.Provider>
 );
 
 // ...然后当你需要访问应用的状态时
 function App() {
-  const state = useContext(AppState);
-  return <p>{state.completed}</p>;
+	const state = useContext(AppState);
+	return <p>{state.completed}</p>;
 }
 ```
 
@@ -298,18 +289,20 @@ function App() {
 应用的大部分状态最终都是使用props和context传递的。但是，在许多情况下，组件具有特定于该组件的内部状态。没有理由让这些状态成为全局业务逻辑的一部分，因此应将其限制于需要它的组件中。在这些情况下，我们可以使用`useSignal()` 和 `useComputed()` 钩子：
 
 ```jsx
-import { useSignal, useComputed } from "@preact/signals";
+import { useSignal, useComputed } from '@preact/signals';
 
 function Counter() {
-  const count = useSignal(0);
-  const double = useComputed(() => count.value * 2);
+	const count = useSignal(0);
+	const double = useComputed(() => count.value * 2);
 
-  return (
-    <div>
-      <p>{count} x 2 = {double}</p>
-      <button onClick={() => count.value++}>click me</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>
+				{count} x 2 = {double}
+			</p>
+			<button onClick={() => count.value++}>click me</button>
+		</div>
+	);
 }
 ```
 
@@ -319,7 +312,7 @@ function Counter() {
 >
 > ```js
 > function useSignal(value) {
->  return useMemo(() => signal(value), []);
+> 	return useMemo(() => signal(value), []);
 > }
 > ```
 
@@ -348,10 +341,10 @@ console.log(double.value); // 输出: 2
 要运行任意代码来响应信号变化，我们可以使用 [`effect(fn)`](#effectfn)。与计算信号类似，effect 跟踪访问了哪些信号，并在这些信号发生变化时重新运行其回调。 与计算信号不同，[`effect()`](#effectfn) 不返回信号 - 它是一系列更改的结束。
 
 ```js
-import { signal, computed, effect } from "@preact/signals-core";
+import { signal, computed, effect } from '@preact/signals-core';
 
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 const fullName = computed(() => `${name.value} ${surname.value}`);
 
 // 每次改变时输出它的值：
@@ -359,18 +352,18 @@ effect(() => console.log(fullName.value));
 // 输出: "Jane Doe"
 
 // 更新 `name` 会更新 `fullName`，然后会触发执行作用：
-name.value = "John";
+name.value = 'John';
 // 输出: "John Doe"
 ```
 
 可以调用返回的函数来清除 effect 并取消订阅它访问的信号。
 
 ```js
-import { signal, effect } from "@preact/signals-core";
+import { signal, effect } from '@preact/signals-core';
 
-const name = signal("Jane");
-const surname = signal("Doe");
-const fullName = computed(() => name.value + " " + surname.value);
+const name = signal('Jane');
+const surname = signal('Doe');
+const fullName = computed(() => name.value + ' ' + surname.value);
 
 const dispose = effect(() => console.log(fullName.value));
 // 输出: "Jane Doe"
@@ -380,11 +373,10 @@ dispose();
 
 // 更新 `name` 不会运行作用，因为它已经销毁了。
 // 也不会重新计算 `fullName`，因为此时它已经没有订阅了。
-name.value = "John";
+name.value = 'John';
 ```
 
 > :bulb: Tip: 如果你大量使用 effect，不要忘了清理。否则会浪费内存。
-
 
 ## 读取信号而无需订阅它们
 
@@ -395,8 +387,8 @@ const delta = signal(0);
 const count = signal(0);
 
 effect(() => {
-  // 更新 `count` 但不订阅它：
-  count.value = count.peek() + delta.value;
+	// 更新 `count` 但不订阅它：
+	count.value = count.peek() + delta.value;
 });
 
 // 设置 `delta` 会重新运行作用：
@@ -408,30 +400,28 @@ count.value = 10;
 
 > :bulb: Tip: 不想订阅信号的情况很少见。大多数情况下你都希望 effect 订阅所有信号。只有在真正需要的时候才使用 `.peek()`。
 
-
 ## 批更新
 
 还记得我们之前在待办事项应用程序中使用的`addTodo()`函数吗？ 回顾一下它的样子：
 
 ```js
 const todos = signal([]);
-const text = signal("");
+const text = signal('');
 
 function addTodo() {
-  todos.value = [...todos.value, { text: text.value }];
-  text.value = "";
+	todos.value = [...todos.value, { text: text.value }];
+	text.value = '';
 }
 ```
-
 
 请注意，该函数触发两个单独的更新：一个是在设置 `todos.value` 时，另一个是在设置 `text` 的值时。 出于性能或其他原因，这种情况有时并不理想，需要将这两个更新合并为一个。 [`batch(fn)`](#batchfn) 函数可用于在回调结束时将多个值更新合并为一个“提交”：
 
 ```js
 function addTodo() {
-  batch(() => {
-    todos.value = [...todos.value, { text: text.value }];
-    text.value = "";
-  });
+	batch(() => {
+		todos.value = [...todos.value, { text: text.value }];
+		text.value = '';
+	});
 }
 ```
 
@@ -439,7 +429,7 @@ function addTodo() {
 
 ```js
 // --repl
-import { signal, computed, effect, batch } from "@preact/signals-core";
+import { signal, computed, effect, batch } from '@preact/signals-core';
 
 const count = signal(0);
 const double = computed(() => count.value * 2);
@@ -448,18 +438,16 @@ const triple = computed(() => count.value * 3);
 effect(() => console.log(double.value, triple.value));
 
 batch(() => {
-  // 设置 `count` 会使 `double` 和 `triple` 失效：
-  count.value = 1;
+	// 设置 `count` 会使 `double` 和 `triple` 失效：
+	count.value = 1;
 
-  // 尽管正在批处理中，`double` 仍然反应新的计算值。
-  // 然而，`triple` 只有在回调结束后在会更新。
-  console.log(double.value); // 输出: 2
+	// 尽管正在批处理中，`double` 仍然反应新的计算值。
+	// 然而，`triple` 只有在回调结束后在会更新。
+	console.log(double.value); // 输出: 2
 });
 ```
 
-
 > :bulb: Tip: 批处理也可以嵌套，这种情况下只有最外层的批处理完成时才会进行更新。
-
 
 ### 渲染优化
 
@@ -469,16 +457,15 @@ batch(() => {
 const count = signal(0);
 
 function Unoptimized() {
-  // 当 `count` 变化时重新渲染组件：
-  return <p>{count.value}</p>;
+	// 当 `count` 变化时重新渲染组件：
+	return <p>{count.value}</p>;
 }
 
 function Optimized() {
-  // 文本将自动更新而无需重新渲染组件：
-  return <p>{count}</p>;
+	// 文本将自动更新而无需重新渲染组件：
+	return <p>{count}</p>;
 }
 ```
-
 
 要启用此优化，请将信号传递到JSX，而不是访问其 `.value` 属性。
 
@@ -505,8 +492,8 @@ const count = signal(0);
 创建一个根据其他信号的值计算的新信号。返回的计算信号是只读的，当回调函数内访问的任何信号发生变化时，其值会自动更新。
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 
 const fullName = computed(() => `${name.value} ${surname.value}`);
 ```
@@ -518,13 +505,13 @@ const fullName = computed(() => `${name.value} ${surname.value}`);
 要根据信号变化运行任意代码，可以使用 `effect(fn)`。与计算信号类似，effect 会跟踪哪些信号被访问，并在这些信号发生变化时重新运行其回调。与计算信号不同的是，`effect()` 不返回信号 - 它是一系列更改的结束。
 
 ```js
-const name = signal("Jane");
+const name = signal('Jane');
 
 // 当 `name` 改变时输出到控制台：
 effect(() => console.log('Hello', name.value));
 // 输出: "Hello Jane"
 
-name.value = "John";
+name.value = 'John';
 // 输出: "Hello John"
 ```
 
@@ -535,26 +522,27 @@ name.value = "John";
 `batch(fn)` 函数可用于在提供的回调结束时将多个值更新合并为一个“提交”。 批处理可以嵌套，并且只有在最外面的批处理回调完成后才会刷新更改。 访问批处理内已修改的信号将反映其更新值。
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 
 // 将两次写组合为一次更新
 batch(() => {
-  name.value = "John";
-  surname.value = "Smith";
+	name.value = 'John';
+	surname.value = 'Smith';
 });
 ```
+
 ### 未追踪(fn)
 
 `untracked(fn)` 函数可用于访问多个信号的值而无需订阅它们。
 
 ```js
-const name = signal("Jane");
-const surname = signal("Doe");
+const name = signal('Jane');
+const surname = signal('Doe');
 
 effect(() => {
-  untracked(() => {
-    console.log(`${name.value} ${surname.value}`)
-  })
-})
+	untracked(() => {
+		console.log(`${name.value} ${surname.value}`);
+	});
+});
 ```

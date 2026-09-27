@@ -5,7 +5,7 @@ title: Progressive Web Apps
 # 渐进式 Web 应用程序（Progressive Web Apps）
 
 ## 概述
- 
+
 Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://web.dev/learn/pwa/) 的绝佳选择。
 <ol class="list-view">
     <li class="list-item">
@@ -56,8 +56,8 @@ Preact 是希望快速加载和交互的 [渐进式 Web 应用程序](https://we
 
 静态站点内容存储在（Service Worker）高速缓存存储 API 中，使重复访问可以即时加载。
 
-## 性能提示 
- 
+## 性能提示
+
 虽然 Preact 是一个适用于您的 PWA 的插件，但它也可以与许多其他工具和技术一起使用。这些包括：
 
 <ol class="list-view">

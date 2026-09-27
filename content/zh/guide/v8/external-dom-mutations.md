@@ -20,9 +20,9 @@ title: External DOM Mutations
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+	shouldComponentUpdate() {
+		return false;
+	}
 }
 ```
 
@@ -30,7 +30,7 @@ class Block extends Component {
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate = () => false;
+	shouldComponentUpdate = () => false;
 }
 ```
 
@@ -41,35 +41,35 @@ class Block extends Component {
 ## 样例演练
 
 这是一个"去掉" 组件重新渲染的例子。注意 render() 作为创建和挂载组件的一部份，为了生成组件初始的 DOM 结构，依然会被调用。
+
 ```js
 class Example extends Component {
-  shouldComponentUpdate() {
-    // do not re-render via diff:
-    return false;
-  }
+	shouldComponentUpdate() {
+		// do not re-render via diff:
+		return false;
+	}
 
-  componentWillReceiveProps(nextProps) {
-    // you can do something with incoming props here if you need
-  }
+	componentWillReceiveProps(nextProps) {
+		// you can do something with incoming props here if you need
+	}
 
-  componentDidMount() {
-    // now mounted, can freely modify the DOM:
-    let thing = document.createElement('maybe-a-custom-element');
-    this.base.appendChild(thing);
-  }
+	componentDidMount() {
+		// now mounted, can freely modify the DOM:
+		let thing = document.createElement('maybe-a-custom-element');
+		this.base.appendChild(thing);
+	}
 
-  componentWillUnmount() {
-    // component is about to be removed from the DOM, perform any cleanup.
-  }
+	componentWillUnmount() {
+		// component is about to be removed from the DOM, perform any cleanup.
+	}
 
-  render() {
-    return <div class="example" />;
-  }
+	render() {
+		return <div class="example" />;
+	}
 }
 ```
-
 
 ## 真实场景中的样例
 
 作为一种选择, 在后面的链接中查看这种技巧的使用 [preact-token-input](https://github.com/developit/preact-token-input/blob/master/src/index.js) -
-他使用组件作为 DOM 的立足点，但是禁止组件更新, 而且让 [tags-input](https://github.com/developit/tags-input) 来接管这些事情.  一个更复杂的样例 [preact-richtextarea](https://github.com/developit/preact-richtextarea), preact-richtextarea 使用这个技巧来避免二次渲染一个可编辑的 `<iframe>` 标签。
+他使用组件作为 DOM 的立足点，但是禁止组件更新, 而且让 [tags-input](https://github.com/developit/tags-input) 来接管这些事情. 一个更复杂的样例 [preact-richtextarea](https://github.com/developit/preact-richtextarea), preact-richtextarea 使用这个技巧来避免二次渲染一个可编辑的 `<iframe>` 标签。

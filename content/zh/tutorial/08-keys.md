@@ -13,22 +13,22 @@ Preact的猜测可能与我们的意图不同的最常见场景是比较列表�
 
 ```jsx
 export default function TodoList() {
-  const [todos, setTodos] = useState(['起床', '整理床铺'])
+	const [todos, setTodos] = useState(['起床', '整理床铺']);
 
-  function wakeUp() {
-    setTodos(['整理床铺'])
-  }
+	function wakeUp() {
+		setTodos(['整理床铺']);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map(todo => (
-          <li>{todo}</li>
-        ))}
-      </ul>
-      <button onClick={wakeUp}>我醒了！</button>
-    </div>
-  )
+	return (
+		<div>
+			<ul>
+				{todos.map((todo) => (
+					<li>{todo}</li>
+				))}
+			</ul>
+			<button onClick={wakeUp}>我醒了！</button>
+		</div>
+	);
 }
 ```
 
@@ -43,11 +43,11 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li>起床</li>
-    <li>整理床铺</li>
-  </ul>
-  <button>我醒了！</button>
+	<ul>
+		<li>起床</li>
+		<li>整理床铺</li>
+	</ul>
+	<button>我醒了！</button>
 </div>
 ```
 
@@ -55,11 +55,10 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li>整理床铺</li>
-
-  </ul>
-  <button>我醒了！</button>
+	<ul>
+		<li>整理床铺</li>
+	</ul>
+	<button>我醒了！</button>
 </div>
 ```
 
@@ -68,7 +67,6 @@ export default function TodoList() {
 注意到问题了吗？虽然对我们来说很明显是移除了_第一个_列表项（"起床"），但Preact不知道这一点。Preact只看到之前有两个项目，现在只有一个。在应用这个更新时，它实际上会移除第二个项目（`<li>整理床铺</li>`），然后将第一个项目的文本从`起床`更新为`整理床铺`。
 
 结果在技术上是正确的 - 一个带有文本"整理床铺"的单个项目 - 但我们达到这个结果的方式是次优的。想象一下，如果有1000个列表项，而我们移除了第一个项目：Preact不会仅移除一个`<li>`，而是会更新其他999个项目的文本并移除最后一个。
-
 
 ### 列表渲染的**key**
 
@@ -80,23 +78,23 @@ export default function TodoList() {
 
 ```jsx
 export default function TodoList() {
-  const [todos, setTodos] = useState(['起床', '整理床铺'])
+	const [todos, setTodos] = useState(['起床', '整理床铺']);
 
-  function wakeUp() {
-    setTodos(['整理床铺'])
-  }
+	function wakeUp() {
+		setTodos(['整理床铺']);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo}>{todo}</li>
-          //  ^^^^^^^^^^ 添加key属性
-        ))}
-      </ul>
-      <button onClick={wakeUp}>我醒了！</button>
-    </div>
-  )
+	return (
+		<div>
+			<ul>
+				{todos.map((todo) => (
+					<li key={todo}>{todo}</li>
+					//  ^^^^^^^^^^ 添加key属性
+				))}
+			</ul>
+			<button onClick={wakeUp}>我醒了！</button>
+		</div>
+	);
 }
 ```
 
@@ -111,11 +109,11 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li key="起床">起床</li>
-    <li key="整理床铺">整理床铺</li>
-  </ul>
-  <button>我醒了！</button>
+	<ul>
+		<li key="起床">起床</li>
+		<li key="整理床铺">整理床铺</li>
+	</ul>
+	<button>我醒了！</button>
 </div>
 ```
 
@@ -123,18 +121,16 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-
-    <li key="整理床铺">整理床铺</li>
-  </ul>
-  <button>我醒了！</button>
+	<ul>
+		<li key="整理床铺">整理床铺</li>
+	</ul>
+	<button>我醒了！</button>
 </div>
 ```
 
 </td></tr></tbody></table>
 
 这次，Preact可以看到第一项被移除了，因为第二棵树中缺少一个带有`key="起床"`的项目。它将移除第一项，并保持第二项不变。
-
 
 ### 何时**不**使用键
 
@@ -151,11 +147,11 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-    <li key={0}>起床</li>
-    <li key={1}>整理床铺</li>
-  </ul>
-  <button>我醒了！</button>
+	<ul>
+		<li key={0}>起床</li>
+		<li key={1}>整理床铺</li>
+	</ul>
+	<button>我醒了！</button>
 </div>
 ```
 
@@ -163,11 +159,10 @@ export default function TodoList() {
 
 ```jsx
 <div>
-  <ul>
-
-    <li key={0}>整理床铺</li>
-  </ul>
-  <button>我醒了！</button>
+	<ul>
+		<li key={0}>整理床铺</li>
+	</ul>
+	<button>我醒了！</button>
 </div>
 ```
 
@@ -193,32 +188,30 @@ export default function TodoList() {
 
 ```jsx
 const todos = [
-  { id: 1, text: '起床' },
-  { id: 2, text: '整理床铺' }
-]
+	{ id: 1, text: '起床' },
+	{ id: 2, text: '整理床铺' }
+];
 
 export default function ToDos() {
-  const [todos, setTodos] = useState([
-    { id: 1, text: '起床' },
-    { id: 2, text: '整理床铺' }
-  ])
+	const [todos, setTodos] = useState([
+		{ id: 1, text: '起床' },
+		{ id: 2, text: '整理床铺' }
+	]);
 
-  function wakeUp() {
-    setTodos([
-      { id: 2, text: '整理床铺' }
-    ])
-  }
+	function wakeUp() {
+		setTodos([{ id: 2, text: '整理床铺' }]);
+	}
 
-  return (
-    <div>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>{todo.text}</li>
-        ))}
-      </ul>
-      <button onClick={wakeUp}>我醒了！</button>
-    </div>
-  )
+	return (
+		<div>
+			<ul>
+				{todos.map((todo) => (
+					<li key={todo.id}>{todo.text}</li>
+				))}
+			</ul>
+			<button onClick={wakeUp}>我醒了！</button>
+		</div>
+	);
 }
 ```
 
@@ -232,7 +225,6 @@ export default function ToDos() {
   <h4>🎉 恭喜你！</h4>
   <p>你学会了如何使用键进行高效的列表渲染！</p>
 </solution>
-
 
 ```js:setup
 useRealm(function (realm) {
@@ -264,7 +256,6 @@ useRealm(function (realm) {
   };
 });
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';

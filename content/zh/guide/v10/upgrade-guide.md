@@ -35,12 +35,12 @@ npm remove preact-compat
 
 为了保证用户（尤其是企业用户）生态系统的稳定性，我们为与 Preact X 相关的库发布了主要版本更新。如果您使用了 `preact-render-to-string`，需要更新到适用于 X 的版本。
 
-| 库                         | Preact 8.x | Preact X |
-| -------------------------- | ---------- | -------- |
-| `preact-render-to-string`  | 4.x        | 5.x      |
-| `preact-router`            | 2.x        | 3.x      |
-| `preact-jsx-chai`          | 2.x        | 3.x      |
-| `preact-markup`            | 1.x        | 2.x      |
+| 库                        | Preact 8.x | Preact X |
+| ------------------------- | ---------- | -------- |
+| `preact-render-to-string` | 4.x        | 5.x      |
+| `preact-router`           | 2.x        | 3.x      |
+| `preact-jsx-chai`         | 2.x        | 3.x      |
+| `preact-markup`           | 1.x        | 2.x      |
 
 ### compat 已移至核心库
 
@@ -85,13 +85,13 @@ Preact 8.x 只能与 `styled-components@3.x` 一起使用。使用 Preact X 后�
 
 ```js
 // Preact 8.x
-import Preact from "preact";
+import Preact from 'preact';
 
 // Preact X
-import * as preact from "preact";
+import * as preact from 'preact';
 
 // 推荐：命名导出（适用于 8.x 和 Preact X）
-import { h, Component } from "preact";
+import { h, Component } from 'preact';
 ```
 
 _注意：此更改不影响 `preact/compat`。它仍然同时具有命名导出和默认导出，以保持与 react 的兼容性。_
@@ -103,18 +103,18 @@ _注意：此更改不影响 `preact/compat`。它仍然同时具有命名导出
 ```jsx
 // 现有标记：
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Preact 8.x 输出：
 <body>
-  <div>hello</div>
-  <p>foo</p>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>foo</p>
+	<p>bar</p>
+</body>;
 ```
 
 在 Preact 8 中，要比较现有子元素，必须提供一个现有的 DOM 节点。
@@ -122,8 +122,8 @@ render(<p>bar</p>, document.body);
 ```jsx
 // 现有标记：
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 let element;
 element = render(<p>foo</p>, document.body);
@@ -131,9 +131,9 @@ element = render(<p>bar</p>, document.body, element);
 
 // Preact 8.x 输出：
 <body>
-  <div>hello</div>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>bar</p>
+</body>;
 ```
 
 在 Preact X 中，`render()` 总是比较容器内的 DOM 子元素。因此，如果您的容器包含不是由 Preact 渲染的 DOM，Preact 将尝试将其与您传递的元素进行比较。这种新行为更接近其他 VDOM 库的行为。
@@ -141,17 +141,17 @@ element = render(<p>bar</p>, document.body, element);
 ```jsx
 // 现有标记：
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Preact X 输出：
 <body>
-  <p>bar</p>
-  <div>hello</div>
-</body>
+	<p>bar</p>
+	<div>hello</div>
+</body>;
 ```
 
 如果您需要与 React 的 `render` 方法完全匹配的行为，请使用 `preact/compat` 导出的 `render` 方法。
@@ -163,18 +163,18 @@ render(<p>bar</p>, document.body);
 ```jsx
 // Preact 8.x
 function Foo(props) {
-  // `.length` 是一个数组方法。在 Preact X 中，当 `props.children` 不是
-  // 数组时，这行代码将抛出异常
-  const count = props.children.length;
-  return <div>我有 {count} 个子元素 </div>;
+	// `.length` 是一个数组方法。在 Preact X 中，当 `props.children` 不是
+	// 数组时，这行代码将抛出异常
+	const count = props.children.length;
+	return <div>我有 {count} 个子元素 </div>;
 }
 
 // Preact X
-import { toChildArray } from "preact";
+import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>我有 {count} 个子元素 </div>;
+	const count = toChildArray(props.children).length;
+	return <div>我有 {count} 个子元素 </div>;
 }
 ```
 
@@ -189,9 +189,9 @@ this.state = { counter: 0 };
 this.setState({ counter: this.state.counter + 1 });
 
 // Preact X
-this.setState(prevState => {
-  // 或者在此处返回 `null` 来中止状态更新
-  return { counter: prevState.counter + 1 };
+this.setState((prevState) => {
+	// 或者在此处返回 `null` 来中止状态更新
+	return { counter: prevState.counter + 1 };
 });
 ```
 
@@ -201,8 +201,8 @@ this.setState(prevState => {
 
 ```jsx
 <div dangerouslySetInnerHTML="foo">
-  <span>我将被跳过</span>
-  <p>我也会被跳过</p>
+	<span>我将被跳过</span>
+	<p>我也会被跳过</p>
 </div>
 ```
 
@@ -226,15 +226,15 @@ this.setState(prevState => {
 
 ```jsx
 // Preact 8.x
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // 记录一个如下的结构：
 //   div
 //     text
 
 // Preact X
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // 记录一个如下的结构：
 //   div
 //     text
 //     text
-``` 
+```

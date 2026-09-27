@@ -25,12 +25,15 @@ Preact 和 Web Components 是互补的技术：Web Components 提供了一组用
 在 Preact 中，web components 的工作方式就像其他 DOM 元素一样。它们可以使用其注册的标签名进行渲染：
 
 ```jsx
-customElements.define('x-foo', class extends HTMLElement {
-  // ...
-});
+customElements.define(
+	'x-foo',
+	class extends HTMLElement {
+		// ...
+	}
+);
 
 function Foo() {
-  return <x-foo />;
+	return <x-foo />;
 }
 ```
 
@@ -39,14 +42,17 @@ function Foo() {
 JSX 不提供区分属性（properties）和特性（attributes）的方式。自定义元素通常依赖于自定义属性，以支持设置无法通过特性表达的复杂值。这在 Preact 中运行良好，因为渲染器通过检查受影响的 DOM 元素自动确定是使用属性还是特性设置值。当自定义元素为给定属性定义了[设置器](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set)时，Preact 会检测其存在并使用设置器而不是特性。
 
 ```jsx
-customElements.define('context-menu', class extends HTMLElement {
-  set position({ x, y }) {
-    this.style.cssText = `left:${x}px; top:${y}px;`;
-  }
-});
+customElements.define(
+	'context-menu',
+	class extends HTMLElement {
+		set position({ x, y }) {
+			this.style.cssText = `left:${x}px; top:${y}px;`;
+		}
+	}
+);
 
 function Foo() {
-  return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
+	return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
 }
 ```
 
@@ -60,15 +66,15 @@ function Foo() {
 
 ```jsx
 function Foo() {
-  const myRef = useRef(null);
+	const myRef = useRef(null);
 
-  useEffect(() => {
-    if (myRef.current) {
-      myRef.current.doSomething();
-    }
-  }, []);
+	useEffect(() => {
+		if (myRef.current) {
+			myRef.current.doSomething();
+		}
+	}, []);
 
-  return <x-foo ref={myRef} />;
+	return <x-foo ref={myRef} />;
 }
 ```
 
@@ -94,9 +100,7 @@ Preact 规范化了标准内置 DOM 事件的大小写，这些事件通常是�
 ```jsx
 import register from 'preact-custom-element';
 
-const Greeting = ({ name = 'World' }) => (
-  <p>Hello, {name}!</p>
-);
+const Greeting = ({ name = 'World' }) => <p>Hello, {name}!</p>;
 
 register(Greeting, 'x-greeting', ['name'], { shadow: false });
 //          ^            ^           ^             ^
@@ -134,15 +138,15 @@ import register from 'preact-custom-element';
 
 // <x-greeting name="Bo"></x-greeting>
 class Greeting extends Component {
-  // 注册为 <x-greeting>：
-  static tagName = 'x-greeting';
+	// 注册为 <x-greeting>：
+	static tagName = 'x-greeting';
 
-  // 跟踪这些属性：
-  static observedAttributes = ['name'];
+	// 跟踪这些属性：
+	static observedAttributes = ['name'];
 
-  render({ name }) {
-    return <p>Hello, {name}!</p>;
-  }
+	render({ name }) {
+		return <p>Hello, {name}!</p>;
+	}
 }
 register(Greeting);
 ```
@@ -152,12 +156,16 @@ register(Greeting);
 ```jsx
 // 另一种选择：使用 PropTypes：
 function FullName({ first, last }) {
-  return <span>{first} {last}</span>
+	return (
+		<span>
+			{first} {last}
+		</span>
+	);
 }
 
 FullName.propTypes = {
-  first: Object,   // 你可以使用 PropTypes，或者这个
-  last: Object     // 技巧来定义无类型的属性。
+	first: Object, // 你可以使用 PropTypes，或者这个
+	last: Object // 技巧来定义无类型的属性。
 };
 
 register(FullName, 'full-name');
@@ -184,7 +192,7 @@ register(TextSection, 'text-section', [], { shadow: true });
 
 ```html
 <text-section>
-  <span slot="heading">漂亮的标题</span>
-  <span slot="content">很棒的内容</span>
+	<span slot="heading">漂亮的标题</span>
+	<span slot="content">很棒的内容</span>
 </text-section>
-``` 
+```

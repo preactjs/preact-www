@@ -25,7 +25,7 @@ import { render } from 'preact';
 
 // --repl-before
 function MyComponent(props) {
-  return <div>我的名字叫{props.name}。</div>;
+	return <div>我的名字叫{props.name}。</div>;
 }
 
 // 用法
@@ -49,30 +49,29 @@ import { Component, render } from 'preact';
 
 // --repl-before
 class Clock extends Component {
+	constructor() {
+		super();
+		this.state = { time: Date.now() };
+	}
 
-  constructor() {
-    super();
-    this.state = { time: Date.now() };
-  }
+	// 生命周期：在组件创建时调用
+	componentDidMount() {
+		// 每秒钟更新一次时间
+		this.timer = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	}
 
-  // 生命周期：在组件创建时调用
-  componentDidMount() {
-    // 每秒钟更新一次时间
-    this.timer = setInterval(() => {
-      this.setState({ time: Date.now() });
-    }, 1000);
-  }
+	// 生命周期：在组件销毁时调用
+	componentWillUnmount() {
+		// 在无法渲染时停止时钟
+		clearInterval(this.timer);
+	}
 
-  // 生命周期：在组件销毁时调用
-  componentWillUnmount() {
-    // 在无法渲染时停止时钟
-    clearInterval(this.timer);
-  }
-
-  render() {
-    let time = new Date(this.state.time).toLocaleTimeString();
-    return <span>{time}</span>;
-  }
+	render() {
+		let time = new Date(this.state.time).toLocaleTimeString();
+		return <span>{time}</span>;
+	}
 }
 // --repl-after
 render(<Clock />, document.getElementById('app'));
@@ -82,17 +81,17 @@ render(<Clock />, document.getElementById('app'));
 
 为了让时钟能每秒钟更新一次事件，我们需要知道 `<Clock>` 什么时候会被挂载到 DOM 上。如果您用过 HTML5 自定义元素的话，您就会发现这和 `attachedCallback` 与 `detachedCallback` 生命周期方法很像。Preact 会自动为组件调用下列列表中存在的生命周期方法 ：
 
-| 生命周期方法            | 被调用时间                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount()`        | **(已弃用)** 组件将被挂载到 DOM 前调用
-| `componentDidMount()`         | 组件被挂载到 DOM 后调用
-| `componentWillUnmount()`      | 组件将从 DOM 移除前调用
-| `componentWillReceiveProps(nextProps, nextState)` | **(已弃用)** 在传递进新属性前调用
-| `getDerivedStateFromProps(nextProps)` | 在 `shouldComponentUpdate` 前调用，请小心使用！
-| `shouldComponentUpdate(nextProps, nextState)` | 在 `render()` 前调用，返回 `false` 来跳过渲染
-| `componentWillUpdate(nextProps, nextState)` | **(已弃用)** 在 `render()` 前调用
-| `getSnapshotBeforeUpdate(prevProps, prevState)` | 在 `render()` 前调用，返回值将传递进 `componentDidUpdate`
-| `componentDidUpdate(prevProps, prevState, snapshot)` | 在 `render()` 后调用
+| 生命周期方法                                         | 被调用时间                                                |
+| ---------------------------------------------------- | --------------------------------------------------------- |
+| `componentWillMount()`                               | **(已弃用)** 组件将被挂载到 DOM 前调用                    |
+| `componentDidMount()`                                | 组件被挂载到 DOM 后调用                                   |
+| `componentWillUnmount()`                             | 组件将从 DOM 移除前调用                                   |
+| `componentWillReceiveProps(nextProps, nextState)`    | **(已弃用)** 在传递进新属性前调用                         |
+| `getDerivedStateFromProps(nextProps)`                | 在 `shouldComponentUpdate` 前调用，请小心使用！           |
+| `shouldComponentUpdate(nextProps, nextState)`        | 在 `render()` 前调用，返回 `false` 来跳过渲染             |
+| `componentWillUpdate(nextProps, nextState)`          | **(已弃用)** 在 `render()` 前调用                         |
+| `getSnapshotBeforeUpdate(prevProps, prevState)`      | 在 `render()` 前调用，返回值将传递进 `componentDidUpdate` |
+| `componentDidUpdate(prevProps, prevState, snapshot)` | 在 `render()` 后调用                                      |
 
 这是它们之间关系的可视概览（源自 Dan Abramov 发布的[推文](https://web.archive.org/web/20191118010106/https://twitter.com/dan_abramov/status/981712092611989509)）：
 
@@ -109,25 +108,25 @@ render(<Clock />, document.getElementById('app'));
 import { Component, render } from 'preact';
 // --repl-before
 class ErrorBoundary extends Component {
-  constructor() {
-    super();
-    this.state = { errored: false };
-  }
+	constructor() {
+		super();
+		this.state = { errored: false };
+	}
 
-  static getDerivedStateFromError(error) {
-    return { errored: true };
-  }
+	static getDerivedStateFromError(error) {
+		return { errored: true };
+	}
 
-  componentDidCatch(error, errorInfo) {
-    errorReportingService(error, errorInfo);
-  }
+	componentDidCatch(error, errorInfo) {
+		errorReportingService(error, errorInfo);
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Something went badly wrong</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Something went badly wrong</p>;
+		}
+		return props.children;
+	}
 }
 // --repl-after
 render(<ErrorBoundary />, document.getElementById('app'));
@@ -142,20 +141,20 @@ render(<ErrorBoundary />, document.getElementById('app'));
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
-  return (
-    <Fragment>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+		</Fragment>
+	);
 }
 
 const App = (
-  <ul>
-    <TodoItems />
-    <li>D</li>
-  </ul>
+	<ul>
+		<TodoItems />
+		<li>D</li>
+	</ul>
 );
 
 render(App, container);
@@ -181,10 +180,7 @@ const Bar = <>foo</>;
 
 ```jsx
 function Columns() {
-  return [
-    <td>Hello</td>,
-    <td>World</td>
-  ];
+	return [<td>Hello</td>, <td>World</td>];
 }
 ```
 
@@ -192,16 +188,16 @@ function Columns() {
 
 ```jsx
 function Glossary(props) {
-  return (
-    <dl>
-      {props.items.map(item => (
-        // 没有键值的话，Preact 需要猜测哪些元素在重渲染时存在变化。
-        <Fragment key={item.id}>
-          <dt>{item.term}</dt>
-          <dd>{item.description}</dd>
-        </Fragment>
-      ))}
-    </dl>
-  );
+	return (
+		<dl>
+			{props.items.map((item) => (
+				// 没有键值的话，Preact 需要猜测哪些元素在重渲染时存在变化。
+				<Fragment key={item.id}>
+					<dt>{item.term}</dt>
+					<dd>{item.description}</dd>
+				</Fragment>
+			))}
+		</dl>
+	);
 }
 ```

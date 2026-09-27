@@ -35,7 +35,7 @@ class Counter extends Component {
 	};
 
 	increment = () => {
-		this.setState(prev => ({ value: prev.value + 1 }));
+		this.setState((prev) => ({ value: prev.value + 1 }));
 	};
 
 	render(props, state) {
@@ -178,7 +178,7 @@ const Counter = () => {
 	const [count, setCount] = useState(0);
 	const increment = () => setCount(count + 1);
 	// 也可以传递一个回调给设置器
-	const decrement = () => setCount(currentCount => currentCount - 1);
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
 	return (
 		<div>
@@ -300,18 +300,14 @@ import { useRef, useImperativeHandle, useState } from 'preact/hooks';
 // --repl-before
 function MyInput({ inputRef }) {
 	const ref = useRef(null);
-	useImperativeHandle(
-		inputRef,
-		() => {
-			return {
-				// 仅暴露 .focus() 方法，不直接提供对 DOM 节点的访问权限
-				focus() {
-					ref.current.focus();
-				}
-			};
-		},
-		[]
-	);
+	useImperativeHandle(inputRef, () => {
+		return {
+			// 仅暴露 .focus() 方法，不直接提供对 DOM 节点的访问权限
+			focus() {
+				ref.current.focus();
+			}
+		};
+	}, []);
 
 	return (
 		<label>
@@ -347,7 +343,7 @@ render(<App />, document.getElementById('app'));
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const OtherComponent = props => props.children;
+const OtherComponent = (props) => props.children;
 // --repl-before
 const Theme = createContext('light');
 
@@ -447,14 +443,14 @@ const [error, resetError] = useErrorBoundary();
 出于监控的目的，报告服务的所有错误很有用。我们可以给 `useErrorBoundary` 可选的第一个参数传递一个回调。
 
 ```jsx
-const [error] = useErrorBoundary(error => callMyApi(error.message));
+const [error] = useErrorBoundary((error) => callMyApi(error.message));
 ```
 
 完整的使用示例大概是这样的：
 
 ```jsx
-const App = props => {
-	const [error, resetError] = useErrorBoundary(error =>
+const App = (props) => {
+	const [error, resetError] = useErrorBoundary((error) =>
 		callMyApi(error.message)
 	);
 
