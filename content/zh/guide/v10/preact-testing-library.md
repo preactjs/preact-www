@@ -34,15 +34,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      当前值: {count}
-      <button onClick={increment}>增加</button>
-    </div>
-  );
+	return (
+		<div>
+			当前值: {count}
+			<button onClick={increment}>增加</button>
+		</div>
+	);
 }
 ```
 
@@ -56,21 +56,21 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/preact';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  test('应该显示初始计数', () => {
-    const { container } = render(<Counter initialCount={5}/>);
-    expect(container.textContent).toMatch('当前值: 5');
-  });
+	test('应该显示初始计数', () => {
+		const { container } = render(<Counter initialCount={5} />);
+		expect(container.textContent).toMatch('当前值: 5');
+	});
 
-  test('点击"增加"按钮后应该增加', async () => {
-    render(<Counter initialCount={5}/>);
+	test('点击"增加"按钮后应该增加', async () => {
+		render(<Counter initialCount={5} />);
 
-    fireEvent.click(screen.getByText('增加'));
-    await waitFor(() => {
-      // .toBeInTheDocument() 是来自 jest-dom 的断言。
-      // 否则您可以使用 .toBeDefined()。
-      expect(screen.getByText("当前值: 6")).toBeInTheDocument();
-    });
-  });
+		fireEvent.click(screen.getByText('增加'));
+		await waitFor(() => {
+			// .toBeInTheDocument() 是来自 jest-dom 的断言。
+			// 否则您可以使用 .toBeDefined()。
+			expect(screen.getByText('当前值: 6')).toBeInTheDocument();
+		});
+	});
 });
 ```
 
@@ -97,7 +97,7 @@ test('应该增加计数器", async () => {
   fireEvent.click(screen.getByText('增加'));
 
   await screen.findByText('当前值: 6'); // 等待更改的元素
-  
+
   expect(screen.getByText("当前值: 6")).toBeInTheDocument(); // 通过
 });
 ```
@@ -118,44 +118,44 @@ Testing Library 的理念是"您的测试越像您的软件被使用的方式，
 import { render, fireEvent, screen } from '@testing-library/preact';
 
 test('应该能够登录', async () => {
-  render(<MyLoginForm />);
-  
-  // 使用文本框角色和可访问名称定位输入框，
-  // 无论您使用标签元素、aria-label 还是
-  // aria-labelledby 关系，它都是稳定的
-  const field = await screen.findByRole('textbox', { name: '登录' });
-  
-  // 在字段中输入
-  fireEvent.change(field, { value: 'user123' });
-})
+	render(<MyLoginForm />);
+
+	// 使用文本框角色和可访问名称定位输入框，
+	// 无论您使用标签元素、aria-label 还是
+	// aria-labelledby 关系，它都是稳定的
+	const field = await screen.findByRole('textbox', { name: '登录' });
+
+	// 在字段中输入
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 有时，当内容变化很大，或者如果您使用将文本翻译成不同语言的国际化框架时，直接使用文本内容会造成摩擦。您可以通过将文本视为可快照的数据来解决这个问题，使其易于更新，但将真相源保持在测试之外。
 
 ```jsx
 test('应该能够登录', async () => {
-  render(<MyLoginForm />);
-  
-  // 如果我们以另一种语言渲染应用，或者更改文本呢？测试失败。
-  const field = await screen.findByRole('textbox', { name: '登录' });
-  fireEvent.change(field, { value: 'user123' });
-})
+	render(<MyLoginForm />);
+
+	// 如果我们以另一种语言渲染应用，或者更改文本呢？测试失败。
+	const field = await screen.findByRole('textbox', { name: '登录' });
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 即使您不使用翻译框架，您也可以将字符串保存在单独的文件中，并使用与下面示例相同的策略：
 
 ```jsx
 test('应该能够登录', async () => {
-  render(<MyLoginForm />);
+	render(<MyLoginForm />);
 
-  // 我们可以在测试中直接使用我们的翻译函数
-  const label = translate('signinpage.label', 'zh-CN');
-  // 快照结果，这样我们知道发生了什么
-  expect(label).toMatchInlineSnapshot(`登录`);
+	// 我们可以在测试中直接使用我们的翻译函数
+	const label = translate('signinpage.label', 'zh-CN');
+	// 快照结果，这样我们知道发生了什么
+	expect(label).toMatchInlineSnapshot(`登录`);
 
-  const field = await screen.findByRole('textbox', { name: label });
-  fireEvent.change(field, { value: 'user123' });
-})
+	const field = await screen.findByRole('textbox', { name: label });
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 ### 使用测试 ID
@@ -164,11 +164,11 @@ test('应该能够登录', async () => {
 
 ```jsx
 function Foo({ onClick }) {
-  return (
-    <button onClick={onClick} data-testid="foo">
-      点击此处
-    </button>
-  );
+	return (
+		<button onClick={onClick} data-testid="foo">
+			点击此处
+		</button>
+	);
 }
 
 // 仅在文本保持不变时有效
@@ -202,17 +202,15 @@ import { FooContext } from './foo';
 const history = createMemoryHistory();
 
 export function render(vnode) {
-  return originalRender(
-    <FooContext.Provider value="foo">
-      <Router history={history}>
-        {vnode}
-      </Router>
-    </FooContext.Provider>
-  );
+	return originalRender(
+		<FooContext.Provider value="foo">
+			<Router history={history}>{vnode}</Router>
+		</FooContext.Provider>
+	);
 }
 
 // 像往常一样使用。看，没有提供者！
-render(<MyComponent />)
+render(<MyComponent />);
 ```
 
 ## 测试 Preact Hooks
@@ -224,10 +222,10 @@ render(<MyComponent />)
 import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const increment = useCallback(() => setCount(c => c + 1), []);
-  return { count, increment };
-}
+	const [count, setCount] = useState(0);
+	const increment = useCallback(() => setCount((c) => c + 1), []);
+	return { count, increment };
+};
 ```
 
 与之前一样，背后的方法类似：我们想要验证我们可以增加我们的计数器。所以我们需要以某种方式调用我们的 hook。这可以通过 `renderHook()` 函数完成，它在内部自动创建一个包围组件。该函数在 `result.current` 下返回当前 hook 返回值，我们可以用它来进行验证：
@@ -237,19 +235,19 @@ import { renderHook, act } from '@testing-library/preact';
 import useCounter from './useCounter';
 
 test('应该增加计数器', () => {
-  const { result } = renderHook(() => useCounter());
+	const { result } = renderHook(() => useCounter());
 
-  // 最初计数器应该是 0
-  expect(result.current.count).toBe(0);
+	// 最初计数器应该是 0
+	expect(result.current.count).toBe(0);
 
-  // 让我们通过调用 hook 回调来更新计数器
-  act(() => {
-    result.current.increment();
-  });
+	// 让我们通过调用 hook 回调来更新计数器
+	act(() => {
+		result.current.increment();
+	});
 
-  // 检查 hook 返回值是否反映了新状态。
-  expect(result.current.count).toBe(1);
+	// 检查 hook 返回值是否反映了新状态。
+	expect(result.current.count).toBe(1);
 });
 ```
 
-有关 `@testing-library/preact` 的更多信息，请查看 https://github.com/testing-library/preact-testing-library 。 
+有关 `@testing-library/preact` 的更多信息，请查看 https://github.com/testing-library/preact-testing-library 。

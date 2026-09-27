@@ -229,20 +229,16 @@ const Input = (props: InputProperties) => <input {...props} />;
 Preact 会触发常规的 DOM 事件。只要你的 TypeScript 项目在 `tsconfig.json` 中包含了 `dom` 库，就可以使用当前配置下所有事件类型。
 
 ```tsx
-import type { TargetedMouseEvent } from "preact";
+import type { TargetedMouseEvent } from 'preact';
 
 export class Button extends Component {
-    handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
-    alert(event.currentTarget.tagName); // 会弹出 BUTTON
-    }
+	handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
+		alert(event.currentTarget.tagName); // 会弹出 BUTTON
+	}
 
-    render() {
-        return (
-            <button onClick={this.handleClick}>
-                {this.props.children}
-            </button>
-        );
-    }
+	render() {
+		return <button onClick={this.handleClick}>{this.props.children}</button>;
+	}
 }
 ```
 
@@ -252,7 +248,7 @@ export class Button extends Component {
 export class Button extends Component {
 	render() {
 		return (
-			<button onClick={event => alert(event.currentTarget.tagName)}>
+			<button onClick={(event) => alert(event.currentTarget.tagName)}>
 				{this.props.children}
 			</button>
 		);
@@ -312,8 +308,10 @@ function App() {
 	return (
 		<AppContext.Provider
 			value={{
-				//    ~~~~~
-				// 💥 错误：theme 未定义
+<!-- prettier-ignore-start -->
+	 //    ~~~~~
+	 // 💥 错误：theme 未定义
+<!-- prettier-ignore-end -->
 				lang: 'de',
 				authenticated: true
 			}}

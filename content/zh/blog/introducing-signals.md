@@ -18,22 +18,22 @@ Signals 是一种表示状态的方式，它能确保应用程序即便在复杂
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
-import { signal, computed } from "@preact/signals";
- 
+import { signal, computed } from '@preact/signals';
+
 const count = signal(0);
 const double = computed(() => count.value * 2);
- 
+
 function Counter() {
-  return (
-    <button onClick={() => count.value++}>
-      {count} x 2 = {double}
-    </button>
-  );
+	return (
+		<button onClick={() => count.value++}>
+			{count} x 2 = {double}
+		</button>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 与 hooks 不同，Signals 可以在组件内部或外部使用。同时，Signals 与 hooks 和 类组件一起工作得很好，所以你可以按照自己的步伐引入它们，并带着你现有的知识。在几个组件中试试看，然后逐步采用它们。
@@ -58,7 +58,7 @@ render(<Counter />, document.getElementById("app"));
 
 这种情况对于传统的基于虚拟 DOM 的框架来说是一个挑战，因为它们必须更新由状态无效化影响的整个树。本质上，渲染性能是树中组件数量的函数。我们可以通过使用 `memo` 或 `useMemo` 对组件树的部分进行记忆化来解决这个问题，这样框架就会接收到相同的对象。当没有任何变化时，这让框架可以跳过渲染树的一部分。
 
-虽然这在理论上听起来合理，但现实往往更加混乱。实际上，随着代码库的增长，确定应该在哪里放置这些优化变得困难。经常，即使是出于好意的记忆化也会被不稳定的依赖值所破坏。由于钩子没有可以分析的明确依赖树，工具无法帮助开发者诊断**_为什么依赖项不稳定。_**
+虽然这在理论上听起来合理，但现实往往更加混乱。实际上，随着代码库的增长，确定应该在哪里放置这些优化变得困难。经常，即使是出于好意的记忆化也会被不稳定的依赖值所破坏。由于钩子没有可以分析的明确依赖树，工具无法帮助开发者诊断***为什么依赖项不稳定。***
 
 ## Context 混乱
 
@@ -106,16 +106,16 @@ Signals 为性能设定了新的标准：不再需要通过 memoization 或 Sele
 ```js
 // 基于 Selector 的订阅 :(
 function Counter() {
-  const value = useSelector(state => state.count);
-  // ...
+	const value = useSelector((state) => state.count);
+	// ...
 }
- 
+
 // 基于包装函数的订阅 :(
 const counterState = new Counter();
- 
-const Counter = observe(props => {
-  const value = counterState.count;
-  // ...
+
+const Counter = observe((props) => {
+	const value = counterState.count;
+	// ...
 });
 ```
 
@@ -128,13 +128,9 @@ const Counter = observe(props => {
 ```jsx
 // 假设这是一些全局状态，整个应用都需要访问：
 let count = 0;
- 
+
 function Counter() {
- return (
-   <button onClick={() => count++}>
-     value: {count}
-   </button>
- );
+	return <button onClick={() => count++}>value: {count}</button>;
 }
 ```
 
@@ -144,21 +140,17 @@ function Counter() {
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { signal } from "@preact/signals";
+import { render } from 'preact';
+import { signal } from '@preact/signals';
 // --repl-before
 // 假设这是一些全局状态，整个应用都需要访问：
 const count = signal(0);
- 
+
 function Counter() {
- return (
-   <button onClick={() => count.value++}>
-     Value: {count.value}
-   </button>
- );
+	return <button onClick={() => count.value++}>Value: {count.value}</button>;
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 这里没有 Selector，没有包装函数，什么都没有。只要访问 signal 的值，组件就会知道当 signal 的值改变时，它需要进行更新。在几个应用中测试原型后，我们深切感觉到我们已经找到了新的可能性。这种编码方式直观易懂，并且几乎不需要增加任何心智负担就能保持最佳的运行状态。
@@ -169,13 +161,13 @@ render(<Counter />, document.getElementById("app"));
 
 ```jsx
 const count = signal(0);
- 
+
 // 而不是这样：
 <p>Value: {count.value}</p>
- 
+
 // … 我们可以直接将 signal 传入 JSX：
 <p>Value: {count}</p>
- 
+
 // … 或者甚至将它们作为 DOM 属性传递：
 <input value={count} onInput={...} />
 ```

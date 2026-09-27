@@ -22,24 +22,24 @@ description: 引用（Refs）是一种创建组件实例本地稳定值的方式
 <tab-group tabstring="Classes, Hooks">
 
 ```jsx
-import { createRef } from "preact";
+import { createRef } from 'preact';
 
 class MyComponent extends Component {
-  countRef = createRef();
-  inputRef = createRef(null);
+	countRef = createRef();
+	inputRef = createRef(null);
 
-  // ...
+	// ...
 }
 ```
 
 ```jsx
-import { useRef } from "preact/hooks";
+import { useRef } from 'preact/hooks';
 
 function MyComponent() {
-  const countRef = useRef();
-  const inputRef = useRef(null);
+	const countRef = useRef();
+	const inputRef = useRef(null);
 
-  // ...
+	// ...
 }
 ```
 
@@ -53,41 +53,41 @@ refs最常见的用例是访问组件的底层DOM节点。这对于命令式DOM�
 
 ```jsx
 // --repl
-import { render, Component, createRef } from "preact";
+import { render, Component, createRef } from 'preact';
 // --repl-before
 class MyInput extends Component {
-  ref = createRef(null);
+	ref = createRef(null);
 
-  componentDidMount() {
-    console.log(this.ref.current);
-    // 输出: [HTMLInputElement]
-  }
+	componentDidMount() {
+		console.log(this.ref.current);
+		// 输出: [HTMLInputElement]
+	}
 
-  render() {
-    return <input ref={this.ref} />;
-  }
+	render() {
+		return <input ref={this.ref} />;
+	}
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useRef, useEffect } from "preact/hooks";
+import { render } from 'preact';
+import { useRef, useEffect } from 'preact/hooks';
 // --repl-before
 function MyInput() {
-  const ref = useRef(null);
+	const ref = useRef(null);
 
-  useEffect(() => {
-    console.log(ref.current);
-    // 输出: [HTMLInputElement]
-  }, []);
+	useEffect(() => {
+		console.log(ref.current);
+		// 输出: [HTMLInputElement]
+	}, []);
 
-  return <input ref={ref} />;
+	return <input ref={ref} />;
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -100,44 +100,48 @@ render(<MyInput />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class MyInput extends Component {
-  render() {
-    return (
-      <input ref={(dom) => {
-        console.log('已挂载:', dom);
+	render() {
+		return (
+			<input
+				ref={(dom) => {
+					console.log('已挂载:', dom);
 
-        // 从Preact 10.23.0开始，您可以选择返回一个清理函数
-        return () => {
-          console.log('已卸载:', dom);
-        };
-      }} />
-    );
-  }
+					// 从Preact 10.23.0开始，您可以选择返回一个清理函数
+					return () => {
+						console.log('已卸载:', dom);
+					};
+				}}
+			/>
+		);
+	}
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 // --repl-before
 function MyInput() {
-  return (
-    <input ref={(dom) => {
-      console.log('已挂载:', dom);
+	return (
+		<input
+			ref={(dom) => {
+				console.log('已挂载:', dom);
 
-      // 从Preact 10.23.0开始，您可以选择返回一个清理函数
-      return () => {
-        console.log('已卸载:', dom);
-      };
-    }} />
-  );
+				// 从Preact 10.23.0开始，您可以选择返回一个清理函数
+				return () => {
+					console.log('已卸载:', dom);
+				};
+			}}
+		/>
+	);
 }
 // --repl-after
-render(<MyInput />, document.getElementById("app"));
+render(<MyInput />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -156,74 +160,73 @@ render(<MyInput />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render, Component, createRef } from "preact";
+import { render, Component, createRef } from 'preact';
 // --repl-before
 class SimpleClock extends Component {
-  state = {
-    time: Date.now(),
-  };
-  intervalId = createRef(null);
+	state = {
+		time: Date.now()
+	};
+	intervalId = createRef(null);
 
-  startClock = () => {
-    this.setState({ time: Date.now() });
-    this.intervalId.current = setInterval(() => {
-      this.setState({ time: Date.now() });
-    }, 1000);
-  };
+	startClock = () => {
+		this.setState({ time: Date.now() });
+		this.intervalId.current = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	};
 
-  stopClock = () => {
-    clearInterval(this.intervalId.current);
-  };
+	stopClock = () => {
+		clearInterval(this.intervalId.current);
+	};
 
+	render(_, { time }) {
+		const formattedTime = new Date(time).toLocaleTimeString();
 
-  render(_, { time }) {
-    const formattedTime = new Date(time).toLocaleTimeString();
-
-    return (
-      <div>
-        <button onClick={this.startClock}>启动时钟</button>
-        <time dateTime={formattedTime}>{formattedTime}</time>
-        <button onClick={this.stopClock}>停止时钟</button>
-      </div>
-    );
-  }
+		return (
+			<div>
+				<button onClick={this.startClock}>启动时钟</button>
+				<time dateTime={formattedTime}>{formattedTime}</time>
+				<button onClick={this.stopClock}>停止时钟</button>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<SimpleClock />, document.getElementById("app"));
+render(<SimpleClock />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useState, useRef } from "preact/hooks";
+import { render } from 'preact';
+import { useState, useRef } from 'preact/hooks';
 // --repl-before
 function SimpleClock() {
-  const [time, setTime] = useState(Date.now());
-  const intervalId = useRef(null);
+	const [time, setTime] = useState(Date.now());
+	const intervalId = useRef(null);
 
-  const startClock = () => {
-    setTime(Date.now());
-    intervalId.current = setInterval(() => {
-      setTime(Date.now());
-    }, 1000);
-  };
+	const startClock = () => {
+		setTime(Date.now());
+		intervalId.current = setInterval(() => {
+			setTime(Date.now());
+		}, 1000);
+	};
 
-  const stopClock = () => {
-    clearInterval(intervalId.current);
-  };
+	const stopClock = () => {
+		clearInterval(intervalId.current);
+	};
 
-  const formattedTime = new Date(time).toLocaleTimeString();
+	const formattedTime = new Date(time).toLocaleTimeString();
 
-  return (
-    <div>
-      <button onClick={startClock}>启动时钟</button>
-      <time dateTime={formattedTime}>{formattedTime}</time>
-      <button onClick={stopClock}>停止时钟</button>
-    </div>
-  );
+	return (
+		<div>
+			<button onClick={startClock}>启动时钟</button>
+			<time dateTime={formattedTime}>{formattedTime}</time>
+			<button onClick={stopClock}>停止时钟</button>
+		</div>
+	);
 }
 // --repl-after
-render(<SimpleClock />, document.getElementById("app"));
+render(<SimpleClock />, document.getElementById('app'));
 ```
 
 </tab-group>

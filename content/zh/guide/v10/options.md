@@ -34,14 +34,14 @@ import { options } from 'preact';
 const oldHook = options.vnode;
 
 // 设置您自己的钩子函数
-options.vnode = vnode => {
-  console.log("Hey I'm a vnode", vnode);
+options.vnode = (vnode) => {
+	console.log("Hey I'm a vnode", vnode);
 
-  // 调用备份的钩子函数 (如果有)
-  if (oldHook) {
-    oldHook(vnode);
-  }
-}
+	// 调用备份的钩子函数 (如果有)
+	if (oldHook) {
+		oldHook(vnode);
+	}
+};
 ```
 
 除了 `options.event` 之外，其他钩子均无返回值，所以您无需为大部分钩子处理返回值。

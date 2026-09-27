@@ -33,7 +33,7 @@ Preact 自带一系列方便您调试的工具，您可以通过导入 `preact/d
 
 ```jsx
 // 必须为第一个导入的包
-import "preact/debug";
+import 'preact/debug';
 import { render } from 'preact';
 import App from './components/App';
 
@@ -46,9 +46,9 @@ render(<App />, document.getElementById('root'));
 
 ```jsx
 // 必须为第一个导入的包
-if (process.env.NODE_ENV==='development') {
-  // 只能在此处使用 require 语句，import 语句仅支持顶级模块。
-  require("preact/debug");
+if (process.env.NODE_ENV === 'development') {
+	// 只能在此处使用 require 语句，import 语句仅支持顶级模块。
+	require('preact/debug');
 }
 
 import { render } from 'preact';
@@ -84,7 +84,7 @@ Preact 会在您传递 `undefined` 而非组件时抛出此错误，其常见原
 ```jsx
 // app.js
 export default function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js：错误，因为 `app.js` 没有命名导出
@@ -97,7 +97,7 @@ render(<App />, dom);
 ```jsx
 // app.js
 export function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js
@@ -170,8 +170,8 @@ const [value, setValue] = useState(0);
 
 // 有效
 function Foo() {
-  const [value, setValue] = useState(0);
-  return <button onClick={() => setValue(value + 1)}>{value}</button>;
+	const [value, setValue] = useState(0);
+	return <button onClick={() => setValue(value + 1)}>{value}</button>;
 }
 ```
 
@@ -192,7 +192,9 @@ Preact X 中，我们对内部的 `vnode` 结构做出了重大变更。
 ```jsx
 // 两个子元素都会有相同键值 "A"
 <div>
-  {['A', 'A'].map(char => <p key={char}>{char}</p>)}
+	{['A', 'A'].map((char) => (
+		<p key={char}>{char}</p>
+	))}
 </div>
 ```
 
@@ -200,16 +202,20 @@ Preact X 中，我们对内部的 `vnode` 结构做出了重大变更。
 
 ```jsx
 const persons = [
-  { name: '张三', age: 22 },
-  { name: '李四', age: 24}
+	{ name: '张三', age: 22 },
+	{ name: '李四', age: 24 }
 ];
 
 // 您组件之后的操作
 <div>
-  {persons.map(({ name, age }) => {
-    return <p key={name}>{name}, Age: {age}</p>;
-  })}
-</div>
+	{persons.map(({ name, age }) => {
+		return (
+			<p key={name}>
+				{name}, Age: {age}
+			</p>
+		);
+	})}
+</div>;
 ```
 
 [Preact 开发工具]: https://preactjs.github.io/preact-devtools/

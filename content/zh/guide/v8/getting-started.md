@@ -43,7 +43,8 @@ import preact from 'preact';
 与其直接在你的代码里去声明 `@jsx` pragma，不如在 `.babelrc` 中进去全局定义。
 
 **命名引入：**
->**Babel 5 或更早的版本：**
+
+> **Babel 5 或更早的版本：**
 >
 > ```json
 > { "jsxPragma": "h" }
@@ -53,14 +54,13 @@ import preact from 'preact';
 >
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 > }
 > ```
 
 **默认引入：**
->**Babel 5 或更早的版本：**
+
+> **Babel 5 或更早的版本：**
 >
 > ```json
 > { "jsxPragma": "preact.h" }
@@ -70,14 +70,11 @@ import preact from 'preact';
 >
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"preact.h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "preact.h" }]]
 > }
 > ```
 
 ---
-
 
 ## 渲染 JSX
 
@@ -88,21 +85,20 @@ import preact from 'preact';
 ```js
 import { h, render } from 'preact';
 
-render((
+render(
 	<div id="foo">
 		<span>Hello, world!</span>
-		<button onClick={ e => alert("hi!") }>Click Me</button>
-	</div>
-), document.body);
+		<button onClick={(e) => alert('hi!')}>Click Me</button>
+	</div>,
+	document.body
+);
 ```
 
 如果你有使用 [hyperscript] 或者 它的一些[类似的库](https://github.com/developit/vhtml)，这个看起来会非常直观。
 
 尽管用虚拟 DOM 去渲染 hyperscript 并没意义。我们想去渲染组件及使他们在数据变化的时候进行更新，那正是虚拟 DOM 比较的闪光点。:star2:
 
-
 ---
-
 
 ## 组件
 
@@ -118,7 +114,7 @@ import { h, render, Component } from 'preact';
 class Clock extends Component {
 	render() {
 		let time = new Date().toLocaleTimeString();
-		return <span>{ time }</span>;
+		return <span>{time}</span>;
 	}
 }
 
@@ -132,21 +128,19 @@ render(<Clock />, document.body);
 <span>10:28:57 PM</span>
 ```
 
-
 ---
-
 
 ## 组件生命周期
 
 为了让时钟的每秒都更新，我们需要知道 `<Clock>` 什么时候渲染到 DOM 里面。如果你使用过 HTML5 自定义元素，这个就跟 `attachedCallback` 和 `detachedCallback` 生命周期类似。 Preact 会调起下面的生命周期方法，如果它们在一个组件中被定义：
 
-| 生命周期方法                  | 什么时候被调用                                    |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | 在一个组件被渲染到 DOM 之前                         |
-| `componentDidMount`         | 在一个组件被渲染到 DOM 之后      					 |
-| `componentWillUnmount`      | 在一个组件在 DOM 中被清除之前                       |
-| `componentWillReceiveProps` | 在新的 props 被接受之前                              |
-| `shouldComponentUpdate`     | 在 `render()` 之前. 若返回 `false`，则跳过 render   |
+| 生命周期方法                | 什么时候被调用                                    |
+| --------------------------- | ------------------------------------------------- |
+| `componentWillMount`        | 在一个组件被渲染到 DOM 之前                       |
+| `componentDidMount`         | 在一个组件被渲染到 DOM 之后                       |
+| `componentWillUnmount`      | 在一个组件在 DOM 中被清除之前                     |
+| `componentWillReceiveProps` | 在新的 props 被接受之前                           |
+| `shouldComponentUpdate`     | 在 `render()` 之前. 若返回 `false`，则跳过 render |
 | `componentWillUpdate`       | 在 `render()` 之前                                |
 | `componentDidUpdate`        | 在 `render()` 之后                                |
 
@@ -176,7 +170,7 @@ class Clock extends Component {
 
 	render(props, state) {
 		let time = new Date(state.time).toLocaleTimeString();
-		return <span>{ time }</span>;
+		return <span>{time}</span>;
 	}
 }
 
@@ -184,13 +178,9 @@ class Clock extends Component {
 render(<Clock />, document.body);
 ```
 
-
 ---
 
-
 现在，我们有了一个[时钟应用](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)！
-
-
 
 [preact-boilerplate]: https://github.com/developit/preact-boilerplate
 [hyperscript]: https://github.com/dominictarr/hyperscript

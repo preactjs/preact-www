@@ -3,7 +3,6 @@ title: Preact
 description: React 的 3kb 轻量级替代方案，拥有相同的现代 API。
 ---
 
-
 <jumbotron>
     <h1>
         <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
@@ -17,15 +16,15 @@ description: React 的 3kb 轻量级替代方案，拥有相同的现代 API。
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
+	const [value, setValue] = useState(0);
 
-  return (
-    <>
-      <div>Counter: {value}</div>
-      <button onClick={() => setValue(value + 1)}>增加</button>
-      <button onClick={() => setValue(value - 1)}>减少</button>
-    </>
-  )
+	return (
+		<>
+			<div>Counter: {value}</div>
+			<button onClick={() => setValue(value + 1)}>增加</button>
+			<button onClick={() => setValue(value - 1)}>减少</button>
+		</>
+	);
 }
 ```
 
@@ -52,7 +51,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/size.svg" alt="size" loading="lazy" decoding="async" width="54" height="54">
 
@@ -66,7 +64,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
 
 <section class="home-section">
   <img src="/home/performance.svg" alt="performance" loading="lazy" decoding="async" width="54" height="54">
@@ -82,7 +79,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/portable.svg" alt="portable" loading="lazy" decoding="async" width="54" height="54">
 
@@ -96,7 +92,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
 
 <section class="home-section">
   <img src="/home/productive.svg" alt="productive" loading="lazy" decoding="async" width="54" height="54">
@@ -113,7 +108,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/compatible.svg" alt="compatible" loading="lazy" decoding="async" width="54" height="54">
 
@@ -128,11 +122,9 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-top">
     <h2>『码』上见分晓！</h2>
 </section>
-
 
 <section class="home-split">
     <div>
@@ -255,11 +247,9 @@ function Counter() {
     </div>
 </section>
 
-
 <section class="home-top">
     <h2>准备入坑了？</h2>
 </section>
-
 
 <section style="text-align:center;">
     <p>

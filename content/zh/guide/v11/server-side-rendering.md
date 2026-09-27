@@ -81,7 +81,7 @@ const main = async () => {
 };
 
 // Execution & error handling
-main().catch(error => {
+main().catch((error) => {
 	console.error(error);
 });
 ```

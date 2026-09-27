@@ -23,7 +23,7 @@ description: 了解 Preact 模块导出的所有函数
 import { Component } from 'preact';
 
 class MyComponent extends Component {
-  // (见下)
+	// (见下)
 }
 ```
 
@@ -85,9 +85,9 @@ import { render } from 'preact';
 const Foo = () => <div id="target">BAR</div>;
 
 render(
-  <Foo />,
-  document.getElementById('container'),
-  document.getElementById('target')
+	<Foo />,
+	document.getElementById('container'),
+	document.getElementById('target')
 );
 
 // 渲染后：
@@ -145,11 +145,7 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Hello!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```
 
@@ -163,23 +159,20 @@ h(
 import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>I have {count} children</div>;
+	const count = toChildArray(props.children).length;
+	return <div>I have {count} children</div>;
 }
 
 // props.children 是 "bar"
-render(
-  <Foo>bar</Foo>,
-  container
-);
+render(<Foo>bar</Foo>, container);
 
 // props.children 是 [<p>A</p>, <p>B</p>]
 render(
-  <Foo>
-    <p>A</p>
-    <p>B</p>
-  </Foo>,
-  container
+	<Foo>
+		<p>A</p>
+		<p>B</p>
+	</Foo>,
+	container
 );
 ```
 
@@ -191,10 +184,14 @@ render(
 
 ```jsx
 function Linkout(props) {
-  // 为链接添加 target="_blank"：
-  return cloneElement(props.children, { target: '_blank' });
+	// 为链接添加 target="_blank"：
+	return cloneElement(props.children, { target: '_blank' });
 }
-render(<Linkout><a href="/">home</a></Linkout>);
+render(
+	<Linkout>
+		<a href="/">home</a>
+	</Linkout>
+);
 // <a href="/" target="_blank">home</a>
 ```
 
@@ -217,12 +214,12 @@ render(<Linkout><a href="/">home</a></Linkout>);
 import { Fragment, render } from 'preact';
 
 render(
-  <Fragment>
-    <div>A</div>
-    <div>B</div>
-    <div>C</div>
-  </Fragment>,
-  document.getElementById('container')
+	<Fragment>
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</Fragment>,
+	document.getElementById('container')
 );
 // 渲染结果：
 // <div id="container>

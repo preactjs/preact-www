@@ -11,10 +11,10 @@ solvable: true
 
 ```js
 function clicked() {
-  console.log('clicked')
+	console.log('clicked');
 }
-const myButton = document.getElementById('my-button')
-myButton.addEventListener('click', clicked)
+const myButton = document.getElementById('my-button');
+myButton.addEventListener('click', clicked);
 ```
 
 但 Preact 与 DOM API 注册事件处理程序的的方式不同，我们会将事件处理程序传递为元素的属性，就像 `style` 和 `class` 一样。通常来说，以 "on" 为开头的属性都是事件处理程序，传递进去的值则是实际的事件处理函数。
@@ -43,7 +43,6 @@ function clicked() {
   <p>您学会了如何在 Preact 中处理事件！</p>
 </solution>
 
-
 ```js:setup
 useRealm(function (realm) {
   var win = realm.globalThis;
@@ -58,7 +57,6 @@ useRealm(function (realm) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from "preact";

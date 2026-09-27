@@ -187,9 +187,9 @@ function App() {
 	return (
 		<LocationProvider>
 			<Router
-				onRouteChange={url => console.log('路由更改为', url)}
-				onLoadStart={url => console.log('开始加载', url)}
-				onLoadEnd={url => console.log('完成加载', url)}
+				onRouteChange={(url) => console.log('路由更改为', url)}
+				onLoadStart={(url) => console.log('开始加载', url)}
+				onLoadEnd={(url) => console.log('完成加载', url)}
 			>
 				<Home path="/" />
 				<Profiles path="/profiles" />
@@ -300,7 +300,7 @@ import Home from './routes/home.js';
 
 // 异步，代码分割：
 const Profiles = lazy(() =>
-	import('./routes/profiles.js').then(m => m.Profiles)
+	import('./routes/profiles.js').then((m) => m.Profiles)
 ); // 期望有一个名为 `Profiles` 的命名导出
 const Profile = lazy(() => import('./routes/profile.js')); // 期望有一个默认导出
 
@@ -345,7 +345,7 @@ import { LocationProvider, ErrorBoundary, Router } from 'preact-iso';
 function App() {
 	return (
 		<LocationProvider>
-			<ErrorBoundary onError={e => console.log(e)}>
+			<ErrorBoundary onError={(e) => console.log(e)}>
 				<Router>
 					<Home path="/" />
 					<Profiles path="/profiles" />

@@ -30,7 +30,7 @@ import { render, Component } from 'preact';
 class BasicInput extends Component {
 	state = { name: '' };
 
-	onInput = e => this.setState({ name: e.currentTarget.value });
+	onInput = (e) => this.setState({ name: e.currentTarget.value });
 
 	render(_, { name }) {
 		return (
@@ -58,7 +58,7 @@ function BasicInput() {
 	return (
 		<div class="form-example">
 			<label>
-				姓名: <input onInput={e => setName(e.currentTarget.value)} />
+				姓名: <input onInput={(e) => setName(e.currentTarget.value)} />
 			</label>
 			<p>你好 {name}</p>
 		</div>
@@ -86,7 +86,8 @@ class BasicRadioButton extends Component {
 
 	toggleContact = () =>
 		this.setState({ allowContact: !this.state.allowContact });
-	setRadioValue = e => this.setState({ contactMethod: e.currentTarget.value });
+	setRadioValue = (e) =>
+		this.setState({ contactMethod: e.currentTarget.value });
 
 	render(_, { allowContact }) {
 		return (
@@ -146,7 +147,7 @@ function BasicRadioButton() {
 	const [contactMethod, setContactMethod] = useState('');
 
 	const toggleContact = () => setAllowContact(!allowContact);
-	const setRadioValue = e => setContactMethod(e.currentTarget.value);
+	const setRadioValue = (e) => setContactMethod(e.currentTarget.value);
 
 	return (
 		<div class="form-example">
@@ -207,7 +208,7 @@ import { render, Component } from 'preact';
 class MySelect extends Component {
 	state = { value: '' };
 
-	onChange = e => {
+	onChange = (e) => {
 		this.setState({ value: e.currentTarget.value });
 	};
 
@@ -268,7 +269,7 @@ import { render, Component } from 'preact';
 class FullNameForm extends Component {
 	state = { fullName: '' };
 
-	onSubmit = e => {
+	onSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		this.setState({
@@ -306,7 +307,7 @@ import { useState } from 'preact/hooks';
 function FullNameForm() {
 	const [fullName, setFullName] = useState('');
 
-	const onSubmit = e => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		setFullName(formData.get('firstName') + ' ' + formData.get('lastName'));
@@ -358,7 +359,7 @@ Preact 在受控组件方面有一个已知问题：Preact 需要重新渲染才
 这些问题情况的一个例子是：假设您有一个应该限制为 3 个字符的输入字段。您可能有这样的事件处理程序：
 
 ```js
-const onInput = e => {
+const onInput = (e) => {
 	if (e.currentTarget.value.length <= 3) {
 		setValue(e.currentTarget.value);
 	}
@@ -381,7 +382,7 @@ class LimitedInput extends Component {
 	state = { value: '' };
 	inputRef = createRef(null);
 
-	onInput = e => {
+	onInput = (e) => {
 		if (e.currentTarget.value.length <= 3) {
 			this.setState({ value: e.currentTarget.value });
 		} else {
@@ -423,7 +424,7 @@ const LimitedInput = () => {
 	const [value, setValue] = useState('');
 	const inputRef = useRef();
 
-	const onInput = e => {
+	const onInput = (e) => {
 		if (e.currentTarget.value.length <= 3) {
 			setValue(e.currentTarget.value);
 		} else {

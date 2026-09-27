@@ -24,7 +24,7 @@ Preact 与 React 的主要差别是 Preact 并没有实现一个为了大小和�
 - 事件不会冒泡到 `<Portal>` 组件
 - 在表单输入中时应当使用标准的 `onInput` 来代替 React 的 `onChange` (**仅当不使用 `preact/compat` 的时候**)
 - 应当用 `onDblClick` 来代替 React 的 `onDoubleClick` (**仅当不使用 `preact/compat` 的时候**)
-- `<input type="search">` 应当使用 `onSearch`，因为在 IE11 上 "x" 按钮并不支持 `onInput` 
+- `<input type="search">` 应当使用 `onSearch`，因为在 IE11 上 "x" 按钮并不支持 `onInput`
 
 另一个显著的区别是 Preact 更严格地遵循 DOM 规范。支持像任何其他元素一样的自定义元素，并且支持区分大小写的自定义事件名称（就像它们在 DOM 中一样）。
 
@@ -39,7 +39,7 @@ Preact 与 React 的主要差别是 Preact 并没有实现一个为了大小和�
 我们灵活的架构允许插件以任何他们想要的方式增强 Preact 体验。其中一个插件 `preact/debug` 添加了 [帮助性的警告和错误信息](/guide/v10/debugging)且附加了 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/) 浏览器插件。这些能帮助你在开发 Preact 应用时更容易发现问题。你可以通过以下代码启用这些：
 
 ```js
-import "preact/debug"; // <-- 在主入口文件的顶部添加此行
+import 'preact/debug'; // <-- 在主入口文件的顶部添加此行
 ```
 
 这与 React 不同：React 需要通过一个 bundler 检查 `NODE_ENV != "production"` 以便在构建时去除调试信息。
@@ -59,11 +59,15 @@ Preact 从一开始就考虑到了 ES Modules，并且是最早支持 ES 模块�
 ```jsx
 // 在 Preact 和 React 都能运行
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
-  }
+	render() {
+		return (
+			<div>
+				Name: {this.props.name}, Age: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -72,11 +76,15 @@ class Foo extends Component {
 ```jsx
 // Only works in Preact
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return <div>Name: {name}, Age: {age}</div>;
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Name: {name}, Age: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -137,7 +145,7 @@ JSX 是 JavaScript 的语法扩展，可转换为嵌套函数调用。使用这�
 
 ```jsx
 <a href="/">
-  <span>Home</span>
+	<span>Home</span>
 </a>
 ```
 
@@ -145,17 +153,13 @@ JSX 是 JavaScript 的语法扩展，可转换为嵌套函数调用。使用这�
 
 ```js
 // Preact:
-h(
-  'a',
-  { href:'/' },
-  h('span', null, 'Home')
-);
+h('a', { href: '/' }, h('span', null, 'Home'));
 
 // React:
 React.createElement(
-  'a',
-  { href:'/' },
-  React.createElement('span', null, 'Home')
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Home')
 );
 ```
 

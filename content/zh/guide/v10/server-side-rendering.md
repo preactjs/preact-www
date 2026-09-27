@@ -37,15 +37,14 @@ console.log(render(App));
 // <div class="foo">内容</div>
 ```
 
-## 使用 `Suspense` & `lazy` 进行异步渲染 
+## 使用 `Suspense` & `lazy` 进行异步渲染
 
 你可能会发现自己需要渲染动态加载的组件，比如在使用 `Suspense` 和 `lazy` 来实现代码分割时（以及其他一些用例）。异步渲染器会等待 `Promise` 解析完成，从而让你能够完整地构建 `HTML` 字符串：
-
 
 ```jsx
 // page/home.js
 export default () => {
-    return <h1>Home page</h1>;
+	return <h1>Home page</h1>;
 };
 ```
 
@@ -57,11 +56,11 @@ import { Suspense, lazy } from 'preact/compat';
 const HomePage = lazy(() => import('./pages/home'));
 
 const Main = () => {
-    return (
-        <Suspense fallback={<p>Loading</p>}>
-            <HomePage />
-        </Suspense>
-    );
+	return (
+		<Suspense fallback={<p>Loading</p>}>
+			<HomePage />
+		</Suspense>
+	);
 };
 ```
 
@@ -74,16 +73,16 @@ import { renderToStringAsync } from 'preact-render-to-string';
 import { Main } from './main';
 
 const main = async () => {
-    // Rendering of lazy components
-    const html = await renderToStringAsync(<Main />);
+	// Rendering of lazy components
+	const html = await renderToStringAsync(<Main />);
 
-    console.log(html);
-    // <h1>Home page</h1>
+	console.log(html);
+	// <h1>Home page</h1>
 };
 
 // Execution & error handling
 main().catch((error) => {
-    console.error(error);
+	console.error(error);
 });
 ```
 
@@ -96,7 +95,11 @@ import { shallow } from 'preact-render-to-string';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 console.log(shallow(App));
 // <div class="foo"><Foo /></div>
@@ -111,7 +114,11 @@ import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 console.log(render(App, {}, { pretty: true }));
 // 日志：

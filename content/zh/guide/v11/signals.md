@@ -176,7 +176,7 @@ console.log(text.value); // 输出: ""
 
 ```jsx
 function removeTodo(todo) {
-	todos.value = todos.value.filter(t => t !== todo);
+	todos.value = todos.value.filter((t) => t !== todo);
 }
 ```
 
@@ -186,14 +186,14 @@ function removeTodo(todo) {
 
 ```jsx
 function TodoList() {
-	const onInput = event => (text.value = event.currentTarget.value);
+	const onInput = (event) => (text.value = event.currentTarget.value);
 
 	return (
 		<>
 			<input value={text.value} onInput={onInput} />
 			<button onClick={addTodo}>Add</button>
 			<ul>
-				{todos.value.map(todo => (
+				{todos.value.map((todo) => (
 					<li>
 						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
 					</li>
@@ -222,7 +222,7 @@ const todos = signal([
 // 创建从其他信号计算而来的信号
 const completed = computed(() => {
 	// 当 `todos` 改变时，这将会自动重新运行
-	return todos.value.filter(todo => todo.completed).length;
+	return todos.value.filter((todo) => todo.completed).length;
 });
 
 // 输出: 1，因为有一个标记为完成的待办
@@ -242,7 +242,7 @@ function createAppState() {
 	const todos = signal([]);
 
 	const completed = computed(() => {
-		return todos.value.filter(todo => todo.completed).length;
+		return todos.value.filter((todo) => todo.completed).length;
 	});
 
 	return { todos, completed };

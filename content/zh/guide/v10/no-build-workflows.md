@@ -28,30 +28,30 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <script type="importmap">
-      {
-        "imports": {
-          "preact": "https://esm.sh/preact@10.23.1",
-          "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <div id="app"></div>
+	<head>
+		<script type="importmap">
+			{
+				"imports": {
+					"preact": "https://esm.sh/preact@10.23.1",
+					"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="app"></div>
 
-    <script type="module">
-      import { render } from 'preact';
-      import { html } from 'htm/preact';
+		<script type="module">
+			import { render } from 'preact';
+			import { html } from 'htm/preact';
 
-      export function App() {
-        return html`<h1>你好，世界！</h1>`;
-      }
+			export function App() {
+				return html`<h1>你好，世界！</h1>`;
+			}
 
-      render(html`<${App} />`, document.getElementById('app'));
-    </script>
-  </body>
+			render(html`<${App} />`, document.getElementById('app'));
+		</script>
+	</body>
 </html>
 ```
 
@@ -71,14 +71,14 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
-      "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
+			"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+		}
+	}
 </script>
 ```
 
@@ -86,16 +86,16 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 
 ```html
 <script type="importmap">
-  {
-    "imports": {
-      "preact": "https://esm.sh/preact@10.23.1",
-      "preact/": "https://esm.sh/preact@10.23.1/",
-      "react": "https://esm.sh/preact@10.23.1/compat",
-      "react/": "https://esm.sh/preact@10.23.1/compat/",
-      "react-dom": "https://esm.sh/preact@10.23.1/compat",
-      "@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
-    }
-  }
+	{
+		"imports": {
+			"preact": "https://esm.sh/preact@10.23.1",
+			"preact/": "https://esm.sh/preact@10.23.1/",
+			"react": "https://esm.sh/preact@10.23.1/compat",
+			"react/": "https://esm.sh/preact@10.23.1/compat/",
+			"react-dom": "https://esm.sh/preact@10.23.1/compat",
+			"@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
+		}
+	}
 </script>
 ```
 
@@ -115,19 +115,19 @@ import { useState } from 'preact/hooks';
 import { html } from 'htm/preact';
 
 function Button({ action, children }) {
-  return html`<button onClick=${action}>${children}</button>`;
+	return html`<button onClick=${action}>${children}</button>`;
 }
 
 function Counter() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  return html`
-    <div class="counter-container">
-      <${Button} action=${() => setCount(count + 1)}>增加<//>
-      <input readonly value=${count} />
-      <${Button} action=${() => setCount(count - 1)}>减少<//>
-    </div>
-  `;
+	return html`
+		<div class="counter-container">
+			<${Button} action=${() => setCount(count + 1)}>增加<//>
+			<input readonly value=${count} />
+			<${Button} action=${() => setCount(count - 1)}>减少<//>
+		</div>
+	`;
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));

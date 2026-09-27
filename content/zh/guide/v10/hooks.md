@@ -27,52 +27,52 @@ description: Preact 中的钩子可让你组合行为和在不同组件中重用
 
 ```jsx
 // --repl
-import { render, Component } from "preact";
+import { render, Component } from 'preact';
 // --repl-before
 class Counter extends Component {
-  state = {
-    value: 0
-  };
+	state = {
+		value: 0
+	};
 
-  increment = () => {
-    this.setState(prev => ({ value: prev.value +1 }));
-  };
+	increment = () => {
+		this.setState((prev) => ({ value: prev.value + 1 }));
+	};
 
-  render(props, state) {
-    return (
-      <div>
-        <p>Counter: {state.value}</p>
-        <button onClick={this.increment}>Increment</button>
-      </div>
-    );
-  }
+	render(props, state) {
+		return (
+			<div>
+				<p>Counter: {state.value}</p>
+				<button onClick={this.increment}>Increment</button>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 下面这是一个使用钩子构建的等价函数式组件：
 
 ```jsx
 // --repl
-import { useState, useCallback } from "preact/hooks";
-import { render } from "preact";
+import { useState, useCallback } from 'preact/hooks';
+import { render } from 'preact';
 // --repl-before
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
 
-  return (
-    <div>
-      <p>Counter: {value}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			<p>Counter: {value}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 在这一点上它们看起来很相似，但我们可以进一步简化钩子的版本。
@@ -81,46 +81,46 @@ render(<Counter />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { useState, useCallback } from "preact/hooks";
-import { render } from "preact";
+import { useState, useCallback } from 'preact/hooks';
+import { render } from 'preact';
 // --repl-before
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
+	return { value, increment };
 }
 
 // 第一个计数器
 function CounterA() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <p>Counter A: {value}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<p>Counter A: {value}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 
 // 第二个渲染不同数值的计数器
 function CounterB() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <h1>Counter B: {value}</h1>
-      <p>I'm a nice counter</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<h1>Counter B: {value}</h1>
+			<p>I'm a nice counter</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 // --repl-after
 render(
-  <div>
-    <CounterA />
-    <CounterB />
-  </div>,
-  document.getElementById("app")
+	<div>
+		<CounterA />
+		<CounterB />
+	</div>,
+	document.getElementById('app')
 );
 ```
 
@@ -140,11 +140,11 @@ In our `useCounter()` implementation above, we passed an array of dependencies t
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);  // <-- 依赖数组 
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]); // <-- 依赖数组
+	return { value, increment };
 }
 ```
 
@@ -175,21 +175,21 @@ import { render } from 'preact';
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  // 也可以传递一个回调给设置器
-  const decrement = () => setCount((currentCount) => currentCount - 1);
+	const [count, setCount] = useState(0);
+	const increment = () => setCount(count + 1);
+	// 也可以传递一个回调给设置器
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-    </div>
-  )
-}
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={increment}>Increment</button>
+			<button onClick={decrement}>Decrement</button>
+		</div>
+	);
+};
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 > 当初始状态比较重时，最好是传递函数给设置器而不是传递值。
@@ -206,28 +206,32 @@ import { useReducer } from 'preact/hooks';
 
 const initialState = 0;
 const reducer = (state, action) => {
-  switch (action) {
-    case 'increment': return state + 1;
-    case 'decrement': return state - 1;
-    case 'reset': return 0;
-    default: throw new Error('Unexpected action');
-  }
+	switch (action) {
+		case 'increment':
+			return state + 1;
+		case 'decrement':
+			return state - 1;
+		case 'reset':
+			return 0;
+		default:
+			throw new Error('Unexpected action');
+	}
 };
 
 function Counter() {
-  // 返回当前状态和一个用于触发 action 的 dispatch 函数
-  const [count, dispatch] = useReducer(reducer, initialState);
-  return (
-    <div>
-      {count}
-      <button onClick={() => dispatch('increment')}>+1</button>
-      <button onClick={() => dispatch('decrement')}>-1</button>
-      <button onClick={() => dispatch('reset')}>reset</button>
-    </div>
-  );
+	// 返回当前状态和一个用于触发 action 的 dispatch 函数
+	const [count, dispatch] = useReducer(reducer, initialState);
+	return (
+		<div>
+			{count}
+			<button onClick={() => dispatch('increment')}>+1</button>
+			<button onClick={() => dispatch('decrement')}>-1</button>
+			<button onClick={() => dispatch('reset')}>reset</button>
+		</div>
+	);
 }
 // --repl-after
-render(<Counter />, document.getElementById("app"));
+render(<Counter />, document.getElementById('app'));
 ```
 
 ## 记忆化
@@ -240,9 +244,9 @@ render(<Counter />, document.getElementById("app"));
 
 ```jsx
 const memoized = useMemo(
-  () => expensive(a, b),
-  // 只在依赖中的任何一项改变时重新运行这个高成本的函数
-  [a, b]
+	() => expensive(a, b),
+	// 只在依赖中的任何一项改变时重新运行这个高成本的函数
+	[a, b]
 );
 ```
 
@@ -253,10 +257,7 @@ const memoized = useMemo(
 `useCallback` 钩子可用于确保依赖没有改变时返回的函数保持相同的引用。这可用于当子组件依赖引用相等性时（如 `shouldComponentUpdate`）优化子组件的更新。
 
 ```jsx
-const onClick = useCallback(
-  () => console.log(a, b),
-  [a, b]
-);
+const onClick = useCallback(() => console.log(a, b), [a, b]);
 ```
 
 > 有趣的事实：`useCallback(fn, deps)` 与 `useMemo(() => fn, deps)` 等价。
@@ -271,19 +272,19 @@ import { useRef } from 'preact/hooks';
 import { render } from 'preact';
 // --repl-before
 function Foo() {
-  // 使用 `null` 初始化 useRef
-  const input = useRef(null);
-  const onClick = () => input.current && input.current.focus();
+	// 使用 `null` 初始化 useRef
+	const input = useRef(null);
+	const onClick = () => input.current && input.current.focus();
 
-  return (
-    <>
-      <input ref={input} />
-      <button onClick={onClick}>Focus input</button>
-    </>
-  );
+	return (
+		<>
+			<input ref={input} />
+			<button onClick={onClick}>Focus input</button>
+		</>
+	);
 }
 // --repl-after
-render(<Foo />, document.getElementById("app"));
+render(<Foo />, document.getElementById('app'));
 ```
 
 > 注意不要混淆 `useRef` 和 `createRef`。
@@ -294,43 +295,43 @@ render(<Foo />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render } from "preact";
-import { useRef, useImperativeHandle, useState } from "preact/hooks";
+import { render } from 'preact';
+import { useRef, useImperativeHandle, useState } from 'preact/hooks';
 // --repl-before
 function MyInput({ inputRef }) {
-  const ref = useRef(null);
-  useImperativeHandle(inputRef, () => {
-    return {
-      // 仅暴露 .focus() 方法，不直接提供对 DOM 节点的访问权限
-      focus() {
-        ref.current.focus();
-      },
-    };
-  }, []);
+	const ref = useRef(null);
+	useImperativeHandle(inputRef, () => {
+		return {
+			// 仅暴露 .focus() 方法，不直接提供对 DOM 节点的访问权限
+			focus() {
+				ref.current.focus();
+			}
+		};
+	}, []);
 
-  return (
-    <label>
-      Name: <input ref={ref} />
-    </label>
-  );
+	return (
+		<label>
+			Name: <input ref={ref} />
+		</label>
+	);
 }
 
 function App() {
-  const inputRef = useRef(null);
+	const inputRef = useRef(null);
 
-  const handleClick = () => {
-    inputRef.current.focus();
-  };
+	const handleClick = () => {
+		inputRef.current.focus();
+	};
 
-  return (
-    <div>
-      <MyInput inputRef={inputRef} />
-      <button onClick={handleClick}>Click To Edit</button>
-    </div>
-  );
+	return (
+		<div>
+			<MyInput inputRef={inputRef} />
+			<button onClick={handleClick}>Click To Edit</button>
+		</div>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## useContext
@@ -342,30 +343,30 @@ render(<App />, document.getElementById("app"));
 import { render, createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
-const OtherComponent = props => props.children;
+const OtherComponent = (props) => props.children;
 // --repl-before
 const Theme = createContext('light');
 
 function DisplayTheme() {
-  const theme = useContext(Theme);
-  return <p>Active theme: {theme}</p>;
+	const theme = useContext(Theme);
+	return <p>Active theme: {theme}</p>;
 }
 
 // ...然后
 function App() {
-  return (
-    <Theme.Provider value="light">
-      <OtherComponent>
-        <DisplayTheme />
-      </OtherComponent>
-    </Theme.Provider>
-  )
+	return (
+		<Theme.Provider value="light">
+			<OtherComponent>
+				<DisplayTheme />
+			</OtherComponent>
+		</Theme.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
-## 副作用 
+## 副作用
 
 副作用是许多现代应用的核心。不管你是想从 API 获取数据还是在文档中触发作用，你会发现 `useEffect` 几乎满足所有需求。这正是钩子 API 的主要优势，它重塑你的思维，让你从作用思考，而不是组件的生命周期。
 
@@ -375,10 +376,10 @@ render(<App />, document.getElementById("app"));
 
 ```jsx
 useEffect(() => {
-  // 触发作用
-  return () => {
-    // 可选项：清理用代码
-  };
+	// 触发作用
+	return () => {
+		// 可选项：清理用代码
+	};
 }, []);
 ```
 
@@ -386,11 +387,11 @@ useEffect(() => {
 
 ```jsx
 function PageTitle(props) {
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+	useEffect(() => {
+		document.title = props.title;
+	}, [props.title]);
 
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 ```
 
@@ -405,21 +406,21 @@ import { render } from 'preact';
 // --repl-before
 // 组件会持续显示当前窗口宽度
 function WindowWidth(props) {
-  const [width, setWidth] = useState(0);
+	const [width, setWidth] = useState(0);
 
-  function onResize() {
-    setWidth(window.innerWidth);
-  }
+	function onResize() {
+		setWidth(window.innerWidth);
+	}
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
 
-  return <p>Window width: {width}</p>;
+	return <p>Window width: {width}</p>;
 }
 // --repl-after
-render(<WindowWidth />, document.getElementById("app"));
+render(<WindowWidth />, document.getElementById('app'));
 ```
 
 > 清理函数是可选的。如果你无需执行清理，就不需要在 `useEffect` 的回调中返回任何东西。
@@ -442,28 +443,28 @@ const [error, resetError] = useErrorBoundary();
 出于监控的目的，报告服务的所有错误很有用。我们可以给 `useErrorBoundary` 可选的第一个参数传递一个回调。
 
 ```jsx
-const [error] = useErrorBoundary(error => callMyApi(error.message));
+const [error] = useErrorBoundary((error) => callMyApi(error.message));
 ```
 
 完整的使用示例大概是这样的：
 
 ```jsx
-const App = props => {
-  const [error, resetError] = useErrorBoundary(
-    error => callMyApi(error.message)
-  );
-  
-  // 显示精美的错误信息
-  if (error) {
-    return (
-      <div>
-        <p>{error.message}</p>
-        <button onClick={resetError}>Try again</button>
-      </div>
-    );
-  } else {
-    return <div>{props.children}</div>
-  }
+const App = (props) => {
+	const [error, resetError] = useErrorBoundary((error) =>
+		callMyApi(error.message)
+	);
+
+	// 显示精美的错误信息
+	if (error) {
+		return (
+			<div>
+				<p>{error.message}</p>
+				<button onClick={resetError}>Try again</button>
+			</div>
+		);
+	} else {
+		return <div>{props.children}</div>;
+	}
 };
 ```
 
@@ -488,7 +489,7 @@ const App = props => {
   useLayoutEffect(() => {
     document.getElementById(inputId).focus()
   }, [])
-  
+
   // 显示精美的错误信息。
   return (
     <main id={mainId}>

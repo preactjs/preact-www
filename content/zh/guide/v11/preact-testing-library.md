@@ -223,7 +223,7 @@ import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
 	const [count, setCount] = useState(0);
-	const increment = useCallback(() => setCount(c => c + 1), []);
+	const increment = useCallback(() => setCount((c) => c + 1), []);
 	return { count, increment };
 };
 ```

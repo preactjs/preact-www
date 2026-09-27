@@ -24,12 +24,12 @@ Preact X 是 Preact 8.x 的一大跃进，我们重新构思了每一行代码�
 ```jsx
 // --repl
 function Foo() {
-  return (
-    <>
-      <div>A</div>
-      <div>B</div>
-    </>
-  )
+	return (
+		<>
+			<div>A</div>
+			<div>B</div>
+		</>
+	);
 }
 ```
 
@@ -42,18 +42,18 @@ function Foo() {
 ```jsx
 // --repl
 class Catcher extends Component {
-  state = { errored: false }
+	state = { errored: false };
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
-  }
+	componentDidCatch(error) {
+		this.setState({ errored: true });
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Something went badly wrong</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Something went badly wrong</p>;
+		}
+		return props.children;
+	}
 }
 ```
 
@@ -66,15 +66,15 @@ class Catcher extends Component {
 ```jsx
 // --repl
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => setValue(value + 1), [value]);
 
-  return (
-    <div>
-      计数：{value}
-      <button onClick={increment}>增加</button>
-    </div>
-  );
+	return (
+		<div>
+			计数：{value}
+			<button onClick={increment}>增加</button>
+		</div>
+	);
 }
 ```
 
@@ -88,21 +88,19 @@ function Counter() {
 const Theme = createContext('light');
 
 function ThemedButton(props) {
-  return (
-    <Theme.Consumer>
-      {theme => <div>当前主题：{theme}</div>}
-    </Theme.Consumer>
-  );
+	return (
+		<Theme.Consumer>{(theme) => <div>当前主题：{theme}</div>}</Theme.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -112,7 +110,7 @@ function App() {
 
 ```jsx
 function Foo(props) {
-  return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
+	return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
 }
 ```
 
@@ -124,10 +122,10 @@ function Foo(props) {
 
 ```js
 // Preact 8.x
-import React from "preact-compat";
+import React from 'preact-compat';
 
 // Preact X
-import React from "preact/compat";
+import React from 'preact/compat';
 ```
 
 ## 大量兼容性修复

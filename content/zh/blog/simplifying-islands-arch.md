@@ -8,7 +8,7 @@ translation_by:
 ---
 
 > 这是原始文章的略微修改版本，原文地址：https://barelyhuman.github.io/preact-islands-diy
- 
+
 # 孤岛架构
 
 ## 介绍
@@ -54,18 +54,18 @@ translation_by:
 
 ```js
 // server.js
-import { h } from 'preact'
-import preactRenderToString from 'preact-render-to-string'
+import { h } from 'preact';
+import preactRenderToString from 'preact-render-to-string';
 
 // ...其余 express.js 设置
 
 const HomePage = () => {
-  return h('h1', {}, 'hello')
-}
+	return h('h1', {}, 'hello');
+};
 
 app.get('/', async (req, res) => {
-  res.send(preactRenderToString(h(HomePage, {})))
-})
+	res.send(preactRenderToString(h(HomePage, {})));
+});
 ```
 
 这里大部分工作由 `preactRenderToString` 完成，我们只需要编写组件。通过一点打包魔法，我们应该能够使用 JSX 编写，使工作更加友好。
@@ -86,16 +86,16 @@ app.get('/', async (req, res) => {
 
 ```js
 // client.js
-import { hydrate } from 'preact'
-import Counter from './Counter'
+import { hydrate } from 'preact';
+import Counter from './Counter';
 
 const main = () => {
-  // 假设服务器也使用以下 ID 渲染了组件
-  const container = document.getElementById('counter')
-  hydrate(h(Counter, {}), container)
-}
+	// 假设服务器也使用以下 ID 渲染了组件
+	const container = document.getElementById('counter');
+	hydrate(h(Counter, {}), container);
+};
 
-main()
+main();
 ```
 
 与服务器渲染阶段类似，我们使用 `preact` 的辅助函数来帮助水合组件。你可以使用 `render`，但实际的元素已经是由服务器渲染的，再次渲染它没有意义，所以我们只是要求 Preact 尝试添加所需的事件和状态数据。
@@ -123,20 +123,20 @@ main()
 以下代码片段仅突出显示必要的区域：
 
 ```js
-import preactRenderToString from 'preact-render-to-string'
-import HomePage from '../pages/HomePage.js'
-import { h } from 'preact'
-import { withManifestBundles } from '../lib/html.js'
+import preactRenderToString from 'preact-render-to-string';
+import HomePage from '../pages/HomePage.js';
+import { h } from 'preact';
+import { withManifestBundles } from '../lib/html.js';
 
-const app = express()
+const app = express();
 
 app.get('/', async (req, res) => {
-  res.send(
-    withManifestBundles({
-      body: preactRenderToString(h(HomePage, {})),
-    })
-  )
-})
+	res.send(
+		withManifestBundles({
+			body: preactRenderToString(h(HomePage, {}))
+		})
+	);
+});
 ```
 
 查看导入，我们有与[开始](#getting-started)部分中提到的相同导入，没有太大变化。
@@ -155,17 +155,17 @@ HTML 辅助函数在不同模板的不同变体中有所不同，但我们只会
 
 ```js
 // 从客户端输出获取清单
-import manifest from '../../dist/js/manifest.json'
+import manifest from '../../dist/js/manifest.json';
 
 export const withManifestBundles = ({ styles, body }) => {
-  // 遍历清单中的每个键并为每个键构造
-  // 一个脚本标签
-  const bundledScripts = Object.keys(manifest).map(key => {
-    const scriptPath = `/public/js/${manifest[key]}`
-    return `<script src=${scriptPath}></script>`
-  })
+	// 遍历清单中的每个键并为每个键构造
+	// 一个脚本标签
+	const bundledScripts = Object.keys(manifest).map((key) => {
+		const scriptPath = `/public/js/${manifest[key]}`;
+		return `<script src=${scriptPath}></script>`;
+	});
 
-  return `<html lang="en">
+	return `<html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -178,8 +178,8 @@ export const withManifestBundles = ({ styles, body }) => {
       ${body}
     </body>
     ${bundledScripts.join('')}
-  </html>`
-}
+  </html>`;
+};
 ```
 
 如注释中所述，我们只是从清单中获取所需的所有文件，并将它们作为脚本标签插入到从服务器发送的最终 HTML 中。
@@ -192,26 +192,26 @@ export const withManifestBundles = ({ styles, body }) => {
 
 ```js
 // webpack.config.server.js
-const path = require('path')
-const nodeExternals = require('webpack-node-externals')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: process.env.NODE_ENV != 'production' ? 'development' : 'production',
-  target: 'node',
-  entry: path.resolve(__dirname, './src/server/app.js'),
-  output: {
-    filename: 'server.js',
-    path: path.resolve(__dirname, './dist'),
-  },
-  stats: 'errors-warnings',
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  module: {
-    rules: [{ test: /\.jsx?$/, loader: 'babel-loader' }],
-  },
-  externals: [nodeExternals()],
-}
+	mode: process.env.NODE_ENV != 'production' ? 'development' : 'production',
+	target: 'node',
+	entry: path.resolve(__dirname, './src/server/app.js'),
+	output: {
+		filename: 'server.js',
+		path: path.resolve(__dirname, './dist')
+	},
+	stats: 'errors-warnings',
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
+	module: {
+		rules: [{ test: /\.jsx?$/, loader: 'babel-loader' }]
+	},
+	externals: [nodeExternals()]
+};
 ```
 
 大部分配置不需要解释，我们使用的唯一加载器是 `babel-loader`，因为我们使用的是 CSS-IN-JS 解决方案进行样式设计。
@@ -226,14 +226,14 @@ module.exports = {
 // webpack.config.client.js
 
 const entryPoints = glob
-  .sync(path.resolve(__dirname, './src/client') + '/**/*.js', {
-    absolute: true,
-  })
-  .reduce((acc, path) => {
-    const entry = path.match(/[^\/]+\.jsx?$/gm)[0].replace(/.jsx?$/, '')
-    acc[entry] = path
-    return acc
-  }, {})
+	.sync(path.resolve(__dirname, './src/client') + '/**/*.js', {
+		absolute: true
+	})
+	.reduce((acc, path) => {
+		const entry = path.match(/[^\/]+\.jsx?$/gm)[0].replace(/.jsx?$/, '');
+		acc[entry] = path;
+		return acc;
+	}, {});
 ```
 
 第一部分基本上是找到 `src/client` 中的所有文件，并为 webpack 创建一个入口对象。
@@ -242,7 +242,7 @@ const entryPoints = glob
 
 ```json
 {
-  "app.client": "./src/client/app.client.js"
+	"app.client": "./src/client/app.client.js"
 }
 ```
 
@@ -252,15 +252,15 @@ const entryPoints = glob
 
 ```js
 {
-  plugins: [
-    new WebpackManifestPlugin({
-      publicPath: '',
-      basePath: '',
-      filter: file => {
-        return /\.mount\.js$/.test(file.name)
-      },
-    }),
-  ]
+	plugins: [
+		new WebpackManifestPlugin({
+			publicPath: '',
+			basePath: '',
+			filter: (file) => {
+				return /\.mount\.js$/.test(file.name);
+			}
+		})
+	];
 }
 ```
 
@@ -279,12 +279,12 @@ const entryPoints = glob
 ```json
 // .babelrc
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-react-jsx",
-      { "runtime": "automatic", "importSource": "preact" }
-    ]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{ "runtime": "automatic", "importSource": "preact" }
+		]
+	]
 }
 ```
 
@@ -307,32 +307,32 @@ const entryPoints = glob
 ```js
 // src/client/index.mount.js
 
-import { h, hydrate } from 'preact'
+import { h, hydrate } from 'preact';
 
 // 设置 goober
-import { setup } from 'goober'
-setup(h)
+import { setup } from 'goober';
+setup(h);
 
 // 可以移到一个工具文件中并从那里使用，
 // 作为示例，暂时放在这个文件中。
 const mount = async (Component, elm) => {
-  if (elm?.dataset?.props) {
-    const props = JSON.parse(elm.dataset.props)
-    delete elm.dataset.props
-    hydrate(<Component {...props} />, elm)
-  }
-}
+	if (elm?.dataset?.props) {
+		const props = JSON.parse(elm.dataset.props);
+		delete elm.dataset.props;
+		hydrate(<Component {...props} />, elm);
+	}
+};
 
 const main = async () => {
-  // 如果需要，延迟加载并重新挂载计数器作为客户端组件
-  // 更好的方法是在导入组件之前检查 DOM 上是否存在 `counter` 元素，
-  // 以避免不必要的 JS 下载。
+	// 如果需要，延迟加载并重新挂载计数器作为客户端组件
+	// 更好的方法是在导入组件之前检查 DOM 上是否存在 `counter` 元素，
+	// 以避免不必要的 JS 下载。
 
-  const Counter = (await import('../components/Counter.js')).default
-  mount(Counter, document.getElementById('counter'))
-}
+	const Counter = (await import('../components/Counter.js')).default;
+	mount(Counter, document.getElementById('counter'));
+};
 
-main()
+main();
 ```
 
 ## components
@@ -365,18 +365,18 @@ main()
 
 ```js
 app.use((req, res, next) => {
-  res.render = (comp, data) => {
-    return res.write(preactRenderToString(h(comp, { ...data })))
-  }
-})
+	res.render = (comp, data) => {
+		return res.write(preactRenderToString(h(comp, { ...data })));
+	};
+});
 
 // 在应用程序的其他地方
 
 const handler = (req, res) => {
-  return res.status(200).render(Homepage, { username: 'reaper' })
-}
+	return res.status(200).render(Homepage, { username: 'reaper' });
+};
 ```
 
 这实际上是所有有助于用 nodejs 设置自己的部分水合/孤岛风格水合的代码。
 
-几乎所有的打包工具都可以实现这些，而且对配置生成方式进行一些修改，可以帮助你实现类似于 astro 的开发体验，不过如果你不喜欢维护配置，还是用 astro 比较好。 
+几乎所有的打包工具都可以实现这些，而且对配置生成方式进行一些修改，可以帮助你实现类似于 astro 的开发体验，不过如果你不喜欢维护配置，还是用 astro 比较好。

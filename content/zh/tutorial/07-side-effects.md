@@ -19,15 +19,15 @@ solvable: true
 import { useRef, useEffect } from 'preact/hooks';
 
 export default function App() {
-  const input = useRef()
+	const input = useRef();
 
-  // 这里的回调将在<App>渲染后运行：
-  useEffect(() => {
-    // 访问关联的DOM元素：
-    input.current.focus()
-  }, [])
+	// 这里的回调将在<App>渲染后运行：
+	useEffect(() => {
+		// 访问关联的DOM元素：
+		input.current.focus();
+	}, []);
 
-  return <input ref={input} />
+	return <input ref={input} />;
 }
 ```
 
@@ -41,18 +41,18 @@ export default function App() {
 import { useEffect, useState } from 'preact/hooks';
 
 export default function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    console.log('<App>刚刚第一次被渲染')
-  }, [])
+	useEffect(() => {
+		console.log('<App>刚刚第一次被渲染');
+	}, []);
 
-  useEffect(() => {
-    console.log('count值改变为：', count)
-  }, [count])
-  //  ^ 每当`count`改变时运行这个，以及在第一次渲染时
+	useEffect(() => {
+		console.log('count值改变为：', count);
+	}, [count]);
+	//  ^ 每当`count`改变时运行这个，以及在第一次渲染时
 
-  return <button onClick={() => setCount(count+1)}>{count}</button>
+	return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
 ```
 
@@ -60,12 +60,12 @@ export default function App() {
 
 类组件也可以定义副作用，通过实现Preact提供的任何可用[生命周期方法]。以下是一些最常用的生命周期方法：
 
-| 生命周期方法 | 何时运行： |
-|:-----------------|:--------------|
-| `componentWillMount` | 组件首次渲染之前
-| `componentDidMount` | 组件首次渲染之后
-| `componentWillReceiveProps` | 组件重新渲染之前
-| `componentDidUpdate` | 组件重新渲染之后
+| 生命周期方法                | 何时运行：       |
+| :-------------------------- | :--------------- |
+| `componentWillMount`        | 组件首次渲染之前 |
+| `componentDidMount`         | 组件首次渲染之后 |
+| `componentWillReceiveProps` | 组件重新渲染之前 |
+| `componentDidUpdate`        | 组件重新渲染之后 |
 
 在类组件中使用副作用的最常见例子之一是在组件首次渲染时获取数据，然后将该数据存储在状态中。以下示例显示了一个组件，它在首次渲染后从JSON API请求用户信息，然后显示该信息。
 
@@ -73,29 +73,29 @@ export default function App() {
 import { Component } from 'preact';
 
 export default class App extends Component {
-  // 这在组件首次渲染后被调用：
-  componentDidMount() {
-    // 获取JSON用户信息，存储在`state.user`中：
-    fetch('/api/user')
-      .then(response => response.json())
-      .then(user => {
-        this.setState({ user })
-      })
-  }
+	// 这在组件首次渲染后被调用：
+	componentDidMount() {
+		// 获取JSON用户信息，存储在`state.user`中：
+		fetch('/api/user')
+			.then((response) => response.json())
+			.then((user) => {
+				this.setState({ user });
+			});
+	}
 
-  render(props, state) {
-    const { user } = state;
+	render(props, state) {
+		const { user } = state;
 
-    // 如果我们还没有收到数据，显示一个加载指示器：
-    if (!user) return <div>加载中...</div>
+		// 如果我们还没有收到数据，显示一个加载指示器：
+		if (!user) return <div>加载中...</div>;
 
-    // 我们有数据！显示我们从API得到的用户名：
-    return (
-      <div>
-        <h2>你好，{user.username}！</h2>
-      </div>
-    )
-  }
+		// 我们有数据！显示我们从API得到的用户名：
+		return (
+			<div>
+				<h2>你好，{user.username}！</h2>
+			</div>
+		);
+	}
 }
 ```
 
@@ -107,7 +107,6 @@ export default class App extends Component {
   <h4>🎉 恭喜你！</h4>
   <p>你学会了如何在Preact中使用副作用。</p>
 </solution>
-
 
 ```js:setup
 useRealm(function (realm) {
@@ -125,7 +124,6 @@ useRealm(function (realm) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';

@@ -47,15 +47,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export default function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      当前值: {count}
-      <button onClick={increment}>增加</button>
-    </div>
-  );
+	return (
+		<div>
+			当前值: {count}
+			<button onClick={increment}>增加</button>
+		</div>
+	);
 }
 ```
 
@@ -69,18 +69,18 @@ import { mount } from 'enzyme';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  it('应该显示初始计数', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    expect(wrapper.text()).to.include('当前值: 5');
-  });
+	it('应该显示初始计数', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
+		expect(wrapper.text()).to.include('当前值: 5');
+	});
 
-  it('点击"增加"按钮后应该递增', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
+	it('点击"增加"按钮后应该递增', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
 
-    wrapper.find('button').simulate('click');
+		wrapper.find('button').simulate('click');
 
-    expect(wrapper.text()).to.include('当前值: 6');
-  });
+		expect(wrapper.text()).to.include('当前值: 6');
+	});
 });
 ```
 
@@ -98,24 +98,24 @@ Enzyme 有三种渲染"模式"：
 import { mount, shallow, render } from 'enzyme';
 
 // 渲染完整的组件树：
-const wrapper = mount(<MyComponent prop="value"/>);
+const wrapper = mount(<MyComponent prop="value" />);
 
 // 只渲染 `MyComponent` 的直接输出（即，"模拟"子组件以仅作为占位符渲染）：
-const wrapper = shallow(<MyComponent prop="value"/>);
+const wrapper = shallow(<MyComponent prop="value" />);
 
 // 将完整的组件树渲染为 HTML 字符串，并解析结果：
-const wrapper = render(<MyComponent prop="value"/>);
+const wrapper = render(<MyComponent prop="value" />);
 ```
 
- - `mount` 函数以与在浏览器中相同的方式渲染组件及其所有后代。
+- `mount` 函数以与在浏览器中相同的方式渲染组件及其所有后代。
 
- - `shallow` 函数仅渲染由组件直接输出的 DOM 节点。任何子组件都会被替换为只输出其子组件的占位符。
+- `shallow` 函数仅渲染由组件直接输出的 DOM 节点。任何子组件都会被替换为只输出其子组件的占位符。
 
-   这种模式的优点是您可以为组件编写测试，而不依赖于子组件的细节和需要构建其所有依赖项。
+  这种模式的优点是您可以为组件编写测试，而不依赖于子组件的细节和需要构建其所有依赖项。
 
-   与 React 相比，`shallow` 渲染模式在 Preact 适配器中的内部工作方式有所不同。有关详细信息，请参阅下面的差异部分。
+  与 React 相比，`shallow` 渲染模式在 Preact 适配器中的内部工作方式有所不同。有关详细信息，请参阅下面的差异部分。
 
- - `render` 函数（不要与 Preact 的 `render` 函数混淆！）将组件渲染为 HTML 字符串。这对于测试服务器上的渲染输出，或在不触发任何效果的情况下渲染组件很有用。
+- `render` 函数（不要与 Preact 的 `render` 函数混淆！）将组件渲染为 HTML 字符串。这对于测试服务器上的渲染输出，或在不触发任何效果的情况下渲染组件很有用。
 
 ## 使用 `act` 触发状态更新和效果
 
@@ -136,18 +136,18 @@ import { act } from 'preact/test-utils';
 
 ```jsx
 it('点击"增加"按钮后应该递增', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    const onClick = wrapper.find('button').props().onClick;
+	const wrapper = mount(<Counter initialCount={5} />);
+	const onClick = wrapper.find('button').props().onClick;
 
-    act(() => {
-      // 调用按钮的点击处理程序，但这次是直接调用，而不是
-      // 通过 Enzyme API
-      onClick();
-    });
-    // 刷新 Enzyme 对输出的视图
-    wrapper.update();
+	act(() => {
+		// 调用按钮的点击处理程序，但这次是直接调用，而不是
+		// 通过 Enzyme API
+		onClick();
+	});
+	// 刷新 Enzyme 对输出的视图
+	wrapper.update();
 
-    expect(wrapper.text()).to.include('当前值: 6');
+	expect(wrapper.text()).to.include('当前值: 6');
 });
 ```
 
@@ -161,4 +161,4 @@ it('点击"增加"按钮后应该递增', () => {
 - `simulate` 方法会触发实际的 DOM 事件，而在 React 适配器中，`simulate` 只调用 `on<EventName>` 属性
 - 在 Preact 中，状态更新（例如在调用 `setState` 后）被批处理并异步应用。在 React 中，状态更新可以立即应用或根据上下文批处理。为了使编写测试更容易，Preact 适配器会在初始渲染和通过适配器上的 `setProps` 或 `simulate` 调用触发的更新后刷新状态更新和效果。当状态更新或效果通过其他方式触发时，您的测试代码可能需要使用 `preact/test-utils` 包中的 `act` 手动触发效果和状态更新的刷新。
 
-有关更多详细信息，请参阅 [Preact 适配器的 README](https://github.com/preactjs/enzyme-adapter-preact-pure#differences-compared-to-enzyme--react)。 
+有关更多详细信息，请参阅 [Preact 适配器的 README](https://github.com/preactjs/enzyme-adapter-preact-pure#differences-compared-to-enzyme--react)。

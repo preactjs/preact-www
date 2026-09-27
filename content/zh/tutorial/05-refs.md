@@ -16,20 +16,20 @@ solvable: true
 我们可以看看不渲染任何内容的ref功能的直接使用是什么样子：
 
 ```js
-import { createRef } from 'preact'
+import { createRef } from 'preact';
 
 // 创建一个ref:
-const ref = createRef('初始值')
+const ref = createRef('初始值');
 // { current: '初始值' }
 
 // 读取ref的当前值:
-ref.current === '初始值'
+ref.current === '初始值';
 
 // 更新ref的当前值:
-ref.current = '新值'
+ref.current = '新值';
 
 // 传递refs:
-console.log(ref) // { current: '新值' }
+console.log(ref); // { current: '新值' }
 ```
 
 在Preact中使refs有用的是，可以在渲染期间将ref对象传递给虚拟DOM元素，Preact将设置ref的值（其`current`属性）为相应的HTML元素。设置后，我们可以使用ref的当前值来访问和修改HTML元素：
@@ -38,14 +38,14 @@ console.log(ref) // { current: '新值' }
 import { createRef } from 'preact';
 
 // 创建一个ref:
-const input = createRef()
+const input = createRef();
 
 // 将ref作为prop传递给虚拟DOM元素:
-render(<input ref={input} />, document.body)
+render(<input ref={input} />, document.body);
 
 // 访问关联的DOM元素:
-input.current // 一个HTML <input>元素
-input.current.focus() // 聚焦输入框！
+input.current; // 一个HTML <input>元素
+input.current.focus(); // 聚焦输入框！
 ```
 
 不建议全局使用`createRef()`，因为多次渲染会覆盖ref的当前值。相反，最好将refs存储为类属性：
@@ -54,17 +54,17 @@ input.current.focus() // 聚焦输入框！
 import { createRef, Component } from 'preact';
 
 export default class App extends Component {
-  input = createRef()
+	input = createRef();
 
-  // 这个函数在<App>渲染后运行
-  componentDidMount() {
-    // 访问关联的DOM元素:
-    this.input.current.focus();
-  }
+	// 这个函数在<App>渲染后运行
+	componentDidMount() {
+		// 访问关联的DOM元素:
+		this.input.current.focus();
+	}
 
-  render() {
-    return <input ref={this.input} />
-  }
+	render() {
+		return <input ref={this.input} />;
+	}
 }
 ```
 
@@ -74,21 +74,20 @@ export default class App extends Component {
 import { useRef, useEffect } from 'preact/hooks';
 
 export default function App() {
-  // 创建或获取我们的ref:（钩子插槽0）
-  const input = useRef()
+	// 创建或获取我们的ref:（钩子插槽0）
+	const input = useRef();
 
-  // 这里的回调将在<App>渲染后运行:
-  useEffect(() => {
-    // 访问关联的DOM元素:
-    input.current.focus()
-  }, [])
+	// 这里的回调将在<App>渲染后运行:
+	useEffect(() => {
+		// 访问关联的DOM元素:
+		input.current.focus();
+	}, []);
 
-  return <input ref={input} />
+	return <input ref={input} />;
 }
 ```
 
 记住，refs不限于只存储DOM元素。它们可以用于在组件的多次渲染之间存储信息，而无需设置会导致额外渲染的状态。我们将在后面的章节中看到一些这方面的用途。
-
 
 ## 试一试！
 
@@ -98,7 +97,6 @@ export default function App() {
   <h4>🎉 恭喜你！</h4>
   <p><code>pro = createRef()</code> → <code>pro.current = 'you'</code></p>
 </solution>
-
 
 ```js:setup
 function patch(input) {
@@ -138,7 +136,6 @@ useResult(function (result) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
@@ -180,4 +177,4 @@ function App() {
 }
 
 render(<App />, document.getElementById("app"));
-``` 
+```

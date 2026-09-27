@@ -190,7 +190,7 @@ function Columns() {
 function Glossary(props) {
 	return (
 		<dl>
-			{props.items.map(item => (
+			{props.items.map((item) => (
 				// 没有键值的话，Preact 需要猜测哪些元素在重渲染时存在变化。
 				<Fragment key={item.id}>
 					<dt>{item.term}</dt>

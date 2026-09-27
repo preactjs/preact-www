@@ -24,10 +24,10 @@ description: 上下文允许您通过中间组件传递属性。本文档描述�
 要创建新的上下文，我们使用`createContext`函数。此函数接受一个初始状态作为参数，并返回一个具有两个组件属性的对象：`Provider`，使上下文对后代可用；以及`Consumer`，用于访问上下文值（主要在类组件中）。
 
 ```jsx
-import { createContext } from "preact";
+import { createContext } from 'preact';
 
-export const Theme = createContext("light");
-export const User = createContext({ name: "Guest" });
+export const Theme = createContext('light');
+export const User = createContext({ name: 'Guest' });
 export const Locale = createContext(null);
 ```
 
@@ -38,16 +38,16 @@ export const Locale = createContext(null);
 > 只有在树中消费者上方没有`Provider`的情况下，才会使用从`createContext`设置的初始值。这对于单独测试组件可能很有帮助，因为它避免了在组件周围创建包装`Provider`的需要。
 
 ```jsx
-import { createContext } from "preact";
+import { createContext } from 'preact';
 
-export const Theme = createContext("light");
+export const Theme = createContext('light');
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent />
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent />
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -61,58 +61,58 @@ function App() {
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
+import { render, createContext } from 'preact';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
-  return (
-    <ThemePrimary.Consumer>
-      {theme => <button style={{ background: theme }}>主题按钮</button>}
-    </ThemePrimary.Consumer>
-  );
+	return (
+		<ThemePrimary.Consumer>
+			{(theme) => <button style={{ background: theme }}>主题按钮</button>}
+		</ThemePrimary.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
-import { useContext } from "preact/hooks";
+import { render, createContext } from 'preact';
+import { useContext } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
-const ThemePrimary = createContext("#673ab8");
+const ThemePrimary = createContext('#673ab8');
 
 function ThemedButton() {
-  const theme = useContext(ThemePrimary);
-  return <button style={{ background: theme }}>主题按钮</button>;
+	const theme = useContext(ThemePrimary);
+	return <button style={{ background: theme }}>主题按钮</button>;
 }
 
 function App() {
-  return (
-    <ThemePrimary.Provider value="#8f61e1">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	return (
+		<ThemePrimary.Provider value="#8f61e1">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 </tab-group>
@@ -123,43 +123,43 @@ render(<App />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render, createContext } from "preact";
-import { useContext, useState } from "preact/hooks";
+import { render, createContext } from 'preact';
+import { useContext, useState } from 'preact/hooks';
 
-const SomeComponent = props => props.children;
+const SomeComponent = (props) => props.children;
 // --repl-before
 const ThemePrimary = createContext(null);
 
 function ThemedButton() {
-  const { theme } = useContext(ThemePrimary);
-  return <button style={{ background: theme }}>主题按钮</button>;
+	const { theme } = useContext(ThemePrimary);
+	return <button style={{ background: theme }}>主题按钮</button>;
 }
 
 function ThemePicker() {
-  const { theme, setTheme } = useContext(ThemePrimary);
-  return (
-    <input
-      type="color"
-      value={theme}
-      onChange={e => setTheme(e.currentTarget.value)}
-    />
-  );
+	const { theme, setTheme } = useContext(ThemePrimary);
+	return (
+		<input
+			type="color"
+			value={theme}
+			onChange={(e) => setTheme(e.currentTarget.value)}
+		/>
+	);
 }
 
 function App() {
-  const [theme, setTheme] = useState("#673ab8");
-  return (
-    <ThemePrimary.Provider value={{ theme, setTheme }}>
-      <SomeComponent>
-        <ThemedButton />
-        {" - "}
-        <ThemePicker />
-      </SomeComponent>
-    </ThemePrimary.Provider>
-  );
+	const [theme, setTheme] = useState('#673ab8');
+	return (
+		<ThemePrimary.Provider value={{ theme, setTheme }}>
+			<SomeComponent>
+				<ThemedButton />
+				{' - '}
+				<ThemePicker />
+			</SomeComponent>
+		</ThemePrimary.Provider>
+	);
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```
 
 ## 传统上下文API
@@ -172,35 +172,31 @@ render(<App />, document.getElementById("app"));
 
 ```jsx
 // --repl
-import { render } from "preact";
+import { render } from 'preact';
 
-const SomeOtherComponent = props => props.children;
+const SomeOtherComponent = (props) => props.children;
 // --repl-before
 function ThemedButton(_props, context) {
-  return (
-    <button style={{ background: context.theme }}>
-      主题按钮
-    </button>
-  );
+	return <button style={{ background: context.theme }}>主题按钮</button>;
 }
 
 class App extends Component {
-  getChildContext() {
-    return {
-      theme: "#673ab8"
-    }
-  }
+	getChildContext() {
+		return {
+			theme: '#673ab8'
+		};
+	}
 
-  render() {
-    return (
-      <div>
-        <SomeOtherComponent>
-          <ThemedButton />
-        </SomeOtherComponent>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<SomeOtherComponent>
+					<ThemedButton />
+				</SomeOtherComponent>
+			</div>
+		);
+	}
 }
 // --repl-after
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
 ```

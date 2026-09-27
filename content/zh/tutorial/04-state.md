@@ -17,19 +17,19 @@ solvable: true
 
 ```jsx
 class MyButton extends Component {
-  state = { clicked: false }
+	state = { clicked: false };
 
-  handleClick = () => {
-    this.setState({ clicked: true })
-  }
+	handleClick = () => {
+		this.setState({ clicked: true });
+	};
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.clicked ? '已点击' : '尚未点击'}
-      </button>
-    )
-  }
+	render() {
+		return (
+			<button onClick={this.handleClick}>
+				{this.state.clicked ? '已点击' : '尚未点击'}
+			</button>
+		);
+	}
 }
 ```
 
@@ -47,9 +47,11 @@ class MyButton extends Component {
 >
 > ```js
 > function User() {
->   const [name, setName] = useState("Bob")    // 插槽 0
->   const [age, setAge] = useState(42)         // 插槽 1
->   const [online, setOnline] = useState(true) // 插槽 2
+>   <!-- prettier-ignore-start -->
+> 	const [name, setName] = useState('Bob');    // 插槽 0
+> 	const [age, setAge] = useState(42);         // 插槽 1
+> 	const [online, setOnline] = useState(true); // 插槽 2
+>   <!-- prettier-ignore-end -->
 > }
 > ```
 >
@@ -58,21 +60,19 @@ class MyButton extends Component {
 让我们看一个`useState`钩子的实际例子：
 
 ```jsx
-import { useState } from 'preact/hooks'
+import { useState } from 'preact/hooks';
 
 const MyButton = () => {
-  const [clicked, setClicked] = useState(false)
+	const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setClicked(true)
-  }
+	const handleClick = () => {
+		setClicked(true);
+	};
 
-  return (
-    <button onClick={handleClick}>
-      {clicked ? '已点击' : '尚未点击'}
-    </button>
-  )
-}
+	return (
+		<button onClick={handleClick}>{clicked ? '已点击' : '尚未点击'}</button>
+	);
+};
 ```
 
 点击按钮调用`setClicked(true)`，这会更新由我们的`useState()`调用创建的状态字段，从而导致Preact重新渲染此组件。当组件第二次被渲染（调用）时，`clicked`状态字段的值将为`true`，返回的虚拟DOM将具有文本"已点击"而不是"尚未点击"。这将导致Preact更新DOM中按钮的文本。
@@ -89,7 +89,6 @@ const MyButton = () => {
   <h4>🎉 恭喜你！</h4>
   <p>你学会了如何使用状态！</p>
 </solution>
-
 
 ```js:setup
 useResult(function () {
@@ -129,7 +128,6 @@ useResult(function () {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
@@ -183,4 +181,3 @@ render(<App />, document.getElementById("app"));
 
 [ternary]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
 [lifecycle methods]: /guide/v11/components#lifecycle-methods
-</rewritten_file> 
