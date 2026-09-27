@@ -28,7 +28,7 @@ Reactの合成イベントとブラウザのネイティブイベントには以
 
 - ブラウザイベントは`<Portal>`コンポーネントをイベントバブリングで通過しません。
 - IE11で`<input type="search">`要素の"x"クリアボタンは`input`イベントを発火しません。代わりに`onSearch`を使います。
-- (**`preact/compat`を使用していない場合は、**)`<input>`要素では`onChange`の代わりに`onInput`を使用してください。 
+- (**`preact/compat`を使用していない場合は、**)`<input>`要素では`onChange`の代わりに`onInput`を使用してください。
 
 その他の主な違いはDOMの仕様にもう少しだけ似せていることです。
 それの1つの例は`className`の代わりに`class`を使うことができることです。
@@ -50,7 +50,7 @@ Preactのアーキテクチャは柔軟性が高いので、アドオンを使�
 `preact/debug`アドオンは、次の`import`文により追加できます。
 
 ```js
-import "preact/debug"; // <-- メインエントリーファイルの先頭にこの行を追加します。
+import 'preact/debug'; // <-- メインエントリーファイルの先頭にこの行を追加します。
 ```
 
 Reactと異なるのは、(訳注：Preactではアドオンを使用してデバッグメッセージを追加するのに対して、)Reactでは、(訳注：最初からデバッグメッセージが含まれているので、プロダクション環境では、)NODE_ENV をチェックしてデバッグメッセージを削除するためにバンドラが必要、という点です。
@@ -72,11 +72,15 @@ Preactでは、利便性のために、クラスコンポーネントの`this.pr
 ```jsx
 // PreactとReactの両方で動作します。
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
-  }
+	render() {
+		return (
+			<div>
+				Name: {this.props.name}, Age: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -85,11 +89,15 @@ Preactではこれを以下のように書くことができます。
 ```jsx
 // Preactのみ動作します。
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return <div>Name: {name}, Age: {age}</div>;
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Name: {name}, Age: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -133,17 +141,13 @@ Reactとの主な違いの1つは`className`属性の代わりに標準の`class
 `h()`はトランスパイルされたコードを見ると`React.createElement`より少し読みやすいです。
 
 ```js
-h(
-  'a',
-  { href:'/' },
-  h('span', null, 'Home')
-);
+h('a', { href: '/' }, h('span', null, 'Home'));
 
 // vs
 React.createElement(
-  'a',
-  { href:'/' },
-  React.createElement('span', null, 'Home')
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Home')
 );
 ```
 

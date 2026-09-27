@@ -34,7 +34,7 @@ Preactにはデバックを容易にするツールが付属しています。�
 
 ```jsx
 // 最初に`import`する必要があります。
-import "preact/debug";
+import 'preact/debug';
 import { render } from 'preact';
 import App from './components/App';
 
@@ -48,9 +48,9 @@ render(<App />, document.getElementById('root'));
 
 ```jsx
 // 最初に`import`する必要があります。
-if (process.env.NODE_ENV==='development') {
-  // `import`はトップレベルにのみ記述することができるため、ここではrequireを使います。
-  require("preact/debug");
+if (process.env.NODE_ENV === 'development') {
+	// `import`はトップレベルにのみ記述することができるため、ここではrequireを使います。
+	require('preact/debug');
 }
 
 import { render } from 'preact';
@@ -90,7 +90,7 @@ Preactはコンポーネントの代わりに`undefined`を渡すとエラーを
 ```jsx
 // app.js
 export default function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js: because `app.js`は`named export`を行っていないので動作しません。
@@ -105,7 +105,7 @@ render(<App />, dom);
 ```jsx
 // app.js
 export function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js
@@ -181,8 +181,8 @@ const [value, setValue] = useState(0);
 
 // 有効
 function Foo() {
-  const [value, setValue] = useState(0);
-  return <button onClick={() => setValue(value + 1)}>{value}</button>;
+	const [value, setValue] = useState(0);
+	return <button onClick={() => setValue(value + 1)}>{value}</button>;
 }
 ```
 
@@ -205,7 +205,9 @@ _これは動的に子要素を生成する場合にのみ必要です。_
 ```jsx
 // 両方の子要素が同じ"A"keyを持っています。
 <div>
-  {['A', 'A'].map(char => <p key={char}>{char}</p>)}
+	{['A', 'A'].map((char) => (
+		<p key={char}>{char}</p>
+	))}
 </div>
 ```
 
@@ -214,16 +216,20 @@ _これは動的に子要素を生成する場合にのみ必要です。_
 
 ```jsx
 const persons = [
-  { name: 'John', age: 22 },
-  { name: 'Sarah', age: 24 }
+	{ name: 'John', age: 22 },
+	{ name: 'Sarah', age: 24 }
 ];
 
 // コンポーネントのrender部分
 <div>
-  {persons.map(({ name, age }) => {
-    return <p key={name}>{name}, Age: {age}</p>;
-  })}
-</div>
+	{persons.map(({ name, age }) => {
+		return (
+			<p key={name}>
+				{name}, Age: {age}
+			</p>
+		);
+	})}
+</div>;
 ```
 
 [Preact Devtools]: https://preactjs.github.io/preact-devtools/

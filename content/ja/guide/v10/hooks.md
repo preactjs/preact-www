@@ -32,22 +32,22 @@ Preactをそれなりに使ったことがある人なら、これらの課題�
 
 ```jsx
 class Counter extends Component {
-  state = {
-    value: 0
-  };
+	state = {
+		value: 0
+	};
 
-  increment = () => {
-    this.setState(prev => ({ value: prev.value +1 }));
-  };
+	increment = () => {
+		this.setState((prev) => ({ value: prev.value + 1 }));
+	};
 
-  render(props, state) {
-    return (
-      <div>
-        Counter: {state.value}
-        <button onClick={this.increment}>Increment</button>
-      </div>
-    );
-  }
+	render(props, state) {
+		return (
+			<div>
+				Counter: {state.value}
+				<button onClick={this.increment}>Increment</button>
+			</div>
+		);
+	}
 }
 ```
 
@@ -55,17 +55,17 @@ class Counter extends Component {
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
 
-  return (
-    <div>
-      Counter: {value}
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			Counter: {value}
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 ```
 
@@ -75,34 +75,34 @@ function Counter() {
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]);
+	return { value, increment };
 }
 
 // 1つ目のカウンター
 function CounterA() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      Counter A: {value}
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			Counter A: {value}
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 
 // 異なるアウトプットをレンダリングする2つ目のカウンター
 function CounterB() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <h1>Counter B: {value}</h1>
-      <p>I'm a nice counter</p>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<h1>Counter B: {value}</h1>
+			<p>I'm a nice counter</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 ```
 
@@ -124,11 +124,11 @@ PreactはフックのそのArrayの各要素を検査し、フックが最後に
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);  // <-- 変更を検知するための引数
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => {
+		setValue(value + 1);
+	}, [value]); // <-- 変更を検知するための引数
+	return { value, increment };
 }
 ```
 
@@ -163,19 +163,19 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  // 以下のようにセッター関数に関数を渡すことができます。
-  const decrement = () => setCount((currentCount) => currentCount - 1);
+	const [count, setCount] = useState(0);
+	const increment = () => setCount(count + 1);
+	// 以下のようにセッター関数に関数を渡すことができます。
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-    </div>
-  )
-}
+	return (
+		<div>
+			<p>Count: {count}</p>
+			<button onClick={increment}>Increment</button>
+			<button onClick={decrement}>Decrement</button>
+		</div>
+	);
+};
 ```
 
 > `useState()`も引数として関数を受け取ることができます。最初のステートの生成コストが高い場合は`useState()`に値ではなく関数を渡したほうが良いでしょう。
@@ -188,25 +188,29 @@ const Counter = () => {
 ```jsx
 const initialState = 0;
 const reducer = (state, action) => {
-  switch (action) {
-    case 'increment': return state + 1;
-    case 'decrement': return state - 1;
-    case 'reset': return 0;
-    default: throw new Error('Unexpected action');
-  }
+	switch (action) {
+		case 'increment':
+			return state + 1;
+		case 'decrement':
+			return state - 1;
+		case 'reset':
+			return 0;
+		default:
+			throw new Error('Unexpected action');
+	}
 };
 
 function Counter() {
-  // 現在のステートとアクションをトリガするdispatch関数を返します。
-  const [count, dispatch] = useReducer(reducer, initialState);
-  return (
-    <div>
-      {count}
-      <button onClick={() => dispatch('increment')}>+1</button>
-      <button onClick={() => dispatch('decrement')}>-1</button>
-      <button onClick={() => dispatch('reset')}>reset</button>
-    </div>
-  );
+	// 現在のステートとアクションをトリガするdispatch関数を返します。
+	const [count, dispatch] = useReducer(reducer, initialState);
+	return (
+		<div>
+			{count}
+			<button onClick={() => dispatch('increment')}>+1</button>
+			<button onClick={() => dispatch('decrement')}>-1</button>
+			<button onClick={() => dispatch('reset')}>reset</button>
+		</div>
+	);
 }
 ```
 
@@ -221,9 +225,9 @@ UIプログラミングではステートや計算の処理コストが高いこ
 
 ```jsx
 const memoized = useMemo(
-  () => expensive(a, b),
-  // `expensive`関数は、以下の、変更を検知するための引数の値が変わった場合のみ再実行されます。
-  [a, b]
+	() => expensive(a, b),
+	// `expensive`関数は、以下の、変更を検知するための引数の値が変わった場合のみ再実行されます。
+	[a, b]
 );
 ```
 
@@ -235,10 +239,7 @@ const memoized = useMemo(
 これは子コンポーネントが参照的に等しいかで更新するかしないかを判断している場合(例: `shouldComponentUpdate`)、子コンポーネントの更新の最適化に役立ちます。
 
 ```jsx
-const onClick = useCallback(
-  () => console.log(a, b),
-  [a, b]
-);
+const onClick = useCallback(() => console.log(a, b), [a, b]);
 ```
 
 > `useCallback(fn, deps)`は`useMemo(() => fn, deps)`と等価です。
@@ -250,16 +251,16 @@ const onClick = useCallback(
 
 ```jsx
 function Foo() {
-  // `null`を渡すことによってuseRefを初期化します。
-  const input = useRef(null);
-  const onClick = () => input.current && input.current.focus();
+	// `null`を渡すことによってuseRefを初期化します。
+	const input = useRef(null);
+	const onClick = () => input.current && input.current.focus();
 
-  return (
-    <>
-      <input ref={input} />
-      <button onClick={onClick}>Focus input</button>
-    </>
-  );
+	return (
+		<>
+			<input ref={input} />
+			<button onClick={onClick}>Focus input</button>
+		</>
+	);
 }
 ```
 
@@ -274,19 +275,19 @@ function Foo() {
 const Theme = createContext('light');
 
 function DisplayTheme() {
-  const theme = useContext(Theme);
-  return <p>Active theme: {theme}</p>;
+	const theme = useContext(Theme);
+	return <p>Active theme: {theme}</p>;
 }
 
 // ...
 function App() {
-  return (
-    <Theme.Provider value="light">
-      <OtherComponent>
-        <DisplayTheme />
-      </OtherComponent>
-    </Theme.Provider>
-  )
+	return (
+		<Theme.Provider value="light">
+			<OtherComponent>
+				<DisplayTheme />
+			</OtherComponent>
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -303,10 +304,10 @@ APIからデータをフェッチしたりドキュメントに変更を加え�
 
 ```jsx
 useEffect(() => {
-  // ここに副作用を伴う処理を書く
-  return () => {
-    // 必要ならクリーンアップ処理を行う関数を返す。
-  };
+	// ここに副作用を伴う処理を書く
+	return () => {
+		// 必要ならクリーンアップ処理を行う関数を返す。
+	};
 }, []);
 ```
 
@@ -314,11 +315,11 @@ useEffect(() => {
 
 ```jsx
 function PageTitle(props) {
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+	useEffect(() => {
+		document.title = props.title;
+	}, [props.title]);
 
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 ```
 
@@ -333,18 +334,18 @@ function PageTitle(props) {
 ```jsx
 // コンポーネントは常にウィンドウの幅で表示されます。
 function WindowWidth(props) {
-  const [width, setWidth] = useState(0);
+	const [width, setWidth] = useState(0);
 
-  function onResize() {
-    setWidth(window.innerWidth);
-  }
+	function onResize() {
+		setWidth(window.innerWidth);
+	}
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
 
-  return <div>Window width: {width}</div>;
+	return <div>Window width: {width}</div>;
 }
 ```
 
@@ -369,28 +370,28 @@ const [error, resetError] = useErrorBoundary();
 そのために`useErrorBoundary`の第1引数にコールバック関数を渡すことができます。
 
 ```jsx
-const [error] = useErrorBoundary(error => callMyApi(error.message));
+const [error] = useErrorBoundary((error) => callMyApi(error.message));
 ```
 
 完全な使用例は以下です。
 
 ```jsx
-const App = props => {
-  const [error, resetError] = useErrorBoundary(
-    error => callMyApi(error.message)
-  );
-  
-  // エラーメッセージを表示します。
-  if (error) {
-    return (
-      <div>
-        <p>{error.message}</p>
-        <button onClick={resetError}>Try again</button>
-      </div>
-    );
-  } else {
-    return <div>{props.children}</div>
-  }
+const App = (props) => {
+	const [error, resetError] = useErrorBoundary((error) =>
+		callMyApi(error.message)
+	);
+
+	// エラーメッセージを表示します。
+	if (error) {
+		return (
+			<div>
+				<p>{error.message}</p>
+				<button onClick={resetError}>Try again</button>
+			</div>
+		);
+	} else {
+		return <div>{props.children}</div>;
+	}
 };
 ```
 

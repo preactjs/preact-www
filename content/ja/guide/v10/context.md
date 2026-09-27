@@ -27,23 +27,27 @@ description: コンテキストは間にあるコンポーネントを飛ばし�
 const Theme = createContext('light');
 
 function ThemedButton(props) {
-  return (
-    <Theme.Consumer>
-      {theme => {
-        return <button {...props} class={'btn ' + theme}>Themed Button</button>;
-      }}
-    </Theme.Consumer>
-  );
+	return (
+		<Theme.Consumer>
+			{(theme) => {
+				return (
+					<button {...props} class={'btn ' + theme}>
+						Themed Button
+					</button>
+				);
+			}}
+		</Theme.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <Theme.Provider value="dark">
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</Theme.Provider>
+	);
 }
 ```
 

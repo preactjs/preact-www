@@ -26,7 +26,7 @@ description: Testing Libraryを使用してPreactアプリケーションのテ�
 npm install --save-dev @testing-library/preact
 ```
 
-> このライブラリを使うにはDOM環境が必要です。[Jest](https://github.com/facebook/jest)を使う場合、それにはデフォルトでDOM環境があります。[Mocha](https://github.com/mochajs/mocha)や[Jasmine](https://github.com/jasmine/jasmine)のような他のテストランナを使う場合は[jsdom](https://github.com/jsdom/jsdom )をインストールして、Node.jsにDOM環境を追加する必要があります。
+> このライブラリを使うにはDOM環境が必要です。[Jest](https://github.com/facebook/jest)を使う場合、それにはデフォルトでDOM環境があります。[Mocha](https://github.com/mochajs/mocha)や[Jasmine](https://github.com/jasmine/jasmine)のような他のテストランナを使う場合は[jsdom](https://github.com/jsdom/jsdom)をインストールして、Node.jsにDOM環境を追加する必要があります。
 
 ## 使い方
 
@@ -37,15 +37,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      Current value: {count}
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			Current value: {count}
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 ```
 
@@ -61,19 +61,19 @@ import { render, fireEvent, screen } from '@testing-library/preact';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  test('should display initial count', () => {
-    const { container } = render(<Counter initialCount={5}/>);
-    expect(container.textContent).toMatch('Current value: 5');
-  });
+	test('should display initial count', () => {
+		const { container } = render(<Counter initialCount={5} />);
+		expect(container.textContent).toMatch('Current value: 5');
+	});
 
-  test('should increment after "Increment" button is clicked', async () => {
-    render(<Counter initialCount={5}/>);
+	test('should increment after "Increment" button is clicked', async () => {
+		render(<Counter initialCount={5} />);
 
-    fireEvent.click(screen.getByText('Increment'));
-    await waitFor(() => {
-      expect(screen.textContent).toMatch('Current value: 6');
-    });
-  });
+		fireEvent.click(screen.getByText('Increment'));
+		await waitFor(() => {
+			expect(screen.textContent).toMatch('Current value: 6');
+		});
+	});
 });
 ```
 
@@ -103,7 +103,7 @@ test('should increment counter", async () => {
   fireEvent.click(screen.getByText('Increment'));
 
   await findByText('Current value: 6'); // 要素が変更されるまで待つ
-  
+
   expect(screen.textContent).toMatch('Current value: 6'); // パス
 });
 ```
@@ -130,15 +130,15 @@ Testing Libraryの思想は、"テストがソフトウェアの使用例に沿�
 import { render, fireEvent, screen } from '@testing-library/preact';
 
 test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
-  
-  // input要素を`role`と`accessible name`を使って特定します。
-  // `accessible name`は、label要素や、aria-label、aria-labelledbyが指定されていても関係なく、安定して検索に使用できます。
-  const field = await screen.findByRole('textbox', { name: 'Sign In' });
-  
-  // フィールドに文字列を入力する。
-  fireEvent.change(field, { value: 'user123' });
-})
+	render(<MyLoginForm />);
+
+	// input要素を`role`と`accessible name`を使って特定します。
+	// `accessible name`は、label要素や、aria-label、aria-labelledbyが指定されていても関係なく、安定して検索に使用できます。
+	const field = await screen.findByRole('textbox', { name: 'Sign In' });
+
+	// フィールドに文字列を入力する。
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 もし国際化フレームワークを使用していなくても、次の例と同じ方法で、文字列を別のファイルに切り出すことができます。
@@ -146,12 +146,12 @@ test('should be able to sign in', async () => {
 
 ```jsx
 test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
-  
-  // 別の言語でアプリをレンダリングしたり、テキストを変更したらどうなりますか？テストが失敗します。
-  const field = await screen.findByRole('textbox', { name: 'Sign In' });
-  fireEvent.change(field, { value: 'user123' });
-})
+	render(<MyLoginForm />);
+
+	// 別の言語でアプリをレンダリングしたり、テキストを変更したらどうなりますか？テストが失敗します。
+	const field = await screen.findByRole('textbox', { name: 'Sign In' });
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 キーとそれに対応した文字列を別ファイルに定義して国際化する`translate()`があるとします。
@@ -159,16 +159,16 @@ test('should be able to sign in', async () => {
 
 ```jsx
 test('should be able to sign in', async () => {
-  render(<MyLoginForm />);
+	render(<MyLoginForm />);
 
-  const label = translate('signinpage.label', 'en-US');
-  // `label`に対するスナップショットが`toMatchInlineSnapshot()`の引数に上書きされます。
-  // https://jestjs.io/docs/en/snapshot-testing#inline-snapshots
-  expect(label).toMatchInlineSnapshot(`Sign In`);
+	const label = translate('signinpage.label', 'en-US');
+	// `label`に対するスナップショットが`toMatchInlineSnapshot()`の引数に上書きされます。
+	// https://jestjs.io/docs/en/snapshot-testing#inline-snapshots
+	expect(label).toMatchInlineSnapshot(`Sign In`);
 
-  const field = await screen.findByRole('textbox', { name: label });
-  fireEvent.change(field, { value: 'user123' });
-})
+	const field = await screen.findByRole('textbox', { name: label });
+	fireEvent.change(field, { value: 'user123' });
+});
 ```
 
 ### Test IDを使って要素を検索する
@@ -178,11 +178,11 @@ Test ID(`data-testid`)はDOM要素の属性です。これは、検索対象の�
 
 ```jsx
 function Foo({ onClick }) {
-  return (
-    <button onClick={onClick} data-testid="foo">
-      click here
-    </button>
-  );
+	return (
+		<button onClick={onClick} data-testid="foo">
+			click here
+		</button>
+	);
 }
 
 // テキストが変更されない限り動作します。
@@ -218,17 +218,15 @@ import { FooContext } from './foo';
 const history = createMemoryHistory();
 
 export function render(vnode) {
-  return originalRender(
-    <FooContext.Provider value="foo">
-      <Router history={memoryHistory}>
-        {vnode}
-      </Router>
-    </FooContext.Provider>
-  );
+	return originalRender(
+		<FooContext.Provider value="foo">
+			<Router history={memoryHistory}>{vnode}</Router>
+		</FooContext.Provider>
+	);
 }
 
 // いつも通り使いましょう。見て、Providerなしです。
-render(<MyComponent />)
+render(<MyComponent />);
 ```
 
 ## フックをテストする
@@ -248,10 +246,10 @@ npm install --save-dev @testing-library/preact
 import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const increment = useCallback(() => setCount(c => c + 1), []);
-  return { count, increment };
-}
+	const [count, setCount] = useState(0);
+	const increment = useCallback(() => setCount((c) => c + 1), []);
+	return { count, increment };
+};
 ```
 
 前回と同じようにやり方は似ています。カウンターが増加するか検証します。
@@ -264,18 +262,18 @@ import { renderHook, act } from '@testing-library/preact';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
-  const { result } = renderHook(() => useCounter());
+	const { result } = renderHook(() => useCounter());
 
-  // カウンターの初期値が0か確認します。
-  expect(result.current.count).toBe(0);
+	// カウンターの初期値が0か確認します。
+	expect(result.current.count).toBe(0);
 
-  // フックのコールバック関数を実行してカウンターを更新します。
-  act(() => {
-    result.current.increment();
-  });
+	// フックのコールバック関数を実行してカウンターを更新します。
+	act(() => {
+		result.current.increment();
+	});
 
-  // 新しい状態を反映したフックの戻り値を確認します。
-  expect(result.current.count).toBe(1);
+	// 新しい状態を反映したフックの戻り値を確認します。
+	expect(result.current.count).toBe(1);
 });
 ```
 

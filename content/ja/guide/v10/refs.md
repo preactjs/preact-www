@@ -1,5 +1,5 @@
 ---
-title: リファレンス(Ref) 
+title: リファレンス(Ref)
 description: Preactがレンダリングした生のDOM Nodeにアクセスするにはリファレンス(Ref)を使います。
 ---
 
@@ -26,16 +26,16 @@ PreactがレンダリングしたDOM要素やコンポーネントを直接参�
 
 ```jsx
 class Foo extends Component {
-  ref = createRef();
+	ref = createRef();
 
-  componentDidMount() {
-    console.log(this.ref.current);
-    // Logs: [HTMLDivElement]
-  }
-  
-  render() {
-    return <div ref={this.ref}>foo</div>
-  }
+	componentDidMount() {
+		console.log(this.ref.current);
+		// Logs: [HTMLDivElement]
+	}
+
+	render() {
+		return <div ref={this.ref}>foo</div>;
+	}
 }
 ```
 
@@ -46,17 +46,17 @@ class Foo extends Component {
 
 ```jsx
 class Foo extends Component {
-  ref = null;
-  setRef = (dom) => this.ref = dom;
+	ref = null;
+	setRef = (dom) => (this.ref = dom);
 
-  componentDidMount() {
-    console.log(this.ref);
-    // Logs: [HTMLDivElement]
-  }
-  
-  render() {
-    return <div ref={this.setRef}>foo</div>
-  }
+	componentDidMount() {
+		console.log(this.ref);
+		// Logs: [HTMLDivElement]
+	}
+
+	render() {
+		return <div ref={this.setRef}>foo</div>;
+	}
 }
 ```
 
@@ -68,15 +68,19 @@ class Foo extends Component {
 
 ```jsx
 class Foo extends Component {
-  // ここではDOM Nodeの実際の横幅と高さを使用したいと思います
-  state = {
-    width: 0,
-    height: 0,
-  };
+	// ここではDOM Nodeの実際の横幅と高さを使用したいと思います
+	state = {
+		width: 0,
+		height: 0
+	};
 
-  render(_, { width, height }) {
-    return <div>Width: {width}, Height: {height}</div>;
-  }
+	render(_, { width, height }) {
+		return (
+			<div>
+				Width: {width}, Height: {height}
+			</div>
+		);
+	}
 }
 ```
 
@@ -85,31 +89,31 @@ class Foo extends Component {
 
 ```jsx
 class Foo extends Component {
-  state = {
-    width: 0,
-    height: 0,
-  };
+	state = {
+		width: 0,
+		height: 0
+	};
 
-  ref = createRef();
+	ref = createRef();
 
-  componentDidMount() {
-    // 安全のためにリファレンスがあるか確認する
-    if (this.ref.current) {
-      const dimensions = this.ref.current.getBoundingClientRect();
-      this.setState({
-        width: dimensions.width,
-        height: dimensions.height,
-      });
-    }
-  }
+	componentDidMount() {
+		// 安全のためにリファレンスがあるか確認する
+		if (this.ref.current) {
+			const dimensions = this.ref.current.getBoundingClientRect();
+			this.setState({
+				width: dimensions.width,
+				height: dimensions.height
+			});
+		}
+	}
 
-  render(_, { width, height }) {
-    return (
-      <div ref={this.ref}>
-        Width: {width}, Height: {height}
-      </div>
-    );
-  }
+	render(_, { width, height }) {
+		return (
+			<div ref={this.ref}>
+				Width: {width}, Height: {height}
+			</div>
+		);
+	}
 }
 ```
 

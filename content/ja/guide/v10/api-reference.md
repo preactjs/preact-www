@@ -22,7 +22,7 @@ description: Preactモジュールでエクスポートされているすべて�
 import { Component } from 'preact';
 
 class MyComponent extends Component {
-  // (see below)
+	// (see below)
 }
 ```
 
@@ -83,9 +83,9 @@ import { render } from 'preact';
 const Foo = () => <div id="target">BAR</div>;
 
 render(
-  <Foo />,
-  document.getElementById('container'),
-  document.getElementById('target')
+	<Foo />,
+	document.getElementById('container'),
+	document.getElementById('target')
 );
 
 // レンダリングされた後
@@ -115,7 +115,6 @@ render(<App />, rootElement); // 成功
 プリレンダリングもしくはサーバサイドレンダリングによって既にアプリケーションをHTMLに出力している場合、ブラウザでのロード時にほとんどのレンダリング処理をバイパスします。
 これは`render()`を`hydrate()`に置き換えることで有効になります。これは大半の差分処理を省略しつつ、イベントリスナをセットしコンポーネントツリーを構築します。
 これはプリレンダリングもしくは[サーバサイドレンダリング](/guide/v10/server-side-rendering)と連携した場合のみ動作します。
-
 
 ```jsx
 import { hydrate } from 'preact';
@@ -149,11 +148,7 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Hello!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```
 
@@ -171,23 +166,20 @@ h(
 import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>I have {count} children</div>;
+	const count = toChildArray(props.children).length;
+	return <div>I have {count} children</div>;
 }
 
 // props.childrenは"bar"
-render(
-  <Foo>bar</Foo>,
-  container
-);
+render(<Foo>bar</Foo>, container);
 
 // props.childrenは[<p>A</p>, <p>B</p>]
 render(
-  <Foo>
-    <p>A</p>
-    <p>B</p>
-  </Foo>,
-  container
+	<Foo>
+		<p>A</p>
+		<p>B</p>
+	</Foo>,
+	container
 );
 ```
 
@@ -200,10 +192,14 @@ render(
 
 ```jsx
 function Linkout(props) {
-  // target="_blank"をリンクに追加
-  return cloneElement(props.children, { target: '_blank' });
+	// target="_blank"をリンクに追加
+	return cloneElement(props.children, { target: '_blank' });
 }
-render(<Linkout><a href="/">home</a></Linkout>);
+render(
+	<Linkout>
+		<a href="/">home</a>
+	</Linkout>
+);
 // <a href="/" target="_blank">home</a>
 ```
 
@@ -226,12 +222,12 @@ render(<Linkout><a href="/">home</a></Linkout>);
 import { Fragment, render } from 'preact';
 
 render(
-  <Fragment>
-    <div>A</div>
-    <div>B</div>
-    <div>C</div>
-  </Fragment>,
-  document.getElementById('container')
+	<Fragment>
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</Fragment>,
+	document.getElementById('container')
 );
 // レンダリングした結果
 // <div id="container>

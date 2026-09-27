@@ -24,7 +24,7 @@ JSXで動作させるために関数名は**大文字から始める必要があ
 
 ```jsx
 function MyComponent(props) {
-  return <div>My name is {props.name}.</div>;
+	return <div>My name is {props.name}.</div>;
 }
 
 // 使い方
@@ -45,30 +45,29 @@ render(App, document.body);
 
 ```jsx
 class Clock extends Component {
+	constructor() {
+		super();
+		this.state = { time: Date.now() };
+	}
 
-  constructor() {
-    super();
-    this.state = { time: Date.now() };
-  }
+	// ライフサイクルメソッド: コンポーネントがDOMにマウントされた時に実行
+	componentDidMount() {
+		// 1秒ごとに時刻を更新
+		this.timer = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	}
 
-  // ライフサイクルメソッド: コンポーネントがDOMにマウントされた時に実行
-  componentDidMount() {
-    // 1秒ごとに時刻を更新
-    this.timer = setInterval(() => {
-      this.setState({ time: Date.now() });
-    }, 1000);
-  }
+	// ライフサイクルメソッド: コンポーネントがDOMから削除される直前に実行
+	componentWillUnmount() {
+		// レンダリングが不可能なので停止
+		clearInterval(this.timer);
+	}
 
-  // ライフサイクルメソッド: コンポーネントがDOMから削除される直前に実行
-  componentWillUnmount() {
-    // レンダリングが不可能なので停止
-    clearInterval(this.timer);
-  }
-
-  render() {
-    let time = new Date(this.state.time).toLocaleTimeString();
-    return <span>{time}</span>;
-  }
+	render() {
+		let time = new Date(this.state.time).toLocaleTimeString();
+		return <span>{time}</span>;
+	}
 }
 ```
 
@@ -78,17 +77,17 @@ class Clock extends Component {
 もし、HTML5 Custom Elementsを使ったことがあれば、_それはHTML5 Custom Elementsのライフサイクルメソッドである`attachedCallback`と`detachedCallback`に似ています。_
 Preactはコンポーネントに以下のライフサイクルメソッドが定義されている場合、それを実行します。
 
-| ライフサイクルメソッド            | 実行されるタイミング                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount()`        | (非推奨) コンポーネントがDOMにマウントされる前     |
-| `componentDidMount()`         | コンポーネントがDOMにマウントされた後      |
-| `componentWillUnmount()`      | DOMから削除される前                    |
-| `componentWillReceiveProps(nextProps, nextState)` | (非推奨) 新しいpropsを受け取る前                    |
-| `getDerivedStateFromProps(nextProps)` | `shouldComponentUpdate`の直前。注意して使って下さい。 |
-| `shouldComponentUpdate(nextProps, nextState)`     | `render()`の前。`false`を返したらrenderをスキップする。 |
-| `componentWillUpdate(nextProps, nextState)`       | (非推奨) `render()`の前。                                |
-| `getSnapshotBeforeUpdate(prevProps, prevState)` | `render()`が実行される直前。戻り値は`componentDidUpdate`に渡される。 |
-| `componentDidUpdate(prevProps, prevState, snapshot)`        | `render()`の後                                 |
+| ライフサイクルメソッド                               | 実行されるタイミング                                                 |
+| ---------------------------------------------------- | -------------------------------------------------------------------- |
+| `componentWillMount()`                               | (非推奨) コンポーネントがDOMにマウントされる前                       |
+| `componentDidMount()`                                | コンポーネントがDOMにマウントされた後                                |
+| `componentWillUnmount()`                             | DOMから削除される前                                                  |
+| `componentWillReceiveProps(nextProps, nextState)`    | (非推奨) 新しいpropsを受け取る前                                     |
+| `getDerivedStateFromProps(nextProps)`                | `shouldComponentUpdate`の直前。注意して使って下さい。                |
+| `shouldComponentUpdate(nextProps, nextState)`        | `render()`の前。`false`を返したらrenderをスキップする。              |
+| `componentWillUpdate(nextProps, nextState)`          | (非推奨) `render()`の前。                                            |
+| `getSnapshotBeforeUpdate(prevProps, prevState)`      | `render()`が実行される直前。戻り値は`componentDidUpdate`に渡される。 |
+| `componentDidUpdate(prevProps, prevState, snapshot)` | `render()`の後                                                       |
 
 > [この図](https://twitter.com/dan_abramov/status/981712092611989509)を見てこれらが互いにどのように関係しているのか確認しましょう。
 
@@ -103,22 +102,21 @@ Preactはコンポーネントに以下のライフサイクルメソッドが�
 
 ```jsx
 class Catcher extends Component {
-  
-  constructor() {
-    super();
-    this.state = { errored: false };
-  }
+	constructor() {
+		super();
+		this.state = { errored: false };
+	}
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
-  }
+	componentDidCatch(error) {
+		this.setState({ errored: true });
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Something went badly wrong</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Something went badly wrong</p>;
+		}
+		return props.children;
+	}
 }
 ```
 
@@ -132,20 +130,20 @@ class Catcher extends Component {
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
-  return (
-    <Fragment>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+		</Fragment>
+	);
 }
 
 const App = (
-  <ul>
-    <TodoItems />
-    <li>D</li>
-  </ul>
+	<ul>
+		<TodoItems />
+		<li>D</li>
+	</ul>
 );
 
 render(App, container);
@@ -170,10 +168,7 @@ render関数と関数コンポーネントは配列を返すこともできま�
 
 ```jsx
 function Columns() {
-  return [
-    <td>Hello</td>,
-    <td>World</td>
-  ];
+	return [<td>Hello</td>, <td>World</td>];
 }
 ```
 
@@ -181,16 +176,16 @@ function Columns() {
 
 ```jsx
 function Glossary(props) {
-  return (
-    <dl>
-      {props.items.map(item => (
-	// キーがない場合、Preactは再レンダリング時、変更された要素を特定できません。
-        <Fragment key={item.id}>
-          <dt>{item.term}</dt>
-          <dd>{item.description}</dd>
-        </Fragment>
-      ))}
-    </dl>
-  );
+	return (
+		<dl>
+			{props.items.map((item) => (
+				// キーがない場合、Preactは再レンダリング時、変更された要素を特定できません。
+				<Fragment key={item.id}>
+					<dt>{item.term}</dt>
+					<dd>{item.description}</dd>
+				</Fragment>
+			))}
+		</dl>
+	);
 }
 ```
