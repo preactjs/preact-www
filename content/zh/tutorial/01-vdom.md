@@ -94,7 +94,7 @@ render(vdom, document.body);
 let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = <p class={maybeBig}>Hello {40 + 2}!</p>;
-// ^---JS---^       ^--JS--^
+//                  ^---JS---^       ^--JS--^
 ```
 
 如果我们调用了`render(vdom, document.body)`，文本 "Hello 42!"将被显示出来。
@@ -117,7 +117,7 @@ import { html } from 'htm/preact';
 let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = html`<p class=${maybeBig}>Hello ${40 + 2}!</p>`;
-// ^--JS--^          ^-JS-^
+//                         ^--JS--^          ^-JS-^
 ```
 
 所有这些例子都产生了相同的结果：一个虚拟的 DOM 树，可以交给 Preact 用来创建或更新现有的 DOM 树。
