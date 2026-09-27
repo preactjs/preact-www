@@ -46,13 +46,13 @@ class MyButton extends Component {
 > 在幕后，像`setState`这样的钩子函数通过存储与虚拟DOM树中的每个组件相关联的一系列"插槽"中的数据来工作。调用钩子函数会使用一个插槽，并增加内部"插槽编号"计数器，以便下一次调用使用下一个插槽。Preact在调用每个组件之前重置这个计数器，所以当一个组件被多次渲染时，每个钩子调用都与相同的插槽相关联。
 >
 > ```js
->   <!-- prettier-ignore-start -->
 > function User() {
+>   <!-- prettier-ignore-start -->
 > 	const [name, setName] = useState('Bob');    // 插槽 0
 > 	const [age, setAge] = useState(42);         // 插槽 1
 > 	const [online, setOnline] = useState(true); // 插槽 2
-> }
 >   <!-- prettier-ignore-end -->
+> }
 > ```
 >
 > 这被称为调用站点排序，这就是为什么钩子必须始终在组件内以相同的顺序调用，并且不能在条件语句或循环内调用的原因。
