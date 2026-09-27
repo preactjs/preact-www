@@ -7,14 +7,14 @@ solvable: true
 
 # 이벤트
 
-이벤트는 애플리케이션을 interactive 하게 만들고, 키보드와 마우스와 같은 입력에 응답하며, 이미지 로드와 같은 변화에 대응하는 방식입니다. 이벤트는 DOM에서와 동일한 방식으로 Preact에서 작동합니다. [MDN] 에서 찾을 수 있는 모든 이벤트 유형 또는 동작은 Preact에서 사용할 수 있습니다. 예를 들어, 다음은 일반적으로  DOM API를 사용하여 이벤트 핸들러를 등록하는 방법입니다.:
+이벤트는 애플리케이션을 interactive 하게 만들고, 키보드와 마우스와 같은 입력에 응답하며, 이미지 로드와 같은 변화에 대응하는 방식입니다. 이벤트는 DOM에서와 동일한 방식으로 Preact에서 작동합니다. [MDN] 에서 찾을 수 있는 모든 이벤트 유형 또는 동작은 Preact에서 사용할 수 있습니다. 예를 들어, 다음은 일반적으로 DOM API를 사용하여 이벤트 핸들러를 등록하는 방법입니다.:
 
 ```js
 function clicked() {
-  console.log('clicked')
+	console.log('clicked');
 }
-const myButton = document.getElementById('my-button')
-myButton.addEventListener('click', clicked)
+const myButton = document.getElementById('my-button');
+myButton.addEventListener('click', clicked);
 ```
 
 Preact가 DOM API와 다른 점은 이벤트 핸들러가 등록되는 방식입니다.
@@ -49,7 +49,6 @@ function clicked() {
   <p>You just learned how to handle events in Preact.</p>
 </solution>
 
-
 ```js:setup
 useRealm(function (realm) {
   var win = realm.globalThis;
@@ -64,7 +63,6 @@ useRealm(function (realm) {
   };
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from "preact";

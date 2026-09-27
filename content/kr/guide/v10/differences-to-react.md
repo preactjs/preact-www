@@ -32,17 +32,16 @@ React의 합성 이벤트 시스템과 네이티브 브라우저 이벤트에는
 
 ## 버전 호환성
 
-Preact와 [preact/compat]의 버전 호환성은 React의 _최신_ 메이저 버전 및 _그 이전_ 버전을 기준으로 합니다. React 팀에서 새로운 기능을 발표하고, 그 기능이 Preact의 Project Goals에 부합하는 기능이라면 Preact core에도 추가될 것입니다. 이 과정에서 민주적인 의사결정을 위해 공개 논의 및 의사결정을 수행하고 있으며, 그 과정에 Issue와 Pull Request를 활용하고 있습니다. 
+Preact와 [preact/compat]의 버전 호환성은 React의 _최신_ 메이저 버전 및 _그 이전_ 버전을 기준으로 합니다. React 팀에서 새로운 기능을 발표하고, 그 기능이 Preact의 Project Goals에 부합하는 기능이라면 Preact core에도 추가될 것입니다. 이 과정에서 민주적인 의사결정을 위해 공개 논의 및 의사결정을 수행하고 있으며, 그 과정에 Issue와 Pull Request를 활용하고 있습니다.
 
 > 따라서, 호환성과 비교를 논할 때 이 웹사이트와 문서는 React `16.x`와 `15.x`를 반영하고 있습니다.
-
 
 ## 디버그 메세지와 오류
 
 Preact의 유연한 구조는 개발 경험을 향상시키기 위한 애드온을 어떤 방식으로든 허용합니다. 이런 애드온 중 하나가 `preact/debug`입니다. 만약 설치되어있다면 [유용한 경고와 오류](/guide/v10/debugging)를 추가하고 브라우저 확장 프로그램 [Preact Developer Tools](https://preactjs.github.io/preact-devtools/)를 연결해줍니다. 이는 Preact 애플리케이션을 개발할 때 도움을 주고 무슨 일이 일어나고 있는지 조사하는 것을 매우 쉽게 해줄 것입니다. preact/debug는 다음의 import 문을 통해 추가할 수 있습니다.
 
 ```js
-import "preact/debug"; // <-- 이 문장을 메인 엔트리 파일의 최상단에 추가하세요
+import 'preact/debug'; // <-- 이 문장을 메인 엔트리 파일의 최상단에 추가하세요
 ```
 
 `NODE_ENV != “production”`을 확인해 빌드시 디버깅 메세지를 제거하는 번들러가 필요한 React와 다른 점입니다.
@@ -53,7 +52,7 @@ import "preact/debug"; // <-- 이 문장을 메인 엔트리 파일의 최상단
 
 ### ES Modules 기본 지원
 
-Preact는 처음부터 ES Modules를 염두에 두고 만들어진, 최초로 ES Modules를 지원하는 프레임워크입니다. 번들러를 거칠 필요 없이 `import` 키워드로 브라우저에 바로 Preact를 로드할 수 있습니다. 
+Preact는 처음부터 ES Modules를 염두에 두고 만들어진, 최초로 ES Modules를 지원하는 프레임워크입니다. 번들러를 거칠 필요 없이 `import` 키워드로 브라우저에 바로 Preact를 로드할 수 있습니다.
 
 ### `Component.render()`에 대한 논쟁
 
@@ -62,11 +61,15 @@ Preact는 처음부터 ES Modules를 염두에 두고 만들어진, 최초로 ES
 ```jsx
 // Preact와 React 모두에서 작동함
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
-  }
+	render() {
+		return (
+			<div>
+				Name: {this.props.name}, Age: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -75,11 +78,15 @@ Preact에서는 이렇게도 사용할 수 있습니다.
 ```jsx
 // Preact에서만 작동함
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return <div>Name: {name}, Age: {age}</div>;
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Name: {name}, Age: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -97,13 +104,13 @@ Preact는 모든 메이저 브라우저에서 지원하는 DOM 사양을 React�
 <div className="foo" />
 ```
 
-대부분의 Preact 개발자들은 `class`를 사용하기를 선호합니다. `className`보다 작성하기 짧지만, `className`과 `class`를 모두 지원하기 때문입니다. 
+대부분의 Preact 개발자들은 `class`를 사용하기를 선호합니다. `className`보다 작성하기 짧지만, `className`과 `class`를 모두 지원하기 때문입니다.
 
 ### JSX 안의 SVG
 
-SVG의 프로퍼티와 어트리뷰트의 이름들은 꽤 흥미롭습니다. SVG object의 몇몇 프로퍼티(그리고 어트리뷰트)는 카멜케이스(camel-case) (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes))로 되어있고, 몇몇 속성들은 케밥케이스(kebab-case)로 (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), 또 다른 어트리뷰트는 (주로 `oninput`처럼 DOM에서 상속된 것들)은 모두 소문자로 작성되어있습니다. 
+SVG의 프로퍼티와 어트리뷰트의 이름들은 꽤 흥미롭습니다. SVG object의 몇몇 프로퍼티(그리고 어트리뷰트)는 카멜케이스(camel-case) (e.g. [clipPathUnits on a clipPath element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath#Attributes))로 되어있고, 몇몇 속성들은 케밥케이스(kebab-case)로 (e.g. [clip-path on many SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation)), 또 다른 어트리뷰트는 (주로 `oninput`처럼 DOM에서 상속된 것들)은 모두 소문자로 작성되어있습니다.
 
-Preact는 SVG-Arrtibutes를 있는 그대로 전달합니다. 수정되지 않은 SVG 조각을 코드에 곧바로 붙여넣을 수 있고 박스 밖에서 작동될 수 있게 합니다. 이것은 아이콘이나 SVG 일러스트레이션을 만드는 툴 디자이너들과의 상호운용성을 향상시킵니다. 
+Preact는 SVG-Arrtibutes를 있는 그대로 전달합니다. 수정되지 않은 SVG 조각을 코드에 곧바로 붙여넣을 수 있고 박스 밖에서 작동될 수 있게 합니다. 이것은 아이콘이나 SVG 일러스트레이션을 만드는 툴 디자이너들과의 상호운용성을 향상시킵니다.
 
 React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시하는 것이 익숙할 것입니다. 카멜케이스로 작성된 속성을 계속해서 사용하길 바란다면 [preact/compat] 호환 레이어를 사용하면 됩니다. React API를 반영하고 어트리뷰트를 표준화해줄 것입니다.
 
@@ -130,7 +137,7 @@ React를 사용했던 사람이라면 모든 속성을 카멜케이스로 명시
 <input onInput={e => console.log(e.currentTarget.value)} />
 ```
 
-[preact/compat]를 사용하는 경우, 대부분의 `onChange` 이벤트가 내부적으로 `onInput`으로 변환되어 React의 동작을 모방합니다. 이것은 React의 생태계와 최대한의 호환성을 보장하기 위해 사용하는 Preact의 트릭 중 하나입니다. 
+[preact/compat]를 사용하는 경우, 대부분의 `onChange` 이벤트가 내부적으로 `onInput`으로 변환되어 React의 동작을 모방합니다. 이것은 React의 생태계와 최대한의 호환성을 보장하기 위해 사용하는 Preact의 트릭 중 하나입니다.
 
 ### JSX Constructor
 
@@ -140,7 +147,7 @@ JSX는 JavaScript의 구문 확장자로, 이는 중첩 함수 호출로 변환�
 
 ```jsx
 <a href="/">
-  <span>Home</span>
+	<span>Home</span>
 </a>
 ```
 
@@ -148,17 +155,13 @@ JSX는 JavaScript의 구문 확장자로, 이는 중첩 함수 호출로 변환�
 
 ```js
 // Preact:
-h(
-  'a',
-  { href:'/' },
-  h('span', null, 'Home')
-);
+h('a', { href: '/' }, h('span', null, 'Home'));
 
 // React:
 React.createElement(
-  'a',
-  { href:'/' },
-  React.createElement('span', null, 'Home')
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Home')
 );
 ```
 
