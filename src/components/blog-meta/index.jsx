@@ -16,7 +16,7 @@ export default function BlogMeta({ meta }) {
 					<address class={style.authors}>
 						{meta.authors.map((author, i, arr) => {
 							const authorData = config.blogAuthors.find(
-								data => data.name === author
+								(data) => data.name === author
 							);
 							return (
 								<AuthorLinks
@@ -29,7 +29,7 @@ export default function BlogMeta({ meta }) {
 						})}
 						{(meta.translation_by || []).map((author, i, arr) => {
 							const authorData = config.blogAuthors.find(
-								data => data.name === author
+								(data) => data.name === author
 							);
 							return (
 								<>

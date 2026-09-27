@@ -5,7 +5,7 @@ import * as Comlink from 'comlink';
 import { patchErrorLocation } from './errors';
 
 let cachedFetcher = memoize(fetch);
-let cachedFetch = (...args) => cachedFetcher(...args).then(r => r.clone());
+let cachedFetch = (...args) => cachedFetcher(...args).then((r) => r.clone());
 
 const worker = Comlink.wrap(
 	new Worker(new URL('./repl.worker.js', import.meta.url), {
@@ -40,7 +40,7 @@ export default class Runner extends Component {
 		return this.realm.globalThis.document.body;
 	}
 
-	commitError = error => {
+	commitError = (error) => {
 		if (error && typeof error === 'object') {
 			patchErrorLocation(error);
 		}
@@ -50,7 +50,7 @@ export default class Runner extends Component {
 		}
 	};
 
-	commitResult = result => {
+	commitResult = (result) => {
 		this.didError = false;
 		if (this.props.onSuccess) {
 			this.props.onSuccess(result);
@@ -78,7 +78,7 @@ export default class Runner extends Component {
 		const fullSetup = `if (self._onRealm) self._onRealm();${setup || ''}\n`;
 		this.running = worker
 			.process(code, fullSetup)
-			.then(transpiled => this.execute(transpiled))
+			.then((transpiled) => this.execute(transpiled))
 			.then(this.commitResult)
 			.catch(this.commitError)
 			.then(() => {
@@ -246,7 +246,7 @@ function Realm({ frame, onError }) {
 		Object.defineProperty(e, 'stack', { value: stack });
 		this.onError(e);
 	};
-	const catchRejection = e => {
+	const catchRejection = (e) => {
 		this.onError(e.reason || e);
 	};
 	this.globalThis.onerror = catchError;
@@ -257,5 +257,5 @@ function Realm({ frame, onError }) {
 		this.globalThis.onerror = null;
 		this.globalThis = this.onError = frame = onError = null;
 	};
-	this.eval = code => frame.contentWindow.eval(code);
+	this.eval = (code) => frame.contentWindow.eval(code);
 }

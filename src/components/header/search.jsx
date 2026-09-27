@@ -4,7 +4,9 @@ import { lazy, ErrorBoundary } from 'preact-iso';
 import style from './style.module.css';
 import config from '../../config.json';
 
-const DocSearch = lazy(() => import('@docsearch/react').then(m => m.DocSearch));
+const DocSearch = lazy(() =>
+	import('@docsearch/react').then((m) => m.DocSearch)
+);
 const DocSearchStylesURL = new URL(
 	'@docsearch/css/dist/style.css',
 	import.meta.url
@@ -32,7 +34,7 @@ function injectDocsearchCSS() {
  * @returns {Promise<HTMLButtonElement>}
  */
 function waitForDocsearch(root) {
-	return new Promise(resolve => {
+	return new Promise((resolve) => {
 		/** @returns {HTMLButtonElement | null} */
 		const getDocSearchButton = () =>
 			document.querySelector('.DocSearch.DocSearch-Button');
@@ -58,8 +60,8 @@ function waitForDocsearch(root) {
 // appends `#app` to all URLs without a hash fragment.
 //
 // It also returns the full prod URL, which isn't ideal for dev/staging
-const transformItems = items =>
-	items.map(i => {
+const transformItems = (items) =>
+	items.map((i) => {
 		const url = new URL(i.url);
 		return Object.assign(i, {
 			url: url.pathname + url.hash.replace(/#app$/, '')
@@ -86,7 +88,7 @@ export default function Search() {
 				root.current
 			);
 
-			waitForDocsearch(root.current).then(docsearchButton => {
+			waitForDocsearch(root.current).then((docsearchButton) => {
 				rendered.current = true;
 				document.querySelector('loading-bar')?.removeAttribute('showing');
 				if (interactedWith.current) {

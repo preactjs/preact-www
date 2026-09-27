@@ -9,11 +9,11 @@ export default function Toc() {
 
 	const { toc } = useContext(TocContext);
 
-	const items = useMemo(() => (
-		toc !== null
-			? (cache.current = listToTree(toc))
-			: cache.current || []
-	), [toc]);
+	const items = useMemo(
+		() =>
+			toc !== null ? (cache.current = listToTree(toc)) : cache.current || [],
+		[toc]
+	);
 
 	// TODO: Should we throw an error? No good reason to have a toc
 	// on the page if there is nothing to populate it with.
@@ -22,7 +22,9 @@ export default function Toc() {
 	return (
 		<nav aria-label="Table of Contents">
 			<ul>
-				{items.map(entry => <TocItem {...entry} />)}
+				{items.map((entry) => (
+					<TocItem {...entry} />
+				))}
 			</ul>
 		</nav>
 	);
@@ -33,7 +35,7 @@ function listToTree(arr) {
 	if (arr.length == 0) return [];
 
 	// Prepare list
-	const list = arr.map(x => ({ ...x, level: x.level - 2, children: [] }));
+	const list = arr.map((x) => ({ ...x, level: x.level - 2, children: [] }));
 
 	const tree = [];
 
@@ -61,7 +63,7 @@ function TocItem(props) {
 			<a href={'#' + id}>{text}</a>
 			{children.length > 0 && (
 				<ul>
-					{children.map(entry => (
+					{children.map((entry) => (
 						<TocItem key={entry.id} {...entry} />
 					))}
 				</ul>

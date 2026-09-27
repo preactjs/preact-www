@@ -30,7 +30,7 @@ function useContributors() {
 				credentials: 'include',
 				mode: 'no-cors',
 				priority: 'low'
-			}).then(r => r.json()),
+			}).then((r) => r.json()),
 		['/contributors.json']
 	);
 
@@ -41,7 +41,7 @@ export default function Footer() {
 	const contrib = useContributors();
 	const { lang, setLang } = useLanguageContext();
 
-	const onSelect = useCallback(e => setLang(e.target.value), [setLang]);
+	const onSelect = useCallback((e) => setLang(e.target.value), [setLang]);
 
 	return (
 		<footer class={style.footer}>

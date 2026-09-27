@@ -1,8 +1,15 @@
-import { useCallback, useEffect, useState, useLayoutEffect, useRef } from 'preact/hooks';
+import {
+	useCallback,
+	useEffect,
+	useState,
+	useLayoutEffect,
+	useRef
+} from 'preact/hooks';
 import cx from '../../lib/cx';
 import s from './splitter.module.css';
 
-const determineSplitterOrientation = (width) => width > 600 ? 'horizontal' : 'vertical';
+const determineSplitterOrientation = (width) =>
+	width > 600 ? 'horizontal' : 'vertical';
 
 /**
  * @typedef {Object} SplitterProps
@@ -23,11 +30,11 @@ export function Splitter({
 	other,
 	force
 }) {
-	const [splitterOrientation, setSplitterOrientation] = useState(() => (
+	const [splitterOrientation, setSplitterOrientation] = useState(() =>
 		orientation === 'auto'
 			? determineSplitterOrientation(document.body.clientWidth)
 			: orientation
-	));
+	);
 
 	useEffect(() => {
 		if (orientation !== 'auto') return;
@@ -41,40 +48,43 @@ export function Splitter({
 		return () => observer.disconnect();
 	}, []);
 
-	const splitterPointerDown = useCallback(e => {
-		let target = e.target;
-		let root = target.parentNode;
-		let v, perc, w, pid;
-		function move(e) {
-			const isHorizontal = splitterOrientation === 'horizontal';
-			const pos = isHorizontal ? e.pageX : e.pageY;
+	const splitterPointerDown = useCallback(
+		(e) => {
+			let target = e.target;
+			let root = target.parentNode;
+			let v, perc, w, pid;
+			function move(e) {
+				const isHorizontal = splitterOrientation === 'horizontal';
+				const pos = isHorizontal ? e.pageX : e.pageY;
 
-			if (v == null) {
-				pid = e.pointerId;
-				target.setPointerCapture(pid);
-				v = pos;
-				perc = parseFloat(root.style.getPropertyValue('--size') || initial);
-				w = isHorizontal ? root.offsetWidth : root.offsetHeight;
-			} else {
-				let p = Math.max(20, Math.min(80, perc + ((pos - v) / w) * 100));
-				root.style.setProperty('--size', `${p.toFixed(2)}%`);
+				if (v == null) {
+					pid = e.pointerId;
+					target.setPointerCapture(pid);
+					v = pos;
+					perc = parseFloat(root.style.getPropertyValue('--size') || initial);
+					w = isHorizontal ? root.offsetWidth : root.offsetHeight;
+				} else {
+					let p = Math.max(20, Math.min(80, perc + ((pos - v) / w) * 100));
+					root.style.setProperty('--size', `${p.toFixed(2)}%`);
+				}
 			}
-		}
-		function up(e) {
-			move(e);
-			cancel();
-		}
-		function cancel() {
-			target.releasePointerCapture(pid);
-			removeEventListener('pointermove', move);
-			removeEventListener('pointerup', up);
-			removeEventListener('pointercancel', cancel);
-		}
+			function up(e) {
+				move(e);
+				cancel();
+			}
+			function cancel() {
+				target.releasePointerCapture(pid);
+				removeEventListener('pointermove', move);
+				removeEventListener('pointerup', up);
+				removeEventListener('pointercancel', cancel);
+			}
 
-		addEventListener('pointermove', move);
-		addEventListener('pointerup', up);
-		addEventListener('pointercancel', cancel);
-	}, [splitterOrientation]);
+			addEventListener('pointermove', move);
+			addEventListener('pointerup', up);
+			addEventListener('pointercancel', cancel);
+		},
+		[splitterOrientation]
+	);
 
 	const ref = useRef(null);
 	useLayoutEffect(() => {

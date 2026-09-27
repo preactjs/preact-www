@@ -16,7 +16,11 @@ import REPL_CSS from './examples/style.css?raw';
 export function Repl({ code }) {
 	const { route } = useLocation();
 	const { query } = useRoute();
-	const [editorCode, setEditorCode] = useStoredValue('preact-www-repl-code', code, true);
+	const [editorCode, setEditorCode] = useStoredValue(
+		'preact-www-repl-code',
+		code,
+		true
+	);
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
 	const [copied, setCopied] = useState(false);
@@ -26,11 +30,10 @@ export function Repl({ code }) {
 
 	const applyExample = (e) => {
 		const slug = e.target.value;
-		fetchExample(slug)
-			.then(code => {
-				setEditorCode(code);
-				setRunnerCode(code);
-				route(`/repl?example=${encodeURIComponent(slug)}`, true);
+		fetchExample(slug).then((code) => {
+			setEditorCode(code);
+			setRunnerCode(code);
+			route(`/repl?example=${encodeURIComponent(slug)}`, true);
 		});
 	};
 
@@ -57,7 +60,11 @@ export function Repl({ code }) {
 		if (!query.example) {
 			// We use `history.replaceState` here as the code is only relevant on mount.
 			// There's no need to notify the router of the change.
-			history.replaceState(null, null, `/repl?code=${encodeURIComponent(textToBase64(editorCode))}`);
+			history.replaceState(
+				null,
+				null,
+				`/repl?code=${encodeURIComponent(textToBase64(editorCode))}`
+			);
 		}
 
 		try {
@@ -77,7 +84,7 @@ export function Repl({ code }) {
 		}
 	};
 
-	const onRealm = realm => {
+	const onRealm = (realm) => {
 		realm.globalThis.githubStars = window.githubStars;
 	};
 

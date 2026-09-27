@@ -48,7 +48,7 @@ const sponsors = [
 export default function Sponsors() {
 	return (
 		<ul class={styles.sponsorList}>
-			{sponsors.map(sponsor => (
+			{sponsors.map((sponsor) => (
 				<SponsorItem {...sponsor} />
 			))}
 		</ul>
@@ -58,7 +58,12 @@ export default function Sponsors() {
 function SponsorItem({ link, title, width, height, id }) {
 	return (
 		<li class={styles.sponsorItem}>
-			<a href={link} title={title} target="_blank" rel="noopener noreferrer nofollow sponsored">
+			<a
+				href={link}
+				title={title}
+				target="_blank"
+				rel="noopener noreferrer nofollow sponsored"
+			>
 				<svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
 					<use href={`/sponsor-icons.svg#${id}`} />
 				</svg>

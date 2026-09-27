@@ -26,7 +26,7 @@ export default function SidebarNav({ items, onClick }) {
 						<>
 							<SidebarGroup level={level}>{text}</SidebarGroup>
 							<div class={style.accordionBody}>
-								{routes.map(route => {
+								{routes.map((route) => {
 									const { href, text } = route;
 									return (
 										<SidebarNavLink

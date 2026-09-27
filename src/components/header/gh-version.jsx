@@ -11,7 +11,7 @@ export default function ReleaseLink({ ...props }) {
 	});
 
 	useEffect(() => {
-		fetchRelease(config.repo).then(d => {
+		fetchRelease(config.repo).then((d) => {
 			setRelease(d);
 		});
 	}, []);

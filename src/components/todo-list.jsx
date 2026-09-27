@@ -6,7 +6,7 @@ export default class TodoList extends Component {
 		text: ''
 	};
 
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
 
@@ -25,7 +25,7 @@ export default class TodoList extends Component {
 				</label>
 				<button type="submit">Add</button>
 				<ul>
-					{todos.map(todo => (
+					{todos.map((todo) => (
 						<li>{todo.text}</li>
 					))}
 				</ul>

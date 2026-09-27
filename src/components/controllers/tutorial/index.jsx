@@ -45,7 +45,7 @@ export function Tutorial({ html, meta }) {
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	const [error, setError] = useState(null);
-	const [showCodeOverride, toggleCode] = useReducer(s => !s, true);
+	const [showCodeOverride, toggleCode] = useReducer((s) => !s, true);
 
 	const content = useRef(null);
 	const runner = useRef(null);
@@ -74,13 +74,13 @@ export function Tutorial({ html, meta }) {
 		return () => clearTimeout(delay);
 	}, [editorCode]);
 
-	const useResult = fn => {
+	const useResult = (fn) => {
 		useEffect(() => {
 			resultHandlers.add(fn);
 			return () => resultHandlers.delete(fn);
 		}, [fn]);
 	};
-	const useRealm = fn => {
+	const useRealm = (fn) => {
 		useEffect(() => {
 			realmHandlers.add(fn);
 			let r = runner.current;
@@ -90,33 +90,33 @@ export function Tutorial({ html, meta }) {
 			return () => realmHandlers.delete(fn);
 		}, [fn]);
 	};
-	const useError = fn => {
+	const useError = (fn) => {
 		useEffect(() => {
 			errorHandlers.add(fn);
 			return () => errorHandlers.delete(fn);
 		}, [fn]);
 	};
 
-	const onError = error => {
-		errorHandlers.forEach(f => f(error));
+	const onError = (error) => {
+		errorHandlers.forEach((f) => f(error));
 		setError(error);
 	};
 
 	const onSuccess = () => {
-		if (resultCleanups) resultCleanups.forEach(f => f());
+		if (resultCleanups) resultCleanups.forEach((f) => f());
 		resultCleanups = [];
-		resultHandlers.forEach(f => {
+		resultHandlers.forEach((f) => {
 			let cleanup = f(runner.current);
 			if (cleanup) resultCleanups.push(cleanup);
 		});
 		setError(null);
 	};
 
-	const onRealm = realm => {
-		if (realmCleanups) realmCleanups.forEach(f => f());
+	const onRealm = (realm) => {
+		if (realmCleanups) realmCleanups.forEach((f) => f());
 		realmCleanups = [];
 		// this.realmCleanups = Array.from(this.realmHandlers).map(f => f()).filter(Boolean);
-		realmHandlers.forEach(f => {
+		realmHandlers.forEach((f) => {
 			let cleanup = f(realm);
 			if (cleanup) realmCleanups.push(cleanup);
 		});
@@ -254,7 +254,7 @@ function TutorialSetupBlock({ code, runner, useResult, useRealm, useError }) {
 
 		const tutorial = useContext(TutorialContext);
 		const solutionCtx = useContext(SolutionContext);
-		const require = m => runner.current.realm.globalThis._require(m);
+		const require = (m) => runner.current.realm.globalThis._require(m);
 
 		const fn = new Function(
 			'options',

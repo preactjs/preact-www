@@ -16,7 +16,7 @@ export default function DocVersion() {
 	const { version, name } = params;
 
 	const onChange = useCallback(
-		e => {
+		(e) => {
 			const version = e.currentTarget.value;
 			const url = flatDocPages[version]?.[`/${name}`]
 				? path.replace(/(v\d{1,2})/, version)
@@ -30,7 +30,7 @@ export default function DocVersion() {
 		<label class={style.root}>
 			Version:{' '}
 			<select value={version} class={style.select} onChange={onChange}>
-				{AVAILABLE_DOCS.map(v => {
+				{AVAILABLE_DOCS.map((v) => {
 					let suffix = '';
 					if (LATEST_MAJOR.slice(1) == v) {
 						suffix = ' (current)';

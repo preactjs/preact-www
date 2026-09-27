@@ -22,7 +22,7 @@ const LOGOS = [
 export default function Branding() {
 	return (
 		<div class={style.logos}>
-			{LOGOS.map(asset => (
+			{LOGOS.map((asset) => (
 				<LogoVariation name={asset.name} alt={asset.alt} />
 			))}
 		</div>
