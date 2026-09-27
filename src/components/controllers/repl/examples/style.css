@@ -16,6 +16,7 @@
 }
 
 .repo-list-item {
+	color: black;
 	padding: 1rem;
 	margin: 1rem;
 	background: #fffbf1;
@@ -31,10 +32,6 @@
 	&:hover {
 		color: #444;
 	}
-}
-
-.repo-list-item p {
-	color: black;
 }
 
 #spiral {
