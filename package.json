@@ -11,7 +11,7 @@
 		"server": "vite preview --port 8080",
 		"build": "vite build",
 		"lint": "eslint src",
-		"format": "prettier --write \"**/*.{css,js,json}\"",
+		"format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
 		"prepare": "npx simple-git-hooks"
 	},
 	"eslintConfig": {
@@ -48,7 +48,7 @@
 		"pre-commit": "npx nano-staged"
 	},
 	"nano-staged": {
-		"**/*.{css,js,jsx,json}": [
+		"**/*.{css,js,jsx,json,md}": [
 			"prettier --write"
 		]
 	},
