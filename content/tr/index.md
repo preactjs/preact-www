@@ -2,7 +2,6 @@
 title: Preact
 ---
 
-
 <jumbotron>
     <h1>
         <logo height="1.5em" title="Preact" text="true" inverted="true">Preact</logo>
@@ -16,15 +15,15 @@ title: Preact
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
+	const [value, setValue] = useState(0);
 
-  return (
-    <>
-      <div>Counter: {value}</div>
-      <button onClick={() => setValue(value + 1)}>Increment</button>
-      <button onClick={() => setValue(value - 1)}>Decrement</button>
-    </>
-  )
+	return (
+		<>
+			<div>Counter: {value}</div>
+			<button onClick={() => setValue(value + 1)}>Increment</button>
+			<button onClick={() => setValue(value - 1)}>Decrement</button>
+		</>
+	);
 }
 ```
 
@@ -36,7 +35,6 @@ function Counter() {
 <section class="home-top">
     <h2>Başka bir tür kütüphane</h2>
 </section>
-
 
 <section class="home-section">
   <img src="/home/metal.svg" alt="metal" loading="lazy" decoding="async" width="54" height="54">
@@ -54,7 +52,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/size.svg" alt="boyut" loading="lazy" decoding="async" width="54" height="54">
 
@@ -69,7 +66,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
 
 <section class="home-section">
   <img src="/home/performance.svg" alt="performans" loading="lazy" decoding="async" width="54" height="54">
@@ -86,7 +82,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/portable.svg" alt="taşınabilir" loading="lazy" decoding="async" width="54" height="54">
 
@@ -101,7 +96,6 @@ function Counter() {
     </p>
   </div>
 </section>
-
 
 <section class="home-section">
   <img src="/home/productive.svg" alt="üretken" loading="lazy" decoding="async" width="54" height="54">
@@ -120,7 +114,6 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-section">
   <img src="/home/compatible.svg" alt="uyumlu" loading="lazy" decoding="async" width="54" height="54">
 
@@ -136,11 +129,9 @@ function Counter() {
   </div>
 </section>
 
-
 <section class="home-top">
     <h2>Örneğe gözatın!</h2>
 </section>
-
 
 <section class="home-split">
     <div>
@@ -191,7 +182,6 @@ function Counter() {
         </div>
     </div>
 </section>
-
 
 <section class="home-split">
     <div>
@@ -264,11 +254,9 @@ function Counter() {
     </div>
 </section>
 
-
 <section class="home-top">
     <h2>Kolları sıvamaya hazır mısın?</h2>
 </section>
-
 
 <section style="text-align:center;">
     <p>

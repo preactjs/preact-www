@@ -14,18 +14,18 @@ Her durumda, Preact'ın `Component` class'ını extend etmek için ES2015 class 
 
 ```js
 class BoundComponent extends Component {
-    // example: get bound methods
-    binds() {
-        let list = this.bind || [],
-            binds = this._binds;
-        if (!binds) {
-            binds = this._binds = {};
-            for (let i=list.length; i--; ) {
-                binds[list[i]] = this[list[i]].bind(this);
-            }
-        }
-        return binds;
-    }
+	// example: get bound methods
+	binds() {
+		let list = this.bind || [],
+			binds = this._binds;
+		if (!binds) {
+			binds = this._binds = {};
+			for (let i = list.length; i--;) {
+				binds[list[i]] = this[list[i]].bind(this);
+			}
+		}
+		return binds;
+	}
 }
 ```
 
@@ -33,31 +33,27 @@ class BoundComponent extends Component {
 
 ```js
 class Link extends BoundComponent {
-    bind = ['click'];
-    click() {
-        open(this.props.href);
-    }
-    render({ children }) {
-        let { click } = this.binds();
-        return <span onClick={ click }>{ children }</span>;
-    }
+	bind = ['click'];
+	click() {
+		open(this.props.href);
+	}
+	render({ children }) {
+		let { click } = this.binds();
+		return <span onClick={click}>{children}</span>;
+	}
 }
 
-render(
-    <Link href="http://example.com">Bana Tıkla</Link>,
-    document.body
-);
+render(<Link href="http://example.com">Bana Tıkla</Link>, document.body);
 ```
-
 
 İmkanlar sonsuzdur. İşte, temel olmayan mixin'leri destekleyen extend edilmiş bir `Component` sınıfı:
 
 ```js
 class MixedComponent extends Component {
-    constructor() {
-        super();
-        (this.mixins || []).forEach( m => Object.assign(this, m) );
-    }
+	constructor() {
+		super();
+		(this.mixins || []).forEach((m) => Object.assign(this, m));
+	}
 }
 ```
 

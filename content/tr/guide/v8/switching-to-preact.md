@@ -41,12 +41,12 @@ Sadece aşağıdaki konfigürasyonu `webpack.config.js` dosyanıza ekleyin [reso
 
 ```json
 {
-  "resolve": {
-    "alias": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"resolve": {
+		"alias": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -60,12 +60,12 @@ Sonra, `package.json` dosyanızda aliasfy'ı react import dosyalarını preact'a
 
 ```json
 {
-  "aliasify": {
-    "aliases": {
-      "react": "preact-compat",
-      "react-dom": "preact-compat"
-    }
-  }
+	"aliasify": {
+		"aliases": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	}
 }
 ```
 
@@ -91,37 +91,41 @@ npm i -S module-alias
 ```
 
 `patchPreact.js`:
+
 ```js
-var path = require('path')
-var moduleAlias = require('module-alias')
+var path = require('path');
+var moduleAlias = require('module-alias');
 
 moduleAlias.addAliases({
-  'react': 'preact-compat/dist/preact-compat.min',
-  'react-dom': 'preact-compat/dist/preact-compat.min',
-  'create-react-class': path.resolve(__dirname, './create-preact-class')
-})
+	react: 'preact-compat/dist/preact-compat.min',
+	'react-dom': 'preact-compat/dist/preact-compat.min',
+	'create-react-class': path.resolve(__dirname, './create-preact-class')
+});
 ```
 
 `create-preact-class.js`:
+
 ```js
-import { createClass } from 'preact-compat/dist/preact-compat.min'
-export default createClass
+import { createClass } from 'preact-compat/dist/preact-compat.min';
+export default createClass;
 ```
+
 Eğer sunucu tarafında yeni `import` söz dizimini Babel ile kullanıyorsanız, bu satırları diğer import ettiklerinizin üstüne koymak işe yaramayacaktır, çünkü Babel tüm import edilen dosyaları modülün en tepesine taşır. Bu durumda yukarıdaki kodu `patchPreact.js` olarak kaydedin, sonrasında kodunuzun ilk satırında import edin (`import './patchPreact'`). module-alias hakkında daha fazla bilgi için [burayı](https://www.npmjs.com/package/module-alias) ziyaret edin.
 
 `module-alias` kullanmadan da node içerisinde alias oluşturmak mümkün. Bu Node'un modül sisteminin özelliklerinin üzerine kuruludur, o yüzden dikkatli olmanız gerekir. Manüel olarak alias oluşturmak:
 
 ```js
 // patchPreact.js
-var React = require('react')
-var ReactDOM = require('react-dom')
-var ReactDOMServer = require('react-dom/server')
-var CreateReactClass = require('create-react-class')
-var Preact = require('preact-compat/dist/preact-compat.min')
-var Module = module.constructor
-Module._cache[require.resolve('react')].exports = Preact
-Module._cache[require.resolve('react-dom')].exports = Preact
-Module._cache[require.resolve('create-react-class')].exports.default = Preact.createClass
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
+var CreateReactClass = require('create-react-class');
+var Preact = require('preact-compat/dist/preact-compat.min');
+var Module = module.constructor;
+Module._cache[require.resolve('react')].exports = Preact;
+Module._cache[require.resolve('react-dom')].exports = Preact;
+Module._cache[require.resolve('create-react-class')].exports.default =
+	Preact.createClass;
 ```
 
 ### Build & Test
@@ -130,9 +134,7 @@ Module._cache[require.resolve('create-react-class')].exports.default = Preact.cr
 Build edilen projeyi çalıştırdığınızda, tüm React importlarınız aslında `preact-compat` import edecek ve proje boyutunuz oldukça düşecektir.
 Testlerinizi yapmak ve uygulamanızı açıp nasıl çalıştığına bakmak daima iyi bir alışkanlıktır.
 
-
 ---
-
 
 ## En ideali: Preact'a Geçiş
 
@@ -172,12 +174,9 @@ Yukardaki her bir örnekte `h`, JSX pragması olarak deklare ettiğimiz fonksiyo
 
 Eğer Babel kullanıyorsanız, JSX pragmasını `.babelrc` ve ya `package.json` dosylarında belirtebilirsiniz. (hangisini tercih ederseniz)
 
-
 ```json
 {
-  "plugins": [
-    ["transform-react-jsx", { "pragma": "h" }]
-  ]
+	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 }
 ```
 
@@ -207,7 +206,6 @@ String ref'ler React içinde modası geçmiştir (deprecated) ve yakında kaldı
 Eğer hala String ref'leri kullanmak isterseniz, [bu küçük linkedRef fonksiyonu](https://gist.github.com/developit/63e7a81a507c368f7fc0898076f64d8d) hala `this.refs.$$` kullanarak String Ref'ler gibi uzun ömürlü bir versiyon sunar.
 Bu küçük kapsayıcının (wrapper) basitliği Function Ref ler aynı zamanda Function Ref lerin neden popüler olduğunu açıklamaktadır.
 
-
 ### 4. Kök (Root) Render'ı Basitleştirmek
 
 React 0.13 versiyonundan beri `render()` fonksiyonu `react-dom` tarafından sağlanıyor
@@ -218,6 +216,7 @@ Bu da demek oluyor ki, React'tan Preact'a geçişteki son adımınız, `ReactDOM
 - ReactDOM.render(<App />, document.getElementById('app'));
 + render(<App />, document.body);
 ```
+
 Başka dikkat edilmesi nokta ise, Preact'ın `render()` fonksiyonu yıkıcı (destructive) bir fonksiyon değildir. Bundan dolayı, `<body>` içinde render etmek sorun arz etmez (hatta önerilir).
 Bu Preact'a verdiğinizi argümanların tüm kök (root) elemanlarını kontrol ettiğini varsaymayışından dolayı mümkündür. `render()` a verilen ikinci argüman
 aslında `kapsayıcı/ebeveyn` (parent) dir - demek oluyor ki _içine_ render edilmesi gereken DOM elementidir. Eğer uygulamayı kökten yeniden render etmek isterseniz, (Çalışır durumda yapılan modül değişikliği gibi / Hot Module Replacement), `render()` ikinci argümanı 3. argüman ile yer değiştirmek üzere alır.
@@ -229,6 +228,7 @@ render(<App />, document.body);
 // yerinde güncelleme:
 render(<App />, document.body, document.body.lastElementChild);
 ```
+
 Yukardaki örnekte, son elementin (3. argüman) ilk önce render edilen kökü olduğunu varsayıyoruz.
 Bu çoğu durumda işe yarasa da (jsfiddles, codepens vb.), daha kontrollü olmakta fayda var.
 `render()` fonksiyonunun neden kök (root) döndürdüğünü açıklar: 3. argümanı yerinde güncelleme için kullanırsınız.
@@ -239,7 +239,7 @@ Aşağıdaki örnekte Webpack'in Hot Module Replacement güncellemelerine cevap 
 let root;
 
 function init() {
-  root = render(<App />, document.body, root);
+	root = render(<App />, document.body, root);
 }
 init();
 
@@ -248,7 +248,6 @@ if (module.hot) module.hot.accept('./app', init);
 ```
 
 Tüm tekniği [preact-boilerplate](https://github.com/developit/preact-boilerplate/blob/master/src/index.js#L6-L18) adresinden görebilirsiniz.
-
 
 [babel]: https://babeljs.io
 [bublé]: https://buble.surge.sh
