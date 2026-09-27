@@ -33,6 +33,10 @@
 	}
 }
 
+.repo-list-item p {
+	color: black;
+}
+
 #spiral {
 	position: absolute;
 	left: 0;
