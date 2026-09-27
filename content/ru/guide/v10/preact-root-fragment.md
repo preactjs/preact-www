@@ -22,7 +22,7 @@ preact-root-fragment — это независимая и более гибка�
 	</div>
 </body>
 ```
-<!-- prettier-ignore-start -->
+<!-- prettier-ignore-end -->
 
 ---
 
