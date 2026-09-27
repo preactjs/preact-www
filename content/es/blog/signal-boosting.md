@@ -314,15 +314,15 @@ Terminamos con el siguiente algoritmo para determinar cuándo un signal calculad
 
 > Cada vez que un signal simple cambia, también incrementa un número de versión global, compartido entre todos los signals simples. Cada signal calculado lleva la cuenta del último número de versión global que ha visto. Si la versión global no ha cambiado desde el último cálculo, entonces el recálculo se puede omitir antes de tiempo. De todos modos, no podría haber ningún cambio en ningún valor calculado en ese caso.
 
-1.  Si el signal calculado está escuchando notificaciones, y no ha sido notificado desde la última ejecución, entonces sal del proceso y devuelve el valor en caché.
+2.  Si el signal calculado está escuchando notificaciones, y no ha sido notificado desde la última ejecución, entonces sal del proceso y devuelve el valor en caché.
 
 > Cuando un signal calculado recibe una notificación de sus dependencias, marca el valor en caché como obsoleto. Como se describió anteriormente, los signals calculados no siempre reciben notificaciones. Pero cuando lo hacen, podemos aprovecharlo.
 
-1.  Vuelve a evaluar las dependencias en orden. Verifica sus números de versión. Si ninguna dependencia ha cambiado su número de versión, incluso después de la reevaluación, entonces sal del proceso y devuelve el valor en caché.
+3.  Vuelve a evaluar las dependencias en orden. Verifica sus números de versión. Si ninguna dependencia ha cambiado su número de versión, incluso después de la reevaluación, entonces sal del proceso y devuelve el valor en caché.
 
 > Este paso es la razón por la que dimos amor y cuidado especial para mantener las dependencias en su orden de uso. Si una dependencia cambia, entonces no queremos volver a evaluar las dependencias que vienen más adelante en la lista porque podría ser solo trabajo innecesario. Quién sabe, tal vez el cambio en esa primera dependencia haga que la siguiente función de cálculo que se ejecute elimine las últimas dependencias.
 
-1.  Ejecuta la función de cálculo. Si el valor devuelto es diferente al guardado en caché, entonces incrementa el número de versión del signal calculado. Guarda en caché y devuelve el nuevo valor.
+4.  Ejecuta la función de cálculo. Si el valor devuelto es diferente al guardado en caché, entonces incrementa el número de versión del signal calculado. Guarda en caché y devuelve el nuevo valor.
 
 > ¡Este es el último recurso! Pero al menos si el nuevo valor es igual al guardado en caché, entonces el número de versión no cambiará, y los dependientes en la línea pueden usar eso para optimizar su propio almacenamiento en caché.
 

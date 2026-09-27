@@ -314,15 +314,15 @@ We ended up with the following algorithm for figuring out when a computed signal
 
 > Each time a plain signal changes it also increments a _global version number_, shared between all plain signals. Each computed signal keeps track of the last global version number they've seen. If the global version hasn't changed since last computation, then recomputation can be skipped early. There couldn't be any changes to any computed value anyway in that case.
 
-1.  If the computed signal is listening to notifications, and hasn't been notified since the last run, then bail out & return the cached value.
+2.  If the computed signal is listening to notifications, and hasn't been notified since the last run, then bail out & return the cached value.
 
 > When a computed signal gets a notification from its dependencies, it flags the cached value as outdated. As described earlier, computed signals don't always get notifications. But when they do we can take advantage of it.
 
-1.  Re-evaluate the dependencies in order. Check their version numbers. If no dependency has changed its version number, even after re-evaluation, then bail out & return the cached value.
+3.  Re-evaluate the dependencies in order. Check their version numbers. If no dependency has changed its version number, even after re-evaluation, then bail out & return the cached value.
 
 > This step is the reason why we gave special love and care to keeping dependencies in their order of use. If a dependency changes, then we don't want to re-evaluate dependencies coming later in the list because it might just be unnecessary work. Who knows, maybe the change in that first dependency causes the next compute function run to drop the latter dependencies.
 
-1.  Run the compute function. If the returned value is different from the cached one, then increment the computed signal's version number. Cache and return the new value.
+4.  Run the compute function. If the returned value is different from the cached one, then increment the computed signal's version number. Cache and return the new value.
 
 > This is the last resort! But at least if the new value is equal to the cached one, then the version number won't change, and the dependents down the line can use that to optimize their own caching.
 
