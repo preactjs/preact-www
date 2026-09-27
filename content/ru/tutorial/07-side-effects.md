@@ -19,15 +19,15 @@ solvable: true
 import { useRef, useEffect } from 'preact/hooks';
 
 export default function App() {
-  const input = useRef();
+	const input = useRef();
 
-  // здесь обратный вызов будет выполняться после рендеринга <App>:
-  useEffect(() => {
-    // доступ к ассоциированному элементу DOM:
-    input.current.focus();
-  }, []);
+	// здесь обратный вызов будет выполняться после рендеринга <App>:
+	useEffect(() => {
+		// доступ к ассоциированному элементу DOM:
+		input.current.focus();
+	}, []);
 
-  return <input ref={input} />;
+	return <input ref={input} />;
 }
 ```
 
@@ -41,18 +41,18 @@ export default function App() {
 import { useEffect, useState } from 'preact/hooks';
 
 export default function App() {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    console.log('<App> только что был впервые представлен');
-  }, []);
+	useEffect(() => {
+		console.log('<App> только что был впервые представлен');
+	}, []);
 
-  useEffect(() => {
-    console.log('count value was changed to: ', count);
-  }, [count]);
-  //  ^ Выполнять это при каждом изменении `count`, и при первом рендере
+	useEffect(() => {
+		console.log('count value was changed to: ', count);
+	}, [count]);
+	//  ^ Выполнять это при каждом изменении `count`, и при первом рендере
 
-  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+	return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
 ```
 
@@ -73,29 +73,29 @@ export default function App() {
 import { Component } from 'preact';
 
 export default class App extends Component {
-  // вызывается после первого рендеринга компонента:
-  componentDidMount() {
-    // получение JSON информации о пользователе, хранение в `state.user`:
-    fetch('/api/user')
-      .then((response) => response.json())
-      .then((user) => {
-        this.setState({ user });
-      });
-  }
+	// вызывается после первого рендеринга компонента:
+	componentDidMount() {
+		// получение JSON информации о пользователе, хранение в `state.user`:
+		fetch('/api/user')
+			.then((response) => response.json())
+			.then((user) => {
+				this.setState({ user });
+			});
+	}
 
-  render(props, state) {
-    const { user } = state;
+	render(props, state) {
+		const { user } = state;
 
-    // если данные ещё не получены, показываем индикатор загрузки:
-    if (!user) return <div>Загрузка...</div>;
+		// если данные ещё не получены, показываем индикатор загрузки:
+		if (!user) return <div>Загрузка...</div>;
 
-    // у нас есть данные! показываем имя пользователя, полученное через API:
-    return (
-      <div>
-        <h2>Привет, {user.username}!</h2>
-      </div>
-    );
-  }
+		// у нас есть данные! показываем имя пользователя, полученное через API:
+		return (
+			<div>
+				<h2>Привет, {user.username}!</h2>
+			</div>
+		);
+	}
 }
 ```
 

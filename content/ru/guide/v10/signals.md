@@ -117,7 +117,10 @@ npm install @preact/signals
 ```jsx
 import { signal } from '@preact/signals';
 
-const todos = signal([{ text: 'Купить продукты' }, { text: 'Выгулять собаку' }]);
+const todos = signal([
+	{ text: 'Купить продукты' },
+	{ text: 'Выгулять собаку' }
+]);
 ```
 
 Чтобы позволить пользователю вводить текст для нового элемента задачи, нам понадобится ещё один сигнал, который мы вскоре подключим к элементу `<input>`. На данный момент мы уже можем использовать этот сигнал для создания функции, которая добавляет элемент задачи в наш список. Помните, мы можем обновить значение сигнала, присвоив его свойству `.value`:
@@ -148,7 +151,10 @@ function addTodo() {
 // --repl
 import { signal } from '@preact/signals';
 
-const todos = signal([{ text: 'Купить продукты' }, { text: 'Выгулять собаку' }]);
+const todos = signal([
+	{ text: 'Купить продукты' },
+	{ text: 'Выгулять собаку' }
+]);
 
 const text = signal('');
 
@@ -176,7 +182,7 @@ console.log(text.value); // Лог: ""
 
 ```jsx
 function removeTodo(todo) {
-	todos.value = todos.value.filter(t => t !== todo);
+	todos.value = todos.value.filter((t) => t !== todo);
 }
 ```
 
@@ -186,14 +192,14 @@ function removeTodo(todo) {
 
 ```jsx
 function TodoList() {
-	const onInput = event => (text.value = event.currentTarget.value);
+	const onInput = (event) => (text.value = event.currentTarget.value);
 
 	return (
 		<>
 			<input value={text.value} onInput={onInput} />
 			<button onClick={addTodo}>Добавить</button>
 			<ul>
-				{todos.value.map(todo => (
+				{todos.value.map((todo) => (
 					<li>
 						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
 					</li>
@@ -222,7 +228,7 @@ const todos = signal([
 // Создаём сигнал, вычисляемый из других сигналов
 const completed = computed(() => {
 	// Когда `todos` изменяется, это автоматически повторяется:
-	return todos.value.filter(todo => todo.completed).length;
+	return todos.value.filter((todo) => todo.completed).length;
 });
 
 // Лог: 1, потому что одна задача помечена как выполненная
@@ -242,7 +248,7 @@ function createAppState() {
 	const todos = signal([]);
 
 	const completed = computed(() => {
-		return todos.value.filter(todo => todo.completed).length;
+		return todos.value.filter((todo) => todo.completed).length;
 	});
 
 	return { todos, completed };
@@ -312,7 +318,7 @@ function Counter() {
 >
 > ```js
 > function useSignal(value) {
->   return useMemo(() => signal(value), []);
+> 	return useMemo(() => signal(value), []);
 > }
 > ```
 
@@ -392,7 +398,6 @@ name.value = 'Джон';
 
 В тех редких случаях, когда вам нужно записать сигнал внутри [`effect(fn)`](#effectfn), но вы не хотите, чтобы эффект повторно запускался при изменении этого сигнала, вы можете использовать `.peek()`, чтобы получить текущее значение сигнала без подписки.
 
-
 ```js
 const delta = signal(0);
 const count = signal(0);
@@ -412,8 +417,6 @@ count.value = 10;
 > :bulb: Совет: Сценарии, в которых вы не хотите подписываться на сигнал, встречаются редко. В большинстве случаев вы хотите, чтобы ваш эффект подписывался на все сигналы. Используйте `.peek()` только тогда, когда вам это действительно нужно.
 
 В качестве альтернативы `.peek()` у нас есть функция `untracked`, которая принимает функцию в качестве аргумента и возвращает результат выполнения этой функции. В `untracked` вы можете ссылаться на любой сигнал с помощью `.value` без создания подписки. Это может быть полезно, когда у вас есть многоразовая функция, которая обращается к `.value`, или вам нужно получить доступ к более чем одному сигналу.
-
-
 
 ```js
 const delta = signal(0);
@@ -577,7 +580,7 @@ const TodoListModel = createModel(() => {
 			items.value = [...items.value, todo];
 		},
 		removeTodo(todo) {
-			items.value = items.value.filter(t => t !== todo);
+			items.value = items.value.filter((t) => t !== todo);
 			todo[Symbol.dispose]();
 		}
 	};
@@ -753,8 +756,8 @@ const surname = signal('Доу');
 
 // Объединяем обе записи в одно обновление
 batch(() => {
-  name.value = 'Джон';
-  surname.value = 'Смит';
+	name.value = 'Джон';
+	surname.value = 'Смит';
 });
 ```
 
@@ -763,14 +766,14 @@ batch(() => {
 Функция `untracked(fn)` может быть использована для доступа к значению нескольких сигналов без подписки на них.
 
 ```js
-const name = signal("Джейн");
-const surname = signal("Доу");
+const name = signal('Джейн');
+const surname = signal('Доу');
 
 effect(() => {
-  untracked(() => {
-	console.log(`${name.value} ${surname.value}`)
-  })
-})
+	untracked(() => {
+		console.log(`${name.value} ${surname.value}`);
+	});
+});
 ```
 
 ### createModel(factory)
@@ -847,9 +850,7 @@ function Counter() {
 	const model = useModel(CounterModel);
 
 	return (
-		<button onClick={() => model.increment()}>
-			Счётчик: {model.count}
-		</button>
+		<button onClick={() => model.increment()}>Счётчик: {model.count}</button>
 	);
 }
 ```
@@ -869,9 +870,7 @@ function Counter({ initialValue }) {
 	const model = useModel(() => new CounterModel(initialValue));
 
 	return (
-		<button onClick={() => model.increment()}>
-			Счётчик: {model.count}
-		</button>
+		<button onClick={() => model.increment()}>Счётчик: {model.count}</button>
 	);
 }
 ```
@@ -900,7 +899,7 @@ function App() {
 
 // Вы также можете использовать функцию для доступа к значению
 function App() {
-	return <Show when={isVisible}>{value => <p>Значение: {value}</p>}</Show>;
+	return <Show when={isVisible}>{(value) => <p>Значение: {value}</p>}</Show>;
 }
 ```
 
@@ -959,9 +958,7 @@ function Component() {
 	});
 
 	return (
-		<div ref={ref}>
-			Реф был прикреплён к элементу {ref.current?.tagName}.
-		</div>
+		<div ref={ref}>Реф был прикреплён к элементу {ref.current?.tagName}.</div>
 	);
 }
 ```

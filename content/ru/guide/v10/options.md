@@ -35,12 +35,12 @@ const oldHook = options.vnode;
 
 // Задаём наш собственный опционный хук
 options.vnode = (vnode) => {
-  console.log("Hey I'm a vnode", vnode);
+	console.log("Hey I'm a vnode", vnode);
 
-  // Вызываем ранее определённый хук, если он был
-  if (oldHook) {
-    oldHook(vnode);
-  }
+	// Вызываем ранее определённый хук, если он был
+	if (oldHook) {
+		oldHook(vnode);
+	}
 };
 ```
 

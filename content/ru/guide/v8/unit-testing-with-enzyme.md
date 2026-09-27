@@ -33,7 +33,7 @@ npm install --save-dev enzyme enzyme-adapter-preact-pure
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-preact-pure';
 
-configure({ adapter: new Adapter });
+configure({ adapter: new Adapter() });
 ```
 
 Рекомендации по использованию Enzyme с различными средствами запуска тестов см. в разделе [Руководства](https://airbnb.io/enzyme/docs/guides.html) документации Enzyme.
@@ -46,26 +46,27 @@ configure({ adapter: new Adapter });
 import { Component, h } from 'preact';
 
 export default class Counter extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      count: props.initialCount,
-    };
-  };
+		this.state = {
+			count: props.initialCount
+		};
+	}
 
-  render() {
-    const increment = () => this.setState(({ count }) => ({
-      count: count + 1,
-    }));
+	render() {
+		const increment = () =>
+			this.setState(({ count }) => ({
+				count: count + 1
+			}));
 
-    return (
-      <div>
-        Текущее значение: {this.state.count}
-        <button onClick={increment}>Увеличить</button>
-      </div>
-    );
-  }
+		return (
+			<div>
+				Текущее значение: {this.state.count}
+				<button onClick={increment}>Увеличить</button>
+			</div>
+		);
+	}
 }
 ```
 
@@ -79,18 +80,18 @@ import { mount } from 'enzyme';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  it('должен отображать начальный счётчик', () => {
-    const wrapper = mount(<Counter initialCount={5} />);
-    expect(wrapper.text()).to.include('Текущее значение: 5');
-  });
+	it('должен отображать начальный счётчик', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
+		expect(wrapper.text()).to.include('Текущее значение: 5');
+	});
 
-  it('значение должно увеличиваться после нажатия кнопки «Увеличить»', () => {
-    const wrapper = mount(<Counter initialCount={5} />);
+	it('значение должно увеличиваться после нажатия кнопки «Увеличить»', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
 
-    wrapper.find('button').simulate('click');
+		wrapper.find('button').simulate('click');
 
-    expect(wrapper.text()).to.include('Текущее значение: 6');
-  });
+		expect(wrapper.text()).to.include('Текущее значение: 6');
+	});
 });
 ```
 
@@ -108,14 +109,14 @@ Enzyme имеет три «режима» рендеринга:
 import { mount, shallow, render } from 'enzyme';
 
 // Отображаем полное дерево компонентов:
-const wrapper = mount(<MyComponent prop="value"/>);
+const wrapper = mount(<MyComponent prop="value" />);
 
 // Отображаем только прямой вывод `MyComponent` (т. е. «имитация» дочерних компонентов
 // для рендеринга только в качестве заполнителей):
-const wrapper = shallow(<MyComponent prop="value"/>);
+const wrapper = shallow(<MyComponent prop="value" />);
 
 // Отображаем полное дерево компонентов в строку HTML и анализируем результат:
-const wrapper = render(<MyComponent prop="value"/>);
+const wrapper = render(<MyComponent prop="value" />);
 ```
 
 - Функция `mount` отображает компонент и всех его потомков так же, как они отображались бы в браузере.
@@ -142,16 +143,16 @@ Enzyme знает, что вызовы `simulate` могут изменить с
 
 ```js
 it('should increment after "Increment" button is clicked', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    const onClick = wrapper.find('button').props().onClick;
+	const wrapper = mount(<Counter initialCount={5} />);
+	const onClick = wrapper.find('button').props().onClick;
 
-    // Вызываем обработчик нажатия кнопки, но на этот раз напрямую, а не через Enzyme API
-    onClick();
+	// Вызываем обработчик нажатия кнопки, но на этот раз напрямую, а не через Enzyme API
+	onClick();
 
-    // Обновляем представление результатов Enzyme
-    wrapper.update();
+	// Обновляем представление результатов Enzyme
+	wrapper.update();
 
-    expect(wrapper.text()).to.include('Текущее значение: 6');
+	expect(wrapper.text()).to.include('Текущее значение: 6');
 });
 ```
 

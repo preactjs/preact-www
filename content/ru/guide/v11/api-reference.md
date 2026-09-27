@@ -27,7 +27,7 @@ description: Информация обо всех экспортируемых �
 import { Component } from 'preact';
 
 class MyComponent extends Component {
-  // (см. ниже)
+	// (см. ниже)
 }
 ```
 
@@ -39,12 +39,12 @@ class MyComponent extends Component {
 import { Component } from 'preact';
 
 class MyComponent extends Component {
-  render(props, state) {
-    // props то же самое, что и this.props
-    // state то же самое, что и this.state
+	render(props, state) {
+		// props то же самое, что и this.props
+		// state то же самое, что и this.state
 
-    return <h1>Привет, {props.name}!</h1>;
-  }
+		return <h1>Привет, {props.name}!</h1>;
+	}
 }
 ```
 
@@ -142,8 +142,8 @@ h('div', { id: 'foo' }, h('span', null, 'Привет!'));
 import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>У меня {count} дочерних элементов</div>;
+	const count = toChildArray(props.children).length;
+	return <div>У меня {count} дочерних элементов</div>;
 }
 
 // props.children это "bar"
@@ -151,11 +151,11 @@ render(<Foo>bar</Foo>, container);
 
 // props.children это [<p>A</p>, <p>B</p>]
 render(
-  <Foo>
-    <p>A</p>
-    <p>B</p>
-  </Foo>,
-  container
+	<Foo>
+		<p>A</p>
+		<p>B</p>
+	</Foo>,
+	container
 );
 ```
 
@@ -168,13 +168,13 @@ render(
 
 ```jsx
 function Linkout(props) {
-  // добавляем target="_blank" для ссылки:
-  return cloneElement(props.children, { target: '_blank' });
+	// добавляем target="_blank" для ссылки:
+	return cloneElement(props.children, { target: '_blank' });
 }
 render(
-  <Linkout>
-    <a href='/'>главная</a>
-  </Linkout>
+	<Linkout>
+		<a href="/">главная</a>
+	</Linkout>
 );
 // <a href="/" target="_blank">главная</a>
 ```
@@ -204,9 +204,9 @@ const MyContext = createContext(defaultValue);
 import { createRef, Component } from 'preact';
 
 class MyComponent extends Component {
-    inputRef = createRef(null);
+	inputRef = createRef(null);
 
-    // ...
+	// ...
 }
 ```
 
@@ -218,12 +218,12 @@ class MyComponent extends Component {
 
 ```html
 <html>
-  <body>
-    <!-- Модальные окна должны рендериться здесь -->
-    <div id="modal-root"></div>
-    <!-- App рендерится здесь -->
-    <div id="app"></div>
-  </body>
+	<body>
+		<!-- Модальные окна должны рендериться здесь -->
+		<div id="modal-root"></div>
+		<!-- App рендерится здесь -->
+		<div id="app"></div>
+	</body>
 </html>
 ```
 
@@ -232,13 +232,13 @@ import { createPortal } from 'preact/compat';
 import { MyModal } from './MyModal.jsx';
 
 function App() {
-  const container = document.getElementById('modal-root');
-  return (
-    <div>
-      <h1>My App</h1>
-      {createPortal(<MyModal />, container)}
-    </div>
-  );
+	const container = document.getElementById('modal-root');
+	return (
+		<div>
+			<h1>My App</h1>
+			{createPortal(<MyModal />, container)}
+		</div>
+	);
 }
 ```
 
@@ -252,12 +252,12 @@ function App() {
 import { Fragment, render } from 'preact';
 
 render(
-  <Fragment>
-    <div>A</div>
-    <div>B</div>
-    <div>C</div>
-  </Fragment>,
-  document.getElementById('container')
+	<Fragment>
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</Fragment>,
+	document.getElementById('container')
 );
 // Выводит:
 // <div id="container>
@@ -266,7 +266,6 @@ render(
 //   <div>C</div>
 // </div>
 ```
-
 
 ### isValidElement
 
@@ -309,14 +308,8 @@ isValidElement(null); // false
 
 ```jsx
 function List(props) {
-  const children = Children.map(props.children, child => (
-    <li>{child}</li>
-  ));
-  return (
-    <ul>
-      {children}
-    </ul>
-  );
+	const children = Children.map(props.children, (child) => <li>{child}</li>);
+	return <ul>{children}</ul>;
 }
 ```
 
@@ -330,15 +323,9 @@ function List(props) {
 
 ```jsx
 function List(props) {
-  const children = [];
-  Children.forEach(props.children, child =>
-    children.push(<li>{child}</li>)
-  );
-  return (
-    <ul>
-      {children}
-    </ul>
-  );
+	const children = [];
+	Children.forEach(props.children, (child) => children.push(<li>{child}</li>));
+	return <ul>{children}</ul>;
 }
 ```
 
@@ -352,8 +339,8 @@ function List(props) {
 
 ```jsx
 function MyComponent(props) {
-  const children = Children.count(props.children);
-  return <div>У меня {children.length} дочерних элементов</div>;
+	const children = Children.count(props.children);
+	return <div>У меня {children.length} дочерних элементов</div>;
 }
 ```
 
@@ -367,12 +354,8 @@ function MyComponent(props) {
 
 ```jsx
 function List(props) {
-  const singleChild = Children.only(props.children);
-  return (
-    <ul>
-      {singleChild}
-    </ul>
-  );
+	const singleChild = Children.only(props.children);
+	return <ul>{singleChild}</ul>;
 }
 ```
 
@@ -384,8 +367,8 @@ function List(props) {
 
 ```jsx
 function MyComponent(props) {
-  const children = Children.toArray(props.children);
-  return <div>I have {children.length} children</div>;
+	const children = Children.toArray(props.children);
+	return <div>I have {children.length} children</div>;
 }
 ```
 
@@ -400,10 +383,10 @@ import { render } from 'preact';
 import { PureComponent } from 'preact/compat';
 
 class Foo extends PureComponent {
-  render(props) {
-    console.log('render');
-    return <div />;
-  }
+	render(props) {
+		console.log('render');
+		return <div />;
+	}
 }
 
 const dom = document.getElementById('root');
@@ -424,7 +407,7 @@ render(<Foo value="3" />, dom);
 import { memo } from 'preact/compat';
 
 function MyComponent(props) {
-  return <div>Hello {props.name}</div>;
+	return <div>Hello {props.name}</div>;
 }
 
 // Использование с функцией сравнения по умолчанию
@@ -432,8 +415,8 @@ const Memoed = memo(MyComponent);
 
 // Использование с пользовательской функцией сравнения
 const Memoed2 = memo(MyComponent, (prevProps, nextProps) => {
-  // Повторный рендеринг только при изменении `name`
-  return prevProps.name === nextProps.name;
+	// Повторный рендеринг только при изменении `name`
+	return prevProps.name === nextProps.name;
 });
 ```
 
@@ -448,7 +431,7 @@ import { createRef, render } from 'preact';
 import { forwardRef } from 'preact/compat';
 
 const MyComponent = forwardRef((props, ref) => {
-  return <div ref={ref}>Hello world</div>;
+	return <div ref={ref}>Hello world</div>;
 });
 
 // Использование: `ref` будет содержать ссылку на внутренний `div` вместо
@@ -469,10 +452,10 @@ render(<MyComponent ref={ref} />, dom);
 import { StrictMode } from 'preact/compat';
 
 render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
-    document.getElementById('root')
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	document.getElementById('root')
 );
 ```
 
@@ -486,11 +469,11 @@ render(
 import { Suspense } from 'preact/compat';
 
 function MyComponent() {
-    return (
-        <Suspense fallback={<div>Загрузка...</div>}>
-            <MyLazyComponent />
-        </Suspense>
-    );
+	return (
+		<Suspense fallback={<div>Загрузка...</div>}>
+			<MyLazyComponent />
+		</Suspense>
+	);
 }
 ```
 
@@ -521,11 +504,11 @@ import { resetPropWarnings } from 'preact/debug';
 import PropTypes from 'prop-types';
 
 function Foo(props) {
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 
 Foo.propTypes = {
-  title: PropTypes.string.isRequired
+	title: PropTypes.string.isRequired
 };
 
 render(<Foo />, document.getElementById('app'));
@@ -536,7 +519,6 @@ expect(console.error).toHaveBeenCalledOnce();
 resetPropWarnings();
 
 //...
-
 ```
 
 ### getCurrentVNode
@@ -550,10 +532,10 @@ import { render } from 'preact';
 import { getCurrentVNode } from 'preact/debug';
 
 function MyComponent() {
-  const currentVNode = getCurrentVNode();
-  console.log(currentVNode); // Логирует: Object { type: MyComponent(), props: {}, key: undefined, ref: undefined, ... }
+	const currentVNode = getCurrentVNode();
+	console.log(currentVNode); // Логирует: Object { type: MyComponent(), props: {}, key: undefined, ref: undefined, ... }
 
-  return <h1>Привет, мир!</h1>
+	return <h1>Привет, мир!</h1>;
 }
 
 render(<MyComponent />, document.getElementById('app'));
@@ -586,18 +568,18 @@ import { getOwnerStack } from 'preact/debug';
 
 const oldVNode = options.diffed;
 options.diffed = (vnode) => {
-  if (vnode.type === 'h1') {
-    console.log(getOwnerStack(vnode));
-    // Логирует:
-    //
-    // в h1 (в /path/to/file.jsx:17)
-    // в MyComponent (в /path/to/file.jsx:20)
-  }
-  if (oldVNode) oldVNode(vnode);
+	if (vnode.type === 'h1') {
+		console.log(getOwnerStack(vnode));
+		// Логирует:
+		//
+		// в h1 (в /path/to/file.jsx:17)
+		// в MyComponent (в /path/to/file.jsx:20)
+	}
+	if (oldVNode) oldVNode(vnode);
 };
 
 function MyComponent() {
-  return <h1>Привет, мир!</h1>;
+	return <h1>Привет, мир!</h1>;
 }
 
 render(<MyComponent />, document.getElementById('app'));

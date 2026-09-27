@@ -34,15 +34,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      Текущее значение: {count}
-      <button onClick={increment}>Увеличить</button>
-    </div>
-  );
+	return (
+		<div>
+			Текущее значение: {count}
+			<button onClick={increment}>Увеличить</button>
+		</div>
+	);
 }
 ```
 
@@ -56,21 +56,21 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/preact';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  test('должно отображаться начальное значение', () => {
-    const { container } = render(<Counter initialCount={5} />);
-    expect(container.textContent).toMatch('Текущее значение: 5');
-  });
+	test('должно отображаться начальное значение', () => {
+		const { container } = render(<Counter initialCount={5} />);
+		expect(container.textContent).toMatch('Текущее значение: 5');
+	});
 
-  test('значение должно увеличиваться после нажатия кнопки «Увеличить»', async () => {
-    render(<Counter initialCount={5} />);
+	test('значение должно увеличиваться после нажатия кнопки «Увеличить»', async () => {
+		render(<Counter initialCount={5} />);
 
-    fireEvent.click(screen.getByText('Увеличить'));
-    await waitFor(() => {
-      // .toBeInTheDocument() это утверждение, пришедшее из jest-dom.
-      // В противном случае вы можете использовать .toBeDefined().
-      expect(screen.getByText('Текущее значение: 6')).toBeInTheDocument();
-    });
-  });
+		fireEvent.click(screen.getByText('Увеличить'));
+		await waitFor(() => {
+			// .toBeInTheDocument() это утверждение, пришедшее из jest-dom.
+			// В противном случае вы можете использовать .toBeDefined().
+			expect(screen.getByText('Текущее значение: 6')).toBeInTheDocument();
+		});
+	});
 });
 ```
 
@@ -118,13 +118,13 @@ test('should increment counter", async () => {
 import { render, fireEvent, screen } from '@testing-library/preact';
 
 test('должна быть возможность войти в систему', async () => {
-  render(<MyLoginForm />);
+	render(<MyLoginForm />);
 
-  // Находим ввод, используя роль текстового поля и доступное имя, которое стабильно независимо от того, используете ли вы элемент метки, aria-label или aria-labeledby
-  const field = await screen.findByRole('textbox', { name: 'Войти' });
+	// Находим ввод, используя роль текстового поля и доступное имя, которое стабильно независимо от того, используете ли вы элемент метки, aria-label или aria-labeledby
+	const field = await screen.findByRole('textbox', { name: 'Войти' });
 
-  // ввод в field
-  fireEvent.change(field, { value: 'user123' });
+	// ввод в field
+	fireEvent.change(field, { value: 'user123' });
 });
 ```
 
@@ -132,11 +132,11 @@ test('должна быть возможность войти в систему'
 
 ```jsx
 test('должна быть возможность войти в систему', async () => {
-  render(<MyLoginForm />);
+	render(<MyLoginForm />);
 
-  // Что, если мы переведем приложение на другой язык или изменим текст? Тест не пройдёт.
-  const field = await screen.findByRole('textbox', { name: 'Войти' });
-  fireEvent.change(field, { value: 'user123' });
+	// Что, если мы переведем приложение на другой язык или изменим текст? Тест не пройдёт.
+	const field = await screen.findByRole('textbox', { name: 'Войти' });
+	fireEvent.change(field, { value: 'user123' });
 });
 ```
 
@@ -144,15 +144,15 @@ test('должна быть возможность войти в систему'
 
 ```jsx
 test('должна быть возможность войти в систему', async () => {
-  render(<MyLoginForm />);
+	render(<MyLoginForm />);
 
-  // Мы можем использовать нашу функцию перевода непосредственно в тесте.
-  const label = translate('signinpage.label', 'ru-RU');
-  // Сфотографируйте результат, чтобы мы знали, что происходит.
-  expect(label).toMatchInlineSnapshot(`Войти`);
+	// Мы можем использовать нашу функцию перевода непосредственно в тесте.
+	const label = translate('signinpage.label', 'ru-RU');
+	// Сфотографируйте результат, чтобы мы знали, что происходит.
+	expect(label).toMatchInlineSnapshot(`Войти`);
 
-  const field = await screen.findByRole('textbox', { name: label });
-  fireEvent.change(field, { value: 'user123' });
+	const field = await screen.findByRole('textbox', { name: label });
+	fireEvent.change(field, { value: 'user123' });
 });
 ```
 
@@ -162,11 +162,11 @@ test('должна быть возможность войти в систему'
 
 ```jsx
 function Foo({ onClick }) {
-  return (
-    <button onClick={onClick} data-testid='foo'>
-      нажмите здесь
-    </button>
-  );
+	return (
+		<button onClick={onClick} data-testid="foo">
+			нажмите здесь
+		</button>
+	);
 }
 
 // Работает, только если текст остается прежним
@@ -200,11 +200,11 @@ import { FooContext } from './foo';
 const history = createMemoryHistory();
 
 export function render(vnode) {
-  return originalRender(
-    <FooContext.Provider value='foo'>
-      <Router history={history}>{vnode}</Router>
-    </FooContext.Provider>
-  );
+	return originalRender(
+		<FooContext.Provider value="foo">
+			<Router history={history}>{vnode}</Router>
+		</FooContext.Provider>
+	);
 }
 
 // Обычное использование. Смотри, мам, никаких провайдеров!
@@ -220,9 +220,9 @@ render(<MyComponent />);
 import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const increment = useCallback(() => setCount((c) => c + 1), []);
-  return { count, increment };
+	const [count, setCount] = useState(0);
+	const increment = useCallback(() => setCount((c) => c + 1), []);
+	return { count, increment };
 };
 ```
 
@@ -233,18 +233,18 @@ import { renderHook, act } from '@testing-library/preact';
 import useCounter from './useCounter';
 
 test('счётчик нужно увеличивать', () => {
-  const { result } = renderHook(() => useCounter());
+	const { result } = renderHook(() => useCounter());
 
-  // Изначально счётчик должен быть 0
-  expect(result.current.count).toBe(0);
+	// Изначально счётчик должен быть 0
+	expect(result.current.count).toBe(0);
 
-  // Давайте обновим счётчик, вызвав замыкание хука
-  act(() => {
-    result.current.increment();
-  });
+	// Давайте обновим счётчик, вызвав замыкание хука
+	act(() => {
+		result.current.increment();
+	});
 
-  // Убеждаемся, что возвращаемое значение хука отражает новое состояние
-  expect(result.current.count).toBe(1);
+	// Убеждаемся, что возвращаемое значение хука отражает новое состояние
+	expect(result.current.count).toBe(1);
 });
 ```
 

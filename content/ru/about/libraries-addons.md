@@ -58,7 +58,7 @@ description: Коллекция библиотек и дополнений, ко
 ### Тестирование
 
 - :microscope: **[preact-jsx-chai](https://github.com/developit/preact-jsx-chai)**: Тестирование утверждений JSX _(без DOM, прямо в Node)_.
-- :white_check_mark: **[unexpected-preact](https://github.com/bruderstein/unexpected-preact)**: JSX утверждения, события, снимки в Jest *(DOM, работает под Node jsdom или «из коробки» в Jest)* — [docs](https://bruderstein.github.io/unexpected-preact/)
+- :white_check_mark: **[unexpected-preact](https://github.com/bruderstein/unexpected-preact)**: JSX утверждения, события, снимки в Jest _(DOM, работает под Node jsdom или «из коробки» в Jest)_ — [docs](https://bruderstein.github.io/unexpected-preact/)
 
 ## Утилиты
 

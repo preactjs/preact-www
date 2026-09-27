@@ -47,9 +47,9 @@ render(<App />, document.getElementById('root'));
 ```jsx
 // Должен быть первый импорт
 if (process.env.NODE_ENV === 'development') {
-  // Здесь необходимо использовать require, так как на верхнем уровне
-  // разрешены только операторы импорта
-  require('preact/debug');
+	// Здесь необходимо использовать require, так как на верхнем уровне
+	// разрешены только операторы импорта
+	require('preact/debug');
 }
 
 import { render } from 'preact';
@@ -94,7 +94,7 @@ Preact будет выдавать эту ошибку, если вместо к
 ```jsx
 // app.js
 export default function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js: Неверно, поскольку в файле `app.js` нет именованного экспорта
@@ -107,7 +107,7 @@ render(<App />, dom);
 ```jsx
 // app.js
 export function App() {
-  return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 // index.js
@@ -180,8 +180,8 @@ const [value, setValue] = useState(0);
 
 // Верно
 function Foo() {
-  const [value, setValue] = useState(0);
-  return <button onClick={() => setValue(value + 1)}>{value}</button>;
+	const [value, setValue] = useState(0);
+	return <button onClick={() => setValue(value + 1)}>{value}</button>;
 }
 ```
 
@@ -202,7 +202,9 @@ function Foo() {
 ```jsx
 // Оба элемента будут иметь одинаковый ключ "A"
 <div>
-  {['A', 'A'].map(char => <p key={char}>{char}</p>)}
+	{['A', 'A'].map((char) => (
+		<p key={char}>{char}</p>
+	))}
 </div>
 ```
 
@@ -210,15 +212,19 @@ function Foo() {
 
 ```jsx
 const persons = [
-  { name: 'Джон', age: 22 },
-  { name: 'Сара', age: 24 },
+	{ name: 'Джон', age: 22 },
+	{ name: 'Сара', age: 24 }
 ];
 
 // Где-то позже в вашем компоненте
 <div>
-  {persons.map(({ name, age }) => {
-    return <p key={name}>{name}, Возраст: {age}</p>;
-  })}
+	{persons.map(({ name, age }) => {
+		return (
+			<p key={name}>
+				{name}, Возраст: {age}
+			</p>
+		);
+	})}
 </div>;
 ```
 

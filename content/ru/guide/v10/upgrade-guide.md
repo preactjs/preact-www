@@ -104,7 +104,7 @@ _Примечание: Это изменение не затрагивает `pr
 ```jsx
 // Существующая разметка:
 <body>
-  <div>привет</div>
+	<div>привет</div>
 </body>;
 
 render(<p>foo</p>, document.body);
@@ -112,9 +112,9 @@ render(<p>bar</p>, document.body);
 
 // Preact 8.x output:
 <body>
-  <div>привет</div>
-  <p>foo</p>
-  <p>bar</p>
+	<div>привет</div>
+	<p>foo</p>
+	<p>bar</p>
 </body>;
 ```
 
@@ -123,7 +123,7 @@ render(<p>bar</p>, document.body);
 ```jsx
 // Существующая разметка:
 <body>
-  <div>привет</div>
+	<div>привет</div>
 </body>;
 
 let element;
@@ -132,8 +132,8 @@ element = render(<p>bar</p>, document.body, element);
 
 // Preact 8.x output:
 <body>
-  <div>привет</div>
-  <p>bar</p>
+	<div>привет</div>
+	<p>bar</p>
 </body>;
 ```
 
@@ -142,7 +142,7 @@ element = render(<p>bar</p>, document.body, element);
 ```jsx
 // Существующая разметка:
 <body>
-  <div>привет</div>
+	<div>привет</div>
 </body>;
 
 render(<p>foo</p>, document.body);
@@ -150,8 +150,8 @@ render(<p>bar</p>, document.body);
 
 // Вывод Preact X:
 <body>
-  <p>bar</p>
-  <div>привет</div>
+	<p>bar</p>
+	<div>привет</div>
 </body>;
 ```
 
@@ -164,17 +164,17 @@ render(<p>bar</p>, document.body);
 ```jsx
 // Preact 8.x
 function Foo(props) {
-  // `.length` — это метод массива. В Preact X, когда `props.children` не является массивом, эта строка выдаст исключение
-  const count = props.children.length;
-  return <div>У меня {count} дочерних элементов</div>;
+	// `.length` — это метод массива. В Preact X, когда `props.children` не является массивом, эта строка выдаст исключение
+	const count = props.children.length;
+	return <div>У меня {count} дочерних элементов</div>;
 }
 
 // Preact X
 import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>У меня {count} дочерних элементов</div>;
+	const count = toChildArray(props.children).length;
+	return <div>У меня {count} дочерних элементов</div>;
 }
 ```
 
@@ -190,8 +190,8 @@ this.setState({ counter: this.state.counter + 1 });
 
 // Preact X
 this.setState((prevState) => {
-  // В качестве альтернативы верните здесь `null`, чтобы прервать обновление состояния
-  return { counter: prevState.counter + 1 };
+	// В качестве альтернативы верните здесь `null`, чтобы прервать обновление состояния
+	return { counter: prevState.counter + 1 };
 });
 ```
 
@@ -200,9 +200,9 @@ this.setState((prevState) => {
 Если у `vnode` установлено свойство `dangerousSetInnerHTML`, Preact пропустит сравнение дочерних элементов `vnode`.
 
 ```jsx
-<div dangerouslySetInnerHTML='foo'>
-  <span>Меня пропустят</span>
-  <p>И меня тоже</p>
+<div dangerouslySetInnerHTML="foo">
+	<span>Меня пропустят</span>
+	<p>И меня тоже</p>
 </div>
 ```
 

@@ -59,15 +59,15 @@ Preact с самого начала создавался с учетом ES-мо
 ```jsx
 // Работает как в Preact, так и в React
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render() {
-    return (
-      <div>
-        Имя: {this.props.name}, Возраст: {this.state.age}
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				Имя: {this.props.name}, Возраст: {this.state.age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -76,15 +76,15 @@ class Foo extends Component {
 ```jsx
 // Работает только в Preact
 class Foo extends Component {
-  state = { age: 1 };
+	state = { age: 1 };
 
-  render({ name }, { age }) {
-    return (
-      <div>
-        Имя: {name}, Возраст: {age}
-      </div>
-    );
-  }
+	render({ name }, { age }) {
+		return (
+			<div>
+				Имя: {name}, Возраст: {age}
+			</div>
+		);
+	}
 }
 ```
 
@@ -144,8 +144,8 @@ JSX — это расширение синтаксиса JavaScript, котор�
 **Исходник:** (JSX)
 
 ```jsx
-<a href='/'>
-  <span>Главная</span>
+<a href="/">
+	<span>Главная</span>
 </a>
 ```
 
@@ -156,7 +156,11 @@ JSX — это расширение синтаксиса JavaScript, котор�
 h('a', { href: '/' }, h('span', null, 'Главная'));
 
 // React:
-React.createElement('a', { href: '/' }, React.createElement('span', null, 'Главная'));
+React.createElement(
+	'a',
+	{ href: '/' },
+	React.createElement('span', null, 'Главная')
+);
 ```
 
 В конечном итоге, если посмотреть на сгенерированный выходной код приложения Preact, то становится ясно, что более короткая «JSX pragma» без переноса имён легче читается и более пригодна для оптимизации, например, минификации. В большинстве приложений Preact вы встретите `h()`, хотя на самом деле не имеет значения, какое имя вы используете, поскольку также предусмотрен экспорт псевдонима `createElement`.

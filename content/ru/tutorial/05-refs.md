@@ -54,17 +54,17 @@ input.current.focus(); // фокусировка ввода
 import { createRef, Component } from 'preact';
 
 export default class App extends Component {
-  input = createRef();
+	input = createRef();
 
-  // эта функция запускается после рендеринга <App>
-  componentDidMount() {
-    // доступ к ассоциированному элементу DOM:
-    this.input.current.focus();
-  }
+	// эта функция запускается после рендеринга <App>
+	componentDidMount() {
+		// доступ к ассоциированному элементу DOM:
+		this.input.current.focus();
+	}
 
-  render() {
-    return <input ref={this.input} />;
-  }
+	render() {
+		return <input ref={this.input} />;
+	}
 }
 ```
 
@@ -74,16 +74,16 @@ export default class App extends Component {
 import { useRef, useEffect } from 'preact/hooks';
 
 export default function App() {
-  // создание или получение ref
-  const input = useRef();
+	// создание или получение ref
+	const input = useRef();
 
-  // здесь обратный вызов будет выполняться после рендеринга <App>:
-  useEffect(() => {
-    // доступ к ассоциированному элементу DOM:
-    input.current.focus();
-  }, []);
+	// здесь обратный вызов будет выполняться после рендеринга <App>:
+	useEffect(() => {
+		// доступ к ассоциированному элементу DOM:
+		input.current.focus();
+	}, []);
 
-  return <input ref={input} />;
+	return <input ref={input} />;
 }
 ```
 

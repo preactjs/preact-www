@@ -44,7 +44,10 @@ import preact from 'preact';
 <script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.min.js"></script>
 
 <!-- Чтобы загрузить Preact как JS-модуль: -->
-<script src="https://cdn.jsdelivr.net/npm/preact/dist/preact.mjs" type="module"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/preact/dist/preact.mjs"
+	type="module"
+></script>
 ```
 
 ### Глобальная директива
@@ -52,7 +55,8 @@ import preact from 'preact';
 Вместо того чтобы объявлять директиву `@jsx` в своем коде, лучше всего настроить её глобально в файле `.babelrc`.
 
 **Именованный импорт:**
->**Для Babel 5 и ниже:**
+
+> **Для Babel 5 и ниже:**
 >
 > ```json
 > { "jsxPragma": "h" }
@@ -62,9 +66,7 @@ import preact from 'preact';
 >
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 > }
 > ```
 >
@@ -72,14 +74,13 @@ import preact from 'preact';
 >
 > ```json
 > {
->   "plugins": [
->     ["@babel/plugin-transform-react-jsx", { "pragma":"h" }]
->   ]
+> 	"plugins": [["@babel/plugin-transform-react-jsx", { "pragma": "h" }]]
 > }
 > ```
 
 **По умолчанию:**
->**Для Babel 5 и ниже:**
+
+> **Для Babel 5 и ниже:**
 >
 > ```json
 > { "jsxPragma": "preact.h" }
@@ -89,9 +90,7 @@ import preact from 'preact';
 >
 > ```json
 > {
->   "plugins": [
->     ["transform-react-jsx", { "pragma":"preact.h" }]
->   ]
+> 	"plugins": [["transform-react-jsx", { "pragma": "preact.h" }]]
 > }
 > ```
 >
@@ -99,14 +98,11 @@ import preact from 'preact';
 >
 > ```json
 > {
->   "plugins": [
->     ["@babel/plugin-transform-react-jsx", { "pragma":"preact.h" }]
->   ]
+> 	"plugins": [["@babel/plugin-transform-react-jsx", { "pragma": "preact.h" }]]
 > }
 > ```
 
 ---
-
 
 ## Рендеринг JSX
 
@@ -117,21 +113,20 @@ import preact from 'preact';
 ```js
 import { h, render } from 'preact';
 
-render((
+render(
 	<div id="foo">
 		<span>Hello, world!</span>
-		<button onClick={ e => alert("hi!") }>Нажми меня</button>
-	</div>
-), document.body);
+		<button onClick={(e) => alert('hi!')}>Нажми меня</button>
+	</div>,
+	document.body
+);
 ```
 
 Это должно показаться довольно простым, если вы использовали [hyperscript] или одного из его [многочисленных друзей](https://github.com/developit/vhtml).
 
 Однако рендерить hyperscript с помощью виртуального DOM бессмысленно. Мы хотим рендерить компоненты и обновлять их при изменении данных — вот где сила диффинга виртуального DOM. :star2:
 
-
 ---
-
 
 ## Компоненты
 
@@ -147,7 +142,7 @@ import { h, render, Component } from 'preact';
 class Clock extends Component {
 	render() {
 		let time = new Date().toLocaleTimeString();
-		return <span>{ time }</span>;
+		return <span>{time}</span>;
 	}
 }
 
@@ -155,32 +150,27 @@ class Clock extends Component {
 render(<Clock />, document.body);
 ```
 
-
 Это замечательно. При запуске проекта получается следующая структура HTML DOM:
 
 ```html
 <span>10:28:57 PM</span>
 ```
 
-
 ---
-
 
 ## Жизненный цикл компонента
 
 Для того чтобы время на часах обновлялось каждую секунду, нам нужно знать, когда `<Clock>` будет подключен к DOM. _Если вы использовали пользовательские элементы HTML5, это похоже на методы жизненного цикла `attachedCallback` и `detachedCallback`._ Preact вызывает следующие методы жизненного цикла, если они определены для Компонента:
 
-| Метод            | Когда вызывается                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | до того, как компонент будет установлен в DOM     |
-| `componentDidMount`         | после того, как компонент будет установлен в DOM      |
-| `componentWillUnmount`      | до удаления из DOM                    |
+| Метод                       | Когда вызывается                                              |
+| --------------------------- | ------------------------------------------------------------- |
+| `componentWillMount`        | до того, как компонент будет установлен в DOM                 |
+| `componentDidMount`         | после того, как компонент будет установлен в DOM              |
+| `componentWillUnmount`      | до удаления из DOM                                            |
 | `componentWillReceiveProps` | до того, как новые параметры будут приняты                    |
 | `shouldComponentUpdate`     | перед `render()`. Верните `false`, чтобы пропустить рендеринг |
-| `componentWillUpdate`       | перед `render()`.                                |
-| `componentDidUpdate`        | после `render()`                                 |
-
-
+| `componentWillUpdate`       | перед `render()`.                                             |
+| `componentDidUpdate`        | после `render()`                                              |
 
 Итак, мы хотим, чтобы 1-секундный таймер запускался, как только компонент будет добавлен в DOM, и останавливался, если он будет удалён. Мы создадим таймер и сохраним ссылку на него в `componentDidMount`, а остановим таймер в `componentWillUnmount`. При каждом тике таймера мы будем обновлять объект `state` компонента с новым значением времени. Это автоматически приведет к перерисовке компонента.
 
@@ -208,7 +198,7 @@ class Clock extends Component {
 
 	render(props, state) {
 		let time = new Date(state.time).toLocaleTimeString();
-		return <span>{ time }</span>;
+		return <span>{time}</span>;
 	}
 }
 
@@ -216,12 +206,9 @@ class Clock extends Component {
 render(<Clock />, document.body);
 ```
 
-
 ---
 
-
 Теперь у нас есть [тикающие часы](http://jsfiddle.net/developit/u9m5x0L7/embedded/result,js/)!
-
 
 [preact-boilerplate]: https://github.com/developit/preact-boilerplate
 [hyperscript]: https://github.com/dominictarr/hyperscript

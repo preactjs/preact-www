@@ -18,10 +18,10 @@ title: Связанное состояние
 
 ```js
 class Foo extends Component {
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={this.updateText} />;
 	}
 }
@@ -30,7 +30,6 @@ class Foo extends Component {
 Хотя это позволяет добиться гораздо лучшей производительности во время выполнения, это всё ещё много лишнего кода для соединения состояния с пользовательским интерфейсом.
 
 > Другое решение — связывать методы компонентов _декларативно_, используя декораторы ES7, такие как `@bind` из пакета [decko](https://github.com/developit/decko):
-
 
 ## Связанное состояние на помощь
 
@@ -46,14 +45,13 @@ class Foo extends Component {
 import linkState from 'linkstate';
 
 class Foo extends Component {
-	render({ }, { text }) {
+	render({}, { text }) {
 		return <input value={text} onInput={linkState(this, 'text')} />;
 	}
 }
 ```
 
 Эта форма записи лаконична, легка для восприятия и эффективна. Она обрабатывает состояние связывания с любым типом входа. Необязательный третий аргумент `'path'` может быть использован для явного указания пути к новому значению состояния с точечной нотацией для более настраиваемых привязок (например, привязка к значению стороннего компонента).
-
 
 ## Пользовательские маршруты событий
 
@@ -68,13 +66,12 @@ class Foo extends Component {
 handler = linkState(this, 'thing', 'foo.bar');
 
 // ...функционально эквивалентен:
-handler = event => {
-  this.setState({
-    thing: event.foo.bar
-  });
-}
+handler = (event) => {
+	this.setState({
+		thing: event.foo.bar
+	});
+};
 ```
-
 
 ### Иллюстрация: Сгруппированные радиокнопки
 
@@ -84,23 +81,28 @@ handler = event => {
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { yes, no }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={yes}
-          onChange={linkState(this, 'yes')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={no}
-          onChange={linkState(this, 'no')}
-        />
-      </div>
-    );
-  }
+	render({}, { yes, no }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={yes}
+					onChange={linkState(this, 'yes')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={no}
+					onChange={linkState(this, 'no')}
+				/>
+			</div>
+		);
+	}
 }
 ```
-
 
 Здесь поможет третий аргумент `linkState`. Он позволяет указать путь к объекту события, который будет использоваться в качестве связанного значения. Обращаясь к предыдущему примеру, давайте явно укажем linkState получать значение своего нового состояния из свойства `value` в `event.target`:
 
@@ -108,20 +110,26 @@ class Foo extends Component {
 import linkState from 'linkstate';
 
 class Foo extends Component {
-  render({ }, { answer }) {
-    return (
-      <div>
-        <input type="radio" name="demo"
-          value="yes" checked={answer == 'yes'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-        <input type="radio" name="demo"
-          value="no" checked={answer == 'no'}
-          onChange={linkState(this, 'answer', 'target.value')}
-        />
-      </div>
-    );
-  }
+	render({}, { answer }) {
+		return (
+			<div>
+				<input
+					type="radio"
+					name="demo"
+					value="yes"
+					checked={answer == 'yes'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+				<input
+					type="radio"
+					name="demo"
+					value="no"
+					checked={answer == 'no'}
+					onChange={linkState(this, 'answer', 'target.value')}
+				/>
+			</div>
+		);
+	}
 }
 ```
 

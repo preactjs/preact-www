@@ -17,19 +17,19 @@ solvable: true
 
 ```jsx
 class MyButton extends Component {
-  state = { clicked: false };
+	state = { clicked: false };
 
-  handleClick = () => {
-    this.setState({ clicked: true });
-  };
+	handleClick = () => {
+		this.setState({ clicked: true });
+	};
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.clicked ? 'Нажата' : 'Кликов пока нет'}
-      </button>
-    );
-  }
+	render() {
+		return (
+			<button onClick={this.handleClick}>
+				{this.state.clicked ? 'Нажата' : 'Кликов пока нет'}
+			</button>
+		);
+	}
 }
 ```
 
@@ -47,9 +47,11 @@ class MyButton extends Component {
 >
 > ```js
 > function User() {
->   const [name, setName] = useState('Bob'); // слот 0
->   const [age, setAge] = useState(42); // слот 1
->   const [online, setOnline] = useState(true); // слот 2
+>   <!-- prettier-ignore-start -->
+> 	const [name, setName] = useState('Bob');    // слот 0
+> 	const [age, setAge] = useState(42);         // слот 1
+> 	const [online, setOnline] = useState(true); // слот 2
+>   <!-- prettier-ignore-end -->
 > }
 > ```
 >
@@ -61,13 +63,17 @@ class MyButton extends Component {
 import { useState } from 'preact/hooks';
 
 const MyButton = () => {
-  const [clicked, setClicked] = useState(false);
+	const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setClicked(true);
-  };
+	const handleClick = () => {
+		setClicked(true);
+	};
 
-  return <button onClick={handleClick}>{clicked ? 'Нажата' : 'Кликов пока нет'}</button>;
+	return (
+		<button onClick={handleClick}>
+			{clicked ? 'Нажата' : 'Кликов пока нет'}
+		</button>
+	);
 };
 ```
 

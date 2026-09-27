@@ -25,23 +25,23 @@ JavaScript — гибкий интерпретируемый язык, а зна
 import { Component } from 'preact';
 
 class ErrorBoundary extends Component {
-  state = { error: null };
+	state = { error: null };
 
-  static getDerivedStateFromError(error) {
-    return { error: error.message };
-  }
+	static getDerivedStateFromError(error) {
+		return { error: error.message };
+	}
 
-  componentDidCatch(error) {
-    console.error(error);
-    this.setState({ error: error.message });
-  }
+	componentDidCatch(error) {
+		console.error(error);
+		this.setState({ error: error.message });
+	}
 
-  render() {
-    if (this.state.error) {
-      return <p>О нет! Мы столкнулись с ошибкой: {this.state.error}</p>;
-    }
-    return this.props.children;
-  }
+	render() {
+		if (this.state.error) {
+			return <p>О нет! Мы столкнулись с ошибкой: {this.state.error}</p>;
+		}
+		return this.props.children;
+	}
 }
 ```
 

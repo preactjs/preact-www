@@ -16,15 +16,15 @@ description: Быстрая 3КБ-альтернатива React с тем же 
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
+	const [value, setValue] = useState(0);
 
-  return (
-    <>
-      <div>Счётчик: {value}</div>
-      <button onClick={() => setValue(value + 1)}>Увеличить</button>
-      <button onClick={() => setValue(value - 1)}>Уменьшить</button>
-    </>
-  );
+	return (
+		<>
+			<div>Счётчик: {value}</div>
+			<button onClick={() => setValue(value + 1)}>Увеличить</button>
+			<button onClick={() => setValue(value - 1)}>Уменьшить</button>
+		</>
+	);
 }
 ```
 

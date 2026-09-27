@@ -4,7 +4,6 @@ title: Справочник по API
 
 # Справочник по API
 
-
 ---
 
 <toc></toc>
@@ -38,15 +37,15 @@ class MyComponent extends Component {
 
 Preact вызывает следующие методы жизненного цикла, если они определены для компонента:
 
-| Метод            | Когда его вызывают                              |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | до того, как компонент будет установлен в DOM     |
-| `componentDidMount`         | после того, как компонент будет установлен в DOM      |
-| `componentWillUnmount`      | до удаления из DOM                    |
+| Метод                       | Когда его вызывают                                            |
+| --------------------------- | ------------------------------------------------------------- |
+| `componentWillMount`        | до того, как компонент будет установлен в DOM                 |
+| `componentDidMount`         | после того, как компонент будет установлен в DOM              |
+| `componentWillUnmount`      | до удаления из DOM                                            |
 | `componentWillReceiveProps` | до того, как новые реквизиты будут приняты                    |
 | `shouldComponentUpdate`     | перед `render()`. Верните `false`, чтобы пропустить рендеринг |
-| `componentWillUpdate`       | перед `render()`                                |
-| `componentDidUpdate`        | после `render()`                                 |
+| `componentWillUpdate`       | перед `render()`                                              |
+| `componentDidUpdate`        | после `render()`                                              |
 
 Все методы жизненного цикла и их параметры показаны в следующем примере компонента:
 
@@ -56,19 +55,19 @@ import { Component } from 'preact';
 class MyComponent extends Component {
 	shouldComponentUpdate(nextProps, nextState) {}
 	componentWillReceiveProps(nextProps, nextState) {
-		this.props // Предыдущие параметры
-		this.state // Предыдущее состояние
+		this.props; // Предыдущие параметры
+		this.state; // Предыдущее состояние
 	}
 	componentWillMount() {}
 	componentWillUpdate(nextProps, nextState) {
-		this.props // Предыдущие параметры
-		this.state // Предыдущее состояние
+		this.props; // Предыдущие параметры
+		this.state; // Предыдущее состояние
 	}
 	componentDidMount() {}
 	componentDidUpdate(prevProps, prevState) {}
 	componentWillUnmount() {
-		this.props // Текущие параметры
-		this.state // Текущее состояние
+		this.props; // Текущие параметры
+		this.state; // Текущее состояние
 	}
 }
 ```
@@ -130,10 +129,6 @@ h('div', { id: 'foo' }, 'Привет!');
 h('div', { id: 'foo' }, 'Привет,', null, ['Preact!']);
 // <div id="foo">Привет, Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Привет!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Привет!'));
 // <div id="foo"><span>Привет!</span></div>
 ```

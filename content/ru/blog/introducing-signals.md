@@ -24,11 +24,11 @@ const count = signal(0);
 const double = computed(() => count.value * 2);
 
 function Counter() {
-  return (
-    <button onClick={() => count.value++}>
-      {count} x 2 = {double}
-    </button>
-  );
+	return (
+		<button onClick={() => count.value++}>
+			{count} x 2 = {double}
+		</button>
+	);
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));
@@ -104,16 +104,16 @@ render(<Counter />, document.getElementById('app'));
 ```js
 // Подписка на основе селектора :(
 function Counter() {
-  const value = useSelector((state) => state.count);
-  // .
+	const value = useSelector((state) => state.count);
+	// .
 }
 
 // Подписка на основе функции-обертки :(
 const counterState = new Counter();
 
 const Counter = observe((props) => {
-  const value = counterState.count;
-  // .
+	const value = counterState.count;
+	// .
 });
 ```
 
@@ -128,7 +128,7 @@ const Counter = observe((props) => {
 let count = 0;
 
 function Counter() {
-  return <button onClick={() => count++}>Значение: {count}</button>;
+	return <button onClick={() => count++}>Значение: {count}</button>;
 }
 ```
 
@@ -145,7 +145,7 @@ import { signal } from '@preact/signals';
 const count = signal(0);
 
 function Counter() {
-  return <button onClick={() => count.value++}>Значение: {count.value}</button>;
+	return <button onClick={() => count.value++}>Значение: {count.value}</button>;
 }
 // --repl-after
 render(<Counter />, document.getElementById('app'));

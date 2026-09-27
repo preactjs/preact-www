@@ -24,12 +24,12 @@ Preact X — это огромный шаг вперед по сравнению
 ```jsx
 // --repl
 function Foo() {
-  return (
-    <>
-      <div>A</div>
-      <div>B</div>
-    </>
-  );
+	return (
+		<>
+			<div>A</div>
+			<div>B</div>
+		</>
+	);
 }
 ```
 
@@ -42,18 +42,18 @@ function Foo() {
 ```jsx
 // --repl
 class Catcher extends Component {
-  state = { errored: false };
+	state = { errored: false };
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
-  }
+	componentDidCatch(error) {
+		this.setState({ errored: true });
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Что-то пошло не так</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Что-то пошло не так</p>;
+		}
+		return props.children;
+	}
 }
 ```
 
@@ -66,15 +66,15 @@ class Catcher extends Component {
 ```jsx
 // --repl
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => setValue(value + 1), [value]);
 
-  return (
-    <div>
-      Счётчик: {value}
-      <button onClick={increment}>Увеличить</button>
-    </div>
-  );
+	return (
+		<div>
+			Счётчик: {value}
+			<button onClick={increment}>Увеличить</button>
+		</div>
+	);
 }
 ```
 
@@ -88,17 +88,21 @@ API `createContext` является истинным преемником `getC
 const Theme = createContext('light');
 
 function ThemedButton(props) {
-  return <Theme.Consumer>{(theme) => <div>Текущая тема: {theme}</div>}</Theme.Consumer>;
+	return (
+		<Theme.Consumer>
+			{(theme) => <div>Текущая тема: {theme}</div>}
+		</Theme.Consumer>
+	);
 }
 
 function App() {
-  return (
-    <Theme.Provider value='dark'>
-      <SomeComponent>
-        <ThemedButton />
-      </SomeComponent>
-    </Theme.Provider>
-  );
+	return (
+		<Theme.Provider value="dark">
+			<SomeComponent>
+				<ThemedButton />
+			</SomeComponent>
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -108,7 +112,7 @@ function App() {
 
 ```jsx
 function Foo(props) {
-  return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
+	return <div style={{ '--theme-color': 'blue' }}>{props.children}</div>;
 }
 ```
 

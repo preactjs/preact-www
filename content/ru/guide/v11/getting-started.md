@@ -48,15 +48,10 @@ Preact упакован для использования непосредств
 	const html = htm.bind(h);
 
 	function App(props) {
-		return html`
-			<h1>Привет, ${props.name}!</h1>
-		`;
+		return html`<h1>Привет, ${props.name}!</h1>`;
 	}
 
-	render(
-		html`<${App} name="мир" />`,
-		document.body
-	);
+	render(html`<${App} name="мир" />`, document.body);
 </script>
 ```
 
