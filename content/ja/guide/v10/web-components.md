@@ -28,12 +28,15 @@ Webコンポーネントはブラウザを拡張するための低レベルの�
 WebコンポーネントはPreact内で他のDOM要素と同じように動作し、登録したタグ名でレンダリングできます。
 
 ```jsx
-customElements.define('x-foo', class extends HTMLElement {
-  // ...
-});
+customElements.define(
+	'x-foo',
+	class extends HTMLElement {
+		// ...
+	}
+);
 
 function Foo() {
-  return <x-foo />;
+	return <x-foo />;
 }
 ```
 
@@ -45,14 +48,17 @@ Preactでは、レンダラーが自動的に対象のDOM要素を検査して�
 カスタム要素にプロパティに対する[セッター](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set)が定義されている場合、Preactはそれを検出し、属性の代わりにそのセッターを使用します。
 
 ```jsx
-customElements.define('context-menu', class extends HTMLElement {
-  set position({ x, y }) {
-    this.style.cssText = `left:${x}px; top:${y}px;`;
-  }
-});
+customElements.define(
+	'context-menu',
+	class extends HTMLElement {
+		set position({ x, y }) {
+			this.style.cssText = `left:${x}px; top:${y}px;`;
+		}
+	}
+);
 
 function Foo() {
-  return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
+	return <context-menu position={{ x: 10, y: 20 }}> ... </context-menu>;
 }
 ```
 
@@ -65,15 +71,15 @@ function Foo() {
 
 ```jsx
 function Foo() {
-  const myRef = useRef(null);
+	const myRef = useRef(null);
 
-  useEffect(() => {
-    if (myRef.current) {
-      myRef.current.doSomething();
-    }
-  }, []);
+	useEffect(() => {
+		if (myRef.current) {
+			myRef.current.doSomething();
+		}
+	}, []);
 
-  return <x-foo ref={myRef} />;
+	return <x-foo ref={myRef} />;
 }
 ```
 
@@ -108,9 +114,7 @@ Preactでは標準のDOMイベントは小文字に正規化されます。
 ```jsx
 import register from 'preact-custom-element';
 
-const Greeting = ({ name = 'World' }) => (
-  <p>Hello, {name}!</p>
-);
+const Greeting = ({ name = 'World' }) => <p>Hello, {name}!</p>;
 
 register(Greeting, 'x-greeting', ['name']);
 //          ^            ^           ^
@@ -150,15 +154,15 @@ import register from 'preact-custom-element';
 
 // <x-greeting name="Bo"></x-greeting>
 class Greeting extends Component {
-  // <x-greeting>として登録します。
-  static tagName = 'x-greeting';
+	// <x-greeting>として登録します。
+	static tagName = 'x-greeting';
 
-  // 以下の属性を監視します。
-  static observedAttributes = ['name'];
+	// 以下の属性を監視します。
+	static observedAttributes = ['name'];
 
-  render({ name }) {
-    return <p>Hello, {name}!</p>;
-  }
+	render({ name }) {
+		return <p>Hello, {name}!</p>;
+	}
 }
 register(Greeting);
 ```
@@ -168,12 +172,16 @@ register(Greeting);
 ```jsx
 // PropTypesを使うやり方
 function FullName({ first, last }) {
-  return <span>{first} {last}</span>
+	return (
+		<span>
+			{first} {last}
+		</span>
+	);
 }
 
 FullName.propTypes = {
-  first: Object,   // PropTypesを使用するか、このように型定義されていない(un-typed)プロパティを使用します。
-  last: Object
+	first: Object, // PropTypesを使用するか、このように型定義されていない(un-typed)プロパティを使用します。
+	last: Object
 };
 
 register(FullName, 'full-name');
@@ -200,7 +208,7 @@ register(TextSection, 'text-section', [], { shadow: true });
 
 ```html
 <text-section>
-  <span slot="heading">Nice heading</span>
-  <span slot="content">Great content</span>
+	<span slot="heading">Nice heading</span>
+	<span slot="content">Great content</span>
 </text-section>
 ```

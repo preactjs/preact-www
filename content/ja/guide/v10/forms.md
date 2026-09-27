@@ -18,7 +18,7 @@ PreactのフォームとHTMLのフォームは、ほとんど同じように動�
 ## ControlledコンポーネントとUncontrolledコンポーネント
 
 フォームコントロールについての文章で"Controlled"コンポーネントと"Uncontrolled"コンポーネントという単語をよく見ます。
- "Controlled"と"Uncontrolled"はフォームコントロールのデータフローの扱い方を表しています。
+"Controlled"と"Uncontrolled"はフォームコントロールのデータフローの扱い方を表しています。
 DOMのすべてのフォームコントロールはユーザの入力を自身で管理するのでDOMは双方向のデータフローになります。
 例として、ユーザがテキスト`input`要素にタイプすると、その値は必ず反映されます。
 
@@ -51,26 +51,26 @@ ToDoを送信する簡単なフォームを作成しましょう。
 
 ```jsx
 class TodoForm extends Component {
-  state = { value: '' };
+	state = { value: '' };
 
-  onSubmit = e => {
-    alert("Submitted a todo");
-    e.preventDefault();
-  }
+	onSubmit = (e) => {
+		alert('Submitted a todo');
+		e.preventDefault();
+	};
 
-  onInput = e => {
-    this.setState({ value: e.currentTarget.value })
-  }
+	onInput = (e) => {
+		this.setState({ value: e.currentTarget.value });
+	};
 
-  render(_, { value }) {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input type="text" value={value} onInput={this.onInput} />
-        <p>You typed this value: {value}</p>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<form onSubmit={this.onSubmit}>
+				<input type="text" value={value} onInput={this.onInput} />
+				<p>You typed this value: {value}</p>
+				<button type="submit">Submit</button>
+			</form>
+		);
+	}
 }
 ```
 
@@ -80,28 +80,28 @@ class TodoForm extends Component {
 
 ```jsx
 class MySelect extends Component {
-  state = { value: '' };
+	state = { value: '' };
 
-  onChange = e => {
-    this.setState({ value: e.currentTarget.value });
-  }
+	onChange = (e) => {
+		this.setState({ value: e.currentTarget.value });
+	};
 
-  onSubmit = e => {
-    alert("Submitted " + this.state.value);
-    e.preventDefault();
-  }
+	onSubmit = (e) => {
+		alert('Submitted ' + this.state.value);
+		e.preventDefault();
+	};
 
-  render(_, { value }) {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <select value={value} onChange={this.onChange}>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-        </select>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<form onSubmit={this.onSubmit}>
+				<select value={value} onChange={this.onChange}>
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+				<button type="submit">Submit</button>
+			</form>
+		);
+	}
 }
 ```

@@ -42,14 +42,14 @@ import { options } from 'preact';
 const oldHook = options.vnode;
 
 // 新しいvnodeオプションフックを設定する。
-options.vnode = vnode => {
-  console.log("Hey I'm a vnode", vnode);
+options.vnode = (vnode) => {
+	console.log("Hey I'm a vnode", vnode);
 
-  // 既存のオプションフックが存在している場合、それを実行する。
-  if (oldHook) {
-    oldHook(vnode);
-  }
-}
+	// 既存のオプションフックが存在している場合、それを実行する。
+	if (oldHook) {
+		oldHook(vnode);
+	}
+};
 ```
 
 `event`オプションフック以外のオプションフックは戻り値を返しません。なので、既存のオプションフックの戻り値を気にする必要はありません。

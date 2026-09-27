@@ -51,15 +51,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export default function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      Current value: {count}
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
+	return (
+		<div>
+			Current value: {count}
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
 }
 ```
 
@@ -73,18 +73,18 @@ import { mount } from 'enzyme';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  it('should display initial count', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    expect(wrapper.text()).to.include('Current value: 5');
-  });
+	it('should display initial count', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
+		expect(wrapper.text()).to.include('Current value: 5');
+	});
 
-  it('should increment after "Increment" button is clicked', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
+	it('should increment after "Increment" button is clicked', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
 
-    wrapper.find('button').simulate('click');
+		wrapper.find('button').simulate('click');
 
-    expect(wrapper.text()).to.include('Current value: 6');
-  });
+		expect(wrapper.text()).to.include('Current value: 6');
+	});
 });
 ```
 
@@ -106,26 +106,26 @@ Enzymeは3つのレンダリングモードがあります。
 import { mount, shallow, render } from 'enzyme';
 
 // コンポーネントツリー全体をレンダリングします。
-const wrapper = mount(<MyComponent prop="value"/>);
+const wrapper = mount(<MyComponent prop="value" />);
 
 // MyComponentのDOMノードのみレンダリングします。(子コンポーネントはモックされてプレースホルダでレンダリングします。)
-const wrapper = shallow(<MyComponent prop="value"/>);
+const wrapper = shallow(<MyComponent prop="value" />);
 
 // コンポーネントツリーをHTMLでレンダリングしてパースしたものを返します。
-const wrapper = render(<MyComponent prop="value"/>);
+const wrapper = render(<MyComponent prop="value" />);
 ```
 
- - `mount`関数はブラウザでレンダリングするのと同じ方法でコンポーネント全体をレンダリングします。
+- `mount`関数はブラウザでレンダリングするのと同じ方法でコンポーネント全体をレンダリングします。
 
- - `shallow`関数はコンポーネントが直接出力するDOM Nodeのみレンダリングします。
-   子コンポーネントはそれを表すプレースホルダに置き換えられます。
+- `shallow`関数はコンポーネントが直接出力するDOM Nodeのみレンダリングします。
+  子コンポーネントはそれを表すプレースホルダに置き換えられます。
 
-   このモードの利点は、子コンポーネントの詳細に依存したり、子コンポーネントが依存するものを解決せずに、コンポーネントのテストを書けることです。
+  このモードの利点は、子コンポーネントの詳細に依存したり、子コンポーネントが依存するものを解決せずに、コンポーネントのテストを書けることです。
 
-   浅い(shallow)レンダリングモードは内部の動作がPreact用のアダプタとReact用のアダプタでは異なります。詳しくは以下の「Reactとの違い」のセクションを見てください。
+  浅い(shallow)レンダリングモードは内部の動作がPreact用のアダプタとReact用のアダプタでは異なります。詳しくは以下の「Reactとの違い」のセクションを見てください。
 
- - `render`関数(Preactの`render`関数と混同しないでください)はコンポーネントをHTML文字列にレンダリングします。
-   これはサーバ上での出力をテストすることや副作用をトリガせずにコンポーネントをレンダリングすることに役立ちます。
+- `render`関数(Preactの`render`関数と混同しないでください)はコンポーネントをHTML文字列にレンダリングします。
+  これはサーバ上での出力をテストすることや副作用をトリガせずにコンポーネントをレンダリングすることに役立ちます。
 
 ## `act`でステートの更新とその副作用をトリガする
 
@@ -149,17 +149,17 @@ import { act } from 'preact/test-utils';
 
 ```jsx
 it('should increment after "Increment" button is clicked', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    const onClick = wrapper.find('button').props().onClick;
+	const wrapper = mount(<Counter initialCount={5} />);
+	const onClick = wrapper.find('button').props().onClick;
 
-    act(() => {
-      // ボタンのクリックハンドラを実行しますが、今回はEnzyme APIを経由する代わりに直接実行します。
-      onClick();
-    });
-    // Enzymeのアウトプットのビューを再生成します。
-    wrapper.update();
+	act(() => {
+		// ボタンのクリックハンドラを実行しますが、今回はEnzyme APIを経由する代わりに直接実行します。
+		onClick();
+	});
+	// Enzymeのアウトプットのビューを再生成します。
+	wrapper.update();
 
-    expect(wrapper.text()).to.include('Current value: 6');
+	expect(wrapper.text()).to.include('Current value: 6');
 });
 ```
 

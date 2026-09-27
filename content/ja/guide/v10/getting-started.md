@@ -21,12 +21,12 @@ Preactはビルドやツールなしでブラウザで直に使うためのパ�
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://esm.sh/preact';
+	import { h, Component, render } from 'https://esm.sh/preact';
 
-  // アプリケーションを作成する。
-  const app = h('h1', null, 'Hello World!');
+	// アプリケーションを作成する。
+	const app = h('h1', null, 'Hello World!');
 
-  render(app, document.body);
+	render(app, document.body);
 </script>
 ```
 
@@ -45,14 +45,14 @@ HTMは今までのフロントエンドのビルドツールよりシンプル�
 
 ```html
 <script type="module">
-  import { h, Component, render } from 'https://esm.sh/preact';
-  import htm from 'https://esm.sh/htm';
+	import { h, Component, render } from 'https://esm.sh/preact';
+	import htm from 'https://esm.sh/htm';
 
-  // htmをPreactで使う用意をする。
-  const html = htm.bind(h);
+	// htmをPreactで使う用意をする。
+	const html = htm.bind(h);
 
-  const app = html`<h1>Hello World!</h1>`;
-  render(app, document.body);
+	const app = html`<h1>Hello World!</h1>`;
+	render(app, document.body);
 </script>
 ```
 
@@ -72,12 +72,15 @@ JSXをJavaScriptに変換するためにBabelプラグインを使用する必�
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "pragma": "h",
-      "pragmaFrag": "Fragment",
-    }]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"pragma": "h",
+				"pragmaFrag": "Fragment"
+			}
+		]
+	]
 }
 ```
 
@@ -96,17 +99,17 @@ webpackでエイリアスするには、設定に`resolve.alias`セクション�
 既にこのセクションが存在する場合は、そこにPreact用の設定が必要です。
 
 ```js
-const config = { 
-   //...
-  "resolve": { 
-    "alias": { 
-      "react": "preact/compat",
-      "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",
-      // test-utilsの下にある必要があります。
-    },
-  }
-}
+const config = {
+	//...
+	resolve: {
+		alias: {
+			react: 'preact/compat',
+			'react-dom/test-utils': 'preact/test-utils',
+			'react-dom': 'preact/compat'
+			// test-utilsの下にある必要があります。
+		}
+	}
+};
 ```
 
 #### Parcelでエイリアスする
@@ -115,11 +118,11 @@ Percelでは`package.json`に以下のような`alias`キーを追加します�
 
 ```json
 {
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
-  },
+	"alias": {
+		"react": "preact/compat",
+		"react-dom/test-utils": "preact/test-utils",
+		"react-dom": "preact/compat"
+	}
 }
 ```
 
@@ -132,14 +135,14 @@ Rollupでエイリアスするには、[@rollup/plugin-alias](https://github.com
 import alias from '@rollup/plugin-alias';
 
 module.exports = {
-  plugins: [
-    alias({
-      entries: [
-        { find: 'react', replacement: 'preact/compat' },
-        { find: 'react-dom', replacement: 'preact/compat' }
-      ]
-    })
-  ]
+	plugins: [
+		alias({
+			entries: [
+				{ find: 'react', replacement: 'preact/compat' },
+				{ find: 'react-dom', replacement: 'preact/compat' }
+			]
+		})
+	]
 };
 ```
 
@@ -151,11 +154,11 @@ module.exports = {
 
 ```json
 {
-  "moduleNameMapper": {
-    "^react$": "preact/compat",
-    "^react-dom/test-utils$": "preact/test-utils",
-    "^react-dom$": "preact/compat"
-  }
+	"moduleNameMapper": {
+		"^react$": "preact/compat",
+		"^react-dom/test-utils$": "preact/test-utils",
+		"^react-dom$": "preact/compat"
+	}
 }
 ```
 

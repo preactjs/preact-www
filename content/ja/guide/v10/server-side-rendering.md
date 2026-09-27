@@ -47,7 +47,11 @@ import { shallow } from 'preact-render-to-string';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 console.log(shallow(App));
 // <div class="foo"><Foo /></div>
@@ -63,7 +67,11 @@ import render from 'preact-render-to-string/jsx';
 import { h } from 'preact';
 
 const Foo = () => <div>foo</div>;
-const App = <div class="foo"><Foo /></div>;
+const App = (
+	<div class="foo">
+		<Foo />
+	</div>
+);
 
 console.log(render(App, { pretty: true }));
 // Logs:

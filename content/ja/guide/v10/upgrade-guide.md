@@ -99,13 +99,13 @@ Preact Xではこの問題は解決しました。最新の`styled-components`�
 
 ```js
 // Preact 8.x
-import Preact from "preact";
+import Preact from 'preact';
 
 // Preact X
-import * as preact from "preact";
+import * as preact from 'preact';
 
 // より良い方法: Named exports (Preact 8.xとPreact Xで動作します。)
-import { h, Component } from "preact";
+import { h, Component } from 'preact';
 ```
 
 _この変更は`preact/compat`に影響はありません。`preact/compat`ではReactとの互換性のために`default`エクスポートと`named`エクスポートの両方が可能です。_
@@ -117,18 +117,18 @@ Preact 8.xで`render()`を実行すると常にコンテナの末尾に要素が
 ```jsx
 // Existing markup:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Preact 8.xの結果
 <body>
-  <div>hello</div>
-  <p>foo</p>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>foo</p>
+	<p>bar</p>
+</body>;
 ```
 
 コンテナ内に存在する既存の要素を置き換えたい場合は、それを`render()`の第3引数に渡します。
@@ -136,8 +136,8 @@ render(<p>bar</p>, document.body);
 ```jsx
 // Existing markup:
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 let element;
 element = render(<p>foo</p>, document.body);
@@ -145,9 +145,9 @@ element = render(<p>bar</p>, document.body, element);
 
 // Preact 8.xでの結果
 <body>
-  <div>hello</div>
-  <p>bar</p>
-</body>
+	<div>hello</div>
+	<p>bar</p>
+</body>;
 ```
 
 Preact Xでは、`render()`は常にコンテナ内の子要素との差分を取ります。
@@ -157,16 +157,16 @@ Preact Xでは、`render()`は常にコンテナ内の子要素との差分を�
 ```jsx
 // 既存の要素
 <body>
-  <div>hello</div>
-</body>
+	<div>hello</div>
+</body>;
 
 render(<p>foo</p>, document.body);
 render(<p>bar</p>, document.body);
 
 // Preact Xでの結果
 <body>
-  <p>bar</p>
-</body>
+	<p>bar</p>
+</body>;
 ```
 
 Reactの`render`メソッドと完全に同じ振舞いをする`render`メソッドが必要な場合は`preact/compat`がエクスポートしている`render`メソッドを使用してください。
@@ -182,17 +182,17 @@ Preact Xではprops.childrenが配列とは限らなくなりました。
 ```jsx
 // Preact 8.x
 function Foo(props) {
-  // `.length`は配列のメソッドです。Preact Xで`props.children`が配列でない場合、この行は例外を投げます。
-  const count = props.children.length;
-  return <div>I have {count} children </div>;
+	// `.length`は配列のメソッドです。Preact Xで`props.children`が配列でない場合、この行は例外を投げます。
+	const count = props.children.length;
+	return <div>I have {count} children </div>;
 }
 
 // Preact X
-import { toChildArray } from "preact";
+import { toChildArray } from 'preact';
 
 function Foo(props) {
-  const count = toChildArray(props.children).length;
-  return <div>I have {count} children </div>;
+	const count = toChildArray(props.children).length;
+	return <div>I have {count} children </div>;
 }
 ```
 
@@ -209,9 +209,9 @@ this.state = { counter: 0 };
 this.setState({ counter: this.state.counter + 1 });
 
 // Preact X
-this.setState(prevState => {
-  // ここでnullを返すとステート(state)の更新を中止します。
-  return { counter: prevState.counter + 1 };
+this.setState((prevState) => {
+	// ここでnullを返すとステート(state)の更新を中止します。
+	return { counter: prevState.counter + 1 };
 });
 ```
 
@@ -221,8 +221,8 @@ this.setState(prevState => {
 
 ```jsx
 <div dangerouslySetInnerHTML="{ { __html: 'foo' } }">
-  <span>I will be skipped</span>
-  <p>So do I</p>
+	<span>I will be skipped</span>
+	<p>So do I</p>
 </div>
 ```
 
@@ -251,13 +251,13 @@ Preact Xでは、直接DOMとの差分を取らなくなったため、これは
 
 ```jsx
 // Preact 8.x
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // 以下のような構造を出力します
 //   div
 //     text
 
 // Preact X
-console.log(<div>foo{"bar"}</div>);
+console.log(<div>foo{'bar'}</div>);
 // 以下のような構造を出力します
 //   div
 //     text
