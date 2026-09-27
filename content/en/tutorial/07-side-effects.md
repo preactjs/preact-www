@@ -99,8 +99,8 @@ export default class App extends Component {
 	componentDidMount() {
 		// get JSON user info, store in `state.user`:
 		fetch('/api/user')
-			.then(response => response.json())
-			.then(user => {
+			.then((response) => response.json())
+			.then((user) => {
 				this.setState({ user });
 			});
 	}

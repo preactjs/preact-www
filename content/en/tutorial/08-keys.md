@@ -28,7 +28,7 @@ export default function TodoList() {
 	return (
 		<div>
 			<ul>
-				{todos.map(todo => (
+				{todos.map((todo) => (
 					<li>{todo}</li>
 				))}
 			</ul>
@@ -112,7 +112,7 @@ export default function TodoList() {
 	return (
 		<div>
 			<ul>
-				{todos.map(todo => (
+				{todos.map((todo) => (
 					<li key={todo}>{todo}</li>
 					//  ^^^^^^^^^^ adding a key prop
 				))}
@@ -245,7 +245,7 @@ const todos = [
 export default function ToDos() {
 	return (
 		<ul>
-			{todos.map(todo => (
+			{todos.map((todo) => (
 				<li key={todo.id}>{todo.text}</li>
 			))}
 		</ul>

@@ -115,7 +115,7 @@ marked.use({
 			}
 
 			const transformedCode = code.replaceAll(
-				/\n<!-- prettier-ignore-(start|end) -->$/gm,
+				/\n>?\s+?<!-- prettier-ignore-(start|end) -->$/gm,
 				''
 			);
 

@@ -15,11 +15,13 @@ A Virtual DOM is a simple description of a tree structure using objects:
 
 ```js
 let vdom = {
+<!-- prettier-ignore-start -->
 	type: 'p',             // a <p> element
 	props: {
 		class: 'big',      // with class="big"
 		children: [
 			'Hello World!' // and the text "Hello World!"
+<!-- prettier-ignore-end -->
 		]
 	}
 };
@@ -54,9 +56,11 @@ It's useful to start things off with the simplest approach, which would be to ca
 import { createElement, render } from 'preact';
 
 let vdom = createElement(
+<!-- prettier-ignore-start -->
 	'p',              // a <p> element
 	{ class: 'big' }, // with class="big"
 	'Hello World!'    // and the text "Hello World!"
+<!-- prettier-ignore-end -->
 );
 
 render(vdom, document.body);
