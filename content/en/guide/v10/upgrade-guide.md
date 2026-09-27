@@ -189,7 +189,7 @@ this.state = { counter: 0 };
 this.setState({ counter: this.state.counter + 1 });
 
 // Preact X
-this.setState(prevState => {
+this.setState((prevState) => {
 	// Alternatively return `null` here to abort the state update
 	return { counter: prevState.counter + 1 };
 });

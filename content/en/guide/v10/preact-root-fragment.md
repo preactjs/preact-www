@@ -11,11 +11,15 @@ It provides a way to render or hydrate a Preact tree using a subset of the child
 
 ```html
 <body>
+<!-- prettier-ignore-start -->
 	<div id="root"> ⬅ we pass this to render() as the parent DOM element...
+<!-- prettier-ignore-end -->
 
 		<script src="/etc.js"></script>
 
+<!-- prettier-ignore-start -->
 		<div class="app"> ⬅ ... but we want to use this tree, not the script
+<!-- prettier-ignore-end -->
 			<!-- ... -->
 		</div>
 	</div>
@@ -34,9 +38,9 @@ This is particularly useful for [partial hydration](https://jasonformat.com/isla
 
 ```html
 <div id="sidebar">
-  <section id="widgetA"><h1>Widget A</h1></section>
-  <section id="widgetB"><h1>Widget B</h1></section>
-  <section id="widgetC"><h1>Widget C</h1></section>
+	<section id="widgetA"><h1>Widget A</h1></section>
+	<section id="widgetB"><h1>Widget B</h1></section>
+	<section id="widgetC"><h1>Widget C</h1></section>
 </div>
 ```
 
@@ -83,12 +87,12 @@ import { createRootFragment } from 'preact-root-fragment';
 import { render } from 'preact';
 
 function App() {
-  return (
-    <>
-      <h1>Example</h1>
-      <p>Hello world!</p>
-    </>
-  );
+	return (
+		<>
+			<h1>Example</h1>
+			<p>Hello world!</p>
+		</>
+	);
 }
 
 // Use only the last two child elements within <body>:

@@ -233,7 +233,7 @@ function MyHeadingComponent({ children }: MyHeadingComponentProps) {
 	{true}
 	{['Array', 'of', 'strings']}
 	<OtherComponent />
-</MyHeadingComponent>
+</MyHeadingComponent>;
 ```
 
 ## Inheriting HTML properties
@@ -258,20 +258,16 @@ Now when we use `Input` it will know about properties like `value`, ...
 Preact emits regular DOM events. As long as your TypeScript project includes the `dom` library (set it in `tsconfig.json`), you have access to all event types that are available in your current configuration.
 
 ```tsx
-import type { TargetedMouseEvent } from "preact";
+import type { TargetedMouseEvent } from 'preact';
 
 export class Button extends Component {
-  handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
-    alert(event.currentTarget.tagName); // Alerts BUTTON
-  }
+	handleClick(event: TargetedMouseEvent<HTMLButtonElement>) {
+		alert(event.currentTarget.tagName); // Alerts BUTTON
+	}
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.props.children}
-      </button>
-    );
-  }
+	render() {
+		return <button onClick={this.handleClick}>{this.props.children}</button>;
+	}
 }
 ```
 
@@ -281,7 +277,7 @@ If you prefer inline functions, you can forgo explicitly typing the current even
 export class Button extends Component {
 	render() {
 		return (
-			<button onClick={event => alert(event.currentTarget.tagName)}>
+			<button onClick={(event) => alert(event.currentTarget.tagName)}>
 				{this.props.children}
 			</button>
 		);
@@ -341,8 +337,10 @@ function App() {
 	return (
 		<AppContext.Provider
 			value={{
+<!-- prettier-ignore-start -->
 	 //    ~~~~~
 	 // 💥 Error: theme not defined
+<!-- prettier-ignore-end -->
 				lang: 'de',
 				authenticated: true
 			}}

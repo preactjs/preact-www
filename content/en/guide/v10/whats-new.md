@@ -89,7 +89,9 @@ const Theme = createContext('light');
 
 function ThemedButton(props) {
 	return (
-		<Theme.Consumer>{theme => <div>Active theme: {theme}</div>}</Theme.Consumer>
+		<Theme.Consumer>
+			{(theme) => <div>Active theme: {theme}</div>}
+		</Theme.Consumer>
 	);
 }
 

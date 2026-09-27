@@ -106,7 +106,7 @@ class MyInput extends Component {
 	render() {
 		return (
 			<input
-				ref={dom => {
+				ref={(dom) => {
 					console.log('Mounted:', dom);
 
 					// As of Preact 10.23.0, you can optionally return a cleanup function
@@ -129,7 +129,7 @@ import { render } from 'preact';
 function MyInput() {
 	return (
 		<input
-			ref={dom => {
+			ref={(dom) => {
 				console.log('Mounted:', dom);
 
 				// As of Preact 10.23.0, you can optionally return a cleanup function
