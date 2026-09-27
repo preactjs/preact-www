@@ -114,7 +114,18 @@ marked.use({
 				);
 			}
 
-			text = Prism.highlight(code, Prism.languages[lang], lang);
+			const transformedCode = code.replaceAll(
+				/\n<!-- prettier-ignore-(start|end) -->$/gm,
+				''
+			);
+
+			if (/prettier-ignore-(start|end)/.test(transformedCode)) {
+				throw new Error(
+					`Mishandled Prettier ignore comment in code block:\n${code}\n`
+				);
+			}
+
+			text = Prism.highlight(transformedCode, Prism.languages[lang], lang);
 
 			const runInReplLink = runInRepl
 				? `<a class="repl-link" href="/repl?code=${encodeURIComponent(

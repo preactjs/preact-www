@@ -13,13 +13,15 @@ solvable: true
 
 ```js
 let vdom = {
-	type: 'p', // a <p> element
+<!-- prettier-ignore-start -->
+	type: 'p',             // a <p> element
 	props: {
-		class: 'big', // with class="big"
+		class: 'big',      // with class="big"
 		children: [
 			'Hello World!' // and the text "Hello World!"
 		]
 	}
+<!-- prettier-ignore-end -->
 };
 ```
 
@@ -43,9 +45,11 @@ Preact의 `createElement()` 함수를 직접 호출하는, 가장 간단한 접�
 import { createElement, render } from 'preact';
 
 let vdom = createElement(
-	'p', // a <p> element
+<!-- prettier-ignore-start -->
+	'p',              // a <p> element
 	{ class: 'big' }, // with class="big"
-	'Hello World!' // and the text "Hello World!"
+	'Hello World!'    // and the text "Hello World!"
+<!-- prettier-ignore-end -->
 );
 
 render(vdom, document.body);
