@@ -32,7 +32,7 @@ So, instead of listening for a `change` event we should listen for a `click` eve
 
 ```js
 class MyForm extends Component {
-	toggle = e => {
+	toggle = (e) => {
 		let checked = !this.state.checked;
 		this.setState({ checked });
 	};

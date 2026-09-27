@@ -20,7 +20,7 @@ class BoundComponent extends Component {
 			binds = this._binds;
 		if (!binds) {
 			binds = this._binds = {};
-			for (let i = list.length; i--; ) {
+			for (let i = list.length; i--;) {
 				binds[list[i]] = this[list[i]].bind(this);
 			}
 		}
@@ -52,7 +52,7 @@ The possibilities are endless. Here's an extended `Component` class that support
 class MixedComponent extends Component {
 	constructor() {
 		super();
-		(this.mixins || []).forEach(m => Object.assign(this, m));
+		(this.mixins || []).forEach((m) => Object.assign(this, m));
 	}
 }
 ```
