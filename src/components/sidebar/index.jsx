@@ -7,9 +7,9 @@ import { docPages } from '../../route-config.js';
 import style from './style.module.css';
 
 export default function Sidebar() {
-	const {
-		version
-	} = /** @type {{ version: 'v8' | 'v10' | 'v11' }} */ (useRoute().params);
+	const { version } = /** @type {{ version: 'v8' | 'v10' | 'v11' }} */ (
+		useRoute().params
+	);
 	const [open, setOpen] = useOverlayToggle();
 	const translate = useTranslate();
 
@@ -25,7 +25,9 @@ export default function Sidebar() {
 			navItems.push({
 				text: translate(
 					'sidebarSections',
-					/** @type {keyof typeof docPages.v10 | keyof typeof docPages.v11} */ (item)
+					/** @type {keyof typeof docPages.v10 | keyof typeof docPages.v11} */ (
+						item
+					)
 				),
 				level: 2,
 				href: null,
@@ -42,7 +44,7 @@ export default function Sidebar() {
 
 	return (
 		<div class={style.wrapper} data-open={open}>
-			<button class={style.toggle} onClick={() => setOpen(v => !v)}>
+			<button class={style.toggle} onClick={() => setOpen((v) => !v)}>
 				{translate('i18n', 'mobileGuideButton')}
 			</button>
 			<aside class={style.sidebar}>

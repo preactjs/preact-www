@@ -37,7 +37,7 @@ export default function ReplPage() {
 async function getInitialCode(query) {
 	const { route } = useLocation();
 	let code;
-	if (query.code)  {
+	if (query.code) {
 		code = base64ToText(query.code);
 	} else if (query.example) {
 		code = await fetchExample(query.example);
@@ -47,7 +47,10 @@ async function getInitialCode(query) {
 	}
 
 	if (!code) {
-		if (typeof window !== 'undefined' && localStorage.getItem('preact-www-repl-code')) {
+		if (
+			typeof window !== 'undefined' &&
+			localStorage.getItem('preact-www-repl-code')
+		) {
 			code = localStorage.getItem('preact-www-repl-code');
 		} else {
 			const slug = 'counter-hooks';

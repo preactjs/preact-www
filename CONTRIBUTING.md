@@ -49,4 +49,4 @@ Please author and submit content **only in one language** _(generally your prima
 
 ### German Version
 
-* German translations can be approved by @marvinhagemeister
+- German translations can be approved by @marvinhagemeister

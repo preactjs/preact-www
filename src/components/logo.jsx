@@ -25,7 +25,7 @@ export default class Logo extends Component {
 		this.timer = (requestAnimationFrame || setTimeout)(this.frame, 15);
 	};
 
-	contextMenu = e => {
+	contextMenu = (e) => {
 		e.preventDefault();
 		this.route('/branding');
 	};
@@ -111,4 +111,4 @@ export default class Logo extends Component {
 	}
 }
 
-export const InvertedLogo = props => <Logo inverted {...props} />;
+export const InvertedLogo = (props) => <Logo inverted {...props} />;

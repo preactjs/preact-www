@@ -19,8 +19,8 @@ export default function TabGroup({ tabstring, children }) {
 	const id = useId();
 
 	// Filters the empty lines around our codeblocks in the markdown docs
-	children = children.filter(s => typeof s !== 'string' || s.trim() !== '');
-	const tabs = tabstring.split(',').map(s => s.trim());
+	children = children.filter((s) => typeof s !== 'string' || s.trim() !== '');
+	const tabs = tabstring.split(',').map((s) => s.trim());
 
 	const onKeyDown = (e) => {
 		const tabContainer = e.currentTarget;
@@ -42,7 +42,13 @@ export default function TabGroup({ tabstring, children }) {
 
 	return (
 		<div>
-			<div class={style.tabs} role="tablist" aria-label="API Styles" aria-orientation="horizontal" onKeyDown={onKeyDown}>
+			<div
+				class={style.tabs}
+				role="tablist"
+				aria-label="API Styles"
+				aria-orientation="horizontal"
+				onKeyDown={onKeyDown}
+			>
 				{tabs.map((tab, i) => (
 					<button
 						class={style.tab}

@@ -65,7 +65,7 @@ export function LanguageProvider({ children }) {
 		return fetch(url, {
 			credentials: 'include',
 			mode: 'no-cors'
-		}).then(r => r.json());
+		}).then((r) => r.json());
 	}, [lang]);
 
 	useEffect(() => {
@@ -79,7 +79,7 @@ export function LanguageProvider({ children }) {
 		document.documentElement.lang = userLang;
 	}, []);
 
-	const setAndUpdateHtmlAttr = lang => {
+	const setAndUpdateHtmlAttr = (lang) => {
 		localStorageSet('lang', lang);
 		setLang(lang);
 		document.documentElement.lang = lang;

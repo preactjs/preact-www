@@ -9,7 +9,7 @@ import style from './error-overlay.module.css';
  * @param {string} [props.class]
  */
 export function ErrorOverlay({ name, message, stack, class: c }) {
-	const [showStack, toggleStack] = useReducer(s => !s, false);
+	const [showStack, toggleStack] = useReducer((s) => !s, false);
 	const hasStack = stack && stack.length > 0;
 
 	return (
@@ -27,7 +27,7 @@ export function ErrorOverlay({ name, message, stack, class: c }) {
 			)}
 			{hasStack && showStack && (
 				<div class={style.stack}>
-					{stack.map(frame => (
+					{stack.map((frame) => (
 						<p class={style.frame}>
 							{frame.functionName} :{frame.line}:{frame.column}
 						</p>

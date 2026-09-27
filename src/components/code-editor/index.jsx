@@ -1,10 +1,25 @@
 import { useRef, useEffect } from 'preact/hooks';
 import { EditorView } from 'codemirror';
-import { lineNumbers, keymap, highlightActiveLineGutter, highlightActiveLine } from '@codemirror/view';
+import {
+	lineNumbers,
+	keymap,
+	highlightActiveLineGutter,
+	highlightActiveLine
+} from '@codemirror/view';
 import { EditorState, Transaction } from '@codemirror/state';
-import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
+import {
+	defaultKeymap,
+	history,
+	historyKeymap,
+	indentWithTab
+} from '@codemirror/commands';
 import { javascript } from '@codemirror/lang-javascript';
-import { syntaxHighlighting, HighlightStyle, indentUnit, bracketMatching } from '@codemirror/language';
+import {
+	syntaxHighlighting,
+	HighlightStyle,
+	indentUnit,
+	bracketMatching
+} from '@codemirror/language';
 import { tags } from '@lezer/highlight';
 import { closeBrackets, autocompletion } from '@codemirror/autocomplete';
 import cx from '../../lib/cx';
@@ -16,7 +31,14 @@ import './code-mirror.css';
 // the lexer is somewhat limited so it still deviates
 const highlightStyle = HighlightStyle.define([
 	{ tag: tags.keyword, class: 'cm-keyword' },
-	{ tag: [tags.definition(tags.function(tags.name)), tags.function(tags.name), tags.propertyName], class: 'cm-function' },
+	{
+		tag: [
+			tags.definition(tags.function(tags.name)),
+			tags.function(tags.name),
+			tags.propertyName
+		],
+		class: 'cm-function'
+	},
 	{ tag: tags.literal, class: 'cm-literal' },
 	{ tag: tags.tagName, class: 'cm-tag' },
 	{ tag: tags.attributeName, class: 'cm-attribute' },
@@ -51,7 +73,11 @@ export default function CodeEditor(props) {
 
 		if (editor.current) {
 			editor.current.dispatch({
-				changes: { from: 0, to: editor.current.state.doc.length, insert: props.value }
+				changes: {
+					from: 0,
+					to: editor.current.state.doc.length,
+					insert: props.value
+				}
 			});
 			return;
 		}
@@ -72,7 +98,7 @@ export default function CodeEditor(props) {
 				javascript({ jsx: true }),
 				keymap.of([indentWithTab, ...defaultKeymap, ...historyKeymap]),
 				[theme, syntaxHighlighting(highlightStyle, { fallback: true })],
-				EditorView.updateListener.of(update => {
+				EditorView.updateListener.of((update) => {
 					// Ignores changes from swapping out the editor code programmatically
 					if (isViewUpdateFromUserInput(update)) {
 						props.onInput(update.state.doc.toString());
@@ -87,11 +113,12 @@ export default function CodeEditor(props) {
 		});
 	}, [props.value]);
 
-	useEffect(() => (
-		() => {
+	useEffect(
+		() => () => {
 			if (editor.current) editor.current.destroy();
-		}
-	), []);
+		},
+		[]
+	);
 
 	return <div ref={editorParent} class={cx(style.codeEditor, props.class)} />;
 }

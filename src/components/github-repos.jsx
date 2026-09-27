@@ -7,7 +7,7 @@ export default function GitHubRepos({ org }) {
 	const [items, setItems] = useState(preactOrgRepos || []);
 
 	useEffect(() => {
-		fetchOrganizationRepos(org).then(repos => setItems(repos));
+		fetchOrganizationRepos(org).then((repos) => setItems(repos));
 	}, []);
 
 	return (
@@ -15,7 +15,7 @@ export default function GitHubRepos({ org }) {
 			{/* We use a <p> here (roughly) styled as an <h1> here to not disrupt the heading order on the home page */}
 			<p class="repo-list-header">Preact Repositories</p>
 			<div>
-				{items.map(result => (
+				{items.map((result) => (
 					<Result {...result} />
 				))}
 			</div>

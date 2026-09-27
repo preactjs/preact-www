@@ -14,7 +14,7 @@ if (typeof window !== 'undefined') {
 
 	// Might need to keep this around indefinitely, unfortunately
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.getRegistrations().then(registrations => {
+		navigator.serviceWorker.getRegistrations().then((registrations) => {
 			for (const registration of registrations) {
 				registration.unregister();
 			}

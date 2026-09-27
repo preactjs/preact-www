@@ -45,7 +45,7 @@ function MainNav() {
 	const { path, route } = useLocation();
 	const translate = useTranslate();
 
-	const brandingRedirect = e => {
+	const brandingRedirect = (e) => {
 		e.preventDefault();
 		route('/branding');
 	};
@@ -62,7 +62,7 @@ function MainNav() {
 			<NavLink href="/tutorial" />
 			<NavLink href="/guide/v11/getting-started" />
 			<NavMenu>
-				{isOpen => (
+				{(isOpen) => (
 					<ExpandableNavLink
 						isOpen={isOpen}
 						label={translate('headerNav', 'about')}
@@ -123,7 +123,7 @@ function LanguagePicker() {
 	return (
 		<div class={style.translation}>
 			<NavMenu>
-				{isOpen => (
+				{(isOpen) => (
 					<ExpandableNavLink
 						isOpen={isOpen}
 						label={
@@ -137,7 +137,7 @@ function LanguagePicker() {
 							<button
 								class={cx(id == lang && style.current)}
 								data-value={id}
-								onClick={e => setLang(e.currentTarget.dataset.value)}
+								onClick={(e) => setLang(e.currentTarget.dataset.value)}
 							>
 								{label}
 							</button>
