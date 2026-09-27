@@ -9,22 +9,20 @@ preact-root-fragment is a standalone and more flexible Preact 10+ implementation
 
 It provides a way to render or hydrate a Preact tree using a subset of the children within the parent element passed to render():
 
+<!-- prettier-ignore-start -->
 ```html
 <body>
-<!-- prettier-ignore-start -->
 	<div id="root"> ⬅ we pass this to render() as the parent DOM element...
-<!-- prettier-ignore-end -->
 
 		<script src="/etc.js"></script>
 
-<!-- prettier-ignore-start -->
 		<div class="app"> ⬅ ... but we want to use this tree, not the script
-<!-- prettier-ignore-end -->
 			<!-- ... -->
 		</div>
 	</div>
 </body>
 ```
+<!-- prettier-ignore-end -->
 
 ---
 
