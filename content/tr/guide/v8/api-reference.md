@@ -37,15 +37,15 @@ class MyComponent extends Component {
 
 Preact, bir bileşen için tanımlanmışsa aşağıdaki lifecycle metodlarını çağırır:
 
-| Lifecycle metodu            | Ne zaman çağrılacağı                                  |
-|-----------------------------|-------------------------------------------------------|
-| `componentWillMount`        | bileşen DOMa yüklenmeden önce                         |
-| `componentDidMount`         | bileşen DOMa yüklendikten sonra                       |
-| `componentWillUnmount`      | DOM'dan kaldırılmadan önce                            |
-| `componentWillReceiveProps` | yeni proplar kabul edilmeden önce                     |
-| `shouldComponentUpdate`     | `render()`dan önce. Renderı atlamak için`false` döndür|
-| `componentWillUpdate`       | `render()`dan önce                                    |
-| `componentDidUpdate`        | `render()`dan sonra                                   |
+| Lifecycle metodu            | Ne zaman çağrılacağı                                   |
+| --------------------------- | ------------------------------------------------------ |
+| `componentWillMount`        | bileşen DOMa yüklenmeden önce                          |
+| `componentDidMount`         | bileşen DOMa yüklendikten sonra                        |
+| `componentWillUnmount`      | DOM'dan kaldırılmadan önce                             |
+| `componentWillReceiveProps` | yeni proplar kabul edilmeden önce                      |
+| `shouldComponentUpdate`     | `render()`dan önce. Renderı atlamak için`false` döndür |
+| `componentWillUpdate`       | `render()`dan önce                                     |
+| `componentDidUpdate`        | `render()`dan sonra                                    |
 
 Tüm lifecycle metodları ve parametreleri aşağıdaki örnek bileşende gösterilmiştir:
 
@@ -55,19 +55,19 @@ import { Component } from 'preact';
 class MyComponent extends Component {
 	shouldComponentUpdate(nextProps, nextState) {}
 	componentWillReceiveProps(nextProps, nextState) {
-		this.props // Previous props
-		this.state // Previous state
+		this.props; // Previous props
+		this.state; // Previous state
 	}
 	componentWillMount() {}
 	componentWillUpdate(nextProps, nextState) {
-		this.props // Previous props
-		this.state // Previous state
+		this.props; // Previous props
+		this.state; // Previous state
 	}
 	componentDidMount() {}
 	componentDidUpdate() {}
 	componentWillUnmount() {
-		this.props // Current props
-		this.state // Current state
+		this.props; // Current props
+		this.state; // Current state
 	}
 }
 ```
@@ -115,6 +115,7 @@ render(MyComponent, container, existingNode);
 Verilen `attributes`a sahip bir Preact Sanal DOM öğesi döndürür.
 
 Geriye kalan tüm argümanlar `children` Array içine toplanır ve aşağıdakilerden biri olabilir:
+
 - Scalar values (string, number, boolean, null, undefined, etc)
 - More Virtual DOM elements
 - Infinitely nested Arrays of the above
@@ -132,10 +133,6 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Hello', null, ['Preact!']);
 // <div id="foo">Hello Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Hello!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Hello!'));
 // <div id="foo"><span>Hello!</span></div>
 ```
