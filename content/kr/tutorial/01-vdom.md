@@ -13,14 +13,16 @@ solvable: true
 
 ```js
 let vdom = {
-  type: 'p',         // a <p> element
-  props: {
-    class: 'big',    // with class="big"
-    children: [
-      'Hello World!' // and the text "Hello World!"
-    ]
-  }
-}
+<!-- prettier-ignore-start -->
+	type: 'p',             // a <p> element
+	props: {
+		class: 'big',      // with class="big"
+		children: [
+			'Hello World!' // and the text "Hello World!"
+		]
+	}
+<!-- prettier-ignore-end -->
+};
 ```
 
 Preact와 같은 라이브러리는 이러한 설명을 구성하는 방법을 제공하여 브라우저의 DOM 트리와 비교할 수 있습니다. 트리의 각 부분이 비교되고 브라우저의 DOM 트리가 가상 DOM 트리에서 설명하는 구조와 일치하도록 업데이트됩니다.
@@ -39,15 +41,15 @@ _명령형_ 이 아닌 _선언형_ 으로 사용자 인터페이스를 구성할
 
 Preact의 `createElement()` 함수를 직접 호출하는, 가장 간단한 접근 방식으로 작업을 시작하는 것이 유용합니다.
 
-
-
 ```jsx
 import { createElement, render } from 'preact';
 
 let vdom = createElement(
-  'p',              // a <p> element
-  { class: 'big' }, // with class="big"
-  'Hello World!'    // and the text "Hello World!"
+<!-- prettier-ignore-start -->
+	'p',              // a <p> element
+	{ class: 'big' }, // with class="big"
+	'Hello World!'    // and the text "Hello World!"
+<!-- prettier-ignore-end -->
 );
 
 render(vdom, document.body);
@@ -60,9 +62,6 @@ render(vdom, document.body);
 ### 이제 더 많은 JSX가 있습니다!
 
 기능을 변경하지 않고 JSX 를 사용하여 이전 예제를 다시 작성할 수 있습니다 . [JSX] 를 사용하면 HTML과 같은 구문을 사용하여 단락 요소를 설명할 수 있으므로 더 복잡한 트리를 설명할 때 가독성을 유지할 수 있습니다. JSX의 단점은 코드가 더 이상 JavaScript로 작성되지 않으며 [Babel] 과 같은 도구로 컴파일해야 한다는 것 입니다. `createElement()` 컴파일러는 아래의 JSX 예제 를 이전 예제에서 본 정확한 코드 로 변환하는 작업을 수행합니다 .
-
-
-
 
 ```jsx
 import { createElement, render } from 'preact';
@@ -77,10 +76,10 @@ render(vdom, document.body);
 JSX에 대해 마지막으로 명심해야 할 것이 하나 있는데, JSX 요소 내부의 코드(각 괄호 안)는 자바스크립트가 아닌 특수 구문입니다. 숫자나 변수와 같은 JavaScript 구문을 사용하려면 먼저 템플릿의 필드와 유사한 `{expression}` 을(를) 사용하여 JSX에서 다시 "점프"해야 합니다. 아래 예제에서는 `class` 를 랜덤화된 문자열로 설정하는 식과 숫자를 계산하는 식의 두 가지 식을 보여 줍니다.
 
 ```jsx
-let maybeBig = Math.random() > .5 ? 'big' : 'small';
+let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = <p class={maybeBig}>Hello {40 + 2}!</p>;
-                 // ^---JS---^       ^--JS--^
+//                  ^---JS---^       ^--JS--^
 ```
 
 `render(vdom, document.body)` 을(를) 실행할 경우 "Hello 42!" 라는 텍스트가 표시됩니다.
@@ -90,7 +89,7 @@ let vdom = <p class={maybeBig}>Hello {40 + 2}!</p>;
 [HTM] 은 표준 JavaScript 태그 템플릿을 사용하는 JSX의 대안으로 컴파일러가 필요하지 않습니다. 태그가 지정된 템플릿을 본 적이 없다면 `${expression}` 필드를 포함할 수 있는 특수 유형의 문자열 리터럴입니다.
 
 ```js
-let str = `Quantity: ${40 + 2} units`;  // "Quantity: 42 units"
+let str = `Quantity: ${40 + 2} units`; // "Quantity: 42 units"
 ```
 
 HTM은 JSX의 `${expression}` 구문 대신 `{expression}` 을 사용하므로 코드의 어떤 부분이 HTM/JSX 요소이고 어떤 부분이 일반 자바스크립트인지 더 명확하게 알 수 있습니다.
@@ -98,10 +97,10 @@ HTM은 JSX의 `${expression}` 구문 대신 `{expression}` 을 사용하므로 �
 ```js
 import { html } from 'htm/preact';
 
-let maybeBig = Math.random() > .5 ? 'big' : 'small';
+let maybeBig = Math.random() > 0.5 ? 'big' : 'small';
 
 let vdom = html`<p class=${maybeBig}>Hello ${40 + 2}!</p>`;
-                        // ^--JS--^          ^-JS-^
+//                         ^--JS--^          ^-JS-^
 ```
 
 이러한 모든 예는 동일한 결과를 생성합니다. 즉, 기존 DOM 트리를 만들거나 업데이트하기 위해 Preact에 제공할 수 있는 가상 DOM 트리입니다.
@@ -120,9 +119,7 @@ JSX를 함수로 이동하여 매우 간단한 구성 요소를 만듭니다.
 import { createElement } from 'preact';
 
 export default function App() {
-	return (
-		<p class="big">Hello World!</p>
-	)
+	return <p class="big">Hello World!</p>;
 }
 ```
 
@@ -139,7 +136,6 @@ export default function App() {
   <p>We've made things appear on the screen. Next we'll make them interactive.</p>
 </solution>
 
-
 ```js:setup
 useResult(function(result) {
   var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
@@ -150,7 +146,6 @@ useResult(function(result) {
   }
 }, []);
 ```
-
 
 ```jsx:repl-initial
 import { render } from 'preact';
