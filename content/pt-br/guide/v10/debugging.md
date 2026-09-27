@@ -7,7 +7,7 @@ description: Como debugar aplicativos preact quando algo der errado
 
 O Preact é fornecido com muitas ferramentas para facilitar a depuração. Eles são empacotados em uma única importação e podem ser incluídos importando `preact / debug`.
 
-Isso inclui uma ponte para a excelente [Preact Devtools] Extenção para o  Chrome e Firefox. Se você já os tiver instalado, pode **experimentá-lo neste site.** Basta abrir os devtools e começar a inspecionar como o construímos.
+Isso inclui uma ponte para a excelente [Preact Devtools] Extenção para o Chrome e Firefox. Se você já os tiver instalado, pode **experimentá-lo neste site.** Basta abrir os devtools e começar a inspecionar como o construímos.
 
 imprimiremos um aviso ou erro sempre que detectarmos algo errado, como aninhamento incorreto nos elementos `<table>`.
 
@@ -33,7 +33,7 @@ Aqui está um exemplo de como pode ser o arquivo de entrada principal do seu apl
 
 ```jsx
 // Deve ser o primeiro import
-import "preact/debug";
+import 'preact/debug';
 import { render } from 'preact';
 import App from './components/App';
 
@@ -46,10 +46,10 @@ A maioria dos bundlers permite remover o código quando eles detectam que um ram
 
 ```jsx
 // Deve ser o primeiro import
-if (process.env.NODE_ENV==='development') {
-  // Deve ser obrigatório o uso aqui, pois as instruções de importação são permitidas apenas
-  // existe na parte superior de um arquivo.
-  require("preact/debug");
+if (process.env.NODE_ENV === 'development') {
+	// Deve ser obrigatório o uso aqui, pois as instruções de importação são permitidas apenas
+	// existe na parte superior de um arquivo.
+	require('preact/debug');
 }
 
 import { render } from 'preact';
@@ -85,7 +85,7 @@ Preact lançará esse erro sempre que você passar `indefinido` em vez de um com
 ```jsx
 // app.js
 export default function App() {
-  return <div>Olá Mundo</div>;
+	return <div>Olá Mundo</div>;
 }
 
 // index.js: Errado, porque `app.js` não possui uma exportação nomeada
@@ -98,7 +98,7 @@ O mesmo erro será gerado quando for o contrário. Quando você declara uma expo
 ```jsx
 // app.js
 export function App() {
-  return <div>Olá Mundo</div>;
+	return <div>Olá Mundo</div>;
 }
 
 // index.js
@@ -189,7 +189,9 @@ Um aspecto exclusivo das bibliotecas baseadas no dom virtual é que elas precisa
 ```jsx
 // Ambos os filhos terão a mesma chave "A"
 <div>
-  {['A', 'A'].map(char => <p key={char}>{char}</p>)}
+	{['A', 'A'].map((char) => (
+		<p key={char}>{char}</p>
+	))}
 </div>
 ```
 
@@ -197,16 +199,20 @@ A maneira correta de fazer isso é fornecendo chaves exclusivas. Na maioria dos 
 
 ```jsx
 const pessoas = [
-  { nome: 'John', idade: 22 },
-  { nome: 'Sarah', idade: 24}
+	{ nome: 'John', idade: 22 },
+	{ nome: 'Sarah', idade: 24 }
 ];
 
 // Em algum momento mais tarde no seu componente
 <div>
-  {pessoas.map(({ nome, idade }) => {
-    return <p key={nome}>{nome}, Idade: {idade}</p>;
-  })}
-</div>
+	{pessoas.map(({ nome, idade }) => {
+		return (
+			<p key={nome}>
+				{nome}, Idade: {idade}
+			</p>
+		);
+	})}
+</div>;
 ```
 
 [Preact Devtools]: https://preactjs.github.io/preact-devtools/

@@ -60,7 +60,6 @@ Na verdade, o site que você está nesse exato momento é um Progressive Web App
 
 Conteúdo estático do site é guardado pela _Cache Storage API_ (do Service Worker), permitindo carregamento instantâneo numa visita repetida.
 
-
 ## Dicas de Performance
 
 Mesmo o Preact devendo funcionar bem para seu PWA, ele também pode ser utilizado com uma gama de outras ferramentas e técnicas. Essas incluem:

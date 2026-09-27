@@ -24,7 +24,7 @@ Vamos usar um exemplo: um componente simples `<Link>` que cria um elemento HTML 
 ```js
 class Link extends Component {
 	render(props, state) {
-		return <a href={props.href}>{ props.children }</a>;
+		return <a href={props.href}>{props.children}</a>;
 	}
 }
 ```
@@ -34,7 +34,6 @@ Podemos instanciar/renderizar esse componente como segue:
 ```xml
 <Link href="http://example.com">Algum Texto</Link>
 ```
-
 
 ### Destructurar `Props` & `State`
 
@@ -58,18 +57,15 @@ class Link extends Component {
 }
 ```
 
-
 ### Componentes Funcionais Sem Estado
 
 Por último, podemos ver que esse componente não tem estado - podemos renderizá-lo com as mesmas `props` e receberemos o mesmo resultado todas as vezes.
 Quando isso é o caso, é geralmente melhor utilizar um Componente Funcional Sem Estado. Esses são apenas funções que aceitam `props` como argumento e retornam JSX.
 
 ```js
-const Link = ({ children, ...props }) => (
-	<a {...props}>{ children }</a>
-);
+const Link = ({ children, ...props }) => <a {...props}>{children}</a>;
 ```
 
-> *Nota de ES2015:* o acima é uma _Arrow Function_ , e porque nós utilizamos parênteses ao invés de chaves, o valor dentro dos parênteses é automaticamente retornado. Você pode ler mais sobre isso [aqui](https://github.com/lukehoban/es6features#arrows).
+> _Nota de ES2015:_ o acima é uma _Arrow Function_ , e porque nós utilizamos parênteses ao invés de chaves, o valor dentro dos parênteses é automaticamente retornado. Você pode ler mais sobre isso [aqui](https://github.com/lukehoban/es6features#arrows).
 
 [métodos do ciclo de vida]: /guide/lifecycle-methods

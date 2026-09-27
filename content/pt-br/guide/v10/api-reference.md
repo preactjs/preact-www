@@ -63,9 +63,9 @@ render(<Foo />, document.getElementById('container'));
 //   <div id="target"></div>
 // </div>
 render(
-  <Foo />,
-  document.getElementById('container'),
-  document.getElementById('target')
+	<Foo />,
+	document.getElementById('container'),
+	document.getElementById('target')
 );
 // depois de renderizar:
 // <div id="container">
@@ -92,7 +92,7 @@ render(App, rootElement);
 render(h(App), rootElement);
 
 // CORRETO: Passando App indiretamente para função h() via JSX
-render(<App />, rootElement)
+render(<App />, rootElement);
 ```
 
 ## hydrate()
@@ -111,7 +111,7 @@ hydrate(<Foo />, document.getElementById('container'));
 
 `h(nodeName, attributes, [...children])`
 
-Retorna um elemento Preact Virtual DOM com os seguintes  atributos.
+Retorna um elemento Preact Virtual DOM com os seguintes atributos.
 
 All remaining arguments are collected into a `children` Array, and be any of the following:
 Todos os argumentos restantes são coletados em um `children` Array e são um dos seguintes:
@@ -129,11 +129,7 @@ h('div', { id: 'foo' }, 'Hello!');
 h('div', { id: 'foo' }, 'Olá', null, ['Preact!']);
 // <div id="foo">Olá Preact!</div>
 
-h(
-	'div',
-	{ id: 'foo' },
-	h('span', null, 'Olá!')
-);
+h('div', { id: 'foo' }, h('span', null, 'Olá!'));
 // <div id="foo"><span>Olá!</span></div>
 ```
 
@@ -183,13 +179,14 @@ Um tipo especial de componente que não renderiza nada no DOM. Eles permitem que
 ```jsx
 import { Fragment, render } from 'preact';
 
-render((
-  <Fragment>
-    <div>A</div>
-    <div>B</div>
-    <div>C</div>
-  </Fragment>
-), container);
+render(
+	<Fragment>
+		<div>A</div>
+		<div>B</div>
+		<div>C</div>
+	</Fragment>,
+	container
+);
 // Renderiza:
 // <div id="container>
 //   <div>A</div>

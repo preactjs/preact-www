@@ -21,16 +21,16 @@ A função `createRef` retornará um objeto simples com apenas uma propriedade: 
 
 ```jsx
 class Foo extends Component {
-  ref = createRef();
+	ref = createRef();
 
-  componentDidMount() {
-    console.log(this.ref.current);
-    // Logs: [HTMLDivElement]
-  }
+	componentDidMount() {
+		console.log(this.ref.current);
+		// Logs: [HTMLDivElement]
+	}
 
-  render() {
-    return <div ref={this.ref}>foo</div>
-  }
+	render() {
+		return <div ref={this.ref}>foo</div>;
+	}
 }
 ```
 
@@ -40,17 +40,17 @@ Outra maneira de obter a referência a um elemento pode ser feita passando um re
 
 ```jsx
 class Foo extends Component {
-  ref = null;
-  setRef = (dom) => this.ref = dom;
+	ref = null;
+	setRef = (dom) => (this.ref = dom);
 
-  componentDidMount() {
-    console.log(this.ref);
-    // Logs: [HTMLDivElement]
-  }
+	componentDidMount() {
+		console.log(this.ref);
+		// Logs: [HTMLDivElement]
+	}
 
-  render() {
-    return <div ref={this.setRef}>foo</div>
-  }
+	render() {
+		return <div ref={this.setRef}>foo</div>;
+	}
 }
 ```
 
@@ -62,15 +62,19 @@ Digamos que temos um cenário em que precisamos obter a referência a um nó DOM
 
 ```jsx
 class Foo extends Component {
-  // Queremos usar a largura real do nó DOM aqui
-  state = {
-    width: 0,
-    height: 0,
-  };
+	// Queremos usar a largura real do nó DOM aqui
+	state = {
+		width: 0,
+		height: 0
+	};
 
-  render(_, { width, height }) {
-    return <div>largura: {width}, altura: {height}</div>;
-  }
+	render(_, { width, height }) {
+		return (
+			<div>
+				largura: {width}, altura: {height}
+			</div>
+		);
+	}
 }
 ```
 
@@ -78,31 +82,31 @@ A medição só faz sentido depois que o método `render` for chamado e o compon
 
 ```jsx
 class Foo extends Component {
-  state = {
-    width: 0,
-    height: 0,
-  };
+	state = {
+		width: 0,
+		height: 0
+	};
 
-  ref = createRef();
+	ref = createRef();
 
-  componentDidMount() {
-    // Por segurança: verifique se uma referência foi fornecida
-    if (this.ref.current) {
-      const dimensions = this.ref.current.getBoundingClientRect();
-      this.setState({
-        width: dimensions.width,
-        height: dimensions.height,
-      });
-    }
-  }
+	componentDidMount() {
+		// Por segurança: verifique se uma referência foi fornecida
+		if (this.ref.current) {
+			const dimensions = this.ref.current.getBoundingClientRect();
+			this.setState({
+				width: dimensions.width,
+				height: dimensions.height
+			});
+		}
+	}
 
-  render(_, { width, height }) {
-    return (
-      <div ref={this.ref}>
-        Width: {width}, Height: {height}
-      </div>
-    );
-  }
+	render(_, { width, height }) {
+		return (
+			<div ref={this.ref}>
+				Width: {width}, Height: {height}
+			</div>
+		);
+	}
 }
 ```
 

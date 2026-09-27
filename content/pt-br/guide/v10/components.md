@@ -21,7 +21,7 @@ Componentes funcionais são funções simples que recebem `props 'como o primeir
 
 ```jsx
 function MeuComponente(props) {
-  return <div>Meu nome é {props.name}.</div>;
+	return <div>Meu nome é {props.name}.</div>;
 }
 
 // Uso
@@ -41,26 +41,26 @@ Aqui temos um componente de classe simples chamado `<Clock>` que exibe a hora at
 
 ```jsx
 class Clock extends Component {
-  state = { time: Date.now() }
+	state = { time: Date.now() };
 
-  // CicloDeVida: Chamado sempre que nosso componente é criado
-  componentDidMount() {
-    // update time every second
-    this.timer = setInterval(() => {
-      this.setState({ time: Date.now() });
-    }, 1000);
-  }
+	// CicloDeVida: Chamado sempre que nosso componente é criado
+	componentDidMount() {
+		// update time every second
+		this.timer = setInterval(() => {
+			this.setState({ time: Date.now() });
+		}, 1000);
+	}
 
-  // CicloDeVida: Chamado antes de nosso componente ser destruído
-  componentWillUnmount() {
-    // para quando não é renderizável
-    clearInterval(this.timer);
-  }
+	// CicloDeVida: Chamado antes de nosso componente ser destruído
+	componentWillUnmount() {
+		// para quando não é renderizável
+		clearInterval(this.timer);
+	}
 
-  render() {
-    let time = new Date(this.state.time).toLocaleTimeString();
-    return <span>{time}</span>;
-  }
+	render() {
+		let time = new Date(this.state.time).toLocaleTimeString();
+		return <span>{time}</span>;
+	}
 }
 ```
 
@@ -68,17 +68,17 @@ class Clock extends Component {
 
 Para que a hora do relógio seja atualizada a cada segundo, precisamos saber quando o `<Clock>` é montado no DOM. _Se você usou Elementos Customizados em HTML5, isso é semelhante aos métodos de ciclo de vida `attachCallback` e` detachedCallback`._ Preact chama os seguintes métodos de ciclo de vida se eles estiverem definidos para um Componente:
 
-| Método do ciclo de vida     | Quando é chamado                                 |
-|-----------------------------|--------------------------------------------------|
-| `componentWillMount`        | (descontinuado) antes que o componente seja montado no DOM     |
-| `componentDidMount`         | depois que o componente é montado no DOM      |
-| `componentWillUnmount`      | antes da remoção do DOM                    |
-| `componentWillReceiveProps` | (descontinuado) antes que novos adereços sejam aceitos                    |
+| Método do ciclo de vida     | Quando é chamado                                                 |
+| --------------------------- | ---------------------------------------------------------------- |
+| `componentWillMount`        | (descontinuado) antes que o componente seja montado no DOM       |
+| `componentDidMount`         | depois que o componente é montado no DOM                         |
+| `componentWillUnmount`      | antes da remoção do DOM                                          |
+| `componentWillReceiveProps` | (descontinuado) antes que novos adereços sejam aceitos           |
 | `getDerivedStateFromProps`  | imediatamente antes de `shouldComponentUpdate`. Use com cuidado. |
-| `shouldComponentUpdate`     | antes de `render ()`. Retorne `false 'para pular a renderização |
-| `componentWillUpdate`       | (descontinuado) antes de `render ()`                                |
-| `getSnapshotBeforeUpdate`   | chamado lo  go antes de `render ()` |
-| `componentDidUpdate`        | chamado logo depois do  `render()`                                 |
+| `shouldComponentUpdate`     | antes de `render ()`. Retorne `false 'para pular a renderização  |
+| `componentWillUpdate`       | (descontinuado) antes de `render ()`                             |
+| `getSnapshotBeforeUpdate`   | chamado lo go antes de `render ()`                               |
+| `componentDidUpdate`        | chamado logo depois do `render()`                                |
 
 > Veja [Esse diagrama](https://twitter.com/dan_abramov/status/981712092611989509) para obter uma visão geral visual de como eles se relacionam.
 
@@ -90,18 +90,18 @@ Quando um erro é detectado, podemos usar esse ciclo de vida para reagir a qualq
 
 ```jsx
 class Catcher extends Component {
-  state = { errored: false }
+	state = { errored: false };
 
-  componentDidCatch(error) {
-    this.setState({ errored: true });
-  }
+	componentDidCatch(error) {
+		this.setState({ errored: true });
+	}
 
-  render(props, state) {
-    if (state.errored) {
-      return <p>Algo de errado aconteceu</p>;
-    }
-    return props.children;
-  }
+	render(props, state) {
+		if (state.errored) {
+			return <p>Algo de errado aconteceu</p>;
+		}
+		return props.children;
+	}
 }
 ```
 
@@ -113,20 +113,20 @@ Um "Fragmento" permite retornar vários elementos ao mesmo tempo. Eles resolvem 
 import { Fragment, render } from 'preact';
 
 function TodoItems() {
-  return (
-    <Fragment>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+		</Fragment>
+	);
 }
 
 const App = (
-  <ul>
-    <TodoItems />
-    <li>D</li>
-  </ul>
+	<ul>
+		<TodoItems />
+		<li>D</li>
+	</ul>
 );
 
 render(App, container);
@@ -152,10 +152,7 @@ Você também pode retornar arrays de seus componentes:
 
 ```jsx
 function Columns() {
-  return [
-    <td>Olá</td>,
-    <td>Mundi</td>
-  ];
+	return [<td>Olá</td>, <td>Mundi</td>];
 }
 ```
 
@@ -163,17 +160,17 @@ Não se esqueça de adicionar chaves ao `Fragments` se você as criar em um loop
 
 ```jsx
 function Glossary(props) {
-  return (
-    <dl>
-      {props.items.map(item => (
-        // Sem uma chave, o Preact precisa adivinhar quais itens têm  de ser
-        // alterado ao renderizar novamente.
-        <Fragment key={item.id}>
-          <dt>{item.term}</dt>
-          <dd>{item.description}</dd>
-        </Fragment>
-      ))}
-    </dl>
-  );
+	return (
+		<dl>
+			{props.items.map((item) => (
+				// Sem uma chave, o Preact precisa adivinhar quais itens têm  de ser
+				// alterado ao renderizar novamente.
+				<Fragment key={item.id}>
+					<dt>{item.term}</dt>
+					<dd>{item.description}</dd>
+				</Fragment>
+			))}
+		</dl>
+	);
 }
 ```

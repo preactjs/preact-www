@@ -26,18 +26,18 @@ Existem duas maneiras de importá-las, você pode importá-las de
 
 ```jsx
 class Counter extends Component {
-  state = { value: 0 };
+	state = { value: 0 };
 
-  increment = () => this.setState(prev => ({ value: prev.value +1 }));
+	increment = () => this.setState((prev) => ({ value: prev.value + 1 }));
 
-  render(_, { value }) {
-    return (
-      <div>
-        Counter: {value}
-        <button onClick={this.increment}>Incrementar</button>
-      </div>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<div>
+				Counter: {value}
+				<button onClick={this.increment}>Incrementar</button>
+			</div>
+		);
+	}
 }
 ```
 
@@ -45,15 +45,15 @@ Tudo o que o componente faz é renderizar uma div e um botão para incrementar o
 
 ```jsx
 function Counter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => setValue(value + 1), [value]);
 
-  return (
-    <div>
-      Counter: {value}
-      <button onClick={increment}>Incrementar</button>
-    </div>
-  );
+	return (
+		<div>
+			Counter: {value}
+			<button onClick={increment}>Incrementar</button>
+		</div>
+	);
 }
 ```
 
@@ -61,32 +61,32 @@ Neste ponto, eles parecem bastante semelhantes. Então, vamos dar um passo adian
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(() => setValue(value + 1), [value]);
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(() => setValue(value + 1), [value]);
+	return { value, increment };
 }
 
 // Primeiro contador
 function CounterA() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      Contador A: {value}
-      <button onClick={increment}>Incrementar</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			Contador A: {value}
+			<button onClick={increment}>Incrementar</button>
+		</div>
+	);
 }
 
 // Segundo contador que gera uma saída diferente.
 function CounterB() {
-  const { value, increment } = useCounter();
-  return (
-    <div>
-      <h1>Contador B: {value}</h1>
-      <p>Eu sou um bom contador</p>
-      <button onClick={increment}>Incrementar</button>
-    </div>
-  );
+	const { value, increment } = useCounter();
+	return (
+		<div>
+			<h1>Contador B: {value}</h1>
+			<p>Eu sou um bom contador</p>
+			<button onClick={increment}>Incrementar</button>
+		</div>
+	);
 }
 ```
 
@@ -100,13 +100,13 @@ Muitos hooks apresentam um argumento que pode ser usado para limitar quando um h
 
 ```jsx
 function useCounter() {
-  const [value, setValue] = useState(0);
-  const increment = useCallback(
-    () => setValue(value + 1),
-    // Esta é o  array de dependência
-    [value]
-  );
-  return { value, increment };
+	const [value, setValue] = useState(0);
+	const increment = useCallback(
+		() => setValue(value + 1),
+		// Esta é o  array de dependência
+		[value]
+	);
+	return { value, increment };
 }
 ```
 
@@ -136,19 +136,19 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  // Você também pode passar um retorno de chamada para o setter
-  const decrement = () => setCount((currentCount) => currentCount - 1);
+	const [count, setCount] = useState(0);
+	const increment = () => setCount(count + 1);
+	// Você também pode passar um retorno de chamada para o setter
+	const decrement = () => setCount((currentCount) => currentCount - 1);
 
-  return (
-    <div>
-      <p>Contador: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-    </div>
-  )
-}
+	return (
+		<div>
+			<p>Contador: {count}</p>
+			<button onClick={increment}>Increment</button>
+			<button onClick={decrement}>Decrement</button>
+		</div>
+	);
+};
 ```
 
 > Quando nosso estado inicial é caro, é melhor passar uma função em vez de um valor.
@@ -193,10 +193,9 @@ Com o hook `useMemo`, podemos memorizar os resultados desse cálculo e apenas re
 
 ```jsx
 const memoized = useMemo(
-  () => expensive(a, b),
-  // Execute novamente a função cara apenas quando alguma dessas
-  // dependências mudem
-  [a, b]
+	() => expensive(a, b), // dependências mudem
+	// Execute novamente a função cara apenas quando alguma dessas
+	[a, b]
 );
 ```
 
@@ -221,16 +220,16 @@ Para obter uma referência a um nó DOM dentro de um componente funcional, exist
 
 ```jsx
 function Foo() {
-  // Inicialize useRef com um valor inicial de `null`
-  const input = useRef(null);
-  const onClick = () => input.current && input.current.focus();
+	// Inicialize useRef com um valor inicial de `null`
+	const input = useRef(null);
+	const onClick = () => input.current && input.current.focus();
 
-  return (
-    <>
-      <input ref={input} />
-      <button onClick={onClick}>Entrada de foco</button>
-    </>
-  );
+	return (
+		<>
+			<input ref={input} />
+			<button onClick={onClick}>Entrada de foco</button>
+		</>
+	);
 }
 ```
 
@@ -244,19 +243,19 @@ Para acessar o contexto em um componente funcional, podemos usar o hook `useCont
 const Tema = createContext('light');
 
 function DisplayTheme() {
-  const tema = useContext(Tema);
-  return <p>Tema ativo: {tema}</p>;
+	const tema = useContext(Tema);
+	return <p>Tema ativo: {tema}</p>;
 }
 
 // ...depois
 function App() {
-  return (
-    <Theme.Provider value="light">
-      <OtherComponent>
-        <DisplayTheme />
-      </OtherComponent>
-    </Theme.Provider>
-  )
+	return (
+		<Theme.Provider value="light">
+			<OtherComponent>
+				<DisplayTheme />
+			</OtherComponent>
+		</Theme.Provider>
+	);
 }
 ```
 
@@ -270,10 +269,10 @@ Como o nome indica, `useEffect` é a principal maneira de desencadear vários ef
 
 ```jsx
 useEffect(() => {
-  // Dispara seu efeito
-  return () => {
-    // Opcional: qualquer código de limpeza
-  };
+	// Dispara seu efeito
+	return () => {
+		// Opcional: qualquer código de limpeza
+	};
 }, []);
 ```
 
@@ -281,11 +280,11 @@ Começaremos com um componente "Título" que deve refletir o título do document
 
 ```jsx
 function PageTitle(props) {
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+	useEffect(() => {
+		document.title = props.title;
+	}, [props.title]);
 
-  return <h1>{props.title}</h1>;
+	return <h1>{props.title}</h1>;
 }
 ```
 
@@ -296,18 +295,18 @@ Mas, às vezes, temos um caso de uso mais complexo. Pense em um componente que p
 ```jsx
 // Componente que sempre exibirá a largura atual da janela
 function WindowWidth(props) {
-  const [width, setWidth] = useState(0);
+	const [width, setWidth] = useState(0);
 
-  function onResize() {
-    setWidth(window.innerWidth);
-  }
+	function onResize() {
+		setWidth(window.innerWidth);
+	}
 
-  useEffect(() => {
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
 
-  return <div>Window width: {width}</div>;
+	return <div>Window width: {width}</div>;
 }
 ```
 

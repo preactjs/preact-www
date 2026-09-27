@@ -43,7 +43,7 @@ import htm from 'https://esm.sh/htm';
 // Inicialize htm com Preact
 const html = htm.bind(h);
 
-const app = html`<div>Olá mundo</div>`
+const app = html`<div>Olá mundo</div>`;
 render(app, document.getElementById('app'));
 ```
 
@@ -59,12 +59,15 @@ Para transpilar JSX, você precisa de um plug-in babel que o converta em código
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "pragma": "h",
-      "pragmaFrag": "Fragment",
-    }]
-  ]
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"pragma": "h",
+				"pragmaFrag": "Fragment"
+			}
+		]
+	]
 }
 ```
 
@@ -82,16 +85,16 @@ já está presente, mas faltam os aliases para Preact.
 
 ```js
 const config = {
-   //...snip
-  "resolve": {
-    "alias": {
-      "react": "preact/compat",
-      "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat",
-     // Must be below test-utils
-    },
-  }
-}
+	//...snip
+	resolve: {
+		alias: {
+			react: 'preact/compat',
+			'react-dom/test-utils': 'preact/test-utils',
+			'react-dom': 'preact/compat'
+			// Must be below test-utils
+		}
+	}
+};
 ```
 
 #### Aliasing no parcel
@@ -101,11 +104,11 @@ uma chave `alias '.
 
 ```json
 {
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
-  },
+	"alias": {
+		"react": "preact/compat",
+		"react-dom/test-utils": "preact/test-utils",
+		"react-dom": "preact/compat"
+	}
 }
 ```
 
@@ -117,11 +120,11 @@ configuração jest:
 
 ```json
 {
-  "moduleNameMapper": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
-  }
+	"moduleNameMapper": {
+		"react": "preact/compat",
+		"react-dom/test-utils": "preact/test-utils",
+		"react-dom": "preact/compat"
+	}
 }
 ```
 

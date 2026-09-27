@@ -21,7 +21,6 @@ Ao falar sobre controles de formulário, você encontrará frequentemente as pal
 
 Uma estrutura como Preact, em contraste, geralmente possui um fluxo de dados unidirecional. O componente não gerencia o valor em si, mas algo mais alto na árvore de componentes.
 
-
 ```jsx
 // Não controlado, porque Preact não define o valor
 <input onInput={myEventHandler} />;
@@ -33,7 +32,6 @@ Uma estrutura como Preact, em contraste, geralmente possui um fluxo de dados uni
 Geralmente, você deve tentar usar Componentes _Controlados_ o tempo todo. No entanto, ao criar componentes independentes ou agrupar bibliotecas de interface do usuário de terceiros, ainda pode ser útil simplesmente usar seu componente como um ponto de montagem para funcionalidades que não são de pré-execução. Nesses casos, os componentes "não controlados" são adequados para a tarefa.
 
 > Um ponto a ser observado aqui é que definir o valor como `indefinido 'ou' nulo 'se tornará essencialmente descontrolado.
-
 
 ## Criando um formulário simples
 
@@ -70,29 +68,29 @@ Um elemento `<select>` é um pouco mais envolvido, mas funciona de maneira semel
 
 ```jsx
 class MySelect extends Component {
-  state = { value: '' };
+	state = { value: '' };
 
-  onInput = e => {
-    this.setState({ value: e.currentTarget.value });
-  }
+	onInput = (e) => {
+		this.setState({ value: e.currentTarget.value });
+	};
 
-  onSubmit = e => {
-    alert("Submitted something");
-    e.preventDefault();
-  }
+	onSubmit = (e) => {
+		alert('Submitted something');
+		e.preventDefault();
+	};
 
-  render(_, { value }) {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <select value={value} onInput={this.onInput}>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-        </select>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+	render(_, { value }) {
+		return (
+			<form onSubmit={this.onSubmit}>
+				<select value={value} onInput={this.onInput}>
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+				<button type="submit">Submit</button>
+			</form>
+		);
+	}
 }
 ```
 
@@ -108,21 +106,17 @@ Portanto, em vez de ouvir um evento `input`, devemos ouvir um evento `click`, qu
 
 ```jsx
 class MyForm extends Component {
-  toggle = e => {
-      let checked = !this.state.checked;
-      this.setState({ checked });
-  };
+	toggle = (e) => {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	};
 
-  render(_, { checked }) {
-    return (
-      <label>
-        <input
-          type="checkbox"
-          checked={checked}
-          onClick={this.toggle}
-        />
-      </label>
-    );
-  }
+	render(_, { checked }) {
+		return (
+			<label>
+				<input type="checkbox" checked={checked} onClick={this.toggle} />
+			</label>
+		);
+	}
 }
 ```

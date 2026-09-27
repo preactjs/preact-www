@@ -20,9 +20,9 @@ Isso pode resolvido simplesmente com a definição de um `shouldComponentUpdate`
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+	shouldComponentUpdate() {
+		return false;
+	}
 }
 ```
 
@@ -30,7 +30,7 @@ class Block extends Component {
 
 ```js
 class Block extends Component {
-  shouldComponentUpdate = () => false;
+	shouldComponentUpdate = () => false;
 }
 ```
 
@@ -44,31 +44,30 @@ Aqui está um exemplo para "desligar" a re-renderização de com Componente. Not
 
 ```js
 class Example extends Component {
-  shouldComponentUpdate() {
-    // não renderize via diff:
-    return false;
-  }
+	shouldComponentUpdate() {
+		// não renderize via diff:
+		return false;
+	}
 
-  componentWillReceiveProps(nextProps) {
-    // você pode fazer algo com as props aqui, se precisar.
-  }
+	componentWillReceiveProps(nextProps) {
+		// você pode fazer algo com as props aqui, se precisar.
+	}
 
-  componentDidMount() {
-    // agora montado, você pode livremente modificar o DOM.
-    let thing = document.createElement('talvez-um-elemento-customizado');
-    this.base.appendChild(thing);
-  }
+	componentDidMount() {
+		// agora montado, você pode livremente modificar o DOM.
+		let thing = document.createElement('talvez-um-elemento-customizado');
+		this.base.appendChild(thing);
+	}
 
-  componentWillUnmount() {
-    // componente está perto de ser removido do DOM, faça qualquer limpeza.
-  }
+	componentWillUnmount() {
+		// componente está perto de ser removido do DOM, faça qualquer limpeza.
+	}
 
-  render() {
-    return <div class="exemplo" />;
-  }
+	render() {
+		return <div class="exemplo" />;
+	}
 }
 ```
-
 
 ## Exemplos do Mundo-Real
 

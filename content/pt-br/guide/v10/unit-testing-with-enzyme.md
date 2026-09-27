@@ -43,7 +43,7 @@ adaptador:
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-preact-pure';
 
-configure({ adapter: new Adapter });
+configure({ adapter: new Adapter() });
 ```
 
 Para obter orientação sobre o uso de Enzyme com diferentes test-drives, consulte o
@@ -59,15 +59,15 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 export default function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const increment = () => setCount(count + 1);
+	const [count, setCount] = useState(initialCount);
+	const increment = () => setCount(count + 1);
 
-  return (
-    <div>
-      Current value: {count}
-      <button onClick={increment}>Incrementar</button>
-    </div>
-  );
+	return (
+		<div>
+			Current value: {count}
+			<button onClick={increment}>Incrementar</button>
+		</div>
+	);
 }
 ```
 
@@ -82,18 +82,18 @@ import { mount } from 'enzyme';
 import Counter from '../src/Counter';
 
 describe('Counter', () => {
-  it('deve exibir a contagem inicial', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    expect(wrapper.text()).to.include('Valor Atual: 5');
-  });
+	it('deve exibir a contagem inicial', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
+		expect(wrapper.text()).to.include('Valor Atual: 5');
+	});
 
-  it('deve incrementar após clicar no botão "Incrementar"', () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
+	it('deve incrementar após clicar no botão "Incrementar"', () => {
+		const wrapper = mount(<Counter initialCount={5} />);
 
-    wrapper.find('button').simulate('click');
+		wrapper.find('button').simulate('click');
 
-    expect(wrapper.text()).to.include('Valor Atual: 6');
-  });
+		expect(wrapper.text()).to.include('Valor Atual: 6');
+	});
 });
 ```
 
@@ -119,22 +119,22 @@ A Enzyme possui três "modos" de renderização:
 import { mount, shallow, render } from 'enzyme';
 
 // Renderiza a árvore de componentes completa:
-const wrapper = mount(<MyComponent prop="value"/>);
+const wrapper = mount(<MyComponent prop="value" />);
 
 // Renderiza apenas a saída direta do `MyComponent` (ou seja, componentes filho" mock "
 // para renderizar apenas como espaços reservados):
-const wrapper = shallow(<MyComponent prop="value"/>);
+const wrapper = shallow(<MyComponent prop="value" />);
 
 // Renderize a árvore de componentes completa em uma string HTML e analise o resultado:
-const wrapper = render(<MyComponent prop="value"/>);
+const wrapper = render(<MyComponent prop="value" />);
 ```
 
 - A função `mount` renderiza o componente e todos os seus descendentes no
-    da mesma maneira que eles seriam renderizados no navegador.
+      da mesma maneira que eles seriam renderizados no navegador.
 
 - A função `shallow` renderiza apenas os nós DOM que são diretamente enviados
-    pelo componente. Qualquer componente filho é substituído por espaços reservados que
-    saída apenas seus filhos.
+      pelo componente. Qualquer componente filho é substituído por espaços reservados que
+      saída apenas seus filhos.
 
     A vantagem desse modo é que você pode escrever testes para componentes sem
     dependendo dos detalhes dos componentes filhos e da necessidade de construir todos
@@ -144,9 +144,9 @@ const wrapper = render(<MyComponent prop="value"/>);
     adaptador em comparação com o React. Veja a seção Diferenças abaixo para detalhes.
 
 - A função `render` (não deve ser confundida com a função `render` do Preact!)
-    renderiza um componente em uma string HTML. Isso é útil para testar a saída
-    renderização no servidor ou renderização de um componente sem acionar nenhuma
-    dos seus efeitos.
+      renderiza um componente em uma string HTML. Isso é útil para testar a saída
+      renderização no servidor ou renderização de um componente sem acionar nenhuma
+      dos seus efeitos.
 
 ## Acionando atualizações e efeitos de estado com `act`
 
@@ -165,9 +165,9 @@ atualizações e efeitos do estado e, em seguida, peça à Enzyme para atualizar
 resultado.
 
 - Para executar atualizações e efeitos de estado de forma síncrona, use a função `act`
-  de `preact / test-utils 'para quebrar o código que aciona as atualizações
+    de `preact / test-utils 'para quebrar o código que aciona as atualizações
 - Para atualizar a visão do Enzyme da saída renderizada, use o `.update ()` do wrapper
-  método
+    método
 
 Por exemplo, aqui está uma versão diferente do teste para incrementar o
 , modificado para chamar o botão `onClick` diretamente, em vez de ir
@@ -179,18 +179,18 @@ import { act } from 'preact/test-utils';
 
 ```jsx
 it("deve incrementar após clicar no botão 'Incrementar'", () => {
-    const wrapper = mount(<Counter initialCount={5}/>);
-    const onClick = wrapper.find('button').props().onClick;
+	const wrapper = mount(<Counter initialCount={5} />);
+	const onClick = wrapper.find('button').props().onClick;
 
-    act(() => {
-      // Invoque o manipulador de cliques do botão, mas desta vez diretamente, em vez de
-       // por meio de uma API do Enzyme
-      onClick();
-    });
-    // Atualiza o output de saida do Enzyme
-    wrapper.update();
+	act(() => {
+		// Invoque o manipulador de cliques do botão, mas desta vez diretamente, em vez de
+		// por meio de uma API do Enzyme
+		onClick();
+	});
+	// Atualiza o output de saida do Enzyme
+	wrapper.update();
 
-    expect(wrapper.text()).to.include('Valor atual: 6');
+	expect(wrapper.text()).to.include('Valor atual: 6');
 });
 ```
 
@@ -205,19 +205,19 @@ No entanto, existem algumas diferenças no comportamento entre este adaptador e 
 Reagir os adaptadores para estar ciente de:
 
 - O modo de renderização "superficial" funciona de maneira diferente sob o capô. Isto é
-  consistente com o React ao renderizar apenas um componente com "um nível de profundidade", mas,
-  ao contrário do React, ele cria nós DOM reais. Ele também executa todo o normal
-  ganchos e efeitos do ciclo de vida.
+    consistente com o React ao renderizar apenas um componente com "um nível de profundidade", mas,
+    ao contrário do React, ele cria nós DOM reais. Ele também executa todo o normal
+    ganchos e efeitos do ciclo de vida.
 - O método `simulate` despacha eventos DOM reais, enquanto no React
-  adaptadores, `simulate` chama apenas o `on <EventName>` prop
+    adaptadores, `simulate` chama apenas o `on <EventName>` prop
 - Em Preact, atualizações de estado (por exemplo, após uma chamada para `setState`) são agrupadas em lotes
-  e aplicado de forma assíncrona. No estado React, as atualizações podem ser aplicadas imediatamente
-  ou em lote, dependendo do contexto. Para facilitar os testes de escrita, o
-  O adaptador de pré-reator libera atualizações e efeitos de estado após renderizações e
-  atualizações acionadas por chamadas `setProps` ou `simulate` em um adaptador. Quando atualizações de estado ou
-  efeitos são acionados por outros meios, seu código de teste pode precisar
-  desencadeie a liberação de efeitos e atualizações de estado usando `act` de
-  o pacote `preact / test-utils`.
+    e aplicado de forma assíncrona. No estado React, as atualizações podem ser aplicadas imediatamente
+    ou em lote, dependendo do contexto. Para facilitar os testes de escrita, o
+    O adaptador de pré-reator libera atualizações e efeitos de estado após renderizações e
+    atualizações acionadas por chamadas `setProps` ou `simulate` em um adaptador. Quando atualizações de estado ou
+    efeitos são acionados por outros meios, seu código de teste pode precisar
+    desencadeie a liberação de efeitos e atualizações de estado usando `act` de
+    o pacote `preact / test-utils`.
 
 Para mais detalhes, consulte [as instruções do adaptador Preact
 [README](https://github.com/preactjs/enzyme-adapter-preact-pure#differences-compared-to-enzyme--react).

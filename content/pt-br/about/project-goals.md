@@ -19,8 +19,8 @@ Preact tem como finalidade prover em alguns aspectos:
 Algumas funcionalidade do React foram intencionalmente omitidas do Preact, ou por não serem alcançáveis mantendo a fidelidade aos objetívos primário listados acima ou porque não encaixam no escopo das funcionalidades chave do Preact.
 
 - Os items (intencionais) em [O que está faltando?](/guide/v8/differences-to-react#whats-missing):
-    - PropTypes, que são facilmente utilizadas como uma biblioteca separada.
-    - Children, já que o Preact sempre compacta _children_ como um `Array`
-    - Eventos Sintéticos, já que o Preact não tenta resolver problemas em browsers mais velhos, como IE8
+  - PropTypes, que são facilmente utilizadas como uma biblioteca separada.
+  - Children, já que o Preact sempre compacta _children_ como um `Array`
+  - Eventos Sintéticos, já que o Preact não tenta resolver problemas em browsers mais velhos, como IE8
 
 [preact-compat]: https://github.com/preactjs/preact-compat/
