@@ -181,5 +181,3 @@ render(<App />, document.getElementById("app"));
 
 [ternary]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
 [lifecycle methods]: /guide/v11/components#lifecycle-methods
-
-</rewritten_file>
