@@ -30,7 +30,7 @@ export default defineConfig({
 		include: ['@babel/polyfill', '@rollup/browser', 'sucrase']
 	},
 	build: {
-		target: ['chrome88', 'edge88', 'es2020', 'firefox78', 'safari14'],
+		target: ['chrome88', 'edge88', 'es2021', 'firefox78', 'safari14'],
 		outDir: 'build',
 		rollupOptions: {
 			output: {
