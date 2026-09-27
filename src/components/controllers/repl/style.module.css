@@ -5,7 +5,6 @@
 	bottom: 0;
 	height: auto;
 	width: 100%;
-	background: #eee;
 	overflow: hidden;
 
 	@media (max-height: 431px) {
