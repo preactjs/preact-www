@@ -176,7 +176,7 @@ The last feature we'd like to add is the ability to remove a todo item from the 
 
 ```jsx
 function removeTodo(todo) {
-	todos.value = todos.value.filter(t => t !== todo);
+	todos.value = todos.value.filter((t) => t !== todo);
 }
 ```
 
@@ -186,14 +186,14 @@ Now that we've modeled our application's state, it's time to wire it up to a nic
 
 ```jsx
 function TodoList() {
-	const onInput = event => (text.value = event.currentTarget.value);
+	const onInput = (event) => (text.value = event.currentTarget.value);
 
 	return (
 		<>
 			<input value={text.value} onInput={onInput} />
 			<button onClick={addTodo}>Add</button>
 			<ul>
-				{todos.value.map(todo => (
+				{todos.value.map((todo) => (
 					<li>
 						{todo.text} <button onClick={() => removeTodo(todo)}>❌</button>
 					</li>
@@ -222,7 +222,7 @@ const todos = signal([
 // create a signal computed from other signals
 const completed = computed(() => {
 	// When `todos` changes, this re-runs automatically:
-	return todos.value.filter(todo => todo.completed).length;
+	return todos.value.filter((todo) => todo.completed).length;
 });
 
 // Logs: 1, because one todo is marked as being completed
@@ -242,7 +242,7 @@ function createAppState() {
 	const todos = signal([]);
 
 	const completed = computed(() => {
-		return todos.value.filter(todo => todo.completed).length;
+		return todos.value.filter((todo) => todo.completed).length;
 	});
 
 	return { todos, completed };
@@ -577,7 +577,7 @@ const TodoListModel = createModel(() => {
 			items.value = [...items.value, todo];
 		},
 		removeTodo(todo) {
-			items.value = items.value.filter(t => t !== todo);
+			items.value = items.value.filter((t) => t !== todo);
 			todo[Symbol.dispose]();
 		}
 	};
@@ -847,9 +847,7 @@ function Counter() {
 	const model = useModel(CounterModel);
 
 	return (
-		<button onClick={() => model.increment()}>
-			Count: {model.count}
-		</button>
+		<button onClick={() => model.increment()}>Count: {model.count}</button>
 	);
 }
 ```
@@ -869,9 +867,7 @@ function Counter({ initialValue }) {
 	const model = useModel(() => new CounterModel(initialValue));
 
 	return (
-		<button onClick={() => model.increment()}>
-			Count: {model.count}
-		</button>
+		<button onClick={() => model.increment()}>Count: {model.count}</button>
 	);
 }
 ```
@@ -900,7 +896,7 @@ function App() {
 
 // You can also use a function to access the value
 function App() {
-	return <Show when={isVisible}>{value => <p>The value is {value}</p>}</Show>;
+	return <Show when={isVisible}>{(value) => <p>The value is {value}</p>}</Show>;
 }
 ```
 

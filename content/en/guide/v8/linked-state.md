@@ -18,7 +18,7 @@ One solution is to declare bound component methods using ES7 class properties ([
 
 ```js
 class Foo extends Component {
-	updateText = e => {
+	updateText = (e) => {
 		this.setState({ text: e.target.value });
 	};
 	render({}, { text }) {
@@ -66,7 +66,7 @@ To understand this feature, it can be useful to peek under the hood of `linkStat
 handler = linkState(this, 'thing', 'foo.bar');
 
 // ...is functionally equivalent to:
-handler = event => {
+handler = (event) => {
 	this.setState({
 		thing: event.foo.bar
 	});

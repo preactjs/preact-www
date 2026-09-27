@@ -202,7 +202,7 @@ One unique aspect about virtual-dom based libraries is that they have to detect 
 ```jsx
 // Both children will have the same key "A"
 <div>
-	{['A', 'A'].map(char => (
+	{['A', 'A'].map((char) => (
 		<p key={char}>{char}</p>
 	))}
 </div>

@@ -38,7 +38,7 @@ export default function App() {
 			<div>
 				<p>
 					<Username.Consumer>
-						{username => (
+						{(username) => (
 							// access the current username from context:
 							<span>{username}</span>
 						)}

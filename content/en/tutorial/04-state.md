@@ -77,9 +77,11 @@ will return the exact same Array each time.
 >
 > ```js
 > function User() {
+>   <!-- prettier-ignore-start -->
 > 	const [name, setName] = useState('Bob');    // slot 0
 > 	const [age, setAge] = useState(42);         // slot 1
 > 	const [online, setOnline] = useState(true); // slot 2
+>   <!-- prettier-ignore-end -->
 > }
 > ```
 >

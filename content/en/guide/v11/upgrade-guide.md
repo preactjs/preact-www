@@ -141,13 +141,13 @@ import { options } from 'preact';
 
 const oldVNode = options.vnode;
 options.vnode = (vnode) => {
-    if (vnode.props.ref) {
-        vnode.ref = vnode.props.ref;
-        delete vnode.props.ref;
-    }
+	if (vnode.props.ref) {
+		vnode.ref = vnode.props.ref;
+		delete vnode.props.ref;
+	}
 
 	if (oldVNode) oldVNode(vnode);
-}
+};
 ```
 
 ### Move automatic `px` suffixing for style properties into `preact/compat`

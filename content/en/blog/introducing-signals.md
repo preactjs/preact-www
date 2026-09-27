@@ -104,14 +104,14 @@ Having identified the right state primitive, we set about wiring it up to Preact
 ```js
 // Selector based subscription :(
 function Counter() {
-	const value = useSelector(state => state.count);
+	const value = useSelector((state) => state.count);
 	// ...
 }
 
 // Wrapper function based subscription :(
 const counterState = new Counter();
 
-const Counter = observe(props => {
+const Counter = observe((props) => {
 	const value = counterState.count;
 	// ...
 });
