@@ -144,4 +144,4 @@ this is one of the main drivers behind not wanting to introduce these breaking c
 from our research without a painful migration path.
 
 This doesn't mean that Preact 11 won't happen but it might not be the thing that we initially thought it would be. Instead, we might just drop IE11 support and give you
-those performance improvements, all while giving you the stability of Preact X. There are many more ideas floating around and we're very interested in the wider Preact experience in the context of meta-frameworks that provide things like routing out of the box. We're exploring this angle in our vite preset as well as [Fresh](https://fresh.deno.dev/) to get a good feel what a Preact first meta framework should look like.
+those performance improvements, all while giving you the stability of Preact X. There are many more ideas floating around and we're very interested in the wider Preact experience in the context of meta-frameworks that provide things like routing out of the box. We're exploring this angle in our vite preset as well as [Fresh](https://usefresh.dev/) to get a good feel what a Preact first meta framework should look like.
