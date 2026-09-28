@@ -54,6 +54,14 @@ export function rssFeedPlugin() {
 				source: removeDefaultGenerator(feed.rss2())
 			});
 
+			// This is topping out 404 list on Netlify, something is requesting it?
+			// May as well offer it up even if it's a duplicate.
+			this.emitFile({
+				type: 'asset',
+				fileName: 'blog/rss.xml',
+				source: removeDefaultGenerator(feed.rss2())
+			});
+
 			this.emitFile({
 				type: 'asset',
 				fileName: 'feed.atom',
