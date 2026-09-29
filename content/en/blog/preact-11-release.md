@@ -1,7 +1,7 @@
 ---
 title: Preact 11 Release
 description: "The wait is finally over: Preact 11 is here!"
-date: 2026-09-16
+date: 2026-09-29
 authors:
   - The Preact Team
 ---
@@ -10,9 +10,11 @@ authors:
 
 The wait is finally over: Preact 11 is here!
 
-The [Road to Preact 11](https://github.com/preactjs/preact/issues/2621) ticket was started over six years ago, and since then, we've managed to stretch and extend the life of Preact X far beyond what we ever imagined. But now, it's time to move on to the next chapter and bring about a few breaking changes that will help us continue to grow and evolve the library, whilst also making it leaner and more efficient for all of our users.
+The [Road to Preact 11](https://github.com/preactjs/preact/issues/2621) ticket was started over six years ago, and since then, we've managed to stretch and extend the life of Preact X far beyond what we imagined at the time. So many features, refactors, and overall improvements that were thought impossible without breaking changes found a form & home in X, requiring extensive work to avoid breakages and minimize the byte impact on consumers. But now, it's time to move on to the next chapter and bring about a few breaking changes that will help us continue to grow and evolve the library while also making it leaner and more efficient for all of our users.
 
-The [upgrade guide](/guide/v11/upgrade-guide) contains all the infomration you need to migrate your Preact X applications to Preact 11, including the new list of supported browsers and TypeScript versions.
+The [upgrade guide](/guide/v11/upgrade-guide) contains all the information you need to migrate your Preact X applications to Preact 11, including the list of new features and supported browser versions. This should be a very quick & easy upgrade for the vast majority of users, Preact 11 is an iterative step forward upon the stability & dependability of Preact X.
+
+All of our first-party packages, like [`@preact/signals`](https://github.com/preactjs/signals), [`preact-render-to-string`](https://github.com/preactjs/preact-render-to-string), [`preact-iso`](https://github.com/preactjs/preact-iso), [`prefresh`](https://github.com/preactjs/prefresh), and [`@preact/preset-vite`](https://github.com/preactjs/preset-vite), have supported Preact 11 since we started publishing prereleases months ago, so there's a great chance your dependencies are already Preact 11-compatible.
 
 We want to thank everyone who has contributed to Preact and its ecosystem over the years, without your help, we wouldn't be where we are today. We hope you enjoy and are as excited about Preact 11 as we are!
 
@@ -24,13 +26,13 @@ This competition will be purely design-focused, no code required. Be creative an
 
 ### Prizes
 
-Of course, there's prizes! Everything is better with prizes!
+To thank and compensate the best designs, we will giving out some prizes through our [Open Collective](https://opencollective.com/preact):
 
 - First place: $4000 USD & will likely be implemented as the new design for the Preact website
 - Second place: $2500 USD
 - Third place: $1500 USD
 
-Four extra designs that we like will receive $500 each.
+Four extra designs that we like and are particularly creative will receive $500 each.
 
 ### Requirements
 
@@ -42,9 +44,9 @@ Four extra designs that we like will receive $500 each.
 ### Rules
 
 1. Single submission per person. Pick your best idea to send us.
-2. Please refrain from using AI. We're looking to celebrate human creativity and design, obvious AI submissions will be disqualified and ignored.
+2. Please refrain from using AI. We're looking to celebrate human creativity and design, obvious AI submissions will be disqualified.
 3. As with any site, please make sure your designs are accessible and inclusive. Keep color contrast, font sizes, and navigation in mind especially.
-4. The deadline for submissions is <TBD>. We'll review all submissions and announce the winners shortly after.
+4. The deadline for submissions is October 23, 2026. We'll review all submissions and announce the winners shortly after.
 
 ### Submission
 
