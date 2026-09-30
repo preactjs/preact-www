@@ -1,12 +1,12 @@
 ---
-title: Preact 11 Release
+title: Preact 11
 description: 'The wait is finally over: Preact 11 is here!'
 date: 2026-09-29
 authors:
   - The Preact Team
 ---
 
-# Preact 11 Release
+# Preact 11
 
 The wait is finally over: Preact 11 is here!
 
@@ -16,6 +16,6 @@ The [Road to Preact 11](https://github.com/preactjs/preact/issues/2621) ticket w
 
 The [upgrade guide](/guide/v11/upgrade-guide) contains all the information you need to migrate your Preact X applications to Preact 11, including the list of new features and supported browser versions. For most users, this should be a straightforward and quick upgrade, with most changes being type-related as we've done a lot of work to make them stricter and exported from a better location.
 
-All of our first-party packages, like [`@preact/signals`](https://github.com/preactjs/signals), [`preact-render-to-string`](https://github.com/preactjs/preact-render-to-string), [`preact-iso`](https://github.com/preactjs/preact-iso), [`prefresh`](https://github.com/preactjs/prefresh), and [`@preact/preset-vite`](https://github.com/preactjs/preset-vite), have supported Preact 11 since we started publishing prereleases months ago, so there's a great chance your dependencies are already Preact 11-compatible.
+All of our first-party packages, like [@preact/signals](https://github.com/preactjs/signals), [preact-render-to-string](https://github.com/preactjs/preact-render-to-string), [preact-iso](https://github.com/preactjs/preact-iso), [prefresh](https://github.com/preactjs/prefresh), and [@preact/preset-vite](https://github.com/preactjs/preset-vite), have supported Preact 11 since we started publishing prereleases months ago, so there's a great chance your dependencies are already Preact 11-compatible.
 
 We want to thank everyone who has contributed to Preact and its ecosystem over the years, without your help, we wouldn't be where we are today. We hope you enjoy and are as excited about Preact 11 as we are!

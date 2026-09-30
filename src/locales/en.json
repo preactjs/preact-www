@@ -75,9 +75,9 @@
 		"congratulations": "Congratulations!"
 	},
 	"blogPosts": {
-		"preact11Release": {
-			"label": "Preact 11 Release",
-			"excerpt": "The wait is finally over: Preact 11 is here!"
+		"preact11": {
+			"label": "Preact 11",
+			"excerpt": "The wait is finally over: Preact 11 is here! Preact 11 is an incremental update upon the stability and dependability of Preact X, bringing with it a number of new features like Hydration 2.0, automatic ref forwarding, and Object.is equality checks in hook arguments."
 		},
 		"simplifyingIslandsArch": {
 			"label": "Build your own Island Components",
