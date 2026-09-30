@@ -91,31 +91,6 @@ function App() {
 }
 ```
 
-### Portals in core
-
-`createPortal` is now available directly from `preact`, allowing portals to be used without `preact/compat`. It remains exported from `preact/compat`, so existing imports do not need to change.
-
-```jsx
-import { createPortal } from 'preact';
-
-function Modal({ children }) {
-	return createPortal(children, document.body);
-}
-```
-
-### React compatibility
-
-`preact/compat` includes several APIs introduced by newer React releases:
-
-- `use()` for reading Promises and Context
-- `useEffectEvent()`
-- The optional `getServerSnapshot` argument for `useSyncExternalStore()`
-- The optional context argument for `Children.map()` and `Children.forEach()`
-
-`preact/debug` now also exports `captureOwnerStack()` and `setupComponentStack()` for improved debugging and integration with developer tooling.
-
-## API Changes
-
 ### Refs are forwarded by default
 
 Refs are now forwarded by default, allowing them to be used just like any other prop. You will no longer need to use `forwardRef` from `preact/compat` to supply this functionality.
@@ -148,6 +123,31 @@ options.vnode = (vnode) => {
 
 	if (oldVNode) oldVNode(vnode);
 };
+```
+
+### React compatibility
+
+`preact/compat` includes several APIs introduced by newer React releases:
+
+- `use()` for reading Promises and Context
+- `useEffectEvent()`
+- The optional `getServerSnapshot` argument for `useSyncExternalStore()`
+- The optional context argument for `Children.map()` and `Children.forEach()`
+
+`preact/debug` now also exports `captureOwnerStack()` and `setupComponentStack()` for improved debugging and integration with developer tooling.
+
+## API Changes
+
+### Portals in core
+
+`createPortal` is now available directly from `preact`, allowing portals to be used without `preact/compat`. It remains exported from `preact/compat`, so existing imports do not need to change.
+
+```jsx
+import { createPortal } from 'preact';
+
+function Modal({ children }) {
+	return createPortal(children, document.body);
+}
 ```
 
 ### Move automatic `px` suffixing for style properties into `preact/compat`

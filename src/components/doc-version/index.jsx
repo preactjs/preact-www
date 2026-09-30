@@ -3,8 +3,8 @@ import { useLocation, useRoute } from 'preact-iso';
 import { flatDocPages } from '../../route-config.js';
 import style from './style.module.css';
 
-export const LATEST_MAJOR = 'v10';
-export const PREVIEW_MAJOR = 'v11';
+export const LATEST_MAJOR = 'v11';
+export const PREVIEW_MAJOR = '';
 export const AVAILABLE_DOCS = ['11', '10', '8'];
 
 /**
