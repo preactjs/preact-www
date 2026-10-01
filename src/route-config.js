@@ -278,6 +278,10 @@ export const tutorialPages = {
  * @satisfies {Record<string, { label: keyof Translations['blogPosts'], date: string }>}
  */
 export const blogPosts = {
+	'/blog/website-redesign-competition': {
+		label: 'websiteRedesignCompetition',
+		date: '2026-10-01'
+	},
 	'/blog/preact-11': {
 		label: 'preact11',
 		date: '2026-09-29'

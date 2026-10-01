@@ -151,6 +151,10 @@
 		margin-top: 0;
 	}
 
+	li > p:first-child {
+		margin: 0;
+	}
+
 	dl {
 		padding: 0;
 	}
