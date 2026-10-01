@@ -52,7 +52,7 @@ Four extra designs that we like and are particularly creative will receive $500 
 
 ## Submission
 
-To submit your design, please submit [this form](<TBD>, gonna be a Google Form). We'll need a few pieces of information from you:
+To submit your design, please submit [this form](https://docs.google.com/forms/d/e/1FAIpQLScBND4zGhHbrAKO_FjwLiIDdKe952_i5qLywK-B6pttiFzvlQ/viewform?usp=publish-editor). We'll need a few pieces of information from you:
 
 - Your name/handle that we can address you by
 - Where you'd like us to contact you (email, Twitter, Bluesky)
