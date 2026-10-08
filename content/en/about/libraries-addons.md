@@ -32,6 +32,7 @@ A collection of modules built to work wonderfully with Preact.
 - :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Fully customizable scrollbars, for frictionless native browser scrolling
 - 🧱 **[@formisch/preact](https://formisch.dev/preact/guides/introduction/)**: A form library with focus on performance, type safety and bundle size
 - ✨ **[ufbr](https://github.com/zakarialaoui10/ufbr)**: An Universal File Based Router with Preact support.
+- 💙 **[@zikojs/preact-console](https://github.com/zikojs/console/tree/main/packages/integrations/preact)**: A console-like UI component for Preact that renders JavaScript console output directly inside your application.
 
 ## Integrations
 
