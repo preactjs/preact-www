@@ -213,7 +213,7 @@ render(
 
 Creates a new Context object which can be used to pass data through the component tree without passing down props through each level.
 
-See the section in the [Context documentation](/guide/v10/context#createcontext).
+See the section in the [Context documentation](/guide/v10/context#creating-a-context).
 
 ```jsx
 import { createContext } from 'preact';
@@ -227,7 +227,7 @@ const MyContext = createContext(defaultValue);
 
 Creates a new Ref object that acts as a stable, local value that will persist across renders. This can be used to store DOM references, component instances, or any arbitrary value.
 
-See the [References documentation](/guide/v10/refs#createref) for more details.
+See the [References documentation](/guide/v10/refs#creating-a-ref) for more details.
 
 ```jsx
 import { createRef, Component } from 'preact';
@@ -474,7 +474,7 @@ This component is most useful for library authors.
 
 `<StrictMode><App /></StrictMode>`
 
-Offered strictly for compatibility, `<StrictMode>` is simply an alias of [`Fragment`](#Fragment). It does not provide any additional checks or warnings, all of which are provided by [`preact/debug`](#preactdebug).
+Offered strictly for compatibility, `<StrictMode>` is simply an alias of [`Fragment`](#fragment). It does not provide any additional checks or warnings, all of which are provided by [`preact/debug`](#preactdebug).
 
 ```jsx
 import { StrictMode } from 'preact/compat';

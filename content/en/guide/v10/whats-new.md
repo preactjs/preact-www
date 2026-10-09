@@ -82,7 +82,7 @@ function Counter() {
 
 The `createContext`-API is a true successor for `getChildContext()`. Whereas `getChildContext` is fine when you're absolutely sure to never change a value, it falls apart as soon as a component in-between the provider and consumer blocks an update via `shouldComponentUpdate` when it returns `false`. With the new context API this problem is now a thing of the past. It is a true pub/sub solution to deliver updates deep down the tree.
 
-[createContext Docs →](/guide/v10/context#createcontext)
+[createContext Docs →](/guide/v10/context#creating-a-context)
 
 ```jsx
 const Theme = createContext('light');
@@ -120,7 +120,7 @@ function Foo(props) {
 
 Although we were always keen on adding new features and pushing Preact forward, the `preact-compat` package didn't receive as much love. Up until now it has lived in a separate repository making it harder to coordinate large changes spanning Preact and the compatibility layer. By moving compat into the same package as Preact itself, there's nothing extra to install in order to use libraries from the React ecosystem.
 
-The compatibility layer is now called [preact/compat](/guide/v10/differences-to-react#features-exclusive-to-preactcompat), and has learned several new tricks such as `forwardRef`, `memo` and countless compatibility improvements.
+The compatibility layer is now called [preact/compat](/guide/v10/getting-started#aliasing-react-to-preact), and has learned several new tricks such as `forwardRef`, `memo` and countless compatibility improvements.
 
 ```js
 // Preact 8.x
