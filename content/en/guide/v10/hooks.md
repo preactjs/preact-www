@@ -272,7 +272,7 @@ const onClick = useCallback(() => console.log(a, b), [a, b]);
 
 ### useRef
 
-To create a stable reference to a DOM node or a value that persists between renders, we can use the `useRef` hook. It works similarly to [createRef](/guide/v10/refs#createref).
+To create a stable reference to a DOM node or a value that persists between renders, we can use the `useRef` hook. It works similarly to [createRef](/guide/v10/refs#creating-a-ref).
 
 ```jsx
 // --repl
