@@ -9,20 +9,9 @@ import { spaFallbackMiddlewarePlugin } from './plugins/spa-fallback-middleware.j
 import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.js';
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
+import { contentManifestPlugin } from './plugins/content-manifest.js';
 
-import {
-	headerNav,
-	flatDocPages,
-	tutorialPages,
-	blogPosts
-} from './src/route-config.js';
-
-/**
- * @param {'v8' | 'v10' | 'v11'} version
- * @param {string} path
- * @returns {string}
- */
-const flatDocPathToNested = (version, path) => `/guide/${version}${path}`;
+import { allRoutes } from './src/route-config.js';
 
 export default defineConfig({
 	publicDir: 'src/assets',
@@ -59,23 +48,7 @@ export default defineConfig({
 				enabled: true,
 				renderTarget: '#app',
 				prerenderScript: 'src/prerender.jsx',
-				// The routes that will not be discovered automatically
-				additionalPrerenderRoutes: [
-					'/404',
-					'/branding',
-					...Object.keys(headerNav),
-					...Object.keys(flatDocPages.v8).map((path) =>
-						flatDocPathToNested('v8', path)
-					),
-					...Object.keys(flatDocPages.v10).map((path) =>
-						flatDocPathToNested('v10', path)
-					),
-					...Object.keys(flatDocPages.v11).map((path) =>
-						flatDocPathToNested('v11', path)
-					),
-					...Object.keys(tutorialPages),
-					...Object.keys(blogPosts)
-				]
+				additionalPrerenderRoutes: allRoutes
 			}
 		}),
 		viteStaticCopy({
@@ -116,6 +89,7 @@ export default defineConfig({
 		spaFallbackMiddlewarePlugin(),
 		htmlRoutingMiddlewarePlugin(),
 		rssFeedPlugin(),
-		generateLlmsTxtPlugin()
+		generateLlmsTxtPlugin(),
+		contentManifestPlugin()
 	]
 });

@@ -2,7 +2,7 @@ import ssr from 'preact-iso/prerender';
 import { DOMParser } from '@xmldom/xmldom';
 
 import { App } from './index.jsx';
-import { getContentPath } from './lib/use-content.js';
+import { getContentPath } from './lib/content.js';
 
 import release from './lambda/release.js';
 import repos from './lambda/repos.js';
