@@ -10,18 +10,7 @@ import {
 	setupCacheEntry,
 	CACHE
 } from './use-resource.js';
-
-/**
- * Correct the few site paths that differ from the markdown file name/structure
- *
- * @param {string} path
- * @returns {string}
- */
-export function getContentPath(path) {
-	if (path == '/') return '/index';
-	if (path == '/tutorial') return '/tutorial/index';
-	return path;
-}
+import manifest from 'virtual:content-manifest';
 
 /**
  * @param {string} path
@@ -29,11 +18,10 @@ export function getContentPath(path) {
  */
 export function useContent(path) {
 	const { lang } = useLanguageContext();
-	const contentPath = getContentPath(path);
 	/** @type {import('./../types.d.ts').ContentData} */
 	const { html, meta } = useResource(
-		() => getContent([lang, contentPath]),
-		[lang, contentPath]
+		() => getContent(manifest, lang, path),
+		[lang, path]
 	);
 	useTitle(meta.title);
 	useDescription(meta.description || '');
@@ -46,10 +34,9 @@ export function useContent(path) {
  */
 export function prefetchContent(path) {
 	const lang = document.documentElement.lang;
-	const contentPath = getContentPath(path);
-	const fetch = () => getContent([lang, contentPath]);
+	const fetch = () => getContent(manifest, lang, path);
 
-	const cacheKey = createCacheKey(fetch, [lang, contentPath]);
+	const cacheKey = createCacheKey(fetch, [lang, path]);
 	if (CACHE.has(cacheKey)) return;
 
 	setupCacheEntry(fetch, cacheKey);

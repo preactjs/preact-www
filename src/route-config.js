@@ -331,3 +331,21 @@ export const flatDocPages = {
 	v10: flattenRoutes(docPages.v10),
 	v11: flattenRoutes(docPages.v11)
 };
+
+/**
+ * @param {'v8' | 'v10' | 'v11'} version
+ * @param {string} path
+ * @returns {string}
+ */
+const nestPath = (version, path) => `/guide/${version}${path}`;
+
+export const allRoutes = [
+	...Object.keys(headerNav),
+	...Object.keys(flatDocPages.v8).map((path) => nestPath('v8', path)),
+	...Object.keys(flatDocPages.v10).map((path) => nestPath('v10', path)),
+	...Object.keys(flatDocPages.v11).map((path) => nestPath('v11', path)),
+	...Object.keys(tutorialPages),
+	...Object.keys(blogPosts),
+	'/branding',
+	'/404'
+];

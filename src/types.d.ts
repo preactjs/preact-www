@@ -72,3 +72,8 @@ export interface ContentData {
 	html: string;
 	meta: ContentMetaData;
 }
+
+/**
+ * All content paths + an array of locales with content for that path.
+ */
+export type ContentManifest = Record<string, string[]>;
