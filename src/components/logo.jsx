@@ -72,7 +72,6 @@ export default class Logo extends Component {
 			text = false,
 			fg = 'white',
 			bg = '#673ab8',
-			component,
 			title,
 			...props
 		},

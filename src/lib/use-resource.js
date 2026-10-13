@@ -63,7 +63,7 @@ export function setupCacheEntry(fn, cacheKey, update) {
 				state.result = err;
 			})
 			.finally(() => {
-				update && update(state);
+				update?.(state);
 			});
 	} else {
 		state.status = 'success';

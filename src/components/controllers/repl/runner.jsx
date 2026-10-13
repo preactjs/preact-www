@@ -138,9 +138,11 @@ export default class Runner extends Component {
 			createRoot(doc);
 		};
 
-		this.frame.current.contentDocument.readyState !== 'complete'
-			? (this.frame.current.onload = insertStyles)
-			: insertStyles();
+		if (this.frame.current.contentDocument.readyState !== 'complete') {
+			this.frame.current.onload = insertStyles;
+		} else {
+			insertStyles();
+		}
 	}
 
 	async execute(transpiled, isFallback) {

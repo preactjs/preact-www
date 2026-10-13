@@ -50,7 +50,7 @@ export function contentManifestPlugin() {
 					return acc;
 				}, {});
 
-				const { en, ...nonEnglishLocales } = config.locales;
+				const { en: _en, ...nonEnglishLocales } = config.locales;
 				const localesArray = Object.keys(nonEnglishLocales);
 
 				await Promise.all(

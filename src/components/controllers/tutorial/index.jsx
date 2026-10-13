@@ -302,12 +302,14 @@ const TUTORIAL_COMPONENTS = {
 /** Shows a solution banner when the chapter is solved */
 function Solution({ children }) {
 	const { solved } = useContext(SolutionContext);
-	const ref = useRef(null);
+	const ref = /** @type {import('preact').RefObject<HTMLDivElement | null>} */ (
+		useRef(null)
+	);
 
 	useEffect(() => {
 		if (solved) {
 			requestAnimationFrame(() => {
-				ref.current && ref.current.scrollIntoView({ behavior: 'smooth' });
+				ref.current?.scrollIntoView({ behavior: 'smooth' });
 			});
 		}
 	}, [solved]);
