@@ -7,7 +7,7 @@
 		"dev": "vite --port 8080",
 		"server": "vite preview --port 8080",
 		"build": "vite build",
-		"lint": "oxlint src plugins *.js",
+		"lint": "oxlint",
 		"format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
 		"prepare": "npx simple-git-hooks"
 	},
