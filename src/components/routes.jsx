@@ -1,31 +1,36 @@
 import { useState } from 'preact/hooks';
 import { Router, Route, lazy } from 'preact-iso';
-import { Page } from './controllers/page';
-import { GuidePage } from './controllers/guide-page';
-import { NotFound } from './controllers/not-found';
+import { Page } from './controllers/page.jsx';
+import { GuidePage } from './controllers/guide-page.jsx';
+import { NotFound } from './controllers/not-found.jsx';
 import { headerNav } from '../route-config.js';
 
-export const ReplPage = lazy(() => import('./controllers/repl-page'));
-export const BlogPage = lazy(() => import('./controllers/blog-page'));
-export const TutorialPage = lazy(() => import('./controllers/tutorial-page'));
+export const ReplPage = lazy(() => import('./controllers/repl-page.jsx'));
+export const BlogPage = lazy(() => import('./controllers/blog-page.jsx'));
+export const TutorialPage = lazy(
+	() => import('./controllers/tutorial-page.jsx')
+);
 
 // Combined 'REPL' components, re-evaluate if any are used outside of the REPL in the future
 export const CodeEditor = lazy(() =>
-	import('../lib/repl').then((m) => m.CodeEditor)
+	import('../lib/repl.js').then((m) => m.CodeEditor)
 );
-export const Runner = lazy(() => import('../lib/repl').then((m) => m.Runner));
+export const Runner = lazy(() =>
+	import('../lib/repl.js').then((m) => m.Runner)
+);
 export const ErrorOverlay = lazy(() =>
-	import('../lib/repl').then((m) => m.ErrorOverlay)
+	import('../lib/repl.js').then((m) => m.ErrorOverlay)
 );
 export const Splitter = lazy(() =>
-	import('../lib/repl').then((m) => m.Splitter)
+	import('../lib/repl.js').then((m) => m.Splitter)
 );
 
+/** @param {string} url */
 const routeChange = (url) =>
 	// @ts-ignore
 	typeof ga === 'function' && ga('send', 'pageview', url);
 
-const genericRoutes = [];
+const genericRoutes = /** @type {import('preact').JSX.Element[]} */ ([]);
 for (const route in headerNav) {
 	if (
 		route.startsWith('/guide') ||

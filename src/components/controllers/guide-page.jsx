@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'preact/hooks';
 import { useRoute, ErrorBoundary } from 'preact-iso';
-import { useContent } from '../../lib/use-content';
+import { useContent } from '../../lib/use-content.js';
 import { useLanguageContext } from '../../lib/i18n.jsx';
-import { NotFound } from './not-found';
-import cx from '../../lib/cx';
-import { MarkdownRegion } from './markdown-region';
-import Sidebar from '../sidebar';
-import Footer from '../footer/index';
+import { NotFound } from './not-found.jsx';
+import cx from '../../lib/cx.js';
+import { MarkdownRegion } from './markdown-region.jsx';
+import Sidebar from '../sidebar/index.jsx';
+import Footer from '../footer/index.jsx';
 import { flatDocPages } from '../../route-config.js';
-import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version';
+import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version/index.jsx';
 import style from './style.module.css';
 
 export function GuidePage() {

@@ -1,9 +1,9 @@
 import { useRoute, ErrorBoundary } from 'preact-iso';
 import { useEffect } from 'preact/hooks';
-import { Tutorial } from './tutorial';
-import { SolutionProvider } from './tutorial/contexts';
-import { NotFound } from './not-found';
-import { useContent, prefetchContent } from '../../lib/use-content';
+import { Tutorial } from './tutorial/index.jsx';
+import { SolutionProvider } from './tutorial/contexts.jsx';
+import { NotFound } from './not-found.jsx';
+import { useContent, prefetchContent } from '../../lib/use-content.js';
 import { tutorialPages } from '../../route-config.js';
 
 import style from './tutorial/style.module.css';

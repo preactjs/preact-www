@@ -1,9 +1,9 @@
 import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
-import { Repl } from './repl';
+import { Repl } from './repl/index.jsx';
 import { base64ToText } from './repl/query-encode.js';
-import { fetchExample } from './repl/examples';
-import { useResource } from '../../lib/use-resource';
-import { useContent } from '../../lib/use-content';
+import { fetchExample } from './repl/examples/index.js';
+import { useResource } from '../../lib/use-resource.js';
+import { useContent } from '../../lib/use-content.js';
 
 import style from './repl/style.module.css';
 

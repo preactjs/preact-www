@@ -2,7 +2,7 @@ import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 import { lazy, ErrorBoundary } from 'preact-iso';
 import style from './style.module.css';
-import config from '../../config.json';
+import config from '../../config.json' with { type: 'json' };
 
 const DocSearch = lazy(() =>
 	import('@docsearch/react').then((m) => m.DocSearch)

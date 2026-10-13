@@ -1,8 +1,8 @@
 import { Fragment } from 'preact';
 import { useRoute } from 'preact-iso';
-import EditThisPage from '../edit-button';
-import ContentRegion from '../content-region';
-import BlogMeta from '../blog-meta';
+import EditThisPage from '../edit-button/index.jsx';
+import ContentRegion from '../content-region/index.jsx';
+import BlogMeta from '../blog-meta/index.jsx';
 
 /**
  * @param {object} props

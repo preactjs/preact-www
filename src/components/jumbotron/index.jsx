@@ -1,4 +1,4 @@
-import cx from '../../lib/cx';
+import cx from '../../lib/cx.js';
 import style from './style.module.css';
 
 const Jumbotron = ({ children, class: c, ...props }) => (

@@ -5,7 +5,7 @@ import {
 	useLayoutEffect,
 	useRef
 } from 'preact/hooks';
-import cx from '../../lib/cx';
+import cx from '../../lib/cx.js';
 import s from './splitter.module.css';
 
 const determineSplitterOrientation = (width) =>

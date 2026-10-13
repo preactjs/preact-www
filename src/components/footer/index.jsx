@@ -1,7 +1,7 @@
 import { useCallback } from 'preact/hooks';
-import config from '../../config.json';
-import { useLanguageContext } from '../../lib/i18n';
-import { useResource } from '../../lib/use-resource';
+import config from '../../config.json' with { type: 'json' };
+import { useLanguageContext } from '../../lib/i18n.jsx';
+import { useResource } from '../../lib/use-resource.js';
 import style from './style.module.css';
 
 /*

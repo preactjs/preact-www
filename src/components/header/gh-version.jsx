@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
-import { fetchRelease } from '../../lib/github';
+import { fetchRelease } from '../../lib/github.js';
 import { usePrerenderData } from '../../lib/prerender-data.jsx';
-import config from '../../config.json';
+import config from '../../config.json' with { type: 'json' };
 
 export default function ReleaseLink({ ...props }) {
 	const { preactReleaseURL, preactVersion } = usePrerenderData();

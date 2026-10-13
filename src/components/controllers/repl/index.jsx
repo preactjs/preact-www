@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'preact/hooks';
 import { useLocation, useRoute, ErrorBoundary } from 'preact-iso';
 import { textToBase64 } from './query-encode.js';
-import { EXAMPLES, fetchExample } from './examples';
-import { useStoredValue } from '../../../lib/localstorage';
-import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
-import { parseStackTrace } from './errors';
+import { EXAMPLES, fetchExample } from './examples/index.js';
+import { useStoredValue } from '../../../lib/localstorage.js';
+import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
+import { parseStackTrace } from './errors.js';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import Markup from 'preact-markup';
-import widgets from '../widgets';
-import { TocContext } from '../table-of-contents';
+import widgets from '../widgets.js';
+import { TocContext } from '../table-of-contents/index.jsx';
 
 const COMPONENTS = {
 	...widgets

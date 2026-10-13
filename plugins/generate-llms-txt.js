@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { parseFrontmatter, cleanReplComments } from '../src/lib/frontmatter.js';
 import { docPages } from '../src/route-config.js';
-import englishTranslations from '../src/locales/en.json';
+import englishTranslations from '../src/locales/en.json' with { type: 'json' };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

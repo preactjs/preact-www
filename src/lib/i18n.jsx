@@ -2,10 +2,10 @@ import { createContext } from 'preact';
 import { useContext, useEffect, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
-import { localStorageGet, localStorageSet } from './localstorage';
+import { localStorageGet, localStorageSet } from './localstorage.js';
 import { useResource } from './use-resource.js';
-import config from '../config.json';
-import englishTranslations from '../locales/en.json';
+import config from '../config.json' with { type: 'json' };
+import englishTranslations from '../locales/en.json' with { type: 'json' };
 
 const translationURLs = import.meta.glob('../locales/!(en)*.json', {
 	query: '?url&no-inline',

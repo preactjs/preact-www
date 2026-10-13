@@ -1,6 +1,6 @@
 import { Feed } from 'feed';
 import { blogPosts } from '../src/route-config.js';
-import englishTranslations from '../src/locales/en.json';
+import englishTranslations from '../src/locales/en.json' with { type: 'json' };
 
 /**
  * @returns {import('vite').Plugin}
