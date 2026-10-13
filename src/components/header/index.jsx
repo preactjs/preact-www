@@ -1,14 +1,14 @@
-import cx from '../../lib/cx';
-import { InvertedLogo } from '../logo';
-import Search from './search';
+import cx from '../../lib/cx.js';
+import { InvertedLogo } from '../logo.jsx';
+import Search from './search.jsx';
 import style from './style.module.css';
-import config from '../../config.json';
+import config from '../../config.json' with { type: 'json' };
 import { useCallback, useEffect, useState } from 'preact/hooks';
-import ReleaseLink from './gh-version';
-import Corner from './corner';
-import { useOverlayToggle } from '../../lib/toggle-overlay';
+import ReleaseLink from './gh-version.jsx';
+import Corner from './corner.jsx';
+import { useOverlayToggle } from '../../lib/toggle-overlay.js';
 import { useLocation } from 'preact-iso';
-import { useLanguageContext, useTranslate } from '../../lib/i18n';
+import { useLanguageContext, useTranslate } from '../../lib/i18n.jsx';
 import { headerNav } from '../../route-config.js';
 
 export default function Header() {

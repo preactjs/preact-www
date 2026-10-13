@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks';
 /**
  * @typedef SolutionContext
  * @property {boolean} solved
- * @property {(boolean) => void} setSolved
+ * @property {(solved: boolean) => void} setSolved
  */
 
 /**
@@ -14,6 +14,10 @@ export const SolutionContext = createContext(
 	/** @type {SolutionContext} */ ({})
 );
 
+/**
+ * @param {object} props
+ * @param {import('preact').ComponentChildren} props.children
+ */
 export function SolutionProvider({ children }) {
 	const [solved, setSolved] = useState(false);
 

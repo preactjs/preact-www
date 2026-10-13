@@ -1,8 +1,8 @@
 import { useRoute, ErrorBoundary } from 'preact-iso';
-import { useContent } from '../../lib/use-content';
-import { NotFound } from './not-found';
-import { MarkdownRegion } from './markdown-region';
-import Footer from '../footer/index';
+import { useContent } from '../../lib/use-content.js';
+import { NotFound } from './not-found.jsx';
+import { MarkdownRegion } from './markdown-region.jsx';
+import Footer from '../footer/index.jsx';
 import style from './style.module.css';
 import { headerNav } from '../../route-config.js';
 

@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import { rollup } from '@rollup/browser';
 import { transform } from 'sucrase';
 import * as Comlink from 'comlink';
-import { parseStackTrace } from './errors';
+import { parseStackTrace } from './errors.js';
 
 const PREPEND = `(function(module,exports){`;
 

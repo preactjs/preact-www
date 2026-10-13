@@ -1,6 +1,6 @@
-import { useContent } from '../../lib/use-content';
-import Footer from '../footer';
-import { MarkdownRegion } from './markdown-region';
+import { useContent } from '../../lib/use-content.js';
+import Footer from '../footer/index.jsx';
+import { MarkdownRegion } from './markdown-region.jsx';
 import style from './style.module.css';
 
 export function NotFound() {

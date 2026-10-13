@@ -1,4 +1,4 @@
-import map from './emoji.json';
+import map from './emoji.json' with { type: 'json' };
 
 const REG = /([^\\]):([a-z0-9_]+):/gi;
 

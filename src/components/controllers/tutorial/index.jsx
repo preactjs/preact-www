@@ -9,12 +9,12 @@ import {
 	useCallback
 } from 'preact/hooks';
 import { ErrorBoundary, useLocation } from 'preact-iso';
-import { TutorialContext, SolutionContext } from './contexts';
-import { parseStackTrace } from '../repl/errors';
-import cx from '../../../lib/cx';
-import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes';
+import { TutorialContext, SolutionContext } from './contexts.jsx';
+import { parseStackTrace } from '../repl/errors.js';
+import cx from '../../../lib/cx.js';
+import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
 import { useTranslate } from '../../../lib/i18n.jsx';
-import { MarkdownRegion } from '../markdown-region';
+import { MarkdownRegion } from '../markdown-region.jsx';
 import style from './style.module.css';
 
 const resultHandlers = new Set();

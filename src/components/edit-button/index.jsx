@@ -1,5 +1,5 @@
 import { useRoute } from 'preact-iso';
-import { useLanguageContext } from '../../lib/i18n';
+import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 
 export default function EditThisPage({ isFallback }) {

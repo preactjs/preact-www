@@ -1,8 +1,8 @@
 import { useRoute } from 'preact-iso';
-import DocVersion from '../doc-version';
-import SidebarNav from './sidebar-nav';
-import { useOverlayToggle } from '../../lib/toggle-overlay';
-import { useTranslate } from '../../lib/i18n';
+import DocVersion from '../doc-version/index.jsx';
+import SidebarNav from './sidebar-nav.jsx';
+import { useOverlayToggle } from '../../lib/toggle-overlay.js';
+import { useTranslate } from '../../lib/i18n.jsx';
 import { docPages } from '../../route-config.js';
 import style from './style.module.css';
 

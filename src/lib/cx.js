@@ -6,5 +6,5 @@ export default function cx() {
 		if (out) out += ' ';
 		if (x) out += x;
 	}
-	return out || null;
+	return out || undefined;
 }

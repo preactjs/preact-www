@@ -2,8 +2,8 @@ import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
 import { hydrate } from 'preact-iso';
 
-import App from './components/app';
-import './analytics';
+import App from './components/app.jsx';
+import './analytics.js';
 import './style/index.css';
 
 // allows users to play with preact in the browser developer console

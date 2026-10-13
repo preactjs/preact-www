@@ -2,7 +2,7 @@ import { Component, createRef } from 'preact';
 import { memoize } from 'decko';
 import style from './style.module.css';
 import * as Comlink from 'comlink';
-import { patchErrorLocation } from './errors';
+import { patchErrorLocation } from './errors.js';
 
 let cachedFetcher = memoize(fetch);
 let cachedFetch = (...args) => cachedFetcher(...args).then((r) => r.clone());

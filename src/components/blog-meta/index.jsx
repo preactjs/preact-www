@@ -1,5 +1,5 @@
-import { Time } from '../time';
-import config from '../../config.json';
+import { Time } from '../time/index.jsx';
+import config from '../../config.json' with { type: 'json' };
 import style from './style.module.css';
 
 /**

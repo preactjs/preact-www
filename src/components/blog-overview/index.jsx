@@ -1,7 +1,7 @@
 import { blogPosts } from '../../route-config.js';
-import { useTranslate } from '../../lib/i18n';
+import { useTranslate } from '../../lib/i18n.jsx';
 import { generateHeadingId } from '../../lib/generate-heading-id.js';
-import { Time } from '../time';
+import { Time } from '../time/index.jsx';
 import s from './style.module.css';
 
 export default function BlogOverview() {

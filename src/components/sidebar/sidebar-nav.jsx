@@ -1,5 +1,5 @@
 import { useRoute } from 'preact-iso';
-import cx from '../../lib/cx';
+import cx from '../../lib/cx.js';
 import style from './sidebar-nav.module.css';
 
 /**

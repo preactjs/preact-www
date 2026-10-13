@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { Readable } from 'stream';
+import { Readable } from 'node:stream';
 
 /**
  * @returns {import('vite').Plugin}

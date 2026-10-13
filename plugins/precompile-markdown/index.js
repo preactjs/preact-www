@@ -1,7 +1,7 @@
 import { marked } from 'marked';
 import dedent from 'dedent';
 import Prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
+import loadLanguages from 'prismjs/components/index.js';
 import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';

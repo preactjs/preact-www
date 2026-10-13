@@ -1,9 +1,9 @@
 import { useEffect } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
-import { createTitle } from './page-title';
+import { createTitle } from './page-title.js';
 import { getContent } from './content.js';
-import { useLanguageContext } from './i18n';
+import { useLanguageContext } from './i18n.jsx';
 import {
 	useResource,
 	createCacheKey,

@@ -22,7 +22,7 @@ import {
 } from '@codemirror/language';
 import { tags } from '@lezer/highlight';
 import { closeBrackets, autocompletion } from '@codemirror/autocomplete';
-import cx from '../../lib/cx';
+import cx from '../../lib/cx.js';
 
 import style from './style.module.css';
 import './code-mirror.css';
