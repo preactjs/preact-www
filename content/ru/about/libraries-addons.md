@@ -53,7 +53,7 @@ description: Коллекция библиотек и дополнений, ко
 - :rocket: **[preact-photon](https://github.com/developit/preact-photon)**: Создание красивых пользовательских интерфейсов на рабочем столе с помощью [photon](http://photonkit.com)
 - :penguin: **[preact-weui](https://github.com/afeiship/preact-weui)**: [Weui](https://github.com/afeiship/preact-weui) для Preact
 - 💅 **[preact-fluid](https://github.com/ajainvivek/preact-fluid)**: [Fluid](https://github.com/ajainvivek/preact-fluid) — минимальный набор пользовательских интерфейсов для Preact
-- :book: **[storybook-preact](https://github.com/storybooks/storybook/tree/next/app/preact)**: Storybook for Preact — это среда разработки пользовательского интерфейса для компонентов Preact.
+- :book: **[@storybook/preact-vite](https://storybook.js.org/docs/get-started/frameworks/preact-vite)**: Storybook for Preact — это среда разработки пользовательского интерфейса для компонентов Preact.
 
 ### Тестирование
 

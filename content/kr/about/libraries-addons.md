@@ -50,7 +50,7 @@ Preact와 훌륭하게 동작하는 모듈 모음입니다.
 - :rocket: **[preact-photon](https://github.com/developit/preact-photon)**: [photon](http://photonkit.com)으로 아름다운 데스크톱 UI 빌드
 - :penguin: **[preact-weui](https://github.com/afeiship/preact-weui)**: Preact용 [Weui](https://github.com/afeiship/preact-weui)
 - 💅 **[preact-fluid](https://github.com/ajainvivek/preact-fluid)**: Preact용 [Fluid](https://github.com/ajainvivek/preact-fluid) 미니멀 UI 킷
-- :book: **[storybook-preact](https://github.com/storybooks/storybook/tree/next/app/preact)**: Preact 컴포너트를 위한 UI 개발 환경인 Storybook
+- :book: **[@storybook/preact-vite](https://storybook.js.org/docs/get-started/frameworks/preact-vite)**: Preact 컴포너트를 위한 UI 개발 환경인 Storybook
 
 ## 테스트
 

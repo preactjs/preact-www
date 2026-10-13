@@ -50,7 +50,7 @@ description: '与 Preact 完美配合的库和扩展集合'
 - :rocket: **[preact-photon](https://github.com/developit/preact-photon)**: 使用 [photon](http://photonkit.com) 构建美观的桌面 UI
 - :penguin: **[preact-weui](https://github.com/afeiship/preact-weui)**: 适用于 Preact 的 [Weui](https://github.com/afeiship/preact-weui)
 - 💅 **[preact-fluid](https://github.com/ajainvivek/preact-fluid)**: 适用于 Preact 的 [Fluid](https://github.com/ajainvivek/preact-fluid) 极简 UI 套件
-- :book: **[storybook-preact](https://github.com/storybooks/storybook/tree/next/app/preact)**: Storybook for Preact 是您的 Preact 组件UI 开发环境
+- :book: **[@storybook/preact-vite](https://storybook.js.org/docs/get-started/frameworks/preact-vite)**: Storybook for Preact 是您的 Preact 组件UI 开发环境
 
 ### 测试
 
