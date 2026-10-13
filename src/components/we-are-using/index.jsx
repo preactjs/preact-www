@@ -292,6 +292,11 @@ const companies = [
 		name: 'Authier',
 		href: 'https://www.authier.pm/',
 		logo: 'authier.png'
+	},
+	{
+		name: 'Ellaz',
+		href: 'https://ellaz.fun/',
+		logo: 'ellaz.svg'
 	}
 ];
 
