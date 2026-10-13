@@ -39,17 +39,17 @@ function listToTree(arr) {
 
 	const tree = [];
 
-	const lastLevelItems = new Array(6);
+	const listLevelItems = Array.from({ length: 6 });
 	for (let i = 0; i < list.length; i++) {
 		const node = list[i];
 		const level = node.level;
-		if (level > 0 && lastLevelItems[level - 1]) {
-			lastLevelItems[level - 1].children.push(node);
+		if (level > 0 && listLevelItems[level - 1]) {
+			listLevelItems[level - 1].children.push(node);
 		} else if (level === 0) {
 			tree.push(node);
 		}
 
-		lastLevelItems[level] = node;
+		listLevelItems[level] = node;
 	}
 
 	return tree;

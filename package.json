@@ -7,34 +7,10 @@
 		"dev": "vite --port 8080",
 		"server": "vite preview --port 8080",
 		"build": "vite build",
-		"lint": "eslint src",
+		"lint": "oxlint",
 		"format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
 		"prepare": "npx simple-git-hooks"
 	},
-	"eslintConfig": {
-		"extends": "developit",
-		"rules": {
-			"react/sort-comp": 0,
-			"react/no-danger": 0,
-			"react/jsx-no-bind": 0,
-			"brace-style": 0,
-			"indent": 0,
-			"lines-around-comment": 0,
-			"no-prototype-builtins": 0
-		},
-		"globals": {
-			"globalThis": true,
-			"ga": true
-		},
-		"settings": {
-			"react": {
-				"version": "16.8"
-			}
-		}
-	},
-	"eslintIgnore": [
-		"**/*.d.ts"
-	],
 	"prettier": {
 		"singleQuote": true,
 		"trailingComma": "none",
@@ -50,9 +26,8 @@
 		]
 	},
 	"devDependencies": {
-		"eslint": "^6.8.0",
-		"eslint-config-developit": "^1.1.1",
 		"nano-staged": "^0.8.0",
+		"oxlint": "^1.87.0",
 		"prettier": "^3.9.9",
 		"simple-git-hooks": "^2.0.2"
 	},

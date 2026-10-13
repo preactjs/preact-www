@@ -243,13 +243,12 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
  * @property {keyof typeof import('../../route-config.js').headerNav} props.href
  * @property {string} [props.clsx]
  * @property {import('preact').ComponentChildren} [props.flair]
- * @property {boolean} [props.isOpen]
  */
 
 /**
  * @param {NavLinkProps & Omit<import('preact').AnchorHTMLAttributes, 'role'>} props
  */
-function NavLink({ href, flair, clsx, isOpen, ...rest }) {
+function NavLink({ href, flair, clsx, ...rest }) {
 	const { path } = useLocation();
 	const translate = useTranslate();
 

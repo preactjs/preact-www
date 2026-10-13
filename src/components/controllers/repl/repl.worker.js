@@ -98,7 +98,7 @@ async function bundle(sources) {
 
 						try {
 							return new URL(id, importer).href;
-						} catch (e) {}
+						} catch {}
 					}
 
 					// If id is already an esm.sh url, add `?external=*` to it and return
