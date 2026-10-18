@@ -2,34 +2,32 @@ import { useRoute } from 'preact-iso';
 import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 
-export default function EditThisPage({ isFallback }) {
+/**
+ * @param {object} props
+ * @param {import('../../types.d.ts').ContentMetaData} props.meta
+ */
+export default function EditThisPage({ meta }) {
 	let { path } = useRoute();
 	const { lang } = useLanguageContext();
 
-	path = !isFallback ? path + '.md' : '';
-	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${path}`;
+	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${meta.translationExists ? path + '.md' : ''}`;
+
+	const linkText = !meta.translationExists
+		? 'Translate this Page'
+		: !meta.translationEnabled
+			? 'Update outdated translation'
+			: 'Edit this Page';
+
 	return (
 		<div class={style.wrapper}>
-			{!isFallback ? (
-				<a
-					class={style.edit}
-					href={editUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Edit this Page
-				</a>
-			) : (
-				<div class={style.fallback}>
-					<div class={style.fallbackInner}>
-						Could not find a translation for this page. You can help us out by{' '}
-						<a href={editUrl} target="_blank" rel="noopener noreferrer">
-							adding one here
-						</a>
-						.
-					</div>
-				</div>
-			)}
+			<a
+				class={style.edit}
+				href={editUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				{linkText}
+			</a>
 		</div>
 	);
 }

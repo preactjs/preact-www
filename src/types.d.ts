@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+import type config from './config.json';
+
 declare global {
 	namespace preact.JSX {
 		interface IntrinsicElements {
@@ -55,8 +57,8 @@ export interface TableOfContents {
 
 // Data available within fetched JSON content
 export interface ContentMetaData extends FrontMatterMeta {
-	// If the content fetch has fallen back to English or an error page
-	isFallback: boolean;
+	translationExists: boolean;
+	translationEnabled: boolean;
 
 	// Guide data
 	toc?: TableOfContents[];
@@ -73,7 +75,30 @@ export interface ContentData {
 	meta: ContentMetaData;
 }
 
+export type Locale = keyof typeof config.locales;
+
 /**
- * All content paths + an array of locales with content for that path.
+ * All content paths + a whether a translation exists & is enabled for the locale
  */
-export type ContentManifest = Record<string, string[]>;
+export interface ContentManifest {
+	[key: string]: {
+		[key in Locale]: ContentManifestEntry;
+	}
+}
+
+export interface ContentManifestEntry {
+	exists: boolean;
+	enabled: boolean;
+}
+
+export type TranslationScoreManifest = {
+	[key in Locale]: TranslationScoreEntry[];
+}
+
+export interface TranslationScoreEntry {
+	file: string;
+	code: number | null;
+	links: number | null;
+	structure: number;
+	score: number;
+}

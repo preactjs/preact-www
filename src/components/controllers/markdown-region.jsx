@@ -18,7 +18,7 @@ export function MarkdownRegion({ html, meta, components }) {
 
 	return (
 		<Fragment key={path}>
-			{canEdit && <EditThisPage isFallback={meta.isFallback} />}
+			{canEdit && <EditThisPage meta={meta} />}
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
 				current={path}

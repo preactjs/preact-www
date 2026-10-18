@@ -47,6 +47,8 @@ Any and all content contributions are greatly appreciated, be that typo fixes or
 
 Please author and submit content **only in one language** _(generally your primary written language)_ to facilitate translation. English is the site's default language and is generally the source for translations. Try to follow the existing formatting where possible and treat it (English) as the source of truth in most cases.
 
+If you're interested in translating content, a great resource is the [Translation Score Table](https://preactjs.com/translation-score-table) page, which shows how closely translated pages of a given locale align with the source English content and which, if any, are currently disabled due to lack of alignment. This is accessible at the same path when running the site locally so you can use it to check your own translations before submitting them.
+
 ### German Version
 
 - German translations can be approved by @marvinhagemeister

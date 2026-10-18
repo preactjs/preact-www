@@ -1,0 +1,14 @@
+.localeSelect {
+	display: block;
+	margin: 1.5rem 0;
+}
+
+.scoreTable {
+	width: 100%;
+}
+
+.exceedsDriftLimit {
+	background-color: rgba(
+		from var(--color-error-heading) r g b / 0.3
+	) !important;
+}

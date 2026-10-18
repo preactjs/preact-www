@@ -8,6 +8,7 @@ import Sponsors from './sponsors/index.jsx';
 import WeAreUsing from './we-are-using/index.jsx';
 import Branding from './branding/index.jsx';
 import TabGroup from './tab-group/index.jsx';
+import TranslationScoreTable from './translation-score-table/index.jsx';
 
 export default {
 	Toc,
@@ -19,5 +20,6 @@ export default {
 	Logo,
 	WeAreUsing,
 	Branding,
-	TabGroup
+	TabGroup,
+	TranslationScoreTable
 };
