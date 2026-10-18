@@ -181,7 +181,7 @@ render(
 
 ## createContext
 
-См. раздел в [документации по контексту](/guide/v11/context#createcontext).
+См. раздел в [документации по контексту](/guide/v11/context#создание-контекста).
 
 ```jsx
 import { createContext } from 'preact';
@@ -446,7 +446,7 @@ render(<MyComponent ref={ref} />, dom);
 
 `<StrictMode><App /></StrictMode>`
 
-Предлагается исключительно для обеспечения совместимости, `<StrictMode>` — это просто псевдоним [`Fragment`](#Fragment). Он не предоставляет никаких дополнительных проверок или предупреждений, все из которых обеспечиваются [`preact/debug`](#preactdebug).
+Предлагается исключительно для обеспечения совместимости, `<StrictMode>` — это просто псевдоним [`Fragment`](#fragment). Он не предоставляет никаких дополнительных проверок или предупреждений, все из которых обеспечиваются [`preact/debug`](#preactdebug).
 
 ```jsx
 import { StrictMode } from 'preact/compat';
