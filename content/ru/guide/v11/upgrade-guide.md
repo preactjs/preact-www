@@ -91,31 +91,6 @@ function App() {
 }
 ```
 
-### Порталы в ядре
-
-`createPortal` теперь доступен непосредственно из `preact`, что позволяет использовать порталы без `preact/compat`. Он по-прежнему экспортируется из `preact/compat`, поэтому существующие импорты не требуют изменений.
-
-```jsx
-import { createPortal } from 'preact';
-
-function Modal({ children }) {
-	return createPortal(children, document.body);
-}
-```
-
-### Совместимость с React
-
-`preact/compat` включает несколько API, появившихся в более новых версиях React:
-
-- `use()` для чтения Promise и Context
-- `useEffectEvent()`
-- Необязательный аргумент `getServerSnapshot` для `useSyncExternalStore()`
-- Необязательный аргумент контекста для `Children.map()` и `Children.forEach()`
-
-`preact/debug` теперь также экспортирует `captureOwnerStack()` и `setupComponentStack()` для улучшенной отладки и интеграции с инструментами разработчика.
-
-## Изменения API
-
 ### Рефы пересылаются по умолчанию
 
 Рефы теперь пересылаются по умолчанию, позволяя использовать их как любой другой проп. Вам больше не нужно использовать `forwardRef` из `preact/compat`, чтобы предоставить эту функциональность.
@@ -148,6 +123,31 @@ options.vnode = (vnode) => {
 
 	if (oldVNode) oldVNode(vnode);
 };
+```
+
+### Совместимость с React
+
+`preact/compat` включает несколько API, появившихся в более новых версиях React:
+
+- `use()` для чтения Promise и Context
+- `useEffectEvent()`
+- Необязательный аргумент `getServerSnapshot` для `useSyncExternalStore()`
+- Необязательный аргумент контекста для `Children.map()` и `Children.forEach()`
+
+`preact/debug` теперь также экспортирует `captureOwnerStack()` и `setupComponentStack()` для улучшенной отладки и интеграции с инструментами разработчика.
+
+## Изменения API
+
+### Порталы в ядре
+
+`createPortal` теперь доступен непосредственно из `preact`, что позволяет использовать порталы без `preact/compat`. Он по-прежнему экспортируется из `preact/compat`, поэтому существующие импорты не требуют изменений.
+
+```jsx
+import { createPortal } from 'preact';
+
+function Modal({ children }) {
+	return createPortal(children, document.body);
+}
 ```
 
 ### Перемещение автоматического суффикса `px` для свойств стилей в `preact/compat`

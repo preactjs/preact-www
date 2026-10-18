@@ -3,12 +3,14 @@
 		"nextPage": "Следующая страница",
 		"previousPage": "Предыдущая страница",
 		"continueReading": "Продолжить чтение",
+		"selectYourLanguage": "Выберите язык",
 		"beginTutorial": "Начать обучение",
 		"help": "Помощь",
 		"solve": "Решить",
 		"mobileGuideButton": "Руководство"
 	},
 	"headerNav": {
+		"home": "Preact",
 		"tutorial": "Учебник",
 		"guide": "Руководство",
 		"about": "Разное",
@@ -18,7 +20,8 @@
 		"projectGoals": "Цели проекта",
 		"browserSupport": "Поддержка браузеров",
 		"branding": "Брендинг",
-		"blog": "Блог"
+		"blog": "Блог",
+		"repl": "REPL"
 	},
 	"sidebarSections": {
 		"introduction": "Введение",
@@ -29,6 +32,7 @@
 	},
 	"sidebarNav": {
 		"gettingStarted": "Первые шаги",
+		"whatsNew": "Что нового?",
 		"upgradeGuide-v10": "Обновление с 8.x",
 		"upgradeGuide-v11": "Обновление с 10.x",
 		"components": "Компоненты",
@@ -46,14 +50,39 @@
 		"webComponents": "Веб-компоненты",
 		"serverSideRendering": "Рендеринг на стороне сервера",
 		"options": "Опционные хуки",
-		"whatsNew": "Что нового?",
+		"typeScript": "TypeScript",
+		"noBuildWorkflows": "Рабочие процессы без сборки",
+		"preactIso": "preact-iso",
+		"preactCustomElement": "preact-custom-element",
+		"preactRootFragment": "preact-root-fragment",
 		"typesOfComponents": "Типы компонентов",
 		"linkedState": "Связанное состояние",
 		"externalDomMutations": "Внешние мутации DOM",
 		"extendingComponent": "Расширение компонентов",
 		"progressiveWebApps": "Прогрессивные веб-приложения"
 	},
+	"tutorialNav": {
+		"learnPreact": "Изучение Preact",
+		"virtualDom": "Virtual DOM",
+		"events": "События",
+		"components": "Компоненты",
+		"state": "Состояние",
+		"refs": "Рефы",
+		"context": "Контекст",
+		"sideEffects": "Побочные эффекты",
+		"keys": "Ключи",
+		"errorHandling": "Обработка ошибок",
+		"congratulations": "Поздравляем!"
+	},
 	"blogPosts": {
+		"websiteRedesignCompetition": {
+			"label": "Конкурс на редизайн сайта Preact",
+			"excerpt": "В честь выхода Preact 11 мы проводим конкурс дизайна для сайта Preact!"
+		},
+		"preact11": {
+			"label": "Preact 11",
+			"excerpt": "Ожидание наконец завершилось: Preact 11 вышел! Preact 11 — это инкрементальное обновление, построенное на стабильности и надёжности Preact X, которое привносит ряд новых возможностей, таких как Hydration 2.0, автоматическая пересылка рефов и проверки равенства через `Object.is` в аргументах хуков."
+		},
 		"simplifyingIslandsArch": {
 			"label": "Создание собственных компонентов-островков",
 			"excerpt": "Вы узнаете, как работает архитектура островков, и сможете создать свою собственную, используя инструменты, которые уже есть у вас под рукой."
