@@ -32,6 +32,7 @@ description: Коллекция библиотек и дополнений, ко
 - :arrow_up_down: **[preact-custom-scrollbars](https://github.com/lucafalasco/preact-custom-scrollbars)**: Полностью настраиваемые полосы прокрутки для удобной прокрутки в браузере.
 - 🧱 **[@formisch/preact](https://formisch.dev/preact/guides/introduction/)**: Библиотека для работы с формами с акцентом на производительность, типобезопасность и минимальный размер бандла
 - ✨ **[ufbr](https://github.com/zakarialaoui10/ufbr)**: универсальный файловый маршрутизатор с поддержкой Preact.
+- 💙 **[@zikojs/preact-console](https://github.com/zikojs/console/tree/main/packages/integrations/preact)**: UI-компонент в стиле консоли для Preact, отображающий вывод консоли JavaScript прямо внутри вашего приложения.
 
 ## Интеграции
 
