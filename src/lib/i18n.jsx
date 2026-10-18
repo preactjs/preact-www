@@ -6,6 +6,7 @@ import { localStorageGet, localStorageSet } from './localstorage.js';
 import { useResource } from './use-resource.js';
 import config from '../config.json' with { type: 'json' };
 import englishTranslations from '../locales/en.json' with { type: 'json' };
+/** @import { Locale } from '../types.d.ts' */
 
 const translationURLs = import.meta.glob('../locales/!(en)*.json', {
 	query: '?url&no-inline',
@@ -15,8 +16,8 @@ const translationURLs = import.meta.glob('../locales/!(en)*.json', {
 
 /**
  * @typedef LanguageContext
- * @property {string} lang
- * @property {(string) => void} setLang
+ * @property {Locale} lang
+ * @property {(lang: Locale) => void} setLang
  * @property {typeof englishTranslations} translations
  * @property {typeof englishTranslations} fallback
  */

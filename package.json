@@ -26,6 +26,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/node": "^26.6.3",
 		"nano-staged": "^0.8.0",
 		"oxlint": "^1.87.0",
 		"prettier": "^3.9.9",
