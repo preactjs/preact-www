@@ -71,7 +71,6 @@ function MainNav() {
 						<>
 							<NavLink href="/about/we-are-using" />
 							<NavLink href="/about/project-goals" />
-							<NavLink href="/about/browser-support" />
 						</>
 					</ExpandableNavLink>
 				)}
