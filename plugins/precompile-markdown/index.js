@@ -64,7 +64,8 @@ function parseContent(content, path) {
 const CUSTOM_BLOCKS = [
 	'<toc></toc>',
 	'<branding></branding>',
-	'<blog-overview></blog-overview>'
+	'<blog-overview></blog-overview>',
+	'<translation-score-table></translation-score-table>'
 ];
 
 marked.use({

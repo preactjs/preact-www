@@ -38,6 +38,9 @@ export const headerNav = {
 	},
 	'/repl': {
 		label: 'repl'
+	},
+	'/translation-score-table': {
+		label: 'translationScoreTable'
 	}
 };
 

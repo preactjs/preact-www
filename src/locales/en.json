@@ -21,7 +21,8 @@
 		"browserSupport": "Browser Support",
 		"branding": "Branding",
 		"blog": "Blog",
-		"repl": "REPL"
+		"repl": "REPL",
+		"translationScoreTable": "Translation Score Table"
 	},
 	"sidebarSections": {
 		"introduction": "Introduction",

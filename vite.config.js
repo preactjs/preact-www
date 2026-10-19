@@ -35,6 +35,10 @@ export default defineConfig({
 					) {
 						return 'index';
 					}
+
+					if (id.includes('virtual:content-manifest')) {
+						return 'content-manifest';
+					}
 				}
 			}
 		}
