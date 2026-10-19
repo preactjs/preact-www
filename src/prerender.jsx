@@ -62,7 +62,8 @@ export async function prerender() {
 					rel: 'preload',
 					href: '/.netlify/functions/release?repo=preact',
 					as: 'fetch',
-					fetchpriority: 'low'
+					fetchpriority: 'low',
+					crossorigin: ''
 				}
 			},
 			location.pathname == '/' && {
@@ -71,7 +72,8 @@ export async function prerender() {
 					rel: 'preload',
 					href: '/.netlify/functions/repos?org=preactjs',
 					as: 'fetch',
-					fetchpriority: 'low'
+					fetchpriority: 'low',
+					crossorigin: ''
 				}
 			},
 			{
@@ -80,7 +82,8 @@ export async function prerender() {
 					rel: 'preload',
 					href: '/contributors.json',
 					as: 'fetch',
-					fetchpriority: 'low'
+					fetchpriority: 'low',
+					crossorigin: ''
 				}
 			},
 			// Hardcoding English is intentional, first render always fetches it with user preference only being applied later
@@ -90,7 +93,8 @@ export async function prerender() {
 					rel: 'preload',
 					href: `/content/en${getContentPath(location.pathname)}.json`,
 					as: 'fetch',
-					fetchpriority: 'low'
+					fetchpriority: 'low',
+					crossorigin: ''
 				}
 			},
 

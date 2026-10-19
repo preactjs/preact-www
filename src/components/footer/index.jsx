@@ -25,12 +25,7 @@ import style from './style.module.css';
  */
 function useContributors() {
 	const contributors = useResource(
-		() =>
-			fetch('/contributors.json', {
-				credentials: 'include',
-				mode: 'no-cors',
-				priority: 'low'
-			}).then((r) => r.json()),
+		() => fetch('/contributors.json').then((r) => r.json()),
 		['/contributors.json']
 	);
 

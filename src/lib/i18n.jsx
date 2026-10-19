@@ -62,10 +62,7 @@ export function LanguageProvider({ children }) {
 		}
 		if (!url) throw new Error(`No translation found for language: ${lang}`);
 
-		return fetch(url, {
-			credentials: 'include',
-			mode: 'no-cors'
-		}).then((r) => r.json());
+		return fetch(url, {}).then((r) => r.json());
 	}, [lang]);
 
 	useEffect(() => {

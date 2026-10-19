@@ -15,8 +15,6 @@ const baseUrl = '/.netlify/functions/';
 
 export const fetchOrganizationRepos = (org) =>
 	fetch(`${baseUrl}repos?org=${org}`, {
-		credentials: 'include',
-		mode: 'no-cors',
 		priority: 'low'
 	})
 		.then(checkStatus)
@@ -25,8 +23,6 @@ export const fetchOrganizationRepos = (org) =>
 
 export const fetchRelease = (repo) =>
 	fetch(`${baseUrl}release?repo=${repo}`, {
-		credentials: 'include',
-		mode: 'no-cors',
 		priority: 'low'
 	})
 		.then(checkStatus)
