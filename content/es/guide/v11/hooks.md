@@ -473,8 +473,7 @@ const App = (props) => {
 };
 ```
 
-> Si has estado usando la API de componentes basados en clases en el pasado, entonces este hook es esencialmente una alternativa al método de ciclo de vida [componentDidCatch](/guide/v11/whats-new/#componentdidcatch).
-> Este hook fue introducido con Preact 10.2.0.
+> Si has estado usando la API de componentes basados en clases en el pasado, entonces este hook es esencialmente una alternativa al método de ciclo de vida [componentDidCatch](/guide/v11/components#error-boundaries).
 
 ## Hooks de Utilidad
 
