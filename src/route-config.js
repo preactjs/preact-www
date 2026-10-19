@@ -18,12 +18,6 @@ export const headerNav = {
 	'/about/we-are-using': {
 		label: 'weAreUsing'
 	},
-	'/about/libraries-addons': {
-		label: 'librariesAddons'
-	},
-	'/about/demos-examples': {
-		label: 'demosExamples'
-	},
 	'/about/project-goals': {
 		label: 'projectGoals'
 	},
