@@ -9,8 +9,7 @@
 		"guide": "Anleitung",
 		"about": "Mehr",
 		"weAreUsing": "Firmen die Preact benutzen",
-		"projectGoals": "Projekt-Ziele",
-		"browserSupport": "Browserunterstützung"
+		"projectGoals": "Projekt-Ziele"
 	},
 	"sidebarSections": {
 		"introduction": "Einführung",

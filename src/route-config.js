@@ -21,9 +21,6 @@ export const headerNav = {
 	'/about/project-goals': {
 		label: 'projectGoals'
 	},
-	'/about/browser-support': {
-		label: 'browserSupport'
-	},
 	'/branding': {
 		label: 'branding'
 	},

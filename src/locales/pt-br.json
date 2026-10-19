@@ -8,8 +8,7 @@
 		"guide": "Guia",
 		"about": "Sobre",
 		"weAreUsing": "Empresas que usam Preact",
-		"projectGoals": "Objetivos do Projeto",
-		"browserSupport": "Suporte do Navegador"
+		"projectGoals": "Objetivos do Projeto"
 	},
 	"sidebarSections": {},
 	"sidebarNav": {
