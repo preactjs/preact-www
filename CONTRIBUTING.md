@@ -35,13 +35,9 @@ Since [`preact`](https://github.com/preactjs/preact) is used to render the Markd
 </jumbotron>
 ```
 
-### Navigation
-
-The navigation menu and route handling are controlled by [`src/config.json`](./src/config.json). Any new documents would need to be added to this file to be accessible via the site's navigation.
-
 ## Writing Content
 
-The written content on the site is authored in Markdown, found in the [`content`](./content) directory and split up by language. Additionally, [`src/config.json`](./src/config.json) contains some i18n labels which you may need to alter if you were adding a new translated page.
+The written content on the site is authored in Markdown, found in the [`content`](./content) directory and split up by language. Additionally, [`src/locales`](./src/locales) contains i18n labels which you may need to alter if you were adding a new translated page.
 
 Any and all content contributions are greatly appreciated, be that typo fixes or completely new translations.
 
