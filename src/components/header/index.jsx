@@ -70,8 +70,6 @@ function MainNav() {
 					>
 						<>
 							<NavLink href="/about/we-are-using" />
-							<NavLink href="/about/libraries-addons" />
-							<NavLink href="/about/demos-examples" />
 							<NavLink href="/about/project-goals" />
 							<NavLink href="/about/browser-support" />
 						</>
