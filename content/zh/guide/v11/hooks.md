@@ -468,8 +468,7 @@ const App = (props) => {
 };
 ```
 
-> 如果你曾使用过类组件的 API，这个钩子本质上是 [componentDidCatch](/guide/v11/whats-new/#componentdidcatch) 生命周期方法的替代。
-> 这个钩子在 Preact 10.2.0 中引入。
+> 如果你曾使用过类组件的 API，这个钩子本质上是 [componentDidCatch](/guide/v11/components#error-boundaries) 生命周期方法的替代。
 
 ## 工具钩子
 
