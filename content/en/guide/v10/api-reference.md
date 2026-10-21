@@ -223,7 +223,7 @@ const MyContext = createContext(defaultValue);
 
 ### createRef
 
-`createRef(initialValue)`
+`createRef()`
 
 Creates a new Ref object that acts as a stable, local value that will persist across renders. This can be used to store DOM references, component instances, or any arbitrary value.
 
@@ -233,9 +233,13 @@ See the [References documentation](/guide/v10/refs#creating-a-ref) for more deta
 import { createRef, Component } from 'preact';
 
 class MyComponent extends Component {
-	inputRef = createRef(null);
+	inputRef = createRef();
 
 	// ...
+
+	render() {
+		return <input ref={inputRef} />;
+	}
 }
 ```
 
