@@ -17,7 +17,7 @@ Most often you'll see refs used to facilitate imperative manipulation of the DOM
 
 ## Creating a Ref
 
-There are two ways to create refs in Preact, depending on your preferred component style: `createRef` (class components) and `useRef` (function components/hooks). Both APIs fundamentally work the same way: they create a stable, plain object with a `current` property, optionally initialized to a value.
+There are two ways to create refs in Preact, depending on your preferred component style: `createRef` (class components) and `useRef` (function components/hooks). Both APIs work similarly: they create a stable, plain object with a `current` property. `createRef` always initializes to `null`, taking no initial value parameter, but `useRef` should be given one for better typing (not actually required at runtime).
 
 <tab-group tabstring="Classes, Hooks">
 
@@ -26,7 +26,7 @@ import { createRef } from 'preact';
 
 class MyComponent extends Component {
 	countRef = createRef();
-	inputRef = createRef(null);
+	inputRef = createRef();
 
 	// ...
 }
@@ -56,7 +56,7 @@ The most common use case for refs is to access the underlying DOM node of a comp
 import { render, Component, createRef } from 'preact';
 // --repl-before
 class MyInput extends Component {
-	ref = createRef(null);
+	ref = createRef();
 
 	componentDidMount() {
 		console.log(this.ref.current);
@@ -166,7 +166,7 @@ class SimpleClock extends Component {
 	state = {
 		time: Date.now()
 	};
-	intervalId = createRef(null);
+	intervalId = createRef();
 
 	startClock = () => {
 		this.setState({ time: Date.now() });
