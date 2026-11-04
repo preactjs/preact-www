@@ -36,6 +36,13 @@ const sponsors = [
 		width: '160',
 		height: '32',
 		id: 'loveholidays'
+	},
+	{
+		link: 'https://lynxjs.org/',
+		title: 'lynx',
+		width: '27',
+		height: '28',
+		id: 'lynx'
 	}
 ];
 
