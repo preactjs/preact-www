@@ -36,26 +36,33 @@
 	}
 
 	svg {
-		color: black;
 		height: 3rem;
 		width: auto;
 		display: block;
 		margin: 0 auto 1rem;
 		opacity: 0.6;
 		transition: all 250ms ease;
+		filter: grayscale(1);
+		color: #000;
+
+		/* Invert based on luminosity */
+		@media (prefers-color-scheme: dark) {
+			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+		}
 
 		&:hover,
 		&:focus {
+			filter: grayscale(0) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1))
+				drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
 			opacity: 1;
-			filter: drop-shadow(0 0 0.5px #000) drop-shadow(0 5px 10px #fff)
-				drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
 		}
 
 		@media (prefers-color-scheme: dark) {
-			color: white;
 			&:hover,
 			&:focus {
-				filter: drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
+				color: #fff;
+				filter: invert(0) hue-rotate(0deg) grayscale(0)
+					drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
 					drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 			}
 		}
