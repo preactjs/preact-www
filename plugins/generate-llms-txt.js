@@ -35,8 +35,8 @@ async function readMarkdownFiles(guideDir) {
 function generateLlmsTxt(files) {
 	const header = `# Preact Documentation
 
-This file contains comprehensive documentation for Preact v10, a fast 3kB alternative to React with the same modern API.
-Preact is a fast, lightweight alternative to React that provides the same modern API in a much smaller package. This documentation covers all aspects of Preact v10, including components, hooks, server-side rendering, TypeScript support, and more.
+This file contains comprehensive documentation for Preact v11, a fast 3kB alternative to React with the same modern API.
+Preact is a fast, lightweight alternative to React that provides the same modern API in a much smaller package. This documentation covers all aspects of Preact v11, including components, hooks, server-side rendering, TypeScript support, and more.
 
 ---
 
@@ -44,10 +44,10 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 
 	let content = header;
 
-	for (const section in docPages.v10) {
+	for (const section in docPages.v11) {
 		content += `## ${englishTranslations.sidebarSections[section]}\n\n`;
 
-		for (const route in docPages.v10[section]) {
+		for (const route in docPages.v11[section]) {
 			const { filename, content: fileContent } = files.find(
 				(file) => file.filename === `${route.replace('/', '')}.md`
 			);
@@ -94,7 +94,7 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 export default function generateLlmsTxtPlugin(options = {}) {
 	const guideDir =
 		options.guideDir ||
-		path.join(__dirname, '..', 'content', 'en', 'guide', 'v10');
+		path.join(__dirname, '..', 'content', 'en', 'guide', 'v11');
 
 	return {
 		name: 'generate-llms-txt',
