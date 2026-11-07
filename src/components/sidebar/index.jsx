@@ -17,7 +17,7 @@ export default function Sidebar() {
 	for (const item in docPages[version]) {
 		if (version == 'v8') {
 			navItems.push({
-				text: translate('sidebarNav', docPages[version][item].label),
+				text: translate('sidebarNav', docPages[version][item]),
 				level: 2,
 				href: `/guide/${version}${item}`
 			});
@@ -32,8 +32,8 @@ export default function Sidebar() {
 				level: 2,
 				href: null,
 				routes: Object.entries(docPages[version][item]).map(
-					([pagePath, page]) => ({
-						text: translate('sidebarNav', page.label),
+					([pagePath, label]) => ({
+						text: translate('sidebarNav', label),
 						level: 3,
 						href: `/guide/${version}${pagePath}`
 					})

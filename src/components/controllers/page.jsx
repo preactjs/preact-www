@@ -4,12 +4,20 @@ import { NotFound } from './not-found.jsx';
 import { MarkdownRegion } from './markdown-region.jsx';
 import Footer from '../footer/index.jsx';
 import style from './style.module.css';
-import { headerNav } from '../../route-config.js';
+
+export const pages = [
+	'/',
+	'/about/we-are-using',
+	'/about/project-goals',
+	'/blog',
+	'/branding',
+	'/translation-score-table'
+];
 
 // Supports generic pages like `/`, `/about/*`, `/blog`, etc.
 export function Page() {
 	const { path } = useRoute();
-	const isValidRoute = headerNav[path];
+	const isValidRoute = pages.some((pagePath) => pagePath === path);
 
 	return (
 		<ErrorBoundary>
