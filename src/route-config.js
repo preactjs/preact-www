@@ -1,271 +1,128 @@
 /**
  * @typedef {import('./locales/en.json')} Translations
+ * @typedef {Record<string, keyof Translations['sidebarNav']>} DocLabels
+ * @typedef {'v8' | 'v10' | 'v11'} DocVersion
  */
 
 /**
- * @satisfies {Record<string, { label: keyof Translations['headerNav'] }>}
+ * @satisfies {Record<string, keyof Translations['headerNav']>}
  */
 export const headerNav = {
-	'/': {
-		label: 'home'
-	},
-	'/tutorial': {
-		label: 'tutorial'
-	},
-	'/guide/v11/getting-started': {
-		label: 'guide'
-	},
-	'/about/we-are-using': {
-		label: 'weAreUsing'
-	},
-	'/about/project-goals': {
-		label: 'projectGoals'
-	},
-	'/branding': {
-		label: 'branding'
-	},
-	'/blog': {
-		label: 'blog'
-	},
-	'/repl': {
-		label: 'repl'
-	},
-	'/translation-score-table': {
-		label: 'translationScoreTable'
-	}
+	'/': 'home',
+	'/tutorial': 'tutorial',
+	'/guide/v11/getting-started': 'guide',
+	'/about/we-are-using': 'weAreUsing',
+	'/about/project-goals': 'projectGoals',
+	'/blog': 'blog',
+	'/repl': 'repl'
 };
 
 /**
- * @typedef {Record<string, { label: keyof Translations['sidebarNav'] }>} RouteLabelMap
- * @typedef {Record<keyof Translations['sidebarSections'], RouteLabelMap>} SidebarWithSections
+ * @satisfies {DocLabels}
  */
-
-/**
- * @satisfies {RouteLabelMap}
- */
-const LIBRARIES = {
-	'/preact-iso': {
-		label: 'preactIso'
-	},
-	'/preact-custom-element': {
-		label: 'preactCustomElement'
-	},
-	'/preact-root-fragment': {
-		label: 'preactRootFragment'
-	}
+const libraries = {
+	'/preact-iso': 'preactIso',
+	'/preact-custom-element': 'preactCustomElement',
+	'/preact-root-fragment': 'preactRootFragment'
 };
 
 /**
- * @satisfies {Record<'v8' | 'v10' | 'v11', SidebarWithSections | RouteLabelMap>}
+ * @satisfies {{
+ * 	 v8: DocLabels,
+ * 	 v10: Record<keyof Translations['sidebarSections'], DocLabels>
+ * 	 v11: Record<keyof Translations['sidebarSections'], DocLabels>
+ * }}
  */
 export const docPages = {
 	v11: {
 		introduction: {
-			'/getting-started': {
-				label: 'gettingStarted'
-			},
-			'/upgrade-guide': {
-				label: 'upgradeGuide-v11'
-			},
-			'/differences-to-react': {
-				label: 'differencesToReact'
-			}
+			'/getting-started': 'gettingStarted',
+			'/upgrade-guide': 'upgradeGuide-v11',
+			'/differences-to-react': 'differencesToReact'
 		},
 		essentials: {
-			'/components': {
-				label: 'components'
-			},
-			'/hooks': {
-				label: 'hooks'
-			},
-			'/signals': {
-				label: 'signals'
-			},
-			'/forms': {
-				label: 'forms'
-			},
-			'/refs': {
-				label: 'refs'
-			},
-			'/context': {
-				label: 'context'
-			}
+			'/components': 'components',
+			'/hooks': 'hooks',
+			'/signals': 'signals',
+			'/forms': 'forms',
+			'/refs': 'refs',
+			'/context': 'context'
 		},
 		debugAndTest: {
-			'/debugging': {
-				label: 'debugging'
-			},
-			'/preact-testing-library': {
-				label: 'preactTestingLibrary'
-			},
-			'/unit-testing-with-enzyme': {
-				label: 'unitTestingWithEnzyme'
-			}
+			'/debugging': 'debugging',
+			'/preact-testing-library': 'preactTestingLibrary',
+			'/unit-testing-with-enzyme': 'unitTestingWithEnzyme'
 		},
 		advanced: {
-			'/api-reference': {
-				label: 'apiReference'
-			},
-			'/web-components': {
-				label: 'webComponents'
-			},
-			'/server-side-rendering': {
-				label: 'serverSideRendering'
-			},
-			'/options': {
-				label: 'options'
-			},
-			'/typescript': {
-				label: 'typeScript'
-			},
-			'/no-build-workflows': {
-				label: 'noBuildWorkflows'
-			}
+			'/api-reference': 'apiReference',
+			'/web-components': 'webComponents',
+			'/server-side-rendering': 'serverSideRendering',
+			'/options': 'options',
+			'/typescript': 'typeScript',
+			'/no-build-workflows': 'noBuildWorkflows'
 		},
-		libraries: LIBRARIES
+		libraries
 	},
 	v10: {
 		introduction: {
-			'/getting-started': {
-				label: 'gettingStarted'
-			},
-			'/whats-new': {
-				label: 'whatsNew'
-			},
-			'/upgrade-guide': {
-				label: 'upgradeGuide-v10'
-			},
-			'/differences-to-react': {
-				label: 'differencesToReact'
-			}
+			'/getting-started': 'gettingStarted',
+			'/whats-new': 'whatsNew',
+			'/upgrade-guide': 'upgradeGuide-v10',
+			'/differences-to-react': 'differencesToReact'
 		},
 		essentials: {
-			'/components': {
-				label: 'components'
-			},
-			'/hooks': {
-				label: 'hooks'
-			},
-			'/signals': {
-				label: 'signals'
-			},
-			'/forms': {
-				label: 'forms'
-			},
-			'/refs': {
-				label: 'refs'
-			},
-			'/context': {
-				label: 'context'
-			}
+			'/components': 'components',
+			'/hooks': 'hooks',
+			'/signals': 'signals',
+			'/forms': 'forms',
+			'/refs': 'refs',
+			'/context': 'context'
 		},
 		debugAndTest: {
-			'/debugging': {
-				label: 'debugging'
-			},
-			'/preact-testing-library': {
-				label: 'preactTestingLibrary'
-			},
-			'/unit-testing-with-enzyme': {
-				label: 'unitTestingWithEnzyme'
-			}
+			'/debugging': 'debugging',
+			'/preact-testing-library': 'preactTestingLibrary',
+			'/unit-testing-with-enzyme': 'unitTestingWithEnzyme'
 		},
 		advanced: {
-			'/api-reference': {
-				label: 'apiReference'
-			},
-			'/web-components': {
-				label: 'webComponents'
-			},
-			'/server-side-rendering': {
-				label: 'serverSideRendering'
-			},
-			'/options': {
-				label: 'options'
-			},
-			'/typescript': {
-				label: 'typeScript'
-			},
-			'/no-build-workflows': {
-				label: 'noBuildWorkflows'
-			}
+			'/api-reference': 'apiReference',
+			'/web-components': 'webComponents',
+			'/server-side-rendering': 'serverSideRendering',
+			'/options': 'options',
+			'/typescript': 'typeScript',
+			'/no-build-workflows': 'noBuildWorkflows'
 		},
-		libraries: LIBRARIES
+		libraries
 	},
 	v8: {
-		'/getting-started': {
-			label: 'gettingStarted'
-		},
-		'/differences-to-react': {
-			label: 'differencesToReact'
-		},
-		'/switching-to-preact': {
-			label: 'switchingToPreact'
-		},
-		'/types-of-components': {
-			label: 'typesOfComponents'
-		},
-		'/api-reference': {
-			label: 'apiReference'
-		},
-		'/forms': {
-			label: 'forms'
-		},
-		'/linked-state': {
-			label: 'linkedState'
-		},
-		'/external-dom-mutations': {
-			label: 'externalDomMutations'
-		},
-		'/extending-component': {
-			label: 'extendingComponent'
-		},
-		'/unit-testing-with-enzyme': {
-			label: 'unitTestingWithEnzyme'
-		},
-		'/progressive-web-apps': {
-			label: 'progressiveWebApps'
-		}
+		'/getting-started': 'gettingStarted',
+		'/differences-to-react': 'differencesToReact',
+		'/switching-to-preact': 'switchingToPreact',
+		'/types-of-components': 'typesOfComponents',
+		'/api-reference': 'apiReference',
+		'/forms': 'forms',
+		'/linked-state': 'linkedState',
+		'/external-dom-mutations': 'externalDomMutations',
+		'/extending-component': 'extendingComponent',
+		'/unit-testing-with-enzyme': 'unitTestingWithEnzyme',
+		'/progressive-web-apps': 'progressiveWebApps'
 	}
 };
 
 /**
- * @satisfies {Record<string, { label: keyof Translations['tutorialNav'] }>}
+ * @satisfies {Record<string, keyof Translations['tutorialNav']>}
  */
 export const tutorialPages = {
-	'/tutorial': {
-		label: 'learnPreact'
-	},
-	'/tutorial/01-vdom': {
-		label: 'virtualDom'
-	},
-	'/tutorial/02-events': {
-		label: 'events'
-	},
-	'/tutorial/03-components': {
-		label: 'components'
-	},
-	'/tutorial/04-state': {
-		label: 'state'
-	},
-	'/tutorial/05-refs': {
-		label: 'refs'
-	},
-	'/tutorial/06-context': {
-		label: 'context'
-	},
-	'/tutorial/07-side-effects': {
-		label: 'sideEffects'
-	},
-	'/tutorial/08-keys': {
-		label: 'keys'
-	},
-	'/tutorial/09-error-handling': {
-		label: 'errorHandling'
-	},
-	'/tutorial/10-links': {
-		label: 'congratulations'
-	}
+	'/tutorial': 'learnPreact',
+	'/tutorial/01-vdom': 'virtualDom',
+	'/tutorial/02-events': 'events',
+	'/tutorial/03-components': 'components',
+	'/tutorial/04-state': 'state',
+	'/tutorial/05-refs': 'refs',
+	'/tutorial/06-context': 'context',
+	'/tutorial/07-side-effects': 'sideEffects',
+	'/tutorial/08-keys': 'keys',
+	'/tutorial/09-error-handling': 'errorHandling',
+	'/tutorial/10-links': 'congratulations'
 };
 
 /**
@@ -304,42 +161,33 @@ export const blogPosts = {
 };
 
 /**
- * Flattens nested sidebar structure into a single object with path keys.
- *
- * @param {SidebarWithSections} routes
- * @returns {RouteLabelMap}
+ * @param {Record<string, DocLabels>} sections
  */
-function flattenRoutes(routes) {
-	const out = /** @type {RouteLabelMap} */ ({});
-	for (const group in routes) {
-		for (const path in routes[group]) {
-			out[path] = routes[group][path];
-		}
+function flatten(sections) {
+	/** @type {DocLabels} */
+	const out = {};
+	for (const section in sections) {
+		Object.assign(out, sections[section]);
 	}
-
 	return out;
 }
 
+/** @type {Record<DocVersion, DocLabels>} */
 export const flatDocPages = {
 	v8: docPages.v8,
-	v10: flattenRoutes(docPages.v10),
-	v11: flattenRoutes(docPages.v11)
+	v10: flatten(docPages.v10),
+	v11: flatten(docPages.v11)
 };
 
-/**
- * @param {'v8' | 'v10' | 'v11'} version
- * @param {string} path
- * @returns {string}
- */
-const nestPath = (version, path) => `/guide/${version}${path}`;
+const routes = new Set(['/404', '/branding', '/translation-score-table']);
+for (const path in headerNav) routes.add(path);
+for (const path in tutorialPages) routes.add(path);
+for (const path in blogPosts) routes.add(path);
+/** @type {keyof typeof flatDocPages} */
+let version;
+for (version in flatDocPages) {
+	for (const path in flatDocPages[version])
+		routes.add(`/guide/${version}${path}`);
+}
 
-export const allRoutes = [
-	...Object.keys(headerNav),
-	...Object.keys(flatDocPages.v8).map((path) => nestPath('v8', path)),
-	...Object.keys(flatDocPages.v10).map((path) => nestPath('v10', path)),
-	...Object.keys(flatDocPages.v11).map((path) => nestPath('v11', path)),
-	...Object.keys(tutorialPages),
-	...Object.keys(blogPosts),
-	'/branding',
-	'/404'
-];
+export const allRoutes = [...routes];

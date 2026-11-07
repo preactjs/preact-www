@@ -28,6 +28,16 @@ export default defineConfig({
 						return 'assets/docsearch-[hash].js';
 					return 'assets/[name]-[hash].js';
 				},
+				assetFileNames: (assetInfo) => {
+					if (
+						assetInfo.originalFileNames.some((file) =>
+							file.includes('@docsearch')
+						)
+					) {
+						return 'assets/docsearch-[hash].[ext]';
+					}
+					return 'assets/[name]-[hash].[ext]';
+				},
 				manualChunks: (id) => {
 					if (
 						id.includes('src/index.jsx') ||

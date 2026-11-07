@@ -243,7 +243,7 @@ function ExpandableNavLink({ isOpen, label, children, ...rest }) {
  */
 
 /**
- * @param {NavLinkProps & Omit<import('preact').AnchorHTMLAttributes, 'role'>} props
+ * @param {NavLinkProps & Omit<import('preact').AnchorHTMLAttributes, 'role' | 'href'>} props
  */
 function NavLink({ href, flair, clsx, ...rest }) {
 	const { path } = useLocation();
@@ -256,7 +256,7 @@ function NavLink({ href, flair, clsx, ...rest }) {
 			{...rest}
 		>
 			{flair}
-			{translate('headerNav', pathToI18nLabel(href))}
+			{translate('headerNav', headerNav[href])}
 		</a>
 	);
 }
@@ -273,16 +273,4 @@ function pathMatchesHref(path, href) {
 	if (href !== '/' && path.startsWith(href)) return true;
 	if (path.startsWith('/guide/') && href.startsWith('/guide/')) return true;
 	return false;
-}
-
-/**
- * @typedef {import('../../locales/en.json')} Translations
- */
-
-/**
- * @param {keyof typeof headerNav} path
- * @returns {keyof Translations['headerNav']}
- */
-function pathToI18nLabel(path) {
-	return headerNav[path].label;
 }
