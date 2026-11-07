@@ -1,36 +1,15 @@
 {
 	"private": true,
-	"author": "Preact Authors <core@preactjs.com>",
 	"license": "MIT",
+	"author": "Preact Authors <core@preactjs.com>",
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port 8080",
 		"server": "vite preview --port 8080",
 		"build": "vite build",
 		"lint": "oxlint",
-		"format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
+		"format": "oxfmt . --write",
 		"prepare": "npx simple-git-hooks"
-	},
-	"prettier": {
-		"singleQuote": true,
-		"trailingComma": "none",
-		"useTabs": true,
-		"tabWidth": 2
-	},
-	"simple-git-hooks": {
-		"pre-commit": "npx nano-staged"
-	},
-	"nano-staged": {
-		"**/*.{css,js,jsx,json,md}": [
-			"prettier --write"
-		]
-	},
-	"devDependencies": {
-		"@types/node": "^26.6.3",
-		"nano-staged": "^0.8.0",
-		"oxlint": "^1.87.0",
-		"prettier": "^3.9.9",
-		"simple-git-hooks": "^2.0.2"
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.7.0",
@@ -67,5 +46,20 @@
 		"vite": "^7.1.7",
 		"vite-plugin-static-copy": "^2.3.1",
 		"yaml": "^2.7.1"
+	},
+	"devDependencies": {
+		"@types/node": "^26.6.3",
+		"nano-staged": "^0.8.0",
+		"oxfmt": "0.77.0",
+		"oxlint": "^1.87.0",
+		"simple-git-hooks": "^2.0.2"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "npx nano-staged"
+	},
+	"nano-staged": {
+		"**/*.{css,js,jsx,ts,json,md}": [
+			"oxfmt --write"
+		]
 	}
 }
