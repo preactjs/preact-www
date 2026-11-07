@@ -6,7 +6,7 @@ declare global {
 	namespace preact.JSX {
 		interface IntrinsicElements {
 			'loading-bar': { showing: boolean };
-			'content-region': { name: string; 'can-edit': boolean, children: any };
+			'content-region': { name: string; 'can-edit': boolean; children: any };
 		}
 	}
 }
@@ -15,7 +15,7 @@ export interface GitHubOrgRepoData {
 	html_url: string;
 	full_name: string;
 	stargazers_count: number;
-	description: string
+	description: string;
 	[key: string]: unknown;
 }
 
@@ -23,7 +23,7 @@ export interface FilteredRepoData {
 	html_url: string;
 	full_name: string;
 	stargazers_count: number;
-	description: string
+	description: string;
 }
 
 export interface PrerenderData {
@@ -50,9 +50,9 @@ export interface FrontMatterMeta {
 }
 
 export interface TableOfContents {
-	text: string,
-	id: string,
-	level: number,
+	text: string;
+	id: string;
+	level: number;
 }
 
 // Data available within fetched JSON content
@@ -67,7 +67,7 @@ export interface ContentMetaData extends FrontMatterMeta {
 		setup: string;
 		initial: string;
 		final: string;
-	}
+	};
 }
 
 export interface ContentData {
@@ -83,7 +83,7 @@ export type Locale = keyof typeof config.locales;
 export interface ContentManifest {
 	[key: string]: {
 		[key in Locale]: ContentManifestEntry;
-	}
+	};
 }
 
 export interface ContentManifestEntry {
@@ -93,7 +93,7 @@ export interface ContentManifestEntry {
 
 export type TranslationScoreManifest = {
 	[key in Locale]: TranslationScoreEntry[];
-}
+};
 
 export interface TranslationScoreEntry {
 	file: string;

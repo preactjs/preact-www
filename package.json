@@ -8,7 +8,7 @@
 		"server": "vite preview --port 8080",
 		"build": "vite build",
 		"lint": "oxlint",
-		"format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
+		"format": "prettier --write \"**/*.{css,js,jsx,ts,json,md}\"",
 		"prepare": "npx simple-git-hooks"
 	},
 	"prettier": {
@@ -21,7 +21,7 @@
 		"pre-commit": "npx nano-staged"
 	},
 	"nano-staged": {
-		"**/*.{css,js,jsx,json,md}": [
+		"**/*.{css,js,jsx,ts,json,md}": [
 			"prettier --write"
 		]
 	},
