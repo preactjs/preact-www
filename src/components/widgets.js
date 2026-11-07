@@ -8,8 +8,8 @@ import Toc from './table-of-contents/index.jsx';
 import Sponsors from './sponsors/index.jsx';
 import TabGroup from './tab-group/index.jsx';
 
-const BlogOverview = lazy(() => import('./blog-overview/index.jsx'));
-const WeAreUsing = lazy(() => import('./we-are-using/index.jsx'));
+export const BlogOverview = lazy(() => import('./blog-overview/index.jsx'));
+export const WeAreUsing = lazy(() => import('./we-are-using/index.jsx'));
 const Branding = lazy(() => import('./branding/index.jsx'));
 const TranslationScoreTable = lazy(
 	() => import('./translation-score-table/index.jsx')
