@@ -7,11 +7,13 @@ import {
 	CodeEditor,
 	BlogPage
 } from '../components/routes.jsx';
+import { BlogOverview, WeAreUsing } from '../components/widgets.js';
 
 export function useDelegatedPrefetch() {
 	useEffect(() => {
+		/** @param {MouseEvent | TouchEvent} e */
 		const prefetchAndPreload = (e) => {
-			if (e.target.tagName === 'A') {
+			if (e.target && e.target instanceof HTMLAnchorElement) {
 				if (!e.target.href.startsWith(location.origin)) return;
 				const pathname = new URL(e.target.href).pathname;
 
@@ -21,6 +23,10 @@ export function useDelegatedPrefetch() {
 				} else if (pathname.startsWith('/tutorial')) {
 					TutorialPage.preload();
 					CodeEditor.preload();
+				} else if (pathname === '/blog') {
+					BlogOverview.preload();
+				} else if (pathname === '/about/we-are-using') {
+					WeAreUsing.preload();
 				} else if (pathname.startsWith('/blog/')) {
 					BlogPage.preload();
 				}
