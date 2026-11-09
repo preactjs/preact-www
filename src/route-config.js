@@ -129,6 +129,11 @@ export const tutorialPages = {
  * @satisfies {Record<string, { label: keyof Translations['blogPosts'], date: string }>}
  */
 export const blogPosts = {
+	'/blog/website-redesign-competition-winners': {
+		label: 'websiteRedesignCompetitionWinners',
+		// TODO: I don't love this, we're conflating route config with metadata
+		date: '2026-11-07'
+	},
 	'/blog/website-redesign-competition': {
 		label: 'websiteRedesignCompetition',
 		date: '2026-10-01'
@@ -139,7 +144,6 @@ export const blogPosts = {
 	},
 	'/blog/simplifying-islands-arch': {
 		label: 'simplifyingIslandsArch',
-		// TODO: I don't love this, we're conflating route config with metadata
 		date: '2024-08-06'
 	},
 	'/blog/prerendering-preset-vite': {

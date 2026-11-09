@@ -7,6 +7,7 @@ import Logo from './logo.jsx';
 import Toc from './table-of-contents/index.jsx';
 import Sponsors from './sponsors/index.jsx';
 import TabGroup from './tab-group/index.jsx';
+import { CompetitionWinner, WinnerImage } from './competition-winner/index.jsx';
 
 export const BlogOverview = lazy(() => import('./blog-overview/index.jsx'));
 export const WeAreUsing = lazy(() => import('./we-are-using/index.jsx'));
@@ -26,5 +27,7 @@ export default {
 	WeAreUsing,
 	Branding,
 	TabGroup,
-	TranslationScoreTable
+	TranslationScoreTable,
+	CompetitionWinner,
+	WinnerImage
 };

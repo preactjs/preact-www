@@ -73,6 +73,10 @@
 		"congratulations": "Congratulations!"
 	},
 	"blogPosts": {
+		"websiteRedesignCompetitionWinners": {
+			"label": "Preact Website Design Competition Winners",
+			"excerpt": "We are excited to announce the winners of the Design Competition! We received a bunch of great submissions but felt two stood out as the best and most creative."
+		},
 		"websiteRedesignCompetition": {
 			"label": "Preact Website Design Competition",
 			"excerpt": "To celebrate the release of Preact 11, we're hosting a design competition for the Preact website!"
