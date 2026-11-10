@@ -8,6 +8,8 @@ authors:
 
 # Preact Website Design Competition
 
+> The winning designs were announced! Check out our [update post](/blog/website-redesign-competition-winners) to see who won & their designs.
+
 To celebrate the release of Preact 11, we're hosting a design competition for the Preact website! The current design has served us well for the past years but a new release is a perfect opportunity to apply a new coat of paint and try out a new look. We'd love to involve the community in this process and are looking for contributions!
 
 This competition will be purely design-focused, no code required. Be creative and express your ideas for what the Preact docs should look like for the next few years.

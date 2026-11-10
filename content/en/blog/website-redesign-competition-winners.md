@@ -10,7 +10,7 @@ authors:
 
 We are excited to announce the winners of the Design Competition! We received a bunch of great submissions but felt two stood out as the best and most creative.
 
-To recap, we ran a paid design competition to celebrate the release of Preact 11. The goal was to create a new design for the Preact website, including the home page, a documentation page, and any other pages the designer felt were relevant. We left this fairly open-ended and simple to allow for creativity and expression, and these two were the favorites of the core team.
+To recap, we ran a [design competition](/blog/website-redesign-competition) to celebrate the release of Preact 11. The goal was to create a new design for the Preact website, including the home page, a documentation page, and any other pages the designer felt were relevant. We left this fairly open-ended and simple to allow for creativity and expression, and these two were the favorites of the core team.
 
 We really appreciate all who submitted, the team enjoyed seeing all of the different designs and ideas, especially those that rewrote the home page copy to express what made Preact special and unique to them.
 
