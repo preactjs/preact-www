@@ -137,6 +137,18 @@ Largely for historical reasons, the semantics of React's `onChange` event are ac
 
 If you're using [preact/compat], most `onChange` events are internally converted to `onInput` to emulate React's behavior. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
 
+### The `value` attribute is not reflected in the DOM
+
+When you set `value` on an `<input>`, Preact sets the `value` _property_ of the DOM element and does not write a `value` attribute. The input behaves the same way (`input.value` returns the current value), but the value will not show up when inspecting the element in your browser's devtools, and `input.getAttribute('value')` will not return it. If you have tests that assert on the `value` attribute (for example through HTML snapshots or `toHaveAttribute('value', ...)`), assert on the `value` property instead:
+
+```jsx
+// Preact
+expect(input.value).toBe('anything');
+// Not: expect(input.getAttribute('value')).toBe('anything');
+```
+
+When rendering to a string (e.g. with `preact-render-to-string`) the `value` attribute is emitted, as that is the only way to convey the value in static HTML.
+
 ### JSX Constructor
 
 JSX is a syntax extension for JavaScript that is converted to nested function calls. The idea of using these nested calls to build up tree structures long predates JSX, and was previously popularized in JavaScript by the [hyperscript] project. This approach has value well beyond the scope of the React ecosystem, so Preact promotes the original generalized community-standard. For a more in-depth discussion of JSX and its relationship to Hyperscript, [read this article on how JSX works](https://jasonformat.com/wtf-is-jsx).
@@ -168,6 +180,31 @@ Ultimately, if you're looking at the generated output code for a Preact applicat
 ### No contextTypes needed
 
 The legacy `Context` API requires Components to declare specific properties using React's `contextTypes` or `childContextTypes` in order to receive those values. Preact does not have this requirement: all Components receive all `context` properties produced by `getChildContext()` by default.
+
+### `useErrorBoundary` hook
+
+React only supports error boundaries through class components that implement `componentDidCatch` or `getDerivedStateFromError`. Preact supports those too, but additionally provides the `useErrorBoundary` hook in `preact/hooks`, which lets function components catch errors thrown by their children:
+
+```jsx
+import { useErrorBoundary } from 'preact/hooks';
+
+function App(props) {
+	const [error, resetError] = useErrorBoundary();
+
+	if (error) {
+		return (
+			<button onClick={resetError}>Something went wrong, try again</button>
+		);
+	}
+	return <div>{props.children}</div>;
+}
+```
+
+See the [hooks documentation](/guide/v11/hooks#useerrorboundary) for the full API, including how to report caught errors to a monitoring service.
+
+### Option hooks
+
+Preact exposes an `options` object whose callbacks (such as `options.vnode` or `options.diffed`) are called at various stages of rendering. This is how addons like `preact/hooks`, `preact/compat` and the Preact Developer Tools are built, and it has no equivalent in React. It is primarily intended for tooling and library authors; see [Option Hooks](/guide/v11/options) for details.
 
 [project goals]: /about/project-goals
 [hyperscript]: https://github.com/dominictarr/hyperscript
