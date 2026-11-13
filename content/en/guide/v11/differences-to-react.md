@@ -137,9 +137,9 @@ Largely for historical reasons, the semantics of React's `onChange` event are ac
 
 If you're using [preact/compat], most `onChange` events are internally converted to `onInput` to emulate React's behavior. This is one of the tricks we use to ensure maximum compatibility with the React ecosystem.
 
-### The `value` attribute is not reflected in the DOM
+### The `value` property is not reflected to an attribute
 
-When you set `value` on an `<input>`, Preact sets the `value` _property_ of the DOM element and does not write a `value` attribute. The input behaves the same way (`input.value` returns the current value), but the value will not show up when inspecting the element in your browser's devtools, and `input.getAttribute('value')` will not return it. If you have tests that assert on the `value` attribute (for example through HTML snapshots or `toHaveAttribute('value', ...)`), assert on the `value` property instead:
+When you set `value` on an `<input>`, Preact sets the `value` _property_ of the DOM element and does not write the `value` attribute. The input behaves the same way (`input.value` returns the current value), but the value will not show up when inspecting the element in your browser's devtools, and `input.getAttribute('value')` will not return it. If you have tests that assert on the `value` attribute (for example through HTML snapshots or `toHaveAttribute('value', ...)`), assert on the `value` property instead:
 
 ```jsx
 // Preact
