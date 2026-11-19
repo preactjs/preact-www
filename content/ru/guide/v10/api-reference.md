@@ -223,7 +223,7 @@ const MyContext = createContext(defaultValue);
 
 ### createRef
 
-`createRef(initialValue)`
+`createRef()`
 
 Создаёт новый объект Ref, который служит стабильным локальным значением, сохраняющимся между рендерами.  
 Может использоваться для хранения ссылок на DOM-элементы, экземпляры компонентов или любые произвольные значения.
@@ -236,9 +236,13 @@ const MyContext = createContext(defaultValue);
 import { createRef, Component } from 'preact';
 
 class MyComponent extends Component {
-	inputRef = createRef(null);
+	inputRef = createRef();
 
 	// ...
+
+	render() {
+		return <input ref={inputRef} />;
+	}
 }
 ```
 

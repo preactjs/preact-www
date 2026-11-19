@@ -17,7 +17,7 @@ description: Рефы — это способ создания стабильн�
 
 ## Создание рефа
 
-В Preact есть два способа создания рефов, в зависимости от предпочитаемого вами стиля компонентов: `createRef` (классовые компоненты) и `useRef` (функциональные компоненты/хуки). Оба API по сути работают одинаково: они создают стабильный, простой объект со свойством `current`, которое можно инициализировать значением по желанию.
+В Preact есть два способа создания рефов, в зависимости от предпочитаемого вами стиля компонентов: `createRef` (классовые компоненты) и `useRef` (функциональные компоненты/хуки). Оба API работают схожим образом: они создают стабильный, простой объект со свойством `current`. `createRef` всегда инициализируется значением `null` и не принимает параметр начального значения, но `useRef` лучше вызывать с начальным значением ради более точной типизации (на практике это не обязательно).
 
 <tab-group tabstring="Classes, Hooks">
 
@@ -26,7 +26,7 @@ import { createRef } from 'preact';
 
 class MyComponent extends Component {
 	countRef = createRef();
-	inputRef = createRef(null);
+	inputRef = createRef();
 
 	// ...
 }
@@ -56,7 +56,7 @@ function MyComponent() {
 import { render, Component, createRef } from 'preact';
 // --repl-before
 class MyInput extends Component {
-	ref = createRef(null);
+	ref = createRef();
 
 	componentDidMount() {
 		console.log(this.ref.current);
@@ -166,7 +166,7 @@ class SimpleClock extends Component {
 	state = {
 		time: Date.now()
 	};
-	intervalId = createRef(null);
+	intervalId = createRef();
 
 	startClock = () => {
 		this.setState({ time: Date.now() });

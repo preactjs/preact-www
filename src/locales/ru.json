@@ -36,7 +36,7 @@
 		"hooks": "Хуки",
 		"signals": "Сигналы",
 		"forms": "Формы",
-		"refs": "Ссылки",
+		"refs": "Рефы",
 		"context": "Контекст",
 		"debugging": "Инструменты отладки",
 		"preactTestingLibrary": "Preact Testing Library",
@@ -72,6 +72,10 @@
 		"congratulations": "Поздравляем!"
 	},
 	"blogPosts": {
+		"websiteRedesignCompetitionWinners": {
+			"label": "Победители конкурса на редизайн сайта Preact",
+			"excerpt": "Мы с радостью объявляем победителей конкурса дизайна! Мы получили множество отличных работ, но сочли две из них лучшими и самыми креативными."
+		},
 		"websiteRedesignCompetition": {
 			"label": "Конкурс на редизайн сайта Preact",
 			"excerpt": "В честь выхода Preact 11 мы проводим конкурс дизайна для сайта Preact!"
