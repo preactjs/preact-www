@@ -193,7 +193,7 @@ main .markup {
 		.repo-list-header {
 			text-align: center;
 			font-weight: 200;
-			font-size: 3rem;
+			font-size: min(3rem, 12vw);
 			margin: 0;
 		}
 
