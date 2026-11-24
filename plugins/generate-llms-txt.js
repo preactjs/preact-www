@@ -48,7 +48,7 @@ async function readSections() {
  * @returns {string}
  */
 function generateIndex(sections) {
-	let content = `# Preact\n\n> ${summary}\n\nAll pages below in a single file: ${origin}/llms-full.txt\n`;
+	let content = `# Preact\n\n> ${summary}\n`;
 
 	for (const { name, pages } of sections) {
 		content += `\n## ${name}\n\n`;
@@ -56,6 +56,8 @@ function generateIndex(sections) {
 			content += `- [${title}](${url})${description ? `: ${description}` : ''}\n`;
 		}
 	}
+
+	content += `\n## Optional\n\n- [Full documentation](${origin}/llms-full.txt): All pages above in a single file\n`;
 
 	return content;
 }
