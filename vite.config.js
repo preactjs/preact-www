@@ -10,6 +10,7 @@ import { htmlRoutingMiddlewarePlugin } from './plugins/html-routing-middleware.j
 import { rssFeedPlugin } from './plugins/rss-feed.js';
 import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 import { contentManifestPlugin } from './plugins/content-manifest.js';
+import { markdownPagesPlugin } from './plugins/markdown-pages.js';
 
 import { allRoutes } from './src/route-config.js';
 
@@ -104,6 +105,7 @@ export default defineConfig({
 		htmlRoutingMiddlewarePlugin(),
 		rssFeedPlugin(),
 		generateLlmsTxtPlugin(),
+		markdownPagesPlugin(),
 		contentManifestPlugin()
 	]
 });

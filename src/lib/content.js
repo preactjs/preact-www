@@ -11,6 +11,16 @@ export function getContentPath(path) {
 }
 
 /**
+ * Path of the plain Markdown version of a page, if one is published
+ *
+ * @param {string} path
+ * @returns {string | undefined}
+ */
+export function getMarkdownPath(path) {
+	if (/^\/(guide|tutorial|blog|about)\/./.test(path)) return `${path}.md`;
+}
+
+/**
  * Fetch and parse a markdown document with optional JSON FrontMatter.
  *
  * @param {import('../types.d.ts').ContentManifest} manifest
