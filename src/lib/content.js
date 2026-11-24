@@ -17,7 +17,8 @@ export function getContentPath(path) {
  * @returns {string | undefined}
  */
 export function getMarkdownPath(path) {
-	if (/^\/(guide|tutorial|blog|about)\/./.test(path)) return `${path}.md`;
+	if (/^\/(guide|blog)\/./.test(path) && !path.includes('/v8/'))
+		return `${path}.md`;
 }
 
 /**
