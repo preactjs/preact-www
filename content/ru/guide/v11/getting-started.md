@@ -22,7 +22,7 @@ Preact упакован для использования непосредств
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
 
 	// Create your app
 	const app = h('h1', null, 'Hello World!');
@@ -41,8 +41,8 @@ Preact упакован для использования непосредств
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
-	import htm from 'https://esm.sh/htm';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
+	import htm from 'https://esm.sh/htm@3.1.1';
 
 	// Initialize htm with Preact
 	const html = htm.bind(h);
@@ -57,7 +57,7 @@ Preact упакован для использования непосредств
 
 > **Совет:** HTM также предоставляет удобную версию Preact с возможностью однократного импорта:
 >
-> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
+> `import { html, render } from 'https://esm.sh/htm@3.1.1/preact/standalone'`
 
 Пример более масштабируемого решения см. в разделе [Карты импорта — Пример использования](/guide/v11/no-build-workflows#пример-использования), а дополнительную информацию о HTM можно найти в [документации][htm].
 
@@ -245,11 +245,11 @@ TypeScript, даже если он используется вместе со с
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat"
 		}
 	}
 </script>
