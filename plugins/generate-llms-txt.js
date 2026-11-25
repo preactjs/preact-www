@@ -1,83 +1,91 @@
-import fs from 'fs/promises';
-import fsSync from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { parseFrontmatter, cleanReplComments } from '../src/lib/frontmatter.js';
+import fs from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { parseFrontmatter, toPlainMarkdown } from '../src/lib/frontmatter.js';
+import { getMarkdownPath } from '../src/lib/content.js';
 import { docPages } from '../src/route-config.js';
 import englishTranslations from '../src/locales/en.json' with { type: 'json' };
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const origin = 'https://preactjs.com';
+const guideDir = fileURLToPath(
+	new URL('../content/en/guide/v11', import.meta.url)
+);
+const summary =
+	'Preact is a fast 3kB alternative to React with the same modern API. This documentation covers Preact v11.';
 
 /**
- * Read all markdown files from the guide directory
- * @param {string} guideDir
- * @returns {Promise<Array<{filename: string, content: string}>>}
+ * @typedef {{ title: string, description: string, url: string, body: string }} Page
+ * @typedef {{ name: string, pages: Page[] }} Section
  */
-async function readMarkdownFiles(guideDir) {
-	const files = await fs.readdir(guideDir);
-	const markdownFiles = files.filter((file) => file.endsWith('.md'));
 
-	return Promise.all(
-		markdownFiles.map(async (filename) => {
-			const filePath = path.join(guideDir, filename);
-			const content = await fs.readFile(filePath, 'utf-8');
-			return { filename, content };
-		})
-	);
+/**
+ * @returns {Promise<Section[]>}
+ */
+async function readSections() {
+	const sections = [];
+	for (const section in docPages.v11) {
+		const pages = [];
+		for (const route in docPages.v11[section]) {
+			const file = `${guideDir}${route}.md`;
+			const content = await fs.readFile(file, 'utf-8');
+			const { title, description } = parseFrontmatter(content, file);
+			pages.push({
+				title,
+				description,
+				url: `${origin}${getMarkdownPath(`/guide/v11${route}`)}`,
+				body: toPlainMarkdown(content, file)
+			});
+		}
+		sections.push({
+			name: englishTranslations.sidebarSections[section],
+			pages
+		});
+	}
+	return sections;
 }
 
 /**
- * Generate the llms.txt content
- * @param {Array<{filename: string, content: string}>} files
+ * @param {Section[]} sections
  * @returns {string}
  */
-function generateLlmsTxt(files) {
-	const header = `# Preact Documentation
+function generateIndex(sections) {
+	let content = `# Preact\n\n> ${summary}\n`;
 
-This file contains comprehensive documentation for Preact v11, a fast 3kB alternative to React with the same modern API.
-Preact is a fast, lightweight alternative to React that provides the same modern API in a much smaller package. This documentation covers all aspects of Preact v11, including components, hooks, server-side rendering, TypeScript support, and more.
+	for (const { name, pages } of sections) {
+		content += `\n## ${name}\n\n`;
+		for (const { title, description, url } of pages) {
+			content += `- [${title}](${url})${description ? `: ${description}` : ''}\n`;
+		}
+	}
 
----
+	content += `\n## Optional\n\n- [Full documentation](${origin}/llms-full.txt): All pages above in a single file\n`;
 
-`;
+	return content;
+}
 
-	let content = header;
+/**
+ * @param {Section[]} sections
+ * @returns {string}
+ */
+function generateFull(sections) {
+	let content = `# Preact Documentation\n\n> ${summary}\n\n---\n\n`;
 
-	for (const section in docPages.v11) {
-		content += `## ${englishTranslations.sidebarSections[section]}\n\n`;
+	for (const { name, pages } of sections) {
+		content += `## ${name}\n\n`;
 
-		for (const route in docPages.v11[section]) {
-			const { filename, content: fileContent } = files.find(
-				(file) => file.filename === `${route.replace('/', '')}.md`
-			);
-
-			const { description, body } = parseFrontmatter(fileContent, filename);
-			let cleanedBody = cleanReplComments(body);
-
-			// Remove <toc></toc> tags
-			cleanedBody = cleanedBody.replace(/<toc><\/toc>/g, '');
-
-			// Clean up multiple consecutive newlines and empty lines around separators
-			cleanedBody = cleanedBody.replace(/\n{3,}/g, '\n\n');
-			cleanedBody = cleanedBody.replace(/---\s*\n\s*\n\s*---/g, '');
-
-			// Fix heading hierarchy: page headings should be 3 levels deep to accommodate
-			// the llms document heading & the section headings for page/concept groups.
-			cleanedBody = cleanedBody
+		for (const { description, body } of pages) {
+			// Page headings move 2 levels down to sit under the document & section headings.
+			// The top-level heading isn't replaced globally as that would also match bash comments.
+			const nested = body
 				.replace(/^#### /gm, '###### ')
 				.replace(/^### /gm, '##### ')
 				.replace(/^## /gm, '#### ')
-				// Not `/g` as there should only be one top-level heading per file
-				// and this would conflict with bash comments that we have in a few places.
 				.replace(/^# /m, '### ');
 
 			if (description) {
 				content += `**Description:** ${description}\n\n`;
 			}
 
-			content += `${cleanedBody}\n\n`;
-			content += `------\n\n`;
+			content += `${nested}\n------\n\n`;
 		}
 	}
 
@@ -85,38 +93,26 @@ Preact is a fast, lightweight alternative to React that provides the same modern
 }
 
 /**
- * Vite plugin to generate llms.txt from Preact documentation
- * @param {Object} options
- * @param {string} [options.guideDir] - Path to the guide directory
- * @param {string} [options.outputFile] - Path to the output file
+ * Emits `llms.txt`, an index of the v11 docs, and `llms-full.txt`, the docs in a single file
  * @returns {import('vite').Plugin}
  */
-export default function generateLlmsTxtPlugin(options = {}) {
-	const guideDir =
-		options.guideDir ||
-		path.join(__dirname, '..', 'content', 'en', 'guide', 'v11');
-
+export default function generateLlmsTxtPlugin() {
 	return {
 		name: 'generate-llms-txt',
 		apply: 'build',
 		async buildStart() {
-			try {
-				if (!fsSync.existsSync(guideDir)) {
-					this.warn(`Guide directory not found: ${guideDir}`);
-					return;
-				}
+			const sections = await readSections();
 
-				const files = await readMarkdownFiles(guideDir);
-				const llmsTxtContent = generateLlmsTxt(files);
-
-				this.emitFile({
-					type: 'asset',
-					fileName: 'llms.txt',
-					source: llmsTxtContent
-				});
-			} catch (error) {
-				this.error(`Error generating llms.txt: ${error.message}`);
-			}
+			this.emitFile({
+				type: 'asset',
+				fileName: 'llms.txt',
+				source: generateIndex(sections)
+			});
+			this.emitFile({
+				type: 'asset',
+				fileName: 'llms-full.txt',
+				source: generateFull(sections)
+			});
 		}
 	};
 }
