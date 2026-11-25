@@ -2,7 +2,7 @@ import ssr from 'preact-iso/prerender';
 import { DOMParser } from '@xmldom/xmldom';
 
 import { App } from './index.jsx';
-import { getContentPath } from './lib/content.js';
+import { getContentPath, getMarkdownPath } from './lib/content.js';
 
 import release from './lambda/release.js';
 import repos from './lambda/repos.js';
@@ -25,6 +25,7 @@ export async function prerender() {
 	};
 
 	const res = await ssr(<App prerenderData={prerenderData} />);
+	const markdownPath = getMarkdownPath(location.pathname);
 
 	const elements = new Set(
 		[
@@ -52,6 +53,11 @@ export async function prerender() {
 			location.pathname.includes('/v8/') && {
 				type: 'meta',
 				props: { name: 'robots', content: 'noindex' }
+			},
+
+			markdownPath && {
+				type: 'link',
+				props: { rel: 'alternate', type: 'text/markdown', href: markdownPath }
 			},
 
 			// Preloading

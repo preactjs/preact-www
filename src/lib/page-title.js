@@ -7,12 +7,11 @@ export function createTitle(title) {
 	// Titles for various content areas
 	let suffix = '';
 	switch (true) {
-		case url.startsWith('/guide/v10'):
+		case url.startsWith('/guide/v11'):
 			suffix = 'Preact Guide';
 			break;
-		// TODO v11: Switch when v11 is properly released
-		case url.startsWith('/guide/v11'):
-			suffix = 'Preact Guide v11';
+		case url.startsWith('/guide/v10'):
+			suffix = 'Preact Guide v10';
 			break;
 		case url.startsWith('/guide/v8'):
 			suffix = 'Preact Guide v8';

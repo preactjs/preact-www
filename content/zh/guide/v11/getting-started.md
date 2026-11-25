@@ -22,7 +22,7 @@ Preact 被打包为可在浏览器中直接使用，不需要任何构建或工�
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
 
 	// 创建您的应用
 	const app = h('h1', null, 'Hello World!');
@@ -43,8 +43,8 @@ Preact 被打包为可在浏览器中直接使用，不需要任何构建或工�
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
-	import htm from 'https://esm.sh/htm';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
+	import htm from 'https://esm.sh/htm@3.1.1';
 
 	// 使用 Preact 初始化 htm
 	const html = htm.bind(h);
@@ -61,7 +61,7 @@ Preact 被打包为可在浏览器中直接使用，不需要任何构建或工�
 
 > **提示：** HTM 还提供了一个方便的单导入 Preact 版本：
 >
-> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
+> `import { html, render } from 'https://esm.sh/htm@3.1.1/preact/standalone'`
 
 对于更具可扩展性的解决方案，请参见[导入映射 -- 基本用法](/guide/v11/no-build-workflows#basic-usage)，有关 HTM 的更多信息，请查看其[文档][htm]。
 
@@ -255,11 +255,11 @@ React 库使用 `preact/compat` 可能不提供的类型（尽管我们尽力修
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat"
 		}
 	}
 </script>
