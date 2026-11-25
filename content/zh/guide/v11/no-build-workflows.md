@@ -17,7 +17,7 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 
 ## 导入映射（Import Maps）
 
-[导入映射](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script/type/importmap) 是一项较新的浏览器特性，允许您控制浏览器如何解析模块标识符，通常用于将裸模块标识符（如 `preact`）转换为 CDN URL（如 `https://esm.sh/preact`）。尽管许多人更倾向于导入映射带来的美观性，但依赖集中化也有客观优势，例如更简便的版本管理、减少/消除重复依赖，以及更好地利用更强大的 CDN 功能。
+[导入映射](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script/type/importmap) 是一项较新的浏览器特性，允许您控制浏览器如何解析模块标识符，通常用于将裸模块标识符（如 `preact`）转换为 CDN URL（如 `https://esm.sh/preact@11.2.0`）。尽管许多人更倾向于导入映射带来的美观性，但依赖集中化也有客观优势，例如更简便的版本管理、减少/消除重复依赖，以及更好地利用更强大的 CDN 功能。
 
 对于选择放弃构建工具的开发者，我们通常推荐使用导入映射，因为它们能解决在导入标识符中使用裸 CDN URL 时可能遇到的一些问题（下文将详述）。
 
@@ -32,7 +32,7 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 		<script type="importmap">
 			{
 				"imports": {
-					"preact": "https://esm.sh/preact@10.23.1",
+					"preact": "https://esm.sh/preact@11.2.0",
 					"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 				}
 			}
@@ -73,9 +73,9 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"@preact/signals": "https://esm.sh/@preact/signals@2.11.4?external=preact",
 			"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 		}
 	}
@@ -88,11 +88,11 @@ description: 尽管 Webpack、Rollup 和 Vite 等构建工具功能强大且实�
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat",
 			"@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
 		}
 	}

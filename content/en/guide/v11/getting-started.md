@@ -22,7 +22,7 @@ Preact is packaged to be used directly in the browser, and doesn't require any b
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
 
 	// Create your app
 	const app = h('h1', null, 'Hello World!');
@@ -41,8 +41,8 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
-	import htm from 'https://esm.sh/htm';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
+	import htm from 'https://esm.sh/htm@3.1.1';
 
 	// Initialize htm with Preact
 	const html = htm.bind(h);
@@ -57,7 +57,7 @@ Writing raw `h` or `createElement` calls can be tedious. JSX has the advantage o
 
 > **Tip:** HTM also provides a convenient single-import Preact version:
 >
-> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
+> `import { html, render } from 'https://esm.sh/htm@3.1.1/preact/standalone'`
 
 For a more scalable solution, see [Import Maps -- Basic Usage](/guide/v11/no-build-workflows#basic-usage), and for more information on HTM, check out its [documentation][htm].
 
@@ -256,11 +256,11 @@ errors. By setting `skipLibCheck`, you can tell TS that it doesn't need to do a 
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat"
 		}
 	}
 </script>

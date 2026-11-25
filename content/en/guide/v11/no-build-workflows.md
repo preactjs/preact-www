@@ -22,7 +22,7 @@ very well at all scales.
 
 An [Import Map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) is a newer browser feature
 that allows you to control how browsers resolve module specifiers, often to convert bare specifiers such as `preact`
-to a CDN URL like `https://esm.sh/preact`. While many do prefer the aesthetics import maps can provide, there are also
+to a CDN URL like `https://esm.sh/preact@11.2.0`. While many do prefer the aesthetics import maps can provide, there are also
 objective advantages to the centralization of dependencies such as easier versioning, reduced/removed duplication, and
 better access to more powerful CDN features.
 
@@ -41,7 +41,7 @@ utilize import maps, but a basic example looks like the following:
 		<script type="importmap">
 			{
 				"imports": {
-					"preact": "https://esm.sh/preact@10.23.1",
+					"preact": "https://esm.sh/preact@11.2.0",
 					"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 				}
 			}
@@ -93,9 +93,9 @@ query parameter, but other CDNs may work differently.
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"@preact/signals": "https://esm.sh/@preact/signals@2.11.4?external=preact",
 			"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 		}
 	}
@@ -108,11 +108,11 @@ query parameter, but other CDNs may work differently.
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat",
 			"@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
 		}
 	}
