@@ -22,7 +22,7 @@ muy bien en todas las escalas.
 
 ## Mapas de Importación
 
-Un [Mapa de Importación](https://developer.mozilla.org/es/docs/Web/HTML/Element/script/type/importmap) es una característica más nueva del navegador que te permite controlar cómo los navegadores resuelven los especificadores de módulos, a menudo para convertir especificadores simples como `preact` a una URL de CDN como `https://esm.sh/preact`. Aunque muchos prefieren la estética que los mapas de importación pueden proporcionar, también hay ventajas objetivas de la centralización de dependencias como un manejo de versiones más fácil, reducción/eliminación de duplicación, y mejor acceso a características más poderosas del CDN.
+Un [Mapa de Importación](https://developer.mozilla.org/es/docs/Web/HTML/Element/script/type/importmap) es una característica más nueva del navegador que te permite controlar cómo los navegadores resuelven los especificadores de módulos, a menudo para convertir especificadores simples como `preact` a una URL de CDN como `https://esm.sh/preact@11.2.0`. Aunque muchos prefieren la estética que los mapas de importación pueden proporcionar, también hay ventajas objetivas de la centralización de dependencias como un manejo de versiones más fácil, reducción/eliminación de duplicación, y mejor acceso a características más poderosas del CDN.
 
 Generalmente recomendamos usar mapas de importación para aquellos que eligen prescindir de herramientas de compilación ya que evitan algunos problemas que puedes encontrar usando URLs de CDN simples en tus especificadores de importación (más sobre eso a continuación).
 
@@ -37,7 +37,7 @@ Generalmente recomendamos usar mapas de importación para aquellos que eligen pr
 		<script type="importmap">
 			{
 				"imports": {
-					"preact": "https://esm.sh/preact@10.23.1",
+					"preact": "https://esm.sh/preact@11.2.0",
 					"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 				}
 			}
@@ -78,9 +78,9 @@ Para estos ejemplos estaremos usando https://esm.sh como nuestro CDN -- es un CD
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"@preact/signals": "https://esm.sh/@preact/signals@2.11.4?external=preact",
 			"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 		}
 	}
@@ -93,11 +93,11 @@ Para estos ejemplos estaremos usando https://esm.sh como nuestro CDN -- es un CD
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat",
 			"@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
 		}
 	}

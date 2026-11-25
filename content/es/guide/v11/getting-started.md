@@ -24,7 +24,7 @@ Preact está empaquetado para ser usado directamente en el navegador, y no requi
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
 
 	// Crea tu app
 	const app = h('h1', null, 'Hello World!');
@@ -45,8 +45,8 @@ Escribir llamadas raw `h` o `createElement` puede ser tedioso. JSX tiene la vent
 
 ```html
 <script type="module">
-	import { h, render } from 'https://esm.sh/preact';
-	import htm from 'https://esm.sh/htm';
+	import { h, render } from 'https://esm.sh/preact@11.2.0';
+	import htm from 'https://esm.sh/htm@3.1.1';
 
 	// Inicializa htm con Preact
 	const html = htm.bind(h);
@@ -63,7 +63,7 @@ Escribir llamadas raw `h` o `createElement` puede ser tedioso. JSX tiene la vent
 
 > **Consejo:** HTM también proporciona una versión conveniente de Preact con una única importación:
 >
-> `import { html, render } from 'https://esm.sh/htm/preact/standalone'`
+> `import { html, render } from 'https://esm.sh/htm@3.1.1/preact/standalone'`
 
 Para una solución más escalable, consulta [Mapas de Importación -- Uso Básico](/guide/v11/no-build-workflows#basic-usage), y para más información sobre HTM, consulta su [documentación][htm].
 
@@ -250,11 +250,11 @@ Además, es posible que desees habilitar `skipLibCheck` como lo hacemos en el ej
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat"
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat"
 		}
 	}
 </script>

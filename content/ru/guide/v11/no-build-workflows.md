@@ -18,7 +18,7 @@ description: Хотя такие инструменты сборки, как Web
 ## Карты импорта
 
 [Карта импорта](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) — это новая функция браузера,
-позволяющая вам контролировать, как браузеры разрешают спецификаторы модулей, обычно для преобразования пустых спецификаторов, таких как `preact`, в URL-адрес CDN, например `https://esm.sh/preact`. Хотя многие предпочитают эстетику карт импорта, существуют также реальные преимущества их использования, такие как упрощение версионирования, уменьшение/устранение дублирования и
+позволяющая вам контролировать, как браузеры разрешают спецификаторы модулей, обычно для преобразования пустых спецификаторов, таких как `preact`, в URL-адрес CDN, например `https://esm.sh/preact@11.2.0`. Хотя многие предпочитают эстетику карт импорта, существуют также реальные преимущества их использования, такие как упрощение версионирования, уменьшение/устранение дублирования и
 лучший доступ к более мощным функциям CDN.
 
 В общем, мы рекомендуем использовать карты импорта для тех, кто решает обойтись без инструментов сборки, так как они помогают решить некоторые проблемы, с которыми вы можете столкнуться при использовании простых URL-адресов CDN в ваших спецификаторах импорта (подробнее об этом ниже).
@@ -34,7 +34,7 @@ description: Хотя такие инструменты сборки, как Web
 		<script type="importmap">
 			{
 				"imports": {
-					"preact": "https://esm.sh/preact@10.23.1",
+					"preact": "https://esm.sh/preact@11.2.0",
 					"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 				}
 			}
@@ -79,9 +79,9 @@ description: Хотя такие инструменты сборки, как Web
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"@preact/signals": "https://esm.sh/@preact/signals@1.3.0?external=preact",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"@preact/signals": "https://esm.sh/@preact/signals@2.11.4?external=preact",
 			"htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
 		}
 	}
@@ -94,11 +94,11 @@ description: Хотя такие инструменты сборки, как Web
 <script type="importmap">
 	{
 		"imports": {
-			"preact": "https://esm.sh/preact@10.23.1",
-			"preact/": "https://esm.sh/preact@10.23.1/",
-			"react": "https://esm.sh/preact@10.23.1/compat",
-			"react/": "https://esm.sh/preact@10.23.1/compat/",
-			"react-dom": "https://esm.sh/preact@10.23.1/compat",
+			"preact": "https://esm.sh/preact@11.2.0",
+			"preact/": "https://esm.sh/preact@11.2.0/",
+			"react": "https://esm.sh/preact@11.2.0/compat",
+			"react/": "https://esm.sh/preact@11.2.0/compat/",
+			"react-dom": "https://esm.sh/preact@11.2.0/compat",
 			"@mui/material": "https://esm.sh/@mui/material@5.16.7?external=react,react-dom"
 		}
 	}
