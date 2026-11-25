@@ -43,11 +43,32 @@ export function parseFrontmatter(content, path = '') {
  * @returns {string} - Cleaned content
  */
 export function cleanReplComments(content) {
-	// Remove --repl comment lines and markers
 	return content
-		.replace(/^\/\/ --repl.*$/gm, '')
-		.replace(/^\/\/ --repl-before.*$/gm, '')
-		.replace(/^\/\/ --repl-after.*$/gm, '')
-		.replace(/\n\n\n+/g, '\n\n') // Clean up extra newlines
+		.replace(/^\/\/ --repl\n/gm, '')
+		.replace(/(?<!^```\w*\n)^\/\/ --repl-(?:before|after)\n(?!```)/gm, '\n')
+		.replace(/^\/\/ --repl-(?:before|after)\n/gm, '')
+		.replace(/\n\n\n+/g, '\n\n')
 		.trim();
+}
+
+/**
+ * Convert a content file into plain Markdown, without FrontMatter or site-only markup
+ * @param {string} content - Raw markdown content with frontmatter
+ * @param {string} path - File path for error reporting
+ * @returns {string}
+ */
+export function toPlainMarkdown(content, path) {
+	const { title, body, meta } = parseFrontmatter(content, path);
+	let markdown = cleanReplComments(
+		body.replace(/<toc><\/toc>/g, '').replace(/---\s*\n\s*\n\s*---/g, '---')
+	);
+
+	if (!markdown.startsWith('# ')) markdown = `# ${title}\n\n${markdown}`;
+
+	const byline = [meta.authors?.join(', '), meta.date]
+		.filter(Boolean)
+		.join(' · ');
+	if (byline) markdown = markdown.replace(/^# .*\n/, `$&\n_${byline}_\n`);
+
+	return markdown + '\n';
 }
