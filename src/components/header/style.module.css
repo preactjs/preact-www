@@ -5,6 +5,8 @@
 	height: var(--banner-height);
 
 	padding: 0.5rem;
+	/* Shrink the text on narrow screens so it stays on a single line */
+	font-size: min(1rem, 3.8vw);
 
 	a {
 		color: white;
