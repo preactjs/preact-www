@@ -26,6 +26,7 @@ export default function EditThisPage({ meta, inline }) {
 				href={editUrl}
 				target="_blank"
 				rel="noopener noreferrer"
+				lang="en"
 			>
 				{linkText}
 			</a>
