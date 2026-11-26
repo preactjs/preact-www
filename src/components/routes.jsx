@@ -1,9 +1,10 @@
-import { useState } from 'preact/hooks';
-import { Router, Route } from 'preact-iso';
+import { useLayoutEffect, useState } from 'preact/hooks';
+import { Router, Route, useLocation } from 'preact-iso';
 import { lazy } from '../lib/lazy.js';
 import { Page, pages } from './controllers/page.jsx';
 import { GuidePage } from './controllers/guide-page.jsx';
 import { NotFound } from './controllers/not-found.jsx';
+import { LATEST_MAJOR } from './doc-version/index.jsx';
 
 // The home page's interactive diagrams & playground are only needed there
 export const Home = lazy(() => import('./home/index.jsx'));
@@ -32,6 +33,23 @@ const routeChange = (url) =>
 	// @ts-ignore
 	typeof ga === 'function' && ga('send', 'pageview', url);
 
+/**
+ * `/docs` and `/docs/<page>` lead to the latest docs, like the `_redirects`
+ * rules do for full page loads
+ */
+function DocsRedirect() {
+	const { path, query, route } = useLocation();
+	useLayoutEffect(() => {
+		const name = path.replace(/^\/docs\/?/, '') || 'getting-started';
+		const search = new URLSearchParams(query).toString();
+		route(
+			`/guide/${LATEST_MAJOR}/${name}${search ? '?' + search : ''}${location.hash}`,
+			true
+		);
+	}, [path]);
+	return null;
+}
+
 const genericRoutes = pages.map((route) => (
 	<Route key={route} path={route} component={Page} />
 ));
@@ -52,6 +70,7 @@ export default function Routes() {
 				<Route path="/guide/:version/:name" component={GuidePage} />
 				<Route path="/blog/:slug" component={BlogPage} />
 				<Route path="/repl" component={ReplPage} />
+				<Route path="/docs/:rest*" component={DocsRedirect} />
 				<Route default component={NotFound} />
 			</Router>
 		</main>

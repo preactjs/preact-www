@@ -103,6 +103,7 @@
 
 .DocSearch-Hit a {
 	box-shadow: none;
+	cursor: pointer;
 }
 
 .DocSearch-Hits mark {

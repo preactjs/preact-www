@@ -99,13 +99,29 @@ export default function Header() {
 	useEffect(() => {
 		if (open) return;
 		const desktop = matchMedia(DESKTOP_QUERY);
+		// Chromium may blur it (to <body>) before the change event, so a header
+		// control that lost focus by being hidden is kept as well
+		/** @type {Element | null} */
+		let hiddenWhileFocused = null;
+		/** @param {FocusEvent} e */
+		const onFocusOut = (e) => {
+			hiddenWhileFocused =
+				!e.relatedTarget &&
+				e.target instanceof HTMLElement &&
+				!e.target.getClientRects().length
+					? e.target
+					: null;
+		};
+		const root = inner.current;
+		root?.addEventListener('focusout', onFocusOut);
 		const onChange = () => {
-			// Noted now: browsers blur it (to <body>) once it's hidden, and only
-			// after the next frame's style update, so check after that (and once
-			// more later, in case that frame came late)
-			const active = document.activeElement;
+			// Other browsers blur it only after the next frame's style update, so
+			// check after that (and once more later, in case that frame came late)
+			const active =
+				document.activeElement === document.body
+					? hiddenWhileFocused
+					: document.activeElement;
 			const check = () => {
-				const root = inner.current;
 				if (
 					!(active instanceof HTMLElement) ||
 					!root?.contains(active) ||
@@ -127,7 +143,10 @@ export default function Header() {
 			setTimeout(check, 300);
 		};
 		desktop.addEventListener('change', onChange);
-		return () => desktop.removeEventListener('change', onChange);
+		return () => {
+			desktop.removeEventListener('change', onChange);
+			root?.removeEventListener('focusout', onFocusOut);
+		};
 	}, [open]);
 
 	// Treat the mobile menu as a modal dialog: move focus into it, make the
@@ -192,9 +211,13 @@ export default function Header() {
 
 	return (
 		<header class={style.header}>
-			<div ref={banner} class={style.banner} lang="en" inert={open}>
-				<a href="https://u24.gov.ua/">
-					We stand with Ukraine. <b>Show your support</b> 🇺🇦
+			<div ref={banner} class={style.banner} inert={open}>
+				<a
+					href="https://u24.gov.ua/"
+					lang={fallbackLang('i18n', 'ukraineBanner')}
+				>
+					{translate('i18n', 'ukraineBanner')}{' '}
+					<b>{translate('i18n', 'ukraineBannerLink')}</b> 🇺🇦
 				</a>
 			</div>
 			<div ref={inner} class={style.inner} inert={open}>

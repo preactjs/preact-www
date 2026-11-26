@@ -13,14 +13,22 @@ export default function ContentRegion({ content, components, ...props }) {
 	const ref = useRef(/** @type {HTMLElement | null} */ (null));
 	useScrollableRegions(ref, 'table, pre', content);
 
+	// The router scrolls to the top on navigation, also to a `#fragment` on
+	// another page: scroll to it once it's rendered, once per navigation
+	const scrolledTo = useRef('');
 	useEffect(() => {
-		const hash = location.hash;
-		if (hash) {
-			// Hack to force a scroll
-			location.hash = '';
-			location.hash = hash;
+		const target = props.current + location.hash;
+		if (!location.hash || scrolledTo.current === target) return;
+		let id = location.hash.slice(1);
+		try {
+			id = decodeURIComponent(id);
+		} catch {}
+		const el = document.getElementById(id);
+		if (el && ref.current?.contains(el)) {
+			scrolledTo.current = target;
+			el.scrollIntoView();
 		}
-	}, [props.current]);
+	}, [props.current, content]);
 
 	return (
 		<content-region

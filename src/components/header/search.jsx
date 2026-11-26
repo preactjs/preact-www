@@ -1,6 +1,6 @@
 import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { ErrorBoundary } from 'preact-iso';
+import { ErrorBoundary, useLocation } from 'preact-iso';
 import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
 import style from './style.module.css';
 import config from '../../config.json' with { type: 'json' };
@@ -109,6 +109,19 @@ const transformItems = (items) =>
 		});
 	});
 
+/**
+ * Opens a search hit without a full page load
+ *
+ * @param {string} url
+ * @param {(url: string) => void} route
+ */
+function goToHit(url, route) {
+	const { pathname, search, hash } = new URL(url, location.origin);
+	const path = pathname.replace(/(.)\/$/, '$1');
+	if (path === location.pathname) location.hash = hash;
+	else route(path + search + hash);
+}
+
 // The header renders a single DocSearch instance (it registers global
 // keyboard shortcuts, so more than one would open several modals at once).
 // `SearchTrigger`s elsewhere, like in the mobile menu, drive it via these.
@@ -164,6 +177,9 @@ export default function Search() {
 	// the user moves on first (Escape, closing the mobile menu, navigating).
 	const pendingOpen = useRef(false);
 	const [loaded, setLoaded] = useState(false);
+	const { route } = useLocation();
+	const routeRef = useRef(route);
+	routeRef.current = route;
 
 	// The <loading-bar> is sat alongside the router & has it's state controlled by it,
 	// so while we could create a new context to be able to set it here, direct DOM
@@ -187,6 +203,29 @@ export default function Search() {
 						indexName={config.docsearch.indexName}
 						appId={config.docsearch.appId}
 						transformItems={transformItems}
+						// Enter on a hit
+						navigator={{
+							navigate: ({ itemUrl }) => goToHit(itemUrl, routeRef.current)
+						}}
+						// A link without `href`: hits are listbox options, which mustn't
+						// contain (focusable) interactive elements
+						hitComponent={({ hit, children }) => (
+							<a
+								onClick={(e) => {
+									if (e.metaKey || e.ctrlKey || e.shiftKey) {
+										window.open(hit.url, '_blank', 'noopener');
+									} else {
+										goToHit(hit.url, routeRef.current);
+									}
+								}}
+								onAuxClick={(e) => {
+									if (e.button === 1)
+										window.open(hit.url, '_blank', 'noopener');
+								}}
+							>
+								{children}
+							</a>
+						)}
 					/>
 				</ErrorBoundary>,
 				el

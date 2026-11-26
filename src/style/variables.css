@@ -14,7 +14,7 @@
 
 	/* Design tokens */
 	--font-sans:
-		'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto,
+		'Plus Jakarta Sans', Manrope, system-ui, -apple-system, 'Segoe UI', Roboto,
 		sans-serif;
 	--font-mono:
 		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
@@ -112,4 +112,26 @@
 	:root {
 		--banner-height: 0px;
 	}
+}
+
+/* Fonts with the right glyph forms for each language (the same characters
+   differ between Chinese, Japanese and Korean) */
+:root:lang(ja) {
+	--font-sans:
+		'Plus Jakarta Sans', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
+		'Noto Sans JP', 'Yu Gothic UI', Meiryo, system-ui, sans-serif;
+}
+
+:root:lang(zh) {
+	--font-sans:
+		'Plus Jakarta Sans', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC',
+		'Microsoft YaHei', system-ui, sans-serif;
+}
+
+/* The Korean locale's code is `kr` */
+:root:lang(kr),
+:root:lang(ko) {
+	--font-sans:
+		'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+		system-ui, sans-serif;
 }

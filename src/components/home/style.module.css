@@ -238,11 +238,25 @@
 .heroTitle {
 	margin: 0;
 	color: var(--text-h);
-	font-size: clamp(2.5em, 5vw, 3.5em);
+	/* The longest word, in em, has to fit the narrow (100vw - 5rem) column */
+	--longest-word: 6.2;
+	font-size: min(
+		clamp(2.5em, 5vw, 3.5em),
+		calc((100vw - 5rem) / var(--longest-word))
+	);
 	font-weight: 700;
 	line-height: 0.9;
 	letter-spacing: -0.065em;
 	text-transform: uppercase;
+	overflow-wrap: break-word;
+
+	&:lang(ru) {
+		--longest-word: 7.6;
+	}
+
+	&:lang(ja) {
+		--longest-word: 6.9;
+	}
 
 	span {
 		transition: color 0.15s;
