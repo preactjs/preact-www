@@ -38,12 +38,12 @@ const routeChange = (url) =>
  * rules do for full page loads
  */
 function DocsRedirect() {
-	const { path, query, route } = useLocation();
+	const { path, route } = useLocation();
 	useLayoutEffect(() => {
-		const name = path.replace(/^\/docs\/?/, '') || 'getting-started';
-		const search = new URLSearchParams(query).toString();
+		const name =
+			path.replace(/^\/docs\/?/, '').replace(/\/$/, '') || 'getting-started';
 		route(
-			`/guide/${LATEST_MAJOR}/${name}${search ? '?' + search : ''}${location.hash}`,
+			`/guide/${LATEST_MAJOR}/${name}${location.search}${location.hash}`,
 			true
 		);
 	}, [path]);

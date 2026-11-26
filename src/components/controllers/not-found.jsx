@@ -1,5 +1,9 @@
 import { useContent } from '../../lib/use-content.js';
-import { useContentLang, useLanguageContext } from '../../lib/i18n.jsx';
+import {
+	langTag,
+	useContentLang,
+	useLanguageContext
+} from '../../lib/i18n.jsx';
 import ContentRegion from '../content-region/index.jsx';
 import { Hexagon, HexBackground } from '../hex/index.jsx';
 import Footer from '../footer/index.jsx';
@@ -30,7 +34,7 @@ export function NotFound() {
 					viewBox="0 0 412 168"
 					role="img"
 					aria-label={notFound}
-					lang={translations.i18n?.notFound ? lang : 'en'}
+					lang={translations.i18n?.notFound ? langTag(lang) : 'en'}
 				>
 					{DIGITS.flatMap((rows, digit) =>
 						rows.flatMap((row, y) =>

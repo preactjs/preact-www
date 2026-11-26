@@ -10,6 +10,18 @@ export function generateHeadingId(text) {
 		.replace(/^-|-$|[/&.()[\]']/g, '');
 }
 
+// `## Heading {#some-id}`: an explicit id, e.g. so a translated heading keeps
+// the English anchor that other pages link to
+const EXPLICIT_ID = /\s*\{#([\w-]+)\}\s*$/;
+
+/**
+ * @param {string} text
+ * @returns {string} The heading text without an explicit `{#id}`
+ */
+export function stripHeadingId(text) {
+	return text.replace(EXPLICIT_ID, '');
+}
+
 /**
  * Like `generateHeadingId`, but for all headings of one document: repeated
  * headings get a numeric suffix (`#fragment`, `#fragment-1`, ...) so every
@@ -22,7 +34,8 @@ export function createHeadingIdGenerator() {
 	const used = new Set();
 	return (text) => {
 		// Text without any id-able characters (e.g. `## ...`) still gets an id
-		const base = generateHeadingId(text) || 'section';
+		const base =
+			text.match(EXPLICIT_ID)?.[1] || generateHeadingId(text) || 'section';
 		let id = base;
 		// Skip suffixes that are taken too, e.g. by a heading literally named
 		// "Fragment-1" following two "Fragment"s

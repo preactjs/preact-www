@@ -110,6 +110,14 @@ const transformItems = (items) =>
 	});
 
 /**
+ * The heading a selected hit leads to, focused once the modal has closed and
+ * it's rendered (`stale`: the element it mustn't be, from the previous page)
+ *
+ * @type {{ path: string, id: string, stale: Element | null } | null}
+ */
+let pendingHit = null;
+
+/**
  * Opens a search hit without a full page load
  *
  * @param {string} url
@@ -118,9 +126,24 @@ const transformItems = (items) =>
 function goToHit(url, route) {
 	const { pathname, search, hash } = new URL(url, location.origin);
 	const path = pathname.replace(/(.)\/$/, '$1');
-	if (path === location.pathname) location.hash = hash;
-	else route(path + search + hash);
+	let id = hash.slice(1);
+	try {
+		id = decodeURIComponent(id);
+	} catch {}
+	const samePage = path === location.pathname;
+	pendingHit = {
+		path,
+		id,
+		stale: samePage ? null : findHitTarget(id)
+	};
+	dispatchEvent(new Event(HIT_EVENT));
+	if (!samePage) route(path + search + hash);
+	else if (hash !== location.hash) location.hash = hash;
 }
+
+/** @param {string} id */
+const findHitTarget = (id) =>
+	id ? document.getElementById(id) : document.querySelector('main h1');
 
 // The header renders a single DocSearch instance (it registers global
 // keyboard shortcuts, so more than one would open several modals at once).
@@ -129,6 +152,8 @@ const LOAD_EVENT = 'docsearch:load';
 const OPEN_EVENT = 'docsearch:open';
 /** Drops a pending open (see `cancelSearch`) */
 const CANCEL_EVENT = 'docsearch:cancel';
+/** A hit was selected: e.g. the mobile menu it was opened from closes */
+export const HIT_EVENT = 'docsearch:hit';
 
 /**
  * Cancels an open requested before DocSearch finished loading, e.g. as the
@@ -398,6 +423,36 @@ export default function Search() {
 			}
 		};
 
+		/**
+		 * Moves focus (and the page) to a selected hit's heading, so the next
+		 * Tab continues from there, once the page has rendered it and nothing
+		 * (the closing mobile menu) makes the page inert or restores its scroll
+		 *
+		 * @param {NonNullable<typeof pendingHit>} hit
+		 * @param {number} [tries]
+		 */
+		const focusHit = (hit, tries = 0) => {
+			const el = findHitTarget(hit.id);
+			if (
+				location.pathname !== hit.path ||
+				!(el instanceof HTMLElement) ||
+				el === hit.stale ||
+				el.closest('[inert]')
+			) {
+				if (tries < 100) setTimeout(() => focusHit(hit, tries + 1), 50);
+				else restoreFocus();
+				return;
+			}
+			if (!el.hasAttribute('tabindex')) {
+				el.setAttribute('tabindex', '-1');
+				el.addEventListener('blur', () => el.removeAttribute('tabindex'), {
+					once: true
+				});
+			}
+			el.focus({ preventScroll: true });
+			el.scrollIntoView();
+		};
+
 		/** @param {Node} n */
 		const isContainer = (n) =>
 			n instanceof Element && n.classList.contains('DocSearch-Container');
@@ -428,7 +483,12 @@ export default function Search() {
 				restoreInert = () => {};
 				// After the current event: DocSearch closes on `mousedown` on its
 				// backdrop, whose default action would otherwise re-blur our focus
-				setTimeout(restoreFocus, 0);
+				setTimeout(() => {
+					const hit = pendingHit;
+					pendingHit = null;
+					if (hit) focusHit(hit);
+					else restoreFocus();
+				}, 0);
 			}
 			if (added instanceof Element) {
 				// DocSearch's modal has no dialog semantics (its backdrop is a

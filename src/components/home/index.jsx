@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import { useTitle, useDescription } from '../../lib/use-content.js';
-import { useLanguageContext } from '../../lib/i18n.jsx';
+import { langTag, useLanguageContext } from '../../lib/i18n.jsx';
 import {
 	prefersReducedMotion,
 	useReducedMotion
@@ -44,7 +44,7 @@ function useHomeCopy() {
 	// For attributes, which can't be marked with a language
 	t.text = text;
 	/** @param {HomeKey} key */
-	t.lang = (key) => (own(key) ? lang : 'en');
+	t.lang = (key) => (own(key) ? langTag(lang) : 'en');
 	return t;
 }
 

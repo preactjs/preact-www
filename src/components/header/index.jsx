@@ -4,7 +4,7 @@ import cx from '../../lib/cx.js';
 import { trapTabKey } from '../../lib/inert-others.js';
 import { HiddenLabel, useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
 import LanguageSelect from '../language-select/index.jsx';
-import Search, { SearchTrigger, cancelSearch } from './search.jsx';
+import Search, { HIT_EVENT, SearchTrigger, cancelSearch } from './search.jsx';
 import style from './style.module.css';
 
 /**
@@ -92,6 +92,12 @@ export default function Header() {
 		// A search requested on the previous page mustn't open on this one
 		cancelSearch();
 	}, [url]);
+
+	useEffect(() => {
+		const close = () => setOpen(false);
+		addEventListener(HIT_EVENT, close);
+		return () => removeEventListener(HIT_EVENT, close);
+	}, []);
 
 	// Crossing the breakpoint with the menu closed can hide the focused
 	// control: the menu button when widening, a desktop-only one (nav link,

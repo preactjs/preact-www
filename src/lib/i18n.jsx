@@ -74,13 +74,13 @@ export function LanguageProvider({ children }) {
 			'en';
 
 		setLang(userLang);
-		document.documentElement.lang = userLang;
+		document.documentElement.lang = langTag(userLang);
 	}, []);
 
 	const setAndUpdateHtmlAttr = (lang) => {
 		localStorageSet('lang', lang);
 		setLang(lang);
-		document.documentElement.lang = lang;
+		document.documentElement.lang = langTag(lang);
 	};
 
 	return (
@@ -96,6 +96,14 @@ export function LanguageProvider({ children }) {
 		</LanguageContext.Provider>
 	);
 }
+
+/**
+ * The BCP 47 tag for a locale, for `lang` attributes: the site calls Korean
+ * `kr`, which is the tag for Kanuri
+ *
+ * @param {string} lang
+ */
+export const langTag = (lang) => (lang === 'kr' ? 'ko' : lang);
 
 export function useLanguageContext() {
 	return useContext(LanguageContext);
@@ -131,7 +139,8 @@ export function useFallbackLang() {
 	 * @param {string} key
 	 * @returns {string}
 	 */
-	return (namespace, key) => (translations?.[namespace]?.[key] ? lang : 'en');
+	return (namespace, key) =>
+		translations?.[namespace]?.[key] ? langTag(lang) : 'en';
 }
 
 /**
@@ -142,7 +151,9 @@ export function useFallbackLang() {
  */
 export function useContentLang(meta) {
 	const { lang } = useContext(LanguageContext);
-	return meta.translationExists && meta.translationEnabled ? lang : 'en';
+	return meta.translationExists && meta.translationEnabled
+		? langTag(lang)
+		: 'en';
 }
 
 /**

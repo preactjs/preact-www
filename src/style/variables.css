@@ -129,7 +129,6 @@
 }
 
 /* The Korean locale's code is `kr` */
-:root:lang(kr),
 :root:lang(ko) {
 	--font-sans:
 		'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',

@@ -33,7 +33,9 @@ export function useContent(path) {
  * @param {string} path
  */
 export function prefetchContent(path) {
-	const lang = document.documentElement.lang;
+	// The locale, from its BCP 47 tag (see `langTag`)
+	const tag = document.documentElement.lang;
+	const lang = tag === 'ko' ? 'kr' : tag;
 	const fetch = () => getContent(manifest, lang, path);
 
 	const cacheKey = createCacheKey(fetch, [lang, path]);

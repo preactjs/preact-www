@@ -6,7 +6,10 @@ import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
 import { parseFrontmatter } from '../../src/lib/frontmatter.js';
-import { createHeadingIdGenerator } from '../../src/lib/generate-heading-id.js';
+import {
+	createHeadingIdGenerator,
+	stripHeadingId
+} from '../../src/lib/generate-heading-id.js';
 
 // Prism will always load `markup`, `css`, `clike` and `javascript` by default.
 // Any additional languages we need should be loaded here
@@ -81,6 +84,7 @@ marked.use({
 
 			// Called for page titles too, so duplicate numbering matches the ToC
 			const id = headingId(text);
+			text = stripHeadingId(text);
 
 			// No need to add links for page titles
 			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;
@@ -201,7 +205,7 @@ function generateToc(tokens) {
 		if (token.type !== 'heading' || !token.text.trim()) return;
 		const id = headingId(token.text);
 		if (token.depth > 1) {
-			toc.push({ text: token.text, id, level: token.depth });
+			toc.push({ text: stripHeadingId(token.text), id, level: token.depth });
 		}
 	});
 	return toc;
