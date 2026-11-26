@@ -16,12 +16,10 @@
 	}
 
 	:global(.markup) {
-		/* Necessary to prevent the background stripes of
-		   jumpotron/hero to affect the scrolling area. */
+		/* Keep wide content (e.g. full-width blocks) from widening the page */
 		overflow: hidden;
 
-		& > *,
-		.full-width > * {
+		& > * {
 			padding-left: 20px;
 			padding-right: 20px;
 			margin-left: auto;
@@ -41,18 +39,17 @@
 	}
 }
 
-.center {
-	text-align: center;
-}
-
 content-region h1 {
-	padding: 0.5rem 1rem 0.25rem !important;
-	font-weight: 200;
-	font-weight: bold;
-	line-height: 1.2;
+	font-weight: 600;
+	line-height: 1.05;
+	letter-spacing: -0.035em;
+
+	.page & {
+		padding: 0.5rem 1rem 0.25rem !important;
+	}
 
 	@media (max-width: 600px) {
-		font-size: 2em !important;
+		font-size: 2.25rem !important;
 	}
 }
 
@@ -60,30 +57,25 @@ content-region h1 {
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	min-height: calc(100vh - var(--header-and-banner-height));
+	min-height: calc(100vh - var(--header-height));
 	width: 100%;
-
-	@media (max-height: 431px) {
-		min-height: calc(100vh - var(--header-height));
-	}
 }
 
 .stickyWarning {
-	background: var(--color-warn-bg);
+	margin-bottom: 2rem;
+	border: 1px solid #f2d90066;
+	border-left-width: 3px;
+	background: color-mix(in srgb, #f2d900 8%, var(--bg));
 	padding: 0.75rem 1rem;
-	color: #444;
-	text-align: center;
+	color: var(--text);
+	font-size: 0.9rem;
 	position: sticky;
-	top: var(--header-and-banner-height);
+	top: 0;
 	z-index: 100; /* Else code blocks would layer on top */
-
-	@media (max-height: 431px) {
-		top: var(--header-height);
-	}
 
 	a {
 		font-weight: bold;
-		color: var(--color-brand);
+		color: #f2d900;
 
 		text-decoration-skip-ink: auto;
 		text-decoration: underline;
@@ -92,54 +84,159 @@ content-region h1 {
 
 		&:hover,
 		&:focus {
-			/* `--color-link-hover` is too bright on the yellow banner background */
-			color: var(--color-brand-light);
+			color: #fff176;
 			text-decoration-color: currentColor;
 		}
 	}
-}
-
-.unmaintaindTranslationLinks {
-	display: flex;
-	justify-content: space-evenly;
-}
-
-.withEdit {
-	margin-top: 2rem;
 }
 
 .outer {
 	display: flex;
 }
 
-.sidebarWrap {
-	display: none;
+/* ---------------------------------------------------------------------------
+ * Docs layout: sidebar / content / "on this page"
+ * ------------------------------------------------------------------------- */
+
+.docs {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100svh - var(--header-height));
 }
 
-.withSidebar {
-	.sidebarWrap {
-		display: flex;
+.docsInner {
+	display: flex;
+	flex: 1;
+	width: 100%;
+	max-width: var(--main-width);
+	margin: 0 auto;
+	padding: 3rem 1rem 4rem;
+
+	/* Below this, the sidebar is a (fixed) drawer, opened by a toggle
+	   above the article */
+	@media (max-width: /* --sidebar-break */ 899.98px) {
+		flex-direction: column;
+		gap: 1.5rem;
 	}
 
 	@media (min-width: /* --sidebar-break */ 900px) {
-		.outer {
-			margin-left: auto;
-			margin-right: auto;
-			max-width: 80rem;
-		}
+		gap: 2.5rem;
+	}
 
-		.inner {
-			flex-shrink: 1;
-			flex-grow: 1;
-			flex-basis: auto;
-			max-width: calc(100% - 20rem);
+	@media (max-width: 48rem) {
+		padding: 2rem 1.25rem 3rem;
+	}
+}
+
+.docsSidebar {
+	display: flex;
+	flex-shrink: 0;
+
+	@media (min-width: /* --sidebar-break */ 900px) {
+		width: 11rem;
+	}
+}
+
+.docsMain {
+	flex: 1;
+	min-width: 0;
+	max-width: var(--content-width);
+
+	:global(.markup) {
+		margin-bottom: 0;
+	}
+
+	/* The "On this page" column replaces the inline table of contents */
+	@media (min-width: 64rem) {
+		&[data-has-page-toc] {
+			:global(.markup) > nav[data-inline-toc],
+			:global(.markup) > hr:has(+ nav[data-inline-toc]) {
+				display: none;
+			}
 		}
 	}
 }
 
-.contentWrapper {
+.docsMeta {
 	display: flex;
-	flex-grow: 1;
-	flex-direction: column;
-	min-height: calc(100vh - 12rem);
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.25rem 1rem;
+	margin-bottom: 0.75rem;
+}
+
+.breadcrumb {
+	margin: 0;
+	color: var(--accent-soft);
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+	letter-spacing: 0.025em;
+	text-transform: uppercase;
+
+	span {
+		color: var(--text-secondary);
+	}
+}
+
+.docsToc {
+	display: none;
+	/* Precedes the article in the DOM (and so in tab order), but sits on
+	   its right */
+	order: 1;
+	flex-shrink: 0;
+	width: 10rem;
+	font-size: 0.875rem;
+
+	@media (min-width: 64rem) {
+		display: block;
+	}
+}
+
+.tocInner {
+	position: sticky;
+	top: 2rem;
+	max-height: calc(100vh - 4rem);
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-left: 1rem;
+
+	nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.tocNested {
+		margin-top: -0.25rem;
+		padding-left: 0.75rem;
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+
+		&[data-depth='2'] {
+			padding-left: 1.5rem;
+		}
+	}
+
+	a {
+		color: var(--text);
+		line-height: 1.4;
+		overflow-wrap: anywhere;
+		transition: color 0.15s;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--accent-soft);
+		}
+	}
+}
+
+.tocLabel {
+	margin: 0 0 1rem;
+	color: var(--text-secondary);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
 }

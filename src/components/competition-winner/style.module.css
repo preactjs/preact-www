@@ -1,10 +1,6 @@
 .winner {
-	--winner-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	--winner-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 	margin: 2rem 0;
-
-	@media (prefers-color-scheme: dark) {
-		--winner-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-	}
 
 	header {
 		display: flex;

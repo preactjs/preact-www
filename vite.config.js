@@ -11,6 +11,8 @@ import { rssFeedPlugin } from './plugins/rss-feed.js';
 import generateLlmsTxtPlugin from './plugins/generate-llms-txt.js';
 import { contentManifestPlugin } from './plugins/content-manifest.js';
 import { markdownPagesPlugin } from './plugins/markdown-pages.js';
+import { lazyRouteCssPlugin } from './plugins/lazy-route-css.js';
+import { prismHighlightPlugin } from './plugins/prism-highlight.js';
 
 import { allRoutes } from './src/route-config.js';
 
@@ -106,6 +108,26 @@ export default defineConfig({
 		rssFeedPlugin(),
 		generateLlmsTxtPlugin(),
 		markdownPagesPlugin(),
-		contentManifestPlugin()
+		contentManifestPlugin(),
+		prismHighlightPlugin(),
+		// After the prerender plugin (in `preact()`): link the CSS of the lazy
+		// components prerendered pages render, so they're styled before JS
+		lazyRouteCssPlugin([
+			['index.html', 'src/components/home/index.jsx'],
+			[
+				/^blog\/[^/]+\/index\.html$/,
+				'src/components/controllers/blog-page.jsx'
+			],
+			['blog/index.html', 'src/components/blog-overview/index.jsx'],
+			[
+				'about/we-are-using/index.html',
+				'src/components/we-are-using/index.jsx'
+			],
+			['branding/index.html', 'src/components/branding/index.jsx'],
+			[
+				'translation-score-table/index.html',
+				'src/components/translation-score-table/index.jsx'
+			]
+		])
 	]
 });

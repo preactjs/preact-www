@@ -1,70 +1,71 @@
-:global(.sponsors) {
-	text-align: center;
-	margin-bottom: -2rem;
-	max-width: 60rem !important;
-	padding-left: 0 !important;
-	padding-right: 0 !important;
-
-	p {
-		margin-bottom: 0;
-	}
-}
-
-.sponsorList {
+.sponsors {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
-	padding: 0 !important;
-	margin: 0.5rem 0 0;
-}
+	gap: 1rem;
+	margin: 3rem auto;
+	padding: 1rem 2rem;
 
-.sponsorItem {
-	flex: 1 1 auto;
-	list-style: none;
-	transition: all 0.3s;
-	text-align: center;
-	padding: 0.5rem 1.5rem 0;
-	margin: 0;
+	h2 {
+		margin: 0;
+		color: var(--text-secondary);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
 
-	& a {
-		text-decoration: none;
-		display: inline-block;
-		color: transparent !important;
-		/* Fix IE 11 border */
-		background: none !important;
+		a {
+			color: var(--accent-soft);
+			text-decoration: underline;
+		}
 	}
 
-	svg {
-		height: 3rem;
-		width: auto;
-		display: block;
-		margin: 0 auto 1rem;
-		opacity: 0.6;
-		transition: all 250ms ease;
-		filter: grayscale(1);
-		color: #000;
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 1.75rem 2.5rem;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
 
-		/* Invert based on luminosity */
-		@media (prefers-color-scheme: dark) {
-			filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
-		}
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 7rem;
+		height: 3rem;
+	}
+
+	li a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		filter: grayscale(1);
+		opacity: 0.6;
+		transition:
+			opacity 0.15s,
+			filter 0.15s;
 
 		&:hover,
-		&:focus {
-			filter: grayscale(0) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1))
-				drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+		&:focus-visible {
+			filter: none;
 			opacity: 1;
 		}
 
-		@media (prefers-color-scheme: dark) {
-			&:hover,
-			&:focus {
-				color: #fff;
-				filter: invert(0) hue-rotate(0deg) grayscale(0)
-					drop-shadow(0 0 0.5px #fff) drop-shadow(0 5px 10px #000)
-					drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
-			}
+		&:focus-visible {
+			outline: 2px solid var(--accent-soft);
+			outline-offset: 4px;
 		}
+	}
+
+	svg {
+		max-width: 100%;
+		max-height: 100%;
 	}
 }

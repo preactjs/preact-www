@@ -6,6 +6,7 @@
 		"mobileGuideButton": "Anleitung"
 	},
 	"headerNav": {
+		"docs": "Anleitung",
 		"guide": "Anleitung",
 		"about": "Mehr",
 		"weAreUsing": "Firmen die Preact benutzen",
@@ -37,5 +38,9 @@
 		"externalDomMutations": "Externe DOM Mutationen",
 		"extendingComponent": "Komponente Erweitern"
 	},
-	"blogPosts": {}
+	"blogPosts": {},
+	"home": {
+		"description": "Schnelle 3kB-Alternative zu React mit der gleichen ES6-API",
+		"getStarted": "Fang an"
+	}
 }

@@ -6,5 +6,9 @@
 	"headerNav": {},
 	"sidebarSections": {},
 	"sidebarNav": {},
-	"blogPosts": {}
+	"blogPosts": {},
+	"home": {
+		"description": "Un alternativa veloce e leggera 3Kb a React con le stesse moderne API",
+		"getStarted": "Primi passi"
+	}
 }

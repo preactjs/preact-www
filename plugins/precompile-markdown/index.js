@@ -6,7 +6,7 @@ import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
 import { parseFrontmatter } from '../../src/lib/frontmatter.js';
-import { generateHeadingId } from '../../src/lib/generate-heading-id.js';
+import { createHeadingIdGenerator } from '../../src/lib/generate-heading-id.js';
 
 // Prism will always load `markup`, `css`, `clike` and `javascript` by default.
 // Any additional languages we need should be loaded here
@@ -44,9 +44,8 @@ function parseContent(content, path) {
 
 	let processedContent = body;
 
-	if (path.includes('/guide/')) {
-		meta.toc = generateToc(processedContent);
-	}
+	// Filled in from the parsed markdown, see `markdownToHTML`
+	const withToc = path.includes('/guide/');
 
 	// extract tutorial setup, initial and final code blocks
 	if (/tutorial\/\d/.test(path)) {
@@ -57,9 +56,14 @@ function parseContent(content, path) {
 
 	return {
 		content: processedContent,
-		meta
+		meta,
+		withToc
 	};
 }
+
+// Heading ids for the document `marked` is currently rendering. Reset before
+// each (synchronous) render so repeated headings are numbered per document.
+let headingId = createHeadingIdGenerator();
 
 const CUSTOM_BLOCKS = [
 	'<toc></toc>',
@@ -71,10 +75,16 @@ const CUSTOM_BLOCKS = [
 marked.use({
 	renderer: {
 		heading({ text, depth }) {
+			// Stray empty headings (e.g. a lone `##`) would only render a bare
+			// link; skipped without an id, exactly like in `generateToc()`
+			if (!text.trim()) return '';
+
+			// Called for page titles too, so duplicate numbering matches the ToC
+			const id = headingId(text);
+
 			// No need to add links for page titles
 			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;
 
-			const id = generateHeadingId(text);
 			return `
 				<h${depth} id="${id}">
 					<a class="fragment-link" href="#${id}">
@@ -96,7 +106,10 @@ marked.use({
 
 			return false;
 		},
-		link({ href, text }) {
+		link({ href, tokens }) {
+			// Render the inline tokens so `code` in link text becomes <code>
+			// instead of showing raw backticks
+			const text = this.parser.parseInline(tokens);
 			if (href.includes('://')) {
 				return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
 			}
@@ -145,11 +158,18 @@ marked.use({
 });
 
 /**
- * @param {{ content: string, html: string }} data
+ * @param {{ content: string, html: string, meta: Record<string, any>, withToc?: boolean }} data
  * @returns {Promise<{ html: string, content: string }>}
  */
 async function markdownToHTML(data) {
-	data.html = await marked(data.content);
+	const tokens = marked.lexer(data.content);
+	// The ToC comes from the very heading tokens that get rendered, so its
+	// entries & ids always match the page's headings
+	if (data.withToc) data.meta.toc = generateToc(tokens);
+	delete data.withToc;
+
+	headingId = createHeadingIdGenerator();
+	data.html = marked.parser(tokens);
 	return data;
 }
 
@@ -169,19 +189,26 @@ function applyEmoji(content) {
 	return replace(content);
 }
 
-/* generate ToC from markdown */
-function generateToc(markdown) {
-	const MARKDOWN_TITLE = /(?:^|\n\n)\s*(#{1,6})\s+(.+)/g;
-
+/**
+ * Generate the ToC from parsed markdown, in the same (document) order and
+ * with the same ids as the heading renderer
+ *
+ * @param {import('marked').TokensList} tokens
+ */
+function generateToc(tokens) {
+	/** @type {{ text: string, id: string, level: number }[]} */
 	const toc = [];
-	let token;
-	MARKDOWN_TITLE.lastIndex = 0;
-	while ((token = MARKDOWN_TITLE.exec(markdown))) {
-		const level = token[1].length;
-		const text = token[2];
-		const id = generateHeadingId(text);
-		toc.push({ text, id, level });
-	}
+	const headingId = createHeadingIdGenerator();
+	marked.walkTokens(tokens, (token) => {
+		// Empty headings (e.g. a stray `##`) aren't rendered, see `heading()`
+		if (token.type !== 'heading' || !token.text.trim()) return;
+		// Page titles get an id too, so numbering matches the renderer, but no
+		// ToC entry: they're rendered without one
+		const id = headingId(token.text);
+		if (token.depth > 1) {
+			toc.push({ text: token.text, id, level: token.depth });
+		}
+	});
 	return toc;
 }
 

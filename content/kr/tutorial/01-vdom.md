@@ -129,7 +129,7 @@ export default function App() {
 
 이 페이지에서 배운 내용을 테스트하려면 텍스트를 멋지게 만들어보세요! HTML 태그: `<em>` 과 `</em>` 으로 감싸서 텍스트를 돋보이게 합니다.
 
-그런 다음 스타일 props 를 추가하여 모든 텍스트를 <span style="color:purple">보라색</span> 으로 만듭니다. 스타일 props 는 특별하며, 하나 이상의 CSS 속성을 가진 객체 값을 element에 설정할 수 있게 해줍니다. 객체를 prop 값으로 전달하려면 `{expression}`, 과 같은 `style={{ property: 'value' }}`. 를 사용해야 합니다.
+그런 다음 스타일 props 를 추가하여 모든 텍스트를 <span style="color:violet">보라색</span> 으로 만듭니다. 스타일 props 는 특별하며, 하나 이상의 CSS 속성을 가진 객체 값을 element에 설정할 수 있게 해줍니다. 객체를 prop 값으로 전달하려면 `{expression}`, 과 같은 `style={{ property: 'value' }}`. 를 사용해야 합니다.
 
 <solution>
   <h4>🎉 Congratulations!</h4>
@@ -140,7 +140,7 @@ export default function App() {
 useResult(function(result) {
   var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
   var p = result.output.querySelector('p');
-  var hasColor = p && p.style && p.style.color === 'purple';
+  var hasColor = p && p.style && (p.style.color === 'violet' || p.style.color === 'purple');
   if (hasEm && hasColor) {
     solutionCtx.setSolved(true);
   }
@@ -164,7 +164,7 @@ import { render } from 'preact';
 
 function App() {
   return (
-    <p class="big" style={{ color: 'purple' }}>
+    <p class="big" style={{ color: 'violet' }}>
       Hello <em>World</em>!
     </p>
   )

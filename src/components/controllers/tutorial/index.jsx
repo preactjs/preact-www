@@ -15,6 +15,7 @@ import cx from '../../../lib/cx.js';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
 import { useTranslate } from '../../../lib/i18n.jsx';
 import { MarkdownRegion } from '../markdown-region.jsx';
+import LanguageSelect from '../../language-select/index.jsx';
 import style from './style.module.css';
 
 const resultHandlers = new Set();
@@ -206,6 +207,8 @@ export function Tutorial({ html, meta }) {
 							)}
 
 							<ButtonContainer meta={meta} showCode={showCode} help={help} />
+							{/* No footer here; on phones it's in the header's menu too */}
+							<LanguageSelect class={style.language} />
 						</div>
 					</Splitter>
 				</ErrorBoundary>

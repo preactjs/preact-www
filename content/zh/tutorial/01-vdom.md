@@ -147,7 +147,7 @@ export default function App() {
 为了检验你在本章中所学到的知识，请尝试给文本添加一些更多的精彩吧
 使用 HTML 标签:`<em>`和`</em>` 让文本`World`更加突出
 
-然后，通过添加`style`属性，使所有的文本变<span style="color:purple">紫色</span>。`style`属性很特别，它允许设置一个对象,其中带有一个或多个 CSS 属性的值。
+然后，通过添加`style`属性，使所有的文本变<span style="color:violet">紫色</span>。`style`属性很特别，它允许设置一个对象,其中带有一个或多个 CSS 属性的值。
 要使用一个对象作为属性值，你需要使用一个`{表达式}`，比如`style={{属性：'值'}}`。
 
 <solution>
@@ -159,7 +159,7 @@ export default function App() {
 useResult(function(result) {
   var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
   var p = result.output.querySelector('p');
-  var hasColor = p && p.style && p.style.color === 'purple';
+  var hasColor = p && p.style && (p.style.color === 'violet' || p.style.color === 'purple');
   if (hasEm && hasColor) {
     solutionCtx.setSolved(true);
   }
@@ -183,7 +183,7 @@ import { createElement, render } from 'preact';
 
 function App() {
   return (
-    <p class="big" style={{ color: 'purple' }}>
+    <p class="big" style={{ color: 'violet' }}>
       Hello <em>World</em>!
     </p>
   );

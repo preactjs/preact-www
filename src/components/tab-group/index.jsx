@@ -41,7 +41,7 @@ export default function TabGroup({ tabstring, children }) {
 	};
 
 	return (
-		<div>
+		<div class={style.group}>
 			<div
 				class={style.tabs}
 				role="tablist"

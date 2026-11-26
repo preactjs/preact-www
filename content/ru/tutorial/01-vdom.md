@@ -145,7 +145,7 @@ render(<App />, rootElement); // успешно
 
 Чтобы проверить, чему вы научились в этой главе, попробуйте придать тексту больше пикантности! Выделите слово `мир`, обернув его в HTML-теги: `<em>` и `</em>`.
 
-Затем сделайте весь текст <span style="color:purple">фиолетовым</span>, добавив атрибут `style`. Атрибут `style` является специальным и позволяет использовать значение объекта с одним или несколькими CSS-свойствами для установки на элемент. Чтобы передать объект в качестве значения атрибута, необходимо использовать `{выражение}`, например `style={{ color: 'purple' }}`.
+Затем сделайте весь текст <span style="color:violet">фиолетовым</span>, добавив атрибут `style`. Атрибут `style` является специальным и позволяет использовать значение объекта с одним или несколькими CSS-свойствами для установки на элемент. Чтобы передать объект в качестве значения атрибута, необходимо использовать `{выражение}`, например `style={{ color: 'violet' }}`.
 
 <solution>
   <h4>🎉 Поздравляем!</h4>
@@ -156,7 +156,7 @@ render(<App />, rootElement); // успешно
 useResult(function(result) {
   var hasEm = result.output.innerHTML.match(/<em>мир\!?<\/em>/gi);
   var p = result.output.querySelector('p');
-  var hasColor = p && p.style && p.style.color === 'purple';
+  var hasColor = p && p.style && (p.style.color === 'violet' || p.style.color === 'purple');
   if (hasEm && hasColor) {
     solutionCtx.setSolved(true);
   }
@@ -180,7 +180,7 @@ import { createElement, render } from 'preact';
 
 function App() {
   return (
-    <p class="big" style={{ color: 'purple' }}>
+    <p class="big" style={{ color: 'violet' }}>
       Привет, <em>мир</em>!
     </p>
   );

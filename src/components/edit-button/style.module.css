@@ -14,18 +14,17 @@
 	position: absolute;
 	right: 0.8rem;
 	top: 0.8rem;
-	color: var(--color-link);
-	text-decoration-skip-ink: auto;
-	text-decoration: underline;
-	text-decoration-color: var(--color-table-border);
-	text-decoration-thickness: 1px;
+	color: var(--text-secondary);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	letter-spacing: 0.025em;
+	text-transform: uppercase;
+	transition: color 0.15s;
 
 	&:hover,
-	&:focus {
-		text-decoration-color: currentColor;
+	&:focus-visible {
+		color: var(--accent-soft);
 	}
-
-	font-size: 0.9rem;
 
 	@media (min-width: /* --sidebar-break */ 900px) {
 		right: 1.25rem;
@@ -34,5 +33,13 @@
 
 	@media (min-width: 74rem) {
 		right: 0;
+	}
+}
+
+.inline {
+	flex-shrink: 0;
+
+	.edit {
+		position: static;
 	}
 }

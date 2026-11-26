@@ -1,0 +1,87 @@
+.background {
+	--pointer-x: -1000px;
+	--pointer-y: -1000px;
+	pointer-events: none;
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+
+	svg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.base {
+	color: var(--text);
+	opacity: 0.02;
+}
+
+.highlight {
+	color: var(--accent);
+	opacity: var(--pointer-opacity, 0);
+	mask-image: radial-gradient(
+		circle 116px at var(--pointer-x) var(--pointer-y),
+		#000 0%,
+		transparent 100%
+	);
+	clip-path: polygon(
+		calc(var(--pointer-x) - 82px) calc(var(--pointer-y) - 49px),
+		calc(var(--pointer-x) - 57px) calc(var(--pointer-y) - 79px),
+		calc(var(--pointer-x) - 18px) calc(var(--pointer-y) - 74px),
+		calc(var(--pointer-x) + 12px) calc(var(--pointer-y) - 91px),
+		calc(var(--pointer-x) + 47px) calc(var(--pointer-y) - 69px),
+		calc(var(--pointer-x) + 78px) calc(var(--pointer-y) - 54px),
+		calc(var(--pointer-x) + 71px) calc(var(--pointer-y) - 17px),
+		calc(var(--pointer-x) + 91px) calc(var(--pointer-y) + 13px),
+		calc(var(--pointer-x) + 64px) calc(var(--pointer-y) + 42px),
+		calc(var(--pointer-x) + 56px) calc(var(--pointer-y) + 75px),
+		calc(var(--pointer-x) + 20px) calc(var(--pointer-y) + 68px),
+		calc(var(--pointer-x) - 13px) calc(var(--pointer-y) + 88px),
+		calc(var(--pointer-x) - 42px) calc(var(--pointer-y) + 64px),
+		calc(var(--pointer-x) - 76px) calc(var(--pointer-y) + 53px),
+		calc(var(--pointer-x) - 68px) calc(var(--pointer-y) + 18px),
+		calc(var(--pointer-x) - 91px) calc(var(--pointer-y) - 12px)
+	);
+	transition: opacity 0.18s;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.icon {
+	position: relative;
+	display: inline-grid;
+	place-items: center;
+	flex: none;
+	width: 2.5em;
+	height: 2.5em;
+	color: var(--accent);
+
+	svg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.iconGlyph {
+	position: absolute;
+	width: 1.15em;
+	height: 1.15em;
+	background: var(--text-h);
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+.animate {
+	transition: transform 600ms ease-in-out;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}

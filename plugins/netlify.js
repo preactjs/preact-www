@@ -27,17 +27,27 @@ export function netlifyPlugin() {
 			)
 		);
 
-		const { default: netlifyLambda } = await import(
-			`${file}.js?t=${Date.now()}`
-		);
-		const result = await netlifyLambda({ url });
+		try {
+			const { default: netlifyLambda } = await import(
+				`${file}.js?t=${Date.now()}`
+			);
+			const result = await netlifyLambda({ url });
 
-		for (const [k, v] of result.headers.entries()) {
-			res.setHeader(k, v);
+			for (const [k, v] of result.headers.entries()) {
+				res.setHeader(k, v);
+			}
+
+			res.statusCode = result.status;
+			Readable.from(result.body).pipe(res);
+		} catch (e) {
+			// e.g. GitHub rate limiting the release lambda. The client falls back
+			// to prerendered data, so just fail the request: an unhandled rejection
+			// would take down the dev server, and `next(e)` would cover the page
+			// with Vite's error overlay.
+			console.warn(`[netlify-plugin] ${url.pathname} failed:`, e.message);
+			res.statusCode = 502;
+			res.end();
 		}
-
-		res.statusCode = result.status;
-		Readable.from(result.body).pipe(res);
 	}
 
 	return {

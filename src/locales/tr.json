@@ -6,5 +6,9 @@
 	"headerNav": {},
 	"sidebarSections": {},
 	"sidebarNav": {},
-	"blogPosts": {}
+	"blogPosts": {},
+	"home": {
+		"description": "Aynı modern API ile React'e hızlı ve 3kB'lık alternatif",
+		"getStarted": "Başlangıç"
+	}
 }

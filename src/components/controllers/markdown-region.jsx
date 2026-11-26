@@ -9,8 +9,14 @@ import BlogMeta from '../blog-meta/index.jsx';
  * @param {string} props.html
  * @param {import('../../types.d.ts').ContentMetaData} props.meta
  * @param {any} [props.components]
+ * @param {boolean} [props.showEditLink] - Set to `false` when the layout renders `EditThisPage` itself
  */
-export function MarkdownRegion({ html, meta, components }) {
+export function MarkdownRegion({
+	html,
+	meta,
+	components,
+	showEditLink = true
+}) {
 	const { path } = useRoute();
 
 	const canEdit = path !== '/' && !path.startsWith('/tutorial');
@@ -18,7 +24,7 @@ export function MarkdownRegion({ html, meta, components }) {
 
 	return (
 		<Fragment key={path}>
-			{canEdit && <EditThisPage meta={meta} />}
+			{canEdit && showEditLink && <EditThisPage meta={meta} />}
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
 				current={path}

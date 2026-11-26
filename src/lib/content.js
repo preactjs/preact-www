@@ -5,7 +5,6 @@
  * @returns {string}
  */
 export function getContentPath(path) {
-	if (path == '/') return '/index';
 	if (path == '/tutorial') return '/tutorial/index';
 	return path;
 }

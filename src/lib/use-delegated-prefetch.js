@@ -31,7 +31,8 @@ export function useDelegatedPrefetch() {
 					BlogPage.preload();
 				}
 
-				prefetchContent(pathname);
+				// The home page is a component, without markdown content to fetch
+				if (pathname !== '/') prefetchContent(pathname);
 			}
 		};
 

@@ -11,25 +11,9 @@ declare global {
 	}
 }
 
-export interface GitHubOrgRepoData {
-	html_url: string;
-	full_name: string;
-	stargazers_count: number;
-	description: string;
-	[key: string]: unknown;
-}
-
-export interface FilteredRepoData {
-	html_url: string;
-	full_name: string;
-	stargazers_count: number;
-	description: string;
-}
-
 export interface PrerenderData {
 	preactVersion: string;
 	preactReleaseURL: string;
-	preactOrgRepos: FilteredRepoData[];
 }
 
 // Data added to the markdown frontmatter

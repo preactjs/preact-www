@@ -1,45 +1,59 @@
 .DocSearch-Button {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
-	width: 60px;
-	height: 36px;
-	margin: 10px 5px;
-	padding: 8px 4px 8px 32px;
-	color: var(--docsearch-muted-color);
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
-	background-position: 10px center;
-	background-repeat: no-repeat;
-	background-color: #58319d !important; /* --color-brand 7% darker */
-	border: 1px solid #7447c5; /* --color-brand 5% lighter */
-	border-bottom-color: #825acb; /* --color-brand 10% lighter */
-	border-radius: 5px;
-	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-	font-size: 100%;
-	font-weight: 500;
+	width: 11rem;
+	height: 2.25rem;
+	margin: 0;
+	padding: 0 0.75rem 0 2rem;
+	color: var(--text-secondary);
+	position: relative;
+	background-color: transparent !important;
+	border: 1px solid var(--border);
+	border-radius: 0;
+	box-shadow: none;
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+	letter-spacing: 0.025em;
 	cursor: pointer;
 	user-select: none;
+	transition:
+		border-color 0.15s,
+		color 0.15s;
 
-	@media (max-width: /* --header-mobile-breakpoint */ 50rem) {
+	@media (max-width: /* --header-mobile-breakpoint */ 48rem) {
 		width: 100%;
-		margin: 10px 0;
 	}
 
-	@media (min-width: /* --header-mobile-breakpoint */ 50rem) {
-		width: 8rem;
-	}
-
-	@media (min-width: 1024px) {
-		width: 13rem;
+	/* The magnifier, in the text colour. A mask rather than a background
+	   image: DocSearch's own `:hover`/`:focus` rule resets `background` */
+	&::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0.65rem;
+		width: 16px;
+		height: 16px;
+		margin-top: -8px;
+		background-color: currentColor;
+		-webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
+			center / contain no-repeat;
+		mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
+			center / contain no-repeat;
 	}
 
 	&:hover,
 	&:focus {
-		color: #fff;
-		background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="16" height="16"><path fill="none" stroke="%238c68cf" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/></svg>');
-		background-position: 10px center;
-		background-repeat: no-repeat;
-		background-color: #58319d !important; /* --color-brand 7% darker */
-		box-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
+		color: var(--accent-soft);
+		background-color: var(--accent-bg) !important;
+		border-color: var(--accent-soft);
+		box-shadow: none;
+	}
+
+	/* DocSearch's stylesheet removes the outline on focus */
+	&:focus-visible {
+		outline: 2px solid var(--accent-soft);
+		outline-offset: 2px;
 	}
 }
 
@@ -49,15 +63,8 @@
 }
 
 .DocSearch-Button-Placeholder {
-	padding: 0 12px 0 6px;
-}
-
-/* Uses 'muted' color by default, which is fine for the modal,
-   but less so for our purple searchbar */
-@media (prefers-color-scheme: light) {
-	.DocSearch-Button:not(:hover) {
-		color: #ccc;
-	}
+	padding: 0;
+	font-size: inherit;
 }
 
 .DocSearch-Container {
@@ -65,12 +72,7 @@
 }
 
 .DocSearch-Modal {
-	top: var(--header-and-banner-height) !important;
-	box-shadow: none;
-
-	@media (max-height: 431px) {
-		top: var(--header-height) !important;
-	}
+	border-radius: 0;
 }
 
 .DocSearch-Search-Icon,
@@ -79,17 +81,15 @@
 }
 
 .DocSearch-Commands-Key {
-	color: #000;
+	color: var(--text-secondary);
 }
 
 /* Their default color is unreadable on a dark background,
    and while some sites ignore this, let's put forth a good-faith
    effort to keep their logo easily readable w/ a lighter brand color */
-@media (prefers-color-scheme: dark) {
-	.DocSearch-Logo svg rect,
-	.DocSearch-Logo svg path {
-		fill: #5468ff;
-	}
+.DocSearch-Logo svg rect,
+.DocSearch-Logo svg path {
+	fill: #5468ff;
 }
 
 .DocSearch-Hit-source {
@@ -102,4 +102,10 @@
 
 .DocSearch-Hits mark {
 	font-weight: bold;
+}
+
+/* The selected hit's white text needs the darker accent (the light one,
+   DocSearch's default `--docsearch-highlight-color`, is ~2.7:1) */
+.DocSearch-Hit[aria-selected='true'] a {
+	background-color: var(--accent);
 }

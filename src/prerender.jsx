@@ -5,23 +5,18 @@ import { App } from './index.jsx';
 import { getContentPath, getMarkdownPath } from './lib/content.js';
 
 import release from './lambda/release.js';
-import repos from './lambda/repos.js';
 
 // DOMParser polyfill for `preact-markup`
 globalThis.DOMParser = DOMParser;
 
-const promise = Promise.all([
-	release().then((res) => res.json()),
-	repos().then((res) => res.json())
-]);
+const promise = release().then((res) => res.json());
 
 export async function prerender() {
-	const [preactData, preactOrgRepos] = await promise;
+	const preactData = await promise;
 
 	const prerenderData = {
 		preactVersion: preactData.version,
-		preactReleaseURL: preactData.url,
-		preactOrgRepos
+		preactReleaseURL: preactData.url
 	};
 
 	const res = await ssr(<App prerenderData={prerenderData} />);
@@ -62,7 +57,8 @@ export async function prerender() {
 
 			// Preloading
 			// These are all low priority, non-blocking fetches that we just want to have started early. None are critical due to prerendering.
-			{
+			// The release link is on the home page only
+			location.pathname == '/' && {
 				type: 'link',
 				props: {
 					rel: 'preload',
@@ -72,17 +68,8 @@ export async function prerender() {
 					crossorigin: ''
 				}
 			},
-			location.pathname == '/' && {
-				type: 'link',
-				props: {
-					rel: 'preload',
-					href: '/.netlify/functions/repos?org=preactjs',
-					as: 'fetch',
-					fetchpriority: 'low',
-					crossorigin: ''
-				}
-			},
-			{
+			// For the footer, which the full-screen tutorial & REPL don't have
+			!/^\/(tutorial|repl)(\/|$)/.test(location.pathname) && {
 				type: 'link',
 				props: {
 					rel: 'preload',
@@ -93,7 +80,8 @@ export async function prerender() {
 				}
 			},
 			// Hardcoding English is intentional, first render always fetches it with user preference only being applied later
-			{
+			// (the home page is a component, not markdown content)
+			location.pathname != '/' && {
 				type: 'link',
 				props: {
 					rel: 'preload',

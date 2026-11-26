@@ -1,5 +1,6 @@
 import { useRoute } from 'preact-iso';
 import cx from '../../lib/cx.js';
+import { useTranslate } from '../../lib/i18n.jsx';
 import style from './sidebar-nav.module.css';
 
 /**
@@ -14,11 +15,12 @@ import style from './sidebar-nav.module.css';
  */
 export default function SidebarNav({ items, onClick }) {
 	const { path } = useRoute();
+	const translate = useTranslate();
 
 	return (
 		<nav
 			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
-			aria-label="Sidebar Navigation"
+			aria-label={translate('headerNav', 'docs')}
 		>
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {
@@ -72,6 +74,7 @@ function SidebarNavLink(props) {
 			href={href}
 			onClick={onClick}
 			class={cx(style.link, activeCss, style['level-' + level])}
+			aria-current={isActive ? 'page' : undefined}
 		>
 			{children}
 		</a>

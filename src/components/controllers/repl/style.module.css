@@ -1,15 +1,11 @@
 .repl {
 	position: absolute;
 	left: 0;
-	top: var(--header-and-banner-height);
+	top: var(--header-height);
 	bottom: 0;
 	height: auto;
 	width: 100%;
 	overflow: hidden;
-
-	@media (max-height: 431px) {
-		top: var(--header-height);
-	}
 
 	.toolbar {
 		position: relative;
@@ -20,37 +16,64 @@
 		display: flex;
 		align-items: center;
 		/* line-height: 2.5rem; */
-		background: var(--color-brand);
-		color: #fff;
+		background: var(--bg);
+		border-top: 1px solid var(--border);
+		border-bottom: 1px solid var(--border);
+		color: var(--text-secondary);
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
 		z-index: 100;
 
 		label {
+			display: flex;
+			align-items: center;
+			gap: 0.5ch;
+			min-width: 0;
 			padding: 0 10px;
+			white-space: nowrap;
+		}
+
+		.language {
+			@media (max-width: 48rem) {
+				display: none;
+			}
 		}
 
 		select {
 			display: inline-block;
+			/* Shrink rather than run under the Share button on narrow screens */
+			flex: 0 1 auto;
+			min-width: 0;
 			padding: 0.25rem;
+			border: 1px solid var(--border);
+			background: var(--bg);
+			color: var(--text);
+			font: inherit;
 		}
 
 		button {
 			display: inline-block;
-			background: linear-gradient(to bottom, #373c45, #282c34);
-			background-color: #282c34;
-			border: 1px solid #656565;
-			color: #abb2bf;
-			padding: 0 10px;
+			background: var(--accent);
+			border: 1px solid var(--accent);
+			color: #fff;
+			padding: 0 12px;
 			margin: 0 5px;
-			border-radius: 4px;
-			line-height: 30px;
+			border-radius: 0;
+			line-height: 28px;
+			font-family: var(--font-mono);
+			font-weight: 600;
 			font-size: 100%;
 			outline: none;
 			cursor: pointer;
 			&:hover,
 			&:focus {
-				background: linear-gradient(to bottom, #404650, #323640);
-				background-color: #424854;
-				color: #d5dce8;
+				background: var(--accent-hover);
+				border-color: var(--accent-hover);
+				color: #fff;
+			}
+			&:focus-visible {
+				outline: 2px solid var(--accent-soft);
+				outline-offset: 2px;
 			}
 			&[disabled] {
 				opacity: 0.5;
@@ -58,9 +81,9 @@
 		}
 
 		.share {
-			position: absolute;
-			top: 4px;
-			right: 8px;
+			flex: none;
+			margin-left: auto;
+			margin-right: 8px;
 		}
 	}
 

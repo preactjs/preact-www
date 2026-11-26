@@ -24,20 +24,19 @@ Content is fetched and rendered on the fly from Markdown documents, similiar to 
 
 ### Custom Elements
 
-Since [`preact`](https://github.com/preactjs/preact) is used to render the Markdown content, we can make use of Custom Elements in our Markdown content to easily allow for dynamic or repated content, such as a generated Table of Contents or the Preact logo. These Elements are defined in [`src/components/widget.js`](./src/components/widget.js) and can be used like so:
+Since [`preact`](https://github.com/preactjs/preact) is used to render the Markdown content, we can make use of Custom Elements in our Markdown content to easily allow for dynamic or repated content, such as a generated Table of Contents or the branding assets. These Elements are defined in [`src/components/widgets.js`](./src/components/widgets.js) and can be used like so:
 
 ```md
 ## Example Page
 
-<!-- Jumbotron and Logo are actually Preact components! -->
-<jumbotron>
-    <h1><logo text>Preact</logo></h1>
-</jumbotron>
+<!-- The Table of Contents is actually a Preact component! -->
+
+<toc></toc>
 ```
 
 ## Writing Content
 
-The written content on the site is authored in Markdown, found in the [`content`](./content) directory and split up by language. Additionally, [`src/locales`](./src/locales) contains i18n labels which you may need to alter if you were adding a new translated page.
+The written content on the site is authored in Markdown, found in the [`content`](./content) directory and split up by language. Additionally, [`src/locales`](./src/locales) contains i18n labels which you may need to alter if you were adding a new translated page. The home page is a component rather than a Markdown page: its copy lives in the `home` section of those locale files, and any string a locale doesn't translate falls back to English.
 
 Any and all content contributions are greatly appreciated, be that typo fixes or completely new translations.
 

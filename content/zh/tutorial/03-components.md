@@ -230,7 +230,7 @@ function App() {
   return (
     <div>
       <p class="count">Count:</p>
-      <button style={{ color: 'purple' }} onClick={clicked}>Click me</button>
+      <button style={{ color: 'white', background: 'rebeccapurple' }} onClick={clicked}>Click me</button>
     </div>
   )
 }
@@ -253,7 +253,7 @@ function App() {
   return (
     <div>
       <p class="count">Count:</p>
-      <MyButton style={{ color: 'purple' }} onClick={clicked}>Click me</MyButton>
+      <MyButton style={{ color: 'white', background: 'rebeccapurple' }} onClick={clicked}>Click me</MyButton>
     </div>
   )
 }

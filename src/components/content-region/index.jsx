@@ -1,7 +1,8 @@
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import Markup from 'preact-markup';
 import widgets from '../widgets.js';
 import { TocContext } from '../table-of-contents/index.jsx';
+import { useScrollableRegions } from '../../lib/use-scrollable-regions.js';
 
 const COMPONENTS = {
 	...widgets
@@ -9,6 +10,9 @@ const COMPONENTS = {
 
 export default function ContentRegion({ content, components, ...props }) {
 	components = Object.assign({}, COMPONENTS, components);
+	const ref = useRef(/** @type {HTMLElement | null} */ (null));
+	// Wide tables & code blocks scroll horizontally (see markdown.css)
+	useScrollableRegions(ref, 'table, pre', content);
 
 	useEffect(() => {
 		const hash = location.hash;
@@ -20,7 +24,7 @@ export default function ContentRegion({ content, components, ...props }) {
 	}, [props.current]);
 
 	return (
-		<content-region name={props.current} can-edit={props.canEdit}>
+		<content-region ref={ref} name={props.current} can-edit={props.canEdit}>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup

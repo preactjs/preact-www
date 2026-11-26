@@ -5,6 +5,7 @@ import { EXAMPLES, fetchExample } from './examples/index.js';
 import { useStoredValue } from '../../../lib/localstorage.js';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
 import { parseStackTrace } from './errors.js';
+import LanguageSelect from '../../language-select/index.jsx';
 import style from './style.module.css';
 import REPL_CSS from './examples/style.css?raw';
 
@@ -110,6 +111,12 @@ export function Repl({ code }) {
 						})}
 					</select>
 				</label>
+				{/* No footer here; on phones it's in the header's menu instead */}
+				<LanguageSelect
+					class={style.language}
+					// Hidden on narrow screens: it's in the header's menu there
+					focusFallback='button[aria-controls="mobile-navigation"]'
+				/>
 				<button class={style.share} onClick={share}>
 					{copied ? '🔗 Copied' : 'Share'}
 				</button>

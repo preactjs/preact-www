@@ -5,8 +5,9 @@ import style from './style.module.css';
 /**
  * @param {object} props
  * @param {import('../../types.d.ts').ContentMetaData} props.meta
+ * @param {boolean} [props.inline] - Render in the flow, rather than floating over the content
  */
-export default function EditThisPage({ meta }) {
+export default function EditThisPage({ meta, inline }) {
 	let { path } = useRoute();
 	const { lang } = useLanguageContext();
 
@@ -19,7 +20,7 @@ export default function EditThisPage({ meta }) {
 			: 'Edit this Page';
 
 	return (
-		<div class={style.wrapper}>
+		<div class={inline ? style.inline : style.wrapper}>
 			<a
 				class={style.edit}
 				href={editUrl}

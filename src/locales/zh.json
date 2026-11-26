@@ -9,6 +9,8 @@
 		"mobileGuideButton": "指南"
 	},
 	"headerNav": {
+		"learn": "教程",
+		"docs": "指南",
 		"tutorial": "教程",
 		"guide": "指南",
 		"about": "关于",
@@ -71,5 +73,9 @@
 			"label": "初见信号",
 			"excerpt": "信号是相比钩子更为简单直接的状态管理方式，这种存储容器对象的 \"value\" 属性可以存储值。阅读本文来了解如何在组件或计算函数中使用信号和其自动订阅更新和触发订阅的方式。"
 		}
+	},
+	"home": {
+		"description": "3kb 大小的 React 轻量、快速替代方案，拥有相同的现代 API。",
+		"getStarted": "开始上手"
 	}
 }

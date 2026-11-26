@@ -4,6 +4,8 @@ import { Page, pages } from './controllers/page.jsx';
 import { GuidePage } from './controllers/guide-page.jsx';
 import { NotFound } from './controllers/not-found.jsx';
 
+// The home page's interactive diagrams & playground are only needed there
+const Home = lazy(() => import('./home/index.jsx'));
 export const ReplPage = lazy(() => import('./controllers/repl-page.jsx'));
 export const BlogPage = lazy(() => import('./controllers/blog-page.jsx'));
 export const TutorialPage = lazy(
@@ -43,6 +45,7 @@ export default function Routes() {
 				onLoadEnd={() => setLoading(false)}
 				onRouteChange={routeChange}
 			>
+				<Route path="/" component={Home} />
 				{genericRoutes}
 				<Route path="/tutorial/:step?" component={TutorialPage} />
 				<Route path="/guide/:version/:name" component={GuidePage} />

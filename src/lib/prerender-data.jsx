@@ -29,13 +29,10 @@ export function PrerenderDataProvider({ value, children }) {
 
 	const preactVersion = value?.preactVersion || fallbackData.preactVersion;
 	const preactReleaseURL =
-		value?.preactReleaseURL || fallbackData.preactReleaseUrl;
-	const preactOrgRepos = value?.preactOrgRepos || fallbackData.preactOrgRepos;
+		value?.preactReleaseURL || fallbackData.preactReleaseURL;
 
 	return (
-		<PrerenderDataContext.Provider
-			value={{ preactVersion, preactReleaseURL, preactOrgRepos }}
-		>
+		<PrerenderDataContext.Provider value={{ preactVersion, preactReleaseURL }}>
 			{children}
 		</PrerenderDataContext.Provider>
 	);

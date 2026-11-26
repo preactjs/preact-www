@@ -13,14 +13,6 @@ function checkStatus(r) {
 
 const baseUrl = '/.netlify/functions/';
 
-export const fetchOrganizationRepos = (org) =>
-	fetch(`${baseUrl}repos?org=${org}`, {
-		priority: 'low'
-	})
-		.then(checkStatus)
-		.then((r) => r.json())
-		.catch(() => getFallbackData().preactOrgRepos);
-
 export const fetchRelease = (repo) =>
 	fetch(`${baseUrl}release?repo=${repo}`, {
 		priority: 'low'
@@ -31,6 +23,6 @@ export const fetchRelease = (repo) =>
 			const fallbackData = getFallbackData();
 			return {
 				version: fallbackData.preactVersion,
-				url: fallbackData.preactReleaseUrl
+				url: fallbackData.preactReleaseURL
 			};
 		});

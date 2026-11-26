@@ -26,17 +26,19 @@
 		display: inline-block;
 		padding: 0.5rem 1rem;
 		margin: 0.5rem 1rem;
-		border: 1px solid var(--color-btn-background);
-		border-radius: 5px;
+		border: 1px solid var(--accent);
 		transition:
-			box-shadow 300ms ease,
-			border-color 300ms ease;
-		background: var(--color-btn);
-		color: var(--color-btn-background);
+			background-color 0.15s ease,
+			border-color 0.15s ease;
+		background: var(--accent);
+		color: #fff;
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		font-weight: 600;
 		&:hover,
 		&:focus-visible {
-			box-shadow: 0 0 0 5px var(--color-brand-light);
-			border-color: var(--color-btn-background);
+			background: var(--accent-hover);
+			border-color: var(--accent-hover);
 		}
 	}
 }

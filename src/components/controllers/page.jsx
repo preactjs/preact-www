@@ -6,7 +6,6 @@ import Footer from '../footer/index.jsx';
 import style from './style.module.css';
 
 export const pages = [
-	'/',
 	'/about/we-are-using',
 	'/about/project-goals',
 	'/blog',

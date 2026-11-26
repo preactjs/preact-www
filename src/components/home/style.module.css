@@ -1,0 +1,573 @@
+.page {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	flex-direction: column;
+	/* `main` adds the header offset as padding */
+	min-height: calc(100svh - var(--header-height));
+	font-size: 18px;
+	line-height: 1.55;
+}
+
+.content {
+	position: relative;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	/* Let the hex background run behind the header too */
+	margin-top: calc(-1 * var(--header-height));
+	padding-top: var(--header-height);
+
+	@media (min-width: 64rem) {
+		padding-top: calc(var(--header-height) + 0.5rem);
+	}
+}
+
+.sections {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	width: min(var(--main-width), calc(100% - 2rem));
+	margin: 0 auto;
+	text-align: center;
+
+	@media (max-width: 48rem) {
+		width: calc(100% - 1.5rem);
+	}
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.25rem;
+
+	@media (max-width: 48rem) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Click-to-replay diagrams: real buttons, but visually just the SVG */
+.diagramButton {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: none;
+	background: none;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+
+	svg {
+		display: block;
+		margin: 0 auto;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-soft);
+		outline-offset: 4px;
+	}
+}
+
+/* ---------------------------------- Hero ---------------------------------- */
+
+.hero {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	width: min(var(--main-width), calc(100% - 2rem));
+	min-height: 27em;
+	margin: 2rem 0;
+	padding: 2.5rem;
+	border: 1px solid var(--accent-border);
+	border-top-width: 3px;
+	background: var(--bg);
+
+	@media (max-width: 48rem) {
+		flex-direction: column;
+		gap: 0.5rem;
+		width: calc(100% - 1.5rem);
+		padding: 4rem 1.5rem 2.5rem;
+	}
+}
+
+.heroBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 0.7rem 1rem;
+	border-bottom: 1px solid var(--border);
+	font-family: var(--font-mono);
+	font-size: 0.65rem;
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: 0.08em;
+
+	a:hover {
+		text-decoration: underline;
+	}
+}
+
+.heroVersion {
+	color: var(--text-secondary);
+}
+
+.heroNews {
+	color: var(--accent-soft);
+
+	i {
+		display: inline-block;
+		width: 0.55em;
+		height: 0.55em;
+		margin-right: 0.65em;
+		background: var(--accent);
+	}
+}
+
+.heroLogo {
+	position: relative;
+	flex-shrink: 0;
+	padding: 0;
+	border: none;
+	background: none;
+	/* Buttons don't inherit font-size; the logo is sized in em */
+	font-size: inherit;
+	cursor: pointer;
+
+	img {
+		display: block;
+		width: auto;
+		height: min(16em, 36vw);
+		user-select: none;
+		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-soft);
+		outline-offset: 4px;
+	}
+}
+
+.heroText {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1.25rem;
+	align-self: stretch;
+	max-width: 34rem;
+	text-align: left;
+
+	@media (max-width: 48rem) {
+		align-items: center;
+		text-align: center;
+	}
+}
+
+.typewriter {
+	display: inline-flex;
+	align-items: center;
+	width: fit-content;
+	padding: 0.2em 0.6em;
+	color: var(--accent-soft);
+	font-family: var(--font-mono);
+	font-size: 0.6em;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	white-space: pre;
+}
+
+.prompt {
+	margin-right: 0.5rem;
+}
+
+.typewriterText {
+	display: inline-grid;
+	/* Grows from the left within its fixed width, also in the centred
+	   (narrow) hero */
+	text-align: left;
+
+	& > * {
+		grid-area: 1 / 1;
+	}
+}
+
+.typewriterSizer {
+	visibility: hidden;
+}
+
+.typewriterPause {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	margin-right: 0.5rem;
+	padding: 0;
+	color: var(--text-secondary);
+	background: none;
+	border: 0;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--accent-soft);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-soft);
+		outline-offset: 0;
+	}
+}
+
+.typewriterReact {
+	color: var(--text);
+	opacity: 0.7;
+}
+
+.heroTitle {
+	margin: 0;
+	color: var(--text-h);
+	font-size: clamp(2.5em, 5vw, 3.5em);
+	font-weight: 700;
+	line-height: 0.9;
+	letter-spacing: -0.065em;
+	text-transform: uppercase;
+
+	span {
+		transition: color 0.15s;
+
+		&:hover {
+			color: var(--accent-soft);
+		}
+	}
+}
+
+.heroTagline {
+	max-width: 28em;
+	margin: 0;
+	color: var(--text);
+	font-size: 1.25em;
+	line-height: 1.625;
+
+	@media (max-width: 48rem) {
+		font-size: 1em;
+	}
+}
+
+.heroButtons {
+	display: flex;
+	/* Longer (translated) labels go on two rows rather than overflow */
+	flex-wrap: wrap;
+	gap: 0.75rem;
+
+	@media (max-width: 48rem) {
+		:global(.btn) {
+			padding-inline: 1rem;
+		}
+	}
+}
+
+/* ---------------------------------- Cards --------------------------------- */
+
+.card {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 1.5rem;
+	border: 1px solid var(--border);
+	border-top: 2px solid var(--accent);
+	background: var(--bg);
+	text-align: left;
+
+	@media (max-width: 48rem) {
+		padding: 1.25rem;
+	}
+}
+
+.cardHeader {
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+	/* Same size as the title, so the em-sized hex icons don't change */
+	font-size: 1.25rem;
+}
+
+.cardTitle {
+	margin: 0;
+	color: var(--text-h);
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: normal;
+	text-transform: uppercase;
+}
+
+.cardText {
+	width: 100%;
+	margin: 1.5rem 0;
+	color: var(--text-secondary);
+	font-size: 0.875rem;
+
+	@media (min-width: 48rem) {
+		font-size: 1rem;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	p + p {
+		margin-top: 1rem;
+	}
+
+	/* Underlined at rest, like links in the docs: not told apart by color alone */
+	a {
+		color: var(--accent-soft);
+		text-decoration: underline;
+		text-decoration-color: color-mix(
+			in oklab,
+			var(--accent-soft) 40%,
+			transparent
+		);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 3px;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration-color: currentColor;
+		}
+	}
+}
+
+.cardBody {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.chip {
+	padding: 0;
+	border: none;
+	background: none;
+	font-size: inherit;
+	cursor: pointer;
+}
+
+.split {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	@media (min-width: 48rem) {
+		flex-direction: row;
+	}
+
+	& > * {
+		flex: 1;
+	}
+}
+
+.splitAside {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.blocks {
+	width: 16rem;
+	max-width: 100%;
+	height: 12rem;
+}
+
+.block {
+	transition: opacity 700ms ease-out;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+/* --------------------------------- Syntax --------------------------------- */
+
+.syntax {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	h2 {
+		margin: 0.5rem 0 0;
+		font-size: 1.875rem;
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+}
+
+.code {
+	width: 100%;
+	max-width: 860px;
+	margin: 2rem !important;
+	padding: 1rem !important;
+	overflow-x: auto;
+	border-radius: 0.375rem;
+	background: color-mix(in srgb, var(--bg) 88%, black) !important;
+	font-size: 0.875rem;
+	text-align: left;
+
+	@media (max-width: 48rem) {
+		margin: 1.5rem 0 !important;
+	}
+}
+
+/* ------------------------------- Ecosystem -------------------------------- */
+
+.ecosystem {
+	width: 100%;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.875rem;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.5rem 0;
+
+		& + li {
+			border-top: 1px solid var(--border);
+		}
+
+		span {
+			font-weight: 500;
+		}
+
+		code {
+			color: var(--accent-soft);
+			font-size: 0.75rem;
+			text-align: right;
+		}
+	}
+}
+
+.ecosystemMore {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	margin-top: 1rem;
+
+	/* Only the caption: the button's label can be a `lang` span too */
+	& > span {
+		color: var(--text-secondary);
+		font-size: 0.875rem;
+	}
+}
+
+/* -------------------------------- Sponsors -------------------------------- */
+
+/* Like the design: between the cards on wide screens, at the end otherwise */
+.sponsorsWide {
+	@media (max-width: 64rem) {
+		display: none;
+	}
+}
+
+.sponsorsNarrow {
+	width: 100%;
+
+	@media not all and (max-width: 64rem) {
+		display: none;
+	}
+}
+
+/* ------------------------------- Playground ------------------------------- */
+
+.playgroundAppear {
+	display: flex;
+	animation: playground-appear 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+@keyframes playground-appear {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.playground {
+	position: relative;
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+
+	svg {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	g[role='button'] {
+		cursor: pointer;
+		outline: none;
+
+		&:focus-visible polygon {
+			stroke: var(--accent-soft);
+			stroke-dasharray: 8 6;
+		}
+	}
+}
+
+/* --------------------------------- Flavour -------------------------------- */
+
+.flavour {
+	width: 100%;
+	margin-top: 2rem;
+	overflow: hidden;
+	opacity: 0.26;
+
+	svg {
+		position: relative;
+		left: 50%;
+		display: block;
+		width: 1250px;
+		max-width: none;
+		height: 13rem;
+		transform: translateX(-50%);
+	}
+}
+
+.visuallyHidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
