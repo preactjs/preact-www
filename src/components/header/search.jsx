@@ -2,6 +2,7 @@ import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { ErrorBoundary } from 'preact-iso';
 import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
+import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 import config from '../../config.json' with { type: 'json' };
 
@@ -133,10 +134,16 @@ const PlaceholderContent = () => (
 /**
  * A search box that opens the header's DocSearch instance.
  */
+/** DocSearch's copy isn't translated */
+function useSearchLang() {
+	const { lang } = useLanguageContext();
+	return lang === 'en' ? undefined : 'en';
+}
+
 export function SearchTrigger() {
 	const load = () => dispatchEvent(new Event(LOAD_EVENT));
 	return (
-		<div class={style.search}>
+		<div class={style.search} lang={useSearchLang()}>
 			<button
 				type="button"
 				aria-label="Search"
@@ -164,6 +171,7 @@ export default function Search() {
 	// the user moves on first (Escape, closing the mobile menu, navigating).
 	const pendingOpen = useRef(false);
 	const [loaded, setLoaded] = useState(false);
+	const searchLang = useSearchLang();
 
 	// The <loading-bar> is sat alongside the router & has it's state controlled by it,
 	// so while we could create a new context to be able to set it here, direct DOM
@@ -396,6 +404,9 @@ export default function Search() {
 				modal?.setAttribute('role', 'dialog');
 				modal?.setAttribute('aria-modal', 'true');
 				modal?.setAttribute('aria-label', 'Search');
+				if (document.documentElement.lang !== 'en') {
+					added.setAttribute('lang', 'en');
+				}
 				restoreInert = inertOthers(added);
 			}
 		});
@@ -438,7 +449,7 @@ export default function Search() {
 	}, []);
 
 	return (
-		<div class={style.search}>
+		<div class={style.search} lang={searchLang}>
 			{!loaded && (
 				/* Copy/paste of the HTML DocSearch normally generates, used as a placeholder */
 				<button

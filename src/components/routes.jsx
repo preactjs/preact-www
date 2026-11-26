@@ -5,7 +5,7 @@ import { GuidePage } from './controllers/guide-page.jsx';
 import { NotFound } from './controllers/not-found.jsx';
 
 // The home page's interactive diagrams & playground are only needed there
-const Home = lazy(() => import('./home/index.jsx'));
+export const Home = lazy(() => import('./home/index.jsx'));
 export const ReplPage = lazy(() => import('./controllers/repl-page.jsx'));
 export const BlogPage = lazy(() => import('./controllers/blog-page.jsx'));
 export const TutorialPage = lazy(

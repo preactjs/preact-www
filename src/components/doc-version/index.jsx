@@ -1,7 +1,7 @@
 import { useCallback } from 'preact/hooks';
 import { useLocation, useRoute } from 'preact-iso';
 import { flatDocPages } from '../../route-config.js';
-import { useTranslate } from '../../lib/i18n.jsx';
+import { useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 
 export const LATEST_MAJOR = 'v11';
@@ -16,6 +16,7 @@ export default function DocVersion() {
 	const { params, path } = useRoute();
 	const { version, name } = params;
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	const onChange = useCallback(
 		(e) => {
@@ -30,7 +31,9 @@ export default function DocVersion() {
 
 	return (
 		<label class={style.root}>
-			{translate('i18n', 'docVersion')}
+			<span lang={fallbackLang('i18n', 'docVersion')}>
+				{translate('i18n', 'docVersion')}
+			</span>
 			<select value={version} class={style.select} onChange={onChange}>
 				{AVAILABLE_DOCS.map((v) => {
 					let suffix = '';

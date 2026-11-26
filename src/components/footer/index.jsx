@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
-import { useLanguageContext, useTranslate } from '../../lib/i18n.jsx';
+import {
+	HiddenLabel,
+	useFallbackLang,
+	useLanguageContext,
+	useTranslate
+} from '../../lib/i18n.jsx';
 import LanguageSelect from '../language-select/index.jsx';
 import { useResource } from '../../lib/use-resource.js';
 import style from './style.module.css';
@@ -43,6 +48,7 @@ function useContributors() {
 export default function Footer() {
 	const contrib = useContributors();
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	const { lang } = useLanguageContext();
 
 	return (
@@ -70,16 +76,33 @@ export default function Footer() {
 			</p>
 			<div class={style.meta}>
 				<LanguageSelect />
-				<nav class={style.links} aria-label={translate('i18n', 'moreLinks')}>
-					<a href="/about/project-goals">
+				<nav class={style.links} aria-labelledby="footer-links-label">
+					<HiddenLabel id="footer-links-label" namespace="i18n" k="moreLinks" />
+					<a
+						href="/about/project-goals"
+						lang={fallbackLang('headerNav', 'projectGoals')}
+					>
 						{translate('headerNav', 'projectGoals')}
 					</a>
-					<a href="/about/we-are-using">
+					<a
+						href="/about/we-are-using"
+						lang={fallbackLang('headerNav', 'weAreUsing')}
+					>
 						{translate('headerNav', 'weAreUsing')}
 					</a>
-					<a href="/branding">{translate('headerNav', 'branding')}</a>
-					<a href="http://chat.preactjs.com/">{translate('i18n', 'chat')}</a>
-					<a href="https://opencollective.com/preact">
+					<a href="/branding" lang={fallbackLang('headerNav', 'branding')}>
+						{translate('headerNav', 'branding')}
+					</a>
+					<a
+						href="http://chat.preactjs.com/"
+						lang={fallbackLang('i18n', 'chat')}
+					>
+						{translate('i18n', 'chat')}
+					</a>
+					<a
+						href="https://opencollective.com/preact"
+						lang={fallbackLang('i18n', 'supportUs')}
+					>
 						{translate('i18n', 'supportUs')}
 					</a>
 				</nav>

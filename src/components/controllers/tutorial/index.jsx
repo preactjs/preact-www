@@ -13,7 +13,7 @@ import { TutorialContext, SolutionContext } from './contexts.jsx';
 import { parseStackTrace } from '../repl/errors.js';
 import cx from '../../../lib/cx.js';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
-import { useTranslate } from '../../../lib/i18n.jsx';
+import { useFallbackLang, useTranslate } from '../../../lib/i18n.jsx';
 import { MarkdownRegion } from '../markdown-region.jsx';
 import LanguageSelect from '../../language-select/index.jsx';
 import style from './style.module.css';
@@ -219,11 +219,17 @@ export function Tutorial({ html, meta }) {
 
 function ButtonContainer({ meta, showCode, help }) {
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
+	const nextKey = meta.code == false ? 'beginTutorial' : 'nextPage';
 
 	return (
 		<div class={style.buttonContainer}>
 			{meta.prev && (
-				<a class={style.prevButton} href={meta.prev}>
+				<a
+					class={style.prevButton}
+					href={meta.prev}
+					lang={fallbackLang('i18n', 'previousPage')}
+				>
 					{translate('i18n', 'previousPage')}
 				</a>
 			)}
@@ -233,15 +239,18 @@ function ButtonContainer({ meta, showCode, help }) {
 					onClick={help}
 					disabled={!showCode}
 					title="Show solution to this example"
+					lang={fallbackLang('i18n', 'solve')}
 				>
 					{translate('i18n', 'solve')}
 				</button>
 			)}
 			{meta.next && (
-				<a class={style.nextButton} href={meta.next}>
-					{meta.code == false
-						? translate('i18n', 'beginTutorial')
-						: translate('i18n', 'nextPage')}
+				<a
+					class={style.nextButton}
+					href={meta.next}
+					lang={fallbackLang('i18n', nextKey)}
+				>
+					{translate('i18n', nextKey)}
 				</a>
 			)}
 		</div>

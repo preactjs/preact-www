@@ -23,7 +23,12 @@ export default function ContentRegion({ content, components, ...props }) {
 	}, [props.current]);
 
 	return (
-		<content-region ref={ref} name={props.current} can-edit={props.canEdit}>
+		<content-region
+			ref={ref}
+			name={props.current}
+			can-edit={props.canEdit}
+			lang={props.lang}
+		>
 			{content && (
 				<TocContext.Provider value={{ toc: props.toc }}>
 					<Markup

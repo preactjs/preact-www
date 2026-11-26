@@ -10,12 +10,14 @@ import BlogMeta from '../blog-meta/index.jsx';
  * @param {import('../../types.d.ts').ContentMetaData} props.meta
  * @param {any} [props.components]
  * @param {boolean} [props.showEditLink] - Set to `false` when the layout renders `EditThisPage` itself
+ * @param {string} [props.lang] - The content's language, if it differs from the page's
  */
 export function MarkdownRegion({
 	html,
 	meta,
 	components,
-	showEditLink = true
+	showEditLink = true,
+	lang
 }) {
 	const { path } = useRoute();
 
@@ -28,6 +30,7 @@ export function MarkdownRegion({
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
 				current={path}
+				lang={lang}
 				content={html}
 				toc={meta.toc}
 				components={components}

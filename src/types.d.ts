@@ -6,7 +6,12 @@ declare global {
 	namespace preact.JSX {
 		interface IntrinsicElements {
 			'loading-bar': { showing: boolean };
-			'content-region': { name: string; 'can-edit': boolean; children: any };
+			'content-region': {
+				name: string;
+				'can-edit': boolean;
+				lang?: string;
+				children: any;
+			};
 		}
 	}
 }

@@ -149,6 +149,7 @@ export default function Sidebar() {
 		if (version == 'v8') {
 			navItems.push({
 				text: translate('sidebarNav', docPages[version][item]),
+				lang: fallbackLang('sidebarNav', docPages[version][item]),
 				level: 2,
 				href: `/guide/${version}${item}`
 			});
@@ -160,11 +161,13 @@ export default function Sidebar() {
 						item
 					)
 				),
+				lang: fallbackLang('sidebarSections', item),
 				level: 2,
 				href: null,
 				routes: Object.entries(docPages[version][item]).map(
 					([pagePath, label]) => ({
 						text: translate('sidebarNav', label),
+						lang: fallbackLang('sidebarNav', label),
 						level: 3,
 						href: `/guide/${version}${pagePath}`
 					})

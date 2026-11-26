@@ -70,7 +70,12 @@ function GuideLayout() {
 						<Breadcrumb />
 						<EditThisPage meta={meta} inline />
 					</div>
-					<MarkdownRegion html={html} meta={meta} showEditLink={false} />
+					<MarkdownRegion
+						html={html}
+						meta={meta}
+						showEditLink={false}
+						lang={contentLang}
+					/>
 				</div>
 			</div>
 			<Footer />
@@ -81,13 +86,18 @@ function GuideLayout() {
 function Breadcrumb() {
 	const { version, name } = useRoute().params;
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	const sections = docPages[version];
 
 	let section = null;
 	if (version !== 'v8') {
 		for (const key in sections) {
 			if ('/' + name in sections[key]) {
-				section = translate('sidebarSections', key);
+				section = (
+					<span lang={fallbackLang('sidebarSections', key)}>
+						{translate('sidebarSections', key)}
+					</span>
+				);
 				break;
 			}
 		}
@@ -95,7 +105,10 @@ function Breadcrumb() {
 
 	return (
 		<p class={style.breadcrumb}>
-			Preact / {translate('headerNav', 'docs')}
+			Preact /{' '}
+			<span lang={fallbackLang('headerNav', 'docs')}>
+				{translate('headerNav', 'docs')}
+			</span>
 			{section && <span> / {section}</span>}
 		</p>
 	);
@@ -144,6 +157,7 @@ function PageToc({ items, lang }) {
 
 function OldDocsWarning() {
 	const { name, version } = useRoute().params;
+	const { lang } = useLanguageContext();
 	const ref = useRef(/** @type {HTMLDivElement | null} */ (null));
 
 	// It's sticky at the top: keep #fragment targets (via the headings'
@@ -219,7 +233,11 @@ function OldDocsWarning() {
 	const latestExists = flatDocPages[LATEST_MAJOR]['/' + name];
 
 	return (
-		<div ref={ref} class={style.stickyWarning}>
+		<div
+			ref={ref}
+			class={style.stickyWarning}
+			lang={lang === 'en' ? undefined : 'en'}
+		>
 			You are viewing the documentation for an{' '}
 			{outdatedVersion ? 'older' : 'upcoming'} version of Preact.
 			{latestExists ? (

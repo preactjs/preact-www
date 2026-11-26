@@ -21,18 +21,21 @@ export default function SidebarNav({ items, onClick }) {
 			// The sidebar's (hidden) "Docs" label, see ./index.jsx
 			aria-labelledby="docs-sidebar-label"
 		>
-			{items.map(({ text, level, href, routes }) => {
+			{items.map(({ text, lang, level, href, routes }) => {
 				if (!href) {
 					return (
 						<>
-							<SidebarGroup level={level}>{text}</SidebarGroup>
+							<SidebarGroup level={level} lang={lang}>
+								{text}
+							</SidebarGroup>
 							<div class={style.accordionBody}>
 								{routes.map((route) => {
-									const { href, text } = route;
+									const { href, text, lang } = route;
 									return (
 										<SidebarNavLink
 											key={href}
 											href={href}
+											lang={lang}
 											onClick={onClick}
 											isActive={href === path}
 										>
@@ -48,6 +51,7 @@ export default function SidebarNav({ items, onClick }) {
 					<SidebarNavLink
 						key={href}
 						href={href}
+						lang={lang}
 						onClick={onClick}
 						isActive={href === path}
 					>
@@ -59,18 +63,21 @@ export default function SidebarNav({ items, onClick }) {
 	);
 }
 
-function SidebarGroup({ level, children }) {
+function SidebarGroup({ level, lang, children }) {
 	return (
-		<h3 className={cx(style.category, style['level-' + level])}>{children}</h3>
+		<h3 className={cx(style.category, style['level-' + level])} lang={lang}>
+			{children}
+		</h3>
 	);
 }
 
 function SidebarNavLink(props) {
-	const { href, onClick, level, isActive, children } = props;
+	const { href, lang, onClick, level, isActive, children } = props;
 	let activeCss = isActive ? style.linkActive : undefined;
 	return (
 		<a
 			href={href}
+			lang={lang}
 			onClick={onClick}
 			class={cx(style.link, activeCss, style['level-' + level])}
 			aria-current={isActive ? 'page' : undefined}

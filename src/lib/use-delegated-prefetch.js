@@ -2,6 +2,7 @@ import { useEffect } from 'preact/hooks';
 
 import { prefetchContent } from './use-content.js';
 import {
+	Home,
 	ReplPage,
 	TutorialPage,
 	CodeEditor,
@@ -13,11 +14,15 @@ export function useDelegatedPrefetch() {
 	useEffect(() => {
 		/** @param {MouseEvent | TouchEvent} e */
 		const prefetchAndPreload = (e) => {
-			if (e.target && e.target instanceof HTMLAnchorElement) {
-				if (!e.target.href.startsWith(location.origin)) return;
-				const pathname = new URL(e.target.href).pathname;
+			const link =
+				e.target instanceof Element ? e.target.closest('a[href]') : null;
+			if (link instanceof HTMLAnchorElement) {
+				if (!link.href.startsWith(location.origin)) return;
+				const pathname = new URL(link.href).pathname;
 
-				if (pathname.startsWith('/repl')) {
+				if (pathname === '/') {
+					Home.preload();
+				} else if (pathname.startsWith('/repl')) {
 					ReplPage.preload();
 					CodeEditor.preload();
 				} else if (pathname.startsWith('/tutorial')) {

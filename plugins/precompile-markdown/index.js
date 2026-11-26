@@ -250,21 +250,7 @@ function highlightCodeBlocks(data) {
 	for (const block of codeBlocks) {
 		const child = block.childNodes[0];
 
-		/**
-		 * Slight hack to facilitate blank lines in code blocks in HTML in markdown, i.e.,
-		 *
-		 * <pre repl="false"><code class="language-jsx">
-		 *   import TodoList from './todo-list';<br>
-		 *   render(&lt;TodoList /&gt;, document.body);
-		 * </code></pre>
-		 *
-		 * Blank lines are an end condition to the code block so instead we must use `<br>`
-		 * and switch it back to `\n` for the code content after marked is through with it.
-		 * We only do this on the home/index page at the moment.
-		 */
-		const rawCodeBlockText = unescapeHTML(
-			dedent(child.innerText).trim().replaceAll('<br>', '\n')
-		);
+		const rawCodeBlockText = unescapeHTML(dedent(child.innerText).trim());
 		const [code, source, runInRepl] = processRepl(rawCodeBlockText);
 
 		const lang = child.getAttribute('class').replace('language-', '');

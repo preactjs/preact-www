@@ -317,6 +317,7 @@ function Brand({ onClick }) {
 function NavList({ mobile, onNavigate }) {
 	const { path } = useLocation();
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	return (
 		<ul class={mobile ? style.mobileList : style.list}>
@@ -324,6 +325,7 @@ function NavList({ mobile, onNavigate }) {
 				<li key={key}>
 					<a
 						href={href}
+						lang={fallbackLang('headerNav', key)}
 						class={cx(match(path) && style.current)}
 						// "page" only on the page it links to; elsewhere in its section
 						// it's the current item of the set

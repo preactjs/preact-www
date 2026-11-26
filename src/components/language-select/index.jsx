@@ -1,7 +1,11 @@
 import { useCallback } from 'preact/hooks';
 import config from '../../config.json' with { type: 'json' };
 import cx from '../../lib/cx.js';
-import { useLanguageContext, useTranslate } from '../../lib/i18n.jsx';
+import {
+	useFallbackLang,
+	useLanguageContext,
+	useTranslate
+} from '../../lib/i18n.jsx';
 import style from './style.module.css';
 
 /**
@@ -14,6 +18,7 @@ import style from './style.module.css';
 export default function LanguageSelect({ class: className, focusFallback }) {
 	const { lang, setLang } = useLanguageContext();
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	const onSelect = useCallback((e) => setLang(e.target.value), [setLang]);
 
 	return (
@@ -21,7 +26,9 @@ export default function LanguageSelect({ class: className, focusFallback }) {
 			class={cx(style.lang, className)}
 			data-focus-fallback={focusFallback}
 		>
-			<span>{translate('i18n', 'language')}</span>
+			<span lang={fallbackLang('i18n', 'language')}>
+				{translate('i18n', 'language')}
+			</span>
 			<select value={lang || 'en'} onInput={onSelect}>
 				{Object.entries(config.locales).map(([id, label]) => (
 					<option selected={id == lang} value={id}>
