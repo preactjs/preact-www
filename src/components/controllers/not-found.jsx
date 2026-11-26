@@ -17,7 +17,7 @@ const CELL_Y = 30;
 export function NotFound() {
 	// The copy comes from the (translated) `content/*/404.md`
 	const { html } = useContent('/404');
-	const { translations, fallback } = useLanguageContext();
+	const { lang, translations, fallback } = useLanguageContext();
 	const notFound = translations.i18n?.notFound || fallback.i18n.notFound;
 
 	return (
@@ -29,7 +29,7 @@ export function NotFound() {
 					viewBox="0 0 412 168"
 					role="img"
 					aria-label={notFound}
-					lang={translations.i18n?.notFound ? undefined : 'en'}
+					lang={translations.i18n?.notFound ? lang : 'en'}
 				>
 					{DIGITS.flatMap((rows, digit) =>
 						rows.flatMap((row, y) =>

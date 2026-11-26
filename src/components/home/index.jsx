@@ -23,7 +23,7 @@ const GETTING_STARTED = '/guide/v11/getting-started';
  * doesn't translate (yet) fall back to English, marked with `lang="en"`.
  */
 function useHomeCopy() {
-	const { translations, fallback } = useLanguageContext();
+	const { lang, translations, fallback } = useLanguageContext();
 	/** @param {HomeKey} key */
 	const own = (key) => /** @type {any} */ (translations)?.home?.[key];
 	/** @param {HomeKey} key */
@@ -44,7 +44,7 @@ function useHomeCopy() {
 	// For attributes, which can't be marked with a language
 	t.text = text;
 	/** @param {HomeKey} key */
-	t.lang = (key) => (own(key) ? undefined : 'en');
+	t.lang = (key) => (own(key) ? lang : 'en');
 	return t;
 }
 

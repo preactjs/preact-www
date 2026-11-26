@@ -1,4 +1,4 @@
-import { lazy } from 'preact-iso';
+import { lazy } from '../lib/lazy.js';
 
 import Toc from './table-of-contents/index.jsx';
 import TabGroup from './tab-group/index.jsx';

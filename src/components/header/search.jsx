@@ -2,7 +2,6 @@ import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { ErrorBoundary } from 'preact-iso';
 import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
-import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 import config from '../../config.json' with { type: 'json' };
 
@@ -134,16 +133,10 @@ const PlaceholderContent = () => (
 /**
  * A search box that opens the header's DocSearch instance.
  */
-/** DocSearch's copy isn't translated */
-function useSearchLang() {
-	const { lang } = useLanguageContext();
-	return lang === 'en' ? undefined : 'en';
-}
-
 export function SearchTrigger() {
 	const load = () => dispatchEvent(new Event(LOAD_EVENT));
 	return (
-		<div class={style.search} lang={useSearchLang()}>
+		<div class={style.search} lang="en">
 			<button
 				type="button"
 				aria-label="Search"
@@ -171,7 +164,6 @@ export default function Search() {
 	// the user moves on first (Escape, closing the mobile menu, navigating).
 	const pendingOpen = useRef(false);
 	const [loaded, setLoaded] = useState(false);
-	const searchLang = useSearchLang();
 
 	// The <loading-bar> is sat alongside the router & has it's state controlled by it,
 	// so while we could create a new context to be able to set it here, direct DOM
@@ -250,10 +242,15 @@ export default function Search() {
 		// return focus there once the modal is gone.
 		/** @type {HTMLElement | null} */
 		let lastFocused = null;
+		// Noted up front: the mobile menu it may be in unmounts when widening
+		let lastInHeader = false;
 		/** @param {FocusEvent} e */
 		const onFocusIn = (e) => {
 			const target = /** @type {HTMLElement} */ (e.target);
-			if (!target.closest?.('.DocSearch-Container')) lastFocused = target;
+			if (!target.closest?.('.DocSearch-Container')) {
+				lastFocused = target;
+				lastInHeader = !!target.closest('header');
+			}
 		};
 		// Safari doesn't focus buttons on click, so record clicked search
 		// buttons (the opener) explicitly
@@ -262,7 +259,10 @@ export default function Search() {
 			const button = /** @type {HTMLElement} */ (e.target).closest?.(
 				'.DocSearch-Button'
 			);
-			if (button) lastFocused = /** @type {HTMLElement} */ (button);
+			if (button) {
+				lastFocused = /** @type {HTMLElement} */ (button);
+				lastInHeader = !!button.closest('header');
+			}
 		};
 		// Clicking plain text etc. moves focus to nothing: forget the element,
 		// so Ctrl+K + Escape later doesn't jump back to it. Placeholder &
@@ -340,7 +340,7 @@ export default function Search() {
 			}
 			// A header control hidden by a resize, like the header does with the
 			// menu closed: the menu button when narrowing, else the first link
-			if (!target && lastFocused.closest('header')) {
+			if (!target && lastInHeader) {
 				target =
 					/** @type {HTMLElement | undefined} */ (
 						[
@@ -404,9 +404,8 @@ export default function Search() {
 				modal?.setAttribute('role', 'dialog');
 				modal?.setAttribute('aria-modal', 'true');
 				modal?.setAttribute('aria-label', 'Search');
-				if (document.documentElement.lang !== 'en') {
-					added.setAttribute('lang', 'en');
-				}
+				// DocSearch's copy isn't translated
+				added.setAttribute('lang', 'en');
 				restoreInert = inertOthers(added);
 			}
 		});
@@ -449,7 +448,7 @@ export default function Search() {
 	}, []);
 
 	return (
-		<div class={style.search} lang={searchLang}>
+		<div class={style.search} lang="en">
 			{!loaded && (
 				/* Copy/paste of the HTML DocSearch normally generates, used as a placeholder */
 				<button

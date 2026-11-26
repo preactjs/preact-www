@@ -129,10 +129,20 @@ export function useFallbackLang() {
 	/**
 	 * @param {string} namespace
 	 * @param {string} key
-	 * @returns {'en' | undefined}
+	 * @returns {string}
 	 */
-	return (namespace, key) =>
-		lang !== 'en' && !translations?.[namespace]?.[key] ? 'en' : undefined;
+	return (namespace, key) => (translations?.[namespace]?.[key] ? lang : 'en');
+}
+
+/**
+ * The `lang` of a markdown page's content: English when it's the fallback for
+ * an untranslated page.
+ *
+ * @param {import('../types.d.ts').ContentMetaData} meta
+ */
+export function useContentLang(meta) {
+	const { lang } = useContext(LanguageContext);
+	return meta.translationExists && meta.translationEnabled ? lang : 'en';
 }
 
 /**

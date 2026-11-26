@@ -3,6 +3,7 @@ import { useRoute } from 'preact-iso';
 import EditThisPage from '../edit-button/index.jsx';
 import ContentRegion from '../content-region/index.jsx';
 import BlogMeta from '../blog-meta/index.jsx';
+import { useContentLang } from '../../lib/i18n.jsx';
 
 /**
  * @param {object} props
@@ -10,16 +11,15 @@ import BlogMeta from '../blog-meta/index.jsx';
  * @param {import('../../types.d.ts').ContentMetaData} props.meta
  * @param {any} [props.components]
  * @param {boolean} [props.showEditLink] - Set to `false` when the layout renders `EditThisPage` itself
- * @param {string} [props.lang] - The content's language, if it differs from the page's
  */
 export function MarkdownRegion({
 	html,
 	meta,
 	components,
-	showEditLink = true,
-	lang
+	showEditLink = true
 }) {
 	const { path } = useRoute();
+	const lang = useContentLang(meta);
 
 	const canEdit = path !== '/' && !path.startsWith('/tutorial');
 	const isBlogArticle = path.startsWith('/blog/');

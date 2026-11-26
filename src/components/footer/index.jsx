@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
-import {
-	HiddenLabel,
-	useFallbackLang,
-	useLanguageContext,
-	useTranslate
-} from '../../lib/i18n.jsx';
+import { HiddenLabel, useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
 import LanguageSelect from '../language-select/index.jsx';
 import { useResource } from '../../lib/use-resource.js';
 import style from './style.module.css';
@@ -49,11 +44,10 @@ export default function Footer() {
 	const contrib = useContributors();
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
-	const { lang } = useLanguageContext();
 
 	return (
 		<footer class={style.footer}>
-			<p lang={lang === 'en' ? undefined : 'en'}>
+			<p lang="en">
 				Built by a bunch of{' '}
 				<a
 					href="https://github.com/preactjs/preact/graphs/contributors"

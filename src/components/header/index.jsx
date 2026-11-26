@@ -2,12 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 import cx from '../../lib/cx.js';
 import { trapTabKey } from '../../lib/inert-others.js';
-import {
-	HiddenLabel,
-	useFallbackLang,
-	useLanguageContext,
-	useTranslate
-} from '../../lib/i18n.jsx';
+import { HiddenLabel, useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
 import LanguageSelect from '../language-select/index.jsx';
 import Search, { SearchTrigger, cancelSearch } from './search.jsx';
 import style from './style.module.css';
@@ -63,7 +58,6 @@ export default function Header() {
 	const { url } = useLocation();
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
-	const { lang } = useLanguageContext();
 	const [open, setOpen] = useState(false);
 	const openButton = useRef(/** @type {HTMLButtonElement | null} */ (null));
 	const closeButton = useRef(/** @type {HTMLButtonElement | null} */ (null));
@@ -198,12 +192,7 @@ export default function Header() {
 
 	return (
 		<header class={style.header}>
-			<div
-				ref={banner}
-				class={style.banner}
-				lang={lang === 'en' ? undefined : 'en'}
-				inert={open}
-			>
+			<div ref={banner} class={style.banner} lang="en" inert={open}>
 				<a href="https://u24.gov.ua/">
 					We stand with Ukraine. <b>Show your support</b> 🇺🇦
 				</a>
@@ -353,7 +342,6 @@ function NavList({ mobile, onNavigate }) {
 function SocialLinks(props) {
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
-	const { lang } = useLanguageContext();
 	return (
 		<ul
 			class={cx(style.social, props.class)}
@@ -368,7 +356,7 @@ function SocialLinks(props) {
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={label}
-						lang={lang === 'en' ? undefined : 'en'}
+						lang="en"
 					>
 						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path fill="currentColor" d={d} />

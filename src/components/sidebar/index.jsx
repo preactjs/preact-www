@@ -4,12 +4,7 @@ import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
 import DocVersion from '../doc-version/index.jsx';
 import SidebarNav from './sidebar-nav.jsx';
 import { DESKTOP_QUERY, useOverlayToggle } from '../../lib/toggle-overlay.js';
-import {
-	HiddenLabel,
-	useFallbackLang,
-	useLanguageContext,
-	useTranslate
-} from '../../lib/i18n.jsx';
+import { HiddenLabel, useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
 import { docPages } from '../../route-config.js';
 import style from './style.module.css';
 
@@ -61,7 +56,6 @@ export default function Sidebar() {
 	}, [open]);
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
-	const { translations } = useLanguageContext();
 	const wasOpen = useRef(false);
 
 	// The closing drawer stays visible while it fades out: keep Tab from
@@ -202,7 +196,7 @@ export default function Sidebar() {
 				{/* Pinned below the open drawer, it's the dialog's close button: say
 				    so visibly, so the visible label and accessible name match */}
 				{open ? (
-					<span lang={translations.i18n?.closeGuide ? undefined : 'en'}>
+					<span lang={fallbackLang('i18n', 'closeGuide')}>
 						{translate('i18n', 'closeGuide')}
 					</span>
 				) : (

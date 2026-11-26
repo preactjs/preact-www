@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
-import { Router, Route, lazy } from 'preact-iso';
+import { Router, Route } from 'preact-iso';
+import { lazy } from '../lib/lazy.js';
 import { Page, pages } from './controllers/page.jsx';
 import { GuidePage } from './controllers/guide-page.jsx';
 import { NotFound } from './controllers/not-found.jsx';

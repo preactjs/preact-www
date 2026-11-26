@@ -10,7 +10,7 @@ import Footer from '../footer/index.jsx';
 import { docPages, flatDocPages } from '../../route-config.js';
 import {
 	useFallbackLang,
-	useLanguageContext,
+	useContentLang,
 	useTranslate
 } from '../../lib/i18n.jsx';
 import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version/index.jsx';
@@ -34,11 +34,7 @@ function GuideLayout() {
 	const tocItems = (meta.toc || []).filter((item) => item.level >= 2);
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
-	const { lang } = useLanguageContext();
-	const contentLang =
-		lang !== 'en' && !(meta.translationExists && meta.translationEnabled)
-			? 'en'
-			: undefined;
+	const contentLang = useContentLang(meta);
 
 	return (
 		<div class={style.docs}>
@@ -70,12 +66,7 @@ function GuideLayout() {
 						<Breadcrumb />
 						<EditThisPage meta={meta} inline />
 					</div>
-					<MarkdownRegion
-						html={html}
-						meta={meta}
-						showEditLink={false}
-						lang={contentLang}
-					/>
+					<MarkdownRegion html={html} meta={meta} showEditLink={false} />
 				</div>
 			</div>
 			<Footer />
@@ -118,7 +109,7 @@ function Breadcrumb() {
  * "On this page" navigation, built from the page's h2 and deeper headings.
  *
  * @param {{ items: import('../../types.d.ts').TableOfContents[], lang?: string }} props
- *   `lang`: the article's, when it's the English fallback
+ *   `lang`: the article's
  */
 function PageToc({ items, lang }) {
 	const translate = useTranslate();
@@ -157,7 +148,6 @@ function PageToc({ items, lang }) {
 
 function OldDocsWarning() {
 	const { name, version } = useRoute().params;
-	const { lang } = useLanguageContext();
 	const ref = useRef(/** @type {HTMLDivElement | null} */ (null));
 
 	// It's sticky at the top: keep #fragment targets (via the headings'
@@ -233,11 +223,7 @@ function OldDocsWarning() {
 	const latestExists = flatDocPages[LATEST_MAJOR]['/' + name];
 
 	return (
-		<div
-			ref={ref}
-			class={style.stickyWarning}
-			lang={lang === 'en' ? undefined : 'en'}
-		>
+		<div ref={ref} class={style.stickyWarning} lang="en">
 			You are viewing the documentation for an{' '}
 			{outdatedVersion ? 'older' : 'upcoming'} version of Preact.
 			{latestExists ? (
