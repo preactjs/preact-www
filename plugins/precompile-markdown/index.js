@@ -163,8 +163,6 @@ marked.use({
  */
 async function markdownToHTML(data) {
 	const tokens = marked.lexer(data.content);
-	// The ToC comes from the very heading tokens that get rendered, so its
-	// entries & ids always match the page's headings
 	if (data.withToc) data.meta.toc = generateToc(tokens);
 	delete data.withToc;
 
@@ -200,10 +198,7 @@ function generateToc(tokens) {
 	const toc = [];
 	const headingId = createHeadingIdGenerator();
 	marked.walkTokens(tokens, (token) => {
-		// Empty headings (e.g. a stray `##`) aren't rendered, see `heading()`
 		if (token.type !== 'heading' || !token.text.trim()) return;
-		// Page titles get an id too, so numbering matches the renderer, but no
-		// ToC entry: they're rendered without one
 		const id = headingId(token.text);
 		if (token.depth > 1) {
 			toc.push({ text: token.text, id, level: token.depth });

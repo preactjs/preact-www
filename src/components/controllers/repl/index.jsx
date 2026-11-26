@@ -114,7 +114,6 @@ export function Repl({ code }) {
 				{/* No footer here; on phones it's in the header's menu instead */}
 				<LanguageSelect
 					class={style.language}
-					// Hidden on narrow screens: it's in the header's menu there
 					focusFallback='button[aria-controls="mobile-navigation"]'
 				/>
 				<button class={style.share} onClick={share}>

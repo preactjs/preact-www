@@ -11,7 +11,6 @@ const COMPONENTS = {
 export default function ContentRegion({ content, components, ...props }) {
 	components = Object.assign({}, COMPONENTS, components);
 	const ref = useRef(/** @type {HTMLElement | null} */ (null));
-	// Wide tables & code blocks scroll horizontally (see markdown.css)
 	useScrollableRegions(ref, 'table, pre', content);
 
 	useEffect(() => {

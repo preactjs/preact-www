@@ -47,7 +47,6 @@ export default function Footer() {
 
 	return (
 		<footer class={style.footer}>
-			{/* Untranslated: marked English on other locales' pages */}
 			<p lang={lang === 'en' ? undefined : 'en'}>
 				Built by a bunch of{' '}
 				<a

@@ -199,7 +199,6 @@ export default function Header() {
 			<div
 				ref={banner}
 				class={style.banner}
-				// Untranslated: marked English on other locales' pages
 				lang={lang === 'en' ? undefined : 'en'}
 				inert={open}
 			>
@@ -245,8 +244,6 @@ export default function Header() {
 					class={style.mobilePanel}
 					role="dialog"
 					aria-modal="true"
-					// Not `aria-label`/`lang`: the label may be an English fallback,
-					// but the menu's own content is translated
 					aria-labelledby="mobile-nav-label"
 					style={{ '--menu-scroll': `${scrollY}px` }}
 				>
@@ -357,7 +354,6 @@ function SocialLinks(props) {
 		<ul
 			class={cx(style.social, props.class)}
 			aria-label={translate('i18n', 'socialLinks')}
-			// The links inside are English (untranslated) names too
 			lang={fallbackLang('i18n', 'socialLinks')}
 		>
 			{SOCIAL_LINKS.map(({ label, href, d }) => (
@@ -368,7 +364,6 @@ function SocialLinks(props) {
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={label}
-						// Untranslated: marked English on other locales' pages
 						lang={lang === 'en' ? undefined : 'en'}
 					>
 						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

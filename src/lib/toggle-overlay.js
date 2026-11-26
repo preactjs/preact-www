@@ -24,7 +24,6 @@ export function useOverlayToggle(getDesktopFocus) {
 		const onChange = () => {
 			if (!desktop.matches) return;
 			setOpen(false);
-			// Don't leave focus on a drawer control the new layout hides
 			requestAnimationFrame(() => {
 				const active = document.activeElement;
 				if (active instanceof HTMLElement && !active.getClientRects().length) {

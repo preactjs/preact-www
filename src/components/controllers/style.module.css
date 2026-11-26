@@ -71,7 +71,6 @@ content-region h1 {
 	background: var(--bg);
 	color: var(--text);
 	outline: 2px solid var(--accent-soft);
-	/* Off-screen until focused */
 	transform: translateY(-200vh);
 
 	&:focus {

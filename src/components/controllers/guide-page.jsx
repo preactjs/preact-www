@@ -14,7 +14,6 @@ import style from './style.module.css';
 
 export function GuidePage() {
 	const { version, name } = useRoute().params;
-	// Unknown versions (e.g. `/guide/v99/...`) are 404s too
 	const isValidRoute = flatDocPages[version]?.['/' + name];
 
 	return (
@@ -34,8 +33,6 @@ function GuideLayout() {
 
 	return (
 		<div class={style.docs}>
-			{/* Past the sidebar & "On this page" (dozens of links) for keyboard
-			    users; shown when focused */}
 			<a
 				class={style.skipLink}
 				href="#guide-article"
@@ -55,7 +52,6 @@ function GuideLayout() {
 				<PageToc items={tocItems} />
 				<div
 					id="guide-article"
-					// The skip link's target
 					tabIndex={-1}
 					class={style.docsMain}
 					data-has-page-toc={tocItems.length > 0 || undefined}
@@ -143,7 +139,6 @@ function OldDocsWarning() {
 		const observer = new ResizeObserver(() =>
 			root.style.setProperty(
 				'--sticky-warning-space',
-				// Its height plus a small gap
 				`${el.getBoundingClientRect().height + 8}px`
 			)
 		);

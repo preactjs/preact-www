@@ -336,7 +336,6 @@ export default function Search() {
 		/** @param {Node} n */
 		const isContainer = (n) =>
 			n instanceof Element && n.classList.contains('DocSearch-Container');
-		/** Undoes `inertOthers` for the open modal */
 		let restoreInert = () => {};
 		// The backdrop gets the combobox's root props (`aria-expanded` etc.) & is
 		// a focusable `role="button"`: invalid ARIA and an extra, invisible Tab

@@ -181,8 +181,6 @@ export default function Sidebar() {
 			// Only ever open on small screens, where it's a full-screen modal
 			role={open ? 'dialog' : undefined}
 			aria-modal={open ? 'true' : undefined}
-			// Not `aria-label`: the name may be an English fallback, the
-			// content inside is translated
 			aria-labelledby={open ? 'docs-drawer-label' : undefined}
 		>
 			<HiddenLabel

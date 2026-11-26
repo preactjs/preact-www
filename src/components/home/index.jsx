@@ -884,7 +884,6 @@ function Playground() {
 			<span id="playground-label" hidden>
 				{t('playgroundLabel')}
 			</span>
-			{/* Announces the selected hexagon's position as it moves */}
 			<p
 				class={style.visuallyHidden}
 				aria-live="polite"
