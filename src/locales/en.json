@@ -1,5 +1,6 @@
 {
 	"i18n": {
+		"skipToArticle": "Skip to article",
 		"nextPage": "Next Page",
 		"previousPage": "Previous Page",
 		"continueReading": "Continue reading",
@@ -156,7 +157,11 @@
 		"playgroundTitle": "Start building now. Differently",
 		"playgroundText": "Select a hexagon and move it around with the keyboard.",
 		"pauseAnimation": "Pause animation",
-		"playgroundLabel": "Hexagon playground. Tab to a hexagon, then use the arrow keys to move it",
-		"hexagonLabel": "{id} hexagon, at {x}, {y}"
+		"playgroundLabel": "Hexagon playground. Tab to a hexagon, then use the arrow keys or the buttons below it to move it",
+		"hexagonLabel": "{id} hexagon, at {x}, {y}",
+		"moveLeft": "Move the selected hexagon left",
+		"moveUp": "Move the selected hexagon up",
+		"moveDown": "Move the selected hexagon down",
+		"moveRight": "Move the selected hexagon right"
 	}
 }

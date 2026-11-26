@@ -1,6 +1,5 @@
 import { useRoute } from 'preact-iso';
 import cx from '../../lib/cx.js';
-import { useTranslate } from '../../lib/i18n.jsx';
 import style from './sidebar-nav.module.css';
 
 /**
@@ -15,12 +14,12 @@ import style from './sidebar-nav.module.css';
  */
 export default function SidebarNav({ items, onClick }) {
 	const { path } = useRoute();
-	const translate = useTranslate();
 
 	return (
 		<nav
 			class={cx(style.toc, !(items && items.length > 1) && style.disabled)}
-			aria-label={translate('headerNav', 'docs')}
+			// The sidebar's (hidden) "Docs" label, see ./index.jsx
+			aria-labelledby="docs-sidebar-label"
 		>
 			{items.map(({ text, level, href, routes }) => {
 				if (!href) {

@@ -2,7 +2,12 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 import cx from '../../lib/cx.js';
 import { trapTabKey } from '../../lib/inert-others.js';
-import { useLanguageContext, useTranslate } from '../../lib/i18n.jsx';
+import {
+	HiddenLabel,
+	useFallbackLang,
+	useLanguageContext,
+	useTranslate
+} from '../../lib/i18n.jsx';
 import LanguageSelect from '../language-select/index.jsx';
 import Search, { SearchTrigger, cancelSearch } from './search.jsx';
 import style from './style.module.css';
@@ -57,6 +62,7 @@ const DESKTOP_QUERY = 'not all and (max-width: 64rem)';
 export default function Header() {
 	const { url } = useLocation();
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	const { lang } = useLanguageContext();
 	const [open, setOpen] = useState(false);
 	const openButton = useRef(/** @type {HTMLButtonElement | null} */ (null));
@@ -204,10 +210,12 @@ export default function Header() {
 			<div ref={inner} class={style.inner} inert={open}>
 				<div class={style.left}>
 					<Brand />
-					<nav
-						class={style.nav}
-						aria-label={translate('i18n', 'mainNavigation')}
-					>
+					<nav class={style.nav} aria-labelledby="main-nav-label">
+						<HiddenLabel
+							id="main-nav-label"
+							namespace="i18n"
+							k="mainNavigation"
+						/>
 						<NavList />
 					</nav>
 				</div>
@@ -222,6 +230,7 @@ export default function Header() {
 						class={cx(style.iconButton, style.mobileOnly)}
 						onClick={() => setOpen(true)}
 						aria-label={translate('i18n', 'openMenu')}
+						lang={fallbackLang('i18n', 'openMenu')}
 						aria-expanded={open}
 						aria-controls="mobile-navigation"
 					>
@@ -236,9 +245,16 @@ export default function Header() {
 					class={style.mobilePanel}
 					role="dialog"
 					aria-modal="true"
-					aria-label={translate('i18n', 'mainNavigation')}
+					// Not `aria-label`/`lang`: the label may be an English fallback,
+					// but the menu's own content is translated
+					aria-labelledby="mobile-nav-label"
 					style={{ '--menu-scroll': `${scrollY}px` }}
 				>
+					<HiddenLabel
+						id="mobile-nav-label"
+						namespace="i18n"
+						k="mainNavigation"
+					/>
 					<div class={style.mobileTop}>
 						{/* Also closes the menu when already on the home page */}
 						<Brand onClick={() => setOpen(false)} />
@@ -248,14 +264,12 @@ export default function Header() {
 							class={style.iconButton}
 							onClick={() => setOpen(false)}
 							aria-label={translate('i18n', 'closeMenu')}
+							lang={fallbackLang('i18n', 'closeMenu')}
 						>
 							<CloseIcon />
 						</button>
 					</div>
-					<nav
-						class={style.mobileNav}
-						aria-label={translate('i18n', 'mainNavigation')}
-					>
+					<nav class={style.mobileNav} aria-labelledby="mobile-nav-label">
 						<NavList mobile onNavigate={() => setOpen(false)} />
 					</nav>
 					<SearchTrigger />
@@ -271,6 +285,7 @@ export default function Header() {
 function Brand({ onClick }) {
 	const { route } = useLocation();
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	/** @param {MouseEvent} e */
 	const brandingRedirect = (e) => {
@@ -283,6 +298,7 @@ function Brand({ onClick }) {
 			href="/"
 			class={style.brand}
 			aria-label={translate('headerNav', 'home')}
+			lang={fallbackLang('headerNav', 'home')}
 			onClick={onClick}
 			onContextMenu={brandingRedirect}
 		>
@@ -335,11 +351,14 @@ function NavList({ mobile, onNavigate }) {
 /** @param {{ class?: string }} props */
 function SocialLinks(props) {
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	const { lang } = useLanguageContext();
 	return (
 		<ul
 			class={cx(style.social, props.class)}
 			aria-label={translate('i18n', 'socialLinks')}
+			// The links inside are English (untranslated) names too
+			lang={fallbackLang('i18n', 'socialLinks')}
 		>
 			{SOCIAL_LINKS.map(({ label, href, d }) => (
 				<li key={label}>

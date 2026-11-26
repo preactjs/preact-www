@@ -61,6 +61,29 @@ content-region h1 {
 	width: 100%;
 }
 
+.skipLink {
+	position: absolute;
+	z-index: 600;
+	left: 1rem;
+	top: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.375rem;
+	background: var(--bg);
+	color: var(--text);
+	outline: 2px solid var(--accent-soft);
+	/* Off-screen until focused */
+	transform: translateY(-200vh);
+
+	&:focus {
+		transform: none;
+	}
+}
+
+/* Focused only via the skip link: no ring around the whole article */
+.docsMain:focus {
+	outline: none;
+}
+
 .stickyWarning {
 	margin-bottom: 2rem;
 	border: 1px solid #f2d90066;
@@ -99,6 +122,8 @@ content-region h1 {
  * ------------------------------------------------------------------------- */
 
 .docs {
+	/* For the skip link */
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	min-height: calc(100svh - var(--header-height));

@@ -117,3 +117,37 @@ export function useTranslate() {
 	return (namespace, key) =>
 		translations[namespace][key] || fallback[namespace][key];
 }
+
+/**
+ * The `lang` for an element whose text (or accessible name) is
+ * `translate(namespace, key)`: `'en'` when that's the English fallback on
+ * another locale's page, so it isn't read with that locale's rules.
+ */
+export function useFallbackLang() {
+	const { lang, translations } = useContext(LanguageContext);
+
+	/**
+	 * @param {string} namespace
+	 * @param {string} key
+	 * @returns {'en' | undefined}
+	 */
+	return (namespace, key) =>
+		lang !== 'en' && !translations?.[namespace]?.[key] ? 'en' : undefined;
+}
+
+/**
+ * A hidden label for `aria-labelledby`, for elements whose own `lang` mustn't
+ * change (they contain translated content) but whose name may be an English
+ * fallback.
+ *
+ * @param {{ id: string, namespace: string, k: string }} props
+ */
+export function HiddenLabel({ id, namespace, k }) {
+	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
+	return (
+		<span id={id} hidden lang={fallbackLang(namespace, k)}>
+			{translate(/** @type {any} */ (namespace), /** @type {any} */ (k))}
+		</span>
+	);
+}

@@ -4,7 +4,12 @@ import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
 import DocVersion from '../doc-version/index.jsx';
 import SidebarNav from './sidebar-nav.jsx';
 import { DESKTOP_QUERY, useOverlayToggle } from '../../lib/toggle-overlay.js';
-import { useLanguageContext, useTranslate } from '../../lib/i18n.jsx';
+import {
+	HiddenLabel,
+	useFallbackLang,
+	useLanguageContext,
+	useTranslate
+} from '../../lib/i18n.jsx';
 import { docPages } from '../../route-config.js';
 import style from './style.module.css';
 
@@ -55,6 +60,7 @@ export default function Sidebar() {
 		return () => desktop.removeEventListener('change', onChange);
 	}, [open]);
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	const { translations } = useLanguageContext();
 	const wasOpen = useRef(false);
 
@@ -175,8 +181,15 @@ export default function Sidebar() {
 			// Only ever open on small screens, where it's a full-screen modal
 			role={open ? 'dialog' : undefined}
 			aria-modal={open ? 'true' : undefined}
-			aria-label={open ? translate('i18n', 'mobileGuideButton') : undefined}
+			// Not `aria-label`: the name may be an English fallback, the
+			// content inside is translated
+			aria-labelledby={open ? 'docs-drawer-label' : undefined}
 		>
+			<HiddenLabel
+				id="docs-drawer-label"
+				namespace="i18n"
+				k="mobileGuideButton"
+			/>
 			<button
 				ref={toggle}
 				type="button"
@@ -192,15 +205,18 @@ export default function Sidebar() {
 						{translate('i18n', 'closeGuide')}
 					</span>
 				) : (
-					translate('i18n', 'mobileGuideButton')
+					<span lang={fallbackLang('i18n', 'mobileGuideButton')}>
+						{translate('i18n', 'mobileGuideButton')}
+					</span>
 				)}
 			</button>
 			<aside
 				ref={aside}
 				id="docs-sidebar"
 				class={style.sidebar}
-				aria-label={translate('headerNav', 'docs')}
+				aria-labelledby="docs-sidebar-label"
 			>
+				<HiddenLabel id="docs-sidebar-label" namespace="headerNav" k="docs" />
 				<div class={style.sidebarInner}>
 					<DocVersion />
 					<SidebarNav items={navItems} onClick={closeFromLink} />

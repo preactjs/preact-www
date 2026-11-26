@@ -8,7 +8,7 @@ import EditThisPage from '../edit-button/index.jsx';
 import Sidebar from '../sidebar/index.jsx';
 import Footer from '../footer/index.jsx';
 import { docPages, flatDocPages } from '../../route-config.js';
-import { useTranslate } from '../../lib/i18n.jsx';
+import { useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
 import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version/index.jsx';
 import style from './style.module.css';
 
@@ -29,9 +29,24 @@ function GuideLayout() {
 	const { html, meta } = useContent(path);
 	// Same headings as the inline table of contents, which this replaces
 	const tocItems = (meta.toc || []).filter((item) => item.level >= 2);
+	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	return (
 		<div class={style.docs}>
+			{/* Past the sidebar & "On this page" (dozens of links) for keyboard
+			    users; shown when focused */}
+			<a
+				class={style.skipLink}
+				href="#guide-article"
+				lang={fallbackLang('i18n', 'skipToArticle')}
+				onClick={(e) => {
+					e.preventDefault();
+					document.getElementById('guide-article')?.focus();
+				}}
+			>
+				{translate('i18n', 'skipToArticle')}
+			</a>
 			<div class={style.docsInner}>
 				<div class={style.docsSidebar}>
 					<Sidebar />
@@ -39,6 +54,9 @@ function GuideLayout() {
 				{/* Before the article in tab order, shown on its right (`order`) */}
 				<PageToc items={tocItems} />
 				<div
+					id="guide-article"
+					// The skip link's target
+					tabIndex={-1}
 					class={style.docsMain}
 					data-has-page-toc={tocItems.length > 0 || undefined}
 				>
@@ -140,7 +158,10 @@ function OldDocsWarning() {
 			if (
 				el.contains(target) ||
 				!target.closest?.('main') ||
-				target.closest('[role="dialog"]')
+				target.closest('[role="dialog"]') ||
+				// Keyboard focus only: scrolling under a mouse press (e.g. into a
+				// focusable code block) would break the click / text selection
+				!target.matches(':focus-visible')
 			) {
 				return;
 			}

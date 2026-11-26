@@ -300,6 +300,26 @@ export default function Search() {
 						].find((el) => el && isFocusable(el))
 					) ?? null;
 			}
+			// A sidebar control hidden by narrowing (the sidebar is the closed
+			// drawer now): the drawer's toggle
+			if (!target && lastFocused.closest('#docs-sidebar')) {
+				const toggle = document.querySelector('[aria-controls="docs-sidebar"]');
+				target =
+					toggle && isFocusable(toggle)
+						? /** @type {HTMLElement} */ (toggle)
+						: null;
+			}
+			// A link hidden by a layout change, e.g. "On this page" moving inline:
+			// its visible copy
+			const href = lastFocused.getAttribute('href');
+			if (!target && href) {
+				target =
+					/** @type {HTMLElement | undefined} */ (
+						[...document.querySelectorAll('a[href]')].find(
+							(a) => a.getAttribute('href') === href && isFocusable(a)
+						)
+					) ?? null;
+			}
 			if (!target && lastFocused.matches('.DocSearch-Button')) {
 				target =
 					/** @type {HTMLElement | undefined} */ (

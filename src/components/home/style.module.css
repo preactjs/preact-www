@@ -544,6 +544,34 @@
 	}
 }
 
+.playgroundControls {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-top: 0.75rem;
+
+	button {
+		width: 2.75rem;
+		height: 2.75rem;
+		border: 1px solid var(--accent-hover);
+		border-radius: 0.5rem;
+		background: transparent;
+		color: var(--text);
+		font: inherit;
+		font-size: 1.25rem;
+		cursor: pointer;
+
+		&:hover {
+			background: color-mix(in srgb, var(--accent-hover) 20%, transparent);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--accent-soft);
+			outline-offset: 2px;
+		}
+	}
+}
+
 /* --------------------------------- Flavour -------------------------------- */
 
 .flavour {

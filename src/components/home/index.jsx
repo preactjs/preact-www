@@ -805,6 +805,15 @@ const MOVES = {
 	ArrowUp: [0, -STEP],
 	ArrowDown: [0, STEP]
 };
+// On-screen controls move further per press than an arrow key (no repeat)
+const TOUCH_STEP_FACTOR = 5;
+/** @type {{ key: keyof typeof MOVES, label: HomeKey, arrow: string }[]} */
+const PLAYGROUND_CONTROLS = [
+	{ key: 'ArrowLeft', label: 'moveLeft', arrow: '←' },
+	{ key: 'ArrowUp', label: 'moveUp', arrow: '↑' },
+	{ key: 'ArrowDown', label: 'moveDown', arrow: '↓' },
+	{ key: 'ArrowRight', label: 'moveRight', arrow: '→' }
+];
 const PLAYGROUND_START = [
 	{ id: 'hex-1', x: 42, y: 92 },
 	{ id: 'hex-2', x: 88, y: 128 },
@@ -826,12 +835,9 @@ function Playground() {
 	const [selected, setSelected] = useState(PLAYGROUND_START[0].id);
 	const [moved, setMoved] = useState(false);
 
-	/** @param {KeyboardEvent} e */
-	const onKeyDown = (e) => {
-		const move = MOVES[e.key];
-		// Leave shortcuts like Alt+← (history back) alone
-		if (!move || e.altKey || e.ctrlKey || e.metaKey) return;
-		e.preventDefault();
+	/** Moves the selected hexagon, within the board */
+	/** @param {number[]} move */
+	const moveSelected = (move) => {
 		setMoved(true);
 		setHexes((list) =>
 			list.map((h) =>
@@ -846,6 +852,15 @@ function Playground() {
 		);
 	};
 
+	/** @param {KeyboardEvent} e */
+	const onKeyDown = (e) => {
+		const move = MOVES[e.key];
+		// Leave shortcuts like Alt+← (history back) alone
+		if (!move || e.altKey || e.ctrlKey || e.metaKey) return;
+		e.preventDefault();
+		moveSelected(move);
+	};
+
 	/** @param {{ id: string, x: number, y: number }} hex */
 	const describe = ({ id, x, y }) =>
 		t
@@ -855,7 +870,8 @@ function Playground() {
 			.replace('{y}', String(y));
 	const current = hexes.find((h) => h.id === selected);
 
-	// Each hexagon is a tab stop: Tab picks one, the arrow keys move it
+	// Each hexagon is a tab stop: Tab picks one, the arrow keys move it. The
+	// buttons below do the same for touch & pointer users.
 	return (
 		<div
 			role="group"
@@ -916,6 +932,21 @@ function Playground() {
 					</g>
 				))}
 			</svg>
+			<div class={style.playgroundControls}>
+				{PLAYGROUND_CONTROLS.map(({ key, label, arrow }) => (
+					<button
+						key={key}
+						type="button"
+						aria-label={t.text(label)}
+						lang={t.lang(label)}
+						onClick={() =>
+							moveSelected(MOVES[key].map((d) => d * TOUCH_STEP_FACTOR))
+						}
+					>
+						<span aria-hidden="true">{arrow}</span>
+					</button>
+				))}
+			</div>
 		</div>
 	);
 }
