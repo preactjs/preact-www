@@ -115,8 +115,9 @@ function OldDocsWarning() {
 	const { name, version } = useRoute().params;
 	const ref = useRef(/** @type {HTMLDivElement | null} */ (null));
 
-	// It's sticky at the top: keep what the browser scrolls into view (e.g.
-	// a link focused via Shift+Tab, or a #fragment target) clear of it
+	// It's sticky at the top: keep #fragment targets (via the headings'
+	// `scroll-margin-top`) and focused content (e.g. a link reached via
+	// Shift+Tab) clear of it
 	useLayoutEffect(() => {
 		const el = ref.current;
 		if (!el || typeof ResizeObserver == 'undefined') return;
@@ -129,15 +130,28 @@ function OldDocsWarning() {
 			)
 		);
 		observer.observe(el);
-		// Not every browser applies `scroll-padding` when scrolling a focused
-		// element into view (Firefox): move it out from under the warning
+		// Browsers only scroll a focused element into view if it's off-screen:
+		// move it out from under the warning
 		/** @param {FocusEvent} e */
 		const onFocusIn = (e) => {
 			const target = /** @type {Element} */ (e.target);
-			if (el.contains(target)) return;
+			// Only what scrolls under it: not the header, the mobile menu or the
+			// docs drawer (fixed dialogs), which merely sit at the same height
+			if (
+				el.contains(target) ||
+				!target.closest?.('main') ||
+				target.closest('[role="dialog"]')
+			) {
+				return;
+			}
 			const warning = el.getBoundingClientRect();
-			const rect = target.getBoundingClientRect?.();
-			if (rect && rect.top < warning.bottom && rect.bottom > warning.top) {
+			const rect = target.getBoundingClientRect();
+			if (
+				rect.top < warning.bottom &&
+				rect.bottom > warning.top &&
+				rect.left < warning.right &&
+				rect.right > warning.left
+			) {
 				scrollBy({ top: rect.top - warning.bottom - 8 });
 			}
 		};

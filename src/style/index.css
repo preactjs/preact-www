@@ -25,9 +25,6 @@ body {
 
 html {
 	scrollbar-gutter: stable;
-	/* Room for the sticky "old docs" warning (set while it's shown), so
-	   whatever's scrolled into view, e.g. a focused link, isn't behind it */
-	scroll-padding-top: var(--sticky-warning-space, 0px);
 }
 
 ::selection {

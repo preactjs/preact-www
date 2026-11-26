@@ -406,9 +406,9 @@
 	h4,
 	h5,
 	h6 {
-		/* Plus the sticky "old docs" warning's height, via the root's
-		   `scroll-padding-top` */
-		scroll-margin-top: 1.5rem;
+		/* Plus the sticky "old docs" warning's height while it's shown (not
+		   a root `scroll-padding`: that'd also scroll the header's controls) */
+		scroll-margin-top: calc(1.5rem + var(--sticky-warning-space, 0px));
 
 		a.fragment-link {
 			display: none;
