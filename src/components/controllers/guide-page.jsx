@@ -99,6 +99,7 @@ function Breadcrumb() {
  */
 function PageToc({ items }) {
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 	// A plain column: the <nav> inside is the landmark (and there's none,
 	// rather than an empty one, on pages without headings)
 	if (items.length === 0) return <div class={style.docsToc} />;
@@ -106,8 +107,14 @@ function PageToc({ items }) {
 	return (
 		<div class={style.docsToc}>
 			<div class={style.tocInner}>
-				<p class={style.tocLabel}>{translate('i18n', 'onThisPage')}</p>
-				<nav aria-label={translate('i18n', 'onThisPage')}>
+				<p
+					id="page-toc-label"
+					class={style.tocLabel}
+					lang={fallbackLang('i18n', 'onThisPage')}
+				>
+					{translate('i18n', 'onThisPage')}
+				</p>
+				<nav aria-labelledby="page-toc-label">
 					{items.map(({ id, text, level }, i) => (
 						<a
 							// Headings (and so ids) can repeat on a page
@@ -136,12 +143,14 @@ function OldDocsWarning() {
 		const el = ref.current;
 		if (!el || typeof ResizeObserver == 'undefined') return;
 		const root = document.documentElement;
-		const observer = new ResizeObserver(() =>
+		const observer = new ResizeObserver(() => {
 			root.style.setProperty(
 				'--sticky-warning-space',
 				`${el.getBoundingClientRect().height + 8}px`
-			)
-		);
+			);
+			// Only sticky once headings make room for it (not without JS)
+			el.setAttribute('data-sticky', '');
+		});
 		observer.observe(el);
 		// Browsers only scroll a focused element into view if it's off-screen:
 		// move it out from under the warning

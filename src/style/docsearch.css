@@ -40,6 +40,11 @@
 			center / contain no-repeat;
 		mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
 			center / contain no-repeat;
+
+		@media (forced-colors: active) {
+			forced-color-adjust: none;
+			background-color: ButtonText;
+		}
 	}
 
 	&:hover,

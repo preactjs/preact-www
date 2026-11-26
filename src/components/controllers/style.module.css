@@ -91,9 +91,13 @@ content-region h1 {
 	padding: 0.75rem 1rem;
 	color: var(--text);
 	font-size: 0.9rem;
-	position: sticky;
-	top: 0;
+	position: relative;
 	z-index: 100; /* Else code blocks would layer on top */
+
+	&[data-sticky] {
+		position: sticky;
+		top: 0;
+	}
 
 	a {
 		font-weight: bold;

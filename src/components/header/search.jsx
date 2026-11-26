@@ -285,9 +285,6 @@ export default function Search() {
 			if (!focusLost || !lastFocused) return;
 
 			let target = isFocusable(lastFocused) ? lastFocused : null;
-			// A search button that's since been swapped out (the placeholder) or
-			// hidden by a resize (the menu's when widening, the header's when
-			// narrowing): use the visible one, or else the menu button
 			// The docs drawer's toggle, hidden by widening past its breakpoint: the
 			// current page's link in the now regular sidebar, else its version select
 			if (!target && lastFocused.matches('[aria-controls="docs-sidebar"]')) {
@@ -320,6 +317,9 @@ export default function Search() {
 						)
 					) ?? null;
 			}
+			// A search button that's since been swapped out (the placeholder) or
+			// hidden by a resize (the menu's when widening, the header's when
+			// narrowing): use the visible one, or else the menu button
 			if (!target && lastFocused.matches('.DocSearch-Button')) {
 				target =
 					/** @type {HTMLElement | undefined} */ (
@@ -330,7 +330,26 @@ export default function Search() {
 						].find(isFocusable)
 					) ?? null;
 			}
-			target?.focus({ preventScroll: true });
+			// The menu button, hidden by widening: the first header link, like
+			// the header does when the closed menu's button gets hidden
+			if (
+				!target &&
+				lastFocused.matches('button[aria-controls="mobile-navigation"]')
+			) {
+				target =
+					/** @type {HTMLElement | undefined} */ (
+						[...document.querySelectorAll('header nav a[href]')].find(
+							isFocusable
+						)
+					) ?? null;
+			}
+			if (!target) return;
+			target.focus({ preventScroll: true });
+			// A replacement can be anywhere, e.g. the inline contents far above
+			const rect = target.getBoundingClientRect();
+			if (rect.bottom < 0 || rect.top > innerHeight) {
+				target.scrollIntoView({ block: 'center' });
+			}
 		};
 
 		/** @param {Node} n */

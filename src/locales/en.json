@@ -155,7 +155,7 @@
 		"buildEmbed": "It's also ideal for building embeddable apps and interactive UIs in places where other libraries struggle.",
 		"showPlayground": "Show the hexagon playground",
 		"playgroundTitle": "Start building now. Differently",
-		"playgroundText": "Select a hexagon and move it around with the keyboard.",
+		"playgroundText": "Select a hexagon and move it around with the arrow keys or the buttons below.",
 		"pauseAnimation": "Pause animation",
 		"playgroundLabel": "Hexagon playground. Tab to a hexagon, then use the arrow keys or the buttons below it to move it",
 		"hexagonLabel": "{id} hexagon, at {x}, {y}",
