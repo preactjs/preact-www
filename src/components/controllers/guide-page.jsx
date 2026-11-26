@@ -8,7 +8,11 @@ import EditThisPage from '../edit-button/index.jsx';
 import Sidebar from '../sidebar/index.jsx';
 import Footer from '../footer/index.jsx';
 import { docPages, flatDocPages } from '../../route-config.js';
-import { useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
+import {
+	useFallbackLang,
+	useLanguageContext,
+	useTranslate
+} from '../../lib/i18n.jsx';
 import { LATEST_MAJOR, PREVIEW_MAJOR } from '../doc-version/index.jsx';
 import style from './style.module.css';
 
@@ -30,6 +34,11 @@ function GuideLayout() {
 	const tocItems = (meta.toc || []).filter((item) => item.level >= 2);
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
+	const { lang } = useLanguageContext();
+	const contentLang =
+		lang !== 'en' && !(meta.translationExists && meta.translationEnabled)
+			? 'en'
+			: undefined;
 
 	return (
 		<div class={style.docs}>
@@ -49,7 +58,7 @@ function GuideLayout() {
 					<Sidebar />
 				</div>
 				{/* Before the article in tab order, shown on its right (`order`) */}
-				<PageToc items={tocItems} />
+				<PageToc items={tocItems} lang={contentLang} />
 				<div
 					id="guide-article"
 					tabIndex={-1}
@@ -95,9 +104,10 @@ function Breadcrumb() {
 /**
  * "On this page" navigation, built from the page's h2 and deeper headings.
  *
- * @param {{ items: import('../../types.d.ts').TableOfContents[] }} props
+ * @param {{ items: import('../../types.d.ts').TableOfContents[], lang?: string }} props
+ *   `lang`: the article's, when it's the English fallback
  */
-function PageToc({ items }) {
+function PageToc({ items, lang }) {
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
 	// A plain column: the <nav> inside is the landmark (and there's none,
@@ -114,7 +124,7 @@ function PageToc({ items }) {
 				>
 					{translate('i18n', 'onThisPage')}
 				</p>
-				<nav aria-labelledby="page-toc-label">
+				<nav aria-labelledby="page-toc-label" lang={lang}>
 					{items.map(({ id, text, level }, i) => (
 						<a
 							// Headings (and so ids) can repeat on a page
@@ -148,8 +158,21 @@ function OldDocsWarning() {
 				'--sticky-warning-space',
 				`${el.getBoundingClientRect().height + 8}px`
 			);
+			if (el.hasAttribute('data-sticky')) return;
 			// Only sticky once headings make room for it (not without JS)
 			el.setAttribute('data-sticky', '');
+			// The browser may have scrolled to the #fragment before that
+			let id = location.hash.slice(1);
+			try {
+				id = decodeURIComponent(id);
+			} catch {}
+			const target = id && document.getElementById(id);
+			if (target) {
+				const rect = target.getBoundingClientRect();
+				if (rect.bottom > 0 && rect.top < el.getBoundingClientRect().bottom) {
+					target.scrollIntoView();
+				}
+			}
 		});
 		observer.observe(el);
 		// Browsers only scroll a focused element into view if it's off-screen:

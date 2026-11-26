@@ -107,7 +107,8 @@ export default function Header() {
 		const desktop = matchMedia(DESKTOP_QUERY);
 		const onChange = () => {
 			// Noted now: browsers blur it (to <body>) once it's hidden, and only
-			// after the next frame's style update, so check after that
+			// after the next frame's style update, so check after that (and once
+			// more later, in case that frame came late)
 			const active = document.activeElement;
 			const check = () => {
 				const root = inner.current;
@@ -129,6 +130,7 @@ export default function Header() {
 				}
 			};
 			requestAnimationFrame(() => setTimeout(check));
+			setTimeout(check, 300);
 		};
 		desktop.addEventListener('change', onChange);
 		return () => desktop.removeEventListener('change', onChange);

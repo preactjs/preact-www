@@ -46,8 +46,9 @@ html .root {
 		margin: 0 auto 1rem;
 		opacity: 0.6;
 		transition: all 250ms ease;
-		/* Invert based on luminosity (the site is dark-only) */
-		filter: invert(0.862745) hue-rotate(180deg) grayscale(1);
+		/* Invert based on luminosity (the site is dark-only): white turns
+		   into the page background, --bg (#16171d, 1 - 22/255) */
+		filter: invert(0.913) hue-rotate(180deg) grayscale(1);
 	}
 }
 

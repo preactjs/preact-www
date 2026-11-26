@@ -330,17 +330,16 @@ export default function Search() {
 						].find(isFocusable)
 					) ?? null;
 			}
-			// The menu button, hidden by widening: the first header link, like
-			// the header does when the closed menu's button gets hidden
-			if (
-				!target &&
-				lastFocused.matches('button[aria-controls="mobile-navigation"]')
-			) {
+			// A header control hidden by a resize, like the header does with the
+			// menu closed: the menu button when narrowing, else the first link
+			if (!target && lastFocused.closest('header')) {
 				target =
 					/** @type {HTMLElement | undefined} */ (
-						[...document.querySelectorAll('header nav a[href]')].find(
-							isFocusable
-						)
+						[
+							...document.querySelectorAll(
+								'header button[aria-controls="mobile-navigation"], header nav a[href]'
+							)
+						].find(isFocusable)
 					) ?? null;
 			}
 			if (!target) return;
