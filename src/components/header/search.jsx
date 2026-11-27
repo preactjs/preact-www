@@ -2,6 +2,8 @@ import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { ErrorBoundary, useLocation } from 'preact-iso';
 import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
+import { hasInputSince } from '../../lib/reader-input.js';
+import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 import config from '../../config.json' with { type: 'json' };
 
@@ -145,6 +147,20 @@ function goToHit(url, route) {
 	}
 }
 
+/**
+ * Keeps an explicit `?lang=` (e.g. a shared link's), which otherwise only
+ * lasts until the next full page load, e.g. when a hit opens in a new tab
+ *
+ * @param {string} url
+ * @param {string} lang
+ */
+function withLang(url, lang) {
+	if (!new URLSearchParams(location.search).has('lang')) return url;
+	const target = new URL(url, location.origin);
+	target.searchParams.set('lang', lang);
+	return target.pathname + target.search + target.hash;
+}
+
 /** @param {string} path */
 const withoutSlash = (path) => path.replace(/(.)\/$/, '$1');
 
@@ -159,8 +175,6 @@ const OPEN_EVENT = 'docsearch:open';
 const CANCEL_EVENT = 'docsearch:cancel';
 /** A hit was selected: e.g. the mobile menu it was opened from closes */
 export const HIT_EVENT = 'docsearch:hit';
-
-const USER_INPUT = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
 
 /**
  * Cancels an open requested before DocSearch finished loading, e.g. as the
@@ -212,6 +226,15 @@ export default function Search() {
 	const { route } = useLocation();
 	const routeRef = useRef(route);
 	routeRef.current = route;
+	const { lang } = useLanguageContext();
+	const langRef = useRef(lang);
+	langRef.current = lang;
+	/** @param {string} url */
+	const openHitInNewTab = (url) =>
+		window.open(withLang(url, langRef.current), '_blank', 'noopener');
+	/** @param {string} url */
+	const openHit = (url) =>
+		goToHit(withLang(url, langRef.current), routeRef.current);
 
 	// The <loading-bar> is sat alongside the router & has it's state controlled by it,
 	// so while we could create a new context to be able to set it here, direct DOM
@@ -235,24 +258,23 @@ export default function Search() {
 						indexName={config.docsearch.indexName}
 						appId={config.docsearch.appId}
 						transformItems={transformItems}
-						// Enter on a hit
+						// Enter on a hit (with Cmd/Ctrl or Shift: in a new tab or window)
 						navigator={{
-							navigate: ({ itemUrl }) => goToHit(itemUrl, routeRef.current)
+							navigate: ({ itemUrl }) => openHit(itemUrl),
+							navigateNewTab: ({ itemUrl }) => openHitInNewTab(itemUrl),
+							navigateNewWindow: ({ itemUrl }) => openHitInNewTab(itemUrl)
 						}}
 						// A link without `href`: hits are listbox options, which mustn't
 						// contain (focusable) interactive elements
 						hitComponent={({ hit, children }) => (
 							<a
 								onClick={(e) => {
-									if (e.metaKey || e.ctrlKey || e.shiftKey) {
-										window.open(hit.url, '_blank', 'noopener');
-									} else {
-										goToHit(hit.url, routeRef.current);
-									}
+									if (e.metaKey || e.ctrlKey || e.shiftKey)
+										openHitInNewTab(hit.url);
+									else openHit(hit.url);
 								}}
 								onAuxClick={(e) => {
-									if (e.button === 1)
-										window.open(hit.url, '_blank', 'noopener');
+									if (e.button === 1) openHitInNewTab(hit.url);
 								}}
 							>
 								{children}
@@ -442,20 +464,13 @@ export default function Search() {
 		 */
 		const focusHit = (hit) => {
 			restoreFocus();
-			let cancelled = false;
-			const cancel = () => (cancelled = true);
-			for (const type of USER_INPUT) {
-				addEventListener(type, cancel, { capture: true, passive: true });
-			}
-			const stop = () => {
-				for (const type of USER_INPUT) {
-					removeEventListener(type, cancel, { capture: true });
-				}
-			};
-			const start = Date.now();
+			const start = performance.now();
 			const attempt = () => {
-				if (cancelled || withoutSlash(location.pathname) !== hit.path) {
-					return stop();
+				if (
+					hasInputSince(start) ||
+					withoutSlash(location.pathname) !== hit.path
+				) {
+					return;
 				}
 				const title = pageTitle();
 				const region = document.querySelector('content-region');
@@ -468,11 +483,9 @@ export default function Search() {
 					(!region ||
 						withoutSlash(region.getAttribute('name') || '') === hit.path);
 				if (!ready) {
-					if (Date.now() - start < 60_000) setTimeout(attempt, 50);
-					else stop();
+					if (performance.now() - start < 60_000) setTimeout(attempt, 50);
 					return;
 				}
-				stop();
 				const heading = hit.id && document.getElementById(hit.id);
 				const el = heading instanceof HTMLElement ? heading : title;
 				if (!(el instanceof HTMLElement)) return;

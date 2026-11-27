@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from 'preact/hooks';
 import { Router, Route, useLocation } from 'preact-iso';
 import { lazy } from '../lib/lazy.js';
+import { useNavigationTime } from '../lib/reader-input.js';
 import { Page, pages } from './controllers/page.jsx';
 import { GuidePage } from './controllers/guide-page.jsx';
 import { NotFound } from './controllers/not-found.jsx';
@@ -56,6 +57,7 @@ const genericRoutes = pages.map((route) => (
 
 export default function Routes() {
 	const [loading, setLoading] = useState(false);
+	useNavigationTime();
 	return (
 		<main>
 			<loading-bar showing={loading} />

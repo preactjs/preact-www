@@ -84,7 +84,13 @@ marked.use({
 
 			// Called for page titles too, so duplicate numbering matches the ToC
 			const { id, alias } = headingId(text);
-			text = stripHeadingId(text);
+			const stripped = stripHeadingId(text);
+			if (stripped !== text && !text.includes(`{#${id}}`)) {
+				console.warn(
+					`Explicit heading id in "${text}" is taken by an earlier heading, using #${id}`
+				);
+			}
+			text = stripped;
 
 			// No need to add links for page titles
 			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;
