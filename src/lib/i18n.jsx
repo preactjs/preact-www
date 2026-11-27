@@ -200,16 +200,13 @@ export function useFallbackLang() {
 }
 
 /**
- * The `lang` of a markdown page's content: English when it's the fallback for
- * an untranslated page.
+ * The `lang` of a markdown page's content: that of the content itself, not of
+ * the locale, as the previous content stays while a translation loads
  *
  * @param {import('../types.d.ts').ContentMetaData} meta
  */
 export function useContentLang(meta) {
-	const { lang } = useContext(LanguageContext);
-	return meta.translationExists && meta.translationEnabled
-		? langTag(lang)
-		: 'en';
+	return langTag(meta.locale || 'en');
 }
 
 /**

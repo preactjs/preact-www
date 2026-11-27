@@ -48,6 +48,8 @@ export interface TableOfContents {
 export interface ContentMetaData extends FrontMatterMeta {
 	translationExists: boolean;
 	translationEnabled: boolean;
+	/** The language of this content (English when it's the fallback) */
+	locale: Locale;
 
 	// Guide data
 	toc?: TableOfContents[];

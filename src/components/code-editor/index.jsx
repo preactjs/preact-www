@@ -72,6 +72,8 @@ export default function CodeEditor(props) {
 		routeHasChanged.current = false;
 
 		if (editor.current) {
+			// Replacing the same text would only move the cursor to the start
+			if (editor.current.state.doc.toString() === props.value) return;
 			editor.current.dispatch({
 				changes: {
 					from: 0,
@@ -111,7 +113,7 @@ export default function CodeEditor(props) {
 			state,
 			parent: editorParent.current
 		});
-	}, [props.value]);
+	}, [props.value, props.slug]);
 
 	useEffect(
 		() => () => {

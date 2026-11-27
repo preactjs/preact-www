@@ -144,7 +144,9 @@ function goToHit(url, route) {
 	// Only `?lang=` (see `withLang`) is added, other parameters are kept
 	const params = new URLSearchParams(location.search);
 	const lang = new URLSearchParams(search).get('lang');
-	if (lang && params.get('lang') !== lang) {
+	// `ko` being the BCP 47 tag of `kr`
+	const locale = (l) => (l === 'ko' ? 'kr' : l);
+	if (lang && locale(params.get('lang')) !== locale(lang)) {
 		params.set('lang', lang);
 		route(`${location.pathname}?${params}${hash}`);
 	} else if (hash && hash !== location.hash) location.hash = hash;
@@ -464,20 +466,20 @@ export default function Search() {
 		 * is missing (e.g. a translation without the English anchor), so the
 		 * next Tab continues from there. Meanwhile focus is restored as usual:
 		 * the page may take a while to load, and the user may do something else
-		 * in the meantime (which cancels this).
+		 * in the meantime (which cancels this). Content replaced later on (e.g.
+		 * by a translation that was still loading) gets the focus back.
 		 *
 		 * @param {NonNullable<typeof pendingHit>} hit
 		 */
 		const focusHit = (hit) => {
 			restoreFocus();
 			const start = performance.now();
+			const cancelled = () =>
+				hasInputSince(start) ||
+				withoutSlash(location.pathname) !== hit.path ||
+				performance.now() - start > 60_000;
 			const attempt = () => {
-				if (
-					hasInputSince(start) ||
-					withoutSlash(location.pathname) !== hit.path
-				) {
-					return;
-				}
+				if (cancelled()) return;
 				const title = pageTitle();
 				const region = document.querySelector('content-region');
 				// Rendered (not the previous page's content, kept while the next
@@ -489,7 +491,7 @@ export default function Search() {
 					(!region ||
 						withoutSlash(region.getAttribute('name') || '') === hit.path);
 				if (!ready) {
-					if (performance.now() - start < 60_000) setTimeout(attempt, 50);
+					setTimeout(attempt, 50);
 					return;
 				}
 				const heading = hit.id && document.getElementById(hit.id);
@@ -504,6 +506,13 @@ export default function Search() {
 				el.focus({ preventScroll: true });
 				if (el === heading) el.scrollIntoView();
 				else scrollTo(0, 0);
+				const watch = () => {
+					if (cancelled()) return;
+					const lost = [document.body, null].includes(document.activeElement);
+					if (!el.isConnected && lost) attempt();
+					else setTimeout(watch, 100);
+				};
+				setTimeout(watch, 100);
 			};
 			attempt();
 		};

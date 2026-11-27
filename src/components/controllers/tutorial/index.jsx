@@ -129,8 +129,9 @@ export function Tutorial({ path, html, meta }) {
 
 	const help = () => {
 		if (meta.tutorial?.final) {
-			if (!/[?&]solved\b/.test(url)) {
-				route(url + (url.includes('?') ? '&' : '?') + 'solved', true);
+			const { pathname, search, hash } = location;
+			if (!new URLSearchParams(search).has('solved')) {
+				route(`${pathname}${search ? `${search}&` : '?'}solved${hash}`, true);
 			}
 			setEditorCode(meta.tutorial?.final);
 			resetEditor();
