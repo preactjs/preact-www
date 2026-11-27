@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
 import DocVersion from '../doc-version/index.jsx';
+import { HIT_EVENT } from '../header/search.jsx';
 import SidebarNav from './sidebar-nav.jsx';
 import { DESKTOP_QUERY, useOverlayToggle } from '../../lib/toggle-overlay.js';
 import { HiddenLabel, useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
@@ -118,6 +119,14 @@ export default function Sidebar() {
 			root.style.overflow = overflow;
 			restore();
 		};
+	}, [open]);
+
+	// So does picking a search result (on this page, too)
+	useEffect(() => {
+		if (!open) return;
+		const close = () => setOpen(false);
+		addEventListener(HIT_EVENT, close);
+		return () => removeEventListener(HIT_EVENT, close);
 	}, [open]);
 
 	// Any other navigation (e.g. browser Back) closes it too, rather than

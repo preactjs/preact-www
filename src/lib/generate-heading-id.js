@@ -23,6 +23,15 @@ export function stripHeadingId(text) {
 }
 
 /**
+ * @param {string} text
+ * @returns {string} For a heading with an explicit `{#id}`, the id its text
+ * would get, kept as an alias so existing links to it still work
+ */
+export function headingAliasId(text) {
+	return EXPLICIT_ID.test(text) ? generateHeadingId(stripHeadingId(text)) : '';
+}
+
+/**
  * Like `generateHeadingId`, but for all headings of one document: repeated
  * headings get a numeric suffix (`#fragment`, `#fragment-1`, ...) so every
  * id, and the ToC links pointing at them, stays unique.

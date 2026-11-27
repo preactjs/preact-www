@@ -8,6 +8,7 @@ import { textToBase64 } from '../../src/components/controllers/repl/query-encode
 import { parseFrontmatter } from '../../src/lib/frontmatter.js';
 import {
 	createHeadingIdGenerator,
+	headingAliasId,
 	stripHeadingId
 } from '../../src/lib/generate-heading-id.js';
 
@@ -84,13 +85,18 @@ marked.use({
 
 			// Called for page titles too, so duplicate numbering matches the ToC
 			const id = headingId(text);
+			const alias = headingAliasId(text);
 			text = stripHeadingId(text);
 
 			// No need to add links for page titles
 			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;
 
 			return `
-				<h${depth} id="${id}">
+				<h${depth} id="${id}">${
+					alias && alias !== id
+						? `<span id="${alias}" class="heading-alias"></span>`
+						: ''
+				}
 					<a class="fragment-link" href="#${id}">
 						<svg width="16" height="16" viewBox="0 0 24 24" aria-label="Link to: ${text} (#${id})">
 							<use href="#link" />

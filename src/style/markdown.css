@@ -410,6 +410,10 @@
 		   a root `scroll-padding`: that'd also scroll the header's controls) */
 		scroll-margin-top: calc(1.5rem + var(--sticky-warning-space, 0px));
 
+		.heading-alias {
+			scroll-margin-top: inherit;
+		}
+
 		a.fragment-link {
 			display: none;
 		}

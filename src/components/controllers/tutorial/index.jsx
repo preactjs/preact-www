@@ -39,9 +39,9 @@ let resultCleanups, realmCleanups;
  */
 
 /**
- * @param {{ html: string, meta: TutorialMeta }} props
+ * @param {{ path: string, html: string, meta: TutorialMeta }} props
  */
-export function Tutorial({ html, meta }) {
+export function Tutorial({ path, html, meta }) {
 	const { route, url } = useLocation();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
@@ -191,6 +191,7 @@ export function Tutorial({ html, meta }) {
 					>
 						<div class={style.tutorialWindow} ref={content}>
 							<MarkdownRegion
+								path={path}
 								html={html}
 								meta={meta}
 								components={TUTORIAL_COMPONENTS}

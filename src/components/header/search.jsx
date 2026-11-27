@@ -110,10 +110,10 @@ const transformItems = (items) =>
 	});
 
 /**
- * The heading a selected hit leads to, focused once the modal has closed and
- * it's rendered (`stale`: the element it mustn't be, from the previous page)
+ * A selected hit, whose heading is focused once its page has rendered
+ * (`staleTitle`: the previous page's title, until it's replaced)
  *
- * @type {{ path: string, id: string, stale: Element | null } | null}
+ * @type {{ path: string, id: string, samePage: boolean, staleTitle: Element | null } | null}
  */
 let pendingHit = null;
 
@@ -125,25 +125,30 @@ let pendingHit = null;
  */
 function goToHit(url, route) {
 	const { pathname, search, hash } = new URL(url, location.origin);
-	const path = pathname.replace(/(.)\/$/, '$1');
+	const path = withoutSlash(pathname);
 	let id = hash.slice(1);
 	try {
 		id = decodeURIComponent(id);
 	} catch {}
-	const samePage = path === location.pathname;
+	const samePage = path === withoutSlash(location.pathname);
 	pendingHit = {
 		path,
 		id,
-		stale: samePage ? null : findHitTarget(id)
+		samePage,
+		staleTitle: samePage ? null : pageTitle()
 	};
 	dispatchEvent(new Event(HIT_EVENT));
 	if (!samePage) route(path + search + hash);
-	else if (hash !== location.hash) location.hash = hash;
+	else if (hash && hash !== location.hash) location.hash = hash;
+	else if (!hash && location.hash) {
+		history.pushState(null, '', location.pathname + location.search);
+	}
 }
 
-/** @param {string} id */
-const findHitTarget = (id) =>
-	id ? document.getElementById(id) : document.querySelector('main h1');
+/** @param {string} path */
+const withoutSlash = (path) => path.replace(/(.)\/$/, '$1');
+
+const pageTitle = () => document.querySelector('main h1');
 
 // The header renders a single DocSearch instance (it registers global
 // keyboard shortcuts, so more than one would open several modals at once).
@@ -424,33 +429,59 @@ export default function Search() {
 		};
 
 		/**
-		 * Moves focus (and the page) to a selected hit's heading, so the next
-		 * Tab continues from there, once the page has rendered it and nothing
-		 * (the closing mobile menu) makes the page inert or restores its scroll
+		 * Moves focus to a selected hit's heading (scrolled into view), or its
+		 * page's title if that's what it is or the heading is missing (e.g. a
+		 * translation without the English anchor), so the next Tab continues
+		 * from there. Meanwhile focus is restored as usual: the page may take
+		 * a while to load, and the user may do something else in the meantime.
 		 *
 		 * @param {NonNullable<typeof pendingHit>} hit
-		 * @param {number} [tries]
 		 */
-		const focusHit = (hit, tries = 0) => {
-			const el = findHitTarget(hit.id);
-			if (
-				location.pathname !== hit.path ||
-				!(el instanceof HTMLElement) ||
-				el === hit.stale ||
-				el.closest('[inert]')
-			) {
-				if (tries < 100) setTimeout(() => focusHit(hit, tries + 1), 50);
-				else restoreFocus();
-				return;
-			}
-			if (!el.hasAttribute('tabindex')) {
-				el.setAttribute('tabindex', '-1');
-				el.addEventListener('blur', () => el.removeAttribute('tabindex'), {
-					once: true
-				});
-			}
-			el.focus({ preventScroll: true });
-			el.scrollIntoView();
+		const focusHit = (hit) => {
+			restoreFocus();
+			let cancelled = false;
+			const cancel = () => (cancelled = true);
+			addEventListener('pointerdown', cancel, { capture: true, once: true });
+			addEventListener('keydown', cancel, { capture: true, once: true });
+			const stop = () => {
+				removeEventListener('pointerdown', cancel, { capture: true });
+				removeEventListener('keydown', cancel, { capture: true });
+			};
+			const start = Date.now();
+			const attempt = () => {
+				if (cancelled || withoutSlash(location.pathname) !== hit.path) {
+					return stop();
+				}
+				const title = pageTitle();
+				const region = document.querySelector('content-region');
+				// Rendered (not the previous page's content, kept while the next
+				// one loads), and not hidden by the closing mobile menu or drawer
+				const ready =
+					title &&
+					title !== hit.staleTitle &&
+					!title.closest('[inert]') &&
+					(!region ||
+						withoutSlash(region.getAttribute('name') || '') === hit.path);
+				if (!ready) {
+					if (Date.now() - start < 60_000) setTimeout(attempt, 50);
+					else stop();
+					return;
+				}
+				stop();
+				const heading = hit.id && document.getElementById(hit.id);
+				const el = heading instanceof HTMLElement ? heading : title;
+				if (!(el instanceof HTMLElement)) return;
+				if (!el.hasAttribute('tabindex')) {
+					el.setAttribute('tabindex', '-1');
+					el.addEventListener('blur', () => el.removeAttribute('tabindex'), {
+						once: true
+					});
+				}
+				el.focus({ preventScroll: true });
+				if (el === heading) el.scrollIntoView();
+				else if (hit.samePage && !hit.id) scrollTo(0, 0);
+			};
+			attempt();
 		};
 
 		/** @param {Node} n */

@@ -39,7 +39,7 @@ function TutorialLayout() {
 				}
 			`}</style>
 			<SolutionProvider>
-				<Tutorial html={html} meta={meta} />
+				<Tutorial path={path} html={html} meta={meta} />
 			</SolutionProvider>
 		</div>
 	);

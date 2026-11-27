@@ -66,7 +66,12 @@ function GuideLayout() {
 						<Breadcrumb />
 						<EditThisPage meta={meta} inline />
 					</div>
-					<MarkdownRegion html={html} meta={meta} showEditLink={false} />
+					<MarkdownRegion
+						path={path}
+						html={html}
+						meta={meta}
+						showEditLink={false}
+					/>
 				</div>
 			</div>
 			<Footer />
