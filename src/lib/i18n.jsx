@@ -18,10 +18,12 @@ const translationURLs = import.meta.glob('../locales/!(en)*.json', {
 
 /**
  * @typedef LanguageContext
- * @property {Locale} lang
+ * @property {Locale} lang The rendered language
+ * @property {Locale} selectedLang The language being switched to, if any (see
+ * `switchTo`), else `lang`
  * @property {(lang: Locale) => void} setLang
- * @property {boolean} fromQuery Whether `lang` comes from a `?lang=` (only kept
- * until the next full page load, unlike a picked language)
+ * @property {Locale | ''} queryLang The language from `?lang=`, until one is
+ * picked (it's only kept until the next full page load, unlike a picked one)
  * @property {typeof englishTranslations} translations
  * @property {typeof englishTranslations} fallback
  */
@@ -61,8 +63,8 @@ export function LanguageProvider({ children }) {
 
 	// We only prerender in English
 	const [lang, setLang] = useState('en');
-	const [fromQuery, setFromQuery] = useState(false);
-	const picked = useRef(false);
+	const [selectedLang, setSelectedLang] = useState('en');
+	const [queryLang, setQueryLang] = useState(/** @type {Locale | ''} */ (''));
 
 	const translations = useResource(() => {
 		if (lang == 'en') return englishTranslations;
@@ -78,45 +80,53 @@ export function LanguageProvider({ children }) {
 		return fetch(url, {}).then((r) => r.json());
 	}, [lang]);
 
+	// Hydrating the prerendered English page with translated props would keep
+	// its English attributes (e.g. `lang`), so any language switch waits until
+	// it's hydrated: its route and the content it renders have loaded (or the
+	// reader has left it). The latest requested language wins.
+	const hydrated = useRef(/** @type {Promise<unknown>} */ (Promise.resolve()));
+	const wanted = useRef('en');
+	/** @param {Locale} next */
+	const switchTo = (next) => {
+		wanted.current = next;
+		setSelectedLang(next);
+		hydrated.current.then(() => {
+			if (wanted.current !== next) return;
+			setLang(next);
+			document.documentElement.lang = langTag(next);
+		});
+	};
+
 	useEffect(() => {
+		const left = new Promise((resolve) => (leftFirstPage.current = resolve));
+		hydrated.current = routeHydrated
+			.then(() => Promise.race([firstContentLoaded(), left]))
+			// After the render that the content's arrival triggers
+			.then(() => new Promise((resolve) => setTimeout(resolve)));
+
 		// Only a known locale (`ko` being the BCP 47 tag of `kr`, see `langTag`)
 		const fromUrl = query.lang === 'ko' ? 'kr' : query.lang;
-		const queryLang = Object.prototype.hasOwnProperty.call(
+		const validQueryLang = Object.prototype.hasOwnProperty.call(
 			config.locales,
 			fromUrl
 		)
 			? fromUrl
-			: undefined;
+			: '';
 		const userLang =
-			queryLang ||
+			validQueryLang ||
 			localStorageGet('lang') ||
 			getNavigatorLanguage(config.locales) ||
 			'en';
 
-		setFromQuery(!!queryLang);
+		setQueryLang(validQueryLang);
 		if (userLang === 'en') return;
-		// Hydrating the prerendered English page with translated props would
-		// keep its English attributes (e.g. `lang`): switch once it's hydrated,
-		// i.e. its route and the content it renders have loaded (or the reader
-		// has left it), meanwhile loading the translated content
 		prefetchContent(path, userLang);
-		const left = new Promise((resolve) => (leftFirstPage.current = resolve));
-		routeHydrated
-			.then(() => Promise.race([firstContentLoaded(), left]))
-			// After the render that the content's arrival triggers
-			.then(() => new Promise((resolve) => setTimeout(resolve)))
-			.then(() => {
-				if (picked.current) return;
-				setLang(userLang);
-				document.documentElement.lang = langTag(userLang);
-			});
+		switchTo(userLang);
 	}, []);
 
 	const setAndUpdateHtmlAttr = (lang) => {
-		picked.current = true;
 		localStorageSet('lang', lang);
-		setLang(lang);
-		setFromQuery(false);
+		setQueryLang('');
 		// The picked (saved) language wins from now on, also when reloading
 		const params = new URLSearchParams(location.search);
 		if (params.has('lang')) {
@@ -124,15 +134,16 @@ export function LanguageProvider({ children }) {
 			const search = params.toString();
 			route(location.pathname + (search && `?${search}`) + location.hash, true);
 		}
-		document.documentElement.lang = langTag(lang);
+		switchTo(lang);
 	};
 
 	return (
 		<LanguageContext.Provider
 			value={{
 				lang,
+				selectedLang,
 				setLang: setAndUpdateHtmlAttr,
-				fromQuery,
+				queryLang,
 				translations,
 				fallback: englishTranslations
 			}}

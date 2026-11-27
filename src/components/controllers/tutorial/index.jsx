@@ -45,6 +45,9 @@ export function Tutorial({ path, html, meta }) {
 	const { route, url } = useLocation();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
+	// Bumped (on Solve, or when the starter code is translated) to make the
+	// editor take `editorCode`, which it otherwise only does on a new chapter
+	const [editorResets, resetEditor] = useReducer((n) => n + 1, 0);
 	const [error, setError] = useState(null);
 	const [showCodeOverride, toggleCode] = useReducer((s) => !s, true);
 
@@ -63,6 +66,7 @@ export function Tutorial({ path, html, meta }) {
 		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {
 			setEditorCode(meta.tutorial.initial);
 			setRunnerCode(meta.tutorial.initial);
+			resetEditor();
 			solutionCtx.setSolved(false);
 			content.current.scrollTo(0, 0);
 		}
@@ -129,6 +133,7 @@ export function Tutorial({ path, html, meta }) {
 				route(url + (url.includes('?') ? '&' : '?') + 'solved', true);
 			}
 			setEditorCode(meta.tutorial?.final);
+			resetEditor();
 		}
 	};
 
@@ -184,7 +189,7 @@ export function Tutorial({ path, html, meta }) {
 										class={style.code}
 										value={editorCode}
 										error={error}
-										slug={url}
+										slug={`${url}#${editorResets}`}
 										onInput={setEditorCode}
 									/>
 								</div>

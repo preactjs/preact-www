@@ -144,10 +144,10 @@ function goToHit(url, route) {
 	// Only `?lang=` (see `withLang`) is added, other parameters are kept
 	const params = new URLSearchParams(location.search);
 	const lang = new URLSearchParams(search).get('lang');
-	if (lang) params.set('lang', lang);
-	const query = params.toString() && `?${params}`;
-	if (query !== location.search) route(location.pathname + query + hash);
-	else if (hash && hash !== location.hash) location.hash = hash;
+	if (lang && params.get('lang') !== lang) {
+		params.set('lang', lang);
+		route(`${location.pathname}?${params}${hash}`);
+	} else if (hash && hash !== location.hash) location.hash = hash;
 	else if (!hash && location.hash) {
 		history.pushState(null, '', location.pathname + location.search);
 	}
@@ -158,12 +158,12 @@ function goToHit(url, route) {
  * otherwise only lasts until the next full page load, e.g. in a new tab
  *
  * @param {string} url
- * @param {{ lang: string, fromQuery: boolean }} language
+ * @param {string} queryLang See `LanguageContext`
  */
-function withLang(url, { lang, fromQuery }) {
-	if (!fromQuery) return url;
+function withLang(url, queryLang) {
+	if (!queryLang) return url;
 	const target = new URL(url, location.origin);
-	target.searchParams.set('lang', lang);
+	target.searchParams.set('lang', queryLang);
 	return target.pathname + target.search + target.hash;
 }
 
@@ -232,9 +232,9 @@ export default function Search() {
 	const { route } = useLocation();
 	const routeRef = useRef(route);
 	routeRef.current = route;
-	const { lang, fromQuery } = useLanguageContext();
-	const langRef = useRef({ lang, fromQuery });
-	langRef.current = { lang, fromQuery };
+	const { queryLang } = useLanguageContext();
+	const langRef = useRef(queryLang);
+	langRef.current = queryLang;
 	/** @param {string} url */
 	const openHitInNewTab = (url) =>
 		window.open(withLang(url, langRef.current), '_blank', 'noopener');

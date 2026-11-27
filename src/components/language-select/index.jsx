@@ -16,7 +16,8 @@ import style from './style.module.css';
  *   (see `useFocusRescue`)
  */
 export default function LanguageSelect({ class: className, focusFallback }) {
-	const { lang, setLang } = useLanguageContext();
+	// What the reader picked, also while the page waits to switch to it
+	const { selectedLang: lang, setLang } = useLanguageContext();
 	const translate = useTranslate();
 	const fallbackLang = useFallbackLang();
 	const onSelect = useCallback((e) => setLang(e.target.value), [setLang]);
