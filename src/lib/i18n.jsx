@@ -1,9 +1,11 @@
 import { createContext } from 'preact';
-import { useContext, useEffect, useState } from 'preact/hooks';
+import { useContext, useEffect, useRef, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage.js';
 import { useResource } from './use-resource.js';
+import { prefetchContent } from './use-content.js';
+import { routeHydrated } from './route-hydrated.js';
 import config from '../config.json' with { type: 'json' };
 import englishTranslations from '../locales/en.json' with { type: 'json' };
 /** @import { Locale } from '../types.d.ts' */
@@ -18,6 +20,8 @@ const translationURLs = import.meta.glob('../locales/!(en)*.json', {
  * @typedef LanguageContext
  * @property {Locale} lang
  * @property {(lang: Locale) => void} setLang
+ * @property {boolean} fromQuery Whether `lang` comes from a `?lang=` (only kept
+ * until the next full page load, unlike a picked language)
  * @property {typeof englishTranslations} translations
  * @property {typeof englishTranslations} fallback
  */
@@ -47,10 +51,12 @@ function getNavigatorLanguage(available) {
 }
 
 export function LanguageProvider({ children }) {
-	const { query } = useLocation();
+	const { query, route } = useLocation();
 
 	// We only prerender in English
 	const [lang, setLang] = useState('en');
+	const [fromQuery, setFromQuery] = useState(false);
+	const picked = useRef(false);
 
 	const translations = useResource(() => {
 		if (lang == 'en') return englishTranslations;
@@ -73,13 +79,35 @@ export function LanguageProvider({ children }) {
 			getNavigatorLanguage(config.locales) ||
 			'en';
 
-		setLang(userLang);
-		document.documentElement.lang = langTag(userLang);
+		setFromQuery(!!query.lang);
+		if (userLang === 'en') return;
+		// Hydrating the prerendered English page with translated props would
+		// keep its English attributes (e.g. `lang`): switch once it's hydrated,
+		// i.e. its route and English content have rendered, meanwhile loading
+		// the translated content
+		prefetchContent(location.pathname, userLang);
+		Promise.all([routeHydrated, prefetchContent(location.pathname, 'en')])
+			// After the render that the content's arrival triggers
+			.then(() => new Promise((resolve) => setTimeout(resolve)))
+			.then(() => {
+				if (picked.current) return;
+				setLang(userLang);
+				document.documentElement.lang = langTag(userLang);
+			});
 	}, []);
 
 	const setAndUpdateHtmlAttr = (lang) => {
+		picked.current = true;
 		localStorageSet('lang', lang);
 		setLang(lang);
+		setFromQuery(false);
+		// The picked (saved) language wins from now on, also when reloading
+		const params = new URLSearchParams(location.search);
+		if (params.has('lang')) {
+			params.delete('lang');
+			const search = params.toString();
+			route(location.pathname + (search && `?${search}`) + location.hash, true);
+		}
 		document.documentElement.lang = langTag(lang);
 	};
 
@@ -88,6 +116,7 @@ export function LanguageProvider({ children }) {
 			value={{
 				lang,
 				setLang: setAndUpdateHtmlAttr,
+				fromQuery,
 				translations,
 				fallback: englishTranslations
 			}}

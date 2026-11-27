@@ -2,7 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
 import { createTitle } from './page-title.js';
-import { getContent } from './content.js';
+import { getContent, getContentPath } from './content.js';
 import { useLanguageContext } from './i18n.jsx';
 import {
 	useResource,
@@ -31,17 +31,23 @@ export function useContent(path) {
 
 /**
  * @param {string} path
+ * @param {string} [lang] Defaults to the current locale
+ * @returns {Promise<void>} Resolves once loaded (or failed)
  */
-export function prefetchContent(path) {
+export function prefetchContent(path, lang) {
 	// The locale, from its BCP 47 tag (see `langTag`)
 	const tag = document.documentElement.lang;
-	const lang = tag === 'ko' ? 'kr' : tag;
+	lang ||= tag === 'ko' ? 'kr' : tag;
+	// The home page is a component, without markdown content to fetch
+	if (path === '/' || !manifest[getContentPath(path)]) return Promise.resolve();
 	const fetch = () => getContent(manifest, lang, path);
 
 	const cacheKey = createCacheKey(fetch, [lang, path]);
-	if (CACHE.has(cacheKey)) return;
-
-	setupCacheEntry(fetch, cacheKey);
+	const entry = CACHE.get(cacheKey) || setupCacheEntry(fetch, cacheKey);
+	return entry.promise.then(
+		() => {},
+		() => {}
+	);
 }
 
 /**

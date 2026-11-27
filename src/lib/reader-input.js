@@ -5,12 +5,19 @@ import { useLocation } from 'preact-iso';
 // focus change scheduled for its page (e.g. once its content has loaded)
 // doesn't override what they did in the meantime
 
-let lastInput = -1;
 let navigation = { url: '', at: 0 };
 
-if (typeof addEventListener === 'function') {
+/** @type {{ __readerInput?: number }} */
+const store = typeof window === 'object' ? /** @type {any} */ (window) : {};
+// Normally already recorded by a script in index.html, also before the app
+// has loaded (e.g. scrolling the prerendered page)
+if (
+	store.__readerInput === undefined &&
+	typeof addEventListener === 'function'
+) {
+	store.__readerInput = -1;
 	for (const type of ['pointerdown', 'keydown', 'wheel', 'touchstart']) {
-		addEventListener(type, () => (lastInput = performance.now()), {
+		addEventListener(type, () => (store.__readerInput = performance.now()), {
 			capture: true,
 			passive: true
 		});
@@ -18,7 +25,7 @@ if (typeof addEventListener === 'function') {
 }
 
 /** @param {number} since A `performance.now()` time */
-export const hasInputSince = (since) => lastInput > since;
+export const hasInputSince = (since) => (store.__readerInput ?? -1) > since;
 
 export const hasInputSinceNavigation = () => hasInputSince(navigation.at);
 

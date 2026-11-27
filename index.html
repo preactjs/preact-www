@@ -14,6 +14,13 @@
 		<meta name="twitter:card" content="summary">
 		<link href="https://esm.sh" rel="preconnect" crossorigin="anonymous">
 		<link href="https://www.google-analytics.com" rel="preconnect" crossorigin="anonymous">
+		<script>
+			// Reader input before the app has loaded, see src/lib/reader-input.js
+			window.__readerInput = -1;
+			for (const type of ['pointerdown', 'keydown', 'wheel', 'touchstart']) {
+				addEventListener(type, () => (window.__readerInput = performance.now()), { capture: true, passive: true });
+			}
+		</script>
 	</head>
 	<body>
 		<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

@@ -8,6 +8,7 @@ import { textToBase64 } from '../../src/components/controllers/repl/query-encode
 import { parseFrontmatter } from '../../src/lib/frontmatter.js';
 import {
 	createHeadingIdGenerator,
+	explicitHeadingId,
 	stripHeadingId
 } from '../../src/lib/generate-heading-id.js';
 
@@ -84,13 +85,13 @@ marked.use({
 
 			// Called for page titles too, so duplicate numbering matches the ToC
 			const { id, alias } = headingId(text);
-			const stripped = stripHeadingId(text);
-			if (stripped !== text && !text.includes(`{#${id}}`)) {
+			const explicit = explicitHeadingId(text);
+			if (explicit && explicit !== id) {
 				console.warn(
-					`Explicit heading id in "${text}" is taken by an earlier heading, using #${id}`
+					`Heading id #${explicit} in "${text}" is taken by an earlier heading, using #${id}`
 				);
 			}
-			text = stripped;
+			text = stripHeadingId(text);
 
 			// No need to add links for page titles
 			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;

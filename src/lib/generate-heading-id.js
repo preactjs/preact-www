@@ -16,6 +16,14 @@ const EXPLICIT_ID = /\s*\{#([\w-]+)\}\s*$/;
 
 /**
  * @param {string} text
+ * @returns {string | undefined} The heading's explicit `{#id}`, if any
+ */
+export function explicitHeadingId(text) {
+	return text.match(EXPLICIT_ID)?.[1];
+}
+
+/**
+ * @param {string} text
  * @returns {string} The heading text without an explicit `{#id}`
  */
 export function stripHeadingId(text) {
@@ -44,7 +52,7 @@ export function createHeadingIdGenerator() {
 		return id;
 	};
 	return (text) => {
-		const explicit = text.match(EXPLICIT_ID)?.[1];
+		const explicit = explicitHeadingId(text);
 		const derived = generateHeadingId(stripHeadingId(text));
 		// Text without any id-able characters (e.g. `## ...`) still gets an id
 		const id = unique(explicit || derived || 'section');

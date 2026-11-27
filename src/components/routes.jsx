@@ -1,7 +1,8 @@
-import { useLayoutEffect, useState } from 'preact/hooks';
+import { useLayoutEffect, useRef, useState } from 'preact/hooks';
 import { Router, Route, useLocation } from 'preact-iso';
 import { lazy } from '../lib/lazy.js';
 import { useNavigationTime } from '../lib/reader-input.js';
+import { markRouteHydrated } from '../lib/route-hydrated.js';
 import { Page, pages } from './controllers/page.jsx';
 import { GuidePage } from './controllers/guide-page.jsx';
 import { NotFound } from './controllers/not-found.jsx';
@@ -58,12 +59,23 @@ const genericRoutes = pages.map((route) => (
 export default function Routes() {
 	const [loading, setLoading] = useState(false);
 	useNavigationTime();
+	// The first route is hydrated once rendered, after loading if it suspended
+	const suspended = useRef(false);
+	useLayoutEffect(() => {
+		if (!suspended.current) markRouteHydrated();
+	}, []);
 	return (
 		<main>
 			<loading-bar showing={loading} />
 			<Router
-				onLoadStart={() => setLoading(true)}
-				onLoadEnd={() => setLoading(false)}
+				onLoadStart={() => {
+					suspended.current = true;
+					setLoading(true);
+				}}
+				onLoadEnd={() => {
+					markRouteHydrated();
+					setLoading(false);
+				}}
 				onRouteChange={routeChange}
 			>
 				<Route path="/" component={Home} />

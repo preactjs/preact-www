@@ -148,14 +148,14 @@ function goToHit(url, route) {
 }
 
 /**
- * Keeps an explicit `?lang=` (e.g. a shared link's), which otherwise only
- * lasts until the next full page load, e.g. when a hit opens in a new tab
+ * Keeps a language that came from a `?lang=` (e.g. a shared link's), which
+ * otherwise only lasts until the next full page load, e.g. in a new tab
  *
  * @param {string} url
- * @param {string} lang
+ * @param {{ lang: string, fromQuery: boolean }} language
  */
-function withLang(url, lang) {
-	if (!new URLSearchParams(location.search).has('lang')) return url;
+function withLang(url, { lang, fromQuery }) {
+	if (!fromQuery) return url;
 	const target = new URL(url, location.origin);
 	target.searchParams.set('lang', lang);
 	return target.pathname + target.search + target.hash;
@@ -226,9 +226,9 @@ export default function Search() {
 	const { route } = useLocation();
 	const routeRef = useRef(route);
 	routeRef.current = route;
-	const { lang } = useLanguageContext();
-	const langRef = useRef(lang);
-	langRef.current = lang;
+	const { lang, fromQuery } = useLanguageContext();
+	const langRef = useRef({ lang, fromQuery });
+	langRef.current = { lang, fromQuery };
 	/** @param {string} url */
 	const openHitInNewTab = (url) =>
 		window.open(withLang(url, langRef.current), '_blank', 'noopener');
