@@ -4,7 +4,7 @@ import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage.js';
 import { useResource } from './use-resource.js';
-import { prefetchContent } from './use-content.js';
+import { firstContentLoaded, prefetchContent } from './use-content.js';
 import { routeHydrated } from './route-hydrated.js';
 import config from '../config.json' with { type: 'json' };
 import englishTranslations from '../locales/en.json' with { type: 'json' };
@@ -51,7 +51,13 @@ function getNavigatorLanguage(available) {
 }
 
 export function LanguageProvider({ children }) {
-	const { query, route } = useLocation();
+	const { query, route, path } = useLocation();
+	// Resolves once the reader has left the page that's being hydrated
+	const leftFirstPage = useRef(/** @type {(() => void) | null} */ (null));
+	const firstPath = useRef(path);
+	useEffect(() => {
+		if (path !== firstPath.current) leftFirstPage.current?.();
+	}, [path]);
 
 	// We only prerender in English
 	const [lang, setLang] = useState('en');
@@ -73,20 +79,30 @@ export function LanguageProvider({ children }) {
 	}, [lang]);
 
 	useEffect(() => {
+		// Only a known locale (`ko` being the BCP 47 tag of `kr`, see `langTag`)
+		const fromUrl = query.lang === 'ko' ? 'kr' : query.lang;
+		const queryLang = Object.prototype.hasOwnProperty.call(
+			config.locales,
+			fromUrl
+		)
+			? fromUrl
+			: undefined;
 		const userLang =
-			query.lang ||
+			queryLang ||
 			localStorageGet('lang') ||
 			getNavigatorLanguage(config.locales) ||
 			'en';
 
-		setFromQuery(!!query.lang);
+		setFromQuery(!!queryLang);
 		if (userLang === 'en') return;
 		// Hydrating the prerendered English page with translated props would
 		// keep its English attributes (e.g. `lang`): switch once it's hydrated,
-		// i.e. its route and English content have rendered, meanwhile loading
-		// the translated content
-		prefetchContent(location.pathname, userLang);
-		Promise.all([routeHydrated, prefetchContent(location.pathname, 'en')])
+		// i.e. its route and the content it renders have loaded (or the reader
+		// has left it), meanwhile loading the translated content
+		prefetchContent(path, userLang);
+		const left = new Promise((resolve) => (leftFirstPage.current = resolve));
+		routeHydrated
+			.then(() => Promise.race([firstContentLoaded(), left]))
 			// After the render that the content's arrival triggers
 			.then(() => new Promise((resolve) => setTimeout(resolve)))
 			.then(() => {

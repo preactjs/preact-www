@@ -125,7 +125,9 @@ export function Tutorial({ path, html, meta }) {
 
 	const help = () => {
 		if (meta.tutorial?.final) {
-			route(`${url}?solved`, true);
+			if (!/[?&]solved\b/.test(url)) {
+				route(url + (url.includes('?') ? '&' : '?') + 'solved', true);
+			}
 			setEditorCode(meta.tutorial?.final);
 		}
 	};

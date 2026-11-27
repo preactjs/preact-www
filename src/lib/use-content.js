@@ -18,16 +18,43 @@ import manifest from 'virtual:content-manifest';
  */
 export function useContent(path) {
 	const { lang } = useLanguageContext();
+	const fetch = contentFetcher(lang, path);
+	if (!firstContent && typeof window !== 'undefined') {
+		// The entry `useResource` creates below, which also re-renders this
+		// component once loaded (needed while hydrating, e.g. on /repl)
+		const cacheKey = createCacheKey(fetch, [lang, path]);
+		firstContent = Promise.resolve()
+			.then(() => CACHE.get(cacheKey)?.promise)
+			.then(
+				() => {},
+				() => {}
+			);
+	}
 	/** @type {import('./../types.d.ts').ContentData} */
-	const { html, meta } = useResource(
-		() => getContent(manifest, lang, path),
-		[lang, path]
-	);
+	const { html, meta } = useResource(fetch, [lang, path]);
 	useTitle(meta.title);
 	useDescription(meta.description || '');
 
 	return { html, meta };
 }
+
+/**
+ * The one fetcher for content, so `useContent` and `prefetchContent` share
+ * cache entries (keyed by the function's source and its arguments)
+ *
+ * @param {string} lang
+ * @param {string} path
+ */
+const contentFetcher = (lang, path) => () => getContent(manifest, lang, path);
+
+/** @type {Promise<void> | null} */
+let firstContent = null;
+
+/**
+ * Resolves once the content that the first (i.e. hydrating) render asked for
+ * has loaded, or right away if it asked for none
+ */
+export const firstContentLoaded = () => firstContent || Promise.resolve();
 
 /**
  * @param {string} path
@@ -40,7 +67,7 @@ export function prefetchContent(path, lang) {
 	lang ||= tag === 'ko' ? 'kr' : tag;
 	// The home page is a component, without markdown content to fetch
 	if (path === '/' || !manifest[getContentPath(path)]) return Promise.resolve();
-	const fetch = () => getContent(manifest, lang, path);
+	const fetch = contentFetcher(lang, path);
 
 	const cacheKey = createCacheKey(fetch, [lang, path]);
 	const entry = CACHE.get(cacheKey) || setupCacheEntry(fetch, cacheKey);

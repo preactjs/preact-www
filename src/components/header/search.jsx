@@ -140,7 +140,13 @@ function goToHit(url, route) {
 		staleTitle: samePage ? null : pageTitle()
 	};
 	dispatchEvent(new Event(HIT_EVENT));
-	if (!samePage) route(path + search + hash);
+	if (!samePage) return route(path + search + hash);
+	// Only `?lang=` (see `withLang`) is added, other parameters are kept
+	const params = new URLSearchParams(location.search);
+	const lang = new URLSearchParams(search).get('lang');
+	if (lang) params.set('lang', lang);
+	const query = params.toString() && `?${params}`;
+	if (query !== location.search) route(location.pathname + query + hash);
 	else if (hash && hash !== location.hash) location.hash = hash;
 	else if (!hash && location.hash) {
 		history.pushState(null, '', location.pathname + location.search);
