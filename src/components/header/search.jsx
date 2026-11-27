@@ -160,6 +160,8 @@ const CANCEL_EVENT = 'docsearch:cancel';
 /** A hit was selected: e.g. the mobile menu it was opened from closes */
 export const HIT_EVENT = 'docsearch:hit';
 
+const USER_INPUT = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+
 /**
  * Cancels an open requested before DocSearch finished loading, e.g. as the
  * mobile menu it was requested from closes or the page changes.
@@ -430,10 +432,11 @@ export default function Search() {
 
 		/**
 		 * Moves focus to a selected hit's heading (scrolled into view), or its
-		 * page's title if that's what it is or the heading is missing (e.g. a
-		 * translation without the English anchor), so the next Tab continues
-		 * from there. Meanwhile focus is restored as usual: the page may take
-		 * a while to load, and the user may do something else in the meantime.
+		 * page's title (scrolled to the top) if that's what it is or the heading
+		 * is missing (e.g. a translation without the English anchor), so the
+		 * next Tab continues from there. Meanwhile focus is restored as usual:
+		 * the page may take a while to load, and the user may do something else
+		 * in the meantime (which cancels this).
 		 *
 		 * @param {NonNullable<typeof pendingHit>} hit
 		 */
@@ -441,11 +444,13 @@ export default function Search() {
 			restoreFocus();
 			let cancelled = false;
 			const cancel = () => (cancelled = true);
-			addEventListener('pointerdown', cancel, { capture: true, once: true });
-			addEventListener('keydown', cancel, { capture: true, once: true });
+			for (const type of USER_INPUT) {
+				addEventListener(type, cancel, { capture: true, passive: true });
+			}
 			const stop = () => {
-				removeEventListener('pointerdown', cancel, { capture: true });
-				removeEventListener('keydown', cancel, { capture: true });
+				for (const type of USER_INPUT) {
+					removeEventListener(type, cancel, { capture: true });
+				}
 			};
 			const start = Date.now();
 			const attempt = () => {
@@ -479,7 +484,7 @@ export default function Search() {
 				}
 				el.focus({ preventScroll: true });
 				if (el === heading) el.scrollIntoView();
-				else if (hit.samePage && !hit.id) scrollTo(0, 0);
+				else scrollTo(0, 0);
 			};
 			attempt();
 		};

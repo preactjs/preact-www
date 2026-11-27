@@ -23,33 +23,36 @@ export function stripHeadingId(text) {
 }
 
 /**
- * @param {string} text
- * @returns {string} For a heading with an explicit `{#id}`, the id its text
- * would get, kept as an alias so existing links to it still work
- */
-export function headingAliasId(text) {
-	return EXPLICIT_ID.test(text) ? generateHeadingId(stripHeadingId(text)) : '';
-}
-
-/**
  * Like `generateHeadingId`, but for all headings of one document: repeated
  * headings get a numeric suffix (`#fragment`, `#fragment-1`, ...) so every
- * id, and the ToC links pointing at them, stays unique.
+ * id, and the ToC links pointing at them, stays unique. A heading with an
+ * explicit `{#id}` also keeps the id its text would get as an `alias`, so
+ * existing links to it still work; later headings don't reuse it.
  *
- * @returns {(text: string) => string}
+ * @returns {(text: string) => { id: string, alias: string }}
  */
 export function createHeadingIdGenerator() {
 	/** @type {Set<string>} */
 	const used = new Set();
-	return (text) => {
-		// Text without any id-able characters (e.g. `## ...`) still gets an id
-		const base =
-			text.match(EXPLICIT_ID)?.[1] || generateHeadingId(text) || 'section';
+	/** @param {string} base */
+	const unique = (base) => {
 		let id = base;
 		// Skip suffixes that are taken too, e.g. by a heading literally named
 		// "Fragment-1" following two "Fragment"s
 		for (let n = 1; used.has(id); n++) id = `${base}-${n}`;
 		used.add(id);
 		return id;
+	};
+	return (text) => {
+		const explicit = text.match(EXPLICIT_ID)?.[1];
+		const derived = generateHeadingId(stripHeadingId(text));
+		// Text without any id-able characters (e.g. `## ...`) still gets an id
+		const id = unique(explicit || derived || 'section');
+		let alias = '';
+		if (explicit && derived && !used.has(derived)) {
+			alias = derived;
+			used.add(alias);
+		}
+		return { id, alias };
 	};
 }

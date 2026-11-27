@@ -8,25 +8,55 @@ const COMPONENTS = {
 	...widgets
 };
 
+const USER_INPUT = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+
 export default function ContentRegion({ content, components, ...props }) {
 	components = Object.assign({}, COMPONENTS, components);
 	const ref = useRef(/** @type {HTMLElement | null} */ (null));
 	useScrollableRegions(ref, 'table, pre', content);
 
 	// The router scrolls to the top on navigation, also to a `#fragment` on
-	// another page: scroll to it once it's rendered, once per navigation
-	const scrolledTo = useRef('');
+	// another page: scroll to it once it's rendered, once per navigation, and
+	// again if the content is replaced (the translation of the prerendered
+	// English page) before the reader has scrolled or pressed anything
+	const scrolled = useRef({ target: '', content: '', userMoved: false });
+	useEffect(() => {
+		const onInput = () => (scrolled.current.userMoved = true);
+		for (const type of USER_INPUT) {
+			addEventListener(type, onInput, { capture: true, passive: true });
+		}
+		return () => {
+			for (const type of USER_INPUT) {
+				removeEventListener(type, onInput, { capture: true });
+			}
+		};
+	}, []);
 	useEffect(() => {
 		const target = props.current + location.hash;
-		if (!location.hash || scrolledTo.current === target) return;
+		const last = scrolled.current;
+		if (
+			!location.hash ||
+			(last.target === target && (last.content === content || last.userMoved))
+		) {
+			return;
+		}
 		let id = location.hash.slice(1);
 		try {
 			id = decodeURIComponent(id);
 		} catch {}
 		const el = document.getElementById(id);
 		if (el && ref.current?.contains(el)) {
-			scrolledTo.current = target;
+			const now = { target, content, userMoved: false };
+			scrolled.current = now;
 			el.scrollIntoView();
+			// Text above it reflows once a webfont it needs (e.g. Cyrillic) loads
+			requestAnimationFrame(() =>
+				document.fonts?.ready.then(() => {
+					if (scrolled.current === now && !now.userMoved && el.isConnected) {
+						el.scrollIntoView();
+					}
+				})
+			);
 		}
 	}, [props.current, content]);
 
