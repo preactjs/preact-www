@@ -6,30 +6,19 @@ declare global {
 	namespace preact.JSX {
 		interface IntrinsicElements {
 			'loading-bar': { showing: boolean };
-			'content-region': { name: string; 'can-edit': boolean; children: any };
+			'content-region': {
+				name: string;
+				'can-edit': boolean;
+				lang?: string;
+				children: any;
+			};
 		}
 	}
-}
-
-export interface GitHubOrgRepoData {
-	html_url: string;
-	full_name: string;
-	stargazers_count: number;
-	description: string;
-	[key: string]: unknown;
-}
-
-export interface FilteredRepoData {
-	html_url: string;
-	full_name: string;
-	stargazers_count: number;
-	description: string;
 }
 
 export interface PrerenderData {
 	preactVersion: string;
 	preactReleaseURL: string;
-	preactOrgRepos: FilteredRepoData[];
 }
 
 // Data added to the markdown frontmatter
@@ -59,6 +48,8 @@ export interface TableOfContents {
 export interface ContentMetaData extends FrontMatterMeta {
 	translationExists: boolean;
 	translationEnabled: boolean;
+	/** The locale this was fetched for (see `translationExists`) */
+	locale: Locale;
 
 	// Guide data
 	toc?: TableOfContents[];

@@ -132,7 +132,7 @@ npm run build
 
 > [Babel](https://babeljs.io/) 拥有最好的文档之一。我们强烈推荐查看它来解决有关 Babel 设置的问题。
 
-### 将 React 别名指向 Preact
+### 将 React 别名指向 Preact {#aliasing-react-to-preact}
 
 在某个时候，您可能希望利用庞大的 React 生态系统。原本为 React 编写的库和组件与我们的兼容层无缝配合。要使用它，我们需要将所有 `react` 和 `react-dom` 导入指向 Preact。这个步骤称为*别名*。
 

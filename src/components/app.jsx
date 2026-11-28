@@ -2,6 +2,7 @@ import { LocationProvider, ErrorBoundary } from 'preact-iso';
 import { LanguageProvider } from '../lib/i18n.jsx';
 import { PrerenderDataProvider } from '../lib/prerender-data.jsx';
 import { useDelegatedPrefetch } from '../lib/use-delegated-prefetch.js';
+import { useFocusRescue } from '../lib/use-focus-rescue.js';
 import Header from './header/index.jsx';
 import Routes from './routes.jsx';
 
@@ -10,6 +11,7 @@ import Routes from './routes.jsx';
  */
 export default function App({ prerenderData }) {
 	useDelegatedPrefetch();
+	useFocusRescue();
 	return (
 		<ErrorBoundary>
 			<LocationProvider>

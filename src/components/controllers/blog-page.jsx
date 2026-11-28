@@ -25,7 +25,7 @@ function BlogLayout() {
 		<div class={style.page}>
 			<div class={style.outer}>
 				<div class={style.inner}>
-					<MarkdownRegion html={html} meta={meta} />
+					<MarkdownRegion path={path} html={html} meta={meta} />
 					<Footer />
 				</div>
 			</div>

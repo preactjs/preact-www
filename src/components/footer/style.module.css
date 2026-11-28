@@ -1,32 +1,67 @@
 .footer {
-	text-align: center;
-	overflow: hidden;
-	color: var(--color-footer-text);
-	background: var(--color-footer-bg);
-	border-top: 0.0625rem solid var(--color-footer-border);
-	padding: 1.25rem;
-
+	position: relative;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	width: 100%;
 	margin-top: auto;
+	padding: 2rem;
+	border-top: 1px solid var(--border);
+	color: var(--text-secondary);
+	font-size: 0.875rem;
+	text-align: center;
 
-	code {
-		margin-left: 0.625rem;
+	p {
+		margin: 0;
 	}
 
-	/**
-	 * Ideally kept sync'd with the markdown links:
-	 * https://github.com/preactjs/preact-www/blob/f68e65aadbd19b042921cc175aa256f3aa248768/src/style/markdown.css#L18
-   */
-	a {
-		color: var(--color-footer-link);
-		text-decoration-skip-ink: auto;
+	p a {
+		color: var(--accent-soft);
 		text-decoration: underline;
-		text-decoration-color: var(--color-table-border);
-		text-decoration-thickness: 1px;
+		text-decoration-color: color-mix(
+			in oklab,
+			var(--accent-soft) 40%,
+			transparent
+		);
+		text-underline-offset: 4px;
 
 		&:hover,
-		&:focus {
-			color: var(--color-link-hover);
+		&:focus-visible {
 			text-decoration-color: currentColor;
+		}
+	}
+}
+
+.meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem 1.5rem;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	letter-spacing: 0.025em;
+}
+
+.links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem 1rem;
+
+	a {
+		color: var(--text-secondary);
+
+		&::before {
+			content: '/ ';
+			opacity: 0.4;
+		}
+
+		&:hover,
+		&:focus-visible {
+			color: var(--accent-soft);
 		}
 	}
 }

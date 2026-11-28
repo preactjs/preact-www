@@ -11,6 +11,8 @@
 /guide/progressive-web-apps     /guide/v8/progressive-web-apps
 /guide/v10/tutorial             /tutorial
 /guide/v10/switching-to-preact  /guide/v10/getting-started#aliasing-react-to-preact
+/docs                           /guide/v11/getting-started             302
+/docs/*                         /guide/v11/:splat                      302
 
 # Return a smaller asset than the prerendered 404 page for failed "guess-and-check" translation fetches
 /content/*                      /content/en/404.json                   404

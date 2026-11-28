@@ -134,7 +134,7 @@ Para transpilar JSX, necesitas un plugin de Babel que lo convierta en código Ja
 
 > [Babel](https://babeljs.io/) tiene algunas de las mejores documentaciones por ahí. Altamente recomendamos consultarla para preguntas sobre Babel y cómo configurarlo.
 
-### Aliasing React a Preact
+### Aliasing React a Preact {#aliasing-react-to-preact}
 
 En algún momento, probablemente querrás hacer uso del vasto ecosistema de React. Las librerías y Componentes originalmente escritos para React funcionan sin problemas con nuestra capa de compatibilidad. Para hacer uso de ella, necesitamos apuntar todas las importaciones de `react` y `react-dom` a Preact. Este paso se llama _aliasing_.
 

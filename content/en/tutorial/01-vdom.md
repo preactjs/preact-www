@@ -184,7 +184,7 @@ edit the code and see how your changes affect (or break!) the result as you go.
 To test what you've learned in this chapter, try giving the text some more pizazz!
 Make the word `World` stand out by wrapping it in HTML tags: `<em>` and `</em>`.
 
-Then, make all of the text <span style="color:purple">purple</span> by adding a
+Then, make all of the text <span style="color:violet">violet</span> by adding a
 `style` prop. The `style` prop is special, and allows an object value with
 one or more CSS properties to set on the element. To pass an object as a prop value, you'll need to use an `{expression}`, like `style={{ property: 'value' }}`.
 
@@ -197,7 +197,7 @@ one or more CSS properties to set on the element. To pass an object as a prop va
 useResult(function(result) {
 	var hasEm = result.output.innerHTML.match(/<em>World\!?<\/em>/gi);
 	var p = result.output.querySelector('p');
-	var hasColor = p && p.style && p.style.color === 'purple';
+	var hasColor = p && p.style && (p.style.color === 'violet' || p.style.color === 'purple');
 	if (hasEm && hasColor) {
 		solutionCtx.setSolved(true);
 	}
@@ -219,7 +219,7 @@ import { createElement, render } from 'preact';
 
 function App() {
 	return (
-		<p class="big" style={{ color: 'purple' }}>
+		<p class="big" style={{ color: 'violet' }}>
 			Hello <em>World</em>!
 		</p>
 	);

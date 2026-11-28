@@ -145,7 +145,7 @@ function App() {
   return (
     <div>
       <p class="count">计数：</p>
-      <MyButton style={{ color: 'purple' }} onClick={clicked}>点击我</MyButton>
+      <MyButton style={{ color: 'white', background: 'rebeccapurple' }} onClick={clicked}>点击我</MyButton>
     </div>
   )
 }
@@ -171,7 +171,7 @@ function App() {
   return (
     <div>
       <p class="count">计数：{count}</p>
-      <MyButton style={{ color: 'purple' }} onClick={clicked}>点击我</MyButton>
+      <MyButton style={{ color: 'white', background: 'rebeccapurple' }} onClick={clicked}>点击我</MyButton>
     </div>
   )
 }

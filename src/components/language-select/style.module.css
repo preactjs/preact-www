@@ -1,0 +1,21 @@
+.lang {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem 0.5rem;
+	/* Never wider than its container, e.g. a narrow tutorial pane */
+	max-width: 100%;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	letter-spacing: 0.025em;
+
+	select {
+		min-width: 0;
+		max-width: min(11rem, 100%);
+		padding: 0.125rem 0.25rem;
+		border: 1px solid var(--border);
+		background: var(--bg);
+		color: var(--text);
+		font: inherit;
+	}
+}

@@ -133,7 +133,8 @@ export default class Runner extends Component {
 			);
 			doc.head.appendChild(style);
 			meta.name = 'color-scheme';
-			meta.content = 'dark light';
+			// The site is dark-only, and the frame is transparent over it
+			meta.content = 'dark';
 			doc.head.appendChild(meta);
 			createRoot(doc);
 		};

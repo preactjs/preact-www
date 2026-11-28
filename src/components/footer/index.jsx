@@ -1,6 +1,6 @@
-import { useCallback } from 'preact/hooks';
-import config from '../../config.json' with { type: 'json' };
-import { useLanguageContext } from '../../lib/i18n.jsx';
+import { useEffect, useState } from 'preact/hooks';
+import { HiddenLabel, useFallbackLang, useTranslate } from '../../lib/i18n.jsx';
+import LanguageSelect from '../language-select/index.jsx';
 import { useResource } from '../../lib/use-resource.js';
 import style from './style.module.css';
 
@@ -22,59 +22,84 @@ import style from './style.module.css';
 
 /**
  * Display a random contributor of the list above.
+ *
+ * The pick happens after hydration: choosing during render would give the
+ * prerendered HTML and the client different names (a hydration mismatch).
  */
 function useContributors() {
 	const contributors = useResource(
 		() => fetch('/contributors.json').then((r) => r.json()),
 		['/contributors.json']
 	);
+	const [index, setIndex] = useState(0);
 
-	return contributors[(Math.random() * (contributors.length - 1)) | 0];
+	useEffect(() => {
+		setIndex((Math.random() * (contributors.length - 1)) | 0);
+	}, [contributors.length]);
+
+	return contributors[index];
 }
 
 export default function Footer() {
 	const contrib = useContributors();
-	const { lang, setLang } = useLanguageContext();
-
-	const onSelect = useCallback((e) => setLang(e.target.value), [setLang]);
+	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	return (
 		<footer class={style.footer}>
-			<div class={style.inner}>
-				<p>
-					<label class={style.lang}>
-						Language:{' '}
-						<select value={lang || 'en'} onInput={onSelect}>
-							{Object.entries(config.locales).map(([id, label]) => (
-								<option selected={id == lang} value={id}>
-									{label}
-								</option>
-							))}
-						</select>
-						{lang && <code>?lang={lang}</code>}
-					</label>
-				</p>
-				<p style="line-height: 1">
-					Built by a bunch of{' '}
+			<p lang="en">
+				Built by a bunch of{' '}
+				<a
+					href="https://github.com/preactjs/preact/graphs/contributors"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					lovely people
+				</a>
+				{contrib && [
+					' like ',
 					<a
-						href="https://github.com/preactjs/preact/graphs/contributors"
+						href={'https://github.com/' + contrib}
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						lovely people
-					</a>{' '}
-					{contrib && [
-						' like ',
-						<a
-							href={'https://github.com/' + contrib}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							@{contrib}
-						</a>
-					]}
-					.
-				</p>
+						@{contrib}
+					</a>
+				]}
+				.
+			</p>
+			<div class={style.meta}>
+				<LanguageSelect />
+				<nav class={style.links} aria-labelledby="footer-links-label">
+					<HiddenLabel id="footer-links-label" namespace="i18n" k="moreLinks" />
+					<a
+						href="/about/project-goals"
+						lang={fallbackLang('headerNav', 'projectGoals')}
+					>
+						{translate('headerNav', 'projectGoals')}
+					</a>
+					<a
+						href="/about/we-are-using"
+						lang={fallbackLang('headerNav', 'weAreUsing')}
+					>
+						{translate('headerNav', 'weAreUsing')}
+					</a>
+					<a href="/branding" lang={fallbackLang('headerNav', 'branding')}>
+						{translate('headerNav', 'branding')}
+					</a>
+					<a
+						href="http://chat.preactjs.com/"
+						lang={fallbackLang('i18n', 'chat')}
+					>
+						{translate('i18n', 'chat')}
+					</a>
+					<a
+						href="https://opencollective.com/preact"
+						lang={fallbackLang('i18n', 'supportUs')}
+					>
+						{translate('i18n', 'supportUs')}
+					</a>
+				</nav>
 			</div>
 		</footer>
 	);

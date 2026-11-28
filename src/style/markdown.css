@@ -5,9 +5,8 @@
 	}
 
 	> p:first-of-type {
-		font-size: 1.4rem;
-		font-weight: 300;
-		line-height: 1.4;
+		font-size: 1.15rem;
+		line-height: 1.6;
 		margin-bottom: 1.5em;
 	}
 
@@ -19,8 +18,13 @@
 		color: var(--color-link);
 		text-decoration-skip-ink: auto;
 		text-decoration: underline;
-		text-decoration-color: var(--color-table-border);
+		text-decoration-color: color-mix(
+			in oklab,
+			var(--accent-soft) 40%,
+			transparent
+		);
 		text-decoration-thickness: 1px;
+		text-underline-offset: 3px;
 
 		&:hover,
 		&:focus {
@@ -35,9 +39,11 @@
 	h4,
 	h5,
 	h6 {
-		margin: 30px 0 10px;
+		margin: 2rem 0 0.75rem;
 		padding: 0;
-		font-weight: bold;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		line-height: 1.25;
 		cursor: text;
 		position: relative;
 	}
@@ -56,18 +62,21 @@
 
 	h1 {
 		font-size: 3rem;
+		letter-spacing: -0.035em;
+		line-height: 1.05;
 	}
 
 	h2 {
-		font-size: 1.8rem;
+		font-size: 1.6rem;
+		letter-spacing: -0.035em;
 	}
 
 	h3 {
-		font-size: 1.4rem;
+		font-size: 1.25rem;
 	}
 
 	h4 {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 
 	h5 {
@@ -87,10 +96,15 @@
 		}
 	}
 
+	nav[data-inline-toc] a {
+		/* Long API entries like `Component.render(props, state)` must wrap at 320px */
+		overflow-wrap: anywhere;
+	}
+
 	hr {
-		height: 4px;
+		height: 1px;
 		padding: 0;
-		margin: 30px 0 0;
+		margin: 2.5rem 0 0;
 		border: 0 none;
 		background: var(--color-hr);
 
@@ -186,10 +200,12 @@
 	}
 
 	blockquote {
+		margin-inline: 0;
 		padding: 0.75rem 1rem;
-		background: var(--color-quote-bg);
+		background: color-mix(in srgb, var(--accent) 10%, var(--bg));
 		color: var(--color-quote-text);
-		border-left: 0.3rem solid var(--color-quote-border);
+		border: 1px solid var(--accent-border);
+		border-left-width: 3px;
 		overflow: auto;
 	}
 	blockquote > :first-child {
@@ -200,8 +216,18 @@
 	}
 
 	table {
+		/* Scroll wide tables instead of widening the page. Overflowing ones
+		   get a tabindex (see use-scrollable-regions) for keyboard scrolling. */
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
 		padding: 0;
 		border-collapse: collapse;
+
+		&:focus-visible {
+			outline: 2px solid var(--accent-soft);
+			outline-offset: 2px;
+		}
 	}
 	table tr {
 		border: 0.0625rem solid var(--color-table-border);
@@ -320,11 +346,21 @@
 
 	code,
 	tt {
-		margin: 0 2px;
-		padding: 2px 7px;
-		white-space: nowrap;
-		border-radius: 4px;
-		background: var(--color-code-inline-bg);
+		margin: 0 1px;
+		padding: 1px 5px;
+		border: 1px solid var(--border);
+		background: #ffffff08;
+		font-size: 0.85em;
+		/* Long signatures and imports, e.g. `cloneElement(virtualElement, props,
+		   ...children)`, wrap rather than overflowing their paragraph or quote */
+		overflow-wrap: anywhere;
+	}
+
+	/* In tables, `anywhere` would let columns shrink until identifiers like
+	   `componentWillReceiveProps` split mid-word; the table scrolls instead */
+	td code,
+	th code {
+		overflow-wrap: break-word;
 	}
 
 	td > code,
@@ -349,14 +385,12 @@
 	}
 
 	pre {
-		border-width: 1px;
-		border-style: solid;
-		font-size: 13px;
-		line-height: 19px;
+		font-size: 0.85rem;
+		line-height: 1.6;
 		overflow: auto;
-		padding: 6px 10px;
-		border-radius: 3px;
-		border: 0.0625rem solid var(--color-code-inline-border);
+		padding: 1.25rem !important;
+		border-radius: 0;
+		border: 1px solid var(--border);
 		background: var(--color-code-bg);
 	}
 
@@ -372,20 +406,12 @@
 	h4,
 	h5,
 	h6 {
-		/* fix anchor target positioning to account for fixed header */
-		scroll-margin-top: var(--header-and-banner-height);
+		/* Plus the sticky "old docs" warning's height while it's shown (not
+		   a root `scroll-padding`: that'd also scroll the header's controls) */
+		scroll-margin-top: calc(1.5rem + var(--sticky-warning-space, 0px));
 
-		@media (max-height: 431px) {
-			scroll-margin-top: var(--header-height);
-		}
-
-		content-region[name*='v8'] &,
-		content-region[name*='v10'] & {
-			scroll-margin-top: calc(var(--header-and-banner-height) + 3.25rem);
-
-			@media (max-height: 431px) {
-				scroll-margin-top: calc(var(--header-height) + 3.25rem);
-			}
+		.heading-alias {
+			scroll-margin-top: inherit;
 		}
 
 		a.fragment-link {
@@ -408,6 +434,15 @@
 
 				&:focus {
 					opacity: 1;
+				}
+
+				/* Narrow screens have less side padding than it hangs out by: move
+				   it inline while focused, so it & its focus ring stay on screen */
+				@media not all and (min-width: 900px) {
+					&:focus-visible {
+						margin-left: 0;
+						margin-right: 0.25rem;
+					}
 				}
 			}
 
@@ -437,5 +472,24 @@
 		pre {
 			word-wrap: break-word;
 		}
+	}
+}
+
+/* Docs pages: sections separated by a rule, like the design */
+content-region[name*='/guide/'] .markup {
+	> h2 {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--border);
+	}
+
+	> hr + h2 {
+		margin-top: 2rem;
+		padding-top: 0;
+		border-top: none;
+	}
+
+	> h1:first-child {
+		margin-bottom: 1rem;
 	}
 }

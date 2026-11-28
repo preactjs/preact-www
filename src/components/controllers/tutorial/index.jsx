@@ -13,8 +13,10 @@ import { TutorialContext, SolutionContext } from './contexts.jsx';
 import { parseStackTrace } from '../repl/errors.js';
 import cx from '../../../lib/cx.js';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
-import { useTranslate } from '../../../lib/i18n.jsx';
+import { useFallbackLang, useTranslate } from '../../../lib/i18n.jsx';
 import { MarkdownRegion } from '../markdown-region.jsx';
+import { hasInputSinceNavigation } from '../../../lib/reader-input.js';
+import LanguageSelect from '../../language-select/index.jsx';
 import style from './style.module.css';
 
 const resultHandlers = new Set();
@@ -38,14 +40,19 @@ let resultCleanups, realmCleanups;
  */
 
 /**
- * @param {{ html: string, meta: TutorialMeta }} props
+ * @param {{ path: string, html: string, meta: TutorialMeta }} props
  */
-export function Tutorial({ html, meta }) {
-	const { route, url } = useLocation();
+export function Tutorial({ path, html, meta }) {
+	const { route, url, path: routePath } = useLocation();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
+	// Bumped (on Solve, or when the unedited starter code is translated) to make
+	// the editor take `editorCode`, which it otherwise only does on a new chapter
+	const [editorResets, resetEditor] = useReducer((n) => n + 1, 0);
 	const [error, setError] = useState(null);
 	const [showCodeOverride, toggleCode] = useReducer((s) => !s, true);
+	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	const content = useRef(null);
 	const runner = useRef(null);
@@ -58,14 +65,54 @@ export function Tutorial({ html, meta }) {
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
+	const starter = useRef({ path, code: meta.tutorial?.initial });
 	useEffect(() => {
-		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {
-			setEditorCode(meta.tutorial.initial);
-			setRunnerCode(meta.tutorial.initial);
-			solutionCtx.setSolved(false);
-			content.current.scrollTo(0, 0);
-		}
+		const initial = meta.tutorial?.initial;
+		const prev = starter.current;
+		starter.current = { path, code: initial };
+		if (!initial || editorCode === initial) return;
+		const sameChapter = prev.path === path;
+		// A translation of this chapter's starter code only replaces it unedited
+		if (sameChapter && editorCode !== prev.code) return;
+		setEditorCode(initial);
+		setRunnerCode(initial);
+		resetEditor();
+		if (!sameChapter) solutionCtx.setSolved(false);
 	}, [meta.tutorial?.initial]);
+
+	// A new chapter starts at its top, also for keyboard focus if it was in the
+	// lesson (e.g. on the reused Next Page link), unless the reader has done
+	// anything while it loaded: focus they moved within the lesson stays in view
+	const focusAtNavigation = useRef(/** @type {Element | null} */ (null));
+	useEffect(() => {
+		focusAtNavigation.current = document.activeElement;
+	}, [routePath]);
+	const shownPath = useRef(path);
+	useEffect(() => {
+		if (shownPath.current === path) return;
+		shownPath.current = path;
+		const pane = content.current;
+		pane.scrollTo(0, 0);
+		const active = document.activeElement;
+		const inPane = active && active !== pane && pane.contains(active);
+		if (active !== focusAtNavigation.current) {
+			if (inPane) active.scrollIntoView({ block: 'nearest' });
+			return;
+		}
+		if (hasInputSinceNavigation()) return;
+		const heading = pane.querySelector('h1');
+		if (heading && (!active || active === document.body || inPane)) {
+			if (!heading.hasAttribute('tabindex')) {
+				heading.setAttribute('tabindex', '-1');
+				heading.addEventListener(
+					'blur',
+					() => heading.removeAttribute('tabindex'),
+					{ once: true }
+				);
+			}
+			heading.focus({ preventScroll: true });
+		}
+	}, [path]);
 
 	useEffect(() => {
 		const delay = setTimeout(() => {
@@ -124,8 +171,12 @@ export function Tutorial({ html, meta }) {
 
 	const help = () => {
 		if (meta.tutorial?.final) {
-			route(`${url}?solved`, true);
+			const { pathname, search, hash } = location;
+			if (!new URLSearchParams(search).has('solved')) {
+				route(`${pathname}${search ? `${search}&` : '?'}solved${hash}`, true);
+			}
 			setEditorCode(meta.tutorial?.final);
+			resetEditor();
 		}
 	};
 
@@ -148,7 +199,12 @@ export function Tutorial({ html, meta }) {
 								orientation="vertical"
 								other={
 									<>
-										<div class={style.output}>
+										{/* Clipped away along with the editor */}
+										<div
+											id="tutorial-output"
+											class={style.output}
+											inert={!showCode}
+										>
 											{error && (
 												<ErrorOverlay
 													name={error.name}
@@ -167,21 +223,27 @@ export function Tutorial({ html, meta }) {
 										{hasCode && (
 											<button
 												class={style.toggleCode}
-												title="Toggle Code"
+												aria-label={translate('i18n', 'codeEditor')}
+												lang={fallbackLang('i18n', 'codeEditor')}
+												title={translate('i18n', 'codeEditor')}
+												aria-expanded={showCode}
+												aria-controls="tutorial-code tutorial-output"
 												onClick={toggleCode}
-											>
-												<span>Toggle Code</span>
-											</button>
+											/>
 										)}
 									</>
 								}
 							>
-								<div class={style.codeWindow}>
+								<div
+									id="tutorial-code"
+									class={style.codeWindow}
+									inert={!showCode}
+								>
 									<CodeEditor
 										class={style.code}
 										value={editorCode}
 										error={error}
-										slug={url}
+										slug={`${url}#${editorResets}`}
 										onInput={setEditorCode}
 									/>
 								</div>
@@ -190,6 +252,7 @@ export function Tutorial({ html, meta }) {
 					>
 						<div class={style.tutorialWindow} ref={content}>
 							<MarkdownRegion
+								path={path}
 								html={html}
 								meta={meta}
 								components={TUTORIAL_COMPONENTS}
@@ -206,6 +269,8 @@ export function Tutorial({ html, meta }) {
 							)}
 
 							<ButtonContainer meta={meta} showCode={showCode} help={help} />
+							{/* No footer here; on phones it's in the header's menu too */}
+							<LanguageSelect class={style.language} />
 						</div>
 					</Splitter>
 				</ErrorBoundary>
@@ -216,11 +281,17 @@ export function Tutorial({ html, meta }) {
 
 function ButtonContainer({ meta, showCode, help }) {
 	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
+	const nextKey = meta.code == false ? 'beginTutorial' : 'nextPage';
 
 	return (
 		<div class={style.buttonContainer}>
 			{meta.prev && (
-				<a class={style.prevButton} href={meta.prev}>
+				<a
+					class={style.prevButton}
+					href={meta.prev}
+					lang={fallbackLang('i18n', 'previousPage')}
+				>
 					{translate('i18n', 'previousPage')}
 				</a>
 			)}
@@ -230,15 +301,18 @@ function ButtonContainer({ meta, showCode, help }) {
 					onClick={help}
 					disabled={!showCode}
 					title="Show solution to this example"
+					lang={fallbackLang('i18n', 'solve')}
 				>
 					{translate('i18n', 'solve')}
 				</button>
 			)}
 			{meta.next && (
-				<a class={style.nextButton} href={meta.next}>
-					{meta.code == false
-						? translate('i18n', 'beginTutorial')
-						: translate('i18n', 'nextPage')}
+				<a
+					class={style.nextButton}
+					href={meta.next}
+					lang={fallbackLang('i18n', nextKey)}
+				>
+					{translate('i18n', nextKey)}
 				</a>
 			)}
 		</div>

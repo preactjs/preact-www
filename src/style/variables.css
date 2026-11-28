@@ -1,125 +1,136 @@
 :root {
-	--vh: 100vh;
-	--banner-height: 2.5rem;
-	--header-height: 3.5rem;
-	--header-mobile-breakpoint: 50rem;
-	--header-and-banner-height: calc(var(--header-height) + var(--banner-height));
-	--content-width: 50rem;
+	color-scheme: dark;
+
+	/* The "We stand with Ukraine" banner above the header bar; hidden on very
+	   short viewports (landscape phones), see the header styles */
+	--banner-height: 2.25rem;
+	--header-bar-height: 4rem;
+	/* Everything the header takes up, banner included */
+	--header-height: calc(var(--header-bar-height) + var(--banner-height));
+	--header-mobile-breakpoint: 48rem;
+	--content-width: 48rem;
+	--main-width: 1126px;
 	--sidebar-break: 900px;
 
-	--color-page-bg: white;
-	--color-text: #444;
-	--color-heading: black;
-	--color-brand: #673ab8;
+	/* Design tokens */
+	--font-sans:
+		'Plus Jakarta Sans', Manrope, system-ui, -apple-system, 'Segoe UI', Roboto,
+		sans-serif;
+	--font-mono:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
+	--text: #eef0f1;
+	--text-secondary: #a1a1aa;
+	--text-h: #f3f4f6;
+	--bg: #16171d;
+	--bg-sunken: #131419;
+	--border: #2e303a;
+	--accent: #673ab8;
+	--accent-soft: #b688f5;
+	/* Hover fill for buttons with white text; keeps contrast above 4.5:1 */
+	--accent-hover: #7e52cf;
+	--accent-bg: #673ab838;
+	--accent-border: #673ab8b3;
+
+	/* Legacy tokens, mapped onto the design palette */
+	--color-page-bg: var(--bg);
+	--color-text: var(--text);
+	--color-heading: var(--text-h);
+	--color-brand: var(--accent);
 	--color-brand-triplet: 103, 58, 184;
-	--color-brand-light: #8f61e1;
-	--color-link: #673ab8;
-	--color-link-hover: #ff89ff;
-	--color-btn: #673ab8;
-	--color-btn-secondary: #673ab8;
-	--color-btn-background: #eee;
-	--color-hr: #f0f0f0;
-	--color-quote-bg: #ebf6ff;
-	--color-quote-border: #5aa8ff;
-	--color-quote-text: #444;
-	--color-warn-bg: #ffee5b;
-	--color-table-border: #ccc;
-	--color-table-even-bg: white;
-	--color-table-odd-bg: #f8f8f8;
-	--color-repl-bg: #666;
-	--color-repl-hover: #999;
-	--color-next-link: #aaa;
-	--color-sidebar-divider: #eee;
-	--color-sidebar-bg: #fafafa;
-	--color-sidebar-bg-active: #f3f3f3;
-	--color-sidebar-link-active: #673ab8;
-	--color-sidebar-link: #555;
-	--color-footer-lang-divider: #aaa;
-	--color-footer-lang: #673ab8;
-	--color-footer-link: #673ab8;
-	--color-footer-text: #555;
-	--color-footer-bg: #f2f2f2;
-	--color-footer-border: #ddd;
-	--color-error-bg: #ffeddb;
+	--color-brand-light: var(--accent-soft);
+	--color-link: var(--accent-soft);
+	--color-link-hover: #d4b8fb;
+	--color-btn: var(--accent);
+	--color-btn-secondary: var(--text-h);
+	--color-btn-background: #fff;
+	--color-hr: var(--border);
+	--color-quote-bg: var(--accent-bg);
+	--color-quote-border: var(--accent);
+	--color-quote-text: var(--text);
+	--color-warn-bg: #f2d900;
+	--color-table-border: var(--border);
+	--color-table-even-bg: var(--bg);
+	--color-table-odd-bg: #1b1c23;
+	--color-repl-bg: var(--border);
+	--color-repl-hover: #3d4050;
+	--color-next-link: var(--text-secondary);
+	--color-sidebar-heading: var(--text-secondary);
+	--color-sidebar-divider: var(--border);
+	--color-sidebar-bg: var(--bg);
+	--color-sidebar-bg-active: var(--accent-bg);
+	--color-sidebar-link-active: var(--accent-soft);
+	--color-sidebar-link: var(--text);
+	--color-footer-lang-divider: var(--border);
+	--color-footer-lang: var(--accent-soft);
+	--color-footer-link: var(--accent-soft);
+	--color-footer-text: var(--text-secondary);
+	--color-footer-bg: var(--bg);
+	--color-footer-border: var(--border);
+	--color-error-bg: #230c07;
 	--color-error-heading: #f43678;
 
-	/* Code snippets */
-	--color-code-inline-color: black;
-	--color-code-inline-bg: #e4e4e4;
-	--color-code-inline-border: #eaeaea;
-	--color-code-bg: #101725;
-	--color-code-text: #ddd;
-	--color-code-string: #c6f4a7;
-	--color-code-symbol: #f8c555;
-	--color-code-function: #ffcb6b;
-	--color-code-function-name: #6196cc;
-	--color-code-punctuation: #ccc;
-	--color-code-interpolation-punctuation: #ec6368;
-	--color-code-tag: #ff696d;
+	/* Code snippets (aurora-x inspired) */
+	--color-code-inline-color: var(--accent-soft);
+	--color-code-inline-bg: transparent;
+	--color-code-inline-border: var(--border);
+	--color-code-bg: var(--bg-sunken);
+	--color-code-text: #c4cbe6;
+	--color-code-string: #c3e88d;
+	--color-code-symbol: #f78c6c;
+	--color-code-function: #82aaff;
+	--color-code-function-name: #82aaff;
+	--color-code-punctuation: #89ddff;
+	--color-code-interpolation-punctuation: #ff5370;
+	--color-code-tag: #f07178;
 	--color-code-keyword: #c792ea;
-	--color-code-operator: #67cdcc;
-	--color-code-comment: #999;
+	--color-code-operator: #c792ea;
+	--color-code-comment: #7a83a6;
+	--color-code-variable: #f07178;
 	--color-diff-inserted: #44c248;
 
 	/* DocSearch customizations */
-	--docsearch-container-background: #444d;
-	--docsearch-primary-color: #673ab8;
+	--docsearch-container-background: #0b0b0fcc;
+	--docsearch-primary-color: var(--accent-soft);
+	--docsearch-modal-background: var(--bg);
+	--docsearch-footer-background: var(--bg);
+	--docsearch-searchbox-background: var(--bg-sunken);
+	--docsearch-searchbox-focus-background: var(--bg-sunken);
+	--docsearch-text-color: var(--text);
+	--docsearch-highlight-color: var(--accent-soft);
+	--docsearch-muted-color: var(--text-secondary);
+	--docsearch-hit-color: var(--text);
+	--docsearch-hit-background: #1e1f27;
+	--docsearch-hit-shadow: none;
+	--docsearch-modal-shadow: 0 0 0 1px var(--border);
+	--docsearch-footer-shadow: 0 -1px 0 var(--border);
+	--docsearch-key-gradient: linear-gradient(-26.5deg, #2e303a, #1e1f27);
+	--docsearch-key-shadow: none;
+}
 
-	--docsearch-modal-background: white;
-	--docsearch-footer-background: white;
-	--docsearch-highlight-color: #673ab8;
-	--docsearch-muted-color: #666;
-	--docsearch-hit-color: #444;
-	--docsearch-hit-background: #e4e4e4;
-
-	@media (prefers-color-scheme: dark) {
-		--color-page-bg: #242424;
-		--color-text: #cccccc;
-		--color-heading: white;
-		--color-link: #ae80ff;
-		--color-btn: #673ab8;
-		--color-btn-secondary: white;
-		--color-btn-background: #eee;
-		--color-hr: #444;
-		--color-quote-bg: #152038;
-		--color-quote-border: #1069cc;
-		--color-quote-text: #c5c5c5;
-		--color-warn-bg: #f2d900;
-		--color-table-border: #3c3c3c;
-		--color-table-even-bg: #171a20;
-		--color-table-odd-bg: #1c2027;
-		--color-repl-bg: #414141;
-		--color-repl-hover: #555;
-		--color-next-link: #666;
-		--color-sidebar-heading: white;
-		--color-sidebar-divider: #4f4f4f;
-		--color-sidebar-bg: #1a1a1a;
-		--color-sidebar-bg-active: #242424;
-		--color-sidebar-link-active: #ae80ff;
-		--color-sidebar-link: #b0b0b0;
-		--color-footer-lang-divider: #444;
-		--color-footer-lang: #ae80ff;
-		--color-footer-link: #ae80ff;
-		--color-footer-text: #999;
-		--color-footer-bg: #1b1b1b;
-		--color-footer-border: #1b1b1b;
-		--color-error-bg: #230c07;
-		--color-error-heading: #f43678;
-
-		/* Code snippets */
-		--color-code-inline-color: white;
-		--color-code-inline-bg: #404040;
-		--color-code-inline-border: #5e5e5e;
-		--color-code-bg: #1c2027;
-
-		/* DocSearch customizations */
-		--docsearch-modal-background: #333;
-		--docsearch-footer-background: #333;
-		--docsearch-text-color: #ccc;
-		--docsearch-searchbox-focus-background: #2b2a33;
-		--docsearch-highlight-color: #ae80ff;
-		--docsearch-muted-color: #ccc;
-		--docsearch-hit-color: #ddd;
-		--docsearch-hit-background: #3c4047;
+@media (max-height: 431px) {
+	:root {
+		--banner-height: 0px;
 	}
+}
+
+/* Fonts with the right glyph forms for each language (the same characters
+   differ between Chinese, Japanese and Korean) */
+:root:lang(ja) {
+	--font-sans:
+		'Plus Jakarta Sans', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
+		'Noto Sans JP', 'Yu Gothic UI', Meiryo, system-ui, sans-serif;
+}
+
+:root:lang(zh) {
+	--font-sans:
+		'Plus Jakarta Sans', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC',
+		'Microsoft YaHei', system-ui, sans-serif;
+}
+
+/* The Korean locale's code is `kr` */
+:root:lang(ko) {
+	--font-sans:
+		'Plus Jakarta Sans', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+		system-ui, sans-serif;
 }

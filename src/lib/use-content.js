@@ -2,7 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
 import { createTitle } from './page-title.js';
-import { getContent } from './content.js';
+import { getContent, getContentPath } from './content.js';
 import { useLanguageContext } from './i18n.jsx';
 import {
 	useResource,
@@ -18,11 +18,20 @@ import manifest from 'virtual:content-manifest';
  */
 export function useContent(path) {
 	const { lang } = useLanguageContext();
+	const fetch = contentFetcher(lang, path);
+	if (!firstContent && typeof window !== 'undefined') {
+		// The entry `useResource` creates below, which also re-renders this
+		// component once loaded (needed while hydrating, e.g. on /repl)
+		const cacheKey = createCacheKey(fetch, [lang, path]);
+		firstContent = Promise.resolve()
+			.then(() => CACHE.get(cacheKey)?.promise)
+			.then(
+				() => {},
+				() => {}
+			);
+	}
 	/** @type {import('./../types.d.ts').ContentData} */
-	const { html, meta } = useResource(
-		() => getContent(manifest, lang, path),
-		[lang, path]
-	);
+	const { html, meta } = useResource(fetch, [lang, path]);
 	useTitle(meta.title);
 	useDescription(meta.description || '');
 
@@ -30,16 +39,42 @@ export function useContent(path) {
 }
 
 /**
+ * The one fetcher for content, so `useContent` and `prefetchContent` share
+ * cache entries (keyed by the function's source and its arguments)
+ *
+ * @param {string} lang
  * @param {string} path
  */
-export function prefetchContent(path) {
-	const lang = document.documentElement.lang;
-	const fetch = () => getContent(manifest, lang, path);
+const contentFetcher = (lang, path) => () => getContent(manifest, lang, path);
+
+/** @type {Promise<void> | null} */
+let firstContent = null;
+
+/**
+ * Resolves once the content that the first (i.e. hydrating) render asked for
+ * has loaded, or right away if it asked for none
+ */
+export const firstContentLoaded = () => firstContent || Promise.resolve();
+
+/**
+ * @param {string} path
+ * @param {string} [lang] Defaults to the current locale
+ * @returns {Promise<void>} Resolves once loaded (or failed)
+ */
+export function prefetchContent(path, lang) {
+	// The locale, from its BCP 47 tag (see `langTag`)
+	const tag = document.documentElement.lang;
+	lang ||= tag === 'ko' ? 'kr' : tag;
+	// The home page is a component, without markdown content to fetch
+	if (path === '/' || !manifest[getContentPath(path)]) return Promise.resolve();
+	const fetch = contentFetcher(lang, path);
 
 	const cacheKey = createCacheKey(fetch, [lang, path]);
-	if (CACHE.has(cacheKey)) return;
-
-	setupCacheEntry(fetch, cacheKey);
+	const entry = CACHE.get(cacheKey) || setupCacheEntry(fetch, cacheKey);
+	return entry.promise.then(
+		() => {},
+		() => {}
+	);
 }
 
 /**

@@ -77,7 +77,7 @@ function ThemedButton() {
 
 function App() {
 	return (
-		<ThemePrimary.Provider value="#8f61e1">
+		<ThemePrimary.Provider value="#8657dc">
 			<SomeComponent>
 				<ThemedButton />
 			</SomeComponent>
@@ -104,7 +104,7 @@ function ThemedButton() {
 
 function App() {
 	return (
-		<ThemePrimary.Provider value="#8f61e1">
+		<ThemePrimary.Provider value="#8657dc">
 			<SomeComponent>
 				<ThemedButton />
 			</SomeComponent>

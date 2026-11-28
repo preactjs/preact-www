@@ -276,7 +276,7 @@ const CounterContext = createContext(null);
 
 function Counter() {
   return (
-    <div style={{ background: '#eee', padding: '10px' }}>
+    <div style={{ background: '#eee', color: '#222', padding: '10px' }}>
       <p>Счётчик: {'MISSING'}</p>
       <button>Добавить</button>
     </div>
@@ -308,7 +308,7 @@ function Counter() {
   const { count, increment } = useContext(CounterContext);
 
   return (
-    <div style={{ background: '#eee', padding: '10px' }}>
+    <div style={{ background: '#eee', color: '#222', padding: '10px' }}>
       <p>Счётчик: {count}</p>
       <button onClick={increment}>Добавить</button>
     </div>

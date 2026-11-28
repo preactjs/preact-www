@@ -6,7 +6,11 @@ import { parse } from 'node-html-parser';
 import { replace } from './gh-emoji/index.js';
 import { textToBase64 } from '../../src/components/controllers/repl/query-encode.js';
 import { parseFrontmatter } from '../../src/lib/frontmatter.js';
-import { generateHeadingId } from '../../src/lib/generate-heading-id.js';
+import {
+	createHeadingIdGenerator,
+	explicitHeadingId,
+	stripHeadingId
+} from '../../src/lib/generate-heading-id.js';
 
 // Prism will always load `markup`, `css`, `clike` and `javascript` by default.
 // Any additional languages we need should be loaded here
@@ -44,9 +48,8 @@ function parseContent(content, path) {
 
 	let processedContent = body;
 
-	if (path.includes('/guide/')) {
-		meta.toc = generateToc(processedContent);
-	}
+	// Filled in from the parsed markdown, see `markdownToHTML`
+	const withToc = path.includes('/guide/');
 
 	// extract tutorial setup, initial and final code blocks
 	if (/tutorial\/\d/.test(path)) {
@@ -57,9 +60,14 @@ function parseContent(content, path) {
 
 	return {
 		content: processedContent,
-		meta
+		meta,
+		withToc
 	};
 }
+
+// Heading ids for the document `marked` is currently rendering. Reset before
+// each (synchronous) render so repeated headings are numbered per document.
+let headingId = createHeadingIdGenerator();
 
 const CUSTOM_BLOCKS = [
 	'<toc></toc>',
@@ -71,12 +79,27 @@ const CUSTOM_BLOCKS = [
 marked.use({
 	renderer: {
 		heading({ text, depth }) {
+			// Stray empty headings (e.g. a lone `##`) would only render a bare
+			// link; skipped without an id, exactly like in `generateToc()`
+			if (!text.trim()) return '';
+
+			// Called for page titles too, so duplicate numbering matches the ToC
+			const { id, alias } = headingId(text);
+			const explicit = explicitHeadingId(text);
+			if (explicit && explicit !== id) {
+				console.warn(
+					`Heading id #${explicit} in "${text}" is taken by an earlier heading, using #${id}`
+				);
+			}
+			text = stripHeadingId(text);
+
 			// No need to add links for page titles
 			if (depth === 1) return `<h${depth}>${text}</h${depth}>`;
 
-			const id = generateHeadingId(text);
 			return `
-				<h${depth} id="${id}">
+				<h${depth} id="${id}">${
+					alias ? `<span id="${alias}" class="heading-alias"></span>` : ''
+				}
 					<a class="fragment-link" href="#${id}">
 						<svg width="16" height="16" viewBox="0 0 24 24" aria-label="Link to: ${text} (#${id})">
 							<use href="#link" />
@@ -96,7 +119,10 @@ marked.use({
 
 			return false;
 		},
-		link({ href, text }) {
+		link({ href, tokens }) {
+			// Render the inline tokens so `code` in link text becomes <code>
+			// instead of showing raw backticks
+			const text = this.parser.parseInline(tokens);
 			if (href.includes('://')) {
 				return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
 			}
@@ -145,11 +171,16 @@ marked.use({
 });
 
 /**
- * @param {{ content: string, html: string }} data
+ * @param {{ content: string, html: string, meta: Record<string, any>, withToc?: boolean }} data
  * @returns {Promise<{ html: string, content: string }>}
  */
 async function markdownToHTML(data) {
-	data.html = await marked(data.content);
+	const tokens = marked.lexer(data.content);
+	if (data.withToc) data.meta.toc = generateToc(tokens);
+	delete data.withToc;
+
+	headingId = createHeadingIdGenerator();
+	data.html = marked.parser(tokens);
 	return data;
 }
 
@@ -169,19 +200,23 @@ function applyEmoji(content) {
 	return replace(content);
 }
 
-/* generate ToC from markdown */
-function generateToc(markdown) {
-	const MARKDOWN_TITLE = /(?:^|\n\n)\s*(#{1,6})\s+(.+)/g;
-
+/**
+ * Generate the ToC from parsed markdown, in the same (document) order and
+ * with the same ids as the heading renderer
+ *
+ * @param {import('marked').TokensList} tokens
+ */
+function generateToc(tokens) {
+	/** @type {{ text: string, id: string, level: number }[]} */
 	const toc = [];
-	let token;
-	MARKDOWN_TITLE.lastIndex = 0;
-	while ((token = MARKDOWN_TITLE.exec(markdown))) {
-		const level = token[1].length;
-		const text = token[2];
-		const id = generateHeadingId(text);
-		toc.push({ text, id, level });
-	}
+	const headingId = createHeadingIdGenerator();
+	marked.walkTokens(tokens, (token) => {
+		if (token.type !== 'heading' || !token.text.trim()) return;
+		const { id } = headingId(token.text);
+		if (token.depth > 1) {
+			toc.push({ text: stripHeadingId(token.text), id, level: token.depth });
+		}
+	});
 	return toc;
 }
 
@@ -228,21 +263,7 @@ function highlightCodeBlocks(data) {
 	for (const block of codeBlocks) {
 		const child = block.childNodes[0];
 
-		/**
-		 * Slight hack to facilitate blank lines in code blocks in HTML in markdown, i.e.,
-		 *
-		 * <pre repl="false"><code class="language-jsx">
-		 *   import TodoList from './todo-list';<br>
-		 *   render(&lt;TodoList /&gt;, document.body);
-		 * </code></pre>
-		 *
-		 * Blank lines are an end condition to the code block so instead we must use `<br>`
-		 * and switch it back to `\n` for the code content after marked is through with it.
-		 * We only do this on the home/index page at the moment.
-		 */
-		const rawCodeBlockText = unescapeHTML(
-			dedent(child.innerText).trim().replaceAll('<br>', '\n')
-		);
+		const rawCodeBlockText = unescapeHTML(dedent(child.innerText).trim());
 		const [code, source, runInRepl] = processRepl(rawCodeBlockText);
 
 		const lang = child.getAttribute('class').replace('language-', '');

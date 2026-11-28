@@ -6,7 +6,6 @@ import Footer from '../footer/index.jsx';
 import style from './style.module.css';
 
 export const pages = [
-	'/',
 	'/about/we-are-using',
 	'/about/project-goals',
 	'/blog',
@@ -34,7 +33,7 @@ export function PageLayout() {
 		<div class={style.page}>
 			<div class={style.outer}>
 				<div class={style.inner}>
-					<MarkdownRegion html={html} meta={meta} />
+					<MarkdownRegion path={path} html={html} meta={meta} />
 					<Footer />
 				</div>
 			</div>

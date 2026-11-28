@@ -1,39 +1,41 @@
 import { useEffect, useState } from 'preact/hooks';
 
+/** Matches `--sidebar-break` in the sidebar CSS, above which it's no overlay */
+export const DESKTOP_QUERY = '(min-width: 900px)';
+
 /**
- * On mobile devices 100vh refers to the whole viewport **without** the
- * address bar. So when the address bar is visible we receive the wrong
- * height. We try to work around this by measuring the actual height
- * instead of relying on css units alone.
+ * Open state for the docs sidebar overlay, which closes itself once the
+ * viewport is wide enough for the regular sidebar (e.g. a rotated tablet).
+ *
+ * @param {() => HTMLElement | null | undefined} [getDesktopFocus] Where focus
+ * goes if it was on a drawer control the desktop layout hides
  */
-export function useOverlayToggle() {
+export function useOverlayToggle(getDesktopFocus) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-		if (open) setHeight();
-
-		function onResize() {
-			if (open) {
-				// If we open the mobile menu on mobile and resize to a
-				// desktop breakpoint, we need to clear the "open" state
-				if (window.innerWidth >= convertRemToPixels(50)) {
-					setOpen(false);
-				}
-				setHeight();
-			}
+		if (!open) return;
+		const desktop = matchMedia(DESKTOP_QUERY);
+		if (desktop.matches) {
+			setOpen(false);
+			return;
 		}
-		window.addEventListener('resize', onResize);
-		return () => window.removeEventListener('resize', onResize);
+
+		const onChange = () => {
+			if (!desktop.matches) return;
+			setOpen(false);
+			requestAnimationFrame(() => {
+				const active = document.activeElement;
+				if (active instanceof HTMLElement && !active.getClientRects().length) {
+					const target = getDesktopFocus?.();
+					if (target) target.focus();
+					else active.blur();
+				}
+			});
+		};
+		desktop.addEventListener('change', onChange);
+		return () => desktop.removeEventListener('change', onChange);
 	}, [open]);
 
 	return /** @type {const} */ ([open, setOpen]);
-}
-
-function setHeight() {
-	let vh = window.innerHeight;
-	document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-function convertRemToPixels(rem) {
-	return rem * Number(getComputedStyle(document.documentElement).fontSize);
 }

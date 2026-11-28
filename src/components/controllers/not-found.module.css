@@ -1,0 +1,43 @@
+.page {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	flex-direction: column;
+	/* Let the hex background run behind the header, like on the home page */
+	margin-top: calc(-1 * var(--header-height));
+	padding-top: var(--header-height);
+	min-height: 100svh;
+}
+
+.content {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	width: var(--main-width);
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 4rem 0.75rem;
+	text-align: center;
+
+	:global(.markup) {
+		h1 {
+			margin: 0 0 0.75rem;
+			font-size: 1.875rem !important;
+			line-height: 1.2;
+		}
+
+		p {
+			margin: 0.25rem 0 0;
+			color: var(--text-secondary);
+			font-size: 1rem;
+		}
+	}
+}
+
+.digits {
+	width: 100%;
+	max-width: 417px;
+}

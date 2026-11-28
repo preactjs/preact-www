@@ -100,7 +100,11 @@ export function Splitter({
 			)}
 		>
 			<div class={cx(s.first, s.area)}>{children}</div>
-			<div class={s.splitter} onPointerDown={splitterPointerDown} />
+			{/* Not draggable while `force` fixes the size */}
+			<div
+				class={cx(s.splitter, force && s.fixed)}
+				onPointerDown={force ? undefined : splitterPointerDown}
+			/>
 			<div class={cx(s.second, s.area)}>{other}</div>
 		</div>
 	);

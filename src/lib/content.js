@@ -5,7 +5,6 @@
  * @returns {string}
  */
 export function getContentPath(path) {
-	if (path == '/') return '/index';
 	if (path == '/tutorial') return '/tutorial/index';
 	return path;
 }
@@ -50,5 +49,6 @@ export async function getContent(manifest, locale, path) {
 	);
 	data.meta.translationExists = exists;
 	data.meta.translationEnabled = enabled;
+	data.meta.locale = locale;
 	return data;
 }

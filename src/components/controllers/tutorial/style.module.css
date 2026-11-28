@@ -1,17 +1,11 @@
 .tutorial {
 	position: absolute;
 	left: 0;
-	top: var(--header-and-banner-height);
+	top: var(--header-height);
 	bottom: 0;
 	height: auto;
 	width: 100%;
 	overflow: hidden;
-
-	@media (max-height: 431px) {
-		& {
-			top: var(--header-height);
-		}
-	}
 
 	:global(.markup) {
 		p:first-of-type {
@@ -44,6 +38,8 @@
 			transition: opacity 1s ease;
 			box-shadow: 1px 0 0 var(--color-brand);
 			overflow-y: scroll;
+			/* Long words wrap in a narrow pane (e.g. beside the code on phones) */
+			overflow-wrap: break-word;
 			z-index: 10;
 			scrollbar-color: rgba(150, 150, 150, 0.8) rgba(150, 150, 150, 0.25);
 
@@ -145,47 +141,85 @@
 				margin: 0 -8px;
 			}
 
+			.language {
+				align-self: flex-end;
+				max-width: calc(100% - 48px);
+				margin: 0 24px 16px;
+			}
+
+			/* Wraps within the (possibly narrow) lesson pane rather than
+			   overflowing it, e.g. with longer translated labels */
 			.buttonContainer {
 				align-self: flex-end;
-				margin: 12px;
 				display: flex;
-				justify-content: stretch;
+				flex-wrap: wrap;
+				justify-content: flex-end;
+				gap: 12px 24px;
+				max-width: calc(100% - 48px);
+				margin: 12px 24px;
 
 				.helpButton,
 				.prevButton,
 				.nextButton {
+					max-width: 100%;
 					padding: 6px 16px;
-					margin: 0 12px;
-					border: 1px solid var(--color-btn);
-					border-radius: 5px;
-					font-size: 100%;
+					margin: 0;
+					border: 1px solid var(--border);
+					border-radius: 0;
+					font-family: var(--font-mono);
+					font-size: 0.85rem;
+					font-weight: 600;
 					transition:
-						box-shadow 300ms ease,
-						border-color 300ms ease;
+						background-color 0.15s ease,
+						border-color 0.15s ease;
 					outline: none;
-					background: var(--color-btn-background);
-					color: var(--color-btn);
+					background: var(--bg);
+					color: var(--text-h);
 					cursor: pointer;
 					&:hover,
 					&:focus-visible {
-						box-shadow: 0 0 0 5px var(--color-brand-light);
+						border-color: var(--accent-soft);
 					}
 
+					/* The same focus ring as the site's other buttons */
+					&:focus-visible {
+						outline: 2px solid var(--accent-soft);
+						outline-offset: 2px;
+					}
+
+					/* Solve, with the code hidden */
 					&[disabled] {
-						visibility: hidden;
-						cursor: not-allowed;
+						display: none;
 					}
 				}
 
 				.nextButton {
-					background: var(--color-btn);
-					border-color: var(--color-btn-background);
-					color: var(--color-btn-background);
+					background: var(--accent);
+					border-color: var(--accent);
+					color: #fff;
 				}
 
 				.nextButton:hover,
 				.nextButton:focus-visible {
-					border-color: var(--color-btn-background);
+					background: var(--accent-hover);
+					border-color: var(--accent-hover);
+				}
+			}
+
+			/* After the rules above, which it overrides */
+			@media (max-width: 600px) {
+				.language,
+				.buttonContainer {
+					max-width: 100%;
+					margin-inline: 0;
+				}
+
+				.buttonContainer {
+					.helpButton,
+					.prevButton,
+					.nextButton {
+						padding-inline: 8px;
+					}
 				}
 			}
 		}
@@ -195,6 +229,16 @@
 				& > * {
 					max-width: 700px;
 					margin: 0 auto;
+				}
+
+				/* Clear of the code toggle, pinned over the pane's bottom right */
+				& > .language {
+					margin: 16px auto calc(10px + 2rem + 16px);
+				}
+
+				/* Not wider than the pane, e.g. for its code blocks on phones */
+				& > content-region {
+					width: 100%;
 				}
 
 				content-region h1 {
@@ -284,10 +328,6 @@
 			z-index: 1001;
 			cursor: pointer;
 
-			> span {
-				display: none;
-			}
-
 			&:hover,
 			&:focus-visible {
 				box-shadow:
@@ -297,6 +337,8 @@
 
 			&:before {
 				content: '►';
+				/* Decorative: the button is named by its label (where supported) */
+				content: '►' / '';
 				position: relative;
 				display: inline-block;
 				will-change: transform;

@@ -26,9 +26,15 @@ pre[class*='language-'] {
 	overflow: auto;
 }
 
+/* Overflowing code blocks are focusable, see use-scrollable-regions */
+pre[tabindex]:focus-visible {
+	outline: 2px solid var(--accent-soft);
+	outline-offset: 2px;
+}
+
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
-	background: #2d2d2d;
+	background: var(--color-code-bg);
 }
 
 /* Inline code */
@@ -51,10 +57,14 @@ pre[class*='language-'] {
 }
 
 .token.tag,
-.token.attr-name,
 .token.namespace,
 .token.deleted {
 	color: var(--color-code-tag);
+}
+
+/* JSX text, like the reference design's punctuation-colored markup */
+.token.plain-text {
+	color: var(--color-code-punctuation);
 }
 
 .token.interpolation-punctuation {
@@ -65,12 +75,12 @@ pre[class*='language-'] {
 	color: var(--color-code-function-name);
 }
 
-.token.boolean,
-.token.number,
 .token.function {
 	color: var(--color-code-function);
 }
 
+.token.boolean,
+.token.number,
 .token.property,
 .token.class-name,
 .token.constant,
@@ -82,6 +92,7 @@ pre[class*='language-'] {
 .token.important,
 .token.atrule,
 .token.keyword,
+.token.attr-name,
 .token.builtin {
 	color: var(--color-code-keyword);
 }

@@ -1,23 +1,69 @@
+/* Matches the design's tabbed code box: tabs on top, code below, one border */
+.group {
+	padding: 1.25rem;
+	border: 1px solid var(--border);
+	background: var(--color-code-bg);
+
+	:global(.highlight-container) {
+		margin-bottom: 0;
+	}
+
+	[role='tabpanel'] pre {
+		margin: 0 !important;
+		padding: 0 !important;
+		border: none !important;
+		background: transparent !important;
+	}
+
+	/* Without the code block's padding, the usual top-right corner badge
+	   would sit on the code: give it its own row below instead */
+	[role='tabpanel'] :global(a.repl-link) {
+		position: static;
+		display: table;
+		margin: 1rem 0 0 auto;
+	}
+}
+
 .tabs {
 	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+	/* Long tab labels scroll within the group instead of widening the page */
+	overflow-x: auto;
+	scrollbar-width: none;
+	/* An inset shadow rather than a border, so the selected tab's underline
+	   can sit on top of it despite the overflow clipping */
+	box-shadow: inset 0 -1px var(--border);
 
 	.tab {
-		cursor: pointer;
-		padding: 0.2rem 0.4rem;
-		font-weight: 700;
-		font-size: 1rem;
 		display: inline-flex;
-		background-color: transparent;
+		flex-shrink: 0;
+		white-space: nowrap;
+		padding: 0 0.25rem 0.25rem;
 		border: none;
 		border-bottom: 2px solid transparent;
-		border-radius: 5px;
+		background: transparent;
+		color: var(--text);
+		font-family: inherit;
+		font-size: 0.875rem;
+		cursor: pointer;
+		transition:
+			color 0.15s,
+			border-color 0.15s;
 
 		&[aria-selected='true'] {
-			border-bottom: 2px solid var(--color-brand);
+			border-bottom-color: var(--accent-soft);
+			color: var(--accent-soft);
 		}
 
 		&:hover {
-			background-color: rgba(255, 255, 255, 0.05);
+			color: var(--text-h);
+		}
+
+		/* Inset: the scrolling strip would clip an outer ring */
+		&:focus-visible {
+			outline: 2px solid var(--accent-soft);
+			outline-offset: -2px;
 		}
 	}
 }

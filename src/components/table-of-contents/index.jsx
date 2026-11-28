@@ -20,7 +20,7 @@ export default function Toc() {
 	if (items.length === 0) return null;
 
 	return (
-		<nav aria-label="Table of Contents">
+		<nav aria-label="Table of Contents" data-inline-toc>
 			<ul>
 				{items.map((entry) => (
 					<TocItem {...entry} />
