@@ -9,6 +9,7 @@
 		"beginTutorial": "Commencer le tutoriel",
 		"help": "Aide",
 		"solve": "Résoudre",
+		"codeEditor": "Éditeur de code",
 		"mobileGuideButton": "Guide",
 		"onThisPage": "Sur cette page",
 		"docVersion": "Version",
@@ -28,7 +29,7 @@
 	"sidebarNav": {},
 	"blogPosts": {},
 	"home": {
-		"description": "Alternative légère et rapide à React avec le même API en seulement 3Ko",
+		"description": "Alternative légère et rapide à React avec la même API, en seulement 3 ko",
 		"news": "PREACT 11 est sorti",
 		"rotateLogo": "Faire pivoter le logo Preact",
 		"logoAlt": "Logo Preact",

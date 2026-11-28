@@ -34,27 +34,26 @@ const translationURLs = import.meta.glob('../locales/!(en)*.json', {
 const LanguageContext = createContext(/** @type {LanguageContext} */ ({}));
 
 /**
- * Get the default language based on the preferred preference of the browser
- * @param {Record<string, string>} available All available languages
- * @returns {string | undefined}
+ * The first of the browser's languages the site has, also by its language
+ * alone (e.g. `ko-KR` or `ja-JP`), unless English comes first
+ *
+ * @returns {Locale | undefined}
  */
-function getNavigatorLanguage(available) {
+function getNavigatorLanguage() {
 	if (typeof navigator === 'undefined') return;
 
-	let langs = [navigator.language].concat(navigator.languages);
-	for (let i = 0; i < langs.length; i++) {
-		if (langs[i]) {
-			let lang = String(langs[i]).toLowerCase();
-			if (available[lang]) return lang;
-			// Respect order of `navigator.languages` by returning if the fallback language `English` is found
-			if (lang === 'en') return;
-		}
+	for (const tag of [navigator.language, ...(navigator.languages || [])]) {
+		if (!tag) continue;
+		const lang = String(tag).toLowerCase();
+		const locale = knownLocale(lang) || knownLocale(lang.split('-')[0]);
+		if (locale === 'en') return;
+		if (locale) return locale;
 	}
 }
 
 /**
- * A locale from `?lang=` or storage, if known (`ko` being the BCP 47 tag of
- * `kr`, see `langTag`)
+ * A locale from `?lang=`, storage or the browser, if known (`ko` being the
+ * BCP 47 tag of `kr`, see `langTag`)
  *
  * @param {unknown} value
  * @returns {Locale | ''}
@@ -123,7 +122,7 @@ export function LanguageProvider({ children }) {
 		const userLang =
 			validQueryLang ||
 			knownLocale(localStorageGet('lang')) ||
-			getNavigatorLanguage(config.locales) ||
+			getNavigatorLanguage() ||
 			'en';
 
 		setQueryLang(validQueryLang);

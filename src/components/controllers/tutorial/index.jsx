@@ -50,6 +50,8 @@ export function Tutorial({ path, html, meta }) {
 	const [editorResets, resetEditor] = useReducer((n) => n + 1, 0);
 	const [error, setError] = useState(null);
 	const [showCodeOverride, toggleCode] = useReducer((s) => !s, true);
+	const translate = useTranslate();
+	const fallbackLang = useFallbackLang();
 
 	const content = useRef(null);
 	const runner = useRef(null);
@@ -77,11 +79,30 @@ export function Tutorial({ path, html, meta }) {
 		if (!sameChapter) solutionCtx.setSolved(false);
 	}, [meta.tutorial?.initial]);
 
+	// A new chapter starts at its top, also for keyboard focus if it was in the
+	// lesson (e.g. on the reused Next Page link)
 	const shownPath = useRef(path);
 	useEffect(() => {
 		if (shownPath.current === path) return;
 		shownPath.current = path;
-		content.current.scrollTo(0, 0);
+		const pane = content.current;
+		pane.scrollTo(0, 0);
+		const active = document.activeElement;
+		const heading = pane.querySelector('h1');
+		if (
+			heading &&
+			(!active || active === document.body || pane.contains(active))
+		) {
+			if (!heading.hasAttribute('tabindex')) {
+				heading.setAttribute('tabindex', '-1');
+				heading.addEventListener(
+					'blur',
+					() => heading.removeAttribute('tabindex'),
+					{ once: true }
+				);
+			}
+			heading.focus({ preventScroll: true });
+		}
 	}, [path]);
 
 	useEffect(() => {
@@ -170,7 +191,11 @@ export function Tutorial({ path, html, meta }) {
 								other={
 									<>
 										{/* Clipped away along with the editor */}
-										<div class={style.output} inert={!showCode}>
+										<div
+											id="tutorial-output"
+											class={style.output}
+											inert={!showCode}
+										>
 											{error && (
 												<ErrorOverlay
 													name={error.name}
@@ -189,16 +214,22 @@ export function Tutorial({ path, html, meta }) {
 										{hasCode && (
 											<button
 												class={style.toggleCode}
-												title="Toggle Code"
+												aria-label={translate('i18n', 'codeEditor')}
+												lang={fallbackLang('i18n', 'codeEditor')}
+												title={translate('i18n', 'codeEditor')}
+												aria-expanded={showCode}
+												aria-controls="tutorial-code tutorial-output"
 												onClick={toggleCode}
-											>
-												<span>Toggle Code</span>
-											</button>
+											/>
 										)}
 									</>
 								}
 							>
-								<div class={style.codeWindow} inert={!showCode}>
+								<div
+									id="tutorial-code"
+									class={style.codeWindow}
+									inert={!showCode}
+								>
 									<CodeEditor
 										class={style.code}
 										value={editorCode}

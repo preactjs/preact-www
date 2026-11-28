@@ -94,3 +94,7 @@
 .second {
 	flex: 1 1 calc(100% - var(--size, 50%));
 }
+
+.fixed {
+	pointer-events: none;
+}

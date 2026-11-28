@@ -38,6 +38,8 @@
 			transition: opacity 1s ease;
 			box-shadow: 1px 0 0 var(--color-brand);
 			overflow-y: scroll;
+			/* Long words wrap in a narrow pane (e.g. beside the code on phones) */
+			overflow-wrap: break-word;
 			z-index: 10;
 			scrollbar-color: rgba(150, 150, 150, 0.8) rgba(150, 150, 150, 0.25);
 
@@ -143,6 +145,22 @@
 				align-self: flex-end;
 				max-width: calc(100% - 48px);
 				margin: 0 24px 16px;
+			}
+
+			@media (max-width: 600px) {
+				.language,
+				.buttonContainer {
+					max-width: 100%;
+					margin-inline: 0;
+				}
+
+				.buttonContainer {
+					.helpButton,
+					.prevButton,
+					.nextButton {
+						padding-inline: 8px;
+					}
+				}
 			}
 
 			/* Wraps within the (possibly narrow) lesson pane rather than
@@ -303,10 +321,6 @@
 			z-index: 1001;
 			cursor: pointer;
 
-			> span {
-				display: none;
-			}
-
 			&:hover,
 			&:focus-visible {
 				box-shadow:
@@ -315,7 +329,8 @@
 			}
 
 			&:before {
-				content: '►';
+				/* Decorative: the button is named by its label */
+				content: '►' / '';
 				position: relative;
 				display: inline-block;
 				will-change: transform;
