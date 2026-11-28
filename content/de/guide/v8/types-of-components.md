@@ -19,7 +19,7 @@ Innerhalb dieser zwei Typen gibt es außerdem viele verschiedene Wege, Komponent
 
 ## Beispiel
 
-Hier ein Beispiel: Eine einfache `<Link>`-Komponente, die ein ein HTML-`<a>`-Element erstellt:
+Hier ein Beispiel: Eine einfache `<Link>`-Komponente, die ein HTML-`<a>`-Element erstellt:
 
 ```js
 class Link extends Component {
