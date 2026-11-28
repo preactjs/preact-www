@@ -72,7 +72,7 @@ function Counter() {
   <img src="/home/performance.svg" alt="performance" loading="lazy" decoding="async" width="54" height="54">
 
   <div>
-    <h3>Grandi Perfomance</h3>
+    <h3>Grandi Performance</h3>
     <p>
         Preact è veloce, e non solo per il suo peso. Ha una delle implementazioni più veloci per rilevare le differenze tra il DOM sulla pagina e il DOM virtuale.
     </p>
