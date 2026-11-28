@@ -43,7 +43,7 @@ let resultCleanups, realmCleanups;
  * @param {{ path: string, html: string, meta: TutorialMeta }} props
  */
 export function Tutorial({ path, html, meta }) {
-	const { route, url } = useLocation();
+	const { route, url, path: routePath } = useLocation();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
 	// Bumped (on Solve, or when the unedited starter code is translated) to make
@@ -82,7 +82,11 @@ export function Tutorial({ path, html, meta }) {
 
 	// A new chapter starts at its top, also for keyboard focus if it was in the
 	// lesson (e.g. on the reused Next Page link), unless the reader has done
-	// anything while it loaded
+	// anything while it loaded: focus they moved within the lesson stays in view
+	const focusAtNavigation = useRef(/** @type {Element | null} */ (null));
+	useEffect(() => {
+		focusAtNavigation.current = document.activeElement;
+	}, [routePath]);
 	const shownPath = useRef(path);
 	useEffect(() => {
 		if (shownPath.current === path) return;
@@ -90,12 +94,14 @@ export function Tutorial({ path, html, meta }) {
 		const pane = content.current;
 		pane.scrollTo(0, 0);
 		const active = document.activeElement;
+		const inPane = active && active !== pane && pane.contains(active);
+		if (active !== focusAtNavigation.current) {
+			if (inPane) active.scrollIntoView({ block: 'nearest' });
+			return;
+		}
+		if (hasInputSinceNavigation()) return;
 		const heading = pane.querySelector('h1');
-		if (
-			heading &&
-			!hasInputSinceNavigation() &&
-			(!active || active === document.body || pane.contains(active))
-		) {
+		if (heading && (!active || active === document.body || inPane)) {
 			if (!heading.hasAttribute('tabindex')) {
 				heading.setAttribute('tabindex', '-1');
 				heading.addEventListener(

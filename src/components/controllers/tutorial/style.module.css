@@ -187,9 +187,9 @@
 						outline-offset: 2px;
 					}
 
+					/* Solve, with the code hidden */
 					&[disabled] {
-						visibility: hidden;
-						cursor: not-allowed;
+						display: none;
 					}
 				}
 
@@ -231,8 +231,9 @@
 					margin: 0 auto;
 				}
 
+				/* Clear of the code toggle, pinned over the pane's bottom right */
 				& > .language {
-					margin: 16px auto 24px;
+					margin: 16px auto calc(10px + 2rem + 16px);
 				}
 
 				/* Not wider than the pane, e.g. for its code blocks on phones */

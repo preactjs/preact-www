@@ -1,5 +1,11 @@
 import { createContext } from 'preact';
-import { useContext, useEffect, useRef, useState } from 'preact/hooks';
+import {
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState
+} from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 
 import { localStorageGet, localStorageSet } from './localstorage.js';
@@ -44,24 +50,29 @@ function getNavigatorLanguage() {
 
 	for (const tag of [navigator.language, ...(navigator.languages || [])]) {
 		if (!tag) continue;
-		const lang = String(tag).toLowerCase();
-		const locale = knownLocale(lang) || knownLocale(baseLocale(lang));
+		const locale = browserLocale(String(tag).toLowerCase());
 		if (locale === 'en') return;
 		if (locale) return locale;
 	}
 }
 
 /**
- * The site's locale for a language tag's language: Brazilian Portuguese for
- * any Portuguese, none for Traditional Chinese (`zh` is Simplified)
+ * The site's locale for a browser's language tag: Korean is `ko` (`kr` is
+ * Kanuri), any Portuguese is Brazilian, and Chinese is Simplified (`zh`)
+ * unless its script or region says Traditional
  *
  * @param {string} tag Lowercase
+ * @returns {Locale | ''}
  */
-function baseLocale(tag) {
-	const [base] = tag.split('-');
-	if (base === 'pt') return 'pt-br';
-	if (base === 'zh' && /-(hant|tw|hk|mo)\b/.test(tag)) return '';
-	return base;
+function browserLocale(tag) {
+	const [lang, ...subtags] = tag.split('-');
+	if (lang === 'kr') return '';
+	if (lang === 'pt') return 'pt-br';
+	if (lang === 'zh' && !subtags.includes('hans')) {
+		const traditional = ['hant', 'tw', 'hk', 'mo'];
+		if (subtags.some((subtag) => traditional.includes(subtag))) return '';
+	}
+	return knownLocale(lang);
 }
 
 /**
@@ -118,11 +129,13 @@ export function LanguageProvider({ children }) {
 		wanted.current = next;
 		setSelectedLang(next);
 		hydrated.current.then(() => {
-			if (wanted.current !== next) return;
-			setLang(next);
-			document.documentElement.lang = langTag(next);
+			if (wanted.current === next) setLang(next);
 		});
 	};
+	// Once the translated UI has rendered
+	useLayoutEffect(() => {
+		document.documentElement.lang = langTag(lang);
+	}, [lang]);
 
 	useEffect(() => {
 		const left = new Promise((resolve) => (leftFirstPage.current = resolve));
