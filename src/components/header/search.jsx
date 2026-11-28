@@ -2,7 +2,6 @@ import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { ErrorBoundary, useLocation } from 'preact-iso';
 import { inertOthers, isVisible, trapTabKey } from '../../lib/inert-others.js';
-import { hasInputSince } from '../../lib/reader-input.js';
 import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 import config from '../../config.json' with { type: 'json' };
@@ -473,12 +472,11 @@ export default function Search() {
 		 * @param {NonNullable<typeof pendingHit>} hit
 		 */
 		const focusHit = (hit) => {
+			stopFocusHit();
 			restoreFocus();
-			const start = performance.now();
+			let stopped = false;
 			const cancelled = () =>
-				hasInputSince(start) ||
-				withoutSlash(location.pathname) !== hit.path ||
-				performance.now() - start > 60_000;
+				stopped || withoutSlash(location.pathname) !== hit.path;
 			const attempt = () => {
 				if (cancelled()) return;
 				const title = pageTitle();
@@ -512,18 +510,37 @@ export default function Search() {
 			/** @type {HTMLElement | null} */
 			let focused = null;
 			const onContentChange = () => {
-				if (cancelled()) {
-					document.removeEventListener('contentchange', onContentChange);
-				} else if (
+				if (cancelled()) stop();
+				else if (
 					focused &&
 					[focused, document.body, null].includes(document.activeElement)
 				) {
 					attempt();
 				}
 			};
+			const expiry = setTimeout(() => stop(), 60_000);
+			const stop = () => {
+				stopped = true;
+				clearTimeout(expiry);
+				document.removeEventListener('contentchange', onContentChange);
+				for (const type of STOP_EVENTS) removeEventListener(type, stop, true);
+			};
 			document.addEventListener('contentchange', onContentChange);
+			for (const type of STOP_EVENTS) {
+				addEventListener(type, stop, { capture: true, passive: true });
+			}
+			stopFocusHit = stop;
 			attempt();
 		};
+		// Reader input or a history navigation ends a focus handoff
+		const STOP_EVENTS = [
+			'pointerdown',
+			'keydown',
+			'wheel',
+			'touchstart',
+			'popstate'
+		];
+		let stopFocusHit = () => {};
 
 		/** @param {Node} n */
 		const isContainer = (n) =>
@@ -615,6 +632,7 @@ export default function Search() {
 			observer.disconnect();
 			backdropObserver.disconnect();
 			restoreInert();
+			stopFocusHit();
 		};
 	}, []);
 

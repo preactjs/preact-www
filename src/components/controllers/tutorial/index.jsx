@@ -74,10 +74,15 @@ export function Tutorial({ path, html, meta }) {
 		setEditorCode(initial);
 		setRunnerCode(initial);
 		resetEditor();
-		if (sameChapter) return;
-		solutionCtx.setSolved(false);
-		content.current.scrollTo(0, 0);
+		if (!sameChapter) solutionCtx.setSolved(false);
 	}, [meta.tutorial?.initial]);
+
+	const shownPath = useRef(path);
+	useEffect(() => {
+		if (shownPath.current === path) return;
+		shownPath.current = path;
+		content.current.scrollTo(0, 0);
+	}, [path]);
 
 	useEffect(() => {
 		const delay = setTimeout(() => {
@@ -164,7 +169,8 @@ export function Tutorial({ path, html, meta }) {
 								orientation="vertical"
 								other={
 									<>
-										<div class={style.output}>
+										{/* Clipped away along with the editor */}
+										<div class={style.output} inert={!showCode}>
 											{error && (
 												<ErrorOverlay
 													name={error.name}
@@ -192,7 +198,7 @@ export function Tutorial({ path, html, meta }) {
 									</>
 								}
 							>
-								<div class={style.codeWindow}>
+								<div class={style.codeWindow} inert={!showCode}>
 									<CodeEditor
 										class={style.code}
 										value={editorCode}

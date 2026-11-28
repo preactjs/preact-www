@@ -52,6 +52,21 @@ function getNavigatorLanguage(available) {
 	}
 }
 
+/**
+ * A locale from `?lang=` or storage, if known (`ko` being the BCP 47 tag of
+ * `kr`, see `langTag`)
+ *
+ * @param {unknown} value
+ * @returns {Locale | ''}
+ */
+function knownLocale(value) {
+	const lang = value === 'ko' ? 'kr' : value;
+	return typeof lang === 'string' &&
+		Object.prototype.hasOwnProperty.call(config.locales, lang)
+		? /** @type {Locale} */ (lang)
+		: '';
+}
+
 export function LanguageProvider({ children }) {
 	const { query, route, path } = useLocation();
 	// Resolves once the reader has left the page that's being hydrated
@@ -104,17 +119,10 @@ export function LanguageProvider({ children }) {
 			// After the render that the content's arrival triggers
 			.then(() => new Promise((resolve) => setTimeout(resolve)));
 
-		// Only a known locale (`ko` being the BCP 47 tag of `kr`, see `langTag`)
-		const fromUrl = query.lang === 'ko' ? 'kr' : query.lang;
-		const validQueryLang = Object.prototype.hasOwnProperty.call(
-			config.locales,
-			fromUrl
-		)
-			? fromUrl
-			: '';
+		const validQueryLang = knownLocale(query.lang);
 		const userLang =
 			validQueryLang ||
-			localStorageGet('lang') ||
+			knownLocale(localStorageGet('lang')) ||
 			getNavigatorLanguage(config.locales) ||
 			'en';
 

@@ -14,16 +14,16 @@ export default function ContentRegion({ content, components, ...props }) {
 	const ref = useRef(/** @type {HTMLElement | null} */ (null));
 	useScrollableRegions(ref, 'table, pre', content);
 
-	// The router scrolls to the top on navigation, also to a `#fragment` on
-	// another page: scroll to it once it's rendered, and again if the content
-	// is replaced (the translation of the prerendered English page) or a
-	// webfont it needs (e.g. Cyrillic) loads, unless the reader has done
-	// anything since the navigation
 	// For whatever depends on the rendered content, e.g. a search hit's focus
 	useEffect(() => {
 		ref.current?.dispatchEvent(new Event('contentchange', { bubbles: true }));
 	}, [content]);
 
+	// The router scrolls to the top on navigation, also to a `#fragment` on
+	// another page: scroll to it once it's rendered, and again if the content
+	// is replaced (the translation of the prerendered English page) or a
+	// webfont it needs (e.g. Cyrillic) loads, unless the reader has done
+	// anything since the navigation
 	const scrolled = useRef({ target: '', content: '' });
 	useEffect(() => {
 		const { hash } = location;

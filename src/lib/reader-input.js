@@ -25,7 +25,7 @@ if (
 }
 
 /** @param {number} since A `performance.now()` time */
-export const hasInputSince = (since) => (store.__readerInput ?? -1) > since;
+const hasInputSince = (since) => (store.__readerInput ?? -1) > since;
 
 export const hasInputSinceNavigation = () => hasInputSince(navigation.at);
 
