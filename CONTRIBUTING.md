@@ -20,7 +20,7 @@ This website is built as a [prerendered static app](https://developers.google.co
 
 ### Content
 
-Content is fetched and rendered on the fly from Markdown documents, similiar to how Jekyll and many other static site generators work. Each page on the site is a separate Markdown file, with optional YAML FrontMatter for specifying page metadata or layout information. Once fetched, the markdown content is then parsed using [`marked`](https://github.com/markedjs/marked) and rendered via [`preact-markup`](https://github.com/developit/preact-markup) to create the HTML you can read and interact with.
+Content is fetched and rendered on the fly from Markdown documents, similar to how Jekyll and many other static site generators work. Each page on the site is a separate Markdown file, with optional YAML FrontMatter for specifying page metadata or layout information. Once fetched, the markdown content is then parsed using [`marked`](https://github.com/markedjs/marked) and rendered via [`preact-markup`](https://github.com/developit/preact-markup) to create the HTML you can read and interact with.
 
 ### Custom Elements
 

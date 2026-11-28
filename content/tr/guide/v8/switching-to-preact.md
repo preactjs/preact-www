@@ -153,7 +153,7 @@ npm install --save preact  # ya da: npm i -S preact
 
 ### 2. JSX Pragması: `h()`'e transpile etmek
 
-> **Hikayenin tamamı:** JSX dil uzantısı React'tan bağımsız olsa da, [Babel] ve [Bublé] gibi popüler transpiler'lar `React.createElement()` fonksiyonunu fonksiyonunu otomatik olarak çağırmaya çalışır.
+> **Hikayenin tamamı:** JSX dil uzantısı React'tan bağımsız olsa da, [Babel] ve [Bublé] gibi popüler transpiler'lar `React.createElement()` fonksiyonunu otomatik olarak çağırmaya çalışır.
 > Bunun tarihsel nedenleri vardır, ama JSX fonksiyonları aslında önceden var olan bir teknoloji olan [hyperscript] ile mümkün olmuştur.
 > Preact daha JSX'in sadeliğini ön plana çıkarmak
 > ve bu teknolojiye atıfta bulunarak `h()` fonksiyonunu JSX pragması olarak kullanmayı hedefler.

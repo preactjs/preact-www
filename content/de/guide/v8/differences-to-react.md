@@ -62,7 +62,7 @@ Preact fügt durchaus vereinzelt nützliche Funktionen hinzu, die von dem Schaff
 
 Preact und React haben einige feinere Unterschiede:
 
-- `render()` akzeptiert ein drittes Argument, welches der Grundknoten zu _replace_ ist, andernfalls fügt es es hinzu. Dies könnte sich in einer zukünftigen Version ein wenig ändern, vermutlich durch automatische Erkennung der Angemessenheit eines Ersatzrenders mithilfe einer Inspizierung des Grundknoten.
+- `render()` akzeptiert ein drittes Argument, welches der Grundknoten zu _replace_ ist, andernfalls fügt es hinzu. Dies könnte sich in einer zukünftigen Version ein wenig ändern, vermutlich durch automatische Erkennung der Angemessenheit eines Ersatzrenders mithilfe einer Inspizierung des Grundknoten.
 - Komponenten implementieren `contextTypes` oder `childContextTypes` nicht. Children empfangen alle `context`-Einträge von `getChildContext()`.
 
 [Projektziele]: /about/project-goals
