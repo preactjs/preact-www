@@ -19,6 +19,11 @@ export default function ContentRegion({ content, components, ...props }) {
 	// is replaced (the translation of the prerendered English page) or a
 	// webfont it needs (e.g. Cyrillic) loads, unless the reader has done
 	// anything since the navigation
+	// For whatever depends on the rendered content, e.g. a search hit's focus
+	useEffect(() => {
+		ref.current?.dispatchEvent(new Event('contentchange', { bubbles: true }));
+	}, [content]);
+
 	const scrolled = useRef({ target: '', content: '' });
 	useEffect(() => {
 		const { hash } = location;

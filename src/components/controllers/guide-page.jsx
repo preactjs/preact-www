@@ -64,7 +64,7 @@ function GuideLayout() {
 					<OldDocsWarning />
 					<div class={style.docsMeta}>
 						<Breadcrumb />
-						<EditThisPage meta={meta} inline />
+						<EditThisPage path={path} meta={meta} inline />
 					</div>
 					<MarkdownRegion
 						path={path}

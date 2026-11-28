@@ -1,15 +1,14 @@
-import { useRoute } from 'preact-iso';
-import { useLanguageContext } from '../../lib/i18n.jsx';
 import style from './style.module.css';
 
 /**
  * @param {object} props
+ * @param {string} props.path - The page `meta` is for (see `MarkdownRegion`)
  * @param {import('../../types.d.ts').ContentMetaData} props.meta
  * @param {boolean} [props.inline] - Render in the flow, rather than floating over the content
  */
-export default function EditThisPage({ meta, inline }) {
-	let { path } = useRoute();
-	const { lang } = useLanguageContext();
+export default function EditThisPage({ path, meta, inline }) {
+	// The content's, as the previous content stays while a translation loads
+	const lang = meta.locale;
 
 	const editUrl = `https://github.com/preactjs/preact-www/tree/master/content/${lang}${meta.translationExists ? path + '.md' : ''}`;
 

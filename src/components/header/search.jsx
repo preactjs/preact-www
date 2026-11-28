@@ -467,7 +467,8 @@ export default function Search() {
 		 * next Tab continues from there. Meanwhile focus is restored as usual:
 		 * the page may take a while to load, and the user may do something else
 		 * in the meantime (which cancels this). Content replaced later on (e.g.
-		 * by a translation that was still loading) gets the focus back.
+		 * by a translation that was still loading) gets the focus again, unless
+		 * the reader has moved it.
 		 *
 		 * @param {NonNullable<typeof pendingHit>} hit
 		 */
@@ -506,14 +507,21 @@ export default function Search() {
 				el.focus({ preventScroll: true });
 				if (el === heading) el.scrollIntoView();
 				else scrollTo(0, 0);
-				const watch = () => {
-					if (cancelled()) return;
-					const lost = [document.body, null].includes(document.activeElement);
-					if (!el.isConnected && lost) attempt();
-					else setTimeout(watch, 100);
-				};
-				setTimeout(watch, 100);
+				focused = el;
 			};
+			/** @type {HTMLElement | null} */
+			let focused = null;
+			const onContentChange = () => {
+				if (cancelled()) {
+					document.removeEventListener('contentchange', onContentChange);
+				} else if (
+					focused &&
+					[focused, document.body, null].includes(document.activeElement)
+				) {
+					attempt();
+				}
+			};
+			document.addEventListener('contentchange', onContentChange);
 			attempt();
 		};
 

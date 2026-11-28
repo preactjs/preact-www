@@ -49,6 +49,6 @@ export async function getContent(manifest, locale, path) {
 	);
 	data.meta.translationExists = exists;
 	data.meta.translationEnabled = enabled;
-	data.meta.locale = exists && enabled ? locale : 'en';
+	data.meta.locale = locale;
 	return data;
 }

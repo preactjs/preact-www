@@ -45,8 +45,8 @@ export function Tutorial({ path, html, meta }) {
 	const { route, url } = useLocation();
 	const [editorCode, setEditorCode] = useState(meta.tutorial?.initial || '');
 	const [runnerCode, setRunnerCode] = useState(editorCode);
-	// Bumped (on Solve, or when the starter code is translated) to make the
-	// editor take `editorCode`, which it otherwise only does on a new chapter
+	// Bumped (on Solve, or when the unedited starter code is translated) to make
+	// the editor take `editorCode`, which it otherwise only does on a new chapter
 	const [editorResets, resetEditor] = useReducer((n) => n + 1, 0);
 	const [error, setError] = useState(null);
 	const [showCodeOverride, toggleCode] = useReducer((s) => !s, true);
@@ -62,14 +62,21 @@ export function Tutorial({ path, html, meta }) {
 	// TODO: Needs some work for prerendering to not cause pop-in
 	if (typeof window === 'undefined') return null;
 
+	const starter = useRef({ path, code: meta.tutorial?.initial });
 	useEffect(() => {
-		if (meta.tutorial?.initial && editorCode !== meta.tutorial.initial) {
-			setEditorCode(meta.tutorial.initial);
-			setRunnerCode(meta.tutorial.initial);
-			resetEditor();
-			solutionCtx.setSolved(false);
-			content.current.scrollTo(0, 0);
-		}
+		const initial = meta.tutorial?.initial;
+		const prev = starter.current;
+		starter.current = { path, code: initial };
+		if (!initial || editorCode === initial) return;
+		const sameChapter = prev.path === path;
+		// A translation of this chapter's starter code only replaces it unedited
+		if (sameChapter && editorCode !== prev.code) return;
+		setEditorCode(initial);
+		setRunnerCode(initial);
+		resetEditor();
+		if (sameChapter) return;
+		solutionCtx.setSolved(false);
+		content.current.scrollTo(0, 0);
 	}, [meta.tutorial?.initial]);
 
 	useEffect(() => {

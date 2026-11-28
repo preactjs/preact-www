@@ -26,7 +26,7 @@ export function MarkdownRegion({
 
 	return (
 		<Fragment key={path}>
-			{canEdit && showEditLink && <EditThisPage meta={meta} />}
+			{canEdit && showEditLink && <EditThisPage path={path} meta={meta} />}
 			{isBlogArticle && <BlogMeta meta={meta} />}
 			<ContentRegion
 				current={path}
