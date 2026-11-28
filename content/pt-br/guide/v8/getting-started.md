@@ -107,7 +107,7 @@ Preact exporta uma classe genérica `Componente`, que pode ser extendida para co
 
 Componentes também tem um método `render()`, mas diferente do React esse método recebe `(props, state)` como argumentos. Isso provê uma maneira ergonômica para desestruturar `props` e `state` em variáveis locais para serem referenciadas a partir do JSX.
 
-Vamos dar uma olhada em um componente `Clock` bem simples, que mostra o o tempo atual.
+Vamos dar uma olhada em um componente `Clock` bem simples, que mostra o tempo atual.
 
 ```js
 import { h, render, Component } from 'preact';
