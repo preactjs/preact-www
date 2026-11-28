@@ -147,22 +147,6 @@
 				margin: 0 24px 16px;
 			}
 
-			@media (max-width: 600px) {
-				.language,
-				.buttonContainer {
-					max-width: 100%;
-					margin-inline: 0;
-				}
-
-				.buttonContainer {
-					.helpButton,
-					.prevButton,
-					.nextButton {
-						padding-inline: 8px;
-					}
-				}
-			}
-
 			/* Wraps within the (possibly narrow) lesson pane rather than
 			   overflowing it, e.g. with longer translated labels */
 			.buttonContainer {
@@ -221,6 +205,23 @@
 					border-color: var(--accent-hover);
 				}
 			}
+
+			/* After the rules above, which it overrides */
+			@media (max-width: 600px) {
+				.language,
+				.buttonContainer {
+					max-width: 100%;
+					margin-inline: 0;
+				}
+
+				.buttonContainer {
+					.helpButton,
+					.prevButton,
+					.nextButton {
+						padding-inline: 8px;
+					}
+				}
+			}
 		}
 
 		&:not(.showCode) {
@@ -232,6 +233,11 @@
 
 				& > .language {
 					margin: 16px auto 24px;
+				}
+
+				/* Not wider than the pane, e.g. for its code blocks on phones */
+				& > content-region {
+					width: 100%;
 				}
 
 				content-region h1 {
@@ -329,7 +335,8 @@
 			}
 
 			&:before {
-				/* Decorative: the button is named by its label */
+				content: '►';
+				/* Decorative: the button is named by its label (where supported) */
 				content: '►' / '';
 				position: relative;
 				display: inline-block;

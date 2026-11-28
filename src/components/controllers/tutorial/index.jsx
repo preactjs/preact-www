@@ -15,6 +15,7 @@ import cx from '../../../lib/cx.js';
 import { CodeEditor, Runner, ErrorOverlay, Splitter } from '../../routes.jsx';
 import { useFallbackLang, useTranslate } from '../../../lib/i18n.jsx';
 import { MarkdownRegion } from '../markdown-region.jsx';
+import { hasInputSinceNavigation } from '../../../lib/reader-input.js';
 import LanguageSelect from '../../language-select/index.jsx';
 import style from './style.module.css';
 
@@ -80,7 +81,8 @@ export function Tutorial({ path, html, meta }) {
 	}, [meta.tutorial?.initial]);
 
 	// A new chapter starts at its top, also for keyboard focus if it was in the
-	// lesson (e.g. on the reused Next Page link)
+	// lesson (e.g. on the reused Next Page link), unless the reader has done
+	// anything while it loaded
 	const shownPath = useRef(path);
 	useEffect(() => {
 		if (shownPath.current === path) return;
@@ -91,6 +93,7 @@ export function Tutorial({ path, html, meta }) {
 		const heading = pane.querySelector('h1');
 		if (
 			heading &&
+			!hasInputSinceNavigation() &&
 			(!active || active === document.body || pane.contains(active))
 		) {
 			if (!heading.hasAttribute('tabindex')) {

@@ -45,10 +45,23 @@ function getNavigatorLanguage() {
 	for (const tag of [navigator.language, ...(navigator.languages || [])]) {
 		if (!tag) continue;
 		const lang = String(tag).toLowerCase();
-		const locale = knownLocale(lang) || knownLocale(lang.split('-')[0]);
+		const locale = knownLocale(lang) || knownLocale(baseLocale(lang));
 		if (locale === 'en') return;
 		if (locale) return locale;
 	}
+}
+
+/**
+ * The site's locale for a language tag's language: Brazilian Portuguese for
+ * any Portuguese, none for Traditional Chinese (`zh` is Simplified)
+ *
+ * @param {string} tag Lowercase
+ */
+function baseLocale(tag) {
+	const [base] = tag.split('-');
+	if (base === 'pt') return 'pt-br';
+	if (base === 'zh' && /-(hant|tw|hk|mo)\b/.test(tag)) return '';
+	return base;
 }
 
 /**
